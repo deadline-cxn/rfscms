@@ -73,6 +73,11 @@ function sc_module_popular_news($x) { eval(scg());
     echo "</table>";
 }
 
+function sc_module_news_top_story() { eval(scg());
+
+    sc_show_top_news();
+
+}
 
 function sc_getnewstopstory(){
     $result=sc_query("select * from news where topstory='yes' and published='yes'");
@@ -337,6 +342,7 @@ function editnews($nid) { eval(scg());
 					1);
                     
 		echo "</td></tr></table>";
+
 					
 	
     echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
