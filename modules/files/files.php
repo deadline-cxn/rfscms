@@ -661,14 +661,13 @@ function show1file($filedata,$bg) { eval(scg());
 	// $fti="images/icons/filetypes/$filetype.gif";
 	//if(file_exists("images/icons/filetypes/$filetype.png")) $fti="images/icons/filetypes/$filetype.png";
     //  echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16></a></center>
+	
+	if(!stristr($filedata->location,"tp:")) {
+		$filedata->location="$RFS_SITE_URL/$filedata->location";		
+	}
     
-    echo "</td>\n";
-    
-    echo "<td class=sc_file_table_$bg >
-<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a><br>
-
-$filedata->location
-</td>\n";
+    echo "</td>\n";    
+    echo "<td class=sc_file_table_$bg><a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a><br>$filedata->location</td>\n";
     $size=(sc_sizefile($filedata->size));
     echo "<td class=sc_file_table_$bg >";
 	// $wpui="wp.gif";
