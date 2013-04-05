@@ -2,7 +2,7 @@
 #######################################################################
 # RFS XPlorer v2.2
 #    (formerly known as PHP XPlorer
-# By Seth Parson
+# By Seth Parson 
 #
 chdir("../../");
 include("rfs/header.php");
