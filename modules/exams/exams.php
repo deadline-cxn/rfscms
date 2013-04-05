@@ -1,7 +1,7 @@
 <?
 
 chdir("../../");
-include("include/lib.mysql.php");
+include("include/lib.mysql.php"); 
 
 if(empty($_REQUEST['exam_id'])) $title="Exams";
 else  {
