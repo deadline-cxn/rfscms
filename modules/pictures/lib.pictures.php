@@ -1,0 +1,31 @@
+<?
+include_once("include/lib.all.php");
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MODULE PICTURES
+function sc_module_mini_pictures($x) { eval(scg());
+    sc_div("PICTURES MODULE SECTION");
+    echo "<h2>Last $x Pictures</h2>";
+    $res2=sc_query("select * from `pictures` where `hidden`='no' order by time desc limit 0,$x");
+    $numpics=mysql_num_rows($res2); // make pictures table...
+    for($i=0;$i<$numpics;$i++) {
+        $picture=mysql_fetch_object($res2);
+        if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
+        echo "<table border=0>";
+        echo "<tr><td class=contenttd>";
+        echo "<table border=0 cellpadding=1 cellspacing=0><tr><td class=contenttd>";
+        echo "<a href=$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id>".sc_picthumb("$RFS_SITE_PATH/$picture->url",30,0,1)."</a>";
+        echo "</td></tr></table>";
+        echo "</td><td class=contenttd valign=top>";
+        echo "<a href=pics.php?action=view&id=$picture->id>";
+        echo "$picture->sname</a><br>";
+        echo sc_trunc($picture->description,50);
+        echo "<br>";
+        echo "</td></tr>";
+        echo "</table>";
+    }
+    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/pictures/pics.php?action=random class=a_cat>Random Picture</a>)";
+    echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php class=a_cat>More...</a>)</p>";
+}
+
+?>

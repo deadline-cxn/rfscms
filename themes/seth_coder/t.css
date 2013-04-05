@@ -1,0 +1,122 @@
+
+
+td{
+    font-family: Verdana;
+    font-size: 12px;
+
+}
+
+.news_img_td {
+	vertical-align: top;
+	horizontal-align: center;
+}
+.news_td {
+	vertical-align: top;
+	
+	
+}
+.news_a{
+	vertical-align: top;
+}
+
+.tabletop
+{
+    font-family: Verdana;
+    font-size: 16px;
+    color: #333377;
+}
+
+hr
+{
+    border: 1px;
+    border-color: #c2c7f6;
+    border-style: dotted;
+}
+
+.sc_top_menu_table
+{
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 12px;
+    color: #555599;
+    
+    background-color: #c2c7f6;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;    
+}
+
+.thirdtd
+{
+    height: 16px;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #333377;
+    background-color: #7376ac;
+}
+
+.contenttd
+{
+    color: #000000;
+}
+
+.middle_cont
+{
+    border: 1px;
+    border-color: #000000;
+    border-style: solid;
+}
+    
+.toptd
+{
+    font-family: Verdana;
+    font-size: 32px;
+    font-weight: bold;
+    	
+	
+    padding-left: 45px;
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    
+    color: #c2c7FF;
+    background-color: #9396c3;
+}
+
+.slogan
+{
+    font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+    color: #c2c7FF;
+    background-color: #9396c3;
+
+}
+
+.wikishell {
+	margin:0 auto;
+	align: center;
+	width: 80%;
+	font-family: monospace;
+	background-color: #000000;
+	color: #00ff00;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+
+input,select,textarea{
+    font-family: Arial;
+    font-size: 12px;
+    
+    color: #000000;
+    border: 1px;
+    border-color: #c2c7f6;
+    border-style: solid;
+    background-color: #a2a7d6;
+
+}
+
