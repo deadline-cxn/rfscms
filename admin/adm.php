@@ -985,7 +985,7 @@ function adm_action_edit_categories() {
 	<td>&nbsp;</td>
 	<td>
 	<form enctype=application/x-www-form-URLencoded action='$RFS_SITE_URL/admin/adm.php' method='post'>
-	<input type=hidden name='action'   value='add_category'>
+	<input type=hidden name='action'   value='f_add_category'>
 	<input type=text   name='category' value='' style=' width: 100%;'>
 	</td>
 

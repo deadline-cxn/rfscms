@@ -3304,4 +3304,5 @@
     <File Name="install/wab_engine.sql"/>
     <File Name="install/wiki.sql"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug"/>
 </CodeLite_Project>
