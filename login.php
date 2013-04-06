@@ -9,8 +9,6 @@ if(empty($outpage)) $outpage=$RFS_SITE_URL;
 
 if(empty($action)) $action=$_REQUEST['action'];
 
-
-
 /////////////////////////////////////////////////////////////////////
 ///////// LOGOUT 
 if($action=="logout") {
