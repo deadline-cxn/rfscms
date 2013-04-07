@@ -195,7 +195,6 @@ td
 	background-color: #FFFFFF;
 }
 
-
 .sc_project_table_0
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -218,6 +217,39 @@ td
     font-size: 12px;
     color:   #000000;
 	background-color: #eeeeee;
+}
+
+
+.sc_top_file_table
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color:   #000000;
+    background-color: #8888ff;
+}
+
+.sc_file_table_0
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+    background-color: #cccccc;
+}
+
+.sc_file_table_1
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+    background-color: #dddddd;
+}
+
+.sc_file_table_2
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+    background-color: #eeeeee;
 }
 
 .rfs_bulletlist

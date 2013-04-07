@@ -645,7 +645,7 @@ function sc_fileheader() {
 
 function show1file($filedata,$bg) { eval(scg());
     echo "<tr class=sc_file_table_$bg >\n";
-    echo "<td class=sc_file_table_$bg ><center>";
+    
     
     // <a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">\n";
     
@@ -661,32 +661,43 @@ function show1file($filedata,$bg) { eval(scg());
 	// $fti="images/icons/filetypes/$filetype.gif";
 	//if(file_exists("images/icons/filetypes/$filetype.png")) $fti="images/icons/filetypes/$filetype.png";
     //  echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16></a></center>
-	
-	if(!stristr($filedata->location,"tp:")) {
-		$filedata->location="$RFS_SITE_URL/$filedata->location";		
-	}
     
-    echo "</td>\n";    
-    echo "<td class=sc_file_table_$bg><a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a><br>$filedata->location</td>\n";
+    
+    
+	echo "<td class=sc_file_table_$bg ><a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a></td>\n";
     $size=(sc_sizefile($filedata->size));
-    echo "<td class=sc_file_table_$bg >";
+    
+	//echo "<td class=sc_file_table_$bg width=100>";
 	// $wpui="wp.gif";
 	// if(empty($filedata->homepage)) $wpui="wp_no.gif";
 	// if($wpui=="wp.gif") echo "<a href=\"$filedata->homepage\" target=_blank>";
 	//echo "<img src=\"$RFS_SITE_URL/images/$wpui\" border=0 title=\"$filedata->homepage\" alt=\"$filedata->homepage\">";
 	// if($wpui=="wp.gif") echo "</a>";
-	echo "&nbsp;</td>\n";
+	//echo "&nbsp;</td>\n";
+	
     echo "<td class=sc_file_table_$bg >$size &nbsp;</td>\n";
-    echo "<td class=sc_file_table_$bg >$filedata->category &nbsp;</td>\n";
-    //echo "<td class=sc_file_table_$bg >";
-    // echo sc_trunc($filedata->description,45);
-    //echo "</td>\n";
+    
+	
+	echo "<td class=sc_file_table_$bg >";
+	
+	$floc=$RFS_SITE_PATH."/".$filedata->location;
+	if(file_exists($floc)) {
+		echo "md5 [".md5($floc)."]";
+		
+	}
+	
+	echo "</td>\n";
+    
+	echo "<td class=sc_file_table_$bg >";
+     echo sc_trunc($filedata->description,45);
+    echo "</td>\n";
+	
     echo "<td class=sc_file_table_$bg > ";//<a href=$RFS_SITE_URL/showprofile.php?user=$filedata->submitter>$filedata->submitter &nbsp;</a>";
     $data=$GLOBALS['data'];
     if( ($filedata->submitter==$data->name) || ($data->access==255)) {
        echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id\">edit</a>] &nbsp;";
        echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id\">delete</a>] &nbsp;";
-		echo "</td><td class=sc_file_table_$bg >Move to </td><td>";
+		echo "</td><td class=sc_file_table_$bg >Move to </td><td class=sc_file_table_$bg>";
 		sc_optionizer("$RFS_SITE_URL/modules/files/files.php","action=file_change_category".$GLOBALS['RFS_SITE_DELIMITER']."id=$filedata->id","categories","name",0,$cc->name,1);
 	}
     echo "</td></tr>\n";
@@ -753,6 +764,9 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
     include("footer.php");
     exit();
 }
+
+echo "<table border=0 bordercolor=#000000 cellspacing=0 cellpadding=5 width=100% >";
+
 $result=sc_query("select * from categories where name != 'ignore' order by name asc");
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++) {
@@ -762,15 +776,30 @@ for($i=0;$i<$numcats;$i++) {
         $buffer=rtrim($buffer);
         $buffer=rtrim($cat->name);
         $filelist=sc_getfilelist("where category = '$buffer'",50);
-        if(count($filelist)){
-			echo "<table border=0 cellspacing=0 cellpadding=0 width=100%><tr>";
-			echo "<td class=sc_top_file_table width=280>  ".ucwords($buffer).""; 
-			echo "</td><td class=sc_top_file_table>";
+        
+		if(count($filelist)){
+			
+			echo "<tr>";	
+			echo "<td class=sc_top_file_table> ";
+			$iconp=$RFS_SITE_PATH."/".$cat->image;
+			$icon=$RFS_SITE_URL."/".$cat->image;
+			if(file_exists($iconp)) {				
+				echo "<img src=$icon border=0 width=32 height=32> ";
+			}
+			echo ucwords("File Category: $buffer");
+						
 			sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer","Show All $buffer");
-			echo "</td><td class=sc_top_file_table width=40%>";
-			echo "</td></tr></table>";
-          echo "<table border=0 bordercolor=#000000 cellspacing=0 cellpadding=0 width=100% > <tr><td>\n";
-          sc_fileheader();
+			echo "</td>";
+			
+			echo "<td class=sc_top_file_table></td>";
+			echo "<td class=sc_top_file_table></td>";
+			echo "<td class=sc_top_file_table></td>";			
+			echo "<td class=sc_top_file_table></td>";
+			echo "<td class=sc_top_file_table></td>";
+			echo "<td class=sc_top_file_table></td>";
+
+			echo "</tr>";
+			
 			while($i<count($filelist)) {
 				$filedata=sc_getfiledata($filelist[$i]);
 				$bg=$bg+1; if($bg>1) $bg=0;
@@ -780,15 +809,16 @@ for($i=0;$i<$numcats;$i++) {
 				if(empty($la)) $la=5;
 				if($i==$la){
 					break;
-				}
+					}
 			}				
 			if($i==$la){
+				
 			}
-			echo "</td></tr></table>";
-			echo "<hr>";
 		}
 	}
 }
+echo "</td></tr></table>";
+
 include("footer.php");
 
 ?>
