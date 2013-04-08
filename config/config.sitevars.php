@@ -18,7 +18,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////
 
-$RFS_SITE_SESSION_ID        = "RFS_CMS_";
+$RFS_SITE_SESSION_ID        = "RFS_CMS_3D_NET_LABS";
 $RFS_SITE_SESSION_USER      = $_SESSION['valid_user'];
 $RFS_SITE_ADMIN             = "Administrator";
 $RFS_SITE_ADMIN_EMAIL       = "admin@".$SERVER['DOCUMENT_ROOT'];
@@ -51,19 +51,20 @@ $RFS_SITE_THEME_DROPDOWN    = false;
 //////////////////////////////////////////////////////////////////////////////
 // Facebook integration
 
-$RFS_SITE_FACEBOOK_APP_ID   = ""; // enter your facebook app id
-$RFS_SITE_FACEBOOK_SECRET   = ""; // enter your facebook app secret
+$RFS_SITE_FACEBOOK_APP_ID   = "";
+$RFS_SITE_FACEBOOK_SECRET   = "";
 $RFS_SITE_FACEBOOK_SDK      = "$RFS_SITE_PATH/facebook/src/facebook.php";
+
 
 ///  wiki stuff
 
 $rfsw_header        = "header.php"; 
 $rfsw_footer        = "footer.php";
 
-$rfsw_dbname        = "";   // change these
-$rfsw_address       = "";   // variables
-$rfsw_user          = "";   // to work with
-$rfsw_pass          = "";   // your database
+$rfsw_dbname        = "trainweb";   // change these
+$rfsw_address       = "localhost";  // variables
+$rfsw_user          = "training";   // to work with
+$rfsw_pass          = "!QAZ2wsx";           // your database
 
 $rfsw_img_path      = "images/wiki";       // path to image uploads
 $rfsw_bullet_image  = "$rfsw_img_path/bullet.gif";
@@ -174,7 +175,7 @@ $RFS_SITE_TITLE         ="<TITLE> \$RFS_SITE_NAME $title </TITLE>";
 //////////////////////////////////////////////////////////////////////////////
 // KEYWORDS
 
-$RFS_SITE_SEO_KEYWORDS = $title."RFS CMS";
+$RFS_SITE_SEO_KEYWORDS = $title."United States Air Force";
 //////////////////////////////////////////////////////////////////////////////
 // Unlikely to need changes
 
@@ -194,11 +195,7 @@ $RFS_SITE_BODY_OPEN         = "<BODY topmargin=0 leftmargin=0 rightmargin=0 marg
 $RFS_SITE_BODY_CLOSE        = "</BODY>\n";
 $RFS_SITE_HTML_CLOSE        = "</HTML>\n";
 
-
-$RFS_SITE_DELIMITER         = "¥"; 	// the delimiter should only be changed during initial setup
-									// if you change this after the database has grown
-									// you will have to manually change all occurences of the 
-									// delimiter in the database
+$RFS_SITE_DELIMITER         = "¥";
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
