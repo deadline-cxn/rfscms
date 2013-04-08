@@ -7,7 +7,7 @@ This project is available free of charge, and you may use it and modify it under
 The RFS CMS home page is http://www.sethcoder.com/
 If you have any questions, comments or suggestions, please use the forum there.
 
-I have intentionally left out the images folder until I can trim it to only include the required files.
+The images folder is now included.
 
 Some parts of this project, the 3rdparty folder in particular, are from other projects.
 I have made the best effort of providing documentation, and disclosure every where I can when it 
