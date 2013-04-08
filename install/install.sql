@@ -266,27 +266,6 @@ CREATE TABLE IF NOT EXISTS `menu_top` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
-CREATE TABLE IF NOT EXISTS `news` (
-  `name` text COLLATE utf8_unicode_ci NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `headline` text COLLATE utf8_unicode_ci NOT NULL,
-  `message` text COLLATE utf8_unicode_ci NOT NULL,
-  `category1` text COLLATE utf8_unicode_ci NOT NULL,
-  `submitter` int(11) NOT NULL DEFAULT '0',
-  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `lastupdate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `image_url` text COLLATE utf8_unicode_ci NOT NULL,
-  `image_link` text COLLATE utf8_unicode_ci NOT NULL,
-  `image_alt` text COLLATE utf8_unicode_ci NOT NULL,
-  `topstory` text COLLATE utf8_unicode_ci NOT NULL,
-  `published` text COLLATE utf8_unicode_ci NOT NULL,
-  `views` int(11) NOT NULL DEFAULT '0',
-  `rating` text COLLATE utf8_unicode_ci NOT NULL,
-  `sfw` text COLLATE utf8_unicode_ci NOT NULL,
-  `page` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
-
 CREATE TABLE IF NOT EXISTS `pictures` (
   `name` text COLLATE utf8_unicode_ci NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,

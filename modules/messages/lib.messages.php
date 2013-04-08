@@ -18,7 +18,7 @@ function adm_action_lib_messages_messages() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/messages/messages.php");
 }
 
-function sc_module_f_messages_get_unread() { eval(scg());
+function get_unread_messages() { eval(scg());
     $q= "select * from `pmsg` where
     (
     `to` = '$data->name' or
@@ -35,7 +35,7 @@ function sc_module_f_messages_get_unread() { eval(scg());
     return $numunread;
 }
 
-function sc_module_f_messages_send($to,$from,$subject,$message) {
+function send_message($to,$from,$subject,$message) {
    $mtime=date("Y-m-d H:i:s");
    $subject=addslashes($subject);
    $message=addslashes($message);
@@ -44,7 +44,7 @@ function sc_module_f_messages_send($to,$from,$subject,$message) {
 	echo "<p>Message to $to sent!</p>";
 }
 
-function sc_module_f_messages_send_all($from,$subject,$message) {
+function send_all($from,$subject,$message) {
     $r=sc_query("select * from users");
     $n=mysql_num_rows($r);
     for($i=0;$i<$n;$i++) {
@@ -74,7 +74,7 @@ function sc_module_mini_messages_link() { eval(scg());
 
 function sc_module_mini_messages_indicator_small() { eval(scg());
 	if($_SESSION["logged_in"]!="true") return;
-    $ur=sc_module_f_messages_get_unread();
+    $ur=get_unread_messages();
     if($ur) {
         echo "<table border=0 cellspacing=0 cellpadding=3>";
         echo "<tr class='message_mini_indicator'>";

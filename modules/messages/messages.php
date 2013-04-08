@@ -76,7 +76,7 @@ if($action=="new message"){
 
 if($action=="messagego"){
     $from=$data->name;
-    sc_module_f_messages_send($to,$from,$subject,$message);
+    send_message($to,$from,$subject,$message);
 	unset($action);
 }
 
@@ -226,7 +226,7 @@ if(empty($action)) {
     if(!empty($data->name_shown))   $ot.=" name_shown ($data->name_shown)";
 
     echo $ot;
-    $numunread=sc_module_f_messages_get_unread();
+    $numunread=get_unread_messages();
 
     echo "<hr>";
 

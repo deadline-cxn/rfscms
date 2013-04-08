@@ -2,8 +2,44 @@
 // new funcs
 include_once("include/lib.all.php");
 
+sc_query( " 
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `headline` text COLLATE utf8_unicode_ci NOT NULL,
+  `message` text COLLATE utf8_unicode_ci NOT NULL,
+  `category1` text COLLATE utf8_unicode_ci NOT NULL,
+  `submitter` int(11) NOT NULL DEFAULT '0',
+  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `lastupdate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `image_url` text COLLATE utf8_unicode_ci NOT NULL,
+  `image_link` text COLLATE utf8_unicode_ci NOT NULL,
+  `image_alt` text COLLATE utf8_unicode_ci NOT NULL,
+  `topstory` text COLLATE utf8_unicode_ci NOT NULL,
+  `published` text COLLATE utf8_unicode_ci NOT NULL,
+  `views` int(11) NOT NULL DEFAULT '0',
+  `rating` text COLLATE utf8_unicode_ci NOT NULL,
+  `sfw` text COLLATE utf8_unicode_ci NOT NULL,
+  `page` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+
+");
+
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
+
+
+function adm_action_lib_news_news_submit() { eval(scg());
+    sc_gotopage("$RFS_SITE_URL/modules/news/news.php?showform=yes");
+}
+
+function adm_action_lib_news_news_edit() { eval(scg());
+    sc_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
+}
+
 
 function sc_module_mini_news($x) { eval(scg());
     sc_div("NEWS MODULE SECTION");
@@ -34,7 +70,7 @@ function sc_module_mini_news($x) { eval(scg());
         echo "</td></tr>";
     }
     echo "</table>";
-    echo "<p align=right>(<a href=news.php class=\"a_cat\" align=right>More...</a>)</p>";
+    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/news/news.php class=\"a_cat\" align=right>More...</a>)</p>";
 }
 
 
@@ -57,10 +93,10 @@ function sc_module_popular_news($x) { eval(scg());
             $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 
         $altern=stripslashes($news->image_alt);
-        echo "<a href=\"$RFS_SITE_URL/news.php?action=view&nid=$news->id\"><img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30></a>\n";
+        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\"><img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30></a>\n";
         echo "</td></tr></table>";
         echo "</td><td valign=top>";
-        echo "<a href=\"$RFS_SITE_URL/news.php?action=view&nid=$news->id\" class=\"a_cat\">".sc_trunc("$news->headline",50)."</a><br>";
+        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".sc_trunc("$news->headline",50)."</a><br>";
         $ntext=str_replace("<br>"," ",stripslashes(sc_trunc("$news->message",70)));
         $ntext=str_replace("<img",$news->headline,$ntext);
         $ntext=str_replace("<iframe",$news->headline,$ntext);
@@ -148,7 +184,7 @@ function sc_show_news($id) { eval(scg());
 
     if(!empty($news->image_url)){
             $altern=stripslashes($news->image_alt);
-            if(empty($news->image_link)) $news->image_link="news.php?action=view&nid=$news->id";
+            if(empty($news->image_link)) $news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";
               echo "<a href=\"$RFS_SITE_URL/modules/news/$news->image_link\" target=\"_blank\" class=news_a >";
 
               if(!stristr($news->image_url,$RFS_SITE_URL))
@@ -186,8 +222,8 @@ function sc_show_news($id) { eval(scg());
 }
 
 function put_news_image($fname) { eval(scg());
-    $file=$_FILES[$fname]['name'];
-
+    
+	$file=$_FILES[$fname]['name'];
     $f_ext=sc_getfiletype($file);
     $uploadFile=$RFS_SITE_PATH."/images/news/$file";
     if(($f_ext=="gif")||($f_ext=="jpg")||($f_ext=="swf")) {
@@ -258,7 +294,7 @@ function editnews($nid) { eval(scg());
     //echo "<tr><td>Image Link</td><td><input name=image_url value=\"".stripslashes($news->image_link)."\" size=100></td></tr>\n";
     //echo "<tr><td>Image URL </td><td><input name=image     value=\"".stripslashes($news->image_url)."\"  size=100></td></tr>\n";
     //echo "<tr><td>Image ALT </td><td><input name=image_alt value=\"".stripslashes($news->image_alt)."\"  size=100></td></tr>\n";
-    echo "<a href=news.php?action=view&nid=$nid>Preview</a>";
+    echo "<a href=$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid>Preview</a>";
     if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
         $news->image_url="$RFS_SITE_URL/images/noimage_file.gif";
     if(empty($news->image_url))
@@ -276,7 +312,7 @@ function editnews($nid) { eval(scg());
     echo "Enter a url";
     echo "<table border=0>\n";
     echo "<form enctype=application/x-www-form-URLencoded ";
-    echo " enctype=\"multipart/form-data\" action=\"news.php\" method=\"post\">\n";
+    echo " enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/news/news.php\" method=\"post\">\n";
     echo "<input type=hidden name=action value=imageurl>\n";
     echo "<input type=hidden name=nid value=$nid>";
     echo "<tr><td><input name=\"userfile\"> </td><td>";
@@ -285,7 +321,7 @@ function editnews($nid) { eval(scg());
     echo "</table>\n";
     echo "Or select a file to upload";
     echo "<table border=0>\n";
-    echo "<form enctype=\"multipart/form-data\" action=\"news.php\" method=\"post\">\n";
+    echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/news/news.php\" method=\"post\">\n";
     echo "<input type=hidden name=give_file value=news>\n";
     echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
     echo "<input type=hidden name=local value=\"images/news\">";
@@ -295,7 +331,7 @@ function editnews($nid) { eval(scg());
     echo "</form>\n";
     echo "</table>\n";
     echo "<table border=0>\n";
-    echo "<form enctype=\"multipart/form-data\" action=\"news.php\" method=\"post\">\n";
+    echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/news/news.php\" method=\"post\">\n";
     echo "<input type=hidden name=action value=clearnewsimage>\n";
     echo "<input type=hidden name=nid value=$nid>";
     echo "<tr><td>Or clear current image: <input type=\"submit\" name=\"submit\" value=\"Clear\"></td></tr>\n";
@@ -307,7 +343,7 @@ function editnews($nid) { eval(scg());
     echo "<td>";
     echo "Add more pictures to use in this news article:<br>";
     echo "<table border=0>\n";
-    echo "<form enctype=\"multipart/form-data\" action=\"news.php\" method=\"post\">\n";
+    echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/news/news.php\" method=\"post\">\n";
     echo "<input type=hidden name=give_file value=news_sup>\n";
     echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
     echo "<input type=hidden name=local value=\"images/news\">";

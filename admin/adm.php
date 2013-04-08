@@ -439,7 +439,7 @@ function adm_action_edit_site_vars() {
 	echo "<h3>Edit Site Information</h3>";
 	echo "<p>These variables will be loaded into global scope.</p>";
 	echo "<table border=0>";
-	$res=sc_query( "select * from site_vars" );
+	$res=sc_query( "select * from site_vars order by name" );
 	for( $i=0; $i<mysql_num_rows( $res ); $i++ ) {
 		$site_var=mysql_fetch_object( $res );
 		echo "<tr><td>";
@@ -447,7 +447,7 @@ function adm_action_edit_site_vars() {
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
 		echo "\$site_<input name=name value=\"$site_var->name\"> = ";
 		$site_var->value=stripslashes( $site_var->value );
-		echo "<input name=val value=\"$site_var->value\">";
+		echo "<input name=val size=80 value=\"$site_var->value\">";
 		echo "<input type=submit value=\"update\">";
 		echo "</form>";
 		echo "</td><td>";
@@ -458,7 +458,7 @@ function adm_action_edit_site_vars() {
 	echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/admin/adm.php>";
 	echo "<input type=hidden name=action value=\"f_addsitevar\">";
 	echo "\$site_<input name=name value=\"Add New\"> = ";
-	echo "<input name=val value=\"\">";
+	echo "<input name=val size=80 value=\"\">";
 	echo "<input type=submit value=\"go\">";
 	echo "</form>";
 	echo "</td><td>";
