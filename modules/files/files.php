@@ -57,7 +57,7 @@ if( $data->access==255) {
 	echo "</td><td>";    
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=hide_temp","Sort Mode Off");
 	echo "</td><td>";    
-	sc_button("admin/adm.php?action=edit_categories","Edit Categories");
+	sc_button("$RFS_SITE_URL/admin/adm.php?action=edit_categories","Edit Categories");
 	echo "</td><td>";    
     sc_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
 	echo "</td></tr></table>"; 	
