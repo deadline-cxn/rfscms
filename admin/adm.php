@@ -67,6 +67,19 @@ CREATE TABLE IF NOT EXISTS `db_queries` (
 chdir( "../" );
 include( "header.php" );
 
+sc_query("
+CREATE TABLE IF NOT EXISTS `access` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `access` text COLLATE utf8_unicode_ci NOT NULL,
+  `action` text COLLATE utf8_unicode_ci NOT NULL,
+  `page` text COLLATE utf8_unicode_ci NOT NULL,
+  `table` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+");
+
 /////////////////////////////////////////////////////////////////////////////////////////
 echo "<table border=0 width=100% cellspacing=0 cellpadding=0 ><tr><td valign=top> ";
 
