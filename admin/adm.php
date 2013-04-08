@@ -1010,14 +1010,14 @@ function adm_action_edit_categories() {
 	for( $i=0; $i<$numcats; $i++ ) {
 		$cat=mysql_fetch_object( $result );
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/adm.php\" method=\"post\"><tr><td>";
-		echo "<input type=hidden name=action    value=delete_category>\n";
+		echo "<input type=hidden name=action    value=f_delete_category>\n";
 		echo "<input type=hidden name=category  value=\"$cat->name\">\n";
 		echo "<div class=menutop>";
 		echo "<input type=submit name=submit    value=delete>\n";
 		echo "</div>";
 		echo "</form></td>\n";
 		echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
-		echo "<input type=hidden name=action    value=rename_category>\n";
+		echo "<input type=hidden name=action    value=f_rename_category>\n";
 		echo "<input type=hidden name=category  value=\"$cat->name\">\n";
 		echo "<input size=40 type=text   name=newname  value=\"$cat->name\">\n";
 		echo "</td>
