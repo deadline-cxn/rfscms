@@ -18,7 +18,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////
 
-$RFS_SITE_SESSION_ID        = "RFS_CMS_3D_NET_LABS";
+$RFS_SITE_SESSION_ID        = "RFS_CMS_";
 $RFS_SITE_SESSION_USER      = $_SESSION['valid_user'];
 $RFS_SITE_ADMIN             = "Administrator";
 $RFS_SITE_ADMIN_EMAIL       = "admin@".$SERVER['DOCUMENT_ROOT'];
@@ -175,7 +175,8 @@ $RFS_SITE_TITLE         ="<TITLE> \$RFS_SITE_NAME $title </TITLE>";
 //////////////////////////////////////////////////////////////////////////////
 // KEYWORDS
 
-$RFS_SITE_SEO_KEYWORDS = $title."United States Air Force";
+$RFS_SITE_SEO_KEYWORDS = $title."";
+
 //////////////////////////////////////////////////////////////////////////////
 // Unlikely to need changes
 
