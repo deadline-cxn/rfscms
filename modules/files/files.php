@@ -3,18 +3,17 @@
 
 if($argv[1]=="scrub") {
     $RFS_CMD_LINE=true;  
-    include_once("lib.all.php");
+    include_once("include/lib.all.php");
     sc_scrubfiles();
     exit();
 }
 if($argv[1]=="orph") {
     $RFS_CMD_LINE=true;  
-    include_once("lib.all.php");
+    include_once("include/lib.all.php");
     $data=sc_getuserdata(1);    
     system("clear");
     orphan_scan("files");
-    orphan_scan("images");
-    
+     
     exit();
 }
 
@@ -411,7 +410,9 @@ function orphan_scan($dir) { eval(scg());
 
 				// echo "$dir/$file... \n"; if(!$RFS_CMD_LINE) echo "<br>";
                 if(is_dir($dir."/".$file)){
-					if( ($file!="rendered") && ($file!="cache") )
+					if( 	($file!=".rendered") &&
+							($file!=".cache")  && 
+							($file!=".Trash-1000") )
 							orphan_scan($dir."/".$file);
 				}
 				else {
@@ -423,7 +424,8 @@ function orphan_scan($dir) { eval(scg());
 							if(mysql_num_rows($res)>0)
 								$filefound=1;
 								$res=sc_query("select * from `files` where `name` = '$file'");
-							if(mysql_num_rows($res)>0) $filefound=1;
+								if($res)
+									if(mysql_num_rows($res)>0) $filefound=1;
 						}
 						if($filefound){
 						
@@ -432,21 +434,29 @@ function orphan_scan($dir) { eval(scg());
                         $time=date("Y-m-d H:i:s");
                         $filetype=sc_getfiletype($file);
                         $filesizebytes=filesize(getcwd()."/$dir/$file");
-                        $name=addslashes($file);
-							$infile=addslashes($file);
-                        sc_query("INSERT INTO `files` (`name`) VALUES('$infile');");
-							$loc=addslashes("$dir/$file");
-                        sc_query("UPDATE files SET `location`='$loc' where name='$name'");
+						
+							if($filesizebytes>0) {
+						
+								$name=addslashes($file);
+									$infile=addslashes($file);							
+								sc_query("INSERT INTO `files` (`name`) VALUES('$infile');");
+									$loc=addslashes("$dir/$file");
+								sc_query("UPDATE files SET `location`='$loc' where name='$name'");
+								
+									$dname="system";
+									if(!empty($data)) $dname=$data->name;							
 
-                        sc_query("UPDATE files SET `submitter`='$data->name' where name='$name'");
+								sc_query("UPDATE files SET `submitter`='$dname' where name='$name'");
 
-                        sc_query("UPDATE files SET `category`='!!!TEMP!!!' where name='$name'");
-                        sc_query("UPDATE files SET `hidden`='no' where name='$name'");
-                        sc_query("UPDATE files SET `time`='$time' where name='$name'");
-                        sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
-                        sc_query("UPDATE files SET size='$filesizebytes' where name='$name'");
-                        echo "Added [$url] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
-                        $dir_count++;
+								sc_query("UPDATE files SET `category`='!!!TEMP!!!' where name='$name'");
+								sc_query("UPDATE files SET `hidden`='no' where name='$name'");
+								sc_query("UPDATE files SET `time`='$time' where name='$name'");
+								sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
+								sc_query("UPDATE files SET size='$filesizebytes' where name='$name'");
+								echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
+								$dir_count++;
+									
+							}
                    }
                
 			   }
