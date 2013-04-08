@@ -1,6 +1,6 @@
 <?
 include_once("include/lib.all.php");
- 
+
 function adm_action_lib_exams_exam_edit() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit");
 }
