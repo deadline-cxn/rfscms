@@ -1,0 +1,1 @@
+ICO2GIF.EXE %1 %1.gif
