@@ -384,6 +384,12 @@ if($action=="upload_avatar"){
     exit();
 }
 
+if($action=="remove_duplicates") {
+	
+
+
+}
+
 function orphan_scan($dir) { eval(scg()); 
 
 	echo "Scanning [$RFS_SITE_PATH/$dir] \n"; if(!$RFS_CMD_LINE) echo "<br>";
@@ -416,7 +422,7 @@ function orphan_scan($dir) { eval(scg());
 						if($res)  {
 							if(mysql_num_rows($res)>0)
 								$filefound=1;
-								$res=sc_query("select * from `files` where `name` = '%$loc%'");
+								$res=sc_query("select * from `files` where `name` = '$file'");
 							if(mysql_num_rows($res)>0) $filefound=1;
 						}
 						if($filefound){
@@ -451,7 +457,7 @@ function orphan_scan($dir) { eval(scg());
 
 if($action=="getorphans") {
 	orphan_scan("files");
-	orphan_scan("images");
+	// orphan_scan("images");
 	include("footer.php");
     exit();
 }
@@ -664,7 +670,15 @@ function show1file($filedata,$bg) { eval(scg());
     
     
     
-	echo "<td class=sc_file_table_$bg ><a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a></td>\n";
+	echo "<td class=sc_file_table_$bg ><a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a>";
+	
+	if($_SESSION['show_temp']==true) {
+		echo "<br>$filedata->location";
+	}
+	
+	
+	echo "</td>\n";
+	
     $size=(sc_sizefile($filedata->size));
     
 	//echo "<td class=sc_file_table_$bg width=100>";
