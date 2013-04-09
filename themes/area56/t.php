@@ -53,9 +53,9 @@ $sc_join_button  = "join.gif";
 $sc_banner="sc_banner.gif";
 
 $RFS_SITE_TOP_MENU_LOCATION="top";
-$RFS_SITE_NAV_FONT="8bitlimr.ttf";
+$RFS_SITE_NAV_FONT="ALIENSAT.TTF";
 $RFS_SITE_NAV_IMG=1;
-$RFS_SITE_FONT="8bitlimr.ttf";
+$RFS_SITE_FONT="ALIENSAT.TTF";
 $RFS_SITE_NAV_FONT_COLOR="#01ff00";
 $RFS_SITE_NAV_FONT_BGCOLOR="#330000";
 

@@ -11,13 +11,15 @@ function sc_module_mini_link_friends() { eval(scg());
             $link=mysql_fetch_object($result);
             $url=$link->link;
 			$url = urlencode($url);
-            $url = str_ireplace("http://","",  $url);
-            $url = str_ireplace("http%3A%2F%2F","", $url);            
-echo "<div><a href=\"$site_url/link_out.php?link=$url\" target=_blank>$link->sname</a></div>";
-        }		
+            // $url = str_ireplace("http://","",  $url);
+            //$url = str_ireplace("http%3A%2F%2F","", $url);            
+
+	echo "<div><a href=\"$RFS_SITE_URL/link_out.php?link=$url\" target=_blank>$link->sname</a></div>";
+    
+   }		
         if($data->access=="255") {
             echo "<div style='float: left;'>";
-            echo "<form action=\"$site_url/adm.php\" method=post><input type=hidden name=action value=editlinkbin>";
+echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=post><input type=hidden name=action value=edit_linkbin>";
             echo "<input type=submit name=submit value=\"edit links\"></form></div>";
         }
 }

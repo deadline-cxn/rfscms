@@ -1,6 +1,12 @@
 <?
 include_once("include/lib.all.php");
 
+sc_access_method_add("comics", "create");
+sc_access_method_add("comics", "delete");
+sc_access_method_add("comics", "deleteothers");
+sc_access_method_add("comics", "edit");
+sc_access_method_add("comics", "editothers");
+
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE COMICS
 function sc_module_mini_comics($x) { eval(scg());

@@ -10,8 +10,8 @@ function sc_module_mini_profile($x) { eval(scg());
     echo "<table border=0 cellspacing=0>";
     $ct=count($profilelist); if($ct>$x) $ct=$x;
     for($cci=0;$cci<$ct;$cci++){
-        echo "<tr><td class=contenttd width=2% >";
-        $profile=sc_getprofiledata($profilelist[$cci]);
+        echo "<tr><td class=contenttd width=2% >";       
+		$profile=sc_getprofiledata($profilelist[$cci]);
         if(empty($profile->image_url)) $profile->image_url="images/noimage.gif";
         $altern=stripslashes($profile->image_alt);
         $picf="$RFS_SITE_PATH/$profile->image_url";

@@ -1,6 +1,12 @@
 <?
-// new funcs
+
 include_once("include/lib.all.php");
+
+sc_access_method_add("news", "edit");
+sc_access_method_add("news", "editothers");
+sc_access_method_add("news", "submit");
+sc_access_method_add("news", "delete");
+sc_access_method_add("news", "deleteothers");
 
 sc_query( " 
 
@@ -175,10 +181,8 @@ function sc_show_news($id) { eval(scg());
     echo "<table border=0 width=100% ><tr><td>";
     echo "<h1>$news->headline</h1>";
     echo "</td></tr>";
-    //<td class=news_img_td>";
-    echo "<tr>
-
-    <td class=news_td> ";
+    
+    echo "<tr> <td class=news_td> ";
 
     $out_link=urlencode("$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id");
 
@@ -194,7 +198,7 @@ function sc_show_news($id) { eval(scg());
               echo "alt=\"$altern\" align=left></a>\n";
         }
 
-    echo "<p>&nbsp;</p>";
+    
 
     if	( (!empty($news->wiki))  &&
         ($news->wiki != "--- None ---") ) {

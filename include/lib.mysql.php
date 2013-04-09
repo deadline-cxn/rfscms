@@ -130,6 +130,13 @@ function sc_clear_csv_data($table,$field,$var) {
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+function sc_access_method_add($func_page,$act) {
+	$r=sc_query("select * from `access_methods` where `page`='$func_page' and `action`='$act'");
+	if(mysql_num_rows($r)>0) return;
+	echo "INSERTin $func_page, $act <br>";
+	sc_query("insert into `access_methods` (`page`,`action`) VALUES('$func_page','$act'); ");
+}
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_access_check($func_page,$act){
 
 	$d=$GLOBALS['data']; $ax=$d->access;

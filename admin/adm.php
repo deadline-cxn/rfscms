@@ -1,4 +1,4 @@
-<? 
+ <? 
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFS CMS (c) 2012 Seth Parson
 // http://www.sethcoder.com/
@@ -205,7 +205,22 @@ sc_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
     echo "</td></tr></table>"; // BOTTOM END
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// ADM_NEW ACCESS GROUPS FUNCTIONS
+// ADM ACCESS GROUPS FUNCTIONS
+
+function adm_action_f_access_group_delete() { eval(scg());
+
+	sc_confirmform( "Delete $axnm?",
+                    "$RFS_SITE_URL/admin/adm.php",
+                    "action=f_access_group_delete_go".$RFS_SITE_DELIMITER.
+					  "axnm=$axnm" );
+}
+
+function adm_action_f_access_group_delete_go() { eval(scg());
+
+	echo "DELETE $axnm access group... <BR>";
+	sc_query("delete from `access` where name='$axnm'");
+	adm_action_access_groups();
+}
 
 function adm_action_access_groups() { eval(scg());
 	echo "<p>Modify Access Groups</p>";
@@ -213,25 +228,85 @@ function adm_action_access_groups() { eval(scg());
 	$r=sc_query("select distinct name from access");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$a=mysql_fetch_object($r);
-		echo "<a href=$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name>$a->name</a>  <br> "; // $a->page $a->action $a->table <BR>";
+		
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
+		
+		echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name\">$a->name</a><br> ";
 	}
 
-	echo "Create a new access group: <br>";
+	echo "Create a new access group<br>";
+sc_div("ADD ACCESS GROUP FORM START");
+echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
+echo "<input name=\"axnm\">\n";
+echo "<input type=\"submit\" value=\"Add\">\n";
+echo "</form>\n";
+sc_div("ADD ACCESS GROUP FORM END");
 
 
-	finishadminpage();
+}
+
+function adm_action_f_access_group_add() { eval(scg());
+
+echo " Adding new access group named [$axnm] <br>";
+sc_query(" insert into access (`name`) VALUES ('$axnm'); ");
+
+adm_action_f_access_group_edit();
+}
+
+function adm_action_f_access_group_edit_go() { eval(scg());
+
+	sc_query("delete from `access` where name='$axnm'");
+
+	$r=sc_query("select * from access_methods");
+	for($i=0;$i<mysql_num_rows($r);$i++) {
+		$am=mysql_fetch_object($r);
+		if($_POST["$am->page"."_$am->action"]=="on") {
+			sc_query("insert into access (`name`,`page`,`action`) 
+			VALUES('$axnm','$am->page','$am->action')");
+		}
+
+	}
+	adm_action_f_access_group_edit();
+	
 }
 
 function adm_action_f_access_group_edit() { eval(scg()); 
 
-	$r=sc_query("select * from access where name='$axnm'");
-	echo "<table border=0><tr><td> Group </td><td> Function / Pages </td><td> Action </td> <td> Table / Extra</td></tr>";
+
+	echo "<h1>Edit Access Group</h1>";
+	
+	echo "$axnm<br>Privileges<br>";
+	
+	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
+	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
+	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
+	
+
+	// $r=sc_query("select * from access where name='$axnm'");
+	// echo "<table border=0><tr><td> Group </td><td> Function / Pages </td><td> Action </td> <td> Table / Extra</td></tr>";	
+	// for($i=0;$i<mysql_num_rows($r);$i++) {
+		// $a=mysql_fetch_object($r);		
+		// echo "<tr> <td> $a->name </td><td> $a->page </td><td>  $a->action </td><td> $a->table</td> </tr>";
+	// }
+	// echo "</table>";
+		
+	$r=sc_query("select * from access_methods");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
-		$a=mysql_fetch_object($r);
-		echo "<tr> <td> $a->name </td><td> $a->page </td><td>  $a->action </td><td> $a->table</td> </tr>";
+		$am=mysql_fetch_object($r);
+		
+		$checked="";
+		$rw=mfo1("select * from access where name='$axnm' and page='$am->page' and action='$am->action'");		
+		if($rw->name==$axnm) { $checked="checked";}
+		
+		echo "<input name=\"$am->page"."_$am->action\" type=checkbox $checked>";
+		echo " $am->page -> $am->action <br>";
 	}
-	echo "</table>";
-	finishadminpage();
+	
+	echo "<input type=\"submit\" value=\"Update\">";
+	echo "</form>";
+	
+	
 }
 
 
@@ -1008,7 +1083,7 @@ function adm_action_edit_categories() {
 
 	for( $i=0; $i<$numcats; $i++ ) {
 		$cat=mysql_fetch_object( $result );
-		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/adm.php\" method=\"post\"><tr><td>";
+		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\"><tr><td>";
 		echo "<input type=hidden name=action    value=f_delete_category>\n";
 		echo "<input type=hidden name=category  value=\"$cat->name\">\n";
 		echo "<div class=menutop>";
@@ -1354,6 +1429,7 @@ function adm_action_f_modify_link() {
 		if( $hidden=="no" )  {
 			$hide=0;
 		}
+		sc_query( "update link_bin set `friend` = '$friend' where `id` = '$linkid'");
 		sc_query( "update link_bin set `hidden` = '$hide' where `id` = '$linkid'" );
 		sc_query( "update link_bin set `referrals` = '$referrals' where `id` = '$linkid'" );
 		sc_query( "update link_bin set `clicks` = '$clicks' where `id` = '$linkid'" );
@@ -1385,7 +1461,7 @@ echo "<tr class=sc_project_table_$gt>\n";
 echo "<td class=sc_project_table_$gt>Short Name</td>";
 echo "<td class=sc_project_table_$gt width=230><input type=text name=short_name value=\"$link->sname\" size=28></td>";
 
-echo "<td class=sc_project_table_$gt URL</td>";
+echo "<td class=sc_project_table_$gt>URL</td>";
 echo "<td class=sc_project_table_$gt width=250><input type=text name=linkurl value=\"$link->link\" size=40> </td>\n";
 
 echo "<td class=sc_project_table_$gt width=300>(submitted by $userdata->name on ".sc_time( $link->time ).")</td>\n";
@@ -1411,12 +1487,25 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 		echo "</select>\n";
 		echo "</td>\n";
 
+	echo "<td class=sc_project_table_$gt>Description</td>";
 		echo "<td class=sc_project_table_$gt><input type=text name=description value=\"$link->description\" size=40></td>\n";
 		echo "<td class=sc_project_table_$gt><table border=0><tr>\n";
 		echo "<td class=sc_project_table_$gt>referrals</td><td class=sc_project_table_$gt><input type=text size=4 name=referrals value=\"$link->referrals\"></td>\n";
 		echo "<td class=sc_project_table_$gt>clicks</td><td class=sc_project_table_$gt><input type=text size=4 name=clicks value=\"$link->clicks\"></td>\n";
-		if( $link->hidden==0 ) echo "<td class=sc_project_table_$gt>hidden</td><td class=sc_project_table_$gt><select name=hidden><option>no<option>yes</td>\n";
-		if( $link->hidden==1 ) echo "<td class=sc_project_table_$gt>hidden</td><td class=sc_project_table_$gt><select name=hidden><option>yes<option>no</td>\n";
+		
+		
+		echo "<td class=sc_project_table_$gt>";
+		
+		
+		if( sc_yes($link->hidden) ) echo "hidden <select name=hidden><option>yes<option>no</select>\n";
+		else echo "hidden <select name=hidden><option>no<option>yes</select>\n";
+		
+		echo "<br>";
+		
+		
+		if( sc_yes($link->friend) ) echo "friend <select name=friend><option>yes<option>no</select>\n";
+		else echo "friend <select name=friend><option>no<option>yes</select>\n";
+		
 		echo "</tr></table></td>\n";
 		echo "<td class=sc_project_table_$gt><select name=rating><option>$link->rating\n";
 		for( $j=1; $j<6; $j++ ) echo "<option>$j\n";
@@ -1845,6 +1934,21 @@ CREATE TABLE IF NOT EXISTS `access` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 ");
+
+
+sc_query("
+CREATE TABLE IF NOT EXISTS `access_methods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `page` text COLLATE utf8_unicode_ci NOT NULL,
+  `action` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+");
+
+sc_query(
+" ALTER TABLE  `users` ADD  `access_groups` TEXT NOT NULL AFTER  `access`");
+
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////

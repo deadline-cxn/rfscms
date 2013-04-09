@@ -1,6 +1,16 @@
 <?
 include_once("include/lib.all.php");
 
+sc_access_method_add("files", "upload");
+sc_access_method_add("files", "addlink");
+sc_access_method_add("files", "orphanscan");
+sc_access_method_add("files", "purge");
+sc_access_method_add("files", "sort");
+sc_access_method_add("files", "edit");
+sc_access_method_add("files", "delete");
+sc_access_method_add("files", "xplorer");
+sc_access_method_add("files", "xplorershell");
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FILES
 function sc_module_mini_files($x) { eval(scg());

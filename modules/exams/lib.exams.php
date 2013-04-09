@@ -1,6 +1,13 @@
 <?
 include_once("include/lib.all.php");
 
+sc_access_method_add("exams", "add");
+sc_access_method_add("exams", "delete");
+sc_access_method_add("exams", "deleteothers");
+sc_access_method_add("exams", "edit");
+sc_access_method_add("exams", "editothers");
+
+
 function adm_action_lib_exams_exam_edit() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit");
 }
