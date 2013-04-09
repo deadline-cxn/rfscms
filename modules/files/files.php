@@ -781,21 +781,20 @@ for($i=0;$i<$numcats;$i++) {
         $buffer=rtrim($buffer);
         $buffer=rtrim($cat->name);
         $filelist=sc_getfilelist("where category = '$buffer'",50);
-        
+
 		if(count($filelist)){
-			
-			echo "<tr>";	
+			echo "<tr>";
 			echo "<td class=sc_top_file_table> ";
 			$iconp=$RFS_SITE_PATH."/".$cat->image;
 			$icon=$RFS_SITE_URL."/".$cat->image;
-			if(file_exists($iconp)) {				
-				echo "<img src=$icon border=0 width=32 height=32> ";
+			if(file_exists($iconp)) {
+				echo "<img src=$icon border=0 width=32 height=32><br>";
 			}
-			echo ucwords("File Category: $buffer");
-						
+			echo ucwords("$buffer<br>");
+
 			sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer","Show All $buffer");
 			echo "</td>";
-			
+
 			echo "<td class=sc_top_file_table></td>";
 			echo "<td class=sc_top_file_table></td>";
 			echo "<td class=sc_top_file_table></td>";			
