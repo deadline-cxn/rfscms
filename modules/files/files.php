@@ -661,37 +661,28 @@ function sc_fileheader() {
 }
 
 function show1file($filedata,$bg) { eval(scg());
+
     echo "<tr class=sc_file_table_$bg >\n";
-    
-    
-    // <a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">\n";
-    
-    $xp_ext = explode(".",$filedata->location,40);
-    
-    $j = count ($xp_ext)-1;
-    $ext = "$xp_ext[$j]";
-	$filetype=strtolower($ext);
-	d_echo($j);
-    
-	if($j==0) $filetype="unknown";
-    
-	// $fti="images/icons/filetypes/$filetype.gif";
-	//if(file_exists("images/icons/filetypes/$filetype.png")) $fti="images/icons/filetypes/$filetype.png";
-    //  echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16></a></center>
-    
-    
-    
-	echo "<td class=sc_file_table_$bg ><a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a>";
-	
+
+    $filetype=sc_getfiletype($filedata->location);
+
+    $fti="images/icons/filetypes/$filetype.gif";
+    if(file_exists("images/icons/filetypes/$filetype.png")) $fti="images/icons/filetypes/$filetype.png";
+
+    echo "<td class=sc_file_table_$bg >";
+
+    echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
+
+    echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a>";
+
 	if($_SESSION['show_temp']==true) {
 		echo "<br>$filedata->location";
 	}
-	
-	
+
 	echo "</td>\n";
-	
-    $size=(sc_sizefile($filedata->size));
-    
+
+        $size=(sc_sizefile($filedata->size));
+
 	//echo "<td class=sc_file_table_$bg width=100>";
 	// $wpui="wp.gif";
 	// if(empty($filedata->homepage)) $wpui="wp_no.gif";
@@ -699,31 +690,20 @@ function show1file($filedata,$bg) { eval(scg());
 	//echo "<img src=\"$RFS_SITE_URL/images/$wpui\" border=0 title=\"$filedata->homepage\" alt=\"$filedata->homepage\">";
 	// if($wpui=="wp.gif") echo "</a>";
 	//echo "&nbsp;</td>\n";
-	
-    echo "<td class=sc_file_table_$bg >$size &nbsp;</td>\n";
-    
-	
+
+        echo "<td class=sc_file_table_$bg >$size &nbsp;</td>\n";
+
+// 	echo "<td class=sc_file_table_$bg >"; $floc=$RFS_SITE_PATH."/".$filedata->location; if(file_exists($floc)) { echo md5($floc); } echo "</td>\n";
+
 	echo "<td class=sc_file_table_$bg >";
-	
-	$floc=$RFS_SITE_PATH."/".$filedata->location;
-	if(file_exists($floc)) {
-		echo "md5 [".md5($floc)."]";
-		
-	}
-	
-	echo "</td>\n";
-    
-	echo "<td class=sc_file_table_$bg >";
-     echo sc_trunc($filedata->description,45);
-    echo "</td>\n";
-	
-    echo "<td class=sc_file_table_$bg > ";//<a href=$RFS_SITE_URL/showprofile.php?user=$filedata->submitter>$filedata->submitter &nbsp;</a>";
+         echo sc_trunc($filedata->description,45);
+        echo "</td>\n";
+
+    echo "<td class=sc_file_table_$bg >";
     $data=$GLOBALS['data'];
     if( ($filedata->submitter==$data->name) || ($data->access==255)) {
-       echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id\">edit</a>] &nbsp;";
-       echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id\">delete</a>] &nbsp;";
-		echo "</td><td class=sc_file_table_$bg >Move to </td><td class=sc_file_table_$bg>";
-		sc_optionizer("$RFS_SITE_URL/modules/files/files.php","action=file_change_category".$GLOBALS['RFS_SITE_DELIMITER']."id=$filedata->id","categories","name",0,$cc->name,1);
+        echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id\">edit</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id\">delete</a>]";
 	}
     echo "</td></tr>\n";
 }
