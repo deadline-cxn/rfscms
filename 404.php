@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 ?>
 <html>
-<head>
+<head> 
 <title>RFS CMS 404</title>
 </head>
 <body style=' background-color: #000000; color: #ffffff; '>

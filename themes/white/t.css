@@ -9,6 +9,19 @@ body
     background-color: #FFFFFF;
 }
 
+.wikishell {
+	margin:0 auto;
+	align: center;
+	width: 80%;
+	font-family: monospace;
+	background-color: #000000;
+	color: #00ff00;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
 hr
 {
     border: 1px;

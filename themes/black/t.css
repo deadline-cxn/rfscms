@@ -10,6 +10,21 @@ body
     background-color: #000000;
 }
 
+
+.wikishell {
+	margin:0 auto;
+	align: center;
+	width: 80%;
+	font-family: monospace;
+	background-color: #ffffff;
+	color: #000000;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+
 .slogan
 {
     font-family: Verdana;
@@ -46,6 +61,7 @@ body
   font-style: normal;
   background-color: #333333; //#60607F;
 }
+
 
 .rfswiki_link
 {
@@ -206,6 +222,40 @@ td
     color:   #777777;
 	background-color: #444444;
 }
+
+
+.sc_top_file_table
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color:   #777777;
+    background-color: #000000;
+}
+
+.sc_file_table_0
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #777777;
+    background-color: #000000;
+}
+
+.sc_file_table_1
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #777777;
+    background-color: #444444;
+}
+
+.sc_file_table_2
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #777777;
+    background-color: #222222;
+}
+
 
 .midtd
 {
