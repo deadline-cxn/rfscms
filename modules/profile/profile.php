@@ -86,11 +86,11 @@ if($act=="update")
 function pro_nav_bar($data) {    eval(scg());
 
     echo "<center>\n";
-    if($data->reporter == "yes") echo "[<a href=\"$RFS_SITE_URL/news.php?action=edityournews\">edit your news articles</a>] \n";
-    if($data->reporter == "yes") echo "[<a href=\"$RFS_SITE_URL/news.php?showform=yes\">create new news</a>] \n";
-    if($data->access==255) echo "[<a href=\"$RFS_SITE_URL/news.php?action=editcategories\">edit content categories</a>] \n";
-    if($data->upload == "yes")   echo "[<a href=\"$RFS_SITE_URL/files.php?action=upload\">submit file</a>] \n";
-    if($data->access==255)       echo "[<a href=\"$RFS_SITE_URL/adm.php\">admin</a>] \n";
+    if($data->reporter == "yes") echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=edityournews\">edit your news articles</a>] \n";
+    if($data->reporter == "yes") echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?showform=yes\">create new news</a>] \n";
+    if($data->access==255) echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=editcategories\">edit content categories</a>] \n";
+    if($data->upload == "yes")   echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">submit file</a>] \n";
+    if($data->access==255)       echo "[<a href=\"$RFS_SITE_URL/admin/adm.php\">admin</a>] \n";
     echo "[<a href=$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form>change password</a>] \n";
     echo "</center>\n";
 }
@@ -245,7 +245,7 @@ echo "<tr><td>Receive RPG News:</td><td><select name=rpg_emails><option>$data->r
 echo "<tr><td>Personal Webpage:</td><td> <input type=textbox name=webpage  size=30 value=\"$data->webpage\">       </td><td> <a href=$data->webpage target=_blank><img src=$RFS_SITE_URL/images/wp.gif  border=0 alt=\"Visit this person's website!\" title=\"Visit this person's website!\" height=16> </a></td></tr>\n";
 echo "<tr><td>Favorite Webpage:</td><td> <input type=textbox name=website_fav  size=30 value=\"$data->website_fav\">       </td><td> <a href=$data->website_fav target=_blank><img src=$RFS_SITE_URL/images/wp.gif  border=0 alt=\"Visit this person's favorite website!\" title=\"Visit this person's favorite website!\" height=16> </a></td></tr>\n";
 echo "<tr><td>Avatar:</td><td> <input type=textbox name=avatar size=30 value=\"$data->avatar\"> </td><td> \n";
-echo "<a href=$RFS_SITE_URL/files.php?action=upload_avatar> \n";// <img src=$RFS_SITE_URL/images/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
+echo "<a href=$RFS_SITE_URL/modules/files/files.php?action=upload_avatar> \n";// <img src=$RFS_SITE_URL/images/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
 echo "Upload an swf, gif, or jpg avatar!</a></td></tr>\n";
 echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
 echo "<tr><td>Show Contact Info:</td><td><select name=show_contact_info>\n";
@@ -278,10 +278,10 @@ echo "</td></tr>\n";
 echo "</table>\n";
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // files start
-if($data->upload == "yes")
-{
+//if($data->upload == "yes")
+//{
   echo "<p>Files...\n";
-  echo "[<a href=\"$RFS_SITE_URL/files.php?action=upload\">Upload</a>][<a href=\"$RFS_SITE_URL/files.php?action=addfilelinktodb\">Add Link</a>]\n";
+  echo "[<a href=\"$RFS_SITE_URL/modules/files.php?action=upload\">Upload</a>][<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
   echo "</p>\n";
   echo "<table border=0 cellspacing=0 cellpadding=0 width=100% class=sc_black>\n";
   echo "<tr bgcolor=$file_header height=16 class=sc_black>\n";
@@ -312,7 +312,7 @@ if($data->upload == "yes")
     $ftype=strtolower($ext);
     echo "<img src=$RFS_SITE_URL/images/$ftype.gif border=0 title=\"$filedata->short_name\" alt=\"$filedata->short_name\"></a>\n";
     echo "</center></td>\n";
-    echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/files.php method=post>\n";
+    echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
     echo "<table border=0><tr><td>\n";
     echo "<input name=short_name value=\"$filedata->short_name\" size=30>\n";
     echo "</td><td>\n";
@@ -326,15 +326,15 @@ if($data->upload == "yes")
     echo "<td class=\"sc_black\">$filedata->downloads &nbsp;</td>\n";
     echo "<td class=\"sc_black\">$filedata->category &nbsp;</td>\n";
     echo "<td class=\"sc_black\">$filedata->description &nbsp;</td>\n";
-    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
-    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
+    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
+    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
     echo "</tr>\n";
     $i=$i+1;
     $bg=$bg+1; if($bg>1) $bg=0;
   }
   echo "</table>\n";
   //////////////////
-} // end Files
+//} // end Files
 
 pro_nav_bar($data);
 

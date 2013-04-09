@@ -371,9 +371,9 @@ if($action=="upload_avatar"){
         echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/files/files.php\" method=\"post\">\n";
         echo "<input type=hidden name=give_file value=avatar>\n";
         echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
-        echo "<input type=hidden name=local value=\"files/avatars\">\n";
+        echo "<input type=hidden name=local value=\"images/avatars\">\n";
         echo "<input type=hidden name=hidden value=yes>\n";
-        echo "<tr><td align=right>$RFS_SITE_URL/files/avatars/</td><td><input name=\"userfile\" type=\"file\"> </td></tr>\n";
+        echo "<tr><td align=right>$RFS_SITE_URL/images/avatars/</td><td><input name=\"userfile\" type=\"file\"> </td></tr>\n";
         echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
         echo "</form>\n";
         echo "</table>\n";
@@ -609,22 +609,23 @@ if($give_file=="avatar"){
     else     {
         echo "<p> Uploading files... </p>\n";
         $f_ext=sc_getfiletype($_FILES['userfile']['name']);
-        $uploadFile=$RFS_SITE_PATH."/files/avatars/".$_FILES['userfile']['name'];
+        $uploadFile=$RFS_SITE_PATH."/images/avatars/".$_FILES['userfile']['name'];
         if( ($f_ext=="png") || ($f_ext=="gif")||($f_ext=="jpg")||($f_ext=="swf") ) {
             $oldname=$_FILES['userfile']['name'];
-            if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile))             {
+			
+            if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile)){
                 system("chmod 755 $uploadFile");
                 $error="File is valid, and was successfully uploaded. ";
                 echo "<P>You sent: ".$_FILES['userfile']['name'].", a ".$_FILES['userfile']['size']." byte file with a mime type of ".$_FILES['userfile']['type']."</p>\n";
                 $oldname=$_FILES['userfile']['name'];
                 $newname=$data->name.".".$f_ext;
-                rename($RFS_SITE_PATH."/files/avatars/".$oldname,$RFS_SITE_PATH."/files/avatars/".$newname);
+                rename($RFS_SITE_PATH."/images/avatars/".$oldname,$RFS_SITE_PATH."/images/avatars/".$newname);
                 $httppath=$httppath."/".$newname;
                 echo "<p>It was stored as [<a href=\"$httppath\" target=\"_blank\">$httppath</a>]</p>\n";
                 sc_setuservar($data->name,"avatar",$httppath);
             } else {
                 $error ="File upload error!";
-                echo "File upload error! [\n";
+                echo "File upload error! [";
                 echo $_FILES['userfile']['name'];
                 echo "][";
                 echo $_FILES['userfile']['error'];
