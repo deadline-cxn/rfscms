@@ -3,6 +3,32 @@
 @session_cache_expire(99999);
 @session_start();
 
+function odb(){
+	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'], $GLOBALS['authdbuser'], $GLOBALS['authdbpass']);
+	if(empty($mysql))	{	
+		return false;
+	}
+	mysql_select_db( $GLOBALS['authdbname'], $mysql);
+	return $mysql;
+}
+function sc_query($query) {
+	if(stristr($query,"`users`")) { $x=sc_query_user_db($query); return $x; }
+	$mysql=odb(); if($mysql==false) return false;
+	$result=mysql_query($query,$mysql);
+	if(empty($result)) return false;
+	return $result;
+}
+function sc_query_user_db($q){
+    $r=sc_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
+    return$r;
+}
+function sc_query_other_db($db,$host,$user,$pass,$query){
+	$mysql=mysql_connect($host,$user,$pass);
+	mysql_select_db($db, $mysql);
+	$result=mysql_query($query,$mysql);
+	return $result;
+}
+
 $RFS_SITE_PATH = getcwd();
 $cwdx=explode("/",$RFS_SITE_PATH);
 $installd=array_pop($cwdx);
@@ -151,6 +177,10 @@ echo $GLOBALS['authdbname']."<BR>";
 echo $GLOBALS['authdbaddress']."<BR>";
 echo $GLOBALS['authdbuser']."<BR>";
 echo $GLOBALS['authdbpass']."<BR>";
+echo $GLOBALS['userdbname']."<BR>";
+echo $GLOBALS['userdbaddress']."<BR>";
+echo $GLOBALS['userdbuser']."<BR>";
+echo $GLOBALS['userdbpass']."<BR>";
 
 sc_query($q);
 
