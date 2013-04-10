@@ -169,10 +169,9 @@ echo "reading from file: $f <br>";
 
 $q=file_get_contents($f);
 
+/*
 echo "1<br>";
-
 echo nl2br("<hr>$q");
-
 echo $GLOBALS['authdbname']."<BR>";
 echo $GLOBALS['authdbaddress']."<BR>";
 echo $GLOBALS['authdbuser']."<BR>";
@@ -181,11 +180,11 @@ echo $GLOBALS['userdbname']."<BR>";
 echo $GLOBALS['userdbaddress']."<BR>";
 echo $GLOBALS['userdbuser']."<BR>";
 echo $GLOBALS['userdbpass']."<BR>";
-
+*/
 sc_query($q);
 
 
-echo "2<br>";
+// echo "2<br>";
 sc_query("INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `theme`)
         	  VALUES('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255', 'default'); ");
 sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
