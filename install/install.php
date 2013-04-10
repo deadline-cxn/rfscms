@@ -169,24 +169,8 @@ echo "reading from file: $f <br>";
 
 $q=file_get_contents($f);
 
-/*
-echo "1<br>";
-echo nl2br("<hr>$q");
-echo $GLOBALS['authdbname']."<BR>";
-echo $GLOBALS['authdbaddress']."<BR>";
-echo $GLOBALS['authdbuser']."<BR>";
-echo $GLOBALS['authdbpass']."<BR>";
-echo $GLOBALS['userdbname']."<BR>";
-echo $GLOBALS['userdbaddress']."<BR>";
-echo $GLOBALS['userdbuser']."<BR>";
-echo $GLOBALS['userdbpass']."<BR>";
-*/
 sc_query($q);
-
-
-// echo "2<br>";
-sc_query("INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `theme`)
-        	  VALUES('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255', 'default'); ");
+sc_query("INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `theme`) VALUES('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255', 'default'); ");
 sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
 
             $r=sc_query("select * from users");
@@ -197,12 +181,8 @@ sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
                 $action="step_a";
             } else {
 
-                $q=" CREATE TABLE IF NOT EXISTS `site_vars` (
-                                    `name` text NOT NULL,
-                                    `value` text NOT NULL ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-                // echo nl2br("<hr>$q");
 
-                sc_query($q);
+                sc_query(" CREATE TABLE IF NOT EXISTS `site_vars` ( `name` text NOT NULL, `value` text NOT NULL ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
                 sc_query(" INSERT INTO `site_vars` (`name`, `value`) VALUES
                             ('path', '$RFS_SITE_PATH'),
                             ('url',  '$RFS_SITE_URL'),
@@ -228,8 +208,6 @@ sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
 
                 for($i=0;$i<count($qx);$i++) {
                     $q=$qx[$i];
-                    //echo "<hr>";
-                    //echo nl2br("$q;");
                     sc_query("$q;");
                 }
 

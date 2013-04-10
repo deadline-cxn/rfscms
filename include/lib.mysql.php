@@ -131,6 +131,13 @@ function sc_clear_csv_data($table,$field,$var) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_access_method_add($func_page,$act) {
+	sc_query(" CREATE TABLE IF NOT EXISTS `access_methods` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `page` text COLLATE utf8_unicode_ci NOT NULL,
+	  `action` text COLLATE utf8_unicode_ci NOT NULL,
+	  PRIMARY KEY (`id`)
+	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ; ");
+
 	$r=sc_query("select * from `access_methods` where `page`='$func_page' and `action`='$act'");
 	if(mysql_num_rows($r)>0) return;
 	echo "INSERTin $func_page, $act <br>";

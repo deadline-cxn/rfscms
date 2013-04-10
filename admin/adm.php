@@ -1936,15 +1936,6 @@ CREATE TABLE IF NOT EXISTS `access` (
 ");
 
 
-sc_query("
-CREATE TABLE IF NOT EXISTS `access_methods` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `page` text COLLATE utf8_unicode_ci NOT NULL,
-  `action` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
-
-");
 
 sc_query(
 " ALTER TABLE  `users` ADD  `access_groups` TEXT NOT NULL AFTER  `access`");
