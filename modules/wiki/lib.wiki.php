@@ -131,8 +131,11 @@ function wikitext($text) {
                     if($fnc=="shellstart"){							  
 
                         $outtext.="<div class='wikishell'><BR>";
+							
 							$xx=$ila2[1];
-							$xx=str_replace("\\","&#92;" ,$xx);
+							
+							$xx=str_replace("\\","&#92;&#92;" ,$xx);
+							$xx=str_replace("\n","&#92;n",$xx);
 														
 							//$xx=str_replace("\n","\n &nbsp; ",$xx);
 							//$xx=nl2br( $xx );
