@@ -3,12 +3,10 @@
 // RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 include_once("include/lib.all.php");
 // include_once("freako.php");
 
-sc_div(__FILE__);
+sc_div(__FILE__); 
 sc_div(" Really Frickin Simple Content Management System $RFS_VERSION http://www.sethcoder.com/ ");
 
 sc_maintenance();
