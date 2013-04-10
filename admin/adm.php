@@ -248,6 +248,12 @@ function adm_action_f_access_group_edit() { eval(scg());
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_PHPMYADMIN
+function adm_action_phpmyadmin() { eval(scg());
+	sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_NEW PAGE FUNCTIONS
 function adm_action_new_page() { eval(scg());
 	echo"<p>Create a new page.</p>";
