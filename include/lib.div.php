@@ -1,10 +1,11 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFS CMS (c) 2013 Seth Parson http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
 if(!function_exists("sc_div")) {
-function sc_div($t) { if( $_SESSION['debug_msgs'] ) echo "<!-- ********** RFS SECTION BREAK: ($t) ********** --> \n"; }
+function sc_div($t) {
+	if( $_SESSION['debug_msgs'] ) echo "\n<!-- ********** RFS SECTION BREAK: ($t) ********** --> \n"; }
 }
 // this file can not have trailing spaces
 ?>

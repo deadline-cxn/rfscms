@@ -159,27 +159,19 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
             $GLOBALS["userdbuser"]    = $rfs_udb_user;
             $GLOBALS["userdbpass"]    = $rfs_udb_password;
 
-echo $GLOBALS["authdbname"]." DB IN USE <BR>";
+				echo $GLOBALS["authdbname"]." DB IN USE <BR>";
 
-// sc_query_user_db("DROP TABLE `users`;");
-// sc_query("DROP TABLE `site_vars`;");
+				sc_query(file_get_contents("$RFS_SITE_PATH/install/install.users.sql"));
+				sc_query("INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `theme`) VALUES('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255', 'default'); ");
+				sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
 
-$f="$RFS_SITE_PATH/install/install.users.sql";
-echo "reading from file: $f <br>";
-
-$q=file_get_contents($f);
-
-sc_query($q);
-sc_query("INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `theme`) VALUES('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255', 'default'); ");
-sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
-
-            $r=sc_query("select * from users");
-            $n=0;
-            if($r) $n=mysql_num_rows($r);
-            if(!$n) {
-                echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
-                $action="step_a";
-            } else {
+				$r=sc_query("select * from users");
+				$n=0;
+				if($r) $n=mysql_num_rows($r);
+				if(!$n) {
+					echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
+					$action="step_a";
+				} else {
 
 
                 sc_query(" CREATE TABLE IF NOT EXISTS `site_vars` ( `name` text NOT NULL, `value` text NOT NULL ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
@@ -190,7 +182,7 @@ sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
                             ('slogan', 'A RFSCMS Website'),
                             ('singletablewidth', '910'),
                             ('doubletablewidth', '435'),
-                            ('theme_dropdown', 'false'),
+                            ('theme_dropdown', 'true'),
                             ('top_menu_location', 	'top'),
                             ('show_link_friends', 	'true'),
                             ('show_top_referrers', 'true'),

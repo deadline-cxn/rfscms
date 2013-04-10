@@ -1,53 +1,15 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFS CMS (c) 2013 Seth Parson http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
 include_once("include/lib.all.php");
-// include_once("freako.php");
 
 sc_div(__FILE__); 
 sc_div(" Really Frickin Simple Content Management System $RFS_VERSION http://www.sethcoder.com/ ");
 
 sc_maintenance();
 sc_debugheader(0);
-
-/*
-
-// TITLE MANIPULATION...
-
-//////////////////////////////////////////////////////////////////////////////
-// Figure out what to put in the title...
-// If you're not sure what to put, just leave it alone
-// Depends on module
-// @include_once("../lib.news.php"); @include_once("lib.news.php"); @include_once("../lib.rfs.php"); @include_once("lib.rfs.php");
-
- $title=$_GLOBALS['RFS_SITE_NAME'];
-	if($_SERVER['PHP_SELF']==$_GLOBALS['site_url'].'/index.php')
-            $title=sc_get_news_headline(sc_get_top_news_id());
-        if(!empty($description)) $title=$description;
-        if(!empty($name)) $title=$name;
-        if(!empty($sname)) $title=$sname;
-            if(stristr( $_SERVER['PHP_SELF'],"pics.php")) {
-                $title="Pictures";
-                if(!empty($id)) {
-                $p=mfo1("select * from pictures where id='$id'");
-                if(!empty($p->sname)){
-                    $title=$p->sname;
-                }
-                else {
-                    $c=mfo1("select * from categories where id='$p->category'");
-                    if(!empty($c->name)) {
-                        $title=$c->name;
-                    }
-                }
-            }
-        }
-
-        if(!empty($_GET['nid']))
-            $title=sc_get_news_headline($_GET['nid']);
-        if(!empty($what)) $title=$what;
-		*/
 
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php"))
         include("$RFS_SITE_PATH/themes/$theme/t.php");
@@ -66,34 +28,30 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 	$keywords=$_GET['query'];    if(empty($keywords))
 	$keywords=$_GET['q'];        if(empty($keywords))
 	$keywords=$RFS_SITE_KEYWORDS;
-//"php c c++ code content management system cms rfs download software tools development
-//tutorial wiki example video picture file image project visual studio code block web www w3c html javascript";
 	echo "<meta name=\"description\" content=\"$keywords\">";
 	echo "<meta name=\"keywords\" content=\"$keywords\">";
 
-sc_div("TITLE");
-rfs_echo($RFS_SITE_TITLE);
+	sc_div("TITLE");
+	rfs_echo($RFS_SITE_TITLE);
 
-sc_div("THEME CSS");
-echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+	sc_div("THEME CSS");
+	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+	echo "<link rel=\"canonical\" href=\"$RFS_SITE_URL".$_SERVER['PHP_SELF']."\" />";
 
-echo "<link rel=\"canonical\" href=\"$RFS_SITE_URL".$_SERVER['PHP_SELF']."\" />";
+	sc_div("\$RFS_SITE_JS_JQUERY_UI_CSS");
+	rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
 
-sc_div("\$RFS_SITE_JS_JQUERY_UI_CSS");
-rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
-
-
-sc_div("head");
+	sc_div("head");
     echo "</head>\n";
-sc_div("body");
+	sc_div("body");
     echo "<body topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n";
 
-sc_div("\$RFS_SITE_JS_JQUERY");
-rfs_echo($RFS_SITE_JS_JQUERY);
-sc_div("\$RFS_SITE_JS_JQUERY_UI");
-rfs_echo($RFS_SITE_JS_JQUERY_UI);
+	sc_div("\$RFS_SITE_JS_JQUERY");
+	rfs_echo($RFS_SITE_JS_JQUERY);
+	sc_div("\$RFS_SITE_JS_JQUERY_UI");
+	rfs_echo($RFS_SITE_JS_JQUERY_UI);
 
-sc_div("OTHER HEADER STUFF...");
+	sc_div("OTHER HEADER STUFF...");
 	
 	if($_SESSION['admin_show_top']!="hide") {	
 
@@ -103,9 +61,6 @@ sc_div("OTHER HEADER STUFF...");
 		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_image.gif"))
 			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_image.gif\" align=left>";
 		else{
-
-
-
                 $clr = sc_html2rgb($RFS_SITE_NAV_FONT_COLOR);
                 $bclr= sc_html2rgb($RFS_SITE_NAV_FONT_BGCOLOR);
 
@@ -202,12 +157,8 @@ $ecode=" if( function_exists(\"$_thisfunk\") == true) {
 }";
 
 
-
-
 d_echo($ecode);
 
 eval($ecode);
-
-
 
 ?>
