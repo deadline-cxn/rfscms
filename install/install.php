@@ -16,9 +16,6 @@ $folder=array_pop($hostx);
 $RFS_SITE_URL=join("/",$hostx);
 if($folder!="install") $RFS_SITE_URL.="/".$folder;
 
-echo getcwd()."<BR>";
-echo "$RFS_SITE_PATH<br>";
-
 $table_width="85%";
 
 echo "<html><head><title>RFS CMS $RFS_VERSION Installer</title>";
