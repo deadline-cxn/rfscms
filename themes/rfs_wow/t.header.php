@@ -3,7 +3,7 @@ rfs_echo($RFS_SITE_DOC_TYPE);
 rfs_echo($RFS_SITE_HTML_OPEN);
 rfs_echo($RFS_SITE_HEAD_OPEN);
 rfs_echo($RFS_SITE_TITLE);
-$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/rfs/themes/$theme/$theme.css";
+$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/rfs/themes/$theme/t.css";
 rfs_echo($RFS_SITE_CSS);
 rfs_echo($RFS_SITE_HEAD_CLOSE);
 rfs_echo($RFS_SITE_BODY_OPEN);
@@ -35,7 +35,7 @@ to("100%"," align=center ");
     tro("");
         tco("thirdtd valign=bottom");
             
-            theme_form();
+            sc_theme_form();
             
             tcr("thirdtd width=100% align=right ");
             

@@ -250,6 +250,22 @@ hr
 	background-color: #A397FF;
 }
 
+
+.logged_in_td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 6px;
+    font-weight: bold;
+    color:   #4D44DB;
+	background-color: #A397FF;
+}
+.logged_in_box {
+	font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+    color:   #4D44DB;
+	
+}
+
 .stp_td1
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -267,7 +283,7 @@ a
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #4D44DB; 
+    color: #FFFF00; 
 }
 
 a:link
@@ -277,7 +293,7 @@ a:link
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #4D44DB;
+    color: #FFFF00;
 }
 
 a:hover
@@ -287,7 +303,8 @@ a:hover
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #ffffff;    
+	color:   #FFFF00;
+    background-color: #ffffff;
 }
 
 .atpb

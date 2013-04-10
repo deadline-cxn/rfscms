@@ -4,16 +4,13 @@ rfs_echo($RFS_SITE_HTML_OPEN);
 rfs_echo($RFS_SITE_HEAD_OPEN);
 rfs_echo($RFS_SITE_TITLE);
 
-$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/$theme.css";
-
-// echo "INSIDE $theme.header.php<BR>";
+$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
 
 rfs_echo($RFS_SITE_CSS);
 rfs_echo($RFS_SITE_HEAD_CLOSE);
 rfs_echo($RFS_SITE_BODY_OPEN);
 echo "<center>";
 
-//to($RFS_SITE_SINGLETABLEWIDTH," align=center cellpadding=0");
 to("100%"," align=center cellpadding=0");
 
     tro("");
@@ -67,7 +64,7 @@ to("100% cellpadding=0"," align=center ");
 
 			echo "<br>";
 
-			theme_form();
+			sc_theme_form();
 
 			tcr("thirdtd ");
 			
