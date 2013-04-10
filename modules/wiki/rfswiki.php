@@ -17,6 +17,7 @@ if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = "/var/www";
 
 if(!empty($rfsw_header)) include($rfsw_header);
 
+$rfsw_admin_mode="false";
 if(sc_access_check("wiki","admin")) $rfsw_admin_mode="true";
 
 ///////////////////////////////////////////////////////////////////////////////
