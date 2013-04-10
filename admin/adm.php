@@ -1272,7 +1272,7 @@ function adm_action_edit_smilies() {
 		echo "<input type=submit name=smact value=update></form></td>";
 		echo "<td class=sc_project_table_$bg>";
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\">\n";
-		echo "<input type=hidden name=action value=smiles>\n";
+		echo "<input type=hidden name=action value=edit_smilies>\n";
 		echo "<input type=hidden name=smact value=delete>";
 		echo "</td>";
 		echo "<td class=sc_project_table_$bg>";
