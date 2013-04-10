@@ -76,7 +76,7 @@ to("100%"," align=center cellpadding=0");
 							250,160,10,
 							244,4,0,1,1);
 		}else {
-			echo "<img src='$RFS_SITE_URL/themes/default/default.title.png' border=0>";
+			echo "<img src='$RFS_SITE_URL/themes/$theme/t.title.png' border=0>";
 		}
 
 					echo "</td><td align=right>";
@@ -112,7 +112,7 @@ tc();
 to("100%"," align=center ");
     tro("");
         sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
-		sc_theme_form();
+		 sc_theme_form();
     trc();
 tc();
 

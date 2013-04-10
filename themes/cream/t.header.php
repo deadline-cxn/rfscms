@@ -19,7 +19,7 @@
     
     echo $RFS_SITE_TITLE;
 	echo "<link rel=\"canonical\" href=\"".sc_phpself()."\" />\n";
-    echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/$theme.css\" type=\"text/css\">\n";
+    echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
     echo "</head>\n";
     
     echo "<body topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n";
@@ -28,8 +28,8 @@
     echo "<tr><td class=toptd align=left width=80%>";
     
     
-    if(file_exists("$RFS_SITE_PATH/themes/$theme/$theme.top_image.gif"))
-    echo "<img src=\"$RFS_SITE_URL/themes/$theme/$theme.top_image.gif\" align=left>";
+    if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_image.gif"))
+    echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_image.gif\" align=left>";
 
     echo "<font class=toptd>$keywords</font> ";
     
@@ -37,8 +37,8 @@
     
     echo "<td class=toptd valign=bottom>";
     
-    if(file_exists("$RFS_SITE_PATH/themes/$theme/$theme.bot_right_corner.gif"))    {
-        echo "<img src=\"$RFS_SITE_URL/themes/$theme/$theme.bot_right_corner.gif\" align=right valign=bottom>";
+    if(file_exists("$RFS_SITE_PATH/themes/$theme/t.bot_right_corner.gif"))    {
+        echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.bot_right_corner.gif\" align=right valign=bottom>";
         echo "</td><td class=contenttd>";
     }
     else
@@ -76,7 +76,7 @@
     echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
     echo "<td class=sc_top_menu_table class=contenttd>";
     
-    theme_form();
+    sc_theme_form();
     
     echo "</td></tr></table>\n";
     echo "</td></tr></table>";
@@ -104,9 +104,9 @@
     echo "<tr><td valign=top class=midtd width=41>";
     
     
-    if(file_exists("$RFS_SITE_PATH/themes/$theme/$theme.top_left_corner.gif"))
+    if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_left_corner.gif"))
     {
-        echo "<img src=\"$RFS_SITE_URL/themes/$theme/$theme.top_left_corner.gif\">";
+        echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_left_corner.gif\">";
         echo "</td><td>";
     }
     else

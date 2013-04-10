@@ -114,7 +114,7 @@ to("100%"," align=center ");
     
         sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
 
-        theme_form();
+        sc_theme_form();
         
     trc();
 tc();

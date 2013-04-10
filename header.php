@@ -82,7 +82,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 		echo "<td class=toptd valign=bottom>";
 		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.bot_right_corner.gif"))    {
 			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.bot_right_corner.gif\" align=right valign=bottom>";
-			echo "</td><td class=toptd>";
+			echo "</td><td class=logged_in_td>";
 		}
 		else
 			echo "&nbsp;";
@@ -91,7 +91,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 			echo "<a href=$RFS_SITE_URL/facebook/fb.login.php?goback=1><img src=$RFS_SITE_URL/facebook/facebook_login.gif></a>";
 		}
 		else    {
-			echo "</td><td class=toptd>&nbsp;</td><td class=toptd>";
+			echo "</td><td class=toptd>&nbsp;</td><td class=logged_in_td>";
 			rfs_echo($RFS_SITE_LOGGED_IN_CODE);
 		}
 		echo "</td><td class=toptd>&nbsp;</td></tr></table>";
