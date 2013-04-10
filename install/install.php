@@ -162,6 +162,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				echo $GLOBALS["authdbname"]." DB IN USE <BR>";
 
 				sc_query(file_get_contents("$RFS_SITE_PATH/install/install.users.sql"));
+				$rfs_password=md5($rfs_password);
 				sc_query("INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `theme`) VALUES('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255', 'default'); ");
 				sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
 
