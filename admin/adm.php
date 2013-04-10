@@ -195,8 +195,23 @@ function adm_action_access_groups() { eval(scg());
 	$r=sc_query("select distinct name from access");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$a=mysql_fetch_object($r);
-		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
-		echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name\">$a->name</a><br> ";
+		echo "$a->name [<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name\">edit</a>]<br>";
+		
+		echo "Members of $a->name: ";
+		$usrs=sc_query("select * from `users`");
+		for($j=0;$j<mysql_num_rows($usrs);$j++) {
+			$usr=mysql_fetch_object($usrs);
+			$agrps=explode(",",$usr->access_groups);
+			for($k=0;$k<count($agrps);$k++) {
+				if($a->name==$agrps[$k]) {
+					echo "$usr->name ";
+				}
+			}
+		}
+		echo "<br>";
+		
+		
 	}
 	echo "Create a new access group<br>";
 	sc_div("ADD ACCESS GROUP FORM START");
