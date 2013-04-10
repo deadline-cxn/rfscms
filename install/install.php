@@ -145,7 +145,7 @@ $q=file_get_contents($f);
 
 echo "1<br>";
 
-// echo nl2br("<hr>$q");
+echo nl2br("<hr>$q");
 
 echo $GLOBALS['authdbname']."<BR>";
 echo $GLOBALS['authdbaddress']."<BR>";
