@@ -1,12 +1,9 @@
  <? 
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson
-// http://www.sethcoder.com/
-// adm.php ( Part of the RFS CMS http://www.sethcoder.com/ for help and documentation )
+// RFS CMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-
 $title="Administration";
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_db_query( $x ) {
 	eval( scg() );
 	$x=urldecode( $x );
@@ -16,7 +13,7 @@ function adm_db_query( $x ) {
 	$ox=join( " ",$ax );
 	echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=db_query&query=$ox\" target=_top>$x</a><br>";
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 if( $_REQUEST['db_queries']=="list" ) {
 	if(array_pop(explode("/",getcwd()))=="admin") chdir("..");
 	include_once("include/lib.all.php");
@@ -37,15 +34,11 @@ if( $_REQUEST['db_queries']=="list" ) {
 	sc_query( " RENAME TABLE `db_queries2` TO `db_queries`; " );
 	sc_query( " DROP TABLE db_goto_hell; " );
 
-sc_query("
-
-CREATE TABLE IF NOT EXISTS `db_queries` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `query` text COLLATE utf8_unicode_ci NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=350 ;
-    ");
+	sc_query(" CREATE TABLE IF NOT EXISTS `db_queries` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`query` text COLLATE utf8_unicode_ci NOT NULL,
+				`time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+				PRIMARY KEY (`id`)) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=350 ; ");
 
 	$r=sc_query("select distinct query from `db_queries` order by `time`");
     if($r) {
@@ -62,16 +55,11 @@ CREATE TABLE IF NOT EXISTS `db_queries` (
     }
 	exit();
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 chdir( "../" );
 include( "header.php" );
-
 /////////////////////////////////////////////////////////////////////////////////////////
-echo "<table border=0 width=100% cellspacing=0 cellpadding=0 ><tr><td valign=top> ";
-
 $data=sc_getuserdata($_SESSION['valid_user']);
-
 if( $data->access!=255 ) {
 	echo smiles( "<table border=0 width=300><tr>
     <td class=warning><center>^X<br>You can not use admin</td></tr></table>\n" );
@@ -84,12 +72,10 @@ if( $data->access!=255 ) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_ARRANGE FUNCTIONS
-
 function sc_admin_module( $loc ) {
 	eval( scg() );
     $location=$loc;
 	$r=sc_query( "select * from arrangement where location='$location' order by sequence" );
-
 	if($r){
 		echo "<center><h2>Arrange location $location";
 		if( $location=="left" ) echo " (left panel)";
@@ -99,13 +85,7 @@ function sc_admin_module( $loc ) {
         else
 		for( $i=0; $i<$n; $i++ ) {
 			$ar=mysql_fetch_object( $r );
-
-			// echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_module_add&location=$location'>";
-			// echo "<img src='$RFS_SITE_URL/images/icons/dev/PNG/Application-Form-Add.png' border='0'>";
-			// echo "</a>";
-
 			echo "<table border=0 cellspacing=0><tr><td>";
-
             echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_delete&location=$location&arid=$ar->id'>";
 			echo "<img src='$RFS_SITE_URL/images/icons/circle-delete.png' border='0'>";
             echo "</a>";
@@ -146,51 +126,42 @@ function sc_admin_module( $loc ) {
 	echo "</form>";
 
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_arrange_delete_go() { eval(scg());
-
     sc_query("delete from arrangement where `id`='$id'");
     adm_action_arrange();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_arrange_delete() { eval(scg());
     $ar=mfo1("select * from arrangement where `location` = '$location' and `id`= '$arid' ");
     echo "Delete arrangement ($location: $ar->mini)<br>";
     sc_confirmform( "Delete $ar->mini from $location?",
                     "$RFS_SITE_URL/admin/adm.php",
                     "action=f_arrange_delete_go".$RFS_SITE_DELIMITER."id=$ar->id" );
-
     adm_action_arrange();
 }
-
-function adm_action_f_module_add() {
-	eval( scg() );
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_f_module_add() { eval( scg() );
 	echo ".. $module... $location";
 	sc_query( "insert into arrangement  (`mini`,`location`,`num`,`sequence`)
 	          values('$module','$location','5','999');" );
 	adm_action_arrange();
 }
-
-function adm_action_f_module_chg_num() {
-	eval( scg() );
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_f_module_chg_num() { 	eval( scg() );
 	sc_query( "update arrangement set num='$num' where id='$id'" );
 	adm_action_arrange();
 }
-
-function adm_action_arrange() {
-
-
-	eval( scg() );
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_arrange() { eval( scg() );
     $location="";
-
-sc_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
-              `id` int(11) NOT NULL AUTO_INCREMENT,
-              `location` text NOT NULL,
-              `mini` text NOT NULL,
-              `num` int(11) NOT NULL,
-              `sequence` int(11) NOT NULL,
-              PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ; ");
+	sc_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
+				`id` int(11) NOT NULL AUTO_INCREMENT,
+				`location` text NOT NULL,
+				`mini` text NOT NULL,
+				`num` int(11) NOT NULL,
+				`sequence` int(11) NOT NULL,
+				PRIMARY KEY (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ; ");
 
 	echo "<table border=0><tr>"; // TOP START
 	echo "<td valign=top class=lefttd>";	
@@ -206,58 +177,45 @@ sc_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM ACCESS GROUPS FUNCTIONS
-
 function adm_action_f_access_group_delete() { eval(scg());
-
 	sc_confirmform( "Delete $axnm?",
                     "$RFS_SITE_URL/admin/adm.php",
                     "action=f_access_group_delete_go".$RFS_SITE_DELIMITER.
 					  "axnm=$axnm" );
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_delete_go() { eval(scg());
-
 	echo "DELETE $axnm access group... <BR>";
 	sc_query("delete from `access` where name='$axnm'");
 	adm_action_access_groups();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_access_groups() { eval(scg());
 	echo "<p>Modify Access Groups</p>";
-
 	$r=sc_query("select distinct name from access");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$a=mysql_fetch_object($r);
-		
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
-		
 		echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name\">$a->name</a><br> ";
 	}
-
 	echo "Create a new access group<br>";
-sc_div("ADD ACCESS GROUP FORM START");
-echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
-echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
-echo "<input name=\"axnm\">\n";
-echo "<input type=\"submit\" value=\"Add\">\n";
-echo "</form>\n";
-sc_div("ADD ACCESS GROUP FORM END");
-
-
+	sc_div("ADD ACCESS GROUP FORM START");
+	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
+	echo "<input name=\"axnm\">\n";
+	echo "<input type=\"submit\" value=\"Add\">\n";
+	echo "</form>\n";
+	sc_div("ADD ACCESS GROUP FORM END");
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_add() { eval(scg());
-
-echo " Adding new access group named [$axnm] <br>";
-sc_query(" insert into access (`name`) VALUES ('$axnm'); ");
-
-adm_action_f_access_group_edit();
+	echo " Adding new access group named [$axnm] <br>";
+	sc_query(" insert into access (`name`) VALUES ('$axnm'); ");
+	adm_action_f_access_group_edit();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_edit_go() { eval(scg());
-
 	sc_query("delete from `access` where name='$axnm'");
-
 	$r=sc_query("select * from access_methods");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$am=mysql_fetch_object($r);
@@ -265,81 +223,56 @@ function adm_action_f_access_group_edit_go() { eval(scg());
 			sc_query("insert into access (`name`,`page`,`action`) 
 			VALUES('$axnm','$am->page','$am->action')");
 		}
-
 	}
-	adm_action_f_access_group_edit();
-	
+	adm_action_f_access_group_edit();	
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_edit() { eval(scg()); 
-
-
 	echo "<h1>Edit Access Group</h1>";
-	
 	echo "$axnm<br>Privileges<br>";
-	
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
-	
-
-	// $r=sc_query("select * from access where name='$axnm'");
-	// echo "<table border=0><tr><td> Group </td><td> Function / Pages </td><td> Action </td> <td> Table / Extra</td></tr>";	
-	// for($i=0;$i<mysql_num_rows($r);$i++) {
-		// $a=mysql_fetch_object($r);		
-		// echo "<tr> <td> $a->name </td><td> $a->page </td><td>  $a->action </td><td> $a->table</td> </tr>";
-	// }
-	// echo "</table>";
-		
 	$r=sc_query("select * from access_methods");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
-		$am=mysql_fetch_object($r);
-		
+		$am=mysql_fetch_object($r);	
 		$checked="";
 		$rw=mfo1("select * from access where name='$axnm' and page='$am->page' and action='$am->action'");		
 		if($rw->name==$axnm) { $checked="checked";}
 		
 		echo "<input name=\"$am->page"."_$am->action\" type=checkbox $checked>";
 		echo " $am->page -> $am->action <br>";
-	}
-	
+	}	
 	echo "<input type=\"submit\" value=\"Update\">";
 	echo "</form>";
-	
-	
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_NEW PAGE FUNCTIONS
 function adm_action_new_page() { eval(scg());
-echo"<p>Create a new page.</p>";
-sc_bqf( "action=new_page_go".$RFS_SITE_DELIMITER.
-"SHOW_TEXT_name=name.php","Create new page");
+	echo"<p>Create a new page.</p>";
+	sc_bqf( "action=new_page_go".$RFS_SITE_DELIMITER."SHOW_TEXT_name=name.php","Create new page");
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-function adm_action_new_page_go(){ 				eval(scg());
-if(!file_exists($_GLOBALS['name'])){
-copy("_template.php",$_GLOBALS['name']);
-}
-echo "<p> New file ".$_GLOBALS['name']." created. </p>";
+function adm_action_new_page_go() { eval(scg());
+	if(!file_exists($_GLOBALS['name'])){
+	copy("_template.php",$_GLOBALS['name']);
+	}
+	echo "<p> New file ".$_GLOBALS['name']." created. </p>";
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_EMAIL
 function adm_action_email(){			eval(scg());
-sc_bqf( "action=email_go".$RFS_SITE_DELIMITER.
-"SHOW_TEXT_address=address".$RFS_SITE_DELIMITER.
-"SHOW_TEXT_subject=subject".$RFS_SITE_DELIMITER.
-"SHOW_CODEAREA_300#600#message=message".$RFS_SITE_DELIMITER,
-   "Email");
-   }
+	sc_bqf( 	"action=email_go".$RFS_SITE_DELIMITER.
+				"SHOW_TEXT_address=address".$RFS_SITE_DELIMITER.
+				"SHOW_TEXT_subject=subject".$RFS_SITE_DELIMITER.
+				"SHOW_CODEAREA_300#600#message=message".$RFS_SITE_DELIMITER,
+				"Email");
+}
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_email_go(){ 					eval(scg());
-    echo "Sending message:
-    <br>";
-    echo "TO:
-    $address<br>SUBJECT:
-    $subject<br>MESSAGE:
-    <br>$message<br>";
+    echo "Sending message:<br>";
+    echo "TO:$address<br>SUBJECT:$subject<br>MESSAGE:<br>$message<br>";
     mailgo($address,$message,$subject);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -373,6 +306,7 @@ function eval_callback( $txt ) {
 	}
 	return $txt;
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_eval_form_go() {
 	eval( scg() );
 	$eval=stripslashes( $eval );
@@ -381,6 +315,7 @@ function adm_action_eval_form_go() {
 	ob_end_flush();
 	finishadminpage();
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_eval_form() {
 	eval( scg() );
 	echo "<h3>Enter PHP code to eval:</h3><br>";
@@ -388,66 +323,88 @@ function adm_action_eval_form() {
 	       "action=eval_form_go".$RFS_SITE_DELIMITER.
 	       "id=$id".$RFS_SITE_DELIMITER.
 	       "SHOW_TEXTAREA_16#70#eval=enter code here",
-	       "",
-	       "",
-	       "",
-	       "",
-	       "",
-	       "",
-	       50,
-	       "Eval Code" );
+	       "","","","","","",50,"Eval Code" );
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_THEMES
-function adm_action_theme() {
-	eval( scg() );
-	echo "<h3>Theme Editor</h3>";
+
+
+function adm_action_f_theme_edit() { eval(scg());
+	echo "Editing theme [$thm]<br>";
+	$folder="$RFS_SITE_PATH/themes/$thm";
+	echo "Elements of $thm<br>";
+	
+	$d = opendir($folder);
+	while(false!==($entry = readdir($d))) {
+		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
+			echo $entry."<br>";
+			$checkx=explode(".",$entry);
+			if($checkx[0]=="t") {
+				if( ($checkx[count($checkx)-1]!="gif") &&
+					($checkx[count($checkx)-1]!="jpg") &&
+					($checkx[count($checkx)-1]!="png") ) {
+					
+						$f=file_get_contents($folder."/".$entry);
+						$f=str_replace("<","&lt;",$f);
+						echo nl2br($f)."<br>";
+					
+					}
+			
+			}
+				
+				
+		}
+	}
+	closedir($d);
+	
 }
+
+
+function adm_action_theme() { eval(scg());
+	echo "<h3>Theme Editor</h3>";
+	
+	$thms=sc_get_themes();
+	while(list($key,$thm)=each($thms)) {
+		echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">$thm</a><br>";
+	}
+}
+
+
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORUMS
-function adm_action_f_modify_forum() {
-	eval( scg() );
+function adm_action_f_modify_forum() { eval(scg());
 	echo "<h3>Forum $name updated</h3>";
 	sc_updb( "forum_list","id",$id );
 	adm_action_forum_admin();
 }
-function adm_action_f_edit_forum() {
-	eval( scg() );
-	// $name=stripslashes($der['name']);
-	// $comment=stripslashes($der['comment']);
-	// $page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_f_edit_forum() { eval( scg() );
 	$result=sc_query( "select * from forum_list where `name`='$name'" );
 	$der=mysql_fetch_object( $result );
 	$forum_name=$der->name;
 	echo "<h3>[$forum_name] (id:$der->id)</h3>\n";
 	sc_bf( "$RFS_SITE_URL/admin/adm.php",
-	       "action=f_modify_forum", // ,forum_admin=yep,forum_clear=1,old_name=$forum_name",
-	       "forum_list",
-	       "select * from forum_list where name='$forum_name';",
-	       "id",
-	       "",
-	       "omit",
-	       "",
-	       100,
-	       "submit" );
+	       "action=f_modify_forum",
+	       "forum_list", "select * from forum_list where name='$forum_name';",
+	       "id","","omit","",100,"submit" );
 	adm_action_forum_admin();
 }
-function adm_action_f_add_forum() {
-	eval( scg() );
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_f_add_forum() { eval( scg() );
 	sc_query( "insert into forum_list (`name`) VALUES ('$name') ; " );
 	adm_action_f_edit_forum();
 }
-function  adm_action_forum_admin() {
-	eval( scg() );
-
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_forum_admin() { eval( scg() );
 	$name=addslashes( $name );
-	// echo "<table border=0>";
-
 	$r=sc_query( "select * from forum_list" );
 	$n=mysql_num_rows( $r );
-
 	if( $n==0 ) echo "<p>No forums defined.</p>";
-
 	sc_bf( "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_add_forum".$RFS_SITE_DELIMITER.
 	       "SHOW_TEXT_New_Forum=new forum".$RFS_SITE_DELIMITER.
