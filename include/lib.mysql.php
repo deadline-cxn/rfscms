@@ -152,8 +152,10 @@ function sc_access_check($func_page,$act){
 	$d=$GLOBALS['data'];
 
 	$ax=$d->access;
-	$q="select * from `access` where `access`='$ax' and `page`='$func_page' and action='$act'";
-	$r=sc_query($q); if(mysql_num_rows($r)) $ret=true;
+	if($ax>1) {
+		$q="select * from `access` where `access`='$ax' and `page`='$func_page' and action='$act'";
+		$r=sc_query($q); if(mysql_num_rows($r)) $ret=true;	
+	}
 	
 	$ax=$d->access_groups;
 	$axs=explode(",",$ax);
