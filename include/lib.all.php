@@ -5,7 +5,6 @@
 $this_dir=getcwd();
 include_once("lib.div.php");
 include_once("session.php");
-
 include_once("lib.log.php");
 include_once("version.php");
 include_once("lib.debug.php");
