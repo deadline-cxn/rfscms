@@ -19,15 +19,6 @@ if($folder!="install") $RFS_SITE_URL.="/".$folder;
 echo getcwd()."<BR>";
 echo "$RFS_SITE_PATH<br>";
 
-if(!function_exists("sc_query")) {
-
-echo "sc...<BR>";
-sc_query("your mom");
-
-//  include("$RFS_SITE_PATH/include/lib.mysql.php");
-}
-//include_once("$RFS_SITE_PATH/version.php");
-
 $table_width="85%";
 
 echo "<html><head><title>RFS CMS $RFS_VERSION Installer</title>";
