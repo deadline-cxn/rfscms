@@ -80,6 +80,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 		echo "<font class=toptd>$keywords</font> ";
 		echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
 		echo "<td class=toptd valign=bottom>";
+		
 		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.bot_right_corner.gif"))    {
 			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.bot_right_corner.gif\" align=right valign=bottom>";
 			echo "</td><td class=logged_in_td>";
@@ -91,10 +92,14 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 			echo "<a href=$RFS_SITE_URL/facebook/fb.login.php?goback=1><img src=$RFS_SITE_URL/facebook/facebook_login.gif></a>";
 		}
 		else    {
-			echo "</td><td class=toptd>&nbsp;</td><td class=logged_in_td>";
+			echo "</td>";
+			// echo "<td class=toptd>&nbsp;</td> ";
+			echo "<td class=logged_in_td>";
 			rfs_echo($RFS_SITE_LOGGED_IN_CODE);
 		}
-		echo "</td><td class=toptd>&nbsp;</td></tr></table>";
+		echo "</td>";
+		// echo "<td class=toptd>&nbsp;</td>";
+		echo "</tr></table>";
 		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0><tr class=sc_top_menu_table>";
 		echo "<td class=sc_top_menu_table valign=top>";
 		echo "<table border=0 cellpadding=8 cellspacing=0 class=sc_top_menu_table>";
