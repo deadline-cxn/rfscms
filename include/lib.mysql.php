@@ -147,7 +147,7 @@ function sc_access_method_add($func_page,$act) {
 function sc_access_check($func_page,$act){
 
 	if(empty($func_page)) $func_page=sc_phpself();
-	$ret=false;
+	$ret=false; 
 	
 	$d=$GLOBALS['data'];
 
