@@ -6275,17 +6275,6 @@
   <File Name="rfscms.project"/>
   <File Name="header.php"/>
   <File Name="footer.php"/>
-  <VirtualDirectory Name="backup">
-    <File Name="backup/backup-html.php"/>
-    <File Name="backup/backup-worley.php"/>
-    <File Name="backup/backup-all.php"/>
-    <File Name="backup/backup-packages.php"/>
-    <File Name="backup/backup-library.php"/>
-    <File Name="backup/backup-parson.php"/>
-    <File Name="backup/backup-etc.php"/>
-    <File Name="backup/backup-all-short.php"/>
-    <File Name="backup/backup-mysql.php"/>
-  </VirtualDirectory>
   <VirtualDirectory Name="config">
     <File Name="config/config.php"/>
     <File Name="config/config.sitevars.php"/>
