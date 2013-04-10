@@ -146,25 +146,21 @@ function sc_access_method_add($func_page,$act) {
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_access_check($func_page,$act){
 
-	$d=$GLOBALS['data']; $ax=$d->access;
-
 	if(empty($func_page)) $func_page=sc_phpself();
-
-	$q="select * from `access` where `access`='$ax' and `page`='$func_page' and action='$act'";
-	$r=sc_query($q);
 	$ret=false;
-	if(mysql_num_rows($r)) {
-		$ret=true;
+	
+	$d=$GLOBALS['data'];
+
+	$ax=$d->access;
+	$q="select * from `access` where `access`='$ax' and `page`='$func_page' and action='$act'";
+	$r=sc_query($q); if(mysql_num_rows($r)) $ret=true;
+	
+	$ax=$d->access_groups;
+	$axs=explode(",",$ax);
+	for($i=0;$i<count($axs);$i++) {
+		$q="select * from `access` where `name`='$axs[$i]' and `page`='$func_page' and action='$act'";
+		$r=sc_query($q); if(mysql_num_rows($r)) $ret=true;
 	}
-	d_echo( "sc_admin_check(): $ret" );
-	d_echo( $func_page );
-	d_echo( $ax );
-	d_echo( $act );
-	d_echo( "[$q]");
-
-	// if(!$ret) $ret="false"; 
-	// sc_info("ACCESS CHECK: ($ax) $func_page $act : ($ret)","WHITE","RED");
-
 	return $ret;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
