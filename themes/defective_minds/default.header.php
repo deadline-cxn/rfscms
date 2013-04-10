@@ -7,7 +7,7 @@ rfs_echo($RFS_SITE_HEAD_OPEN);
 
 rfs_echo($RFS_SITE_TITLE);
 
-$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
+$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/$theme.css";
 rfs_echo($RFS_SITE_CSS);
 rfs_echo($RFS_SITE_HEAD_CLOSE);
 rfs_echo($RFS_SITE_BODY_OPEN);
@@ -81,10 +81,10 @@ to("100%"," align=center cellpadding=0");
 
 					echo "</td><td align=right>";
                     
-                    if(empty($data->donated)) {
-							sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
-                    }
-                    else {
+                    if(empty($data->donated))
+                        sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+                    
+                    if(!empty($data->donated)) {
 								//$RFS_SITE_NAV_FONT,                        
 								sc_image_text("DONATED! THANK YOU",
 
@@ -111,13 +111,17 @@ tc();
 //to($RFS_SITE_SINGLETABLEWIDTH+75," align=center ");
 to("100%"," align=center ");
     tro("");
+    
         sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
-		sc_theme_form();
+
+        theme_form();
+        
     trc();
 tc();
 
 //to($RFS_SITE_SINGLETABLEWIDTH-75," align=center ");
-/* 
+/*
+
 {
 to("100% cellpadding=0"," align=center ");
     tro("");
