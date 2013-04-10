@@ -7,7 +7,7 @@ rfs_echo($RFS_SITE_HEAD_OPEN);
 
 rfs_echo($RFS_SITE_TITLE);
 
-$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/$theme.css";
+$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
 rfs_echo($RFS_SITE_CSS);
 rfs_echo($RFS_SITE_HEAD_CLOSE);
 rfs_echo($RFS_SITE_BODY_OPEN);
@@ -76,7 +76,7 @@ to("100%"," align=center cellpadding=0");
 							250,160,10,
 							244,4,0,1,1);
 		}else {
-			echo "<img src='$RFS_SITE_URL/themes/default/default.title.png' border=0>";
+			echo "<img src='$RFS_SITE_URL/themes/$theme/t.title.png' border=0>";
 		}
 
 					echo "</td><td align=right>";
