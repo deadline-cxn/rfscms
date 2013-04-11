@@ -32,6 +32,7 @@ function wikiimg($text) { eval(scg());
     $text=stripslashes($text);
     $text=str_replace("{{","&#123;",$text);
     $text=str_replace("}}","&#125",$text);
+	$text=str_replace("$$","&#36;",$text);
     $outtext="";
     $ila=explode("{",$text);
     for($i=0;$i<count($ila);$i++)    {
