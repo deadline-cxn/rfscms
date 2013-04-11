@@ -1099,7 +1099,7 @@ if($action=="viewcat"){
     if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
     echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
     $img=$RFS_SITE_URL."/".$picture->url;
-    echo sc_picthumb(urlencode($img),96,0,0);
+    echo sc_picthumb($img,96,0,0);
     echo "</a>\n";
     }
 
