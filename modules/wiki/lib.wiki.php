@@ -185,7 +185,7 @@ function wikitext($text) {
                             {
                                 $outtext.= "<tr><td class=rfs_bulletlist_txt_td width=20></td>";
                                 $outtext.= "<td class=rfs_bulletlist_img_td>";								
-                                $outtext.= " <img src=".$_GLOBALS['RFSW_BULLET_IMAGE'].">";
+                                $outtext.= " <img src=".$GLOBALS['RFSW_BULLET_IMAGE'].">";
                                 $outtext.= "</td><td class=rfs_bulletlist_txt_td>";
                                 $outtext.= $lstd[$li];
                                 $outtext.= "</td></tr>";
