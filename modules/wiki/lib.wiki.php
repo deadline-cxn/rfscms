@@ -1,5 +1,4 @@
 <?
-$RFSW_BULLET_IMAGE=$RFS_SITE_URL."/modules/wiki/images/bullet.gif";
 include_once("include/lib.all.php");
 
 sc_access_method_add("wiki", "admin");
