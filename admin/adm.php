@@ -72,7 +72,7 @@ if( $data->access!=255 ) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM CHECK FOR UPDATES
-function adm_action_check_for_updates() {
+function adm_action_check_for_updates() { eval(scg());
 	include("$RFS_SITE_PATH/gitupdate.php");
 	finishadminpage();
 }
