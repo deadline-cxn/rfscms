@@ -6,7 +6,8 @@ sc_access_method_add("wiki", "admin");
 sc_access_method_add("wiki", "editothers");
 sc_access_method_add("wiki", "deleteothers");
 
-if(empty($RFSW_BULLET_IMAGE)) $RFSW_BULLET_IMAGE=$RFS_SITE_URL."/modules/wiki/images/bullet.gif";
+if(empty($RFSW_BULLET_IMAGE))
+	$RFSW_BULLET_IMAGE=$RFS_SITE_URL."/modules/wiki/images/bullet.gif";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI
@@ -183,7 +184,7 @@ function wikitext($text) {
                             if(!empty($lstd[$li]))
                             {
                                 $outtext.= "<tr><td class=rfs_bulletlist_txt_td width=20></td>";
-                                $outtext.= "<td class=rfs_bulletlist_img_td>";									
+                                $outtext.= "<td class=rfs_bulletlist_img_td>";								
                                 $outtext.= " <img src=".$_GLOBALS['RFSW_BULLET_IMAGE'].">";
                                 $outtext.= "</td><td class=rfs_bulletlist_txt_td>";
                                 $outtext.= $lstd[$li];
