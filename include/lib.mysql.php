@@ -34,7 +34,7 @@ if($act=="select_image_chdir") {
 
 
 function sc_phpself() { eval(scg()); // /%22%3E%3Cscript%3Ealert('xss')%3C/script%3E%3Cfoo%22
-	$page=htmlentities($RFS_SITE_URL.$_SERVER['PHP_SELF']);
+	$page=$_SERVER['PHP_SELF'];//htmlentities($RFS_SITE_URL.$_SERVER['PHP_SELF']);
 	return $page;
 }
 
@@ -881,7 +881,8 @@ function sc_bfa($table){ eval(scg());
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // sc_bqf (build quick form)
 // takes 2 vars and will build a form using sc_bf
-function sc_bqf($hiddenvars,$submit){ eval(scg());	
+function sc_bqf($hiddenvars,$submit){ eval(scg());
+
     sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////

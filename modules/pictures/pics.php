@@ -1,6 +1,6 @@
 <?
 if($a=="ms") {
-    echo "<img src='http://www.defectiveminds.com/rfs/include/generate.image.php/?download_it_$id.png&id=$id&owidth=512' border=0></a>";
+	echo "<img src='http://www.defectiveminds.com/rfs/include/generate.image.php/?download_it_$id.png&id=$id&owidth=512' border=0></a>";
     exit();
 }
 chdir("../../");
