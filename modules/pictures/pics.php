@@ -390,7 +390,7 @@ if($action=="modifypicture"){
 	if ($data->access==255) {
 		$res=sc_query("select * from `pictures` where `id`='$id'");
 		$picture=mysql_fetch_object($res);
-		echo "<center><img src=$picture->url height=$editwidth>";
+		echo "<center><img src=$RFS_SITE_URL/$picture->url height=$editwidth>";
 		echo "<table border=0>";
 		echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pics.php>";
 		echo "<input type=hidden name=action value=modifygo>";
