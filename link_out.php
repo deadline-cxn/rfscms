@@ -12,8 +12,11 @@ if(mysql_num_rows($result)>0) {
 	sc_query("update link_bin set `clicks` = '$link->clicks' where `id` = '$link->id'");
 }
 if(empty($link_out)) $link_out=$site_url;
-if($foundlink==false)
+if($foundlink==false) {
+		$time=time();
 		sc_query("insert into link_bin 		(`name`,`link`,`sname`,`clicks`,`time`)
-										VALUES ('$link_out','http://$link_out','$link_out','1',NOW); ");
+										VALUES ('$link_out','http://$link_out','$link_out','1', '$time'); ");
+
+}
 echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=http://$link_out\">";
 ?>
