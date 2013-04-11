@@ -209,8 +209,14 @@ function wikitext($text) {
 						if( 	stristr($ila2[0],"http:") || 
 								stristr($ila2[0],"https:") ||
 								stristr($ila2[0],"ftp:") ||
-								stristr($ila2[0],"ftps:") )
-							$outtext.="<a class=rfswiki_link href=".$ila2[0]." target=_blank>".$ila2[0]."</a>".nl2br($ila2[1]);
+								stristr($ila2[0],"ftps:") ) {
+									
+									$outlink=$ila2[0];
+									$outlink=str_replace("http://","",$outlink);
+									$outlink=str_replace("https://","",$outlink);
+									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$link_out target=_blank>".$ila2[0]."</a>".nl2br($ila2[1]);
+								
+							}
 						else
 							$outtext.="<a class=rfswiki_link href=rfswiki.php?name=".urlencode($ila2[0]).">".$ila2[0]."</a>".nl2br($ila2[1]);
                     break;
