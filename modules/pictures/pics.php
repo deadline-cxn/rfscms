@@ -1023,7 +1023,7 @@ echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$
                <img src='$RFS_SITE_URL/images/icons/Delete.png' border='0' alt='Delete' width='40' height='40'></a>";
 		}
     }
-	echo $linknext;
+	echo $linknext; 
 	echo "</p>";
 	if(!empty($picture->sname))		
         sc_info("<h3>$picture->sname</h3>","white","#300030");
