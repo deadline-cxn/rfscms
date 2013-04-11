@@ -1,5 +1,5 @@
 <?
-// link out
+// link out 
 include("config/config.php");
 include("include/lib.mysql.php");
 include("include/lib.domain.php");
