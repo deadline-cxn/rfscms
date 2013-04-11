@@ -26,7 +26,7 @@ to("100%","cellpadding=0 cellspacing=0");
                                         250,250,40,
                                         44,4,0,1,1);
                 
-                    rfs_echo("<a href=\$RFS_SITE_URL/logout.php>");
+                    rfs_echo("<a href=\$RFS_SITE_URL/login.php?action=logout>");
 
                     sc_image_text("logout",$RFS_SITE_NAV_FONT,
                                     18,812,44,0,0,
