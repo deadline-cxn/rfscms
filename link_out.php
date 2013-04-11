@@ -13,7 +13,7 @@ if(mysql_num_rows($result)>0) {
 }
 if(empty($link_out)) $link_out=$site_url;
 if($foundlink==false)
-		sc_query("insert into link_bin 		(`name`,`link`,`sname`,`clicks`)
-										VALUES ('$link_out','http://$link_out','$link_out','1'); ");
+		sc_query("insert into link_bin 		(`name`,`link`,`sname`,`clicks`,`time`)
+										VALUES ('$link_out','http://$link_out','$link_out','1',NOW); ");
 echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=http://$link_out\">";
 ?>
