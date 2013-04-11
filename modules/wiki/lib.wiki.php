@@ -1,13 +1,10 @@
 <?
-
+$RFSW_BULLET_IMAGE=$RFS_SITE_URL."/modules/wiki/images/bullet.gif";
 include_once("include/lib.all.php");
 
 sc_access_method_add("wiki", "admin");
 sc_access_method_add("wiki", "editothers");
 sc_access_method_add("wiki", "deleteothers");
-
-if(empty($RFSW_BULLET_IMAGE))
-	$RFSW_BULLET_IMAGE=$RFS_SITE_URL."/modules/wiki/images/bullet.gif";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI

@@ -10,6 +10,7 @@ body
 }
 
 .wikishell {
+	padding: 5px;
 	margin:0 auto;
 	align: center;
 	width: 90%;
