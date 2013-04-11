@@ -71,9 +71,14 @@ if( $data->access!=255 ) {
 // FUNCTIONS
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM CHECK FOR UPDATES
+function sc_admin_action_check_for_updates() {
+	sc_gotopage("$RFS_SITE_URL/gitupdate.php?retpage=$RFS_SITE_URL");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_ARRANGE FUNCTIONS
-function sc_admin_module( $loc ) {
-	eval( scg() );
+function sc_admin_module( $loc ) { eval( scg() );
     $location=$loc;
 	$r=sc_query( "select * from arrangement where location='$location' order by sequence" );
 	if($r){
