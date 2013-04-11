@@ -70,8 +70,8 @@ function sc_rgb2html($r, $g=-1, $b=-1){
 }
 
 function sc_picthumb($zimg,$w,$h,$s) { eval(scg());      
-	$r="<img src='$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s'>";
-	return $r;
+$r="<img src=\"$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s\">";
+return $r;
 }
 
 function sc_image_text_s($text,$font,$r,$g,$b){
