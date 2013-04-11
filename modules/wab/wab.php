@@ -2,9 +2,10 @@
 ////////////////////////////////////////////////////////////
 // RFS WAB Web Application Builder by Seth Parson
 
+chdir("../../");
 include("header.php");
 
-$wab_version="v1.8";
+$wab_version="v1.9";
 
 if(empty($runapp)) $runapp=$_SESSION['runapp'];
 
