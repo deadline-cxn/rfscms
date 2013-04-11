@@ -1,2 +1,2 @@
-git pull https://github.com/sethcoder/rfscms.git
+sudo git pull https://github.com/sethcoder/rfscms.git
 
