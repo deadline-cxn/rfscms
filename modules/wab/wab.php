@@ -66,8 +66,7 @@ no_func($wbna);
 function no_func($wbna){
     if(!function_exists($wbna)){
         $we=mfo1("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`");
-        $ec="
-        function $wbna() { eval(scg());
+        $ec="    function $wbna() { eval(scg());
             echo \"<p class=warning>$wbna() function is undefined!</p>\";
             \$lnk=\"\$RFS_SITE_URL/modules/wab/wab.php?action=edcode\";
             \$lnk.=\"&runapp=".$we->id."\";
@@ -76,8 +75,10 @@ function no_func($wbna){
             \$lnk.=\"&_function=$wbna\";
             echo \"[<a href=\$lnk>\";
             echo \"edit $wbna() code\";
-            echo \"</a>]\";
-        } ";
+            echo \"</a>]\"; } ";
+			
+			echo $ec;
+			
         eval($ec);
     }
 }
