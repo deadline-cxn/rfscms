@@ -1007,7 +1007,7 @@ if($action=="view"){
 		echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&id=$picture->id'>
        <img src='$RFS_SITE_URL/images/icons/caption.png' border='0' alt='Caption This Picture' width='40' height='40'></a>";
 
-		$img=$RFS_SITE_URL."/images/icons/refresh.png";
+		$img=$RFS_SITE_URL."/images/icons/refresh.gif";
 		echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=random'><img src='$img' border='0' alt='Random Picture' width='40' height='40'></a>";
 
 
