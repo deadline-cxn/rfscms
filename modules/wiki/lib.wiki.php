@@ -26,7 +26,6 @@ function sc_module_mini_wiki($x) { eval(scg());
 
 
 function wikiimg($text) { eval(scg());    
-
     $text=stripslashes($text);
     $text=str_replace("{{","&#123;",$text);
     $text=str_replace("}}","&#125",$text);
@@ -183,7 +182,8 @@ function wikitext($text) {
                             {
                                 $outtext.= "<tr><td class=rfs_bulletlist_txt_td width=20></td>";
                                 $outtext.= "<td class=rfs_bulletlist_img_td>";
-                                $outtext.= " <img src=".$GLOBALS['rfsw_bullet_image'].">";
+								$outtext.=$_GLOBALS['rfsw_bullet_image'];
+                                $outtext.= " <img src=".$_GLOBALS['rfsw_bullet_image'].">";
                                 $outtext.= "</td><td class=rfs_bulletlist_txt_td>";
                                 $outtext.= $lstd[$li];
                                 $outtext.= "</td></tr>";

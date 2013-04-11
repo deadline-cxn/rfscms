@@ -2,19 +2,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 // RFS Wiki (Really Frickin Simple)
 // By Seth Parson http://www.SethCoder.com/
-$rfsversion="v1.6";
 
-// include_once("lib.wiki.php");
+$rfsversion="v1.7";
 
 $title="Wiki ".$_REQUEST['name'];
-
 
 chdir("../../");
 include_once("include/lib.all.php");
 
-
 if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = "/var/www";
-
 if(!empty($rfsw_header)) include($rfsw_header);
 
 $rfsw_admin_mode="false";
@@ -64,7 +60,7 @@ if($give_file=="yes"){
 
 if(empty($name)) $name="home";
 $name=ucwords($name);
-echo "<table border=0 cellspacing=0 cellpadding=0><tr><td class=rfswiki_contenttd>"; // width=900 
+echo "<table border=0 cellspacing=0 cellpadding=0 width=100%><tr><td class=rfswiki_contenttd>"; 
 rfs_echo("<h1>$name</h1>");
 
 //////////////////////////////////////////////////////////////////////////////
@@ -90,14 +86,14 @@ if($action=="editname") {
 }
 
 if($action!="edit") {
- // echo $name;
+
 } else {
 
- echo  "<form action='$RFS_SITE_URL/modules/wiki/rfswiki.php' method='post'>
-    <input type=hidden name=action value=editname>
-    <input type=hidden name=name value='$name'>
-    <input id='nname' name=nname value=\"$name\" size=120 onblur=\"this.form.submit()\">
-    </form> ";
+	echo  "<form action='$RFS_SITE_URL/modules/wiki/rfswiki.php' method='post'>
+			<input type=hidden name=action value=editname>
+			<input type=hidden name=name value='$name'>
+			<input id='nname' name=nname value=\"$name\" size=120 onblur=\"this.form.submit()\">
+			</form> \n";
     
 }
 
@@ -243,8 +239,6 @@ if($hide_wiki_menu!="true"){
 }
 
 echo "</td></tr></table>";
-
-//echo "</td></tr></table>";
 include($rfsw_footer);
 
 ?>
