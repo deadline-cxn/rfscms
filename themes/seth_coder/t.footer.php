@@ -22,7 +22,7 @@ d_echo("[tmpl_test.footer.php]");
 			if(empty($data->donated)){
 				echo "<table border=0 width=100% ><tr><td align=center>";
 				if(empty($data->donated))  {
-				  sc_google_adsense();
+				  sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 				}
 				else {
 				 /// -- sc_info("Thanks for donating!","GREEN","BLACK");

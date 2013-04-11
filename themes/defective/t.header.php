@@ -44,7 +44,9 @@ to("100%","cellpadding=0 cellspacing=0");
             }
             else
                 rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-            
+				
+				echo "<a href=$RFS_SITE_URL/facebook/fb.login.php?goback=1><img src=$RFS_SITE_URL/facebook/facebook_login.gif></a>";
+				
             echo "</td><td>";
 
             sc_donate_button();
