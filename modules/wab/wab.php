@@ -82,6 +82,7 @@ while($wab_engine_action=mfo($res)){
 }
 // not in database, look in actual file for action function
 if($found_action==0){
+	echo " ---- $action ---- <br>";
     no_func(str_replace(" ","_",$wab_engine->name)."_action_$action");    
     $funk=str_replace(" ","_",$wab_engine->name)."_action_$action();";
     eval($funk);
