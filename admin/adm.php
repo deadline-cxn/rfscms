@@ -73,7 +73,8 @@ if( $data->access!=255 ) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM CHECK FOR UPDATES
 function adm_action_check_for_updates() { eval(scg());
-	include("$RFS_SITE_PATH/gitupdate.php");
+	// include("$RFS_SITE_PATH/gitupdate.php");
+	system("git pull https://github.com/sethcoder/rfscms.git");
 	finishadminpage();
 }
 
