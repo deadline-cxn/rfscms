@@ -983,12 +983,9 @@ if($action=="view"){
         if($picture2->id==$picture->id)        {
             $picture2=mysql_fetch_object($res2);
             if(!empty($picture2->id))            {
-
 					$linknext="<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture2->id'><img src=$RFS_SITE_URL/images/icons/next.png border=0 width='40' height='40'></a>";
-
                 if(!empty($picture3->id))
 					$linkprev="<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id'><img src=$RFS_SITE_URL/images/icons/back.png border=0 width='40' height='40'></a>";
-
                 break;
             }
         }
@@ -1000,19 +997,12 @@ if($action=="view"){
     if(empty($linknext))    {
         if(!empty($picture3->id))        {
 			  $linkprev="<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id'><img src=$RFS_SITE_URL/images/icons/back.png border=0 width='40' height='40'></a>";
-
         }
     }
 
-
-
-
     echo "<center>";
-	
     echo "<p align=center>";
-
 	echo $linkprev;
-
     if($id) {
 		echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&id=$picture->id'>
        <img src='$RFS_SITE_URL/images/icons/caption.png' border='0' alt='Caption This Picture' width='40' height='40'></a>";
@@ -1035,9 +1025,7 @@ echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$
     }
 	echo $linknext;
 	echo "</p>";
-
-	if(!empty($picture->sname))
-		// echo "";
+	if(!empty($picture->sname))		
         sc_info("<h3>$picture->sname</h3>","white","#300030");
 	else {
 		if($data->access==255){
@@ -1085,9 +1073,7 @@ echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$
         }
         else    {
             if($viewsfw=="yes") {
-                
                 echo "<img src=\"$picture->url\">";
-                
             }
             else {
                 echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
@@ -1103,7 +1089,6 @@ echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view category
 if($action=="viewcat"){
-    
     $cat=mfo1("select * from categories where id='$cat'");
     if(!empty($cat->name)) 
         sc_info("<center>Category: $cat->name</center>","white","blue");        
@@ -1114,7 +1099,7 @@ if($action=="viewcat"){
     if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
     echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
     $img=$RFS_SITE_URL."/".$picture->url;
-    echo sc_picthumb($img,96,0,0);
+    echo sc_picthumb(urlencode($img),96,0,0);
     echo "</a>\n";
     }
 
