@@ -192,7 +192,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
                             ('copyright', 'Created with RFS CMS Copyright (c) 2012 Seth T. Parson'),
                             ('show_rss_news', 'true'),
                             ('default_theme', 'default'),
-								('force_theme', 'false'),,
+								('force_theme', 'false'),
 								('forced_theme', 'default')
 								
 								; ");
