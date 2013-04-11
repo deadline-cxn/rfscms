@@ -98,7 +98,7 @@ if($found_action==0){
 }
 eval($wab_engine->code);
 echo "</td></tr></table>";
-include("rfs/footer.php");
+include("footer.php");
 exit();
 
 ////////////////////////////////////////////////////////////
