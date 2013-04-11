@@ -72,7 +72,7 @@ if( $data->access!=255 ) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM CHECK FOR UPDATES
-function sc_adm_action_check_for_updates() {
+function adm_action_check_for_updates() {
 	sc_gotopage("$RFS_SITE_URL/gitupdate.php?retpage=$RFS_SITE_URL");
 }
 
