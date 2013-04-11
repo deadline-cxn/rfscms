@@ -1,6 +1,4 @@
-RFS CMS
-
-Really Frickin Simple Content Management System.
+RFS CMS - Really Frickin Simple Content Management System.
 
 This project is available free of charge, and you may use it and modify it under the GNU GPL.
 
