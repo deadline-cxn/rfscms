@@ -29,7 +29,7 @@ $_SESSION["runapp"]=$wab_engine->id;
 $name=ucwords(str_replace("_"," ",$wab_engine->name));
 
 
-$lnk= "$site_url/wab.php?runapp=1";
+$lnk= "$RFS_SITE_URL/modules/wab/wab.php?runapp=1";
 
 if($data->access==255)
 {
@@ -37,9 +37,9 @@ if($data->access==255)
     {
         echo "<table border=0 width=100%><tr><td align=left class=sc_project_table_0>";
         echo "WAB Engine $wab_version ";
-        echo "[<a href=$site_url/wab.php?runapp=1&action=editapp&edapp=$runapp>edit this app</a>] ";
+        echo "[<a href=$RFS_SITE_URL/modules/wab/wab.php?runapp=1&action=editapp&edapp=$runapp>edit this app</a>] ";
         echo "[<a href=$lnk>List all Apps</A>] ";
-        echo "[<a href=\"$site_url/rfswiki.php?name=RFS+Website+Application+Builder\">What is this?</a>] ";
+        echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=RFS+Website+Application+Builder\">What is this?</a>] ";
         echo "</td><td align=left class=sc_project_table_0>";
         sc_bf(  sc_phpself(),
                         "action=hide_wab_admin_menu,".
@@ -67,10 +67,9 @@ function no_func($wbna){
     if(!function_exists($wbna)){
         $we=mfo1("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`");
         $ec="
-        function $wbna() {        
-            \$site_url=\$GLOBALS[\"site_url\"];
+        function $wbna() { eval(scg());
             echo \"<p class=warning>$wbna() function is undefined!</p>\";
-            \$lnk=\"\$site_url/wab.php?action=edcode\";
+            \$lnk=\"\$RFS_SITE_URL/modules/wab/wab.php?action=edcode\";
             \$lnk.=\"&runapp=".$we->id."\";
             \$lnk.=\"&edapp=\";
             \$lnk.=\$GLOBALS[\"runapp\"];
@@ -104,27 +103,21 @@ exit();
 
 ////////////////////////////////////////////////////////////
 // FUNCTIONS
-function wab_engine_action_(){
-    $site_url=$GLOBALS['site_url'];
+function wab_engine_action_(){ eval(scg());
+    
     echo "<p>WAB Engine $wab_version by Seth Parson.</p><p>Available Apps:</p>";
     
     $gt=0;
     echo "<table border=0>";
     $data=$GLOBALS['data'];
     $res=sc_query("select * from wab_engine where parent=id");
-    while($app=mfo($res))
-    {   
-        if(!$app->hidden)
-        {
+    while($app=mfo($res)) {   
+        if(!$app->hidden) {
             $gt++; if($gt>1) $gt=0;
-            echo "<tr><td class=sc_project_table_$gt>";
-            
-            echo "<a href=\"$site_url/wab.php?runapp=$app->id\">$app->name</a> ";
-           
+            echo "<tr><td class=sc_project_table_$gt>";		
+            echo "<a href=\"$RFS_SITE_URL/modules/wab/wab.php?runapp=$app->id\">$app->name</a> ";
             echo "</td><td class=sc_project_table_$gt>";
-           
-            if($data->access==255)
-            {
+            if($data->access==255) {
                 if($_SESSION['hide_wab_admin_menu']!=true)
                     sc_bf(  sc_phpself(),
                         "action=editapp,".
@@ -239,19 +232,16 @@ function wab_engine_action_add_form()
     }
 }
 
-function wab_engine_action_editapp()
-{
+function wab_engine_action_editapp() { eval(scg());
     $id=$_REQUEST['edapp'];
     $res=sc_query("select * from `wab_engine` where `id`='$id'");
     $co=mfo($res); 
-    $wab_engine_name=ucwords(str_replace("_"," ",$co->name));   
-    
+    $wab_engine_name=ucwords(str_replace("_"," ",$co->name));
     echo "<table border=0><tr><td>";
-    echo "<a href=\"".$GLOBALS['site_url']."/wab.php?runapp=$id\">"; 
-    echo "<img src=".$GLOBALS['site_url']."/images/icons/button_play_blue.png width=32 height=32>";
+    echo "<a href=\"$RFS_SITE_URL/modules/wab/wab.php?runapp=$id\">"; 
+    echo "<img src=\"$RFS_SITE_URL/images/icons/button_play_blue.png\" width=32 height=32>";
     echo "</a>";
     echo "</td><td>Run app</td></tr></table>";
-    
     echo "<p>COMPONENTS OF $wab_engine_name</p><p>";
     wab_database($id);
     wab_engine_actions($id);
