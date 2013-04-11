@@ -37,7 +37,7 @@ to("100%","cellpadding=0 cellspacing=0");
                 }
                 else {
                     echo $t;
-                    rfs_echo("<a href=\$RFS_SITE_URL/logout.php>");
+                    rfs_echo("<a href=\$RFS_SITE_URL/login.php?action=logout>");
                     echo "logout";
                     echo "</a>";
                 }
