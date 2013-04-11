@@ -214,7 +214,7 @@ function wikitext($text) {
 									$outlink=$ila2[0];
 									$outlink=str_replace("http://","",$outlink);
 									$outlink=str_replace("https://","",$outlink);
-									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$link_out target=_blank>".$ila2[0]."</a>".nl2br($ila2[1]);
+									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$outlink target=_blank>".$ila2[0]."</a>".nl2br($ila2[1]);
 								
 							}
 						else
