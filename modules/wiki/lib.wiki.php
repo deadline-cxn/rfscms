@@ -93,6 +93,7 @@ function wikitext($text) {
         if(stristr($ila[$i],"]"))         {
             $ila2=explode("]",$ila[$i]);
             $fnc= $ila2[0][0];
+			
             switch($fnc)             {
                 case "@": 
                 
@@ -131,53 +132,39 @@ function wikitext($text) {
                     if($fnc=="shellstart"){							  
 
                         $outtext.="<div class='wikishell'><BR>";
-							
 							$xx=$ila2[1];
-							
 							$xx=str_replace("\\","&#92;" ,$xx);
-							
-														
-							//$xx=str_replace("\n","\n &nbsp; ",$xx);
-							//$xx=nl2br( $xx );
                         $outtext.=$xx;
-							
-                        $outtext.="<BR><br></div>";
+                        $outtext.="<br><br></div>";
                     }
                     if($fnc=="shellend") {
-                        $outtext.=nl2br($ila2[1]);
-                        
+                        $outtext.=nl2br($ila2[1]);                        
                     }
                         
                     if($fnc=="codestart"){
-           
-			//              $outtext.=" =========CODE START ========== TYPE ".$ar1;
+           				$t=time();                            
+							// show_codearea("sc_bf_codearea", 15, 80,"wut",$ila2[1]);
+							$outtext.='<script language="Javascript" type="text/javascript" src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js"></script> 	<script language="Javascript" type="text/javascript"> // initialisation
+										editAreaLoader.init({ //
+										id: "codecode_'.$t.'" //
+										,start_highlight: true //
+										,font_size: "8" //
+										,font_family: "verdana, monospace" //
+										,allow_resize: "n" //
+										,allow_toggle: false //
+										,language: "en" //
+										,syntax: "php" //
+										,toolbar: " select_font" //
+										// charmap, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
+										//new_document, save, load, |,
+										,load_callback: "my_load" //
+										,save_callback: "my_save" //
+										,plugins: "charmap" //
+										,charmap_default: "arrows" }); // 
+										</script> ';
 
-$t=time();                            
-        // show_codearea("sc_bf_codearea", 15, 80,"wut",$ila2[1]);
-        $outtext.='
- <script language="Javascript" type="text/javascript" src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js"></script> 	<script language="Javascript" type="text/javascript"> // initialisation
-		editAreaLoader.init({ //
-			id: "codecode_'.$t.'" //
-			,start_highlight: true //
-			,font_size: "8" //
- 			,font_family: "verdana, monospace" //
-			,allow_resize: "n" //
-			,allow_toggle: false //
-			,language: "en" //
-			,syntax: "php" //
-			,toolbar: " select_font" //
- // charmap, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
-			//new_document, save, load, |,
-			,load_callback: "my_load" //
-			,save_callback: "my_save" //
-			,plugins: "charmap" //
-			,charmap_default: "arrows" }); // 
-</script> ';
-
-$outtext.=
-"<textarea id=\"codecode_$t\" style=\"height: 10px; width: 50px;\" name=\"codecode_$t\">";
-$outtext.=stripslashes(str_replace("<","&lt;",$ila2[1]))."</textarea>";
-                       
+							$outtext.="<textarea id=\"codecode_$t\" style=\"height: 10px; width: 50px;\" name=\"codecode_$t\">";
+							$outtext.=stripslashes(str_replace("<","&lt;",$ila2[1]))."</textarea>";
                     }
                     if($fnc=="codeend"){ 
                         $outtext.=nl2br($ila2[1]);
@@ -216,9 +203,15 @@ $outtext.=stripslashes(str_replace("<","&lt;",$ila2[1]))."</textarea>";
                     break;
 
                 default:
-                    $outtext.="<a class=rfswiki_link href=rfswiki.php?name=".urlencode($ila2[0]).">".$ila2[0]."</a>".nl2br($ila2[1]);
+						if( 	stristr($ila2[0],"http:") || 
+								stristr($ila2[0],"https:") ||
+								stristr($ila2[0],"ftp:") ||
+								stristr($ila2[0],"ftps:") )
+							$outtext.="<a class=rfswiki_link href=".$ila2[0]." target=_blank>".$ila2[0]."</a>".nl2br($ila2[1]);
+						else
+							$outtext.="<a class=rfswiki_link href=rfswiki.php?name=".urlencode($ila2[0]).">".$ila2[0]."</a>".nl2br($ila2[1]);
                     break;
-            }
+           }
         }
         else
             $outtext.=nl2br($ila[$i]);
