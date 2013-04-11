@@ -13,9 +13,9 @@ if(mysql_num_rows($result)>0) {
 }
 if(empty($link_out)) $link_out=$site_url;
 if($foundlink==false) {
-		$time=time();
-		sc_query("insert into link_bin 		(`name`,`link`,`sname`,`clicks`,`time`)
-										VALUES ('$link_out','http://$link_out','$link_out','1', '$time'); ");
+		$time=date("Y-m-d h:i:s");
+		sc_query("insert into link_bin 		(`name`,`link`,`sname`,`clicks`,`time`, `bumptime`, `category`)
+										VALUES ('$link_out','http://$link_out','$link_out','1', '$time', '$time', '!!!TEMP!!!'); ");
 
 }
 echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=http://$link_out\">";
