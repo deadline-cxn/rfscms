@@ -1944,7 +1944,7 @@ function adm_action_() {
 	echo "Running RFS CMS version $RFS_VERSION<br>";	
 	
 	system("rm log/vercheck");
-	system("wget -o log/vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");	
+	system("wget -O log/vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");	
 	$rver="remote version unknown";
 	$file=fopen("log/vercheck", "r");	
 	if($file) {
