@@ -1,34 +1,28 @@
 <?
 
-
 if($argv[1]=="scrub") {
     $RFS_CMD_LINE=true;  
     include_once("include/lib.all.php");
     sc_scrubfiles();
     exit();
 }
+
 if($argv[1]=="orph") {
     $RFS_CMD_LINE=true;  
     include_once("include/lib.all.php");
     $data=sc_getuserdata(1);    
     system("clear");
     orphan_scan("files");
-     
     exit();
 }
 
 chdir("../../");
 include("header.php");
 
-
 $newpath     = $RFS_SITE_PATH."/".$_REQUEST['local'];
 $httppath    = $RFS_SITE_URL."/".$_REQUEST['local'];
 
-
 sc_div("files.php");
-
-
-
 
 if($action=="show_temp") { 
 	$_SESSION['show_temp']=true;
@@ -40,28 +34,52 @@ sc_button("$RFS_SITE_URL/modules/files/files.php","Show Files");
 
 if( $data->access==255) {
     echo "<font class=lilwarn>Admin Functions</font>";
-	echo "<table border=0><tr><td>";
+	echo "<table border=0><tr>"; 
 		
+if(sc_access_check("files","upload")) {
+	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload");
-	echo "</td><td>";    
+	echo "</td>";
+}
+
+if(sc_access_check("files","addlink")) {
+	echo "<td>";    
     sc_button("$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb","Add Link as File");
-	echo "</td><td>";    
+	echo "</td>";
+}
+	
+if(sc_access_check("files","orphanscan")) {
+	echo "<td>";
     sc_button("$RFS_SITE_URL/modules/files/files.php?action=getorphans","Add orphan files");
-	echo "</td><td>";    
+	echo "</td>";
+}
+
+if(sc_access_check("files","purge")) {
+	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=purge","Purge missing files");
-	echo "</td><td>";    
+	echo "</td>";
+}
+	
+if(sc_access_check("files","edit")) {
+	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_ignore","Show Hidden");
-	echo "</td><td>";    
+	echo "</td>";
+
+	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_temp","Sort Mode");
-	echo "</td><td>";    
+	echo "</td>";
+	
+	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=hide_temp","Sort Mode Off");
-	echo "</td><td>";    
-	sc_button("$RFS_SITE_URL/admin/adm.php?action=edit_categories","Edit Categories");
-	echo "</td><td>";    
+	echo "</td>";
+}
+
+if(sc_access_check("files","xplorer")) {	
+	echo "<td>";
     sc_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
-	echo "</td></tr></table>"; 	
-    
-    
+	echo "</td>";
+}
+	echo "</tr></table>"; 	
 }
 
 echo "<table border=0 cellspacing=0 cellpadding=0 >";
@@ -722,7 +740,8 @@ if( ($action=="show_temp") || ($_SESSION['show_temp']==true) ) {
 if( ($action=="listcategory") ||  ($action=="search") ) {
     $category=rtrim($category);
     if($action=="search"){
-        $query="where (`name` like '%$criteria%' or `description` like '%$criteria%' or `category` like '%$criteria%') ";
+	
+	$query="where (`name` like '%$criteria%' or `description` like '%$criteria%' or `category` like '%$criteria%') ";
         if($category!="all categories")
 			$query.="and `category` = '$category' ";
 		else
@@ -746,6 +765,8 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 		echo "<p>Your search for $criteria yielded $x results:</p>";
 	}
 	
+	echo " TODO: NAVIGATION LINKS .... DO IT!!! <br>";
+	
     if(count($filelist)) {
 		echo "<h1>".ucwords($buffer)."</h1>";
        echo "<table border=0 bordercolor=#000000 cellspacing=0 cellpadding=0 width=$site_singletablewidth>\n";
@@ -759,7 +780,7 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 				show1file($filedata,$bg);
 				$la=$amount;
 				if(empty($la)) $la=5;
-				if($i==$la){				
+				if($i==$la){
 					break;
 				}
 			}
