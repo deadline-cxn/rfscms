@@ -211,7 +211,7 @@ function wikitext($text) {
 									$outlink=str_replace("http://","",$outlink);
 									$outlink=str_replace("https://","",$outlink);
 									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$outlink target=_blank>".$ila2[0];
-									$outtext.="<img src=\"".$GLOBALS['RFSW_LINK_IMAGE']."\" border=\"0\" ></a> ";
+									$outtext.=" <img src=\"".$GLOBALS['RFSW_LINK_IMAGE']."\" border=\"0\" ></a> ";
  //width=\"12\" height=\"12\"
 									
 									$outtext.=nl2br($ila2[1]);
