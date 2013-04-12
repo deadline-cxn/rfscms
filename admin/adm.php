@@ -1942,8 +1942,11 @@ function adm_action_() {
 	echo "<h1>Administration Panel</h1>";
 	
 	echo "Running RFS CMS version $RFS_VERSION<br>";	
-	$file=fopen("https://raw.github.com/sethcoder/rfscms/master/include/version.php", "r");
-	$rver="";
+	
+	system("rm log/vercheck");
+	system("wget -o log/vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");	
+	$rver="remote version unknown";
+	$file=fopen("log/vercheck", "r");	
 	if($file) {
 		$rver=fgets($file,256);
 		fclose($file);		
