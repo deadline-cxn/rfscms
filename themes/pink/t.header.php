@@ -24,7 +24,6 @@ to("100%"," align=center cellpadding=0");
                     echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
     
     				 tcr("toptd");
-                            sc_reddit();
 							sc_social_buttons();
                     tcc();
                 trc();
@@ -33,7 +32,6 @@ to("100%"," align=center cellpadding=0");
     trc();
 tc();
 
-//to($RFS_SITE_SINGLETABLEWIDTH+75," align=center ");
 to("100%"," align=center ");
     tro("");
     
@@ -42,7 +40,6 @@ to("100%"," align=center ");
     trc();
 tc();
 
-//to($RFS_SITE_SINGLETABLEWIDTH-75," align=center ");
 to("100% cellpadding=0"," align=center ");
     tro("");
         tco("thirdtd");
@@ -55,15 +52,13 @@ to("100% cellpadding=0"," align=center ");
 
 			tcr("thirdtd ");
 			
-			if(empty($data->donated))
-				sc_donate_button();
+			if(empty($data->donated)) sc_donate_button();
 			
 			tcr("thirdtd align=center");
 
-			///if(empty($data->donated))
-                
 				sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
-echo  " <!-- 123 $RFS_SITE_GOOGLE_ADSENSE 456 -->";
+	
+			echo  " <!-- 123 $RFS_SITE_GOOGLE_ADSENSE 456 -->";
 
            tcr("thirdtd align=right ");
 
@@ -78,8 +73,7 @@ tc();
 
 
 
-// to($RFS_SITE_SINGLETABLEWIDTH," align=center ");
-to("100%"," align=center ");
+to("90%"," align=center ");
 tro("");
 tco("middle_cont");
 
