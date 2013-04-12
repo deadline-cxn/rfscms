@@ -47,7 +47,7 @@ function wikiimg($text) { eval(scg());
 					$outtext.="</td><td class=warning> Image not found";
 					//////////////////////////////////////////////////////////////////////////////
 					if($GLOBALS['rfsw_admin_mode']=="true") {
-                    $outtext.=" </td><td class=warning> <form enctype=\"multipart/form-data\" action=\"rfswiki.php\" method=\"post\">\n";
+                    $outtext.=" </td><td class=warning> <form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/wiki/rfswiki.php\" method=\"post\">\n";
                     $outtext.="<input type=hidden name=give_file value=yes>\n";
                     $outtext.="<input type=hidden name=name value=\"$name\">\n";
                     $outtext.="<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
@@ -67,7 +67,7 @@ function wikiimg($text) { eval(scg());
                 }
 
 				if($GLOBALS['rfsw_admin_mode']=="true") {
-				// $outtext.="[<a href=rfswiki.php?action=edit_image>Edit Image</a>]";
+				// $outtext.="[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit_image\">Edit Image</a>]";
 			}
 
 		}
@@ -98,7 +98,7 @@ function wikitext($text) {
                 
                     // symbolic page link
                     $fnc=explode(",",substr($ila2[0],1));
-						$outtext.="<a class=rfswiki_link href=\"rfswiki.php?name=".urlencode($fnc[0])."\">".$fnc[1]."</a>";
+						$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($fnc[0])."\">".$fnc[1]."</a>";
 						$outtext.=nl2br($ila2[1]);						
                     break;
                     
@@ -219,7 +219,7 @@ function wikitext($text) {
 									
 							}
 						else
-							$outtext.="<a class=rfswiki_link href=rfswiki.php?name=".urlencode($ila2[0]).">".$ila2[0]."</a>".nl2br($ila2[1]);
+							$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($ila2[0])."\">".$ila2[0]."</a>".nl2br($ila2[1]);
                     break;
            }
         }
