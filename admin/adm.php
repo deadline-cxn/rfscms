@@ -1949,7 +1949,7 @@ function adm_action_() {
 	system("rm buildcheck");
 	system("wget -O vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");
 	system("wget -O buildcheck https://raw.github.com/sethcoder/rfscms/master/build.dat");
-	$rver="remote version unknown";
+	$rver="remote version unknown"; 
 	$file=fopen("vercheck", "r");  if($file) { $rver=fgets($file,256); fclose($file); }
 	$file=fopen("buildcheck","r"); if($file) { $rbld=fgets($file,256); fclose($file); }
 	system("rm vercheck");
