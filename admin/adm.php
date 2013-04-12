@@ -1953,7 +1953,7 @@ function adm_action_() {
 	$file=fopen("vercheck", "r");  if($file) { $rver=fgets($file,256); fclose($file); }
 	$file=fopen("buildcheck","r"); if($file) { $rbld=fgets($file,256); fclose($file); }
 	system("rm vercheck");
-	system("rm buildcheck");
+	system("rm buildcheck"); 
 	$rverx=explode("\"",$rver);
 	if( ($RFS_VERSION!=$rverx[1]) ||
 		 (intval($RFS_BUILD)!=intval($rbld))) {
