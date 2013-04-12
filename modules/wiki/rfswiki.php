@@ -6,7 +6,7 @@
 $rfsversion="v1.7";
 $title="Wiki ".$_REQUEST['name'];
 $RFSW_BULLET_IMAGE=$RFS_SITE_URL."/modules/wiki/images/bullet.gif";
-$RFSW_LINK_IMAGE=$RFS_SITE_URL."/module/wiki/images/link.png";
+$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/wiki/images/link.png";
 
 chdir("../../");
 include_once("include/lib.all.php");
