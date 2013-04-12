@@ -314,7 +314,7 @@ function wab_form($action,$vars,$width,$submittxt) { eval(scg());
     $edapp=$GLOBALS['edapp'];
     $runapp=$GLOBALS['runapp'];
     if(!empty($vars)) {
-        $varg=explode($RFS_SITE_DELIMITER,$vars);
+        $varg=explode(",",$vars);
         for($i=0;$i<count($varg);$i++) {
             if( (!stristr($varg[$i],"HIDDEN_")) &&
                 (!stristr($varg[$i],"SHOW_")) &&
