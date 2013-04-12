@@ -1942,10 +1942,14 @@ function adm_action_() {
 	echo "<h1>Administration Panel</h1>";
 	
 	echo "Running RFS CMS version $RFS_VERSION<br>";
-	
-	$fgc=file_get_contents("https://raw.github.com/sethcoder/rfscms/master/include/version.php");
-	
-	echo $fgc."<br>";
+
+	$ch = curl_init ("https://raw.github.com/sethcoder/rfscms/master/include/version.php");
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+	$rawdata=curl_exec($ch);
+	curl_close ($ch);
+	echo $rawdata."<br>";
 	
 	
 	
