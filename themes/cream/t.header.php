@@ -48,11 +48,9 @@
     
     if(!sc_yes($_SESSION["logged_in"])){
         rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-        
+		sc_facebook_login();
     }
-    else
-    {
-        
+    else {
         echo "</td><td class=contenttd>&nbsp;</td><td class=contenttd>";    
         echo $_SESSION["valid_user"];
         echo " (<a href=\$RFS_SITE_URL/login.php?action=logout>logout</a>)<BR>";
@@ -82,8 +80,6 @@
     echo "</td></tr></table>\n";
     echo "</td></tr></table>";
     
-    
-    
     echo "</td></tr></table>";
     
     echo "<table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";
@@ -105,20 +101,15 @@
     echo "<tr><td valign=top class=midtd width=41>";
     
     
-    if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_left_corner.gif"))
-    {
+    if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_left_corner.gif")) {
         echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_left_corner.gif\">";
         echo "</td><td>";
     }
-    else
-        echo "&nbsp;";
-    
+    else {
+        echo "&nbsp;";		
+	}
     
     echo "</td> <td class=midtd> ";
-    
-    
     echo " &nbsp; </td></tr>";
-    
-    
     echo "<tr><td width=41></td><td>";
 ?>

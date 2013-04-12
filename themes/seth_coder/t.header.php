@@ -23,6 +23,7 @@ to("100%"," align=center cellpadding=0");
                     echo "$RFS_SITE_NAME";
                     echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
                     tcr("toptd");
+					/*
                     echo '
                     <!-- Facebook Badge START -->
     <a href="http://en-gb.facebook.com/seth.parson" 
@@ -30,12 +31,12 @@ to("100%"," align=center cellpadding=0");
     <img src="http://badge.facebook.com/badge/1321508503.3376.1325567341.png" 
     style="border: 0px;" height=70%/></a><!-- Facebook Badge END -->
                   
-                    <!-- Facebook Badge START -->
-                    
+                    <!-- Facebook Badge START -->                    
 <a href="http://www.facebook.com/DefectiveMinds" target="_TOP" title="Defective Minds">
 <img src="http://badge.facebook.com/badge/252282598232241.911.982775265.png" style="border: 0px;" height=70% />
 </a><!-- Facebook Badge END -->
                     ';
+					*/
 					 tcr("toptd");
                             sc_reddit();
 							sc_social_buttons();
@@ -46,16 +47,12 @@ to("100%"," align=center cellpadding=0");
     trc();
 tc();
 
-//to($RFS_SITE_SINGLETABLEWIDTH+75," align=center ");
 to("100%"," align=center ");
     tro("");
-    
         sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
-        
     trc();
 tc();
 
-//to($RFS_SITE_SINGLETABLEWIDTH-75," align=center ");
 to("100% cellpadding=0"," align=center ");
     tro("");
         tco("thirdtd");
@@ -73,37 +70,26 @@ to("100% cellpadding=0"," align=center ");
 			
 			tcr("thirdtd align=center");
 
-			///if(empty($data->donated))
-                
+               
 				sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
-echo  " <!-- 123 $RFS_SITE_GOOGLE_ADSENSE 456 -->";
+				echo  " <!-- 123 $RFS_SITE_GOOGLE_ADSENSE 456 -->";
 
            tcr("thirdtd align=right ");
 
-           if($_SESSION['logged_in'])
-				rfs_echo($RFS_SITE_LOGGED_IN_CODE);
-           else
+           if($_SESSION['logged_in']) {
+				rfs_echo($RFS_SITE_LOGGED_IN_CODE);				
+		   }
+           else {
 			    rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+				sc_facebook_login();
+		   }
             
         tcc();
     trc();
 tc();
 
-
-
-// to($RFS_SITE_SINGLETABLEWIDTH," align=center ");
 to("100%"," align=center ");
 tro("");
 tco("middle_cont");
-
-
-
-
-
-
-
-
-
-
 
 ?>

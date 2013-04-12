@@ -89,30 +89,29 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 			echo "&nbsp;";
 		if($_SESSION["logged_in"]!="true")    {
 			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-			echo "<a href=$RFS_SITE_URL/facebook/fb.login.php?goback=1><img src=$RFS_SITE_URL/facebook/facebook_login.gif></a>";
+			sc_facebook_login();			
 		}
 		else    {
-			echo "</td>";
-			// echo "<td class=toptd>&nbsp;</td> ";
+			echo "</td>";			
 			echo "<td class=logged_in_td>";
 			rfs_echo($RFS_SITE_LOGGED_IN_CODE);
 		}
 		echo "</td>";
-		// echo "<td class=toptd>&nbsp;</td>";
+		
 		echo "</tr></table>";
 		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0><tr class=sc_top_menu_table>";
 		echo "<td class=sc_top_menu_table valign=top>";
 		echo "<table border=0 cellpadding=8 cellspacing=0 class=sc_top_menu_table>";
 		echo "<tr class=sc_top_menu_table>";
 
-			sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
+		sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
 
 		echo "<td class=sc_top_menu_table width=98%>&nbsp;</td>";
 		echo "<td align=right class=sc_top_menu_table >";
 		echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
 		echo "<td class=sc_top_menu_table class=contenttd>";
 
-			sc_theme_form();
+		sc_theme_form();
 
 		echo "</td></tr></table>\n";
 		echo "</td></tr></table>";
@@ -163,7 +162,6 @@ $ecode=" if( function_exists(\"$_thisfunk\") == true) {
 
 
 d_echo($ecode);
-
 eval($ecode);
 
 ?>
