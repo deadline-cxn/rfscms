@@ -22,21 +22,8 @@ to("100%"," align=center cellpadding=0");
 
                     echo "$RFS_SITE_NAME";
                     echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
-                    tcr("toptd");
-                    echo '
-                    <!-- Facebook Badge START -->
-    <a href="http://en-gb.facebook.com/seth.parson" 
-    target="_TOP" title="Seth Parson">
-    <img src="http://badge.facebook.com/badge/1321508503.3376.1325567341.png" 
-    style="border: 0px;" height=70%/></a><!-- Facebook Badge END -->
-                  
-                    <!-- Facebook Badge START -->
-                    
-<a href="http://www.facebook.com/DefectiveMinds" target="_TOP" title="Defective Minds">
-<img src="http://badge.facebook.com/badge/252282598232241.911.982775265.png" style="border: 0px;" height=70% />
-</a><!-- Facebook Badge END -->
-                    ';
-					 tcr("toptd");
+    
+    				 tcr("toptd");
                             sc_reddit();
 							sc_social_buttons();
                     tcc();
