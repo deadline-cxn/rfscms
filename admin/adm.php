@@ -1952,9 +1952,9 @@ function adm_action_() {
 		fclose($file);
 	}
 	$rverx=explode("\"",$rver);
-	echo $rverx[1]."<br>";
+	
 	if($RFS_VERSION!=$rverx[1]) {
-		sc_inform("UPDATE AVAILABLE");
+		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]);
 	}
 	echo "<br>";
 	
