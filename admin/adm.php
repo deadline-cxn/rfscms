@@ -74,7 +74,9 @@ if( $data->access!=255 ) {
 // ADM CHECK FOR UPDATES
 function adm_action_update() { eval(scg());
 	// include("$RFS_SITE_PATH/gitupdate.php");
+	echo "<pre>";
 	system("git pull https://github.com/sethcoder/rfscms.git");
+	echo "</pre>";
 	finishadminpage();
 }
 
@@ -1943,22 +1945,17 @@ function adm_action_() {
 	
 	echo "Running RFS CMS version $RFS_VERSION<br>";	
 	
-	system("rm log/vercheck");
-	system("wget -O log/vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");	
+	system("rm vercheck");
+	system("wget -O vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");
 	$rver="remote version unknown";
-	$file=fopen("log/vercheck", "r");	
-	if($file) {
-		$rver=fgets($file,256);
-		fclose($file);
-	}
-	$rverx=explode("\"",$rver);
-	
+	$file=fopen("vercheck", "r");
+	if($file) { $rver=fgets($file,256); fclose($file); }
+	system("rm vercheck");
+	$rverx=explode("\"",$rver);	
 	if($RFS_VERSION!=$rverx[1]) {
 		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]);
 	}
-	echo "<br>";
-	
-	
+	echo "<br>";	
 	echo "<hr>";
 
     sc_info(exec("uptime"),"white","blue");
