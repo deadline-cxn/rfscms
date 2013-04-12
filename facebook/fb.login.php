@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1005 ;
 ");
 
-echo "Connecting with facebook...";
+// echo "Connecting with facebook...";
 
 $goback=$_GET['goback'];
 if(!empty($goback)) $_SESSION['goback']=$goback;
@@ -100,7 +100,7 @@ if(!$_SESSION['valid_user']) {
         "&client_secret="   . $RFS_SITE_FACEBOOK_SECRET .
         "&code="            . $code;
 
-        echo $token_url;
+        // echo $token_url;
 
         $response = file_get_contents($token_url);
 
@@ -122,7 +122,7 @@ if(!$_SESSION['valid_user']) {
 
         if($user_profile->verified==true) {
 
-            echo " Logged in via Facebook <br>";
+            // echo " Logged in via Facebook <br>";
 
             $facebook_id    = $user_profile->id;
             $facebook_name  = $user_profile->name;
@@ -151,17 +151,15 @@ if(!$_SESSION['valid_user']) {
 
             sc_log($dbg_info);
 
-
-
-            echo "$facebook_id... $facebook_name fetching your account details<br>";
+            // echo "$facebook_id... $facebook_name fetching your account details<br>";
             $r=sc_query_user_db("select * from users where `facebook_id` = '$facebook_id'");
             $user=mysql_fetch_object($r);
 
-            echo "name: $first_name<br>";
-            echo "last name: $last_name<br>";
-            echo "facebook name: $facebook_name<br>";
-            echo "facebook id: $facebook_id<br>";
-            echo "email: $email<br>";
+            //echo "name: $first_name<br>";
+            //echo "last name: $last_name<br>";
+            //echo "facebook name: $facebook_name<br>";
+            //echo "facebook id: $facebook_id<br>";
+            //echo "email: $email<br>";
 
             if($user->facebook_id!=$facebook_id) {
                     $time1=date("Y-m-d H:i:s");
@@ -191,14 +189,14 @@ if(!$_SESSION['valid_user']) {
             if($user->id) {
                 $_SESSION['valid_user']  = $user->name;
                 $_SESSION["logged_in"]  = "true";
-                echo $_SESSION['goback'];
+                //  echo $_SESSION['goback'];
                 if(sc_yes($_SESSION['goback'])) {					
                     sc_gotopage($RFS_SITE_URL);
                     echo "go back<br>";
                     exit();
                 } else {
 
-                    echo "Authenticated<br>";
+                    // echo "Authenticated<br>";
 
                     sc_gotopage($RFS_SITE_URL);
                     
