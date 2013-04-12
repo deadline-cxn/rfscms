@@ -1,11 +1,10 @@
-body{
+body {
   background-color: #FFAAAA;
 }
 
 td{
     font-family: Verdana;
     font-size: 12px;
-
 }
 
 .news_img_td {
@@ -21,8 +20,7 @@ td{
 	vertical-align: top;
 }
 
-.tabletop
-{
+.tabletop {
     font-family: Verdana;
     font-size: 16px;
     color: #FFAAAA;
@@ -57,13 +55,7 @@ hr {
 .contenttd {
     color: #000000;
 }
-
-.middle_cont {
-    border: 1px;
-    border-color: #000000;
-    border-style: solid;
-}
-    
+   
 .toptd {
     font-family: Verdana;
     font-size: 32px;
@@ -74,7 +66,7 @@ hr {
     padding-right: 8px;
     padding-bottom: 8px;
     
-    color: #c2c7FF;
+    color: #ffa2a7;
     background-color: #c39396;
 }
 
@@ -82,7 +74,7 @@ hr {
     font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
-    color: #ffc2c7;
+    color: #ffa2a7;
     background-color: #c39396;
 
 }
