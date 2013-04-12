@@ -1943,7 +1943,7 @@ function adm_action_() {
 
 	echo "<h1>Administration Panel</h1>";
 	
-	echo "Running RFS CMS version $RFS_VERSION<br>";	
+	echo "Running RFS CMS version $RFS_VERSION ";	
 	
 	system("rm vercheck");
 	system("rm buildcheck");
@@ -1957,9 +1957,9 @@ function adm_action_() {
 	$rverx=explode("\"",$rver);
 	if( ($RFS_VERSION!=$rverx[1]) ||
 		 (intval($RFS_BUILD)!=intval($rbld))) {
-		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld -- (OLD: $RFS_VERSION BUILD $RFS_BUILD)");
+		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld -- ( OLD: $RFS_VERSION BUILD $RFS_BUILD)");
 	}
-	echo "<br>";	
+	echo "<br>";
 	echo "<hr>";
 
     sc_info(exec("uptime"),"white","blue");
