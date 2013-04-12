@@ -67,7 +67,6 @@ function no_func($wbna){
 				echo \"[<a href=\$lnk>\";
 				echo \"edit $wbna() code\";
 				echo \"</a>]\"; } ";
-		//echo $ec;
        eval($ec);
     }
 }
@@ -311,7 +310,7 @@ function wab_form($action,$vars,$width,$submittxt) {
     $edapp=$GLOBALS['edapp'];
     $runapp=$GLOBALS['runapp'];
     if(!empty($vars)) {
-        $varg=explode(",",$vars);
+        $varg=explode($RFS_SITE_DELIMITER,$vars);
         for($i=0;$i<count($varg);$i++) {
             if( (!stristr($varg[$i],"HIDDEN_")) &&
                 (!stristr($varg[$i],"SHOW_")) &&
