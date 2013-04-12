@@ -1956,6 +1956,7 @@ function adm_action_() {
 	if($RFS_VERSION!=$rverx[1]) {
 		sc_inform("UPDATE AVAILABLE");
 	}
+	echo "<br>";
 	
 	
 	echo "<hr>";

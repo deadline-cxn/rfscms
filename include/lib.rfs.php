@@ -142,7 +142,7 @@ function sc_warn($x) { 	eval(scg()); 	echo "<div class=warning><br><img src='$RF
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_inform($x) { eval(scg());
     echo "<div class=inform>
-    <img src='$RFS_SITE_URL/images/icons/Warning.png' width=24 border=0 align='left'>
+    <img src='$RFS_SITE_URL/images/icons/Warning.png' width=\"12\" border=\"0\">
     $x<br> </div>"; }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_question($x) { eval(scg());	$x=str_replace("<a ","<a class=ainform ",$x); 	$x=str_replace("<hr>", "<hr class=questionhr> ",$x); 	echo smiles("<center><div class=question align=left><img src='$RFS_SITE_URL/images/icons/3dquestion.png' align=right border=0>$x</div>");}
