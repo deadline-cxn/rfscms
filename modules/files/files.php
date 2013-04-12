@@ -739,15 +739,17 @@ if( ($action=="show_temp") || ($_SESSION['show_temp']==true) ) {
 
 if( ($action=="listcategory") ||  ($action=="search") ) {
     $category=rtrim($category);
+	if($category=="all categories") $category="all";
     if($action=="search"){
 	
 	$query="where (`name` like '%$criteria%' or `description` like '%$criteria%' or `category` like '%$criteria%') ";
-        if($category!="all categories")
+        if($category!="all")
 			$query.="and `category` = '$category' ";
 		else
 			$query.="and `category` != 'ignore' ";
     }
     if($action=="listcategory") if(empty($query)) $query="where `category` = '$category' ";
+	
     if($top=="")    $top=0;
     if($amount=="") $amount=25;
     if($amount!="all") $limit="$top,$amount";
@@ -756,7 +758,6 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 	$nexttop=$top+$amount+1;
 	$prevtop=$top-$amount;
 	if($prevtop<0) $prevtop=0;
-  
 
     $filelist= sc_getfilelist($query,$limit);
     $x=count($filelist);
