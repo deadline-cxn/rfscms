@@ -1957,7 +1957,7 @@ function adm_action_() {
 	$rverx=explode("\"",$rver);
 	if( ($RFS_VERSION!=$rverx[1]) ||
 		 ($RFS_BUILD!=$rbld)) {
-		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld");
+		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld -- (OLD: $RFS_VERSION BUILD $RFS_BUILD)");
 	}
 	echo "<br>";	
 	echo "<hr>";
