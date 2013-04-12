@@ -130,7 +130,7 @@ function wab_engine_action_(){ eval(scg());
     echo "</table>";
 }
 
-function wab_engine_action_edcodego() {
+function wab_engine_action_edcodego() { eval(scg());
     $edapp=$GLOBALS['edapp'];
     $app=mfo1("select * from `wab_engine` where `id`='$edapp'");
     $db =mfo1("select * from `wab_engine` where `parent`='$edapp' and `type`='database'");
@@ -140,7 +140,7 @@ function wab_engine_action_edcodego() {
     wab_engine_action_editapp();
 }
 
-function wab_engine_action_edcode() {
+function wab_engine_action_edcode() { eval(scg());
     echo "CODE EDITOR<br>";    
     $_function=$GLOBALS['_function'];
     $edapp=$GLOBALS['edapp'];
@@ -161,7 +161,7 @@ function wab_engine_action_edcode() {
             "", "value,code", "include", "",60,"submit");
 }
 
-function wab_engine_action_add() {
+function wab_engine_action_add() { eval(scg());
     if($GLOBALS['data']->access==255)  {
         sc_updb("wab_engine","name",$_REQUEST['name']);
         sc_query("update `wab_engine` set `parent`=`id` where `name`='".$_REQUEST['name']."'");
@@ -173,7 +173,7 @@ function wab_engine_action_add() {
     }
 }
 
-function wab_engine_action_add_form() {
+function wab_engine_action_add_form() { eval(scg());
     if($GLOBALS['data']->access==255) {
         echo "<h3>Start a new application:</h3>";
         sc_bf( sc_phpself(), "action=add".$RFS_SITE_DELIMITER."parent=0".$RFS_SITE_DELIMITER."hidden=0", "wab_engine", "", "", "name", "include", "",30,"add");
@@ -198,7 +198,7 @@ function wab_engine_action_editapp() { eval(scg());
     echo "</p>";
 }
 
-function wab_engine_action_add_database() {
+function wab_engine_action_add_database() { eval(scg());
     $table=$GLOBALS['value'];    
     $qr="CREATE TABLE IF NOT EXISTS `$table` (
 		  `name` text COLLATE utf8_unicode_ci NOT NULL,
@@ -241,7 +241,7 @@ function wab_engine_action_add_function() {
     sc_updb($db->value,$key_field,$key_value);
 }
 
-function wab_database($id) {
+function wab_database($id) { eval(scg());
     echo "<p>";
     echo "DATABASE (table):<BR>";
     $db=mfo1("select * from `wab_engine` where `parent`='$id' and type = 'database'");
@@ -266,7 +266,7 @@ function wab_database($id) {
     }
     echo "</p>";
 }
-function wab_variables($id) {
+function wab_variables($id) { eval(scg());
     echo "<p>";
     echo "VARIABLES:<BR>";
     $db=mfo1("select * from `wab_engine` where `parent`='$id' and type = 'database'");
@@ -278,7 +278,7 @@ function wab_variables($id) {
     echo "</p>";
 }
 
-function wab_functions($id) {
+function wab_functions($id) { eval(scg());
     echo "<p>";
     echo "FUNCTIONS:<BR>";
     $db=mfo1("select * from `wab_engine` where `parent`='$id' and type = 'database'");    
