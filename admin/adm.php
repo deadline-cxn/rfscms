@@ -1942,6 +1942,14 @@ function adm_action_() {
 	echo "<h1>Administration Panel</h1>";
 	
 	echo "Running RFS CMS version $RFS_VERSION<br>";
+	
+	$fgc=file_get_contents("https://raw.github.com/sethcoder/rfscms/master/include/version.php");
+	
+	echo $fgc."<br>";
+	
+	
+	
+	echo "<hr>";
 
     sc_info(exec("uptime"),"white","blue");
 
