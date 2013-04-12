@@ -1946,14 +1946,18 @@ function adm_action_() {
 	echo "Running RFS CMS version $RFS_VERSION<br>";	
 	
 	system("rm vercheck");
+	system("rm buildcheck");
 	system("wget -O vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");
+	system("wget -O buildcheck https://raw.github.com/sethcoder/rfscms/master/build.dat");
 	$rver="remote version unknown";
-	$file=fopen("vercheck", "r");
-	if($file) { $rver=fgets($file,256); fclose($file); }
+	$file=fopen("vercheck", "r");  if($file) { $rver=fgets($file,256); fclose($file); }
+	$file=fopen("buildcheck","r"); if($file) { $rbld=fgets($file,256); fclose($file); }
 	system("rm vercheck");
-	$rverx=explode("\"",$rver);	
-	if($RFS_VERSION!=$rverx[1]) {
-		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]);
+	system("rm buildcheck");
+	$rverx=explode("\"",$rver);
+	if( ($RFS_VERSION!=$rverx[1]) ||
+		 ($RFS_BUILD!=$rbld)) {
+		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld");
 	}
 	echo "<br>";	
 	echo "<hr>";
