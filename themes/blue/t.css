@@ -2,6 +2,16 @@ body {
 	background-color: #5555ff;
 }
 
+input, select, textarea {
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+    border-width : 2px;
+	color: #0000ff;
+    background-color : #aaaaff;
+}
+
+
 .top_menu                   
 { 
     margin: 0 10% 2 10%;
