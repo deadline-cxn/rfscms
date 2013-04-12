@@ -670,11 +670,11 @@ function sc_fileheader() {
     echo "<td class=tdfilehead width=380 >File</td>\n";    
     echo "<td class=tdfilehead></td>\n";
     echo "<td class=tdfilehead width=80 >Size</td>\n";
-    echo "<td class=tdfilehead width=180 >Category</td>\n";
+    // echo "<td class=tdfilehead width=180 >Category</td>\n";
     //echo "<td class=tdfilehead width=380 >Description</td>\n";
-    echo "<td class=tdfilehead >&nbsp;</td>\n";
-	echo "<td class=tdfilehead >&nbsp;</td>\n";
-	echo "<td class=tdfilehead >&nbsp;</td>\n";
+    //echo "<td class=tdfilehead >&nbsp;</td>\n";
+	//echo "<td class=tdfilehead >&nbsp;</td>\n";
+	//echo "<td class=tdfilehead >&nbsp;</td>\n";
     echo "</tr>\n";
 }
 
@@ -752,6 +752,10 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
     if($amount=="") $amount=25;
     if($amount!="all") $limit="$top,$amount";
     else               $limit="";
+	
+	$nexttop=$top+$amount+1;
+	$prevtop=$top-$amount;
+	if($prevtop<0) $prevtop=0;
   
 
     $filelist= sc_getfilelist($query,$limit);
@@ -765,7 +769,9 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 		echo "<p>Your search for $criteria yielded $x results:</p>";
 	}
 	
-	echo " TODO: NAVIGATION LINKS .... DO IT!!! <br>";
+	if($prevtop>0) 
+		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop\">PREV PAGE</a>";
+	echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop\">NEXT PAGE</a>";
 	
     if(count($filelist)) {
 		echo "<h1>".ucwords($buffer)."</h1>";
