@@ -1,4 +1,6 @@
-/* 
+<?
+
+/*
 // TITLE MANIPULATION...
 //////////////////////////////////////////////////////////////////////////////
 // Figure out what to put in the title...
@@ -30,3 +32,5 @@
             $title=sc_get_news_headline($_GET['nid']);
         if(!empty($what)) $title=$what;
 */
+?>
+
