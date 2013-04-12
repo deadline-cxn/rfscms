@@ -35,8 +35,8 @@ if($data->access==255) {
         echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=RFS+Website+Application+Builder\">What is this?</a>] ";
         echo "</td><td align=left class=sc_project_table_0>";
         sc_bf(  sc_phpself(),
-                        "action=hide_wab_admin_menu,".
-                        "runapp=".mfo1("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`")->id.",".
+                        "action=hide_wab_admin_menu".$RFS_SITE_DELIMITER.
+                        "runapp=".mfo1("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`")->id.$RFS_SITE_DELIMITER.
                         "gotoapp=$wab_engine->id",
                         "", "", "", "", "", "", 20, "Hide this");
         echo "</td></tr></table>";
@@ -108,7 +108,7 @@ function wab_engine_action_(){ eval(scg());
             if($data->access==255) {
                 if($_SESSION['hide_wab_admin_menu']!=true)
                     sc_bf(  sc_phpself(),
-                        "action=editapp,".
+                        "action=editapp".$RFS_SITE_DELIMITER.
                         "edapp=$app->id",
                         "", "", "", "", "", "", 20, "Edit");
             }
@@ -119,10 +119,10 @@ function wab_engine_action_(){ eval(scg());
         echo "<tr><td class=sc_project_table_$gt></td>";
         echo "<td class=sc_project_table_$gt>";        
 		if($_SESSION['hide_wab_admin_menu']==true){
-				sc_bf(  sc_phpself(),"action=show_wab_admin_menu,","", "", "", "", "", "", 20, "Show WAB Admin");
+				sc_bf(  sc_phpself(),"action=show_wab_admin_menu","", "", "", "", "", "", 20, "Show WAB Admin");
 		}                        
 		else{        
-				sc_bf(  sc_phpself(), "action=add_form,", "", "", "", "", "", "", 20, "Start a new App");        
+				sc_bf(  sc_phpself(), "action=add_form", "", "", "", "", "", "", 20, "Start a new App");        
 		}
         echo "</td></tr>";
         
@@ -148,13 +148,13 @@ function wab_engine_action_edcode() {
     $db =mfo1("select * from `wab_engine` where `parent`='$edapp' and `type`='database'");
     echo "Editing $app->name::$_function()<br>";
     sc_bf(  sc_phpself(),
-            "action=edcodego,type=function,".
-            "SHOW_CODEAREA_35#140#code=l,hidden=1,".
-            "TT_35#140#code=codearea,".
-            "edapp=$edapp,value=$_function,parent=$edapp,".
+            "action=edcodego".$RFS_SITE_DELIMITER."type=function".$RFS_SITE_DELIMITER.
+            "SHOW_CODEAREA_35#140#code=l".$RFS_SITE_DELIMITER."hidden=1".$RFS_SITE_DELIMITER.
+            "TT_35#140#code=codearea".$RFS_SITE_DELIMITER.
+            "edapp=$edapp".$RFS_SITE_DELIMITER."value=$_function".$RFS_SITE_DELIMITER."parent=$edapp".$RFS_SITE_DELIMITER.
             "code=function $_function() {
 					echo '$_function()!<br>';
-					},".
+					}".$RFS_SITE_DELIMITER.
             "name=$app->name",
             "$db->value",
             "select * from `$db->value` where `type`='function' and `value`='$_function';",
@@ -176,7 +176,7 @@ function wab_engine_action_add() {
 function wab_engine_action_add_form() {
     if($GLOBALS['data']->access==255) {
         echo "<h3>Start a new application:</h3>";
-        sc_bf( sc_phpself(), "action=add,parent=0,hidden=0", "wab_engine", "", "", "name", "include", "",30,"add");
+        sc_bf( sc_phpself(), "action=add".$RFS_SITE_DELIMITER."parent=0".$RFS_SITE_DELIMITER."hidden=0", "wab_engine", "", "", "name", "include", "",30,"add");
     }
 }
 
@@ -187,7 +187,7 @@ function wab_engine_action_editapp() { eval(scg());
     $wab_engine_name=ucwords(str_replace("_"," ",$co->name));
     echo "<table border=0><tr><td>";
     echo "<a href=\"$RFS_SITE_URL/modules/wab/wab.php?runapp=$id\">"; 
-    echo "<img src=\"$RFS_SITE_URL/images/icons/button_play_blue.png\" width=32 height=32>";
+    echo "<img src=\"$RFS_SITE_URL/images/icons/Play.png\" width=32 height=32>";
     echo "</a>";
     echo "</td><td>Run app</td></tr></table>";
     echo "<p>COMPONENTS OF $wab_engine_name</p><p>";
@@ -255,7 +255,9 @@ function wab_database($id) {
             echo"<font class=warning>Database defined as $db->value, but does not exist!</font><br>";
         $name=mfo1("select * from `wab_engine` where `id`='$id'");
         sc_bf(  sc_phpself(),
-                "action=add_database,type=database,name=$name->name,".
+                "action=add_database".$RFS_SITE_DELIMITER.
+				"type=database".$RFS_SITE_DELIMITER.
+				"name=$name->name".$RFS_SITE_DELIMITER.
                 "parent=".$GLOBALS['edapp'],
                 "wab_engine", 
                 "", "",
@@ -288,8 +290,10 @@ function wab_functions($id) {
  // $page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit
         $name=mfo1("select * from `wab_engine` where `id`='$id'");
         sc_bf(  sc_phpself(),
-                "action=add_function,type=function,name=$name->name,".
-                "parent=".$GLOBALS['edapp'].","."LABEL_value=Function", $db->value, "", "", "value", "include", "", 20, "Add Function");
+                "action=add_function".$RFS_SITE_DELIMITER.
+				"type=function".$RFS_SITE_DELIMITER.
+				"name=$name->name".$RFS_SITE_DELIMITER.
+                "parent=".$GLOBALS['edapp'].$RFS_SITE_DELIMITER."LABEL_value=Function", $db->value, "", "", "value", "include", "", 20, "Add Function");
     }
     else {
         echo "Define a database first<br>";
