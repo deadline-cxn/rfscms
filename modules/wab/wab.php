@@ -306,7 +306,7 @@ function wab_engine_actions($id) {
     echo "</p>";
 }
 
-function wab_form($action,$vars,$width,$submittxt) {
+function wab_form($action,$vars,$width,$submittxt) { eval(scg());
     $edapp=$GLOBALS['edapp'];
     $runapp=$GLOBALS['runapp'];
     if(!empty($vars)) {
