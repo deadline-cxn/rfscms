@@ -1949,11 +1949,13 @@ function adm_action_() {
 	$file=fopen("log/vercheck", "r");	
 	if($file) {
 		$rver=fgets($file,256);
-		fclose($file);		
+		fclose($file);
 	}
-	echo $rver."<br>";
-	
-	
+	$rverx=explode("\"",$rver);
+	echo $rverx[1]."<br>";
+	if($RFS_VERSION!=$rverx[1]) {
+		sc_inform("UPDATE AVAILABLE");
+	}
 	
 	
 	echo "<hr>";
