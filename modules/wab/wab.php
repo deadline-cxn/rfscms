@@ -47,7 +47,7 @@ echo "<table border=0 width=$site_singletablewidth><tr><td>";
 //eval functions
 $res=sc_query("select * from `$wab_database` where `type`='function' and `parent`='$wab_engine->id'");
 while($wab_engine_function=mfo($res)) {
-	echo stripslashes($wab_engine_function->code)."<br>";
+	//echo stripslashes($wab_engine_function->code)."<br>";
     eval(stripslashes($wab_engine_function->code));	
 }
 $wbna="$wab_engine->name"."_action_";
@@ -67,7 +67,7 @@ function no_func($wbna){
 				echo \"[<a href=\$lnk>\";
 				echo \"edit $wbna() code\";
 				echo \"</a>]\"; } ";
-		echo $ec;
+		//echo $ec;
        eval($ec);
     }
 }
@@ -82,7 +82,7 @@ while($wab_engine_action=mfo($res)){
 }
 // not in database, look in actual file for action function
 if($found_action==0){
-	echo " ---- $action ---- <br>";
+	// echo " ---- $action ---- <br>";
     no_func(str_replace(" ","_",$wab_engine->name)."_action_$action");    
     $funk=str_replace(" ","_",$wab_engine->name)."_action_$action();";
     eval($funk);
@@ -320,7 +320,7 @@ function wab_form($action,$vars,$width,$submittxt) {
             }
             $varg[$i]=str_replace("HIDDEN_","",$varg[$i]);
         }
-        $vars=join(",",$varg);
+        $vars=join($RFS_SITE_DELIMITER,$varg);
     }
     $varz="action=".$action;
     if(!empty($vars)) $varz.=",".$vars;
