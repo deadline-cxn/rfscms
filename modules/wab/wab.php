@@ -322,7 +322,7 @@ function wab_form($action,$vars,$width,$submittxt) { eval(scg());
         $vars=join($RFS_SITE_DELIMITER,$varg);
     }
     $varz="action=".$action;
-    if(!empty($vars)) $varz.=",".$vars;
+    if(!empty($vars)) $varz.="$RFS_SITE_DELIMITER".$vars;
     sc_bf( sc_phpself(), $varz, $db, "", "", "", "omit", "", $width, $submittxt);
 }
 
