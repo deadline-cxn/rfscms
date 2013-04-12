@@ -1940,6 +1940,8 @@ function adm_action_() {
 	if( $data->access!=255 ) return;
 
 	echo "<h1>Administration Panel</h1>";
+	
+	echo "Running RFS CMS version $RFS_VERSION<br>";
 
     sc_info(exec("uptime"),"white","blue");
 
