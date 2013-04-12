@@ -770,8 +770,8 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 	}
 	
 	if($prevtop>0) 
-		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category\">PREV PAGE</a>";
-	echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category\">NEXT PAGE</a>";
+		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria\">PREV PAGE</a>] ";
+	echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria\">NEXT PAGE</a>] ";
 	
     if(count($filelist)) {
 		echo "<h1>".ucwords($buffer)."</h1>";
