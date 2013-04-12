@@ -11,10 +11,7 @@ echo "<div class=copyright>";
 rfs_echo($RFS_SITE_COPYRIGHT);
 echo "</div>";
 
-
-
 rfs_echo($RFS_SITE_BODY_CLOSE);
 rfs_echo($RFS_SITE_HTML_CLOSE);
 
 ?>
-

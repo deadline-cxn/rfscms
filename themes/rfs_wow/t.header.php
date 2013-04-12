@@ -39,10 +39,13 @@ to("100%"," align=center ");
             
             tcr("thirdtd width=100% align=right ");
             
-                if($RFS_SITE_SESSION_USER)                
-                    rfs_echo($RFS_SITE_LOGGED_IN_CODE);                    
-                else                
+                if($RFS_SITE_SESSION_USER) {
+                    rfs_echo($RFS_SITE_LOGGED_IN_CODE);					
+				}
+                else {
                     rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+					sc_facebook_login();
+				}
             
         tcc();
 		tcc();

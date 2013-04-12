@@ -62,11 +62,13 @@ to("100% cellpadding=0"," align=center ");
 
            tcr("thirdtd align=right ");
 
-           if($_SESSION['logged_in'])
-				rfs_echo($RFS_SITE_LOGGED_IN_CODE);
-           else
+           if($_SESSION['logged_in']) {
+				rfs_echo($RFS_SITE_LOGGED_IN_CODE);				
+		   }
+           else {
 			    rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-            
+				sc_facebook_login();
+		   }
         tcc();
     trc();
 tc();

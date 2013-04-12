@@ -1,12 +1,8 @@
 <?
-
-
 rfs_echo($RFS_SITE_DOC_TYPE);
 rfs_echo($RFS_SITE_HTML_OPEN);
 rfs_echo($RFS_SITE_HEAD_OPEN);
-
 rfs_echo($RFS_SITE_TITLE);
-
 $RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
 rfs_echo($RFS_SITE_CSS);
 rfs_echo($RFS_SITE_HEAD_CLOSE);
@@ -42,8 +38,10 @@ to("100%","cellpadding=0 cellspacing=0");
                     echo "</a>";
                 }
             }
-            else
+            else {
                 rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+				sc_facebook_login();
+			}
             
             echo "</td><td>";
 
@@ -107,8 +105,6 @@ to("100%"," align=center cellpadding=0");
     trc();
 tc();
 
-
-//to($RFS_SITE_SINGLETABLEWIDTH+75," align=center ");
 to("100%"," align=center ");
     tro("");
         sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
@@ -116,36 +112,9 @@ to("100%"," align=center ");
     trc();
 tc();
 
-//to($RFS_SITE_SINGLETABLEWIDTH-75," align=center ");
-/* 
-{
-to("100% cellpadding=0"," align=center ");
-    tro("");
-        tco("thirdtd align=center");
-	       // tcr("thirdtd align=center");
-    
-                          
-        tcc();
-    trc();
-tc();
-}
-*/
-
-
-
-// to($RFS_SITE_SINGLETABLEWIDTH," align=center ");
 to("100%"," align=center ");
 tro("");
 tco("middle_cont");
 
-
-
-
-
-
-
-
-
-
-
 ?>
+

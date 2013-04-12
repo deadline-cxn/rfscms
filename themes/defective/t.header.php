@@ -42,17 +42,17 @@ to("100%","cellpadding=0 cellspacing=0");
                     echo "</a>";
                 }
             }
-            else
+            else {
                 rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-				
-				echo "<a href=$RFS_SITE_URL/facebook/fb.login.php?goback=1><img src=$RFS_SITE_URL/facebook/facebook_login.gif></a>";
+				sc_facebook_login();				
+			}
 				
             echo "</td><td>";
 
-            sc_donate_button();
+				sc_donate_button();
             
             echo "</td><td width=450>";
-            sc_socials_content('','');
+				sc_socials_content('','');
             echo "</td><td width=65%>";
                       
           
@@ -109,8 +109,6 @@ to("100%"," align=center cellpadding=0");
     trc();
 tc();
 
-
-//to($RFS_SITE_SINGLETABLEWIDTH+75," align=center ");
 to("100%"," align=center ");
     tro("");
         sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
@@ -118,36 +116,8 @@ to("100%"," align=center ");
     trc();
 tc();
 
-//to($RFS_SITE_SINGLETABLEWIDTH-75," align=center ");
-/* 
-{
-to("100% cellpadding=0"," align=center ");
-    tro("");
-        tco("thirdtd align=center");
-	       // tcr("thirdtd align=center");
-    
-                          
-        tcc();
-    trc();
-tc();
-}
-*/
-
-
-
-// to($RFS_SITE_SINGLETABLEWIDTH," align=center ");
 to("100%"," align=center ");
 tro("");
 tco("middle_cont");
-
-
-
-
-
-
-
-
-
-
 
 ?>
