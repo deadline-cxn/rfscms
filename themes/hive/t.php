@@ -1,6 +1,11 @@
 <?
 
-$RFS_SITE_BODY_CLOSE="<p>&nbsp;</p></body>";
-$RFS_SITE_HTML_CLOSE="</html>";
+$RFS_SITE_TOP_MENU_LOCATION="top";
+$RFS_SITE_NAV_FONT="ArcadeClassic.ttf";
+$RFS_SITE_NAV_IMG=1;
+$RFS_SITE_FONT="ArcadeClassic.ttf";
+$RFS_SITE_NAV_FONT_COLOR="#71dff0";
+$RFS_SITE_NAV_FONT_BGCOLOR="#330000";
+
 
 ?>

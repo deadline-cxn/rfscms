@@ -1709,6 +1709,51 @@ function sc_option_countries() {
 	";
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function sc_css_edit_form($css_file, $returnpage, $returnaction) {
+	$f=file_get_contents($css_file);
+	$cssx=explode("}",$f);	
+	for($i=0;$i<count($cssx)-1;$i++) {
+		$cssx2=explode("{",$cssx[$i]);
+		echo "<hr>$cssx2[0] { <br>";
+		echo "<table border=0>";
+	
+		$cssx3=explode(";",$cssx2[1]);
+		for($j=0;$j<count($cssx3)-1;$j++) {
+
+			$cssx4=explode(":",$cssx3[$j]);
+			echo "<tr><td>";
+			echo " $cssx4[0]:";
+			echo "</td><td>";
+			echo "<input value=\"";
+			echo trim($cssx4[1]);
+			echo "\">";
+			echo "</td></tr>";
+		}
+		echo "</table> }";
+	}
+	
+
+	
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // This file can not have any trailing spaces
 ?>
