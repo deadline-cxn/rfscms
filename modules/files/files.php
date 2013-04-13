@@ -19,6 +19,9 @@ if($argv[1]=="orph") {
 chdir("../../");
 include("header.php");
 
+
+$RFS_SELF="$RFS_SITE_URL/modules/files/files.php";
+
 $newpath     = $RFS_SITE_PATH."/".$_REQUEST['local'];
 $httppath    = $RFS_SITE_URL."/".$_REQUEST['local'];
 
@@ -220,8 +223,6 @@ if($action=="get_file_go") {
         $action="get_file";
 }
 
-
-
 if($action=="get_file"){
     if($_SESSION["logged_in"]=="true"){
         $filedata=sc_getfiledata($_REQUEST['id']);
@@ -274,7 +275,6 @@ if($action=="get_file"){
     exit();
 
 }
-
 
 if($file_mod=="yes"){
     if(!empty($data->name))    {
@@ -402,31 +402,19 @@ if($action=="upload_avatar"){
 }
 
 if($action=="remove_duplicates") {
-	
-
-
 }
 
 function orphan_scan($dir) { eval(scg()); 
-
 	echo "Scanning [$RFS_SITE_PATH/$dir] \n"; if(!$RFS_CMD_LINE) echo "<br>";
 	$dir_count=0; $dirfiles = array();
-	
 	$handle=opendir($RFS_SITE_PATH."/".$dir);
-	// echo $handle."\n";
 	if(!$handle) return 0;
-	
-	while (false!==($file = readdir($handle)))
-		array_push($dirfiles,$file);
+	while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
 	closedir($handle);
-	
-	reset($dirfiles);
-	
+	reset($dirfiles);	
 	while(list ($key, $file) = each ($dirfiles))  {
         if($file!=".") {
             if($file!="..") {			
-
-				// echo "$dir/$file... \n"; if(!$RFS_CMD_LINE) echo "<br>";
                 if(is_dir($dir."/".$file)){
 					if( 	($file!=".rendered") &&
 							($file!=".cache")  && 
@@ -485,7 +473,6 @@ function orphan_scan($dir) { eval(scg());
 
 if($action=="getorphans") {
 	orphan_scan("files");
-	// orphan_scan("images");
 	include("footer.php");
     exit();
 }
@@ -689,40 +676,43 @@ function show1file($filedata,$bg) { eval(scg());
 
     echo "<td class=sc_file_table_$bg >";
 
-    echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
+		echo "<table border=0><tr><td class=sc_file_table_$bg>";
+		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
+		echo "</td><td class=sc_file_table_$bg>";
+		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a>";
+		echo "</td>";
 
-    echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a>";
-
-	if($_SESSION['show_temp']==true) {
-		echo "<br>$filedata->location";
-	}
-
+		if($_SESSION['show_temp']==true) { echo "<td class=sc_file_table_$bg>$filedata->location</td>"; }
+		echo "</tr></table>";
+	
 	echo "</td>\n";
 
-        $size=(sc_sizefile($filedata->size));
+	$size=(sc_sizefile($filedata->size));
 
-	//echo "<td class=sc_file_table_$bg width=100>";
-	// $wpui="wp.gif";
-	// if(empty($filedata->homepage)) $wpui="wp_no.gif";
-	// if($wpui=="wp.gif") echo "<a href=\"$filedata->homepage\" target=_blank>";
-	//echo "<img src=\"$RFS_SITE_URL/images/$wpui\" border=0 title=\"$filedata->homepage\" alt=\"$filedata->homepage\">";
-	// if($wpui=="wp.gif") echo "</a>";
-	//echo "&nbsp;</td>\n";
-
-        echo "<td class=sc_file_table_$bg >$size &nbsp;</td>\n";
-
-// 	echo "<td class=sc_file_table_$bg >"; $floc=$RFS_SITE_PATH."/".$filedata->location; if(file_exists($floc)) { echo md5($floc); } echo "</td>\n";
+	echo "<td class=sc_file_table_$bg >$size &nbsp;</td>\n";
 
 	echo "<td class=sc_file_table_$bg >";
-         echo sc_trunc($filedata->description,45);
-        echo "</td>\n";
+	echo sc_trunc($filedata->description,45); 
+	echo "</td>\n";
+	
+	
+	echo "<td class=sc_file_table_$bg >"; // D 
+	
+	if( ($filetype=="ttf") || 
+		($filetype=="otf") ||
+		($filetype=="fon") ) {
+		sc_image_text(	"$filedata->name",
+						"$filedata->name",
+						28,812,74,0,0,10,145,148,1,1,0,1,1);
+		}
+	echo "</td>";
 
-    echo "<td class=sc_file_table_$bg >";
+    echo "<td class=sc_file_table_$bg >"; // G
     $data=$GLOBALS['data'];
     if( ($filedata->submitter==$data->name) || ($data->access==255)) {
-        echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id\">edit</a>]";
-        echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id\">delete</a>]";
-	}
+        echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id\">edit</a>] ";
+        echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id\">delete</a>] ";
+	}	
     echo "</td></tr>\n";
 }
 
@@ -813,22 +803,29 @@ for($i=0;$i<$numcats;$i++) {
 		if(count($filelist)){
 			echo "<tr>";
 			echo "<td class=sc_top_file_table> ";
+				
+			echo "<table border=0><tr>";
+			echo "<td class=sc_top_file_table> ";
 			$iconp=$RFS_SITE_PATH."/".$cat->image;
 			$icon=$RFS_SITE_URL."/".$cat->image;
 			if(file_exists($iconp)) {
-				echo "<img src=$icon border=0 width=32 height=32><br>";
+				echo "<a href=\"$RFS_SELF?action=listcategory&category=$buffer\">";
+				echo "<img src=$icon border=0 width=32 height=32>";
+				echo "</a>";
+				echo "</td><td class=sc_top_file_table>";
 			}
-			echo ucwords("$buffer<br>");
-
-			sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer","Show All $buffer");
+			echo "<a href=\"$RFS_SELF?action=listcategory&category=$buffer\" class=news_headline>";
+			
+			echo ucwords("$buffer");
+			
+			echo "</a>";
+			echo "</td></tr></table>";
 			echo "</td>";
 
-			echo "<td class=sc_top_file_table></td>";
-			echo "<td class=sc_top_file_table></td>";
-			echo "<td class=sc_top_file_table></td>";			
-			echo "<td class=sc_top_file_table></td>";
-			echo "<td class=sc_top_file_table></td>";
-			echo "<td class=sc_top_file_table></td>";
+			echo "<td class=sc_top_file_table>B</td>";
+			echo "<td class=sc_top_file_table>C</td>";
+			echo "<td class=sc_top_file_table>D</td>";			
+			echo "<td class=sc_top_file_table>G</td>";
 
 			echo "</tr>";
 			

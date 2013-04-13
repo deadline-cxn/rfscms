@@ -660,9 +660,8 @@ echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memesave&mid=$m->i
 sc_image_text("SAVE THIS MEME","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,150,150,0,0,0,0,1,1);
 echo "</a><BR>";
 
-
-		echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id&showfonts=true'>";
-        $wf=str_replace("fonts/","",$m->font);
+echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id&showfonts=true'>";
+$wf=str_replace("fonts/","",$m->font);
 
 sc_image_text("Change Font ($wf)",
 "HoW%20tO%20dO%20SoMeThInG.ttf",
