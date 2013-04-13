@@ -865,7 +865,8 @@ function adm_action_admin_menu_edit() { eval( scg() );
 	}
 	echo "</table>";
 	echo "<br><br>";
-	finishadminpage();
+	include( "footer.php" );
+	exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU TOP
@@ -1002,14 +1003,14 @@ function adm_action_menu_topedit() { eval( scg() );
 	echo "</table>";
 	echo "<br><br>";
 
-	finishadminpage();
+	include( "footer.php" );
+	exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_CATEGORIES
 function adm_action_f_category_change_icon() {
 	eval( scg() );
 	$_SESSION['select_image_path']="";
-
 	sc_selectimage( "images","admin/adm.php","edit_categories", "categories", $id, "image" );
 }
 function adm_action_f_delete_category() {
