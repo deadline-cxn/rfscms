@@ -175,29 +175,18 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				} else {
 
 
-                sc_query(" CREATE TABLE IF NOT EXISTS `site_vars` ( `name` text NOT NULL, `value` text NOT NULL ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
-                sc_query(" INSERT INTO `site_vars` (`name`, `value`) VALUES
-                            ('path', '$RFS_SITE_PATH'),
-                            ('url',  '$RFS_SITE_URL'),
-                            ('name', '$rfs_site_name'),
-                            ('slogan', 'A RFSCMS Website'),
-                            ('singletablewidth', '910'),
-                            ('doubletablewidth', '435'),
-                            ('theme_dropdown', 'true'),
-                            ('top_menu_location', 	'top'),
-                            ('show_link_friends', 	'true'),
-                            ('show_top_referrers', 'true'),
-                            ('show_link_bin', 'true'),
-                            ('show_online_users', 'true'),
-                            ('copyright', 'Created with RFS CMS Copyright (c) 2012 Seth T. Parson'),
-                            ('show_rss_news', 'true'),
-                            ('default_theme', 'default'),
-								('force_theme', 'false'),
-								('forced_theme', 'default')
-								
-								; ");
-
-
+                sc_query("	CREATE TABLE IF NOT EXISTS `site_vars` ( `name` text NOT NULL, `value` text NOT NULL ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+                sc_query("	INSERT INTO `site_vars`
+									(`name`, `value`)
+							VALUES  ('path', '$RFS_SITE_PATH'),
+									('url',  '$RFS_SITE_URL'),
+									('name', '$rfs_site_name'),
+									('singletablewidth', '910'),
+									('doubletablewidth', '435'),
+									('theme_dropdown', 'true'),
+									('default_theme', 'default'),
+									('force_theme', 'false'),
+									('forced_theme', 'default'); ");
 
                 echo "<div width=100% style='background-color: green; color:white;'>Database activated... Adding RFSCMS junk so stuff works correctly.</div>";
 
