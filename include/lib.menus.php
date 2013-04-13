@@ -33,7 +33,11 @@ function sc_menu_draw($menu_location) {
                 else {
                     echo "<a class=sc_top_menu_link href=\"";
                     rfs_echo($link->link);
-                    echo "\">";
+					echo "\" ";
+					if(!empty($link->target)) {
+						rfs_echo("target=\"$link->target\" ");
+					}					
+					echo ">";
 
                     $clr = sc_html2rgb($RFS_SITE_NAV_FONT_COLOR);
                     $bclr= sc_html2rgb($RFS_SITE_NAV_FONT_BGCOLOR);
