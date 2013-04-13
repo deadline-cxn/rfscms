@@ -1,4 +1,3 @@
-
 body
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -103,8 +102,7 @@ body
 
 .sc_top_menu_table
 {
-  font-family: Lucidia;
-  //sfont-size: x-large;
+  font-family: Lucidia;  
   font-style: normal;
   background-color: #544510;
 }
@@ -245,7 +243,7 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
-	background-color: #807040;
+	background-color: #a09060;
 }
 
 .downloadtd
@@ -261,7 +259,7 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #241500;
-	background-color: #807040;
+	background-color: #a09060;
 }
 
 .midtd
@@ -269,7 +267,7 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;    
-	background-color: #807040;
+	background-color: #a09060;
 }
 
 .toptd
@@ -281,6 +279,23 @@ td
 	background-color: #807040;
 }
 
+
+.logged_in_td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 6px;
+    font-weight: bold;
+    color:   #000000;
+	background-color: #807040;
+}
+.logged_in_box {
+	font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+    color: #000000;
+	background-color: #807040;
+}
+
+
 .lefttd
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -288,7 +303,7 @@ td
     font-weight: bold;
  
     color:   #746530;
-	background-color: #040404;
+	background-color: #a09060;
 	background-image: url("http://localhost/sethcoder/rfs/themes/coffee/coffee.lefttdimage.gif");
 }
 

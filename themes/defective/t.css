@@ -138,6 +138,7 @@ td {
     font-size: xx-small;
     font-weight: bold;
     color:   #FFFFFF;
+	width: 100%;
 	background-color: #330000;
 }
 
@@ -223,40 +224,3 @@ input, select, textarea {
     background-color : #888888;
 
 }
-
-
-.fdsahover{
-filter: glow(color=#526D00, strength=#2);
-    bagfckground-color: #00cccc;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    text-decoration: none;
-    text-shadow: black 0px 0px 5px;
-    gfcolor: #000000;
-    fackground: white; 
-    color: white;
-    
-    text-shadow: 3px 3px red, yellow -3px 3px 2px, 3px -3px;
-    
-filter:alpha
-filter:blur
-filter:chroma
-filter:dropshadow
-filter:fliph
-filter:flipv
-filter:glow
-filter:gray
-filter:invert
-filter:mask
-filter:shadow
-filter:wave
-filter:xray
-
-
-
-
-
-
-}
-
