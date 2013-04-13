@@ -51,7 +51,7 @@ function sc_menu_draw($menu_location) {
                             -10,
                             $clr[0], $clr[1], $clr[2],
                             $bclr[0], $bclr[1], $bclr[2],
-                            0,0 );
+                            1,0 );
                     }
                     else {
 
