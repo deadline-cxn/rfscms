@@ -913,6 +913,7 @@ function adm_action_menu_topedit() { eval( scg() );
 	echo "<td class=contenttd> &nbsp; </td>";
 	echo "<td class=contenttd> name </td>";
 	echo "<td class=contenttd> link </td>";
+	echo "<td class=contenttd> target </td>";
 	echo "<td class=contenttd> sort order </td>";
 	echo "<td class=contenttd> access </td>";
 	echo "<td class=contenttd> &nbsp; </td>";
@@ -946,7 +947,7 @@ function adm_action_menu_topedit() { eval( scg() );
 		echo "</td>";
 		
 		echo "<td class=\"contenttd\">";
-		echo "<input size=\"40\" type=\"text\" name=\"target\" value=\"$menuitem->target\">";
+		echo "<input size=\"10\" type=\"text\" name=\"target\" value=\"$menuitem->target\">";
 		echo "</td>";
 
 		echo "<td class=\"contenttd\">";
@@ -976,7 +977,7 @@ function adm_action_menu_topedit() { eval( scg() );
 	echo "<input size=40  name=menu_url>";
 	echo "</td>";	
 	echo "<td class=contenttd>";
-	echo "<input size=40  name=target>";
+	echo "<input size=10  name=target>";
 	echo "</td>";
 	
 	echo "<td class=contenttd>";
