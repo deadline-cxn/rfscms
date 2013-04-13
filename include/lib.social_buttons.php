@@ -159,9 +159,11 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 }
 
 function sc_google_adsense($client){
-    if(!empty($client)) {
-	sc_div("GOOGLE ADSENSE");
-	echo "
+	global $RFS_SITE_GOOGLE_ADSENSE;
+	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
+		if(!empty($client)) {
+			sc_div("GOOGLE ADSENSE");
+			echo "
 	<script type=\"text/javascript\"><!--
 google_ad_client = \"$client\";
 /* hey */
@@ -174,7 +176,7 @@ google_ad_height = 90;
 src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">
 </script>
 ";
-    
+		}
     }
 }
 
