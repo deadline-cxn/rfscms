@@ -1,5 +1,4 @@
-body
-{
+body {
     scrollbar-base-color: #008888;
     scrollbar-arrow-color: #00FFFF;
     scrollbar-DarkShadow-Color: #004444;
@@ -23,8 +22,7 @@ body
 	border-bottom-right-radius: 8px;
 }
 
-hr
-{
+hr {
     border: 1px;
     border-color: #BBBBBB;
     border-style: dashed;
