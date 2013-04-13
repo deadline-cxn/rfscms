@@ -16,13 +16,10 @@ function adm_db_query( $x ) { eval( scg() );
 if( $_REQUEST['db_queries']=="list" ) {
 	if(array_pop(explode("/",getcwd()))=="admin") chdir("..");
 	include_once("include/lib.all.php");
-	// 	include_once( "lib.all.php" );	include_once( "../lib.all.php" );
 	if( $data->access<255 ) exit();
-
 	if( empty( $theme ) )               $theme=$RFS_SITE_DEFAULT_THEME;
 	if( !empty( $data->theme ) )        $theme=$data->theme;
 	if( sc_yes( $RFS_SITE_FORCE_THEME ) ) $theme=$RFS_SITE_FORCED_THEME;
-
 	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
 	adm_db_query( "SELECT name,email,donated FROM users" );
 	adm_db_query( "SELECT * FROM users" );
@@ -46,10 +43,8 @@ if( $_REQUEST['db_queries']=="list" ) {
             $dq=mysql_fetch_object( $r );
             $y=$dq->query;
             $y=str_replace( "\n","",$y );
-            // $y=addslashes($y);
             $x=urlencode( $y );
-            adm_db_query( $x );
-            ///echo "<a href=\"$RFS_SELF?action=db_query&query=$y\" target=_top>$y</a> ";
+            adm_db_query( $x );            
         }
     }
 	include("footer.php");
@@ -372,19 +367,34 @@ function adm_action_eval_form() {
 function adm_action_f_theme_edit() { eval(scg());
 	echo "Editing theme [$thm]<br>";
 	$folder="$RFS_SITE_PATH/themes/$thm";
-	echo "Elements of $thm<br>";
+	echo "Elements of $folder <br>";
 	$d = opendir($folder);
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
-			echo $entry."<br>";
-			$checkx=explode(".",$entry);
-			if($checkx[0]=="t") {
-				if( ($checkx[count($checkx)-1]!="gif") &&
-					($checkx[count($checkx)-1]!="jpg") &&
-					($checkx[count($checkx)-1]!="png") ) {
-					$f=file_get_contents($folder."/".$entry);
-					$f=str_replace("<","&lt;",$f);
-					echo nl2br($f)."<br>";
+			echo "<hr>";
+			echo "$folder/$entry <br>";		
+			if($entry[0]=="t") {
+				$ft=sc_getfiletype($entry);
+				
+				if( ($ft=="gif") ||
+					($ft=="jpg") ||
+					($ft=="png") ) {
+						$img="$RFS_SITE_URL/themes/$thm/$entry";
+						echo "$img:<br>";
+						echo "<img src=\"$img\"><br>";
+				}
+				else {
+					
+					if($ft=="css") {
+						sc_css_edit_form("$folder/$entry", "","");
+						
+					}
+					else {					
+						$f=file_get_contents($folder."/".$entry);
+						$f=str_replace("<","&lt;",$f);
+						echo nl2br($f)."<br>";					
+					}
+					
 				}
 			}
 		}
