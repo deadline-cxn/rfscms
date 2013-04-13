@@ -110,14 +110,12 @@ echo "<td width=65 class=contenttd>Search:&nbsp;</td>\n";
 echo "<td width=90 class=contenttd><input type=textbox name=criteria></td>\n";
 echo "<td width=10 class=contenttd>&nbsp;in&nbsp;</td>\n";
 echo "<td width=80 class=contenttd><select name=category><option>all categories\n";
-
 $result=sc_query("select * from categories order by name asc");
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++){
     $cat=mysql_fetch_object($result);
     echo "<option>$cat->name";
 }
-
 echo "</select></td>\n";
 echo "<td width=30 class=contenttd>&nbsp;and&nbsp;display&nbsp;</td>\n";
 echo "<td width=15 class=contenttd><select name=amount><option>all<option>10<option>25<option>50<option>100</select></td>\n";
@@ -232,31 +230,130 @@ if($action=="get_file"){
         $filedata=sc_getfiledata($_REQUEST['id']);
         if(empty($filedata)){
             echo "Error 3392! File does not exist?\n";
-            //echo "</td></tr></table>";
             include("footer.php");
             exit();
         }
 
-        $size = sc_sizefile($filedata->size);
+        $size = sc_sizefile($filedata->size);		
         
-        echo "<p><center><a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\"><font size=4>$filedata->name ($size)</a> </font></center></p>\n";
-        echo "<p><center> (Right click and 'save target as' to save the file to your computer...)</center></p>\n";
-        echo "<p><center>Category: $filedata->category</center></p>\n";
-        echo "<p><table border=0 cellspacing=0 cellpadding=0><tr><td class=contenttd>Description</td></tr><tr><td><table border=0 bordercolor=#000000 cellspacing=0 cellpadding=4 width=100%>\n";
-        echo "<tr><td class=contenttd>";
-        echo nl2br($filedata->description);
-        echo "</td></tr></table></td></tr></table></p>\n";
-        echo "<p align=right>Posted by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a>, \n";
+        echo "<p>
+		
+		
+		
+		<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\">
+		<img src=\"$RFS_SITE_URL/images/icons/Download.png\" border=0>
+		<font size=4>$filedata->name ($size)</a> </font></p>\n";
+        echo "<p>(Right click and 'save target as' to save the file to your computer...)</p>\n";
+		
+		
 
-        echo "Downloaded $filedata->downloads times</p>\n";
+echo "Rating: $filedata->rating				<br>";
+echo "Thumb: $filedata->thumb				<br>";
+
+	
+echo "<table border=0>";
+			
+		
+echo "<tr><td>Category:</td><td>$filedata->category</td></tr>";
+
+echo "<tr><td>Version:</td><td>$filedata->version</td></tr>";
+echo "<tr><td>Homepage:</td><td>$filedata->homepage</td></tr>";
+echo "<tr><td>Bytes:</td><td>$filedata->size</td></tr>";
+echo "<tr><td>md5:</td><td>".md5($filedata->location)."</td></tr>";
+
+echo "<tr><td>Platform:</td><td>$filedata->platform</td></tr>";
+echo "<tr><td>Operating System:</td><td>$filedata->os</td></tr>";
+
+echo "<tr><td>Added:</td><td>$filedata->time</td></tr>";
+echo "<tr><td>Last update:</td><td>$filedata->lastupdate</td></tr>";
+echo "<tr><td>Safe for work:</td><td>$filedata->worksafe</td></tr>";
+
+
+echo "</table>";
+		
+        echo "<p>		
+		<table border=0 cellspacing=0 cellpadding=0>		
+		<tr><td class=contenttd>Description</td></tr>
+		<tr><td><table border=0 bordercolor=#000000 cellspacing=0 cellpadding=4 width=100%>\n";
+        
+		echo "<tr><td class=contenttd>";
+        echo nl2br($filedata->description);
+        echo "</td></tr>
+		
+		</table>
+		
+		</td></tr>
+		
+		</table></p>\n";
+		
 
         $ft=sc_getfiletype($filedata->location);
 
         switch($ft){
-            case "7z":
-                echo "<p class=warning align=center>This is a 7zip file. You will need to get 7zip to unarchive it.</p><p align=center><a href=\"http://www.7-zip.org/\" target=_blank>http://www.7-zip.org/</a></p>";
-            break;
+			case "adf":
+				echo "Contents:<br><pre>";
+				echo system("unadf -r $filedata->location");
+				echo "</pre>";
+			break;
+			
+			case "dms":
+				echo "Contents:<br><pre>";				
+				echo system("xdms f $filedata->location");
+				echo "</pre>";
+			break;
+			
+			case "tar":
+				echo "Contents:<br><pre>";				
+				echo system("tar -tvf $filedata->location");
+				echo "</pre>";
+			break;
 
+
+			case "tgz":
+			case "gz":
+				echo "Contents:<br><pre>";				
+				echo system("tar -tvzf $filedata->location");
+				echo "</pre>";
+			break;
+			
+            case "7z":
+				echo "<p>This is a 7zip file. You will need to get 7zip to unarchive it. <a href=\"http://www.7-zip.org/\" target=_blank>http://www.7-zip.org/</a></p>";
+			case "iso":
+			
+			case "bz2":
+			
+			
+			case "lzh":
+			case "lha":
+			case "arj":
+			case "arc":
+			case "rar":
+			case "zip":
+				echo "Contents:<br><pre>";
+				echo system("7z l $filedata->location");
+				echo "</pre>";
+            break;
+			
+			case "ace":
+				echo "Contents:<br><pre>";
+				echo system("unace v $filedata->location");
+				echo "</pre>";
+			
+			break;
+			
+			
+			case "crx":
+			case "css":
+			case "html":
+			case "c":
+			case "cpp":
+			case "h":
+			case "hpp":
+			case "sh":
+			case "bat":
+			case "perl":
+			case "lua":
+			case "js":
             case "php":
                 echo "<table border=0 width=75% cellpadding=6><tr><td class=sc_file_table_1>";
                 
@@ -270,6 +367,10 @@ if($action=="get_file"){
             default:
             break;
         }
+		
+        echo "<p align=right>Posted by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a>, \n";
+        echo "Downloaded $filedata->downloads times</p>\n";
+		
     }
 
     else echo "<p> You can't download files unless you are <a href=login.php>Logged in</a>!</p>\n";
@@ -572,6 +673,7 @@ if($give_file=="yes") {
                     if(empty($name)) $name=$nfname;
                     $name=addslashes($name);
                     sc_query("INSERT INTO `files` (`name`) VALUES('$name');");
+					$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
                     sc_query("UPDATE files SET location='$httppath' where name='$name'");
                     sc_query("UPDATE files SET submitter='$data->name' where name='$name'");
                     sc_query("UPDATE files SET category='$category' where name='$name'");
@@ -579,7 +681,6 @@ if($give_file=="yes") {
                     sc_query("UPDATE files SET category='$category' where name='$name'");
                     sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
                     sc_query("UPDATE files SET size='$filesizebytes' where name='$name'");
-                    //sc_query("UPDATE files SET local_path='$uploadFile' where name='$name'");
                     sc_query("UPDATE files SET time='$time1' where name='$name'");
                     sc_query("UPDATE files SET worksafe='$sfw' where name='$name'");
                     $extra_sp=$_FILES['userfile']['size']/10240;
