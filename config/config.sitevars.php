@@ -22,7 +22,7 @@ $RFS_SITE_SESSION_ID        = "RFS_CMS_";
 $RFS_SITE_SESSION_USER      = $_SESSION['valid_user'];
 $RFS_SITE_ADMIN             = "Administrator";
 $RFS_SITE_ADMIN_EMAIL       = "admin@".$SERVER['DOCUMENT_ROOT'];
-$RFS_SITE_SLOGAN            = "A RFS CMS Website";
+$RFS_SITE_SLOGAN            = "Powered by <a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">RFSCMS</a>";
 $RFS_SITE_URL               = $SERVER['DOCUMENT_ROOT'];
 $RFS_SITE_PATH              = getcwd();
 
@@ -78,7 +78,7 @@ $RFS_SITE_CSS               = "<LINK rel=\"stylesheet\" href=\"\$RFS_SITE_THEME_
 $RFS_SITE_MENU_TOP_LOCATION = "top";
 $RFS_SITE_MENU_LEFT_LOCATION= "left";
 $RFS_SITE_FOOTER            = "";
-$RFS_SITE_COPYRIGHT         = "<center><a href=\"http://www.sethcoder.com/\"> Powered by RFS CMS </a></center>";
+$RFS_SITE_COPYRIGHT         = "<center><a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\"> Powered by RFS CMS </a></center>";
 
 $RFS_SITE_SINGLETABLEWIDTH  = 940;
 $RFS_SITE_DOUBLETABLEWIDTH  = 435;
