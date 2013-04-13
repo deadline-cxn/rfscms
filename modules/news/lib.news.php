@@ -1,5 +1,4 @@
 <?
-
 include_once("include/lib.all.php");
 
 sc_access_method_add("news", "edit");
@@ -8,31 +7,26 @@ sc_access_method_add("news", "submit");
 sc_access_method_add("news", "delete");
 sc_access_method_add("news", "deleteothers");
 
-sc_query( " 
-
-CREATE TABLE IF NOT EXISTS `news` (
-  `name` text COLLATE utf8_unicode_ci NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `headline` text COLLATE utf8_unicode_ci NOT NULL,
-  `message` text COLLATE utf8_unicode_ci NOT NULL,
-  `category1` text COLLATE utf8_unicode_ci NOT NULL,
-  `submitter` int(11) NOT NULL DEFAULT '0',
-  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `lastupdate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `image_url` text COLLATE utf8_unicode_ci NOT NULL,
-  `image_link` text COLLATE utf8_unicode_ci NOT NULL,
-  `image_alt` text COLLATE utf8_unicode_ci NOT NULL,
-  `topstory` text COLLATE utf8_unicode_ci NOT NULL,
-  `published` text COLLATE utf8_unicode_ci NOT NULL,
-  `views` int(11) NOT NULL DEFAULT '0',
-  `rating` text COLLATE utf8_unicode_ci NOT NULL,
-  `sfw` text COLLATE utf8_unicode_ci NOT NULL,
-  `page` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
-
-
-");
+sc_query( " CREATE TABLE IF NOT EXISTS `news` (
+			  `name` text COLLATE utf8_unicode_ci NOT NULL,
+			  `id` int(11) NOT NULL AUTO_INCREMENT,
+			  `headline` text COLLATE utf8_unicode_ci NOT NULL,
+			  `message` text COLLATE utf8_unicode_ci NOT NULL,
+			  `category1` text COLLATE utf8_unicode_ci NOT NULL,
+			  `submitter` int(11) NOT NULL DEFAULT '0',
+			  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+			  `lastupdate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+			  `image_url` text COLLATE utf8_unicode_ci NOT NULL,
+			  `image_link` text COLLATE utf8_unicode_ci NOT NULL,
+			  `image_alt` text COLLATE utf8_unicode_ci NOT NULL,
+			  `topstory` text COLLATE utf8_unicode_ci NOT NULL,
+			  `published` text COLLATE utf8_unicode_ci NOT NULL,
+			  `views` int(11) NOT NULL DEFAULT '0',
+			  `rating` text COLLATE utf8_unicode_ci NOT NULL,
+			  `sfw` text COLLATE utf8_unicode_ci NOT NULL,
+			  `page` int(11) NOT NULL,
+			  PRIMARY KEY (`id`)
+			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ; ");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
@@ -41,12 +35,9 @@ CREATE TABLE IF NOT EXISTS `news` (
 function adm_action_lib_news_news_submit() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/news/news.php?showform=yes");
 }
-
 function adm_action_lib_news_news_edit() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
 }
-
-
 function sc_module_mini_news($x) { eval(scg());
     sc_div("NEWS MODULE SECTION");
     echo "<h2>Last $x News Articles</h2>";
@@ -78,8 +69,6 @@ function sc_module_mini_news($x) { eval(scg());
     echo "</table>";
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/news/news.php class=\"a_cat\" align=right>More...</a>)</p>";
 }
-
-
 function sc_module_popular_news($x) { eval(scg());
     sc_div("NEWS MODULE SECTION");
     echo "<h2>Popular News Articles</h2>";
@@ -114,26 +103,22 @@ function sc_module_popular_news($x) { eval(scg());
     }
     echo "</table>";
 }
-
 function sc_module_news_top_story() { eval(scg());
 
     sc_show_top_news();
 
 }
-
 function sc_getnewstopstory(){
     $result=sc_query("select * from news where topstory='yes' and published='yes'");
     $news=mysql_fetch_object($result);
     return $news;
 }
-
 function sc_getnewsdata($news){
     $query="select * from news where id = '$news'";
     $result=sc_query($query);
     if(mysql_num_rows($result) >0 ) $news = mysql_fetch_object($result);
     return $news;
 }
-
 function sc_getnewslist($newssearch) {
     $newsbeg=$GLOBALS['top'];
     $newsend=$GLOBALS['bot'];
@@ -151,28 +136,21 @@ function sc_getnewslist($newssearch) {
     }
     return $newslist;
 }
-
 function sc_get_news_headline($id){
     $result=sc_query("select * from news where id='$id'");
     $news=@mysql_fetch_object($result);
     return $news->headline;
 }
-
-
 function sc_get_top_news_id(){
     $result=sc_query("select * from news where topstory='yes' and published='yes'");
     $news=@mysql_fetch_object($result);
     return $news->id;
 }
-
-
 function sc_show_top_news() {
     $result=sc_query("select * from news where topstory='yes' and published='yes'");
     $news=mysql_fetch_object($result);
     sc_show_news($news->id);
 }
-
-
 function sc_show_news($id) { eval(scg());
     $result=sc_query("select * from news where id='$id'");
     $news=mysql_fetch_object($result);
@@ -189,7 +167,7 @@ function sc_show_news($id) { eval(scg());
     if(!empty($news->image_url)){
             $altern=stripslashes($news->image_alt);
             if(empty($news->image_link)) $news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";
-              echo "<a href=\"$RFS_SITE_URL/modules/news/$news->image_link\" target=\"_blank\" class=news_a >";
+              echo "<a href=\"$RFS_SITE_URL/$news->image_link\" target=\"_blank\" class=news_a >";
 
               if(!stristr($news->image_url,$RFS_SITE_URL))
                   $news->image_url="$RFS_SITE_URL/$news->image_url";
@@ -224,7 +202,6 @@ function sc_show_news($id) { eval(scg());
     echo "<p>&nbsp;</p>";
     echo "</td></tr></table>";
 }
-
 function put_news_image($fname) { eval(scg());
     
 	$file=$_FILES[$fname]['name'];
@@ -240,7 +217,6 @@ function put_news_image($fname) { eval(scg());
     }
     return $httppath;
 }
-
 function updatenews($nid){ 	eval(scg());
     $p=addslashes($GLOBALS['headline']); sc_query("UPDATE news SET headline ='$p' where id = '$nid'");
     $p=addslashes($GLOBALS['posttext']); sc_query("UPDATE news SET message ='$p' where id = '$nid'");
@@ -274,7 +250,6 @@ function updatenews($nid){ 	eval(scg());
     echo "<p>News article [$nid] has been updated...</p>\n";
     $loggit="*****> ".$GLOBALS['data']->name." updated news article $nid...";
 }
-
 function deletenews($nid) { eval(scg());
     echo "<table border=\"0\" align=center><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
     echo "<br>WARNING:<br>The news article will be completely removed are you sure?</center>\n";
@@ -284,7 +259,6 @@ function deletenews($nid) { eval(scg());
     echo "<input type=\"submit\" name=\"submit\" value=\"Yes\"></form></td>\n";
     echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/news/news.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
 }
-
 function deletenewsgo($nid){ 	eval(scg());
     sc_query("DELETE FROM news where id = '$nid'");
     echo "<p>News article $nid has been deleted...</p>\n";
@@ -292,7 +266,6 @@ function deletenewsgo($nid){ 	eval(scg());
     sc_log($loggit);
 
 }
-
 function editnews($nid) { eval(scg());
     $news=mysql_fetch_object(sc_query("select * from news where id='$nid'"));
     //echo "<tr><td>Image Link</td><td><input name=image_url value=\"".stripslashes($news->image_link)."\" size=100></td></tr>\n";
@@ -443,7 +416,6 @@ function editnews($nid) { eval(scg());
     echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Update News\" class=b4button></td></tr>\n";
     echo "</form></table>\n";
 }
-
 function shownews() { eval(scg());
 	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td>";
 	echo "<table border=0 width=100% ><tr>";
@@ -499,63 +471,5 @@ function shownews() { eval(scg());
     echo "</td></tr></table>";
     echo "</td></tr></table>";
 }
-
-/* function shownewsarticle($nid,$gt)
- {
-    $RFS_SITE_URL/modules/news=$GLOBALS['site_url'];
-    $sc_table_top_mid_1=$GLOBALS['sc_table_top_mid_1'];
-    $sc_table_bot_mid_1=$GLOBALS['sc_table_bot_mid_1'];
-    $news=sc_getnewsdata($nid);
-    $userdata=getuserdata($news->submitter);
-    $thisemail=str_replace("@","$at",$userdata->email);
-    echo "\n\n<news top ******************************************* news top>\n";
-    echo "<table border=0 width=100% class=contenttd><tr><td class=contenttd align=center>";
-    echo "<p>&nbsp;</p><h1>$news->headline</h1><br>";
-    $out_link=urlencode("$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id");
-    echo "<iframe src=\"https://www.facebook.com/plugins/like.php?href=$out_link\" scrolling=\"no\" frameborder=\"0\"
-        style=\"border:none; width:450px; height:80px\"></iframe> <p align=center>";
-    echo "<i>Posted by <a href=\"$RFS_SITE_URL/modules/news/showprofile.php?user=$userdata->name\">";
-    echo "$userdata->name</a> on ".sc_time($news->time)."</i> <br><br>";
-    echo "<table border=0 width=100%><tr><td valign=top class=contenttd align=center>";
-    if(!empty($news->image_url))    {
-        echo "<table border=0 cellpadding=1 cellspacing=0><tr><td  class=contenttd align=center>";
-        $altern=stripslashes($news->image_alt);
-        if(!empty($news->image_link))        {
-            echo "<a href=\"$news->image_link\" target=\"_blank\">";
-        }
-        echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" ";
-        echo "alt=\"$altern\" align=\"center\" >\n"; // width=\"150\" height=\"150\">\n";
-        if(!empty($news->image_link))        {
-            echo "</a>\n";
-        }
-        echo "</td></tr></table>";
-    }
-    echo "</td><td  class=contenttd align=center>";
-    $message=nl2br(smiles(stripslashes($news->message)));
-	if($GLOBALS['action']=="search"){
-   	$crit=$GLOBALS['crit'];
-	$critr="<font class=sc_warning>$crit</font>";
-	$message=str_replace($crit,$critr,$message);
-   }
-    echo "$message<br>\n";
-    echo "<table border=0 align=right>";
-    echo "<tr><td align=right  class=contenttd></td></tr><tr><td  class=contenttd></td></tr></table></td></tr></table></td></tr><tr><td align=right  class=contenttd>";
-    sc_useravatar($userdata->name);
-    echo "</td></tr></table>";
-    echo "<table border=0 cellspacing=0 cellpadding=2 width=100%><tr><td  class=contenttd>";
-    // echo sc_getcommentstats($news->headline,"news",$nid);
-    echo "</td>";
-    echo "<td class=contenttd>";
-    $data=$GLOBALS['data'];
-    if(($data->name==$userdata->name)||($data->access==255)) {
-        echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$nid\">edit</a>]\n";
-        echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$nid\">remove</a>]\n";
-    }
-    echo "</td></tr></table>";
-    echo "<br><news bot ************************************************************************ news bot>\n";
-    $news->views=$news->views+1;
-    sc_query("update news set views ='$news->views' where id='$nid'");
-}*/
-
 
 ?>
