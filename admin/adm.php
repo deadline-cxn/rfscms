@@ -889,16 +889,17 @@ function adm_action_f_menu_topedit_del() { eval( scg() );
 }
 function adm_action_f_menu_topedit_add() { eval( scg() );
 	echo "<h3>Edit Top Menu :: Add $mname</h3>";
-	sc_query( "insert into menu_top (`name`,`link`,`sort_order`,`access`) values('$mname','$murl','$msor','$access');" );
+	sc_query( "insert into menu_top (`name`,`link`, `target`,`sort_order`,`access`)
+	values('$mname','$menu_url', '$target','$msor','$access');" );
 	adm_action_menu_topedit();
 }
 function adm_action_f_menu_topedit_mod() { eval( scg() );
-echo "WHAT!!!";
 	$res=sc_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Top Menu :: Modify $menuitem->name = $mname</h3>";
 	sc_query( "update menu_top set `name`='$mname' where `id`='$id'" );
 	sc_query( "update menu_top set `link`='$menu_url' where `id`='$id'" );
+	sc_query( "update menu_top set `target`='$target' where `id`='$id'" );
 	sc_query( "update menu_top set `sort_order`='$msor' where `id`='$id'" );
 	sc_query( "update menu_top set `access`='$access' where `id`='$id'" );
 
@@ -939,8 +940,13 @@ function adm_action_menu_topedit() { eval( scg() );
 		echo "<input type=\"hidden\" name=\"id\" value=\"$menuitem->id\">";
 		echo "<input size=\"20\" type=text name=\"mname\" value=\"$menuitem->name\">";
 		echo "</td>";
+		
 		echo "<td class=\"contenttd\">";
 		echo "<input size=\"40\" type=\"text\" name=\"menu_url\" value=\"$menuitem->link\">";
+		echo "</td>";
+		
+		echo "<td class=\"contenttd\">";
+		echo "<input size=\"40\" type=\"text\" name=\"target\" value=\"$menuitem->target\">";
 		echo "</td>";
 
 		echo "<td class=\"contenttd\">";
@@ -967,8 +973,12 @@ function adm_action_menu_topedit() { eval( scg() );
 	echo "<input size=20 name=mname>";
 	echo "</td>";
 	echo "<td class=contenttd>";
-	echo "<input size=40  name=murl>";
+	echo "<input size=40  name=menu_url>";
+	echo "</td>";	
+	echo "<td class=contenttd>";
+	echo "<input size=40  name=target>";
 	echo "</td>";
+	
 	echo "<td class=contenttd>";
 	echo "<input size=10 name=msor>";
 	echo "</td>";
@@ -1901,10 +1911,8 @@ CREATE TABLE IF NOT EXISTS `access` (
 
 ");
 
-
-
-sc_query(
-" ALTER TABLE  `users` ADD  `access_groups` TEXT NOT NULL AFTER  `access`");
+sc_query( " ALTER TABLE  `users` ADD  `access_groups` TEXT NOT NULL AFTER  `access`");
+sc_query( " ALTER TABLE  `menu_top` ADD  `target` TEXT NOT NULL AFTER  `access`");
 
 
 }
