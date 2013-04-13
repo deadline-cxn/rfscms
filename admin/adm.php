@@ -907,7 +907,7 @@ function adm_action_f_menu_topedit_mod() { eval( scg() );
 }
 function adm_action_menu_topedit() { eval( scg() );
 	echo "<h3>Edit Top Menu</h3>";
-	echo "hello";
+	
 	echo "<table border=0 cellspacing=0 cellpadding=0>";
 	echo "<tr>";
 	echo "<td class=contenttd> &nbsp; </td>";
@@ -924,19 +924,26 @@ function adm_action_menu_topedit() { eval( scg() );
 		$menuitem=mysql_fetch_object( $res );
 
 		echo "<tr>";
-
 		echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
-		echo "<input type=hidden name=action value=f_menu_topedit_del>";
 		echo "<td class=contenttd>";
 
+		
+		
+		
+
+		
+		echo "<input type=hidden name=action value=f_menu_topedit_del>";
 		echo "<input type=hidden name=id value=$menuitem->id>";
 		echo "<input type=submit name=submit value=delete>";
-		echo "</form>";
+		
+		
 
 		echo "</td>";
+		echo "</form>";
 
-		echo "<td class=contenttd>";
 		echo "<form enctype=\"application/x-www-form-URLencode\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+		echo "<td class=contenttd>";
+		
 		echo "<input type=\"hidden\" name=\"action\" value=\"f_menu_topedit_mod\">";
 		echo "<input type=\"hidden\" name=\"id\" value=\"$menuitem->id\">";
 		echo "<input size=\"20\" type=text name=\"mname\" value=\"$menuitem->name\">";
