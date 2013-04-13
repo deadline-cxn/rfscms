@@ -24,7 +24,7 @@ if( $_REQUEST['db_queries']=="list" ) {
 	if( !empty( $data->theme ) )        $theme=$data->theme;
 	if( sc_yes( $RFS_SITE_FORCE_THEME ) ) $theme=$RFS_SITE_FORCED_THEME;
 
-	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/$theme.css\" type=\"text/css\">\n";
+	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
 	adm_db_query( "SELECT name,email,donated FROM users" );
 	adm_db_query( "SELECT * FROM users" );
 	adm_db_query( "SHOW FULL COLUMNS FROM users" );
@@ -58,6 +58,7 @@ if( $_REQUEST['db_queries']=="list" ) {
 /////////////////////////////////////////////////////////////////////////////////////////
 chdir( "../" );
 include( "header.php" );
+$RFS_SELF="$RFS_SITE_URL/admin/adm.php";
 /////////////////////////////////////////////////////////////////////////////////////////
 $data=sc_getuserdata($_SESSION['valid_user']);
 if( $data->access!=255 ) {
@@ -276,12 +277,20 @@ function adm_action_f_access_group_edit() { eval(scg());
 function adm_action_phpmyadmin() { eval(scg());
 	sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_NEW PAGE FUNCTIONS
+function adm_action_form_builder() { eval(scg());
+	echo"<p>Form Builder</p>";
+	include( "footer.php" );
+	exit();
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_NEW PAGE FUNCTIONS
 function adm_action_new_page() { eval(scg());
 	echo"<p>Create a new page.</p>";
 	sc_bqf( "action=new_page_go".$RFS_SITE_DELIMITER."SHOW_TEXT_name=name.php","Create new page");
+	include( "footer.php" );
+	exit();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_new_page_go() { eval(scg());
@@ -357,13 +366,10 @@ function adm_action_eval_form() {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_THEMES
-
-
 function adm_action_f_theme_edit() { eval(scg());
 	echo "Editing theme [$thm]<br>";
 	$folder="$RFS_SITE_PATH/themes/$thm";
 	echo "Elements of $thm<br>";
-	
 	$d = opendir($folder);
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
@@ -373,30 +379,46 @@ function adm_action_f_theme_edit() { eval(scg());
 				if( ($checkx[count($checkx)-1]!="gif") &&
 					($checkx[count($checkx)-1]!="jpg") &&
 					($checkx[count($checkx)-1]!="png") ) {
-					
-						$f=file_get_contents($folder."/".$entry);
-						$f=str_replace("<","&lt;",$f);
-						echo nl2br($f)."<br>";
-					
-					}
-			
+					$f=file_get_contents($folder."/".$entry);
+					$f=str_replace("<","&lt;",$f);
+					echo nl2br($f)."<br>";
+				}
 			}
-				
-				
 		}
-	}
+	}	
 	closedir($d);
-	
+	include( "footer.php" );
+	exit();
 }
 
+function adm_action_f_theme_view_classes() { eval(scg());
+	$file="$RFS_SITE_PATH/classes.out.txt";
+	echo $file."<BR>";
+	echo "<pre>";
+	include($file);
+	echo "</pre>";
+	adm_action_theme();
+}
 
 function adm_action_theme() { eval(scg());
+
 	echo "<h3>Theme Editor</h3>";
+
+	sc_button("$RFS_SELF?action=f_theme_view_classes","View CSS Classes");
 	
 	$thms=sc_get_themes();
-	while(list($key,$thm)=each($thms)) {
-		echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">$thm</a><br>";
+	while(list($key,$thm)=each($thms)) {		
+		echo " $thm [<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";
+		
+		echo "[clone] ";		
+		echo "[delete] ";
+		
+		echo "<br>";
+		
+		
 	}
+	include( "footer.php" );
+	exit();
 }
 
 
