@@ -887,33 +887,24 @@ function adm_action_f_menu_topedit_del() { eval( scg() );
 
 	adm_action_menu_topedit();
 }
-function adm_action_f_menu_topedit_add() {
-	eval( scg() );
+function adm_action_f_menu_topedit_add() { eval( scg() );
 	echo "<h3>Edit Top Menu :: Add $mname</h3>";
-
 	sc_query( "insert into menu_top (`name`,`link`,`sort_order`,`access`) values('$mname','$murl','$msor','$access');" );
-
-
 	adm_action_menu_topedit();
 }
-function adm_action_f_menu_topedit_mod() {
-	eval( scg() );
+function adm_action_f_menu_topedit_mod() { eval( scg() );
+echo "WHAT!!!";
 	$res=sc_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Top Menu :: Modify $menuitem->name = $mname</h3>";
-
 	sc_query( "update menu_top set `name`='$mname' where `id`='$id'" );
-	sc_query( "update menu_top set `link`='$murl' where `id`='$id'" );
+	sc_query( "update menu_top set `link`='$menu_url' where `id`='$id'" );
 	sc_query( "update menu_top set `sort_order`='$msor' where `id`='$id'" );
 	sc_query( "update menu_top set `access`='$access' where `id`='$id'" );
 
 	adm_action_menu_topedit();
 }
-function adm_action_menu_topedit() {
-	eval( scg() );
-
-
-
+function adm_action_menu_topedit() { eval( scg() );
 	echo "<h3>Edit Top Menu</h3>";
 	echo "hello";
 	echo "<table border=0 cellspacing=0 cellpadding=0>";
@@ -932,7 +923,7 @@ function adm_action_menu_topedit() {
 
 		echo "<tr>";
 
-		echo "<form enctype=application/x-www-form-URLencoded action=adm.php>";
+		echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 		echo "<input type=hidden name=action value=f_menu_topedit_del>";
 		echo "<td class=contenttd>";
 
@@ -943,26 +934,25 @@ function adm_action_menu_topedit() {
 		echo "</td>";
 
 		echo "<td class=contenttd>";
-		echo "<form enctype=application/x-www-form-URLencoded action=adm.php>";
-		echo "<input type=hidden name=action value=f_menu_topedit_mod>";
-
-		echo "<input type=hidden name=id value=$menuitem->id>";
-		echo "<input size=20 type=text name=mname value=\"$menuitem->name\">";
+		echo "<form enctype=\"application/x-www-form-URLencode\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+		echo "<input type=\"hidden\" name=\"action\" value=\"f_menu_topedit_mod\">";
+		echo "<input type=\"hidden\" name=\"id\" value=\"$menuitem->id\">";
+		echo "<input size=\"20\" type=text name=\"mname\" value=\"$menuitem->name\">";
 		echo "</td>";
-		echo "<td class=contenttd>";
-		echo "<input size=40 type=text name=murl value=\"$menuitem->link\">";
-		echo "</td>";
-
-		echo "<td class=contenttd>";
-		echo "<input size=10 type=text name=msor value=\"$menuitem->sort_order\">";
+		echo "<td class=\"contenttd\">";
+		echo "<input size=\"40\" type=\"text\" name=\"menu_url\" value=\"$menuitem->link\">";
 		echo "</td>";
 
-		echo "<td class=contenttd>";
-		echo "<input size=10 type=text name=access value=\"$menuitem->access\">";
+		echo "<td class=\"contenttd\">";
+		echo "<input size=\"10\" type=\"text\" name=\"msor\" value=\"$menuitem->sort_order\">";
 		echo "</td>";
 
-		echo "<td class=contenttd>";
-		echo "<input type=submit name=submit value=modify>";
+		echo "<td class=\"contenttd\">";
+		echo "<input size=\"10\" type=\"text\" name=\"access\" value=\"$menuitem->access\">";
+		echo "</td>";
+		
+		echo "<td class=\"contenttd\">";
+		echo "<input type=\"submit\" name=\"submit\" value=\"modify\">";
 		echo "</form>";
 		echo "</td></tr>";
 	}
