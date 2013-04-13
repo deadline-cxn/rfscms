@@ -36,7 +36,7 @@ $RFS_SITE_WIKI_IMAGES_PATH  = "images/wiki";
 //////////////////////////////////////////////////////////////////////////////
 // FONT STUFF
 
-$RFS_SITE_NAV_FONT          = "Impact.ttf";
+$RFS_SITE_NAV_FONT          = "impact.ttf";
 $RFS_SITE_NAV_IMG           = "0";
 
 //////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ $RFS_SITE_CSS               = "<LINK rel=\"stylesheet\" href=\"\$RFS_SITE_THEME_
 $RFS_SITE_MENU_TOP_LOCATION = "top";
 $RFS_SITE_MENU_LEFT_LOCATION= "left";
 $RFS_SITE_FOOTER            = "";
-$RFS_SITE_COPYRIGHT         = "<center><a href=\"http://www.sethcoder.com/\"> Powered by RFS CMS &copy;2005-2012 Seth Parson</a></center>";
+$RFS_SITE_COPYRIGHT         = "<center><a href=\"http://www.sethcoder.com/\"> Powered by RFS CMS </a></center>";
 
 $RFS_SITE_SINGLETABLEWIDTH  = 940;
 $RFS_SITE_DOUBLETABLEWIDTH  = 435;

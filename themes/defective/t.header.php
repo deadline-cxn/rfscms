@@ -73,7 +73,7 @@ to("100%"," align=center cellpadding=0");
                     
 		if ($RFS_SITE_NAV_IMG)  {
 	
-			sc_image_text($RFS_SITE_NAME,$RFS_SITE_NAV_FONT,
+			sc_image_text($RFS_SITE_NAME,$RFS_SITE_FONT,
 							53,720,90,0,0,
 							250,160,10,
 							244,4,0,1,1);
@@ -87,21 +87,12 @@ to("100%"," align=center cellpadding=0");
 							sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
                     }
                     else {
-								//$RFS_SITE_NAV_FONT,                        
-								sc_image_text("DONATED! THANK YOU",
-
-										"Collegiate.ttf",
-
-
-										53,720,90,0,0,
-										255,255,10,
-										244,4,0,1,1);
-												// 720 x 90
+							sc_image_text(	"DONATED! THANK YOU",
+											"Collegiate.ttf",
+											53,720,90,0,0,
+											255,255,10,
+											244,4,0,1,1);
 						}
-								
-				
-                
-                    
                     tcc();
                 trc();
             tc();
@@ -111,7 +102,8 @@ tc();
 
 to("100%"," align=center ");
     tro("");
-        sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
+         sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
+		 tco("sc_top_menu_table");
 		 sc_theme_form();
     trc();
 tc();

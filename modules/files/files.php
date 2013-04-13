@@ -1,4 +1,7 @@
 <?
+chdir("../../");
+include_once("include/lib.all.php");
+
 
 if($argv[1]=="scrub") {
     $RFS_CMD_LINE=true;  
@@ -16,7 +19,22 @@ if($argv[1]=="orph") {
     exit();
 }
 
-chdir("../../");
+if($action=="get_file_go") {
+		
+        $filedata=sc_getfiledata($_REQUEST['id']);
+        if(empty($filedata))         {
+            echo "Error 3392! File does not exist?\n";
+            include("footer.php");
+            exit();
+        }
+        sc_adddownloads($data->name,1);
+        $dl=$filedata->downloads+1;
+        sc_query("UPDATE files SET downloads='$dl' where id = '$id'");
+        echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_SITE_URL/$filedata->location\">\n";
+        $action="get_file";
+}
+
+
 include("header.php");
 
 
@@ -33,11 +51,10 @@ if($action=="show_temp") {
 if($action=="hide_temp") {
 	$_SESSION['show_temp']=false;
 }
-sc_button("$RFS_SITE_URL/modules/files/files.php","Show Files");
 
 if( $data->access==255) {
-    echo "<font class=lilwarn>Admin Functions</font>";
-	echo "<table border=0><tr>"; 
+echo "<font class=lilwarn>Admin Functions</font>";
+echo "<table border=0><tr>"; 
 		
 if(sc_access_check("files","upload")) {
 	echo "<td>";
@@ -106,6 +123,7 @@ echo "<td width=30 class=contenttd>&nbsp;and&nbsp;display&nbsp;</td>\n";
 echo "<td width=15 class=contenttd><select name=amount><option>all<option>10<option>25<option>50<option>100</select></td>\n";
 echo "<td width=30 class=contenttd>&nbsp;results&nbsp;</td>\n";
 echo "<td width=50 class=contenttd><input type=submit value=\"go!\" name=submit> </form></td>\n";
+echo "<td width=75% class=contenttd></td>";
 echo "</tr></table>\n";
 
 if($action=="addfilelinktodb") {
@@ -207,20 +225,6 @@ if($action=="addfiletodb_go") {
         sc_query("UPDATE files SET time='$time1' where name='$name'");
         sc_query("UPDATE files SET worksafe='$sfw' where name='$name'");
     }
-}
-
-if($action=="get_file_go") {
-        $filedata=sc_getfiledata($_REQUEST['id']);
-        if(empty($filedata))         {
-            echo "Error 3392! File does not exist?\n";
-            include("footer.php");
-            exit();
-        }
-        sc_adddownloads($data->name,1);
-        $dl=$filedata->downloads+1;
-        sc_query("UPDATE files SET downloads='$dl' where id = '$id'");
-        echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$filedata->location\">\n";
-        $action="get_file";
 }
 
 if($action=="get_file"){
@@ -702,8 +706,14 @@ function show1file($filedata,$bg) { eval(scg());
 		($filetype=="otf") ||
 		($filetype=="fon") ) {
 		sc_image_text(	"$filedata->name",
-						"$filedata->name",
-						28,812,74,0,0,10,145,148,1,1,0,1,1);
+						"$filedata->name", 18, // font, fontsize
+						1,1, // w,h
+						0,0, // offset x, offset y
+						244,245,1, // RGB Inner
+						1,1,0, 		// RGB Outer
+						0,	 // force render
+						0	// force height
+						);		
 		}
 	echo "</td>";
 
@@ -760,9 +770,11 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 		echo "<p>Your search for $criteria yielded $x results:</p>";
 	}
 	
+	echo "<center>";
 	if($prevtop>0) 
 		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria\">PREV PAGE</a>] ";
-	echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria\">NEXT PAGE</a>] ";
+	echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria\">NEXT PAGE</a>] ";	
+	echo "</center>";
 	
     if(count($filelist)) {
 		echo "<h1>".ucwords($buffer)."</h1>";
@@ -784,6 +796,13 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 		}
 		echo "</table>\n";
 	}
+
+	echo "<center>";
+	if($prevtop>0) 
+		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria\">PREV PAGE</a>] ";
+	echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria\">NEXT PAGE</a>] ";	
+	echo "</center>";
+	
     include("footer.php");
     exit();
 }

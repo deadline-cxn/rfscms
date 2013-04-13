@@ -1,4 +1,5 @@
 <?
+chdir("../../");
 include("header.php");
 
 $video=mfo1("select * from videos where id='$id'");

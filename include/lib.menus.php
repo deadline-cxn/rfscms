@@ -1,6 +1,6 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFS CMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 sc_div(__FILE__);
 function sc_menu_draw($menu_location) {
@@ -8,7 +8,7 @@ function sc_menu_draw($menu_location) {
     $res=sc_query("select * from `menu_top` order by `sort_order` asc");
     $num=mysql_num_rows($res);
     if($menu_location=="left") {
-        echo "<table width=100% border=0 cellspacing=0 cellpadding=0 align=center>\n";
+        echo "<table  border=0 cellspacing=0 cellpadding=0 align=center>\n";
     }
     for($i=0;$i<$num;$i++)    {
         $link=mysql_fetch_object($res);
@@ -41,16 +41,17 @@ function sc_menu_draw($menu_location) {
                     d_echo("\$RFS_SITE_NAV_IMG = $RFS_SITE_NAV_IMG");
 
                     if($RFS_SITE_NAV_IMG == 1) {
+						$fntsz=16;
+						if($RFS_SITE_NAV_FONT_SIZE>0) $fntsz=$RFS_SITE_NAV_FONT_SIZE;
                         sc_image_text(
-
                             $link->name,
                             $RFS_SITE_NAV_FONT,
-                            18,812,
+							$fntsz,1,
                             44,0,
                             -10,
                             $clr[0], $clr[1], $clr[2],
                             $bclr[0], $bclr[1], $bclr[2],
-                            1,1 );
+                            0,0 );
                     }
                     else {
 

@@ -1,6 +1,6 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFS CMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 if(array_pop(explode("/",getcwd()))=="include") chdir("..");
 include_once("include/session.php");
@@ -24,35 +24,37 @@ if(!empty($font)){
     $font=$RFS_SITE_PATH."/files/fonts/".$font;
     $font=str_replace("fonts/fonts/","fonts/",$font);
 }
-
 if(!file_exists($font)) {
     $font="$RFS_SITE_PATH/include/fonts/OCRA.ttf";
 }
-
 //////////////////////////////////////////// TEXT ONLY SECTION
 if( $action=="showfont") {
 	if(empty($text_size))        $text_size=9;
 	if(!empty($otext))        $fizont=$otext;
-    
     $gfn=explode("/",$font); $font_name=$gfn[count($gfn)-1];
     if(empty($fizont)) {
         $gfn=explode(".",$font_name);
         array_pop($gfn);
         $fizont=join(".",$gfn);
     }
-	$renderfile="$RFS_SITE_PATH/files/pictures/rendered/font.$font_name.png";    
-    //echo "   $fizont <br>            $renderfile <br>                $font<br>";
-    
-	if(	($forcerender!=1) && (file_exists($renderfile))) {
-        header('Content-Type: image/png'); include($renderfile); exit();
+	$renderfile="$RFS_SITE_PATH/files/pictures/rendered/font.$font_name.png";
+	if(!empty($renderfile)){
+		if($forcerender!=1) {
+			if(file_exists($renderfile)){
+				header('Content-Type: image/png');
+				readfile($renderfile);
+				exit();
+			}
+		}
 	}
-
 	$bbox   = imagettfbbox($text_size, 0, $font, $fizont);
+
 	$w = $bbox[2] - $bbox[6];
 	$h = $bbox[3] - $bbox[7];
-    if(!$forcewidth) $owidth=$w+100;
+
+    if(!$forcewidth) $owidth=$w+5;
     if($forceheight) $h=$oheight;
-	else $oheight=$h;
+	else $oheight=$h+15;
 	$image_b=genm_newimg($owidth,$oheight);
     if( ($bgr) || ($bgg) || ($bgb) ){
         $bgc=imagecolorallocate($image_b,$bgr,$bgg,$bgb);
@@ -62,9 +64,13 @@ if( $action=="showfont") {
 	if(empty($icr)) { $icr=255; $icg=255; $icb=255; }
 	$color			= imagecolorallocate($image_b, $icr, $icg, $icb);
 	if($hideborder!=true)
+
+		
+	
 	for($x=-1;$x<4;$x++) for($y=-1;$y<4;$y++) {
         $zx = $bbox[0] + ($owidth / 2) - ($bbox[4] / 2) ;
         $zy = $bbox[1] + ($oheight / 2) - ($bbox[5] / 2) ;
+		
         $zx+=$x;
         $zy+=$y;
         $zx+=$offx;
@@ -76,19 +82,16 @@ if( $action=="showfont") {
 
 	$zx = $bbox[0] + ($owidth / 2) - ($bbox[4] / 2) ;
 	$zy = $bbox[1] + ($oheight / 2) - ($bbox[5] / 2) ;
-    
+	
     $zx+=$offx;
     $zy+=$offy;
-
 	imagettftext($image_b, $text_size-1, 0, $zx, $zy,   $color, 		$font, $fizont);
 	@imagepng($image_b,$renderfile);
-		
 	if($SESSION['debug_msgs']){
 	$color = imagecolorallocate($image_b, 0,255,0);
 	imagettftext($image_b, $text_size-1, 0, $zx, $zy,   $color, 		$font,  $fizont);
 }
 
-		
 //////////////////////////////////////////// END OF TEXT ONLY SECTION		
 } else
     {
@@ -99,10 +102,20 @@ if( $action=="showfont") {
 	$px=explode("/",$pic->url);
 	$py=explode(".",$px[count($px)-1]);
 	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";
-	$renderfile =$RFS_SITE_PATH."/"."files/pictures/rendered/".$py[0].".".$meme->id;
+	$renderfile =$RFS_SITE_PATH."/"."files/pictures/rendered/".$py[0].".".$meme->id.".png";
+	
+	if(!empty($renderfile)){
+		if($forcerender!=1) {
+			if(file_exists($renderfile)){
+				header('Content-Type: image/png');
+				readfile($renderfile);
+				exit();
+			}
+		}
+	}
+
     
 	$image_in = genm_imgload($ptf);
-
     $dbzf=@ImageSX($image_in);
     if($dbzf==0) $dbzf=1;
     $scale = ( $owidth/$dbzf) *100;
@@ -209,11 +222,8 @@ if( $action=="showfont") {
         imagestring($image_b, 2, 3, $h-15, $dout, $red);
 }
 
-$renderfile.=".png";
-
 if($meme->datborder=="true") imagerectangle($image_b, 0, 0, $w-1, $h-1, $black);
 @imagepng($image_b,$renderfile);
-// if((!file_exists($renderfile))||($forcerender==1) ){    //    imagepng($image_b,$renderfile);//}
 
 if(!empty($renderfile)){
 	if(file_exists($renderfile)){
@@ -222,8 +232,6 @@ if(!empty($renderfile)){
         exit();
 	}
 }
-
-
 header('Content-Type: image/png');
 imagepng($image_b);
 exit();
