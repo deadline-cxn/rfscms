@@ -171,9 +171,16 @@ function sc_show_news($id) { eval(scg());
               if(!stristr($news->image_link,$RFS_SITE_URL))
                   $news->image_link="$RFS_SITE_URL/$news->image_url";				
               echo "<a href=\"$news->image_link\" target=\"_blank\" class=news_a >";
+			  
 
-              if(!stristr($news->image_url,$RFS_SITE_URL))
-                  $news->image_url="$RFS_SITE_URL/$news->image_url";
+		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/")))
+			 $oldimage=$news->image_url;
+			$news->image_url="$RFS_SITE_URL/images/icons/404.png";	
+		if(empty($news->image_url)) 
+			$news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";		
+		if(!stristr($news->image_url,$RFS_SITE_URL))
+			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
+				
               echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" ";
               echo "alt=\"$altern\" align=left></a>\n";
         }
@@ -268,11 +275,7 @@ function deletenewsgo($nid){ 	eval(scg());
 }
 function editnews($nid) { eval(scg());
     $news=mysql_fetch_object(sc_query("select * from news where id='$nid'"));
-    //echo "<tr><td>Image Link</td><td><input name=image_url value=\"".stripslashes($news->image_link)."\" size=100></td></tr>\n";
-    //echo "<tr><td>Image URL </td><td><input name=image     value=\"".stripslashes($news->image_url)."\"  size=100></td></tr>\n";
-    //echo "<tr><td>Image ALT </td><td><input name=image_alt value=\"".stripslashes($news->image_alt)."\"  size=100></td></tr>\n";
     echo "<a href=$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid>Preview</a>";
-	
     if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
 		 $oldimage=$news->image_url;
         $news->image_url="$RFS_SITE_URL/images/icons/404.png";	
@@ -425,7 +428,6 @@ function shownews() { eval(scg());
 	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td>";
 	echo "<table border=0 width=100% ><tr>";
 	echo "<td valign=top  class=contenttd>";
-	// $RFS_MODULE=$GLOBALS["RFS_SITE_URL"];
 	$month_name=$GLOBALS['month_name'];
 	$day_name=$GLOBALS['day_name'];
 	$data=$GLOBALS['data'];
