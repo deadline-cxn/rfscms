@@ -272,7 +272,8 @@ function editnews($nid) { eval(scg());
     //echo "<tr><td>Image URL </td><td><input name=image     value=\"".stripslashes($news->image_url)."\"  size=100></td></tr>\n";
     //echo "<tr><td>Image ALT </td><td><input name=image_alt value=\"".stripslashes($news->image_alt)."\"  size=100></td></tr>\n";
     echo "<a href=$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid>Preview</a>";
-    if(!file_exists("$RFS_SITE_PATH/$news->image_url")) {
+	
+    if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
 		 $oldimage=$news->image_url;
         $news->image_url="$RFS_SITE_URL/images/icons/404.png";	
 	}
@@ -281,7 +282,6 @@ function editnews($nid) { eval(scg());
 	}
     if(!stristr($news->image_url,$RFS_SITE_URL))
         $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
-
     
     echo "<table border=0><tr><td>";
     echo "<img src=\"$news->image_url\" width=100 height=100><br>";
@@ -451,15 +451,16 @@ function shownews() { eval(scg());
         if($data->access==255) echo "<font class=sc_admin>$news->views</td><td class=contenttd>";
         echo "<table border=0 cellpadding=1 cellspacing=0><tr><td class=contenttd>";
 
-        if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
-            $news->image_url="$RFS_SITE_URL/images/icons/404.png";
-        if(empty($news->image_url))
-            $news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";
-        if(!stristr($news->image_url,$RFS_SITE_URL))
-            $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
-
+		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/")))
+			 $oldimage=$news->image_url;
+			$news->image_url="$RFS_SITE_URL/images/icons/404.png";	
+		if(empty($news->image_url)) 
+			$news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";		
+		if(!stristr($news->image_url,$RFS_SITE_URL))
+			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
+				
         $altern=stripslashes($news->image_alt);
-        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">";
+        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">";		 
         echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30>";
         echo "</a>\n";
         echo "</td></tr></table>";
