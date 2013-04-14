@@ -50,7 +50,7 @@ function sc_module_mini_news($x) { eval(scg());
         if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
             $news->image_url="$RFS_SITE_URL/images/icons/404.png";
         if(empty($news->image_url))
-            $news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";
+            $news->image_url="$RFS_SITE_URL/images/icons/news.png";
         if(!stristr($news->image_url,$RFS_SITE_URL))
             $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 
@@ -83,7 +83,7 @@ function sc_module_popular_news($x) { eval(scg());
         if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
             $news->image_url="$RFS_SITE_URL/images/icons/404.png";
         if(empty($news->image_url))
-            $news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";
+            $news->image_url="$RFS_SITE_URL/images/icons/news.png";
         if(!stristr($news->image_url,$RFS_SITE_URL))
             $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 
@@ -177,7 +177,7 @@ function sc_show_news($id) { eval(scg());
 			 $oldimage=$news->image_url;
 			$news->image_url="$RFS_SITE_URL/images/icons/404.png";	
 		if(empty($news->image_url)) 
-			$news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";		
+			$news->image_url="$RFS_SITE_URL/images/icons/news.png";		
 		if(!stristr($news->image_url,$RFS_SITE_URL))
 			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 				
@@ -281,7 +281,7 @@ function editnews($nid) { eval(scg());
         $news->image_url="$RFS_SITE_URL/images/icons/404.png";	
 	}
     if(empty($news->image_url)) {
-        $news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";		
+        $news->image_url="$RFS_SITE_URL/images/icons/news.png";		
 	}
     if(!stristr($news->image_url,$RFS_SITE_URL))
         $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
@@ -457,7 +457,7 @@ function shownews() { eval(scg());
 			 $oldimage=$news->image_url;
 			$news->image_url="$RFS_SITE_URL/images/icons/404.png";	
 		if(empty($news->image_url)) 
-			$news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";		
+			$news->image_url="$RFS_SITE_URL/images/icons/news.png";		
 		if(!stristr($news->image_url,$RFS_SITE_URL))
 			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 				
