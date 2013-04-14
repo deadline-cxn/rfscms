@@ -281,7 +281,8 @@ function editnews($nid) { eval(scg());
 
     
     echo "<table border=0><tr><td>";
-    echo "<img src=\"$news->image_url\" width=100 height=100>";
+    echo "<img src=\"$news->image_url\" width=100 height=100><br>";
+	echo "($news->image_url)";
     echo "</td><td>";
     echo "<table border=0><tr>";
     echo "<td align=left>";
