@@ -272,17 +272,21 @@ function editnews($nid) { eval(scg());
     //echo "<tr><td>Image URL </td><td><input name=image     value=\"".stripslashes($news->image_url)."\"  size=100></td></tr>\n";
     //echo "<tr><td>Image ALT </td><td><input name=image_alt value=\"".stripslashes($news->image_alt)."\"  size=100></td></tr>\n";
     echo "<a href=$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid>Preview</a>";
-    if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
-        $news->image_url="$RFS_SITE_URL/images/icons/404.png";
-    if(empty($news->image_url))
-        $news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";
+    if(!file_exists("$RFS_SITE_PATH/$news->image_url")) {
+		 $oldimage=$news->image_url;
+        $news->image_url="$RFS_SITE_URL/images/icons/404.png";	
+	}
+    if(empty($news->image_url)) {
+        $news->image_url="$RFS_SITE_URL/images/icons/noimage.gif";		
+	}
     if(!stristr($news->image_url,$RFS_SITE_URL))
         $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 
     
     echo "<table border=0><tr><td>";
     echo "<img src=\"$news->image_url\" width=100 height=100><br>";
-	echo "($news->image_url)";
+	if(!empty($oldimage))
+		echo "($oldimage)";
     echo "</td><td>";
     echo "<table border=0><tr>";
     echo "<td align=left>";
