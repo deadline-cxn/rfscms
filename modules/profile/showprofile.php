@@ -1,4 +1,5 @@
 <?
+chdir("../../");
 include("header.php");
 $user=$_REQUEST['user'];
 if(empty($user)) $user=$data->name;
@@ -58,7 +59,7 @@ echo "</tr></table>\n";
 
 
 
-include("rfs/footer.php");
+include("footer.php");
 ?>
 
 
