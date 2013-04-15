@@ -184,8 +184,8 @@ echo "<tr><td>Real Name :</td><td> <input type=textbox name=name size=30 value=\
 $dtq=explode(" ",$data->birthday);
 $date=explode("-",$dtq[0]);
 $time=explode(":",$dtq[1]);
-$t=mktime($time[0],$time[1],$time[2],
-		  $date[1],$date[2],$date[0]);  // h,s,m,mnth,d,y
+$t=@mktime( $time[0],$time[1],$time[2],
+		    $date[1],$date[2],$date[0]);  // h,s,m,mnth,d,y
 $tyear=date("Y",$t);
 $tmonth=date("m",$t);
 $nmonth=date("M",$t);

@@ -52,10 +52,7 @@ if($action=="hide_temp") {
 	$_SESSION['show_temp']=false;
 }
 
-if( $data->access==255) {
-echo "<font class=lilwarn>Admin Functions</font>";
 echo "<table border=0><tr>"; 
-		
 if(sc_access_check("files","upload")) {
 	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload");
@@ -99,8 +96,9 @@ if(sc_access_check("files","xplorer")) {
     sc_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
 	echo "</td>";
 }
-	echo "</tr></table>"; 	
-}
+
+echo "</tr></table>"; 	
+
 
 echo "<table border=0 cellspacing=0 cellpadding=0 >";
 echo "<tr>\n";
@@ -238,28 +236,44 @@ if($action=="get_file"){
         
         echo "<p>
 		
-		
-		
-		<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\">
+		<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\" target=_new_window>
 		<img src=\"$RFS_SITE_URL/images/icons/Download.png\" border=0>
 		<font size=4>$filedata->name ($size)</a> </font></p>\n";
         echo "<p>(Right click and 'save target as' to save the file to your computer...)</p>\n";
+
+	echo "<table border=0><tr>";
+    if(sc_access_check("files","edit")) {
+		echo "<td>";
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id","Edit");		
+		echo "</td>";
+	}
+	
+	if(sc_access_check("files","delete")) {
+		echo "<td>";
+	    sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id","Delete");
+		echo "</td>";
+	}
+		
+	echo "</tr></table>";
 		
 		
 
-echo "Rating: $filedata->rating				<br>";
-echo "Thumb: $filedata->thumb				<br>";
+
 
 	
 echo "<table border=0>";
-			
+
+echo "<tr><td>Posted by:</td><td> <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a></td></tr>";
+echo "<tr><td>Downloaded:</td><td> $filedata->downloads times</td></tr>";
+echo "<tr><td>Rating:</td><td> $filedata->rating</td></tr>";
+// echo "<tr><td>Thumb:</td><td>$filedata->thumb</td></tr>";
 		
 echo "<tr><td>Category:</td><td>$filedata->category</td></tr>";
 
 echo "<tr><td>Version:</td><td>$filedata->version</td></tr>";
 echo "<tr><td>Homepage:</td><td>$filedata->homepage</td></tr>";
-echo "<tr><td>Bytes:</td><td>$filedata->size</td></tr>";
-echo "<tr><td>md5:</td><td>".md5($filedata->location)."</td></tr>";
+echo "<tr><td>Bytes:</td><td>$filedata->size ($size)</td></tr>";
+echo "<tr><td>md5 hash:</td><td>".md5($filedata->location)."</td></tr>";
 
 echo "<tr><td>Platform:</td><td>$filedata->platform</td></tr>";
 echo "<tr><td>Operating System:</td><td>$filedata->os</td></tr>";
@@ -290,6 +304,23 @@ echo "</table>";
         $ft=sc_getfiletype($filedata->location);
 
         switch($ft){
+			
+			
+			case "ttf":
+			case "otf":
+			case "fon":
+				sc_image_text(	"$filedata->name",
+						"$filedata->name", 72, // font, fontsize
+						1,1, // w,h
+						0,0, // offset x, offset y
+						244,245,1, // RGB Inner
+						1,1,0, 		// RGB Outer
+						0,	 // force render
+						0	// force height
+						);		
+			break;
+			
+			
 			case "adf":
 				echo "Contents:<br><pre>";
 				echo system("unadf -r $filedata->location");
@@ -363,13 +394,38 @@ echo "</table>";
                 $dl=$filedata->downloads+1;
                 sc_query("UPDATE files SET downloads='$dl' where id = '$id'");
             break;
+			
+			
+			case "gif":
+			case "jpg":
+			case "jpeg":
+			
+			
+			
+			case "png":
+			
+				$image_size   = @getimagesize($filedata->location);
+				$image_height = $image_size[1];
+				$image_width  = $image_size[0];
+				echo "<hr>IMAGE: $image_width x $image_height <BR>";
+				
+				
+				$exif = exif_read_data($filedata->location, 0, true);
+				echo "<hr>EXIF Information:<br>";
+				foreach ($exif as $key => $section) {
+					foreach ($section as $name => $val) {
+						echo "$key.$name: $val<br />\n";
+					}
+				}
+				
+				
+			break;
 
             default:
             break;
         }
 		
-        echo "<p align=right>Posted by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a>, \n";
-        echo "Downloaded $filedata->downloads times</p>\n";
+        
 		
     }
 
@@ -382,6 +438,14 @@ echo "</table>";
 }
 
 if($file_mod=="yes"){
+	
+	if(!sc_access_check("files","edit")) {
+		echo "You don't have access to edit files.<br>";
+		include("footer.php");
+		exit();
+	}	
+	
+	
     if(!empty($data->name))    {
         if($action=="ren")        {
             if(!empty($name)) sc_query("UPDATE files SET name='$name' where id = '$id'");
@@ -482,7 +546,7 @@ if($file_mod=="yes"){
             exit();
         }
     }
-    else echo "<p>You can't modify files if you are not <a href=$RFS_SITE_URL/modules/files/login.php>logged in</a>!</p>\n";
+    else echo "<p>You can't modify files if you are not <a href=$RFS_SITE_URL/login.php>logged in</a>!</p>\n";
 }
 
 if($action=="upload_avatar"){
@@ -510,6 +574,12 @@ if($action=="remove_duplicates") {
 }
 
 function orphan_scan($dir) { eval(scg()); 
+	if(!sc_access_check("files","orphanscan")) {
+		echo "You don't have access to scan orphan files.<br>";
+		include("footer.php");
+		exit();
+	}
+		 
 	echo "Scanning [$RFS_SITE_PATH/$dir] \n"; if(!$RFS_CMD_LINE) echo "<br>";
 	$dir_count=0; $dirfiles = array();
 	$handle=opendir($RFS_SITE_PATH."/".$dir);
@@ -583,6 +653,12 @@ if($action=="getorphans") {
 }
 
 if($action=="purge") {
+if(!sc_access_check("files","purge")) {
+		echo "You don't have access to purge files.<br>";
+		include("footer.php");
+		exit();
+	}	
+	
 	$r=sc_query("select * from files");
 	for($i=0;$i<mysql_num_rows($r);$i++){
 		$file=mysql_fetch_object($r);
@@ -601,18 +677,17 @@ if($action=="upload") {
         if($data->access!=255) {  echo "<p>You are not authorized to upload files!</p>\n";  }
         else {
             sc_div("UPLOAD FILE FORM START");
-            echo "<p>Add a file?!?!</p>\n";
+            echo "<p>Upload a file</p>\n";
             echo "<table border=0>\n\n\n";
             echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/files/files.php\" method=\"post\">\n";
             echo "<input type=\"hidden\" name=\"give_file\" value=\"yes\">\n";
             echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99990000000\">\n";
 
             echo "<tr><td align=right>Put file in:</td><td>\n";
-                echo "<select name=local>\n";
-                if(!empty($path)) echo "<option>$path\n";
-                echo "<option>files\n";
-                echo "<option>images\n";
-                echo "</select></td></tr>\n";
+
+				sc_optionize_folder("local","files",1,0,$path);
+
+				echo "</td></tr>\n";
 
             echo "<tr>  <td align=right>Select file:      </td>
                         <td ><input name=\"userfile\" type=\"file\" size=80> </td></tr>\n";
@@ -820,10 +895,22 @@ function show1file($filedata,$bg) { eval(scg());
 
     echo "<td class=sc_file_table_$bg >"; // G
     $data=$GLOBALS['data'];
-    if( ($filedata->submitter==$data->name) || ($data->access==255)) {
-        echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id\">edit</a>] ";
-        echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id\">delete</a>] ";
-	}	
+
+		echo "<table border=0><tr>";
+		if(sc_access_check("files","edit")) {
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id","Edit");		
+			echo "</td>";
+		}
+		
+		if(sc_access_check("files","delete")) {
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id","Delete");
+			echo "</td>";
+		}
+			
+		echo "</tr></table>";
+		
     echo "</td></tr>\n";
 }
 
