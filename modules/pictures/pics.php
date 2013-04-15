@@ -1,8 +1,29 @@
 <?
-if($a=="ms") {
+if($_REQUEST['a']=="ms") {
 	echo "<img src='http://www.defectiveminds.com/rfs/include/generate.image.php/?download_it_$id.png&id=$id&owidth=512' border=0></a>";
     exit();
 }
+if($_REQUEST['action']=="aname") {
+	$sname=$_REQUEST['sname'];
+	chdir("../../");
+	include("include/lib.all.php");
+	if(sc_access_check("pictures","edit")) {
+		sc_query("update pictures set sname='$sname' where id='$id'");
+		echo $sname;	
+	} else echo "You can't edit pictures.";
+	exit();
+}
+if($_REQUEST['action']=="adesc") {
+	$desc=$_REQUEST['desc'];
+	chdir("../../");
+	include("include/lib.all.php");
+	if(sc_access_check("pictures","edit")) {
+		sc_query("update pictures set description='$desc' where id='$id'");
+		echo $desc;
+	} else echo "You can't edit pictures.";
+	exit();
+}
+
 chdir("../../");
 include("header.php");
 
@@ -1042,35 +1063,44 @@ echo "<table border=0><tr>";
 		echo "</td>";
 		
 		echo "</tr></table>";
-        
 		
+echo "<script>function changepicname(x,id) {
+			var xmlhttp=new XMLHttpRequest();
+			var url=\"$RFS_SITE_URL/modules/pictures/pics.php?action=aname&sname=\"+x+\"&id=\"+id;
+			xmlhttp.open(\"GET\",url,false);
+			xmlhttp.send();
+			document.getElementById(\"picname\").innerHTML='<h1>'+xmlhttp.responseText+'</h1>'
+			} </script>";
+        
+echo "<div id=\"picname\">";
 		if(empty($picture->sname)) {
 			if(sc_access_check("pictures","edit")) {
 				$picture->sname="	EDIT THIS NAME!!!!
-							<form action='$RFS_SITE_URL/modules/pictures/pics.php' method='post'>
-							<input type=hidden name=action value=modifynamego>
-							<input type=hidden name=id value=$picture->id>
-							<input id='sname' name=sname value=\"\" onblur=\"this.form.submit()\">
-							<input type=submit>
-							</form>";
-			}
+						<input id='sname' name=sname value=\"\" 
+							onblur=\"changepicname(this.value,$picture->id)\"> ";
+			}  
 		}
-		echo "<h1>$picture->sname</h1>";
+echo "<h1>$picture->sname</h1>";
+echo "</div>";
+
+echo "<script>function changepicdesc(x,id) {
+			var xmlhttp=new XMLHttpRequest();
+			var url=\"$RFS_SITE_URL/modules/pictures/pics.php?action=adesc&desc=\"+x+\"&id=\"+id;
+			xmlhttp.open(\"GET\",url,false);
+			xmlhttp.send();
+			document.getElementById(\"picdesc\").innerHTML='<h1>'+xmlhttp.responseText+'</h1>'
+			} </script>";
 		
+echo "<div id=\"picdesc\">";		
 		if(empty($picture->description)) {
 			if(sc_access_check("pictures","edit"))  {
-			$picture->description=" EDIT THIS DESCRIPTION!!!!
-										<form action='$RFS_SITE_URL/modules/pictures/pics.php' method='post'>
-										<input type=hidden name=action value=modifydescriptiongo>
-										<input type=hidden name=id value=$picture->id>
-										<textarea id='description' name=description
-										onblur=\"this.form.submit()\"> </textarea>
-										<input type=submit>
-										</form>\n ";
+	$picture->description=" EDIT THIS DESCRIPTION!!!!
+<textarea id='description' name=description
+onblur=\"changepicdesc(this.value,$picture->id)\"></textarea>";
 			}
-		}		
-		
-		echo "<h3>$picture->description</h3>";
+		}
+echo "<h3>$picture->description</h3>";
+echo "</div>";
 		
 		if($picture->sfw=="yes") {
 			$size = getimagesize($picture->url);
