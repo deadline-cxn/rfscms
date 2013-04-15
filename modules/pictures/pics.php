@@ -1055,7 +1055,7 @@ echo "<table border=0><tr>";
 							</form>";
 			}
 		}
-		echo "<h3>$picture->sname</h3>";
+		echo "<h1>$picture->sname</h1>";
 		
 		if(empty($picture->description)) {
 			if(sc_access_check("pictures","edit"))  {
@@ -1070,7 +1070,7 @@ echo "<table border=0><tr>";
 			}
 		}		
 		
-		echo "$picture->description";
+		echo "<h3>$picture->description</h3>";
 		
 		if($picture->sfw=="yes") {
 			$size = getimagesize($picture->url);
