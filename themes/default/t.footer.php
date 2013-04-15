@@ -19,8 +19,8 @@ tc();
             
             
 			
-            sc_image_text($RFS_SITE_COPYRIGHT,"CFRevolution.ttf",
-            18,812,44,0,-10,250,0,0,0,0,0,1,1);	
+					rfs_echo($RFS_SITE_COPYRIGHT);
+// sc_image_text($RFS_SITE_COPYRIGHT,"CFRevolution.ttf",18,812,44,0,-10,250,0,0,0,0,0,1,1);	
             
            
                 

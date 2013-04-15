@@ -142,6 +142,8 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 	}
 }
 
+echo "<script type=\"text/javascript\" src=\"$RFS_SITE_URL/3rdparty/jscolor/jscolor.js\">";
+
 sc_google_analytics();
 sc_mcount($data->name);
 
