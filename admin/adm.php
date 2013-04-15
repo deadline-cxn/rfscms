@@ -383,13 +383,11 @@ function adm_action_f_theme_edit() { eval(scg());
 						echo "$img:<br>";
 						echo "<img src=\"$img\"><br>";
 				}
-				else {
-					
+				else {					
 					if($ft=="css") {
 						sc_css_edit_form("$folder/$entry", "","");
-						
 					}
-					else {					
+					else {
 						$f=file_get_contents($folder."/".$entry);
 						$f=str_replace("<","&lt;",$f);
 						echo nl2br($f)."<br>";					

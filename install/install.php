@@ -33,7 +33,10 @@ $RFS_SITE_PATH = getcwd();
 $cwdx=explode("/",$RFS_SITE_PATH);
 $installd=array_pop($cwdx);
 $RFS_SITE_PATH=join("/",$cwdx);
-if($installd!="install") $RFS_SITE_PATH.="/".$installd;
+if($installd!="install") {
+	$RFS_SITE_PATH.="/".$installd;
+	chdir("install");
+}
 
 $RFS_SITE_URL  = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
 $hostx=explode("/",$RFS_SITE_URL);
@@ -43,6 +46,10 @@ $RFS_SITE_URL=join("/",$hostx);
 if($folder!="install") $RFS_SITE_URL.="/".$folder;
 
 $table_width="85%";
+
+include("../include/version.php");
+$build=file_get_contents("../build.dat");
+$RFS_VERSION.=" BUILD $build";
 
 echo "<html><head><title>RFS CMS $RFS_VERSION Installer</title>";
 echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/install/install.css\" type=\"text/css\">\n";
@@ -54,7 +61,13 @@ background-repeat: no-repeat;
 background-attachment: fixed;
 '>";
 
-echo "<div width=100% style='background-color: blue; color:white;'>RFS CMS $RFS_VERSION Installation. For full docs and support goto  <a href=http://www.sethcoder.com/>SethCoder.com</a> (Home of RFS CMS)</div>";
+echo "<div width=100% style='background-color: blue; color:white;'>
+RFS CMS $RFS_VERSION Installation.
+For full docs and support goto
+<a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\" 
+target=_blank>SethCoder.com</a> (Home of RFS CMS)
+</div>
+";
 
 // echo "<div width=100% style='background-color: green; color:white;'>Detected PATH: $RFS_SITE_PATH</div><div width=100% style='background-color: green; color:white;'>Detected URL: $RFS_SITE_URL</div>";
 
@@ -280,7 +293,10 @@ if($action=="step_a") {
 <td><input size=100 type=\"text\" name=\"rfs_site_path\" value=\"$rfs_site_path\"></td>
 </tr>
 <tr>
-<td>Database Name</td>
+<td>Database Name 
+
+<a href=\"$rfs_site_url/3rdparty/phpmyadmin/\" target=_blank>Set up Database</a>
+</td>
 <td><input size=100 type=\"text\" name=\"rfs_db_name\" value=\"$rfs_db_name\"></td>
 </tr>
 <tr>
