@@ -1239,7 +1239,7 @@ function adm_action_edit_smilies() {
 	switch( $smact ) {
 		case "update":
 			$sfrom=addslashes( $sfrom );
-			echo "$sfrom -> $sto updated";
+			rfs_echo("$sfrom -> $sto updated");
 			$sto=addslashes( $sto );
 			sc_query( "UPDATE `smilies` SET `sto`='$sto' where `sfrom`='$ofrom';" );
 			sc_query( "UPDATE `smilies` SET `sfrom`='$sfrom' where `sfrom` = '$ofrom';" );
