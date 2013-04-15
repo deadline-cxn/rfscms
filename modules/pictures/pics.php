@@ -1139,7 +1139,7 @@ if(!$donotshowcats){
             echo "<table border=0 cellspacing=0 cellpadding=0 width=100% ><tr>";
             echo "<td class=contenttd valign=top width=220>";
         if(empty($cat->image)) $cat->image="buttfea2.gif";
-        if(!file_exists("$RFS_SITE_PATH/$cat->image")) $cat->image="icons/404.png";
+        if(!file_exists("$RFS_SITE_PATH/$cat->image")) $cat->image="images/icons/404.png";
             echo "
             <a href='$RFS_SITE_URL/modules/pictures/pics.php?action=viewcat&cat=$cat->id'>
             <h1><img src='$RFS_SITE_URL/$cat->image' border=0 width=64 height=64>$cat->name ($numpics)</h1>
