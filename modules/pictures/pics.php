@@ -995,10 +995,10 @@ if($action=="view"){
             $picture2=mysql_fetch_object($res2);
             if(!empty($picture2->id))            {
 					$linknext="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture2->id";
-					//<img src=$RFS_SITE_URL/images/icons/next.png border=0 width='40' height='40'></a>";
+					
                 if(!empty($picture3->id))
 					$linkprev="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id";
-					//><img src=$RFS_SITE_URL/images/icons/back.png border=0 width='40' height='40'></a>";
+					
                 break;
             }
         }
@@ -1007,38 +1007,42 @@ if($action=="view"){
         }
     }
 
+echo "<table border=0><tr>";
     if(empty($linknext))    {
         if(!empty($picture3->id)) {
-			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id","Previous");
-			//><img src=$RFS_SITE_URL/images/icons/back.png border=0 width='40' height='40'></a>";
+			echo "<td>";
+			sc_button($linkprev,"Previous");
+			echo "</td>";
         }
     }
-
-    echo "<center>";
-    echo "<p align=center>";
-	echo $linkprev;
+    
     if($id) {
-		
+		echo "<td>";
 		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&id=$picture->id","Caption");
-		// echo "<a href='//'>  // <img src='$RFS_SITE_URL/images/icons/caption.png' border='0' alt='Caption This Picture' width='40' height='40'>	   //</a>";
-
-		// $img=$RFS_SITE_URL."/images/icons/refresh.gif";
-		//echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=random'><img src='$img' border='0' alt='Random Picture' width='40' height='40'><br>Random Picture</a>";
+		echo "</td>";
 		
+		echo "<td>";
 		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=random","Random Picture");
+		echo "</td>";
 
-
-    if($data->id>0)
-		if( ($data->id==$picture->poster) || ($data->access==255)) {           
-			
-	echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$picture->id'>
-			<img src='$RFS_SITE_URL/images/icons/Edit.png' border='0' alt='Edit' width='40' height='40'></a>";
-            
-        echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=removepicture&id=$picture->id'>
-               <img src='$RFS_SITE_URL/images/icons/Delete.png' border='0' alt='Delete' width='40' height='40'></a>";
-		}    
-		echo $linknext; 
-		echo "</p>";
+		if(sc_access_check("pictures","edit")) {
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$picture->id","Edit");
+			echo "</td>";
+		}
+		
+		if(sc_access_check("pictures","delete")) {
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=removepicture&id=$picture->id","Delete");
+			echo "</td>";
+		}
+		
+		echo "<td>";
+		sc_button($linkprev,"Previous");
+		echo "</td>";
+		
+		echo "</tr></table>";
+        
 		
 		if(empty($picture->sname)) {
 			if(sc_access_check("pictures","edit")) {
