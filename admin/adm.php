@@ -470,7 +470,7 @@ function adm_action_forum_admin() { eval( scg() );
 	$r=sc_query( "select * from forum_list" );
 	$n=mysql_num_rows( $r );
 	if( $n==0 ) echo "<p>No forums defined.</p>";
-	sc_bf( "$RFS_SELF",
+	sc_bf( "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_add_forum".$RFS_SITE_DELIMITER.
 	       "SHOW_TEXT_New_Forum=new forum".$RFS_SITE_DELIMITER.
 	       "name=$name",
