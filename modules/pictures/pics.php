@@ -1046,7 +1046,7 @@ echo "<table border=0><tr>";
 		
 		if(empty($picture->sname)) {
 			if(sc_access_check("pictures","edit")) {
-				$picture->name="	EDIT THIS NAME!!!!
+				$picture->sname="	EDIT THIS NAME!!!!
 							<form action='$RFS_SITE_URL/modules/pictures/pics.php' method='post'>
 							<input type=hidden name=action value=modifynamego>
 							<input type=hidden name=id value=$picture->id>
@@ -1055,8 +1055,7 @@ echo "<table border=0><tr>";
 							</form>";
 			}
 		}
-		
-		sc_info("<h3>$picture->sname</h3>","white","#300030");
+		echo "<h3>$picture->sname</h3>";
 		
 		if(empty($picture->description)) {
 			if(sc_access_check("pictures","edit"))  {
@@ -1071,7 +1070,7 @@ echo "<table border=0><tr>";
 			}
 		}		
 		
-		sc_info("$picture->description","white","#200020");
+		echo "$picture->description";
 		
 		if($picture->sfw=="yes") {
 			$size = getimagesize($picture->url);
