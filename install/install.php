@@ -205,6 +205,8 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
                     echo nl2br("$q;");
                     sc_query("$q;");
                 }
+				
+			system("mkdir $RFS_SITE_PATH/log");
 
            echo "  <center> <p></p><p></p><table border=0 width=$table_width><tr><td class=formboxd>
             <center>
