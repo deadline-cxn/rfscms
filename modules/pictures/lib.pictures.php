@@ -1,6 +1,13 @@
 <?
 include_once("include/lib.all.php");
 
+sc_access_method_add("pictures", "orphanscan");
+sc_access_method_add("pictures", "upload");
+sc_access_method_add("pictures", "edit");
+sc_access_method_add("pictures", "delete");
+sc_access_method_add("pictures", "sort");
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE PICTURES
 function sc_module_mini_pictures($x) { eval(scg());

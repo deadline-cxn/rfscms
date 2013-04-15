@@ -6,23 +6,34 @@ if($a=="ms") {
 chdir("../../");
 include("header.php");
 
+echo "<table border=0><tr>"; 
 
-if($data->access==255){
-    $admin_bar=" PICTURE ADMINISTRATION: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=addorphans'>Add orphans</a>]";
-    $admin_bar.="[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=uploadpic'>Upload picture</a>]";
+if(sc_access_check("pictures","orphanscan")) {
+	echo "<td>";
+	sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=addorphans","Add Orphans");
+	echo "</td>";
+}
+if(sc_access_check("pictures","upload")) {
+	echo "<td>";
+    sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=uploadpic","Upload picture");
+	echo "</td>";
+}
+if(sc_access_check("pictures","sort")) {
     $cr=mfo1("select * from categories where name='!!!TEMP!!!'");
     $res2=sc_query("select * from `pictures` where `category`='$cr->id'");
     $numpics=mysql_num_rows($res2);
     if($numpics>0){
-    $admin_bar.="  ATTENTION: >> $numpics Unsorted Pictures [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp'>Sort</a>] << ";
-    }
-    
-    sc_info($admin_bar,"white","red");
+		echo "<td>";
+		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp","Sort $numpics Pictures");
+		echo "</td>";
+	}
+	
 }
 
+
+echo "</tr></table>"; 
+
 $ourl="$RFS_SITE_URL/modules/pictures/pics.php?action=$action&id=$id";
-
-
 
 if(empty($action))       $action="random";
 if(!empty($id))          $res=sc_query("select * from `pictures` where `id`='$id'");
@@ -45,7 +56,7 @@ if($action=="uploadpic"){
 				echo "<p>Select a file to use for the caption.</p>\n";
 			}
 			else{
-				echo "<p>Add a file?!?!</p>\n";
+				echo "<p>Upload a picture</p>\n";
 			}
         echo "<table border=0>\n";
         echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/pictures/pics.php\" method=\"post\">\n";
@@ -968,8 +979,9 @@ if($action=="view"){
     $picture=mysql_fetch_object($res);
     $category=$picture->category;
     $categorym=mfo1("select * from categories where id='$category'");
+	
     if(!empty($categorym->name)) {
-        sc_info("<center>Category: $categorym->name</center>","white","blue");        
+        sc_info("<center>Category: $categorym->name</center>","white","blue");
         
     }
     $res2=sc_query("select * from `pictures` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
@@ -982,9 +994,11 @@ if($action=="view"){
         if($picture2->id==$picture->id)        {
             $picture2=mysql_fetch_object($res2);
             if(!empty($picture2->id))            {
-					$linknext="<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture2->id'><img src=$RFS_SITE_URL/images/icons/next.png border=0 width='40' height='40'></a>";
+					$linknext="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture2->id";
+					//<img src=$RFS_SITE_URL/images/icons/next.png border=0 width='40' height='40'></a>";
                 if(!empty($picture3->id))
-					$linkprev="<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id'><img src=$RFS_SITE_URL/images/icons/back.png border=0 width='40' height='40'></a>";
+					$linkprev="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id";
+					//><img src=$RFS_SITE_URL/images/icons/back.png border=0 width='40' height='40'></a>";
                 break;
             }
         }
@@ -994,8 +1008,9 @@ if($action=="view"){
     }
 
     if(empty($linknext))    {
-        if(!empty($picture3->id))        {
-			  $linkprev="<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id'><img src=$RFS_SITE_URL/images/icons/back.png border=0 width='40' height='40'></a>";
+        if(!empty($picture3->id)) {
+			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id","Previous");
+			//><img src=$RFS_SITE_URL/images/icons/back.png border=0 width='40' height='40'></a>";
         }
     }
 
@@ -1003,85 +1018,86 @@ if($action=="view"){
     echo "<p align=center>";
 	echo $linkprev;
     if($id) {
-		echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&id=$picture->id'>
-       <img src='$RFS_SITE_URL/images/icons/caption.png' border='0' alt='Caption This Picture' width='40' height='40'></a>";
+		
+		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&id=$picture->id","Caption");
+		// echo "<a href='//'>  // <img src='$RFS_SITE_URL/images/icons/caption.png' border='0' alt='Caption This Picture' width='40' height='40'>	   //</a>";
 
-		$img=$RFS_SITE_URL."/images/icons/refresh.gif";
-		echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=random'><img src='$img' border='0' alt='Random Picture' width='40' height='40'></a>";
+		// $img=$RFS_SITE_URL."/images/icons/refresh.gif";
+		//echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=random'><img src='$img' border='0' alt='Random Picture' width='40' height='40'><br>Random Picture</a>";
+		
+		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=random","Random Picture");
 
 
     if($data->id>0)
-		if( ($data->id==$picture->poster) || ($data->access==255)) {
-            
-            
+		if( ($data->id==$picture->poster) || ($data->access==255)) {           
 			
-echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$picture->id'>
-       <img src='$RFS_SITE_URL/images/icons/Edit.png' border='0' alt='Edit' width='40' height='40'></a>";
+	echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$picture->id'>
+			<img src='$RFS_SITE_URL/images/icons/Edit.png' border='0' alt='Edit' width='40' height='40'></a>";
             
         echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=removepicture&id=$picture->id'>
                <img src='$RFS_SITE_URL/images/icons/Delete.png' border='0' alt='Delete' width='40' height='40'></a>";
+		}    
+		echo $linknext; 
+		echo "</p>";
+		
+		if(empty($picture->sname)) {
+			if(sc_access_check("pictures","edit")) {
+				$picture->name="	EDIT THIS NAME!!!!
+							<form action='$RFS_SITE_URL/modules/pictures/pics.php' method='post'>
+							<input type=hidden name=action value=modifynamego>
+							<input type=hidden name=id value=$picture->id>
+							<input id='sname' name=sname value=\"\" onblur=\"this.form.submit()\">
+							<input type=submit>
+							</form>";
+			}
 		}
-    }
-	echo $linknext; 
-	echo "</p>";
-	if(!empty($picture->sname))		
-        sc_info("<h3>$picture->sname</h3>","white","#300030");
-	else {
-		if($data->access==255){
-			sc_info(" 
-            
-            EDIT THIS NAME!!!!
-    <form action='$RFS_SITE_URL/modules/pictures/pics.php' method='post'>
-    <input type=hidden name=action value=modifynamego>
-    <input type=hidden name=id value=$picture->id>
-    <input id='sname' name=sname value=\"\" onblur=\"this.form.submit()\">
-    </form>","white","#300030");
+		
+		sc_info("<h3>$picture->sname</h3>","white","#300030");
+		
+		if(empty($picture->description)) {
+			if(sc_access_check("pictures","edit"))  {
+			$picture->description=" EDIT THIS DESCRIPTION!!!!
+										<form action='$RFS_SITE_URL/modules/pictures/pics.php' method='post'>
+										<input type=hidden name=action value=modifydescriptiongo>
+										<input type=hidden name=id value=$picture->id>
+										<textarea id='description' name=description
+										onblur=\"this.form.submit()\"> </textarea>
+										<input type=submit>
+										</form>\n ";
+			}
+		}		
+		
+		sc_info("$picture->description","white","#200020");
+		
+		if($picture->sfw=="yes") {
+			$size = getimagesize($picture->url);
+			$nw=$size[0]; $nh=$size[1];
+			if($nw>1000) $w=1000;
+			else if($nh>1000) $h=1000;
+
+			if(!stristr($picture->url,$RFS_SITE_URL))
+				$picture->url="$RFS_SITE_URL/$picture->url";
+
+			echo "<a href=\"$picture->url\" target=_blank>";
+			echo "<img src=\"$picture->url\" ";
+			if($w) echo "width='$w' ";
+			if($h) echo "height='$h' ";
+			echo " border=0>";
+			echo "</a>";
+			$w=''; $h='';
+		}
+		else {
+			if($viewsfw=="yes") {
+				echo "<img src=\"$picture->url\">";
+			}
+			else{
+				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
+			}
 		}
 	}
-    if( (empty($picture->description)) && ($data->access==255)) 
-        $picture->description=" EDIT THIS DESCRIPTION!!!!
-
-    <form action='$RFS_SITE_URL/modules/pictures/pics.php' method='post'>
-    <input type=hidden name=action value=modifydescriptiongo>
-    <input type=hidden name=id value=$picture->id>
-    <textarea id='description' name=description
-    onblur=\"this.form.submit()\"> </textarea>
-    </form>
- ";
-    sc_info("&nbsp;","white","#200020");
-    sc_info("$picture->description","white","#200020");
-    sc_info("&nbsp;","white","#200020");
-
-    if($id) {
-        if($picture->sfw=="yes") {
-                $size = getimagesize($picture->url);
-                $nw=$size[0]; $nh=$size[1];
-                if($nw>1000) $w=1000;
-                else if($nh>1000) $h=1000;
-
-                if(!stristr($picture->url,$RFS_SITE_URL))
-                    $picture->url="$RFS_SITE_URL/$picture->url";
-                
-                echo "<a href=\"$picture->url\" target=_blank>";
-                echo "<img src=\"$picture->url\" ";
-                if($w) echo "width='$w' ";
-                if($h) echo "height='$h' ";
-                echo " border=0>";
-                echo "</a>";
-                $w=''; $h='';
-        }
-        else    {
-            if($viewsfw=="yes") {
-                echo "<img src=\"$picture->url\">";
-            }
-            else {
-                echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
-            }
-        }
-    }
-    else {
+	else {
         echo "<h1>There are no pictures!</h1>";
-    }
+	}
 }
 
 
@@ -1123,10 +1139,10 @@ if(!$donotshowcats){
             echo "<table border=0 cellspacing=0 cellpadding=0 width=100% ><tr>";
             echo "<td class=contenttd valign=top width=220>";
         if(empty($cat->image)) $cat->image="buttfea2.gif";
-        if(!file_exists("$RFS_SITE_PATH/images/$cat->image")) $cat->image="buttfea2.gif";
+        if(!file_exists("$RFS_SITE_PATH/$cat->image")) $cat->image="icons/404.png";
             echo "
             <a href='$RFS_SITE_URL/modules/pictures/pics.php?action=viewcat&cat=$cat->id'>
-            <h1><img src='$RFS_SITE_URL/images/$cat->image' border=0 width=64 height=64>$cat->name ($numpics)</h1>
+            <h1><img src='$RFS_SITE_URL/$cat->image' border=0 width=64 height=64>$cat->name ($numpics)</h1>
             </a>
             <br>";
 

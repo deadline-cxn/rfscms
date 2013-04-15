@@ -692,13 +692,13 @@ function sc_vars_join($x){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Optionizer
-function sc_optionizer(	$page,
-							$hiddenvars,
-							$table,
-							$key,
-							$use_id_method,
-							$default,
-							$on_change_method
+function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
+							$hiddenvars,		// hidden vars to include (INLINE mode ignores this)
+							$table,			// MySQL table or FOLDER 
+							$key,				// key of MySQL table or FOLDERMODE
+							$use_id_method,   // 0 or 1: Uses id field of MySQL if 1
+							$default,			// Default option
+							$on_change_method // 0 or 1: Use javascript on_change method if 1
 							){
 
 
@@ -712,8 +712,8 @@ function sc_optionizer(	$page,
 	//echo "use_id_method[$use_id_method]<br>";
 	//echo "folder_mode[$folder_mode]<br>";
 	
-	if($page!="INLINE")
-		echo "<form action=\"$page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
+	if($return_page!="INLINE")
+		echo "<form action=\"$return_page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
 	$omit='';
 
 	$hv=explode(sc_delimiter($hiddenvars),$hiddenvars);
@@ -795,7 +795,7 @@ function sc_optionizer(	$page,
 
 
 	if($folder_mode==0) {
-		 //echo "WHERE: $where";
+		 
 		 if(stristr($key,sc_delimiter($key))) {
 				$xkey=explode(sc_delimiter($key),$key);
 				$key=$xkey[0];
@@ -836,6 +836,7 @@ function sc_optionizer(	$page,
 
 	else {
 		if(empty($selname)) $selname=$key;
+
 		echo "<select id=\"optionizer_$selname\" name=\"$selname\" width=20   ";
 		if($on_change_method)
 			echo "onchange=\"this.form.submit()\" ";
@@ -843,31 +844,69 @@ function sc_optionizer(	$page,
 		echo "<option >$default";
 		echo "<option >--- None ---";
 
+			$dirfiles = array();
+			$handle=opendir($table) or die("Unable to open filepath");
+			while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
+			closedir($handle);
+			reset($dirfiles);
+			asort($dirfiles);
 
-					$dir_count=0;
-					$dirfiles = array();
-					$handle=opendir($table) or die("Unable to open filepath");
-					while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
-					closedir($handle);
-					reset($dirfiles);
-					asort($dirfiles);
-
-					while(list ($key, $file) = each ($dirfiles)){
-					if($file!=".")
-							if($file!="..")
-								if(!is_dir($dir."/".$file))
-									echo "<option>$file";
-					}
+			while(list ($key, $file) = each ($dirfiles)){
+			if($file!=".") if($file!="..")
+				if(!is_dir($dir."/".$file))
+					echo "<option>$file";
+			}
 
 		echo "</select>";
 	}
 
-	if($page!="INLINE") {
+	if($return_page!="INLINE") {
 		if(!$on_change_method)
 			echo "<input type=\"submit\" name=\"submit\" value=\"Change\">";
 		echo "</form>";
 	}
 }
+///////////////////////////////////////////////////////////////////////////////////////////////
+// select / option a folder
+function sc_optionize_folder( $select_name, // select name
+						$folder,		// folder
+						$include_dirs, // 0 or 1
+						$include_files, // 0 or 1
+						$default )  {
+	echo "<select name=\"$select_name\">";
+	if(!empty($default))
+		echo "<option>$default";
+	else
+		echo "<option>- Select -";
+		
+	echo "<option>$folder";
+
+	$dirfiles = array();
+	$handle=opendir($folder) or die("Unable to open filepath");
+	while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
+	closedir($handle);
+	reset($dirfiles);
+	asort($dirfiles);
+
+	while(list ($key, $file) = each ($dirfiles)){
+		
+		$chack="$folder/$file";
+		
+		if(substr($file,0,1)!=".") {
+			if($include_dirs) {
+				if(!is_file($chack))
+					echo "<option>$chack";
+			}
+			if($include_files) {
+				if(is_file($chack))
+					echo "<option>$chack";
+			}	
+		}
+	}
+	
+	echo "</select>";
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // simple add form based on table
 // (short command for build form)

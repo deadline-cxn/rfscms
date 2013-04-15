@@ -1101,7 +1101,8 @@ function adm_action_edit_categories() {
 		echo "</td></tr>\n";
 	}
 	echo"</table>";
-	finishadminpage();
+	include("footer.php");
+	exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_USER EDIT
@@ -1111,12 +1112,11 @@ function adm_action_f_edit_users_go() {
 	sc_updb( "users","id",$id );
 	adm_action_user_edit();
 }
-function adm_action_f_edit_users() {
-	eval( scg() );
+function adm_action_f_edit_users() { eval( scg() );
 	$res=sc_query( "select * from users where `id`='$id'" );
 	$user=mysql_fetch_object( $res );
 	echo "<h3>Editing User [$user->name]</h3>";
-	sc_bf( "$RFS_SELF",
+	sc_bf( "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.
 	       "id=$id",
 	       "users",
@@ -1131,7 +1131,8 @@ function adm_action_f_edit_users() {
 	       "",
 	       60,
 	       "update" );
-	finishadminpage();
+	include("footer.php");
+	exit();
 }
 function adm_action_f_del_users_go() {
 	eval( scg() );
@@ -1151,7 +1152,8 @@ function adm_action_f_del_users() {
 	sc_confirmform( "Delete $user->name?",
                     "$RFS_SELF",
                     "action=f_del_users_go".$RFS_SITE_DELIMITER."id=$id" );
-	finishadminpage();
+	include("footer.php");
+	exit();
 }
 function adm_action_f_add_user() {
 	eval( scg() );
@@ -1182,7 +1184,8 @@ function adm_action_user_edit() {
                      "id",
                      "what" );
 
-	finishadminpage();
+	include("footer.php");
+	exit();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1221,6 +1224,8 @@ function adm_action_rss_edit() {
 	echo "<tr><td>New Feed</td><td><input type=textbox name=edfeed value=\"\" size=100></td>\n";
 	echo "<td><input type=submit value=add name=add></td>\n";
 	echo "</form></table>\n";
+	include("footer.php");
+	exit();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1311,6 +1316,8 @@ function adm_action_edit_smilies() {
 	echo "</td>\n";
 	echo "</tr>\n";
 	echo "</table>\n";
+	include("footer.php");
+	exit();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1341,6 +1348,8 @@ function adm_action_log_view() {
 	eval( scg() );
 	echo "<h3>View Log</h3>";
 	@include( "$RFS_SITE_PATH/log/log.htm" );
+	include("footer.php");
+	exit();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1348,6 +1357,8 @@ function adm_action_log_view() {
 function adm_action_awards_edit() {
 	echo "<h3>Award Editor</h3>\n";
 	sc_awards_list();
+	include("footer.php");
+	exit();
 }
 function adm_action_f_add_award_go() {
 	eval( scg() );
@@ -1358,7 +1369,7 @@ function adm_action_f_add_award_go() {
 	$image=addslashes( $image );
 	$time=date( "Y-m-d H:i:s" );
 	sc_query( "insert into awards values('', '$name', '$description', '$image', '$time')" );
-	sc_awards_list();
+	adm_action_awards_edit();
 }
 function adm_action_f_edit_award_go() {
 	eval( scg() );
@@ -1370,7 +1381,8 @@ function adm_action_f_edit_award_go() {
 	sc_query( "update awards set name = '$name' where id = '$id'" );
 	sc_query( "update awards set description = '$description' where id = '$id'" );
 	sc_query( "update awards set image = '$image' where id = '$id'" );
-	sc_awards_list();
+	adm_action_awards_edit();
+	
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_LINK EDIT
@@ -1520,12 +1532,11 @@ echo "<td class=sc_project_table_$gt>Category</td>";
             "sname".$RFS_SITE_DELIMITER."link".$RFS_SITE_DELIMITER."description",
             "include", "category",
             20, "add link" );
+	include("footer.php");
+	exit();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-function adm_fill_data_tables() {
-	eval(scg());
-	
-
+function adm_fill_data_tables() { eval(scg());
 sc_query("
 CREATE TABLE IF NOT EXISTS `admin_menu` (
   `category` text COLLATE utf8_unicode_ci NOT NULL,
@@ -1922,6 +1933,7 @@ CREATE TABLE IF NOT EXISTS `access` (
 
 sc_query( " ALTER TABLE  `users` ADD  `access_groups` TEXT NOT NULL AFTER  `access`");
 sc_query( " ALTER TABLE  `menu_top` ADD  `target` TEXT NOT NULL AFTER  `access`");
+
 
 
 }
