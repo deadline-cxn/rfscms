@@ -10,7 +10,7 @@ function adm_db_query( $x ) { eval( scg() );
 	for( $i=0; $i<count( $ax ); $i++ )
 		if( strtolower( $ax[$i] )=="select" ) $ax[$i]="zlect";
 	$ox=join( " ",$ax );
-	echo "<a href=\"$RFS_SELF?action=db_query&query=$ox\" target=_top>$x</a><br>";
+	echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=db_query&query=$ox\" target=_top>$x</a><br>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 if( $_REQUEST['db_queries']=="list" ) {
@@ -53,7 +53,7 @@ if( $_REQUEST['db_queries']=="list" ) {
 /////////////////////////////////////////////////////////////////////////////////////////
 chdir( "../" );
 include( "header.php" );
-$RFS_SELF="$RFS_SITE_URL/admin/adm.php";
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
 $data=sc_getuserdata($_SESSION['valid_user']);
@@ -87,7 +87,7 @@ function sc_admin_module( $loc ) { eval( scg() );
 		for( $i=0; $i<$n; $i++ ) {
 			$ar=mysql_fetch_object( $r );
 			echo "<table border=0 cellspacing=0><tr><td>";
-            echo "<a href='$RFS_SELF?action=f_arrange_delete&location=$location&arid=$ar->id'>";
+            echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_delete&location=$location&arid=$ar->id'>";
 			echo "<img src='$RFS_SITE_URL/images/icons/circle-delete.png' border='0'>";
             echo "</a>";
 
@@ -101,7 +101,7 @@ function sc_admin_module( $loc ) { eval( scg() );
 				echo " <img src=$RFS_SITE_URL/images/icons/arrow-right.png width=32 height=32 border=0> ";
 			echo "	</td><td>";
 			echo ucwords( "Module: $ar->mini show " );
-			echo "</td>	<form action='$RFS_SELF' method='post'>	<td>
+			echo "</td>	<form action='$RFS_SITE_URL/admin/adm.php' method='post'>	<td>
 			<input type=hidden name=action value=f_module_chg_num>
 			<input type=hidden name=id value='$ar->id'>
 			<input name=num size=1 value=$ar->num  onblur='this.form.submit()'  >
@@ -109,7 +109,7 @@ function sc_admin_module( $loc ) { eval( scg() );
 		}
 		echo "<p>&nbsp;</p>";
 	}
-	echo "<form action='$RFS_SELF' method='post'>";
+	echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
 	echo "<input type=hidden name=action value=f_module_add>";
 	echo "<input type=hidden name=location value=$location>";
 	echo "<select name=module onchange='this.form.submit();'>";
@@ -135,7 +135,7 @@ function adm_action_f_arrange_delete() { eval(scg());
     $ar=mfo1("select * from arrangement where `location` = '$location' and `id`= '$arid' ");
     echo "Delete arrangement ($location: $ar->mini)<br>";
     sc_confirmform( "Delete $ar->mini from $location?",
-                    "$RFS_SELF",
+                    "$RFS_SITE_URL/admin/adm.php",
                     "action=f_arrange_delete_go".$RFS_SITE_DELIMITER."id=$ar->id" );
     adm_action_arrange();
 }
@@ -180,7 +180,7 @@ function adm_action_arrange() { eval( scg() );
 // ADM ACCESS GROUPS FUNCTIONS
 function adm_action_f_access_group_delete() { eval(scg());
 	sc_confirmform( "Delete $axnm?",
-                    "$RFS_SELF",
+                    "$RFS_SITE_URL/admin/adm.php",
                     "action=f_access_group_delete_go".$RFS_SITE_DELIMITER.
 					  "axnm=$axnm" );
 	include( "footer.php" );
@@ -198,8 +198,8 @@ function adm_action_access_groups() { eval(scg());
 	$r=sc_query("select distinct name from access");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$a=mysql_fetch_object($r);
-		echo "$a->name [<a href=\"$RFS_SELF?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
-		echo "[<a href=\"$RFS_SELF?action=f_access_group_edit&axnm=$a->name\">edit</a>]<br>";
+		echo "$a->name [<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name\">edit</a>]<br>";
 		
 		echo "Members of $a->name: ";
 		$usrs=sc_query("select * from `users`");
@@ -216,7 +216,7 @@ function adm_action_access_groups() { eval(scg());
 	}
 	echo "Create a new access group<br>";
 	sc_div("ADD ACCESS GROUP FORM START");
-	echo "<form action=\"$RFS_SELF\" method=\"post\">\n";
+	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
 	echo "<input name=\"axnm\">\n";
 	echo "<input type=\"submit\" value=\"Add\">\n";
@@ -248,7 +248,7 @@ function adm_action_f_access_group_edit_go() { eval(scg());
 function adm_action_f_access_group_edit() { eval(scg()); 
 	echo "<h1>Edit Access Group</h1>";
 	echo "$axnm<br>Privileges<br>";
-	echo "<form action=\"$RFS_SELF\" method=\"post\">";
+	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
 	$r=sc_query("select * from access_methods");
@@ -318,8 +318,8 @@ function adm_action_db_query() { eval(scg());
     $query=str_replace("zlect","select",$query);
    echo "<h3>Database Query</h3>";
    echo "<iframe id=\"QU\" width=100% class='iframez' frameborder=0
-               src=$RFS_SELF?db_queries=list ></iframe>";
-	sc_db_query_form( "$RFS_SELF","db_query","$query" );
+               src=$RFS_SITE_URL/admin/adm.php?db_queries=list ></iframe>";
+	sc_db_query_form( "$RFS_SITE_URL/admin/adm.php","db_query","$query" );
 	if( !empty( $query ) ) {
 		echo $query;
 		sc_query( "insert into `db_queries` (`id`, `query`) VALUES ('','".addslashes( $query )."' ) " );
@@ -371,27 +371,39 @@ function adm_action_f_theme_edit() { eval(scg());
 	$d = opendir($folder);
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
-			echo "<hr>";
-			echo "$folder/$entry <br>";		
+			//echo "<hr>";
+			//echo "$folder/$entry <br>";		
 			if($entry[0]=="t") {
 				$ft=sc_getfiletype($entry);
 				
-				if( ($ft=="gif") ||
-					($ft=="jpg") ||
-					($ft=="png") ) {
+				switch($ft) {
+					
+					case "gif":
+					case "jpg":
+					case "png":
 						$img="$RFS_SITE_URL/themes/$thm/$entry";
 						echo "$img:<br>";
 						echo "<img src=\"$img\"><br>";
-				}
-				else {					
-					if($ft=="css") {
+						break;
+						
+					case "css":
 						sc_css_edit_form("$folder/$entry", "","");
-					}
-					else {
-						$f=file_get_contents($folder."/".$entry);
-						$f=str_replace("<","&lt;",$f);
-						echo nl2br($f)."<br>";					
-					}
+						break;
+						
+					case "php":
+						if($entry=="t.php") {
+							sc_php_edit_form("$folder/$entry","","");							
+						}
+						else {					
+							// $f=file_get_contents($folder."/".$entry);
+							// $f=str_replace("<","&lt;",$f);
+							// echo nl2br($f)."<br>";						
+						}
+						break;
+					default: 
+					
+						echo "$folder/$entry --- > WHAT DO? <BR>";
+						break;
 					
 				}
 			}
@@ -415,19 +427,19 @@ function adm_action_theme() { eval(scg());
 
 	echo "<h3>Theme Editor</h3>";
 
-	sc_button("$RFS_SELF?action=f_theme_view_classes","View CSS Classes");
-	
+	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
+	echo "<table border=0>";
 	$thms=sc_get_themes();
 	while(list($key,$thm)=each($thms)) {		
-		echo " $thm [<a href=\"$RFS_SELF?action=f_theme_edit&thm=$thm\">edit</a>] ";
+		echo "<tr>";
+		echo "<td>$thm</td><td>";
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";		
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_clone&thm=$thm\">clone</a>] ";
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_delete&thm=$thm\">delete</a>] ";
 		
-		echo "[clone] ";		
-		echo "[delete] ";
-		
-		echo "<br>";
-		
-		
+		echo "</td></tr>";
 	}
+	echo "</table>";
 	include( "footer.php" );
 	exit();
 }
@@ -451,7 +463,7 @@ function adm_action_f_edit_forum() { eval( scg() );
 	$der=mysql_fetch_object( $result );
 	$forum_name=$der->name;
 	echo "<h3>[$forum_name] (id:$der->id)</h3>\n";
-	sc_bf( "$RFS_SELF",
+	sc_bf( "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_modify_forum",
 	       "forum_list", "select * from forum_list where name='$forum_name';",
 	       "id","","omit","",100,"submit" );
@@ -484,7 +496,7 @@ function adm_action_forum_admin() { eval( scg() );
 		$der=mysql_fetch_object( $r );
 		$name=$der->name;
 		// echo "<tr><td>";
-		sc_bf( "$RFS_SELF",
+		sc_bf( "$RFS_SITE_URL/admin/adm.php",
 		       "action=f_edit_forum".$RFS_SITE_DELIMITER.
 		       "name=$name",
 		       "forum_list",
@@ -532,7 +544,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 	for( $i=0; $i<mysql_num_rows( $res ); $i++ ) {
 		$site_var=mysql_fetch_object( $res );
 		echo "<tr><td>";
-		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SELF\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
+		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
 		echo "\$site_<input name=name value=\"$site_var->name\"> = ";
 		$site_var->value=stripslashes( $site_var->value );
@@ -540,11 +552,11 @@ function adm_action_edit_site_vars() { eval( scg() );
 		echo "<input type=submit value=\"update\">";
 		echo "</form>";
 		echo "</td><td>";
-		echo "<a href=\"$RFS_SELF?action=f_delsitevar&name=$site_var->name\">delete</a><br>";
+		echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&name=$site_var->name\">delete</a><br>";
 		echo "</td></tr>";
 	}
 	echo "<tr><td>";
-	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SELF\">";
+	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=\"f_addsitevar\">";
 	echo "\$site_<input name=name value=\"Add New\"> = ";
 	echo "<input name=val size=80 value=\"\">";
@@ -574,7 +586,7 @@ function adm_action_f_admin_menu_edit_del() { eval( scg() );
 	echo "<h3>Edit Admin Menu</h3>";
 	echo "<table class=warning><tr><td>";
 	echo smiles( "Delete $menuitem->name ^X" );
-	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SELF\">";
+	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=f_admin_menu_edit_del_go>";
 	echo "<input type=hidden name=id value=$id>";
 	echo "<input type=submit name=submit value=confirm></form>";
@@ -628,7 +640,7 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
         $menuitem=mfo1( "select * from admin_menu where id='$id'" );
 
           echo "<tr>";
-			echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SELF\">";
+			echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 			echo "<td class=sc_project_table_$tdlc valign=bottom>";
 
 			echo "<input type=hidden name=action value=f_admin_menu_edit_del>";
@@ -639,7 +651,7 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
 			echo "</form>";
 
 			echo "</td>";
-			echo "<form method=\"post\" enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SELF\">";
+			echo "<form method=\"post\" enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 			echo "<td class=sc_project_table_$tdlc valign=bottom>";
 
 			echo "<input type=hidden name=action value=f_admin_menu_edit_mod>";
@@ -694,12 +706,12 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
 
 function adm_action_f_admin_menu_edit_entry() { eval(scg());
 	echo "<h3>Edit Admin Menu item $id</h3>";
-	sc_bf(  "$RFS_SELF",
+	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
             "action=f_admin_menu_edit_mod".$RFS_SITE_DELIMITER."id=$id",
             "admin_menu",
             "select * from admin_menu where `id`='$id'",
             "", "id", "omit", "", 60, "Modify" );
-/* sc_bf(  "$RFS_SELF",
+/* sc_bf(  "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.	       "id=$id",
 	       "users",
 	       "select * from users where `id`='$id'",
@@ -743,7 +755,7 @@ function adm_action_admin_menu_edit() { eval( scg() );
 
 
 	echo "<tr >";
-	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SELF\">";
+	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=f_admin_menu_edit_add>";
 	echo "<td>";
 	echo "</td>";
@@ -795,7 +807,7 @@ function adm_action_admin_menu_edit() { eval( scg() );
 			if( $tdlc==2 ) $tdlc=0;
             adm_action_f_admin_menu_edit_entry_data($menuitem->id,$tdlc);
 /*			echo "<tr>";
-			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SELF>";
+			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/admin/adm.php>";
 			echo "<td class=sc_project_table_$tdlc valign=bottom>";
 
 			echo "<input type=hidden name=action value=f_admin_menu_edit_del>";
@@ -806,7 +818,7 @@ function adm_action_admin_menu_edit() { eval( scg() );
 			echo "</form>";
 
 			echo "</td>";
-			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SELF>";
+			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/admin/adm.php>";
 			echo "<td class=sc_project_table_$tdlc valign=bottom>";
 
 			echo "<input type=hidden name=action value=f_admin_menu_edit_mod>";
@@ -879,7 +891,7 @@ function adm_action_f_menu_topedit_del() { eval( scg() );
 	$res=sc_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Top Menu :: Delete $menuitem->name</h3>";
-	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SELF\">";
+	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=f_menu_topedit_del_go>";
 	echo "<input type=hidden name=id value=$id>";
 	echo "<input type=submit name=submit value=confirm></form>";
@@ -1046,7 +1058,7 @@ function adm_action_edit_categories() {
 
 	<td>&nbsp;</td>
 	<td>
-	<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SELF\" method=\"post\">
+	<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">
 	<input type=hidden name='action'   value='f_add_category'>
 	<input type=text   name='category' value='' style=' width: 100%;'>
 	</td>
@@ -1071,21 +1083,21 @@ function adm_action_edit_categories() {
 
 	for( $i=0; $i<$numcats; $i++ ) {
 		$cat=mysql_fetch_object( $result );
-		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SELF\" method=\"post\"><tr><td>";
+		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\"><tr><td>";
 		echo "<input type=hidden name=action    value=f_delete_category>\n";
 		echo "<input type=hidden name=category  value=\"$cat->name\">\n";
 		echo "<div class=menutop>";
 		echo "<input type=submit name=submit    value=delete>\n";
 		echo "</div>";
 		echo "</form></td>\n";
-		echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SELF\" method=\"post\">\n";
+		echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=hidden name=action    value=f_rename_category>\n";
 		echo "<input type=hidden name=category  value=\"$cat->name\">\n";
 		echo "<input size=40 type=text   name=newname  value=\"$cat->name\">\n";
 		echo "</td>
 
 		<td>
-		<a href='$RFS_SELF?action=f_category_change_icon&id=$cat->id'>
+		<a href='$RFS_SITE_URL/admin/adm.php?action=f_category_change_icon&id=$cat->id'>
 		<img src='$RFS_SITE_URL/$cat->image' border='0' width=64 height=64> </a>
 		</td>
 		<td>
@@ -1148,7 +1160,7 @@ function adm_action_f_del_users() {
 	$res=sc_query( "select * from users where `id`='$id'" );
 	$user=mysql_fetch_object( $res );
 	sc_confirmform( "Delete $user->name?",
-                    "$RFS_SELF",
+                    "$RFS_SITE_URL/admin/adm.php",
                     "action=f_del_users_go".$RFS_SITE_DELIMITER."id=$id" );
 	include("footer.php");
 	exit();
@@ -1166,7 +1178,7 @@ function adm_action_user_edit() {
     echo "<h1>User Editor</h1>";
 	echo  "<h2>Add User</h2>";
 
-	sc_bf(  "$RFS_SELF",
+	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
             "action=f_add_user",
             "users",
             "",
@@ -1207,7 +1219,7 @@ function adm_action_rss_edit() {
 
 	for( $i=0; $i<$num_feeds; $i++ ) {
 		echo "<table border=0 cellspacing=0 cellpadding=0>\n";
-		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SELF\" method=\"post\">\n";
+		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=hidden name=action value=rsseditgoedit>\n";
 		$feed=mysql_fetch_object( $result );
 		echo "<tr><td>Feed URL</td> <td><input type=textbox name=edfeed value=\"$feed->feed\" size=100></td>\n";
@@ -1217,7 +1229,7 @@ function adm_action_rss_edit() {
 		echo "</form></table>\n";
 	}
 	echo "<table border=0 cellspacing=0 cellpadding=0>\n";
-	echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SELF\" method=\"post\">\n";
+	echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 	echo "<input type=hidden name=action value=rsseditgoadd>\n";
 	echo "<tr><td>New Feed</td><td><input type=textbox name=edfeed value=\"\" size=100></td>\n";
 	echo "<td><input type=submit value=add name=add></td>\n";
@@ -1272,7 +1284,7 @@ function adm_action_edit_smilies() {
 		echo "<tr>\n";
 		rfs_echo( "<td class=sc_project_table_$bg align=center width=24 valign=top>$sto</td>");
 		echo "<td class=sc_project_table_$bg valign=top>\n";
-		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SELF\" method=\"post\">\n";
+		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=hidden name=action value=edit_smilies>\n";
 		echo "<input type=hidden name=smact value=update>";
 		echo "<input type=hidden name=ofrom value=\"$sfrom\">\n";
@@ -1286,7 +1298,7 @@ function adm_action_edit_smilies() {
 		echo "<td class=sc_project_table_$bg>";
 		echo "<input type=submit name=smact value=update></form></td>";
 		echo "<td class=sc_project_table_$bg>";
-		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SELF\" method=\"post\">\n";
+		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=hidden name=action value=edit_smilies>\n";
 		echo "<input type=hidden name=smact value=delete>";
 		echo "</td>";
@@ -1303,7 +1315,7 @@ function adm_action_edit_smilies() {
 	echo "</td>";
 	echo "<td class=contenttd>";
 
-	echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SELF\" method=\"post\">\n";
+	echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 	echo "<input type=hidden name=action value=edit_smilies>\n";
 	echo "<input type=hidden name=smact value=new>\n";
 	echo "</td>\n";
@@ -1400,7 +1412,7 @@ function adm_action_f_modify_link() {
 	if( $deletelink=="delete" ) {
 		$l=mfo1( "select * from link_bin where `id`='$linkid'" );
 		sc_confirmform( "Are you sure you want to delete $l->link ?",
-                        "$RFS_SELF",
+                        "$RFS_SITE_URL/admin/adm.php",
                         "action=f_modify_link".$RFS_SITE_DELIMITER."deletelink=delete_go".$RFS_SITE_DELIMITER."linkid=$linkid" );
 	}
 	if( $deletelink=="delete_go" ) {
@@ -1452,7 +1464,7 @@ function adm_action_edit_linkbin() {
 		$link=mysql_fetch_object( $result );
 		$userdata=sc_getuserdata( $link->poster );
 		echo "<table border=0 cellspacing=0 cellpadding=0 width=100% >\n";
-		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SELF\" method=\"post\">\n";
+		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"f_modify_link\">\n";
 		echo "<input type=\"hidden\" name=\"linkid\" value=\"$link->id\">\n";
 
@@ -1525,7 +1537,7 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 
 	echo "<h2>Add Link</h2>\n";
 
-	sc_bf(  "$RFS_SELF", "action=f_add_link",
+	sc_bf(  "$RFS_SITE_URL/admin/adm.php", "action=f_add_link",
             "link_bin", "", "id",
             "sname".$RFS_SITE_DELIMITER."link".$RFS_SITE_DELIMITER."description",
             "include", "category",
@@ -1575,20 +1587,20 @@ function adm_action_() {
 
 	echo "<table border=0><tr><td>";
 
-	sc_button( "$RFS_SELF?debug=on","Debug on <font style='color: green; background-color: dark-green;'> ON </font>" );
-	sc_button( "$RFS_SELF?debug=off","Debug <font style='color:red; background-color: dark-green;'> OFF </font>" );
+	sc_button( "$RFS_SITE_URL/admin/adm.php?debug=on","Debug on <font style='color: green; background-color: dark-green;'> ON </font>" );
+	sc_button( "$RFS_SITE_URL/admin/adm.php?debug=off","Debug <font style='color:red; background-color: dark-green;'> OFF </font>" );
 	echo "</td><td>";
 
-	sc_button( "$RFS_SELF?admed=on&what=1","Adm Edit <font style='color: green; background-color: dark-green;'> ON </font>" );
-	sc_button( "$RFS_SELF?admed=off&what=1","Adm Edit <font style='color:red; background-color: dark-green;'> OFF </font>" );
+	sc_button( "$RFS_SITE_URL/admin/adm.php?admed=on&what=1","Adm Edit <font style='color: green; background-color: dark-green;'> ON </font>" );
+	sc_button( "$RFS_SITE_URL/admin/adm.php?admed=off&what=1","Adm Edit <font style='color:red; background-color: dark-green;'> OFF </font>" );
 	echo "</td><td>";
 
-	sc_button( "$RFS_SELF?textbuttons=true","Text Buttons <font style='color: green; background-color: dark-green;'> ON </font>" );
-	sc_button( "$RFS_SELF?textbuttons=false","Text Buttons <font style='color:red; background-color: dark-green;'> OFF </font>" );
+	sc_button( "$RFS_SITE_URL/admin/adm.php?textbuttons=true","Text Buttons <font style='color: green; background-color: dark-green;'> ON </font>" );
+	sc_button( "$RFS_SITE_URL/admin/adm.php?textbuttons=false","Text Buttons <font style='color:red; background-color: dark-green;'> OFF </font>" );
 	echo "</td><td>";
 
-	sc_button( "$RFS_SELF?admin_show_top=hide","Hide banner" );
-	sc_button( "$RFS_SELF?admin_show_top=show","Show banner" );
+	sc_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=hide","Hide banner" );
+	sc_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=show","Show banner" );
 
 	echo "</td></tr></table>";
 
@@ -1623,11 +1635,11 @@ border='0'></a> ";
 
                 if( $_SESSION['admed']=="on" ) {
 
-                        sc_button( "$RFS_SELF?action=f_admin_menu_edit_entry&id=$icon->id","Edit" );
+                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_entry&id=$icon->id","Edit" );
 
-                        sc_button( "$RFS_SELF?action=f_admin_menu_edit_del&id=$icon->id","Delete" );
-                        sc_button( "$RFS_SELF?action=f_admin_menu_change_icon&id=$icon->id","Change Icon" );
-                        sc_optionizer( "$RFS_SELF",
+                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_del&id=$icon->id","Delete" );
+                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_change_icon&id=$icon->id","Change Icon" );
+                        sc_optionizer( "$RFS_SITE_URL/admin/adm.php",
                                        "action=f_admin_change_category".$RFS_SITE_DELIMITER.
                                        "id=$icon->id",
                                        "categories",
@@ -1661,14 +1673,14 @@ function admin_menu_built_in() { eval(scg());
                             $x=str_replace( "adm_action_","",$v );
                             if(!empty($x)) {
                                 echo "<div style='float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#353535; border-radius:12px;' > ";
-                                echo "<a href=\"$RFS_SELF?action=$x\">";
+                                echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
                                 if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" ) ) {
                                     echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
                                 } else {
                                     echo $x;
                                 }
                                 echo "</a><br>";
-                                echo "<a style='color: #cFcF00;' href='$RFS_SELF?action=$x'>$x</a>";
+                                echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>$x</a>";
                                 echo "</div>";
                         }
                     }
@@ -1715,7 +1727,7 @@ function finishadminpage() {
                             if( !empty( $x ) ) {
 
                             echo "<div style='float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#353535; border-radius:12px; ' > ";
-                            echo "<a href=\"$RFS_SELF?action=$x\">";
+                            echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
 
 $px=str_replace("lib_" ,""   ,$x);
 $px=str_replace("$mv"."_" ,""   ,$px);
@@ -1736,7 +1748,7 @@ $png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons
 echo $png;
                             echo "</a>";
 
-                            // echo "<a style='color: #cFcF00;' href='$RFS_SELF?action=$x'>$x</a>";
+                            // echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>$x</a>";
 
                             echo "</div>";
                         }

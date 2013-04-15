@@ -1779,16 +1779,43 @@ function sc_css_edit_form($css_file, $returnpage, $returnaction) {
 			echo "<tr><td>";
 			echo " $cssx4[0]:";
 			echo "</td><td>";
-			echo "<input value=\"";
-			echo trim($cssx4[1]);
-			echo "\">";
+			echo "<input value=\"".trim($cssx4[1])."\" ";
+			
+			if(substr(trim($cssx4[1]),0,1)=="#")
+				echo "class='color' ";
+			echo ">";
 			echo "</td></tr>";
 		}
 		echo "</table> }";
 	}
-	
+}
 
+function sc_php_edit_form($php_file,$returnpage,$returnaction) {
 	
+	$fp=fopen($php_file,"r");
+	echo "<table border=0>";
+	while( $ln=fgets($fp)) {
+		if( (substr($ln,0,2)=="<?") ||
+			(substr($ln,0,2)=="?>") ||
+			 (substr($ln,0,2)=="//") ) {
+		} else {
+			echo "<tr>";
+			$varx=explode("=",$ln);
+			echo "<td>";
+			echo $varx[0];
+			$varx[1]=trim($varx[1],"\n");
+			$varx[1]=trim($varx[1],";");
+			$varx[1]=trim($varx[1],"\"");
+			echo "</td><td>";
+			echo "<input value='".$varx[1]."' ";			
+				if(substr($varx[1],0,1)=="#") echo "class='color' ";
+			echo ">
+			</td> </tr>";
+		}
+		
+	}
+	echo "</table>";
+	fclose($fp);
 }
 
 
