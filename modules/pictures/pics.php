@@ -998,13 +998,9 @@ if($action=="random"){
 if($action=="view"){
     $res=sc_query("select * from `pictures` where `id`='$id' order by time asc");
     $picture=mysql_fetch_object($res);
-    $category=$picture->category;
-    $categorym=mfo1("select * from categories where id='$category'");
-	
-    if(!empty($categorym->name)) {
-        sc_info("<center>Category: $categorym->name</center>","white","blue");
-        
-    }
+    
+
+	$category=$picture->category;
     $res2=sc_query("select * from `pictures` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
     $numres2=mysql_num_rows($res2);
     $linkprev="";
@@ -1063,6 +1059,11 @@ echo "<table border=0><tr>";
 		echo "</td>";
 		
 		echo "</tr></table>";
+		
+    $categorym=mfo1("select * from categories where id='$category'");	
+    if(!empty($categorym->name)) {
+        echo "Category: $categorym->name<br>";
+    }
 		
 echo "<script>function changepicname(x,id) {
 			var xmlhttp=new XMLHttpRequest();
