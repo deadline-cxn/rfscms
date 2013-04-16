@@ -79,4 +79,33 @@ function sc_multi_rename($folder,$old_pattern,$new_pattern) {
     }
 }
 
+function sc_echo_file($file) {
+	if(file_exists($file)) {
+		echo "Filename: $file\n";
+		echo file_get_contents($file);
+	}
+}
+
+function sc_file_get_readme($file_name) { eval (scg());
+	
+	system("yes| rm $RFS_SITE_PATH/tmp/*");	
+	system("cd $RFS_SITE_PATH/tmp");
+	
+	exec("yes| 7z e -o/var/www/tmp $file_name");
+	
+	sc_echo_file("$RFS_SITE_PATH/tmp/FILE_ID.DIZ");
+	sc_echo_file("$RFS_SITE_PATH/tmp/README.md");
+	sc_echo_file("$RFS_SITE_PATH/tmp/Readme.txt");
+	sc_echo_file("$RFS_SITE_PATH/tmp/Readme");
+	sc_echo_file("$RFS_SITE_PATH/tmp/ReadMe");
+	sc_echo_file("$RFS_SITE_PATH/tmp/README");
+	sc_echo_file("$RFS_SITE_PATH/tmp/README.TXT");
+	sc_echo_file("$RFS_SITE_PATH/tmp/readme.txt");
+	sc_echo_file("$RFS_SITE_PATH/tmp/README.1ST");
+	
+	sc_echo_file("$RFS_SITE_PATH/tmp/License.txt");
+	
+		
+}
+
 ?>

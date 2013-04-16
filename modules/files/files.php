@@ -302,13 +302,37 @@ echo "</table>";
 		
 
         $ft=sc_getfiletype($filedata->location);
+		
+		echo "<hr>README text:<br>";
+		echo "<pre>";
+		sc_file_get_readme("$RFS_SITE_PATH/$filedata->location");
+		echo"</pre>";
 
         switch($ft){
+			
+			case "exe":
+			
+			echo "<hr> EXE program information using pev <hr>";
+			
+				echo "<pre>";
+				
+				
+				echo "VERSION: \n";
+				echo system("pev -p $filedata->location");
+				echo "<hr>";
+				echo system("pev $filedata->location");
+					
+				
+				echo "</pre>";
+				break;
+			
+
 			
 			
 			case "ttf":
 			case "otf":
 			case "fon":
+			case "eot":
 				sc_image_text(	"$filedata->name",
 						"$filedata->name", 72, // font, fontsize
 						1,1, // w,h
@@ -417,6 +441,9 @@ echo "</table>";
 						echo "$key.$name: $val<br />\n";
 					}
 				}
+				echo "<pre>";
+				echo system("7z l $filedata->location");
+				echo "</pre>";
 				
 				
 			break;
@@ -530,13 +557,13 @@ if($file_mod=="yes"){
             echo "<tr><td align=right>Description:</td><td><textarea name=description rows=7 cols=60>".stripslashes($filedata->description)."</textarea></td></tr>\n";
             // echo "<tr><td align=right>Filetype:</td><td><input name=filetype value=\"$filedata->filetype\"></td></tr>\n"; // is this needed?
             echo "<tr><td align=right>Filesize bytes:</td><td><input name=size value=\"$filedata->size\"></td></tr>\n";
-            //echo "<tr><td align=right>Thumbnail:</td><td><input name=thumbr value=\"$filedata->thumb\"></td></tr>";
-            //echo "<tr><td align=right>Version:</td><td><input name=vers value=\"$filedata->version\"></td></tr>\n";
+            echo "<tr><td align=right>Thumbnail:</td><td><input name=thumbr value=\"$filedata->thumb\"></td></tr>";
+            echo "<tr><td align=right>Version:</td><td><input name=vers value=\"$filedata->version\"></td></tr>\n";
             echo "<tr><td align=right>Homepage:</td><td><input name=homepage value=\"$filedata->homepage\"></td></tr>\n";
-            //echo "<tr><td align=right>Owner:</td><td><input name=owner value=\"$filedata->owner\"></td></tr>\n";
-            //echo "<tr><td align=right>Platform:</td><td><input name=platform value=\"$filedata->platform\"></td></tr>\n";
-            //echo "<tr><td align=right>Operating System:</td><td><input name=os value=\"$filedata->os\"></td></tr>\n";
-            //echo "<tr><td align=right>Rating:</td><td><input name=os value=\"$filedata->rating\"></td></tr>\n";			
+            echo "<tr><td align=right>Owner:</td><td><input name=owner value=\"$filedata->owner\"></td></tr>\n";
+            echo "<tr><td align=right>Platform:</td><td><input name=platform value=\"$filedata->platform\"></td></tr>\n";
+            echo "<tr><td align=right>Operating System:</td><td><input name=os value=\"$filedata->os\"></td></tr>\n";
+            echo "<tr><td align=right>Rating:</td><td><input name=os value=\"$filedata->rating\"></td></tr>\n";			
             //if($filedata->worksafe=="") $filedata->worksafe="no";
             //echo "<tr><td align=right>Worksafe: </td><td><select name=\"sfw\"><option>$filedata->worksafe<option>yes<option>no</select</td></tr>\n";
             echo "<tr><td>&nbsp;</td><td><div class=menutop><input type=submit name=shubmit value=Modify!> </div></td><td>&nbsp;</td></tr>\n";			

@@ -1803,6 +1803,7 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction) {
 			$varx=explode("=",$ln);
 			echo "<td>";
 			echo $varx[0];
+			$varx[1]=trim($varx[1]," ");
 			$varx[1]=trim($varx[1],"\n");
 			$varx[1]=trim($varx[1],";");
 			$varx[1]=trim($varx[1],"\"");
