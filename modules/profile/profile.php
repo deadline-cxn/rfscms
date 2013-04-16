@@ -281,7 +281,7 @@ echo "</table>\n";
 //if($data->upload == "yes")
 //{
   echo "<p>Files...\n";
-  echo "[<a href=\"$RFS_SITE_URL/modules/files.php?action=upload\">Upload</a>][<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
+  echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>][<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
   echo "</p>\n";
   echo "<table border=0 cellspacing=0 cellpadding=0 width=100% class=sc_black>\n";
   echo "<tr bgcolor=$file_header height=16 class=sc_black>\n";
