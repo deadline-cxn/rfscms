@@ -310,7 +310,7 @@ echo "</table>\n";
     $xp_ext = explode(".",$filedata->location,40);
     $j = count ($xp_ext)-1;  $ext = "$xp_ext[$j]";
     $ftype=strtolower($ext);
-    echo "<img src=$RFS_SITE_URL/images/icons/filetypes/$ftype.gif border=0 title=\"$filedata->short_name\" alt=\"$filedata->short_name\"></a>\n";
+    echo "<img src=$RFS_SITE_URL/images/icons/filetypes/$ftype.png border=0 title=\"$filedata->short_name\" alt=\"$filedata->short_name\"></a>\n";
     echo "</center></td>\n";
     echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
     echo "<table border=0><tr><td>\n";
