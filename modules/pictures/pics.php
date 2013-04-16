@@ -184,7 +184,7 @@ if($action=="removepicture"){
 		echo "<input type=hidden name=action value=removego>\n";
 		echo "<input type=hidden name=id value=\"$id\">\n";
 		echo "<tr><td>Are you sure you want to delete [$picture->sname]???</td>";
-		echo "<td><input type=submit name=submit value=\"Fuck Yeah!\"></td></tr>\n";
+		echo "<td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
 		echo "<tr><td>Annihilate the file from the server?</td>";
 		echo "<td><input name=\"annihilate\" type=\"checkbox\" value=\"yes\"></td></tr>\n";
 		echo "</form></table>\n";
