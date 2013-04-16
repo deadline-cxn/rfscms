@@ -371,13 +371,31 @@ echo "</table>";
 				echo "</pre>";
 			break;
 			
-            case "7z":
+			case "7z":
 				echo "<p>This is a 7zip file. You will need to get 7zip to unarchive it. <a href=\"http://www.7-zip.org/\" target=_blank>http://www.7-zip.org/</a></p>";
+			
 			case "iso":
-			
+			case "cab":			
+			case "chm":
+			case "cpio":
+			case "cramfs":
+			case "deb":
+			case "dmg":
+			case "fat":
+			case "hfs":
+			case "lzma":
+			case "xz": 
+			case "wim":
+			case "mbr":
+			case "msi":
+			case "nsis":
+			case "ntfs":
+			case "rpm":
+			case "udf":
+			case "vhd": 
+			case "xar":
+			case "z":			
 			case "bz2":
-			
-			
 			case "lzh":
 			case "lha":
 			case "arj":
@@ -385,7 +403,7 @@ echo "</table>";
 			case "rar":
 			case "zip":
 				echo "Contents:<br><pre>";
-				echo system("7z l $filedata->location");
+				echo system("7z l '$filedata->location'");
 				echo "</pre>";
             break;
 			
@@ -1056,10 +1074,10 @@ for($i=0;$i<$numcats;$i++) {
 			echo "</td></tr></table>";
 			echo "</td>";
 
-			echo "<td class=sc_top_file_table>B</td>";
-			echo "<td class=sc_top_file_table>C</td>";
-			echo "<td class=sc_top_file_table>D</td>";			
-			echo "<td class=sc_top_file_table>G</td>";
+			echo "<td class=sc_top_file_table> </td>";
+			echo "<td class=sc_top_file_table> </td>";
+			echo "<td class=sc_top_file_table> </td>";			
+			echo "<td class=sc_top_file_table> </td>";
 
 			echo "</tr>";
 			
