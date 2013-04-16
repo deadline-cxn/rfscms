@@ -5,7 +5,7 @@
 
 function odb(){
 	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'], $GLOBALS['authdbuser'], $GLOBALS['authdbpass']);
-	if(empty($mysql))	{	
+	if(empty($mysql))	{
 		return false;
 	}
 	mysql_select_db( $GLOBALS['authdbname'], $mysql);
@@ -218,8 +218,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
                     echo nl2br("$q;");
                     sc_query("$q;");
                 }
-				
-			system("mkdir $RFS_SITE_PATH/log");
+		system("mkdir $RFS_SITE_PATH/log");
 
            echo "  <center> <p></p><p></p><table border=0 width=$table_width><tr><td class=formboxd>
             <center>
@@ -293,7 +292,7 @@ if($action=="step_a") {
 <td><input size=100 type=\"text\" name=\"rfs_site_path\" value=\"$rfs_site_path\"></td>
 </tr>
 <tr>
-<td>Database Name 
+<td>Database Name
 
 <a href=\"$rfs_site_url/3rdparty/phpmyadmin/\" target=_blank>Set up Database</a>
 </td>
