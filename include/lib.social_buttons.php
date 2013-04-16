@@ -75,7 +75,8 @@ height=\"1\">
 }
 
 
-function sc_socials_content($u,$t) {
+function sc_socials_content($u,$t) { eval(scg());
+	if(!sc_yes($RFS_SITE_SHOW_SOCIALS)) return;
 	echo '
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style ">
