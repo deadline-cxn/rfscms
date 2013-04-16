@@ -131,7 +131,7 @@ flash($data->avatar,100,100);
 echo "</td>\n";
 if(empty($data->gender)) $data->gender="male";
 
-echo "<td><img src=$RFS_SITE_URL/images/sym_$data->gender.gif border=0 title=\"$data->gender\" alt=\"$data->gender\"></td>\n";
+echo "<td><img src=$RFS_SITE_URL/images/icon/sym_$data->gender.gif border=0 title=\"$data->gender\" alt=\"$data->gender\"></td>\n";
 echo "<td><select name=gender><option>$data->gender<option>male<option>female</select></td>";
 list($adate,$atime)=explode(" ",$data->first_login );
 list($tyear,$tmonth,$tday)=explode("-",$adate);
