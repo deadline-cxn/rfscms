@@ -1,9 +1,8 @@
 <?
+chdir("../../");
 include("header.php");
 
-include("lib.comics.php");
-
-table_top("Comics");
+echo "Comics <BR>";
 
 echo "<table border=0 width=800 cellspacing=0 cellpadding=0><tr><td class=contenttd>";
 
@@ -128,14 +127,14 @@ if($data->access==255)
     {
         echo "<h1>Add a new comic</h1>";
         echo "<table border=0>";
-        echo "<form enctype=application/x-www-form-URLencoded method=post action=comics.php>";
+        echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/comics/comics.php>";
         echo "<input type=hidden name=action value=newcomic2>";
         echo "<tr><td class=contenttd>Title of comic</td><td class=contenttd><input name=title></td></tr>";
         echo "<tr><td class=contenttd>Volume        </td><td class=contenttd><input name=volume></td></tr>";
         echo "<tr><td class=contenttd>Issue         </td><td class=contenttd><input name=issue></td></tr>";
         echo "<tr><td class=contenttd>              </td><td class=contenttd><input type=submit name=Go value=Go></td></tr>";
         echo "</form></table>";
-        include("rfs/footer.php");
+        include("footer.php");
         exit;
     }
 
@@ -148,9 +147,9 @@ if($data->access==255)
         {
             $comic=mysql_fetch_object($res);
             echo "<p>That title, volume, and issue already exists!<br>";
-            echo "[<a href=comics.php?action=editcomic&id=$comic->id>Edit $title vol. $volume issue $issue</a>]";
+            echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=editcomic&id=$comic->id>Edit $title vol. $volume issue $issue</a>]";
             echo "</p>";
-            include("rfs/footer.php");
+            include("footer.php");
             exit;
         }
         $time=date("Y-m-d H:i:s");
@@ -175,7 +174,7 @@ if($data->access==255)
     {
         echo "<h1>Add a new comic page template</h1>";
         echo "<table border=0>";
-        echo "<form enctype=application/x-www-form-URLencoded method=post action=comics.php>";
+        echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/comics/comics.php>";
         echo "<input type=hidden name=action value=addpagetemplatego>";
         echo "<tr><td class=contenttd>Name of template</td><td class=contenttd><input name=name></td></tr>";
         echo "<tr><td class=contenttd>Panels</td><td class=contenttd>";
@@ -204,7 +203,7 @@ if($data->access==255)
 
         echo "<tr><td class=contenttd>              </td><td class=contenttd><input type=submit name=Go value=Go></td></tr>";
         echo "</form></table>";
-        include("rfs/footer.php");
+        include("footer.php");
         exit;
 
     }
@@ -225,10 +224,10 @@ if($data->access==255)
         echo "<table border=\"0\"><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
         echo "<br>WARNING:<br>The template $template->name will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
-        echo "<table><tr><td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$site_url/comics.php\">\n";
+        echo "<table><tr><td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\">\n";
         echo "<input type=hidden name=action value=delpagetemplatego><input type=hidden name=tid value=$tid>\n";
         echo "<input type=\"submit\" name=\"submit\" value=\"Fuck Yeah!\"></form></td>\n";
-        echo "<td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$site_url/comics.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
+        echo "<td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
 
     }
 
@@ -453,7 +452,7 @@ if($data->access==255)
 
         echo "<h1>Edit a comic page template</h1>";
         echo "<table border=0>";
-        echo "<form enctype=application/x-www-form-URLencoded method=post action=comics.php>";
+        echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/comics/comics.php>";
         echo "<input type=hidden name=action value=editpagetemplatego>";
         echo "<tr><td class=contenttd>Name of template</td><td class=contenttd>".$template['name']."</td></tr>";
         echo "<input type=hidden name=name value=\"".$template['name']."\">";
@@ -483,7 +482,7 @@ if($data->access==255)
 
         echo "<tr><td class=contenttd>              </td><td class=contenttd><input type=submit name=Go value=Go></td></tr>";
         echo "</form></table>";
-        include("rfs/footer.php");
+        include("footer.php");
         exit;
     }
 
@@ -528,17 +527,17 @@ if($data->access==255)
             echo "</td><td class=contenttd>";
             echo "Template: $template->name<br>";
             echo "Panels: $template->panels<br>";
-            echo "[<a href=\"comics.php?action=addpagego&id=$comic->id&tid=$template->id\">Use $template->name Template</a>]<br>";
-            echo "[<a href=\"comics.php?action=previewtemplatefull&tid=$template->id&id=$id\">Full size preview</a>]<br>";
-            echo "[<a href=\"comics.php?action=editpagetemplate&tid=$template->id\">Edit template</a>]<br>";
-            echo "[<a href=\"comics.php?action=delpagetemplate&tid=$template->id\">Delete template</a>]";
+            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=addpagego&id=$comic->id&tid=$template->id\">Use $template->name Template</a>]<br>";
+            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=previewtemplatefull&tid=$template->id&id=$id\">Full size preview</a>]<br>";
+            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=editpagetemplate&tid=$template->id\">Edit template</a>]<br>";
+            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=delpagetemplate&tid=$template->id\">Delete template</a>]";
             echo "</td></tr>";
             echo "</table>";
         }
-        echo "[<a href=\"comics.php?action=addpagetemplate\">Add new template</a>]<br>";
+        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=addpagetemplate\">Add new template</a>]<br>";
         
 
-        include("rfs/footer.php");
+        include("footer.php");
         exit;
     }
 
@@ -585,7 +584,7 @@ if($data->access==255)
             echo "<p>$x x $y</p>";
             
             echo "<table border=0>\n";
-            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"comics.php\" method=\"post\">\n";
+            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
             echo "<input type=hidden name=action value=definepanel>\n";
             echo "<input type=hidden name=pid value=$page->pid>";
             echo "<input type=hidden name=panel value=".($i+1).">";
@@ -595,7 +594,7 @@ if($data->access==255)
             echo "</table>\n";
 
             echo "<table border=0>\n";
-            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"comics.php\" method=\"post\">\n";
+            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
             echo "<input type=hidden name=give_file value=comics>\n";
             echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
             echo "<input type=hidden name=local value=\"images/comics\">";
@@ -608,7 +607,7 @@ if($data->access==255)
             echo "</table>\n";
 
             echo "<table border=0>\n";
-            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"comics.php\" method=\"post\">\n";
+            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
             echo "<input type=hidden name=action value=clearpanel>\n";
             echo "<input type=hidden name=pid value=$page->pid>";
             echo "<input type=hidden name=panel value=".($i+1).">";
@@ -637,10 +636,10 @@ if($data->access==255)
         echo "<table border=\"0\"><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
         echo "<br>WARNING:<br>The page will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
-        echo "<table><tr><td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$site_url/comics.php\">\n";
+        echo "<table><tr><td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\">\n";
         echo "<input type=hidden name=action value=delpagego><input type=hidden name=pid value=$pid>\n";
         echo "<input type=\"submit\" name=\"submit\" value=\"Fuck Yeah!\"></form></td>\n";
-        echo "<td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$site_url/comics.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";       
+        echo "<td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";       
     }
 
     if($action=="delpagego")
@@ -716,14 +715,14 @@ if($data->access==255)
             echo "Page: $page->page<br>";
             $template=mysql_fetch_object(sc_query("select * from `comics_page_templates` where `id`='$page->template'"));
             echo "Template: $template->name<br>";
-            echo "[<a href=\"$site_url/comics.php?action=movepageup&id=$comic->id&page=$page->page\">Move up</a>]<br>";
-            echo "[<a href=\"$site_url/comics.php?action=movepagedown&id=$comic->id&page=$page->page\">Move down</a>]<br>";
-            echo "[<a href=\"$site_url/comics.php?action=defpage&pid=$page->pid\">Define panels</a>]<br>";
-            echo "[<a href=\"$site_url/comics.php?action=delpage&pid=$page->pid\">Delete this page</a>]";
+            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=movepageup&id=$comic->id&page=$page->page\">Move up</a>]<br>";
+            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=movepagedown&id=$comic->id&page=$page->page\">Move down</a>]<br>";
+            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=defpage&pid=$page->pid\">Define panels</a>]<br>";
+            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=delpage&pid=$page->pid\">Delete this page</a>]";
             echo "</td></tr></table>";
         }
 
-        echo "[<a href=\"comics.php?action=addpage&id=$comic->id\">Add new page</a>]<br>";
+        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=addpage&id=$comic->id\">Add new page</a>]<br>";
         echo "<br>";
     }
 
@@ -761,10 +760,10 @@ if($action=="viewcomic")
     if($npages>1)
     {
 
-        if($page->page > 1)       echo "[<a href=comics.php?action=viewcomic&id=$id&pagenumber=1>Page 1</a>]";
-        if($page->page > 1)       echo "[<a href=comics.php?action=viewcomic&id=$id&pagenumber=".($page->page-1).">Prev</a>]";
-        if($page->page < $npages) echo "[<a href=comics.php?action=viewcomic&id=$id&pagenumber=".($page->page+1).">Next</a>]";
-        if($page->page < $npages) echo "[<a href=comics.php?action=viewcomic&id=$id&pagenumber=$npages>Last Page</a>]";
+        if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=1>Page 1</a>]";
+        if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page-1).">Prev</a>]";
+        if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page+1).">Next</a>]";
+        if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=$npages>Last Page</a>]";
     }
     
     
@@ -775,10 +774,10 @@ if($action=="viewcomic")
     if($npages>1)
     {
 
-        if($page->page > 1)       echo "[<a href=comics.php?action=viewcomic&id=$id&pagenumber=1>Page 1</a>]";
-        if($page->page > 1)       echo "[<a href=comics.php?action=viewcomic&id=$id&pagenumber=".($page->page-1).">Prev</a>]";
-        if($page->page < $npages) echo "[<a href=comics.php?action=viewcomic&id=$id&pagenumber=".($page->page+1).">Next</a>]";
-        if($page->page < $npages) echo "[<a href=comics.php?action=viewcomic&id=$id&pagenumber=$npages>Last Page</a>]";
+        if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=1>Page 1</a>]";
+        if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page-1).">Prev</a>]";
+        if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page+1).">Next</a>]";
+        if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=$npages>Last Page</a>]";
     }
 
  
@@ -800,11 +799,11 @@ else
     $numc=mysql_num_rows($res);
     $comic=mysql_fetch_object($res);
     $page=mysql_fetch_object(sc_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc limit 1"));   
-    page_full_view($page->pid); // ,"comics.php?action=viewcomic&id=$comic->id");
-    echo "<a href=\"comics.php?action=viewcomic&id=$comic->id\" class=\"a_cat\">$comic->title vol. $comic->volume issue $comic->issue</a>";
+    page_full_view($page->pid); // ,"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id");
+    echo "<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id\" class=\"a_cat\">$comic->title vol. $comic->volume issue $comic->issue</a>";
     echo "<br>";
     echo "</td></tr></table>";
-    echo "<p align=right><a href=$site_url/comics.php class=a_cat>more...</a></p>";
+    echo "<p align=right><a href=$RFS_SITE_URL/modules/comics/comics.php class=a_cat>more...</a></p>";
     echo "</td></tr></table>";
     echo "</td></tr></table>";
 
@@ -820,17 +819,17 @@ echo "<p> $numc Comics available...</p>";
 for($i=0;$i<$numc;$i++)
 {
     $comic=mysql_fetch_object($res);
-    echo "<a href=\"comics.php?action=viewcomic&id=$comic->id\">$comic->title vol. $comic->volume issue $comic->issue</a>";
+    echo "<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id\">$comic->title vol. $comic->volume issue $comic->issue</a>";
 
     if($data->access==255)
-        echo "[<a href=\"comics.php?action=unpublish&id=$comic->id\">Unpublish</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=unpublish&id=$comic->id\">Unpublish</a>]";
     echo "<br>";
 }
 
 if($data->access==255)
 {
     echo "<h1>Comics Administration</h1>";
-    echo "[<a href=comics.php?action=newcomic>Add new comic</a>]<br>";
+    echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=newcomic>Add new comic</a>]<br>";
 
     echo "<h1>Unpublished Comics:</h1>";
     $res=sc_query("select * from comics where `published`='no' order by time desc");
@@ -839,8 +838,8 @@ if($data->access==255)
     for($i=0;$i<$numc;$i++)
     {
         $comic=mysql_fetch_object($res);
-        echo "[<a href=\"comics.php?action=editcomic&id=$comic->id\">Edit $comic->title vol. $comic->volume issue $comic->issue</a>]";
-        echo "[<a href=\"comics.php?action=publish&id=$comic->id\">Publish</a>]<br>";
+        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=editcomic&id=$comic->id\">Edit $comic->title vol. $comic->volume issue $comic->issue</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=publish&id=$comic->id\">Publish</a>]<br>";
     }
 }
 
@@ -848,7 +847,6 @@ echo "</td></tr></table>";
 
 echo "</td></tr></table>";
 
-table_bottom();
 
 
 include("footer.php");
