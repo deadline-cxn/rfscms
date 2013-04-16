@@ -69,10 +69,7 @@ target=_blank>SethCoder.com</a> (Home of RFS CMS)
 </div>
 ";
 
-// echo "<div width=100% style='background-color: green; color:white;'>Detected PATH: $RFS_SITE_PATH</div><div width=100% style='background-color: green; color:white;'>Detected URL: $RFS_SITE_URL</div>";
-
 foreach( $_REQUEST as $k => $v ) { if(stristr($k,"rfs_")) { $GLOBALS["$k"]=$v; } }
-
 
 $action=$_REQUEST['action'];
 
@@ -172,59 +169,72 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
             $GLOBALS["userdbuser"]    = $rfs_udb_user;
             $GLOBALS["userdbpass"]    = $rfs_udb_password;
 
-				echo $GLOBALS["authdbname"]." DB IN USE <BR>";
+			echo $GLOBALS["authdbname"]." DB IN USE <BR>";
+			
+///////////////////////////////////////////////////////////////////////////////
+// UPDATE DATABASE install.sql
+$qx=explode(";",file_get_contents("$RFS_SITE_PATH/install/install.sql"));
+for($i=0;$i<count($qx);$i++) {
+	$q=$qx[$i];
+	sc_query("$q;");
+}
+$rfs_password=md5($rfs_password);
+sc_query("
+INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `access_groups`, `theme`) VALUES
+('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255',  'Administrator', 'default'); ");
+					
+///////////////////////////////////////////////////////////////////////////////
+// CHECK DATABASE				
+$r=sc_query("select * from users");
+$n=0;
+if($r) $n=mysql_num_rows($r);
+if(!$n) {
+	echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
+	$action="step_a";
+} else {
 
-				sc_query(file_get_contents("$RFS_SITE_PATH/install/install.users.sql"));
-				$rfs_password=md5($rfs_password);
-				sc_query("INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `theme`) VALUES('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255', 'default'); ");
-				sc_query("INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');");
+echo "<div width=100% style='background-color: green; color:white;'>Database activated... Adding RFSCMS junk so stuff works correctly.</div>";
+///////////////////////////////////////////////////////////////////////////////
+// UPDATE DATABASE				
+sc_query("
+INSERT INTO `site_vars` (`name`, `value`) VALUES
+('path', '$RFS_SITE_PATH'),
+('url',  '$RFS_SITE_URL'),
+('name', '$RFS_SITE_NAME'); ");
+///////////////////////////////////////////////////////////////////////////////
+// UPDATE DATABASE install.data.sql
+$f="$RFS_SITE_PATH/install/install.data.sql";
+$qx=explode("-;-",file_get_contents($f));
+for($i=0;$i<count($qx);$i++) {
+	$q=$qx[$i];
+	echo "<hr>";
+	echo nl2br("$q;");
+	sc_query("$q;");
+}
+///////////////////////////////////////////////////////////////////////////////
+		
+///////////////////////////////////////////////////////////////////////////////
+// Make system folders
+system("mkdir $RFS_SITE_PATH/log");
+system("mkdir $RFS_SITE_PATH/files");
+system("mkdir $RFS_SITE_PATH/files/pictures");
+system("mkdir $RFS_SITE_PATH/files/avatars");
+system("mkdir $RFS_SITE_PATH/images");
 
-				$r=sc_query("select * from users");
-				$n=0;
-				if($r) $n=mysql_num_rows($r);
-				if(!$n) {
-					echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
-					$action="step_a";
-				} else {
-
-
-                sc_query("	CREATE TABLE IF NOT EXISTS `site_vars` ( `name` text NOT NULL, `value` text NOT NULL ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
-                sc_query("	INSERT INTO `site_vars`
-									(`name`, `value`)
-							VALUES  ('path', '$RFS_SITE_PATH'),
-									('url',  '$RFS_SITE_URL'),
-									('name', '$rfs_site_name'),
-									('singletablewidth', '910'),
-									('doubletablewidth', '435'),
-									('theme_dropdown', 'true'),
-									('default_theme', 'default'),
-									('force_theme', 'false'),
-									('forced_theme', 'default'); ");
-
-                echo "<div width=100% style='background-color: green; color:white;'>Database activated... Adding RFSCMS junk so stuff works correctly.</div>";
-
-                $qx=explode(";",file_get_contents("$RFS_SITE_PATH/install/install.sql"));
-
-                for($i=0;$i<count($qx);$i++) {
-                    $q=$qx[$i];
-                    sc_query("$q;");
-                }
-
-                $f="$RFS_SITE_PATH/install/install.data.sql";
-                $qx=explode("-;-",file_get_contents($f));
-                for($i=0;$i<count($qx);$i++) {
-                    $q=$qx[$i];
-                    echo "<hr>";
-                    echo nl2br("$q;");
-                    sc_query("$q;");
-                }
-		system("mkdir $RFS_SITE_PATH/log");
-
-           echo "  <center> <p></p><p></p><table border=0 width=$table_width><tr><td class=formboxd>
-            <center>
-			<p> Your site is configured! Login here <a href=$RFS_SITE_URL>$RFS_SITE_URL</a> to begin customizing</p>
-			</center>
-            </td></tr></table>";
+           echo "  <center> <p>&nbsp;</p><p>&nbsp;</p>
+					<table border=0 width=$table_width>
+					<tr><td class=formboxd><center>
+					<p>Congratulations, Your site is configured!</p>
+					<p>You should now delete the install folder, 
+					unless you want malicious stuff to happen.</p>	
+					<p>The page should redirect in 5 seconds, if it
+					doesn't click here <a href=$RFS_SITE_URL>$RFS_SITE_URL</a>
+					to begin customizing</p>
+					<p> &nbsp; </p>
+					</center>
+				   </td></tr></table>";
+				   
+				echo "<META HTTP-EQUIV=\"refresh\" content=\"5;URL=$RFS_SITE_URL\">";
             }
         }
         else {
