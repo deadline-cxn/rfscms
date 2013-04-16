@@ -314,7 +314,7 @@ echo "</table>\n";
     echo "</center></td>\n";
     echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
     echo "<table border=0><tr><td>\n";
-    echo "<input name=short_name value=\"$filedata->short_name\" size=30>\n";
+    echo "<input name=short_name value=\"$filedata->sname\" size=30>\n";
     echo "</td><td>\n";
     echo "<input type=submit value=rename></td>\n";
     echo "</td></tr></table>\n";
