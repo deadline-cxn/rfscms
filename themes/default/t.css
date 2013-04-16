@@ -2,7 +2,9 @@ body{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
-    background-color: #221100;
+	background-image: url('/themes/default/t.background.jpg');
+	background-repeat:no-repeat;
+	background-attachment:fixed;
 }
 
 .slogan {
@@ -17,7 +19,7 @@ body{
   font-size: x-large;
   font-style: normal;
   color: #FFFFFF;
-  background-color: #880000;
+  background-color: #008800;
 }
 
 .tabletop{
@@ -30,8 +32,7 @@ body{
 
 .sc_top_menu_table{
   font-family: Lucidia; 
-  font-style: normal;
-  background-color: #996600;
+  font-style: normal;  
 }
 
 .sc_top_menu_link {
@@ -40,8 +41,7 @@ body{
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
-    color: #FFFF00;
-    background-color: #996600;
+    color: #00FF00;
 }
 .sc_top_menu_link:link {
     font-family: System;
@@ -49,7 +49,7 @@ body{
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
-    color: #FFFF00;
+    color: #00FF00;
 
 }
 .sc_top_menu_link:hover {
@@ -58,10 +58,8 @@ body{
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
-	background-color:  #ffff00;
+	background-color:  #00ff00;
 	color: #000000;
-    background-image: none;
-
 }
 
 .news_headline {
@@ -86,7 +84,7 @@ body{
     font-size: large;
     font-weight: bold;
     font-style: italic;
-    color: #ffff00;
+    color: #00ff00;
 }
 
 h1 {
@@ -94,21 +92,21 @@ h1 {
     font-size: 32px;;
     font-weight: bold;
     font-style: italic;
-    color: #ff9900;
+    color: #009900;
 }
 h2 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 30px;;
     font-weight: bold;
     font-style: italic;
-    color: #ff9900;
+    color: #009900;
 }
 h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 30px;;
     font-weight: bold;
     font-style: italic;
-    color: #ff9900;
+    color: #009900;
 }
 
 .font {
@@ -122,15 +120,14 @@ td {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: small;
     font-weight: bold;
-    color:   #ff9900;
-	background-color: #110500;
+    color:  #009900;
 }
 
 .downloadtd {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    color:   #0397FF;
-	background-color: #008400;
+    color:   #039700;
+	background-color: #002200;
 }
 
 .contenttd {
@@ -138,14 +135,14 @@ td {
     font-size: xx-small;
     font-weight: bold;
     color:   #FFFFFF;
-	background-color: #330000;
+	background-color: #003300;
 }
 
 .midtd{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
-	background-color: #775500;
+	background-color: #005500;
 }
 
 .toptd {
@@ -153,8 +150,8 @@ td {
     font-size: 56px;
     font-style: italic;
     font-weight: bold;
-    color:   #ff9900;
-	background-color: #000000;
+    color:   #009900;
+	bdadckground-color: #000000;
 }
 
 .lefttd {
@@ -162,23 +159,23 @@ td {
     font-size: xx-small;
     font-weight: bold;
     color:   #00FF00;
-    background-color: #FF0000;
+    background-color: #00FF00;
 }
 
 th {
-	background-color: #9c5c2c;
+	background-color: #2c5c2c;
 }
 .sc_project_table_header {
-	background-color: #9c5c2c;
+	background-color: #2c5c2c;
 }
 
 .sc_project_table_1{
-	background-color: #fc7c40;
+	background-color: #407c40;
 	color: #000000;
 }
 
 .sc_project_table_2 {
-	background-color: #cc6c3c;
+	background-color: #3c6c3c;
 	color: #000000;
 }
 
@@ -189,7 +186,7 @@ a {
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #FFFF00;
+    color: #00FF00;
 }
 
 a:link {
@@ -198,7 +195,7 @@ a:link {
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #FFFF00;
+    color: #00FF00;
 }
 
 a:hover {
@@ -208,55 +205,19 @@ a:hover {
     font-style: italic;
     text-decoration: none;
     color: #000000;
-    background-color: #FFFF00;
+    background-color: #00FF00;
     
 }
 
 
 input, select, textarea {
     font-family: Verdana;
-    gfont-size : x-small;
+    font-size : x-small;
     font-weight: bold;
     border-style : solid;
     border-width : 2px;
-    border-color : #000000;
-    background-color : #888888;
+	color: #004F00;
+    border-color : #005F00;
+    background-color : #00F800;
 
 }
-
-
-.fdsahover{
-filter: glow(color=#526D00, strength=#2);
-    bagfckground-color: #00cccc;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    text-decoration: none;
-    text-shadow: black 0px 0px 5px;
-    gfcolor: #000000;
-    fackground: white; 
-    color: white;
-    
-    text-shadow: 3px 3px red, yellow -3px 3px 2px, 3px -3px;
-    
-filter:alpha
-filter:blur
-filter:chroma
-filter:dropshadow
-filter:fliph
-filter:flipv
-filter:glow
-filter:gray
-filter:invert
-filter:mask
-filter:shadow
-filter:wave
-filter:xray
-
-
-
-
-
-
-}
-
