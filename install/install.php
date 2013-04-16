@@ -200,7 +200,7 @@ sc_query("
 INSERT INTO `site_vars` (`name`, `value`) VALUES
 ('path', '$RFS_SITE_PATH'),
 ('url',  '$RFS_SITE_URL'),
-('name', '$RFS_SITE_NAME'); ");
+('name', '$rfs_site_name'); ");
 ///////////////////////////////////////////////////////////////////////////////
 // UPDATE DATABASE install.data.sql
 $f="$RFS_SITE_PATH/install/install.data.sql";
