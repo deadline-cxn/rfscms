@@ -218,8 +218,9 @@ for($i=0;$i<count($qx);$i++) {
 system("mkdir $RFS_SITE_PATH/log");
 system("mkdir $RFS_SITE_PATH/files");
 system("mkdir $RFS_SITE_PATH/files/pictures");
-system("mkdir $RFS_SITE_PATH/files/avatars");
 system("mkdir $RFS_SITE_PATH/images");
+system("mkdir $RFS_SITE_PATH/images/avatars");
+
 
            echo "  <center> <p>&nbsp;</p><p>&nbsp;</p>
 					<table border=0 width=$table_width>
