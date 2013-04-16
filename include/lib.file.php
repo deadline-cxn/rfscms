@@ -61,7 +61,7 @@ function sc_get_folder_files($folder){
 }
 
 function sc_multi_rename($folder,$old_pattern,$new_pattern) {
-    $dir_count=0;
+    
     $dirfiles=sc_get_folder_files($folder);
     while(list ($key, $file) = each ($dirfiles)) {
         if($file!=".") {
@@ -71,7 +71,7 @@ function sc_multi_rename($folder,$old_pattern,$new_pattern) {
                     $nfile=str_replace($old_pattern,$new_pattern,$file);
   //                  echo getcwd();
 //                    echo "OLD[$folder/$file] NEW[$folder/$nfile]<BR>";
-			system("mv $folder/$file $folder/$nfile");
+						system("mv $folder/$file $folder/$nfile");
 
                 }
             }
@@ -79,10 +79,12 @@ function sc_multi_rename($folder,$old_pattern,$new_pattern) {
     }
 }
 
-function sc_echo_file($file) {
+function sc_echo_file($file) { eval(scg());
 	if(file_exists($file)) {
 		echo "Filename: $file\n";
-		echo file_get_contents($file);
+		$f=file_get_contents($file);
+		$f=str_replace("<","&lt;",$f);
+		return $f;
 	}
 }
 
@@ -91,21 +93,51 @@ function sc_file_get_readme($file_name) { eval (scg());
 	system("yes| rm $RFS_SITE_PATH/tmp/*");	
 	system("cd $RFS_SITE_PATH/tmp");
 	
-	exec("yes| 7z e -o/var/www/tmp $file_name");
+	exec("yes| 7z e -o/var/www/tmp '$file_name'");
 	
-	sc_echo_file("$RFS_SITE_PATH/tmp/FILE_ID.DIZ");
-	sc_echo_file("$RFS_SITE_PATH/tmp/README.md");
-	sc_echo_file("$RFS_SITE_PATH/tmp/Readme.txt");
-	sc_echo_file("$RFS_SITE_PATH/tmp/Readme");
-	sc_echo_file("$RFS_SITE_PATH/tmp/ReadMe");
-	sc_echo_file("$RFS_SITE_PATH/tmp/README");
-	sc_echo_file("$RFS_SITE_PATH/tmp/README.TXT");
-	sc_echo_file("$RFS_SITE_PATH/tmp/readme.txt");
-	sc_echo_file("$RFS_SITE_PATH/tmp/README.1ST");
+	system("renlow $RFS_SITE_PATH/tmp");
+	$dirfiles=sc_get_folder_files("$RFS_SITE_PATH/tmp");
 	
-	sc_echo_file("$RFS_SITE_PATH/tmp/License.txt");
-	
-		
+	while(list ($key, $file) = each ($dirfiles)) {
+		if(substr($file,0,1)!=".") {
+			if((stristr($file,".png")) ||
+				(stristr($file,".jpg")) ||
+				(stristr($file,".bmp")) ||
+				(stristr($file,".jpeg")) ||
+				(stristr($file,".gif")) )  { 
+					echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
+				}
+		}
+	}
+
+	reset($dirfiles);
+    while(list ($key, $file) = each ($dirfiles)) {
+		if(substr($file,0,1)!=".") {
+			if( (stristr($file,"read")) ||
+				(stristr($file,".nfo")) ||
+				
+				(stristr($file,".diz")) ||
+				(stristr($file,".doc")) ||
+				(stristr($file,".txt")) ||
+				(stristr($file,".msg")) ||
+				(stristr($file,".h")) ||
+				(stristr($file,".hpp")) ||				
+				(stristr($file,"index")) ) {
+				$x=sc_echo_file("$RFS_SITE_PATH/tmp/$file");
+				echo $x;
+				echo "<hr>";
+				
+				if(stristr($file,".diz")) {
+					$db_file=str_replace("$RFS_SITE_PATH/","",$file_name);
+					$x=addslashes($x);
+					$cf=mfo1("select * from files where location='$db_file'");
+					if(empty($cf->description)) {
+						sc_query("update files set description=\"$x\" where location='$db_file'");
+					}
+				}				
+			}
+		}
+	}
 }
 
 ?>
