@@ -488,7 +488,7 @@ function shownews() { eval(scg());
 		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">";
 		echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30>";
 		echo "</a>\n";        
-		echo "</td>":
+		echo "</td>";
 		/////////////////
 
 		/////////////////
