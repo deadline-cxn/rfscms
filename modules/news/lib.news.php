@@ -373,7 +373,7 @@ function editnews($nid) { eval(scg());
 		echo "</td></tr></table>";
 					
 	
-    echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
+    echo "<table border=0 width=100%><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
     echo "<input type=\"hidden\" name=\"action\" value=\"edgo\">\n";
     echo "<input type=\"hidden\" name=\"nid\" value=\"$nid\">\n";
 	
@@ -429,11 +429,11 @@ function editnews($nid) { eval(scg());
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";
-    echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Update News\" class=b4button></td></tr>\n";
+    echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Update News\" class=b4button> X</td></tr>\n";
     echo "</form></table>\n";
 	
-	echo "</td></tr></table>\n";
-	echo "</td></tr></table>\n";
+	echo " Y</td></tr></table>\n";
+	echo " Z</td></tr></table>\n";
 	
 }
 
