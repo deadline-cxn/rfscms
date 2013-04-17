@@ -132,40 +132,41 @@ function show1message($post,$gx) { eval(scg()); // $forum_color=$GLOBALS['forum_
         echo "<tr><td valign=top width=100 align=center>\n";
         echo "<table border=0 cellspacing=0>";
 
-        if($pster->id==999) {
-            $pname=$pster->name;
-            echo "<tr><td valign=top width=140>";
-            echo "$pname";
-            echo "</td></tr>";
-        } else {
-            $pname=$pster->name;
-            echo "<tr><td valign=top align=center>";
-            sc_useravatar($pname);
-            echo "</td></tr>";
-            echo "<tr><td valign=top align=left>";
-            echo "<a href=$RFS_SITE_URL/showprofile.php?user=$pname>$pname</a>";
-            echo "</td></tr>";
-            echo "<tr><td  valign=top>";
-            echo "posts:$pster->forumposts<br>replies:$pster->forumreplies";
-            echo "</td></tr>";
+		$pname=$pster->name;
+
+        if($pster->id==999) {            
+				echo "<tr><td valign=top width=140>";
+				echo "$pname";
+				echo "</td></tr>";
+        } else {            
+				echo "<tr><td valign=top align=center>";
+				sc_useravatar($pname);
+				echo "</td></tr>";
+				echo "<tr><td valign=top align=left>";
+				echo "<a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$pname\">$pname</a>";
+				echo "</td></tr>";
+				echo "<tr><td  valign=top>";
+				echo "posts:$pster->forumposts<br>";
+				echo "replies:$pster->forumreplies";
+				echo "</td></tr>";
         }
 
         echo "</table>";
         echo "</td><td align=left valign=top width=100%>\n";
         echo "<table border=0 cellspacing=0 cellpadding=5 width=100%><tr><td>";
-        //echo "<h1>".$post['title']."</h1>";
+        
         echo smiles(stripslashes($post['message']));
         echo "</td></tr></table>";
         echo "</td></tr>";
         echo "<tr><td>&nbsp;</td><td align=right>";
         $time=sc_time($post['time']);
-        echo "posted $time by <a href=$RFS_SITE_URL/modules/profiles/showprofile.php?user=$pster->name>$pster->name</a>";
+        echo "posted $time by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$pname\">$pname</a> ";
         if($logged_in=="true") {
             if( ($pster->name==$data->name) || ($data->access=="255")  ) {
                 $thread=$post['thread'];
                 $whichrep=$post['id'];
                 $forum_witch=$post['forum'];
-                echo " [<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">delete</a>]";
+                echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">delete</a>] ";
                 echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=edit_reply&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">edit</a>]";
             }
         }
