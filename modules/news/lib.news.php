@@ -182,7 +182,7 @@ function sc_show_news($id) { eval(scg());
 	echo "<img src=\"$news->image_url\" border=\"0\" 
 			title = '$altern'
 			alt='$altern'
-			align=left>";
+			align=left> $oldimage";
 	
 	if(!empty($news->image_url)) {
 		echo  "</a>";		
