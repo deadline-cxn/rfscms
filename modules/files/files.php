@@ -1,6 +1,7 @@
 <?
 chdir("../../");
 include_once("include/lib.all.php");
+include_once("3rdparty/ycTIN.php");
 
 
 if($argv[1]=="scrub") {
@@ -303,7 +304,7 @@ echo "</table>";
 
         $ft=sc_getfiletype($filedata->location);
 		
-		echo "<hr>README text:<br>";
+		
 		echo "<pre>";
 		sc_file_get_readme("$RFS_SITE_PATH/$filedata->location");
 		echo"</pre>";
@@ -311,18 +312,15 @@ echo "</table>";
         switch($ft){
 			
 			case "exe":
+			case "msi":
+			case "msu":
+			case "dll":
 			
-			echo "<hr> EXE program information using pev <hr>";
+			
 			
 				echo "<pre>";
-				
-				
-				echo "VERSION: \n";
-				echo system("pev -p $filedata->location");
-				echo "<hr>";
-				echo system("pev $filedata->location");
-					
-				
+				echo system("pev -p $filedata->location");				
+				echo system("pev $filedata->location");				
 				echo "</pre>";
 				break;
 			
@@ -341,7 +339,20 @@ echo "</table>";
 						1,1,0, 		// RGB Outer
 						0,	 // force render
 						0	// force height
-						);		
+						);
+						
+						echo "<br>";
+				$ttf = new ycTIN_TTF();
+				//open font file
+				if ($ttf->open("$RFS_SITE_PATH/$filedata->location")) {
+					//get name table
+					$rs = $ttf->getNameTable();
+					//display result
+					echo "<pre>";
+					print_r($rs);
+					echo "</pre>";
+				}
+				
 			break;
 			
 			
@@ -402,6 +413,7 @@ echo "</table>";
 			case "arc":
 			case "rar":
 			case "zip":
+			
 				echo "Contents:<br><pre>";
 				echo system("7z l '$filedata->location'");
 				echo "</pre>";
@@ -427,7 +439,7 @@ echo "</table>";
 			case "perl":
 			case "lua":
 			case "js":
-            case "php":
+			case "php":
                 echo "<table border=0 width=75% cellpadding=6><tr><td class=sc_file_table_1>";
                 
                 show_source($filedata->location);
@@ -917,11 +929,6 @@ function show1file($filedata,$bg) { eval(scg());
 	echo "<td class=sc_file_table_$bg >$size &nbsp;</td>\n";
 
 	echo "<td class=sc_file_table_$bg >";
-	echo sc_trunc($filedata->description,45); 
-	echo "</td>\n";
-	
-	
-	echo "<td class=sc_file_table_$bg >"; // D 
 	
 	if( ($filetype=="ttf") || 
 		($filetype=="otf") ||
@@ -935,7 +942,17 @@ function show1file($filedata,$bg) { eval(scg());
 						0,	 // force render
 						0	// force height
 						);		
+		} else {	
+	
+		echo sc_trunc($filedata->description,45); 
+		
 		}
+	echo "</td>\n";
+	
+	
+	echo "<td class=sc_file_table_$bg >"; // D 
+	
+
 	echo "</td>";
 
     echo "<td class=sc_file_table_$bg >"; // G

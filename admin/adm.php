@@ -1064,7 +1064,7 @@ function adm_action_edit_categories() {
 	</td>
 
 	<td>
-	<img src=$RFS_SITE_URL/images/noimage.gif width=64 height=64 border='0'>
+	<img src=$RFS_SITE_URL/images/icons/exclamation.png width=64 height=64 border='0'>
 	</td>
 	<td>
 	<input type=text name=image value=''>
@@ -1094,10 +1094,13 @@ function adm_action_edit_categories() {
 		echo "<input type=hidden name=action    value=f_rename_category>\n";
 		echo "<input type=hidden name=category  value=\"$cat->name\">\n";
 		echo "<input size=40 type=text   name=newname  value=\"$cat->name\">\n";
+		if(empty($cat->image)) $cat->image="images/icons/exclamation.png";
+		if(!file_exists("$RFS_SITE_PATH/$cat->image")) {
+			$cat->image="images/icons/404.png";
+		}
 		echo "</td>
-
 		<td>
-		<a href='$RFS_SITE_URL/admin/adm.php?action=f_category_change_icon&id=$cat->id'>
+		<a href='$RFS_SITE_URL/admin/adm.php?action=f_category_change_icon&id=$cat->id'>		
 		<img src='$RFS_SITE_URL/$cat->image' border='0' width=64 height=64> </a>
 		</td>
 		<td>

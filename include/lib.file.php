@@ -3,6 +3,7 @@
 // RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 sc_div(__FILE__);
+
 function sc_scrubfiles() {
     sc_query(" CREATE TABLE files2 like files; ");
 	sc_query(" INSERT files2 SELECT * FROM files GROUP BY location;" );
@@ -90,7 +91,9 @@ function sc_echo_file($file) { eval(scg());
 
 function sc_file_get_readme($file_name) { eval (scg());
 	
-	system("yes| rm $RFS_SITE_PATH/tmp/*");	
+	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
+	system("yes| rm -R $RFS_SITE_PATH/tmp/.*");
+	
 	system("cd $RFS_SITE_PATH/tmp");
 	
 	exec("yes| 7z e -o/var/www/tmp '$file_name'");
@@ -99,12 +102,25 @@ function sc_file_get_readme($file_name) { eval (scg());
 	$dirfiles=sc_get_folder_files("$RFS_SITE_PATH/tmp");
 	
 	while(list ($key, $file) = each ($dirfiles)) {
+		
+		
+		if(substr($file,0,1)!=".") {
+			if(stristr($file,".ico")) {
+				echo system("icontopbm -x $RFS_SITE_URL/tmp/$file");
+				echo "$file<br>";
+				echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
+				
+			}
+		}
+			
 		if(substr($file,0,1)!=".") {
 			if((stristr($file,".png")) ||
 				(stristr($file,".jpg")) ||
 				(stristr($file,".bmp")) ||
+				
 				(stristr($file,".jpeg")) ||
 				(stristr($file,".gif")) )  { 
+					echo "$file<br>";
 					echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
 				}
 		}
@@ -113,16 +129,22 @@ function sc_file_get_readme($file_name) { eval (scg());
 	reset($dirfiles);
     while(list ($key, $file) = each ($dirfiles)) {
 		if(substr($file,0,1)!=".") {
-			if( (stristr($file,"read")) ||
+			if(( (stristr($file,"read")) ||
 				(stristr($file,".nfo")) ||
 				
 				(stristr($file,".diz")) ||
 				(stristr($file,".doc")) ||
 				(stristr($file,".txt")) ||
 				(stristr($file,".msg")) ||
+				(stristr($file,".c")) ||
 				(stristr($file,".h")) ||
-				(stristr($file,".hpp")) ||				
-				(stristr($file,"index")) ) {
+				(stristr($file,".hpp")) ||
+				(stristr($file,".ttf")) ||
+				(stristr($file,"index"))  
+				
+					)  &&
+					
+				(!stristr($file,".com")) ) {
 				$x=sc_echo_file("$RFS_SITE_PATH/tmp/$file");
 				echo $x;
 				echo "<hr>";
@@ -138,6 +160,9 @@ function sc_file_get_readme($file_name) { eval (scg());
 			}
 		}
 	}
+	
 }
+
+
 
 ?>
