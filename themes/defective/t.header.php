@@ -22,14 +22,14 @@ to("100%","cellpadding=0 cellspacing=0");
                 if($RFS_SITE_NAV_IMG == 1) {
                     if(empty($t)) $t="ERROR!";
                     sc_image_text($t,$RFS_SITE_NAV_FONT,
-                                        18,812,44,0,-10,
+                                        14,812,44,0,-10,
                                         250,250,40,
                                         44,4,0,1,1);
                 
                     rfs_echo("<a href=\$RFS_SITE_URL/login.php?action=logout>");
 
                     sc_image_text("logout",$RFS_SITE_NAV_FONT,
-                                    18,812,44,0,0,
+                                    14,812,44,0,0,
                                     250,50,40,
                                     44,4,0,1,1);
                     echo "</a>";
@@ -74,7 +74,7 @@ to("100%"," align=center cellpadding=0");
 		if ($RFS_SITE_NAV_IMG)  {
 	
 			sc_image_text($RFS_SITE_NAME,$RFS_SITE_FONT,
-							53,720,90,0,0,
+							43,720,90,0,0,
 							250,160,10,
 							244,4,0,1,1);
 		}else {
@@ -89,7 +89,7 @@ to("100%"," align=center cellpadding=0");
                     else {
 							sc_image_text(	"DONATED! THANK YOU",
 											"Collegiate.ttf",
-											53,720,90,0,0,
+											43,720,90,0,0,
 											255,255,10,
 											244,4,0,1,1);
 						}

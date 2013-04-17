@@ -429,10 +429,10 @@ function editnews($nid) { eval(scg());
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";
-    echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Update News\" class=b4button> X</td></tr>\n";
+    echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Update News\" class=b4button></td></tr>\n";
     echo "</form></table>\n";
 	
-	echo " Y</td></tr></table>\n";
+	// echo " </td></tr></table>\n";
 	
 	
 }
@@ -458,13 +458,15 @@ function shownews() { eval(scg());
 	
     // search method dictate sort order?
 	
-	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%>";
+	echo "<table border=0 cellspacing=0 cellpadding=4 width=100%>";
 	
 	if($data->access==255) {
 		echo "<tr>";
-		echo "<td class=contenttd>Views</td>";
-		echo "<td class=contenttd> B </td>";
-		echo "<td class=contenttd> C </td>";
+		echo "<td class=contenttd width=2%>Views</td>";
+		echo "<td class=contenttd width=2%> &nbsp;  </td>";
+		echo "<td class=contenttd> &nbsp; </td>";
+
+		
 		echo "</tr>";
 	}
     
@@ -475,7 +477,7 @@ function shownews() { eval(scg());
 	
 		//////////////////
 		echo "<td class=contenttd>";		
-		if($data->access==255) echo "$news->views";
+			if($data->access==255) echo "$news->views";
 		echo "</td>";
 		//////////////////
 
@@ -493,19 +495,21 @@ function shownews() { eval(scg());
 		echo "<td class=contenttd>";
 		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">";
 		echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30>";
-		echo "</a>\n";        
+		echo "</a>\n";
 		echo "</td>";
 		/////////////////
 
 		/////////////////
 		echo "<td class=contenttd valign=top>";		
-		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a>";
+		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a><br>";
        $ntext=str_replace("<br>"," ",stripslashes(sc_trunc("$news->message",80)));
        $ntext=str_replace("<p>"," ",$ntext);
        $ntext=str_replace("</p>"," ",$ntext);
 		$ntext=str_replace("<","&lt;",$ntext);
-       echo "<font class=sc_black>$ntext</font>";	   
+       echo $ntext;
        echo "</td>";
+	   
+	   
 	   /////////////////
 	   echo "</tr>";
     }

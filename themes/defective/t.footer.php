@@ -17,16 +17,12 @@ tc();
 
 			echo "<p align=center>";
             
-            
-			
-            sc_image_text($RFS_SITE_COPYRIGHT,$RFS_SITE_FONT,
-            18,812,44,0,-10,250,0,0,0,0,0,1,1);	
-            
-           
-                
-                
+			if(stristr($RFS_SITE_COPYRIGHT,"a href")) {
+				echo $RFS_SITE_COPYRIGHT;
+			}
+			else
+			   sc_image_text($RFS_SITE_COPYRIGHT,$RFS_SITE_FONT,18,812,44,0,-10,250,0,0,0,0,0,1,1);	
 			echo "</p>";
-
 	rfs_echo($RFS_SITE_BODY_CLOSE);
 rfs_echo($RFS_SITE_HTML_CLOSE);
 
