@@ -156,14 +156,14 @@ function show1message($post,$gx) { eval(scg()); // $forum_color=$GLOBALS['forum_
         echo "</td></tr>";
         echo "<tr><td>&nbsp;</td><td align=right>";
         $time=sc_time($post['time']);
-        echo "posted $time by <a href=$RFS_SITE_URL/showprofile.php?user=$pster->name>$pster->name</a>";
+        echo "posted $time by <a href=$RFS_SITE_URL/modules/profiles/showprofile.php?user=$pster->name>$pster->name</a>";
         if($logged_in=="true") {
             if( ($pster->name==$data->name) || ($data->access=="255")  ) {
                 $thread=$post['thread'];
                 $whichrep=$post['id'];
                 $forum_witch=$post['forum'];
-                echo " [<a href=\"forum.php?action=delete_post_s&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">delete</a>]";
-                echo "[<a href=\"forum.php?action=edit_reply&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">edit</a>]";
+                echo " [<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">delete</a>]";
+                echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=edit_reply&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">edit</a>]";
             }
         }
         echo "</td></tr></table>\n";
@@ -259,7 +259,7 @@ if($action=="delete_post") {
         $action="get_thread";
     }
 }
-
+ 
 if($action=="delete_reply_s") {
     if($logged_in=="true") {
         echo "<table border=\"0\" align=center><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
@@ -286,7 +286,7 @@ if($action=="edit_reply") {
         $post=mysql_fetch_object($posttt);
         $fw=$forum_which;
         echo "<table border=0 width=100%>\n";
-        echo "<form enctype=application/x-www-form-URLencoded action=forum.php method=post>\n";
+        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/forums/forums.php method=post>\n";
         echo "<input type=hidden name=action value=edit_reply_go>\n";
         echo "<input type=hidden name=reply value=$reply>\n";
         echo "<input type=hidden name=forum_which value=$forum_which>\n";
