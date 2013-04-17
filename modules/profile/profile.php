@@ -280,12 +280,12 @@ echo "</table>\n";
 // files start
 //if($data->upload == "yes")
 //{
-  echo "<p>Files...\n";
+  echo "<p>Your files...\n";
   echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>][<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
   echo "</p>\n";
-  echo "<table border=0 cellspacing=0 cellpadding=0 width=100% class=sc_black>\n";
+  echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=sc_black>\n";
   echo "<tr bgcolor=$file_header height=16 class=sc_black>\n";
-  echo "<td class=\"sc_black\">WS</td>\n";
+  echo "<td class=\"sc_black\">Work Safe</td>\n";
   echo "<td class=\"sc_black\">Type</td>\n";
   echo "<td class=\"sc_black\">Name</td>\n";
   echo "<td class=\"sc_black\" width=100>Size</td>\n";
@@ -310,11 +310,11 @@ echo "</table>\n";
     $xp_ext = explode(".",$filedata->location,40);
     $j = count ($xp_ext)-1;  $ext = "$xp_ext[$j]";
     $ftype=strtolower($ext);
-    echo "<img src=$RFS_SITE_URL/images/icons/filetypes/$ftype.png border=0 title=\"$filedata->short_name\" alt=\"$filedata->short_name\"></a>\n";
+    echo "<img src=$RFS_SITE_URL/images/icons/filetypes/$ftype.png border=0 title=\"$filedata->name\" alt=\"$filedata->name\" width=16></a>\n";
     echo "</center></td>\n";
     echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
     echo "<table border=0><tr><td>\n";
-    echo "<input name=short_name value=\"$filedata->sname\" size=30>\n";
+    echo "<input name=name value=\"$filedata->name\" size=30>\n";
     echo "</td><td>\n";
     echo "<input type=submit value=rename></td>\n";
     echo "</td></tr></table>\n";

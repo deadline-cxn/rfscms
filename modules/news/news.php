@@ -6,7 +6,6 @@ include("header.php");
 
 if(!empty($GLOBALS['title'])) if(empty($GLOBALS['headline'])) $GLOBALS['headline']=$GLOBALS['title'];
 
-
 if($give_file=="news_cat_add") $image=put_news_image('userfile');
 if($give_file=="news_cat_mod") $image=put_news_image('userfile');
 if($give_file=="news"){
