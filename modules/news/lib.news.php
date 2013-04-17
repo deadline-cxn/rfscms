@@ -466,7 +466,8 @@ function shownews() { eval(scg());
         $news=sc_getnewsdata($newslist[$i]);
 		echo "<tr><td class=contenttd>";
         if($data->access==255) echo "<font class=sc_admin>$news->views</td><td class=contenttd>";
-        echo "<table border=0 cellpadding=1 cellspacing=0><tr><td class=contenttd>";
+		
+        // echo "<table border=0 cellpadding=1 cellspacing=0><tr><td class=contenttd>";
 
 		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/")))
 			 $oldimage=$news->image_url;
