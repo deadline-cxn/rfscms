@@ -117,8 +117,11 @@ if($action=="start_thread_go") {
 }
 
 function show1message($post,$gx) { eval(scg()); // $forum_color=$GLOBALS['forum_color'];    $RFS_SITE_URL=$GLOBALS['site_url'];
+	
 	$pster=sc_getuserdata($poster);
-	$forum=mysql_fetch_object(sc_query("select * from forum_list where id=".$forum));
+	
+	$forum=mysql_fetch_object(sc_query("select * from forum_list where id=".$post['forum']));
+	
     if(($forum->private=="yes") && ( ($logged_in!="true") || ($data->access!=255) )){
         echo "<p>You don't have access to this forum.</p>";
     } else {
