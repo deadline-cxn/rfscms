@@ -169,20 +169,19 @@ function sc_show_news($id) { eval(scg());
 	}
 			  
 	if(empty($news->image_url))
-		$news->image_url="$RFS_SITE_URL/images/icons/news.png";
+		$news->image_url="images/icons/news.png";
 		
 	if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
 		$oldimage=$news->image_url;
 		$news->image_url="$RFS_SITE_URL/images/icons/404.png";
 	}
-	
 	if(!stristr($news->image_url,$RFS_SITE_URL))
 		$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 		
 	echo "<img src=\"$news->image_url\" border=\"0\" 
 			title = '$altern'
 			alt='$altern'
-			align=left> $oldimage";
+			align=left>";
 	
 	if(!empty($news->image_url)) {
 		echo  "</a>";		
