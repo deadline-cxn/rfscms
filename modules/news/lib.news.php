@@ -203,7 +203,7 @@ function sc_show_news($id) { eval(scg());
     if(($data->name==$userdata->name)||($data->access==255)) {
         
 		if(!empty($news->wiki)) {
-			echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n"
+			echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n";
 			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$id\" class=news_a>edit (news)</a>] \n";			
 		} else {
 			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$id\" class=news_a>edit</a>] \n";
