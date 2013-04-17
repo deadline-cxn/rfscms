@@ -540,7 +540,7 @@ if($file_mod=="yes"){
             sc_query("UPDATE files SET homepage='$homepage' where id='$id'");
             sc_query("UPDATE files SET owner='$owner' where id='$id'");
             sc_query("UPDATE files SET platform='$platform' where id='$id'");
-            sc_query("UPDATE files SET os='$os' where id='$id'");
+            sc_query("UPDATE files SET os='$fos' where id='$id'");
             sc_query("UPDATE files SET rating='$rating' where id='$id'");
             sc_query("UPDATE files SET worksafe='$sfw' where id = '$id'");
 
@@ -580,7 +580,7 @@ if($file_mod=="yes"){
             echo "<tr><td align=right>Homepage:</td><td><input name=homepage value=\"$filedata->homepage\"></td></tr>\n";
             echo "<tr><td align=right>Owner:</td><td><input name=owner value=\"$filedata->owner\"></td></tr>\n";
             echo "<tr><td align=right>Platform:</td><td><input name=platform value=\"$filedata->platform\"></td></tr>\n";
-            echo "<tr><td align=right>Operating System:</td><td><input name=os value=\"$filedata->os\"></td></tr>\n";
+            echo "<tr><td align=right>Operating System:</td><td><input name=\"fos\" value=\"$filedata->os\"></td></tr>\n";
             echo "<tr><td align=right>Rating:</td><td><input name=os value=\"$filedata->rating\"></td></tr>\n";			
             //if($filedata->worksafe=="") $filedata->worksafe="no";
             //echo "<tr><td align=right>Worksafe: </td><td><select name=\"sfw\"><option>$filedata->worksafe<option>yes<option>no</select</td></tr>\n";

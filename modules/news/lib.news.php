@@ -31,7 +31,6 @@ sc_query( " CREATE TABLE IF NOT EXISTS `news` (
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
 
-
 function adm_action_lib_news_news_submit() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/news/news.php?showform=yes");
 }
@@ -183,6 +182,7 @@ function sc_show_news($id) { eval(scg());
 				
               echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" ";
               echo "alt=\"$altern\" align=left></a>\n";
+			  echo "<br> $oldimage <br>";
         }
 
     if	( (!empty($news->wiki))  &&
