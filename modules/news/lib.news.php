@@ -148,6 +148,7 @@ function sc_get_top_news_id(){
 function sc_show_top_news() {
     $result=sc_query("select * from news where topstory='yes' and published='yes'");
     $news=mysql_fetch_object($result);
+	echo "TOP NEWS:<BR>";
     sc_show_news($news->id);
 }
 function sc_show_news($id) { eval(scg());
@@ -182,11 +183,16 @@ function sc_show_news($id) { eval(scg());
 		if(!stristr($news->image_url,$RFS_SITE_URL))
 			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 				
-              echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" ";
-              echo "alt=\"$altern\" align=left></a>\n";
+              echo "<img src=\"$news->image_url\" border=\"0\" 
+						title = '$altern'
+						alt='$altern'
+						align=left></a>
+						
+						";
+				echo "<br> $oldimage <br>";
 			  
         }
-		echo "<br> $oldimage <br>";
+		
 
     if	( (!empty($news->wiki))  &&
         ($news->wiki != "--- None ---") ) {
