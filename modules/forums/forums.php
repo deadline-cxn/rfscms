@@ -118,7 +118,7 @@ if($action=="start_thread_go") {
 
 function show1message($post,$gx) { eval(scg()); // $forum_color=$GLOBALS['forum_color'];    $RFS_SITE_URL=$GLOBALS['site_url'];
 	
-	$pster=sc_getuserdata($poster);
+	$pster=sc_getuserdata($post['poster']);
 	
 	$forum=mysql_fetch_object(sc_query("select * from forum_list where id=".$post['forum']));
 	
@@ -132,15 +132,15 @@ function show1message($post,$gx) { eval(scg()); // $forum_color=$GLOBALS['forum_
         echo "<tr><td valign=top width=100 align=center>\n";
         echo "<table border=0 cellspacing=0>";
 
-        if($poster==999) {
-            $pname=$post['poster_name'];
+        if($pster->id==999) {
+            $pname=$pster->name;
             echo "<tr><td valign=top width=140>";
             echo "$pname";
             echo "</td></tr>";
         } else {
             $pname=$pster->name;
             echo "<tr><td valign=top align=center>";
-            sc_useravatar($pster->name);
+            sc_useravatar($pname);
             echo "</td></tr>";
             echo "<tr><td valign=top align=left>";
             echo "<a href=$RFS_SITE_URL/showprofile.php?user=$pname>$pname</a>";
