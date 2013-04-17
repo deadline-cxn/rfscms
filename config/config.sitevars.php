@@ -42,9 +42,9 @@ $RFS_SITE_NAV_IMG           = "0";
 //////////////////////////////////////////////////////////////////////////////
 // THEME STUFF
 
-$RFS_SITE_DEFAULT_THEME     = "tmpl_test";
+$RFS_SITE_DEFAULT_THEME     = "default";
 $RFS_SITE_FORCE_THEME       = true;
-$RFS_SITE_FORCED_THEME      = "tmpl_test";
+$RFS_SITE_FORCED_THEME      = "default";
 $RFS_SITE_THEME_CSS_URL     = "";
 $RFS_SITE_THEME_DROPDOWN    = false;
 
@@ -61,10 +61,10 @@ $RFS_SITE_FACEBOOK_SDK      = "$RFS_SITE_PATH/facebook/src/facebook.php";
 $rfsw_header        = "header.php"; 
 $rfsw_footer        = "footer.php";
 
-$rfsw_dbname        = "trainweb";   // change these
-$rfsw_address       = "localhost";  // variables
-$rfsw_user          = "training";   // to work with
-$rfsw_pass          = "!QAZ2wsx";           // your database
+$rfsw_dbname        = "";   // change these
+$rfsw_address       = "";  // variables
+$rfsw_user          = "";   // to work with
+$rfsw_pass          = "";           // your database
 
 $rfsw_img_path      = "images/wiki";       // path to image uploads
 $rfsw_bullet_image  = "$rfsw_img_path/bullet.gif";
