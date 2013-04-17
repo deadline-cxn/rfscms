@@ -435,12 +435,6 @@ function editnews($nid) { eval(scg());
 
 
 function shownews() { eval(scg());
-
-
-	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%>";//<tr><td class=contenttd>";
-	
-	// echo "<table border=0 width=100% ><tr>";echo "<td valign=top  class=contenttd>";
-	
 	$month_name=$GLOBALS['month_name'];
 	$day_name=$GLOBALS['day_name'];
 	$data=$GLOBALS['data'];
@@ -460,7 +454,9 @@ function shownews() { eval(scg());
 	
     // search method dictate sort order?
 	
-	if($data->access==255) echo "<tr><td class=contenttd><font class=sc_admin>Views</td> <td></td><td></td></tr>";
+	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%>";
+	
+	if($data->access==255) echo "<tr><td class=contenttd><font class=sc_admin>Views</td> <td></td></tr>";
     
 	for($i=0;$i<count($newslist);$i++) {
         $news=sc_getnewsdata($newslist[$i]);
