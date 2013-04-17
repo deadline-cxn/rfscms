@@ -294,7 +294,7 @@ function editnews($nid) { eval(scg());
     if(!stristr($news->image_url,$RFS_SITE_URL))
         $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
     
-    echo "<table border=0><tr><td>";
+    echo "<table border=0 width=100%><tr><td>";
     echo "<img src=\"$news->image_url\" width=100 height=100><br>";
 	if(!empty($oldimage))
 		echo "($oldimage)";
@@ -431,6 +431,9 @@ function editnews($nid) { eval(scg());
     echo "</select></td></tr>\n";
     echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Update News\" class=b4button></td></tr>\n";
     echo "</form></table>\n";
+	
+	echo "</td></tr></table>\n";
+	
 }
 
 
