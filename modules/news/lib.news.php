@@ -164,7 +164,9 @@ function sc_show_news($id) { eval(scg());
     $out_link=urlencode("$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id");
 
     if(!empty($news->image_url)){
-            $altern=stripslashes($news->image_alt);
+           
+			$altern=stripslashes($news->image_alt);
+			
 			if(empty($news->image_link))
 				$news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";
               if(!stristr($news->image_link,$RFS_SITE_URL))
@@ -182,8 +184,9 @@ function sc_show_news($id) { eval(scg());
 				
               echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" ";
               echo "alt=\"$altern\" align=left></a>\n";
-			  echo "<br> $oldimage <br>";
+			  
         }
+		echo "<br> $oldimage <br>";
 
     if	( (!empty($news->wiki))  &&
         ($news->wiki != "--- None ---") ) {
