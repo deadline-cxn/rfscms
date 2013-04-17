@@ -496,7 +496,7 @@ if($new==1) {
     $alttxt="New posts";
 }
 
-$folderpic=sc_get_theme_image("images/$folder_filename");
+$folderpic=sc_get_theme_image("images/icons/$folder_filename");
 
 
 
@@ -532,7 +532,7 @@ $folderpic=sc_get_theme_image("images/$folder_filename");
                                 echo "<br>";
                                 $udata=sc_getuserdata($lastpost->poster);
                                 echo "by <a href=\"$RFS_SITE_URL/showprofile.php?user=$udata->name\">$udata->name</a>";
-                                echo "<a href=\"$link\"><img src=\"$RFS_SITE_URL/images/icon_latest_reply.gif\" width=\"18\" height=\"9\" class=\"imgspace\" border=\"0\" alt=\"View latest post\" title=\"View latest post\" /></a>";
+                                echo "<a href=\"$link\"><img src=\"$RFS_SITE_URL/images/icons/icon_latest_reply.gif\" width=\"18\" height=\"9\" class=\"imgspace\" border=\"0\" alt=\"View latest post\" title=\"View latest post\" /></a>";
                                 echo "</span>";
                             }
                             echo "</td>\n";
@@ -600,7 +600,7 @@ if($forum_showposts=="yes") {
             
             echo "<table border=0 cellspacing=0 cellpadding=0>";            
             echo "<tr><td>\n";
-            echo "<img src=\"$RFS_SITE_URL/images/icon_minipost.gif\" border=0 height=24> &nbsp;\n";
+            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=24> &nbsp;\n";
             echo "</td><td>";
             
             echo "$link\n";
