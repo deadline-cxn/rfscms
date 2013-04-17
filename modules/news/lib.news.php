@@ -433,7 +433,7 @@ function editnews($nid) { eval(scg());
     echo "</form></table>\n";
 }
 
-/*
+
 function shownews() { eval(scg());
 	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td>";
 	echo "<table border=0 width=100% ><tr>";
@@ -490,5 +490,5 @@ function shownews() { eval(scg());
     echo "</td></tr></table>";
 }
 
-*/
+
 ?>
