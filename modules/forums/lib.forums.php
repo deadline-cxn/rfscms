@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_access_method_add("forums", "add");
+sc_access_method_add("forums", "add"); 
 sc_access_method_add("forums", "edit");
 sc_access_method_add("forums", "delete");
 sc_access_method_add("forums", "moderate");
