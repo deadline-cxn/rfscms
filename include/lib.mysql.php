@@ -699,7 +699,7 @@ function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
 							$use_id_method,   // 0 or 1: Uses id field of MySQL if 1
 							$default,			// Default option
 							$on_change_method // 0 or 1: Use javascript on_change method if 1
-							){
+							){ eval(scg());
 
 
 
@@ -845,6 +845,8 @@ function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
 		echo "<option >--- None ---";
 
 			$dirfiles = array();
+			if(stristr($table,"$RFS_SITE_URL/")) 
+				$table=str_replace("$RFS_SITE_URL/","",$table);
 			$handle=opendir($table) or die("Unable to open filepath");
 			while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
 			closedir($handle);
