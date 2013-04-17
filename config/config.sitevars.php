@@ -1,21 +1,17 @@
 <?
 //////////////////////////////////////////////////////////
-// You should edit the variables in this file to 
-// customize your website.
 // All of these variables should be integrated into the
-// administration panel so you shouldn't need to 
+// administration panel so you shouldn't need to
 // manually change this file.
-// The order in which some variables are defined
-// is important.. Be careful!
-// Items that you should most definately change are 
-// noted with * beside them
-//
+// That being said, the system will fall back to the 
+// information stored here in the case that it can not
+// find it in the database.
 // I recommend that you back up this file BEFORE you edit
-// anything. If you are get it completely messed up
-// you can always download a new one from www.sethcoder.com
-// You should edit the variables in this file to 
-// customize your website.
-// 
+// anything. If you completely mess up the file,
+// you can always download a new one from github
+//
+// https://github.com/sethcoder/rfscms
+//
 //////////////////////////////////////////////////////////////////////////////
 
 $RFS_SITE_SESSION_ID        = "RFS_CMS_";
