@@ -475,7 +475,7 @@ function shownews() { eval(scg());
 	
 		//////////////////
 		echo "<td class=contenttd>";		
-		if($data->access==255) echo "<font class=sc_admin>$news->views";
+		if($data->access==255) echo "$news->views";
 		echo "</td>";
 		//////////////////
 
