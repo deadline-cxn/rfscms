@@ -433,6 +433,7 @@ function editnews($nid) { eval(scg());
     echo "</form></table>\n";
 	
 	echo "</td></tr></table>\n";
+	echo "</td></tr></table>\n";
 	
 }
 
