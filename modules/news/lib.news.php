@@ -102,10 +102,8 @@ function sc_module_popular_news($x) { eval(scg());
     }
     echo "</table>";
 }
-function sc_module_news_top_story() { eval(scg());
-
+function sc_module_news_top_story() {
     sc_show_top_news();
-
 }
 function sc_getnewstopstory(){
     $result=sc_query("select * from news where topstory='yes' and published='yes'");
@@ -146,12 +144,11 @@ function sc_get_top_news_id(){
     return $news->id;
 }
 function sc_show_top_news() {
-    $result=sc_query("select * from news where topstory='yes' and published='yes'");
-    $news=mysql_fetch_object($result);
-	echo "TOP NEWS:<BR>";
+    $news=mfo1("select * from news where topstory='yes' and published='yes'");    
     sc_show_news($news->id);
 }
 function sc_show_news($id) { eval(scg());
+
     $result=sc_query("select * from news where id='$id'");
     $news=mysql_fetch_object($result);
     $userdata=mfo1("select * from users where id='$news->submitter'");
@@ -164,34 +161,34 @@ function sc_show_news($id) { eval(scg());
 
     $out_link=urlencode("$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id");
 
-    if(!empty($news->image_url)){
-           
-			$altern=stripslashes($news->image_alt);
-			
+    if(!empty($news->image_url)) {
+			$altern=stripslashes($news->image_alt);			
 			if(empty($news->image_link))
-				$news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";
-              if(!stristr($news->image_link,$RFS_SITE_URL))
-                  $news->image_link="$RFS_SITE_URL/$news->image_url";				
-              echo "<a href=\"$news->image_link\" target=\"_blank\" class=news_a >";
+				$news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";			
+			echo "<a href=\"$news->image_link\" target=\"_blank\" class=\"news_a\" >";
+	}
 			  
-
-		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/")))
-			 $oldimage=$news->image_url;
-			$news->image_url="$RFS_SITE_URL/images/icons/404.png";	
-		if(empty($news->image_url)) 
-			$news->image_url="$RFS_SITE_URL/images/icons/news.png";		
-		if(!stristr($news->image_url,$RFS_SITE_URL))
-			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
-				
-              echo "<img src=\"$news->image_url\" border=\"0\" 
-						title = '$altern'
-						alt='$altern'
-						align=left></a>
-						
-						";
-				echo "<br> $oldimage <br>";
-			  
-        }
+	if(empty($news->image_url))
+		$news->image_url="$RFS_SITE_URL/images/icons/news.png";
+		
+	if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
+		$oldimage=$news->image_url;
+		$news->image_url="$RFS_SITE_URL/images/icons/404.png";
+	}
+	
+	if(!stristr($news->image_url,$RFS_SITE_URL))
+		$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
+		
+	echo "<img src=\"$news->image_url\" border=\"0\" 
+			title = '$altern'
+			alt='$altern'
+			align=left>";
+	
+	if(!empty($news->image_url)) {
+		echo  "</a>";		
+	}
+		  
+	
 		
 
     if	( (!empty($news->wiki))  &&
