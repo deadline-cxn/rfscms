@@ -433,7 +433,7 @@ function editnews($nid) { eval(scg());
     echo "</form></table>\n";
 	
 	echo " Y</td></tr></table>\n";
-	echo " Z</td></tr></table>\n";
+	
 	
 }
 
@@ -460,7 +460,13 @@ function shownews() { eval(scg());
 	
 	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%>";
 	
-	if($data->access==255) echo "<tr><td class=contenttd><font class=sc_admin>Views</td> <td></td></tr>";
+	if($data->access==255) {
+		echo "<tr>";
+		echo "<td class=contenttd>Views</td>";
+		echo "<td class=contenttd> B </td>";
+		echo "<td class=contenttd> C </td>";
+		echo "</tr>";
+	}
     
 	for($i=0;$i<count($newslist);$i++) {
         $news=sc_getnewsdata($newslist[$i]);
