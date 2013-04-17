@@ -184,11 +184,8 @@ function sc_show_news($id) { eval(scg());
 			align=left>";
 	
 	if(!empty($news->image_url)) {
-		echo  "</a>";		
-	}
-		  
-	
-		
+		echo  "</a>";
+	}	
 
     if	( (!empty($news->wiki))  &&
         ($news->wiki != "--- None ---") ) {
@@ -204,8 +201,14 @@ function sc_show_news($id) { eval(scg());
     echo "<table border=0 cellspacing=0><tr><td>";
     $data=$GLOBALS['data'];
     if(($data->name==$userdata->name)||($data->access==255)) {
-        echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$id\" class=news_a>edit</a>]\n";
-        echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$id\" class=news_a>remove</a>]\n";
+        
+		if(!empty($news->wiki)) {
+			echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n"
+			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$id\" class=news_a>edit (news)</a>] \n";			
+		} else {
+			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$id\" class=news_a>edit</a>] \n";
+		}
+        echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$id\" class=news_a>remove</a>] \n";
     }
     echo "</td>";
     echo "</tr>";
