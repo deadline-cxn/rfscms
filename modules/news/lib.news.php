@@ -437,7 +437,7 @@ function editnews($nid) { eval(scg());
 function shownews() { eval(scg());
 
 
-	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td class=contenttd>";
+	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%>";//<tr><td class=contenttd>";
 	
 	// echo "<table border=0 width=100% ><tr>";echo "<td valign=top  class=contenttd>";
 	
@@ -460,40 +460,51 @@ function shownews() { eval(scg());
 	
     // search method dictate sort order?
 	
-    // echo "<table border=0 width=100% align=left>";
-    if($data->access==255) echo "<tr><td class=contenttd><font class=sc_admin>Views</td> <td></td><td></td></tr>";
-    for($i=0;$i<count($newslist);$i++) {
+	if($data->access==255) echo "<tr><td class=contenttd><font class=sc_admin>Views</td> <td></td><td></td></tr>";
+    
+	for($i=0;$i<count($newslist);$i++) {
         $news=sc_getnewsdata($newslist[$i]);
-		echo "<tr><td class=contenttd>";
-        if($data->access==255) echo "<font class=sc_admin>$news->views</td><td class=contenttd>";
+		echo "<tr>";
 		
-        // echo "<table border=0 cellpadding=1 cellspacing=0><tr><td class=contenttd>";
+	
+		//////////////////
+		echo "<td class=contenttd>";		
+		if($data->access==255) echo "<font class=sc_admin>$news->views";
+		echo "</td>";
+		//////////////////
 
-		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/")))
-			 $oldimage=$news->image_url;
-			$news->image_url="$RFS_SITE_URL/images/icons/404.png";	
-		if(empty($news->image_url)) 
-			$news->image_url="$RFS_SITE_URL/images/icons/news.png";		
+		$altern=stripslashes($news->image_alt);		
+		if(empty($news->image_url))
+			$news->image_url="images/icons/news.png";			
+		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
+			$oldimage=$news->image_url;
+			$news->image_url="$RFS_SITE_URL/images/icons/404.png";
+		}
 		if(!stristr($news->image_url,$RFS_SITE_URL))
 			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
-				
-        $altern=stripslashes($news->image_alt);
-        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">";		 
-        echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30>";
-        echo "</a>\n";
-        // echo "</td> "; // </tr> "; //</table>";
-        echo "</td><td class=contenttd valign=top>";
-        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a><br>";
-        $ntext=str_replace("<br>"," ",stripslashes(sc_trunc("$news->message",80)));
-        $ntext=str_replace("<p>"," ",$ntext);
-        $ntext=str_replace("</p>"," ",$ntext);
-	$ntext=str_replace("<","&lt;",$ntext);
-        echo "<font class=sc_black>$ntext</font>";
-        echo "</td></tr>";
+		
+		/////////////////
+		echo "<td class=contenttd>";
+		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">";
+		echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30>";
+		echo "</a>\n";        
+		echo "</td>":
+		/////////////////
+
+		/////////////////
+		echo "<td class=contenttd valign=top>";		
+		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a>";
+       $ntext=str_replace("<br>"," ",stripslashes(sc_trunc("$news->message",80)));
+       $ntext=str_replace("<p>"," ",$ntext);
+       $ntext=str_replace("</p>"," ",$ntext);
+		$ntext=str_replace("<","&lt;",$ntext);
+       echo "<font class=sc_black>$ntext</font>";	   
+       echo "</td>";
+	   /////////////////
+	   echo "</tr>";
     }
-    //echo "</table>";
-    //echo "</td></tr></table>";
-    echo "</td></tr></table>";
+    
+    echo "</table>";
 }
 
 
