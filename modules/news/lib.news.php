@@ -435,9 +435,12 @@ function editnews($nid) { eval(scg());
 
 
 function shownews() { eval(scg());
-	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td>";
-	echo "<table border=0 width=100% ><tr>";
-	echo "<td valign=top  class=contenttd>";
+
+
+	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td class=contenttd>";
+	
+	// echo "<table border=0 width=100% ><tr>";echo "<td valign=top  class=contenttd>";
+	
 	$month_name=$GLOBALS['month_name'];
 	$day_name=$GLOBALS['day_name'];
 	$data=$GLOBALS['data'];
@@ -454,12 +457,14 @@ function shownews() { eval(scg());
     if(empty($GLOBALS['top'])) $GLOBALS['top']=0;
     if(empty($GLOBALS['bot'])) $GLOBALS['bot']=1500;
     $newslist=sc_getnewslist($newssearch);
+	
     // search method dictate sort order?
-    echo "<table border=0 width=100% align=left>";
-    if($data->access==255) echo "<tr><td class=contenttd><font class=sc_admin>Views</td></tr>";
+	
+    // echo "<table border=0 width=100% align=left>";
+    if($data->access==255) echo "<tr><td class=contenttd><font class=sc_admin>Views</td> <td></td><td></td></tr>";
     for($i=0;$i<count($newslist);$i++) {
         $news=sc_getnewsdata($newslist[$i]);
-        echo "<tr><td class=contenttd>";
+		echo "<tr><td class=contenttd>";
         if($data->access==255) echo "<font class=sc_admin>$news->views</td><td class=contenttd>";
         echo "<table border=0 cellpadding=1 cellspacing=0><tr><td class=contenttd>";
 
@@ -475,8 +480,8 @@ function shownews() { eval(scg());
         echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">";		 
         echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30>";
         echo "</a>\n";
-        echo "</td></tr></table>";
-        echo "</td><td class=contenttd valign=top>";
+        echo "</td> "; // </tr> "; //</table>";
+        // echo "</td><td class=contenttd valign=top>";
         echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a><br>";
         $ntext=str_replace("<br>"," ",stripslashes(sc_trunc("$news->message",80)));
         $ntext=str_replace("<p>"," ",$ntext);
@@ -485,8 +490,8 @@ function shownews() { eval(scg());
         echo "<font class=sc_black>$ntext</font>";
         echo "</td></tr>";
     }
-    echo "</table>";
-    echo "</td></tr></table>";
+    //echo "</table>";
+    //echo "</td></tr></table>";
     echo "</td></tr></table>";
 }
 
