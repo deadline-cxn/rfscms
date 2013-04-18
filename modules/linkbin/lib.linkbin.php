@@ -18,7 +18,7 @@ function sc_module_mini_link_friends() { eval(scg());
 	if($data->access=="255") {
 		echo "<div style='float: left;'>";
 		echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=post><input type=hidden name=action value=edit_linkbin>";
-		echo "<input type=submit name=submit value=\"edit links\"></form></div>";
+		echo "<input type=submit name=submit value=\"edit links\"></form></div><br>";
 	}
 }
 ?>
