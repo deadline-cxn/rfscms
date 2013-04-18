@@ -178,6 +178,7 @@ if($action=="edit"){
         echo "You can not edit pages.";
     }
 } else {
+	
     $res=rfs_query("select * from wiki where name='$name'"); $wikipage=mysql_fetch_object($res);
 
     if(empty($wikipage->text)){
@@ -194,6 +195,9 @@ if($action=="edit"){
         echo smiles(wikitext($wikipage->text));
         if($hide_wiki_menu!="true")
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
+		
+		$page="$RFS_SITE_URL/modules/wiki/rfswiki.php?name=$name";	
+		sc_facebook_comments($page);
     }
 }
 echo "<hr>";
