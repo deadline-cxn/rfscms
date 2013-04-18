@@ -361,5 +361,31 @@ function sc_facebook_login() {
 		}
 	}
 }
+function sc_facebook_comments($page) {
+	$RFS_SITE_FACEBOOK_APP_ID=$GLOBALS['RFS_SITE_FACEBOOK_APP_ID'];
+	if(!empty($RFS_SITE_FACEBOOK_APP_ID)) {
+			echo "
+					<div id=\"fb-root\"></div>
+					<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+			js.src = \"//connect.facebook.net/en_GB/all.js#xfbml=1&appId=$RFS_SITE_FACEBOOK_APP_ID\";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));</script>";
+
+//<meta property=\"og:url\"    content=\"$page\" />
+//<meta property=\"og:title\"  content=\"$page\" />
+					
+	echo "
+	<div
+	class=\"fb-comments\"
+	data-url=\"$page\"
+	data-title=\"$page\"
+	data-href=\"$page\"
+	data-width=\"470\"
+	data-num-posts=\"10\"></div>";
+	}
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 ?>
