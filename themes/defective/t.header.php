@@ -5,6 +5,22 @@ rfs_echo($RFS_SITE_DOC_TYPE);
 rfs_echo($RFS_SITE_HTML_OPEN);
 rfs_echo($RFS_SITE_HEAD_OPEN);
 
+echo "
+
+<meta property=\"fb:app_id\" content=\"$RFS_SITE_FACEBOOK_APP_ID\">
+<meta property=\"fb:admins\" content=\"seth.parson\">
+
+<meta property='og:url'    content=\"$RFS_SITE_URL\" />
+<meta property=\"og:site_name\" content=\"$RFS_SITE_NAME\"/><br>
+
+<meta property=\"og:type\"    content=\"sethcoder\" />
+<meta property=\"og:title\"  content=\"$RFS_SITE_URL\" />
+
+
+
+					
+"; // $RFS_SITE_FACEBOOK_ADMINS\">	
+
 rfs_echo($RFS_SITE_TITLE);
 
 $RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
