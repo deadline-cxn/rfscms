@@ -21,9 +21,11 @@ if( $_REQUEST['db_queries']=="list" ) {
 	if( !empty( $data->theme ) )        $theme=$data->theme;
 	if( sc_yes( $RFS_SITE_FORCE_THEME ) ) $theme=$RFS_SITE_FORCED_THEME;
 	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+	
 	adm_db_query( "SELECT name,email,donated FROM users" );
 	adm_db_query( "SELECT * FROM users" );
 	adm_db_query( "SHOW FULL COLUMNS FROM users" );
+	
 	sc_query( " CREATE TABLE db_queries2 like db_queries; " );
 	sc_query( " INSERT db_queries2 SELECT * FROM db_queries GROUP BY query;" );
 	sc_query( " RENAME TABLE `db_queries`  TO `db_goto_hell`; " );
@@ -321,8 +323,9 @@ function adm_action_db_query() { eval(scg());
                src=$RFS_SITE_URL/admin/adm.php?db_queries=list ></iframe>";
 	sc_db_query_form( "$RFS_SITE_URL/admin/adm.php","db_query","$query" );
 	if( !empty( $query ) ) {
+		$query=stripslashes($query);
 		echo $query;
-		sc_query( "insert into `db_queries` (`id`, `query`) VALUES ('','".addslashes( $query )."' ) " );
+		sc_query( "insert into `db_queries` (`id`, `query`) VALUES ('','$query' ) " );
 		echo "<table cellspacing=0 cellpadding=0 border=0><tr><td class=contenttd>";
 		sc_db_query( $query, "true" );
 		echo "</td></tr></table>";

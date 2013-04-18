@@ -2,32 +2,23 @@
 ///////////////////////////////////////////////////////////////////////////////
 // RFS Wiki (Really Frickin Simple)
 // By Seth Parson http://www.SethCoder.com/
-
-$rfsversion="v1.7";
 $title="Wiki ".$_REQUEST['name'];
-$RFSW_BULLET_IMAGE=$RFS_SITE_URL."/modules/wiki/images/bullet.gif";
-$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/wiki/images/link2.png";
-
+$RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
+$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 chdir("../../");
 include_once("include/lib.all.php");
-
-if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = "/var/www";
+if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = getcwd();
 if(!empty($rfsw_header)) include($rfsw_header);
-
 $rfsw_admin_mode="false";
-if(sc_access_check("wiki","admin")) $rfsw_admin_mode="true";
-
+if(sc_access_check("wiki","admin"))
+	$rfsw_admin_mode="true";
 ///////////////////////////////////////////////////////////////////////////////
 // DO NOT MODIFY BELOW THIS LINE
 ///////////////////////////////////////////////////////////////////////////////
-
-//echo "<table border=0 width=100% height=900 cellspacing=0 cellpadding=0 ><tr><td class=admtdtop valign=top> ";
-
 if(!empty($authdbname))     $rfsw_dbname       = $authdbdbname;
 if(!empty($authdbaddress))  $rfsw_address      = $authdbaddress;
 if(!empty($authdbuser))     $rfsw_user         = $authdbuser;
 if(!empty($authdbpass))     $rfsw_pass         = $authdbpass;
-
 if(!function_exists('rfs_query')) {
     function rfs_query($query)  {
         $address = $GLOBALS['rfsw_address'];
@@ -39,7 +30,6 @@ if(!function_exists('rfs_query')) {
         return mysql_query($query,$mysql);
     }
 }
-
 function rfs_time($whattime){
 	// 0000-00-00 00:00:00
 	$dtq=explode(" ",$whattime);
@@ -49,7 +39,6 @@ function rfs_time($whattime){
     $date[1],$date[2],$date[0]);  // h,s,m,mnth,d,y
     return date("M d, Y @ h:i:s a",$t);
 }
-
 if($give_file=="yes"){
     if($rfsw_admin_mode=="true")    {
         $file=$_FILES[$fname]['name'];
@@ -118,10 +107,7 @@ if($name=="Contents") {
 		echo "<hr>";
 	}
 }
-
-
 //////////////////////////////////////////////////////////////////////////////
-
 if($name=="Contents") {
     $res=rfs_query("select * from wiki order by name asc");
     $num=mysql_num_rows($res);
@@ -138,11 +124,8 @@ if($name=="Contents") {
     }
     echo "</table>";
 }
-
 //////////////////////////////////////////////////////////////////////////////
-
 $res=rfs_query("select * from wiki where name='$name'"); $wikipage=mysql_fetch_object($res);
-
 if($GLOBALS['rfsw_admin_mode']=="true"){
     if($action=="createnewpage")    {
         echo "<h3>Enter the name of the page to create below</h3>";
@@ -152,7 +135,6 @@ if($GLOBALS['rfsw_admin_mode']=="true"){
         echo "<input type=submit name=submit value=\"Create\">";
         echo "</form>";
     }
-
     if($action=="deletepage")    {
         if( ($name=="home") || ($name=="") ) {
         }
@@ -217,7 +199,7 @@ if($action=="edit"){
 echo "<hr>";
 
 if($hide_wiki_menu!="true"){
-    echo "RFS Wiki ( $rfsversion ) ";
+    echo "RFS Wiki ( $RFS_FULL_VERSION ) ";
     echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=home>main page</a>]";
     echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=contents>view all pages</a>]";
 

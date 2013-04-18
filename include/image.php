@@ -1,56 +1,32 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-
 header("Content-type: image/png");
-
 $im = @imagecreate(600, 600) or die("Cannot Initialize new GD image stream");
-
 $background_color = imagecolorallocate($im, 255, 255, 0);    // yellow
 $blue = imagecolorallocate($im, 0, 0, 255);                  // blue
-
 imagestring($im, 3, 5, 5,  "My Text String", $blue);
-
         $red = imagecolorallocate($im, 255, 0, 0);                  // red
         $blue = imagecolorallocate($im, 0, 0, 255);                 // blue
-
         imagearc($im, 20, 50, 40, 60, 0, 90, $red);
         imagearc($im, 70, 50, 40, 60, 0, 180, $red);
         imagearc($im, 120, 50, 40, 60, 0, 270, $red);
         imagearc($im, 170, 50, 40, 60, 0, 360, $red);
-
         imagefilledarc($im, 20, 150, 40, 60, 0, 90, $blue, IMG_ARC_PIE);
         imagefilledarc($im, 70, 150, 40, 60, 0, 180, $blue, IMG_ARC_PIE);
         imagefilledarc($im, 120, 150, 40, 60, 0, 270, $blue, IMG_ARC_PIE);
         imagefilledarc($im, 170, 150, 40, 60, 0, 360, $blue, IMG_ARC_PIE);
-
-
-
-
         imageellipse($im, 220, 50, 40, 60, $red);
         imagefilledellipse($im, 250, 150, 60, 40, $blue);
-
-
-
         imagerectangle ($im,   5,  210, 195, 250, $red);
         imagefilledrectangle ($im,   5,  300, 195, 340, $blue);
-
-
-
         imageline ($im,   205,  205, 395, 205, $red);
         imageline ($im,   205,  205, 395, 395, $blue);
-
         imagerotate($im, 90,$yellow);
-
-
-
 imagepng($im);
-
 imagedestroy($im);
-
 ?>
-
 <?php
 header("Content-type: image/png");
 $im = @imagecreate(600, 600) or die("Cannot Initialize new GD image stream");
@@ -182,5 +158,4 @@ iptcparse — Parse a binary IPTC block into single tags.
 jpeg2wbmp — Convert JPEG image file to WBMP image file
 png2wbmp — Convert PNG image file to WBMP image file
 */
-
 ?>

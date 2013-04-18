@@ -1,5 +1,7 @@
 <?
-//////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// RFSCMS http://www.sethcoder.com/
+/////////////////////////////////////////////////////////////////////////////////////////
 // All of these variables should be integrated into the
 // administration panel so you shouldn't need to
 // manually change this file.
@@ -12,8 +14,8 @@
 //
 // https://github.com/sethcoder/rfscms
 //
-//////////////////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////
+// SYSTEM STUFF
 $RFS_SITE_SESSION_ID        = "RFS_CMS_";
 $RFS_SITE_SESSION_USER      = $_SESSION['valid_user'];
 $RFS_SITE_ADMIN             = "Administrator";
@@ -21,61 +23,44 @@ $RFS_SITE_ADMIN_EMAIL       = "admin@".$SERVER['DOCUMENT_ROOT'];
 $RFS_SITE_SLOGAN            = "Powered by <a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">RFSCMS</a>";
 $RFS_SITE_URL               = $SERVER['DOCUMENT_ROOT'];
 $RFS_SITE_PATH              = getcwd();
-
 $RFS_SITE_ERROR_LOG         = "/var/log/apache2/error.log";
-
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // WIKI STUFF
-
 $RFS_SITE_WIKI_IMAGES_PATH  = "images/wiki";
-
-//////////////////////////////////////////////////////////////////////////////
+$rfsw_header        			= "header.php"; 
+$rfsw_footer        			= "footer.php";
+$rfsw_dbname        			= "";   			// change these
+$rfsw_address       			= "";  			// variables
+$rfsw_user          			= "";   			// to work with
+$rfsw_pass          			= "";           	// your database
+$rfsw_img_path      			= "images/wiki"; 	// path to image uploads
+$rfsw_bullet_image  			= "$rfsw_img_path/bullet.gif";
+$rfsw_admin_mode    			= "false";
+/////////////////////////////////////////////////////////////////////////////////////////
 // FONT STUFF
-
 $RFS_SITE_NAV_FONT          = "impact.ttf";
 $RFS_SITE_NAV_IMG           = "0";
-
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // THEME STUFF
-
 $RFS_SITE_DEFAULT_THEME     = "default";
 $RFS_SITE_FORCE_THEME       = true;
 $RFS_SITE_FORCED_THEME      = "default";
 $RFS_SITE_THEME_CSS_URL     = "";
 $RFS_SITE_THEME_DROPDOWN    = false;
-
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // Facebook integration
-
 $RFS_SITE_FACEBOOK_APP_ID   = "";
 $RFS_SITE_FACEBOOK_SECRET   = "";
 $RFS_SITE_FACEBOOK_SDK      = "$RFS_SITE_PATH/facebook/src/facebook.php";
-
-
-///  wiki stuff
-
-$rfsw_header        = "header.php"; 
-$rfsw_footer        = "footer.php";
-
-$rfsw_dbname        = "";   // change these
-$rfsw_address       = "";  // variables
-$rfsw_user          = "";   // to work with
-$rfsw_pass          = "";           // your database
-
-$rfsw_img_path      = "images/wiki";       // path to image uploads
-$rfsw_bullet_image  = "$rfsw_img_path/bullet.gif";
-$rfsw_admin_mode    = "false";
-
-
-//////////////////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////
+// FILES STUFF
+$RFS_SITE_ALLOW_FREE_DOWNLOADS = "false";
+/////////////////////////////////////////////////////////////////////////////////////////
 $RFS_SITE_CSS               = "<LINK rel=\"stylesheet\" href=\"\$RFS_SITE_THEME_CSS_URL\" type=\"text/css\">\n";
-
 $RFS_SITE_MENU_TOP_LOCATION = "top";
 $RFS_SITE_MENU_LEFT_LOCATION= "left";
 $RFS_SITE_FOOTER            = "";
 $RFS_SITE_COPYRIGHT         = "<a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">Powered by RFS CMS</a>";
-
 $RFS_SITE_SINGLETABLEWIDTH  = 940;
 $RFS_SITE_DOUBLETABLEWIDTH  = 435;
 $RFS_SITE_MENU_TOP_LOCATION = "top";
@@ -88,7 +73,6 @@ $RFS_TAGS=array(
 "RFS_SITE_FUNCTION"         => "<!--RFS_FUNCTION-->"
 );
 $RFS_SITE_FUNCTION          = "run a function";
-
 $RFS_SITE_LOGIN_FORM_CODE   = "<script src=\"\$RFS_SITE_URL/include/md5.js\"> </script>
 <form method=post action=\"\$RFS_SITE_URL/login.php\">
 <input type=hidden name=outpage value=\"\$thispage\">
@@ -104,11 +88,8 @@ $RFS_SITE_LOGIN_FORM_CODE   = "<script src=\"\$RFS_SITE_URL/include/md5.js\"> </
 <input type=hidden name=outpage value=$PHP_SELF>\n
 <input type=hidden name=login value=fo_shnizzle>\n
 <td valign=middle>\n <input type=\"submit\" name=\"Login\" value=\"Login\">\n
-</td>\n</form>\n<td>\n</td>\n</tr>\n</table>\n
-";
-
-
-$RFS_SITE_JOIN_FORM_CODE        = "
+</td>\n</form>\n<td>\n</td>\n</tr>\n</table>\n ";
+$RFS_SITE_JOIN_FORM_CODE		= "
 <p>Your information will not be shared with anyone.</p>
 <table border=0 cellspacing=0 cellpadding=0>
 <form method=post action=\"$RFS_SITE_URL/login.php\">
@@ -117,28 +98,25 @@ $RFS_SITE_JOIN_FORM_CODE        = "
 <tr><td> Email   </td><td><input type=textbox  name=email value=\"$email\">    </td></tr>
 <tr><td>         </td><td> </td></tr>
 <tr><td>         </td><td><input type=\"submit\" name=\"Register\" value=\"Register\"></td></tr>
-</form></table>
-";
-
+</form></table>\n";
 $RFS_SITE_LOGGED_IN_CODE   = "<div class=logged_in_box>\$RFS_SITE_SESSION_USER (<a href=\$RFS_SITE_URL/login.php?action=logout>logout</a>)</div>";
-
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // 3rd Party Files
 // java script locations
-
 $RFS_SITE_JS_JQUERY         = "<script src=\"\$RFS_SITE_URL/3rdparty/jquery/jquery.js\"></script>";
 $RFS_SITE_JS_JQUERY_UI      = "<script src=\"\$RFS_SITE_URL/themes/\$theme/jqueryui.js\"></script>";
 $RFS_SITE_JS_JQUERY_UI_CSS  = "<link type=\"text/css\" href=\"\$RFS_SITE_URL/themes/\$theme/jqueryui.css\" rel=\"stylesheet\" />";
-$RFS_SITE_JS_COLORPICKER    = "<script src=\"\$RFS_SITE_URL/3rdparty/colorpicker/js/colorpicker.js\"></script>";
+$RFS_SITE_JS_COLOR			= "<script src=\"\$RFS_SITE_URL/3rdparty/jscolor/jscolor.js\"></script>";
 $RFS_SITE_JS_MOOTOOLS       = "<script src=\"\$RFS_SITE_URL/3rdparty/mootools/mootools.js\"></script>";
 $RFS_SITE_JS_EDITAREA       = "<script src=\"\$RFS_SITE_URL/3rdparty/editarea/edit_area/edit_area/js\"></script>";
-
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // Figure out what to put in the title...
 // If you're not sure what to put, just leave it alone
-/*
-@include_once("../lib.news.php");
-@include_once("lib.news.php");
+// 
+// TODO: Move this somewhere else
+//
+/* 	@include_once("../lib.news.php");
+	@include_once("lib.news.php");
         $title=$_GLOBALS['site_name'];
         if($_SERVER['PHP_SELF']==$_GLOBALS['site_url'].'/index.php')
             $title=sc_get_news_headline(sc_get_top_news_id());
@@ -164,18 +142,13 @@ $RFS_SITE_JS_EDITAREA       = "<script src=\"\$RFS_SITE_URL/3rdparty/editarea/ed
         if(!empty($_GET['nid']))
             $title=sc_get_news_headline($_GET['nid']);
         if(!empty($what)) $title=$what;
-        */
-
+*/
 $RFS_SITE_TITLE         ="<TITLE> \$RFS_SITE_NAME $title </TITLE>";
-
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // KEYWORDS
-
 $RFS_SITE_SEO_KEYWORDS = $title."";
-
-//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // Unlikely to need changes
-
 $RFS_SITE_DOC_TYPE          = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">";
 $RFS_SITE_HTML_OPEN         = "<HTML>";
 $RFS_SITE_HEAD_OPEN         = "<HEAD>
@@ -188,13 +161,9 @@ $RFS_SITE_HEAD_OPEN         = "<HEAD>
                                <META name=\"keywords\" content=\"$RFS_SITE_SEO_KEYWORDS \">\n";
 $RFS_SITE_HEAD_CLOSE        = "</HEAD>\n";
 $RFS_SITE_BODY_OPEN         = "<BODY topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n\n";
-
 $RFS_SITE_BODY_CLOSE        = "</BODY>\n";
 $RFS_SITE_HTML_CLOSE        = "</HTML>\n";
-
 $RFS_SITE_DELIMITER         = "¥";
-
-
 /////////////////////////////////////////////////////////////////////////////////////////
 // This file can not have any trailing spaces
 ?>

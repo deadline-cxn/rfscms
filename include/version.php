@@ -5,4 +5,5 @@ if($file) {
 $RFS_BUILD=fgets($file,256);
 fclose($file);
 }
+$RFS_FULL_VERSION=$RFS_VERSION." BUILD ".$RFS_BUILD;
 ?>

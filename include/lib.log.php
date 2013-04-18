@@ -1,8 +1,7 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson
-// http://www.sethcoder.com/
-
+// RFSCMS http://www.sethcoder.com/
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_kill($what) {
 	echo "<html><head><title>SethCoder</title></head>\n";
 	echo "<body>The webpage you were looking for is no longer available... Please try again later.\n";
@@ -12,9 +11,10 @@ function sc_kill($what) {
 	echo "<br>Actions Logged...<br>";
 	die("</body></html>");
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_count() {
-	
+
+		// TODO: Scrub this function
 	$countraw++;
 
 	$refer=getenv("HTTP_REFERER");
