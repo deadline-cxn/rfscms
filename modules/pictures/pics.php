@@ -1060,6 +1060,8 @@ echo "<table border=0><tr>";
 		
 		echo "</tr></table>";
 		
+		
+		echo "<center>";
     $categorym=mfo1("select * from categories where id='$category'");	
     if(!empty($categorym->name)) {
         echo "Category: $categorym->name<br>";
@@ -1134,6 +1136,7 @@ echo "</div>";
 	else {
         echo "<h1>There are no pictures!</h1>";
 	}
+	echo "</center>";
 }
 
 
