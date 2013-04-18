@@ -1,27 +1,22 @@
 <?
-chdir("../../");
-include_once("include/lib.all.php");
-include_once("3rdparty/ycTIN.php");
-
 
 if($argv[1]=="scrub") {
-    $RFS_CMD_LINE=true;  
+    $RFS_CMD_LINE=true;
     include_once("include/lib.all.php");
     sc_scrubfiles();
     exit();
 }
 
 if($argv[1]=="orph") {
-    $RFS_CMD_LINE=true;  
+    $RFS_CMD_LINE=true;
     include_once("include/lib.all.php");
-    $data=sc_getuserdata(1);    
+    $data=sc_getuserdata(1);
     system("clear");
     orphan_scan("files");
     exit();
 }
 
 if($action=="get_file_go") {
-		
         $filedata=sc_getfiledata($_REQUEST['id']);
         if(empty($filedata))         {
             echo "Error 3392! File does not exist?\n";
@@ -35,7 +30,9 @@ if($action=="get_file_go") {
         $action="get_file";
 }
 
-
+chdir("../../");
+include_once("include/lib.all.php");
+include_once("3rdparty/ycTIN.php");
 include("header.php");
 
 
@@ -65,7 +62,7 @@ if(sc_access_check("files","addlink")) {
     sc_button("$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb","Add Link as File");
 	echo "</td>";
 }
-	
+
 if(sc_access_check("files","orphanscan")) {
 	echo "<td>";
     sc_button("$RFS_SITE_URL/modules/files/files.php?action=getorphans","Add orphan files");
@@ -630,13 +627,16 @@ if($action=="upload_avatar"){
 if($action=="remove_duplicates") {
 }
 
-function orphan_scan($dir) { eval(scg()); 
+function orphan_scan($dir) { eval(scg());
+
+	if(!$RFS_CMD_LINE) {
+
 	if(!sc_access_check("files","orphanscan")) {
 		echo "You don't have access to scan orphan files.<br>";
 		include("footer.php");
 		exit();
 	}
-		 
+}
 	echo "Scanning [$RFS_SITE_PATH/$dir] \n"; if(!$RFS_CMD_LINE) echo "<br>";
 	$dir_count=0; $dirfiles = array();
 	$handle=opendir($RFS_SITE_PATH."/".$dir);
@@ -648,10 +648,8 @@ function orphan_scan($dir) { eval(scg());
         if($file!=".") {
             if($file!="..") {			
                 if(is_dir($dir."/".$file)){
-					if( 	($file!=".rendered") &&
-							($file!=".cache")  && 
-							($file!=".Trash-1000") )
-							orphan_scan($dir."/".$file);
+  				if(substr($file,0,1)!=".")
+				    orphan_scan($dir."/".$file);
 				}
 				else {
 			        $filefound=0; 
@@ -666,21 +664,20 @@ function orphan_scan($dir) { eval(scg());
 									if(mysql_num_rows($res)>0) $filefound=1;
 						}
 						if($filefound){
-						
                     }
-                    else{                        
+                    else{
                         $time=date("Y-m-d H:i:s");
                         $filetype=sc_getfiletype($file);
                         $filesizebytes=filesize(getcwd()."/$dir/$file");
-						
-							if($filesizebytes>0) {
-						
+
+						if($filesizebytes>0) {
+
 								$name=addslashes($file);
 									$infile=addslashes($file);							
 								sc_query("INSERT INTO `files` (`name`) VALUES('$infile');");
 									$loc=addslashes("$dir/$file");
 								sc_query("UPDATE files SET `location`='$loc' where name='$name'");
-								
+
 									$dname="system";
 									if(!empty($data)) $dname=$data->name;							
 
@@ -693,11 +690,9 @@ function orphan_scan($dir) { eval(scg());
 								sc_query("UPDATE files SET size='$filesizebytes' where name='$name'");
 								echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
 								$dir_count++;
-									
-							}
+			}
                    }
-               
-			   }
+    	       }
             }
         }
     }
@@ -854,7 +849,6 @@ if($give_file=="avatar"){
         $uploadFile=$RFS_SITE_PATH."/images/avatars/".$_FILES['userfile']['name'];
         if( ($f_ext=="png") || ($f_ext=="gif")||($f_ext=="jpg")||($f_ext=="swf") ) {
             $oldname=$_FILES['userfile']['name'];
-			
             if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile)){
                 system("chmod 755 $uploadFile");
                 $error="File is valid, and was successfully uploaded. ";
@@ -887,11 +881,11 @@ if($give_file=="avatar"){
     exit();
 }
 
-function sc_fileheader() { 
-	$file_header=$GLOBALS['file_header'];    
+function sc_fileheader() {
+	$file_header=$GLOBALS['file_header'];
     echo "<tr height=16>\n";
     echo "<td class=tdfilehead >Type</td>\n";
-    echo "<td class=tdfilehead width=380 >File</td>\n";    
+    echo "<td class=tdfilehead width=380 >File</td>\n";
     echo "<td class=tdfilehead></td>\n";
     echo "<td class=tdfilehead width=80 >Size</td>\n";
     // echo "<td class=tdfilehead width=180 >Category</td>\n";
