@@ -380,7 +380,7 @@ function sc_facebook_comments($page) {
 	data-url=\"$page\"
 	data-title=\"$page\"
 	data-href=\"$page\"
-	data-width=\"100%\"
+	data-width=\"600\"
 	data-num-posts=\"10\"></div>";
 	}
 }
