@@ -1192,7 +1192,7 @@ if($action=="viewcat"){
 			echo "
 			</div>
 			<script>
-			Galleria.loadTheme('$RFS_SITE_URL/3rdparty/galleria/themes/picasa/galleria.picasa.js');
+			Galleria.loadTheme('$RFS_SITE_URL/3rdparty/galleria/themes/classic/galleria.classic.js');
 			Galleria.run('#galleria');
 			</script>";
 
