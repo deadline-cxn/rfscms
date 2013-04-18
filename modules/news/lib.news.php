@@ -197,7 +197,9 @@ function sc_show_news($id) { eval(scg());
     }
     echo "<br>";
     $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$id";
-    sc_socials_content($ourl,$news->headline);
+		
+	sc_socials_content($ourl,$news->headline);		
+		
     echo "<table border=0 cellspacing=0><tr><td>";
     $data=$GLOBALS['data'];
     if(($data->name==$userdata->name)||($data->access==255)) {
@@ -213,6 +215,11 @@ function sc_show_news($id) { eval(scg());
     echo "</td>";
     echo "</tr>";
     echo "</table>";
+	
+	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$id";
+	
+	sc_facebook_comments($page);
+	
     echo "<p>&nbsp;</p>";
     echo "<p>&nbsp;</p>";
     echo "</td></tr></table>";

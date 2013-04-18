@@ -19,7 +19,22 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 } else {
     echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n";
     echo "<html>\n";
-    echo "<head>\n";
+    echo "<head  prefix=\"og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# books: http://ogp.me/ns/books#\">\n";
+echo "
+
+<meta property=\"fb:app_id\" content=\"$RFS_SITE_FACEBOOK_APP_ID\">
+<meta property=\"fb:admins\" content=\"seth.parson\">
+
+<meta property='og:url'    content=\"$RFS_SITE_URL\" />
+<meta property=\"og:site_name\" content=\"$RFS_SITE_NAME\"/><br>
+
+<meta property=\"og:type\"    content=\"sethcoder\" />
+<meta property=\"og:title\"  content=\"$RFS_SITE_URL\" />
+
+
+
+					
+"; // $RFS_SITE_FACEBOOK_ADMINS\">	
     echo "<META NAME=\"ROBOTS\" CONTENT=\"INDEX,FOLLOW\">";
     echo "<meta http-equiv=\"Content-Language\" content=\"en-us\">";
     echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1252\">";
@@ -40,6 +55,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 
 	sc_div("\$RFS_SITE_JS_JQUERY_UI_CSS");
 	rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
+	
 
 	sc_div("head");
     echo "</head>\n";
