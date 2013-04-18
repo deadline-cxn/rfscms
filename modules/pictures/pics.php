@@ -27,6 +27,8 @@ if($_REQUEST['action']=="adesc") {
 chdir("../../");
 include("header.php");
 
+if(empty($galleria)) $galleria="yes";
+
 echo "<table border=0><tr>"; 
 
 if(sc_access_check("pictures","orphanscan")) {
@@ -102,7 +104,7 @@ if($action=="uploadpic"){
 	}
 	else {
 		 
-		echo "<tr><td align=right>category:         </td><td><select name=category>\n";
+		echo "<tr><td align=right>Gallery:         </td><td><select name=category>\n";
         $result=sc_query("select * from categories order by name asc"); $numcats=mysql_num_rows($result);
         for($i=0;$i<$numcats;$i++) { $cat=mysql_fetch_object($result); echo "<option>$cat->name"; }
         echo "</select></td></tr>\n";		
@@ -985,7 +987,6 @@ if($action=="random"){
     $num=mysql_num_rows($res);
     if($num>0) {
         $pict=rand(1,($num))-1;
-        
         mysql_data_seek($res,$pict);
         $pic=mysql_fetch_object($res);
         $id=$pic->id;        
@@ -995,7 +996,15 @@ if($action=="random"){
 
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view
-if($action=="view"){
+if($action=="view") {
+	
+	$action="viewcat";
+	
+	$ipr=mfo1("select * from pictures where id=$id");
+	$category=mfo1("select * from categories where id=$ipr->category");
+	$cat=$category->id;
+	
+	/*
     $res=sc_query("select * from `pictures` where `id`='$id' order by time asc");
     $picture=mysql_fetch_object($res);
     
@@ -1106,7 +1115,7 @@ echo "<h3>$picture->description</h3>";
 echo "</div>";
 		
 		if($picture->sfw=="yes") {
-			$size = getimagesize($picture->url);
+			$size = getimagesize("$RFS_SITE_PATH/$picture->url");
 			$nw=$size[0]; $nh=$size[1];
 			if($nw>1000) $w=1000;
 			else if($nh>1000) $h=1000;
@@ -1138,6 +1147,7 @@ echo "</div>";
         echo "<h1>There are no pictures!</h1>";
 	}
 	echo "</center>";
+	*/
 }
 
 
@@ -1145,25 +1155,56 @@ echo "</div>";
 // PICTURE view category
 if($action=="viewcat"){
     $cat=mfo1("select * from categories where id='$cat'");
-    if(!empty($cat->name)) 
-        sc_info("<center>Category: $cat->name</center>","white","blue");        
+    if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
     $r=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
-    $numpics=mysql_num_rows($r);
+	$numpics=mysql_num_rows($r);
+	
+			echo "<center>";			
+			if($galleria=="yes") {
+				echo "<script src=\"$RFS_SITE_URL/3rdparty/galleria/galleria-1.2.9.min.js\"></script>";
+				echo "<style> #galleria{ width: 700px; height: 400px; background: #000 }</style> ";
+				echo "<div id=\"galleria\">";
+				
+				
+				echo "<img src=\"$RFS_SITE_URL/$ipr->url\"> ";
+			}
+	
     for($i2=0;$i2<$numpics;$i2++) {
     $picture=mysql_fetch_object($r);
     if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
-    echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
-    $img=$RFS_SITE_URL."/".$picture->url;
-    echo sc_picthumb($img,96,0,0);
-    echo "</a>\n";
+			if($galleria=="yes") {
+				
+				if($ipr->id!=$picture->id)
+				
+				echo "<img src=\"$RFS_SITE_URL/$picture->url\"> ";
+
+			}
+			else {
+				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
+				$img=$RFS_SITE_URL."/".$picture->url;
+				echo sc_picthumb($img,96,0,0);
+				echo "</a>\n";
+				
+			}
     }
+	
+	if($galleria=="yes") {
+			echo "
+			</div>
+			<script>
+			Galleria.loadTheme('$RFS_SITE_URL/3rdparty/galleria/themes/picasa/galleria.picasa.js');
+			Galleria.run('#galleria');
+			</script>";
+
+	}
+	echo "</center>";
 
 // $donotshowcats=true;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE show categories
-if(!$donotshowcats){
+if(!$donotshowcats) {
 	$res=sc_query("select * from `categories` order by name asc");
 	$numcats=mysql_num_rows($res);
 	echo "<table border=0 width=100%>";
@@ -1212,6 +1253,8 @@ if(!$donotshowcats){
     }
     echo "</tr></table>";
 }
+
+
 
 include("footer.php");
 ?>
