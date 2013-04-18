@@ -374,9 +374,6 @@ function sc_facebook_comments($page) {
 					  fjs.parentNode.insertBefore(js, fjs);
 					}(document, 'script', 'facebook-jssdk'));</script>";
 
-//<meta property=\"og:url\"    content=\"$page\" />
-//<meta property=\"og:title\"  content=\"$page\" />
-					
 	echo "
 	<div
 	class=\"fb-comments\"
