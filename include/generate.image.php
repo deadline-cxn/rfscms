@@ -8,7 +8,6 @@ include_once("include/lib.genm.php");
 include_once("include/lib.mysql.php");
 if(empty($owidth))  { $owidth=128; }
 if($owidth!=512)    $usesmalltext=1;
-
 if($font=="random") {
     $dr=$RFS_SITE_PATH."/files/fonts/";
     $fonts=array(); $d = opendir($dr) or die("Wrong path: $dr");
@@ -48,10 +47,8 @@ if( $action=="showfont") {
 		}
 	}
 	$bbox   = imagettfbbox($text_size, 0, $font, $fizont);
-
 	$w = $bbox[2] - $bbox[6];
 	$h = $bbox[3] - $bbox[7];
-
     if(!$forcewidth) $owidth=$w+5;
     if($forceheight) $h=$oheight;
 	else $oheight=$h+15;
@@ -64,13 +61,9 @@ if( $action=="showfont") {
 	if(empty($icr)) { $icr=255; $icg=255; $icb=255; }
 	$color			= imagecolorallocate($image_b, $icr, $icg, $icb);
 	if($hideborder!=true)
-
-		
-	
 	for($x=-1;$x<4;$x++) for($y=-1;$y<4;$y++) {
         $zx = $bbox[0] + ($owidth / 2) - ($bbox[4] / 2) ;
         $zy = $bbox[1] + ($oheight / 2) - ($bbox[5] / 2) ;
-		
         $zx+=$x;
         $zy+=$y;
         $zx+=$offx;
@@ -79,10 +72,8 @@ if( $action=="showfont") {
 		$zx, $zy,
 	   $bordercolor, $font, $fizont);
 	}
-
 	$zx = $bbox[0] + ($owidth / 2) - ($bbox[4] / 2) ;
 	$zy = $bbox[1] + ($oheight / 2) - ($bbox[5] / 2) ;
-	
     $zx+=$offx;
     $zy+=$offy;
 	imagettftext($image_b, $text_size-1, 0, $zx, $zy,   $color, 		$font, $fizont);
@@ -91,7 +82,6 @@ if( $action=="showfont") {
 	$color = imagecolorallocate($image_b, 0,255,0);
 	imagettftext($image_b, $text_size-1, 0, $zx, $zy,   $color, 		$font,  $fizont);
 }
-
 //////////////////////////////////////////// END OF TEXT ONLY SECTION		
 } else
     {
@@ -103,7 +93,6 @@ if( $action=="showfont") {
 	$py=explode(".",$px[count($px)-1]);
 	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";
 	$renderfile =$RFS_SITE_PATH."/"."files/pictures/rendered/".$py[0].".".$meme->id.".png";
-	
 	if(!empty($renderfile)){
 		if($forcerender!=1) {
 			if(file_exists($renderfile)){
@@ -113,19 +102,14 @@ if( $action=="showfont") {
 			}
 		}
 	}
-
-    
 	$image_in = genm_imgload($ptf);
     $dbzf=@ImageSX($image_in);
     if($dbzf==0) $dbzf=1;
     $scale = ( $owidth/$dbzf) *100;
     $oheight = @ImageSY($image_in) * $scale/100;
-
 	$image_b = @imagecreatetruecolor($owidth,$oheight);
-    
     @imagealphablending($image_b, true);
 	@imagesavealpha($image_b, true);
-    
 	@imagecopyresampled(
     $image_b,   // dst
     $image_in,  // src

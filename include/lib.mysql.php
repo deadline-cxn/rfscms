@@ -1,6 +1,6 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 if(array_pop(explode("/",getcwd()))=="include")
 	chdir("..");
@@ -8,7 +8,7 @@ include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
 sc_div(__FILE__);
-
+/////////////////////////////////////////////////////////////////////////////////////////
 if($act=="select_image_go") {
 	include("lib.all.php");
     $npath=$_SESSION['select_image_path']."/".$npath;
@@ -18,23 +18,20 @@ if($act=="select_image_go") {
     $q="update `$table` set `$image_field` = '$npath' where `id`='$id'";
     echo $q;
     sc_query($q);
-
-
     echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_SITE_URL/$rtnpage?action=$rtnact\">";
     exit();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 if($act=="select_image_chdir") {
     include("lib.all.php");
     sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field);
 }
-
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_phpself() { eval(scg()); // /%22%3E%3Cscript%3Ealert('xss')%3C/script%3E%3Cfoo%22
 	$page=$_SERVER['PHP_SELF'];//htmlentities($RFS_SITE_URL.$_SERVER['PHP_SELF']);
 	return $page;
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(scg());
 
     if(!stristr($_SESSION['select_image_path'],$RFS_SITE_PATH))
@@ -1749,23 +1746,7 @@ function sc_option_countries() {
 	<option>Zimbabwe
 	";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_css_edit_form($css_file, $returnpage, $returnaction) {
 	$f=file_get_contents($css_file);
 	$cssx=explode("}",$f);	
@@ -1791,7 +1772,7 @@ function sc_css_edit_form($css_file, $returnpage, $returnaction) {
 		echo "</table> }";
 	}
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_php_edit_form($php_file,$returnpage,$returnaction) {
 	
 	$fp=fopen($php_file,"r");

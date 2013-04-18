@@ -1,24 +1,20 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 sc_div(__FILE__);
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_stumble_upon($url) {
-	
-	/*
+/*
 <script language=JavaScript>
 document.write ('<a href=\"');
 document.write('http://www.stumbleupon.com/submit?url=\"$url\">');
 document.write ('<img border=0 src=/images/su_micro.gif></a>');
 </script> 
 */	
-	echo "	
-
-
+echo "	
 <!-- Place this tag where you want the su badge to render -->
 <su:badge layout='2'></su:badge>
-
 <!-- Place this snippet wherever appropriate -->
 <script type='text/javascript'>
   (function() {
@@ -28,9 +24,8 @@ document.write ('<img border=0 src=/images/su_micro.gif></a>');
   })();
 </script>
 ";
-
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_donate_button_small() {
 	sc_donate_button();
 	/*
@@ -45,10 +40,9 @@ function sc_donate_button_small() {
 ';
 */
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_donate_button() { eval(scg());
 if(empty($RFS_SITE_PAYPAL_BUTTON1)) return;
-
 	// sc_info("Please read!","BLACK","");
 echo '	
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=';
@@ -57,7 +51,7 @@ echo '" target=_blank> ';
 $vr=$RFS_SITE_URL;
  echo "<img src='$vr/images/paypal.png' border='0' height='32' alt='$RFS_SITE_PAYPAL_BUTTON1_MSG'></a>";
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_donate_button2() {
 echo " <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">
 <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
@@ -73,8 +67,7 @@ height=\"1\">
 </form>
 ";
 }
-
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_socials_content($u,$t) { eval(scg());
 	if(!sc_yes($RFS_SITE_SHOW_SOCIALS)) return;
 	echo '
@@ -115,7 +108,7 @@ function sc_socials_content($u,$t) { eval(scg());
 <!-- AddThis Button END -->
 ';
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_socials_content2($u,$t) {
 	echo "<table border=0 cellspacing=0 width=100%><tr><td width=10%>";
 	echo "</td><td>";
@@ -129,7 +122,7 @@ function sc_socials_content2($u,$t) {
 	echo "</td><td width=70%>";
 	echo "</td></tr></table>";	
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_social_buttons(){
 	echo "<table border=0><tr><td>";
 	sc_facebook_like_little($RFS_SITE_URL);
@@ -141,7 +134,7 @@ function sc_social_buttons(){
 	echo "</td></tr></table>";
 
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_adsense_2(){
     global $RFS_SITE_GOOGLE_ADSENSE;
 	?>
@@ -158,7 +151,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 	<?
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_adsense($client){
 	global $RFS_SITE_GOOGLE_ADSENSE;
 	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
@@ -180,7 +173,7 @@ src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">
 		}
     }
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_analytics(){
 	sc_div("GOOGLE ANALYTICS");
     global $RFS_SITE_GOOGLE_ANALYTICS;
@@ -201,11 +194,9 @@ function sc_google_analytics(){
 </script>
 ";
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_reddit() { eval(scg());
-
 echo '<script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=1"></script>';
-
     /*
 echo "<script>";
 echo "(function() {";
@@ -221,9 +212,8 @@ document.write(write_string);
 </script>';
 ";    
 */
-
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_plus_badge(){
 		sc_div("GOOGLE PLUS BADGE");
 ?>
@@ -236,15 +226,14 @@ alt="Google+" style="border:0;width:16px;height:16px;"/>
 </a>
 <?
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_plus_badge2(){
 	sc_div("GOOGLE PLUS BADGE");
 	echo "<!-- Place this code where you want the badge to render. -->
 <a href=\"//plus.google.com/111679666163937087116?prsrc=3\" rel=\"publisher\" style=\"text-decoration:none;\">
 <img src=\"//ssl.gstatic.com/images/icons/gplus-32.png\" alt=\"Google+\" style=\"border:0;width:32px;height:32px;\"/></a>";
-
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_plus($url){
 	sc_div("GOOGLE PLUS");
 echo "
@@ -261,7 +250,7 @@ echo "
 </script>
 ";
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_tweet($url,$hash,$text){
 	sc_div("TWITTER TWEET");
 	$url=urlencode($url);
@@ -283,7 +272,7 @@ function sc_tweet($url,$hash,$text){
 				(document,'script','twitter-wjs');
 				</script>";
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_facebook_likebox($url){
 //$url=rawurlencode($url);
 	echo "
@@ -305,7 +294,7 @@ data-header=\"false\">
 </div>
 	";
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_facebook_like($url){
 	sc_div("FACEBOOK LIKE");
 	$url=rawurlencode($url);
@@ -321,11 +310,9 @@ function sc_facebook_like($url){
 data-width=\"200\" data-show-faces=\"false\" data-font=\"verdana\"
 data-href=\"$url\"
 ></div>
-
 ";
-
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_facebook_like_little($url){
     
 	sc_div("FACEBOOK LIKE");
@@ -341,19 +328,16 @@ function sc_facebook_like_little($url){
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-colorscheme="dark"></div>
-
 <?
-
 }
-
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_facebook_like2(){
 	echo "<iframe src='https://www.facebook.com/plugins/like.php?href=";
 	echo sc_phpself();
 	echo "' scrolling='no' frameborder='0' style='border:none; height:25px '>";
 	echo "</iframe> ";
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_twitter_follow() {
 	sc_div("TWITTER FOLLOW");
 echo "<a href=\"https://twitter.com/sethcoder\"
@@ -369,7 +353,7 @@ data-show-screen-name=\"false\">
 	fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");
 	</script>";
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_facebook_login() {
 	if(!empty($GLOBALS['RFS_SITE_FACEBOOK_APP_ID'])) {
 		if(!empty($GLOBALS['RFS_SITE_FACEBOOK_SECRET'])) {
@@ -377,4 +361,5 @@ function sc_facebook_login() {
 		}
 	}
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 ?>

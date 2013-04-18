@@ -1,11 +1,9 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 header("Content-type: image/png");
-
 $im = @imagecreate(300, 16) or die("Cannot Initialize new GD image stream");
-
 $background_color = imagecolorallocate($im, 0, 0, 0);    // yellow
 $blue = imagecolorallocate($im, 0, 0, 255);                  // blue
 $black = imagecolorallocate($im,0,0,0);
@@ -13,27 +11,18 @@ $white = imagecolorallocate($im,255,255,255);
 //imagestring($im, 3, 5, 5,  "My Text String", $blue);
 //$red = imagecolorallocate($im, 255, 0, 0);                  // red
 $green = imagecolorallocate($im, 0, 255, 0);
-
 //imagefilledrectangle ($im,   5,  300, 195, 340, $blue);
-
 imagefilledrectangle ($im,   0,  0, ($_GET['per'] *3),16, $green);
-
 //imageline ($im,   205,  205, 395, 205, $red);
 //       imageline ($im,   205,  205, 395, 395, $blue);
 //        imagerotate($im, 90,$yellow);
-
-
 imagestring($im, 3, 16, 1,  $_GET['per']."%", $black);
 imagestring($im, 3, 17, 2,  $_GET['per']."%", $black);
 imagestring($im, 3, 15, 0,  $_GET['per']."%", $white);
-
 imagepng($im);
-
 imagedestroy($im);
-
 /*
 ?>
-
 <?php
 header("Content-type: image/png");
 $im = @imagecreate(600, 600) or die("Cannot Initialize new GD image stream");
@@ -165,5 +154,4 @@ iptcparse — Parse a binary IPTC block into single tags.
 jpeg2wbmp — Convert JPEG image file to WBMP image file
 png2wbmp — Convert PNG image file to WBMP image file
 */
-
 ?>

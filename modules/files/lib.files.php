@@ -39,4 +39,40 @@ function sc_module_mini_files($x) { eval(scg());
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/files/files.php class=a_cat>More...</a>)</p>";
 }
 
+
+
+function sc_scrubfiles() {
+    sc_query(" CREATE TABLE files2 like files; ");
+	sc_query(" INSERT files2 SELECT * FROM files GROUP BY location;" );
+	sc_query(" RENAME TABLE `files`  TO `files_goto_hell`; ");
+	sc_query(" RENAME TABLE `files2` TO `files`; " );
+	sc_query(" DROP TABLE files_goto_hell; ");
+}
+
+function sc_getfiledata($file){
+    $query = "select * from files where `name` = '$file' ";
+    if(intval($file)!=0)
+    $query = "select * from files where `id` = '$file'";
+    $result = sc_query($query);
+    if(mysql_num_rows($result) >0 ) $filedata = mysql_fetch_object($result);
+    return $filedata;
+}
+
+function sc_getfilelist($filesearch,$limit){
+    $query = "select * from files";
+    if(!empty($filesearch)) $query.=" ".$filesearch;
+    $query.=" order by `name` asc ";
+    if(!empty($limit)) $query.=" limit $limit";
+	//echo "<BR>$query<BR>";
+    $result = sc_query($query);
+    $i=0; $k=mysql_num_rows($result);
+    while($i<$k)
+    {
+        $der = mysql_fetch_array($result);
+        $filelist[$i] = $der['id'];
+        $i=$i+1;
+    }
+    return $filelist;
+}
+
 ?>

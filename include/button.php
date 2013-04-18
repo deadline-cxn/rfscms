@@ -1,10 +1,9 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
+// RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 if(array_pop(explode("/",getcwd()))=="include") chdir("..");
 include_once("include/lib.genm.php");
-
 if(empty($im)) $im="images/icons/Info.png"; // $im  = image to write text onto
 if(empty($w)) $w=64;  // $w   = width
 if(empty($h)) $h=$w;  // $h   = height
@@ -20,6 +19,7 @@ if(empty($fbr)) $fbr=0;  // $fbr,g,b = font background color
 if(empty($fbg)) $fbg=0;
 if(empty($fbb)) $fbb=0;
 if(!empty($f)) { $f=$RFS_SITE_PATH."/include/fonts/".$f; }
+// TODO: Add actual debug method here for this stuff
 //echo $im."<br>";  echo $w."<br>"; echo $h."<br>"; echo $t."<br>"; echo $x."<br>"; echo $y."<br>"; echo $f."<br>"; echo $fs."<br>";
 //echo $fcr."<br>"; echo $fcg."<br>"; echo $fcb."<br>"; echo $fbr."<br>"; echo $fbg."<br>";echo $fbb."<br>";  
 //////////////////////////////////////////// MERGE PICTURE WITH TEXT
@@ -37,15 +37,10 @@ $bgc = imagecolorallocate($image_b, $fbr, $fbg, $fbb);
 $fgc = imagecolorallocate($image_b, $fcr, $fcg, $fcb);
 if(empty($fs)) $fs = $w/20;
 imagealphablending($image_b, true);
-
 for($lx=0;$lx<3;$lx++) for($ly=0;$ly<3;$ly++) {
-    genm_print($image_b, $fs, $bgc , $f, $t, $lx+$x, $ly+$y, $w);
-    // imagettftext($image_b, $fs, 0, $lx+$x, $ly+$y, $bgc, $f, $t);
+    genm_print($image_b, $fs, $bgc , $f, $t, $lx+$x, $ly+$y, $w); // imagettftext($image_b, $fs, 0, $lx+$x, $ly+$y, $bgc, $f, $t);
 }
-genm_print($image_b, $fs, $fgc , $f, $t, $x+1, $y+1, $w);
-// imagettftext($image_b, $fs, 0, $x+1, $y+1, $fgc, $f, $t);
-
-
+genm_print($image_b, $fs, $fgc , $f, $t, $x+1, $y+1, $w); // imagettftext($image_b, $fs, 0, $x+1, $y+1, $fgc, $f, $t);
 header('Content-Type: image/png');
 imagepng($image_b);
 ?>
