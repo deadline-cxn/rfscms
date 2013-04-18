@@ -216,8 +216,7 @@ function sc_show_news($id) { eval(scg());
     echo "</tr>";
     echo "</table>";
 	
-	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$id";
-	
+	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$id";	
 	sc_facebook_comments($page);
 	
     echo "<p>&nbsp;</p>";

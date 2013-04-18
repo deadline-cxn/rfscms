@@ -1122,11 +1122,16 @@ echo "</div>";
 		}
 		else {
 			if($viewsfw=="yes") {
-				echo "<img src=\"$picture->url\">";
+				echo "<img src=\"$picture->url\">";				
 			}
 			else{
 				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
 			}
+			
+			
+			$page="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id";	
+			sc_facebook_comments($page);
+			
 		}
 	}
 	else {
