@@ -206,9 +206,6 @@ if( $action=="showfont") {
             }
     }
 	
-	
-	imagestring($image_b, 2, 2, $h-16, "$meme->id $mid", $red);
-	
     if($_SESSION['debug_msgs']==true)
         imagestring($image_b, 2, 3, $h-15, $dout, $red);
 }
