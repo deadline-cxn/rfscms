@@ -663,7 +663,8 @@ echo "
 <a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
 <img src='$RFS_SITE_URL/include/generate.image.php/$t.png?
 mid=$m->id&
-owidth=$editwidth'
+owidth=$editwidth&
+forcerender=1'
 border=0>
 </a>";
 		}
@@ -713,6 +714,7 @@ if($rb>255) $rb=0;
 
 echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeusefont&memefont=$file&meme=$m->id'>
 <img src='$RFS_SITE_URL/include/generate.image.php/$t.png?action=showfont&font=$file&text_size=56&forcerender=1&oheight=120&forceheight=1&icr=$rr&icg=$rg&icb=$rb' border=0></a>";
+
 				}
 			}
 		}
