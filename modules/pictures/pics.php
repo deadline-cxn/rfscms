@@ -660,7 +660,7 @@ if( ($action=="memeedit")  ||
 		if($action=="memeedit") {			
 			$t=$m->name."-".time();			
 echo "
-<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
+<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize&forcerender=1' target=_blank>
 <img src='$RFS_SITE_URL/include/generate.image.php/$t.png?
 mid=$m->id&
 owidth=$editwidth&
