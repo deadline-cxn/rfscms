@@ -6,6 +6,7 @@ if(array_pop(explode("/",getcwd()))=="include") chdir("..");
 include_once("include/session.php");
 include_once("include/lib.genm.php");
 include_once("include/lib.mysql.php");
+$owidth=$_REQUEST['owidth'];
 if(empty($owidth))  { $owidth=128; }
 if($owidth!=512)    $usesmalltext=1;
 if($font=="random") {
