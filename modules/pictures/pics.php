@@ -832,9 +832,9 @@ positifon:absolute; top:50%;
 		
 		$t=$m->name.$m->id;
 		//echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$m->id&owidth=$fullsize' target=_blank>
-        echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?a=ms&id=$m->id' target=_blank>
+        echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?a=ms&mid=$m->id' target=_blank>
 
-		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$m->id&owidth=$thumbwidth' border=0></a><br>";
+		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0></a><br>";
 		
 		$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 
@@ -844,15 +844,15 @@ positifon:absolute; top:50%;
         sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",         24, 78,24,   0,0,      1,155,1, 70,70,0, 1,1   );
 
                     echo "
-						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&id=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
-						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&id=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
+						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
+						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
 						<br>";
 
-		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&id=$m->basepic&name=$m->name'>New Caption</a>]<br>";
+		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&mid=$m->basepic&name=$m->name'>New Caption</a>]<br>";
 		if( ($data->id==$m->poster) ||
 			($data->access==255) ) {
-			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&id=$m->id'>Edit</a>] ";
-			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&id=$m->id'>Delete</a>] ";
+			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
+			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&mid=$m->id'>Delete</a>] ";
 		}
 		echo "<br>";
 		//echo "<hr>";
