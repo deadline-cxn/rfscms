@@ -19,13 +19,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 } else {
     echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n";
     echo "<html>\n";
-    echo "<head  prefix=\"og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# books: http://ogp.me/ns/books#\">\n";
-echo "<meta property=\"fb:app_id\" content=\"$RFS_SITE_FACEBOOK_APP_ID\">
-<meta property=\"fb:admins\" content=\"seth.parson\">
-<meta property='og:url'    content=\"$RFS_SITE_URL\" />
-<meta property=\"og:site_name\" content=\"$RFS_SITE_NAME\"/>
-<meta property=\"og:type\"    content=\"sethcoder\" />
-<meta property=\"og:title\"  content=\"$RFS_SITE_URL\" /> ";
+    echo "<head>\n";
     echo "<META NAME=\"ROBOTS\" CONTENT=\"INDEX,FOLLOW\">";
     echo "<meta http-equiv=\"Content-Language\" content=\"en-us\">";
     echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1252\">";
@@ -46,7 +40,6 @@ echo "<meta property=\"fb:app_id\" content=\"$RFS_SITE_FACEBOOK_APP_ID\">
 
 	sc_div("\$RFS_SITE_JS_JQUERY_UI_CSS");
 	rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
-	
 
 	sc_div("head");
     echo "</head>\n";
@@ -65,23 +58,21 @@ echo "<meta property=\"fb:app_id\" content=\"$RFS_SITE_FACEBOOK_APP_ID\">
 		echo "<table border=0 width=100% height=50 cellspacing=0 cellpadding=0 class=toptd>";
 		echo "<tr><td class=toptd align=left width=80%>";
 
-		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_image.gif"))
-			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_image.gif\" align=left>";
-		else{
-                $clr = sc_html2rgb($RFS_SITE_NAV_FONT_COLOR);
-                $bclr= sc_html2rgb($RFS_SITE_NAV_FONT_BGCOLOR);
+		if ($RFS_SITE_NAV_IMG_TOP)  {
+			$clr = sc_html2rgb($RFS_SITE_NAV_FONT_COLOR);
+           $bclr= sc_html2rgb($RFS_SITE_NAV_FONT_BGCOLOR);
 
-                echo sc_image_text(
-
-							$RFS_SITE_NAME,
-
-							$RFS_SITE_NAV_FONT,
-							40,
-							812,84,
-							0, -10,
-							$clr[0], $clr[1], $clr[2],
-							$bclr[0], $bclr[1], $bclr[2],
-							1,1 );
+			echo sc_image_text(
+						$RFS_SITE_NAME,
+						$RFS_SITE_NAV_FONT,
+						40,
+						812,84,
+						0, -10,
+						$clr[0], $clr[1], $clr[2],
+						$bclr[0], $bclr[1], $bclr[2],
+						1,1 );
+		}else {
+			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_image.gif\" align=\"left\" border=\"0\">";
 		}
 
 		echo "<font class=toptd>$keywords</font> ";
@@ -96,7 +87,7 @@ echo "<meta property=\"fb:app_id\" content=\"$RFS_SITE_FACEBOOK_APP_ID\">
 			echo "&nbsp;";
 		if($_SESSION["logged_in"]!="true")    {
 			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-			sc_facebook_login();
+			sc_facebook_login();			
 		}
 		else    {
 			echo "</td>";			
