@@ -3,8 +3,8 @@ include_once("include/lib.all.php");
 
 ///////////////////////////////////////////////////////////////
 // MODULE LINK FRIENDS
-function sc_module_mini_link_friends() { eval(scg());
-	$result=sc_query("select * from link_bin where friend='yes' order by time");
+function sc_module_mini_link_friends($x) { eval(scg());
+	$result=sc_query("select * from link_bin where friend='yes' order by time limit $x");
 	$numlinks=mysql_num_rows($result);
 	echo "<h2>Link Friends</h2>";
 	for($i=0;$i<$numlinks;$i++) {
@@ -18,7 +18,8 @@ function sc_module_mini_link_friends() { eval(scg());
 	if($data->access=="255") {
 		echo "<div style='float: left;'>";
 		echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=post><input type=hidden name=action value=edit_linkbin>";
-		echo "<input type=submit name=submit value=\"edit links\"></form></div><br>";
+		echo "<input type=submit name=submit value=\"edit links\"></form></div>";
+		echo "<div style='clear: left;'></div>";
 	}
 }
 ?>
