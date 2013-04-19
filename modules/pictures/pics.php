@@ -1,7 +1,7 @@
 <?
 if($_REQUEST['a']=="ms") {
-	$id=$_REQUEST['id'];
-	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$id.png&mid=$id&owidth=512\" border=0></a>";
+	$mid=$_REQUEST['mid'];
+	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$mid.png&mid=$mid&owidth=512\" border=0></a>";
     exit();
 }
 if($_REQUEST['action']=="aname") {
@@ -691,7 +691,7 @@ $wf=str_replace("fonts/","",$m->font);
 
 sc_image_text("Change Font ($wf)",
 "HoW%20tO%20dO%20SoMeThInG.ttf",
-28,812,74,0,0,10,145,148,1,1,0,1,1);
+28,812,74,0,0,10,145,148,1,1,0,0,1);
        echo "</a> <BR>";     
 
 
