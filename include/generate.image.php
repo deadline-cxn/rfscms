@@ -207,9 +207,6 @@ if( $action=="showfont") {
             }
     }
 	
-	imagestring($image_b, 2, 3, $h-15, 
-	"$w $h --- $owidth $oheight"
-	, $red);
 	
 	
     if($_SESSION['debug_msgs']==true)
