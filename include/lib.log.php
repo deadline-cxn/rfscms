@@ -203,4 +203,3 @@ function sc_log($logtext) { eval(scg());
 }
 
 ?>
-
