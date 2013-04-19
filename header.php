@@ -64,9 +64,9 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 
 			echo sc_image_text(
 						$RFS_SITE_NAME,
-						$RFS_SITE_NAV_FONT,
-						40,
-						812,84,
+						$RFS_SITE_FONT,
+						72,
+						812,94,
 						0, -10,
 						$clr[0], $clr[1], $clr[2],
 						$bclr[0], $bclr[1], $bclr[2],
