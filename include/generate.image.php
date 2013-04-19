@@ -96,7 +96,7 @@ if( $action=="showfont") {
 	$px=explode("/",$pic->url);
 	$py=explode(".",$px[count($px)-1]);
 	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";
-	$renderfile =$RFS_SITE_PATH."/"."files/pictures/rendered/".$py[0].".".$meme->id.".png";
+	$renderfile =$RFS_SITE_PATH."/"."files/pictures/rendered/".$py[0].".$owidth.".$meme->id.".png";
 	if(!empty($renderfile)){
 		if($forcerender!=1) {
 			if(file_exists($renderfile)){
