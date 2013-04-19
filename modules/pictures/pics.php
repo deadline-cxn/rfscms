@@ -520,8 +520,8 @@ if($action=="memegenerate") {
     
 	$donotshowcats=true;
 	$name = addslashes($name);
-	$texttop = addslashes($texttop);
-	$textbottom = addslashes($textbottom);	
+	$texttop = addslashes($REQUEST['texttop']);
+	$textbottom = addslashes($REQUEST['textbottom']);	
     
 	$poster=999;
     if($data->id) $poster=$data->id;	
