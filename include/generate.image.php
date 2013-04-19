@@ -192,7 +192,7 @@ if( $action=="showfont") {
             $renderfile=$renderfile.".nd";
                 //for($jj=16;$jj>0;$jj--){$jwat = imagecolorallocate($image_b, $jj*16,$jj*16,$jj*16);                    imagefilledrectangle($image_b,0,$h-$jj,$w,$h,$jwat);}
             if($_SESSION['debug_msgs']!=true) {
-                $ad="  Create new captions @ DEFECTIVEMINDS.COM";
+                $ad="  Create new captions @ $RFS_SITE_URL/";
                 imagestring($image_b, 2, 2, $h-16, $ad, $black);
                 imagestring($image_b, 2, 3, $h-16, $ad, $black);
                 imagestring($image_b, 2, 4, $h-16, $ad, $black);

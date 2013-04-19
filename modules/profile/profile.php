@@ -86,12 +86,21 @@ if($act=="update")
 function pro_nav_bar($data) {    eval(scg());
 
     echo "<center>\n";
-    if($data->reporter == "yes") echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=edityournews\">edit your news articles</a>] \n";
-    if($data->reporter == "yes") echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?showform=yes\">create new news</a>] \n";
-    if($data->access==255) echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=editcategories\">edit content categories</a>] \n";
-    if($data->upload == "yes")   echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">submit file</a>] \n";
-    if($data->access==255)       echo "[<a href=\"$RFS_SITE_URL/admin/adm.php\">admin</a>] \n";
-    echo "[<a href=$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form>change password</a>] \n";
+
+	
+if(sc_access_check("news","edit")) 
+	echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=edityournews\">edit your news articles</a>] \n";
+if(sc_access_check("news","submit")) 
+	echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?showform=yes\">create new news</a>] \n";
+if(sc_access_check("admin","categories"))
+	echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=editcategories\">edit content categories</a>] \n";
+if(sc_access_check("files","upload"))
+	echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">submit file</a>] \n";
+if(sc_access_check("admin","access"))
+	echo "[<a href=\"$RFS_SITE_URL/admin/adm.php\">admin</a>] \n";
+
+echo "[<a href=$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form>change password</a>] \n";
+
     echo "</center>\n";
 }
 
@@ -278,26 +287,37 @@ echo "</td></tr>\n";
 echo "</table>\n";
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // files start
-//if($data->upload == "yes")
-//{
-  echo "<p>Your files...\n";
-  echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>][<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
-  echo "</p>\n";
-  echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=sc_black>\n";
-  echo "<tr bgcolor=$file_header height=16 class=sc_black>\n";
-  echo "<td class=\"sc_black\">Work Safe</td>\n";
-  echo "<td class=\"sc_black\">Type</td>\n";
-  echo "<td class=\"sc_black\">Name</td>\n";
-  echo "<td class=\"sc_black\" width=100>Size</td>\n";
-  echo "<td class=\"sc_black\" width=50>D'lds</td>\n";
-  echo "<td class=\"sc_black\">Category</td>\n";
-  echo "<td class=\"sc_black\">Description &nbsp;</td>\n";
-  echo "<td class=\"sc_black\">&nbsp;</td>\n";
-  echo "<td class=\"sc_black\">&nbsp;</td>\n";
-  echo "</tr>\n";
-  $i=0; $bg=0; $filelist=@sc_getfilelist("where submitter='$data->name'");
-  while($i<count($filelist))
-  {
+
+	sc_info("Your files...","BLACK","WHITE");
+  
+	if(sc_access_check("files","upload")) 
+		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>]";
+	if(sc_access_check("files","addlink")) 
+		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
+  
+	  echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=sc_black>\n";
+	  echo "<tr bgcolor=$file_header height=16 class=sc_black>\n";
+	  echo "<td class=\"sc_black\">Work Safe</td>\n";
+	  echo "<td class=\"sc_black\">Type</td>\n";
+	  echo "<td class=\"sc_black\">Name</td>\n";
+	  echo "<td class=\"sc_black\" width=100>Size</td>\n";
+	  echo "<td class=\"sc_black\" width=50>D'lds</td>\n";
+	  echo "<td class=\"sc_black\">Category</td>\n";
+	  echo "<td class=\"sc_black\">Description &nbsp;</td>\n";
+	  echo "<td class=\"sc_black\">&nbsp;</td>\n";
+	  echo "<td class=\"sc_black\">&nbsp;</td>\n";
+	  echo "</tr>\n";
+  
+  if(empty($filetop)) 	$filetop=0;
+  if(empty($filelimit))	$filelimit=25;
+  
+  
+  $q="where submitter='$data->name'";
+  $l="$filetop,$filelimit";
+  
+  $i=0; $bg=0; $filelist=@sc_getfilelist($q,$l);
+  while($i<count($filelist)) {
+	  
     $filedata=sc_getfiledata($filelist[$i]);
     $colr=$file_color[1];
     if($bg=="1") $colr=$file_color[2];

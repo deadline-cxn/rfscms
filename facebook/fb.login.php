@@ -4,19 +4,6 @@ if(  (array_pop(explode("/",getcwd()))) == "facebook" ) chdir("../");
 include_once("include/lib.all.php");
 require_once("facebook/src/facebook.php");
 
-sc_query_user_db("ALTER TABLE `users` ADD `facebook_id` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `facebook_username` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `facebook_name` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `first_name` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `last_name` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `facebook_link` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `timezone` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `locale` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `country` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `gender` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `email` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `paypal_email` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `first_login` timestamp NOT NULL;");
 
 sc_query_user_db("
 CREATE TABLE IF NOT EXISTS `users` (
@@ -66,11 +53,26 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1005 ;
 ");
+sc_query_user_db("ALTER TABLE `users` ADD `facebook_id` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `facebook_username` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `facebook_name` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `first_name` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `last_name` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `facebook_link` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `timezone` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `locale` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `country` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `gender` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `email` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `paypal_email` text NOT NULL;");
+sc_query_user_db("ALTER TABLE `users` ADD `first_login` timestamp NOT NULL;");
 
 // echo "Connecting with facebook...";
 
 $goback=$_GET['goback'];
+$retpage=$_GET['retpage'];
 if(!empty($goback)) $_SESSION['goback']=$goback;
+if(!empty($retpage)) $_SESSION['retpage']=$retpage;
 if(!empty($fb_source)){ $_SESSION['goback']=""; $goback=""; }
 if(!$_SESSION['valid_user']) {
 
@@ -191,14 +193,29 @@ if(!$_SESSION['valid_user']) {
                 $_SESSION["logged_in"]  = "true";
                 //  echo $_SESSION['goback'];
                 if(sc_yes($_SESSION['goback'])) {					
-                    sc_gotopage($RFS_SITE_URL);
-                    echo "go back<br>";
+                  
+						$retpage=$_SESSION['retpage'];
+						if(!empty($retpage)) {
+							sc_gotopage($retpage);
+							$_SESSION['retpage']="";
+						}
+						else {
+							sc_gotopage($RFS_SITE_URL);
+						}
+					
                     exit();
                 } else {
 
                     // echo "Authenticated<br>";
-
-                    sc_gotopage($RFS_SITE_URL);
+					
+						$retpage=$_SESSION['retpage'];
+						if(!empty($retpage)) {
+							sc_gotopage($retpage);
+							$_SESSION['retpage']="";
+						}
+						else {
+							sc_gotopage($RFS_SITE_URL);
+						}
                     
                     exit();
                 }

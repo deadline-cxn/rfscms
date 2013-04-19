@@ -768,13 +768,26 @@ function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
 	if(count($exomit)) {
 		for($omi=0;$omi<count($exomit);$omi++){
 				$exwhat=explode(":",$exomit[$omi]);
+				
+				$op="!=";
+				if(stristr($exwhat[1],"like ")){ 
+					$op="";
+					$exwhat[1]="not ".$exwhat[1];
+				}
+				
 				if($where==''){
 					if(!empty($exwhat[0]))
-						$where.=" where $exwhat[0] != '$exwhat[1]'";
+						$where.=" where $exwhat[0] $op ";
+							if(!empty($op)) $where.="'";
+							$where.=$exwhat[1];
+							if(!empty($op)) $where.="'";
 				}
 				else{
 					if(!empty($exwhat[0]))
-						$where.=" and $exwhat[0] != '$exwhat[1]'";
+						$where.=" and $exwhat[0] $op ";
+							if(!empty($op)) $where.="'";
+							$where.=$exwhat[1];
+							if(!empty($op)) $where.="'";
 				}
 			}
 		}
@@ -785,13 +798,24 @@ function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
 		if(count($exincl)) {
 			for($ini=0;$ini<count($exincl);$ini++){
 					$exwhat=explode(":",$exincl[$ini]);
+					
+					$op="=";
+					if(stristr($exwhat[1],"like ")) $op="";					
+					
 					if($where==''){
 						if(!empty($exwhat[0]))
-							$where.=" where $exwhat[0] = '$exwhat[1]'";
+							$where.=" where $exwhat[0] $op ";
+							if(!empty($op)) $where.="'";
+							$where.=$exwhat[1];
+							if(!empty($op)) $where.="'";
+							
 					}
 					else{
 						if(!empty($exwhat[0]))
-							$where.=" and $exwhat[0] = '$exwhat[1]'";
+							$where.=" and $exwhat[0] $op ";
+							if(!empty($op)) $where.="'";
+							$where.=$exwhat[1];
+							if(!empty($op)) $where.="'";
 					}
 				}
 			}
@@ -808,19 +832,23 @@ function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
 		 
 		 if(empty($selname)) $selname=$key;
 
+		
+
+		$scoq="select $distinct $key";
+		if(!empty($key2))
+			$scoq.=",$key2";
+		$scoq.=",id from $table $where order by $key asc";			
+		$r=sc_query($scoq);
+		
+		// echo "<p> $scoq </p>";
+		
 		echo "<select id=\"optionizer_$selname\" name=\"$selname\" width=20   ";
 		if($on_change_method)
 			echo "onchange=\"this.form.submit()\" ";
 		echo ">";
 		echo "<option >$default";
 		echo "<option >--- None ---";
-
-		$scoq="select $distinct $key";
-		if(!empty($key2))
-			$scoq.=",$key2";
-		$scoq.=",id from $table $where order by $key asc";
-
-		$r=sc_query($scoq);
+		
 		if($r) {
 			for($i=0;$i<mysql_num_rows($r);$i++){
 				$d=mysql_fetch_object($r);

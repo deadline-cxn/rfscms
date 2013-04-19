@@ -193,7 +193,7 @@ function sc_show_news($id) { eval(scg());
             echo smiles(nl2br(wikitext($wikipage->text)));
     }	else {
         $news->message=str_replace("<a h","<a class=news_a h",$news->message);
-        echo nl2br(smiles(stripslashes($news->message)));
+        echo nl2br(smiles(stripslashes(wikitext($news->message))));
     }
     echo "<br>";
     $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$id";

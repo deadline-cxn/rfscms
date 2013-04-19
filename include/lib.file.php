@@ -115,22 +115,26 @@ function sc_file_get_readme($file_name) { eval (scg());
 	reset($dirfiles);
     while(list ($key, $file) = each ($dirfiles)) {
 		if(substr($file,0,1)!=".") {
-			if(( (stristr($file,"read")) ||
-				(stristr($file,".nfo")) ||
-				
-				(stristr($file,".diz")) ||
-				(stristr($file,".doc")) ||
-				(stristr($file,".txt")) ||
-				(stristr($file,".msg")) ||
-				(stristr($file,".c")) ||
-				(stristr($file,".h")) ||
-				(stristr($file,".hpp")) ||
-				(stristr($file,".ttf")) ||
-				(stristr($file,"index"))  
+			if(( 	(stristr($file,"read")) ||
+					(stristr($file,".nfo")) ||
+					(stristr($file,"version")) ||
+					(stristr($file,".diz")) ||
+					(stristr($file,".doc")) ||
+					(stristr($file,".txt")) ||
+					(stristr($file,".msg")) ||					
+					(stristr($file,".cat")) ||
+					(stristr($file,".dat")) ||
+					(stristr($file,".h")) ||
+					(stristr($file,".hpp")) ||
+					(stristr($file,".ttf")) ||
+					(stristr($file,"index"))  
 				
 					)  &&
 					
-				(!stristr($file,".com")) ) {
+					(!stristr($file,".com")) &&
+					(!stristr($file,".chm")) &&
+					(!stristr($file,".class"))
+				) {
 				$x=sc_echo_file("$RFS_SITE_PATH/tmp/$file");
 				echo $x;
 				echo "<hr>";
