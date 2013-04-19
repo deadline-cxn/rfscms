@@ -1501,6 +1501,7 @@ function adm_action_f_modify_link() {
 		}
 		sc_query( "update link_bin set `friend` = '$friend' where `id` = '$linkid'");
 		sc_query( "update link_bin set `hidden` = '$hide' where `id` = '$linkid'" );
+		sc_query( "update link_bin set `referral` = '$referral' where `id` = '$linkid'" );
 		sc_query( "update link_bin set `referrals` = '$referrals' where `id` = '$linkid'" );
 		sc_query( "update link_bin set `clicks` = '$clicks' where `id` = '$linkid'" );
 		sc_query( "update link_bin set `category` = '$category' where `id` = '$linkid'" );
@@ -1569,12 +1570,15 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 		
 		if( sc_yes($link->hidden) ) echo "hidden <select name=hidden><option>yes<option>no</select>\n";
 		else echo "hidden <select name=hidden><option>no<option>yes</select>\n";
-		
+		echo "<br>";
+				
+		if( sc_yes($link->friend) ) echo "friend <select name=friend><option>yes<option>no</select>\n";
+		else echo "friend <select name=friend><option>no<option>yes</select>\n";		
 		echo "<br>";
 		
-		
-		if( sc_yes($link->friend) ) echo "friend <select name=friend><option>yes<option>no</select>\n";
-		else echo "friend <select name=friend><option>no<option>yes</select>\n";
+		if( sc_yes($link->referral) ) echo "referral <select name=referral><option>yes<option>no</select>\n";
+		else echo "referral <select name=referral><option>no<option>yes</select>\n";		
+		echo "<br>";
 		
 		echo "</tr></table></td>\n";
 		echo "<td class=sc_project_table_$gt><select name=rating><option>$link->rating\n";
