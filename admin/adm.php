@@ -1615,6 +1615,11 @@ function adm_action_() {
 	sc_access_method_add("admin", "access");
 	sc_access_method_add("admin", "categories");
 	
+	$ax=mfo1("select * from access where name='Administrator' and action='access' and page='admin'");
+	if(!$ax->id) {
+		sc_query("insert into access (name,action,page) values('Administrator','access','admin')");
+	}
+	
 
 	if( !empty( $_GET['admed'] ) ) $_SESSION['admed']=$_GET['admed'];
 
