@@ -204,11 +204,12 @@ function rfs_get($t) {
 	return $t;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_theme_form() {
-	eval(scg());
+function sc_theme_form() { eval(scg());
 
 	if(sc_yes($_SESSION["logged_in"])) {
 		if(sc_yes($GLOBALS["RFS_SITE_THEME_DROPDOWN"])) {
+			
+			$data=sc_getuserdata($_SESSION['valid_user']);
 
 			echo "<form action=\"$RFS_SITE_URL\" method=get>
 			<select name=theme onchange='this.form.submit()'><option>Theme\n";
