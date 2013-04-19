@@ -529,6 +529,8 @@ if($action=="memegenerate") {
 	if($mid==0) {
         $infoout="Adding new caption";
         if(empty($texttop)) $texttop="_NEW";
+		
+		echo " PICTURE [$id] <br>";
         
 $q="insert into meme
       ( `name`,`poster`,
@@ -548,12 +550,12 @@ VALUES('$name','$poster',
         $mid=mysql_insert_id();        
        } else {
 		$infoout="Updating caption $mid";
-		sc_query("update meme set `name`  		= '$name'   	     where id='$mid'");
+		sc_query("update meme set `name`  			= '$name'   	     where id='$mid'");
 		sc_query("update meme set `poster`   	 	= '$poster'     	 where id='$mid'");
 		sc_query("update meme set `texttop`     	= '$texttop'    	 where id='$mid'");
 		sc_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$mid'");
-		sc_query("update meme set `font`	        = '$chgfont'      	 where id='$mid'");
-		sc_query("update meme set `text_color`	= '$text_color'     where id='$mid'");
+		sc_query("update meme set `font`	       = '$chgfont'      	 where id='$mid'");
+		sc_query("update meme set `text_color`		= '$text_color'     where id='$mid'");
 		sc_query("update meme set `text_bg_color`	= '$text_bg_color'  where id='$mid'");
 		sc_query("update meme set `text_size`		= '$text_size'      where id='$mid'");
 		sc_query("update meme set `private`		= '$private'        where id='$mid'");
