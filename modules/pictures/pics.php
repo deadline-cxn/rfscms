@@ -574,12 +574,12 @@ if($action=="memedelete") {
 	$dd="<form action=$RFS_SITE_URL/modules/pictures/pics.php method=post>Confirm delete meme:
 	<input type=submit name=memedelete value=Delete>
 	<input type=hidden name=action value=memedeletego>
-	<input type=hidden name=id value=$id>
+	<input type=hidden name=mid value=$mid>
 	</form>";	
 	sc_info($dd,"black","red");	
 	$t=$m->name."-".time();// /$t.png
-	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$m->id&owidth=$fullsize' target=_blank>
-	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$id&owidth=256' border=0></a>";
+	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
+	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$mid&owidth=256' border=0></a>";
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////
@@ -726,12 +726,12 @@ echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeusefont&memefo
 /////////////////////////////////////////////////////////////////////////////////
 // MEME vote up
 if($action=="muv"){
-    $muv="MUV$id";    
+    $muv="MUV$mid";    
     $action="showmemes";
     if(!$_SESSION[$muv]){        
-        $m=mfo1("select * from meme where id='$id'");
+        $m=mfo1("select * from meme where id='$mid'");
         $m->rating+=1;
-        sc_query("update meme set rating='$m->rating' where id='$id'");
+        sc_query("update meme set rating='$m->rating' where id='$mid'");
         $_SESSION[$muv]=true;
     } else {
         sc_info("Multiple upvoting is not allowed.","white","red");
@@ -741,12 +741,12 @@ if($action=="muv"){
 /////////////////////////////////////////////////////////////////////////////////
 // MEME vote down
 if($action=="mdv"){
-    $mdv="MDV$id";
+    $mdv="MDV$mid";
     $action="showmemes";
 	if(!$_SESSION[$mdv]){
-        $m=mfo1("select * from meme where id='$id'");
+        $m=mfo1("select * from meme where id='$mid'");
         $m->rating-=1;
-        sc_query("update meme set rating='$m->rating' where id='$id'");
+        sc_query("update meme set rating='$m->rating' where id='$mid'");
         $_SESSION[$mdv]=true;
     }
     else {
@@ -877,7 +877,7 @@ echo "<br style='clear: both;'>";
 
 	echo "</td>";
 
-///////////// Last 5
+///////////// Private captions
 	echo "<td valign=top align=center width=240> ";
 	sc_info("Your Private Captions","BLACK","GREEN");
 	
@@ -929,7 +929,7 @@ echo "<br style='clear: both;'>";
 		echo"(You must login to create private captions)";
 	}
 	echo "</td>";
-/////////// End Last 5	
+/////////// End Private captions
 
 ///////////// Last 5
 	echo "<td valign=top align=center width=210> ";
@@ -942,8 +942,8 @@ echo "<br style='clear: both;'>";
 
 		$m=mysql_fetch_object($r);		
 		$t=$m->name."-".time();// /$t.png
-		echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$m->id&owidth=$fullsize' target=_blank>
-        <img src='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$m->id&owidth=$thumbwidth' border=0></a><br>";
+		echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
+        <img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0></a><br>";
 		$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 		//echo "Contributor: $muser->name<br>
         echo "
@@ -951,15 +951,15 @@ echo "<br style='clear: both;'>";
 
             sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",         24, 78,24,   0,0,      1,155,1, 70,70,0, 1,1   );
             
-                echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&id=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
-						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&id=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
+                echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
+						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
 						<br>";
 
-		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&id=$m->basepic&name=$m->name'>New Caption</a>]<br>";
+		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&mid=$m->basepic&name=$m->name'>New Caption</a>]<br>";
 		if( ($data->id==$m->poster) ||
 			($data->access==255) ) {
-			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&id=$m->id'>Edit</a>] ";
-			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&id=$m->id'>Delete</a>] ";
+			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
+			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&mid=$m->id'>Delete</a>] ";
 		}
 		echo 
 		"</div>";
