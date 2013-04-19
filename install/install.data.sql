@@ -46,6 +46,7 @@ INSERT INTO `arrangement` (`id`, `location`, `mini`, `num`, `sequence`) VALUES
 (17, 'middle', 'news_top_story', 5, 999);
 -;-
 INSERT INTO `access_methods` (`id`, `page`, `action`) VALUES
+(1, 'admin', 'access'),
 (5, 'news', 'edit'),
 (11, 'news', 'deleteothers'),
 (7, 'news', 'submit'),
@@ -84,6 +85,7 @@ INSERT INTO `access_methods` (`id`, `page`, `action`) VALUES
 (42, 'pictures', 'sort');
 -;-
 INSERT INTO `access` (`id`, `name`, `access`, `action`, `page`, `table`) VALUES
+(1,  'Administrator,  '', 'admin', 'access', ''),
 (60, 'Administrator', '', 'editothers', 'exams', ''),
 (59, 'Administrator', '', 'edit', 'exams', ''),
 (58, 'Administrator', '', 'deleteothers', 'exams', ''),

@@ -357,10 +357,19 @@ data-show-screen-name=\"false\">
 function sc_facebook_login() {
 	if(!empty($GLOBALS['RFS_SITE_FACEBOOK_APP_ID'])) {
 		if(!empty($GLOBALS['RFS_SITE_FACEBOOK_SECRET'])) {
-			echo "<a href=$RFS_SITE_URL/facebook/fb.login.php?goback=1><img src=$RFS_SITE_URL/facebook/facebook_login.gif border=\"0\"></a>";
+			$page=urlencode(sc_current_page_url());
+			echo "<a href=\"$RFS_SITE_URL/facebook/fb.login.php?goback=1";
+			if(!empty($page)) 
+				echo "&retpage=$page";
+			echo "\">";
+			
+			echo "<img src=\"$RFS_SITE_URL/facebook/facebook_login.gif\" border=\"0\" 
+					alt=\"Connect with facebook\" text=\"Connect with facebook\">";
+			echo "</a>\n";
 		}
 	}
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_facebook_comments($page) {
 	$RFS_SITE_FACEBOOK_APP_ID=$GLOBALS['RFS_SITE_FACEBOOK_APP_ID'];
 	if(!empty($RFS_SITE_FACEBOOK_APP_ID)) {

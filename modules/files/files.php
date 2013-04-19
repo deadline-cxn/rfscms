@@ -19,7 +19,11 @@ if($argv[1]=="orph") {
     exit();
 }
 
-if($action=="get_file_go") {
+if($_REQUEST['action']=="get_file_go") {
+		
+		chdir("../../");
+		include_once("include/lib.all.php");
+		include("modules/files/lib.files.php");
         $filedata=sc_getfiledata($_REQUEST['id']);
         if(empty($filedata))         {
             echo "Error 3392! File does not exist?\n";
@@ -29,8 +33,10 @@ if($action=="get_file_go") {
         sc_adddownloads($data->name,1);
         $dl=$filedata->downloads+1;
         sc_query("UPDATE files SET downloads='$dl' where id = '$id'");
+		echo $filedata->location;
         echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_SITE_URL/$filedata->location\">\n";
         $action="get_file";
+		exit();
 }
 
 chdir("../../");
@@ -75,7 +81,7 @@ if(sc_access_check("files","purge")) {
 	echo "</td>";
 }
 	
-if(sc_access_check("files","edit")) {
+if(sc_access_check("files","sort")) {
 	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_ignore","Show Hidden");
 	echo "</td>";
@@ -222,264 +228,287 @@ if($action=="addfiletodb_go") {
 }
 
 if($action=="get_file"){
-
-
-	if( 	(sc_yes($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
-			($_SESSION["logged_in"]=="true") )		{
+	
+	if(		(sc_yes($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
+			($_SESSION["logged_in"]=="true") ) {		
 		
-		
-        $filedata=sc_getfiledata($_REQUEST['id']);
-        if(empty($filedata)){
+		$filedata=sc_getfiledata($_REQUEST['id']);
+		if(empty($filedata)) {
             echo "Error 3392! File does not exist?\n";
             include("footer.php");
             exit();
-        }
+		}
 
-        $size = sc_sizefile($filedata->size);		
+		$size = sc_sizefile($filedata->size);		
         
-        echo "<p>
-		
-		<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\" target=_new_window>
-		<img src=\"$RFS_SITE_URL/images/icons/Download.png\" border=0>
-		<font size=4>$filedata->name ($size)</a> </font></p>\n";
-        echo "<p>(Right click and 'save target as' to save the file to your computer...)</p>\n";
+       echo "<p>";
+		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\" target=_new_window>";
+		echo "<img src=\"$RFS_SITE_URL/images/icons/Download.png\" border=0>";
+		echo "<font size=4>";
+		echo "$filedata->name ($size)";
+		echo "</font>";
+		echo "</a>";
+		echo "</p>\n";
+		echo "<p>(Right click and 'save target as' to save the file to your computer...)</p>\n";
 
-	echo "<table border=0><tr>";
-    if(sc_access_check("files","edit")) {
-		echo "<td>";
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id","Edit");		
-		echo "</td>";
-	}
+		echo "<table border=0><tr>";
+		if(sc_access_check("files","edit")) {
+			echo "<td>";
+				sc_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id","Edit");		
+			echo "</td>";
+		}
 	
-	if(sc_access_check("files","delete")) {
+		if(sc_access_check("files","delete")) {
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id","Delete");
+			echo "</td>";
+		}
+		
+		echo "</tr></table>";
+		
+		if(!empty($filedata->thumb)) {
+			echo "<img src=$filedata->thumb>";
+		}
+
+		echo "<table border=0>";
+
+		echo "<tr><td>Posted by:</td><td> <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a></td></tr>";
+		echo "<tr><td>Downloaded:</td><td> $filedata->downloads times</td></tr>";
+		echo "<tr><td>Rating:</td><td> $filedata->rating</td></tr>";
+		
+		echo "<tr><td>Category:</td><td>$filedata->category</td></tr>";
+
+		echo "<tr><td>Version:</td><td>$filedata->version</td></tr>";
+		echo "<tr><td>Homepage:</td><td>$filedata->homepage</td></tr>";
+		echo "<tr><td>Bytes:</td><td>$filedata->size ($size)</td></tr>";
+		echo "<tr><td>md5 hash:</td><td>".md5($filedata->location)."</td></tr>";
+
+		echo "<tr><td>Platform:</td><td>$filedata->platform</td></tr>";
+		echo "<tr><td>Operating System:</td><td>$filedata->os</td></tr>";
+
+		echo "<tr><td>Added:</td><td>$filedata->time</td></tr>";
+		echo "<tr><td>Last update:</td><td>$filedata->lastupdate</td></tr>";
+		echo "<tr><td>Safe for work:</td><td>$filedata->worksafe</td></tr>";
+
+		echo "</table>";
+					
+		if(!empty($filedata->description)) {
+			echo "<p>";
+			echo "<table border=0 cellspacing=0 cellpadding=0>\n";
+			echo "<tr>";
+			echo "<td class=contenttd>";
+			echo "Description";
+			echo "</td>\n";
+			echo "</tr>\n";
+			echo "<tr>";
+			echo "<td>";
+			
+			echo "<table border=0 bordercolor=#000000 cellspacing=0 cellpadding=4 width=100%>\n";
+			echo "<tr>";
+			echo "<td class=contenttd>\n";
+			echo nl2br(stripslashes($filedata->description));
+			echo "</td>\n";
+			echo "</tr>\n";
+			echo "</table>\n";
+			echo "</td>\n";
+			echo "</tr>\n";
+			echo "</table>\n";
+			echo "</p>\n";			
+		}
+		
+		echo "<table border=0 width=500>";
+		echo "<tr>";
 		echo "<td>";
-	    sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id","Delete");
-		echo "</td>";
-	}
-		
-	echo "</tr></table>";
 
-	echo "<table border=0>";
+		$ft=sc_getfiletype($filedata->location);	
+		echo "<pre width=500>";
+			sc_file_get_readme("$RFS_SITE_PATH/$filedata->location");
+		echo"</pre>";
 
-	echo "<tr><td>Posted by:</td><td> <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a></td></tr>";
-	echo "<tr><td>Downloaded:</td><td> $filedata->downloads times</td></tr>";
-	echo "<tr><td>Rating:</td><td> $filedata->rating</td></tr>";
-	// echo "<tr><td>Thumb:</td><td>$filedata->thumb</td></tr>";
-		
-	echo "<tr><td>Category:</td><td>$filedata->category</td></tr>";
+		switch($ft){
 
-	echo "<tr><td>Version:</td><td>$filedata->version</td></tr>";
-	echo "<tr><td>Homepage:</td><td>$filedata->homepage</td></tr>";
-	echo "<tr><td>Bytes:</td><td>$filedata->size ($size)</td></tr>";
-	echo "<tr><td>md5 hash:</td><td>".md5($filedata->location)."</td></tr>";
+			case "exe":
+			case "msi":
+			case "msu":
+			case "dll":
 
-	echo "<tr><td>Platform:</td><td>$filedata->platform</td></tr>";
-	echo "<tr><td>Operating System:</td><td>$filedata->os</td></tr>";
-
-	echo "<tr><td>Added:</td><td>$filedata->time</td></tr>";
-	echo "<tr><td>Last update:</td><td>$filedata->lastupdate</td></tr>";
-	echo "<tr><td>Safe for work:</td><td>$filedata->worksafe</td></tr>";
-
-
-	echo "</table>";
-					
-	echo "<p>		
-		<table border=0 cellspacing=0 cellpadding=0>		
-		<tr><td class=contenttd>Description</td></tr>
-		<tr><td><table border=0 bordercolor=#000000 cellspacing=0 cellpadding=4 width=100%>\n";
-        
-	echo "<tr><td class=contenttd>";
-	echo nl2br($filedata->description);
-	echo "</td></tr>
-		</table>		
-		</td></tr>		
-		</table></p>\n";	
-
-	$ft=sc_getfiletype($filedata->location);
-	
-	echo "<pre>";
-	sc_file_get_readme("$RFS_SITE_PATH/$filedata->location");
-	echo"</pre>";
-
-	switch($ft){
-
-		case "exe":
-		case "msi":
-		case "msu":
-		case "dll":
-
-
-
-			echo "<pre>";
-			echo system("pev -p $filedata->location");				
-			echo system("pev $filedata->location");				
-			echo "</pre>";
-			break;
-			
-
-			
-
-		case "ttf":
-		case "otf":
-		case "fon":
-		case "eot":
-			sc_image_text(	"$filedata->name",
-					"$filedata->name", 72, // font, fontsize
-					1,1, // w,h
-					0,0, // offset x, offset y
-					244,245,1, // RGB Inner
-					1,1,0, 		// RGB Outer
-					0,	 // force render
-					0	// force height
-					);
-					
-					echo "<br>";
-			$ttf = new ycTIN_TTF();
-			//open font file
-			if ($ttf->open("$RFS_SITE_PATH/$filedata->location")) {
-				//get name table
-				$rs = $ttf->getNameTable();
-				//display result
 				echo "<pre>";
-				print_r($rs);
-				echo "</pre>";
-			}
-			
-			break;
-			
-
-		case "adf":
-			echo "Contents:<br><pre>";
-			echo system("unadf -r $filedata->location");
-			echo "</pre>";
-			break;
-
-		case "dms":
-			echo "Contents:<br><pre>";				
-			echo system("xdms f $filedata->location");
-			echo "</pre>";
-			break;
-
-		case "tar":
-			echo "Contents:<br><pre>";				
-			echo system("tar -tvf $filedata->location");
-			echo "</pre>";
-			break;
-
-
-		case "tgz":
-		case "gz":
-			echo "Contents:<br><pre>";				
-			echo system("tar -tvzf $filedata->location");
-			echo "</pre>";
-			break;
-
-		case "7z":
-			echo "<p>This is a 7zip file. You will need to get 7zip to unarchive it. <a href=\"http://www.7-zip.org/\" target=_blank>http://www.7-zip.org/</a></p>";
-
-		case "iso":
-		case "cab":			
-		case "chm":
-		case "cpio":
-		case "cramfs":
-		case "deb":
-		case "dmg":
-		case "fat":
-		case "hfs":
-		case "lzma":
-		case "xz": 
-		case "wim":
-		case "mbr":
-		case "msi":
-		case "nsis":
-		case "ntfs":
-		case "rpm":
-		case "udf":
-		case "vhd": 
-		case "xar":
-		case "z":			
-		case "bz2":
-		case "lzh":
-		case "lha":
-		case "arj":
-		case "arc":
-		case "rar":
-		case "zip":
-
-			echo "Contents:<br><pre>";
-			echo system("7z l '$filedata->location'");
-			echo "</pre>";
-			break;
-
-		case "ace":
-			echo "Contents:<br><pre>";
-			echo system("unace v $filedata->location");
-			echo "</pre>";
-
-			break;
-						
-		case "crx":
-		case "css":
-		case "html":
-		case "c":
-		case "cpp":
-		case "h":
-		case "hpp":
-		case "sh":
-		case "bat":
-		case "perl":
-		case "lua":
-		case "js":
-		case "php":
-			echo "<table border=0 width=75% cellpadding=6><tr><td class=sc_file_table_1>";
-			
-			show_source($filedata->location);
-			echo "</td></tr></table>";
-			adddownloads($data->name,1);
-			$dl=$filedata->downloads+1;
-			sc_query("UPDATE files SET downloads='$dl' where id = '$id'");
-            break;
-			
-			
-		case "gif":
-		case "jpg":
-		case "jpeg":
-		
-		
-		
-		case "png":
-		
-			$image_size   = @getimagesize($filedata->location);
-			$image_height = $image_size[1];
-			$image_width  = $image_size[0];
-			echo "<hr>IMAGE: $image_width x $image_height <BR>";
-			
-			
-			$exif = exif_read_data($filedata->location, 0, true);
-			echo "<hr>EXIF Information:<br>";
-			foreach ($exif as $key => $section) {
-				foreach ($section as $name => $val) {
-					echo "$key.$name: $val<br />\n";
+				$fver=system("pev -p $filedata->location");
+				echo "FILE VERSION: $fver";
+				
+				if( (!empty($fver)) &&
+					(empty($filedata->version)) ) {
+					echo " UPDATING DATABASE...";
+					sc_query("update files set version='$fver' where id='$filedata->id'");
 				}
-			}
-			echo "<pre>";
-			echo system("7z l $filedata->location");
-			echo "</pre>";
-			
-			
-			break;
+				
+				echo "<br><br>";
+				
+				echo system("pev $filedata->location");				
+				echo "</pre>";
+				break;
 
-		default:
-            break;
+			case "ttf":
+			case "otf":
+			case "fon":
+			case "eot":
+				sc_image_text(	"$filedata->name",
+						"$filedata->name", 72, // font, fontsize
+						1,1, // w,h
+						0,0, // offset x, offset y
+						244,245,1, // RGB Inner
+						1,1,0, 		// RGB Outer
+						0,	 // force render
+						0	// force height
+						);
+						
+						echo "<br>";
+				$ttf = new ycTIN_TTF();
+				//open font file
+				if ($ttf->open("$RFS_SITE_PATH/$filedata->location")) {
+					//get name table
+					$rs = $ttf->getNameTable();
+					//display result
+					echo "<pre>";
+					print_r($rs);
+					echo "</pre>";
+				}
+				
+				break;
+				
+
+			case "adf":
+				echo "Contents:<br><pre>";
+				echo system("unadf -r $filedata->location");
+				echo "</pre>";
+				break;
+
+			case "dms":
+				echo "Contents:<br><pre>";				
+				echo system("xdms f $filedata->location");
+				echo "</pre>";
+				break;
+
+			case "tar":
+				echo "Contents:<br><pre>";				
+				echo system("tar -tvf $filedata->location");
+				echo "</pre>";
+				break;
+
+
+			case "tgz":
+			case "gz":
+				echo "Contents:<br><pre>";				
+				echo system("tar -tvzf $filedata->location");
+				echo "</pre>";
+				break;
+
+			case "7z":
+				echo "<p>This is a 7zip file. You will need to get 7zip to unarchive it. <a href=\"http://www.7-zip.org/\" target=_blank>http://www.7-zip.org/</a></p>";
+
+			case "iso":
+			case "cab":			
+			case "chm":
+			case "cpio":
+			case "cramfs":
+			case "deb":
+			case "dmg":
+			case "fat":
+			case "hfs":
+			case "lzma":
+			case "xz": 
+			case "wim":
+			case "mbr":
+			case "msi":
+			case "nsis":
+			case "ntfs":
+			case "rpm":
+			case "udf":
+			case "vhd": 
+			case "xar":
+			case "z":			
+			case "bz2":
+			case "lzh":
+			case "lha":
+			case "arj":
+			case "arc":
+			case "rar":
+			case "zip":
+
+				echo "Contents:<br><pre>";
+				echo system("7z l '$filedata->location'");
+				echo "</pre>";
+				break;
+
+			case "ace":
+				echo "Contents:<br><pre>";
+				echo system("unace v $filedata->location");
+				echo "</pre>";
+
+				break;
+							
+			case "crx":
+			case "css":
+			case "html":
+			case "c":
+			case "cpp":
+			case "h":
+			case "hpp":
+			case "sh":
+			case "bat":
+			case "perl":
+			case "lua":
+			case "js":
+			case "php":
+				echo "<table border=0 width=75% cellpadding=6><tr><td class=sc_file_table_1>";
+				
+				show_source($filedata->location);
+				echo "</td></tr></table>";
+				sc_adddownloads($data->name,1);
+				$dl=$filedata->downloads+1;
+				sc_query("UPDATE files SET downloads='$dl' where id = '$id'");
+				break;
+				
+				
+			case "gif":
+			case "jpg":
+			case "jpeg":
+			
+			
+			
+			case "png":
+			
+				$image_size   = @getimagesize($filedata->location);
+				$image_height = $image_size[1];
+				$image_width  = $image_size[0];
+				echo "<hr>IMAGE: $image_width x $image_height <BR>";
+				
+				
+				$exif = exif_read_data($filedata->location, 0, true);
+				echo "<hr>EXIF Information:<br>";
+				foreach ($exif as $key => $section) {
+					foreach ($section as $name => $val) {
+						echo "$key.$name: $val<br />\n";
+					}
+				}
+				echo "<pre>";
+				echo system("7z l $filedata->location");
+				echo "</pre>";
+				
+				
+				break;
+
+			default:
+				break;
 		}
 	}
 
-    else echo "<p> You can't download files unless you are <a href=\"$RFS_SITE_URL/login.php\">Logged in</a>!</p>\n";
+	else echo "<p> You can't download files unless you are <a href=\"$RFS_SITE_URL/login.php\">Logged in</a>!</p>\n";
 
-    echo "</td></tr></table>";
-    include("footer.php");
-    exit();
-
+	echo "</td></tr></table>";
+	echo "</td></tr></table>";
+	include("footer.php");
+	exit();
 }
 
 if($file_mod=="yes"){
@@ -497,17 +526,22 @@ if($file_mod=="yes"){
         }
         if($action=="del")        {
             $filedata=sc_getfiledata($id);
+			echo "<p></p>";
+						
             echo "<table border=0>\n";
             echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
+			  echo "<input type=hidden name=retpage value=\"$retpage\">";
             echo "<input type=hidden name=file_mod value=yes>\n";
             echo "<input type=hidden name=action value=del_conf>\n";
             echo "<input type=hidden name=id value=\"$id\">\n";
             echo "<tr><td>Are you sure you want to delete [$filedata->name]???</td><td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
             echo "<tr><td>Annihilate the file from the server?</td><td><input name=\"annihilate\" type=\"checkbox\" value=\"yes\"></td></tr>\n";
-            echo "<tr><td>Important! If you do not want to delete this file, <a href=$RFS_SITE_URL/modules/files/files.php>click here</a>!</td>\n";
+            echo "<tr><td>Important! If you do not want to delete this file, 
+				<a href=\"$retpage\">click here</a>!</td>\n";
             echo "<td>&nbsp;</td><td>&nbsp;</td></tr>\n";
             echo "</form></table>\n";
             echo "</td></tr></table>";
+			
             include("footer.php");
             exit();
         }
@@ -518,6 +552,10 @@ if($file_mod=="yes"){
             if($annihilate=="yes") {
                 unlink($RFS_SITE_PATH."/".$filedata->location);
                 echo "<p> $filedata->location annihilated!</p>\n";
+				if(!empty($retpage)) {
+					sc_gotopage($retpage);
+					exit();
+				}
             }
         }
         if($action=="mod")        {
@@ -795,7 +833,7 @@ if($give_file=="yes") {
                     sc_query("UPDATE files SET location='$httppath' where name='$name'");
                     sc_query("UPDATE files SET submitter='$data->name' where name='$name'");
                     sc_query("UPDATE files SET category='$category' where name='$name'");
-                    sc_query("UPDATE files SET description='$desc' where name='$name'");
+                    sc_query("UPDATE files SET description='$description' where name='$name'");
                     sc_query("UPDATE files SET category='$category' where name='$name'");
                     sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
                     sc_query("UPDATE files SET size='$filesizebytes' where name='$name'");
@@ -875,13 +913,15 @@ if($give_file=="avatar"){
 function sc_fileheader() {
 	$file_header=$GLOBALS['file_header'];
     echo "<tr height=16>\n";
-    echo "<td class=tdfilehead >Type</td>\n";
-    echo "<td class=tdfilehead width=380 >File</td>\n";
-    echo "<td class=tdfilehead></td>\n";
-    echo "<td class=tdfilehead width=80 >Size</td>\n";
-    // echo "<td class=tdfilehead width=180 >Category</td>\n";
-    //echo "<td class=tdfilehead width=380 >Description</td>\n";
-    //echo "<td class=tdfilehead >&nbsp;</td>\n";
+    echo "<td class=tdfilehead > File </td>\n";
+    echo "<td class=tdfilehead > ver </td>\n";
+    echo "<td class=tdfilehead> Size </td>\n";
+    echo "<td class=tdfilehead > D/L </td>\n";
+    
+	
+    echo "<td class=tdfilehead> Description </td>\n";
+    
+	echo "<td class=tdfilehead > </td>\n";
 	//echo "<td class=tdfilehead >&nbsp;</td>\n";
 	//echo "<td class=tdfilehead >&nbsp;</td>\n";
     echo "</tr>\n";
@@ -890,11 +930,12 @@ function sc_fileheader() {
 function show1file($filedata,$bg) { eval(scg());
 
     echo "<tr class=sc_file_table_$bg >\n";
+	
 
     $filetype=sc_getfiletype($filedata->location);
-
     $fti="images/icons/filetypes/$filetype.gif";
-    if(file_exists("images/icons/filetypes/$filetype.png")) $fti="images/icons/filetypes/$filetype.png";
+    if(file_exists("images/icons/filetypes/$filetype.png"))
+		$fti="images/icons/filetypes/$filetype.png";
 
     echo "<td class=sc_file_table_$bg >";
 
@@ -910,8 +951,14 @@ function show1file($filedata,$bg) { eval(scg());
 	echo "</td>\n";
 
 	$size=(sc_sizefile($filedata->size));
+	
+	echo "<td class=sc_file_table_$bg >$filedata->version </td>\n";
 
 	echo "<td class=sc_file_table_$bg >$size &nbsp;</td>\n";
+	
+	echo "<td class=sc_file_table_$bg >$filedata->downloads </td>\n";
+	
+	
 
 	echo "<td class=sc_file_table_$bg >";
 	
@@ -930,7 +977,7 @@ function show1file($filedata,$bg) { eval(scg());
 						);		
 		} else {	
 	
-		echo sc_trunc($filedata->description,45); 
+		echo sc_trunc(stripslashes($filedata->description),45); 
 		
 		}
 	echo "</td>\n";
@@ -941,19 +988,19 @@ function show1file($filedata,$bg) { eval(scg());
 
 	echo "</td>";
 
-    echo "<td class=sc_file_table_$bg >"; // G
+    echo "<td class=sc_file_table_$bg >";
     $data=$GLOBALS['data'];
 
 		echo "<table border=0><tr>";
 		if(sc_access_check("files","edit")) {
-			echo "<td>";
+			echo "<td class=sc_file_table_$bg >";
 			sc_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id","Edit");		
 			echo "</td>";
 		}
 		
 		if(sc_access_check("files","delete")) {
-			echo "<td>";
-			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id","Delete");
+			echo "<td class=sc_file_table_$bg >";
+			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id&retpage=".urlencode(sc_current_page_url()),"Delete");
 			echo "</td>";
 		}
 			
@@ -1020,7 +1067,7 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 	
     if(count($filelist)) {
 		echo "<h1>".ucwords($buffer)."</h1>";
-       echo "<table border=0 bordercolor=#000000 cellspacing=0 cellpadding=0 width=$site_singletablewidth>\n";
+       echo "<center><table border=0 bordercolor=#000000 cellspacing=0 cellpadding=0 width=90%>\n";
        sc_fileheader();
 		$i=0; $bg=0;
 		while($i<count($filelist)){
@@ -1067,7 +1114,7 @@ for($i=0;$i<$numcats;$i++) {
 
 		if(count($filelist)){
 			echo "<tr>";
-			echo "<td class=sc_top_file_table> ";
+			echo "<td class=sc_top_file_table width=5% > ";
 				
 			echo "<table border=0><tr>";
 			echo "<td class=sc_top_file_table> ";
@@ -1089,8 +1136,11 @@ for($i=0;$i<$numcats;$i++) {
 
 			echo "<td class=sc_top_file_table> </td>";
 			echo "<td class=sc_top_file_table> </td>";
-			echo "<td class=sc_top_file_table> </td>";			
 			echo "<td class=sc_top_file_table> </td>";
+			echo "<td class=sc_top_file_table> </td>";
+			echo "<td class=sc_top_file_table> </td>";
+			echo "<td class=sc_top_file_table> </td>";
+			
 
 			echo "</tr>";
 			

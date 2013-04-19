@@ -30,10 +30,7 @@ echo "
 
 <meta property=\"og:type\"    content=\"sethcoder\" />
 <meta property=\"og:title\"  content=\"$RFS_SITE_URL\" />
-
-
-
-					
+				
 "; // $RFS_SITE_FACEBOOK_ADMINS\">	
     echo "<META NAME=\"ROBOTS\" CONTENT=\"INDEX,FOLLOW\">";
     echo "<meta http-equiv=\"Content-Language\" content=\"en-us\">";
@@ -105,7 +102,7 @@ echo "
 			echo "&nbsp;";
 		if($_SESSION["logged_in"]!="true")    {
 			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-			sc_facebook_login();			
+			sc_facebook_login();
 		}
 		else    {
 			echo "</td>";			

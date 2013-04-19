@@ -16,7 +16,7 @@ function adm_db_query( $x ) { eval( scg() );
 if( $_REQUEST['db_queries']=="list" ) {
 	if(array_pop(explode("/",getcwd()))=="admin") chdir("..");
 	include_once("include/lib.all.php");
-	if( $data->access<255 ) exit();
+	if(!sc_access_check("admin","access")) exit();
 	if( empty( $theme ) )               $theme=$RFS_SITE_DEFAULT_THEME;
 	if( !empty( $data->theme ) )        $theme=$data->theme;
 	if( sc_yes( $RFS_SITE_FORCE_THEME ) ) $theme=$RFS_SITE_FORCED_THEME;
@@ -56,10 +56,12 @@ if( $_REQUEST['db_queries']=="list" ) {
 chdir( "../" );
 include( "header.php" );
 
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
 $data=sc_getuserdata($_SESSION['valid_user']);
-if( $data->access!=255 ) {
+if(!sc_access_check("admin","access")) {
 	echo smiles( "<table border=0 width=300><tr><td class=warning><center>^X<br>You can not use admin</td></tr></table>\n" );
 	sc_log( "*****> $data->name tried to access the admin area!" );
     include("footer.php");
@@ -180,54 +182,8 @@ function adm_action_arrange() { eval( scg() );
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM ACCESS GROUPS FUNCTIONS
-function adm_action_f_access_group_delete() { eval(scg());
-	sc_confirmform( "Delete $axnm?",
-                    "$RFS_SITE_URL/admin/adm.php",
-                    "action=f_access_group_delete_go".$RFS_SITE_DELIMITER.
-					  "axnm=$axnm" );
-	include( "footer.php" );
-	exit();
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function adm_action_f_access_group_delete_go() { eval(scg());
-	echo "DELETE $axnm access group... <BR>";
-	sc_query("delete from `access` where name='$axnm'");
-	adm_action_access_groups();
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function adm_action_access_groups() { eval(scg());
-	echo "<p>Modify Access Groups</p>";
-	$r=sc_query("select distinct name from access");
-	for($i=0;$i<mysql_num_rows($r);$i++) {
-		$a=mysql_fetch_object($r);
-		echo "$a->name [<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
-		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name\">edit</a>]<br>";
-		
-		echo "Members of $a->name: ";
-		$usrs=sc_query("select * from `users`");
-		for($j=0;$j<mysql_num_rows($usrs);$j++) {
-			$usr=mysql_fetch_object($usrs);
-			$agrps=explode(",",$usr->access_groups);
-			for($k=0;$k<count($agrps);$k++) {
-				if($a->name==$agrps[$k]) {
-					echo "$usr->name ";
-				}
-			}
-		}
-		echo "<br>";
-	}
-	echo "Create a new access group<br>";
-	sc_div("ADD ACCESS GROUP FORM START");
-	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
-	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
-	echo "<input name=\"axnm\">\n";
-	echo "<input type=\"submit\" value=\"Add\">\n";
-	echo "</form>\n";
-	sc_div("ADD ACCESS GROUP FORM END");
-	include( "footer.php" );
-	exit();
-}
-/////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function adm_action_f_access_group_add() { eval(scg());
 	echo " Adding new access group named [$axnm] <br>";
 	sc_query(" insert into access (`name`) VALUES ('$axnm'); ");
@@ -244,27 +200,123 @@ function adm_action_f_access_group_edit_go() { eval(scg());
 			VALUES('$axnm','$am->page','$am->action')");
 		}
 	}
-	adm_action_f_access_group_edit();	
+	adm_action_access_groups();
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_edit() { eval(scg()); 
 	echo "<h1>Edit Access Group</h1>";
-	echo "$axnm<br>Privileges<br>";
+	echo "<h2>$axnm</h2>";
+	echo "<hr>";
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
-	$r=sc_query("select * from access_methods");
+	
+	$r=sc_query("select * from access_methods order by page,action");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$am=mysql_fetch_object($r);	
 		$checked="";
-		$rw=mfo1("select * from access where name='$axnm' and page='$am->page' and action='$am->action'");		
+		$rw=mfo1("select * from access where name='$axnm' and page='$am->page' and action='$am->action'");
 		if($rw->name==$axnm) { $checked="checked";}
-		
+		echo "<div style=\"float: left; width: 200px;\">";
 		echo "<input name=\"$am->page"."_$am->action\" type=checkbox $checked>";
-		echo " $am->page -> $am->action <br>";
+		echo " $am->page -> $am->action";
+		echo "</div>";
 	}	
+	echo "<div style=\"clear: left;\"></div>";
+	echo "<hr>";
+	
 	echo "<input type=\"submit\" value=\"Update\">";
+	
 	echo "</form>";
+	include( "footer.php" );
+	exit();
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_f_access_group_add_user() { eval(scg());
+	$usr=sc_getuserdata($name);
+	$usr->access_groups.=",$axnm";	
+	sc_query("update users set access_groups ='$usr->access_groups' where id='$usr->id'");
+	adm_action_access_groups();
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_f_access_group_del_user() { eval(scg());
+	echo $user;
+	echo "<br>";
+	$usr=sc_getuserdata($user);
+	$agx=explode(",",$usr->access_groups);
+	for($i=0;$i<count($agx);$i++){
+		if($agx[$i]!=$axnm) {
+			$outag=$outag.$agx[$i].",";
+		}
+	}
+	$outag=rtrim($outag,",");
+	sc_query("update users set access_groups='$outag' where name='$user'");
+	adm_action_access_groups();	
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_f_access_group_delete() { eval(scg());
+	sc_confirmform( "Delete $axnm?",
+                    "$RFS_SITE_URL/admin/adm.php",
+                    "action=f_access_group_delete_go".$RFS_SITE_DELIMITER.
+					  "axnm=$axnm" );
+	adm_action_access_groups();
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_f_access_group_delete_go() { eval(scg());
+	echo "DELETE $axnm access group... <BR>";
+	sc_query("delete from `access` where name='$axnm'");
+	adm_action_access_groups();
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function adm_action_access_groups() { eval(scg());
+	echo "<h1>Modify Access Groups</h1>";
+	$r=sc_query("select distinct name from access");
+	for($i=0;$i<mysql_num_rows($r);$i++) {
+		echo "<hr>";
+		$a=mysql_fetch_object($r);
+		echo "<h2>$a->name</h2>";
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name\">edit</a>]<br>";
+		
+		echo "<p>Members: </p>";
+		echo "<p>";
+		
+		$usrs=sc_query("select * from `users`");
+		for($j=0;$j<mysql_num_rows($usrs);$j++) {
+			$usr=mysql_fetch_object($usrs);
+			$agrps=explode(",",$usr->access_groups);
+			for($k=0;$k<count($agrps);$k++) {
+				if($a->name==$agrps[$k]) {
+					
+					echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_del_user&axnm=$a->name&user=$usr->name\">remove</a>] ";
+					
+					echo " $usr->name ";
+				}
+			}
+		}
+		
+		
+		sc_optionizer(	"$RFS_SITE_URL/admin/adm.php",
+							"action=f_access_group_add_user".$RFS_SITE_DELIMITER.
+							"axnm=$a->name".$RFS_SITE_DELIMITER.
+							"omit=access_groups:like '%$a->name%',name:anonymous",
+							"users",
+							"name",
+							0,
+							"Add a user to this group",
+							1 );
+		echo "</p>";
+	}
+	
+	echo "<hr>";
+	echo "<h2>Create a new access group</h2>";
+	sc_div("ADD ACCESS GROUP FORM START");
+	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
+	echo "<input name=\"axnm\">\n";
+	echo "<input type=\"submit\" value=\"Add\">\n";
+	echo "</form>\n";
+	sc_div("ADD ACCESS GROUP FORM END");
 	include( "footer.php" );
 	exit();
 }
@@ -1551,22 +1603,19 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 	include("footer.php");
 	exit();
 }
-/////////////////////////////////////////////////////////////////////////////////////////////
-function adm_fill_data_tables() { eval(scg());
-
-
-}
 /////////////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_() {
 
 	eval( scg() );
 
-	adm_fill_data_tables();
+	sc_access_method_add("admin", "access");
+	sc_access_method_add("admin", "categories");
+	
 
 	if( !empty( $_GET['admed'] ) ) $_SESSION['admed']=$_GET['admed'];
 
 	$data=sc_getuserdata( $_SESSION['valid_user'] );
-	if( $data->access!=255 ) return;
+	if(!sc_access_check("admin","access")) return;
 
 	echo "<h1>Administration Panel</h1>";
 	

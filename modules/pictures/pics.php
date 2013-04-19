@@ -1,6 +1,7 @@
 <?
 if($_REQUEST['a']=="ms") {
-	echo "<img src='http://www.defectiveminds.com/rfs/include/generate.image.php/?download_it_$id.png&id=$id&owidth=512' border=0></a>";
+	$id=$_REQUEST['id'];
+	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$id.png&id=$id&owidth=512\" border=0></a>";
     exit();
 }
 if($_REQUEST['action']=="aname") {
@@ -632,9 +633,6 @@ if( ($action=="memeedit")  ||
 	}
     $p=$data->id;
     if(empty($p)) $p=999;
-	// echo ".. $p .. $m->poster .. <br>";
-	if(empty($data->donated))
-        sc_info("REGISTER THEN DONATE VIA PAYPAL AND THE DEFECTIVEMINDS.COM WATERMARK WILL BE REMOVED ALONG WITH THIS MESSAGE AND SITE ADVERTISEMENTS", "red", "yellow");
 	if( ($m->poster==$p) || ($data->access==255) ) {
 		if($m->poster!=$p)
             sc_info("NOT YOURS ADMIN! / EDIT ANYWAY (LOL)","WHITE","RED");
@@ -997,14 +995,14 @@ if($action=="random"){
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view
 if($action=="view") {
-	
-	$action="viewcat";
-	
+	/*
+	$action="viewcat";	
 	$ipr=mfo1("select * from pictures where id=$id");
 	$category=mfo1("select * from categories where id=$ipr->category");
 	$cat=$category->id;
+	*/
 	
-	/*
+	
     $res=sc_query("select * from `pictures` where `id`='$id' order by time asc");
     $picture=mysql_fetch_object($res);
     
@@ -1147,7 +1145,7 @@ echo "</div>";
         echo "<h1>There are no pictures!</h1>";
 	}
 	echo "</center>";
-	*/
+	
 }
 
 
