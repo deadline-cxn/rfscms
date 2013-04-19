@@ -88,6 +88,7 @@ if( $action=="showfont") {
     //////////////////////////////////////////// MERGE PICTURE WITH TEXT
 	$mid=$_REQUEST['mid'];
 	$meme=mfo1("select * from meme where id='$mid'");
+	echo $meme->id;
 	$pic=mfo1("select * from pictures where id='$meme->basepic'");
 	$ptf=$RFS_SITE_PATH."/".$pic->url;
 	$px=explode("/",$pic->url);
