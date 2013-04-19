@@ -1,7 +1,7 @@
 <?
 if($_REQUEST['a']=="ms") {
 	$id=$_REQUEST['id'];
-	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$id.png&id=$id&owidth=512\" border=0></a>";
+	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$id.png&mid=$id&owidth=512\" border=0></a>";
     exit();
 }
 if($_REQUEST['action']=="aname") {
