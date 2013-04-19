@@ -1152,6 +1152,12 @@ echo "</div>";
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view category
 if($action=="viewcat"){
+	
+	if($ipr) $ipr=mfo1("select * from pictures where id=$id");
+	else $ipr=mfo1("select * from pictures where category='$cat'");
+	// $category=mfo1("select * from categories where id=$ipr->category");
+	// $cat=$category->id;
+	
     $cat=mfo1("select * from categories where id='$cat'");
     if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
     $r=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
