@@ -1031,7 +1031,7 @@ if($action=="view") {
         }
     }
 
-echo "<table border=0><tr>";
+echo "<center><table border=0><tr>";
     
         if(!empty($picture3->id)) {
 			echo "<td>";
@@ -1066,7 +1066,7 @@ echo "<table border=0><tr>";
 			sc_button($linknext,"Next");
 		echo "</td>";
 		
-		echo "</tr></table>";
+		echo "</tr></table></center>";
 		
 		
 		echo "<center>";
