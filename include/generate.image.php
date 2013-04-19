@@ -88,7 +88,8 @@ if( $action=="showfont") {
     //////////////////////////////////////////// MERGE PICTURE WITH TEXT
 	$mid=$_REQUEST['mid'];
 	$meme=mfo1("select * from meme where id='$mid'");
-	echo $meme->id;
+	
+	
 	$pic=mfo1("select * from pictures where id='$meme->basepic'");
 	$ptf=$RFS_SITE_PATH."/".$pic->url;
 	$px=explode("/",$pic->url);
@@ -204,6 +205,10 @@ if( $action=="showfont") {
                 imagestring($image_b, 2, 3, $h-15, $ad, $white);
             }
     }
+	
+	
+	imagestring($image_b, 2, 2, $h-16, "$meme->id $mid", $red);
+	
     if($_SESSION['debug_msgs']==true)
         imagestring($image_b, 2, 3, $h-15, $dout, $red);
 }
