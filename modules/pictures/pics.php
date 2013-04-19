@@ -532,10 +532,10 @@ if($action=="memegenerate") {
 		
 		echo " POSTER [$poster]<br>";
 		echo "PICTURE [$id] <br>";
-        
-$q="insert into meme
-      ( `name`,`poster`, `basepic`,`texttop`,`status`)
-VALUES('$name','$poster', '$id',  '$texttop', 'EDIT');";
+					
+			$q="insert into meme
+				  ( `name`,`poster`, `basepic`,`texttop`,`status`)
+			VALUES('$name','$poster', '$id',  '$texttop', 'EDIT');";
         sc_query($q);
         $mid=mysql_insert_id();
        } else {
@@ -659,9 +659,9 @@ if( ($action=="memeedit")  ||
 		if($action=="memeedit") {			
 			$t=$m->name."-".time();			
 echo "
-<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$m->id&owidth=$fullsize' target=_blank>
+<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
 <img src='$RFS_SITE_URL/include/generate.image.php/$t.png?
-id=$m->id&
+mid=$m->id&
 owidth=$editwidth'
 border=0>
 </a>";
