@@ -1032,13 +1032,13 @@ if($action=="view") {
     }
 
 echo "<table border=0><tr>";
-    if(empty($linknext))    {
+    
         if(!empty($picture3->id)) {
 			echo "<td>";
 			sc_button($linkprev,"Previous");
 			echo "</td>";
-        }
-    }
+		}
+    
     
     if($id) {
 		echo "<td>";
