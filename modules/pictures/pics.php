@@ -1062,7 +1062,8 @@ echo "<table border=0><tr>";
 		}
 		
 		echo "<td>";
-		sc_button($linkprev,"Previous");
+		if(!empty($picture2->id))
+			sc_button($linknext,"Next");
 		echo "</td>";
 		
 		echo "</tr></table>";
