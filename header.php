@@ -80,6 +80,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 
 		echo "<font class=toptd>$keywords</font> ";
 		echo "<font class=slogan>$RFS_SITE_SLOGAN</font>";
+		echo "</td>";
 		echo "<td class=toptd valign=bottom>";
 		
 		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.bot_right_corner.gif"))    {
