@@ -81,7 +81,13 @@ function wikiimg($text) { eval(scg());
 
 //////////////////////////////////////////////////////////////////////////////
 // WIKITEXT FUNCTION
-function wikitext($text) {
+function wikitext($text) { eval(scg());
+
+	if(empty($RFSW_BULLET_IMAGE))
+		$RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
+	if(empty($RFSW_LINK_IMAGE))
+		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
+
     $text=wikiimg($text);
     $text=stripslashes($text);
     $text=str_replace("[[","&#91;",$text);
@@ -182,7 +188,7 @@ function wikitext($text) {
                             {
                                 $outtext.= "<tr><td class=rfs_bulletlist_txt_td width=20></td>";
                                 $outtext.= "<td class=rfs_bulletlist_img_td>";								
-                                $outtext.= " <img src=".$GLOBALS['RFSW_BULLET_IMAGE'].">";
+                                $outtext.= " <img src=\"$RFSW_BULLET_IMAGE\">";
                                 $outtext.= "</td><td class=rfs_bulletlist_txt_td>";
                                 $outtext.= $lstd[$li];
                                 $outtext.= "</td></tr>";
@@ -211,12 +217,8 @@ function wikitext($text) {
 									$outlink=str_replace("http://","",$outlink);
 									$outlink=str_replace("https://","",$outlink);
 									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$outlink target=_blank>".$ila2[0];
-									$outtext.=" <img src=\"".$GLOBALS['RFSW_LINK_IMAGE']."\" border=\"0\" ></a> ";
- //width=\"12\" height=\"12\"
-									
+									$outtext.="<img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ";
 									$outtext.=nl2br($ila2[1]);
-									
-									
 							}
 						else
 							$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($ila2[0])."\">".$ila2[0]."</a>".nl2br($ila2[1]);

@@ -3,10 +3,13 @@
 // RFS Wiki (Really Frickin Simple)
 // By Seth Parson http://www.SethCoder.com/
 $title="Wiki ".$_REQUEST['name'];
-$RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
-$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
+
 chdir("../../");
 include_once("include/lib.all.php");
+if(empty($RFSW_BULLET_IMAGE))
+	$RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
+if(empty($RFSW_LINK_IMAGE))
+	$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = getcwd();
 if(!empty($rfsw_header)) include($rfsw_header);
 $rfsw_admin_mode="false";
