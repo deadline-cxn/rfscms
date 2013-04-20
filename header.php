@@ -58,25 +58,26 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 		echo "<table border=0 width=100% height=50 cellspacing=0 cellpadding=0 class=toptd>";
 		echo "<tr><td class=toptd align=left width=80%>";
 
-		if ($RFS_SITE_NAV_IMG_TOP)  {
-			$clr = sc_html2rgb($RFS_SITE_NAV_FONT_COLOR);
-           $bclr= sc_html2rgb($RFS_SITE_NAV_FONT_BGCOLOR);
+		if ($RFS_SITE_TTF_TOP)  {
+			$clr 	= sc_html2rgb($RFS_SITE_TTF_TOP_COLOR);
+           $bclr	= sc_html2rgb($RFS_SITE_TTF_TOP_BGCOLOR);
 
 			echo sc_image_text(
 						$RFS_SITE_NAME,
-						$RFS_SITE_FONT,
-						72,
-						812,94,
-						0, -10,
+						$RFS_SITE_TTF_TOP_FONT,
+						
+						$RFS_SITE_TTF_TOP_FONT_SIZE,
+						812,0,
+						0, -15 ,
 						$clr[0], $clr[1], $clr[2],
 						$bclr[0], $bclr[1], $bclr[2],
-						1,1 );
+						1,0 );
 		}else {
 			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_image.gif\" align=\"left\" border=\"0\">";
 		}
 
 		echo "<font class=toptd>$keywords</font> ";
-		echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
+		echo "<font class=slogan>$RFS_SITE_SLOGAN</font>";
 		echo "<td class=toptd valign=bottom>";
 		
 		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.bot_right_corner.gif"))    {
@@ -99,12 +100,12 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 		echo "</tr></table>";
 		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0><tr class=sc_top_menu_table>";
 		echo "<td class=sc_top_menu_table valign=top>";
-		echo "<table border=0 cellpadding=8 cellspacing=0 class=sc_top_menu_table>";
+		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table>";
 		echo "<tr class=sc_top_menu_table>";
 
 		sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
 
-		echo "<td class=sc_top_menu_table width=98%>&nbsp;</td>";
+		//echo "<td class=sc_top_menu_table width=98% >&nbsp;</td>";
 		echo "<td align=right class=sc_top_menu_table >";
 		echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
 		echo "<td class=sc_top_menu_table class=contenttd>";

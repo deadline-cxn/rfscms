@@ -208,18 +208,20 @@ function sc_theme_form() { eval(scg());
 
 	if(sc_yes($_SESSION["logged_in"])) {
 		if(sc_yes($GLOBALS["RFS_SITE_THEME_DROPDOWN"])) {
-			
 			$data=sc_getuserdata($_SESSION['valid_user']);
-
-			echo "<form action=\"$RFS_SITE_URL\" method=get>
-			<select name=theme onchange='this.form.submit()'><option>Theme\n";
+			$loc=sc_current_page_url();
+			$loc=str_replace("&theme=$theme","",$loc);
+			$loc=str_replace("?theme=$theme","",$loc);
+			$sep="?";
+			if(stristr($loc,"?")) $sep="&";
+			echo "<select name=theme onchange='document.location=\"$loc$sep\"+\"theme=\"+this.value'><option>Theme\n";
 			$thms=sc_get_themes();
-			while(list($key,$thm)=each($thms))        {
+			while(list($key,$thm)=each($thms)){
 				echo "<option";
 				if($thm==$data->theme) echo " selected=selected";
 				echo ">".$thm;
 			}
-			echo "</select><noscript><input type=\"submit\" value=\"Go\"></noscript> </form>";
+			echo "</select>";
 		}
 
 	}

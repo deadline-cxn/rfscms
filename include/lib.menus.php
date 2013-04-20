@@ -51,12 +51,12 @@ function sc_menu_draw($menu_location) {
                         sc_image_text(
                             $link->name,
                             $RFS_SITE_NAV_FONT,
-							$fntsz,1,
-                            44,0,
-                            -10,
+								$fntsz,
+								1,44,
+								0, 0,
                             $clr[0], $clr[1], $clr[2],
                             $bclr[0], $bclr[1], $bclr[2],
-                            1,1 );
+                            1,0 );
                     }
                     else {
 
