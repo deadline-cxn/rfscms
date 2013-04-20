@@ -68,7 +68,8 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 						
 						$RFS_SITE_TTF_TOP_FONT_SIZE,
 						812,0,
-						0, -15 ,
+						0   + $RFS_SITE_TTF_TOP_FONT_X_OFFSET,
+						-15 + $RFS_SITE_TTF_TOP_FONT_Y_OFFSET,
 						$clr[0], $clr[1], $clr[2],
 						$bclr[0], $bclr[1], $bclr[2],
 						1,0 );
