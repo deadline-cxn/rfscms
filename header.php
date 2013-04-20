@@ -76,6 +76,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 		}else {
 			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_image.gif\" align=\"left\" border=\"0\">";
 		}
+		echo "</td><td class=toptd> ";
 
 		echo "<font class=toptd>$keywords</font> ";
 		echo "<font class=slogan>$RFS_SITE_SLOGAN</font>";
