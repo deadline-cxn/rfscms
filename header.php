@@ -87,13 +87,14 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 			echo "</td><td class=logged_in_td>";
 		}
 		else
-			echo "&nbsp;";
+			echo " &nbsp; ";
 		if($_SESSION["logged_in"]!="true")    {
 			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-			sc_facebook_login();			
+			echo "</td><td class=logged_in_td>";
+			sc_facebook_login();
 		}
 		else    {
-			echo "</td>";			
+			echo "</td>";
 			echo "<td class=logged_in_td>";
 			rfs_echo($RFS_SITE_LOGGED_IN_CODE);
 		}
