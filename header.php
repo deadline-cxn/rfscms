@@ -55,7 +55,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 	
 	if($_SESSION['admin_show_top']!="hide") {	
 
-		echo "<table border=0 width=100% height=50 cellspacing=0 cellpadding=0 class=toptd>";
+		echo "<table border=0 width=100% cellspacing=0 cellpadding=0 class=toptd>";
 		echo "<tr><td class=toptd align=left width=80%>";
 
 		if ($RFS_SITE_TTF_TOP)  {
