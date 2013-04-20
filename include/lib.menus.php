@@ -70,7 +70,7 @@ function sc_menu_draw($menu_location) {
                 }
 
                 if($menu_location=="top") {
-                        echo "</td>";
+                        echo "</td> <td class=sc_top_menu_table> &nbsp;&nbsp; </td>";
                 }
 
 
