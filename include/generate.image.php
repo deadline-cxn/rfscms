@@ -54,13 +54,22 @@ if( $action=="showfont") {
     if($forceheight) $h=$oheight;
 	else $oheight=$h+15;
 	$image_b=genm_newimg($owidth,$oheight);
+	
+	// DEFINE FONT BORDER COLOR
     if( ($bgr) || ($bgg) || ($bgb) ){
         $bgc=imagecolorallocate($image_b,$bgr,$bgg,$bgb);
         imagefill($image_b,1,1,$bgc);
     }
 	$bordercolor  = imagecolorallocate($image_b, $bcr, $bcg, $bcb);
-	if(empty($icr)) { $icr=255; $icg=255; $icb=255; }
+	
+	
+	// DEFINE FONT INNER COLOR
+	if( (empty($icr)) &&
+		 (empty($icg)) && 
+		 (empty($icb)) ) { $icr=255; $icg=255; $icb=255; }
 	$color			= imagecolorallocate($image_b, $icr, $icg, $icb);
+	
+	
 	if($hideborder!=true)
 	for($x=-1;$x<4;$x++) for($y=-1;$y<4;$y++) {
         $zx = $bbox[0] + ($owidth / 2) - ($bbox[4] / 2) ;
