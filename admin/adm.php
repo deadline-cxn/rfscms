@@ -583,12 +583,17 @@ function adm_action_f_upsitevar() { eval( scg() );
 	$name=strtolower( $name );
 	$name=str_replace( " ","_",$name );
 	$val=addslashes( $_REQUEST['val'] );
-	sc_query( "delete from `site_vars` where `name`='$name'" );
-	sc_query( "insert into `site_vars` (`name`,`value`) values ('$name','$val')" );
+	sc_query("update `site_vars` set `name`='$name' where id='$id'");
+	sc_query("update `site_vars` set `value`='$val' where id='$id'");
 	adm_action_edit_site_vars();
 }
-function adm_action_f_delsitevar() { eval( scg() );
-	sc_query( "delete from `site_vars` where `name`='$name'" );
+function adm_action_f_delsitevar_go() { eval( scg() );
+	sc_query( "delete from `site_vars` where `id`='$id'" );
+	adm_action_edit_site_vars();
+}
+function adm_action_f_delsitevar() { eval(scg());
+	$site_var=mfo1("select * from site_vars where id='$id'");
+	sc_confirmform("<p>Delete \$RFS_SITE_$site_var->name ?</p>","$RFS_SITE_URL/admin/adm.php?action=f_delsitevar_go&id=$id","$RFS_SITE_URL/admin/adm.php?action=edit_site_vars");
 	adm_action_edit_site_vars();
 }
 function adm_action_edit_site_vars() { eval( scg() );
@@ -601,19 +606,22 @@ function adm_action_edit_site_vars() { eval( scg() );
 		echo "<tr><td>";
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
-		echo "\$site_<input name=name value=\"$site_var->name\"> = ";
+		echo "<input type=hidden name=id value=\"$site_var->id\">";
+		$site_var->name=strtoupper(stripslashes(($site_var->name)));
+		echo "\$RFS_SITE_<input name=name value=\"$site_var->name\"> = ";
 		$site_var->value=stripslashes( $site_var->value );
 		echo "<input name=val size=80 value=\"$site_var->value\">";
-		echo "<input type=submit value=\"update\">";
+		echo "<input type=submit value=\"Update\">";
 		echo "</form>";
 		echo "</td><td>";
-		echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&name=$site_var->name\">delete</a><br>";
+		sc_button("$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&id=$site_var->id","Delete");
 		echo "</td></tr>";
 	}
 	echo "<tr><td>";
 	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=\"f_addsitevar\">";
-	echo "\$site_<input name=name value=\"Add New\"> = ";
+	echo "<input type=hidden name=id value=\"$site_var->id\">";
+	echo "\$RFS_SITE_<input name=name value=\"ADD NEW\"> = ";
 	echo "<input name=val size=80 value=\"\">";
 	echo "<input type=submit value=\"go\">";
 	echo "</form>";

@@ -1,31 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.5.2.2
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Apr 16, 2013 at 12:22 PM
--- Server version: 5.5.23-55
--- PHP Version: 5.2.17
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
--- --------------------------------------------------------
-
---
--- Table structure for table `about`
---
-
-CREATE TABLE IF NOT EXISTS `about` (
-  `text` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `access`
---
-
 CREATE TABLE IF NOT EXISTS `access` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -34,75 +6,33 @@ CREATE TABLE IF NOT EXISTS `access` (
   `page` text NOT NULL,
   `table` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=176 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `access_methods`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `access_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page` text COLLATE utf8_unicode_ci NOT NULL,
   `action` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=41 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin_menu`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `admin_menu` (
-  `category` text NOT NULL,
-  `name` text,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `category` text NOT NULL,
   `icon` text NOT NULL,
   `url` text NOT NULL,
   `target` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `ads_skyscrapers`
---
-
 CREATE TABLE IF NOT EXISTS `ads_skyscrapers` (
-  `name` text NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,  
   `type` text NOT NULL,
   `html` text NOT NULL,
   `paid` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `anyterm`
---
-
-CREATE TABLE IF NOT EXISTS `anyterm` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `connection_type` text NOT NULL,
-  `local_port` text NOT NULL,
-  `username` text NOT NULL,
-  `ipaddress` text NOT NULL,
-  `port` text NOT NULL,
-  `command` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `arrangement`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `arrangement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -111,41 +41,23 @@ CREATE TABLE IF NOT EXISTS `arrangement` (
   `num` int(11) NOT NULL,
   `sequence` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `banned`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `banned` (
-  `name` text NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,  
   `domain` text NOT NULL,
   `link` text NOT NULL,
   `ip` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=626 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `categories`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `name` text,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,  
   `image` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=112 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `colors`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `colors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -154,17 +66,11 @@ CREATE TABLE IF NOT EXISTS `colors` (
   `g` int(11) NOT NULL,
   `b` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comics`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `comics` (
-  `name` text NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,  
   `title` text NOT NULL,
   `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `published` text NOT NULL,
@@ -173,13 +79,7 @@ CREATE TABLE IF NOT EXISTS `comics` (
   `issue` text NOT NULL,
   `rating` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comics_pages`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `comics_pages` (
   `name` text NOT NULL,
@@ -196,13 +96,7 @@ CREATE TABLE IF NOT EXISTS `comics_pages` (
   `panel7` text NOT NULL,
   `panel8` text NOT NULL,
   PRIMARY KEY (`pid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comics_page_templates`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `comics_page_templates` (
   `name` text,
@@ -233,13 +127,7 @@ CREATE TABLE IF NOT EXISTS `comics_page_templates` (
   `panel7_l` text NOT NULL,
   `panel8_l` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `name` text NOT NULL,
@@ -252,13 +140,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `time` datetime DEFAULT NULL,
   `rating` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5782 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `counters`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `counters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -269,41 +151,14 @@ CREATE TABLE IF NOT EXISTS `counters` (
   `hits_raw` int(11) NOT NULL,
   `hits_unique` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=133 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `criteria`
---
-
-CREATE TABLE IF NOT EXISTS `criteria` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `logic` text NOT NULL,
-  `logic_x` text NOT NULL,
-  `logic_y` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `db_queries`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `db_queries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `query` text COLLATE utf8_unicode_ci NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=355 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `delp_last_searches`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `delp_last_searches` (
   `name` text NOT NULL,
@@ -312,13 +167,7 @@ CREATE TABLE IF NOT EXISTS `delp_last_searches` (
   `link` text NOT NULL,
   `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=412 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `files`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `files` (
   `name` text NOT NULL,
@@ -342,13 +191,7 @@ CREATE TABLE IF NOT EXISTS `files` (
   `rating` text NOT NULL,
   `worksafe` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36874 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `forum_list`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `forum_list` (
   `name` text NOT NULL,
@@ -370,13 +213,7 @@ CREATE TABLE IF NOT EXISTS `forum_list` (
   `access_group` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='Forum Listing' AUTO_INCREMENT=21 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `forum_posts`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='Forum Listing' AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `forum_posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -391,13 +228,7 @@ CREATE TABLE IF NOT EXISTS `forum_posts` (
   `sticky` text NOT NULL,
   `views` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=323 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `link_bin`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `link_bin` (
   `name` text NOT NULL,
@@ -418,13 +249,7 @@ CREATE TABLE IF NOT EXISTS `link_bin` (
   `friend` text NOT NULL,
   `reciprocal` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1021 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `meme`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `meme` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -442,13 +267,7 @@ CREATE TABLE IF NOT EXISTS `meme` (
   `private` text COLLATE utf8_unicode_ci NOT NULL,
   `datborder` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=79 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menu_top`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `menu_top` (
   `name` text,
@@ -458,41 +277,7 @@ CREATE TABLE IF NOT EXISTS `menu_top` (
   `access` int(11) NOT NULL,
   `target` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `network_devices`
---
-
-CREATE TABLE IF NOT EXISTS `network_devices` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Web page database id',
-  `info` text NOT NULL,
-  `hostname` text NOT NULL,
-  `ipaddress` text NOT NULL,
-  `port` int(11) NOT NULL,
-  `proxy_device` text NOT NULL,
-  `dname` text NOT NULL,
-  `dpass` text NOT NULL,
-  `mac` text NOT NULL,
-  `machw` text NOT NULL,
-  `resource_type` int(11) NOT NULL,
-  `location` text NOT NULL,
-  `model` text NOT NULL,
-  `serial_number` text NOT NULL,
-  `operating_system` text NOT NULL,
-  `services` text NOT NULL COMMENT 'csv ports',
-  `status` text NOT NULL,
-  `uptime` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `news`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `news` (
   `name` text NOT NULL,
@@ -514,27 +299,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `sfw` text NOT NULL,
   `page` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='news' AUTO_INCREMENT=253 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `objectives`
---
-
-CREATE TABLE IF NOT EXISTS `objectives` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `description` text NOT NULL,
-  `criteria` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pictures`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='news' AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `pictures` (
   `name` text NOT NULL,
@@ -552,13 +317,7 @@ CREATE TABLE IF NOT EXISTS `pictures` (
   `hidden` text NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1793 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pmsg`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `pmsg` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -569,49 +328,7 @@ CREATE TABLE IF NOT EXISTS `pmsg` (
   `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `read` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=149 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pods`
---
-
-CREATE TABLE IF NOT EXISTS `pods` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `course` text NOT NULL,
-  `sequence` int(11) NOT NULL,
-  `prerequisites` text NOT NULL,
-  `name` text NOT NULL,
-  `description` text NOT NULL,
-  `objectives` text NOT NULL,
-  `topology` int(11) NOT NULL,
-  `available` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pod_completion`
---
-
-CREATE TABLE IF NOT EXISTS `pod_completion` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` text NOT NULL,
-  `pod` int(11) NOT NULL,
-  `objective` int(11) NOT NULL,
-  `criteria_completed` text NOT NULL,
-  `completed` text NOT NULL,
-  `date_completed` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `projects`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `projects` (
   `name` text NOT NULL,
@@ -633,133 +350,42 @@ CREATE TABLE IF NOT EXISTS `projects` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `resource_types`
---
-
-CREATE TABLE IF NOT EXISTS `resource_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `icon` text NOT NULL,
-  `name` text NOT NULL,
-  `description` text NOT NULL,
-  `transport_method` text NOT NULL,
-  `table_ref` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rss_feeds`
---
-
 CREATE TABLE IF NOT EXISTS `rss_feeds` (
-  `name` text NOT NULL,
-  `feed` text NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `scripts`
---
-
-CREATE TABLE IF NOT EXISTS `scripts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
-  `script_group` int(11) NOT NULL,
-  `network_device` int(11) NOT NULL,
-  `type` text NOT NULL,
-  `file` text NOT NULL,
+  `feed` text NOT NULL,  
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `script_groups`
---
-
-CREATE TABLE IF NOT EXISTS `script_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `type` text NOT NULL,
-  `pod` int(11) NOT NULL,
-  `scripts` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `script_group_types`
---
-
-CREATE TABLE IF NOT EXISTS `script_group_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `searches`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `searches` (
-  `name` text NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,  
   `search` text NOT NULL,
   `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `engine` text NOT NULL,
   `fullsearch` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=194 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `site_vars`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `site_vars` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
-  `value` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `slogans`
---
+  `value` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `slogans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `slogan` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=164 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `smilies`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `smilies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sfrom` text NOT NULL,
-  `sto` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `snippets`
---
+  `sto` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `snippets` (
   `name` text,
@@ -770,13 +396,7 @@ CREATE TABLE IF NOT EXISTS `snippets` (
   `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `category` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `topmenu`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `topmenu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -785,30 +405,7 @@ CREATE TABLE IF NOT EXISTS `topmenu` (
   `sor` int(11) NOT NULL,
   `access` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `topology`
---
-
-CREATE TABLE IF NOT EXISTS `topology` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent` text NOT NULL,
-  `name` text NOT NULL,
-  `x` int(11) NOT NULL,
-  `y` int(11) NOT NULL,
-  `network_device` int(11) NOT NULL,
-  `connected_to` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `transactions`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `transactions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -840,12 +437,6 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tutorials`
---
-
 CREATE TABLE IF NOT EXISTS `tutorials` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
@@ -856,26 +447,6 @@ CREATE TABLE IF NOT EXISTS `tutorials` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tutorial_categories`
---
-
-CREATE TABLE IF NOT EXISTS `tutorial_categories` (
-  `name` text,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` text NOT NULL,
-  `icon` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='fds' AUTO_INCREMENT=8 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `useronline`
---
-
 CREATE TABLE IF NOT EXISTS `useronline` (
   `name` text,
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -884,13 +455,7 @@ CREATE TABLE IF NOT EXISTS `useronline` (
   `loggedin` text NOT NULL,
   `page` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1270876805 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -937,13 +502,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `logins` int(11) NOT NULL DEFAULT '0',
   `facebook_username` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='hi' AUTO_INCREMENT=1005 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `videos`
---
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='hi' AUTO_INCREMENT=1000 ;
 
 CREATE TABLE IF NOT EXISTS `videos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -959,30 +518,6 @@ CREATE TABLE IF NOT EXISTS `videos` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1697 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `wab_calc`
---
-
-CREATE TABLE IF NOT EXISTS `wab_calc` (
-  `name` text COLLATE utf8_unicode_ci NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent` int(11) NOT NULL DEFAULT '1',
-  `hidden` int(11) NOT NULL DEFAULT '1',
-  `type` text COLLATE utf8_unicode_ci NOT NULL,
-  `value` text COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `code` text COLLATE utf8_unicode_ci NOT NULL,
-  KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wab_engine`
---
-
 CREATE TABLE IF NOT EXISTS `wab_engine` (
   `name` text COLLATE utf8_unicode_ci NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -995,48 +530,6 @@ CREATE TABLE IF NOT EXISTS `wab_engine` (
   KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `wab_showusers`
---
-
-CREATE TABLE IF NOT EXISTS `wab_showusers` (
-  `name` text COLLATE utf8_unicode_ci NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent` int(11) NOT NULL DEFAULT '1',
-  `hidden` int(11) NOT NULL DEFAULT '1',
-  `type` text COLLATE utf8_unicode_ci NOT NULL,
-  `value` text COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `code` text COLLATE utf8_unicode_ci NOT NULL,
-  KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wab_tgk`
---
-
-CREATE TABLE IF NOT EXISTS `wab_tgk` (
-  `name` text COLLATE utf8_unicode_ci NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent` int(11) NOT NULL DEFAULT '1',
-  `hidden` int(11) NOT NULL DEFAULT '1',
-  `type` text COLLATE utf8_unicode_ci NOT NULL,
-  `value` text COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `code` text COLLATE utf8_unicode_ci NOT NULL,
-  KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wiki`
---
-
 CREATE TABLE IF NOT EXISTS `wiki` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
@@ -1045,4 +538,4 @@ CREATE TABLE IF NOT EXISTS `wiki` (
   `tags` text NOT NULL,
   `updated` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=460 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
