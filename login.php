@@ -6,6 +6,7 @@ $action=$_REQUEST['action'];
 /////////////////////////////////////////////////////////////////////
 ///////// LOGOUT 
 if($action=="logout") {
+	include_once("include/lib.all.php");
     session_destroy();
 	$outpage=$_REQUEST['outpage'];
     echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$outpage\">";
