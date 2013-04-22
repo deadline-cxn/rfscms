@@ -691,7 +691,7 @@ $wf=str_replace("fonts/","",$m->font);
 
 sc_image_text("Change Font ($wf)",
 "HoW%20tO%20dO%20SoMeThInG.ttf",
-28,812,74,0,0,10,145,148,1,1,0,0,1);
+28,812,74,0,0,10,145,148,1,1,0,1,1);
        echo "</a> <BR>";     
 
 
