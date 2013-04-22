@@ -45,19 +45,18 @@ function sc_menu_draw($menu_location) {
 
                     d_echo("\$RFS_SITE_NAV_IMG = $RFS_SITE_NAV_IMG");
 
-                    if($RFS_SITE_NAV_IMG == 1) {
+						if($RFS_SITE_NAV_IMG == 1) {
 						$fntsz=16;
 						if($RFS_SITE_NAV_FONT_SIZE>0) $fntsz=$RFS_SITE_NAV_FONT_SIZE;
-                        sc_image_text(
-                            $link->name,
-                            $RFS_SITE_NAV_FONT,
-								$fntsz,
-								155,1,
-								0+$RFS_SITE_NAV_FONT_X_OFFSET,
-								0+$RFS_SITE_NAV_FONT_Y_OFFSET,
-                            $clr[0], $clr[1], $clr[2],
-                            $bclr[0], $bclr[1], $bclr[2],
-                            1,0 );
+						sc_image_text($link->name,
+										$RFS_SITE_NAV_FONT,
+										$fntsz,
+										155,1,
+										0+$RFS_SITE_NAV_FONT_X_OFFSET,
+										0+$RFS_SITE_NAV_FONT_Y_OFFSET,
+										$clr[0], $clr[1], $clr[2],
+										$bclr[0], $bclr[1], $bclr[2],
+										1,0 );
                     }
                     else {
 
