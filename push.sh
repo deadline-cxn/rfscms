@@ -4,6 +4,6 @@ va=$(<build.dat);
 va=`expr $va + 1`;
 echo $va > build.dat;
 echo "RFS CMS $ver BUILD $va";
-git commit -a -m "update"
+git commit -a -m "update $1"
 git push github
 

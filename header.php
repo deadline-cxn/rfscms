@@ -36,7 +36,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 
 	sc_div("THEME CSS");
 	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
-	echo "<link rel=\"canonical\" href=\"$RFS_SITE_URL".$_SERVER['PHP_SELF']."\" />";
+	echo "<link rel=\"canonical\" href=\"".sc_current_page_url()."\" />";
 
 	sc_div("\$RFS_SITE_JS_JQUERY_UI_CSS");
 	rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);

@@ -457,30 +457,28 @@ function sc_db_get($table,$key,$kv,$field){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // update database
-function sc_updb($table,$key_field,$key_value){
+function sc_updb($table,$key_field,$key_value,$md5_password) {
     $res=sc_query("select * from `$table` where `$key_field`='$key_value' limit 1");
-    if(mysql_num_rows($res)==0) sc_query("insert into `$table` (`$key_field`) values ('$key_value');");
+    if(mysql_num_rows($res)==0)
+		sc_query("insert into `$table` (`$key_field`) values ('$key_value');");
     $res=sc_query("DESCRIBE $table");
-    while($i = mysql_fetch_assoc($res)){
-        //echo $i['Field']."::".$_REQUEST[$i['Field']]."<br>";
-        //if($_REQUEST[$i['Field']]!=''){
-            $q ="update $table set `";
-            $q.=$i['Field'];
-            $q.="`='".
-			addslashes(
-			$_REQUEST["{$i['Field']}"]
-			)
-			."' ";
-				//$vv=
-				$vv=addslashes($key_value);
-
-				$q.="where `$key_field`='$vv'";
-
-				//echo $_REQUEST["{$i['Field']}"];
-
-            d_echo("[$q]");
-            sc_query($q);
-        //}
+    while($i = mysql_fetch_assoc($res)) {
+			$q ="update $table set `";
+			$q.=$i['Field'];
+			$q.="`='";			
+			$f=$_REQUEST["{$i['Field']}"];
+			if($md5_password) {
+				if(  ($i['Field']=="pass") ||
+					 ($i['Field']=="password") ) {
+						$f=md5($f);
+					}
+			}
+			$q.=addslashes($f);
+			$q.="' ";			
+			$v=addslashes($key_value);
+			$q.="where `$key_field`='$v'";
+			d_echo("[$q]");
+			sc_query($q);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
