@@ -245,7 +245,7 @@ input[type=button]
     height: 24px;
     width: 103px;
     color: #bbbbbb;
-    text-transform:uppercase;
+    #text-transform:uppercase;
     box-shadow:-1px 2px #6E6B6A inset;
 }
 
