@@ -49,7 +49,7 @@ echo '
 echo $RFS_SITE_PAYPAL_BUTTON1;
 echo '" target=_blank> ';
 $vr=$RFS_SITE_URL;
- echo "<img src='$vr/images/paypal.png' border='0' height='32' alt='$RFS_SITE_PAYPAL_BUTTON1_MSG'></a>";
+ echo "<img src='$vr/images/icons/paypal.png' border='0' height='32' alt='$RFS_SITE_PAYPAL_BUTTON1_MSG'></a>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_donate_button2() {
