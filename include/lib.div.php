@@ -3,11 +3,9 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 if(!function_exists("sc_div")) {
-function sc_div($t) {
-	
-	if(!$GLOBALS['RFS_GEN_IMAGE']) {
-	
-		echo "\n<!-- ******************** ($t) ******************** -->\n";		
+function sc_div($t) {	
+	if(!$GLOBALS['RFS_GEN_IMAGE']) {	
+		//echo "\n<!-- ******************** ($t) ******************** -->\n";		
 		}
 	}
 }
