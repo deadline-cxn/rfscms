@@ -231,11 +231,12 @@ a:hover {
 
 input, select, textarea {
     font-family: Verdana;
-    gfont-size : x-small;
+    font-size : x-small;
     font-weight: bold;
     border-style : solid;
     border-width : 2px;
     border-color : #000000;
-    background-color : #888888;
+	color: #ff9900;
+    background-color : #662200;
 
 }
