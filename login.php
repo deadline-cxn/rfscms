@@ -3,18 +3,23 @@
 // RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////
+///////// LOGOUT 
+if($REQUEST['action']=="logout") {
+    session_destroy();
+	$outpage=$REQUEST['outpage'];
+    echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$outpage\">";
+    exit();
+}
 
 /////////////////////////////////////////////////////////////////////
 ///////// LOGIN GO
 if($action=="logingo") {
-	
 	include_once("include/lib.sitevars.php");
 	include_once("include/lib.log.php");
 	include_once("include/lib.rfs.php");
 	include_once("include/lib.domain.php");
-
-
-
+	
     if(!empty($_GET['userid'])) $userid=$_GET['userid'];
     if(!empty($_POST['userid'])) $userid=$_POST['userid'];
 
@@ -94,14 +99,6 @@ include("header.php");
 if(empty($outpage)) $outpage=$RFS_SITE_URL;
 if(empty($action)) $action=$_REQUEST['action'];
 
-
-/////////////////////////////////////////////////////////////////////
-///////// LOGOUT 
-if($action=="logout") {
-    session_destroy();
-    echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$outpage\">";
-    exit();
-}
 
 /////////////////////////////////////////////////////////////////////
 ///////// LOGIN (JOIN)
