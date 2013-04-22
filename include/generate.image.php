@@ -3,6 +3,7 @@
 // RFS CMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 if(array_pop(explode("/",getcwd()))=="include") chdir("..");
+$RFS_GEN_IMAGE=true;
 include_once("include/session.php");
 include_once("include/lib.genm.php");
 include_once("include/lib.mysql.php");

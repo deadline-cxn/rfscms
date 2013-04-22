@@ -7,7 +7,9 @@ if(array_pop(explode("/",getcwd()))=="include")
 include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
-sc_div(__FILE__);
+
+sc_div(__FILE__."-----line[".__LINE__."]");
+
 /////////////////////////////////////////////////////////////////////////////////////////
 if($act=="select_image_go") {
 	include("lib.all.php");
@@ -342,9 +344,11 @@ function sc_delimiter($t){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_mcount($user) {
-		sc_div( __FUNCTION__ . "($user) -> " . __FILE__);
 
-	$p=$_SERVER['PHP_SELF'];
+	sc_div( __FUNCTION__ . "($user) -> " . __FILE__);
+
+	// $p=$_SERVER['PHP_SELF'];
+	$p=sc_current_page_url();
 	$ip=getenv("REMOTE_ADDR");
 
 	$r=mfo1("select * from counters where page = '$p'");
@@ -502,8 +506,6 @@ function sc_updb_2($table,$key_field,$key_value){
 function sc_confirmform($message,$page,$hiddenvars){
 	echo "\n<sc_confirmform [START]================================================ />\n";
 
-
-
     echo "<table border=0 width=400>\n";
     echo "<tr><td align=center>\n";
     echo "<br>\n";
@@ -512,8 +514,6 @@ function sc_confirmform($message,$page,$hiddenvars){
     echo "<div class=confirmform>";
     echo "$message";
 
-
-
     $hidvar_a=explode(sc_delimiter($hiddenvars),$hiddenvars);
     for($i=0;$i<count($hidvar_a);$i++){
         $hidvar_b=explode("=",$hidvar_a[$i]);
@@ -521,12 +521,9 @@ function sc_confirmform($message,$page,$hiddenvars){
     }
     sc_makebuttonstart();
     echo "<input style='font-size:x-small' type=submit name=yes value=Yes>\n";
-    echo "<input style='font-size:x-small' type=submit name=no value=No>\n";
-    sc_makebuttonend();
-
-
+    // echo "<input style='font-size:x-small' type=submit name=no value=No>\n";
+    sc_makebuttonend();	
     echo "</div>";
-
     echo "<br><br>\n";
     echo "</td></tr>\n";
     echo "</table>\n";
