@@ -15,7 +15,7 @@ function sc_module_mini_pictures($x) { eval(scg());
     echo "<h2>Last $x Pictures</h2>";
     $res2=sc_query("select * from `pictures` where `hidden`='no' order by time desc limit 0,$x");
     $numpics=mysql_num_rows($res2); // make pictures table...
-	echo "<table border=0>";
+	echo "<table border=0 cellspacing=0 cellpadding=0>";
     for($i=0;$i<$numpics;$i++) {
         $picture=mysql_fetch_object($res2);
         if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";        
