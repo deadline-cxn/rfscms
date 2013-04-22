@@ -2,9 +2,7 @@
 
 chdir("../../");
 
-include("include/session.php");
-//include("lib.mysql.php");
-//include("lib.sitevars.php");
+//include("include/session.php");
 include("include/lib.all.php");
 
  $data=sc_getuserdata($_SESSION['valid_user']);
@@ -116,15 +114,12 @@ if( (empty($_SESSION['darr'])) ||
 	
 	$theme=$data->theme;
 	if(empty($theme)) $theme="tmpl_white";
-	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/rfs/themes/$theme/$theme.css\" type=\"text/css\">\n";
+	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/$theme.css\" type=\"text/css\">\n";
 		
 		
     echo "</head>\n";
-		
 	
-	
-	$bkg="misc/revolution-ball-template.png";
-	echo "<body style=\" margin:0; background:url('http://www.sethcoder.com/images/$bkg');	background-size: 96px 96px; cover;	\">\n";
+	echo "<body style=\" margin:0; \">\n";
 
 	sc_google_analytics();
 		
@@ -262,7 +257,7 @@ if($act=="add") {
 	echo "<table border=0 cellspacing=0 cellpadding=3 width=100%><tr>";
 	
 	echo "<td>";
-	echo "<a href=$RFS_SITE_URL><img src=$RFS_SITE_URL/images/back.gif></a>";
+	echo "<a href=$RFS_SITE_URL><img src=$RFS_SITE_URL/images/navigation/back.gif></a>";
 	echo "</td><td>";
 	// echo " <a href=$RFS_SITE_URL> SethCoder.com </a> ";
 	echo "</td><td>";
@@ -271,24 +266,19 @@ if($act=="add") {
 	echo "$count hits";
 	echo "</td><td>";
 	echo "</td><td>";
-	// sc_twitter_follow();
+		sc_twitter_follow();
 	echo "</td><td>";
 	echo "</td><td>";
-	// sc_tweet("http://www.sethcoder.com/v.php","BasedVideoWall",
-	//"Check out this page, it lets you view a bunch of different live streams at one time. "
-	//);
+		sc_tweet("$RFS_SITE_URL/modules/video_wall/v.php","Video Wall", "Check out this page, it lets you view a bunch of different live streams at one time. ");
+	echo "</td><td>";
+	echo "</td><td>";	
+		sc_facebook_like("$RFS_SITE_URL/modules/video_wall/v.php");	
 	echo "</td><td>";
 	echo "</td><td>";
-	
-	// sc_facebook_like("http://www.sethcoder.com/v.php");
+		sc_google_plus("$RFS_SITE_URL/modules/video_wall/v.php");
 	echo "</td><td>";
-	echo "</td><td>";
-	// sc_google_plus("http://www.sethcoder.com/v.php");
-	echo "</td><td>";
-
 	if(empty($data->donated))
 		sc_donate_button_small();
-
 	echo "</td><td>";
 
 	if($edit==true){
@@ -388,13 +378,7 @@ echo "</td></tr></table>";
 				$vid=str_replace("width=400","width=$w",     $vid);
 				$vid=str_replace("height=300","height=$h",   $vid);
 
-// <iframe src="http://www.idfblog.com/rocket-attacks-widget/" style="width:400px; height:300px; border:none;"></iframe>
-
-
-
-
-				  if($_SESSION['edzors']==1){
-					  
+				  if($_SESSION['edzors']==1){					  
 
 					sc_optionizer( "$RFS_SITE_URL/modules/video_wall/v.php",
 								"act=chg".$RFS_SITE_DELIMITER.
@@ -427,13 +411,9 @@ echo "</td></tr></table>";
 		echo "<hr>";
 		
 		echo "Submit a new live feed for the wall... enter embed code below<BR> ";
-		 // <font color=red>IMPORTANT!!!</font> <BR> Make sure to use  WIDTH=400 and HEIGHT=300<BR>";
 
-
-    sc_bf(  "$RFS_SITE_URL/modules/video_wall/v.php"
-        ,
-
-        "SHOW_TEXT_10#120#name=".$RFS_SITE_DELIMITER.
+    sc_bf(  "$RFS_SITE_URL/modules/video_wall/v.php",
+				"SHOW_TEXT_10#120#name=".$RFS_SITE_DELIMITER.
 				"SHOW_TEXTAREA_20#120#embed_code=".$RFS_SITE_DELIMITER."act=add"
                 , "", "", "", "", "", "", 20, "Add new stream");
 
