@@ -4,7 +4,12 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 if(!function_exists("sc_div")) {
 function sc_div($t) {
-	if( $_SESSION['debug_msgs'] ) echo "\n<!-- ********** RFS SECTION BREAK: ($t) ********** --> \n"; }
+	
+	if(!$GLOBALS['RFS_GEN_IMAGE']) {
+	
+		echo "\n<!-- ******************** ($t) ******************** -->\n";		
+		}
+	}
 }
 // this file can not have trailing spaces
 ?>

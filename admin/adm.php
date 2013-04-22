@@ -593,27 +593,32 @@ function adm_action_f_delsitevar_go() { eval( scg() );
 }
 function adm_action_f_delsitevar() { eval(scg());
 	$site_var=mfo1("select * from site_vars where id='$id'");
-	sc_confirmform("<p>Delete \$RFS_SITE_$site_var->name ?</p>","$RFS_SITE_URL/admin/adm.php?action=f_delsitevar_go&id=$id","$RFS_SITE_URL/admin/adm.php?action=edit_site_vars");
+	sc_confirmform("<p>Delete \$RFS_SITE_$site_var->name ?</p>","$RFS_SITE_URL/admin/adm.php?action=f_delsitevar_go","id=$id");
 	adm_action_edit_site_vars();
 }
 function adm_action_edit_site_vars() { eval( scg() );
+
+	sc_query("ALTER TABLE `site_vars` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
+
 	echo "<h3>Edit Site Information</h3>";
 	echo "<p>These variables will be loaded into global scope.</p>";
 	echo "<table border=0>";
 	$res=sc_query( "select * from site_vars order by name" );
 	for( $i=0; $i<mysql_num_rows( $res ); $i++ ) {
 		$site_var=mysql_fetch_object( $res );
-		echo "<tr><td>";
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
+		echo "<tr><td>";
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
 		echo "<input type=hidden name=id value=\"$site_var->id\">";
 		$site_var->name=strtoupper(stripslashes(($site_var->name)));
 		echo "\$RFS_SITE_<input name=name value=\"$site_var->name\"> = ";
 		$site_var->value=stripslashes( $site_var->value );
-		echo "<input name=val size=80 value=\"$site_var->value\">";
+		echo "<input name=val size=40 value=\"$site_var->value\">";
 		echo "<input type=submit value=\"Update\">";
+		
+		echo "</td>";
 		echo "</form>";
-		echo "</td><td>";
+		echo "<td>";
 		sc_button("$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&id=$site_var->id","Delete");
 		echo "</td></tr>";
 	}
@@ -622,7 +627,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 	echo "<input type=hidden name=action value=\"f_addsitevar\">";
 	echo "<input type=hidden name=id value=\"$site_var->id\">";
 	echo "\$RFS_SITE_<input name=name value=\"ADD NEW\"> = ";
-	echo "<input name=val size=80 value=\"\">";
+	echo "<input name=val size=40 value=\"\">";
 	echo "<input type=submit value=\"go\">";
 	echo "</form>";
 	echo "</td><td>";
@@ -1427,7 +1432,14 @@ function adm_action_log_view() {
 	include("footer.php");
 	exit();
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_COUNTERS
+function adm_action_counters() {
+	echo "<h3>Counters</h3>\n";
+	$counters=sc_db_dumptable("counters","","","");
+	include("footer.php");
+	exit();
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AWARD EDIT
 function adm_action_awards_edit() {
