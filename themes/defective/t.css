@@ -149,11 +149,12 @@ td {
 }
 
 .contenttd {
+	padding: 5px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
     color:   #FFFFFF;
-	background-color: #330000;
+	background-color: #000000;
 }
 
 .midtd{
