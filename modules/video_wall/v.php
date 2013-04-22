@@ -114,7 +114,7 @@ if( (empty($_SESSION['darr'])) ||
 	
 	$theme=$data->theme;
 	if(empty($theme)) $theme="tmpl_white";
-	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/$theme.css\" type=\"text/css\">\n";
+	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
 		
 		
     echo "</head>\n";
