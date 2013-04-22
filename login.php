@@ -9,6 +9,7 @@ if($action=="logout") {
 	include_once("include/lib.all.php");
     session_destroy();
 	$outpage=$_REQUEST['outpage'];
+	if(empty($outpage)) $outpage=$RFS_SITE_URL;
     echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$outpage\">";
     exit();
 }
