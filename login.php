@@ -3,11 +3,97 @@
 // RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
-//include("include/lib.all.php");
-include("header.php");
-if(empty($outpage)) $outpage=$RFS_SITE_URL;
 
+/////////////////////////////////////////////////////////////////////
+///////// LOGIN GO
+if($action=="logingo") {
+	
+	include_once("include/lib.sitevars.php");
+	include_once("include/lib.log.php");
+	include_once("include/lib.rfs.php");
+	include_once("include/lib.domain.php");
+
+
+
+    if(!empty($_GET['userid'])) $userid=$_GET['userid'];
+    if(!empty($_POST['userid'])) $userid=$_POST['userid'];
+
+    if(!empty($_GET['password']))  $password=$_GET['password'];
+    if(!empty($_POST['password'])) $password=$_POST['password'];
+
+    $password = urldecode($password);
+
+    $r=sc_query_user_db("select * from users");
+    $n=mysql_num_rows($r);
+	
+    for($i=0;$i<$n;$i++) {
+        $u=mysql_fetch_object($r);
+        $x=explode(",",$u->alias);
+        for($j=0;$j<count($x);$j++) {
+            if($x[$j]==$userid) {
+                
+                if($u->pass==md5($password)){
+						$_SESSION["valid_user"] = $userid;
+						$_SESSION["logged_in"]  = "true";
+                    $data=sc_getuserdata($userid);
+                    sc_setuservar($userid,"last_login",$data->last_activity);
+                    sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
+                    sc_log("***********************> $data->name logged in!");
+                    if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
+                    sc_gotopage($outpage);
+                    exit();
+                }	
+            }
+        }
+    }
+	
+
+    $result = sc_query_user_db("select * from users where name = '$userid' and pass = '".md5($password)."'");
+    
+        if(mysql_num_rows($result) > 0){
+			
+				
+				
+
+			
+            $data=sc_getuserdata($userid);
+            sc_setuservar($userid,"last_login",$data->last_activity);
+            sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
+            sc_log("***********************> $data->name logged in!");
+            if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
+			
+				session_destroy();				
+				session_name(str_replace(" ","_",$RFS_SITE_SESSION_ID));
+				session_cache_expire(99999);
+				session_start();
+				
+				$_SESSION["valid_user"] = $userid;
+				$_SESSION["logged_in"]  = "true";		
+           
+				//echo "[".$RFS_SITE_SESSION_ID."]<br>";	
+				//echo "[$userid]<br>";	
+				// echo "[$password]<br>";
+				//echo "[".md5($password)."]<br>";
+				// echo $_SESSION["valid_user"]."<br>";
+				// echo $_SESSION["logged_in"]."<br>";
+				echo "Valid login... Please wait, redirecting...";			
+				sc_gotopage($outpage);
+				//  include("footer.php");
+            exit();
+        }
+        else{
+            echo "Invalid Login";
+            $_SESSION["valid_user"] = "invalid_user";
+            sc_log("***********************> $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
+        }    
+	$action="forgot";
+}
+
+include("header.php");
+
+if(empty($outpage)) $outpage=$RFS_SITE_URL;
 if(empty($action)) $action=$_REQUEST['action'];
+
 
 /////////////////////////////////////////////////////////////////////
 ///////// LOGOUT 
@@ -119,64 +205,6 @@ if($action=="join") {
 if(empty($action))
     $action="loginform";
 
-/////////////////////////////////////////////////////////////////////
-///////// LOGIN GO
-if($action=="logingo") {
-
-    if(!empty($_GET['userid'])) $userid=$_GET['userid'];
-    if(!empty($_POST['userid'])) $userid=$_POST['userid'];
-
-    if(!empty($_GET['password']))  $password=$_GET['password'];
-    if(!empty($_POST['password'])) $password=$_POST['password'];
-
-    $password   = md5(urldecode($_REQUEST['password']));
-
-
-
-    $r=sc_query_user_db("select * from users");
-    $n=mysql_num_rows($r);
-    for($i=0;$i<$n;$i++) {
-        $u=mysql_fetch_object($r);
-        $x=explode(",",$u->alias);
-        for($j=0;$j<count($x);$j++) {
-            if($x[$j]==$userid) {
-                //echo md5($password);
-                if($u->pass==md5($password)){
-                    $_SESSION["valid_user"] = $userid;
-                    $_SESSION["logged_in"]  = "true";
-                    $data=sc_getuserdata($userid);
-                    sc_setuservar($userid,"last_login",$data->last_activity);
-                    sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
-                    sc_log("***********************> $data->name logged in!");
-                    if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
-                    sc_gotopage($outpage);
-                    exit();
-                }
-            }
-        }
-    }
-
-    $result = sc_query_user_db("select * from users where name = '$userid' and pass = '$password'");
-    if($result) {
-        if(mysql_num_rows($result) > 0){
-            $_SESSION["valid_user"] = $userid;
-            $_SESSION["logged_in"]  = "true";
-            $data=sc_getuserdata($userid);
-            sc_setuservar($userid,"last_login",$data->last_activity);
-            sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
-            sc_log("***********************> $data->name logged in!");
-            if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
-            sc_gotopage($outpage);
-            exit();
-        }
-        else{
-            echo "Invalid Login";
-            $_SESSION["valid_user"] = "invalid_user";
-            sc_log("***********************> $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
-        }
-    }
-	$action="forgot";
-}
 
 /////////////////////////////////////////////////////////////////////
 ////////// LOGIN FORGOT PASSWORD
