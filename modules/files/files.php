@@ -953,6 +953,11 @@ function show1file($filedata,$bg) { eval(scg());
 	$size=(sc_sizefile($filedata->size));
 	
 	echo "<td class=sc_file_table_$bg >$filedata->version </td>\n";
+	
+	echo "<td class=sc_file_table_$bg >$filedata->platform </td>\n";
+	echo "<td class=sc_file_table_$bg >$filedata->os </td>\n";
+	
+	
 
 	echo "<td class=sc_file_table_$bg >$size &nbsp;</td>\n";
 	
