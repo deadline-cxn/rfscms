@@ -53,7 +53,8 @@ function sc_menu_draw($menu_location) {
                             $RFS_SITE_NAV_FONT,
 								$fntsz,
 								155,1,
-								0, 0,
+								0+$RFS_SITE_NAV_FONT_X_OFFSET,
+								0+$RFS_SITE_NAV_FONT_Y_OFFSET,
                             $clr[0], $clr[1], $clr[2],
                             $bclr[0], $bclr[1], $bclr[2],
                             1,0 );
