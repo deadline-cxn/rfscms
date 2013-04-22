@@ -19,7 +19,7 @@ function sc_module_mini_pictures($x) { eval(scg());
     for($i=0;$i<$numpics;$i++) {
         $picture=mysql_fetch_object($res2);
         if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";        
-        echo "<tr><td class=contenttd>";
+        echo "<tr><td class=contenttd width=30>";
         echo "<a href=\"$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id\">".sc_picthumb("$RFS_SITE_PATH/$picture->url",30,0,1)."</a>";        
         echo "</td><td class=contenttd valign=top>";
         echo "<a href=\"$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id\">";
