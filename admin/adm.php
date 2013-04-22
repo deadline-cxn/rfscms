@@ -509,7 +509,7 @@ function adm_action_theme() { eval(scg());
 // ADM_FORUMS
 function adm_action_f_modify_forum() { eval(scg());
 	echo "<h3>Forum $name updated</h3>";
-	sc_updb( "forum_list","id",$id );
+	sc_updb( "forum_list","id",$id, 1 );
 	adm_action_forum_admin();
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -968,8 +968,15 @@ function adm_action_f_menu_topedit_del() { eval( scg() );
 }
 function adm_action_f_menu_topedit_add() { eval( scg() );
 	echo "<h3>Edit Top Menu :: Add $mname</h3>";
-	sc_query( "insert into menu_top (`name`,`link`, `target`,`sort_order`,`access`)
-	values('$mname','$menu_url', '$target','$msor','$access');" );
+	
+	echo "$mname <br>";
+	echo "$menu_url<br>";
+	echo "$target<br>";
+	echo "$msor<br>";
+	echo "$access<br>";
+	
+	sc_query( "insert into menu_top (   `name`,      `link`, `target`, `sort_order`, `access`)
+								  values('$mname', '$menu_url', '$target',     '$msor', '$access');" );
 	adm_action_menu_topedit();
 }
 function adm_action_f_menu_topedit_mod() { eval( scg() );
@@ -1052,7 +1059,7 @@ function adm_action_menu_topedit() { eval( scg() );
 
 	echo "<tr>";
 
-	echo "<form enctype=application/x-www-form-URLencoded action=adm.php>";
+	echo "<form enctype=application/x-www-form-URLencoded method=\"post\" action=adm.php>";
 	echo "<input type=hidden name=action value=f_menu_topedit_add>";
 	echo "<td class=contenttd>";
 	echo "</td>";
@@ -1190,7 +1197,7 @@ function adm_action_edit_categories() {
 function adm_action_f_edit_users_go() {
 	eval( scg() );
 	echo "<h3>User updated</h3>";
-	sc_updb( "users","id",$id );
+	sc_updb( "users","id",$id,1 );
 	adm_action_user_edit();
 }
 function adm_action_f_edit_users() { eval( scg() );

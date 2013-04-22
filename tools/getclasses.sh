@@ -7,5 +7,5 @@ grep -R \
 --exclude-dir=backup \
 --exclude-dir=tools \
 --exclude-dir=modules/netman \
-'class=' * > classes.txt
+'class=' ../*
 

@@ -134,7 +134,7 @@ function wab_engine_action_edcodego() { eval(scg());
     $edapp=$GLOBALS['edapp'];
     $app=mfo1("select * from `wab_engine` where `id`='$edapp'");
     $db =mfo1("select * from `wab_engine` where `parent`='$edapp' and `type`='database'");
-    sc_updb("$db->value","value",$_REQUEST['value']);
+    sc_updb("$db->value","value",$_REQUEST['value'],0);
     sc_query("update `$db->value` set `name`='$app->name' where `value`='".$_REQUEST['value']."'");
     echo "<p class=warning>FUNCTION: [".$_REQUEST['value']."] updated</p>";
     wab_engine_action_editapp();
@@ -163,7 +163,7 @@ function wab_engine_action_edcode() { eval(scg());
 
 function wab_engine_action_add() { eval(scg());
     if($GLOBALS['data']->access==255)  {
-        sc_updb("wab_engine","name",$_REQUEST['name']);
+        sc_updb("wab_engine","name",$_REQUEST['name'],0);
         sc_query("update `wab_engine` set `parent`=`id` where `name`='".$_REQUEST['name']."'");
         sc_query("update `wab_engine` set `type`='database' where `name`='".$_REQUEST['name']."'");
         sc_query("update `wab_engine` set `value`='wab_engine' where `name`='".$_REQUEST['name']."'");
@@ -218,7 +218,7 @@ function wab_engine_action_add_database() { eval(scg());
     echo "$table<BR>";
     echo "$key_field<BR>";
     echo "$key_value<BR>";
-    sc_updb($table,$key_field,$key_value);
+    sc_updb($table,$key_field,$key_value,0);
     sc_query("delete from `wab_engine` where `type`='database' and `parent`='".$GLOBALS['parent']."'");    
     sc_query("insert into `wab_engine` (`$key_field`,`type`,`value`,`parent`) values ('$key_value','database','$table','".$GLOBALS['parent']."')");    
 }
@@ -238,7 +238,7 @@ function wab_engine_action_add_function() {
     $db=mfo1("select * from `wab_engine` where `parent`='".$GLOBALS['parent']."' and type='database'");
     $key_field="value";
     $key_value=$nm->name;
-    sc_updb($db->value,$key_field,$key_value);
+    sc_updb($db->value,$key_field,$key_value,0);
 }
 
 function wab_database($id) { eval(scg());

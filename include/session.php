@@ -6,7 +6,7 @@ include_once("lib.sitevars.php");
 @session_name(str_replace(" ","_",$RFS_SITE_SESSION_ID));
 @session_cache_expire(99999);
 @session_start();
-echo $RFS_SITE_SESSION_ID;
+
 include_once("lib.div.php");
 sc_div(__FILE__);
 $logged_in=$_SESSION["logged_in"];
