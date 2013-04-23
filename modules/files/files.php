@@ -1005,7 +1005,7 @@ function show1file($filedata,$bg) { eval(scg());
 		
 		if(sc_access_check("files","delete")) {
 			echo "<td class=sc_file_table_$bg >";
-			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id&retpage=".urlencode(sc_current_page_url()),"Delete");
+			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id&retpage=".urlencode(sc_canonical_url()),"Delete");
 			echo "</td>";
 		}
 			

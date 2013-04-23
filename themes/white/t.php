@@ -14,4 +14,3 @@ $RFS_SITE_TTF_TOP_FONT_Y_OFFSET="4";
 $RFSW_BULLET_IMAGE="$RFS_SITE_URL/modules/wiki/images/bullet.gif";
 $RFSW_LINK_IMAGE="$RFS_SITE_URL/modules/wiki/images/link.png";
 ?>
-

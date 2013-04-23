@@ -31,27 +31,12 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 	echo "<meta name=\"description\" content=\"$keywords\">";
 	echo "<meta name=\"keywords\" content=\"$keywords\">";
 
-	sc_div("TITLE");
 	rfs_echo($RFS_SITE_TITLE);
 
-	sc_div("THEME CSS");
 	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
 	echo "<link rel=\"canonical\" href=\"".sc_canonical_url()."\" />";
-
-	sc_div("\$RFS_SITE_JS_JQUERY_UI_CSS");
-	rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
-
-	sc_div("head");
     echo "</head>\n";
-	sc_div("body");
     echo "<body topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n";
-
-	sc_div("\$RFS_SITE_JS_JQUERY");
-	rfs_echo($RFS_SITE_JS_JQUERY);
-	sc_div("\$RFS_SITE_JS_JQUERY_UI");
-	rfs_echo($RFS_SITE_JS_JQUERY_UI);
-
-	sc_div("OTHER HEADER STUFF...");
 	
 	if($_SESSION['admin_show_top']!="hide") {	
 
@@ -145,28 +130,25 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
 	}
 }
 
-echo "<script type=\"text/javascript\" src=\"$RFS_SITE_URL/3rdparty/jscolor/jscolor.js\">";
+//////////////////////////////////////////////
+// Load javascripts
 
+rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
+rfs_echo($RFS_SITE_JS_JQUERY);
+rfs_echo($RFS_SITE_JS_JQUERY_UI);
+rfs_echo($RFS_SITE_JS_COLOR);
+
+//////////////////////////////////////////////
+// google analytics
 sc_google_analytics();
+
+//////////////////////////////////////////////
+// count the page
 sc_mcount($data->name);
 
+//////////////////////////////////////////////
 // Automatic action function
 $px=explode("/",$_SERVER['PHP_SELF']);
-$pout=str_replace(".php","",$px[count($px)-1]);
-$_thisfunk=$pout."_action_$action";
-$_thisfunk=str_replace(" ","_",$_thisfunk);
-
-d_echo($_thisfunk);
-
-$ecode=" if( function_exists(\"$_thisfunk\") == true) {
-        $_thisfunk();
-} else {
-    if(\$_SESSION[\"debug_msgs\"]==true)
-	sc_info(\"DEBUG >> WARNING: MISSING $_thisfunk(); \",\"WHITE\",\"BLUE\");
-}";
-
-
-d_echo($ecode);
-eval($ecode);
-
+$_thisfunk=str_replace(" ","_",str_replace(".php","",$px[count($px)-1])."_action_$action");
+eval("if(function_exists(\"$_thisfunk\") == true) $_thisfunk(); else if(\$_SESSION[\"debug_msgs\"]==true) sc_info(\"DEBUG >> WARNING: MISSING $_thisfunk(); \",\"WHITE\",\"BLUE\");");
 ?>

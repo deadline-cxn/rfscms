@@ -48,6 +48,9 @@ $RFS_SITE_FORCED_THEME      = "default";
 $RFS_SITE_THEME_CSS_URL     = "";
 $RFS_SITE_THEME_DROPDOWN    = false;
 /////////////////////////////////////////////////////////////////////////////////////////
+// SOCIAL NETWORKING STUFF
+$RFS_SITE_ADDTHIS_ACCT		= ""; // www.addthis.com
+/////////////////////////////////////////////////////////////////////////////////////////
 // Facebook integration
 $RFS_SITE_FACEBOOK_APP_ID   = "";
 $RFS_SITE_FACEBOOK_SECRET   = "";

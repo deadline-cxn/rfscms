@@ -72,14 +72,20 @@ if($action=="modifygo"){
 
 if(empty($action)) $action="random";
 if($action=="random"){
-    $res=sc_query("select * from `videos` where `hidden`!='yes'");
-    $num=mysql_num_rows($res);	
-    $vid=rand(0,$num);
-	mysql_data_seek($res,$vid);
-	$video=mysql_fetch_object($res);
-	$vc=sc_getuserdata($video->contributor);
-    $id=$video->id;
-    $action="view";
+	$res=sc_query("select * from `videos` where `hidden`!='yes'");
+	$num=mysql_num_rows($res);	
+	if($num==0) {
+		echo "<p>There are no videos.</p>";		
+	}
+	else {
+		$vid=rand(0,$num);
+		mysql_data_seek($res,$vid);
+		$video=mysql_fetch_object($res);
+		$vc=sc_getuserdata($video->contributor);
+		$id=$video->id;
+		$action="view";
+		
+	}
 }
 
 if(!empty($id))
@@ -145,7 +151,8 @@ echo "<BR> $v->id ($v->sname) <BR>";
 }
 
 if($action=="submitvid"){
-	echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/videos.php\">\n";
+	
+	echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/videos/videos.php\">\n";
 	echo "<input type=\"hidden\" name=\"action\" value=\"submitvidgo\">\n";
 	echo "<tr><td>Title</td><td>";
 	
@@ -205,7 +212,7 @@ if($data->access==255){
         $res=sc_query("select * from `videos` where `id`='$id'");
         $video=mysql_fetch_object($res);
         echo "<table border=0>\n";
-        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/videos.php method=post>\n";
+        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/videos/videos.php method=post>\n";
         echo "<input type=hidden name=action value=removego>\n";
         echo "<input type=hidden name=id value=\"$id\">\n";
         echo "<tr><td>Are you sure you want to delete [$video->sname]???</td>";
@@ -361,7 +368,7 @@ if($action=="view"){
         if($viewsfw=="yes")
          echo $video->url;
         else
-         echo "<a href=videos.php?action=view&id=$video->id&viewsfw=yes><img src=\"$RFS_SITE_URL/images/NSFW.png\" border=0></a><BR>";
+         echo "<a href=videos.php?action=view&id=$video->id&viewsfw=yes><img src=\"$RFS_SITE_URL/images/icons/NSFW.png\" border=0></a><BR>";
     }
 	
 	echo "<br>";
@@ -418,7 +425,7 @@ for($i=0;$i<$numcats;$i++){
 				
 				
 				if($video->sfw=="no")
-					$video->url="$RFS_SITE_URL/files/videos/NSFW.gif";
+					$video->url="$RFS_SITE_URL/images/icons/NSFW.gif";
 				echo "<table border=0>";
 				echo "<tr><td valign=top>";
 				echo "<a href=videos.php?action=view&id=$video->id>";
