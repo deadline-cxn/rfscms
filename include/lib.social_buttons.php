@@ -357,7 +357,7 @@ data-show-screen-name=\"false\">
 function sc_facebook_login() {
 	if(!empty($GLOBALS['RFS_SITE_FACEBOOK_APP_ID'])) {
 		if(!empty($GLOBALS['RFS_SITE_FACEBOOK_SECRET'])) {
-			$page=urlencode(sc_current_page_url());
+			$page=urlencode(sc_canonical_url());
 			echo "<a href=\"$RFS_SITE_URL/facebook/fb.login.php?goback=1";
 			if(!empty($page)) 
 				echo "&retpage=$page";

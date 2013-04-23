@@ -210,7 +210,7 @@ function sc_theme_form() { eval(scg());
 	if(sc_yes($_SESSION["logged_in"])) {
 		if(sc_yes($GLOBALS["RFS_SITE_THEME_DROPDOWN"])) {
 			$data=sc_getuserdata($_SESSION['valid_user']);
-			$loc=sc_current_page_url();
+			$loc=sc_canonical_url();
 			$loc=str_replace("&theme=$theme","",$loc);
 			$loc=str_replace("?theme=$theme","",$loc);
 			$sep="?";

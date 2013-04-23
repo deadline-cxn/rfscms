@@ -33,7 +33,7 @@ function sc_phpself() { eval(scg());
 	$page=$_SERVER['PHP_SELF'];
 	return $page;
 }
-function sc_current_page_url(){
+function sc_canonical_url(){
 	$page_url = 'http';
 	if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'){
 		$page_url .= 's';
@@ -349,7 +349,7 @@ function sc_mcount($user) {
 	sc_div( __FUNCTION__ . "($user) -> " . __FILE__);
 
 	// $p=$_SERVER['PHP_SELF'];
-	$p=sc_current_page_url();
+	$p=sc_canonical_url();
 	$ip=getenv("REMOTE_ADDR");
 
 	$r=mfo1("select * from counters where page = '$p'");
