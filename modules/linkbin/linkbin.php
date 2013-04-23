@@ -171,6 +171,7 @@ for($u=0;$u<$numlinks;$u++) {
 	$link->sname=str_replace(".org","",$link->sname);
 	
 	$link->link = str_replace(":","_rfs_colon_",  $link->link);
+	$link->link=urlencode($link->link);
 
 	echo "<td><a href=\"".$GLOBALS['RFS_SITE_URL']."/link_out.php?link=$link->link\" target=\"_blank\">$link->sname</a></td>\n";
 	
