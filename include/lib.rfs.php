@@ -10,7 +10,7 @@ setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
 function sc_maintenance() { eval(scg());
     global $theme;
 	sc_div("sc_maintenance start");
-	sc_multi_rename("$RFS_SITE_PATH/themes/$theme",$theme,"t");
+	// sc_multi_rename("$RFS_SITE_PATH/themes/$theme",$theme,"t");
 	// sc_count();
 	sc_get_modules();
 	$data=sc_getuserdata($_SESSION['valid_user']);

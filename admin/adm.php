@@ -421,7 +421,7 @@ function adm_action_eval_form() {
 // ADM_THEMES
 
 function adm_action_f_theme_edit_php() { eval(scg());
-//echo " --- file[$outfile]<br>";	 	
+
 	if(!empty($delete)) {
 		echo "<h1>DELETE:</h1>";
 		echo " --- delete[$delete]<br>";
@@ -431,6 +431,7 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		$fp=fopen($outfile,"rt");
 		while($ln=fgets($fp,256)) {
 			$chk=explode("=",$ln);
+			$chk[0]=trim($chk[0]," ");
 			if($chk[0]!=$delete) {
 				fputs($fo,$ln);
 			}
@@ -466,6 +467,25 @@ function adm_action_f_theme_edit_php() { eval(scg());
 	adm_action_f_theme_edit();
 
 }
+function adm_action_f_theme_edit_delete_go() { eval(scg());
+	$file="$RFS_SITE_PATH/themes/$thm/$dfile";
+	
+	echo " DELETING $file...<br>";
+	
+	system("sudo rm $file");
+	adm_action_f_theme_edit();
+}
+
+function adm_action_f_theme_edit_delete() { eval(scg());
+	$file="$RFS_SITE_PATH/themes/$thm/$dfile";
+	sc_confirmform(	"Delete $file<br><br><img src=\"$RFS_SITE_URL/themes/$thm/$dfile\" width=500> ",
+						"$RFS_SITE_URL/admin/adm.php",
+						"action=f_theme_edit_delete_go".$RFS_SITE_DELIMITER.
+						"dfile=$dfile".$RFS_SITE_DELIMITER.
+						"thm=$thm"
+						
+						);
+}
 
 function adm_action_f_theme_edit() { eval(scg());
 	echo "Editing theme [$thm]<br>";
@@ -474,28 +494,56 @@ function adm_action_f_theme_edit() { eval(scg());
 	$d = opendir($folder);
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
-			//echo "<hr>";
-			//echo "$folder/$entry <br>";		
 			if($entry[0]=="t") {
-				$ft=sc_getfiletype($entry);
-				
-				switch($ft) {
-					
-					case "gif":
-					case "jpg":
-					case "png":
-						$img="$RFS_SITE_URL/themes/$thm/$entry";
-						echo "<hr>$img:<br>";
-						echo "<img src=\"$img\"><br>";
-						break;
-						
+				$ft=sc_getfiletype($entry);				
+				switch($ft) {	
 					case "css":
-						sc_css_edit_form("$folder/$entry", "","");
-						break;
-						
+						if($entry=="t.css") {
+							echo "<hr>";
+							echo "<h1>$entry</h1>";
+							
+							echo "[edit this file]<br>";
+							
+							sc_css_edit_form("$folder/$entry", "","");
+						}
+						break;						
 					case "php":
 						if($entry=="t.php") {
 							echo "<hr>";
+							echo "<h1>$entry</h1>";
+							echo "[edit this file]<br>";
+							
+// show_codearea("sc_bf_codearea", 15, 80,"wut",$ila2[1]);
+							echo '<script language="Javascript" 
+										type="text/javascript" 
+										src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
+										</script>
+										<script language="Javascript"
+										type="text/javascript"> // initialisation
+										editAreaLoader.init({ //
+										id: "codecode_t_php" //
+										,start_highlight: true //
+										,font_size: "8" //
+										,font_family: "verdana, monospace" //
+										,allow_resize: "n" //
+										,allow_toggle: false //
+										,language: "en" //
+										,syntax: "php" //
+										,toolbar: " select_font" //
+										// charmap, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
+										//new_document, save, load, |,
+										,load_callback: "my_load" //
+										,save_callback: "my_save" //
+										,plugins: "charmap" //
+										,charmap_default: "arrows" }); // 
+										</script> ';							
+							
+							
+
+							echo "<textarea id=\"codecode_t_php\" style=\"height: 200px; width: 500px;\" name=\"codecode_t_php\">";
+							$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/$entry");
+							$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
+							echo $fc;
 							
 							sc_php_edit_form(		"$folder/$entry",
 													"$RFS_SITE_URL/admin/adm.php",
@@ -504,14 +552,9 @@ function adm_action_f_theme_edit() { eval(scg());
 													);
 						}
 						else {					
-							// $f=file_get_contents($folder."/".$entry);
-							// $f=str_replace("<","&lt;",$f);
-							// echo nl2br($f)."<br>";
 						}
 						break;
 					default: 
-					
-						/// echo "<hr>$folder/$entry --- > WHAT DO? <BR>";
 						break;
 					
 				}
@@ -519,6 +562,33 @@ function adm_action_f_theme_edit() { eval(scg());
 		}
 	}	
 	closedir($d);
+	
+	$d = opendir($folder);
+	while(false!==($entry = readdir($d))) {
+		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
+			if($entry[0]=="t") {
+				$ft=sc_getfiletype($entry);				
+				switch($ft) {					
+					case "gif":
+					case "jpg":
+					case "png":					
+						$img="$RFS_SITE_URL/themes/$thm/$entry";
+						echo "<hr>";
+						echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_delete&thm=$thm&dfile=$entry\" >
+						<img src=\"$RFS_SITE_URL/images/icons/Delete.png\" border=0 width=16></a>";						
+						echo "$img:<br>";
+						echo "<img src=\"$img\"><br>";
+						break;
+					default: 
+						break;
+					
+				}
+			}
+		}
+	}	
+	closedir($d);
+	
+	
 	include( "footer.php" );
 	exit();
 }
