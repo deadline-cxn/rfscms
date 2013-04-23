@@ -419,6 +419,15 @@ function adm_action_eval_form() {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_THEMES
+
+function adm_action_f_theme_edit_action() { eval(scg());
+
+	echo "f_theme_edit_action()<br>";
+	
+	adm_action_f_theme_edit();
+
+}
+
 function adm_action_f_theme_edit() { eval(scg());
 	echo "Editing theme [$thm]<br>";
 	$folder="$RFS_SITE_PATH/themes/$thm";
@@ -447,12 +456,16 @@ function adm_action_f_theme_edit() { eval(scg());
 						
 					case "php":
 						if($entry=="t.php") {
-							sc_php_edit_form("$folder/$entry","","");							
+							sc_php_edit_form(		"$folder/$entry",
+													"$RFS_SITE_URL/admin/adm.php",
+													"f_theme_edit_action",
+													"thm=$thm"
+													);
 						}
 						else {					
 							// $f=file_get_contents($folder."/".$entry);
 							// $f=str_replace("<","&lt;",$f);
-							// echo nl2br($f)."<br>";						
+							// echo nl2br($f)."<br>";
 						}
 						break;
 					default: 
