@@ -29,15 +29,16 @@ if($act=="select_image_chdir") {
     sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_phpself() { eval(scg()); // /%22%3E%3Cscript%3Ealert('xss')%3C/script%3E%3Cfoo%22
-	$page=$_SERVER['PHP_SELF'];//htmlentities($RFS_SITE_URL.$_SERVER['PHP_SELF']);
+function sc_phpself() { eval(scg()); 
+	$page=$_SERVER['PHP_SELF'];
 	return $page;
 }
 function sc_current_page_url(){
-$page_url   = 'http';     if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'){
-$page_url .= 's';
- }
-return $page_url.'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+	$page_url = 'http';
+	if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'){
+		$page_url .= 's';
+	}
+	return $page_url.'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
