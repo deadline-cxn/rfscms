@@ -530,12 +530,12 @@ if($action=="memegenerate") {
         $infoout="Adding new caption";
         if(empty($texttop)) $texttop="_NEW";
 		
-		echo " POSTER [$poster]<br>";
-		echo "PICTURE [$id] <br>";
+			echo " POSTER [$poster]<br>";
+			echo "PICTURE [$basepic] <br>";
 					
 			$q="insert into meme
 				  ( `name`,`poster`, `basepic`,`texttop`,`status`)
-			VALUES('$name','$poster', '$id',  '$texttop', 'EDIT');";
+			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
         sc_query($q);
         $mid=mysql_insert_id();
        } else {
@@ -555,14 +555,14 @@ if($action=="memegenerate") {
     $meme=mfo1("select * from meme where id='$mid'");
     $data=sc_getuserdata($poster);
     $action="memeedit";
-    $id=$meme->basepic;
+    $basepic=$meme->basepic;
 	sc_info($infoout." >> $meme->id ($mid) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME delete confirm
 if( ($action=="memedeletego") ) {
 	if($data->access==255){
-		sc_query("delete from meme where id='$id' limit 1");
+		sc_query("delete from meme where id='$mid' limit 1");
 	}	
 	$action="showmemes";
 }
@@ -850,7 +850,7 @@ positifon:absolute; top:50%;
 						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
 						<br>";
 
-		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&mid=$m->basepic&name=$m->name'>New Caption</a>]<br>";
+		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
 		if( ($data->id==$m->poster) ||
 			($data->access==255) ) {
 			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
@@ -913,7 +913,7 @@ echo "<br style='clear: both;'>";
               <a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
 						<br>";
 
-				echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&mid=$m->basepic&name=$m->name'>New Caption</a>]<br>";
+				echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
 				if( ($data->id==$m->poster) ||
 					($data->access==255) ) {
 					echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
@@ -957,7 +957,7 @@ echo "<br style='clear: both;'>";
 						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
 						<br>";
 
-		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&mid=$m->basepic&name=$m->name'>New Caption</a>]<br>";
+		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
 		if( ($data->id==$m->poster) ||
 			($data->access==255) ) {
 			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
@@ -1037,7 +1037,7 @@ echo "<center><table border=0><tr>";
     
     if($id) {
 		echo "<td>";
-		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&id=$picture->id","Caption");
+		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$picture->id","Caption");
 		echo "</td>";
 		
 		echo "<td>";
