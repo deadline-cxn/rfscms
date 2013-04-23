@@ -177,7 +177,7 @@ for($u=0;$u<$numlinks;$u++)
 	$link->sname=str_replace(".com","",$link->sname);
 	$link->sname=str_replace(".net","",$link->sname);
 	$link->sname=str_replace(".org","",$link->sname);
-
+	$link->link=str_replace(":","_rfs_colon_",$link->link);
 	echo "<td><a href=\"$site_url/link_out.php?link=$link->link\" target=\"_blank\">$link->sname</a></td>\n";
 	
 	//  echo "<td><i><a href=\"$site_url/link_out.php?link=$link->link\" target=\"_blank\">$link->link</a></i></td>\n";

@@ -12,15 +12,10 @@ function sc_module_mini_top_referrers($x) { eval(scg());
 
 		$link=mysql_fetch_object($result);
 		$url=$link->link;
-		$url = urlencode($url);
-		$url = str_ireplace("http://","",  $url);
-		$url = str_ireplace("http%3A%2F%2F","", $url);
-		$url = str_ireplace("%2F","", $url);
-		
+		$url=str_replace(":","_rfs_colon_",$url);
        echo "<a class=\"a_cat\" href=\"$site_url/link_out.php?link=$url\" \n";
        echo " target=\"_blank\" title=\"$link->sname (in[$link->referrals] out[$link->clicks])\"\n";
-        echo ">".sc_trunc($link->sname,24)."</a> ";
-        
+        echo ">".sc_trunc($link->sname,24)."</a> ";        
         echo " <font class=sc_black>[$link->referrals] <br>";
     }
 }

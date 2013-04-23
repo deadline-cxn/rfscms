@@ -11,8 +11,7 @@ function sc_module_mini_link_friends($x) { eval(scg());
 		$link=mysql_fetch_object($result);
 		$url=$link->link;
 		$url = urlencode($url);
-		$url = str_ireplace("http://","",  $url);
-		$url = str_ireplace("http%3A%2F%2F","", $url);            
+		$url = str_replace(":","_rfs_colon_",  $url);	
 		echo "<div><a href=\"$RFS_SITE_URL/link_out.php?link=$url\" target=_blank>$link->sname</a></div>";
    }
 	if($data->access=="255") {

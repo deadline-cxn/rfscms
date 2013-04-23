@@ -1,4 +1,5 @@
 grep -Rn \
+--exclude-dir=log \
 --exclude-dir=wtf \
 --exclude-dir=3rdparty \
 --exclude-dir=files \
