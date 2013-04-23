@@ -9,8 +9,7 @@ function sc_module_mini_link_friends($x) { eval(scg());
 	echo "<h2>Link Friends</h2>";
 	for($i=0;$i<$numlinks;$i++) {
 		$link=mysql_fetch_object($result);
-		$url=$link->link;
-		$url = urlencode($url);
+		$url=$link->link;		
 		$url = str_replace(":","_rfs_colon_",  $url);	
 		echo "<div><a href=\"$RFS_SITE_URL/link_out.php?link=$url\" target=_blank>$link->sname</a></div>";
    }
