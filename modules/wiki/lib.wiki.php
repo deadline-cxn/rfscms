@@ -213,7 +213,7 @@ function wikitext($text) { eval(scg());
 								stristr($ila2[0],"ftp:") ||
 								stristr($ila2[0],"ftps:") ) {
 									
-									str_replace(":","_rfs_colon_",$ila2[0]);
+									$ila2[0]=str_replace(":","_rfs_colon_",$ila2[0]);
 								
 									$outlink=$ila2[0];
 									$shortname=$ila2[0];
