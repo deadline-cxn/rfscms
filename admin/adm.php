@@ -424,6 +424,9 @@ function adm_action_f_theme_edit_action() { eval(scg());
 
 	echo "f_theme_edit_action()<br>";
 	
+	echo " --- add[$addvar=$varvalue]<br>";
+	echo " --- delete[$delete]<br>";
+	
 	adm_action_f_theme_edit();
 
 }

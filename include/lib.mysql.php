@@ -895,6 +895,26 @@ function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
 		echo "</form>";
 	}
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// select / option a file
+function sc_optionize_file( $select_name, // select name
+						$file,		// folder
+						$default )  {
+	echo "<select name=\"$select_name\">";
+	
+	echo "<option>$default";
+
+if(file_exists($file)) {
+	$fp=fopen($file,"r");	
+	while( $ln=fgets($fp)) {
+			echo "<option>$ln";
+	}
+	fclose($fp);
+}	
+	
+	echo "</select>";
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // select / option a folder
 function sc_optionize_folder( $select_name, // select name
@@ -1811,6 +1831,21 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 		$tt=explode("=",$hvars[$i]);
 		$hvar[$tt[0]]=$tt[1];
 	}
+	
+echo "<form action=$returnpage method=\"post\">";
+echo "<input type=hidden name=action value=\"$returnaction\">";
+echo "<input type=hidden name=add value=\"var\">";
+foreach ($hvar as $vn => $vv) {
+	echo "<input type=hidden name=\"$vn\" value=\"$vv\">";
+}
+sc_optionize_file(
+		"addvar",
+		"$RFS_SITE_PATH/tools/rfsvars_out.txt",
+		"Add a system variable");
+		
+echo "<input name=varvalue value=\"\">";
+echo "<input type=submit value=\"Add\">";
+echo "</form>";
 	
 	$fp=fopen($php_file,"r");
 	echo "<table border=0>";
