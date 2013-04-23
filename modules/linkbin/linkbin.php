@@ -169,21 +169,10 @@ for($u=0;$u<$numlinks;$u++) {
 	$link->sname=str_replace(".com","",$link->sname);
 	$link->sname=str_replace(".net","",$link->sname);
 	$link->sname=str_replace(".org","",$link->sname);
-
-	echo "<td><a href=\"".$GLOBALS['RFS_SITE_URL']."/modules/linkbin/link_out.php?link=$link->link\" target=\"_blank\">$link->sname</a></td>\n";
 	
-	//  echo "<td><i><a href=\"
-    // $GLOBALS['RFS_SITE_URL']."/modules/linkbin/linkbin.php
-    //   /link_out.php?link=$link->link\" target=\"_blank\">$link->link</a></i></td>\n";
-    //echo "<td> added on ".sc_time($link->time)." by <a href=\"
-    // $GLOBALS['RFS_SITE_URL']."/modules/linkbin/linkbin.php
-    // /showprofile.php?user=$userdata->name\">$userdata->name</a>. </td>\n";
-    //echo "<td>\n";
-    //for($i=0;$i<$link->rating;$i++)
-   // {
-   // 	echo "<img src=\"$site_url/images/thumbs_up.gif\" border=0 alt=\"$link->rating thumbs up\" title=\"$link->rating thumbs up\">";
-    //}
-    //echo "</td>\n";
+	$link->link = str_replace(":","_rfs_colon_",  $link->link);
+
+	echo "<td><a href=\"".$GLOBALS['RFS_SITE_URL']."/link_out.php?link=$link->link\" target=\"_blank\">$link->sname</a></td>\n";
 	
     echo "</tr>\n";
 
