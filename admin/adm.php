@@ -438,7 +438,7 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		}
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile $outfile.".time());
+		system("sudo mv $outfile del.$outfile.".time());
 		system("sudo mv $outfile.out $outfile");
 	}
 	if(!empty($add)) {
@@ -455,7 +455,7 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		fputs($fo,"?>");
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile $outfile.".time());
+		system("sudo mv $outfile del.$outfile.".time());
 		system("sudo mv $outfile.out $outfile");
 		
 	}
@@ -487,6 +487,77 @@ function adm_action_f_theme_edit_delete() { eval(scg());
 						);
 }
 
+function adm_action_f_theme_edit_save_t_php() { eval(scg());
+	echo "<h1> SAVE t.php</h1>";
+	$taval=stripslashes($taval);
+	//$taval=str_replace(";",";\n\r",$taval);
+	//$taval=str_replace("<","&lt;",$taval);
+	// echo nl2br($taval);
+	
+	$file="$RFS_SITE_PATH/themes/$thm/t.php";
+	system("sudo mv $file del.$file".time());
+	system ("sudo touch $file");
+	system("sudo chmod 777 $file");
+	file_put_contents($file,$taval);
+	
+	
+	adm_action_f_theme_edit();
+	
+	
+}
+
+function adm_action_f_theme_edit_t_php() { eval(scg());
+// show_codearea("sc_bf_codearea", 15, 80,"wut",$ila2[1]);
+							
+							
+							echo '		<script language="Javascript" 
+										type="text/javascript" 
+										src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
+										</script>
+										
+										
+										<script language="Javascript"
+										type="text/javascript"> // initialisation
+										
+										function save_t_php(ta,taval) {
+											document.location="';
+										echo $RFS_SITE_URL;
+										echo '/admin/adm.php?action=f_theme_edit_save_t_php&thm=';
+										echo $thm;
+										echo '&taval="+
+										encodeURIComponent(taval);
+										}
+										
+										editAreaLoader.init({ //
+										id: "codecode_t_php" //
+										,start_highlight: true //
+										,font_size: "8" //
+										,font_family: "verdana, monospace" //
+										,allow_resize: "n" //
+										,allow_toggle: false //
+										,language: "en" //
+										,syntax: "php" //
+										,toolbar: "save,select_font" //
+										// charmap, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
+										//new_document, save, load, |,
+										,load_callback: "my_load" //
+										,save_callback: "save_t_php" //
+										,plugins: "charmap" //
+										,charmap_default: "arrows" }); // 
+										</script> ';							
+							
+							
+
+							echo "<textarea id=\"codecode_t_php\" style=\"height: 400px; width: 700px;\" name=\"codecode_t_php\">";
+							$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/$tphp");
+							$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
+							echo $fc;
+							
+	include("footer.php");
+	exit();
+}
+
+
 function adm_action_f_theme_edit() { eval(scg());
 	echo "Editing theme [$thm]<br>";
 	$folder="$RFS_SITE_PATH/themes/$thm";
@@ -511,39 +582,9 @@ function adm_action_f_theme_edit() { eval(scg());
 						if($entry=="t.php") {
 							echo "<hr>";
 							echo "<h1>$entry</h1>";
-							echo "[edit this file]<br>";
-							
-// show_codearea("sc_bf_codearea", 15, 80,"wut",$ila2[1]);
-							echo '<script language="Javascript" 
-										type="text/javascript" 
-										src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
-										</script>
-										<script language="Javascript"
-										type="text/javascript"> // initialisation
-										editAreaLoader.init({ //
-										id: "codecode_t_php" //
-										,start_highlight: true //
-										,font_size: "8" //
-										,font_family: "verdana, monospace" //
-										,allow_resize: "n" //
-										,allow_toggle: false //
-										,language: "en" //
-										,syntax: "php" //
-										,toolbar: " select_font" //
-										// charmap, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
-										//new_document, save, load, |,
-										,load_callback: "my_load" //
-										,save_callback: "my_save" //
-										,plugins: "charmap" //
-										,charmap_default: "arrows" }); // 
-										</script> ';							
+							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_php&thm=$thm&tphp=$entry\">edit this file</a>]<br>";
 							
 							
-
-							echo "<textarea id=\"codecode_t_php\" style=\"height: 200px; width: 500px;\" name=\"codecode_t_php\">";
-							$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/$entry");
-							$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
-							echo $fc;
 							
 							sc_php_edit_form(		"$folder/$entry",
 													"$RFS_SITE_URL/admin/adm.php",
