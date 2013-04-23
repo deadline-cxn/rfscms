@@ -1,4 +1,5 @@
 grep -Rn \
+--exclude-dir=wtf \
 --exclude-dir=3rdparty \
 --exclude-dir=files \
 --exclude-dir=images \
@@ -8,6 +9,6 @@ grep -Rn \
 --exclude-dir=log \
 --exclude-dir=tools \
 --exclude-dir=modules/netman \
-'$RFS' ../* > rfsvars.txt
+'$RFS' ../*
 
 
