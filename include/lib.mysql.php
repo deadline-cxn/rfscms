@@ -1803,21 +1803,45 @@ function sc_css_edit_form($css_file, $returnpage, $returnaction) {
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_php_edit_form($php_file,$returnpage,$returnaction) {
+function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eval(scg());
+	
+	$hvar=array();
+	$hvars=explode($RFS_SITE_DELIMITER,$hiddenvars);
+	for($i=0;$i<count($hvars);$i++) {
+		$tt=explode("=",$hvars[$i]);
+		$hvar[$tt[0]]=$tt[1];
+	}
 	
 	$fp=fopen($php_file,"r");
 	echo "<table border=0>";
 	while( $ln=fgets($fp)) {
-		if( (substr($ln,0,2)=="<?") ||
-			(substr($ln,0,2)=="?>") ||
-			 (substr($ln,0,2)=="//") ) {
+		if 	((substr($ln,0,2)=="<?") ||
+			 (substr($ln,0,2)=="?>") ||
+			 (substr($ln,0,2)=="//") ||
+			 (substr($ln,0,1)=="\r")||
+			 (substr($ln,0,1)=="\n") ) {
 		} else {
-			echo "<tr>";
 			$varx=explode("=",$ln);
+			$varx[0]=trim($varx[0]," ");
+			
+			echo "<tr>";
+			
 			echo "<td>";
+			echo "[
+<a href=\"$returnpage?
+action=$returnaction&
+delete=$varx[0]&
+file=$php_file";
+foreach ($hvar as $vn => $vv) { echo "&$vn=$vv"; }
+echo "\">delete</a>] ";
+
+			echo "</td>";
+			
+			echo "<td>";			
 			echo $varx[0];
 			$varx[1]=trim($varx[1]," ");
 			$varx[1]=trim($varx[1],"\n");
+			$varx[1]=trim($varx[1],"\r");
 			$varx[1]=trim($varx[1],";");
 			$varx[1]=trim($varx[1],"\"");
 			echo "</td><td>";
