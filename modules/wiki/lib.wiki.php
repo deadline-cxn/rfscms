@@ -212,12 +212,21 @@ function wikitext($text) { eval(scg());
 								stristr($ila2[0],"https:") ||
 								stristr($ila2[0],"ftp:") ||
 								stristr($ila2[0],"ftps:") ) {
-									
+								
 									$outlink=$ila2[0];
-									$outlink=str_replace("http://","",$outlink);
-									$outlink=str_replace("https://","",$outlink);
-									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$outlink target=_blank>".$ila2[0];
-									$outtext.="<img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ";
+									$shortname=$ila2[0];
+									$target="_blank";
+									
+									$exchk=explode(",",$outlink);
+									if(count($exchk>1)) {
+										$shortname=$exchk[0];
+										$outlink=$exchk[1];
+										if(!empty($exchk[2])) 
+											$target=$exchk[2];
+									}									
+									
+									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$outlink target=\"$target\">".$shortname;
+									$outtext.="  <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ";
 									$outtext.=nl2br($ila2[1]);
 							}
 						else

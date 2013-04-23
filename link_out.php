@@ -4,6 +4,8 @@ include("config/config.php");
 include("include/lib.mysql.php");
 include("include/lib.domain.php");
 $link_out=$_REQUEST['link'];
+//str_replace($RFS_SITE_DELIMITER,":",$_REQUEST['link']);
+
 $foundlink=false;
 $result=sc_query("select * from link_bin where `link` like '%$link_out%'");
 if(mysql_num_rows($result)>0) {
@@ -19,5 +21,5 @@ sc_query("insert into link_bin 		 (`name`,		`link`,			 `sname`,		`clicks`,	`time
     						    VALUES ('$link_out','http://$link_out','$link_out', '1', 		'$time', '$time', 	'!!!TEMP!!!'); ");
 
 }
-echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=http://$link_out\">";
+echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$link_out\">";
 ?>
