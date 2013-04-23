@@ -438,7 +438,7 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		}
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile del.$outfile.".time());
+		system("sudo mv $outfile $outfile.bak.".time());
 		system("sudo mv $outfile.out $outfile");
 	}
 	if(!empty($add)) {
@@ -455,7 +455,7 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		fputs($fo,"?>");
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile del.$outfile.".time());
+		system("sudo mv $outfile $outfile.bak.".time());
 		system("sudo mv $outfile.out $outfile");
 		
 	}
@@ -495,8 +495,8 @@ function adm_action_f_theme_edit_save_t_php() { eval(scg());
 	// echo nl2br($taval);
 	
 	$file="$RFS_SITE_PATH/themes/$thm/t.php";
-	system("sudo mv $file del.$file".time());
-	system ("sudo touch $file");
+	system("sudo mv $file $file.bak.".time());
+	system("sudo touch $file");
 	system("sudo chmod 777 $file");
 	file_put_contents($file,$taval);
 	
