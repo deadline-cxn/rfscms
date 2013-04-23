@@ -54,9 +54,12 @@ if( $_REQUEST['db_queries']=="list" ) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 chdir( "../" );
-include( "header.php" );
-
-
+if($_REQUEST['action']=="f_theme_edit_save_t_php") {
+	include("include/lib.all.php");
+	adm_action_f_theme_edit_save_t_php();
+}
+else
+	include( "header.php" );
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
@@ -488,46 +491,71 @@ function adm_action_f_theme_edit_delete() { eval(scg());
 }
 
 function adm_action_f_theme_edit_save_t_php() { eval(scg());
-	echo "<h1> SAVE t.php</h1>";
+/*
+<?
+$RFS_SITE_TOP_MENU_LOCATION="top";
+$RFS_SITE_NAV_FONT="DisposableDroidBB_bldital.ttf";
+$RFS_SITE_NAV_FONT_SIZE="25";
+$RFS_SITE_NAV_IMG="1";
+$RFS_SITE_NAV_FONT_COLOR="#FFFFFF";
+$RFS_SITE_NAV_FONT_BGCOLOR="#5a5a5a";
+$RFS_SITE_TTF_TOP_FONT="underscr.ttf";
+$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+$RFS_SITE_TTF_TOP="1";
+$RFS_SITE_TTF_TOP_COLOR="#81aef1";
+$RFS_SITE_TTF_TOP_BGCOLOR="#111122";
+$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="4";
+$RFSW_BULLET_IMAGE="$RFS_SITE_URL/modules/wiki/images/bullet.gif";
+$RFSW_LINK_IMAGE="$RFS_SITE_URL/modules/wiki/images/link.png";
+?>
+*/
+
+	$thm=$_POST['thm'];
+	$taval=$_POST['taval'];
+	$taval=urldecode($taval);
 	$taval=stripslashes($taval);
-	//$taval=str_replace(";",";\n\r",$taval);
-	//$taval=str_replace("<","&lt;",$taval);
-	// echo nl2br($taval);
-	
+	//$taval=str_replace("<","&lt;",$taval);	
+
 	$file="$RFS_SITE_PATH/themes/$thm/t.php";
 	system("sudo mv $file $file.bak.".time());
 	system("sudo touch $file");
 	system("sudo chmod 777 $file");
-	file_put_contents($file,$taval);
-	
-	
-	adm_action_f_theme_edit();
-	
-	
+	if(!file_put_contents($file,$taval))
+		sc_info("ERROR SAVING FILE, CHECK PERMISSIONS","WHITE","RED");
+	else 
+		sc_info("FILE SAVED","WHITE","GREEN");
 }
 
-function adm_action_f_theme_edit_t_php() { eval(scg());
-// show_codearea("sc_bf_codearea", 15, 80,"wut",$ila2[1]);
+function adm_action_f_theme_edit_t_php() { eval(scg()); ?>
+												
+										<div id="file_status"></div>
 							
-							
-							echo '		<script language="Javascript" 
+										<script language="Javascript" 
 										type="text/javascript" 
-										src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
+										src="<? echo $RFS_SITE_URL ?>/3rdparty/editarea/edit_area/edit_area_full.js">
 										</script>
-										
-										
+																				
 										<script language="Javascript"
 										type="text/javascript"> // initialisation
-										
+																			
 										function save_t_php(ta,taval) {
-											document.location="';
-										echo $RFS_SITE_URL;
-										echo '/admin/adm.php?action=f_theme_edit_save_t_php&thm=';
-										echo $thm;
-										echo '&taval="+
-										encodeURIComponent(taval);
+												var http=new XMLHttpRequest();
+												var url = "<? echo $RFS_SITE_URL; ?>/admin/adm.php";
+												var params = "action=f_theme_edit_save_t_php&thm=<? echo $thm; ?>&taval="+encodeURIComponent(taval);
+												document.getElementById("file_status").innerHTML="SAVING FILE....";
+												http.open("POST", url, true);
+												http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+												http.setRequestHeader("Content-length", params.length);
+												http.setRequestHeader("Connection", "close");
+												http.onreadystatechange = function() {
+														if(http.readyState == 4 && http.status == 200) {
+															var outward=url+"?action=f_theme_edit&thm=<? echo $thm; ?>";
+															document.getElementById("file_status").innerHTML=http.responseText+"<a href="+outward+">Continue</a>";
+													}
+												}
+												http.send(params);
 										}
-										
+
 										editAreaLoader.init({ //
 										id: "codecode_t_php" //
 										,start_highlight: true //
@@ -544,7 +572,9 @@ function adm_action_f_theme_edit_t_php() { eval(scg());
 										,save_callback: "save_t_php" //
 										,plugins: "charmap" //
 										,charmap_default: "arrows" }); // 
-										</script> ';							
+										</script> 
+										
+										<?
 							
 							
 
