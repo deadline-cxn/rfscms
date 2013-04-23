@@ -213,12 +213,12 @@ function wikitext($text) { eval(scg());
 								stristr($ila2[0],"ftp:") ||
 								stristr($ila2[0],"ftps:") ) {
 								
-									$outlink=$ila2[0];
-									$shortname=$ila2[0];
-									$target="_blank";
+									$outlink   = $ila2[0];
+									$shortname = $ila2[0];
+									$target    = "_blank";
 									
 									$exchk=explode(",",$outlink);
-									if(count($exchk>1)) {
+									if(count($exchk)>1) {
 										$shortname=$exchk[0];
 										$outlink=$exchk[1];
 										if(!empty($exchk[2])) 
