@@ -1798,7 +1798,14 @@ function sc_option_countries() {
 	";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_css_edit_form($css_file, $returnpage, $returnaction) {
+function sc_css_edit_form($css_file, $returnpage, $returnaction) { eval(scg());
+	
+	
+	sc_optionize_file(
+		"addcss",
+		"$RFS_SITE_PATH/tools/classes.out.txt",
+		"CSS Classes");
+	
 	$f=file_get_contents($css_file);
 	$cssx=explode("}",$f);	
 	for($i=0;$i<count($cssx)-1;$i++) {
@@ -1836,9 +1843,11 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 echo "<form action=$returnpage method=\"post\">";
 echo "<input type=hidden name=action value=\"$returnaction\">";
 echo "<input type=hidden name=add value=\"var\">";
+echo "<input type=hidden name=outfile value=\"$php_file\">";
 foreach ($hvar as $vn => $vv) {
 	echo "<input type=hidden name=\"$vn\" value=\"$vv\">";
 }
+
 sc_optionize_file(
 		"addvar",
 		"$RFS_SITE_PATH/tools/rfsvars_out.txt",
@@ -1867,7 +1876,7 @@ echo "</form>";
 <a href=\"$returnpage?
 action=$returnaction&
 delete=$varx[0]&
-file=$php_file";
+outfile=$php_file";
 foreach ($hvar as $vn => $vv) { echo "&$vn=$vv"; }
 echo "\">delete</a>] ";
 
@@ -1881,7 +1890,7 @@ echo "\">delete</a>] ";
 			$varx[1]=trim($varx[1],";");
 			$varx[1]=trim($varx[1],"\"");
 			echo "</td><td>";
-			echo "<input value='".$varx[1]."' ";			
+			echo "<input size=60 value='".$varx[1]."' ";			
 				if(substr($varx[1],0,1)=="#") echo "class='color' ";
 			echo ">
 			</td> </tr>";

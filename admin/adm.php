@@ -420,14 +420,48 @@ function adm_action_eval_form() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_THEMES
 
-function adm_action_f_theme_edit_action() { eval(scg());
-
-	echo "f_theme_edit_action()<br>";
+function adm_action_f_theme_edit_php() { eval(scg());
+//echo " --- file[$outfile]<br>";	 	
+	if(!empty($delete)) {
+		echo "<h1>DELETE:</h1>";
+		echo " --- delete[$delete]<br>";
+		system("sudo touch $outfile.out");
+		system("sudo chmod 777 $outfile.out");
+		$fo=fopen("$outfile.out",wt);
+		$fp=fopen($outfile,"rt");
+		while($ln=fgets($fp,256)) {
+			$chk=explode("=",$ln);
+			if($chk[0]!=$delete) {
+				fputs($fo,$ln);
+			}
+		}
+		fclose($fo);
+		fclose($fp);
+		system("sudo mv $outfile $outfile.".time());
+		system("sudo mv $outfile.out $outfile");
+	}
+	if(!empty($add)) {
+		echo "<h1>ADD:</h1>";
+		echo " --- add[$addvar=$varvalue]<br>";
+		system("sudo touch $outfile.out");
+		system("sudo chmod 777 $outfile.out");
+		$fo=fopen("$outfile.out",wt);
+		$fp=fopen($outfile,"rt");
+		while($ln=fgets($fp,256)) {
+			if(substr($ln,0,2)!="?>") fputs($fo,$ln);		
+		}
+		fputs($fo,"$addvar=\"$varvalue\";\n");
+		fputs($fo,"?>");
+		fclose($fo);
+		fclose($fp);
+		system("sudo mv $outfile $outfile.".time());
+		system("sudo mv $outfile.out $outfile");
+		
+	}
 	
-	echo "$file <br>";
 	
-	echo " --- add[$addvar=$varvalue]<br>";
-	echo " --- delete[$delete]<br>";
+	
+	
 	
 	adm_action_f_theme_edit();
 
@@ -451,7 +485,7 @@ function adm_action_f_theme_edit() { eval(scg());
 					case "jpg":
 					case "png":
 						$img="$RFS_SITE_URL/themes/$thm/$entry";
-						echo "$img:<br>";
+						echo "<hr>$img:<br>";
 						echo "<img src=\"$img\"><br>";
 						break;
 						
@@ -461,9 +495,11 @@ function adm_action_f_theme_edit() { eval(scg());
 						
 					case "php":
 						if($entry=="t.php") {
+							echo "<hr>";
+							
 							sc_php_edit_form(		"$folder/$entry",
 													"$RFS_SITE_URL/admin/adm.php",
-													"f_theme_edit_action",
+													"f_theme_edit_php",
 													"thm=$thm"
 													);
 						}
@@ -475,7 +511,7 @@ function adm_action_f_theme_edit() { eval(scg());
 						break;
 					default: 
 					
-						echo "$folder/$entry --- > WHAT DO? <BR>";
+						/// echo "<hr>$folder/$entry --- > WHAT DO? <BR>";
 						break;
 					
 				}

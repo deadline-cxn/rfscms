@@ -1,4 +1,5 @@
 grep -R \
+--exclude-dir=wtf \
 --exclude-dir=3rdparty \
 --exclude-dir=files \
 --exclude-dir=files_h \
