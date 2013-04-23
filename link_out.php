@@ -3,8 +3,8 @@
 include("config/config.php");
 include("include/lib.mysql.php");
 include("include/lib.domain.php");
-$link_out=str_replace("_rfs_colon_",":",$_REQUEST['link']);
-
+$link_out=urldecode($_REQUEST['link']);
+$link_out=str_replace("_rfs_colon_",":",$link_out);
 $foundlink=false;
 $result=sc_query("select * from link_bin where `link` like '%$link_out%'");
 if(mysql_num_rows($result)>0) {

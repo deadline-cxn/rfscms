@@ -226,6 +226,7 @@ function wikitext($text) { eval(scg());
 									}
 									
 									$outlink=str_replace(":","_rfs_colon_",$outlink);
+									$outlink=urlencode($outlink);
 									
 									
 									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$outlink target=\"$target\">".$shortname;
