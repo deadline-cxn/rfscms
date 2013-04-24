@@ -422,9 +422,7 @@ function adm_action_eval_form() {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_THEMES
-
 function adm_action_f_theme_edit_php() { eval(scg());
-
 	if(!empty($delete)) {
 		echo "<h1>DELETE:</h1>";
 		echo " --- delete[$delete]<br>";
@@ -460,15 +458,8 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		fclose($fp);
 		system("sudo mv $outfile $outfile.bak.".time());
 		system("sudo mv $outfile.out $outfile");
-		
 	}
-	
-	
-	
-	
-	
 	adm_action_f_theme_edit();
-
 }
 function adm_action_f_theme_edit_delete_go() { eval(scg());
 	$file="$RFS_SITE_PATH/themes/$thm/$dfile";
@@ -489,31 +480,10 @@ function adm_action_f_theme_edit_delete() { eval(scg());
 						);
 }
 function adm_action_f_theme_edit_save_t_php() { eval(scg());
-/*
-<?
-$RFS_SITE_TOP_MENU_LOCATION="top";
-$RFS_SITE_NAV_FONT="DisposableDroidBB_bldital.ttf";
-$RFS_SITE_NAV_FONT_SIZE="25";
-$RFS_SITE_NAV_IMG="1";
-$RFS_SITE_NAV_FONT_COLOR="#FFFFFF";
-$RFS_SITE_NAV_FONT_BGCOLOR="#5a5a5a";
-$RFS_SITE_TTF_TOP_FONT="underscr.ttf";
-$RFS_SITE_TTF_TOP_FONT_SIZE="45";
-$RFS_SITE_TTF_TOP="1";
-$RFS_SITE_TTF_TOP_COLOR="#81aef1";
-$RFS_SITE_TTF_TOP_BGCOLOR="#111122";
-$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="4";
-$RFSW_BULLET_IMAGE="$RFS_SITE_URL/modules/wiki/images/bullet.gif";
-$RFSW_LINK_IMAGE="$RFS_SITE_URL/modules/wiki/images/link.png";
-?>
-*/
-
 	$thm=$_POST['thm'];
 	$taval=$_POST['taval'];
 	$taval=urldecode($taval);
 	$taval=stripslashes($taval);
-	//$taval=str_replace("<","&lt;",$taval);	
-
 	$file="$RFS_SITE_PATH/themes/$thm/t.php";
 	system("sudo mv $file $file.bak.".time());
 	system("sudo touch $file");
@@ -528,7 +498,7 @@ function adm_action_f_theme_edit_t_php() { eval(scg());
 		<script language="Javascript" 
 		type="text/javascript" 
 		src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
-		</script>												
+		</script>
 		<script language="Javascript"
 		type="text/javascript"> // initialisation
 											
@@ -563,24 +533,25 @@ function adm_action_f_theme_edit_t_php() { eval(scg());
 		,save_callback: "save_t_php"
 		,plugins: "charmap" 
 		,charmap_default: "arrows" });
-		</script> ';					
-							
-
+		</script> ';
 	echo "<textarea id=\"codecode_t_php\" style=\"height: 400px; width: 700px;\" name=\"codecode_t_php\">";
 	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/$tphp");
 	$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
 	echo $fc;
-							
 	include("footer.php");
 	exit();
 }
-
 function adm_action_f_theme_clone_go() { eval(scg());
 	$new_name=strtolower($new_name);
 	echo "Cloning $thm to $new_name<br>";
 	
 }
 function adm_action_f_theme_clone() { eval(scg());
+	echo "<h1>Clone $thm theme</h1>";
+	$sample="themes/$thm/t.sample.png";
+		if(file_exists("$RFS_SITE_PATH/$sample")) {
+				echo "<img src=\"$RFS_SITE_URL/$sample\">";
+		}
 	sc_bf(	"$RFS_SITE_URL/admin/adm.php",
 			"action=f_theme_clone_go".$RFS_SITE_DELIMITER.
 			"thm=$thm".$RFS_SITE_DELIMITER.
@@ -593,19 +564,6 @@ function adm_action_f_theme_clone() { eval(scg());
 			"",
 			100,
 			"Clone" );
-	
-	/*
-	 sc_bf( "$RFS_SITE_URL/admin/adm.php",
-	       "action=f_modify_forum",
-	       "forum_list",
-		   "select * from forum_list where name='$forum_name';",
-	       "id",
-		   "",
-		   "omit",
-		   "",
-		   100,
-		   "submit" );
-		   */
 }
 function adm_action_f_theme_edit() { eval(scg());
 	echo "Editing theme [$thm]<br>";
@@ -615,8 +573,8 @@ function adm_action_f_theme_edit() { eval(scg());
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
 			if($entry[0]=="t") {
-				$ft=sc_getfiletype($entry);				
-				switch($ft) {	
+				$ft=sc_getfiletype($entry);
+				switch($ft) {
 					case "css":
 						if($entry=="t.css") {
 							echo "<hr>";
@@ -626,7 +584,7 @@ function adm_action_f_theme_edit() { eval(scg());
 							
 							sc_css_edit_form("$folder/$entry", "","");
 						}
-						break;						
+						break;
 					case "php":
 						if($entry=="t.php") {
 							echo "<hr>";
@@ -641,7 +599,7 @@ function adm_action_f_theme_edit() { eval(scg());
 													"thm=$thm"
 													);
 						}
-						else {					
+						else {
 						}
 						break;
 					default: 
@@ -699,13 +657,20 @@ function adm_action_theme() { eval(scg());
 	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
 	echo "<table border=0>";
 	$thms=sc_get_themes();
-	while(list($key,$thm)=each($thms)) {		
+	while(list($key,$thm)=each($thms)) {
 		echo "<tr>";
+		
+		echo "<td>";
+		$sample="themes/$thm/t.sample.png";
+		if(file_exists("$RFS_SITE_PATH/$sample")) {
+			echo sc_picthumb("$RFS_SITE_PATH/$sample",120,120,1);
+		}
+		echo "</td>";
+	
 		echo "<td>$thm</td><td>";
-		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";		
+		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_clone&thm=$thm\">clone</a>] ";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_delete&thm=$thm\">delete</a>] ";
-		
 		echo "</td></tr>";
 	}
 	echo "</table>";
