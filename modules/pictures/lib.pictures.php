@@ -48,7 +48,7 @@ function sc_mini_meme($inmid) { eval(scg());
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
 	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0 
 	
-	style='max-height: 240px;' ></a><br>";
+	style='max-height: 220px;' ></a><br>";
 	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 	echo "
 		Based: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>";
