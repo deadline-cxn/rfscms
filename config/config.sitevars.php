@@ -152,18 +152,16 @@ $RFS_SITE_TITLE         ="<TITLE> \$RFS_SITE_NAME $title </TITLE>";
 $RFS_SITE_SEO_KEYWORDS = $title."";
 /////////////////////////////////////////////////////////////////////////////////////////
 // Unlikely to need changes
-$RFS_SITE_DOC_TYPE          = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">";
-$RFS_SITE_HTML_OPEN         = "<HTML>";
-$RFS_SITE_HEAD_OPEN         = "<HEAD>
+$RFS_SITE_DOC_TYPE          = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n";
+$RFS_SITE_HTML_OPEN         = "<HTML>\n";
+$RFS_SITE_HEAD_OPEN         = "<HEAD>\n
                                <META NAME=\"ROBOTS\" CONTENT=\"INDEX,FOLLOW\">
                                <META http-equiv=\"Content-Language\" content=\"en-us\">
                                <META http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1252\">
                                <META name=\"GENERATOR\" content=\"RFS CMS\">
-                               <META name=\"ProgId\" content=\"RFS CMS\">
-                               <META name=\"description\" content=\"$RFS_SITE_SEO_KEYWORDS \">
-                               <META name=\"keywords\" content=\"$RFS_SITE_SEO_KEYWORDS \">\n";
+                               <META name=\"ProgId\" content=\"RFS CMS\">\n";
 $RFS_SITE_HEAD_CLOSE        = "</HEAD>\n";
-$RFS_SITE_BODY_OPEN         = "<BODY topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n\n";
+$RFS_SITE_BODY_OPEN         = "<BODY>\n";// topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n\n";
 $RFS_SITE_BODY_CLOSE        = "</BODY>\n";
 $RFS_SITE_HTML_CLOSE        = "</HTML>\n";
 $RFS_SITE_DELIMITER         = "¥";

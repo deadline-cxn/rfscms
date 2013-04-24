@@ -10,7 +10,6 @@ include_once("version.php");
 include_once("lib.debug.php");
 include_once("lib.mysql.php");
 include_once("lib.sitevars.php");
-if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
 include_once("lib.rfs.php");
 include_once("lib.social_buttons.php");
 include_once("lib.domain.php");

@@ -2,41 +2,44 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFS CMS (c) 2013 Seth Parson http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
+
+// check for config.php file
 if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
+// include all libraries (this will not output any text)
 include_once("include/lib.all.php");
-
-sc_div(__FILE__); 
-sc_div(" Really Frickin Simple Content Management System $RFS_VERSION http://www.sethcoder.com/ ");
-
+// check for site name definition
+if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
+// housekeeping
 sc_maintenance();
 sc_debugheader(0);
-
-if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php"))
-        include("$RFS_SITE_PATH/themes/$theme/t.php");
-		
-if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) {
-        include("$RFS_SITE_PATH/themes/$theme/t.header.php");
-} else {
-    echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n";
-    echo "<html>\n";
-    echo "<head>\n";
-    echo "<META NAME=\"ROBOTS\" CONTENT=\"INDEX,FOLLOW\">";
-    echo "<meta http-equiv=\"Content-Language\" content=\"en-us\">";
-    echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1252\">";
-	echo "<meta name=\"GENERATOR\" content=\"Notepad\">";
-	echo "<meta name=\"ProgId\" content=\"Notepad\">";
-	$keywords=$_GET['query'];    if(empty($keywords))
-	$keywords=$_GET['q'];        if(empty($keywords))
-	$keywords=$RFS_SITE_KEYWORDS;
-	echo "<meta name=\"description\" content=\"$keywords\">";
-	echo "<meta name=\"keywords\" content=\"$keywords\">";
+// inlude theme definition file (if it exists)
+if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
+// include theme header file (if it exists)
+if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) include("$RFS_SITE_PATH/themes/$theme/t.header.php");
+// otherwise use the default header (this file)
+else {    
+	rfs_echo($RFS_SITE_DOC_TYPE);
+	rfs_echo($RFS_SITE_HTML_OPEN);
+	rfs_echo($RFS_SITE_HEAD_OPEN);
+    
+	// get keywords from any search engine queries and put them in the seo output
+	$keywords=$_GET['query'];
+	if(empty($keywords)) $keywords=$_GET['q'];
+	$keywords.=$RFS_SITE_SEO_KEYWORDS;	
+	echo "<meta name=\"description\" 	content=\"$keywords\">";
+	echo "<meta name=\"keywords\" 		content=\"$keywords\">";
 
 	rfs_echo($RFS_SITE_TITLE);
 
-	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+	if(file_exists("$RFS_SITE_PATH/themes/$theme/t.css"))
+		echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+	
 	echo "<link rel=\"canonical\" href=\"".sc_canonical_url()."\" />";
-    echo "</head>\n";
-    echo "<body topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n";
+	
+	rfs_echo($RFS_SITE_HEAD_CLOSE);
+	
+	rfs_echo($RFS_SITE_BODY_OPEN);
+	//.echo "<body topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n";
 	
 	if($_SESSION['admin_show_top']!="hide") {	
 
