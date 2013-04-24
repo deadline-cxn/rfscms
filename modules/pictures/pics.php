@@ -151,7 +151,9 @@ if($action=="uploadpic"){
 				if(!empty($memeit)) {
 					$p=mfo1("select * from pictures where sname='$sname'");
 					$id=$p->id;
+					$basepic=$id;
 					$action="memegenerate";
+					$mid="";
 					$private=$hidden;
 				}
             }
@@ -519,14 +521,16 @@ if($action=="memesave") {
 if($action=="memegenerate") {
     
 	$donotshowcats=true;
-	$name = addslashes($name);
-	$texttop = addslashes($_REQUEST['texttop']);
+	$name 		= addslashes($name);
+	$texttop 	= addslashes($_REQUEST['texttop']);
 	$textbottom = addslashes($_REQUEST['textbottom']);	
     
 	$poster=999;
-    if($data->id) $poster=$data->id;	
+    if($data->id) $poster=$data->id;
     if(empty($private)) $private="no";
+	
 	if($mid==0) {
+		
         $infoout="Adding new caption";
         if(empty($texttop)) $texttop="_NEW";
 		
@@ -824,21 +828,9 @@ if($action=="showmemes"){
 	$r=sc_query($q);
 	$n=mysql_num_rows($r); 
 	echo "<td style='float:left; overflow: auto; vertical-align:text-top;' >";
-
 	for($i=0;$i<$n;$i++){
-		
 		$m=mysql_fetch_object($r);
-		
-		echo "<div id=$m->id
-		
-		style=\"
-		
-				
-					
-					
-					float: left;
-										
-					\">";
+		echo "<div id=$m->id style=\"float: left;\">";
 		sc_mini_meme($m->id);
 		echo "</div>";
 	}
