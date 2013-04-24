@@ -69,7 +69,8 @@ function sc_rgb2html($r, $g=-1, $b=-1){
     return '#'.$color;
 }
 /////////////////////////////////////////////////////////////////////////
-function sc_picthumb($zimg,$w,$h,$s) { eval(scg());      
+function sc_picthumb($zimg,$w,$h,$s) { eval(scg());
+$zimg=str_replace("'","\'",$zimg);
 $r="<img src='$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s'style='box-shadow: 5px 5px 5px #888888;border:solid 1px #777777;border-radius:5px;'>";
 return $r;
 }
