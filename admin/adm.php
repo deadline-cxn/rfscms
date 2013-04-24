@@ -478,7 +478,6 @@ function adm_action_f_theme_edit_delete_go() { eval(scg());
 	system("sudo rm $file");
 	adm_action_f_theme_edit();
 }
-
 function adm_action_f_theme_edit_delete() { eval(scg());
 	$file="$RFS_SITE_PATH/themes/$thm/$dfile";
 	sc_confirmform(	"Delete $file<br><br><img src=\"$RFS_SITE_URL/themes/$thm/$dfile\" width=500> ",
@@ -489,7 +488,6 @@ function adm_action_f_theme_edit_delete() { eval(scg());
 						
 						);
 }
-
 function adm_action_f_theme_edit_save_t_php() { eval(scg());
 /*
 <?
@@ -525,69 +523,90 @@ $RFSW_LINK_IMAGE="$RFS_SITE_URL/modules/wiki/images/link.png";
 	else 
 		sc_info("FILE SAVED","WHITE","GREEN");
 }
-
-function adm_action_f_theme_edit_t_php() { eval(scg()); ?>
-												
-										<div id="file_status"></div>
-							
-										<script language="Javascript" 
-										type="text/javascript" 
-										src="<? echo $RFS_SITE_URL ?>/3rdparty/editarea/edit_area/edit_area_full.js">
-										</script>
-																				
-										<script language="Javascript"
-										type="text/javascript"> // initialisation
-																			
-										function save_t_php(ta,taval) {
-												var http=new XMLHttpRequest();
-												var url = "<? echo $RFS_SITE_URL; ?>/admin/adm.php";
-												var params = "action=f_theme_edit_save_t_php&thm=<? echo $thm; ?>&taval="+encodeURIComponent(taval);
-												document.getElementById("file_status").innerHTML="SAVING FILE....";
-												http.open("POST", url, true);
-												http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-												http.setRequestHeader("Content-length", params.length);
-												http.setRequestHeader("Connection", "close");
-												http.onreadystatechange = function() {
-														if(http.readyState == 4 && http.status == 200) {
-															var outward=url+"?action=f_theme_edit&thm=<? echo $thm; ?>";
-															document.getElementById("file_status").innerHTML=http.responseText+"<a href="+outward+">Continue</a>";
-													}
-												}
-												http.send(params);
-										}
-
-										editAreaLoader.init({ //
-										id: "codecode_t_php" //
-										,start_highlight: true //
-										,font_size: "8" //
-										,font_family: "verdana, monospace" //
-										,allow_resize: "n" //
-										,allow_toggle: false //
-										,language: "en" //
-										,syntax: "php" //
-										,toolbar: "save,select_font" //
-										// charmap, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
-										//new_document, save, load, |,
-										,load_callback: "my_load" //
-										,save_callback: "save_t_php" //
-										,plugins: "charmap" //
-										,charmap_default: "arrows" }); // 
-										</script> 
-										
-										<?
-							
+function adm_action_f_theme_edit_t_php() { eval(scg()); 
+	echo '	<div id="file_status"></div>
+		<script language="Javascript" 
+		type="text/javascript" 
+		src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
+		</script>												
+		<script language="Javascript"
+		type="text/javascript"> // initialisation
+											
+		function save_t_php(ta,taval) {
+				var http=new XMLHttpRequest();
+				var url = "'.$RFS_SITE_URL.'/admin/adm.php";
+				var params = "action=f_theme_edit_save_t_php&thm='.$thm.'&taval="+encodeURIComponent(taval);
+				document.getElementById("file_status").innerHTML="SAVING FILE....";
+				http.open("POST", url, true);
+				http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				http.setRequestHeader("Content-length", params.length);
+				http.setRequestHeader("Connection", "close");
+				http.onreadystatechange = function() {
+						if(http.readyState == 4 && http.status == 200) {
+							var outward=url+"?action=f_theme_edit&thm='.$thm.'";
+							document.getElementById("file_status").innerHTML=http.responseText+"<a href="+outward+">Continue</a>";
+					}
+				}
+				http.send(params);
+		}
+		editAreaLoader.init({
+		id: "codecode_t_php"
+		,start_highlight: true
+		,font_size: "8"
+		,font_family: "verdana, monospace"
+		,allow_resize: "n"
+		,allow_toggle: false
+		,language: "en"
+		,syntax: "php"
+		,toolbar: "save,select_font"
+		,load_callback: "my_load"
+		,save_callback: "save_t_php"
+		,plugins: "charmap" 
+		,charmap_default: "arrows" });
+		</script> ';					
 							
 
-							echo "<textarea id=\"codecode_t_php\" style=\"height: 400px; width: 700px;\" name=\"codecode_t_php\">";
-							$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/$tphp");
-							$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
-							echo $fc;
+	echo "<textarea id=\"codecode_t_php\" style=\"height: 400px; width: 700px;\" name=\"codecode_t_php\">";
+	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/$tphp");
+	$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
+	echo $fc;
 							
 	include("footer.php");
 	exit();
 }
 
-
+function adm_action_f_theme_clone_go() { eval(scg());
+	$new_name=strtolower($new_name);
+	echo "Cloning $thm to $new_name<br>";
+	
+}
+function adm_action_f_theme_clone() { eval(scg());
+	sc_bf(	"$RFS_SITE_URL/admin/adm.php",
+			"action=f_theme_clone_go".$RFS_SITE_DELIMITER.
+			"thm=$thm".$RFS_SITE_DELIMITER.
+			"SHOW_TEXT_50#50#new_name=Enter cloned theme name",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			100,
+			"Clone" );
+	
+	/*
+	 sc_bf( "$RFS_SITE_URL/admin/adm.php",
+	       "action=f_modify_forum",
+	       "forum_list",
+		   "select * from forum_list where name='$forum_name';",
+	       "id",
+		   "",
+		   "omit",
+		   "",
+		   100,
+		   "submit" );
+		   */
+}
 function adm_action_f_theme_edit() { eval(scg());
 	echo "Editing theme [$thm]<br>";
 	$folder="$RFS_SITE_PATH/themes/$thm";
