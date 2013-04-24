@@ -38,7 +38,7 @@ function sc_mini_meme($inmid) { eval(scg());
 	$t=$m->name."-".time();
 	
 	echo "<div id='fl_$inmid' style=\"
-					height: 280px;
+					height: 300px;
 					margin: 5px;
 					box-shadow: 5px 5px 5px #888888;
 					border:solid 1px #777777;
