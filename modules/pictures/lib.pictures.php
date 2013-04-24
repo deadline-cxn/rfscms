@@ -32,4 +32,34 @@ function sc_module_mini_pictures($x) { eval(scg());
     echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php class=a_cat>More...</a>)</p>";
 }
 
+function sc_mini_meme($inmid) { eval(scg());
+echo "<div style=\"
+					margin: 5px;
+					box-shadow: 5px 5px 5px #888888;
+					border:solid 1px #777777;
+					border-radius: 5px;\" >";
+
+	$m=mfo1("select * from meme where id='$inmid'");
+	$t=$m->name."-".time();
+	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
+	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0></a><br>";
+	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
+	echo "
+		Based: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>";
+
+		sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",         24, 78,24,   0,0,      1,155,1, 70,70,0, 1,1   );
+		
+			echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
+					<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
+					<br>";
+
+	echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
+	if( ($data->id==$m->poster) ||
+		($data->access==255) ) {
+		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
+		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&mid=$m->id'>Delete</a>] ";
+	}
+	echo "</div>";
+}
+
 ?>

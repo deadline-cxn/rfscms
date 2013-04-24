@@ -68,7 +68,7 @@ if( $action=="showfont") {
 	if( (empty($icr)) &&
 		 (empty($icg)) && 
 		 (empty($icb)) ) { $icr=255; $icg=255; $icb=255; }
-	$color			= imagecolorallocate($image_b, $icr, $icg, $icb);
+	$color = imagecolorallocate($image_b, $icr, $icg, $icb);
 	
 	
 	if($hideborder!=true)
@@ -99,7 +99,6 @@ if( $action=="showfont") {
     //////////////////////////////////////////// MERGE PICTURE WITH TEXT
 	$mid=$_REQUEST['mid'];
 	$meme=mfo1("select * from meme where id='$mid'");
-	
 	
 	$pic=mfo1("select * from pictures where id='$meme->basepic'");
 	$ptf=$RFS_SITE_PATH."/".$pic->url;
