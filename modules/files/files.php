@@ -1145,6 +1145,8 @@ for($i=0;$i<$numcats;$i++) {
 			echo "<td class=sc_top_file_table> </td>";
 			echo "<td class=sc_top_file_table> </td>";
 			echo "<td class=sc_top_file_table> </td>";
+			echo "<td class=sc_top_file_table> </td>";
+			echo "<td class=sc_top_file_table> </td>";
 			
 
 			echo "</tr>";
