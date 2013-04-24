@@ -821,7 +821,7 @@ if($action=="showmemes"){
 		echo "
         
         <div id=$m->id style='
-	//posfition:relative;
+	position:relative;
 	positifon:absolute; top:50%;
 	float: left; float: top;'>";
 	//        echo "<td valign=top align=center style='background-color: $clr;' >";
