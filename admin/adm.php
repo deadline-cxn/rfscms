@@ -54,9 +54,10 @@ if( $_REQUEST['db_queries']=="list" ) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 chdir( "../" );
-if($_REQUEST['action']=="f_theme_edit_save_t_php") {
+if(stristr($_REQUEST['action'],"ajx")) {
 	include("include/lib.all.php");
-	adm_action_f_theme_edit_save_t_php();
+	sc_do_action();
+	exit();
 }
 else
 	include( "header.php" );
@@ -479,7 +480,8 @@ function adm_action_f_theme_edit_delete() { eval(scg());
 						
 						);
 }
-function adm_action_f_theme_edit_save_t_php() { eval(scg());
+
+function adm_action_f_ajx_theme_edit_save_t_php() { eval(scg());
 	$thm=$_POST['thm'];
 	$taval=$_POST['taval'];
 	$taval=urldecode($taval);
@@ -493,19 +495,15 @@ function adm_action_f_theme_edit_save_t_php() { eval(scg());
 	else 
 		sc_info("FILE SAVED","WHITE","GREEN");
 }
+
 function adm_action_f_theme_edit_t_php() { eval(scg()); 
 	echo '	<div id="file_status"></div>
-		<script language="Javascript" 
-		type="text/javascript" 
-		src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
-		</script>
-		<script language="Javascript"
-		type="text/javascript"> // initialisation
+		<script>
 											
 		function save_t_php(ta,taval) {
 				var http=new XMLHttpRequest();
 				var url = "'.$RFS_SITE_URL.'/admin/adm.php";
-				var params = "action=f_theme_edit_save_t_php&thm='.$thm.'&taval="+encodeURIComponent(taval);
+				var params = "action=f_ajx_theme_edit_save_t_php&thm='.$thm.'&taval="+encodeURIComponent(taval);
 				document.getElementById("file_status").innerHTML="SAVING FILE....";
 				http.open("POST", url, true);
 				http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -535,12 +533,73 @@ function adm_action_f_theme_edit_t_php() { eval(scg());
 		,charmap_default: "arrows" });
 		</script> ';
 	echo "<textarea id=\"codecode_t_php\" style=\"height: 400px; width: 700px;\" name=\"codecode_t_php\">";
-	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/$tphp");
+	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.php");
 	$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
 	echo $fc;
 	include("footer.php");
 	exit();
 }
+
+
+function adm_action_f_ajx_theme_edit_save_t_css() { eval(scg());
+	$thm=$_POST['thm'];
+	$taval=$_POST['taval'];
+	$taval=urldecode($taval);
+	$taval=stripslashes($taval);
+	$file="$RFS_SITE_PATH/themes/$thm/t.css";
+	system("sudo mv $file $file.bak.".time());
+	system("sudo touch $file");
+	system("sudo chmod 777 $file");
+	if(!file_put_contents($file,$taval))
+		sc_info("ERROR SAVING FILE, CHECK PERMISSIONS","WHITE","RED");
+	else 
+		sc_info("FILE SAVED","WHITE","GREEN");
+}
+
+function adm_action_f_theme_edit_t_css() { eval(scg()); 
+	echo '	<div id="file_status"></div> <script>
+											
+		function save_t_css(ta,taval) {
+				var http=new XMLHttpRequest();
+				var url = "'.$RFS_SITE_URL.'/admin/adm.php";
+				var params = "action=f_ajx_theme_edit_save_t_css&thm='.$thm.'&taval="+encodeURIComponent(taval);
+				document.getElementById("file_status").innerHTML="SAVING FILE....";
+				http.open("POST", url, true);
+				http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				http.setRequestHeader("Content-length", params.length);
+				http.setRequestHeader("Connection", "close");
+				http.onreadystatechange = function() {
+						if(http.readyState == 4 && http.status == 200) {
+							var outward=url+"?action=f_theme_edit&thm='.$thm.'";
+							document.getElementById("file_status").innerHTML=http.responseText+"<a href="+outward+">Continue</a>";
+					}
+				}
+				http.send(params);
+		}
+		editAreaLoader.init({
+		id: "codecode_t_css"
+		,start_highlight: true
+		,font_size: "8"
+		,font_family: "verdana, monospace"
+		,allow_resize: "n"
+		,allow_toggle: false
+		,language: "en"
+		,syntax: "css"
+		,toolbar: "save,select_font"
+		,load_callback: "my_load"
+		,save_callback: "save_t_css"
+		,plugins: "charmap" 
+		,charmap_default: "arrows" });
+		</script> ';
+		
+	echo "<textarea id=\"codecode_t_css\" style=\"height: 400px; width: 700px;\" name=\"codecode_t_css\">";
+	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.css");
+	$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
+	echo $fc;
+	include("footer.php");
+	exit();
+}
+
 function adm_action_f_theme_clone_go() { eval(scg());
 	$new_name=strtolower($new_name);
 	echo "Cloning $thm to $new_name<br>";
@@ -580,8 +639,9 @@ function adm_action_f_theme_edit() { eval(scg());
 							echo "<hr>";
 							echo "<h1>$entry</h1>";
 							
-							echo "[edit this file]<br>";
 							
+							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_css&thm=$thm&tcss=$entry\">edit this file</a>]<br>";
+
 							sc_css_edit_form("$folder/$entry", "","");
 						}
 						break;

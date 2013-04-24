@@ -137,6 +137,7 @@ rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
 rfs_echo($RFS_SITE_JS_JQUERY);
 rfs_echo($RFS_SITE_JS_JQUERY_UI);
 rfs_echo($RFS_SITE_JS_COLOR);
+rfs_echo($RFS_SITE_JS_EDITAREA);
 
 //////////////////////////////////////////////
 // google analytics
@@ -147,8 +148,6 @@ sc_google_analytics();
 sc_mcount($data->name);
 
 //////////////////////////////////////////////
-// Automatic action function
-$px=explode("/",$_SERVER['PHP_SELF']);
-$_thisfunk=str_replace(" ","_",str_replace(".php","",$px[count($px)-1])."_action_$action");
-eval("if(function_exists(\"$_thisfunk\") == true) $_thisfunk(); else if(\$_SESSION[\"debug_msgs\"]==true) sc_info(\"DEBUG >> WARNING: MISSING $_thisfunk(); \",\"WHITE\",\"BLUE\");");
+// do action
+sc_do_action();
 ?>

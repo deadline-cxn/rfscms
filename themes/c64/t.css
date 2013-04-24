@@ -163,8 +163,8 @@ td
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    color:   #0397FF;
-	background-color: #008400; 
+	color:   #4D44DB;
+	background-color: #A397FF;
 }
 
 
@@ -197,24 +197,25 @@ td
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 18px;
-    color:   #4D44DB;
-	background-color: #73C7FF;
+	color:   #4D44DB;
+	background-color: #A397FF;
 }
 
 .sc_file_table_0
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    color:   #4D44DB;
-	background-color: #73C7FF;
+	color:   #4D44DB;
+	background-color: #A397FF;
 }
 
 .sc_file_table_1
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    color:   #4D44DB;
-	background-color: #73A7FF;
+    color: #A397FF;
+	background-color:   #4D44DB;
+
 }
 
 .sc_file_table_2
@@ -379,4 +380,3 @@ input, select, textarea
 
 
 }
-
