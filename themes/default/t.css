@@ -157,7 +157,6 @@ td {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
-	background-color: #005500;
 }
 
 .toptd {
@@ -166,15 +165,13 @@ td {
     font-style: italic;
     font-weight: bold;
     color:   #009900;
-	bdadckground-color: #000000;
 }
 
 .lefttd {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
-    color:   #00FF00;
-    background-color: #00FF00;
+    color:   #00FF00; 
 }
 
 th {
