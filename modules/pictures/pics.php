@@ -874,6 +874,7 @@ echo "<br style='clear: both;'>";
 	echo "</td>";
 
 ///////////// Private captions
+/*
 	echo "<td valign=top align=center width=240> ";
 	sc_info("Your Private Captions","BLACK","GREEN");
 	
@@ -925,6 +926,7 @@ echo "<br style='clear: both;'>";
 		echo"(You must login to create private captions)";
 	}
 	echo "</td>";
+	*/
 /////////// End Private captions
 
 ///////////// Last 5
