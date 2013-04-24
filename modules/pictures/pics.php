@@ -766,7 +766,7 @@ if($action=="showmemes"){
 
 	echo "<table border=0 width=100% cellpadding=0 cellspacing=0 > <tr><td valign=top align=center>";
 
-	sc_info("Public Captions","WHITE","PURPLE");
+	echo "<h1>Public Captions</h1>";
 
 	$rz=sc_query("select * from meme where 
         `private`!='yes'
@@ -786,7 +786,7 @@ if($action=="showmemes"){
 	$n=mysql_num_rows($r); 
 	
 	echo "<table border=0 width=100% cellpadding=0 cellspacing=0 ><tr>";
-	echo "<td align=center style='background-color: #990099'>";
+	echo "<td align=center >";
 	
 	if( $mtop > 0 ) {
 		$tmtop=$mtop-$mbot;
@@ -800,7 +800,7 @@ if($action=="showmemes"){
 		echo "<td align=center>[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow='>SHOW ALL CAPTIONS</a>]</td>";
 	}
 
-	echo "<td align=center style='background-color: #990099'>";
+	echo "<td align=center >";
 	if( ($mbot+$mtop) < $mtotal) {
 		
 		$mtop+=$mbot;
@@ -812,43 +812,37 @@ if($action=="showmemes"){
 	echo "</td>";
 	
 	echo "</tr></table>";
-	
-
     echo "<table border=0 width=100%>";
     echo "<tr><td style='float:left;'>";
 
-
 	for($i=0;$i<$n;$i++){
-		$m=mysql_fetch_object($r);	
-		$clr=sc_rgb2html(rand(66,120),0,rand(66,120));		
+		$m=mysql_fetch_object($r);
+		$clr=sc_rgb2html(rand(66,120),0,rand(66,120));
 		echo "
         
         <div id=$m->id style='
-       
-//posfition:relative;
-positifon:absolute; top:50%;
- float: left; float: top;'>
-        
-        ";
-//        echo "<td valign=top align=center style='background-color: $clr;' >";
+	//posfition:relative;
+	positifon:absolute; top:50%;
+	float: left; float: top;'>";
+	//        echo "<td valign=top align=center style='background-color: $clr;' >";
 		
 		$t=$m->name.$m->id;
 		//echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$m->id&owidth=$fullsize' target=_blank>
         echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?a=ms&mid=$m->id' target=_blank>
 
-		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0></a><br>";
+		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth&forcerender=1' border=0></a><br>";
 		
 		$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 
         echo "
 		Based: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>		";
     
-        sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",         24, 78,24,   0,0,      1,155,1, 70,70,0, 1,1   );
+        sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",24,78,24,0,0,1,155,1,70,70,0,1,1);
 
-                    echo "
-						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
-						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
-						<br>";
+		echo "
+			<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
+			<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
+			<br>";
 
 		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
 		if( ($data->id==$m->poster) ||
