@@ -441,21 +441,17 @@ function PMA_showMySQLDocu($chapter, $link, $big_icon = false, $anchor = '', $ju
         if (empty($link)) {
             $link = 'index';
         }
-        $mysql = '5.0';
+        $mysql = '5.5';
         $lang = 'en';
         if (defined('PMA_MYSQL_INT_VERSION')) {
-            if (PMA_MYSQL_INT_VERSION >= 50500) {
+            if (PMA_MYSQL_INT_VERSION >= 50600) {
+                $mysql = '5.6';
+            } else if (PMA_MYSQL_INT_VERSION >= 50500) {
                 $mysql = '5.5';
-                /* l10n: Please check that translation actually exists. */
-                $lang = _pgettext('MySQL 5.5 documentation language', 'en');
             } else if (PMA_MYSQL_INT_VERSION >= 50100) {
                 $mysql = '5.1';
-                /* l10n: Please check that translation actually exists. */
-                $lang = _pgettext('MySQL 5.1 documentation language', 'en');
             } else {
                 $mysql = '5.0';
-                /* l10n: Please check that translation actually exists. */
-                $lang = _pgettext('MySQL 5.0 documentation language', 'en');
             }
         }
         $url = $cfg['MySQLManualBase'] . '/' . $mysql . '/' . $lang . '/' . $link . '.html';
@@ -2931,57 +2927,7 @@ function PMA_extractFieldSpec($fieldspec)
 
     if ('enum' == $type || 'set' == $type) {
         // Define our working vars
-        $enum_set_values = array();
-        $working = "";
-        $in_string = false;
-        $index = 0;
-
-        // While there is another character to process
-        while (isset($fieldspec[$index])) {
-            // Grab the char to look at
-            $char = $fieldspec[$index];
-
-            // If it is a single quote, needs to be handled specially
-            if ($char == "'") {
-                // If we are not currently in a string, begin one
-                if (! $in_string) {
-                    $in_string = true;
-                    $working = "";
-                } else {
-                    // Otherwise, it may be either an end of a string,
-                    // or a 'double quote' which can be handled as-is
-                    // Check out the next character (if possible)
-                    $has_next = isset($fieldspec[$index + 1]);
-                    $next = $has_next ? $fieldspec[$index + 1] : null;
-
-                    //If we have reached the end of our 'working' string (because
-                    //there are no more chars,or the next char is not another quote)
-                    if (! $has_next || $next != "'") {
-                        $enum_set_values[] = $working;
-                        $in_string = false;
-
-                    } elseif ($next == "'") {
-                        // Otherwise, this is a 'double quote',
-                        // and can be added to the working string
-                        $working .= "'";
-                        // Skip the next char; we already know what it is
-                        $index++;
-                    }
-                }
-            } elseif ('\\' == $char
-                && isset($fieldspec[$index + 1])
-                && "'" == $fieldspec[$index + 1]
-            ) {
-                // escaping of a quote?
-                $working .= "'";
-                $index++;
-            } else {
-                // Otherwise, add it to our working string like normal
-                $working .= $char;
-            }
-            // Increment character index
-            $index++;
-        } // end while
+        $enum_set_values = PMA_parseEnumSetValues($fieldspec, false);
         $printtype = $type . '(' .  str_replace("','", "', '", $spec_in_brackets) . ')';
         $binary = false;
         $unsigned = false;
@@ -3260,8 +3206,10 @@ function PMA_ajaxResponse($message, $success = true, $extra_data = array())
     // At this point, other headers might have been sent;
     // even if $GLOBALS['is_header_sent'] is true,
     // we have to send these additional headers.
-    header('Cache-Control: no-cache');
-    header("Content-Type: application/json");
+    if (!defined('TESTSUITE')) {
+        header('Cache-Control: no-cache');
+        header("Content-Type: application/json");
+    }
 
     echo json_encode($response);
 
@@ -3804,7 +3752,7 @@ function PMA_getServerType()
     $server_type = 'MySQL';
     if (PMA_DRIZZLE) {
         $server_type = 'Drizzle';
-    } else if (strpos(PMA_MYSQL_STR_VERSION, 'mariadb') !== false) {
+    } else if (stripos(PMA_MYSQL_STR_VERSION, 'mariadb') !== false) {
         $server_type = 'MariaDB';
     } else if (stripos(PMA_MYSQL_VERSION_COMMENT, 'percona') !== false) {
         $server_type = 'Percona Server';
@@ -3845,10 +3793,11 @@ function PMA_printButton()
  *
  * @param string $definition The definition of the column
  *                           for which to parse the values
+ * @param bool   $escapeHtml Whether to escape html entitites
  *
  * @return array
  */
-function PMA_parseEnumSetValues($definition)
+function PMA_parseEnumSetValues($definition, $escapeHtml = true)
 {
     $values_string = htmlentities($definition);
     // There is a JS port of the below parser in functions.js
@@ -3879,6 +3828,11 @@ function PMA_parseEnumSetValues($definition)
     if (strlen($buffer) > 0) {
         // The leftovers in the buffer are the last value (if any)
         $values[] = $buffer;
+    }
+    if (! $escapeHtml) {
+        foreach ($values as $key => $value) {
+            $values[$key] = html_entity_decode($value, ENT_QUOTES);
+        }
     }
     return $values;
 }

@@ -18,16 +18,59 @@ if (! defined('PMA_NO_VARIABLES_IMPORT')) {
  *
  */
 require_once './libraries/common.inc.php';
+require_once './libraries/common.lib.php';
+
+/*
+ * Execute the query and return the result
+ */
+if(isset($_REQUEST['ajax_request']) && isset($_REQUEST['pos']) && isset($_REQUEST['session_max_rows'])) {
+
+    if (strlen($GLOBALS['table']) && strlen($GLOBALS['db'])) {
+        include './libraries/tbl_common.php';
+    }
+    else {
+        PMA_ajaxResponse(__('Error'), false);
+    }
+
+    $sql_limit_to_append = ' LIMIT ' . $_REQUEST['pos'] . ', ' . $_REQUEST['session_max_rows'] . " ";
+    $sql_query .= $sql_limit_to_append;
+
+    $data = array();
+    $result = PMA_DBI_try_query($sql_query);
+    while ($row = PMA_DBI_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+    if(empty($data))
+        PMA_ajaxResponse(__('Error'), false);
+
+    $sanitized_data = array();
+    foreach ($data as $data_row_number => $data_row) {
+        $tmp_row = array();
+        foreach ($data_row as $data_column => $data_value) {
+            $tmp_row[htmlspecialchars($data_column)] = htmlspecialchars($data_value);
+        }
+        $sanitized_data[] = $tmp_row;
+    }
+    $extra_data['chartData'] = json_encode($sanitized_data);
+    unset($sanitized_data);
+    PMA_ajaxResponse(null, true, $extra_data);
+}
 
 $GLOBALS['js_include'][] = 'tbl_chart.js';
-$GLOBALS['js_include'][] = 'highcharts/highcharts.js';
-/* Files required for chart exporting */
-$GLOBALS['js_include'][] = 'highcharts/exporting.js';
+$GLOBALS['js_include'][] = 'jqplot/jquery.jqplot.js';
+$GLOBALS['js_include'][] = 'jquery/jquery-ui-1.8.16.custom.js';
+$GLOBALS['js_include'][] = 'jqplot/plugins/jqplot.barRenderer.js';
+$GLOBALS['js_include'][] = 'jqplot/plugins/jqplot.canvasAxisLabelRenderer.js';
+$GLOBALS['js_include'][] = 'jqplot/plugins/jqplot.canvasTextRenderer.js';
+$GLOBALS['js_include'][] = 'jqplot/plugins/jqplot.categoryAxisRenderer.js';
+$GLOBALS['js_include'][] = 'jqplot/plugins/jqplot.pointLabels.js';
+$GLOBALS['js_include'][] = 'jqplot/plugins/jqplot.pieRenderer.js';
+
 /* < IE 9 doesn't support canvas natively */
 if (PMA_USR_BROWSER_AGENT == 'IE' && PMA_USR_BROWSER_VER < 9) {
     $GLOBALS['js_include'][] = 'canvg/flashcanvas.js';
 }
-$GLOBALS['js_include'][] = 'canvg/canvg.js';
+//$GLOBALS['js_include'][] = 'canvg/canvg.js';
 
 /**
  * Runs common work
@@ -50,11 +93,7 @@ if (strlen($GLOBALS['table'])) {
     include './libraries/server_links.inc.php';
 }
 
-/*
- * Execute the query and return the result
- */
 $data = array();
-
 $result = PMA_DBI_try_query($sql_query);
 while ($row = PMA_DBI_fetch_assoc($result)) {
     $data[] = $row;
@@ -80,7 +119,7 @@ url_query = '<?php echo $url_query;?>';
 </script>
 <!-- Display Chart options -->
 <div id="div_view_options">
-<form method="post" action="tbl_chart.php">
+<form method="post" id="tblchartform" action="tbl_chart.php">
 <?php echo PMA_generate_common_hidden_inputs($url_params); ?>
 <fieldset>
     <legend><?php echo __('Display chart'); ?></legend>
@@ -140,25 +179,17 @@ url_query = '<?php echo $url_query;?>';
         <input style="margin-top:0;" type="text" name="xaxis_label" id="xaxis_label"
             value="<?php echo ($yaxis == -1) ? __('X Values') : htmlspecialchars($keys[$yaxis]); ?>" /><br />
         <label for="yaxis_label"><?php echo __('Y-Axis label:'); ?></label>
-        <input type="text" name="yaxis_label" id="yaxis_label" value="<?php echo __('Y Values'); ?>" />
+        <input type="text" name="yaxis_label" id="yaxis_label" value="<?php echo __('Y Values'); ?>" /><br />
+        <label for="pos"><?php echo __('Start row') . ': ' . "\n"; ?></label>
+        <input type="text" name="pos" size="3" value="<?php echo $_SESSION['tmp_user_values']['pos']; ?>" /><br />
+        <label for="session_max_rows"><?php echo __('Number of rows') . ': ' . "\n"; ?></label>
+        <input type="text" name="session_max_rows" size="3" value="<?php echo (($_SESSION['tmp_user_values']['max_rows'] != 'all') ? $_SESSION['tmp_user_values']['max_rows'] : $GLOBALS['cfg']['MaxRows']); ?>" /><br />
+        <input type="submit" name="submit" class="Go" value="<?php echo __('Go'); ?>" />
+        <input type="hidden" name="sql_query" value="<?php echo htmlspecialchars($sql_query); ?>" />
     </div>
     <p style="clear:both;">&nbsp;</p>
     <div id="resizer" style="width:600px; height:400px;">
-        <div id="inner-resizer">
-            <div id="querychart" style="display:none;">
-<?php
-$sanitized_data = array();
-foreach ($data as $data_row_number => $data_row) {
-    $tmp_row = array();
-    foreach ($data_row as $data_column => $data_value) {
-        $tmp_row[htmlspecialchars($data_column)] = htmlspecialchars($data_value);
-    }
-    $sanitized_data[] = $tmp_row;
-} 
-echo json_encode($sanitized_data); 
-unset($sanitized_data);
-?>
-            </div>
+        <div id="querychart">
         </div>
     </div>
 </fieldset>

@@ -351,7 +351,7 @@ if ($GLOBALS['PMA_Config']->get('ForceSSL')
         } else {
             $port_number = 443;
         }
-        $url = 'https://' . $parsed['host'] . ':' . $port_number . '/' . $parsed['path'];
+        $url = 'https://' . $parsed['host'] . ':' . $port_number . $parsed['path'];
     }
     // Actually redirect
     PMA_sendHeaderLocation($url . PMA_generate_common_url($_GET, 'text'));
@@ -417,7 +417,6 @@ $goto_whitelist = array(
     'server_export.php',
     'server_import.php',
     'server_privileges.php',
-    'server_processlist.php',
     'server_sql.php',
     'server_status.php',
     'server_variables.php',
@@ -618,6 +617,8 @@ require './libraries/select_lang.lib.php';
  * check for errors occurred while loading configuration
  * this check is done here after loading language files to present errors in locale
  */
+$GLOBALS['PMA_Config']->checkPermissions();
+
 if ($GLOBALS['PMA_Config']->error_config_file) {
     $error = '<h1>' . __('Failed to read configuration file') . '</h1>'
         . _('This usually means there is a syntax error in it, please check any errors shown below.')

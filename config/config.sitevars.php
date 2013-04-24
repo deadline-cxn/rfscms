@@ -109,7 +109,7 @@ $RFS_SITE_LOGGED_IN_CODE   = "<div class=logged_in_box>\$RFS_SITE_SESSION_USER (
 $RFS_SITE_JS_JQUERY         = "<script src=\"\$RFS_SITE_URL/3rdparty/jquery/jquery.js\"></script>";
 $RFS_SITE_JS_JQUERY_UI      = "<script src=\"\$RFS_SITE_URL/themes/\$theme/jqueryui.js\"></script>";
 $RFS_SITE_JS_JQUERY_UI_CSS  = "<link type=\"text/css\" href=\"\$RFS_SITE_URL/themes/\$theme/jqueryui.css\" rel=\"stylesheet\" />";
-$RFS_SITE_JS_COLOR			= "<script src=\"\$RFS_SITE_URL/3rdparty/jscolor/jscolor.js\"></script>";
+$RFS_SITE_JS_COLOR          = "<script src=\"\$RFS_SITE_URL/3rdparty/jscolor/jscolor.js\"></script>";
 $RFS_SITE_JS_MOOTOOLS       = "<script src=\"\$RFS_SITE_URL/3rdparty/mootools/mootools.js\"></script>";
 $RFS_SITE_JS_EDITAREA       = "<script src=\"\$RFS_SITE_URL/3rdparty/editarea/edit_area/edit_area_full.js\"></script>";
 /////////////////////////////////////////////////////////////////////////////////////////

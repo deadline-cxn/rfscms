@@ -273,7 +273,9 @@ if ($asfile) {
         }
     }
     $filename = PMA_expandUserString($filename_template);
-    $filename = PMA_sanitize_filename($filename);
+    // remove dots in filename (coming from either the template or already
+    // part of the filename) to avoid a remote code execution vulnerability
+    $filename = PMA_sanitize_filename($filename, $replaceDots = true);
 
     // Grab basic dump extension and mime type
     // Check if the user already added extension; get the substring where the extension would be if it was included
@@ -638,7 +640,14 @@ if (!empty($asfile)) {
         }
     } elseif ($compression == 'gzip') {
         // 3. as a gzipped file
-        if (@function_exists('gzencode') && !@ini_get('zlib.output_compression')) {
+        if (@function_exists('gzencode') 
+            && ! @ini_get('zlib.output_compression')
+            // Here, we detect Apache's mod_deflate so we bet that
+            // this module is active for this instance of phpMyAdmin
+            // and therefore, will gzip encode the content
+            && ! (function_exists('apache_get_modules')
+                && in_array('mod_deflate', apache_get_modules()))
+            ) {
             // without the optional parameter level because it bug
             $dump_buffer = gzencode($dump_buffer);
         }

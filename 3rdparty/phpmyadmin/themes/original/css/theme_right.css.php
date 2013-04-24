@@ -2203,7 +2203,7 @@ fieldset .disabled-field td {
 }
 
 .CodeMirror {
-  font-size: 140%;
+  font-size: 100%;
   font-family: monospace;
   background: white;
   border: 1px solid black;
@@ -2355,20 +2355,6 @@ span.CodeMirror-selected {
 
 .data_full_width {
     width: 100%;
-}
-.cHide {
-    background: #D3DCE3 url(<?php echo $_SESSION['PMA_Theme']->getImgPath(); ?>col_hide.png);
-    color: #CCC;
-    cursor: pointer;
-    height: 16px;
-    margin-left: -5px;
-    margin-top: 0.3em;
-    position: absolute;
-    width: 16px;
-}
-
-.cHide:hover {
-    background-color: #AAA;
 }
 
 .cDrop {

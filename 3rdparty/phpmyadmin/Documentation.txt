@@ -1,4 +1,4 @@
-phpMyAdmin 3.5.2.2 Documentation
+phpMyAdmin 3.5.8.1 Documentation
 
   * Top
   * Requirements
@@ -1089,7 +1089,7 @@ $cfg['ShowTooltip'] boolean
     Defines whether to display table comment as tool-tip in left frame or not.
 $cfg['ShowTooltipAliasDB'] boolean
     If tool-tips are enabled and a DB comment is set, this will flip the
-    comment and the real name. That means that if you have a table called
+    comment and the real name. That means that if you have a database called
     'user0001' and add the comment 'MyName' on it, you will see the name
     'MyName' used consequently in the left frame and the tool-tip shows the
     real name of the DB.
@@ -1240,8 +1240,7 @@ $cfg['PropertiesNumColumns'] integer
 $cfg['DefaultTabServer'] string
     Defines the tab displayed by default on server view. Possible values:
     "main.php" (recommended for multi-user setups), "server_databases.php",
-    "server_status.php", "server_variables.php", "server_privileges.php" or
-    "server_processlist.php".
+    "server_status.php", "server_variables.php" or "server_privileges.php".
 $cfg['DefaultTabDatabase'] string
     Defines the tab displayed by default on database view. Possible values:
     "db_structure.php", "db_sql.php" or "db_search.php".
