@@ -241,12 +241,14 @@ function PMA_fatalError($error_message, $message_args = null)
  */
 function PMA_getPHPDocLink($target)
 {
-    /* Gettext does not have to be loaded yet */
-    if (function_exists('_pgettext')) {
-        /* l10n: Please check that translation actually exists. */
-        $lang = _pgettext('PHP documentation language', 'en');
-    } else {
-        $lang = 'en';
+    /* List of PHP documentation translations */
+    $php_doc_languages = array(
+        'pt_BR', 'zh', 'fr', 'de', 'it', 'ja', 'pl', 'ro', 'ru', 'fa', 'es', 'tr'
+    );
+
+    $lang = 'en';
+    if (in_array($GLOBALS['lang'], $php_doc_languages)) {
+        $lang = $GLOBALS['lang'];
     }
 
     return PMA_linkURL('http://php.net/manual/' . $lang . '/' . $target);
@@ -275,7 +277,12 @@ function PMA_warnMissingExtension($extension, $fatal = false, $extra = '')
     if ($fatal) {
         PMA_fatalError($message);
     } else {
-        trigger_error($message, E_USER_WARNING);
+        $GLOBALS['error_handler']->addError(
+            $message, 
+            E_USER_WARNING,
+            '',
+            '',
+            $escape=false);
     }
 }
 

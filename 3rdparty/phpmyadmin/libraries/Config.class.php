@@ -98,7 +98,7 @@ class PMA_Config
      */
     function checkSystem()
     {
-        $this->set('PMA_VERSION', '3.5.2.2');
+        $this->set('PMA_VERSION', '3.5.8.1');
         /**
          * @deprecated
          */
@@ -208,13 +208,36 @@ class PMA_Config
         )) {
             $this->set('PMA_USR_BROWSER_VER', $log_version[2]);
             $this->set('PMA_USR_BROWSER_AGENT', 'KONQUEROR');
+            // must check Chrome before Safari
+        } elseif (preg_match(
+            '@Mozilla/([0-9].[0-9]{1,2})@',
+            $HTTP_USER_AGENT,
+            $log_version)
+            && preg_match('@Chrome/([0-9]*)@', $HTTP_USER_AGENT, $log_version2)
+        ) {
+            $this->set('PMA_USR_BROWSER_VER', $log_version[1] . '.' . $log_version2[1]);
+            $this->set('PMA_USR_BROWSER_AGENT', 'CHROME');
+            // newer Safari
+        } elseif (preg_match(
+            '@Mozilla/([0-9].[0-9]{1,2})@',
+            $HTTP_USER_AGENT,
+            $log_version)
+            && preg_match('@Version/(.*) Safari@', $HTTP_USER_AGENT, $log_version2)
+        ) {
+            $this->set('PMA_USR_BROWSER_VER', $log_version2[1]);
+            $this->set('PMA_USR_BROWSER_AGENT', 'CHROME');
+            // older Safari
         } elseif (preg_match(
             '@Mozilla/([0-9].[0-9]{1,2})@',
             $HTTP_USER_AGENT,
             $log_version)
             && preg_match('@Safari/([0-9]*)@', $HTTP_USER_AGENT, $log_version2)
         ) {
-            $this->set('PMA_USR_BROWSER_VER', $log_version[1] . '.' . $log_version2[1]);
+            $this->set('PMA_USR_BROWSER_VER',
+                $log_version[1] 
+                . '.' 
+                . $log_version2[1]
+            );
             $this->set('PMA_USR_BROWSER_AGENT', 'SAFARI');
         } elseif (preg_match('@rv:1.9(.*)Gecko@', $HTTP_USER_AGENT)) {
             $this->set('PMA_USR_BROWSER_VER', '1.9');
@@ -444,8 +467,6 @@ class PMA_Config
         $this->settings = PMA_array_merge_recursive($this->settings, $cfg);
         $this->checkPmaAbsoluteUri();
         $this->checkFontsize();
-
-        $this->checkPermissions();
 
         // Handling of the collation must be done after merging of $cfg
         // (from config.inc.php) so that $cfg['DefaultConnectionCollation']
@@ -1346,6 +1367,12 @@ class PMA_Config
      */
     function removeCookie($cookie)
     {
+        if (defined('TESTSUITE')) {
+            if (isset($_COOKIE[$cookie])) {
+                unset($_COOKIE[$cookie]);
+            }
+            return true;
+        }
         return setcookie(
             $cookie,
             '',
@@ -1370,7 +1397,7 @@ class PMA_Config
      */
     function setCookie($cookie, $value, $default = null, $validity = null, $httponly = true)
     {
-        if ($validity == null) {
+        if ($validity === null) {
             $validity = 2592000;
         }
         if (strlen($value) && null !== $default && $value === $default) {
@@ -1394,6 +1421,10 @@ class PMA_Config
                 $v = 0;
             } else {
                 $v = time() + $validity;
+            }
+            if (defined('TESTSUITE')) {
+                $_COOKIE[$cookie] = $value;
+                return true;
             }
             return setcookie(
                 $cookie,
