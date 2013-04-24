@@ -11,7 +11,7 @@ body{
     font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
-    color: #000000;
+    color: #00FF00;
 }
 
 .warning {
@@ -161,10 +161,10 @@ td {
 
 .toptd {
     font-family: Verdana;
-    font-size: 56px;
+    font-size: 1px;
     font-style: italic;
     font-weight: bold;
-    color:   #009900;
+    color:   #000000;
 }
 
 .lefttd {
