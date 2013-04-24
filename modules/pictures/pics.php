@@ -834,17 +834,10 @@ if($action=="showmemes"){
 		style=\"
 		
 				
-					position:relative;
-					top: 50%;
+					
 					
 					float: left;
-					float: top;
-					
-					
-					
-					
-					
-					
+										
 					\">";
 		sc_mini_meme($m->id);
 		echo "</div>";
