@@ -33,19 +33,22 @@ function sc_module_mini_pictures($x) { eval(scg());
 }
 
 function sc_mini_meme($inmid) { eval(scg());
-echo "<div style=\"
-					height: 300px;
+
+	$m=mfo1("select * from meme where id='$inmid'");
+	$t=$m->name."-".time();
+	
+	echo "<div id='fl_$inmid' style=\"
+					height: 280px;
 					margin: 5px;
 					box-shadow: 5px 5px 5px #888888;
 					border:solid 1px #777777;
 					border-radius: 5px;
-					
 					\" >";
-
-	$m=mfo1("select * from meme where id='$inmid'");
-	$t=$m->name."-".time();
+	
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
-	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0></a><br>";
+	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0 
+	
+	style='max-height: 240px;' ></a><br>";
 	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 	echo "
 		Based: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>";
