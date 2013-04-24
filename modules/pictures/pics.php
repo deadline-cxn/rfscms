@@ -737,7 +737,6 @@ if($action=="muv"){
         $_SESSION[$muv]=true;
     } else {
         sc_info("Multiple upvoting is not allowed.","white","red");
-        
     }
 }
 /////////////////////////////////////////////////////////////////////////////////
@@ -753,37 +752,21 @@ if($action=="mdv"){
     }
     else {
         sc_info("Multiple downvoting is not allowed.","white","red");
-        
     }
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME show memes
 if($action=="showmemes"){
-
     sc_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
-
 	$donotshowcats=true;
-
 	echo "<table border=0 width=100% cellpadding=0 cellspacing=0 > <tr><td valign=top align=center>";
-
 	echo "<h1>Public Captions</h1>";
-
 	$rz=sc_query("select * from meme where 
         `private`!='yes'
         and `status` = 'SAVED'"); $mtotal=mysql_num_rows($rz);
-	
+
 	if(empty($mtop)) $mtop=0;
 	if(empty($mbot)) $mbot=$toget;
-
-	$q="select * from meme  ";
-	$q.=" where ";
-	if(!empty($onlyshow))
-		$q.=" `name`='$onlyshow' and";
-	$q.=" `private`<>'yes' and `status` = 'SAVED'";
-	$q.=" order by rating desc limit $mtop,$mbot ";
-
-	$r=sc_query($q);
-	$n=mysql_num_rows($r); 
 	
 	echo "<table border=0 width=100% cellpadding=0 cellspacing=0 ><tr>";
 	echo "<td align=center >";
@@ -814,106 +797,63 @@ if($action=="showmemes"){
 	echo "</tr></table>";
     echo "<table border=0 width=100%>";
     echo "<tr>";
+	
+	
 	///////////// Last 5
+	
 	echo "<td valign=top align=center width=210> ";
 	sc_info("Last 5 Captions","BLACK","YELLOW");
 	$r=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc");
 	for($i=0;$i<5;$i++) {
-
-		$clr=sc_rgb2html(rand(66,120),rand(66,120),0);
-		echo "<div style='background-color: $clr;' >";
-
-		$m=mysql_fetch_object($r);		
-		$t=$m->name."-".time();// /$t.png
-		echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
-        <img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0></a><br>";
-		$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-		//echo "Contributor: $muser->name<br>
-        echo "
-			Based: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>";
-
-            sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",         24, 78,24,   0,0,      1,155,1, 70,70,0, 1,1   );
-            
-                echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
-						<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
-						<br>";
-
-		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
-		if( ($data->id==$m->poster) ||
-			($data->access==255) ) {
-			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
-			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&mid=$m->id'>Delete</a>] ";
-		}
-		echo 
-		"</div>";
 		echo "<hr>";
+		$m=mysql_fetch_object($r);
+		sc_mini_meme($m->id);
 	}
 	echo "</td>";
-/////////// End Last 5	
+
+	/////////// End Last 5
 
 	
-	echo "<td style='float:left;'>";
+	$q="select * from meme  ";
+	$q.=" where ";
+	if(!empty($onlyshow))
+		$q.=" `name`='$onlyshow' and";
+	$q.=" `private`<>'yes' and `status` = 'SAVED'";
+	$q.=" order by rating desc limit $mtop,$mbot ";
+
+	$r=sc_query($q);
+	$n=mysql_num_rows($r); 
+	echo "<td style='float:left; overflow: auto; vertical-align:text-top;' >";
 
 	for($i=0;$i<$n;$i++){
+		
 		$m=mysql_fetch_object($r);
-		$clr=sc_rgb2html(rand(66,120),0,rand(66,120));
-		echo "
-        
-        <div id=$m->id style='
-	position:relative;
-	positifon:absolute; top:50%;
-	float: left; float: top;'>";
-	//        echo "<td valign=top align=center style='background-color: $clr;' >";
 		
-		$t=$m->name.$m->id;
-		//echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?id=$m->id&owidth=$fullsize' target=_blank>
-        echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?a=ms&mid=$m->id' target=_blank>
-
-		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth&forcerender=1' border=0></a><br>";
+		echo "<div id=$m->id
 		
-		$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-
-        echo "
-		Based: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>		";
-    
-        sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",24,78,24,0,0,1,155,1,70,70,0,1,1);
-
-		echo "
-			<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
-			<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
-			<br>";
-
-		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
-		if( ($data->id==$m->poster) ||
-			($data->access==255) ) {
-			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
-			echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&mid=$m->id'>Delete</a>] ";
-		}
-		echo "<br>";
-		//echo "<hr>";
-		// echo "</td>";
-		/*
-		$tr++;
-		if($tr== $mcols ) {
-			echo "</tr><tr>";
-			$tr=0;
-		}*/
-		echo "
-        
-        </div>
-        
-        ";
+		style=\"
+		
+				
+					position:relative;
+					top: 50%;
+					
+					float: left;
+					float: top;
+					
+					
+					
+					
+					
+					
+					\">";
+		sc_mini_meme($m->id);
+		echo "</div>";
 	}
-	// echo "</tr>";
-	//echo "</table>";
-  //  echo "</span>";
-
-echo "<br style='clear: both;'>";
-
+	echo "<br style='clear: both;'>";
 	echo "</td>";
 
-///////////// Private captions
-/*
+	///////////// Private captions
+	/*
 	echo "<td valign=top align=center width=240> ";
 	sc_info("Your Private Captions","BLACK","GREEN");
 	
