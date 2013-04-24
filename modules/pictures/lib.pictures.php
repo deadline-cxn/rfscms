@@ -34,10 +34,13 @@ function sc_module_mini_pictures($x) { eval(scg());
 
 function sc_mini_meme($inmid) { eval(scg());
 echo "<div style=\"
+					height: 300px;
 					margin: 5px;
 					box-shadow: 5px 5px 5px #888888;
 					border:solid 1px #777777;
-					border-radius: 5px;\" >";
+					border-radius: 5px;
+					
+					\" >";
 
 	$m=mfo1("select * from meme where id='$inmid'");
 	$t=$m->name."-".time();
