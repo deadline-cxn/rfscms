@@ -1941,6 +1941,48 @@ function adm_action_() {
 
     admin_menu_built_in();
 
+	finishadminpage();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+function admin_menu_built_in() { eval(scg());
+    
+        $arr=get_defined_functions();
+        foreach( $arr['user'] as $k=>$v ) {
+            if( stristr( $v,"adm_action_" ) ) {
+                if( !stristr( $v,"_lib_") ) {
+                    if( !stristr( $v,"_go" ) ) {
+                        if( !stristr( $v,"_f_" ) ) {
+                            $x=str_replace( "adm_action_","",$v );
+                            if(!empty($x)) {
+                                echo "<div style='	float:left; 
+															border: 1px solid #000000; 
+															margin: 5px; 
+															padding:5px 10px; 
+															background:#555535; 
+															border-radius:12px;' > ";
+															
+                                echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
+                                if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" ) ) {
+										echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
+                                } else {										
+										
+										 
+                                }
+								echo "</a><br>";
+								echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>";
+								echo ucwords(str_replace("_"," ",$x));
+								echo "</a>";
+								echo "</div>";
+							}
+                    }
+                }
+            }
+        }
+    }
+
+
 	$cres=sc_query( "select * from categories order by name asc" );
 	$ccount=mysql_num_rows( $cres );
 	for( $ci=0; $ci<$ccount; $ci++ ) {
@@ -1948,23 +1990,39 @@ function adm_action_() {
         $res=sc_query( "select * from admin_menu where category = '$cc->name' order by name asc" );
         $count=mysql_num_rows( $res );
         if( $count ) {
-            //echo "<h1>Administration Menu Category: $cc->name</h1>";
             for( $i=0; $i<$count; $i++ ) {
             $icon=mysql_fetch_object( $res );
 
-                echo "<div style='float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#353535; border-radius:12px; ' > ";
-                echo "<a href=\"";
+                echo "<div style='	float:left;
+										border: 1px solid #000000;
+										margin: 5px;
+										padding:5px 10px;
+										background:#357535;
+										border-radius:12px; ' > ";
+                
+					echo "<a href=\"";
                 $icon->url=str_replace( ";","%3b",$icon->url );
                 rfs_echo( $icon->url );
-
                 echo "\" target=\"$icon->target\">";
-
 
 						if(!file_exists("$RFS_SITE_PATH/$icon->icon"))
 							$icon->icon="images/icons/exclamation.png";
 						echo "<img
-						src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/$icon->icon&t=$icon->name&w=96&y=20\"
-						border='0'></a> ";
+src=\"$RFS_SITE_URL/include/button.php?
+im=$RFS_SITE_PATH/$icon->icon&
+t=$icon->name&
+w=64&
+h=64&
+y=20\"
+						border='0'></a><br>";
+						
+						
+echo "<a href=\""; 
+                $icon->url=str_replace( ";","%3b",$icon->url );
+                rfs_echo( $icon->url );
+                echo "\" target=\"$icon->target\" style='color: #cFcF00;'>";
+						echo ucwords(str_replace("_"," ",$icon->name));
+						echo "</a>";
 
                 if( $_SESSION['admed']=="on" ) {
 
@@ -1983,45 +2041,9 @@ function adm_action_() {
                 }
                 echo "</div>";
             }
-            //echo "<div style='clear: left; '>&nbsp;</div> <hr>";
         }
 
     }
-
-
-
-	finishadminpage();
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-function admin_menu_built_in() { eval(scg());
-    // echo "<h1>Administration Menu Built In</h1>";
-        $arr=get_defined_functions();
-        foreach( $arr['user'] as $k=>$v ) {
-            if( stristr( $v,"adm_action_" ) ) {
-                if( !stristr( $v,"_lib_") ) {
-                    if( !stristr( $v,"_go" ) ) {
-                        if( !stristr( $v,"_f_" ) ) {
-                            $x=str_replace( "adm_action_","",$v );
-                            if(!empty($x)) {
-                                echo "<div style='float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#353535; border-radius:12px;' > ";
-                                echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
-                                if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" ) ) {
-                                    echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
-                                } else {
-                                    echo $x;
-                                }
-                                echo "</a><br>";
-                                echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>$x</a>";
-                                echo "</div>";
-                        }
-                    }
-                }
-            }
-        }
-    }
-	
 
 
     $mods=sc_get_modules_array() ;
@@ -2038,36 +2060,41 @@ function admin_menu_built_in() { eval(scg());
 
         if($func_count) {
 
-         //   echo " $mv <hr>";
             foreach( $arr['user'] as $k=>$v ) {
                 if( stristr( $v,"_lib_$mv") ) {
                     $x=str_replace( "adm_action_","",$v );
 
                             if( !empty( $x ) ) {
 
-                            echo "<div style='float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#353535; border-radius:12px; ' > ";
-                            echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
+									echo "<div style='	float:left;
+															border: 1px solid #000000;
+															margin: 5px;
+															padding:5px 10px;
+															background:#353575;
+															border-radius:12px; ' > ";
+															
+									echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
 
-								$px=str_replace("lib_" ,""   ,$x);
-								$px=str_replace("$mv"."_" ,""   ,$px);
-								$px=str_replace("_"    ," "  ,$px);
-								$px=ucwords($px);
-								$fn=strtolower($px);
-								$fn=str_replace(" ","_",$fn);
-								$img="$RFS_SITE_PATH/modules/$mv/images/$fn.png";
+									$px=str_replace("lib_" ,""   ,$x);
+									$px=str_replace("$mv"."_" ,""   ,$px);
+									$px=str_replace("_"    ," "  ,$px);
+									$px=ucwords($px);
+									$fn=strtolower($px);
+									$fn=str_replace(" ","_",$fn);
+									$img="$RFS_SITE_PATH/modules/$mv/images/$fn.png";
 
-								// if(!file_exists("$RFS_SITE_PATH/$icon->icon"))    $icon->icon="modules/$mv/images/icons/exclamation.png";
-								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=64&y=64\" border='0' ></a> ";
-								if( !file_exists( $img ) ) { //"$RFS_SITE_PATH/modules/$mv/images/$px.png" ) ){
-								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=64&y=64\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
+								
+									$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=64&h=64&y=20\" border='0' ></a> ";
+									if( !file_exists( $img ) ) {
+										$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=64&h=64&y=20\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
 
-									// echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
+								
 								}
 
 								echo $png;		
-                            echo "</a>";
-
-                            // echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>$x</a>";
+                            echo "</a><br>";
+							
+                            echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>$px</a>";
 
                             echo "</div>";
                         }
@@ -2078,9 +2105,6 @@ function admin_menu_built_in() { eval(scg());
     }
 	
 	echo "<div style='clear: left; '>&nbsp;</div>";	
-    // echo "<div style='clear: left; '>&nbsp;</div>";
-    // echo "<br><hr>";
-
 }
 
 function finishadminpage() {
