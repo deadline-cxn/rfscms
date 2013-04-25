@@ -1,0 +1,35 @@
+#####################################################################################
+#
+# REFERENCES:
+#
+# http://www.google.com/support/webmasters/
+# http://www.robotstxt.org/wc/faq.html
+# http://en.wikipedia.org/wiki/Robots.txt
+# http://en.wikipedia.org/wiki/Robots_Exclusion_Standard
+#
+
+#####################################################################################
+# Match all bots
+User-agent: *
+
+#####################################################################################
+# Set number of seconds to wait between requests to 5 seconds (may be ignored)
+Crawl-delay: 5
+
+# Set maximum rate to one page every 5 seconds (may be ignored)
+Request-rate: 1/5
+
+#####################################################################################
+# Only visit between 6:00 AM and 8:45 AM UT (GMT) (may be ignored)
+# Visit-time: 0600-0845
+
+Disallow: *action=*     # do not follow action urls
+Disallow: /*javascript* # remove any javascript links, per log analysis
+Disallow: /admin/       # administrator links
+Disallow: /install/     # installer
+Disallow: /config/      # config
+Disallow: /*login.php   # login
+Disallow: /facebook/    # facebook
+Disallow: *theme=*      # theme changes
+
+# End file
