@@ -171,7 +171,7 @@ function wikitext($text) { eval(scg());
 										,charmap_default: "arrows" }); // 
 										</script> ';
 
-							$outtext.="<center><textarea id=\"codecode_$t\" style=\"height: 100px; width: 80%;\" name=\"codecode_$t\">";
+							$outtext.="<center><textarea id=\"codecode_$t\" style=\"height: 30; width: 80%;\" name=\"codecode_$t\">";
 							$outtext.=stripslashes(str_replace("<","&lt;",$ila2[1]))."</textarea>";
                     }
                     if($fnc=="codeend"){ 
