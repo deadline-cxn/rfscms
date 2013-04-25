@@ -1937,7 +1937,7 @@ function adm_action_() {
 
 	echo "</td></tr></table>";
 
-    echo "<hr>";
+    //echo "<hr>";
 
     admin_menu_built_in();
 
@@ -1948,7 +1948,7 @@ function adm_action_() {
         $res=sc_query( "select * from admin_menu where category = '$cc->name' order by name asc" );
         $count=mysql_num_rows( $res );
         if( $count ) {
-            echo "<h1>Administration Menu Category: $cc->name</h1>";
+            //echo "<h1>Administration Menu Category: $cc->name</h1>";
             for( $i=0; $i<$count; $i++ ) {
             $icon=mysql_fetch_object( $res );
 
@@ -1960,11 +1960,11 @@ function adm_action_() {
                 echo "\" target=\"$icon->target\">";
 
 
-if(!file_exists("$RFS_SITE_PATH/$icon->icon"))
-    $icon->icon="images/icons/exclamation.png";
-echo "<img
-src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/$icon->icon&t=$icon->name&w=96&y=20\"
-border='0'></a> ";
+						if(!file_exists("$RFS_SITE_PATH/$icon->icon"))
+							$icon->icon="images/icons/exclamation.png";
+						echo "<img
+						src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/$icon->icon&t=$icon->name&w=96&y=20\"
+						border='0'></a> ";
 
                 if( $_SESSION['admed']=="on" ) {
 
@@ -1983,7 +1983,7 @@ border='0'></a> ";
                 }
                 echo "</div>";
             }
-            echo "<div style='clear: left; '>&nbsp;</div> <hr>";
+            //echo "<div style='clear: left; '>&nbsp;</div> <hr>";
         }
 
     }
@@ -1996,7 +1996,7 @@ border='0'></a> ";
 /////////////////////////////////////////////////////////////////////////////////////////
 
 function admin_menu_built_in() { eval(scg());
-    echo "<h1>Administration Menu Built In</h1>";
+    // echo "<h1>Administration Menu Built In</h1>";
         $arr=get_defined_functions();
         foreach( $arr['user'] as $k=>$v ) {
             if( stristr( $v,"adm_action_" ) ) {
@@ -2021,8 +2021,8 @@ function admin_menu_built_in() { eval(scg());
             }
         }
     }
-    echo "<div style='clear: left; '>&nbsp;</div>";
-    echo "<br><hr>";
+    // echo "<div style='clear: left; '>&nbsp;</div>";
+    // echo "<br><hr>";
 
 }
 
@@ -2035,7 +2035,7 @@ function finishadminpage() {
 	foreach( $arr['user'] as $k=>$v ) { echo "$v"; }
 	echo " -->";
 
-    echo "<h1>Administration Menu Module Administration</h1>";
+   // echo "<h1>Administration Menu Module Administration</h1>";
 
 
     $mods=sc_get_modules_array() ;
@@ -2052,7 +2052,7 @@ function finishadminpage() {
 
         if($func_count) {
 
-            echo " $mv <hr>";
+         //   echo " $mv <hr>";
             foreach( $arr['user'] as $k=>$v ) {
                 if( stristr( $v,"_lib_$mv") ) {
                     $x=str_replace( "adm_action_","",$v );
@@ -2062,23 +2062,23 @@ function finishadminpage() {
                             echo "<div style='float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#353535; border-radius:12px; ' > ";
                             echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
 
-$px=str_replace("lib_" ,""   ,$x);
-$px=str_replace("$mv"."_" ,""   ,$px);
-$px=str_replace("_"    ," "  ,$px);
-$px=ucwords($px);
-$fn=strtolower($px);
-$fn=str_replace(" ","_",$fn);
-$img="$RFS_SITE_PATH/modules/$mv/images/$fn.png";
+								$px=str_replace("lib_" ,""   ,$x);
+								$px=str_replace("$mv"."_" ,""   ,$px);
+								$px=str_replace("_"    ," "  ,$px);
+								$px=ucwords($px);
+								$fn=strtolower($px);
+								$fn=str_replace(" ","_",$fn);
+								$img="$RFS_SITE_PATH/modules/$mv/images/$fn.png";
 
-// if(!file_exists("$RFS_SITE_PATH/$icon->icon"))    $icon->icon="modules/$mv/images/icons/exclamation.png";
-$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=96&y=20\" border='0' ></a> ";
-if( !file_exists( $img ) ) { //"$RFS_SITE_PATH/modules/$mv/images/$px.png" ) ){
-$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=96&y=20\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
+								// if(!file_exists("$RFS_SITE_PATH/$icon->icon"))    $icon->icon="modules/$mv/images/icons/exclamation.png";
+								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=96&y=20\" border='0' ></a> ";
+								if( !file_exists( $img ) ) { //"$RFS_SITE_PATH/modules/$mv/images/$px.png" ) ){
+								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=96&y=20\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
 
-    // echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
-}
+									// echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
+								}
 
-echo $png;
+								echo $png;		
                             echo "</a>";
 
                             // echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>$x</a>";
@@ -2087,11 +2087,13 @@ echo $png;
                         }
                     }
                 }
-                echo "<div style='clear: left; '>&nbsp;</div>";
+                
         }
     }
+	
+	echo "<div style='clear: left; '>&nbsp;</div>";
 
-	echo "</p>";
+	// echo "</p>";
 	//echo "</td></tr></table>";
 	include( "footer.php" );
 	exit();
