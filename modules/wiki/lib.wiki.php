@@ -151,25 +151,34 @@ function wikitext($text) { eval(scg());
                         
                     if($fnc=="codestart"){
            				$t=time();                            
-							// show_codearea("sc_bf_codearea", 15, 80,"wut",$ila2[1]);
-							$outtext.='<script language="Javascript" type="text/javascript" src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js"></script> 	<script language="Javascript" type="text/javascript"> // initialisation
-										editAreaLoader.init({
-										id: "codecode_'.$t.'"
-										,start_highlight: true
-										,font_size: "8"
-										,font_family: "terminal, verdana, monospace"
-										,allow_resize: "y"
-										,allow_toggle: false
-										,language: "en"
-										,syntax: "php"
-										,toolbar: " select_font"										
-										,load_callback: "my_load"
-										,save_callback: "my_save"
-										,plugins: "charmap" //
-										,charmap_default: "arrows" }); // 
+							$outtext.='<script
+												language="Javascript"
+												type="text/javascript"
+												src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
+										</script>
+										<script>
+											editAreaLoader.init({ 
+												id: "codecode_'.$t.'",
+												start_highlight: true,
+												font_size: "8",
+												font_family: "terminal, verdana, monospace",
+												allow_resize: "y",
+												allow_toggle: false,
+												language: "en",
+												syntax: "php",
+												toolbar: " ",
+												load_callback: "my_load",
+												save_callback: "my_save",
+												plugins: "charmap",
+												charmap_default: "arrows" });
 										</script> ';
 
-							$outtext.="<center><textarea id=\"codecode_$t\" style=\"height: 30; width: 80%;\" name=\"codecode_$t\">";
+							$lns=substr_count($ila2[1],"\n");
+							$outtext.="<center><textarea 
+												id=\"codecode_$t\"
+												rows=\"$lns\"
+												style=\"width: 80%;\"
+												name=\"codecode_$t\">";
 							$outtext.=stripslashes(str_replace("<","&lt;",$ila2[1]))."</textarea>";
                     }
                     if($fnc=="codeend"){ 
