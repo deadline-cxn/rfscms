@@ -117,11 +117,12 @@ else {
 		echo "<table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";
 		
 		echo "<td class=lefttd valign=top>";
-		echo "<table border=0 cellpadding=5 cellspacing=0 width=100% ><tr><td valign=top class=lefttd >";
+		
+		//echo "<table border=0 cellpadding=5 cellspacing=0 width=100% ><tr><td valign=top class=lefttd >";
 
     	sc_draw_module("left");
 
-		echo "</td></tr></table>";
+		//echo "</td></tr></table>";
 		echo "</td>";
 		
 		echo "<td valign=top class=midtd>";
