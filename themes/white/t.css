@@ -333,13 +333,16 @@ th
 	background-color: #FFFFFF;
 }
 
-.lefttd
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 10px;
-    ffont-weight: bold;
-    color:   #777777;
-	background-color: #FFFFFF;
+
+.lefttd{
+	margin: 0px;
+	width: 1px;
+}
+
+
+.righttd{
+	margin: 0px;
+	width: 1px;
 }
 
 a
