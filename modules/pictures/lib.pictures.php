@@ -29,8 +29,8 @@ function sc_module_mini_pictures($x) { eval(scg());
         echo "</td></tr>";
     }
 	echo "<tr><td></td><td>";
-echo "<p align=right>(<a href=$RFS_SITE_URL/modules/pictures/pics.php?action=random class=a_cat>Random Picture</a>)";
-    echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php class=a_cat>More...</a>)</p>";
+    echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php?action=random class=a_cat>Random Picture</a>)<br>";
+    echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php class=a_cat>More...</a>)";
 	echo "</td></tr>";
 	
 	echo "</table>";
