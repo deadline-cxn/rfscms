@@ -7,6 +7,12 @@ body{
 	background-attachment:fixed;
 }
 
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
+}
+
 .slogan {
     font-family: Verdana;
     font-size: 12px;

@@ -2,6 +2,13 @@ body {
 	background-color: #5555ff;
 }
 
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
+}
+
 input, select, textarea {
     font-family: Verdana;
     font-size : 12px;
@@ -72,4 +79,6 @@ input, select, textarea {
     color: #00f; 
 }
 
-
+td {
+	color:#9999FF;
+}

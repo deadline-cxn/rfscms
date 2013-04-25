@@ -1,4 +1,3 @@
-
 html, body
 {
 	height: 100%;
@@ -10,6 +9,13 @@ html, body
     font-style: normal;
     background-color: #000000;
     margin:  0px;
+}
+
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
 }
 
 .tdfilehead{
@@ -779,4 +785,3 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 }
-

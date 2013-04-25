@@ -1,5 +1,6 @@
 body
 {
+   margin: 0px;
     scrollbar-base-color: #f08888;
     scrollbar-arrow-color: #f0FFFF;
     scrollbar-DarkShadow-Color: #f04444;
@@ -7,6 +8,13 @@ body
     font-size: 12px;
     font-style: normal;
     background-color: #FF8018;	
+}
+
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
 }
 
 .slogan
@@ -268,4 +276,3 @@ input, select, textarea
 
 
 }
-

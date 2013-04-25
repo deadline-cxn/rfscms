@@ -1,9 +1,19 @@
-
+body {
+margin: 0px;
+margin-right: 5px;
+background-color: #ffdd88;
+}
 
 td{
     font-family: Verdana;
     font-size: 12px;
+}
 
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
 }
 
 .news_img_td {
@@ -19,35 +29,32 @@ td{
 	vertical-align: top;
 }
 
-.tabletop
-{
+.tabletop{
     font-family: Verdana;
     font-size: 16px;
     color: #333377;
 }
 
 hr{
-    border: 1px;
-    border-color: #c2c7f6;
+    width: 98%;
+    border: 2px;
+    border-color: #000000;
     border-style: dotted;
 }
 
-.sc_top_menu_table
-{
+.sc_top_menu_table{
     font-family: Verdana;
     font-weight: bold;
     font-size: 12px;
-    color: #555599;
-    
-    background-color: #c2c7f6;
+    color: #aa8844;    
+    background-color: #885522;
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 5px;    
 }
 
-.thirdtd
-{
+.thirdtd{
     height: 16px;
     font-family: Verdana;
     font-size: 12px;
@@ -55,32 +62,34 @@ hr{
     background-color: #7376ac;
 }
 
-.contenttd
-{
+.contenttd{
     color: #000000;
+    background-color: #aa8844;
 }
 
-.middle_cont
-{
+.middle_cont{
     border: 1px;
     border-color: #000000;
     border-style: solid;
 }
     
-.toptd
-{
+.toptd{
     font-family: Verdana;
-    font-size: 32px;
-    font-weight: bold;
-    	
-	
-    padding-left: 45px;
-    padding-top: 8px;
-    padding-right: 8px;
-    padding-bottom: 8px;
-    
-    color: #c2c7FF;
-    background-color: #9396c3;
+    font-size: 1px;
+    color: #b39683;
+    background-color: #b39683;
+}
+
+.lefttd {
+	width: 1px;
+}
+
+
+.slogan {
+    font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+    color: #F2c7aF;
 }
 
 
@@ -103,23 +112,15 @@ hr{
     border-style: dashed;
 }
 
-.slogan {
-    font-family: Verdana;
-    font-size: 12px;
-    font-style: italic ;
-    color: #c2c7FF;
-    background-color: #9396c3;
-}
 
-.confirmform
-{
+.confirmform {
 	padding: 45px;
-    border-top-left-radius: 2em;
+        border-top-left-radius: 2em;
 	border-top-right-radius: 2em;
 	border-bottom-left-radius: 2em;
 	border-bottom-right-radius: 2em;
-    border-color: #000000;
-    border-width: 2px;
+        border-color: #000000;
+        border-width: 2px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: normal;
 	font-style: normal;
@@ -127,17 +128,13 @@ hr{
 	background-color: #880000;
 }
 
-
-input,select,textarea
-{
+input,select,textarea {
     font-family: Arial;
-    font-size: 12px;
-    
+    font-size: 12px;   
     color: #000000;
     border: 1px;
     border-color: #c2c7f6;
     border-style: solid;
-    background-color: #a2a7d6;
+    background-color: #f2a786;
 
 }
-
