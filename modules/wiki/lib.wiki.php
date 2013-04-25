@@ -153,20 +153,18 @@ function wikitext($text) { eval(scg());
            				$t=time();                            
 							// show_codearea("sc_bf_codearea", 15, 80,"wut",$ila2[1]);
 							$outtext.='<script language="Javascript" type="text/javascript" src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js"></script> 	<script language="Javascript" type="text/javascript"> // initialisation
-										editAreaLoader.init({ //
-										id: "codecode_'.$t.'" //
-										,start_highlight: true //
-										,font_size: "8" //
-										,font_family: "verdana, monospace" //
-										,allow_resize: "n" //
-										,allow_toggle: false //
-										,language: "en" //
-										,syntax: "php" //
-										,toolbar: " select_font" //
-										// charmap, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
-										//new_document, save, load, |,
-										,load_callback: "my_load" //
-										,save_callback: "my_save" //
+										editAreaLoader.init({
+										id: "codecode_'.$t.'"
+										,start_highlight: true
+										,font_size: "8"
+										,font_family: "terminal, verdana, monospace"
+										,allow_resize: "y"
+										,allow_toggle: false
+										,language: "en"
+										,syntax: "php"
+										,toolbar: " select_font"										
+										,load_callback: "my_load"
+										,save_callback: "my_save"
 										,plugins: "charmap" //
 										,charmap_default: "arrows" }); // 
 										</script> ';
