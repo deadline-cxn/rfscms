@@ -39,7 +39,6 @@ else {
 	rfs_echo($RFS_SITE_HEAD_CLOSE);
 	
 	rfs_echo($RFS_SITE_BODY_OPEN);
-	//.echo "<body topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n";
 	
 	if($_SESSION['admin_show_top']!="hide") {	
 
@@ -49,11 +48,9 @@ else {
 		if ($RFS_SITE_TTF_TOP)  {
 			$clr 	= sc_html2rgb($RFS_SITE_TTF_TOP_COLOR);
            $bclr	= sc_html2rgb($RFS_SITE_TTF_TOP_BGCOLOR);
-
 			echo sc_image_text(
 						$RFS_SITE_NAME,
-						$RFS_SITE_TTF_TOP_FONT,
-						
+						$RFS_SITE_TTF_TOP_FONT,						
 						$RFS_SITE_TTF_TOP_FONT_SIZE,
 						812,0,
 						0   + $RFS_SITE_TTF_TOP_FONT_X_OFFSET,
@@ -61,8 +58,19 @@ else {
 						$clr[0], $clr[1], $clr[2],
 						$bclr[0], $bclr[1], $bclr[2],
 						1,0 );
-		}else {
-			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_image.gif\" align=\"left\" border=\"0\">";
+		}
+		else {
+			$base_srch="themes/$theme/t.top_image";
+			$timg=0;
+			if(file_exists("$RFS_SITE_PATH/$base_srch.jpg")) $timg=$base_srch.".jpg";
+			if(file_exists("$RFS_SITE_PATH/$base_srch.gif")) $timg=$base_srch.".gif";
+			if(file_exists("$RFS_SITE_PATH/$base_srch.png")) $timg=$base_srch.".png";
+			if($timg) {
+				echo "<img src=\"$RFS_SITE_URL/$timg\" align=\"left\" border=\"0\">";
+			}
+			else {
+				echo "<div class=\"top_site_name\">$RFS_SITE_NAME</div>";
+			}
 		}
 		echo "</td><td class=toptd> ";
 
@@ -96,8 +104,7 @@ else {
 		echo "<tr class=sc_top_menu_table>";
 
 		sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
-
-		//echo "<td class=sc_top_menu_table width=98% >&nbsp;</td>";
+		
 		echo "<td align=right class=sc_top_menu_table >";
 		echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
 		echo "<td class=sc_top_menu_table class=contenttd>";
@@ -109,7 +116,7 @@ else {
 		echo "</td></tr></table>";
 		echo "<table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";
 		
-		echo "<td class=lefttd valign=top width=200>";
+		echo "<td class=lefttd valign=top>";
 		echo "<table border=0 cellpadding=5 cellspacing=0 width=100% ><tr><td valign=top class=lefttd >";
 
     	sc_draw_module("left");
@@ -118,16 +125,20 @@ else {
 		echo "</td>";
 		
 		echo "<td valign=top class=midtd>";
+		/*
+		
 		echo "<table border=0 cellpadding=0 cellspacing=0 width=100% >";
 		echo "<tr><td valign=top class=midtd width=41>";
+		*/
 		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_left_corner.gif"))    {
-			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_left_corner.gif\">";
+			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_left_corner.gif\" align=left>";
 			echo "</td><td>";
 		}
 		else
 			echo "&nbsp;";
-		echo "</td></tr>";
-		echo "<tr><td width=80% >";
+		//echo "</td></tr></table>";
+		//echo "<tr><td class=\"midtd\">";
+		
 		
 	} else {
 	}

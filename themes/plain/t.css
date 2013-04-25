@@ -1,4 +1,6 @@
-
+body {
+	font-family: Verdana;
+}
 
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;
@@ -28,14 +30,40 @@
 
 }
 
+.top_site_name{
+    font-family: Verdana;
+    font-size: 32px;
+    font-weight: bold;
+    padding-left: 45px;
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    color: #000000;
+}
+
 .toptd{
-    font-size: 6px;
-    color: #FFFFFF;
+    color: #000000;
 }
 .contenttd{
     font-size: large;
     color: #000000;
 }
+
+.midtd{
+
+}
+
+.lefttd{
+	margin: 0px;
+	width: 1px;
+}
+
+
+.righttd{
+	margin: 0px;
+	width: 1px;
+}
+
 
 .confirmform{
 	padding: 45px;
@@ -51,3 +79,4 @@
 	color: #FFFFFF;
 	background-color: #880000;
 }
+

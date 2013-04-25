@@ -2092,7 +2092,7 @@ echo $png;
     }
 
 	echo "</p>";
-	echo "</td></tr></table>";
+	//echo "</td></tr></table>";
 	include( "footer.php" );
 	exit();
 }

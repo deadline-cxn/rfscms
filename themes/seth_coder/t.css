@@ -70,19 +70,30 @@ hr
     border-color: #000000;
     border-style: solid;
 }
+
+.top_site_name
+{
+    font-family: Verdana;
+    font-size: 32px;
+    font-weight: bold;
+    padding-left: 45px;
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    color: #c2c7FF;
+    background-color: #9396c3;
+}
+
     
 .toptd
 {
     font-family: Verdana;
     font-size: 32px;
     font-weight: bold;
-    	
-	
     padding-left: 45px;
     padding-top: 8px;
     padding-right: 8px;
     padding-bottom: 8px;
-    
     color: #c2c7FF;
     background-color: #9396c3;
 }
