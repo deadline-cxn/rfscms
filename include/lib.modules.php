@@ -48,6 +48,10 @@ function sc_get_modules() {
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE DRAW		  
 function sc_draw_module($location) {
+	
+	if(stristr(sc_canonical_url(),"admin/adm.php")) return;
+	
+	
 	$r=sc_query("select * from arrangement where location='$location' order by sequence");
 	if($r) {
 		$n=mysql_num_rows($r);
