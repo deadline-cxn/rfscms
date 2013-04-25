@@ -684,13 +684,19 @@ td
     color: #000000;
 }
 
+
+.righttd{
+	margin: 0px;
+	width: 0px;
+}
+
+
 .lefttd
 {
+	width: 200px;
     font-family: Terminal;
     font-size: medium;
-    color:   #00FF00;
-
-	text-align: center;
+    color:   #00FF00;	
 
 	background-image: url('http://3dnetlabs.info/images/left_old.gif');
     background-repeat: repeat;
