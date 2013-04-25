@@ -132,7 +132,7 @@ else {
 		*/
 		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_left_corner.gif"))    {
 			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_left_corner.gif\" align=left>";
-			echo "</td><td>";
+			// echo "</td><td>";
 		}
 		else
 			echo "&nbsp;";
