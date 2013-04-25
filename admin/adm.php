@@ -625,6 +625,9 @@ function adm_action_f_theme_clone() { eval(scg());
 			"Clone" );
 }
 function adm_action_f_theme_edit() { eval(scg());
+
+	sc_button("$RFS_SITE_URL/admin/adm.php?action=theme","Themes list");
+
 	echo "Editing theme [$thm]<br>";
 	$folder="$RFS_SITE_PATH/themes/$thm";
 	echo "Elements of $folder <br>";
