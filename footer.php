@@ -17,13 +17,21 @@ if(file_exists($tf)){
 }
 else{
     echo "<BR><BR><BR>";
+	
 	if(empty($data->donated)){
-		echo "<table border=0 width=100% ><tr><td align=center>";
+		//echo "<table border=0 width=100% ><tr><td align=center>";
 		if(empty($data->donated)) {
 			sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 		}
 		else {
 		}
+		echo "</td>";
+		
+		
+		echo "<td class=\"righttd\" valign=top>";
+		
+		sc_draw_module("right");
+		
 		echo "</td></tr></table>";
 	}
     echo "<center>$RFS_SITE_COPYRIGHT</center>";
