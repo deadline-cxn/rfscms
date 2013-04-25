@@ -2021,21 +2021,7 @@ function admin_menu_built_in() { eval(scg());
             }
         }
     }
-    // echo "<div style='clear: left; '>&nbsp;</div>";
-    // echo "<br><hr>";
-
-}
-
-function finishadminpage() {
-	eval( scg() );
-
-    $arr=get_defined_functions();
-
-	echo "<!-- FUNCTIONS AVAILABLE... JUST LOOK ";
-	foreach( $arr['user'] as $k=>$v ) { echo "$v"; }
-	echo " -->";
-
-   // echo "<h1>Administration Menu Module Administration</h1>";
+	
 
 
     $mods=sc_get_modules_array() ;
@@ -2071,9 +2057,9 @@ function finishadminpage() {
 								$img="$RFS_SITE_PATH/modules/$mv/images/$fn.png";
 
 								// if(!file_exists("$RFS_SITE_PATH/$icon->icon"))    $icon->icon="modules/$mv/images/icons/exclamation.png";
-								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=96&y=20\" border='0' ></a> ";
+								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=64&y=20\" border='0' ></a> ";
 								if( !file_exists( $img ) ) { //"$RFS_SITE_PATH/modules/$mv/images/$px.png" ) ){
-								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=96&y=20\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
+								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=64&y=20\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
 
 									// echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
 								}
@@ -2091,10 +2077,22 @@ function finishadminpage() {
         }
     }
 	
-	echo "<div style='clear: left; '>&nbsp;</div>";
+	echo "<div style='clear: left; '>&nbsp;</div>";	
+    // echo "<div style='clear: left; '>&nbsp;</div>";
+    // echo "<br><hr>";
 
-	// echo "</p>";
-	//echo "</td></tr></table>";
+}
+
+function finishadminpage() {
+	eval( scg() );
+
+    $arr=get_defined_functions();
+
+	echo "<!-- FUNCTIONS AVAILABLE... JUST LOOK ";
+	foreach( $arr['user'] as $k=>$v ) { echo "$v"; }
+	echo " -->";
+
+
 	include( "footer.php" );
 	exit();
 }
