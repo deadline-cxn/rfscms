@@ -1,4 +1,3 @@
-
 body
 {
     scrollbar-base-color: #008888;
@@ -10,6 +9,12 @@ body
     background-color: #000000;
 }
 
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #888888;
+	border:solid 1px #888888;
+	border-radius:5px;
+}
 
 .wikishell {
 	margin:0 auto;

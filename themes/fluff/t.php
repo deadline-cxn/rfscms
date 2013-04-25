@@ -1,21 +1,13 @@
 <?
-/////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//$sc_top_left_corner  = "sethcoder_top_left_corner.gif";
-//$sc_bot_right_corner = "sethcoder_bot_right_corner.gif";
-
-
-
-
-
-
-
-
-
-
-
-
 $RFS_SITE_TTF_TOP="1";
+$RFS_SITE_TTF_TOP_FONT="Quaint.ttf";
+$RFS_SITE_TTF_TOP_COLOR="#998822";
+$RFS_SITE_TTF_TOP_BGCOLOR="#775511";
+$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="10";
+$RFS_SITE_NAV_IMG="1";
+$RFS_SITE_NAV_FONT="Quaint.ttf";
+$RFS_SITE_NAV_FONT_COLOR="#998822";
+$RFS_SITE_NAV_FONT_BGCOLOR="#775511";
+$RFS_SITE_NAV_FONT_Y_OFFSET="-6";
 ?>
