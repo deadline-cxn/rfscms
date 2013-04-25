@@ -2057,9 +2057,9 @@ function admin_menu_built_in() { eval(scg());
 								$img="$RFS_SITE_PATH/modules/$mv/images/$fn.png";
 
 								// if(!file_exists("$RFS_SITE_PATH/$icon->icon"))    $icon->icon="modules/$mv/images/icons/exclamation.png";
-								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=64&y=20\" border='0' ></a> ";
+								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=64&y=64\" border='0' ></a> ";
 								if( !file_exists( $img ) ) { //"$RFS_SITE_PATH/modules/$mv/images/$px.png" ) ){
-								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=64&y=20\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
+								$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=64&y=64\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
 
 									// echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
 								}
