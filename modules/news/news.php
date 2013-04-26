@@ -191,9 +191,11 @@ if($action=="dec"){
 */
 
 if($action=="edgo_make_wiki"){
+	$name=$_REQUEST['name'];
 	$n=mfo1("select * from news where id='$nid'");
 	$n->wiki=addslashes($name);
-	sc_query("update news set wiki = '$n->wiki' where id='$nid'");
+	echo "MAKE NEWS $n->id = WIKI $n->wiki ";
+	sc_query("update news set `wiki` = '$n->wiki' where `id`='$nid'");
 	$action="edityournews";
 }
 

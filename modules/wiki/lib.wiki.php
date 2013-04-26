@@ -5,6 +5,8 @@ sc_access_method_add("wiki", "admin");
 sc_access_method_add("wiki", "editothers");
 sc_access_method_add("wiki", "deleteothers");
 
+sc_touch_dir("$RFS_SITE_PATH/images/wiki");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI
 function sc_module_mini_wiki($x) { eval(scg());
