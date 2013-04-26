@@ -11,6 +11,16 @@ html, body
     margin:  0px;
 }
 
+.lefttd {
+    width: 195px !important;
+	overflow: hide;
+    font-family: Terminal;
+    font-size: medium;
+    color:   #00FF00;	
+    background-image: url('http://3dnetlabs.info/images/left_old.gif');
+    background-repeat: repeat;
+}
+
 
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;
@@ -691,16 +701,7 @@ td
 }
 
 
-.lefttd
-{
-	width: 200px;
-    font-family: Terminal;
-    font-size: medium;
-    color:   #00FF00;	
 
-	background-image: url('http://3dnetlabs.info/images/left_old.gif');
-    background-repeat: repeat;
-}
 
 hr
 {
