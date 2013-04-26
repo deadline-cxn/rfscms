@@ -1019,7 +1019,7 @@ if($action=="file_change_category") {
 	$name=""; $action="search"; $category="all categories";	
 }
 
-if( ($action=="show_temp") || ($_SESSION['show_temp']==true) ) {
+if(($action=="show_temp") || ($_SESSION['show_temp']==true) ) {
 	$action="listcategory";
 	$category="!!!TEMP!!!";
 	$amount="all";

@@ -28,7 +28,11 @@ if($_REQUEST['action']=="adesc") {
 chdir("../../");
 include("header.php");
 
-if(empty($galleria)) $galleria="yes";
+if(empty($galleria)) {
+	$galleria="no";
+	if(sc_yes($RFS_SITE_GALLERIAS))
+		$galleria="yes";	
+}
 
 echo "<table border=0><tr>"; 
 
@@ -1086,21 +1090,32 @@ if($action=="viewcat"){
 			echo "<center>";			
 			if($galleria=="yes") {
 				echo "<script src=\"$RFS_SITE_URL/3rdparty/galleria/galleria-1.2.9.min.js\"></script>";
-				echo "<style> #galleria{ width: 700px; height: 400px; background: #000 }</style> ";
-				echo "<div id=\"galleria\">";
+				echo "<style>
+						#galleria{
+							width: 800px;
+							height:
+							600px;
+							background: #000
+							}
+						</style> ";
+				echo "<div id=\"galleria\">";					
+				echo "<img src=\"$RFS_SITE_URL/$ipr->url\"
 				
+				data-title=\"$ipr->sname\"
+				data-description=\"$ipr->description\"
 				
-				echo "<img src=\"$RFS_SITE_URL/$ipr->url\"> ";
+				> ";
 			}
 	
     for($i2=0;$i2<$numpics;$i2++) {
     $picture=mysql_fetch_object($r);
     if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
-			if($galleria=="yes") {
-				
-				if($ipr->id!=$picture->id)
-				
-				echo "<img src=\"$RFS_SITE_URL/$picture->url\"> ";
+			if($galleria=="yes") {				
+				if($ipr->id!=$picture->id)				
+				echo "<img src=\"$RFS_SITE_URL/$picture->url\"
+				data-title=\"$picture->sname\"
+				data-description=\"$picture->description\"
+				> ";
 
 			}
 			else {
@@ -1116,9 +1131,10 @@ if($action=="viewcat"){
 			echo "
 			</div>
 			<script>
-			Galleria.loadTheme('$RFS_SITE_URL/3rdparty/galleria/themes/classic/galleria.classic.js');
-			Galleria.run('#galleria');
-			</script>";
+				Galleria.loadTheme('$RFS_SITE_URL/3rdparty/galleria/themes/classic/galleria.classic.js');
+				Galleria.run('#galleria');
+				
+			</script>"; // .setInfo( [index] )
 
 	}
 	echo "</center>";
