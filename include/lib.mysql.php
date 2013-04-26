@@ -831,6 +831,10 @@ function sc_optionizer(	$return_page, 	  // RETURN PAGE or INLINE
 		$scoq="select $distinct $key";
 		if(!empty($key2))
 			$scoq.=",$key2";
+			
+		if($use_id_method)
+			$scoq.=",id";
+			
 		$scoq.=" from $table $where order by $key asc";			
 		$r=sc_query($scoq);
 		

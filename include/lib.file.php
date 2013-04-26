@@ -155,8 +155,11 @@ function sc_file_get_readme($file_name) { eval (scg());
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_touch_dir($dir) {
 	if(!file_exists($dir)) {
-		echo " making $dir <br>";
-		mkdir($dir,0775);
+		echo "Making $dir <br>";
+		system("mkdir $dir");
+		system("chmod 775 $dir");
+		// mkdir($dir,0775);
 	}
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 ?>
