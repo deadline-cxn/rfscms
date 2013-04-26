@@ -1049,6 +1049,10 @@ echo "</div>";
 			echo "<img src=\"$picture->url\" ";
 			if($w) echo "width='$w' ";
 			if($h) echo "height='$h' ";
+			echo "
+			style='
+	border:solid 1px #222222;
+	border-radius:15px; ' ";
 			echo " border=0>";
 			echo "</a>";
 			$w=''; $h='';
