@@ -964,9 +964,13 @@ echo "<center><table border=0><tr>";
     
     
     if($id) {
+		if(sc_yes($RFS_SITE_CAPTIONS)){
+		
+			
 		echo "<td>";
 		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$picture->id","Caption");
 		echo "</td>";
+		}
 		
 		echo "<td>";
 		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=random","Random Picture");
