@@ -547,9 +547,9 @@ function adm_action_f_ajx_theme_edit_save_t_css() { eval(scg());
 	$taval=urldecode($taval);
 	$taval=stripslashes($taval);
 	$file="$RFS_SITE_PATH/themes/$thm/t.css";
-	system("sudo mv $file $file.bak.".time());
-	system("sudo touch $file");
-	system("sudo chmod 777 $file");
+	system("mv $file $file.bak.".time());
+	system("touch $file");
+	system("chmod 775 $file");
 	if(!file_put_contents($file,$taval))
 		sc_info("ERROR SAVING FILE, CHECK PERMISSIONS","WHITE","RED");
 	else 
