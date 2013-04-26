@@ -7,6 +7,8 @@ sc_access_method_add("news", "submit");
 sc_access_method_add("news", "delete");
 sc_access_method_add("news", "deleteothers");
 
+sc_touch_dir("$RFS_SITE_PATH/images/news");
+
 sc_query( " CREATE TABLE IF NOT EXISTS `news` (
 			  `name` text COLLATE utf8_unicode_ci NOT NULL,
 			  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -25,8 +27,11 @@ sc_query( " CREATE TABLE IF NOT EXISTS `news` (
 			  `rating` text COLLATE utf8_unicode_ci NOT NULL,
 			  `sfw` text COLLATE utf8_unicode_ci NOT NULL,
 			  `page` int(11) NOT NULL,
+			  `wiki` text not null,
 			  PRIMARY KEY (`id`)
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ; ");
+			
+			sc_query("ALTER TABLE news add wiki text not null");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
@@ -367,7 +372,7 @@ function editnews($nid) { eval(scg());
 	$wikistatus=$news->wiki;
 	if(empty($wikistatus)) $wikistatus="Choose a wiki page as this news article";
     
-	sc_optionizer("$RFS_SITE_URL/modules/news/news.php",
+	sc_optionizer(  "$RFS_SITE_URL/modules/news/news.php",
 					"action=edgo_make_wiki".$RFS_SITE_DELIMITER.
 					"nid=$nid",
 					"wiki",

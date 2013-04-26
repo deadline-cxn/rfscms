@@ -132,6 +132,7 @@ function sc_file_get_readme($file_name) { eval (scg());
 					)  &&
 					
 					(!stristr($file,".com")) &&
+					(!stristr($file,".exe")) &&
 					(!stristr($file,".chm")) &&
 					(!stristr($file,".class"))
 				) {
@@ -152,4 +153,10 @@ function sc_file_get_readme($file_name) { eval (scg());
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+function sc_touch_dir($dir) {
+	if(!file_exists($dir)) {
+		echo " making $dir <br>";
+		mkdir($dir,0775);
+	}
+}
 ?>

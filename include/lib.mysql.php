@@ -692,12 +692,12 @@ function sc_vars_join($x){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Optionizer
-function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
-							$hiddenvars,		// hidden vars to include (INLINE mode ignores this)
-							$table,			// MySQL table or FOLDER 
-							$key,				// key of MySQL table or FOLDERMODE
+function sc_optionizer(	$return_page, 	  // RETURN PAGE or INLINE
+							$hiddenvars,	  // hidden vars to include (INLINE mode ignores this)
+							$table,			  // MySQL table or FOLDER 
+							$key,			  // key of MySQL table or FOLDERMODE
 							$use_id_method,   // 0 or 1: Uses id field of MySQL if 1
-							$default,			// Default option
+							$default,		  // Default option
 							$on_change_method // 0 or 1: Use javascript on_change method if 1
 							){ eval(scg());
 
@@ -828,12 +828,10 @@ function sc_optionizer(	$return_page, 	// RETURN PAGE or INLINE
 		 
 		 if(empty($selname)) $selname=$key;
 
-		
-
 		$scoq="select $distinct $key";
 		if(!empty($key2))
 			$scoq.=",$key2";
-		$scoq.=",id from $table $where order by $key asc";			
+		$scoq.=" from $table $where order by $key asc";			
 		$r=sc_query($scoq);
 		
 		// echo "<p> $scoq </p>";
