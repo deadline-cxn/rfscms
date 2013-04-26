@@ -27,6 +27,14 @@ td{
     color: #FFAAAA;
 }
 
+.rfs_thumb { 
+box-shadow: 5px 5px 5px #552222;
+border: 1px solid #552222;
+border-radius: 5px;
+}
+
+
+
 hr {
     border: 1px;
     border-color: #775555;
@@ -58,17 +66,27 @@ hr {
 }
    
 .toptd {
-   
-    color: #ffa2a7;
-    background-color: #c39396;
+   padding: 5px;
+    color: #000000;
+    background-color: #000000;
+}
+
+.logged_in_box{
+    height: 16px;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ac7376;
+}
+.logged_in_td{
+    height: 16px;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #ac7376;
 }
 
 .slogan{
-    font-family: Verdana;
-    font-size: 12px;
-    font-style: italic ;
-    color: #ffa2a7;
-    background-color: #c39396;
+    color: #000000;
+    background-color: #000000;
 
 }
 
