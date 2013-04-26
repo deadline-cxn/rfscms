@@ -999,7 +999,7 @@ echo "<center><table border=0><tr>";
 		echo "<center>";
     $categorym=mfo1("select * from categories where id='$category'");	
     if(!empty($categorym->name)) {
-        echo "Category: $categorym->name<br>";
+        echo "Gallery: $categorym->name<br>";
     }
 		
 echo "<script>function changepicname(x,id) {
@@ -1091,7 +1091,7 @@ if($action=="viewcat"){
 	// $cat=$category->id;
 	
     $cat=mfo1("select * from categories where id='$cat'");
-    if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
+    if(!empty($cat->name)) echo "<center><font class=th>Gallery: $cat->name</font></center>";
     $r=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
 	$numpics=mysql_num_rows($r);
 	
