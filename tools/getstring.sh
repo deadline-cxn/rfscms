@@ -1,4 +1,4 @@
-grep -R \
+grep -nR \
 --exclude-dir=log \
 --exclude-dir=wtf \
 --exclude-dir=3rdparty \

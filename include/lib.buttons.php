@@ -17,12 +17,7 @@ function sc_button_l($link,$name){
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_button($link,$name){
-	if($_SESSION['textbuttons']=="true") {
-		echo "[<a href=$link>$name</a>]<br>";
-	}
-	else {
-		sc_button_l($link,$name);
-	}
+	sc_button_l($link,$name);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_button_warn($link,$name){
@@ -32,15 +27,28 @@ function sc_button_warn($link,$name){
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_makebuttonstart(){
+	
     echo "<div class='menutop'>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_makebutton($link,$name){
-    // echo "<button id='button' style='font-size:x-small; min-width: 100px;' onclick=\"window.open('$link','_top')\">$name</button>";
-    echo "
-<button id=\"button\" style=\"font-size:x-small; min-width: 100px;\" onclick=\"window.open('$link','_top')\"
-class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only\"
-role=\"button\" aria-disabled=\"false\"><span class=\"ui-button-text\">$name</span> </button>";
+
+	if($_SESSION['textbuttons']=="true") {
+		echo "[<a href=$link>$name</a>] ";
+	}
+	else
+		echo "<button
+					id=\"button\" 
+					style=\"font-size:x-small; min-width: 100px;\"
+				onclick=\"window.location='$link';\"
+				
+					class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only\"
+					role=\"button\"
+					aria-disabled=\"false\">
+			
+			<span class=\"ui-button-text\">$name</span>
+			
+			</button>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_makebutton_vw($link,$name,$w){
