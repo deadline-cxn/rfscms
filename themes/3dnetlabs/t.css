@@ -6,6 +6,7 @@ html, body
     font-style: normal;
     background-color: #000000;
     margin:  0px;
+    nonyua: what;
 }
 
 .lefttd {
@@ -18,13 +19,11 @@ html, body
     background-repeat: repeat;
 }
 
-
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;
 	border:solid 1px #222222;
 	border-radius:5px;
 }
-
 
 .wikishell {
 	margin:0 auto;
