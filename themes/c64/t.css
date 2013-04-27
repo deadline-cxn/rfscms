@@ -11,6 +11,15 @@ body
 	
 }
 
+
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #A397FF;
+	border:solid 1px #A397FF;
+	border-radius:5px;
+}
+
+
 .slogan
 {
     font-family: Verdana;
