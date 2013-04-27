@@ -16,6 +16,7 @@ See the official wiki for more information about how to set this up.
 There are two ways to install. GIT and ZIP.
 
 GIT:
+====
 If you use git to install, you gain the benefit of git pull updates.
 One caveat to this is that you must not alter any of the files from
 the repository. If you do, the admin update feature will not work 
@@ -29,6 +30,7 @@ git pull github master
 chmod 777 config
 
 ZIP:
+====
 I plan on adding zip updating to the update feature in admin. As of
 right now, the only way to use the admin update feature is by using git.
 
