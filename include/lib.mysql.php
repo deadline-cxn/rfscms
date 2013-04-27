@@ -8,8 +8,6 @@ include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
 
-sc_div(__FILE__."-----line[".__LINE__."]");
-
 /////////////////////////////////////////////////////////////////////////////////////////
 if($act=="select_image_go") {
 	include("lib.all.php");
@@ -33,6 +31,7 @@ function sc_phpself() { eval(scg());
 	$page=$_SERVER['PHP_SELF'];
 	return $page;
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_canonical_url(){
 	$page_url = 'http';
 	if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'){
@@ -40,7 +39,6 @@ function sc_canonical_url(){
 	}
 	return $page_url.'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(scg());
 
@@ -114,7 +112,6 @@ function sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field) { 
     }
     for($xyz=0;$xyz<20;$xyz++) echo "<br>";
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_is_csv_data($table,$where,$field,$var) {
     $r=sc_query("select * from $table where $where");
@@ -345,22 +342,15 @@ function sc_delimiter($t){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_mcount($user) {
-
-	sc_div( __FUNCTION__ . "($user) -> " . __FILE__);
-
-	// $p=$_SERVER['PHP_SELF'];
 	$p=sc_canonical_url();
 	$ip=getenv("REMOTE_ADDR");
-
 	$r=mfo1("select * from counters where page = '$p'");
-
 	if(!empty($r->page)){
 		$r->hits_raw+=1;
 		if($r->last_ip!=$ip){
 			$r->last_ip=$ip;
 			$r->hits_unique+=1;
 		}
-
 		sc_query("update counters set user='$user' where page='$r->page'");
 		sc_query("update counters set hits_raw='$r->hits_raw' where page='$r->page'");
 		sc_query("update counters set hits_unique='$r->hits_unique' where page='$r->page'");
@@ -376,26 +366,14 @@ function sc_mcount($user) {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function odb(){
-	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'],
-				$GLOBALS['authdbuser'],
-                  		$GLOBALS['authdbpass']);
-	if(empty($mysql))
-{
-
- return false;
-}
+	$mysql=@mysql_connect($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass']);
+	if(empty($mysql)) return false;	
 	mysql_select_db( $GLOBALS['authdbname'], $mysql);
 	return $mysql;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_query($query) {
-
-// echo $query."<br>hi<br>";
-
 	if(stristr($query,"`users`")) { $x=sc_query_user_db($query); return $x; }
-
-// echo "sc_query(); ";
-
 	$mysql=odb(); if($mysql==false) return false;
 	$result=mysql_query($query,$mysql);
 	if(empty($result)) return false;
@@ -613,7 +591,7 @@ function sc_db_dumptable($table,$showform,$key,$search){ eval(scg());
             $showform=$gx[0];
     }
 
-    $page=sc_phpself();
+    $page=$RFS_SITE_URL.sc_phpself();
     $gt=0;
     $res=sc_query("select * from `$table` $search");
     $num=mysql_num_rows($res);
@@ -639,8 +617,6 @@ function sc_db_dumptable($table,$showform,$key,$search){ eval(scg());
         reset($row);
 
         echo "<tr>";
-
-        
 
         $showform_action="sc_";
 
@@ -920,107 +896,117 @@ if(file_exists($file)) {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // select / option a folder
-function sc_optionize_folder( $select_name, // select name
-						$folder,		// folder
-						$include_dirs, // 0 or 1
-						$include_files, // 0 or 1
-						$default )  {
+// $select_name 	= name of select element
+// $folder			= path to folder ie; /var/www/tools
+// $wildcard		= wildcard
+// $include_dirs	= true/false
+// $include_files	= true/false
+// $default 		= default text to put in the select (first option))
+function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$include_files,$default )  {
 	echo "<select name=\"$select_name\">";
 	if(!empty($default))
 		echo "<option>$default";
 	else
 		echo "<option>- Select -";
-		
 	echo "<option>$folder";
-
 	$dirfiles = array();
 	$handle=opendir($folder) or die("Unable to open filepath");
 	while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
 	closedir($handle);
 	reset($dirfiles);
 	asort($dirfiles);
-
-	while(list ($key, $file) = each ($dirfiles)){
-		
-		$chack="$folder/$file";
-		
+	while(list ($key, $file) = each ($dirfiles)){		
+		$chack="$folder/$file";		
 		if(substr($file,0,1)!=".") {
-			if($include_dirs) {
+			if(sc_yes($include_dirs)) {
 				if(!is_file($chack))
 					echo "<option>$chack";
 			}
-			if($include_files) {
+			if(sc_yes($include_files)) {
 				if(is_file($chack))
 					echo "<option>$chack";
-			}	
+			}
 		}
-	}
-	
+	}	
 	echo "</select>";
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // simple add form based on table
-// (short command for build form)
-function sc_bfa($table){ eval(scg());
-    
-    sc_bf(sc_phpself(),"action=add",$table,"","","name","include","",60,"add");
-}
+function sc_bfa($table){ eval(scg()); sc_bf(sc_phpself(),"action=add",$table,"","","name","include","",60,"add");}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // sc_bqf (build quick form)
+// 
+// $hiddenvars = list of 
 // takes 2 vars and will build a form using sc_bf
-function sc_bqf($hiddenvars,$submit){ eval(scg());
-
-    sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit);
-}
+function sc_bqf($hiddenvars,$submit){ eval(scg()); sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit); }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // sc_bf (build form)
-// $page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit
 //
-// $page        = page that the form will action
-// $hiddenvars  = list of hiddenvars seperated by comma, or SHOW_XXX_#ROWS#COLS#<name>=<defaultvault> (seperated by comma)
-// $table		  = which table to use
-// $query       = query of fields to include in the form, if empty will use all fields
-// $hidevars    = list of vars to hide, seperated by comma
-// $specifiedvars = specify a var
-// $svarf       = include or omit (will either include only $specifiedvars, or will omit only $specifiedvars)
-// $tabrefvars  =
-// $width       = default width of the form
-// $submit      = the submit button text
+// $page        	= page that the form will action 
+// $hiddenvars	= list of hiddenvars and/or
+//
+//						DBX_XXX
+//						LABEL_XXX
+//						SHOW_XXX_#ROWS#COLS#<varname>=<defaultvault>
+//
+// 						SHOW_CODEAREA
+//						SHOW_TEXT
+//						SHOW_PASSWORD
+//						SHOW_SELECTOR
+//						SHOW_TEXTAREA
+//
+//
+//
+// EXAMPLES: 
+// 
+// 
+// SHOW_TEXT_textlabel#textname#textvalue#text to add
+// SHOW_SELECTOR_colors#name#text_color#$ocolor
+// SHOW_SELECTOR_exam_question_types#type#type#$qt->type
+//
+//
+// 
+// $table		  	= which table to use
+// $query       	= query of fields to include in the form, if empty will use all fields
+// $hidevars    	= list of vars to hide, seperated by comma
+// $specifiedvars	= specify a var
+// $svarf      	= include or omit (will either include only $specifiedvars, or will omit only $specifiedvars)
+// $tabrefvars 	=
+// $width      	= default width of the form
+// $submit     	= the submit button text
+//
+///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit){ eval(scg());
-	$delimiter=$RFS_SITE_DELIMITER;
 	$gt=1;
+	$delimiter=$RFS_SITE_DELIMITER;	
     if(!stristr($page,$RFS_SITE_URL)) $page="$RFS_SITE_URL/$page";
-
-	// d_echo("HIDDEN VARS: $hiddenvars");
-
+	
     if(empty($svarf)) $svarf="omit";
-    echo "<table cellspacing=0 cellpadding=0>";
+    
+	
+	
+	echo "<table cellspacing=0 cellpadding=0>";
     echo "<tr><td>";
-
-    echo "<form action=\"$page\" method=\"POST\" enctype=\"multipart/form-data\">";
-
-
+	echo "<form action=\"$page\" method=\"POST\" enctype=\"multipart/form-data\">";
+	    
 	d_echo($hiddenvars);
-
+	
 	$hidvar_a=explode(sc_delimiter($hiddenvars),$hiddenvars);
-
     for($i=0;$i<count($hidvar_a);$i++){
         $hidvar_b=explode("=",$hidvar_a[$i]);
          d_echo("$hidvar_b[0] $hidvar_b[1]");
 
-        if( (!stristr($hidvar_b[0],"TT_")) &&
+        if( (!stristr($hidvar_b[0],"DBX_")) &&
             (!stristr($hidvar_b[0],"LABEL_")) &&
             (!stristr($hidvar_b[0],"SHOW_")) ){
-
 				d_echo("[".$hidvar_b[0]." = ".$hidvar_b[1]."]");
 				echo "<input type=hidden name=\"".$hidvar_b[0]."\" value=\"".$hidvar_b[1]."\">\n";
-
         }
     }
 
-    echo "</td>";
+    echo "</td>";	
     echo "<td></td></tr>";
+	
     $gt++; if($gt>2) $gt=1;
 	
 	$hvars=explode(sc_delimiter($hidevars),$hidevars);
@@ -1029,35 +1015,20 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 
     if(!empty($query)) {
         $res=sc_query($query);
-		if($res){
-        $dat=mysql_fetch_object($res);
-        for($i=0;$i<count($hidvar_a);$i++){
-            $hidvar_b=explode("=",$hidvar_a[$i]);
-            if(empty($dat->{$hidvar_b[0]}))
-            @eval("\$dat->".$hidvar_b[0]."=\"".$hidvar_b[1]."\";");
-            //$dat[$hidvar_b[0]]=
-            //d_echo("[".$hidvar_b[0]."] [".$hidvar_b[1]."]<br>");
-            //d_echo({$dat['value']});
-            //d_echo($dat->value);
-            //if($hidvar_b[0]==))
-            //{
-                //echo "[".$hidvar_b[0]."=".$hidvar_b[1]."]";
-                //echo "<input type=hidden name=\"".$hidvar_b[0]."\" value=\"".$hidvar_b[1]."\">\n";
-            //}
-        }
- //echo "[$query][$res][$dat->name][$dat->id]<br>";
+		if($res) {
+			$dat=mysql_fetch_object($res);
+			for($i=0;$i<count($hidvar_a);$i++) {
+				$hidvar_b=explode("=",$hidvar_a[$i]);
+				if(empty($dat->{$hidvar_b[0]}))
+				@eval("\$dat->".$hidvar_b[0]."=\"".$hidvar_b[1]."\";");				
+			}
 		}
-
     }
     if(!empty($table)){
         $result = sc_query("SHOW FULL COLUMNS FROM $table");
-        //echo "[$result]<br>";
         while($i = mysql_fetch_assoc($result)){
-
-
             $this_codearea=false;
             $name=ucwords(str_replace("_"," ",$i['Field']));
-            //echo "[$name]<br>";
             $tref=0;
             for($k=0;$k<count($tvars);$k++){
                 $tparts=explode("=",$tvars[$k]);
@@ -1070,7 +1041,9 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
                 echo "<tr><td class=sc_project_table_$gt align=right>\n";
                 echo $name;
                 echo "</td><td class=sc_project_table_$gt>";
-                //echo "<br>{$i['Comment']}<br>";
+                
+				//echo "<br>{$i['Comment']}<br>";
+				
                 echo "<select name=\"".$i['Field']."\">";
                 if(!empty($dat->{$i['Field']})){
                    $q="select * from `$tref_table` where `id`='";
@@ -1078,9 +1051,9 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
                    $q.="'";
                    $tres=sc_query($q);
                    $obj=mysql_fetch_object($tres);
-                    echo "<option value=$obj->id>$obj->name";// echo "<option>".$dat->$i['Field'];
+				   echo "<option value=$obj->id>$obj->name";
+					//echo "<option>".$dat->$i['Field'];
                }
-
                 $tres=sc_query("select * from `$tref_table` order by `name`");
                 for($k=0;$k<mysql_num_rows($tres);$k++){
                     $obj=mysql_fetch_object($tres);
@@ -1090,22 +1063,15 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
                 echo "</td></tr>";
                 $gt++; if($gt>2) $gt=1;
             }
-            else{
-                //echo "[$svarf]<br>";
+            else{                
                 if($svarf=="include") $omit=0;
                 if($svarf=="omit") $omit=1;
-
                 for($k=0;$k<count($svars);$k++){
                     if($svarf=="include"){
-                        if($svars[$k]==$i['Field']){
-                            //echo "[omit=1]<br>";
-                            $omit=1;
-                        }
+                        if($svars[$k]==$i['Field']) $omit=1;
                     }
                     if($svarf=="omit"){
-                        if($svars[$k]==$i['Field']){
-                            $omit=0;
-                        }
+                        if($svars[$k]==$i['Field']) $omit=0;
                     }
                 }
 
@@ -1116,165 +1082,131 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
                     $TT=0;
                     $rows=6;
                     $cols=$width;
-
                     for($k=0;$k<count($hvars);$k++){
                         if($hvars[$k]==$i['Field']){
                             $hidden=1;
                             $type="hidden";
                         }
                     }
+                    $hidvar_a=explode(sc_delimiter($hiddenvars),$hiddenvars);
+					for($j=0;$j<count($hidvar_a);$j++){
+						$hidvar_b=explode("=",$hidvar_a[$j]);					
+						if(stristr($hidvar_b[0],"DBX_")){
+							$field=explode("DBX_",$hidvar_b[0]);
+							if($field[1]==$i['Field']){
+								$TT=1;
+								$type=$hidvar_b[1];
+								break;
+							}
+							else{							
+								$rw=explode("#",$field[1]);
+								if(count($rw)==3){
+									$rows=$rw[0];
+									$cols=$rw[1];
+									$taname=$rw[2];
+									d_echo("[3 DBX_ Count]");
+								}
+								else if(count($rw)==2){
+									$rows=$rw[0];
+									$taname=$rw[1];
+									d_echo("[2 DBX_ Count]");
+								}
 
-                    //if($hidden==0)
-                    //{
-                        $hidvar_a=explode(sc_delimiter($hiddenvars),$hiddenvars);
-                        for($j=0;$j<count($hidvar_a);$j++){
-                            $hidvar_b=explode("=",$hidvar_a[$j]);
-                            //echo "[$hidvar_b[0]] [$hidvar_b[1]]<br>";
-                            if(stristr($hidvar_b[0],"TT_")){
-                                $field=explode("TT_",$hidvar_b[0]);
-                                if($field[1]==$i['Field']){
-                                    $TT=1;
-                                    $type=$hidvar_b[1];
-                                    break;
-                                    //echo "--- $field[1] $hidvar_b[1]<br>";
-                                }
-                                else{
-                                    //echo $field[1];
-                                    $rw=explode("#",$field[1]);
-                                    if(count($rw)==3){
-                                        $rows=$rw[0];
-                                        $cols=$rw[1];
-                                        $taname=$rw[2];
-                                        d_echo("[3 TT_ Count]");
-                                    }
-                                    else if(count($rw)==2){
-                                        $rows=$rw[0];
-                                        $taname=$rw[1];
-                                        d_echo("[2 TT_ Count]");
-                                    }
+								if($taname==$i['Field']){
+									$TT=1;
+									$type=$hidvar_b[1];
+									d_echo( "[".$rw[1]."]");
+									d_echo( "[".$rw[2]."]");
+									d_echo( "[".count($rw)."]");
+								}
+							}
+						}
 
-                                    if($taname==$i['Field']){
-                                        $TT=1;
-                                        $type=$hidvar_b[1];
+						if(stristr($hidvar_b[0],"LABEL_")){
+							$field=explode("LABEL_",$hidvar_b[0]);
+							if($i['Field']==$field[1])
+								$relabel=true;
+							$label=$hidvar_b[1];
+						}
+					}
+					if($hidden==0){
+						echo "<tr><td class=sc_project_table_$gt align=right>\n";
+						if($relabel==true)	echo $label;
+						else               	echo $name;
+						echo "</td><td class=sc_project_table_$gt>";
+					}
+					if($i['Field']=="password")	$type="password";
+					if($i['Field']=="pass") 	$type="password";
 
-                                        //d_echo( "[".$rw[0]."]");
-                                        d_echo( "[".$rw[1]."]");
-                                        d_echo( "[".$rw[2]."]");
-                                        d_echo( "[".count($rw)."]");
-                                        // echo  "[".$i['Field']."]<br>" ;
-                                        // echo $dat->{$i['Field']};
-                                    }
-                                }
-                                //echo "<input name=\"userfile\" type=\"file\">";
-                            }
+					switch($type){  // button checkbox image radio reset  
+						
+						case "textarea":
+							echo " <textarea rows=$rows cols=$cols name=\"";
+							echo $i['Field'];
+							echo "\">";
+							$code=str_replace("</textarea>","&lt;/textarea>",$dat->{$i['Field']});
+							echo stripslashes($code);
+							echo "</textarea>\n";
+							break;
 
-                            if(stristr($hidvar_b[0],"LABEL_")){
-                                $field=explode("LABEL_",$hidvar_b[0]);
-                                if($i['Field']==$field[1])
-                                    $relabel=true;
-                                $label=$hidvar_b[1];
-                                //$type="label";
-                                //echo "FOUND LABEL:[".$field[1]."][$label][$type]<br>";
-                            }
-                             //   echo "<input type=hidden name=\"".$hidvar_b[0]."\" value=\"".$hidvar_b[1]."\">\n";
-                        }
+						case "codearea":
+							$this_codearea=true;
+							$godat=$dat->{$i['Field']};
+							show_codearea("sc_bf_codearea", $rows,$cols,$i['Field'],$godat);
+							break;
+							
+						case "colorpicker":						
+							$cp=$i['Field'];
+							echo "<!-- flooble.com Color Picker start -->";
+							include($GLOBALS['site_path']."/js/flooble_color_picker.js");
+							echo " &nbsp;&nbsp;<a href=\"javascript:pickColor('pick$cp');\" id=\"pick$cp\"
+							style=\"border: 1px solid #000000; font-family:Verdana; font-size:14px;
+							text-decoration: none;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+							<input id=\"pick$cp"."field\" size=\"7\"
+							onChange=\"relateColor('pick$cp', this.value);\" title=\"color\" name=\"";
+							echo $cp;
+							echo "\" value=\"".$dat->{$i['Field']}."\">
+							<script language=\"javascript\">relateColor('pick$cp', getObj('pick$cp"."field').value);</script>
+							<noscript></noscript>\n<!-- flooble Color Picker end -->\n";
+							break;
 
-                        d_echo( "[$type][$rows][$cols]");
+						case "hidden":
+							echo "<tr><td height=0px; width=0px;>";
+							
+						case "file":
+						case "text":
+						case "submit":
+						case "password":
 
-                        if($hidden==0){
-                            echo "<tr><td class=sc_project_table_$gt align=right>\n";
-                            if($relabel==true)  echo $label;
-                            else                echo $name;
-                            echo "</td><td class=sc_project_table_$gt>";
-                        }
-                        if($i['Field']=="password") $type="password";
-                        if($i['Field']=="pass") $type="password";
+							if($type=="file"){
+								$fn=$dat->{$i['Field']};
+								if(!empty($fn)){
+									$ft=sc_getfiletype($fn);
+									if( ($ft=="gif") ||
+										($ft=="png") ||
+										($ft=="jpg") ||
+										($ft=="jpeg") ||
+										($ft=="bmp") ){
+										echo "<img width=32 height=32 src=\"$$RFS_SITE_URL/$fn\">";
+									}
+									echo "currently [$fn]";
+									echo "<br>";
+								}
+							}
 
-                        switch($type){
-                         /* button
-                            checkbox
-                            image
-                            radio
-                            reset   */
-                            case "textarea":
+							echo " <input type=\"$type\" ";
+							echo "size=$width ";
+							echo "name=\"".$i['Field']."\" ";
+								$outvar=$dat->{$i['Field']};
+								$outvar=str_replace("\"","&quot;",$outvar);
+							echo "value=\"$outvar\">\n";
 
-                                echo " <textarea rows=$rows cols=$cols name=\"";
-                                echo $i['Field'];
-                                echo "\">";
+							if($hidden==1)
+								echo "</td><td>";
 
-                                $code=str_replace("</textarea>","&lt;/textarea>",$dat->{$i['Field']});
-                                echo stripslashes($code);
-
-                                echo "</textarea>\n";
-
-                                break;
-
-                            case "codearea":
-
-                                $this_codearea=true;
-                                $godat=$dat->{$i['Field']};
-                                show_codearea("sc_bf_codearea", $rows,$cols,$i['Field'],$godat);
-
-                                break;
-
-
-                            case "colorpicker":
-                                $cp=$i['Field'];
-
-                                echo "<!-- flooble.com Color Picker start -->";
-                                include($GLOBALS['site_path']."/js/flooble_color_picker.js");
-                                //echo "<script language=\"Javascript\" type=\"text/javascript\" src=\"".$GLOBALS['$RFS_SITE_URL']."/rfs/js/flooble_color_picker.js\"></script>";
-                                echo " &nbsp;&nbsp;<a href=\"javascript:pickColor('pick$cp');\" id=\"pick$cp\"
-                                style=\"border: 1px solid #000000; font-family:Verdana; font-size:14px;
-                                text-decoration: none;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                                <input id=\"pick$cp"."field\" size=\"7\"
-                                onChange=\"relateColor('pick$cp', this.value);\" title=\"color\" name=\"";
-                                echo $cp;
-                                echo "\" value=\"".$dat->{$i['Field']}."\">
-                                <script language=\"javascript\">relateColor('pick$cp', getObj('pick$cp"."field').value);</script>
-                                <noscript></noscript>
-                                <!-- flooble Color Picker end -->
-                                ";
-
-                                break;
-
-                            case "hidden":
-                                echo "<tr><td height=0px; width=0px;>";
-                            case "file":
-                            case "text":
-                            case "submit":
-                            case "password":
-
-                                if($type=="file"){
-                                    $fn=$dat->{$i['Field']};
-                                    if(!empty($fn)){
-                                        $ft=sc_getfiletype($fn);
-                                        if( ($ft=="gif") ||
-                                            ($ft=="png") ||
-                                            ($ft=="jpg") ||
-                                            ($ft=="jpeg") ||
-                                            ($ft=="bmp") ){
-                                            echo "<img width=32 height=32 src=\"$$RFS_SITE_URL/images/$fn\">";
-                                        }
-                                        echo "currently [$fn]";
-                                        echo "<br>";
-                                    }
-                                }
-
-                                echo " <input type=\"$type\" ";
-                                echo "size=$width ";
-                                echo "name=\"".$i['Field']."\" ";
-									$outvar=$dat->{$i['Field']};
-									$outvar=str_replace("\"","&quot;",$outvar);
-                                echo "value=\"$outvar\">\n";
-
-                                if($hidden==1)
-                                    echo "</td><td>";
-
-                            default:
-
-                                break;
-                        }
+						default:
+							break;
+					}
 
                         if($hidden==0){
                             echo"</td></tr>\n";
@@ -1801,29 +1733,20 @@ function sc_option_countries() {
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_css_edit_form($css_file, $returnpage, $returnaction) { eval(scg());
-	
-	
-	sc_optionize_file(
-		"addcss",
-		"$RFS_SITE_PATH/tools/classes.out.txt",
-		"CSS Classes");
-	
+	sc_optionize_file("addcss","$RFS_SITE_PATH/tools/classes.out.txt", "CSS Classes");
 	$f=file_get_contents($css_file);
 	$cssx=explode("}",$f);	
 	for($i=0;$i<count($cssx)-1;$i++) {
 		$cssx2=explode("{",$cssx[$i]);
 		echo "<hr>$cssx2[0] { <br>";
-		echo "<table border=0>";
-	
+		echo "<table border=0>";	
 		$cssx3=explode(";",$cssx2[1]);
 		for($j=0;$j<count($cssx3)-1;$j++) {
-
 			$cssx4=explode(":",$cssx3[$j]);
 			echo "<tr><td>";
 			echo " $cssx4[0]:";
 			echo "</td><td>";
-			echo "<input value=\"".trim($cssx4[1])."\" ";
-			
+			echo "<input value=\"".trim($cssx4[1])."\" ";			
 			if(substr(trim($cssx4[1]),0,1)=="#")
 				echo "class='color' ";
 			echo ">";
@@ -1834,31 +1757,24 @@ function sc_css_edit_form($css_file, $returnpage, $returnaction) { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eval(scg());
-	
 	$hvar=array();
 	$hvars=explode($RFS_SITE_DELIMITER,$hiddenvars);
 	for($i=0;$i<count($hvars);$i++) {
 		$tt=explode("=",$hvars[$i]);
 		$hvar[$tt[0]]=$tt[1];
 	}
-	
-echo "<form action=$returnpage method=\"post\">";
-echo "<input type=hidden name=action value=\"$returnaction\">";
-echo "<input type=hidden name=add value=\"var\">";
-echo "<input type=hidden name=outfile value=\"$php_file\">";
-foreach ($hvar as $vn => $vv) {
-	echo "<input type=hidden name=\"$vn\" value=\"$vv\">";
-}
-
-sc_optionize_file(
-		"addvar",
-		"$RFS_SITE_PATH/tools/rfsvars_out.txt",
-		"Add a system variable");
-		
-echo "<input name=varvalue value=\"\">";
-echo "<input type=submit value=\"Add\">";
-echo "</form>";
-	
+	echo "<form action=$returnpage method=\"post\">";
+	echo "<input type=hidden name=action value=\"$returnaction\">";
+	echo "<input type=hidden name=add value=\"var\">";
+	echo "<input type=hidden name=outfile value=\"$php_file\">";
+	foreach ($hvar as $vn => $vv) {
+		echo "<input type=hidden name=\"$vn\" value=\"$vv\">";
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////
+	sc_optionize_file( "addvar", "$RFS_SITE_PATH/tools/rfsvars_out.txt", "Add a system variable");
+	echo "<input name=varvalue value=\"\">";
+	echo "<input type=submit value=\"Add\">";
+	echo "</form>";	
 	$fp=fopen($php_file,"r");
 	echo "<table border=0>";
 	while( $ln=fgets($fp)) {
@@ -1871,19 +1787,14 @@ echo "</form>";
 			$varx=explode("=",$ln);
 			$varx[0]=trim($varx[0]," ");
 			
-			echo "<tr>";
-			
+			echo "<tr>";			
 			echo "<td>";
-			echo "[
-<a href=\"$returnpage?
-action=$returnaction&
-delete=$varx[0]&
-outfile=$php_file";
-foreach ($hvar as $vn => $vv) { echo "&$vn=$vv"; }
-echo "\">delete</a>] ";
-
-			echo "</td>";
-			
+			echo "[<a href=\"$returnpage?action=$returnaction&delete=$varx[0]&outfile=$php_file";
+			foreach ($hvar as $vn => $vv){
+				echo "&$vn=$vv";
+			}
+			echo "\">delete</a>] ";
+			echo "</td>";			
 			echo "<td>";			
 			echo $varx[0];
 			$varx[1]=trim($varx[1]," ");
@@ -1902,7 +1813,10 @@ echo "\">delete</a>] ";
 	echo "</table>";
 	fclose($fp);
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 
+
+// sc_db_get($table,$key,$kv,$field)
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

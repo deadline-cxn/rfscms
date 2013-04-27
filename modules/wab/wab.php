@@ -150,7 +150,7 @@ function wab_engine_action_edcode() { eval(scg());
     sc_bf(  sc_phpself(),
             "action=edcodego".$RFS_SITE_DELIMITER."type=function".$RFS_SITE_DELIMITER.
             "SHOW_CODEAREA_35#140#code=l".$RFS_SITE_DELIMITER."hidden=1".$RFS_SITE_DELIMITER.
-            "TT_35#140#code=codearea".$RFS_SITE_DELIMITER.
+            "DBX_35#140#code=codearea".$RFS_SITE_DELIMITER.
             "edapp=$edapp".$RFS_SITE_DELIMITER."value=$_function".$RFS_SITE_DELIMITER."parent=$edapp".$RFS_SITE_DELIMITER.
             "code=function $_function() {
 					echo '$_function()!<br>';

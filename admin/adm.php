@@ -744,13 +744,6 @@ function adm_action_theme() { eval(scg());
 	include( "footer.php" );
 	exit();
 }
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORUMS
 function adm_action_f_modify_forum() { eval(scg());
@@ -765,7 +758,8 @@ function adm_action_f_edit_forum() { eval( scg() );
 	$forum_name=$der->name;
 	echo "<h3>[$forum_name] (id:$der->id)</h3>\n";
 	sc_bf( "$RFS_SITE_URL/admin/adm.php",
-	       "action=f_modify_forum",
+	       "action=f_modify_forum".$RFS_SITE_DELIMITER.
+		   "DBX_35#140#code=codearea",
 	       "forum_list", "select * from forum_list where name='$forum_name';",
 	       "id","","omit","",100,"submit" );
 	adm_action_forum_admin();
@@ -796,9 +790,10 @@ function adm_action_forum_admin() { eval( scg() );
 	for( $i=0; $i<$n; $i++ ) {
 		$der=mysql_fetch_object( $r );
 		$name=$der->name;
-		// echo "<tr><td>";
+
 		sc_bf( "$RFS_SITE_URL/admin/adm.php",
 		       "action=f_edit_forum".$RFS_SITE_DELIMITER.
+			   "DBX_35#140#code=codearea".$RFS_SITE_DELIMITER.
 		       "name=$name",
 		       "forum_list",
 		       "select * from forum_list where name='$name';",
@@ -808,10 +803,10 @@ function adm_action_forum_admin() { eval( scg() );
 		       "",
 		       100,
 		       "Edit" );
-		// echo "</td><td>
-		echo $name; //</td></tr>";
+			   
+		echo $name;
 	}
-	//echo "</table>";
+	
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_SITE VARS
@@ -1446,10 +1441,17 @@ function adm_action_f_edit_users_go() {
 	sc_updb( "users","id",$id,1 );
 	adm_action_user_edit();
 }
+
 function adm_action_f_edit_users() { eval( scg() );
+
+	echo "WHAT";
+
 	$res=sc_query( "select * from users where `id`='$id'" );
 	$user=mysql_fetch_object( $res );
+	
+	
 	echo "<h3>Editing User [$user->name]</h3>";
+	
 	sc_bf( "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.
 	       "id=$id",
@@ -1465,6 +1467,7 @@ function adm_action_f_edit_users() { eval( scg() );
 	       "",
 	       60,
 	       "update" );
+		   
 	include("footer.php");
 	exit();
 }
@@ -1500,7 +1503,7 @@ function adm_action_user_edit() {
 	eval( scg() );
 
     echo "<h1>User Editor</h1>";
-	echo  "<h2>Add User</h2>";
+	echo "<h2>Add User</h2>";
 
 	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
             "action=f_add_user",
@@ -1516,7 +1519,7 @@ function adm_action_user_edit() {
 	sc_db_dumptable( "users",
                      "showform".$RFS_SITE_DELIMITER."f_",
                      "id",
-                     "what" );
+                     "" );
 
 	include("footer.php");
 	exit();
