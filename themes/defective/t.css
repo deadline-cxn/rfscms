@@ -5,6 +5,12 @@ body{
     background-color: #221100;
 }
 
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #ff9900;
+	border:solid 1px #ff9900;
+	border-radius:5px;
+}
+
 .slogan {
     font-family: Verdana;
     font-size: 12px;
