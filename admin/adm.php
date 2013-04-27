@@ -75,7 +75,11 @@ if(!sc_access_check("admin","access")) {
 // ADM CHECK FOR UPDATES
 function adm_action_update() { eval(scg());
 	echo "<pre>";
+	sc_flush_buffers();
+	system("git stash save --keep-index");
+	sc_flush_buffers();
 	system("git pull https://github.com/sethcoder/rfscms.git");
+	sc_flush_buffers();
 	echo "</pre>";
 	include("footer.php");
 	exit();
