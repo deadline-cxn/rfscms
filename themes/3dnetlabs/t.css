@@ -1,9 +1,6 @@
 html, body
 {
-	height: 100%;
-    dscrollbar-base-color: #008800;
-    dscrollbar-arrow-color: #00FF00;
-    dscrollbar-DarkShadow-Color: #004400;
+    height: 100%;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
