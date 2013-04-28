@@ -1448,11 +1448,14 @@ function sc_form_start($page,$action){
     echo "<input type=\"hidden\" name=\"action\" value=\"$action\">";
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function show_codearea($id,$rows,$cols,$name,$indata){
-// echo $GLOBALS['$RFS_SITE_URL'];
- ?>
-    <script language="Javascript" type="text/javascript" src="3rdparty/editarea/edit_area/edit_area_full.js"></script>
-	<script language="Javascript" type="text/javascript">
+function show_codearea($id,$rows,$cols,$name,$indata){ eval(scg());
+
+	echo " <script language=\"Javascript\"
+					type=\"text/javascript\"
+					src=\"$RFS_SITE_URL/3rdparty/editarea/edit_area/edit_area_full.js\">
+			</script>\n";
+	
+	echo ' <script language="Javascript" type="text/javascript">
 		// initialisation
 
 		editAreaLoader.init({
@@ -1474,7 +1477,7 @@ function show_codearea($id,$rows,$cols,$name,$indata){
 		// callback functions
 		function my_save(id, content){
 		    id.form.submit();
-			//alert("Here is the content of the EditArea '"+ id +"' as received by the save callback function:\n"+content);
+			
 		}
 		function my_load(id){
 			editAreaLoader.setValue(id, "The content is loaded from the load_callback function into EditArea");
@@ -1500,22 +1503,26 @@ function show_codearea($id,$rows,$cols,$name,$indata){
 			}
 		}
 		function open_file1(){
-			var new_file= {id: "to\\ Ã© # â¬ to", text: "$authors= array();\n$news= array();", syntax: 'php', title: 'beautiful title'};
-			editAreaLoader.openFile('example_2', new_file);
+			var new_file= {id: "to\\ Ã© # â¬ to", text: "$authors= array();\n$news= array();", syntax: "php", title: 
+			
+	"beautiful title"};
+			editAreaLoader.openFile(
+			"example_2", new_file);
 		}
 		function open_file2(){
-			var new_file= {id: "Filename", text: "<a href=\"toto\">\n\tbouh\n</a>\n<!-- it's a comment -->", syntax: 'html'};
-			editAreaLoader.openFile('example_2', new_file);
+			var new_file= {id: "Filename", text: "<a href=\"toto\">\n\tbouh\n</a>\n<!-- it\'s a comment -->", syntax: "html"};
+			editAreaLoader.openFile("example_2", new_file);
 		}
-		function close_file1(){
-			editAreaLoader.closeFile('example_2', "to\\ Ã© # â¬ to");
-		}
+		
+		
 		function toogle_editable(id){
-            editAreaLoader.execCommand(id, 'set_editable', !editAreaLoader.execCommand(id, 'is_editable'));
+            editAreaLoader.execCommand(id, "set_editable", !editAreaLoader.execCommand(id, "is_editable"));
 		}
-	</script>
- <?
-//    $ca_rows=$rows*16; $ca_cols=$cols*7.20;
+	</script>';
+	
+	//alert("Here is the content of the EditArea '"+ id +"' as received by the save callback function:\n"+content);
+	//// function close_file1(){	editAreaLoader.closeFile("example_2", "to\\ Ã© # â¬ to");}
+	//    $ca_rows=$rows*16; $ca_cols=$cols*7.20;
     echo "<textarea id=\"$id\" style=\"height: $rows"."px; width: $cols"."px;\" name=\"$name\">";
     if(stristr($indata,"FILE_LOAD_")){
         $file=$GLOBALS['site_path'].str_replace("FILE_LOAD_","",$indata);
@@ -1815,9 +1822,136 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 
+function sc_ajax_spinner() { eval(scg()); 
+return "<img src=$RFS_SITE_URL/images/icons/spinner.gif>"; }
 
-// sc_db_get($table,$key,$kv,$field)
 
+
+function sc_ajax_callback_image(){ eval(scg());
+	if(sc_access_check($rfaapage,$rfaact)) {
+		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
+		$r=sc_query($q);
+		if($r) {
+			
+			
+			
+				echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+				$oimg=str_replace("$RFS_SITE_URL/","",$rfaajv);				
+				echo sc_picthumb($oimg,64,64,1);
+		}
+		
+		
+		
+		else   echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
+	}
+	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
+	exit;
+}
+
+function sc_ajax_callback(){ eval(scg());
+sleep(5);
+	if(sc_access_check($rfaapage,$rfaact)) {
+		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
+		$r=sc_query($q);
+		if($r) echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+		else   echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
+	}
+	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
+	exit;
+}
+
+
+function sc_ajax_javascript() { eval(scg());
+	echo '
+	<script>
+		function rfs_ajax_func(
+					rfalabel,
+					rfanname,
+					rfaajv,
+					rfatable,
+					rfaikey,
+					rfakv,
+					rfafield,
+					rfaapage,
+					rfaact,
+					rfacallback)
+				{
+			var http=new XMLHttpRequest();
+			var url = "'.$RFS_SITE_URL.'/header.php";
+			var params = "action="+rfacallback+
+			"&rfaajv="   +encodeURIComponent(rfaajv)+
+			"&rfanname=" +encodeURIComponent(rfanname)+
+			"&rfatable=" +encodeURIComponent(rfatable)+
+			"&rfaikey="  +encodeURIComponent(rfaikey)+
+			"&rfakv="    +encodeURIComponent(rfakv)+
+			"&rfafield=" +encodeURIComponent(rfafield)+
+			"&rfaapage=" +encodeURIComponent(rfaapage)+
+			"&rfaact="   +encodeURIComponent(rfaact);
+			document.getElementById(rfanname+"_div").innerHTML="'.sc_ajax_spinner().'";
+			http.open("POST", url, true);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.setRequestHeader("Content-length", params.length);
+			http.setRequestHeader("Connection", "close");
+			http.onreadystatechange = function() {
+					if(http.readyState == 4 && http.status == 200) {
+					
+					document.getElementById(rfanname+"_div").innerHTML=http.responseText;
+				}
+			}
+			http.send(params);
+		}
+		</script> ';
+}
+
+
+function sc_ajax(
+	$rfalabel,
+	$rfatable,
+	$rfaikey,
+	$rfakv,
+	$rfafield,
+	$rfawidth,
+	$rfatype,
+	$rfaapage,
+	$rfaact,
+	$rfacallback ) { eval(scg());
+
+	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
+	
+	if(!sc_access_check($rfaapage,$rfaact)) {
+		// echo "$rfaapage:$rfaact UNAUTHORIZED";
+		return;
+	}
+ 
+	$rfanname="RFAJAX_".time()."_".md5($rfalabel);	
+	
+	//echo "<tr><td>
+	echo "<div id='$rfanname"."_div' style='width:24px; float:left;'>&nbsp;</div>\n";
+	echo "<div id='$rfanname"."_label' style='width:100px; float:left;'>$rfalabel</div>\n";
+	
+	
+	$q="select * from `$rfatable` where `$rfaikey`='$rfakv'";
+	$r=sc_query($q);
+	$d=mysql_fetch_array($r);
+	// echo "<td>\n";
+	echo "<input	id=\"$rfanname"."_input\"
+					size=\"$rfawidth\"
+					type=\"$rfatype\"
+					name=\"$rfanname"."_name\"
+					value=\"".$d[$rfafield]."\"
+					onblur=\"rfs_ajax_func(
+					'$rfalabel',
+					'$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');\"
+					onkeyup=\"
+					if((event.keyCode==13)) {this.blur();}\"
+			style='float:left;'>";
+	echo "<br style='clear:both;'>";		
+	//</td>";
+	//echo "<td>\n";
+	//echo "</td>";
+	//echo "</tr>";
+	
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // This file can not have any trailing spaces

@@ -330,11 +330,9 @@ function adm_action_access_groups() { eval(scg());
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_PHPMYADMIN
-function adm_action_phpmyadmin() { eval(scg());
-	sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");
-}
+function adm_action_phpmyadmin() { eval(scg()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// ADM_NEW PAGE FUNCTIONS
+// ADM_FORM BUILDER FUNCTIONS
 function adm_action_form_builder() { eval(scg());
 	echo"<p>Form Builder</p>";
 	include( "footer.php" );
@@ -484,7 +482,6 @@ function adm_action_f_theme_edit_delete() { eval(scg());
 						
 						);
 }
-
 function adm_action_f_ajx_theme_edit_save_t_php() { eval(scg());
 	$thm=$_POST['thm'];
 	$taval=$_POST['taval'];
@@ -499,11 +496,10 @@ function adm_action_f_ajx_theme_edit_save_t_php() { eval(scg());
 	else 
 		sc_info("FILE SAVED","WHITE","GREEN");
 }
-
 function adm_action_f_theme_edit_t_php() { eval(scg()); 
-	echo '	<div id="file_status"></div>
+	echo '
+	<div id="file_status"></div>
 		<script>
-											
 		function save_t_php(ta,taval) {
 				var http=new XMLHttpRequest();
 				var url = "'.$RFS_SITE_URL.'/admin/adm.php";
@@ -536,9 +532,14 @@ function adm_action_f_theme_edit_t_php() { eval(scg());
 		,plugins: "charmap" 
 		,charmap_default: "arrows" });
 		</script> ';
-	echo "<textarea id=\"codecode_t_php\" style=\"height: 400px; width: 700px;\" name=\"codecode_t_php\">";
+		
+	echo "	<textarea id=\"codecode_t_php\"
+			style=\"height: 400px; width: 700px;\"
+			name=\"codecode_t_php\">";
 	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.php");
-	$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
+	$fc=stripslashes(str_replace("<","&lt;",$fc));
+	echo "</textarea>";
+	
 	echo $fc;
 	include("footer.php");
 	exit();
@@ -1884,9 +1885,23 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 	exit();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
-function adm_action_() {
+function adm_action_() { eval(scg());
 
-	eval( scg() );
+	// sc_ajax($label,$table,$key,$kv,$field,$width,$type) 
+
+	//echo "<table border=0>";
+		sc_ajax("Avatar",
+				"users", "name", "$data->name",
+				"avatar", 80, "","admin","access","sc_ajax_callback_image");
+		
+		sc_ajax("Last Name"	,"users","name","seth.parson","last_name",80,"","admin","access","");
+		//sc_ajax("Email"		,"users","name","seth.parson","email",80,"","admin","access");
+		
+		// sc_ajax("File",      "files","name","amwifi.exe","name",60,"","files","edit");
+		
+	//echo "</table>";
+	
+	
 
 	sc_access_method_add("admin", "access");
 	sc_access_method_add("admin", "categories");

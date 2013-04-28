@@ -9,6 +9,13 @@ if(!file_exists("config/config.php")) { include("install/install.php"); exit(); 
 include_once("include/lib.all.php");
 // check for site name definition
 if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
+
+if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
+	include("include/lib.all.php");
+	eval("$action();");
+	exit();
+}
+
 // housekeeping
 sc_maintenance();
 sc_debugheader(0);
@@ -17,7 +24,7 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/t
 // include theme header file (if it exists)
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) include("$RFS_SITE_PATH/themes/$theme/t.header.php");
 // otherwise use the default header (this file)
-else {    
+else {
 	rfs_echo($RFS_SITE_DOC_TYPE);
 	rfs_echo($RFS_SITE_HTML_OPEN);
 	rfs_echo($RFS_SITE_HEAD_OPEN);
@@ -147,6 +154,8 @@ else {
 
 //////////////////////////////////////////////
 // Load javascripts
+
+sc_ajax_javascript();
 
 rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
 rfs_echo($RFS_SITE_JS_JQUERY);
