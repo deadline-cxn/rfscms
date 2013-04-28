@@ -1892,9 +1892,9 @@ function adm_action_() { eval(scg());
 	//echo "<table border=0>";
 		sc_ajax("Avatar",
 				"users", "name", "$data->name",
-				"avatar", 80, "","admin","access","sc_ajax_callback_image");
+				"avatar", 60, "","admin","access","sc_ajax_callback_image");
 		
-		sc_ajax("Last Name"	,"users","name","seth.parson","last_name",80,"","admin","access","");
+		sc_ajax("Last Name"	,"users","name","seth.parson","last_name","","","admin","access","");
 		//sc_ajax("Email"		,"users","name","seth.parson","email",80,"","admin","access");
 		
 		// sc_ajax("File",      "files","name","amwifi.exe","name",60,"","files","edit");

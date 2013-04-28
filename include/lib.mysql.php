@@ -1849,11 +1849,13 @@ function sc_ajax_callback_image(){ eval(scg());
 }
 
 function sc_ajax_callback(){ eval(scg());
-sleep(5);
+
 	if(sc_access_check($rfaapage,$rfaact)) {
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
 		$r=sc_query($q);
-		if($r) echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+		if($r) {
+			echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+		}
 		else   echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
 	}
 	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
@@ -1864,6 +1866,18 @@ sleep(5);
 function sc_ajax_javascript() { eval(scg());
 	echo '
 	<script>
+	function rfs_ajax_hide(x) {
+        var div = document.getElementById(x);
+        if (div.style.display == "block") 
+        {
+            div.style.display = "none";
+        }
+        else 
+        {
+            div.style.display = "block";
+        }
+		
+	};
 		function rfs_ajax_func(
 					rfalabel,
 					rfanname,
@@ -1896,6 +1910,7 @@ function sc_ajax_javascript() { eval(scg());
 					if(http.readyState == 4 && http.status == 200) {
 					
 					document.getElementById(rfanname+"_div").innerHTML=http.responseText;
+					
 				}
 			}
 			http.send(params);
@@ -1915,42 +1930,92 @@ function sc_ajax(
 	$rfaapage,
 	$rfaact,
 	$rfacallback ) { eval(scg());
-
+	
+	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
 	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
 	
 	if(!sc_access_check($rfaapage,$rfaact)) {
-		// echo "$rfaapage:$rfaact UNAUTHORIZED";
 		return;
 	}
  
-	$rfanname="RFAJAX_".time()."_".md5($rfalabel);	
+	if(empty($rfalabel)) $rfalabel="&nbsp;";
 	
-	//echo "<tr><td>
-	echo "<div id='$rfanname"."_div' style='width:24px; float:left;'>&nbsp;</div>\n";
-	echo "<div id='$rfanname"."_label' style='width:100px; float:left;'>$rfalabel</div>\n";
+	$rlx=explode(",",$rfalabel);
+	$rfalabel=$rlx[0];
+	$minwidth="min-width: ".$rlx[1].";";
 	
+	$rfanname="RFAJAX_".time()."_".md5($rfakv.$rfalabel.$rfatable.$rfaikey);	
 	
+	echo "<div id='$rfanname"."_div' style='float:left;'>&nbsp;</div>\n";
+	echo "<div id='$rfanname"."_label' style='float:left; $minwidth'>$rfalabel</div>\n";
+	
+	$rfakv=addslashes($rfakv);	
 	$q="select * from `$rfatable` where `$rfaikey`='$rfakv'";
 	$r=sc_query($q);
 	$d=mysql_fetch_array($r);
-	// echo "<td>\n";
+	
+	if(stristr($rfatype,"select")) {
+		
+		$x=explode(",",$rfatype);		
+		$typ=$x[1];		
+		if($typ=="table") {
+			$tab=$x[2];
+			$key=$x[3];
+			
+			echo "<select id=\"$rfanname"."_input\"
+							name=\"$rfanname"."_name\"							
+							onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+							$hidefunc
+							\"
+							onchange=\"this.blur();\"
+							style='float:left;'>";
+			echo "<option>".$d[$rfafield];
+			$r=sc_query("select * from `$tab` order by `$key` asc");
+			for($i=0;$i<mysql_num_rows($r);$i++) {
+				$dat=mysql_fetch_array($r);
+				echo "<option>".$dat[$key];
+			}
+			echo "</select>";
+		}
+		echo "<div style='clear:both;'></div>";
+		return;		
+	}
+	
+	if($rfatype=="textarea") {
+		$rx=explode(",",$rfawidth);
+		$rows=$rx[0];
+		$cols=$rx[1];
+		echo "<textarea 	id=\"$rfanname"."_input\"
+							rows=\"$rows\"
+							cols=\"$cols\"
+							type=\"$rfatype\"
+							name=\"$rfanname"."_name\"							
+							onblur=\"rfs_ajax_func(	'$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+							$hidefunc
+							\"
+							
+			style='float:left;'>";
+			// onkeyup=\" if((event.keyCode==13)) {this.blur();}\"
+			
+				$tout=str_replace("<","&lt;",$d[$rfafield]);
+			echo $tout;
+			echo "</textarea>";	
+		
+	}
+	else {
 	echo "<input	id=\"$rfanname"."_input\"
 					size=\"$rfawidth\"
 					type=\"$rfatype\"
 					name=\"$rfanname"."_name\"
 					value=\"".$d[$rfafield]."\"
-					onblur=\"rfs_ajax_func(
-					'$rfalabel',
-					'$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');\"
-					onkeyup=\"
-					if((event.keyCode==13)) {this.blur();}\"
-			style='float:left;'>";
-	echo "<br style='clear:both;'>";		
-	//</td>";
-	//echo "<td>\n";
-	//echo "</td>";
-	//echo "</tr>";
+					onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+					
+					$hidefunc
+					\"
+					onkeyup=\"if((event.keyCode==13)) {this.blur();}\"style='float:left;'>";
 	
+	}
+	echo "<div style='clear:both;'></div>";
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
