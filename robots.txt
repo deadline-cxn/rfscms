@@ -20,7 +20,6 @@ User-agent: *
 # Visit-time: 0600-0845
 
 Disallow: /*action=     # do not follow action urls
-Disallow: /*javascript* # remove any javascript links, per log analysis
 Disallow: /admin/       # administrator links
 Disallow: /install/     # installer
 Disallow: /config/      # config
@@ -29,6 +28,6 @@ Disallow: /facebook/    # facebook
 Disallow: /*theme=      # theme changes
 
 #####################################################################################
-# Sitemap: http://www.cnn.com/sitemaps/sitemap-index.xml
+# Sitemap: 
 
 # End file
