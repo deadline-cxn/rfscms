@@ -123,7 +123,7 @@ function sc_file_get_readme($file_name) { eval (scg());
 					(stristr($file,".txt")) ||
 					(stristr($file,".msg")) ||					
 					(stristr($file,".cat")) ||
-					(stristr($file,".dat")) ||
+					
 					(stristr($file,".h")) ||
 					(stristr($file,".hpp")) ||
 					(stristr($file,".ttf")) ||
@@ -132,6 +132,7 @@ function sc_file_get_readme($file_name) { eval (scg());
 					)  &&
 					
 					(!stristr($file,".com")) &&
+					(!stristr($file,".dll")) &&					
 					(!stristr($file,".exe")) &&
 					(!stristr($file,".chm")) &&
 					(!stristr($file,".class"))
