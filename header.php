@@ -1,7 +1,14 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS (c) 2013 Seth Parson http://www.sethcoder.com/
+// RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
+
+// divert ajax requests 
+if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
+	include("include/lib.all.php");
+	eval("$action();");
+	exit();
+}
 
 // check for config.php file
 if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
@@ -9,12 +16,6 @@ if(!file_exists("config/config.php")) { include("install/install.php"); exit(); 
 include_once("include/lib.all.php");
 // check for site name definition
 if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
-
-if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
-	include("include/lib.all.php");
-	eval("$action();");
-	exit();
-}
 
 // housekeeping
 sc_maintenance();

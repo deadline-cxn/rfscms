@@ -800,7 +800,7 @@ if($action=="upload") {
 }
 
 if($give_file=="yes") {
-    if(empty($data->name)) {  echo "<p> You must be logged in to upload files... <a href=join.php>JOIN</a> now!</p>\n"; }
+    if(empty($data->name)) {  echo "<p> You must be logged in to upload files...</p>\n"; }
     else    {
         if($data->access!=255) { echo "<p>You are not authorized to upload files!</p>\n"; }
         else        {
@@ -925,6 +925,7 @@ function sc_fileheader() {
 	//echo "<td class=tdfilehead >&nbsp;</td>\n";
     echo "</tr>\n";
 }
+///////////////////////////////////////////////////////////////////////////////////
 
 function show1file($filedata,$bg) { eval(scg());
 
@@ -946,7 +947,6 @@ function show1file($filedata,$bg) { eval(scg());
 	echo "</div>";
 	
 	echo "<div style='float:left; min-width:200px;'>";
-		
 		if( (sc_access_check("files","edit")) &&
 			($_SESSION['editmode']==true) ) {
 			sc_ajax("Name"	,"files","name","$filedata->name","name",20,"","files","edit","");
@@ -955,37 +955,25 @@ function show1file($filedata,$bg) { eval(scg());
 		}
 	echo "</div>";
 	
-	
-	
-
-// 	if($_SESSION['show_temp']==true) { echo "$filedata->location"; }
-	
 	$size=(sc_sizefile($filedata->size));
 
 	echo "<div style='float:left;'>";
 	if( ($filetype=="ttf") || 
 		($filetype=="otf") ||
 		($filetype=="fon") ) {
-		sc_image_text(
-						stripslashes("$filedata->name"),
-						stripslashes("$filedata->name"),
-						12, // font, fontsize
-						1,1, // w,h
-						0,0, // offset x, offset y
-						244,245,1, // RGB Inner
-						1,1,0, 		// RGB Outer
-						1,	 // force render
-						0	// force height
-						);		
+			$fn=stripslashes("$filedata->name");
+		sc_image_text($fn,$fn,12, 1,1, 0,0, 244,245,1, 1,1,0, 1,0 );		
 		} else {	
 			if( (sc_access_check("files","edit")) &&
 					($_SESSION['editmode']==true) ) {
 				sc_ajax(""	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
 			} else {	
-	
-				echo "<textarea rows=9 cols=45>";
-				echo str_replace("<","&lt;",$filedata->description);
-				echo "</textarea>";
+				
+				echo "<div style='float: left; width: 300px;'>";
+				$fd=sc_trunc($filedata->description,80);
+				echo str_replace("<","&lt;",$fd);
+				echo "</div>";
+				
 			}
 		}
 		
@@ -999,23 +987,26 @@ function show1file($filedata,$bg) { eval(scg());
 			if($_SESSION['show_temp']==true) $hide="hide";			
 			
 			sc_ajax("","files","id","$filedata->id","category",70,"select,table,categories,name,$hide","files","edit","");
-			//sc_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id","Edit");		
+			
 		
 		}		
-		if(sc_access_check("files","delete")) {
-			//sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id&retpage=".urlencode(sc_canonical_url()),"Delete");
+		if((sc_access_check("files","delete")) &&
+			($_SESSION['editmode']==true) ) {
+			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id&retpage=".urlencode(sc_canonical_url()),"Delete");
 		}
 		
-	echo "
-	Size: $size <br>	
-	Version: $filedata->version<br>	
-	Platform: $filedata->platform<br>	
-	OS: $filedata->os<br>
-	Downloads: $filedata->downloads<br>";
+	echo "<div style='float:left;'>";
+	if(!empty($size)) echo "$size ";
+	if(!empty($filedata->version)) echo"$filedata->version ";
+	if(!empty($filedata->platform)) echo"$filedata->platform ";
+	if(!empty($filedata->os)) echo"$filedata->os ";
+	if(!empty($filedata->downloads)) echo"$filedata->downloads ";
 		
 	echo "</div>
 	<div style='clear:both;'></div>";
 }
+
+///////////////////////////////////////////////////////////////////////////////////
 
 if($action=="file_change_category") {
 	sc_query("update files set category = '$name' where id = '$id'");
@@ -1030,23 +1021,20 @@ if(($action=="show_temp") || ($_SESSION['show_temp']==true) ) {
 	sc_warn("Showing files that have corrupted or hidden categories");
 }
 
-if( ($action=="listcategory") ||  ($action=="search") ) {
+if( ($action=="listcategory") ||
+	($action=="search") ) {
     $category=rtrim($category);
 	if($category=="all categories") $category="all";
     if($action=="search"){
-	
-	$query=" where (`name` like '%$criteria%' or `description` like '%$criteria%' or `category` like '%$criteria%') ";
+		$query=" where (`name` like '%$criteria%' or `description` like '%$criteria%' or `category` like '%$criteria%') ";
         if($category!="all")
 			$query.="and `category` = '$category' ";
 		else {
 			$query.="and `category` != 'ignore' ";
-			
 		}
     }
 	
-	
-    if($action=="listcategory") if(empty($query)) $query="where `category` = '$category' ";
-	
+    if($action=="listcategory") if(empty($query)) $query="where `category` = '$category' ";	
     if($top=="")    $top=0;
     if($amount=="") $amount=25;
     if($amount!="all") $limit="$top,$amount";
@@ -1055,34 +1043,35 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 	$nexttop=$top+$amount+1;
 	$prevtop=$top-$amount;
 	if($prevtop<0) $prevtop=0;
-
+	
     $filelist= sc_getfilelist($query,$limit);
     $x=count($filelist);
+	
     if($x==0){
 		echo "<p>Your search for $criteria yielded no results...</p>";
-	}else 
-	if($x==1){
-		echo "<p>Your search for $criteria yielded no result...</p>";
-	}else{
-		echo "<p>Your search for $criteria yielded $x results:</p>";
+	}
+	else {
+		if($x==1){
+			echo "<p>Your search for $criteria yielded no result...</p>";
+		}
+		else {
+			echo "<p>Your search for $criteria yielded $x results:</p>";
+		}
 	}
 	
-	// echo "<center>";
 	if($prevtop>0) 
-		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria\">PREV PAGE</a>] ";
-	echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria\">NEXT PAGE</a>] ";	
-	// echo "</center>";
-	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria","PREV PAGE");
+	if($x==$amount) 
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria","NEXT PAGE");
+
     if(count($filelist)) {
 		echo "<h1>".ucwords($buffer)."</h1>";
-       // e//cho "<center><table border=0 bordercolor=#000000 cellspacing=0 cellpadding=0 width=90 % >\n";
-       // sc_fileheader();
 		$i=0; $bg=0;
 		while($i<count($filelist)){
 			$filedata=sc_getfiledata($filelist[$i]);
 			if(!empty($filedata->name)){
-				$bg=$bg+1; if($bg>1) $bg=0;
-				$i=$i+1;
+				$bg++; if($bg>1) $bg=0;
+				$i++;
 				show1file($filedata,$bg);
 				$la=$amount;
 				if(empty($la)) $la=5;
@@ -1090,21 +1079,17 @@ if( ($action=="listcategory") ||  ($action=="search") ) {
 					break;
 				}
 			}
-		}
-		// echo "</table>\n";
+		}		
 	}
-
-	// echo "<center>";
+	
 	if($prevtop>0) 
-		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria\">PREV PAGE</a>] ";
-	echo " [<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria\">NEXT PAGE</a>] ";	
-	// echo "</center>";
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria","PREV PAGE");
+	if($x==$amount) 
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria","NEXT PAGE");
 	
     include("footer.php");
     exit();
 }
-
-//echo "<table border=0 bordercolor=#000000 cellspacing=0 cellpadding=5 width=100% >";
 
 $result=sc_query("
 select * from categories 
@@ -1121,36 +1106,17 @@ for($i=0;$i<$numcats;$i++) {
         $filelist=sc_getfilelist("where category = '$buffer' and hidden='no' ",50);
 
 		if(count($filelist)){
-			//echo "<tr>";
-			//echo "<td class=sc_top_file_table width=5% > ";
-				
-			//echo "<table border=0 width=100 % ><tr>";
-			//echo "<td class=sc_top_file_table> ";
 			$iconp=$RFS_SITE_PATH."/".$cat->image;
 			$icon=$RFS_SITE_URL."/".$cat->image;
 			if(file_exists($iconp)) {
 				echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\">";
 				echo "<img src=$icon border=0 width=32 height=32>";
 				echo "</a>";
-				//echo "</td><td class=sc_top_file_table>";
 			}
-			echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" class=news_headline>";
 			
+			echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" class=news_headline>";			
 			echo ucwords("$buffer");			
 			echo "</a>";
-			/*
-			echo "</td></tr></table>";
-			echo "</td>";
-			echo "<td class=sc_top_file_table> </td>";
-			echo "<td class=sc_top_file_table> </td>";
-			echo "<td class=sc_top_file_table> </td>";
-			echo "<td class=sc_top_file_table> </td>";
-			echo "<td class=sc_top_file_table> </td>";
-			echo "<td class=sc_top_file_table> </td>";
-			echo "<td class=sc_top_file_table> </td>";
-			echo "<td class=sc_top_file_table> </td>";
-			echo "</tr> </table>";
-			*/
 			
 			while($i<count($filelist)) {
 				$filedata=sc_getfiledata($filelist[$i]);
@@ -1169,8 +1135,6 @@ for($i=0;$i<$numcats;$i++) {
 		}
 	}
 }
-// echo "</td></tr></table>";
-
 include("footer.php");
 
 ?>

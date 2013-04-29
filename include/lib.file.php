@@ -12,10 +12,10 @@ function sc_getfiletype($filen){
 function sc_sizefile($bytesize) {
     $size = $bytesize." bytes";
 	
-    if($bytesize>1024)       		$size = (round($bytesize/1024,2))." kB"; 				// kilobyte 2^10
-    if($bytesize>1048576)    		$size = (round($bytesize/1048576,2))." MB";			// megabyte 2^20
-    if($bytesize>1073741824) 		$size = (round($bytesize/1073741824,2))." GB";		// gigabyte 2^30
-	 if($bytesize>1099511627776) 	$size = (round($bytesize/1099511627776,2))." TB";	// terabyte 2^40
+    if($bytesize>1024)       		$size = (round($bytesize/1024,2))."kB"; 				// kilobyte 2^10
+    if($bytesize>1048576)    		$size = (round($bytesize/1048576,2))."MB";			// megabyte 2^20
+    if($bytesize>1073741824) 		$size = (round($bytesize/1073741824,2))."GB";		// gigabyte 2^30
+	 if($bytesize>1099511627776) 	$size = (round($bytesize/1099511627776,2))."TB";	// terabyte 2^40
 	 // PB petabyte 2^50
 	 // EB exabyte 2^60
 	 // ZB zettabyte 2^70

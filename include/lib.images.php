@@ -89,6 +89,10 @@ function sc_image_text_rt( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,
 $rt="<img src=\"$RFS_SITE_URL/include/generate.image.php/$text.png?action=showfont&font=$font&otext=$text&text_size=$fontsize&owidth=$w&oheight=$h&offx=$ox&offy=$oy&icr=$inicr&icg=$inicg&icb=$inicb&bcr=$inbcr&bcg=$inbcg&bcb=$inbcb&forcerender=$forcerender&forceheight=$forceheight\" border='0' alt='$text' >";
 return $rt;
 }
+
+function sc_image_text_small_raw($text,$font) { eval(scg());
+return "$RFS_SITE_URL/include/generate.image.php/$text.png?action=showfont&font=$font&otext=$text&text_size=16&icr=255&icg=255&icb=255&bcr=0&bcg=0&bcb=0&forcerender=1";
+}
 /////////////////////////////////////////////////////////////////////////
 function sc_percent_bar($percent){ eval(scg());
 	echo "<img src=\"$RFS_SITE_URL/include/percentage_bar.php?per=$percent\" alt=\"$percent %\" /> ";

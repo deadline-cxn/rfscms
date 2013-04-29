@@ -63,14 +63,9 @@ echo "</tr></table>";
 
 $ourl="$RFS_SITE_URL/modules/pictures/pics.php?action=$action&id=$id";
 
-if(empty($action))       $action="random";
 if(!empty($id))          $res=sc_query("select * from `pictures` where `id`='$id'");
 if($res)                 $picture=mysql_fetch_object($res);
 if(!empty($picture->id)) $category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$picture->category'"));
-
-$mcols=5;
-$mrows=6;
-$toget=$mcols*$mrows;
 
 $thumbwidth=200;
 $editwidth=256;
@@ -78,7 +73,8 @@ $fullsize=512;
 
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture
-if($action=="uploadpic"){
+function pics_action_uploadpic() { eval(scg());
+// if($action=="uploadpic"){
 			if($memeit=="yes") {
 				$donotshowcats=true;
 				echo "<p>Select a file to use for the caption.</p>\n";
@@ -120,7 +116,7 @@ if($action=="uploadpic"){
         echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
         echo "</form>\n";
         echo "</table>\n";
-    }
+}
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture confirm
     if($action=="uploadpicgo"){
@@ -182,12 +178,12 @@ if($action=="uploadpic"){
     }
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
-if($action=="removepicture"){
+function pics_action_removepicture() { eval(scg());
+// if($action=="removepicture"){
 	$res=sc_query("select * from `pictures` where `id`='$id'");
 	$picture=mysql_fetch_object($res);
 	if( ($data->access==255) ||
-		($data->id==$picture->poster)
-		)	 {
+		($data->id==$picture->poster) ){
 		echo "<table border=0>\n";
 		echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/pictures/pics.php method=post>\n";
 		echo "<input type=hidden name=action value=removego>\n";
@@ -203,7 +199,8 @@ if($action=="removepicture"){
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
-if($action=="removego"){
+function pics_action_remove_go() { eval(scg());
+// if($action=="removego"){
 	$res=sc_query("select * from `pictures` where `id`='$id'");
 	$picture=mysql_fetch_object($res);
 	if( ($data->access==255) ||
@@ -225,55 +222,22 @@ if($action=="removego"){
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Add orphans
-function addorphans($folder,$cat) {
-        $dir_count=0;
-        $dirfiles = sc_folder_to_array($folder);        
-        while(list ($key, $file) = each ($dirfiles)){
-            if($file!="."){
-                if($file!="..")
-                    if( ($file!="rendered") &&
-                        ($file!="cache") ) {
-                    
-                    $dircheck= $folder."/".$file;
-                    $dircheck=str_replace("../","",$dircheck);
-					
-                    if(is_dir($dircheck)) {
-                        echo "$dircheck is a folder... checking<br>";
-                        $dir_count += addorphans("$dircheck",$cat);  
-                    } 
-                    if( (sc_getfiletype($file)=="gif") ||
-						   (sc_getfiletype($file)=="png") ||
-                        (sc_getfiletype($file)=="jpg") ) {
-                        // $ofolder=str_replace($GLOBALS['RFS_SITE_PATH'],"",$folder);
-                        $url = "$folder/$file";
-                        $res=sc_query("select * from `pictures` where `url`='$url'");
-                        if(!mysql_num_rows($res)) {
-                            $time=date("Y-m-d H:i:s");
-                            sc_query("insert into `pictures` (`time`,`url`,`category`,`hidden`)
-                                                       VALUES('$time','$url','$cat','yes')");
-                            echo "Added [$url] to database<br>";
-                            $dir_count++;
-                        }
-                    }
-                }
-            }
-        }
-		return $dir_count;
-}
-if($action=="addorphans"){
+function pics_action_addorphans(){ eval(scg());
+// if($action=="addorphans"){
     if ($data->access==255) {
         $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
         $category=$categoryz->id;
         sc_query("delete from pictures where category='$category'");
         $dir_count = addorphans("files/pictures",$category);
-        if($dir_count==0) echo "No new pictures added to database.<br>";
-		 else echo "$dir_count new picture(s) added to database from $RFS_SITE_URL/files/pictures/...";
+        if($dir_count==0)
+			echo "No new pictures added to database.<br>";
+		else echo "$dir_count new picture(s) added to database from $RFS_SITE_URL/files/pictures/...";
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Sort !!!TEMP!!! category
-if($action=="sorttemp"){
-	
+function pics_action_sorttemp() { eval(scg());
+// if($action=="sorttemp"){	
 	if ($data->access==255) {
         if($subact=="place"){
             if(!empty($newcat)) {
@@ -282,7 +246,6 @@ if($action=="sorttemp"){
                     VALUES('$newcat'); ");
                 $categorey=$newcat;
             }
-
 			$categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='$categorey'"));
 			$category=$categoryz->id;
 			$res=sc_query("select * from `pictures` where `category`='$category' order by time asc");
@@ -292,7 +255,6 @@ if($action=="sorttemp"){
 			sc_query("update `pictures` set `sfw`='$sfw' where `id`='$id'");
 			sc_query("update `pictures` set `hidden`='$hidden' where `id`='$id'");
 		}
-
 		$categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
 		$category=$categoryz->id;
 		$res=sc_query("select * from `pictures` where `category`='$category' order by time asc");
@@ -300,57 +262,43 @@ if($action=="sorttemp"){
 		if($numpics>0){
             $picture=mysql_fetch_object($res);
             echo "<p align=center>$picture->url<br>";
-
             echo "<table border=0><tr><td width=610 valign=top>";
-            
             echo "<center><a href='$RFS_SITE_URL/modules/pictures/pics.php?action=removego&gosorttemp=yes&id=$picture->id&annihilate=yes'><img src=$RFS_SITE_URL/images/icons/Delete.png border=0><br>Delete (Warning there is no confirmation)</a><br>";
-
 			$size = getimagesize($picture->url);
 			$nw=$size[0]; $nh=$size[1]; if($nw>600) $w=600; if($nh>600) $h=600;
-
             echo "<img src=\"$RFS_SITE_URL/$picture->url\" ";
 			if($w) echo "width='$w' ";
 			if($h) echo "height='$h' ";
 			echo " border=0> </center>";
             echo "</td><td>";
 			$w=""; $h="";
-                echo "Select a category:<br>";
+			echo "Select a category:<br>";
+            $rc=sc_query("select * from categories order by name"); 
+            $rn=mysql_num_rows($rc);
+            // echo "<table border=0><tr>";
+			// $table_row_counter=0;
 
-                $rc=sc_query("select * from categories order by name"); 
-                $rn=mysql_num_rows($rc);
-
-		// echo "<table border=0><tr>";
-		// $table_row_counter=0;
-
-        for($ri=0;$ri<$rn;$ri++) {
-          // echo "<td>";
-
-            echo "<div style='float: left; padding: 10px; text-align: center; width: 80px; height: 120px;'>";
-
-            $incat=mysql_fetch_object($rc);
-            $imout=$incat->image;
-            if(!file_exists($RFS_SITE_PATH."/$incat->image"))
-                    $imout="images/noimage_file.gif";
-            if(!$incat->image)
-                $imout="images/noimage.gif";
-
-            echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&subact=place&id=$picture->id&categorey=$incat->name&sname=$picture->sname&sfw=yes'>";
-            echo "<img src='$RFS_SITE_URL/$imout' width=70 height=70><br>$incat->name</a>";
-
-            echo "</div>";
-            // echo "</td>";
-          // $table_row_counter++;
-          //if($table_row_counter > 8) {
-            //   $table_row_counter=0;
-               //echo "</tr><tr>";
-         //}
-        }
-
-		// echo "</tr></td></table>";
-
-
+			for($ri=0;$ri<$rn;$ri++) {
+				// echo "<td>";
+				echo "<div style='float: left; padding: 10px; text-align: center; width: 80px; height: 120px;'>";
+				$incat=mysql_fetch_object($rc);
+				$imout=$incat->image;
+				if(!file_exists($RFS_SITE_PATH."/$incat->image"))
+					$imout="images/noimage_file.gif";
+				if(!$incat->image)
+					$imout="images/noimage.gif";
+				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&subact=place&id=$picture->id&categorey=$incat->name&sname=$picture->sname&sfw=yes'>";
+				echo "<img src='$RFS_SITE_URL/$imout' width=70 height=70><br>$incat->name</a>";
+				echo "</div>";
+				// echo "</td>";
+				// $table_row_counter++;
+				//if($table_row_counter > 8) {
+				//   $table_row_counter=0;
+				//echo "</tr><tr>";
+				//}
+			}
+			// echo "</tr></td></table>";
             echo "</td></tr></table>";
-
 			echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pics.php>";
 			echo "<input type=hidden name=action value=sorttemp>";
 			echo "<input type=hidden name=subact value=place>";
@@ -361,12 +309,9 @@ if($action=="sorttemp"){
             if(!empty($picture->sfw)) echo "<option>$picture->sfw";            
 			echo "<option>yes<option>no</select>";
 			echo "Hidden<select name=hidden>";
-			
             // if(!empty($picture->hidden))            echo "<option>$picture->hidden";
-            
 			echo "<option>no<option>yes</select>";
 			$cat=mysql_fetch_object(sc_query("select * from `categories` where `id`='$picture->category'"));
-			
 			echo "<select name=categorey>\n";
 			echo "<option>Funny<option>$cat->name\n";
 			$result2=sc_query("select * from categories order by name asc");
@@ -396,7 +341,7 @@ if($action=="modifynamego") {
         if($id)
         sc_query("update `pictures` set `sname`='$sname'     where `id`='$id'");
     }
-    $action="view";    
+    $action="view";
 }
 if($action=="modifydescriptiongo") {
     if ($data->access==255) {
@@ -427,7 +372,8 @@ if($action=="modifygo"){
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Modify picture information
-if($action=="modifypicture"){
+function pics_action_modifypicture() { eval(scg());
+// if($action=="modifypicture"){
 	if ($data->access==255) {
 		$res=sc_query("select * from `pictures` where `id`='$id'");
 		$picture=mysql_fetch_object($res);
@@ -442,8 +388,7 @@ if($action=="modifypicture"){
 		echo "Category:";
 		echo "</td><td class=contenttd>";
 		$cat=mysql_fetch_object(sc_query("select * from `categories` where `id`='$picture->category'"));
-
-		 echo "<select name=categorey>";
+		echo "<select name=categorey>";
 		echo "<option>$cat->name";
 		$result2=sc_query("select * from categories order by name asc");
 		$numcats=mysql_num_rows($result2);
@@ -452,8 +397,6 @@ if($action=="modifypicture"){
 			echo "<option>$cat->name";
 		}
 		echo "</select>\n";
-
-
 		echo "</td></tr>";
 		echo "<tr><td class=contenttd>";
 		echo "Safe For Work:</td><td class=contenttd><select name=sfw>";
@@ -462,34 +405,22 @@ if($action=="modifypicture"){
 		echo "</td></tr>";
 		echo "<tr><td class=contenttd align=right>";
 		echo "Hidden:</td><td class=contenttd><select name=hidden>";
-		
         if(!empty($picture->hidden)) echo "<option>$picture->hidden";
-        
 		echo "<option>no<option>yes</select>";
 		echo "</td></tr>";
-
-
 		echo "<tr><td class=contenttd align=right>Poster:</td><td class=contenttd>";//<input name=poster value=\"$picture->poster\"></td></tr>";
-
 		echo "<select name=poster>";
 			$poster=sc_getuserdata($picture->poster);
-
 		echo "<option>$poster->name";
 		$result2=sc_query_user_db("select * from users order by name asc");
-		
 		$numusrs=mysql_num_rows($result2);
-		
 		for($i2=0;$i2<$numusrs;$i2++){
 			$usr=mysql_fetch_object($result2);
 			echo "<option value='$usr->id'>$usr->name";
 		}
 		echo "</select>\n";
-
 		echo "</td></tr>\n";
-
-	   //  echo "<tr><td class=contenttd align=right>Gallery:</td><td class=contenttd><input name=gallery value=\"$picture->gallery\"></td></tr>";
-
-
+		//  echo "<tr><td class=contenttd align=right>Gallery:</td><td class=contenttd><input name=gallery value=\"$picture->gallery\"></td></tr>";
 		echo "<tr><td class=contenttd align=right>Rating:</td><td class=contenttd><input name=rating value=\"$picture->rating\"></td></tr>";
 		// echo "<tr><td class=contenttd align=right>Views:</td><td class=contenttd><input name=views value=\"$picture->views\"></td></tr>";
 		echo "<tr><td class=contenttd align=right>Description:</td><td class=contenttd><textarea name=description rows=8 cols=80>$picture->description</textarea></td></tr>";
@@ -500,452 +431,37 @@ if($action=="modifypicture"){
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////
-// MEME use old confirm
-if($action=="memeuseoldgo") {
-		$m=mfo1("select * from meme where id='$name'");
-		$id=$m->basepic;
-		$name="";
-		$action="meme";
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME use old
-if($action=="memeuseold") {
-	$donotshowcats=true;
-	sc_optionizer(	sc_phpself(), "action=memeuseoldgo", "meme", "name", 1, "Select base picture", 1);
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME save
-if($action=="memesave") {
-    sc_query("update meme set status='SAVED' where id='$mid'");
-    sc_info("SAVED!","WHITE","RED");
-    $action="showmemes";
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME generate
-if($action=="memegenerate") {
-    
-	$donotshowcats=true;
-	$name 		= addslashes($name);
-	$texttop 	= addslashes($_REQUEST['texttop']);
-	$textbottom = addslashes($_REQUEST['textbottom']);	
-    
-	$poster=999;
-    if($data->id) $poster=$data->id;
-    if(empty($private)) $private="no";
-	
-	if($mid==0) {
-		
-        $infoout="Adding new caption";
-        if(empty($texttop)) $texttop="_NEW";
-		
-			echo " POSTER [$poster]<br>";
-			echo "PICTURE [$basepic] <br>";
-					
-			$q="insert into meme
-				  ( `name`,`poster`, `basepic`,`texttop`,`status`)
-			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
-        sc_query($q);
-        $mid=mysql_insert_id();
-       } else {
-		$infoout="Updating caption $mid";
-		
-		sc_query("update meme set `name`  			= '$name'   	     where id='$mid'");
-		sc_query("update meme set `poster`   	 	= '$poster'     	 where id='$mid'");
-		sc_query("update meme set `texttop`     	= '$texttop'    	 where id='$mid'");
-		sc_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$mid'");
-		sc_query("update meme set `font`	       = '$chgfont'       where id='$mid'");
-		sc_query("update meme set `text_color`		= '$text_color'    where id='$mid'");
-		sc_query("update meme set `text_bg_color`	= '$text_bg_color' where id='$mid'");
-		sc_query("update meme set `text_size`		= '$text_size'     where id='$mid'");
-		sc_query("update meme set `private`		= '$private'       where id='$mid'");
-		sc_query("update meme set `datborder`		= '$datborder'   	  where id='$mid'");
-	}	
-    $meme=mfo1("select * from meme where id='$mid'");
-    $data=sc_getuserdata($poster);
-    $action="memeedit";
-    $basepic=$meme->basepic;
-	sc_info($infoout." >> $meme->id ($mid) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME delete confirm
-if( ($action=="memedeletego") ) {
-	if($data->access==255){
-		sc_query("delete from meme where id='$mid' limit 1");
-	}	
-	$action="showmemes";
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME use old
-if($action=="memedelete") {
-	$donotshowcats=true;
-	if($data->access==255){
-	$dd="<form action=$RFS_SITE_URL/modules/pictures/pics.php method=post>Confirm delete meme:
-	<input type=submit name=memedelete value=Delete>
-	<input type=hidden name=action value=memedeletego>
-	<input type=hidden name=mid value=$mid>
-	</form>";	
-	sc_info($dd,"black","red");	
-	$t=$m->name."-".time();// /$t.png
-	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
-	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$mid&owidth=256' border=0></a>";
-	}
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME change font
-if($action=="memeusefont"){
-	
-	$m=mfo1("select * from meme where id='$meme'");
-	sc_info("$m->name($m->id) font changed to $memefont","WHITE","GREEN");
-	$p=$data->id;
-	if(empty($p)) $p=999;
-	echo $p;
-	if( ($p==$m->poster) ||
-	    ($data->access==255) ) {
-		sc_query("update meme set font='$memefont' where id='$meme'");
-		$mid=$meme; $id=$mid;
-		$action="memeedit";
-	}
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME change color
-if($action=="memechangecolor"){
-	$m=mfo1("select * from meme where id='$meme'");
-	if( ($data->id==$m->poster) ||
-		($data->access==255) ) {
-		sc_query("update meme set text_color='$text_color' where id='$meme'");
-		sc_query("update meme set text_bg_color='$text_bg_color' where id='$meme'");
-		$mid=$meme; $id=$mid;
-		$action="memeedit";
-	}
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME editor
-if( ($action=="memeedit")  || 
-	 ($action=="newmeme")   ||
-	  ($action=="meme") ) {
-	$donotshowcats=true;
-	if($action=="meme"){ 			$pic=mfo1("select * from pictures where id='$id'");	}
-	if($action=="memeedit") {
-		
-		if(empty($mid)) $mid=$id;
-		sc_info("Editing $name caption #$mid","BLACK","#ff9900");
-		$m=mfo1("select * from meme where id='$mid'");
-		$pic=mfo1("select * from pictures where id='$m->basepic'");	
-	}
-    $p=$data->id;
-    if(empty($p)) $p=999;
-	if( ($m->poster==$p) || ($data->access==255) ) {
-		if($m->poster!=$p)
-            sc_info("NOT YOURS ADMIN! / EDIT ANYWAY (LOL)","WHITE","RED");
-		if(empty($name)) $name=$m->name;
-		if(empty($name)) $nout="SHOW_TEXT_10#20#name=$name".$RFS_SITE_DELIMITER;
-		else  { 		
-			$nout="name=$name".$RFS_SITE_DELIMITER;
-		}
-		echo "<table border=0 cellspacing=0 cellpadding=0><tr><td valign=top>";
-		$ofont="fonts/impact.ttf";
-		$ocolor="white";
-		$text_bg_color="black";
-		if(!empty($m->font)) $ofont=$m->font;
-		if(!empty($m->text_color)) $ocolor=$m->text_color;
-		if(!empty($m->text_bg_color)) $text_bg_color=$m->text_bg_color;
-		if(empty($private)) $private="no";
-		//echo " .. [$m->id $pic->id]<br>";
-		sc_bqf( "action=memegenerate".$RFS_SITE_DELIMITER.
-				 "id=$pic->id".$RFS_SITE_DELIMITER.
-				 "mid=$m->id".$RFS_SITE_DELIMITER.
-				 "chgfont=$m->font".$RFS_SITE_DELIMITER.
-				 $nout.
-				 "SHOW_SELECTOR_colors#name#text_color#$ocolor".$RFS_SITE_DELIMITER.
-				 "SHOW_SELECTOR_colors#name#text_bg_color#$text_bg_color".$RFS_SITE_DELIMITER.
-				 "SHOW_TEXT_10#20#datborder=$m->datborder".$RFS_SITE_DELIMITER.
-				 "SHOW_TEXT_10#20#private=$private".$RFS_SITE_DELIMITER.
-				 "SHOW_TEXT_10#20#text_size=$m->text_size".$RFS_SITE_DELIMITER.
-				 "SHOW_TEXT_10#20#texttop=$m->texttop".$RFS_SITE_DELIMITER.
-				 "SHOW_TEXT_10#20#textbottom=$m->textbottom",
-				 "Go" );
-		echo "<p>";
-		if($action=="memeedit") {			
-			$t=$m->name."-".time();			
-echo "
-<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize&forcerender=1' target=_blank>
-<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?
-mid=$m->id&
-owidth=$editwidth&
-forcerender=1'
-border=0>
-</a>";
-		}
-		if($action=="meme") 	   echo "<img src=$pic->url>";
-		echo "</p>";
-
-		echo "</td><td width=80% valign=top>";
-        
-		/*sc_info("<BR>Planning following features<br>
-					TODO: Add upload ttf font.<br>
-					TODO: Add text color pickers <br>
-					TODO: Add border color picker<br>
-					TODO: Add TRUE FALSE OPTIONIZER<br>
-					&nbsp;","WHITE","RED");
-                    */
-
-
-echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memesave&mid=$m->id&showfonts=true'>";
-sc_image_text("SAVE THIS MEME","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,150,150,0,0,0,0,1,1);
-echo "</a><BR>";
-
-echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id&showfonts=true'>";
-$wf=str_replace("fonts/","",$m->font);
-
-sc_image_text("Change Font ($wf)",
-"HoW%20tO%20dO%20SoMeThInG.ttf",
-28,812,74,0,0,10,145,148,1,1,0,1,1);
-       echo "</a> <BR>";     
-
-
-
-        $rr=100;
-		if($showfonts) {
-			$dir_count=0; $dirfiles = array();
-			$handle=opendir("$RFS_SITE_PATH/files/fonts") or die("Unable to open filepath");
-			while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
-			closedir($handle); reset($dirfiles); asort($dirfiles);
-			while(list ($key, $file) = each ($dirfiles)){
-				if($file!=".") if($file!="..") if(!is_dir($dir."/".$file)){
-					$t=$m->name."-".time();
-					$text_size=18;
-
-$rr+=15; $rg+=32; $rb+=8; 
-if($rr>255) $rr=100;
-if($rg>255) $rg=0;
-if($rb>255) $rb=0;
-
-echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeusefont&memefont=$file&meme=$m->id'>
-<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?action=showfont&font=$file&text_size=56&forcerender=1&oheight=120&forceheight=1&icr=$rr&icg=$rg&icb=$rb' border=0></a>";
-
-				}
-			}
-		}
-
-		echo "</tr></table>";
-	}
-	else{
-		echo "<p>This is not your caption.</p>";		
-	}
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME vote up
-if($action=="muv"){
-    $muv="MUV$mid";    
-    $action="showmemes";
-    if(!$_SESSION[$muv]){        
-        $m=mfo1("select * from meme where id='$mid'");
-        $m->rating+=1;
-        sc_query("update meme set rating='$m->rating' where id='$mid'");
-        $_SESSION[$muv]=true;
-    } else {
-        sc_info("Multiple upvoting is not allowed.","white","red");
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME vote down
-if($action=="mdv"){
-    $mdv="MDV$mid";
-    $action="showmemes";
-	if(!$_SESSION[$mdv]){
-        $m=mfo1("select * from meme where id='$mid'");
-        $m->rating-=1;
-        sc_query("update meme set rating='$m->rating' where id='$mid'");
-        $_SESSION[$mdv]=true;
-    }
-    else {
-        sc_info("Multiple downvoting is not allowed.","white","red");
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////
-// MEME show memes
-if($action=="showmemes"){
-    sc_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
-	$donotshowcats=true;
-	echo "<table border=0 width=100% cellpadding=0 cellspacing=0 > <tr><td valign=top align=center>";
-	echo "<h1>Public Captions</h1>";
-	$rz=sc_query("select * from meme where 
-        `private`!='yes'
-        and `status` = 'SAVED'"); $mtotal=mysql_num_rows($rz);
-
-	if(empty($mtop)) $mtop=0;
-	if(empty($mbot)) $mbot=$toget;
-	
-	echo "<table border=0 width=100% cellpadding=0 cellspacing=0 ><tr>";
-	echo "<td align=center >";
-	
-	if( $mtop > 0 ) {
-		$tmtop=$mtop-$mbot;
-		echo "<BR>[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow'>PREVIOUS PAGE</a>]<BR>";
-	}
-	else
-		echo "<BR>[NO PREVIOUS]<BR>";
-	echo "</td>";
-
-	if(!empty($onlyshow)) {
-		echo "<td align=center>[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow='>SHOW ALL CAPTIONS</a>]</td>";
-	}
-
-	echo "<td align=center >";
-	if( ($mbot+$mtop) < $mtotal) {
-		
-		$mtop+=$mbot;
-		echo "<BR>[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow'>NEXT PAGE</a>]<BR>";
-	}
-	else
-		echo "<BR>[NO NEXT PAGE]<BR>";
-
-	echo "</td>";
-	
-	echo "</tr></table>";
-    echo "<table border=0 width=100%>";
-    echo "<tr>";
-	
-	
-	///////////// Last 5
-	
-	echo "<td valign=top align=center width=210> ";
-	sc_info("Last 5 Captions","BLACK","YELLOW");
-	$r=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc");
-	for($i=0;$i<5;$i++) {
-		echo "<hr>";
-		$m=mysql_fetch_object($r);
-		sc_mini_meme($m->id);
-	}
-	echo "</td>";
-
-	/////////// End Last 5
-
-	
-	$q="select * from meme  ";
-	$q.=" where ";
-	if(!empty($onlyshow))
-		$q.=" `name`='$onlyshow' and";
-	$q.=" `private`<>'yes' and `status` = 'SAVED'";
-	$q.=" order by rating desc limit $mtop,$mbot ";
-
-	$r=sc_query($q);
-	$n=mysql_num_rows($r); 
-	echo "<td style='float:left; overflow: auto; vertical-align:text-top;' >";
-	for($i=0;$i<$n;$i++){
-		$m=mysql_fetch_object($r);
-		echo "<div id=$m->id style=\"float: left;\">";
-		sc_mini_meme($m->id);
-		echo "</div>";
-	}
-	echo "<br style='clear: both;'>";
-	echo "</td>";
-
-	///////////// Private captions
-	/*
-	echo "<td valign=top align=center width=240> ";
-	sc_info("Your Private Captions","BLACK","GREEN");
-	
-	if(!empty($data->name)){
-		$r=sc_query("select * from meme 
-		where
-		
-		poster='$data->id' and
-		private='yes'
-		
-		order by time desc");
-		
-		$mn=mysql_num_rows($r);
-		
-		if($mn>0) {			
-			for($i=0;$i<$mn;$i++) {
-				$m=mysql_fetch_object($r);				
-				$t=$m->name."-".time();
-				echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
-				<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0></a><br>";
-            
-            $muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-            //echo "Contributor: $muser->name<br>
-            
-                echo "
-						Based: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>";
-
-    sc_image_text(sc_num2txt($m->rating), "OCRA.ttf", 24, 78, 24, 0, 0, 1, 155, 1, 70, 70, 0, 1, 1);
-                    
-        echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
-              <a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
-						<br>";
-
-				echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
-				if( ($data->id==$m->poster) ||
-					($data->access==255) ) {
-					echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
-					echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&mid=$m->id'>Delete</a>] ";
-				}
-				echo "<hr>";
-			}
-		}
-		else
-		{
-			echo "(You haven't created any private captions)";
-		}
-	}
-	else {
-		echo"(You must login to create private captions)";
-	}
-	echo "</td>";
-	*/
-/////////// End Private captions
-
-	
-	echo "</tr>";
-	echo "</table>";
-}
-/////////////////////////////////////////////////////////////////////////////////
 // PICTURE random
-if($action=="random"){
+function pics_action_random() { eval(scg());
+// if($action=="random"){
     $res=sc_query("select * from `pictures` where `hidden`!='yes'");
     $num=mysql_num_rows($res);
     if($num>0) {
         $pict=rand(1,($num))-1;
         mysql_data_seek($res,$pict);
         $pic=mysql_fetch_object($res);
-        $id=$pic->id;        
+        pics_action_view($pic->id);//$GLOBALS['id']=$pic->id;
     }
-    $action="view";
+    
 }
-
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view
-if($action=="view") {
-	/*
-	$action="viewcat";	
-	$ipr=mfo1("select * from pictures where id=$id");
-	$category=mfo1("select * from categories where id=$ipr->category");
-	$cat=$category->id;
-	*/
-	
-	
+function pics_action_view($id) { eval(scg());
     $res=sc_query("select * from `pictures` where `id`='$id' order by time asc");
     $picture=mysql_fetch_object($res);
-    
-
 	$category=$picture->category;
     $res2=sc_query("select * from `pictures` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
     $numres2=mysql_num_rows($res2);
     $linkprev="";
     $linknext="";
-    
     for($i=0;$i<$numres2;$i++)    {
         $picture2=mysql_fetch_object($res2);
         if($picture2->id==$picture->id)        {
             $picture2=mysql_fetch_object($res2);
             if(!empty($picture2->id))            {
 					$linknext="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture2->id";
-					
                 if(!empty($picture3->id))
 					$linkprev="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id";
-					
                 break;
             }
         }
@@ -953,22 +469,17 @@ if($action=="view") {
             $picture3=$picture2;
         }
     }
-
-echo "<center><table border=0><tr>";
-    
+	echo "<center><table border=0><tr>";
         if(!empty($picture3->id)) {
 			echo "<td>";
 			sc_button($linkprev,"Previous");
 			echo "</td>";
 		}
     
-    
     if($id) {
 		if(sc_yes($RFS_SITE_CAPTIONS)){
-		
-			
 		echo "<td>";
-		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$picture->id","Caption");
+		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
 		echo "</td>";
 		}
 		
@@ -992,16 +503,37 @@ echo "<center><table border=0><tr>";
 		if(!empty($picture2->id))
 			sc_button($linknext,"Next");
 		echo "</td>";
-		
-		echo "</tr></table></center>";
-		
-		
+		echo "</tr></table></center>";	
 		echo "<center>";
     $categorym=mfo1("select * from categories where id='$category'");	
     if(!empty($categorym->name)) {
         echo "Gallery: $categorym->name<br>";
     }
+	echo "<div align=center>";
+	if(empty($picture->sname)) {		
+		if(sc_access_check("pictures","edit")) {
+			sc_ajax("Short Name,70","pictures","id","$id","sname",70,"","pictures","edit","");
+			//sc_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
+		}
+	}
+	else {
+		echo $picture->sname;
+	}
+	echo "<br>";
+	if(empty($picture->description)) {		
+		if(sc_access_check("pictures","edit")) {
+			sc_ajax("Description,70","pictures","id","$id","description","5,70","textarea","pictures","edit","");
+			//sc_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
+		}
+	}
+	else {
+		echo $picture->description;
+	}
+	echo "<br>";
+	echo "</div>";
 		
+	
+/*	
 echo "<script>function changepicname(x,id) {
 			var xmlhttp=new XMLHttpRequest();
 			var url=\"$RFS_SITE_URL/modules/pictures/pics.php?action=aname&sname=\"+x+\"&id=\"+id;
@@ -1021,7 +553,9 @@ echo "<div id=\"picname\">";
 echo "<h1>$picture->sname</h1>";
 echo "</div>";
 
-echo "<script>function changepicdesc(x,id) {
+*/
+
+/* 		echo "<script>function changepicdesc(x,id) {
 			var xmlhttp=new XMLHttpRequest();
 			var url=\"$RFS_SITE_URL/modules/pictures/pics.php?action=adesc&desc=\"+x+\"&id=\"+id;
 			xmlhttp.open(\"GET\",url,false);
@@ -1029,16 +563,18 @@ echo "<script>function changepicdesc(x,id) {
 			document.getElementById(\"picdesc\").innerHTML='<h1>'+xmlhttp.responseText+'</h1>'
 			} </script>";
 		
-echo "<div id=\"picdesc\">";		
-		if(empty($picture->description)) {
-			if(sc_access_check("pictures","edit"))  {
-	$picture->description=" EDIT THIS DESCRIPTION!!!!
-<textarea id='description' name=description
-onblur=\"changepicdesc(this.value,$picture->id)\"></textarea>";
+			echo "<div id=\"picdesc\">";		
+			if(empty($picture->description)) {
+				if(sc_access_check("pictures","edit"))  {
+					$picture->description=" EDIT THIS DESCRIPTION!!!!
+				<textarea id='description' name=description
+				onblur=\"changepicdesc(this.value,$picture->id)\"></textarea>";
+				}
 			}
-		}
-echo "<h3>$picture->description</h3>";
-echo "</div>";
+			echo "<h3>$picture->description</h3>";
+			echo "</div>";
+		
+		*/
 		
 		if($picture->sfw=="yes") {
 			$size = getimagesize("$RFS_SITE_PATH/$picture->url");
@@ -1083,18 +619,13 @@ echo "</div>";
 
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view category
-if($action=="viewcat"){
-	
+function pics_action_viewcat($cat) {eval(scg());
 	if($ipr) $ipr=mfo1("select * from pictures where id=$id");
 	else $ipr=mfo1("select * from pictures where category='$cat'");
-	// $category=mfo1("select * from categories where id=$ipr->category");
-	// $cat=$category->id;
-	
     $cat=mfo1("select * from categories where id='$cat'");
     if(!empty($cat->name)) echo "<center><font class=th>Gallery: $cat->name</font></center>";
     $r=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
-	$numpics=mysql_num_rows($r);
-	
+	$numpics=mysql_num_rows($r);	
 			echo "<center>";			
 			if($galleria=="yes") {
 				echo "<script src=\"$RFS_SITE_URL/3rdparty/galleria/galleria-1.2.9.min.js\"></script>";
@@ -1146,63 +677,69 @@ if($action=="viewcat"){
 
 	}
 	echo "</center>";
-
-// $donotshowcats=true;
+	include("footer.php");
+	exit();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE show categories
-if(!$donotshowcats) {
-	$res=sc_query("select * from `categories` order by name asc");
-	$numcats=mysql_num_rows($res);
-	echo "<table border=0 width=100%>";
-	$numcols=0; echo "<tr>";
-	for($i=0;$i<$numcats;$i++) {
-		$cat=mysql_fetch_object($res);
-		$res2=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
-		$numpics=mysql_num_rows($res2);
+function pics_action_viewcats(){ eval(scg());
+	if(!$donotshowcats) {
+		$res=sc_query("select * from `categories` order by name asc");
+		$numcats=mysql_num_rows($res);
+		echo "<table border=0 width=100%>";
+		$numcols=0; echo "<tr>";
+		for($i=0;$i<$numcats;$i++) {
+			$cat=mysql_fetch_object($res);
+			$res2=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
+			$numpics=mysql_num_rows($res2);
 
-        if($numpics>0) {
-            echo "<td class=contenttd>";
-            echo "<table border=0 cellspacing=0 cellpadding=3 width=100%><tr><td class=contenttd>";
-            echo "<table border=0 cellspacing=0 cellpadding=0 width=100% ><tr>";
-            echo "<td class=contenttd valign=top width=220>";
-        if(empty($cat->image)) $cat->image="buttfea2.gif";
-        if(!file_exists("$RFS_SITE_PATH/$cat->image")) $cat->image="images/icons/404.png";
-            echo "
-            <a href='$RFS_SITE_URL/modules/pictures/pics.php?action=viewcat&cat=$cat->id'>
-            <h1><img src='$RFS_SITE_URL/$cat->image' border=0 width=64 height=64>$cat->name ($numpics)</h1>
-            </a>
-            <br>";
+			if($numpics>0) {
+				echo "<td class=contenttd>";
+				echo "<table border=0 cellspacing=0 cellpadding=3 width=100%><tr><td class=contenttd>";
+				echo "<table border=0 cellspacing=0 cellpadding=0 width=100% ><tr>";
+				echo "<td class=contenttd valign=top width=220>";
+			if(empty($cat->image)) $cat->image="buttfea2.gif";
+			if(!file_exists("$RFS_SITE_PATH/$cat->image")) $cat->image="images/icons/404.png";
+				echo "
+				<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=viewcat&cat=$cat->id'>
+				<h1><img src='$RFS_SITE_URL/$cat->image' border=0 width=64 height=64>$cat->name ($numpics)</h1>
+				</a>
+				<br>";
 
-            echo "</td></tr>";
+				echo "</td></tr>";
 
-            echo "<tr>";
-                echo "<td class=contenttd valign=top height=200 width=220>";
-                // make pictures table...
-                if($numpics>5) $numpics=5;
-                for($i2=0;$i2<$numpics;$i2++) {
-                    $picture=mysql_fetch_object($res2);
-                    if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
-                    echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
-                    $img=$RFS_SITE_URL."/".$picture->url;
-                    echo sc_picthumb($img,96,0,1);
-                    echo "</a>\n";
-                }
-                echo "</td></tr></table>";
-            echo "</td></tr></table>";
-            echo "</td>";
-            $numcols++;
-            if($numcols>3){
-                echo "</tr><tr>";
-                $numcols=0;
-            }
-        }
-    }
-    echo "</tr></table>";
+				echo "<tr>";
+					echo "<td class=contenttd valign=top height=200 width=220>";
+					// make pictures table...
+					if($numpics>5) $numpics=5;
+					for($i2=0;$i2<$numpics;$i2++) {
+						$picture=mysql_fetch_object($res2);
+						if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
+						echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
+						$img=$RFS_SITE_URL."/".$picture->url;
+						echo sc_picthumb($img,96,0,1);
+						echo "</a>\n";
+					}
+					echo "</td></tr></table>";
+				echo "</td></tr></table>";
+				echo "</td>";
+				$numcols++;
+				if($numcols>3){
+					echo "</tr><tr>";
+					$numcols=0;
+				}
+			}
+		}
+		echo "</tr></table>";
+	}
+	include("footer.php");
+	exit();
 }
 
 
+function pics_action_() { eval(scg());
+	pics_action_viewcats();	
+}
 
-include("footer.php");
 ?>
