@@ -1,27 +1,26 @@
 <?
 chdir("../../");
 include("header.php");
-
 echo "Comics <BR>";
-
 echo "<table border=0 width=800 cellspacing=0 cellpadding=0><tr><td class=contenttd>";
-
-if($give_file=="comics")
-{
+if($give_file=="comics") {
     if(empty($data->name)) echo "<p>No...</p>\n";
-    else
-    {
+    else {
         echo "<p> Uploading files... </p>\n";
-        $f_ext=sc_getfiletype($_FILES['userfile']['name']);
-        $uploadFile=$site_path."/images/comics/".$_FILES['userfile']['name'];
-        if(($f_ext=="gif")||($f_ext=="jpg")||($f_ext=="swf"))
-        {
+		echo $_FILES['userfile']['name'];
+        // $f_ext=sc_getfiletype($_FILES['userfile']['name']);
+        $uploadFile="$RFS_SITE_PATH/images/comics/".$_FILES['userfile']['name'];
+		
+        //if(		($f_ext=="gif") ||
+			//	($f_ext=="jpg") ||
+				//($f_ext=="png") ||
+				//($f_ext=="bmp") ||
+				//($f_ext=="swf")) {
             $oldname=$_FILES['userfile']['name'];
-            if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile))
-            {
+            if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile)){
                 system("chmod 755 $uploadFile");
                 $error="File is valid, and was successfully uploaded. ";
-                $httppath="$site_url/images/comics/".$_FILES['userfile']['name'];
+                $httppath="$RFS_SITE_URL/images/comics/".$_FILES['userfile']['name'];
                 echo "<p>File stored as [<a href=\"$httppath\" target=\"_blank\">$httppath</a>]</p>\n";
             }
             else
@@ -32,8 +31,8 @@ if($give_file=="comics")
             }
             if(!$error) $error .= "No files have been selected for upload";
             echo "<P>Status: [$error]</P>\n";
-        }
-        else echo "<p>Invalid filetype ($f_ext) for comics!</p>";
+        //}
+        //else echo "<p>Invalid filetype ($f_ext) for comics!</p>";
     }
 
     $pan="panel$panel";
@@ -41,34 +40,21 @@ if($give_file=="comics")
     $action="defpage";
 }
 
-function renumber_pages($id)
-{
+function renumber_pages($id) {
     $comic=mysql_fetch_object(sc_query("select * from `comics` where `id`='$id'"));
-
     $res=sc_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc");
     $npages=mysql_num_rows($res);
-
-    for($i=0;$i<$npages;$i++)
-    {
+    for($i=0;$i<$npages;$i++) {
         $newpage=$i+1;
         $page=mysql_fetch_object($res);
         sc_query("update `comics_pages` set `page`='$newpage' where `pid`='$page->pid'");
-    }        
-
-
+	}
 }
 
-
-function template_mini_preview($id)
-{
-    $site_url=$GLOBALS['site_url'];
-
+function template_mini_preview($id) { eval(scg());
     $template=mysql_fetch_array(sc_query("select * from `comics_page_templates` where `id`='$id'"));
-
-    echo "<table border=0><tr><td class=contenttd>&nbsp;";
-    
-    for($i=0;$i<$template['panels'];$i++)
-    {
+    echo "<table border=0><tr><td class=contenttd>&nbsp;";    
+    for($i=0;$i<$template['panels'];$i++) {
         $var="panel".($i+1)."_x";
         $x=$template[$var];
         if($x) $x=$x/6;
@@ -80,51 +66,39 @@ function template_mini_preview($id)
         $var="panel".($i+1)."_l";
         $l=$template[$var];
 
-        echo "<img src=\"$site_url/images/comics_page_bkg.gif\" width=$x height=$y>&nbsp;";
+        echo "<img src=\"$RFS_SITE_URL/images/comics_page_bkg.gif\" width=$x height=$y>&nbsp;";
         if($l=="yes") echo "<br>&nbsp;";
-    }
+	}
 
     echo "</td></tr></table>";
 }
 
-function template_full_preview($id)
-{
-    $site_url=$GLOBALS['site_url'];
-
+function template_full_preview($id) { eval(scg());
     $template=mysql_fetch_array(sc_query("select * from `comics_page_templates` where `id`='$id'"));
-
-    echo "<table border=0><tr><td class=contenttd>";
-    
-    for($i=0;$i<$template['panels'];$i++)
-    {
+    echo "<table border=0><tr><td class=contenttd>";    
+    for($i=0;$i<$template['panels'];$i++) {
         $var="panel".($i+1)."_x";
         $x=$template[$var];
         //if($x) $x=$x/6;
-
         $var="panel".($i+1)."_y";
         $y=$template[$var];
         //if($y) $y=$y/6;
-
         $var="panel".($i+1)."_l";
         $l=$template[$var];
 
-        echo "<img src=\"$site_url/images/comics_page_bkg.gif\" width=$x height=$y>&nbsp;";
+        echo "<img src=\"$RFS_SITE_URL/images/comics_page_bkg.gif\" width=$x height=$y>&nbsp;";
         if($l=="yes") echo "<br>";
     }
-
     echo "</td></tr></table>";
 }
 
-function getcomic($title,$volume,$issue) 
-{
+function getcomic($title,$volume,$issue) {
     $res=mysql_fetch_object(sc_query("select * from `comics` where `title`='$title' and `volume`='$volume' and `issue`='$issue'"));
     return $res;
 }
 
-if($data->access==255)
-{
-    if($action=="newcomic")
-    {
+if($data->access==255){
+    if($action=="newcomic")    {
         echo "<h1>Add a new comic</h1>";
         echo "<table border=0>";
         echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/comics/comics.php>";
@@ -446,8 +420,7 @@ if($data->access==255)
         template_mini_preview($template->id);
     }
 
-    if($action=="editpagetemplate")
-    {
+    if($action=="editpagetemplate") {
         $template=mysql_fetch_array(sc_query("select * from `comics_page_templates` where `id`='$tid'"));
 
         echo "<h1>Edit a comic page template</h1>";
@@ -462,8 +435,7 @@ if($data->access==255)
         echo "</select>";
         echo "</td></tr>";
 
-        for($i=1;$i<9;$i++)
-        {
+        for($i=1;$i<9;$i++) {
             echo "<tr><td class=contenttd>Panel $i Width</td><td class=contenttd>";
             $var="panel".$i."_x";
             echo "<input name=\"$var\" value=\"".$template[$var]."\">";
@@ -486,14 +458,12 @@ if($data->access==255)
         exit;
     }
 
-    if($action=="previewtemplatefull")
-    {
+    if($action=="previewtemplatefull") {
         template_full_preview($tid);
         $action="addpage";                
     }
 
-    if($action=="addpagego")
-    {
+    if($action=="addpagego") {
         $comic=mysql_fetch_object(sc_query("select * from `comics` where `id`='$id'"));
         $template=mysql_fetch_object(sc_query("select * from `comics_page_templates` where `id`='$tid'"));
 
@@ -518,8 +488,7 @@ if($data->access==255)
         $ntemplates=mysql_num_rows($res);
         echo "<p>There are $ntemplates templates defined...</p>";
 
-        for($i=0;$i<$ntemplates;$i++)
-        {
+        for($i=0;$i<$ntemplates;$i++) {
             $template=mysql_fetch_object($res);
             echo "<table border=0><tr><td class=contenttd>";
             template_mini_preview($template->id);
@@ -541,32 +510,27 @@ if($data->access==255)
         exit;
     }
 
-    if($action=="clearpanel")
-    {
+    if($action=="clearpanel") {
         $pan="panel$panel";
         sc_query("update `comics_pages` set `$pan`='' where `pid`='$pid'");
         $action="defpage";
     }
 
-    if($action=="definepanel")
-    {
+    if($action=="definepanel") {
         $pan="panel$panel";
         sc_query("update `comics_pages` set `$pan`='$userfile' where `pid`='$pid'");
         $action="defpage";
     }
 
-    if($action=="defpage")
-    {
+    if($action=="defpage") {
         $page=mysql_fetch_object(sc_query("select * from `comics_pages` where `pid`='$pid'"));
         $pagea=mysql_fetch_array(sc_query("select * from `comics_pages` where `pid`='$pid'"));
         $template=mysql_fetch_array(sc_query("select * from `comics_page_templates` where `id`='$page->template'"));
 
         echo "<table border=0><tr><td class=contenttd>";
-
         echo "<table border=0><tr>";
 
-        for($i=0;$i<$template['panels'];$i++)
-        {
+        for($i=0;$i<$template['panels'];$i++) {
             $var="panel".($i+1)."_x";
             $x=$template[$var];
             $var="panel".($i+1)."_y";
@@ -578,13 +542,13 @@ if($data->access==255)
             $url=$pagea[$var];
             
                         
-            if(empty($url)) $url="$site_url/images/comics_page_bkg.gif";
+            if(empty($url)) $url="$RFS_SITE_URL/images/comics_page_bkg.gif";
             
             echo "<td class=contenttd background=\"$url\" width=$x height=$y align=center>";
             echo "<p>$x x $y</p>";
             
             echo "<table border=0>\n";
-            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
+            echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
             echo "<input type=hidden name=action value=definepanel>\n";
             echo "<input type=hidden name=pid value=$page->pid>";
             echo "<input type=hidden name=panel value=".($i+1).">";
@@ -594,7 +558,7 @@ if($data->access==255)
             echo "</table>\n";
 
             echo "<table border=0>\n";
-            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
+            echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
             echo "<input type=hidden name=give_file value=comics>\n";
             echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
             echo "<input type=hidden name=local value=\"images/comics\">";
@@ -607,7 +571,7 @@ if($data->access==255)
             echo "</table>\n";
 
             echo "<table border=0>\n";
-            echo "<form enctype=application/x-www-form-URLencoded enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
+            echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
             echo "<input type=hidden name=action value=clearpanel>\n";
             echo "<input type=hidden name=pid value=$page->pid>";
             echo "<input type=hidden name=panel value=".($i+1).">";
@@ -616,7 +580,6 @@ if($data->access==255)
             echo "</table>\n";
 
             echo "</td>";
-        
 
             if($l=="yes") echo "</tr></table><table border=0><tr>";
         }
@@ -653,14 +616,11 @@ if($data->access==255)
         $action="editcomic";
     }
 
-    if($action=="movepageup")
-    {
-        if($page<2)
-        {
+    if($action=="movepageup") {
+        if($page<2) {
             echo "<p>You can't move that page up</p>";
         }
-        else
-        {
+        else {
             $comic=mysql_fetch_object(sc_query("select * from `comics` where `id`='$id'"));
             $pagea=$page-1;
             $pageabove=mysql_fetch_object(sc_query("select * from `comics_pages` where `parent`='$id' and `page`='$pagea'"));
@@ -673,16 +633,13 @@ if($data->access==255)
         $action="editcomic";
     }
 
-    if($action=="movepagedown")
-    {
+    if($action=="movepagedown") {
         $comic=mysql_fetch_object(sc_query("select * from `comics` where `id`='$id'"));
         $totalpages=mysql_num_rows(sc_query("select * from `comics_pages` where `parent`='$id'"));
-        if($page>($totalpages-1))
-        {
+        if($page>($totalpages-1)) {
             echo "<p>You can't move that page down</p>";
         }
-        else
-        {
+        else {
             $comic=mysql_fetch_object(sc_query("select * from `comics` where `id`='$id'"));
             $pagea=$page+1;
             $pageabove=mysql_fetch_object(sc_query("select * from `comics_pages` where `parent`='$id' and `page`='$pagea'"));
@@ -695,8 +652,7 @@ if($data->access==255)
         $action="editcomic";
     }
 
-    if($action=="editcomic")
-    {
+    if($action=="editcomic") {
         $comic=mysql_fetch_object(sc_query("select * from `comics` where `id`='$id'"));
 
         echo "<h1>Editing Comic: $comic->title vol. $comic->volume issue $comic->issue</h1>";
@@ -706,8 +662,7 @@ if($data->access==255)
         
         echo "<p>There are $npages pages defined...</p>";
 
-        for($i=0;$i<$npages;$i++)
-        {
+        for($i=0;$i<$npages;$i++) {
             $page=mysql_fetch_object($res);
             echo "<table border=0><tr><td class=contenttd>";
             page_mini_preview($page->pid);
@@ -727,70 +682,50 @@ if($data->access==255)
     }
 
 
-    if($action=="publish")
-    {
+    if($action=="publish") {
         sc_query("update `comics` set `published`='yes' where `id`='$id'");
     }
 
-    if($action=="unpublish")
-    {
+    if($action=="unpublish") {
         sc_query("update `comics` set `published`='no' where `id`='$id'");
     }
 }
 
-
-if($action=="viewcomic")
-{ 
+if($action=="viewcomic") { 
     $comic=mysql_fetch_object(sc_query("select * from `comics` where `id`='$id'"));
     $pres=sc_query("select * from `comics_pages` where `parent`='$id' order by page asc");
     $page=mysql_fetch_object($pres);
     $npages=mysql_num_rows($pres);
-    if(!empty($pagenumber))
-    {
+    if(!empty($pagenumber)) {
         $press=sc_query("select * from `comics_pages` where `parent`='$id' and `page`='$pagenumber'");
         $page=mysql_fetch_object($press);
     }
     if(empty($pagenumber)) $pagenumber=1;
     echo "<center>";
 
-
-
     echo "<h1>$comic->title vol. $comic->volume issue $comic->issue page $pagenumber ";
 
-    if($npages>1)
-    {
-
+    if($npages>1) {
         if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=1>Page 1</a>]";
         if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page-1).">Prev</a>]";
         if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page+1).">Next</a>]";
         if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=$npages>Last Page</a>]";
     }
-    
-    
+   
     echo "</h1>";
 
     page_full_view($page->pid);
 
-    if($npages>1)
-    {
-
+    if($npages>1) {
         if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=1>Page 1</a>]";
         if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page-1).">Prev</a>]";
         if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page+1).">Next</a>]";
         if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=$npages>Last Page</a>]";
-    }
-
- 
-        
+    }       
     echo "</center>";
-
-
 }
-else
-{
-
-
-    echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td class=contenttd>";
+else {
+	echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td class=contenttd>";
     echo "<table width=100% border=0><tr>";
     echo "<td valign=top class=contenttd>";
     
@@ -816,27 +751,21 @@ $numc=mysql_num_rows($res);
 
 echo "<p> $numc Comics available...</p>";
 
-for($i=0;$i<$numc;$i++)
-{
+for($i=0;$i<$numc;$i++){
     $comic=mysql_fetch_object($res);
     echo "<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id\">$comic->title vol. $comic->volume issue $comic->issue</a>";
-
     if($data->access==255)
         echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=unpublish&id=$comic->id\">Unpublish</a>]";
     echo "<br>";
 }
 
-if($data->access==255)
-{
+if($data->access==255){
     echo "<h1>Comics Administration</h1>";
     echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=newcomic>Add new comic</a>]<br>";
-
     echo "<h1>Unpublished Comics:</h1>";
     $res=sc_query("select * from comics where `published`='no' order by time desc");
     $numc=mysql_num_rows($res);
-
-    for($i=0;$i<$numc;$i++)
-    {
+    for($i=0;$i<$numc;$i++) {
         $comic=mysql_fetch_object($res);
         echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=editcomic&id=$comic->id\">Edit $comic->title vol. $comic->volume issue $comic->issue</a>]";
         echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=publish&id=$comic->id\">Publish</a>]<br>";
@@ -844,10 +773,7 @@ if($data->access==255)
 }
 
 echo "</td></tr></table>";
-
 echo "</td></tr></table>";
-
-
 
 include("footer.php");
 ?>

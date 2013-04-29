@@ -51,7 +51,6 @@ function sc_debugheader($quiet) { eval(scg());
 	if($_SESSION['debug_msgs']=="true") { 	sc_tail_error_log(); }
 	return $dout;
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_debugfooter($quiet) {
 	$dout ="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];

@@ -16,7 +16,6 @@ sc_access_method_add("files", "xplorershell");
 function sc_module_mini_files($x) { eval(scg());
     sc_div("FILES MODULE SECTION");
     echo "<h2>Last $x Files</h2>";
-
     $result=sc_query("select * from files order by `time` desc limit 0,$x");
     $numfiles=mysql_num_rows($result);
     echo "<table border=0 cellspacing=0 cellpadding=0 width=100%>";
@@ -31,22 +30,17 @@ function sc_module_mini_files($x) { eval(scg());
         echo"</td><td class=sc_project_table_$gt>";
         echo sc_sizefile($file->size);
         echo "</td></tr>";
-        echo "<tr><td class=sc_project_table_$gt></td><td class=sc_project_table_$gt>";
-        echo "$file->description\n";
-        echo "</td></tr>";
     }
     echo "</table>";
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/files/files.php class=a_cat>More...</a>)</p>";
 }
 
-
-
 function sc_scrubfiles() {
     sc_query(" CREATE TABLE files2 like files; ");
 	sc_query(" INSERT files2 SELECT * FROM files GROUP BY location;" );
-	sc_query(" RENAME TABLE `files`  TO `files_goto_hell`; ");
+	sc_query(" RENAME TABLE `files`  TO `files_scrub`; ");
 	sc_query(" RENAME TABLE `files2` TO `files`; " );
-	sc_query(" DROP TABLE files_goto_hell; ");
+	sc_query(" DROP TABLE files_scrub; ");
 }
 
 function sc_getfiledata($file){
@@ -63,11 +57,9 @@ function sc_getfilelist($filesearch,$limit){
     if(!empty($filesearch)) $query.=" ".$filesearch;
     $query.=" order by `name` asc ";
     if(!empty($limit)) $query.=" limit $limit";
-	//echo "<BR>$query<BR>";
     $result = sc_query($query);
     $i=0; $k=mysql_num_rows($result);
-    while($i<$k)
-    {
+    while($i<$k) {
         $der = mysql_fetch_array($result);
         $filelist[$i] = $der['id'];
         $i=$i+1;

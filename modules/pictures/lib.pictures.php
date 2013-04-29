@@ -37,40 +37,40 @@ function sc_module_mini_pictures($x) { eval(scg());
     
 }
 
-function sc_mini_meme($inmid) { eval(scg());
-
-	$m=mfo1("select * from meme where id='$inmid'");
-	$t=$m->name."-".time();
-	
-	echo "<div id='fl_$inmid' style=\"
-					height: 300px;
-					margin: 5px;
-					box-shadow: 5px 5px 5px #888888;
-					border:solid 1px #777777;
-					border-radius: 5px;
-					\" >";
-	
-	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$fullsize' target=_blank>
-	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$thumbwidth' border=0 
-	
-	style='max-height: 220px;' ></a><br>";
-	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-	echo "
-		Based: [<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>";
-
-		sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",         24, 78,24,   0,0,      1,155,1, 70,70,0, 1,1   );
-		
-			echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
-					<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
-					<br>";
-
-	echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
-	if( ($data->id==$m->poster) ||
-		($data->access==255) ) {
-		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memeedit&mid=$m->id'>Edit</a>] ";
-		echo "[<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=memedelete&mid=$m->id'>Delete</a>] ";
-	}
-	echo "</div>";
+function pics_addorphans($folder,$cat) { eval(scg());
+        $dir_count=0;
+        $dirfiles = sc_folder_to_array($folder);        
+        while(list ($key, $file) = each ($dirfiles)){
+            if($file!="."){
+                if($file!="..")
+                    if( ($file!="rendered") &&
+                        ($file!="cache") ) {
+                    
+                    $dircheck= $folder."/".$file;
+                    $dircheck=str_replace("../","",$dircheck);
+					
+                    if(is_dir($dircheck)) {
+                        echo "$dircheck is a folder... checking<br>";
+                        $dir_count += pics_addorphans("$dircheck",$cat);  
+                    } 
+                    if( (sc_getfiletype($file)=="gif") ||
+						   (sc_getfiletype($file)=="png") ||
+                        (sc_getfiletype($file)=="jpg") ) {
+                        // $ofolder=str_replace($GLOBALS['RFS_SITE_PATH'],"",$folder);
+                        $url = "$folder/$file";
+                        $res=sc_query("select * from `pictures` where `url`='$url'");
+                        if(!mysql_num_rows($res)) {
+                            $time=date("Y-m-d H:i:s");
+                            sc_query("insert into `pictures` (`time`,`url`,`category`,`hidden`)
+                                                       VALUES('$time','$url','$cat','yes')");
+                            echo "Added [$url] to database<br>";
+                            $dir_count++;
+                        }
+                    }
+                }
+            }
+        }
+		return $dir_count;
 }
 
 ?>
