@@ -152,9 +152,9 @@ function sc_show_top_news() {
     $news=mfo1("select * from news where topstory='yes' and published='yes'");    
     sc_show_news($news->id);
 }
-function sc_show_news($id) { eval(scg());
+function sc_show_news($nid) { eval(scg());
 
-    $result=sc_query("select * from news where id='$id'");
+    $result=sc_query("select * from news where id='$nid'");
     $news=mysql_fetch_object($result);
     $userdata=mfo1("select * from users where id='$news->submitter'");
 
@@ -167,33 +167,37 @@ function sc_show_news($id) { eval(scg());
     $out_link=urlencode("$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id");
 
     if(!empty($news->image_url)) {
-			$altern=stripslashes($news->image_alt);			
-			if(empty($news->image_link))
-				$news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";			
-			echo "<a href=\"$news->image_link\" target=\"_blank\" class=\"news_a\" >";
-	
-			  
-		//if(empty($news->image_url))	$news->image_url="images/icons/news.png";
-			
+		
+		$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
+		$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);
+		
+		$altern=stripslashes($news->image_alt);
+		
+		if(empty($news->image_link))
+			$news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";
+		echo "<a href=\"$news->image_link\" target=\"_blank\" class=\"news_a\" >";
+
 		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
 			$oldimage=$news->image_url;
 			$news->image_url="$RFS_SITE_URL/images/icons/404.png";
+			echo "<br>($oldimage)";
 		}
+		
 		if(!stristr($news->image_url,$RFS_SITE_URL))
 			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 			
-		echo "<img src=\"$news->image_url\" border=\"0\" 
-				title = '$altern'
-				alt='$altern'
-				align=left>";
+		echo "<img src=\"";
+		echo sc_picthumb_raw($news->image_url,100,0,1); 
+		echo "\" border=\"0\" title = '$altern' alt='$altern' align=left class='rfs_thumb'>";
+		
+		// 
 	}
 	
 	if(!empty($news->image_url)) {
 		echo  "</a>";
 	}	
 
-    if	( (!empty($news->wiki))  &&
-        ($news->wiki != "--- None ---") ) {
+    if(!empty($news->wiki)) {
             $wikipage=mfo1("select * from wiki where `name`='$news->wiki'");
             echo smiles(nl2br(wikitext($wikipage->text)));
     }	else {
@@ -201,7 +205,7 @@ function sc_show_news($id) { eval(scg());
         echo nl2br(smiles(stripslashes(wikitext($news->message))));
     }
     echo "<br>";
-    $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$id";
+    $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
 		
 	sc_socials_content($ourl,$news->headline);		
 		
@@ -211,17 +215,17 @@ function sc_show_news($id) { eval(scg());
         
 		if(!empty($news->wiki)) {
 			echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n";
-			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$id\" class=news_a>edit (news)</a>] \n";			
+			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$nid\" class=news_a>edit (news)</a>] \n";			
 		} else {
-			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$id\" class=news_a>edit</a>] \n";
+			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$nid\" class=news_a>edit</a>] \n";
 		}
-        echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$id\" class=news_a>remove</a>] \n";
+        echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$nid\" class=news_a>remove</a>] \n";
     }
     echo "</td>";
     echo "</tr>";
     echo "</table>";
 	
-	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$id";	
+	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
 	sc_facebook_comments($page);
 	
     echo "<p>&nbsp;</p>";
@@ -245,7 +249,13 @@ function put_news_image($fname) { eval(scg());
 }
 function updatenews($nid){ 	eval(scg());
     $p=addslashes($GLOBALS['headline']); sc_query("UPDATE news SET headline ='$p' where id = '$nid'");
-    $p=addslashes($GLOBALS['posttext']); sc_query("UPDATE news SET message ='$p' where id = '$nid'");
+    
+	
+	
+	$name=$_REQUEST['name']; if(stristr($name,"--- NONE ---")) $name="";
+	sc_query("update news set `wiki` = '$name' where `id`='$nid'");
+	
+	$p=addslashes($GLOBALS['posttext']); sc_query("UPDATE news SET message ='$p' where id = '$nid'");
 
     $p=addslashes($GLOBALS['category1']);
     sc_query("UPDATE `news` SET `category1` ='$p' where id = '$nid'");
@@ -255,13 +265,6 @@ function updatenews($nid){ 	eval(scg());
     if($p!="none") sc_query("UPDATE `news` SET `category3` ='$p' where id = '$nid'");
     $p=addslashes($GLOBALS['category4']);
     if($p!="none") sc_query("UPDATE `news` SET `category4` ='$p' where id = '$nid'");
-
-    //$p=addslashes($GLOBALS['image']);
-    //sc_query("UPDATE news SET image_url ='$p' where id = '$nid'");
-    //$p=addslashes($GLOBALS['image_url']);
-    //sc_query("UPDATE news SET image_link ='$p' where id = '$nid'");
-    //$p=addslashes($GLOBALS['image_alt']);
-    //sc_query("UPDATE news SET image_alt ='$p' where id = '$nid'");
 
     $p=$GLOBALS['topstory'];
     if($p=="yes") {
@@ -293,8 +296,14 @@ function deletenewsgo($nid){ 	eval(scg());
 
 }
 function editnews($nid) { eval(scg());
+
     $news=mysql_fetch_object(sc_query("select * from news where id='$nid'"));
-    echo "<a href=$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid>Preview</a>";
+    
+	echo "<a href=$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid>Preview</a>";
+	
+	$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
+	$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);
+	
     if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
 		 $oldimage=$news->image_url;
         $news->image_url="$RFS_SITE_URL/images/icons/404.png";	
@@ -306,9 +315,18 @@ function editnews($nid) { eval(scg());
         $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
     
     echo "<table border=0 width=100%><tr><td>";
-    echo "<img src=\"$news->image_url\" width=100 height=100><br>";
+    
+	//echo "<img src=\"$news->image_url\" width=100 height=100><br>";
+	
+	echo "<img src=\"";
+	echo sc_picthumb_raw($news->image_url,100,0,1); 
+	echo "\" border=\"0\" title = '$altern' alt='$altern' align=left class='rfs_thumb'>";
+	
+	
 	if(!empty($oldimage))
 		echo "($oldimage)";
+		
+		
     echo "</td><td>";
     echo "<table border=0><tr>";
     echo "<td align=left>";
@@ -344,36 +362,18 @@ function editnews($nid) { eval(scg());
     echo "</td>";
     echo "</tr></table>";
     echo "</td>";
-    echo "<td>";
-    echo "Add more pictures to use in this news article:<br>";
-    echo "<table border=0>\n";
-    echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/news/news.php\" method=\"post\">\n";
-    echo "<input type=hidden name=give_file value=news_sup>\n";
-    echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
-    echo "<input type=hidden name=local value=\"images/news\">";
-    echo "<input type=hidden name=hidden value=yes>\n";
-    echo "<input type=hidden name=nid value=$nid>";
-    echo "<tr><td><input name=\"userfile\" type=\"file\"></td></tr>\n";
-    echo "<tr><td><input name=\"userfile2\" type=\"file\"></td></tr>\n";
-    echo "<tr><td><input name=\"userfile3\" type=\"file\"></td></tr>\n";
-    echo "<tr><td><input name=\"userfile4\" type=\"file\"></td></tr>\n";
-    echo "<tr><td><input name=\"userfile5\" type=\"file\"></td></tr>\n";
-    echo "<tr><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
-    echo "</form>\n";
-    echo "</table>\n";
-    echo "</td>";
     echo "</tr></table>";
 
 
     echo "<table border=0><tr><td>";
-
+	echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
     echo "Select a wiki page to use instead of text </td><td>";
     
 	$wikistatus=$news->wiki;
 	if(empty($wikistatus)) $wikistatus="Choose a wiki page as this news article";
     
-	sc_optionizer(  "$RFS_SITE_URL/modules/news/news.php",
-					"action=edgo_make_wiki".$RFS_SITE_DELIMITER.
+	sc_optionizer(  "INLINE",
+					//"action=edgo_make_wiki".$RFS_SITE_DELIMITER.
 					"nid=$nid",
 					"wiki",
 					"name",
@@ -384,12 +384,22 @@ function editnews($nid) { eval(scg());
 		echo "</td></tr></table>";
 					
 	
-    echo "<table border=0 width=100%><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
+    echo "<table border=0 width=100%>";
     echo "<input type=\"hidden\" name=\"action\" value=\"edgo\">\n";
     echo "<input type=\"hidden\" name=\"nid\" value=\"$nid\">\n";
 	
     echo "<tr><td>Headline</td><td><input name=headline value=\"$news->headline\" size=100></td></tr>\n";
-    echo "<tr><td>Message</td><td><textarea cols=\"100\" rows=\"40\" name=\"posttext\"  >".stripslashes($news->message)."</textarea></td></tr>\n";
+	
+	
+	if(empty($news->wiki))	{
+		$otxt=$news->message;
+		$otxt=str_replace("<","&lt;",$otxt);
+		$otxt=stripslashes($otxt);
+		echo "<tr><td>Message</td><td>
+			<textarea cols=\"70\" rows=\"30\" name=\"posttext\" >$otxt</textarea>
+			</td></tr>\n";		
+	}
+	else echo "<tr><td>WIKI PAGE:</td><td>$news->wiki</td></tr>";
     
 	echo "<tr><td>Top Story:   </td><td>
 	<select name=topstory>";

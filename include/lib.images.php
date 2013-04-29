@@ -74,6 +74,11 @@ $r="<img src='$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$
 return $r;
 }
 /////////////////////////////////////////////////////////////////////////
+function sc_picthumb_raw($zimg,$w,$h,$s) { eval(scg());
+$r="$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s";
+return $r;
+}
+/////////////////////////////////////////////////////////////////////////
 function sc_image_text_s($text,$font,$r,$g,$b){
     echo sc_image_text_rt($text,$font,18,222,222,-10,-10,$r,$g,$b,0,0,0,1,0);
 }
