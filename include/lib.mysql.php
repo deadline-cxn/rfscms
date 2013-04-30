@@ -1963,6 +1963,7 @@ function sc_ajax(
 		if($typ=="table") {
 			$tab=$x[2];
 			$key=$x[3];
+			$val=$x[4];
 			
 			echo "<select id=\"$rfanname"."_input\"
 							name=\"$rfanname"."_name\"							
@@ -1971,11 +1972,25 @@ function sc_ajax(
 							\"
 							onchange=\"this.blur();\"
 							style='float:left;'>";
-			echo "<option>".$d[$rfafield];
+			
+			
+			if(!empty($val)) {
+				$r=sc_query("select * from `$tab` where `$val`='".$d[$rfafield]."'");
+				$tdat=mysql_fetch_array($r);
+				echo "<option value=\"".$tdat[$key]."\">".$tdat[$dat];
+			}
+			else		
+				echo "<option>".$d[$rfafield];
+			
+			
 			$r=sc_query("select * from `$tab` order by `$key` asc");
 			for($i=0;$i<mysql_num_rows($r);$i++) {
 				$dat=mysql_fetch_array($r);
-				echo "<option>".$dat[$key];
+				echo "<option ";
+				if(!empty($val)) {
+					echo "value=\"".$dat[$val]."\"";
+				}
+				echo ">".$dat[$key];
 			}
 			echo "</select>";
 		}
