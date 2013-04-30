@@ -1,5 +1,6 @@
 body{
   background-color: #000000;
+  background-image: url("http://www.sethcoder.com/reference/wow/INTERFACE/BlackMarket/BlackMarketBackground-Tile.png");	
 }
 
 a{
@@ -25,7 +26,7 @@ td{
 }
 .news_td {
 	vertical-align: top;
-	background-image: url("http://www.sethcoder.com/reference/wow/INTERFACE/BlackMarket/BlackMarketBackground-Tile.png");	
+	
 	background-position: center center;
 }
 .news_a{
@@ -51,7 +52,7 @@ hr {
     font-size: 16px;
     color: #ffffff;
 
-    background-color: #000000;
+    gbackground-color: #000000;
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
@@ -73,10 +74,11 @@ hr {
     color: #ffffff;
 }
 
-.middle_cont{
-    border: 1px;
-    border-color: #000000;
-    border-style: solid;
+.midtd{
+	padding: 15px;
+    #border: 1px;
+    #border-color: #000000;
+    #border-style: solid;
 }
     
 .toptd{
@@ -90,7 +92,7 @@ hr {
     padding-bottom: 8px;
     
     color: #000000;
-    background-color: #000000;
+    dbackground-color: #000000;
 }
 
 .slogan{
@@ -98,7 +100,7 @@ hr {
     font-size: 12px;
     font-style: italic ;
     color: #bbbbbb;
-    background-color: #000000;
+    bvackground-color: #000000;
 }
 
 input,select,textarea {

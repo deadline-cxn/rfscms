@@ -125,13 +125,15 @@ echo "<td width=65 class=contenttd>Search:&nbsp;</td>\n";
 echo "<td width=90 class=contenttd><input type=textbox name=criteria></td>\n";
 echo "<td width=10 class=contenttd>&nbsp;in&nbsp;</td>\n";
 echo "<td width=80 class=contenttd><select name=category><option>all categories\n";
+
 $result=sc_query("select * from categories order by name asc");
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++){
     $cat=mysql_fetch_object($result);
-    echo "<option>$cat->name";
+    echo "<option data-image=\"$cat->image\" >$cat->name";
 }
 echo "</select></td>\n";
+
 echo "<td width=30 class=contenttd>&nbsp;and&nbsp;display&nbsp;</td>\n";
 echo "<td width=15 class=contenttd><select name=amount><option>all<option>10<option>25<option>50<option>100</select></td>\n";
 echo "<td width=30 class=contenttd>&nbsp;results&nbsp;</td>\n";

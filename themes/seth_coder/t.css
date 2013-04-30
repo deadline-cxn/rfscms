@@ -1,5 +1,22 @@
 body{
   background-color: #FFFFFF;
+  padding: 3px;
+  margin: 3px;
+}
+
+
+.wikishell {
+	padding: 5px;
+	margin:0 auto;
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #000000;
+	color: #00ff00;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
 
 
@@ -29,50 +46,42 @@ td{
     color: #333377;
 }
 
-hr
-{
+hr{
     border: 1px;
     border-color: #c2c7f6;
     border-style: dotted;
 }
 
-.sc_top_menu_table
-{
+.sc_top_menu_table {
     font-family: Verdana;
     font-weight: bold;
     font-size: 12px;
-    color: #555599;
-    
+    color: #555599;    
     background-color: #c2c7f6;
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    padding-bottom: 5px;    
+    padding-bottom: 5px;
+	
 }
 
-.thirdtd
-{
+.thirdtd {
     height: 16px;
     font-family: Verdana;
     font-size: 12px;
     color: #333377;
     background-color: #7376ac;
+	border: 1px;
+	border-color: #000000;
 }
 
-.contenttd
-{
+.contenttd {
     color: #000000;
 }
 
-.middle_cont
-{
-    border: 1px;
-    border-color: #000000;
-    border-style: solid;
-}
 
-.top_site_name
-{
+
+.top_site_name {
     font-family: Verdana;
     font-size: 32px;
     font-weight: bold;
@@ -85,8 +94,7 @@ hr
 }
 
     
-.toptd
-{
+.toptd {
     font-family: Verdana;
     font-size: 32px;
     font-weight: bold;
@@ -96,10 +104,37 @@ hr
     padding-bottom: 8px;
     color: #c2c7FF;
     background-color: #9396c3;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	fborder-bottom-left-radius: 8px;
+	fborder-bottom-right-radius: 8px;
 }
 
-.slogan
-{
+
+.lefttd {
+	max-width:200px;
+}
+
+.midtd {
+	
+	min-width: 900px;
+    border: 1px;
+    border-color: #000000;
+    border-style: solid;
+	
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	dborder-bottom-left-radius: 8px;
+	dborder-bottom-right-radius: 8px;
+}
+
+.righttd {
+	max-width: 200px;
+	padding: 5px;
+}
+
+
+.slogan {
     font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
@@ -123,15 +158,39 @@ hr
 }
 
 
-input,select,textarea{
+
+
+input,textarea{
     font-family: Arial;
     font-size: 12px;
-    
     color: #000000;
     border: 1px;
     border-color: #c2c7f6;
     border-style: solid;
     background-color: #a2a7d6;
+}
+input[type="select"] {
+	background-color: #a2a7d6;
+}
+
+input[type="submit"] {
+border-width: 1px;
+	
+	border-left-color: #ffffff;
+	border-top-color: #ffffff;
+    border-bottom-color: #000000;
+	border-right-color: #000000;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	
+	-moz-box-shadow: 5px 5px 3px  #555;
+	-webkit-box-shadow: 5px 5px 3px   #555;
+	box-shadow: 5px 5px 3px  #555;
+	
+	cursor: pointer;
+
 
 }
 

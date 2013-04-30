@@ -1,34 +1,20 @@
 <?
+	echo "<BR><BR><BR>";
+	if(empty($data->donated)) {
+		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+	}
+	else {
+		
+	}
+	echo "</td>";
+	echo "<td class=\"righttd\" style=\"vertical-align:text-top;\" >";
+	sc_draw_module("right");
+	echo "</td></tr></table>";
 
-include("$RFS_SITE_URL/include/lib.sitevars.php");
+	echo "<BR><BR><BR>";
 
-
-tcc();
-trc();
-tc();
-
-d_echo("[tmpl_test.footer.php]");
-
-			if(empty($data->donated)){
-				echo "<table border=0 width=100% ><tr><td align=center>";
-				if(empty($data->donated))  {
-				  sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
-				}
-				else {
-				 /// -- sc_info("Thanks for donating!","GREEN","BLACK");
-
-				}
-				echo "</td></tr></table>";
-			}
-echo "<p>";
-rfs_echo($RFS_SITE_COPYRIGHT);
-echo "</p>";
-
-rfs_echo($RFS_SITE_BODY_CLOSE);
-rfs_echo($RFS_SITE_HTML_CLOSE);
-
+    echo "<center>$RFS_SITE_COPYRIGHT</center>";
+	for($i=0;$i<10;$i++) echo "<p> &nbsp; </p> <br> &nbsp; <br>";
+    echo "</body></html>";
 
 ?>
-
-
-

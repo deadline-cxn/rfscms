@@ -43,6 +43,8 @@ else {
 		echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
 	
 	echo "<link rel=\"canonical\" href=\"".sc_canonical_url()."\" />";
+
+	
 	
 	rfs_echo($RFS_SITE_HEAD_CLOSE);
 	
@@ -158,11 +160,12 @@ else {
 
 sc_ajax_javascript();
 
-rfs_echo($RFS_SITE_JS_JQUERY_UI_CSS);
+rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
 rfs_echo($RFS_SITE_JS_JQUERY);
-rfs_echo($RFS_SITE_JS_JQUERY_UI);
+
 rfs_echo($RFS_SITE_JS_COLOR);
 rfs_echo($RFS_SITE_JS_EDITAREA);
+rfs_echo($RFS_SITE_JS_MSDROPDOWN);
 
 //////////////////////////////////////////////
 // google analytics

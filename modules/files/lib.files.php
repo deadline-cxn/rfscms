@@ -18,7 +18,7 @@ function sc_module_mini_files($x) { eval(scg());
     echo "<h2>Last $x Files</h2>";
     $result=sc_query("select * from files order by `time` desc limit 0,$x");
     $numfiles=mysql_num_rows($result);
-    echo "<table border=0 cellspacing=0 cellpadding=0 width=100%>";
+    echo "<table border=0 cellspacing=0 cellpadding=0 >";
     $gt=2;
     for($i=0;$i<$numfiles;$i++){
         $file=mysql_fetch_object($result);

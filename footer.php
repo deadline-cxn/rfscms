@@ -3,6 +3,8 @@
 // RFS CMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
+include("include/lib.all.php");
+
 $data=$GLOBALS['data'];
 if(empty($theme)) $theme=$data->theme;
 if(empty($theme)) $theme=$GLOBALS['theme'];
