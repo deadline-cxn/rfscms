@@ -28,7 +28,7 @@ function sc_button_warn($link,$name){
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_makebuttonstart(){
 	
-    echo "<div class='menutop'>";
+   // echo "<div class='menutop'>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_makebutton($link,$name){
@@ -42,7 +42,7 @@ function sc_makebutton($link,$name){
 					style=\"font-size:x-small; min-width: 100px;\"
 				onclick=\"window.location='$link';\"
 				
-					class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only\"
+					class=\"menubutton\"
 					role=\"button\"
 					aria-disabled=\"false\">
 			
@@ -62,7 +62,7 @@ function sc_makebutton_warntest($link,$name){
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_makebuttonend(){
-    echo "</div>";
+    //echo "</div>";
 }
 
 ?>

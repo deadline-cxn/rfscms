@@ -9,6 +9,32 @@ html, body
     nonyua: what;
 }
 
+.menubutton {
+margin:0 auto;
+display: inline-block; position: relative; padding: 0;
+			margin-right: .1em; text-decoration: none !important;
+			cursor: pointer; text-align: center; zoom: 1; overflow: visible;
+	padding:.2em .4em; line-height:1.5; zoom:1;
+	
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #004500;
+	color: #00ff00;
+	border-width: 1px;
+	border-color: #00ff00;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	
+}
+.menubutton:hover {
+	border-color: #000000;
+	background-color: #00FF00;
+	color: #000000;
+}
+
 .lefttd {
     width: 195px !important;
 	overflow: hide;
@@ -776,8 +802,8 @@ input, select, textarea
     font-size : 12px;
     font-weight: bold;
     border-width : 1px;
-    background-color : #898978;
-    color: #000000;
+fackground-color : #898978;
+ folor: #000000;
 
     border-color: #555500;
 

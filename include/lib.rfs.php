@@ -223,7 +223,15 @@ function sc_theme_form() { eval(scg());
 			$loc=str_replace("?theme=$theme","",$loc);
 			$sep="?";
 			if(stristr($loc,"?")) $sep="&";
-			echo "<select name=theme onchange='document.location=\"$loc$sep\"+\"theme=\"+this.value'><option>Theme\n";
+			echo "<select
+						name=\"theme\"
+						id=\"theme\"
+						onchange='document.location=\"$loc$sep\"+\"theme=\"+this.value'
+						
+						style=\"width:120px;\"
+						
+						>
+						<option>Theme\n";
 			$thms=sc_get_themes();
 			while(list($key,$thm)=each($thms)){
 				echo "<option";

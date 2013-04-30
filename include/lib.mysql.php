@@ -1965,8 +1965,10 @@ function sc_ajax(
 			$key=$x[3];
 			$val=$x[4];
 			
-			echo "<select id=\"$rfanname"."_input\"
-							name=\"$rfanname"."_name\"							
+			echo "<select data-description=\"$rfanname\"
+						data-maincss=\"blue\"
+							id=\"$rfanname"."_name\"
+							name=\"$rfanname"."_name\"
 							onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
 							$hidefunc
 							\"

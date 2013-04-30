@@ -189,8 +189,7 @@ font-family: Verdana;
     color: #555555;
 }
 
-h1
-{
+h1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: large;
     font-weight: bold;
@@ -198,8 +197,7 @@ h1
     color: #777777;
 }
 
-h3
-{
+h3 {
     font-family: Lucidia;
     font-size: 18px;
     font-weight: bold;
@@ -207,50 +205,44 @@ h3
     color: #555555;
 }
 
-th
-{
+th{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
-	background-color: #77ff77;
+   background-color: #77ff77;
 }
 
 
-td
-{
+td{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
-	background-color: #000000;	
+   background-color: #000000;	
 }
 
-.downloadtd
-{
+.downloadtd{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #0397FF;
 	background-color: #008400; 
 }
 
-.contenttd
-{
+.contenttd{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #FFFFFF;
-	background-color: #000000;
+    background-color: #000000;
 }
 
 
-.sc_project_table_0
-{
+.sc_project_table_0{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
 	background-color: #000000;
 }
 
-.sc_project_table_1
-{
+.sc_project_table_1{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
@@ -258,32 +250,28 @@ td
 }
 
 
-.sc_top_file_table
-{
+.sc_top_file_table{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 18px;
     color:   #777777;
     background-color: #000000;
 }
 
-.sc_file_table_0
-{
+.sc_file_table_0{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
     background-color: #000000;
 }
 
-.sc_file_table_1
-{
+.sc_file_table_1{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
     background-color: #444444;
 }
 
-.sc_file_table_2
-{
+.sc_file_table_2{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
@@ -291,8 +279,7 @@ td
 }
 
 
-.midtd
-{
+.midtd{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;    
@@ -300,8 +287,7 @@ td
 
 }
 
-.toptd
-{
+.toptd{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 6px;
     font-weight: bold;
@@ -309,8 +295,7 @@ td
 	background-color: #000000;
 }
 
-.lefttd
-{
+.lefttd{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: bold;
@@ -318,8 +303,7 @@ td
 	background-color: #000000;
 }
 
-a
-{
+a {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -328,8 +312,7 @@ a
     color: #00ff00;
 }
 
-a:link
-{
+a:link{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -338,8 +321,7 @@ a:link
     color: #00bb00; 
 }
 
-a:hover
-{
+a:hover{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -349,11 +331,11 @@ a:hover
 	background-color: #00ff00;
 }
 
-input, select, textarea
-{
+input, select, textarea{
     font-family: Verdana;
     font-size : 12px;
     font-weight: bold;
     border-width : 2px;
+    color: #000000;
     background-color : #888888;
 }

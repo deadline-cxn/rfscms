@@ -14,7 +14,7 @@ echo "<center>";
 to("100%"," align=center cellpadding=0");
 
     tro("");
-        tco("middle_cont");
+        tco("midtd");
     
             to("100%"," class=toptd");
                 tro("");
@@ -47,19 +47,27 @@ to("100%"," align=center cellpadding=0");
     trc();
 tc();
 
-to("100%"," align=center ");
+echo "<div style=\"height:3px;\"></div>";
+echo "<table width=100% cellpadding=0 cellspacing=0 border=0><tr><td style=\"border: 1px solid #000000;\">";
+
+to("100% cellpadding=3"," align=center ");
     tro("");
         sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
     trc();
 tc();
+echo "</td></tr></table>";
 
-to("100% cellpadding=0"," align=center ");
+echo "<div style=\"height:3px;\"></div>";
+
+echo "<table width=100% cellpadding=0 cellspacing=0 border=0><tr><td style=\"border: 1px solid #000000;\">";
+
+to("100% cellpadding=5"," align=center ");
     tro("");
         tco("thirdtd");
 
 			tcr("thirdtd ");
 
-			echo "<br>";
+			// echo "<br>";
 
 			sc_theme_form();
 
@@ -88,8 +96,12 @@ to("100% cellpadding=0"," align=center ");
     trc();
 tc();
 
-to("100%"," align=center ");
-tro("");
-tco("middle_cont");
+echo "</td></tr></table>";
 
+echo "<div style=\"height:3px;\"></div>";
+echo "<table width=100% cellpadding=0 cellspacing=0 border=0><tr>";
+echo "<td class=\"lefttd\"  style=\"vertical-align:text-top;\">";
+sc_draw_module("left");
+echo "</td>";
+tco("midtd");
 ?>

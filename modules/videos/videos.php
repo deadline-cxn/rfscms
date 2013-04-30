@@ -6,10 +6,10 @@ $video=mfo1("select * from videos where id='$id'");
 $vc=sc_getuserdata($video->contributor);
 
 
-echo "<table border=0 cellspacing=0 cellpadding=5 ";
-echo " width=$RFS_SITE_SINGLETABELWIDTH><tr><td class=contenttd align=center>";
+//echo "<table border=0 cellspacing=0 cellpadding=5 ";
+//echo " width=$RFS_SITE_SINGLETABELWIDTH><tr><td class=contenttd align=center>";
 function video_pagefinish(){
-    echo "</td></tr></table>";
+  // echo "</td></tr></table>";
 
     include("footer.php");
     exit();
@@ -78,7 +78,7 @@ if($action=="random"){
 		echo "<p>There are no videos.</p>";		
 	}
 	else {
-		$vid=rand(0,$num);
+		$vid=rand(1,$num)-1;
 		mysql_data_seek($res,$vid);
 		$video=mysql_fetch_object($res);
 		$vc=sc_getuserdata($video->contributor);
@@ -94,10 +94,14 @@ if($res) $video=mysql_fetch_object($res);
 if(!empty($video->id))
 $category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
 
-if(!empty($category->name))
-echo "<h1>$category->name Videos</h1>";
-else
-echo "<h1>Videos</h1>";
+echo "<table width=\"100%\" border=0><tr><td align=center>";
+if(!empty($category->name)) {
+	echo "<h1>$category->name Videos</h1>";
+}
+else {
+	echo "<h1>Videos</h1>";
+}
+echo "</tr></td></table>";
 
 if($action=="submitvidgo") {
 	if($_SESSION['logged_in'] != true) $cont=999;
@@ -184,7 +188,6 @@ if($action=="submitvid"){
 
 
 if($data->access==255){
-    // echo "[<a href=videos.php?action=addorphans>Add orphan videos to database</a>]<br>";
 
     if($action=="removego")
     {
@@ -295,7 +298,7 @@ if($data->access==255){
             echo "<option>yes<option>no</select>";
 
             echo "Hidden<select name=hidden>";
-            //if(!empty($video->hidden)) echo "<option>$video->hidden";
+
             echo "<option>no<option>yes</select>";
 
             $cat=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
@@ -326,12 +329,12 @@ if($data->access==255){
 }
 
 
-
+echo "<center>";
 
 if($action=="view"){
 	
-    //$res=sc_query("select * from `videos` where `id`='$id' order by time asc");
-    //$video=mysql_fetch_object($res);
+	
+	
     $category=$video->category;
     $res2=sc_query("select * from `videos` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
     $numres2=mysql_num_rows($res2);
@@ -390,6 +393,7 @@ if($action=="view"){
 echo "<p>[<a href=videos.php?action=random>Random Video</a>]</p>";
 echo "<p>[<a href=videos.php?action=submitvid>Submit new Video</a>]</p>";
 
+echo "</center>";
 echo "<hr>";
 
 if($data->access==255){
@@ -398,6 +402,7 @@ if($data->access==255){
     if($numvids>0)
         echo "<font class=sc_admin>category: !!!TEMP!!! - $numvids videos</font>[<a href=videos.php?action=sorttemp>Sort videos</a>]<br>";
 }
+
 
 $numcols=0;
 echo "<table border=0><tr>";
