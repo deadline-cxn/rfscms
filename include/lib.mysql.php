@@ -1977,7 +1977,7 @@ function sc_ajax(
 			if(!empty($val)) {
 				$r=sc_query("select * from `$tab` where `$val`='".$d[$rfafield]."'");
 				$tdat=mysql_fetch_array($r);
-				echo "<option value=\"".$tdat[$key]."\">".$tdat[$dat];
+				echo "<option value=\"".$tdat[$val]."\">".$tdat[$key];
 			}
 			else		
 				echo "<option>".$d[$rfafield];
