@@ -8,6 +8,8 @@ include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
 
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
 if($act=="select_image_go") {
 	include("lib.all.php");
