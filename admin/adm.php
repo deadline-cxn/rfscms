@@ -76,9 +76,9 @@ if(!sc_access_check("admin","access")) {
 function adm_action_update() { eval(scg());
 	echo "<pre>";
 	sc_flush_buffers();
-	system("git stash save --keep-index");
+	echo system("git stash save --keep-index");
 	sc_flush_buffers();
-	system("git pull https://github.com/sethcoder/rfscms.git");
+	echo system("git pull https://github.com/sethcoder/rfscms.git");
 	sc_flush_buffers();
 	echo "</pre>";
 	include("footer.php");
@@ -1996,21 +1996,13 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 /////////////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_() { eval(scg());
 
-	// sc_ajax($label,$table,$key,$kv,$field,$width,$type) 
-
-	//echo "<table border=0>";
-		sc_ajax("Avatar",
-				"users", "name", "$data->name",
-				"avatar", 60, "","admin","access","sc_ajax_callback_image");
-		
-		sc_ajax("Last Name"	,"users","name","seth.parson","last_name","","","admin","access","");
-		//sc_ajax("Email"		,"users","name","seth.parson","email",80,"","admin","access");
-		
+		// sc_ajax($label,$table,$key,$kv,$field,$width,$type)
+		// echo "<table border=0>";
+		// sc_ajax("Avatar","users", "name", "$data->name","avatar", 60, "","admin","access","sc_ajax_callback_image");
+		// 	sc_ajax("Last Name"	,"users","name","seth.parson","last_name","","","admin","access","");
+		// sc_ajax("Email"		,"users","name","seth.parson","email",80,"","admin","access");
 		// sc_ajax("File",      "files","name","amwifi.exe","name",60,"","files","edit");
-		
-	//echo "</table>";
-	
-	
+		// echo "</table>";	
 
 	sc_access_method_add("admin", "access");
 	sc_access_method_add("admin", "categories");
