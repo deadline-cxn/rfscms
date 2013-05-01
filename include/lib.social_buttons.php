@@ -293,20 +293,21 @@ function sc_twitter_follow() {
 			</script>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_facebook_login() {
+function sc_facebook_login() { echo sc_facebook_login_r(); }
+function sc_facebook_login_r() {
 	if(!empty($GLOBALS['RFS_SITE_FACEBOOK_APP_ID'])) {
 		if(!empty($GLOBALS['RFS_SITE_FACEBOOK_SECRET'])) {
 			$page=urlencode(sc_canonical_url());
-			echo "<a href=\"$RFS_SITE_URL/facebook/fb.login.php?goback=1";
+			$r="<a href=\"$RFS_SITE_URL/facebook/fb.login.php?goback=1";
 			if(!empty($page)) 
-				echo "&retpage=$page";
-			echo "\">";
+				$r.="&retpage=$page";
+			$r.="\">";
 			
-			echo "<img src=\"$RFS_SITE_URL/facebook/facebook_login.gif\" border=\"0\" 
-					alt=\"Connect with facebook\" text=\"Connect with facebook\">";
-			echo "</a>\n";
+			$r.="<img src=\"$RFS_SITE_URL/facebook/facebook_login.gif\" border=\"0\" alt=\"Connect with facebook\" text=\"Connect with facebook\">";
+			$r.="</a>\n";
 		}
 	}
+	return $r;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_facebook_comments($page) {

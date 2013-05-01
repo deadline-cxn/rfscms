@@ -52,7 +52,7 @@ else {
 	
 	if($_SESSION['admin_show_top']!="hide") {	
 
-		echo "<table border=0 width=100% cellspacing=0 cellpadding=0 class=toptd>";
+		echo "<table border=0 width=100% cellspacing=0 cellpadding=0 class=toptexttd>";
 		echo "<tr><td class=toptd align=left >";
 
 		if ($RFS_SITE_TTF_TOP)  {
@@ -98,7 +98,7 @@ else {
 		if($_SESSION["logged_in"]!="true")    {
 			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
 			echo "</td><td class=logged_in_td>";
-			sc_facebook_login();
+			// sc_facebook_login();
 		}
 		else    {
 			echo "</td>";
@@ -108,16 +108,17 @@ else {
 		echo "</td>";
 		
 		echo "</tr></table>";
-		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0><tr class=sc_top_menu_table>";
-		echo "<td class=sc_top_menu_table valign=top>";
-		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table>";
-		echo "<tr class=sc_top_menu_table>";
+		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0>
+		<tr class=sc_top_menu_table_td>";
+		echo "<td class=sc_top_menu_table_td valign=top>";
+		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
+		echo "<tr class=sc_top_menu_table_td>";
 
 		sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
 		
-		echo "<td align=right class=sc_top_menu_table >";
+		echo "<td align=right class=sc_top_menu_table_td >";
 		echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
-		echo "<td class=sc_top_menu_table class=contenttd>";
+		echo "<td class=sc_top_menu_table_inner class=contenttd>";
 
 		sc_theme_form();
 

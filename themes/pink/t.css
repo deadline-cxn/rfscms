@@ -8,13 +8,18 @@ td{
     font-size: 12px;
 }
 
+.midtd {
+     padding: 20px;
+}
+
 .news_img_td {
+padding: 20px;
 	vertical-align: top;
 	horizontal-align: center;
 }
 .news_td {
 	vertical-align: top;
-	
+ padding: 20px;
 	
 }
 .news_a{

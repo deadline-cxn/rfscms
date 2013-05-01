@@ -5,6 +5,13 @@ body{
 }
 
 
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
+}
+
+
 .wikishell {
 	padding: 5px;
 	margin:0 auto;
@@ -62,7 +69,30 @@ hr{
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 5px;
-	
+}
+
+.sc_top_menu_table_td {
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 12px;
+    color: #555599;    
+    background-color: #c2c7f6;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.sc_top_menu_table_inner {
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 12px;
+    color: #555599;    
+    background-color: #c2c7f6;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
 }
 
 .thirdtd {
@@ -113,6 +143,7 @@ hr{
 
 .lefttd {
 	max-width:200px;
+	padding: 5px;
 }
 
 .midtd {

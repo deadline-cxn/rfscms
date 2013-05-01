@@ -425,7 +425,109 @@ function adm_action_eval_form() {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_THEMES
+function adm_action_f_theme_edit_css() { eval(scg());
+
+	if(!empty($update)) {
+		echo "<h1>UPDATE:</h1>";
+		echo " ($outfile)<br>";
+		echo " (CHANGE $update{ $sub: $cssvalue; } TO $update{ $sub: $newvalue; ) <br>";
+		
+		system("sudo touch $outfile.out");
+		system("sudo chmod 777 $outfile.out");
+		$fo=fopen("$outfile.out",wt);
+		$fp=fopen($outfile,"rt");
+		$foundbase=0;
+		while($ln=fgets($fp,256)) {		
+			$chkr=explode("{",$ln);
+			$chkr[0]=trim($chkr[0]);
+			if($chkr[0]==$update) $foundbase=1;
+			if($foundbase) {
+				if(stristr($ln,"{")) $foundbase=2;
+			}
+			if($foundbase==2) {
+				if(stristr($ln,$sub)) {
+					echo "FOUND $update { $sub ... } UPDATING<br>";
+					if(stristr($sub,"color")) 
+						if(!stristr($newvalue,"#"))
+							$newvalue="#$newvalue";
+					fputs($fo,"$sub: $newvalue;\n");
+					continue;
+				}
+				if(stristr($ln,"}")) $foundbase=0;
+			}
+			fputs($fo,$ln);		
+		}		
+		fclose($fo);
+		fclose($fp);
+		system("sudo mv $outfile $outfile.bak.".time());
+		system("sudo mv $outfile.out $outfile");
+		
+	}
+
+	if(!empty($delete)) {
+		echo "<h1>DELETE:</h1>";
+		echo " --- delete[$delete]<br>";
+		echo " ($outfile)<br>";
+		echo " ($delete{ $sub: $cssvalue; }) <br>";
+		
+		system("sudo touch $outfile.out");
+		system("sudo chmod 777 $outfile.out");
+		$fo=fopen("$outfile.out",wt);
+		$fp=fopen($outfile,"rt");
+		$foundbase=0;
+		while($ln=fgets($fp,256)) {		
+			if(stristr($ln,$delete)) $foundbase=1;
+			if($foundbase) {
+				if(stristr($ln,"{")) $foundbase=2;
+			}
+			if($foundbase==2) {
+				if(stristr($ln,$sub)) {
+					echo "FOUND $delete { $sub ... } REMOVING<br>";
+					continue;
+				}
+				if(stristr($ln,"}")) $foundbase=0;
+			}
+			fputs($fo,$ln);		
+		}		
+		fclose($fo);
+		fclose($fp);
+		system("sudo mv $outfile $outfile.bak.".time());
+		system("sudo mv $outfile.out $outfile");
+	}
+	
+	if(!empty($add)) {
+		echo "<h1>ADD:</h1>";
+		echo " --- add[$addvar=$varvalue]<br>";
+		/*
+		system("sudo touch $outfile.out");
+		system("sudo chmod 777 $outfile.out");
+		$fo=fopen("$outfile.out",wt);
+		$fp=fopen($outfile,"rt");
+		while($ln=fgets($fp,256)) {
+			fputs($fo,$ln);		
+		}
+		// fputs($fo,"$addvar=\"$varvalue\";\n");
+		
+		fclose($fo);
+		fclose($fp);
+		system("sudo mv $outfile $outfile.bak.".time());
+		system("sudo mv $outfile.out $outfile");
+		*/
+	}
+	adm_action_f_theme_edit();
+}
+
 function adm_action_f_theme_edit_php() { eval(scg());
+
+
+	If(!empty($update)) {
+		
+		
+	}
+
+
+
+
 	if(!empty($delete)) {
 		echo "<h1>DELETE:</h1>";
 		echo " --- delete[$delete]<br>";
@@ -537,10 +639,14 @@ function adm_action_f_theme_edit_t_php() { eval(scg());
 			style=\"height: 400px; width: 700px;\"
 			name=\"codecode_t_php\">";
 	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.php");
+	
 	$fc=stripslashes(str_replace("<","&lt;",$fc));
-	echo "</textarea>";
 	
 	echo $fc;
+	
+	echo "</textarea>";
+	
+	
 	include("footer.php");
 	exit();
 }
@@ -630,10 +736,11 @@ function adm_action_f_theme_clone() { eval(scg());
 			"Clone" );
 }
 function adm_action_f_theme_edit() { eval(scg());
+echo "<h1>Editing theme [$thm]</h1>";
 
 	sc_button("$RFS_SITE_URL/admin/adm.php?action=theme","Themes list");
-
-	echo "Editing theme [$thm]<br>";
+	echo "<hr>";
+	
 	$folder="$RFS_SITE_PATH/themes/$thm";
 	echo "Elements of $folder <br>";
 	$d = opendir($folder);
@@ -646,11 +753,13 @@ function adm_action_f_theme_edit() { eval(scg());
 						if($entry=="t.css") {
 							echo "<hr>";
 							echo "<h1>$entry</h1>";
-							
-							
+														
 							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_css&thm=$thm&tcss=$entry\">edit this file</a>]<br>";
 
-							sc_css_edit_form("$folder/$entry", "","");
+							sc_css_edit_form(	"$folder/$entry",
+												"$RFS_SITE_URL/admin/adm.php",
+												"f_theme_edit_css",
+												"thm=$thm");
 						}
 						break;
 					case "php":

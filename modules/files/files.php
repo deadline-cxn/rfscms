@@ -331,12 +331,12 @@ if($action=="get_file"){
 			echo "</p>\n";			
 		}
 		
-		echo "<table border=0 width=500>";
+		echo "<table border=0 width=100% >";
 		echo "<tr>";
 		echo "<td>";
 
 		$ft=sc_getfiletype($filedata->location);	
-		echo "<pre width=500>";
+		echo "<pre>";
 			sc_file_get_readme("$RFS_SITE_PATH/$filedata->location");
 		echo"</pre>";
 
@@ -521,7 +521,7 @@ if($action=="get_file"){
 	else echo "<p> You can't download files unless you are <a href=\"$RFS_SITE_URL/login.php\">Logged in</a>!</p>\n";
 
 	echo "</td></tr></table>";
-	echo "</td></tr></table>";
+	
 	include("footer.php");
 	exit();
 }

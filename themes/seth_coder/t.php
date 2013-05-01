@@ -16,9 +16,16 @@ $RFS_SITE_LOGIN_FORM_CODE   = "<script src=\"\$RFS_SITE_URL/include/md5.js\"> </
 <input type=hidden name=login value=fo_shnizzle>\n
 
 <td valign=middle>\n <input type=\"submit\" name=\"Login\" value=\"Login\">\n
-</td>\n</form>\n<td>\n</td>\n</tr>\n</table>\n
+</td>\n</form>\n<td>\n</td>\n</tr>\n
 
-&nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=$PHP_SELF>register</a>) ";
+
+<td> <!--RTAG_FACEBOOK_LOGIN--> </td><td> 
+
+
+
+&nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=$PHP_SELF>register</a>) 
+</td></tr>
+</table>\n";
 
 
 ?>
