@@ -152,12 +152,7 @@ function sc_inform($x) { eval(scg());
 /////////////////////////////////////////////////////////////////////////
 function sc_question($x) { eval(scg());	$x=str_replace("<a ","<a class=ainform ",$x); 	$x=str_replace("<hr>", "<hr class=questionhr> ",$x); 	echo smiles("<center><div class=question align=left><img src='$RFS_SITE_URL/images/icons/3dquestion.png' align=right border=0>$x</div>");}
 /////////////////////////////////////////////////////////////////////////
-function sc_yes($x) {
-	$x=strtolower($x);
-	if( (stristr($x,"true")) || (stristr($x,"yes")) || (stristr($x,"on")) || (stristr($x,"1")) )
-		return true;
-	return false;
-}
+function sc_yes($x) { $x=strtolower($x); if( (stristr($x,"true")) || (stristr($x,"yes")) || (stristr($x,"on")) || (stristr($x,"1")) ) return true;	return false;}
 /////////////////////////////////////////////////////////////////////////
 function smiles($text) {
 	$query = "select * from smilies";
@@ -182,16 +177,9 @@ function smiles($text) {
 	return rfs_get($text);
 }
 /////////////////////////////////////////////////////////////////////////
-function rfs_echo($t) { 
-	echo rfs_get($t);
-}
+function rfs_echo($t) {  echo rfs_get($t); }
 /////////////////////////////////////////////////////////////////////////
 function rfs_get($t) {
-	foreach($GLOBALS as $key => $value) {
-		if(is_string($value)) {
-			$t=str_replace("\$$key",$value,$t);
-		}
-	}
 	foreach($GLOBALS['RFS_TAGS'] as $key => $value) {
 		if(stristr($t,$value)) {
 			switch($key) {
@@ -210,6 +198,13 @@ function rfs_get($t) {
 			}
 		}
 	}
+
+	foreach($GLOBALS as $key => $value) { 
+		if(is_string($value)) {
+			$t=str_replace("\$$key",$value,$t);
+		}
+	}
+	
 	return $t;
 }
 /////////////////////////////////////////////////////////////////////////

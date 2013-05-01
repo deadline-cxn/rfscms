@@ -69,7 +69,8 @@ $RFS_SITE_DOUBLETABLEWIDTH  = 435;
 $RFS_SITE_MENU_TOP_LOCATION = "top";
 $RFS_TAGS=array(
 "RFS_SITE_LOGIN_FORM_CODE"  => "<!--RFS_LOGIN_FORM-->",
-"RFS_SITE_FUNCTION"         => "<!--RFS_FUNCTION-->"
+"RFS_SITE_FUNCTION"         => "<!--RFS_FUNCTION-->",
+"RFS_SITE_AJAX" 				=> "<!--RFS_AJAX-->"
 );
 $RFS_SITE_FUNCTION          = "run a function";
 $RFS_SITE_LOGIN_FORM_CODE   = "<script src=\"\$RFS_SITE_URL/include/md5.js\"> </script>
@@ -106,21 +107,8 @@ $RFS_SITE_JS_JQUERY         = "<script src=\"\$RFS_SITE_URL/3rdparty/jquery/jque
 $RFS_SITE_JS_COLOR          = "<script src=\"\$RFS_SITE_URL/3rdparty/jscolor/jscolor.js\"></script>";
 $RFS_SITE_JS_MOOTOOLS       = "<script src=\"\$RFS_SITE_URL/3rdparty/mootools/mootools.js\"></script>";
 $RFS_SITE_JS_EDITAREA       = "<script src=\"\$RFS_SITE_URL/3rdparty/editarea/edit_area/edit_area_full.js\"></script>";
-$RFS_SITE_JS_MSDROPDOWN 		= "<script src=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/js/msdropdown/jquery.dd.min.js\"></script>
-
- <script language=\"javascript\">
-$(document).ready(function(e) {
-try {
-$(\"body select\").msDropDown();
-} catch(e) {
-alert(e.message);
-}
-});
-</script>
-";
-$RFS_SITE_JS_MSDROPDOWN_THEME =
- "<link rel=\"stylesheet\" type=\"text/css\" href=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/css/msdropdown/dd.css\" />
-  <link rel=\"stylesheet\" type=\"text/css\" href=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/css/msdropdown/skin2.css\" /> ";
+$RFS_SITE_JS_MSDROPDOWN 		= "<script src=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/js/msdropdown/jquery.dd.min.js\"></script> <script language=\"javascript\"> $(document).ready(function(e) { try { $(\"body select\").msDropDown(); } catch(e) { alert(e.message);} }); </script> ";
+$RFS_SITE_JS_MSDROPDOWN_THEME = "<link rel=\"stylesheet\" type=\"text/css\" href=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/css/msdropdown/dd.css\" />  <link rel=\"stylesheet\" type=\"text/css\" href=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/css/msdropdown/skin2.css\" /> ";
 /////////////////////////////////////////////////////////////////////////////////////////
 // Figure out what to put in the title...
 // If you're not sure what to put, just leave it alone
