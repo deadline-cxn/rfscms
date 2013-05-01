@@ -53,6 +53,7 @@ background-color: #33FF1C;
 
 .wikishell {
 	margin:0 auto;
+	padding: 10px;
 	align: center;
 	width: 80%;
 	font-family: monospace;

@@ -34,7 +34,22 @@ body{
     color: #FFFFFF;
 }
 
-.sc_top_menu_table{
+.sc_top_menu_table
+{
+  font-family: Lucidia; 
+  font-style: normal;
+  background-color: #996600;
+}
+
+.sc_top_menu_table_td
+{
+  font-family: Lucidia; 
+  font-style: normal;
+  background-color: #996600;
+}
+
+.sc_top_menu_table_inner
+{
   font-family: Lucidia; 
   font-style: normal;
   background-color: #996600;

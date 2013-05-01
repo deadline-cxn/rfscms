@@ -94,7 +94,20 @@ color: #A397FF;
 .sc_top_menu_table
 {
   font-family: Lucidia;
-  ffont-size: x-large;
+  font-style: normal;
+  background-color: #A397FF;
+}
+
+.sc_top_menu_table_td
+{
+  font-family: Lucidia;
+  font-style: normal;
+  background-color: #A397FF;
+}
+
+.sc_top_menu_table_inner
+{
+  font-family: Lucidia;
   font-style: normal;
   background-color: #A397FF;
 }
