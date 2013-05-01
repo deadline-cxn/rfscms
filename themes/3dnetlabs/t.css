@@ -19,10 +19,10 @@ display: inline-block; position: relative; padding: 0;
 	align: center;
 	width: 90%;
 	font-family: monospace;
-	background-color: #004500;
+	background-color: #003B00;
 	color: #00ff00;
 	border-width: 1px;
-	border-color: #00ff00;
+	border-color: #008200;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
@@ -30,9 +30,9 @@ display: inline-block; position: relative; padding: 0;
 	
 }
 .menubutton:hover {
-	border-color: #000000;
-	background-color: #00FF00;
-	color: #000000;
+color: #006600;
+border-color: #008200;
+background-color: #33FF1C;
 }
 
 .lefttd {

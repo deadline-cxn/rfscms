@@ -670,30 +670,23 @@ function sc_vars_join($x){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Optionizer
-function sc_optionizer(	$return_page, 	  // RETURN PAGE or INLINE
-							$hiddenvars,	  // hidden vars to include (INLINE mode ignores this)
-							$table,			  // MySQL table or FOLDER 
-							$key,			  // key of MySQL table or FOLDERMODE
-							$use_id_method,   // 0 or 1: Uses id field of MySQL if 1
-							$default,		  // Default option
-							$on_change_method // 0 or 1: Use javascript on_change method if 1
-							){ eval(scg());
-
-
-
+// $return_page		RETURN PAGE or INLINE
+// $hiddenvars		hidden vars to include (INLINE mode ignores this)
+// $table				MySQL table or FOLDER 
+// $key				key of MySQL table or FOLDERMODE
+// $use_id_method		0 or 1: Uses id field of MySQL if 1
+// $default			Default option
+// $on_change_method	0 or 1: Use javascript on_change method if 1
+function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method, $default, $on_change_method){ eval(scg());
 	$folder_mode=0;
 	if( ($use_id_method==3) || 
 		($key=="FOLDERMODE")) {
 		$folder_mode=1;
 		$use_id_method=0;
 	}
-	//echo "use_id_method[$use_id_method]<br>";
-	//echo "folder_mode[$folder_mode]<br>";
-	
 	if($return_page!="INLINE")
 		echo "<form action=\"$return_page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
 	$omit='';
-
 	$hv=explode(sc_delimiter($hiddenvars),$hiddenvars);
    
     $where='';
@@ -879,9 +872,7 @@ function sc_optionizer(	$return_page, 	  // RETURN PAGE or INLINE
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // select / option a file
-function sc_optionize_file( $select_name, // select name
-						$file,		// folder
-						$default )  {
+function sc_optionize_file( $select_name, $file,	$default )  {
 	echo "<select name=\"$select_name\">";
 	
 	echo "<option>$default";
@@ -918,15 +909,22 @@ function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$inclu
 	reset($dirfiles);
 	asort($dirfiles);
 	while(list ($key, $file) = each ($dirfiles)){		
-		$chack="$folder/$file";		
-		if(substr($file,0,1)!=".") {
-			if(sc_yes($include_dirs)) {
-				if(!is_file($chack))
-					echo "<option>$chack";
-			}
-			if(sc_yes($include_files)) {
-				if(is_file($chack))
-					echo "<option>$chack";
+		$chack="$folder/$file";
+		
+		if( ($file=="lost+found") ||
+			($file=="\$RECYCLE.BIN") ) {
+				
+		}
+		else {
+			if(substr($file,0,1)!=".") {
+				if(sc_yes($include_dirs)) {
+					if(!is_file($chack))
+						echo "<option>$chack";
+				}
+				if(sc_yes($include_files)) {
+					if(is_file($chack))
+						echo "<option>$chack";
+				}
 			}
 		}
 	}	
@@ -934,16 +932,18 @@ function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$inclu
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // simple add form based on table
-function sc_bfa($table){ eval(scg()); sc_bf(sc_phpself(),"action=add",$table,"","","name","include","",60,"add");}
+function sc_bfa($table){ eval(scg());
+	sc_bf(sc_phpself(),"action=add",$table,"","","name","include","",60,"add");
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // sc_bqf (build quick form)
-// 
 // $hiddenvars = list of 
 // takes 2 vars and will build a form using sc_bf
-function sc_bqf($hiddenvars,$submit){ eval(scg()); sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit); }
+function sc_bqf($hiddenvars,$submit){ eval(scg());
+	sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // sc_bf (build form)
-//
 // $page        	= page that the form will action 
 // $hiddenvars	= list of hiddenvars and/or
 //
@@ -956,17 +956,10 @@ function sc_bqf($hiddenvars,$submit){ eval(scg()); sc_bf(sc_phpself(),$hiddenvar
 //						SHOW_PASSWORD
 //						SHOW_SELECTOR
 //						SHOW_TEXTAREA
-//
-//
-//
 // EXAMPLES: 
-// 
-// 
 // SHOW_TEXT_textlabel#textname#textvalue#text to add
 // SHOW_SELECTOR_colors#name#text_color#$ocolor
 // SHOW_SELECTOR_exam_question_types#type#type#$qt->type
-//
-//
 // 
 // $table		  	= which table to use
 // $query       	= query of fields to include in the form, if empty will use all fields
@@ -982,11 +975,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 	$gt=1;
 	$delimiter=$RFS_SITE_DELIMITER;	
     if(!stristr($page,$RFS_SITE_URL)) $page="$RFS_SITE_URL/$page";
-	
     if(empty($svarf)) $svarf="omit";
-    
-	
-	
 	echo "<table cellspacing=0 cellpadding=0>";
     echo "<tr><td>";
 	echo "<form action=\"$page\" method=\"POST\" enctype=\"multipart/form-data\">";
@@ -1989,17 +1978,7 @@ function sc_ajax_javascript() { eval(scg());
 		</script> ';
 }
 
-function sc_ajax_file(
-	$rfalabel,
-	$rfatable, // (file)
-	$rfaikey,
-	$rfakv,
-	$rfafield,
-	$rfawidth,
-	$rfatype,
-	$rfaapage,
-	$rfaact,
-	$rfacallback ) { eval(scg());
+function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
 	
 	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
 	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
@@ -2106,17 +2085,7 @@ function sc_ajax_file(
 }
 
 
-function sc_ajax(
-	$rfalabel,
-	$rfatable,
-	$rfaikey,
-	$rfakv,
-	$rfafield,
-	$rfawidth,
-	$rfatype,
-	$rfaapage,
-	$rfaact,
-	$rfacallback ) { eval(scg());
+function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback) { eval(scg());
 	
 	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
 	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	

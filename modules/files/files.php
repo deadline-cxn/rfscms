@@ -767,7 +767,7 @@ if($action=="upload") {
 
             echo "<tr><td align=right>Put file in:</td><td>\n";
 
-				sc_optionize_folder("local","files",1,0,$path);
+				sc_optionize_folder("local","files","",1,0,$path);
 
 				echo "</td></tr>\n";
 

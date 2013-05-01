@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$adm_8php.html#a904dd685b7d93cc532a9d61c93280253" title="adm_action_f_theme_edit" alt="" coords="137,59,308,88"/>
+<area shape="rect" id="node9" href="$adm_8php.html#a0615a29e6c064bd5c0c3757734096f3d" title="adm_action_theme" alt="" coords="157,165,288,195"/>
+<area shape="rect" id="node13" href="$adm_8php.html#a92f9924e31d6460b7e54ef0a1553bf08" title="adm_action_edit_site_vars" alt="" coords="135,272,311,301"/>
+<area shape="rect" id="node23" href="$adm_8php.html#ace8c7439fed268e4befe9585719e1aca" title="adm_action_" alt="" coords="175,432,271,461"/>
+<area shape="rect" id="node37" href="$files_8php.html#a807d1ffabe5e2eebc2924ce8a8ae0158" title="show1file" alt="" coords="184,485,261,515"/>
+<area shape="rect" id="node39" href="$lib_8menus_8php.html#a5fb3e342cf97a437be82114afe33075f" title="sc_menu_draw" alt="" coords="168,539,277,568"/>
+<area shape="rect" id="node5" href="$adm_8php.html#aa91f80c03a054b601bcd65e18ba4e5d7" title="adm_action_f_theme_edit_php" alt="" coords="389,5,587,35"/>
+<area shape="rect" id="node7" href="$adm_8php.html#ab91ce2cc24b273a690208d8ee067ec75" title="adm_action_f_theme_edit_delete_go" alt="" coords="371,59,605,88"/>
+<area shape="rect" id="node11" href="$adm_8php.html#a5dddb69b60010e05080d7e7091a1092b" title="adm_action_f_theme_view_classes" alt="" coords="373,112,603,141"/>
+<area shape="rect" id="node15" href="$adm_8php.html#a6e3a8c2da3942ace294006b3f623ba33" title="adm_action_f_addsitevar" alt="" coords="405,165,571,195"/>
+<area shape="rect" id="node17" href="$adm_8php.html#ad6bf8be7b65dfcf97317d89ac8ebe528" title="adm_action_f_upsitevar" alt="" coords="408,219,568,248"/>
+<area shape="rect" id="node19" href="$adm_8php.html#a9fb20851caed11d93dc5b53982de6094" title="adm_action_f_delsitevar_go" alt="" coords="396,272,580,301"/>
+<area shape="rect" id="node21" href="$adm_8php.html#add82feef5c2e3494081989990805f154" title="adm_action_f_delsitevar" alt="" coords="407,325,569,355"/>
+<area shape="rect" id="node25" href="$adm_8php.html#a18b3f400bb2e8cd263c40de1429c5e0f" title="adm_action_f_admin_menu_edit_del_go" alt="" coords="361,379,615,408"/>
+<area shape="rect" id="node27" href="$adm_8php.html#a8ca9c7209f4167ca0fda4e5f55eadb8c" title="adm_action_f_admin_menu_edit_del" alt="" coords="372,432,604,461"/>
+<area shape="rect" id="node29" href="$adm_8php.html#a835f395c55cf333c6f118fc48d58ddd0" title="adm_action_f_admin_menu_edit_add" alt="" coords="369,485,607,515"/>
+<area shape="rect" id="node31" href="$adm_8php.html#aa8c44c3b6ceb55a1fb8f74167f680fb1" title="adm_action_f_admin_change_category" alt="" coords="364,539,612,568"/>
+<area shape="rect" id="node33" href="$adm_8php.html#a3b4a1832441c738d337ba60256318e4b" title="adm_action_f_admin_menu_edit_mod" alt="" coords="368,592,608,621"/>
+<area shape="rect" id="node35" href="$adm_8php.html#a421a8aa7b84f9d5e67881e59f157f75f" title="adm_action_f_admin_menu_edit_entry" alt="" coords="365,645,611,675"/>
+</map>

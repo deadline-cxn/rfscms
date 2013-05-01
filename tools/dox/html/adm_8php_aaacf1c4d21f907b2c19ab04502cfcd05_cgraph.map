@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="843,428,885,457"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#a859cf356f7e78d2c2a45011f30e3ce91" title="sc_updb" alt="" coords="468,59,537,88"/>
+<area shape="rect" id="node19" href="$adm_8php.html#ae61c9a0b2524c9e3f584d50a6504fb71" title="adm_action_user_edit" alt="" coords="243,296,392,325"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="645,59,720,88"/>
+<area shape="rect" id="node15" href="$lib_8debug_8php.html#a9b55f447faf2e1928eb5c9ce9b9a864d" title="d_echo" alt="" coords="651,5,715,35"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="800,112,928,141"/>
+<area shape="rect" id="node13" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="843,59,885,88"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="977,112,1108,141"/>
+<area shape="rect" id="node17" href="$lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="sc_yes" alt="" coords="832,5,896,35"/>
+<area shape="rect" id="node22" href="$lib_8mysql_8php.html#ab2a2e03dfc31eb5074a990325393609d" title="sc_bf" alt="" coords="476,112,529,141"/>
+<area shape="rect" id="node29" href="$lib_8mysql_8php.html#adbb1f4c87d2fe0d9c70f42ff350d6c0b" title="sc_db_dumptable" alt="" coords="441,296,564,325"/>
+<area shape="rect" id="node26" href="$lib_8mysql_8php.html#a189b90c36bbbaff0b120155ef1907bbe" title="sc_delimiter" alt="" coords="637,163,728,192"/>
+<area shape="rect" id="node32" href="$lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="sc_phpself" alt="" coords="640,376,725,405"/>
+<area shape="rect" id="node36" href="$lib_8buttons_8php.html#a714921c1f613923442fcd7b484b22d1c" title="sc_makebuttonstart" alt="" coords="615,269,751,299"/>
+<area shape="rect" id="node38" href="$lib_8buttons_8php.html#ae684d5b0a007ec007ba38aa3aa3fd067" title="sc_makebutton" alt="" coords="628,323,737,352"/>
+<area shape="rect" id="node40" href="$lib_8buttons_8php.html#a492729bd6c797205a3fd22da1fb1f174" title="sc_makebuttonend" alt="" coords="617,216,748,245"/>
+</map>

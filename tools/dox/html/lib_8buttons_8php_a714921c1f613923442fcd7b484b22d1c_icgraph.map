@@ -1,0 +1,36 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lib_8buttons_8php.html#aab8ac9602362dc3e4f93b3fd545d5369" title="sc_button_l" alt="" coords="211,375,299,404"/>
+<area shape="rect" id="node45" href="$lib_8buttons_8php.html#a56ac892e1c5a4a94689e700ed9083615" title="sc_button_warn" alt="" coords="197,428,312,457"/>
+<area shape="rect" id="node47" href="$lib_8mysql_8php.html#a238eaa47b98b06591deb8e16a715e14c" title="sc_confirmform" alt="" coords="199,195,311,224"/>
+<area shape="rect" id="node60" href="$lib_8mysql_8php.html#adbb1f4c87d2fe0d9c70f42ff350d6c0b" title="sc_db_dumptable" alt="" coords="193,508,316,537"/>
+<area shape="rect" id="node5" href="$lib_8buttons_8php.html#a666362cb0a8603c56ee45762028a24a4" title="sc_button" alt="" coords="443,375,520,404"/>
+<area shape="rect" id="node7" href="$adm_8php.html#a904dd685b7d93cc532a9d61c93280253" title="adm_action_f_theme_edit" alt="" coords="655,428,825,457"/>
+<area shape="rect" id="node13" href="$adm_8php.html#a0615a29e6c064bd5c0c3757734096f3d" title="adm_action_theme" alt="" coords="675,288,805,317"/>
+<area shape="rect" id="node17" href="$adm_8php.html#a92f9924e31d6460b7e54ef0a1553bf08" title="adm_action_edit_site_vars" alt="" coords="652,168,828,197"/>
+<area shape="rect" id="node27" href="$adm_8php.html#ace8c7439fed268e4befe9585719e1aca" title="adm_action_" alt="" coords="692,375,788,404"/>
+<area shape="rect" id="node41" href="$files_8php.html#a807d1ffabe5e2eebc2924ce8a8ae0158" title="show1file" alt="" coords="701,481,779,511"/>
+<area shape="rect" id="node43" href="$lib_8menus_8php.html#a5fb3e342cf97a437be82114afe33075f" title="sc_menu_draw" alt="" coords="685,115,795,144"/>
+<area shape="rect" id="node9" href="$adm_8php.html#aa91f80c03a054b601bcd65e18ba4e5d7" title="adm_action_f_theme_edit_php" alt="" coords="912,608,1109,637"/>
+<area shape="rect" id="node11" href="$adm_8php.html#ab91ce2cc24b273a690208d8ee067ec75" title="adm_action_f_theme_edit_delete_go" alt="" coords="893,661,1128,691"/>
+<area shape="rect" id="node15" href="$adm_8php.html#a5dddb69b60010e05080d7e7091a1092b" title="adm_action_f_theme_view_classes" alt="" coords="896,235,1125,264"/>
+<area shape="rect" id="node19" href="$adm_8php.html#a6e3a8c2da3942ace294006b3f623ba33" title="adm_action_f_addsitevar" alt="" coords="928,75,1093,104"/>
+<area shape="rect" id="node21" href="$adm_8php.html#ad6bf8be7b65dfcf97317d89ac8ebe528" title="adm_action_f_upsitevar" alt="" coords="931,128,1091,157"/>
+<area shape="rect" id="node23" href="$adm_8php.html#a9fb20851caed11d93dc5b53982de6094" title="adm_action_f_delsitevar_go" alt="" coords="919,181,1103,211"/>
+<area shape="rect" id="node25" href="$adm_8php.html#add82feef5c2e3494081989990805f154" title="adm_action_f_delsitevar" alt="" coords="929,21,1092,51"/>
+<area shape="rect" id="node29" href="$adm_8php.html#a18b3f400bb2e8cd263c40de1429c5e0f" title="adm_action_f_admin_menu_edit_del_go" alt="" coords="884,448,1137,477"/>
+<area shape="rect" id="node31" href="$adm_8php.html#a8ca9c7209f4167ca0fda4e5f55eadb8c" title="adm_action_f_admin_menu_edit_del" alt="" coords="895,501,1127,531"/>
+<area shape="rect" id="node33" href="$adm_8php.html#a835f395c55cf333c6f118fc48d58ddd0" title="adm_action_f_admin_menu_edit_add" alt="" coords="892,555,1129,584"/>
+<area shape="rect" id="node35" href="$adm_8php.html#aa8c44c3b6ceb55a1fb8f74167f680fb1" title="adm_action_f_admin_change_category" alt="" coords="887,288,1135,317"/>
+<area shape="rect" id="node37" href="$adm_8php.html#a3b4a1832441c738d337ba60256318e4b" title="adm_action_f_admin_menu_edit_mod" alt="" coords="891,341,1131,371"/>
+<area shape="rect" id="node39" href="$adm_8php.html#a421a8aa7b84f9d5e67881e59f157f75f" title="adm_action_f_admin_menu_edit_entry" alt="" coords="888,395,1133,424"/>
+<area shape="rect" id="node49" href="$adm_8php.html#a55a732630eb7b827c13b5d395c55be5f" title="adm_action_f_arrange_delete" alt="" coords="385,248,577,277"/>
+<area shape="rect" id="node51" href="$adm_8php.html#a8ae1234993872b7f9152027cd64947ff" title="adm_action_f_access_group_delete" alt="" coords="367,301,596,331"/>
+<area shape="rect" id="node53" href="$adm_8php.html#a3bd2f5be6668b76b5214b4fb1e3eb8c3" title="adm_action_f_theme_edit_delete" alt="" coords="375,88,588,117"/>
+<area shape="rect" id="node56" href="$adm_8php.html#a470a8c463d79190417419433e848a6da" title="adm_action_f_del_users" alt="" coords="400,141,563,171"/>
+<area shape="rect" id="node58" href="$adm_8php.html#ae06e8b329dcdf45d65fea0a458544d43" title="adm_action_f_modify_link" alt="" coords="395,195,568,224"/>
+<area shape="rect" id="node62" href="$adm_8php.html#ae61c9a0b2524c9e3f584d50a6504fb71" title="adm_action_user_edit" alt="" coords="407,575,556,604"/>
+<area shape="rect" id="node70" href="$adm_8php.html#addf5ee80a861c3bb13de835f36996780" title="adm_action_counters" alt="" coords="408,508,555,537"/>
+<area shape="rect" id="node64" href="$adm_8php.html#aaacf1c4d21f907b2c19ab04502cfcd05" title="adm_action_f_edit_users_go" alt="" coords="647,535,833,564"/>
+<area shape="rect" id="node66" href="$adm_8php.html#a6f2f72ad11309918eebcbbdc9c92bfa0" title="adm_action_f_del_users_go" alt="" coords="648,588,832,617"/>
+<area shape="rect" id="node68" href="$adm_8php.html#a81986b0289c7ac7584512e6555a64831" title="adm_action_f_add_user" alt="" coords="660,641,820,671"/>
+</map>

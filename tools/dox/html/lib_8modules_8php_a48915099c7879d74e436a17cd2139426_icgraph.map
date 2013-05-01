@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$adm_8php.html#a80b875005654440f8f81ee7fa4d42ed4" title="finishadminpage" alt="" coords="209,85,324,115"/>
+<area shape="rect" id="node5" href="$adm_8php.html#a4cc50e443bbff6e4eb5ed1f48d9f88e3" title="adm_action_db_query" alt="" coords="387,32,536,61"/>
+<area shape="rect" id="node7" href="$adm_8php.html#a37ae75642c5b1f68bf57837c3479b92b" title="adm_action_eval_form_go" alt="" coords="375,85,548,115"/>
+<area shape="rect" id="node9" href="$adm_8php.html#ace8c7439fed268e4befe9585719e1aca" title="adm_action_" alt="" coords="413,139,509,168"/>
+<area shape="rect" id="node11" href="$adm_8php.html#a18b3f400bb2e8cd263c40de1429c5e0f" title="adm_action_f_admin_menu_edit_del_go" alt="" coords="599,5,852,35"/>
+<area shape="rect" id="node13" href="$adm_8php.html#a8ca9c7209f4167ca0fda4e5f55eadb8c" title="adm_action_f_admin_menu_edit_del" alt="" coords="609,59,841,88"/>
+<area shape="rect" id="node15" href="$adm_8php.html#a835f395c55cf333c6f118fc48d58ddd0" title="adm_action_f_admin_menu_edit_add" alt="" coords="607,112,844,141"/>
+<area shape="rect" id="node17" href="$adm_8php.html#aa8c44c3b6ceb55a1fb8f74167f680fb1" title="adm_action_f_admin_change_category" alt="" coords="601,165,849,195"/>
+<area shape="rect" id="node19" href="$adm_8php.html#a3b4a1832441c738d337ba60256318e4b" title="adm_action_f_admin_menu_edit_mod" alt="" coords="605,219,845,248"/>
+<area shape="rect" id="node21" href="$adm_8php.html#a421a8aa7b84f9d5e67881e59f157f75f" title="adm_action_f_admin_menu_edit_entry" alt="" coords="603,272,848,301"/>
+</map>

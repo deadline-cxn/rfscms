@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="627,185,669,214"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#a9eee2bb98800e4f9db3e4f243f1b792f" title="sc_db_query_form" alt="" coords="204,28,332,57"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="421,28,496,57"/>
+<area shape="rect" id="node15" href="$lib_8mysql_8php.html#a187dd36cc05457c2600e5fc7ae20e4c4" title="sc_db_query" alt="" coords="220,81,316,110"/>
+<area shape="rect" id="node19" href="$adm_8php.html#a80b875005654440f8f81ee7fa4d42ed4" title="finishadminpage" alt="" coords="211,185,325,214"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="584,81,712,110"/>
+<area shape="rect" id="node13" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="627,28,669,57"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="761,81,892,110"/>
+<area shape="rect" id="node22" href="$lib_8modules_8php.html#a48915099c7879d74e436a17cd2139426" title="sc_get_modules_array" alt="" coords="383,185,535,214"/>
+</map>
