@@ -26,19 +26,19 @@ to("100%"," align=center cellpadding=0");
 					/*
                     echo '
                     <!-- Facebook Badge START -->
-    <a href="http://en-gb.facebook.com/seth.parson" 
-    target="_TOP" title="Seth Parson">
-    <img src="http://badge.facebook.com/badge/1321508503.3376.1325567341.png" 
-    style="border: 0px;" height=70%/></a><!-- Facebook Badge END -->
-                  
-                    <!-- Facebook Badge START -->                    
-<a href="http://www.facebook.com/DefectiveMinds" target="_TOP" title="Defective Minds">
-<img src="http://badge.facebook.com/badge/252282598232241.911.982775265.png" style="border: 0px;" height=70% />
-</a><!-- Facebook Badge END -->
-                    ';
+						<a href="http://en-gb.facebook.com/seth.parson" 
+						target="_TOP" title="Seth Parson">
+						<img src="http://badge.facebook.com/badge/1321508503.3376.1325567341.png" 
+						style="border: 0px;" height=70%/></a><!-- Facebook Badge END -->
+								  
+									<!-- Facebook Badge START -->                    
+						<a href="http://www.facebook.com/DefectiveMinds" target="_TOP" title="Defective Minds">
+						<img src="http://badge.facebook.com/badge/252282598232241.911.982775265.png" style="border: 0px;" height=70% />
+						</a><!-- Facebook Badge END -->
+									';
 					*/
 					 tcr("toptd");
-                            sc_reddit();
+							sc_reddit();
 							sc_social_buttons();
                     tcc();
                 trc();
@@ -67,8 +67,6 @@ to("100% cellpadding=5"," align=center ");
 
 			tcr("thirdtd ");
 
-			// echo "<br>";
-
 			sc_theme_form();
 
 			tcr("thirdtd ");
@@ -78,10 +76,8 @@ to("100% cellpadding=5"," align=center ");
 			
 			tcr("thirdtd align=center");
 
-               
 				sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
-				echo  " <!-- 123 $RFS_SITE_GOOGLE_ADSENSE 456 -->";
-
+				
            tcr("thirdtd align=right ");
 
            if($_SESSION['logged_in']) {
