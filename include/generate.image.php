@@ -50,6 +50,7 @@ if( $action=="showfont") {
 	}
 	$fozont=$fizont;
 	$fozont=preg_replace("/./","M", $fozont);
+	$fozont="q".substr($fozont,1,strlen($fizont));
 	$bbox   = imagettfbbox($text_size, 0, $font, $fozont);
 	$w = $bbox[2] - $bbox[6];
 	$h = $bbox[3] - $bbox[7];
