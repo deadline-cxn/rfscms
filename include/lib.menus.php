@@ -25,7 +25,7 @@ function sc_menu_draw($menu_location) {
                         echo "<tr><td width=5 class=lefttd>";
                 }
                 if($menu_location=="top"){
-                        echo "<td class=sc_top_menu_table >";
+                        echo "<td class=sc_top_menu_table_td >";
                 }
 
                 if(sc_yes($RFS_SITE_NAV_BUTTONS)) {
@@ -70,7 +70,7 @@ function sc_menu_draw($menu_location) {
                 }
 
                 if($menu_location=="top") {
-                        echo "</td> <td class=sc_top_menu_table> &nbsp;&nbsp; </td>";
+                        echo "</td> <td class=sc_top_menu_table_td> &nbsp;&nbsp; </td>";
                 }
 
 

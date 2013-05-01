@@ -1,7 +1,30 @@
 body{
   background-color: #000000;
-  background-image: url("http://www.sethcoder.com/reference/wow/INTERFACE/BlackMarket/BlackMarketBackground-Tile.png");	
+  background-image: url("bkg.png");	
 }
+
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
+}
+
+
+.wikishell {
+	padding: 5px;
+	margin:0 auto;
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #000000;
+	color: #00ff00;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
 
 a{
       color: #ffff00;
@@ -41,32 +64,38 @@ td{
 }
 
 hr {
-    border: 1px;
-    border-color: #f2f736;
-    border-style: dotted;
+height:24px;
+	padding: 0px;
+    border: 0px;
+	background-position: 0px -13px;
+	
+	background-image: url("uitop.png");
 }
 
 .sc_top_menu_table {
     font-family: Verdana;
     font-weight: bold;
     font-size: 16px;
-    color: #ffffff;
-
-    gbackground-color: #000000;
+    color: #ffffff;   
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 5px;    
+	background-image: url("uitop.png");	
+}
+
+.sc_top_menu_table_td{ 
+	
 }
 
 .thirdtd{
-	vertical-align: bottom;
+   vertical-align: bottom;
     height: 24px;
     font-family: Verdana;
     font-size: 12px;
     color: #ffffff;
     background-color: #03060c;
-	background-image: url("http://www.sethcoder.com/reference/wow/INTERFACE/AUCTIONFRAME/UI-AUCTIONFRAME-AUCTION-TOP.png");
+    
 	
 }
 
@@ -80,6 +109,13 @@ hr {
     #border-color: #000000;
     #border-style: solid;
 }
+
+.toptexttd {
+  height: 259px;
+   background-image: url("wow_banner.png");
+   background-size:1135px 259px;
+   background-repeat:no-repeat;
+}
     
 .toptd{
     font-family: Verdana;
@@ -92,15 +128,16 @@ hr {
     padding-bottom: 8px;
     
     color: #000000;
-    dbackground-color: #000000;
+  
 }
 
 .slogan{
     font-family: Verdana;
-    font-size: 12px;
+   font-size: 18px;
     font-style: italic ;
-    color: #bbbbbb;
-    bvackground-color: #000000;
+    color: #FFFF00;
+    text-shadow: 2px 2px #222;
+
 }
 
 input,select,textarea {
@@ -119,9 +156,3 @@ input,select,textarea {
 
 
 
-
-
-
-
-
-

@@ -178,23 +178,46 @@ function smiles($text) {
 }
 /////////////////////////////////////////////////////////////////////////
 function rfs_echo($t) {  echo rfs_get($t); }
+
+function sc_calc($x) {
+	eval("echo($x);");
+}
 /////////////////////////////////////////////////////////////////////////
 function rfs_get($t) {
+
 	foreach($GLOBALS['RFS_TAGS'] as $key => $value) {
+		
+		//$x=explode("RFS_FTAG",$t);
+		// echo("0".$result[0]."1".$result[1]."2".$result[2]."<br>");
+		//$z=explode(" ",$x[1]);
+		//if(stristr($value,$z[1])) {
+			//$y="$key($z[2]);";
+			// echo "FOUND... DO:  [$y]";			
+			// echo "... RESULT[".eval($y)."]";
+		//}
+		
+		
+		
+		
+		
 		if(stristr($t,$value)) {
-			switch($key) {
-			case "RFS_SITE_THEME_FORM_CODE":
-				$t= $GLOBALS['RFS_SITE_THEME_FORM_CODE'];
-				break;
-			case "RFS_PHP_SELF":
-				//echo "123.what";
-				$t= sc_phpself();
-				break;
-			case "RFS_SITE_FUNCTION":
-				$t= "RUNNING: ($key)($value)";
-				break;
-			default:
-				break;
+			
+			switch($value) {
+				case "RFS_PHP_SELF": // echo "123.what";
+					$t=str_replace("$key",sc_phpself(),$t);
+					break;
+				case "RFS_SITE_FUNCTION":
+					$t=str_replace("$key","RUNNING:($key)($value)",$t);				
+					break;
+					
+				default:
+					if(function_exists($key)) {
+						
+						$t=str_replace($value,call_user_func($key),$t);
+					}
+					else
+						$t=str_replace("$value",$GLOBALS[$key],$t);
+					break;
 			}
 		}
 	}

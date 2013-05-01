@@ -85,7 +85,7 @@ to("100% cellpadding=5"," align=center ");
 		   }
            else {
 			    rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-				sc_facebook_login();
+				// sc_facebook_login();
 		   }
             
         tcc();

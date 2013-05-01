@@ -1741,7 +1741,13 @@ function sc_option_countries() {
 	";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_css_edit_form($css_file, $returnpage, $returnaction) { eval(scg());
+function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eval(scg());
+	$hvar=array();
+	$hvars=explode($RFS_SITE_DELIMITER,$hiddenvars);
+	for($i=0;$i<count($hvars);$i++) {
+		$tt=explode("=",$hvars[$i]);
+		$hvar[$tt[0]]=$tt[1];
+	}
 	sc_optionize_file("addcss","$RFS_SITE_PATH/tools/classes.out.txt", "CSS Classes");
 	$f=file_get_contents($css_file);
 	$cssx=explode("}",$f);	
@@ -1752,14 +1758,40 @@ function sc_css_edit_form($css_file, $returnpage, $returnaction) { eval(scg());
 		$cssx3=explode(";",$cssx2[1]);
 		for($j=0;$j<count($cssx3)-1;$j++) {
 			$cssx4=explode(":",$cssx3[$j]);
-			echo "<tr><td>";
+			echo "<form method=post action=\"$returnpage\">";
+			echo "<tr>";
+			echo "<td>";
+			$base=trim($cssx2[0]);
+			$sub=trim($cssx4[0]);
+			$cssvalue=trim($cssx4[1]);
+			echo "[<a href=\"$returnpage?action=$returnaction".
+			"&delete=".urlencode($base).
+			"&sub=".urlencode($sub).
+			"&cssvalue=".urlencode($cssvalue).
+			"&outfile=".urlencode($css_file);
+			foreach ($hvar as $vn => $vv){
+				echo "&$vn=$vv";
+			}
+			echo "\">delete</a>] ";
+			echo "</td>";
+			echo "<td width=200>";
 			echo " $cssx4[0]:";
 			echo "</td><td>";
-			echo "<input value=\"".trim($cssx4[1])."\" ";			
+	
+echo "<input type=\"hidden\" name=\"thm\" value=\"$thm\">";
+echo "<input type=\"hidden\" name=\"outfile\" value=\"$css_file\">";
+echo "<input type=\"hidden\" name=\"action\" value=\"$returnaction\">";
+echo "<input type=\"hidden\" name=\"update\" value=\"$base\">";
+echo "<input type=\"hidden\" name=\"sub\" value=\"$sub\">";
+echo "<input type=\"hidden\" name=\"cssvalue\" value=\"$cssvalue\">";
+echo "<input name=\"newvalue\" value=\"$cssvalue\" ";
 			if(substr(trim($cssx4[1]),0,1)=="#")
 				echo "class='color' ";
-			echo ">";
-			echo "</td></tr>";
+			echo " size=60
+			
+			onblur=\"this.form.submit();\">";
+
+			echo "</td></tr>";echo "</form>";
 		}
 		echo "</table> }";
 	}
@@ -1773,19 +1805,28 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 		$hvar[$tt[0]]=$tt[1];
 	}
 	echo "<form action=$returnpage method=\"post\">";
+	echo "<table border=0>";
+	echo "<tr>";
+	echo "<td></td>";
 	echo "<input type=hidden name=action value=\"$returnaction\">";
 	echo "<input type=hidden name=add value=\"var\">";
 	echo "<input type=hidden name=outfile value=\"$php_file\">";
 	foreach ($hvar as $vn => $vv) {
 		echo "<input type=hidden name=\"$vn\" value=\"$vv\">";
 	}
+	
+	echo "<td width=200>";
 	/////////////////////////////////////////////////////////////////////////////////////////
 	sc_optionize_file( "addvar", "$RFS_SITE_PATH/tools/rfsvars_out.txt", "Add a system variable");
-	echo "<input name=varvalue value=\"\">";
+	echo "</td><td>";
+	echo "<input name=varvalue size=60 value=\"\">";
+	
 	echo "<input type=submit value=\"Add\">";
-	echo "</form>";	
+	echo "</tr>";
+	echo "</form>";
+	
 	$fp=fopen($php_file,"r");
-	echo "<table border=0>";
+	
 	while( $ln=fgets($fp)) {
 		if 	((substr($ln,0,2)=="<?") ||
 			 (substr($ln,0,2)=="?>") ||
@@ -1811,10 +1852,33 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 			$varx[1]=trim($varx[1],"\r");
 			$varx[1]=trim($varx[1],";");
 			$varx[1]=trim($varx[1],"\"");
+			$varx[1]=str_replace("\'","\\'",$varx[1]);
+			$varx[1]=str_replace("<","&lt;",$varx[1]);
+			$varx[1]=str_replace(">","&gt;",$varx[1]);
 			echo "</td><td>";
+
+/*sc_ajax_file( "Name,80",
+				"files",
+				"id",
+				"$id",
+				"name",
+				70,
+				"",
+				"files","edit","");*/
+
+			if(stristr($varx[0],"login_form")) {
+				echo "<textarea >";
+				echo $varx[1];
+				echo "</textarea>"
+				;
+			}
+			else {
 			echo "<input size=60 value='".$varx[1]."' ";			
 				if(substr($varx[1],0,1)=="#") echo "class='color' ";
-			echo ">
+			echo ">";
+			
+			}
+			echo "
 			</td> </tr>";
 		}
 		
@@ -1847,6 +1911,11 @@ function sc_ajax_callback_image(){ eval(scg());
 		else   echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
 	}
 	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
+	exit;
+}
+
+function sc_ajax_callback_file(){ eval(scg());
+
 	exit;
 }
 
@@ -1918,6 +1987,122 @@ function sc_ajax_javascript() { eval(scg());
 			http.send(params);
 		}
 		</script> ';
+}
+
+function sc_ajax_file(
+	$rfalabel,
+	$rfatable, // (file)
+	$rfaikey,
+	$rfakv,
+	$rfafield,
+	$rfawidth,
+	$rfatype,
+	$rfaapage,
+	$rfaact,
+	$rfacallback ) { eval(scg());
+	
+	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
+	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
+	
+	if(!sc_access_check($rfaapage,$rfaact)) {
+		return;
+	}
+ 
+	if(empty($rfalabel)) $rfalabel="&nbsp;";
+	
+	$rlx=explode(",",$rfalabel);
+	$rfalabel=$rlx[0];
+	$minwidth="min-width: ".$rlx[1].";";
+	
+	$rfanname="RFAJAX_".time()."_".md5($rfakv.$rfalabel.$rfatable.$rfaikey);	
+	
+	echo "<div id='$rfanname"."_div' style='float:left;'>&nbsp;</div>\n";
+	echo "<div id='$rfanname"."_label' style='float:left; $minwidth'>$rfalabel</div>\n";
+	
+	$rfakv=addslashes($rfakv);	
+	$q="select * from `$rfatable` where `$rfaikey`='$rfakv'";
+	$r=sc_query($q);
+	$d=mysql_fetch_array($r);
+	
+	if(stristr($rfatype,"select")) {
+		
+		$x=explode(",",$rfatype);		
+		$typ=$x[1];		
+		if($typ=="table") {
+			$tab=$x[2];
+			$key=$x[3];
+			$val=$x[4];
+			
+			echo "<select data-description=\"$rfanname\"
+						data-maincss=\"blue\"
+							id=\"$rfanname"."_name\"
+							name=\"$rfanname"."_name\"
+							onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+							$hidefunc
+							\"
+							onchange=\"this.blur();\"
+							style='float:left;'>";
+			
+			
+			if(!empty($val)) {
+				$r=sc_query("select * from `$tab` where `$val`='".$d[$rfafield]."'");
+				$tdat=mysql_fetch_array($r);
+				echo "<option value=\"".$tdat[$val]."\">".$tdat[$key];
+			}
+			else		
+				echo "<option>".$d[$rfafield];
+			
+			
+			$r=sc_query("select * from `$tab` order by `$key` asc");
+			for($i=0;$i<mysql_num_rows($r);$i++) {
+				$dat=mysql_fetch_array($r);
+				echo "<option ";
+				if(!empty($val)) {
+					echo "value=\"".$dat[$val]."\"";
+				}
+				echo ">".$dat[$key];
+			}
+			echo "</select>";
+		}
+		echo "<div style='clear:both;'></div>";
+		return;		
+	}
+	
+	if($rfatype=="textarea") {
+		$rx=explode(",",$rfawidth);
+		$rows=$rx[0];
+		$cols=$rx[1];
+		echo "<textarea 	id=\"$rfanname"."_input\"
+							rows=\"$rows\"
+							cols=\"$cols\"
+							type=\"$rfatype\"
+							name=\"$rfanname"."_name\"							
+							onblur=\"rfs_ajax_func(	'$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+							$hidefunc
+							\"
+							
+			style='float:left;'>";
+			// onkeyup=\" if((event.keyCode==13)) {this.blur();}\"
+			
+				$tout=str_replace("<","&lt;",$d[$rfafield]);
+			echo $tout;
+			echo "</textarea>";	
+		
+	}
+	else {
+	echo "<input	id=\"$rfanname"."_input\"
+					size=\"$rfawidth\"
+					type=\"$rfatype\"
+					name=\"$rfanname"."_name\"
+					value=\"".$d[$rfafield]."\"
+					onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+					
+					$hidefunc
+					\"
+					onkeyup=\"if((event.keyCode==13)) {this.blur();}\"style='float:left;'>";
+	
+	}
+	echo "<div style='clear:both;'></div>";
 }
 
 

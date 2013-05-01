@@ -25,6 +25,12 @@ $RFS_SITE_URL               = $SERVER['DOCUMENT_ROOT'];
 $RFS_SITE_PATH              = getcwd();
 $RFS_SITE_ERROR_LOG         = "/var/log/apache2/error.log";
 /////////////////////////////////////////////////////////////////////////////////////////
+// TAGS  (Experimental)
+$RFS_TAGS=array(
+"RFS_TAG_FUNCTION" 			=> "RFS_TAG_FUNCTION",
+"sc_facebook_login_r" 		=> "<!--RTAG_FACEBOOK_LOGIN-->",
+);
+/////////////////////////////////////////////////////////////////////////////////////////
 // WIKI STUFF
 $RFS_SITE_WIKI_IMAGES_PATH  = "images/wiki";
 $rfsw_header        			= "header.php"; 
@@ -67,28 +73,25 @@ $RFS_SITE_COPYRIGHT         = "<a href=\"http://www.sethcoder.com/modules/wiki/r
 $RFS_SITE_SINGLETABLEWIDTH  = 940;
 $RFS_SITE_DOUBLETABLEWIDTH  = 435;
 $RFS_SITE_MENU_TOP_LOCATION = "top";
-$RFS_TAGS=array(
-"RFS_SITE_LOGIN_FORM_CODE"  => "<!--RFS_LOGIN_FORM-->",
-"RFS_SITE_FUNCTION"         => "<!--RFS_FUNCTION-->",
-"RFS_SITE_AJAX" 				=> "<!--RFS_AJAX-->"
-);
-$RFS_SITE_FUNCTION          = "run a function";
+
 $RFS_SITE_LOGIN_FORM_CODE   = "<script src=\"\$RFS_SITE_URL/include/md5.js\"> </script>
 <form method=post action=\"\$RFS_SITE_URL/login.php\">
 <input type=hidden name=outpage value=\"\$thispage\">
 <input type=hidden name=action value=\"logingo\">
 <table align=right border=0 cellspacing=0 cellwidth=0 cellpadding=0 valign=middle>\n
 <tr valign=middle>\n
-<td align=right class=toptd><font class=slogan>Login</font></td>
-<td class=toptd><input type=text name=userid size=10 class=\"b4text\"></td><td>
- &nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=$PHP_SELF>register</a>)
-</td></tr><tr>\n<td align=right class=toptd>
-<font class=slogan>Password</font></td>\n<td class=toptd>
-<input type=password name=password size=10 class=\"b4text\"></td>\n
+<td align=right class=login><font class=slogan>Login</font></td>
+<td class=login><input type=text name=userid size=10 class=\"b4text\"></td>
+<td></td></tr>
+<tr>\n<td align=right class=login><font class=slogan>Password</font></td>
+<td class=login><input type=password name=password size=10 class=\"b4text\"></td>\n
 <input type=hidden name=outpage value=$PHP_SELF>\n
 <input type=hidden name=login value=fo_shnizzle>\n
 <td valign=middle>\n <input type=\"submit\" name=\"Login\" value=\"Login\">\n
-</td>\n</form>\n<td>\n</td>\n</tr>\n</table>\n ";
+</td>\n</form>\n<td>\n</td>\n</tr>\n<td> <!--RTAG_FACEBOOK_LOGIN--> </td><td> &nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=$PHP_SELF>register</a>) 
+</td></tr></table>\n";
+
+
 $RFS_SITE_JOIN_FORM_CODE		= "
 <p>Your information will not be shared with anyone.</p>
 <table border=0 cellspacing=0 cellpadding=0>

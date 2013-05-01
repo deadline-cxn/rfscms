@@ -1,17 +1,62 @@
-body
-{
-	margin: 0px;
-    scrollbar-base-color: #008888;
-    scrollbar-arrow-color: #00FFFF;
-    scrollbar-DarkShadow-Color: #004444;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+body {
+margin: 45px;
+font-family: Fixed, monospace;
     font-size: 12px;
     font-style: normal;
-    background-color: #A397FF;
+background-color: A397FF;
+
+
+$RGBCOLOR0 :#000000;
+$RGBCOLOR1 :#ffffff;
+$RGBCOLOR2: #CF0808;
+$RGBCOLOR3: #60EEFF;
+$RGBCOLOR4: #9F14D1;
+$RGBCOLOR5: #38cd33;
+$RGBCOLOR6: #4D44DB;
+$RGBCOLOR7: #F8F76F;
+$RGBCOLOR8: #F08C0A;
+$RGBCOLOR9: #9E040E;
+$RGBCOLOR10: #F09C5A;
+$RGBCOLOR11:#444444;
+$RGBCOLOR12:#6C6C6C;
+$RGBCOLOR13: #9AFF84;
+$RGBCOLOR14: #A397FF;
+$RGBCOLOR15: #959595;
 	
 }
 
+.menubutton {
+	margin:0 auto;
+	display: inline-block;
+	position: relative;
+	padding: 0;
+	margin-right: .1em;
+	text-decoration: none !important;
+	cursor: pointer;
+	text-align: center;
+	zoom: 1;
+	overflow: visible;
+	padding:.2em .4em;
+	line-height:1.5;
+	zoom:1;	
+	align: center;
 
+	font-family: monospace;
+background-color: #A397FF;
+	color: #4D44DB;
+	border-width: 1px;
+border-color: #4D44DB;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	
+}
+.menubutton:hover {
+	border-color: #4D44DB;
+background-color: #ffff00;
+	color: #000000;
+}
 
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #A397FF;
@@ -25,7 +70,7 @@ body
     font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
-    color: #A397FF;
+color: #A397FF;
 
 }
 
@@ -82,7 +127,7 @@ body
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
-	background-color:  #ffffff;
+background-color: #A397FF;
 	color: #00202b;
     background-image: none;
 
@@ -140,7 +185,7 @@ body
     font-size: large;
     font-weight: bold;
     font-style: italic;
-    color: #0000ff;
+color: #A397FF;
 }
 
 h1{
@@ -148,7 +193,7 @@ h1{
     font-size: large;
     font-weight: bold;
     font-style: italic;
-    color: #ffffff;
+color: #A397FF;
 }
 
 .font
@@ -166,7 +211,6 @@ td
     ffont-weight: bold;
     color:   #A397FF;
 	background-color: #4D44DB;	
-	lbackground-image: url("images/gen_bkg.gif");
 }
 
 .downloadtd
@@ -183,7 +227,7 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #4D44DB;
-	background-color: #A397FF;
+background-color: #A397FF;
 }
 
 .sc_project_table_1
@@ -191,7 +235,7 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #4D44DB;
-	background-color: #73C7FF;
+background-color: #A397FF;
 }
 
 .sc_project_table_2
@@ -199,7 +243,7 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #4D44DB;
-	background-color: #73A7FF;
+background-color: #60EEFF;
 }
 
 
@@ -233,7 +277,7 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #4D44DB;
-	background-color: #73A7FF;
+background-color: #60EEFF;
 }
 
 
@@ -304,7 +348,7 @@ hr
 	font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
-    color:   #4D44DB;
+color: #DBDBDB;
 	
 }
 
@@ -314,7 +358,7 @@ hr
     font-size: xx-small;
     font-weight: bold;
     color: #000000;
-    background-color: #00cccc;
+background-color: #60EEFF;
     background-image: url(images/td_bg.gif);
 }
 
@@ -346,7 +390,7 @@ a:hover
     font-style: italic;
     text-decoration: none;
 	color:   #FFFF00;
-    background-color: #ffffff;
+background-color: #A397FF;
 }
 
 .atpb
@@ -376,7 +420,7 @@ a:hover
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #00ffff;
+color: #60EEFF;
 }
 
 input, select, textarea
