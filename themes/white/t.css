@@ -17,7 +17,7 @@ body {
 }
 
 .wikishell {
-	padding: 5px;
+	padding: 10px;
 	margin:0 auto;
 	align: center;
 	width: 90%;
@@ -80,6 +80,14 @@ hr {
 }
 
 .sc_top_menu_table
+{
+  font-family: Lucidia;
+  gfont-size: x-large;
+  font-style: normal;
+  background-color: #81aef1;
+}
+
+.sc_top_menu_table_td
 {
   font-family: Lucidia;
   gfont-size: x-large;

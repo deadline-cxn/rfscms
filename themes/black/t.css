@@ -18,6 +18,7 @@ body
 
 .wikishell {
 	margin:0 auto;
+	padding: 10px;
 	align: center;
 	width: 80%;
 	font-family: monospace;
@@ -64,7 +65,23 @@ body
   font-family: Lucidia;
   gfont-size: x-large;
   font-style: normal;
-  background-color: #333333; //#60607F;
+  background-color: #333333;
+}
+
+.sc_top_menu_table_td
+{
+  font-family: Lucidia;
+  gfont-size: x-large;
+  font-style: normal;
+  background-color: #333333;
+}
+
+.sc_top_menu_table_inner
+{
+  font-family: Lucidia;
+  gfont-size: x-large;
+  font-style: normal;
+  background-color: #333333;
 }
 
 

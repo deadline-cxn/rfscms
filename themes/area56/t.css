@@ -86,6 +86,20 @@ font-family: Verdana;
   font-style: normal;
   background-color: #333333;
 }
+.sc_top_menu_table_td
+{
+  font-family: Lucidia;
+  gfont-size: x-large;
+  font-style: normal;
+  background-color: #333333;
+}
+.sc_top_menu_table_inner
+{
+  font-family: Lucidia;
+  gfont-size: x-large;
+  font-style: normal;
+  background-color: #333333;
+}
 
 
 .rfswiki_link

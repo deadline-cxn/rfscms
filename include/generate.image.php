@@ -48,7 +48,9 @@ if( $action=="showfont") {
 			}
 		}
 	}
-	$bbox   = imagettfbbox($text_size, 0, $font, $fizont);
+	$fozont=$fizont;
+	$fozont=preg_replace("/./","M", $fozont);
+	$bbox   = imagettfbbox($text_size, 0, $font, $fozont);
 	$w = $bbox[2] - $bbox[6];
 	$h = $bbox[3] - $bbox[7];
     if(!$forcewidth) $owidth=$w+5;
@@ -167,14 +169,18 @@ if( $action=="showfont") {
             $text_size = $meme->text_size;
 
     $dout=$w."x".$h." ($text_size) ";
-
-    $dimensions = imagettfbbox($text_size, $angle, $font_file, $meme->texttop);
+	
+	$fozont=$meme->texttop;
+	//$fozont=preg_replace("/./","M", $fozont);	
+    $dimensions = imagettfbbox($text_size, $angle, $font_file, $fozont);
     $textWidth = max($dimensions[2], $dimensions[4]);
     for($zz=0;$zz<7;$zz++) $dout.=" $zz:".$dimensions[$zz];
     $ttx = intval(($w - $textWidth)/2); $dout.=" ttx:$ttx";
     $tty = abs(abs($dimensions[5]) - abs($dimensions[3]))*2;
 
-    $dimensions = imagettfbbox($text_size, $angle, $font_file, $meme->textbottom);
+	$fozont=$meme->textbottom;
+	//$fozont=preg_replace("/./","M", $fozont);
+    $dimensions = imagettfbbox($text_size, $angle, $font_file, $fozont);
     $textWidth = max($dimensions[2], $dimensions[4]);
     for($zz=0;$zz<7;$zz++) $dout.=" $zz:".$dimensions[$zz];
     $tbx = intval(($w - $textWidth)/2); $dout.=" tbx:$tbx";

@@ -2123,10 +2123,9 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 						data-maincss=\"blue\"
 							id=\"$rfanname"."_name\"
 							name=\"$rfanname"."_name\"
-							onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
-							$hidefunc
-							\"
-							onchange=\"this.blur();\"
+							onblur  =\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc	\"							
+							onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
+							
 							style='float:left;'>";
 			
 			

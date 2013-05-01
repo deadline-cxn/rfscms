@@ -34,14 +34,14 @@ body
     color: #C2B777;
 }
 
-
 .wikishell {
 	margin:0 auto;
+	padding: 10px;
 	align: center;
 	width: 90%;
 	font-family: monospace;
-	background-color: #000000;
-	color: #00ff00;
+	background-color: #544510;
+	color: #C2B777;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 	border-bottom-left-radius: 8px;
@@ -101,6 +101,18 @@ body
 
 
 .sc_top_menu_table
+{
+  font-family: Lucidia;  
+  font-style: normal;
+  background-color: #544510;
+}
+.sc_top_menu_table_td
+{
+  font-family: Lucidia;  
+  font-style: normal;
+  background-color: #544510;
+}
+.sc_top_menu_table_inner
 {
   font-family: Lucidia;  
   font-style: normal;
