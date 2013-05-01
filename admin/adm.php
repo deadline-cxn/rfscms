@@ -76,9 +76,9 @@ if(!sc_access_check("admin","access")) {
 function adm_action_update() { eval(scg());
 	echo "<pre>";
 	sc_flush_buffers();
-	echo system("git stash save --keep-index");
+	system("git stash save --keep-index");
 	sc_flush_buffers();
-	echo system("git pull https://github.com/sethcoder/rfscms.git");
+	system("git pull https://github.com/sethcoder/rfscms.git");
 	sc_flush_buffers();
 	echo "</pre>";
 	include("footer.php");
