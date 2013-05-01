@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classFacebook.html" title="Copyright 2011 Facebook, Inc." alt="" coords="191,59,268,88"/>
+<area shape="rect" id="node9" href="$classTransientFacebook.html" title="TransientFacebook" alt="" coords="163,272,296,301"/>
+<area shape="rect" id="node5" href="$classFBCode.html" title="FBCode" alt="" coords="428,5,497,35"/>
+<area shape="rect" id="node7" href="$classPersistentFBPublic.html" title="PersistentFBPublic" alt="" coords="396,59,529,88"/>
+<area shape="rect" id="node11" href="$classFBAccessToken.html" title="FBAccessToken" alt="" coords="404,112,521,141"/>
+<area shape="rect" id="node13" href="$classFBGetCurrentURLFacebook.html" title="FBGetCurrentURLFacebook" alt="" coords="369,165,556,195"/>
+<area shape="rect" id="node15" href="$classFBPublic.html" title="FBPublic" alt="" coords="425,219,500,248"/>
+<area shape="rect" id="node17" href="$classFBPublicCookie.html" title="FBPublicCookie" alt="" coords="405,272,520,301"/>
+<area shape="rect" id="node19" href="$classFBPublicGetAccessTokenFromCode.html" title="FBPublicGetAccessTokenFromCode" alt="" coords="344,325,581,355"/>
+<area shape="rect" id="node21" href="$classFBPublicState.html" title="FBPublicState" alt="" coords="409,379,516,408"/>
+<area shape="rect" id="node23" href="$classFBRecordMakeRequest.html" title="FBRecordMakeRequest" alt="" coords="381,432,544,461"/>
+<area shape="rect" id="node25" href="$classFBRecordURL.html" title="FBRecordURL" alt="" coords="409,485,516,515"/>
+</map>

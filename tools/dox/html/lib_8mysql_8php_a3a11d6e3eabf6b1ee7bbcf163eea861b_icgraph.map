@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd" title="smiles" alt="" coords="199,112,257,141"/>
+<area shape="rect" id="node5" href="$adm_8php.html#a8ca9c7209f4167ca0fda4e5f55eadb8c" title="adm_action_f_admin_menu_edit_del" alt="" coords="308,5,540,35"/>
+<area shape="rect" id="node7" href="$adm_8php.html#a470a8c463d79190417419433e848a6da" title="adm_action_f_del_users" alt="" coords="343,59,505,88"/>
+<area shape="rect" id="node9" href="$forums_8php.html#a0a15652acdbe6cd9e66f10c7e1bc00e5" title="show1message" alt="" coords="368,112,480,141"/>
+<area shape="rect" id="node13" href="$lib_8news_8php.html#a5b4884cdbbda02398946139fe82b991d" title="sc_show_news" alt="" coords="368,165,480,195"/>
+<area shape="rect" id="node19" href="$lib_8rfs_8php.html#ad462cd70a0b4384f67611d5608d5439f" title="sc_question" alt="" coords="379,219,469,248"/>
+<area shape="rect" id="node11" href="$forums_8php.html#ac8164a4e69fcfd5fd6f74e279c7a7c65" title="get_thread" alt="" coords="617,112,700,141"/>
+<area shape="rect" id="node15" href="$lib_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1" title="sc_show_top_news" alt="" coords="591,165,727,195"/>
+<area shape="rect" id="node17" href="$lib_8news_8php.html#a3eadb01f165caca65018c27fd6c7e39b" title="sc_module_news_top_story" alt="" coords="776,165,960,195"/>
+</map>

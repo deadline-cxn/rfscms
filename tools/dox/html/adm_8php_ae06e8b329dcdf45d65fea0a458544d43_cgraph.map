@@ -1,0 +1,19 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="659,497,701,527"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#ad42d2c11477299cecf3dd06b259a316e" title="mfo1" alt="" coords="283,5,333,35"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="643,208,717,237"/>
+<area shape="rect" id="node15" href="$lib_8mysql_8php.html#a238eaa47b98b06591deb8e16a715e14c" title="sc_confirmform" alt="" coords="252,189,364,219"/>
+<area shape="rect" id="node24" href="$lib_8log_8php.html#a85306751b884541d0eff4186e78730fa" title="sc_log" alt="" coords="477,523,536,552"/>
+<area shape="rect" id="node27" href="$lib_8rfs_8php.html#aa8cc5d5d1daaf3d80162755c52959d9b" title="sc_info" alt="" coords="276,447,340,476"/>
+<area shape="rect" id="node29" href="$adm_8php.html#ac44251b5ae4effd5d00a073768e8d0af" title="adm_action_edit_linkbin" alt="" coords="228,343,388,372"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="784,261,912,291"/>
+<area shape="rect" id="node13" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="827,208,869,237"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="961,261,1092,291"/>
+<area shape="rect" id="node17" href="$lib_8mysql_8php.html#a189b90c36bbbaff0b120155ef1907bbe" title="sc_delimiter" alt="" coords="635,315,725,344"/>
+<area shape="rect" id="node19" href="$lib_8buttons_8php.html#a714921c1f613923442fcd7b484b22d1c" title="sc_makebuttonstart" alt="" coords="439,109,575,139"/>
+<area shape="rect" id="node21" href="$lib_8buttons_8php.html#a492729bd6c797205a3fd22da1fb1f174" title="sc_makebuttonend" alt="" coords="441,163,572,192"/>
+<area shape="rect" id="node33" href="$lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923" title="sc_getuserdata" alt="" coords="625,261,735,291"/>
+<area shape="rect" id="node36" href="$lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="sc_yes" alt="" coords="816,393,880,423"/>
+<area shape="rect" id="node38" href="$lib_8mysql_8php.html#ab2a2e03dfc31eb5074a990325393609d" title="sc_bf" alt="" coords="480,368,533,397"/>
+<area shape="rect" id="node41" href="$lib_8debug_8php.html#a9b55f447faf2e1928eb5c9ce9b9a864d" title="d_echo" alt="" coords="648,368,712,397"/>
+</map>

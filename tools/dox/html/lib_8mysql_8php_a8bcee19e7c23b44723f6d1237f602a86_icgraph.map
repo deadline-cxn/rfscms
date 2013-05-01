@@ -1,0 +1,34 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$install_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="219,191,293,220"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#a83ec6864f10ff12de65ac8d933aaa21c" title="sc_setuservar" alt="" coords="204,244,308,273"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a4ad35d853d9930b76500ae3fdbb85e80" title="sc_getusername" alt="" coords="197,297,315,327"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a18df1dc05716d38549b6e204fc7a79f3" title="sc_newuser" alt="" coords="211,351,301,380"/>
+<area shape="rect" id="node13" href="$lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923" title="sc_getuserdata" alt="" coords="201,404,311,433"/>
+<area shape="rect" id="node55" href="$v_8php.html#a8676fa12ec3b16ef674dbc0a19278746" title="save_vw" alt="" coords="465,643,540,672"/>
+<area shape="rect" id="node57" href="$lib_8mysql_8php.html#a5529d3d852a871aa2cd6dc8acf24baab" title="sc_getuserdatabyfield" alt="" coords="181,508,331,537"/>
+<area shape="rect" id="node59" href="$lib_8mysql_8php.html#a187dd36cc05457c2600e5fc7ae20e4c4" title="sc_db_query" alt="" coords="208,696,304,725"/>
+<area shape="rect" id="node7" href="$lib_8rfs_8php.html#ad3a0a9cc9a2a2c552ef6ebecafffd0d3" title="sc_maintenance" alt="" coords="444,112,561,141"/>
+<area shape="rect" id="node15" href="$adm_8php.html#a2dcf1c079723791d84e8494261e23818" title="adm_action_f_access_group_add_user" alt="" coords="379,165,627,195"/>
+<area shape="rect" id="node17" href="$adm_8php.html#a74bade2285e1a19314e35379c8bc3bf7" title="adm_action_f_access_group_del_user" alt="" coords="381,219,624,248"/>
+<area shape="rect" id="node19" href="$adm_8php.html#ac44251b5ae4effd5d00a073768e8d0af" title="adm_action_edit_linkbin" alt="" coords="423,272,583,301"/>
+<area shape="rect" id="node25" href="$adm_8php.html#ace8c7439fed268e4befe9585719e1aca" title="adm_action_" alt="" coords="455,325,551,355"/>
+<area shape="rect" id="node39" href="$forums_8php.html#a0a15652acdbe6cd9e66f10c7e1bc00e5" title="show1message" alt="" coords="1021,457,1133,487"/>
+<area shape="rect" id="node43" href="$lib_8mysql_8php.html#a98041b6609bb91e2d8c3f60c7a868ac8" title="sc_getuseravatar" alt="" coords="441,429,564,459"/>
+<area shape="rect" id="node48" href="$lib_8mysql_8php.html#a5b97c63d544671b2eaab255885d733dd" title="sc_is_alias" alt="" coords="460,483,545,512"/>
+<area shape="rect" id="node50" href="$lib_8pictures_8php.html#a3bc18836c8d16dd6a21f5ab5f283bcb8" title="sc_mini_meme" alt="" coords="448,536,557,565"/>
+<area shape="rect" id="node53" href="$lib_8rfs_8php.html#a7290076bf073cc261c83c6b72470c14c" title="sc_theme_form" alt="" coords="447,589,559,619"/>
+<area shape="rect" id="node21" href="$adm_8php.html#a7bf3cc8e0bc8a11272e0f4079bd5d812" title="adm_action_f_add_link" alt="" coords="725,5,880,35"/>
+<area shape="rect" id="node23" href="$adm_8php.html#ae06e8b329dcdf45d65fea0a458544d43" title="adm_action_f_modify_link" alt="" coords="716,59,889,88"/>
+<area shape="rect" id="node27" href="$adm_8php.html#a18b3f400bb2e8cd263c40de1429c5e0f" title="adm_action_f_admin_menu_edit_del_go" alt="" coords="676,112,929,141"/>
+<area shape="rect" id="node29" href="$adm_8php.html#a8ca9c7209f4167ca0fda4e5f55eadb8c" title="adm_action_f_admin_menu_edit_del" alt="" coords="687,165,919,195"/>
+<area shape="rect" id="node31" href="$adm_8php.html#a835f395c55cf333c6f118fc48d58ddd0" title="adm_action_f_admin_menu_edit_add" alt="" coords="684,219,921,248"/>
+<area shape="rect" id="node33" href="$adm_8php.html#aa8c44c3b6ceb55a1fb8f74167f680fb1" title="adm_action_f_admin_change_category" alt="" coords="679,272,927,301"/>
+<area shape="rect" id="node35" href="$adm_8php.html#a3b4a1832441c738d337ba60256318e4b" title="adm_action_f_admin_menu_edit_mod" alt="" coords="683,325,923,355"/>
+<area shape="rect" id="node37" href="$adm_8php.html#a421a8aa7b84f9d5e67881e59f157f75f" title="adm_action_f_admin_menu_edit_entry" alt="" coords="680,379,925,408"/>
+<area shape="rect" id="node41" href="$forums_8php.html#ac8164a4e69fcfd5fd6f74e279c7a7c65" title="get_thread" alt="" coords="1224,457,1307,487"/>
+<area shape="rect" id="node45" href="$lib_8mysql_8php.html#ab43f9376fcf831592e4af8d77aaafcb8" title="sc_useravatar" alt="" coords="751,483,855,512"/>
+<area shape="rect" id="node61" href="$adm_8php.html#a4cc50e443bbff6e4eb5ed1f48d9f88e3" title="adm_action_db_query" alt="" coords="428,696,577,725"/>
+<area shape="rect" id="node63" href="$wab_8php.html#ab812a929cd80d60f8bc19e8c7b322e47" title="wab_variables" alt="" coords="451,749,555,779"/>
+<area shape="rect" id="node65" href="$wab_8php.html#a59829ca896f8174b8a326d90f07d20f9" title="wab_engine_action_editapp" alt="" coords="712,749,893,779"/>
+<area shape="rect" id="node67" href="$wab_8php.html#a163edfca11288d6f8aef4db2e9202d6c" title="wab_engine_action_edcodego" alt="" coords="980,749,1175,779"/>
+</map>

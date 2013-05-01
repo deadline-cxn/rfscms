@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classNewsFeedParser.html" title="Misc classes to parse and simplify usage of different feed format during the indexation." alt="" coords="5,32,128,61"/>
+<area shape="rect" id="node3" href="$classNewsFeedParser__Atom.html" title="NewsFeedParser_Atom" alt="" coords="177,5,337,35"/>
+<area shape="rect" id="node5" href="$classNewsFeedParser__RSS.html" title="NewsFeedParser_RSS" alt="" coords="179,59,336,88"/>
+</map>

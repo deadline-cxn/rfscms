@@ -1,0 +1,35 @@
+"action=new_page_go".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_name=name.php".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_address=address".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_subject=subject".$RFS_SITE_DELIMITER.
+"SHOW_CODEAREA_300#600#message=message".$RFS_SITE_DELIMITER,
+"SHOW_TEXTAREA_16#70#eval=enter code here".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_50#50#new_name=Enter cloned theme name".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_New_Forum=new forum".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_10#20#name=$name".$RFS_SITE_DELIMITER.
+"SHOW_SELECTOR_colors#name#text_color#$ocolor".$RFS_SITE_DELIMITER.
+"SHOW_SELECTOR_colors#name#text_bg_color#$text_bg_color".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_10#20#datborder=$m->datborder".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_10#20#private=$private".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_10#20#text_size=$m->text_size".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_10#20#texttop=$m->texttop".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_10#20#textbottom=$m->textbottom".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_across=".$_SESSION['cols'].$RFS_SITE_DELIMITER.
+"SHOW_TEXT_down=".$_SESSION['rows'].$RFS_SITE_DELIMITER.
+"act=mtxs".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_w=".$_SESSION['wi'].$RFS_SITE_DELIMITER.
+"SHOW_TEXT_h=".$_SESSION['he'].$RFS_SITE_DELIMITER.
+"act=size".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_10#120#name=".$RFS_SITE_DELIMITER.
+"SHOW_TEXTAREA_20#120#embed_code=".$RFS_SITE_DELIMITER.
+"act=add".$RFS_SITE_DELIMITER.
+"SHOW_CODEAREA_35#140#code=l".$RFS_SITE_DELIMITER.
+"hidden=1".$RFS_SITE_DELIMITER.
+"SHOW_SELECTOR_exam_question_types#name#type#$qt->type".$RFS_SITE_DELIMITER.
+"SHOW_SELECTOR_cfetp_tasks#task&name#task#$qt->task".$RFS_SITE_DELIMITER.
+"SHOW_SELECTOR_cfetp_tasks#task&name#task#Select a task".$RFS_SITE_DELIMITER.
+"action=admin_new_exam".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_name=new exam".$RFS_SITE_DELIMITER.
+"SHOW_TEXTAREA_32#110#config=$scr".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_1#60#new_name=$s->name".$RFS_SITE_DELIMITER.
+"SHOW_TEXT_1#60#copy_to_filename=$newname";

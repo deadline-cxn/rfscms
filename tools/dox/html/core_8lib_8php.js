@@ -1,0 +1,25 @@
+var core_8lib_8php =
+[
+    [ "PMA_AddJSCode", "core_8lib_8php.html#a08f2bfe4255ee45df0c69092026ac7f8", null ],
+    [ "PMA_AddJSVar", "core_8lib_8php.html#aa955beb8be3e7145b6d097ad7b3800fe", null ],
+    [ "PMA_array_merge_recursive", "core_8lib_8php.html#a9bd9f1d56b878e9afea1eeed6a564a63", null ],
+    [ "PMA_array_read", "core_8lib_8php.html#ad849f510cb114dbba55cdf1da07f04a2", null ],
+    [ "PMA_array_remove", "core_8lib_8php.html#a8368f3b910b45d20931c52ffdc38d629", null ],
+    [ "PMA_array_write", "core_8lib_8php.html#a1ce888f0aa01fee2e9cbb5dcf297415f", null ],
+    [ "PMA_arrayWalkRecursive", "core_8lib_8php.html#a3b4d8f0a2c8470075109d15de6caa3c7", null ],
+    [ "PMA_checkPageValidity", "core_8lib_8php.html#a077438b72305f4722eac229a4523e66b", null ],
+    [ "PMA_download_header", "core_8lib_8php.html#a612abe764c7270007825678523eb902a", null ],
+    [ "PMA_fatalError", "core_8lib_8php.html#aada56be77dbb39d2fd656e8d63ff117d", null ],
+    [ "PMA_get_real_size", "core_8lib_8php.html#a90a528907e6f0652c30158cdc5f16a6a", null ],
+    [ "PMA_getenv", "core_8lib_8php.html#af47a7345938ec406f740a61f7d1b182a", null ],
+    [ "PMA_getPHPDocLink", "core_8lib_8php.html#abc3de2b8ee7b54f0bfa4b0e626612098", null ],
+    [ "PMA_getTableCount", "core_8lib_8php.html#a4838d9be03e0665744c18336272f48e0", null ],
+    [ "PMA_ifSetOr", "core_8lib_8php.html#a98bdbf90fdf39169e08ec6a88f5b98b2", null ],
+    [ "PMA_includeJS", "core_8lib_8php.html#a5ac1c23509a59e5f5049bb6380a61b71", null ],
+    [ "PMA_isValid", "core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700", null ],
+    [ "PMA_linkURL", "core_8lib_8php.html#a9bbc563e958307413cd9a83f70ff2590", null ],
+    [ "PMA_no_cache_header", "core_8lib_8php.html#af2d4b6f9457d5685d5e3a1c04a6e112d", null ],
+    [ "PMA_securePath", "core_8lib_8php.html#aca40f985a4bb31c341e876417106c644", null ],
+    [ "PMA_sendHeaderLocation", "core_8lib_8php.html#aec01a2e642427f2c036b45e59630b6b0", null ],
+    [ "PMA_warnMissingExtension", "core_8lib_8php.html#a27df85e8ab20ca0f54dd31bddcc092ab", null ]
+];
