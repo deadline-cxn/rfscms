@@ -364,9 +364,12 @@ function editnews($nid) { eval(scg());
     echo "</td>";
     echo "</tr></table>";
 
-
-    echo "<table border=0><tr><td>";
-	echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
+echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
+    echo "<table border=0>";
+	
+	
+	echo "<tr><td>";
+	
     echo "Select a wiki page to use instead of text </td><td>";
     
 	$wikistatus=$news->wiki;

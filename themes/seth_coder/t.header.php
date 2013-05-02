@@ -14,7 +14,7 @@ echo "<center>";
 to("100%"," align=center cellpadding=0");
 
     tro("");
-        tco("midtd");
+        tco("verytoptd");
     
             to("100%"," class=toptd");
                 tro("");

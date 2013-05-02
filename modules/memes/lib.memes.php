@@ -42,17 +42,13 @@ function sc_show1meme($inmid) { eval(scg());
 	$m=mfo1("select * from meme where id='$inmid'");
 	$t=$m->name."-".time();
 	
-	echo "<div id='fl_$inmid' 
+	echo "<div id='fl_$inmid' class=\"memebox\">";
 	
-					class=\"memebox\"
 	
-					
-					 >";
-	
+		echo "<div class=\"memepic\">";
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize' target=_blank>
-	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth' border=0 
-	
-	style='max-height: 220px;' ></a><br>";
+	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth' border=0></a>";
+	echo "</div>";
 	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 	
 	echo "<hr>";

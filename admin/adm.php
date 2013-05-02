@@ -520,10 +520,26 @@ function adm_action_f_theme_edit_css() { eval(scg());
 }
 function adm_action_f_theme_edit_php() { eval(scg());
 
-
 	If(!empty($update)) {
-		
-		
+		echo "<h1>UPDATE:</h1>";
+		echo " --- update[$update][$phpvalue] to [$newvalue]<br>";
+		system("sudo touch $outfile.out");
+		system("sudo chmod 777 $outfile.out");
+		$fo=fopen("$outfile.out",wt);
+		$fp=fopen($outfile,"rt");
+		while($ln=fgets($fp,256)) {
+			$ln=trim($ln);
+			$chk=explode("=",$ln);
+			$chk[0]=trim($chk[0]," ");			
+			if($chk[0]==$update) {
+				$ln="$update=\"$newvalue\";\n";				
+			}
+			fputs($fo,"$ln\n");
+		}
+		fclose($fo);
+		fclose($fp);
+		system("sudo mv $outfile $outfile.bak.".time());
+		system("sudo mv $outfile.out $outfile");
 	}
 
 

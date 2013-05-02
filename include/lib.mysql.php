@@ -1807,6 +1807,7 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 	echo "</tr>";
 	echo "</form>";
 	
+	
 	$fp=fopen($php_file,"r");
 	
 	while( $ln=fgets($fp)) {
@@ -1820,6 +1821,7 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 			$varx[0]=trim($varx[0]," ");
 			
 			echo "<tr>";			
+			echo "<form method=post action=\"$returnpage\">";
 			echo "<td>";
 			echo "[<a href=\"$returnpage?action=$returnaction&delete=$varx[0]&outfile=$php_file";
 			foreach ($hvar as $vn => $vv){
@@ -1827,7 +1829,7 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 			}
 			echo "\">delete</a>] ";
 			echo "</td>";			
-			echo "<td>";			
+			echo "<td>";
 			echo $varx[0];
 			$varx[1]=trim($varx[1]," ");
 			$varx[1]=trim($varx[1],"\n");
@@ -1849,19 +1851,36 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 				"files","edit","");*/
 
 			if(stristr($varx[0],"login_form")) {
-				echo "<textarea >";
-				echo $varx[1];
-				echo "</textarea>"
-				;
+				echo " (NOT SHOWN)";
+				//echo "<textarea >";
+				//echo $varx[1];
+				//echo "</textarea>";
 			}
 			else {
-			echo "<input size=60 value='".$varx[1]."' ";			
-				if(substr($varx[1],0,1)=="#") echo "class='color' ";
-			echo ">";
+				
+
+			echo "<input type=\"hidden\" name=\"thm\" value=\"$thm\">";
+			echo "<input type=\"hidden\" name=\"outfile\" value=\"$php_file\">";
+			echo "<input type=\"hidden\" name=\"action\" value=\"$returnaction\">";
+			echo "<input type=\"hidden\" name=\"update\" value=\"$varx[0]\">";	
+			echo "<input type=\"hidden\" name=\"phpvalue\" value=\"$varx[1]\">";
+			echo "<input name=\"newvalue\" value=\"$varx[1]\" ";
+				if( 	(substr(trim($varx[1]),0,1)=="#") || 
+					(    stristr($varx[0],"color")) )
+				echo "class='color' ";
+			echo " size=60 onblur=\"this.form.submit();\">";
+
+			
+				
+				
+			// echo "<input size=60 value='".$varx[1]."' ";			
+	// 				if(substr($varx[1],0,1)=="#") echo "class='color' ";
+	//			echo ">";
 			
 			}
-			echo "
-			</td> </tr>";
+			echo "</td>";
+			echo "</form>";		
+			echo "</tr>";
 		}
 		
 	}
