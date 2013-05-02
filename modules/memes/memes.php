@@ -408,9 +408,12 @@ function memes_action_showmemes(){ eval(scg());
 	$r=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc");
 	for($i=0;$i<5;$i++) {
 		$m=mysql_fetch_object($r);
-		echo "<div id=$m->id style=\"float: left;\">";
-		sc_show1meme($m->id);
-		echo "</div>";
+		if($m) {
+			echo "<div id=$m->id style=\"float: left;\">";
+			sc_show1meme($m->id);
+			echo "</div>";
+		
+		}
 	}
 	echo "<br style='clear: both;'>";
 	
