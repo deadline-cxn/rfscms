@@ -71,6 +71,10 @@ $thumbwidth=200;
 $editwidth=256;
 $fullsize=512;
 
+function pics_action_showmemes() { eval(scg());
+	sc_gotopage("$RFS_SITE_URL/modules/memes/memes.php");
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture
 function pics_action_uploadpic() { eval(scg());
