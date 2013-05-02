@@ -404,7 +404,6 @@ function eval_callback( $txt ) {
 	}
 	return $txt;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_eval_form_go() {
 	eval( scg() );
 	$eval=stripslashes( $eval );
@@ -413,7 +412,6 @@ function adm_action_eval_form_go() {
 	ob_end_flush();
 	finishadminpage();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_eval_form() {
 	eval( scg() );
 	echo "<h3>Enter PHP code to eval:</h3><br>";
@@ -426,7 +424,6 @@ function adm_action_eval_form() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_THEMES
 function adm_action_f_theme_edit_css() { eval(scg());
-
 	if(!empty($update)) {
 		echo "<h1>UPDATE:</h1>";
 		echo " ($outfile)<br>";
@@ -440,12 +437,17 @@ function adm_action_f_theme_edit_css() { eval(scg());
 		while($ln=fgets($fp,256)) {		
 			$chkr=explode("{",$ln);
 			$chkr[0]=trim($chkr[0]);
+			
 			if($chkr[0]==$update) $foundbase=1;
 			if($foundbase) {
 				if(stristr($ln,"{")) $foundbase=2;
 			}
+			
 			if($foundbase==2) {
-				if(stristr($ln,$sub)) {
+				$chks=explode(":",$ln);
+				$chks[0]=trim($chks[0]);
+				
+				if($sub==$chks[0]) {
 					echo "FOUND $update { $sub ... } UPDATING<br>";
 					if(stristr($sub,"color")) 
 						if(!stristr($newvalue,"#"))
@@ -516,7 +518,6 @@ function adm_action_f_theme_edit_css() { eval(scg());
 	}
 	adm_action_f_theme_edit();
 }
-
 function adm_action_f_theme_edit_php() { eval(scg());
 
 
@@ -599,8 +600,10 @@ function adm_action_f_ajx_theme_edit_save_t_php() { eval(scg());
 		sc_info("FILE SAVED","WHITE","GREEN");
 }
 function adm_action_f_theme_edit_t_php() { eval(scg()); 
-	echo '
-	<div id="file_status"></div>
+	echo "<h3> Editing theme [$thm] </h3>";	
+	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
+
+	echo '<div id="file_status"></div>
 		<script>
 		function save_t_php(ta,taval) {
 				var http=new XMLHttpRequest();
@@ -650,8 +653,6 @@ function adm_action_f_theme_edit_t_php() { eval(scg());
 	include("footer.php");
 	exit();
 }
-
-
 function adm_action_f_ajx_theme_edit_save_t_css() { eval(scg());
 	$thm=$_POST['thm'];
 	$taval=$_POST['taval'];
@@ -666,8 +667,12 @@ function adm_action_f_ajx_theme_edit_save_t_css() { eval(scg());
 	else 
 		sc_info("FILE SAVED","WHITE","GREEN");
 }
-
 function adm_action_f_theme_edit_t_css() { eval(scg()); 
+
+
+	echo "<h3> Editing theme [$thm] </h3>";	
+	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
+
 	echo '	<div id="file_status"></div> <script>
 											
 		function save_t_css(ta,taval) {
@@ -710,22 +715,34 @@ function adm_action_f_theme_edit_t_css() { eval(scg());
 	include("footer.php");
 	exit();
 }
-
 function adm_action_f_theme_clone_go() { eval(scg());
 	$new_name=strtolower($new_name);
+	$new_name=str_replace(" ","_",$new_name);
+	$new_name=str_replace("'","_",$new_name);
+	$new_name=str_replace("\"","_",$new_name);
+	$new_name=str_replace(":","_",$new_name);
+	$new_name=str_replace("<","_",$new_name);
+	$new_name=str_replace(">","_",$new_name);
+	$new_name=str_replace("#","_",$new_name);
+	$new_name=str_replace("$","_",$new_name);
+	$new_name=str_replace("\\","_",$new_name);
+	$new_name=str_replace("/","_",$new_name);	
 	echo "Cloning $thm to $new_name<br>";
+	system("mkdir $RFS_SITE_PATH/themes/$new_name");
+	system("cp $RFS_SITE_PATH/themes/$thm/* $RFS_SITE_PATH/themes/$new_name");
+	adm_action_theme();
 	
 }
 function adm_action_f_theme_clone() { eval(scg());
 	echo "<h1>Clone $thm theme</h1>";
 	$sample="themes/$thm/t.sample.png";
 		if(file_exists("$RFS_SITE_PATH/$sample")) {
-				echo "<img src=\"$RFS_SITE_URL/$sample\">";
+			echo sc_picthumb("$RFS_SITE_PATH/$sample",300,0,0);
 		}
 	sc_bf(	"$RFS_SITE_URL/admin/adm.php",
 			"action=f_theme_clone_go".$RFS_SITE_DELIMITER.
 			"thm=$thm".$RFS_SITE_DELIMITER.
-			"SHOW_TEXT_50#50#new_name=Enter cloned theme name",
+			"SHOW_CLEARFOCUSTEXT_50#50#new_name=Enter cloned theme name",
 			"",
 			"",
 			"",
@@ -817,7 +834,6 @@ echo "<h1>Editing theme [$thm]</h1>";
 	include( "footer.php" );
 	exit();
 }
-
 function adm_action_f_theme_view_classes() { eval(scg());
 	$file="$RFS_SITE_PATH/classes.out.txt";
 	echo $file."<BR>";
@@ -826,10 +842,10 @@ function adm_action_f_theme_view_classes() { eval(scg());
 	echo "</pre>";
 	adm_action_theme();
 }
-
 function adm_action_theme() { eval(scg());
 
 	echo "<h3>Theme Editor</h3>";
+	
 
 	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
 	echo "<table border=0>";
@@ -840,6 +856,7 @@ function adm_action_theme() { eval(scg());
 		echo "<td>";
 		$sample="themes/$thm/t.sample.png";
 		if(file_exists("$RFS_SITE_PATH/$sample")) {
+			
 			echo sc_picthumb("$RFS_SITE_PATH/$sample",120,120,1);
 		}
 		echo "</td>";

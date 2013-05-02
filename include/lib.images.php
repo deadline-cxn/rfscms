@@ -102,4 +102,13 @@ return "$RFS_SITE_URL/include/generate.image.php/$text.png?action=showfont&font=
 function sc_percent_bar($percent){ eval(scg());
 	echo "<img src=\"$RFS_SITE_URL/include/percentage_bar.php?per=$percent\" alt=\"$percent %\" /> ";
 }
+
+function sc_webpage_to_png($webpage) { eval(scg());
+	$md5=md5($webpage);
+	system("wkhtmltopdf '$webpage' $RFS_SITE_PATH/tmp/$md5.pdf");
+	system("convert $RFS_SITE_PATH/tmp/$md5.pdf -append $RFS_SITE_PATH/tmp/$md5.png");
+	$r="$RFS_SITE_URL/tmp/$md5.png";
+	return $r;
+}
+
 ?>
