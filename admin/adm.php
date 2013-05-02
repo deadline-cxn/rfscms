@@ -64,11 +64,10 @@ else
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
-$data=sc_getuserdata($_SESSION['valid_user']);
 if(!sc_access_check("admin","access")) {
 	echo smiles( "<table border=0 width=300><tr><td class=warning><center>^X<br>You can not use admin</td></tr></table>\n" );
 	sc_log( "*****> $data->name tried to access the admin area!" );
-    include("footer.php");
+	include("footer.php");
 	exit();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,12 +136,10 @@ function sc_admin_module( $loc ) { eval( scg() );
 	echo "</select>";
 	echo "</form>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_arrange_delete_go() { eval(scg());
     sc_query("delete from arrangement where `id`='$id'");
     adm_action_arrange();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_arrange_delete() { eval(scg());
     $ar=mfo1("select * from arrangement where `location` = '$location' and `id`= '$arid' ");
     echo "Delete arrangement ($location: $ar->mini)<br>";
@@ -151,19 +148,16 @@ function adm_action_f_arrange_delete() { eval(scg());
                     "action=f_arrange_delete_go".$RFS_SITE_DELIMITER."id=$ar->id" );
     adm_action_arrange();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_module_add() { eval( scg() );
 	echo ".. $module... $location";
 	sc_query( "insert into arrangement  (`mini`,`location`,`num`,`sequence`)
 	          values('$module','$location','5','999');" );
 	adm_action_arrange();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_module_chg_num() { 	eval( scg() );
 	sc_query( "update arrangement set num='$num' where id='$id'" );
 	adm_action_arrange();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_arrange() { eval( scg() );
     $location="";
 	sc_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
@@ -189,9 +183,13 @@ function adm_action_arrange() { eval( scg() );
 	exit();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_NQT
+function adm_action_network_query_tool() {
+	sc_gotopage("$RFS_SITE_URL/nqt/nqt.php");
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM ACCESS GROUPS FUNCTIONS
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
 function adm_action_f_access_group_add() { eval(scg());
 	echo " Adding new access group named [$axnm] <br>";
 	sc_query(" insert into access (`name`) VALUES ('$axnm'); ");
