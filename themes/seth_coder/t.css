@@ -188,13 +188,29 @@ background-image: -webkit-gradient(	linear,	left bottom,	left top,	color-stop(0.
 	border-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
-	dborder-bottom-left-radius: 8px;
-	dborder-bottom-right-radius: 8px;
 }
 
 .righttd {
 	max-width: 200px;
 	padding: 5px;
+}
+
+.file_list {
+
+}
+
+.file_category {
+
+    font-family: Verdana;
+    font-size: 32px;
+    font-style: italic ;
+    color: #00F;
+
+	border: 1px;
+	border-color: #000000;
+	border-style: solid;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
 
 

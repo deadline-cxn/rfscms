@@ -1009,6 +1009,7 @@ function show1file($filedata,$bg) { eval(scg());
 	if(!empty($filedata->downloads)) echo"$filedata->downloads ";
 		
 	echo "</div>
+	</div>
 	<div style='clear:both;'></div>";
 }
 
@@ -1107,11 +1108,16 @@ for($i=0;$i<$numcats;$i++) {
     $cat=mysql_fetch_object($result);
     if(!empty($cat->name))     {
         $i=0; $bg=0;
-        $buffer=rtrim($buffer);
+        // $buffer=rtrim($buffer);
         $buffer=rtrim($cat->name);
         $filelist=sc_getfilelist("where category = '$buffer' and hidden='no' ",50);
 
 		if(count($filelist)){
+			
+			echo "<div class=file_list >";
+						
+			echo "<div class=file_category >";
+			
 			$iconp=$RFS_SITE_PATH."/".$cat->image;
 			$icon=$RFS_SITE_URL."/".$cat->image;
 			if(file_exists($iconp)) {
@@ -1120,24 +1126,27 @@ for($i=0;$i<$numcats;$i++) {
 				echo "</a>";
 			}
 			
-			echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" class=news_headline>";			
+			echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" >";			
 			echo ucwords("$buffer");			
 			echo "</a>";
+			echo "</div>";
 			
 			while($i<count($filelist)) {
 				$filedata=sc_getfiledata($filelist[$i]);
 				$bg=$bg+1; if($bg>1) $bg=0;
-				show1file($filedata,$bg);
+					show1file($filedata,$bg);
 				$i=$i+1;				
 				$la=$amount;
 				if(empty($la)) $la=5;
 				if($i==$la){
 					break;
 					}
-			}				
+			}
+			echo "</div>";
 			if($i==$la){
 				
 			}
+			
 		}
 	}
 }
