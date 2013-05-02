@@ -147,7 +147,7 @@ hr{
 }
 
 .midtd {
-	
+padding:10px;	
 	min-width: 900px;
     border: 1px;
     border-color: #000000;
