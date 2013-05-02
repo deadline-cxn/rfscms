@@ -2,6 +2,26 @@ body {
 background-color: #006E0C;
 } 
 
+
+.memebox {
+	text-align: center;
+	min-height: 320px;
+	margin: 5px;
+	background-color: #eee;
+	box-shadow: 5px 5px 5px #888888;
+	border:solid 1px #777777;
+	border-radius: 5px;
+}
+
+.memepic {
+	padding: 5px;
+	text-align: center;
+	min-height: 220px;
+	max-height: 220px;
+	overflow-y:scroll;
+	
+}
+
 .toptd {
 	color: #006E0C;
 	background-color: #006E0C;

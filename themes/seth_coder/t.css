@@ -12,12 +12,19 @@ body{
 }
 
 .memebox {
-text-align: center;
-					min-height: 340px;
-					margin: 5px;
-					box-shadow: 5px 5px 5px #888888;
-					border:solid 1px #777777;
-					border-radius: 5px;
+	text-align: center;
+	min-height: 324px;
+	margin: 5px;
+	box-shadow: 5px 5px 5px #888888;
+	border:solid 1px #777777;
+	border-radius: 5px;
+}
+
+.memepic {
+	text-align: center;
+	min-height: 220px;
+	max-height: 220px;
+	overflow-y: auto;
 }
 
 .wikishell {
@@ -131,6 +138,16 @@ hr{
     background-color: #9396c3;
 }
 
+.verytoptd {
+	min-width: 900px;
+	border: 1px;
+	border-color: #000000;
+	border-style: solid;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	dborder-bottom-left-radius: 8px;
+	dborder-bottom-right-radius: 8px;
+}
     
 .toptd {
     font-family: Verdana;
@@ -155,12 +172,11 @@ hr{
 }
 
 .midtd {
-padding:10px;	
+	padding:10px;	
 	min-width: 900px;
-    border: 1px;
-    border-color: #000000;
-    border-style: solid;
-	
+	border: 1px;
+	border-color: #000000;
+	border-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 	dborder-bottom-left-radius: 8px;
@@ -232,4 +248,3 @@ border-width: 1px;
 
 
 }
-
