@@ -14,11 +14,8 @@ if($_REQUEST['a']=="ms") {
 chdir("../../");
 include("header.php");
 
-echo "<table border=0><tr>"; 
-echo "</tr></table>"; 
-
-/////////////////////////////////////////////////////////////////////////////////
-// Upload picture
+//echo "<table border=0><tr>"; 
+//echo "</tr></table>"; 
 
 function memes_action_new_meme() { eval(scg());
 // if($action=="uploadpic"){
@@ -371,14 +368,15 @@ if($action=="mdv"){
 
 function memes_action_showmemes(){ eval(scg());
 
+	echo "<h1>Meme generator</h1>";
+
 	$mcols=5;
 	$mrows=6;
 	$toget=$mcols*$mrows;
 
     sc_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
 	$donotshowcats=true;
-	echo "<table border=0 width=100% cellpadding=0 cellspacing=0 > <tr><td valign=top align=center>";
-	echo "<h1>Public Captions</h1>";
+	
 	$rz=sc_query("select * from meme where 
         `private`!='yes'
         and `status` = 'SAVED'"); $mtotal=mysql_num_rows($rz);
@@ -386,50 +384,40 @@ function memes_action_showmemes(){ eval(scg());
 	if(empty($mtop)) $mtop=0;
 	if(empty($mbot)) $mbot=$toget;
 	
-	echo "<table border=0 width=100% cellpadding=0 cellspacing=0 ><tr>";
-	echo "<td align=center >";
 	
 	if( $mtop > 0 ) {
 		$tmtop=$mtop-$mbot;
-		echo "<BR>[<a href='$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow'>PREVIOUS PAGE</a>]<BR>";
-	}
-	else
-		echo "<BR>[NO PREVIOUS]<BR>";
-	echo "</td>";
+		
+		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow","PREVIOUS PAGE");
+	} 
 
 	if(!empty($onlyshow)) {
-		echo "<td align=center>[<a href='$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow='>SHOW ALL CAPTIONS</a>]</td>";
-	}
-
-	echo "<td align=center >";
-	if( ($mbot+$mtop) < $mtotal) {
+			sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=","Show All Captions");
 		
-		$mtop+=$mbot;
-		echo "<BR>[<a href='$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow'>NEXT PAGE</a>]<BR>";
 	}
-	else
-		echo "<BR>[NO NEXT PAGE]<BR>";
 
-	echo "</td>";
-	
-	echo "</tr></table>";
-    echo "<table border=0 width=100%>";
-    echo "<tr>";
-	
+	if( ($mbot+$mtop) < $mtotal) {
+		$mtop+=$mbot;
+		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
+	}
 	
 	///////////// Last 5
 	
-	echo "<td valign=top align=center width=210> ";
-	sc_info("Last 5 Captions","BLACK","YELLOW");
+	//echo "<td valign=top align=center width=210> ";
+	sc_info("Last 5 Memes","BLACK","YELLOW");
 	$r=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc");
 	for($i=0;$i<5;$i++) {
-		echo "<hr>";
 		$m=mysql_fetch_object($r);
+		echo "<div id=$m->id style=\"float: left;\">";
 		sc_show1meme($m->id);
+		echo "</div>";
 	}
-	echo "</td>";
+	echo "<br style='clear: both;'>";
+	
 
 	/////////// End Last 5
+	
+	sc_info("All Memes","BLACK","YELLOW");
 	
 	$q="select * from meme  ";
 	$q.=" where ";
@@ -441,7 +429,7 @@ function memes_action_showmemes(){ eval(scg());
 	$r=sc_query($q);
 	$n=mysql_num_rows($r); 
 	
-	echo "<td style='float:left; overflow: auto; vertical-align:text-top;' >";
+	//echo "<td style='float:left; overflow: auto; vertical-align:text-top;' >";
 	for($i=0;$i<$n;$i++){
 		$m=mysql_fetch_object($r);
 		echo "<div id=$m->id style=\"float: left;\">";
@@ -449,7 +437,7 @@ function memes_action_showmemes(){ eval(scg());
 		echo "</div>";
 	}
 	echo "<br style='clear: both;'>";
-	echo "</td>";
+	//echo "</td>";
 
 	///////////// Private captions
 	/*
@@ -508,8 +496,8 @@ function memes_action_showmemes(){ eval(scg());
 /////////// End Private captions
 
 	
-	echo "</tr>";
-	echo "</table>";
+//	echo "</tr>";
+	//echo "</table>";
 	
 	include("footer.php");
 	exit();

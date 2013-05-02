@@ -42,34 +42,41 @@ function sc_show1meme($inmid) { eval(scg());
 	$m=mfo1("select * from meme where id='$inmid'");
 	$t=$m->name."-".time();
 	
-	echo "<div id='fl_$inmid' style=\"
-					height: 300px;
-					margin: 5px;
-					box-shadow: 5px 5px 5px #888888;
-					border:solid 1px #777777;
-					border-radius: 5px;
-					\" >";
+	echo "<div id='fl_$inmid' 
+	
+					class=\"memebox\"
+	
+					
+					 >";
 	
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize' target=_blank>
 	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth' border=0 
 	
 	style='max-height: 220px;' ></a><br>";
 	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-	echo "
-		Based: [<a href='$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&onlyshow=$m->name'>$m->name</a>]<br>";
+	
+	echo "<hr>";
+		echo "Rating:";
+	sc_image_text(sc_num2txt($m->rating), "OCRA.ttf", 15, 78,24,   0,0, 1,155,1, 70,70,0, 1,0   );
+	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
+	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
+	echo "<hr>";
+	sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&onlyshow=$m->name","$m->name");
 
-		sc_image_text(sc_num2txt($m->rating), "OCRA.ttf",         24, 78,24,   0,0,      1,155,1, 70,70,0, 1,1   );
+	
+	sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$m->basepic&name=$m->name","New Caption");
+	echo "<br>";
+	
+	
+	if(sc_access_check("memes","edit")) {
+		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id","Edit");
 		
-			echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>
-					<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>
-					<br>";
-
-	echo "[<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$m->basepic&name=$m->name'>New Caption</a>]<br>";
-	if( ($data->id==$m->poster) ||
-		($data->access==255) ) {
-		echo "[<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id'>Edit</a>] ";
-		echo "[<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memedelete&mid=$m->id'>Delete</a>] ";
 	}
+	if(sc_access_check("memes","delete")) {
+		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memedelete&mid=$m->id","Delete");
+		echo "<br>";
+	}
+	
 	echo "</div>";
 }
 
