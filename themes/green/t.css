@@ -1,0 +1,91 @@
+body {
+background-color: #006E0C;
+} 
+
+.toptd {
+	color: #006E0C;
+	background-color: #006E0C;
+}
+
+hr {
+	border: 1px;
+	border-color: #00FF00;
+	border-style: dotted;
+}
+
+.top_site_name {
+	color: #00FF00;
+	font-size: 32px;
+}
+
+.slogan {
+	color: #00FF00;
+
+}
+
+.wikishell {
+	margin:0 auto;
+	padding: 10px;
+	align: center;
+	width: 80%;
+	font-family: monospace;
+	background-color: #00ff00;
+	color: #000000;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+
+a
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+color: #18FF08;
+}
+
+a:link
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+color: #24FF03;
+}
+
+a:hover
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+color: #0D2B0F;
+background-color: #05FF05;
+}
+
+
+.rfs_thumb {
+box-shadow: 3px 3px 3px #005500;
+	border:solid 1px #222222;
+	border-radius:5px;
+}
+
+input, select, textarea {
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+border-width: 1px;
+color: #3BEB6A;
+background-color: #014006;
+}
+
+td {
+color: #62FF62;
+}
+
