@@ -3,6 +3,7 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 $this_dir=getcwd();
+
 include_once("session.php");
 include_once("lib.div.php");
 include_once("lib.log.php");

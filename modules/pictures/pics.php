@@ -126,6 +126,8 @@ function pics_action_uploadpic() { eval(scg());
             if(move_uploaded_file($_FILES['userfile']['tmp_name'], $furl))            {
                 $error="File is valid, and was successfully uploaded. ";
                 $error.="It was stored as [$furl]\n";
+					$filetype=sc_getfiletype($furl);
+					if(!stristr($sname,$filetype)) $sname.=$filetype;
                 $xp_ext = explode(".",$_FILES['userfile']['name'],40);
                 $j = count ($xp_ext)-1;
                 $ext = "$xp_ext[$j]";
@@ -137,8 +139,8 @@ function pics_action_uploadpic() { eval(scg());
                 $poster=999;
                 if($data->id)$poster=$data->id;
                 sc_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
-                $cid=mysql_fetch_object(sc_query("select * from categories where name = '$category'"));
-                sc_query("update `pictures` set `category`='$cid->id'  where `name`='$name'");
+                // $cid=mysql_fetch_object(sc_query("select * from categories where name = '$category'"));
+                sc_query("update `pictures` set `gallery`='$category'  where `name`='$name'");	
                 sc_query("update `pictures` set `sname`='$sname'        where `name`='$name'");
                 sc_query("update `pictures` set `sfw`='$sfw'            where `name`='$name'");
                 sc_query("update `pictures` set `hidden`='$hidden'      where `name`='$name'");
@@ -691,7 +693,7 @@ function pics_action_viewcats(){ eval(scg());
 		$numcols=0; echo "<tr>";
 		for($i=0;$i<$numcats;$i++) {
 			$cat=mysql_fetch_object($res);
-			$res2=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
+			$res2=sc_query("select * from `pictures` where `gallery`='$cat->name' and `hidden`!='yes' order by `sname` asc");
 			$numpics=mysql_num_rows($res2);
 
 			if($numpics>0) {
@@ -739,7 +741,7 @@ function pics_action_viewcats(){ eval(scg());
 
 
 function pics_action_() { eval(scg());
-	pics_action_viewcats();	
+	pics_action_viewcats();
 }
 
 ?>
