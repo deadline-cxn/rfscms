@@ -953,6 +953,7 @@ function sc_bqf($hiddenvars,$submit){ eval(scg());
 //
 // 						SHOW_CODEAREA
 //						SHOW_TEXT
+//						SHOW_CLEARFOCUSTEXT
 //						SHOW_PASSWORD
 //						SHOW_SELECTOR
 //						SHOW_TEXTAREA
@@ -1270,22 +1271,10 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
             }
         }
 
-        if(stristr($hidvar_b[0],"SHOW_TEXT2_")){
-            $field=explode("SHOW_TEXT_",$hidvar_b[0]);
-            $hidvar_b[0]=str_replace("SHOW_TEXT_","",$hidvar_b[0]);
-            // echo "--- $field[1] $hidvar_b[1]<br>";
-            echo "<tr><td class=sc_project_table_$gt align=right>";
-            echo ucwords(str_replace("_"," ",$hidvar_b[0]));
-            echo "</td><td class=sc_project_table_$gt>";
-            echo " <input ";
-            echo "size=$width ";
-            echo "name=\"".$field[1]."\" ";
-            echo "value=\"".$hidvar_b[1]."\"";
-            echo ">\n";
-            echo "</td></tr>";
-            $gt++; if($gt>2) $gt=1;
-        }
-
+		if(stristr($hidvar_b[0],"SHOW_CLEARFOCUSTEXT_")) {
+			$hidvar_b[0]=str_replace("SHOW_CLEARFOCUSTEXT_","SHOW_TEXT_",$hidvar_b[0]);
+			$clearfocus=" onfocus=\"this.value=''; \"";
+		}
 
 		if(stristr($hidvar_b[0],"SHOW_TEXT_")){
 				d_echo("SHOW_TEXT_ found... ".$hidvar_b[0]);
@@ -1305,7 +1294,6 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
                 $rows=$rw[0];
                 $taname=$rw[1];
             }
-            // echo "--- $field[1] $hidvar_b[1]<br>";
             echo "<tr><td class=sc_project_table_$gt align=right>";
             echo ucwords(str_replace("_"," ",$taname));
             echo "</td><td class=sc_project_table_$gt>";
@@ -1314,19 +1302,8 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 				echo "size=$cols ";
 				echo "name=\"".$taname."\" ";
 				echo "value=\"".$hidvar_b[1]."\"";
+				echo $clearfocus;
 				echo ">\n";
-
-            //echo "<textarea rows=$rows cols=$cols name=\"$taname\">";
-            //$code=str_replace("</textarea>","&lt;/textarea>",$hidvar_b[1]);
-            //echo stripslashes($code);
-            //echo "</textarea>";
-            /*
-            echo " <input ";
-            echo "size=$width ";
-            echo "name=\"".$field[1]."\" ";
-            echo "value=\"\"";
-            echo ">\n";
-            */
             echo "</td></tr>";
             $gt++; if($gt>2) $gt=1;
         }
@@ -1338,10 +1315,6 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
             $rows=6;
             $taname=$hidvar_b[0];
             $rw=explode("#",$hidvar_b[0]);
-            //echo "[".$rw[0]."]<br>";
-            //echo "[".$rw[1]."]<br>";
-            //echo "[".$rw[2]."]<br>";
-            //echo "[".count($rw)."]<bn>";
             if(count($rw)==3){
                 $rows=$rw[0];
                 $cols=$rw[1];
@@ -1738,11 +1711,24 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 		$hvar[$tt[0]]=$tt[1];
 	}
 	sc_optionize_file("addcss","$RFS_SITE_PATH/tools/classes.out.txt", "CSS Classes");
+	
 	$f=file_get_contents($css_file);
 	$cssx=explode("}",$f);	
 	for($i=0;$i<count($cssx)-1;$i++) {
 		$cssx2=explode("{",$cssx[$i]);
-		echo "<hr>$cssx2[0] { <br>";
+		echo "<hr>";
+
+		$buttout="$returnpage?action=$returnaction".
+			"&delact=delbase".
+			"&delete=".urlencode($base).			
+			"&cssvalue=".urlencode($cssvalue).
+			"&outfile=".urlencode($css_file);
+			foreach ($hvar as $vn => $vv){
+				$buttout.="&$vn=$vv";
+			}
+			sc_button($buttout,"Delete");
+
+		echo "$cssx2[0] { <br>";
 		echo "<table border=0>";	
 		$cssx3=explode(";",$cssx2[1]);
 		for($j=0;$j<count($cssx3)-1;$j++) {
@@ -1753,28 +1739,35 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 			$base=trim($cssx2[0]);
 			$sub=trim($cssx4[0]);
 			$cssvalue=trim($cssx4[1]);
-			echo "[<a href=\"$returnpage?action=$returnaction".
+			$buttout="$returnpage?action=$returnaction".
+			"&delact=delsub".
 			"&delete=".urlencode($base).
 			"&sub=".urlencode($sub).
 			"&cssvalue=".urlencode($cssvalue).
 			"&outfile=".urlencode($css_file);
 			foreach ($hvar as $vn => $vv){
-				echo "&$vn=$vv";
+				$buttout.="&$vn=$vv";
 			}
-			echo "\">delete</a>] ";
+			sc_button($buttout,"Delete");
+			
+			
 			echo "</td>";
 			echo "<td width=200>";
 			echo " $cssx4[0]:";
 			echo "</td><td>";
+			
+			echo "<a name=\"$base$sub\"></a>";
 	
-echo "<input type=\"hidden\" name=\"thm\" value=\"$thm\">";
-echo "<input type=\"hidden\" name=\"outfile\" value=\"$css_file\">";
-echo "<input type=\"hidden\" name=\"action\" value=\"$returnaction\">";
-echo "<input type=\"hidden\" name=\"update\" value=\"$base\">";
-echo "<input type=\"hidden\" name=\"sub\" value=\"$sub\">";
-echo "<input type=\"hidden\" name=\"cssvalue\" value=\"$cssvalue\">";
-echo "<input name=\"newvalue\" value=\"$cssvalue\" ";
-			if(substr(trim($cssx4[1]),0,1)=="#")
+			echo "<input type=\"hidden\" name=\"thm\" value=\"$thm\">";
+			echo "<input type=\"hidden\" name=\"outfile\" value=\"$css_file\">";
+			echo "<input type=\"hidden\" name=\"action\" value=\"$returnaction\">";
+			echo "<input type=\"hidden\" name=\"update\" value=\"$base\">";
+			echo "<input type=\"hidden\" name=\"sub\" value=\"$sub\">";
+			echo "<input type=\"hidden\" name=\"cssvalue\" value=\"$cssvalue\">";
+			echo "<input name=\"newvalue\" value=\"$cssvalue\" ";
+			
+			if( 	(substr(trim($cssx4[1]),0,1)=="#") || 
+					(    stristr($cssx4[0],"color")) )
 				echo "class='color' ";
 			echo " size=60
 			

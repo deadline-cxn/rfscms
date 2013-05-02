@@ -6,6 +6,20 @@ body{
 	background-repeat:no-repeat;
 	background-attachment:fixed;
 }
+	.wikishell {
+	margin:0 auto;
+	padding: 10px;
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #000000;
+	color: #00FF00;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
 
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;

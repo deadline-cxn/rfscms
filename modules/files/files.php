@@ -124,13 +124,18 @@ echo "<input type=hidden name=action value=search>\n";
 echo "<td width=65 class=contenttd>Search:&nbsp;</td>\n";
 echo "<td width=90 class=contenttd><input type=textbox name=criteria></td>\n";
 echo "<td width=10 class=contenttd>&nbsp;in&nbsp;</td>\n";
-echo "<td width=80 class=contenttd><select name=category><option>all categories\n";
+echo "<td width=80 class=contenttd><select name=category style=\"min-width:250px;\"><option>all categories\n";
 
 $result=sc_query("select * from categories order by name asc");
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++){
     $cat=mysql_fetch_object($result);
-    echo "<option data-image=\"$cat->image\" >$cat->name";
+	
+    echo "<option data-image=\"".
+	
+	sc_picthumb_raw($cat->image,16,0,0).
+	
+	"\" >$cat->name";
 }
 echo "</select></td>\n";
 
@@ -610,8 +615,7 @@ if($file_mod=="yes"){
 			sc_ajax("Homepage,80","files","id","$id","homepage",70,"","files","edit","");
 			
 			sc_ajax("Category,80","files","id","$id","category",70,"select,table,categories,name","files","edit","");
-			
-			
+						
 			sc_ajax("Description,80","files","id","$id","description","15,70","textarea","files","edit","");
 			
 			sc_ajax("Filesize,80","files","id","$id","size",30,"","files","edit","");

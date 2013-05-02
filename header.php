@@ -162,6 +162,7 @@ else {
 sc_ajax_javascript();
 
 rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
+
 rfs_echo($RFS_SITE_JS_JQUERY);
 
 rfs_echo($RFS_SITE_JS_COLOR);
