@@ -11,6 +11,14 @@ body{
 	border-radius:5px;
 }
 
+.memebox {
+text-align: center;
+					min-height: 340px;
+					margin: 5px;
+					box-shadow: 5px 5px 5px #888888;
+					border:solid 1px #777777;
+					border-radius: 5px;
+}
 
 .wikishell {
 	padding: 5px;
