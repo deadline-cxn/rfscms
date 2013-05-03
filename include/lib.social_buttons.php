@@ -2,6 +2,18 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
+function sc_twitter_url($t) { eval(scg());
+	return preg_replace("/\s\@(\w+)/"," <a href=\"http://www.twitter.com/$1\" target=_blank>@$1 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function sc_email_url($t) { eval(scg());
+	return preg_replace( "/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/","<a href=\"mailto:$1@$2.$3\">$1@$2.$3</a>",$t);
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function sc_inline_url($t){ eval(scg());
+	 return preg_replace(	"/\s(http|https|ftp)\:\/\/(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])|([a-zA-Z0-9_\-\.])+\.(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum|uk|me))((:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~])*)\s/",	" <a href=\"$1://$2\" target=_blank>$1://$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ",	$t);
+}
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_stumble_upon($url) {
 echo " <!-- Place this tag where you want the su badge to render -->
 		<su:badge layout='2'></su:badge>

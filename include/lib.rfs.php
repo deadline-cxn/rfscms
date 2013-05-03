@@ -7,6 +7,10 @@
 srand((double) microtime() * 1000000);  // randomize timer
 setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
 /////////////////////////////////////////////////////////////////////////
+function sc_var($x) {
+	$GLOBALS[$x]=$_REQUEST[$x];
+	echo "\$$x=[".$GLOBALS[$x]."]<br>";
+}
 function sc_do_action() {
 	/////////////////////////////////////////////// Automatic action function
 	$action=$_REQUEST['action'];

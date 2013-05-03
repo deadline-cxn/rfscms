@@ -3,49 +3,29 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
-if($argv[1]=="scrub") {
-    $RFS_CMD_LINE=true;
-    include_once("include/lib.all.php");
-    sc_scrubfiles();
-    exit();
-}
-
-if($argv[1]=="orph") {
-    $RFS_CMD_LINE=true;
-    include_once("include/lib.all.php");
-    $data=sc_getuserdata(1);
-    system("clear");
-    orphan_scan("files");
-    exit();
-}
+if($argv[1]=="scrub") { $RFS_CMD_LINE=true; include_once("include/lib.all.php"); sc_scrubfiles(); exit(); }
+if($argv[1]=="orph")  { $RFS_CMD_LINE=true; include_once("include/lib.all.php"); $data=sc_getuserdata(1); system("clear"); orphan_scan("files"); exit(); }
 
 if($_REQUEST['action']=="get_file_go") {
-		
-		chdir("../../");
-		include_once("include/lib.all.php");
-		include("modules/files/lib.files.php");
-        $filedata=sc_getfiledata($_REQUEST['id']);
-        if(empty($filedata))         {
-            echo "Error 3392! File does not exist?\n";
-            include("footer.php");
-            exit();
-        }
-        sc_adddownloads($data->name,1);
-        $dl=$filedata->downloads+1;
-        sc_query("UPDATE files SET downloads='$dl' where id = '$id'");
-		echo $filedata->location;
-        echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_SITE_URL/$filedata->location\">\n";
-        $action="get_file";
+	$id=$_REQUEST['id'];
+	chdir("../../");
+	include_once("include/lib.all.php");
+	include("modules/files/lib.files.php");
+	$filedata=sc_getfiledata($id);
+	if(empty($filedata)) {
+		echo "Error, file does not exist?\n";
 		exit();
+	}
+	sc_adddownloads($data->name,1);
+	sc_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
+	sc_gotopage("$RFS_SITE_URL/$filedata->location");
+	exit();
 }
 
 chdir("../../");
 include_once("include/lib.all.php");
 include_once("3rdparty/ycTIN.php");
 include("header.php");
-
-$newpath     = $RFS_SITE_PATH."/".$_REQUEST['local'];
-$httppath    = $RFS_SITE_URL."/".$_REQUEST['local'];
 
 sc_div("files.php");
 
@@ -55,37 +35,31 @@ if($action=="editmodeon") {	$_SESSION['editmode']=true;}
 if($action=="editmodeoff"){ $_SESSION['editmode']=false;}
 
 echo "<table border=0><tr>"; 
+
 if(sc_access_check("files","upload")) {
 	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload");
 	echo "</td>";
 }
-
 if(sc_access_check("files","addlink")) {
 	echo "<td>";    
     sc_button("$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb","Add Link as File");
 	echo "</td>";
 }
-
 if(sc_access_check("files","orphanscan")) {
 	echo "<td>";
     sc_button("$RFS_SITE_URL/modules/files/files.php?action=getorphans","Add orphan files");
 	echo "</td>";
 }
-
 if(sc_access_check("files","purge")) {
 	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=purge","Purge missing files");
 	echo "</td>";
 }
-	
 if(sc_access_check("files","sort")) {
 	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_ignore","Show Hidden");
 	echo "</td>";
-	
-	
-
 	echo "<td>";
 	if($_SESSION['show_temp']==true){
 		sc_button("$RFS_SITE_URL/modules/files/files.php?action=hide_temp","Sort Mode Off");
@@ -95,9 +69,7 @@ if(sc_access_check("files","sort")) {
 	}
 	echo "</td>";
 }
-
 if(sc_access_check("files","edit")) {	
-	
 	echo "<td>";
 	if($_SESSION['editmode']==true){
 		sc_button("$RFS_SITE_URL/modules/files/files.php?action=editmodeoff","Edit Mode Off");		
@@ -106,8 +78,6 @@ if(sc_access_check("files","edit")) {
 	}
 	echo "</td>";
 }
-
-
 if(sc_access_check("files","xplorer")) {	
 	echo "<td>";
     sc_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
@@ -115,8 +85,6 @@ if(sc_access_check("files","xplorer")) {
 }
 
 echo "</tr></table>"; 	
-
-
 echo "<table border=0 cellspacing=0 cellpadding=0 >";
 echo "<tr>\n";
 echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/files/files.php\" method=post>\n";
@@ -124,18 +92,14 @@ echo "<input type=hidden name=action value=search>\n";
 echo "<td width=65 class=contenttd>Search:&nbsp;</td>\n";
 echo "<td width=90 class=contenttd><input type=textbox name=criteria></td>\n";
 echo "<td width=10 class=contenttd>&nbsp;in&nbsp;</td>\n";
-echo "<td width=80 class=contenttd><select name=category style=\"min-width:250px;\"><option>all categories\n";
+echo "<td width=80 class=contenttd>";
 
+echo "<select name=category style=\"min-width:250px;\"><option>all categories\n";
 $result=sc_query("select * from categories order by name asc");
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++){
     $cat=mysql_fetch_object($result);
-	
-    echo "<option data-image=\"".
-	
-	sc_picthumb_raw($cat->image,16,0,0).
-	
-	"\" >$cat->name";
+	echo "<option data-image=\"".sc_picthumb_raw($cat->image,16,0,0)."\" >$cat->name";
 }
 echo "</select></td>\n";
 
@@ -170,7 +134,6 @@ if($action=="addfilelinktodb") {
     include("footer.php");
     exit();
 }
-
 if($action=="addfilelinktodb_go") {
     $file_url=addslashes($file_url);
     $file_add=addslashes($file_add);
@@ -222,7 +185,6 @@ if($action=="addfiletodb") {
     include("footer.php");
     exit();
 }
-
 if($action=="addfiletodb_go") {
     $file_url=addslashes($file_url);
     $file_add=addslashes($file_add);
@@ -637,27 +599,6 @@ if($file_mod=="yes"){
     else echo "<p>You can't modify files if you are not <a href=$RFS_SITE_URL/login.php>logged in</a>!</p>\n";
 }
 
-if($action=="upload_avatar"){
-    if(empty($data->name))    {
-        echo "<p>You must be logged in to upload files...</p>\n";
-    }    else     {
-        echo "<p>Upload your very own avatar picture! Upload an swf, gif, or jpg avatar!</p>\n";
-        echo "<table border=0>\n";
-        echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/files/files.php\" method=\"post\">\n";
-        echo "<input type=hidden name=give_file value=avatar>\n";
-        echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
-        echo "<input type=hidden name=local value=\"images/avatars\">\n";
-        echo "<input type=hidden name=hidden value=yes>\n";
-        echo "<tr><td align=right>$RFS_SITE_URL/images/avatars/</td><td><input name=\"userfile\" type=\"file\"> </td></tr>\n";
-        echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
-        echo "</form>\n";
-        echo "</table>\n";
-    }
-    echo "</td></tr></table>";
-    include("footer.php");
-    exit();
-}
-
 if($action=="remove_duplicates") {
 }
 
@@ -731,13 +672,13 @@ function orphan_scan($dir) { eval(scg());
         }
     }
 }
-
+///////////////////////////////////////////////////////////////////////////////////
 if($action=="getorphans") {
 	orphan_scan("files");
 	include("footer.php");
     exit();
 }
-
+///////////////////////////////////////////////////////////////////////////////////
 if($action=="purge") {
 if(!sc_access_check("files","purge")) {
 		echo "You don't have access to purge files.<br>";
@@ -757,124 +698,129 @@ if(!sc_access_check("files","purge")) {
 	exit();	
 }
 
-if($action=="upload") {
-    if(empty($data->name)) {  echo "<p>You must be logged in to upload files...</p>\n"; }
-    else {
-        if($data->access!=255) {  echo "<p>You are not authorized to upload files!</p>\n";  }
-        else {
-            sc_div("UPLOAD FILE FORM START");
-            echo "<p>Upload a file</p>\n";
-            echo "<table border=0>\n\n\n";
-            echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/files/files.php\" method=\"post\">\n";
-            echo "<input type=\"hidden\" name=\"give_file\" value=\"yes\">\n";
-            echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99990000000\">\n";
+///////////////////////////////////////////////////////////////////////////////////
 
-            echo "<tr><td align=right>Put file in:</td><td>\n";
+function files_action_f_upload_go() { eval(scg());
+	sc_var("fu_dir");
+	
+	if($fu_dir=="- Select -") { sc_info("You must choose a location","WHITE","RED"); files_action_upload(); exit(); }
+	sc_var("MAX_FILE_SIZE");
+	sc_var("fu_userfile");
+	sc_var("fu_hidden");
+	sc_var("fu_sfw");
+	sc_var("fu_category");
+	sc_var("fu_name");
+	sc_var("fu_desc");
+	$newpath     = "$RFS_SITE_PATH/$fu_dir";
+	$httppath    = "$RFS_SITE_URL/$fu_dir";
 
-				sc_optionize_folder("local","files","",1,0,$path);
+	if(empty($data->name)) {
+		echo "<p> You must be logged in to upload files...</p>\n";
+	}
+	else {
+		if(!sc_access_check("files","upload")) { echo "<p>You are not authorized to upload files!</p>\n";
+	}
+	else {
+		echo "<p> Uploading files... </p>\n";
+		$uploadFile=$newpath."/".$_FILES['fu_userfile']['name'];
+		$uploadFile =str_replace("//","/",$uploadFile);
+		if(!stristr($uploadFile,$RFS_SITE_PATH)) 
+		$uploadFile=$RFS_SITE_PATH.$uploadFile;
+		if(move_uploaded_file($_FILES['fu_userfile']['tmp_name'], $uploadFile)) {
+			system("chmod 755 $uploadFile");
+			$error="File is valid, and was successfully uploaded. ";
+			echo "<P>You sent: ".$_FILES['fu_userfile']['name'].", a ".$_FILES['fu_userfile']['size']." byte file with a mime type of ".$_FILES['fu_userfile']['type']."</p>\n";
+			echo "<p>It was stored as [$httppath"."/".$_FILES['fu_userfile']['name']."]</p>\n";
+			if($fu_hidden=="no") {
+				$httppath=$httppath."/".$_FILES['fu_userfile']['name'];					
+				$finfo=pathinfo($uploadFile);
+				$filetype=strtolower($finfo['extension']);
+				if(empty($fu_name)) $fu_name=$_FILES['fu_userfile']['name'];
+				$fu_name=addslashes($fu_name);
+				$time1=date("Y-m-d H:i:s");
+				sc_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)
+											VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");
+				$id=mysql_insert_id();
+				echo "DATABASE ID[$id]<br>";
+				
+				echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$id\">View file information</a><br>";
+				$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
+				sc_query("UPDATE files SET location	='$httppath' 		where id='$id'");								
+				$fu_desc=addslashes($fu_desc);
+				sc_query("UPDATE files SET description	='$fu_desc'	 	where id='$id'");	
+				$filesizebytes=$_FILES['fu_userfile']['size'];
+				sc_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");					
+				$extra_sp=$_FILES['fu_userfile']['size']/10240;
+				$data->files_uploaded=$data->files_uploaded+1;
+				sc_query("update users set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
+			}
+		}
+		else {
+			//UPLOAD_ERR_OK        //Value: 0; There is no error, the file uploaded with success.
+			//UPLOAD_ERR_INI_SIZE  //Value: 1; The uploaded file exceeds the upload_max_filesize directive in php.ini.
+			//UPLOAD_ERR_FORM_SIZE //Value: 2; The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
+			//UPLOAD_ERR_PARTIAL   //Value: 3; The uploaded file was only partially uploaded.
+			//UPLOAD_ERR_NO_FILE
+			$error ="File upload error!";
+			echo "File upload error! [\n".$_FILES['fu_userfile']['name']."][".$_FILES['fu_userfile']['error']."][".$_FILES['fu_userfile']['tmp_name']."][".$uploadFile."]\n";
+		}
+		if(!$error) {
+			$error .= "No files have been selected for upload";
+		}
+		echo "<P>Status: [$error]</P>\n";
+		echo "<p>[<a href=$RFS_SITE_URL/modules/files/files.php?action=upload>Add another file</a>]\n";
+		echo "[<a href=$RFS_SITE_URL/modules/files/files.php>Files</a>]</p>\n";
+		}
+	}
+}
+function files_action_upload() { eval(scg()); 
+	if(empty($data->name)) {  echo "<p>You must be logged in to upload files...</p>\n"; }
+	else {
+		if(!sc_access_check("files","upload")) {  echo "<p>You are not authorized to upload files!</p>\n";  }
+			else {
+				sc_div("UPLOAD FILE FORM START");
+				echo "<p>Upload a file</p>\n";				
+				echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/files/files.php\" method=\"post\">\n";
+				echo "<table border=0>\n\n\n";
+				echo " <!--  ******************************************************************************** --> \n";
+				echo "<tr>\n";			
+				
+				echo "<input type=\"hidden\" name=\"action\" value=\"f_upload_go\">\n";
+				echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99990000000\">\n";
 
+				echo "<td align=right>Put file in:</td><td>\n";
+				sc_optionize_folder("fu_dir","files","",1,0,$path);
 				echo "</td></tr>\n";
-
-            echo "<tr>  <td align=right>Select file:      </td>
-                        <td ><input name=\"userfile\" type=\"file\" size=80> </td></tr>\n";
-
-            echo "<tr>  <td align=right>Hide from public: </td>
-                        <td><select name=hidden><option>yes<option>no</select>
-                        (no will place file entry into database viewable by the public)</td></tr>\n";
-
-            echo "<tr>  <td align=right>Safe for work:    </td>
-                        <td><select name=sfw><option>yes<option>no</select></td></tr>\n";
-
-            echo "<tr>  <td align=right>category:         </td>
-                        <td><select name=category>\n";
-            $result=sc_query("select * from categories order by name asc");
-            $numcats=mysql_num_rows($result);
-            for($i=0;$i<$numcats;$i++) { $cat=mysql_fetch_object($result); echo "<option>$cat->name"; }
-            echo "</select></td></tr>\n";
-            echo "<tr><td align=right>Short name :</td><td><input type=textbox name=name value=\"$name\"></td></tr>\n";
-            echo "<tr><td align=right valign=top>Description:</td><td><textarea name=\"desc\" rows=\"7\" cols=\"40\"></textarea></td></tr>\n";
-            echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
-            echo "</form>\n";
-            echo "</table>\n";
-            sc_div("UPLOAD FILE FORM END");
-        }
-    }
-
-    echo "<hr>";
-    include("footer.php");
-    exit();
+				echo "<tr>  <td align=right>Select file:      </td>
+				
+					<td ><input name=\"fu_userfile\" type=\"file\" size=80
+					
+					> </td></tr>\n";
+				echo "<tr>  <td align=right>Hide from public: </td><td><select name=fu_hidden><option>no<option>yes</select>(no will place file entry into database viewable by the public)</td></tr>\n";
+				echo "<tr>  <td align=right>Safe for work:    </td><td><select name=fu_sfw><option>yes<option>no</select></td></tr>\n";
+				echo "<tr>  <td align=right>category:         </td><td><select name=fu_category>\n";
+				$result=sc_query("select * from categories order by name asc");
+				$numcats=mysql_num_rows($result);
+				for($i=0;$i<$numcats;$i++) { $cat=mysql_fetch_object($result); echo "<option>$cat->name"; }
+				echo "</select></td></tr>\n";
+				echo "<tr><td align=right>Short name :</td><td><input type=textbox name=fu_name value=\"$name\"></td></tr>\n";
+				echo "<tr><td align=right valign=top>Description:</td><td><textarea name=\"fu_desc\" rows=\"7\" cols=\"40\"></textarea></td></tr>\n";
+				echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td>";
+				echo "</tr>\n";
+				
+				echo "</table>\n";
+						echo "</form>\n";
+		
+				echo " <!--  ******************************************************************************** --> \n";
+				
+				sc_div("UPLOAD FILE FORM END");
+			}
+		}
+		echo "<hr>";
+		include("footer.php");
+		exit();
 }
-
-if($give_file=="yes") {
-    if(empty($data->name)) {  echo "<p> You must be logged in to upload files...</p>\n"; }
-    else    {
-        if($data->access!=255) { echo "<p>You are not authorized to upload files!</p>\n"; }
-        else        {
-            echo "<p> Uploading files... </p>\n";
-            $uploadFile=$newpath."/".$_FILES['userfile']['name'];
-            $uploadFile =str_replace("//","/",$uploadFile);
-				if(!stristr($uploadFile,$RFS_SITE_PATH)) 
-					$uploadFile=$RFS_SITE_PATH.$uploadFile;
-            if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile))             {
-                system("chmod 755 $uploadFile");
-                $error="File is valid, and was successfully uploaded. ";
-                echo "<P>You sent: ".$_FILES['userfile']['name'].", a ".$_FILES['userfile']['size']." byte file with a mime type of ".$_FILES['userfile']['type']."</p>\n";
-                echo "<p>It was stored as [$httppath"."/".$_FILES['userfile']['name']."]</p>\n";
-                if($hidden=="no")                 {
-                    $xp_ext = explode(".",$_FILES['userfile']['name'],40);
-                    $j = count ($xp_ext)-1;
-                    $ext = "$xp_ext[$j]";
-                    $filetype=strtolower($ext);
-                    $filesizebytes=$_FILES['userfile']['size'];
-                    $time1=date("Y-m-d H:i:s");
-                    $httppath=$httppath."/".$_FILES['userfile']['name'];
-                    $description=addslashes($description);
-                    $finfo=pathinfo($uploadFile);
-                    $nfname=$finfo['file'].".".$finfo['extension'];
-                    if(empty($name)) $name=$nfname;
-                    $name=addslashes($name);
-                    sc_query("INSERT INTO `files` (`name`) VALUES('$name');");
-					$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
-                    sc_query("UPDATE files SET location='$httppath' where name='$name'");
-                    sc_query("UPDATE files SET submitter='$data->name' where name='$name'");
-                    sc_query("UPDATE files SET category='$category' where name='$name'");
-                    sc_query("UPDATE files SET description='$description' where name='$name'");
-                    sc_query("UPDATE files SET category='$category' where name='$name'");
-                    sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
-                    sc_query("UPDATE files SET size='$filesizebytes' where name='$name'");
-                    sc_query("UPDATE files SET time='$time1' where name='$name'");
-                    sc_query("UPDATE files SET worksafe='$sfw' where name='$name'");
-                    $extra_sp=$_FILES['userfile']['size']/10240;
-                    $data->files_uploaded=$data->files_uploaded+1;
-                    sc_query("update users set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
-                }
-            }   else  {
-                //UPLOAD_ERR_OK        //Value: 0; There is no error, the file uploaded with success.
-                //UPLOAD_ERR_INI_SIZE  //Value: 1; The uploaded file exceeds the upload_max_filesize directive in php.ini.
-                //UPLOAD_ERR_FORM_SIZE //Value: 2; The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
-                //UPLOAD_ERR_PARTIAL   //Value: 3; The uploaded file was only partially uploaded.
-                //UPLOAD_ERR_NO_FILE
-                $error ="File upload error!";
-                echo "File upload error! [\n";
-                echo $_FILES['userfile']['name'];
-                echo "][";
-                echo $_FILES['userfile']['error'];
-                echo "][";
-                echo $_FILES['userfile']['tmp_name'] ;
-                echo "][";
-                echo $uploadFile;
-                echo "]\n";
-            }
-            if(!$error)            {
-                $error .= "No files have been selected for upload";
-            }
-            echo "<P>Status: [$error]</P>\n";
-            echo "<p>[<a href=$RFS_SITE_URL/modules/files/files.php?action=upload>Add another file</a>]\n";
-            echo "[<a href=$RFS_SITE_URL/modules/files/files.php>Files</a>]</p>\n";
-        }
-    }
-}
-
+///////////////////////////////////////////////////////////////////////////////////
 if($give_file=="avatar"){
     if(empty($data->name)) echo "<p> You must be logged in to upload files... <a href=join.php>JOIN</a> now!</p>\n";
     else     {
@@ -914,23 +860,29 @@ if($give_file=="avatar"){
     include("footer.php");
     exit();
 }
-
-function sc_fileheader() {
-	$file_header=$GLOBALS['file_header'];
-    echo "<tr height=16>\n";
-    echo "<td class=tdfilehead > File </td>\n";
-    echo "<td class=tdfilehead > ver </td>\n";
-    echo "<td class=tdfilehead> Size </td>\n";
-    echo "<td class=tdfilehead > D/L </td>\n";
-    
-	
-    echo "<td class=tdfilehead> Description </td>\n";
-    
-	echo "<td class=tdfilehead > </td>\n";
-	//echo "<td class=tdfilehead >&nbsp;</td>\n";
-	//echo "<td class=tdfilehead >&nbsp;</td>\n";
-    echo "</tr>\n";
+if($action=="upload_avatar"){
+    if(empty($data->name))    {
+        echo "<p>You must be logged in to upload files...</p>\n";
+    }    else     {
+        echo "<p>Upload your very own avatar picture! Upload an swf, gif, or jpg avatar!</p>\n";
+        echo "<table border=0>\n";
+        echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/files/files.php\" method=\"post\">\n";
+        echo "<input type=hidden name=give_file value=avatar>\n";
+        echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
+        echo "<input type=hidden name=local value=\"images/avatars\">\n";
+        echo "<input type=hidden name=hidden value=yes>\n";
+        echo "<tr><td align=right>$RFS_SITE_URL/images/avatars/</td><td><input name=\"userfile\" type=\"file\"> </td></tr>\n";
+        echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
+        echo "</form>\n";
+        echo "</table>\n";
+    }
+    echo "</td></tr></table>";
+    include("footer.php");
+    exit();
 }
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 function show1file($filedata,$bg) { eval(scg());

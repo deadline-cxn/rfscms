@@ -7,9 +7,6 @@ if(array_pop(explode("/",getcwd()))=="include")
 include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////
 if($act=="select_image_go") {
 	include("lib.all.php");
@@ -677,41 +674,35 @@ function sc_vars_join($x){
 // $use_id_method		0 or 1: Uses id field of MySQL if 1
 // $default			Default option
 // $on_change_method	0 or 1: Use javascript on_change method if 1
+
 function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method, $default, $on_change_method){ eval(scg());
 	$folder_mode=0;
-	if( ($use_id_method==3) || 
+	if(	($use_id_method==3) || 
 		($key=="FOLDERMODE")) {
 		$folder_mode=1;
 		$use_id_method=0;
 	}
-	if($return_page!="INLINE")
-		echo "<form action=\"$return_page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
-	$omit='';
+	if($return_page!="INLINE") echo "<form action=\"$return_page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
+	
 	$hv=explode(sc_delimiter($hiddenvars),$hiddenvars);
-   
-    $where='';
+	$omit='';
+	$where='';
 	$distinct='';
 
     for($hz=0;$hz<count($hv);$hz++){
         $he=explode("=",$hv[$hz]);
         for($hy=0;$hy<count($he);$hy+=2){
-			
-			$dontshowhv=false;
-			
+			$dontshowhv=false;			
 			if($he[$hy]=="SELECTNAME") {
 				$selname=$he[$hy+1];
 				$dontshowhv=true;
-				
-			}
-			
+			}			
 			if($he[$hy]=="DISTINCT") {
 				$dontshowhv=true;
 				if($he[$hy+1]=="TRUE"){
 					$distinct=" DISTINCT ";			
 				}
-				
 			}
-			
 			if($he[$hy]=="omit") {
 				$dontshowhv=true;
 				if($omit=='')  $omit=$he[$hy+1];
@@ -726,7 +717,7 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 				
 			}
 			else {
-				echo "<input type=\"hidden\" name=\"".$he[$hy]."\" value=\"".$he[$hy+1]."\">";				
+				echo "<input type=\"hidden\" name=\"".$he[$hy]."\" value=\"".$he[$hy+1]."\">";
 			}
         }
     }
@@ -735,13 +726,11 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 	if(count($exomit)) {
 		for($omi=0;$omi<count($exomit);$omi++){
 				$exwhat=explode(":",$exomit[$omi]);
-				
 				$op="!=";
 				if(stristr($exwhat[1],"like ")){ 
 					$op="";
 					$exwhat[1]="not ".$exwhat[1];
 				}
-				
 				if($where==''){
 					if(!empty($exwhat[0]))
 						$where.=" where $exwhat[0] $op ";
@@ -759,16 +748,13 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 			}
 		}
 	}
-
 	if(!empty($incl)) {
 		$exincl=explode(",",$incl);
 		if(count($exincl)) {
 			for($ini=0;$ini<count($exincl);$ini++){
 					$exwhat=explode(":",$exincl[$ini]);
-					
 					$op="=";
 					if(stristr($exwhat[1],"like ")) $op="";					
-					
 					if($where==''){
 						if(!empty($exwhat[0]))
 							$where.=" where $exwhat[0] $op ";
@@ -787,16 +773,12 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 				}
 			}
 		}
-
-
-	if($folder_mode==0) {
-		 
+	if($folder_mode==0) {		 
 		 if(stristr($key,sc_delimiter($key))) {
 				$xkey=explode(sc_delimiter($key),$key);
 				$key=$xkey[0];
 				$key2=$xkey[1];				
-		 } else $key2='';
-		 
+		 } else $key2='';		 
 		 if(empty($selname)) $selname=$key;
 
 		$scoq="select $distinct $key";
@@ -824,6 +806,9 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 				echo "<option ";
 				if($use_id_method){
 					echo "value=\"$d->id\" ";
+				}
+				else {
+					echo "value=\"$d->key\" ";
 				}
 				echo ">".$d->$key;
 
@@ -919,11 +904,11 @@ function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$inclu
 			if(substr($file,0,1)!=".") {
 				if(sc_yes($include_dirs)) {
 					if(!is_file($chack))
-						echo "<option>$chack";
+						echo "<option value=\"$chack\">$chack";
 				}
 				if(sc_yes($include_files)) {
 					if(is_file($chack))
-						echo "<option>$chack";
+						echo "<option value=\"$chack\">$chack";
 				}
 			}
 		}
