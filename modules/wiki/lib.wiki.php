@@ -31,6 +31,8 @@ function wikiimg($text) { eval(scg());
     $text=str_replace("{{","&#123;",$text);
     $text=str_replace("}}","&#125",$text);
 	$text=str_replace("$$","&#36;",$text);
+	$text=str_replace("^^","&#94;",$text);
+	
     $outtext="";
     $ila=explode("{",$text);
     for($i=0;$i<count($ila);$i++)    {
@@ -91,9 +93,23 @@ function wikitext($text) { eval(scg());
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 
     $text=wikiimg($text);
+	$text=str_replace("</h1>\r\n","</h1>",$text);
+	$text=str_replace("</h2>\r\n","</h2>",$text);
+	$text=str_replace("</h3>\r\n","</h3>",$text);
+	$text=str_replace("\r\n<hr>","<hr>",$text);
+	$text=str_replace("<hr>\r\n","<hr>",$text);
+	$text=str_replace("<hr>\n","<hr>",$text);
     $text=stripslashes($text);
     $text=str_replace("[[","&#91;",$text);
     $text=str_replace("]]","&#93;",$text);
+	
+	$text=sc_twitter_url($text);
+	$text=sc_email_url($text);
+	$text=sc_inline_url($text);
+	
+	
+	
+	
     $outtext="";
     $ila=explode("[",$text);
     for($i=0;$i<count($ila);$i++)     {
