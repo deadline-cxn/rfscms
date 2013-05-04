@@ -124,19 +124,12 @@ function show1message($post,$gx) { eval(scg());
 		echo "<div class=\"forum_box\">";
         echo "<h2>".$post['title']."</h2>";
 		 echo "<div class=\"sc_forum_table_1\">";
-		 
-       // echo "<table width=100% cellspacing=0 cellpadding=0>";
-        //echo "<tr><td valign=top width=100 align=center>\n";
 		
-        //echo "<table border=0 cellspacing=0>";
-
 		$pname=$pster->name;
 
         if($pster->id==999) {            
-				//echo "<tr><td valign=top width=140>";
 				echo "$pname";
-				//echo "</td></tr>";
-        } else {
+		 } else {
 				
 				echo "<div class=\"forum_user\" >";
 				sc_useravatar($pname);
@@ -222,6 +215,7 @@ function get_thread($thread,$forum_which) {    eval(scg());
         }
     }
     echo "<br>\n";
+	include("footer.php");
 }
 
 if($action=="move_thread") {

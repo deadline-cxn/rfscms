@@ -87,7 +87,7 @@ function adm_action_update() { eval(scg());
 // ADM_ARRANGE FUNCTIONS
 function sc_admin_module( $loc ) { eval( scg() );
     $location=$loc;
-	$r=sc_query( "select * from arrangement where location='$location' order by sequence" );
+	$r=sc_query( "select * from arrangement where location='$location' order by sequence " );
 	if($r){
 		echo "<center><h2>Arrange location $location";
 		if( $location=="left" ) echo " (left panel)";
@@ -102,14 +102,24 @@ function sc_admin_module( $loc ) { eval( scg() );
 			echo "<img src='$RFS_SITE_URL/images/icons/circle-delete.png' border='0'>";
             echo "</a>";
 
-			if( $ar->sequence > 1 )
+			if( $ar->sequence > 1 ) {
+				echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_move_up&arid=$ar->id'>";				
 				echo " <img src=$RFS_SITE_URL/images/icons/arrow-up.png width=32 height=32 border=0> ";
-			if( $ar->sequence < $n )
+				echo "</a>";
+				
+			}
+			if( $ar->sequence < $n ) {
 				echo " <img src=$RFS_SITE_URL/images/icons/arrow-down.png width=32 height=32 border=0> ";
-			if( $location!="left" )
+				
+			}
+			if( $location!="left" ) {
 				echo " <img src=$RFS_SITE_URL/images/icons/arrow-left.png width=32 height=32 border=0> ";
-			if( $location!="right" )
-				echo " <img src=$RFS_SITE_URL/images/icons/arrow-right.png width=32 height=32 border=0> ";
+				
+			}
+			if( $location!="right" ) {
+				
+				echo " <img src=$RFS_SITE_URL/images/icons/arrow-right.png width=32 height=32 border=0> ";				
+			}
 			echo "	</td><td>";
 			echo ucwords( "Module: $ar->mini show " );
 			echo "</td>	<form action='$RFS_SITE_URL/admin/adm.php' method='post'>	<td>
@@ -136,6 +146,39 @@ function sc_admin_module( $loc ) { eval( scg() );
 	echo "</select>";
 	echo "</form>";
 }
+
+function adm_action_f_arrange_move_up() { eval(scg());
+	
+	$ar=mfo1("select * from arrangement where `id`='$arid'");	
+	//echo $ar->mini."<br>";
+	//echo $ar->location."<br>";
+	//echo $ar->num."<br>";
+	//echo $ar->sequence."<br>";
+	
+	$arrange=array();
+	$r=sc_query("select * from arrangement where `location`='$ar->location'");
+	for($i=0;$i<mysql_num_rows($r);$i++) {
+		$tar=mysql_fetch_object($r);
+		$arrange[$tar->id]=$tar->sequence;
+	}
+	
+	$ar->sequence--;
+	foreach($arrange as $k => $v) {
+		if($v==$ar->sequence) $arrange[$k]=$v+1;
+	}
+	$arrange[$ar->id]=$ar->sequence;
+	foreach($arrange as $k => $v) {
+		//$x=mfo1("select * from arrangement where `id`='$k'");
+		sc_query("update arrangement set `sequence`='".$arrange[$k]."' where `id`='$k'");
+	}
+	
+	
+	
+	// print_r($arrange);
+	adm_action_arrange();
+	
+}
+
 function adm_action_f_arrange_delete_go() { eval(scg());
     sc_query("delete from arrangement where `id`='$id'");
     adm_action_arrange();
@@ -150,8 +193,12 @@ function adm_action_f_arrange_delete() { eval(scg());
 }
 function adm_action_f_module_add() { eval( scg() );
 	echo ".. $module... $location";
+	$r=sc_query("select max(sequence) as seq from arrangement where location = '$location'");
+	$ars=mysql_fetch_object($r);
+	$nseq=$ars->seq+1;
+	echo "$ars->seq $nseq  <br>";
 	sc_query( "insert into arrangement  (`mini`,`location`,`num`,`sequence`)
-	          values('$module','$location','5','999');" );
+	          values('$module','$location','5','$nseq');" );
 	adm_action_arrange();
 }
 function adm_action_f_module_chg_num() { 	eval( scg() );
