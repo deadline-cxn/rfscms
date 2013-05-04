@@ -82,3 +82,11 @@ input, select, textarea {
 td {
 	color:#9999FF;
 }
+
+.lefttd {
+	width: 1px;
+}
+
+.righttd {
+	width: 1px;
+}

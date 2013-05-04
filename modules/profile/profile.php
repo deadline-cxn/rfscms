@@ -85,17 +85,15 @@ $data=sc_getuserdata($data->name);
 function pro_nav_bar($data) {    eval(scg());
     echo "<center>\n";	
 if(sc_access_check("news","edit")) 
-	echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=edityournews\">edit your news articles</a>] \n";
+	sc_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
 if(sc_access_check("news","submit")) 
-	echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?showform=yes\">create new news</a>] \n";
-if(sc_access_check("admin","categories"))
-	echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=editcategories\">edit content categories</a>] \n";
+	sc_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
 if(sc_access_check("files","upload"))
-	echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">submit file</a>] \n";
+	sc_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
 if(sc_access_check("admin","access"))
-	echo "[<a href=\"$RFS_SITE_URL/admin/adm.php\">admin</a>] \n";
+	sc_button("$RFS_SITE_URL/admin/adm.php","Admin");
 
-echo "[<a href=$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form>change password</a>] \n";
+sc_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
 
     echo "</center>\n";
 }

@@ -1,9 +1,30 @@
-body{
-	margin: 0px;
-  background-color: #000000;
-  background-image: url("bkg.png");	
+@font-face {
+	font-family: wow;
+	src: url('wow.ttf');
 }
 
+
+body{
+	margin: 0px;
+	background-color: #000000;
+	background-image: url("bkg.png");	
+}
+
+h1 {
+	font-family: wow;
+	color: #FFFF00;
+	text-shadow: 2px 2px #222;
+}
+h2 {
+	font-family: wow;
+	color: #FFFF00;
+	text-shadow: 2px 2px #222;
+}
+h3 {
+	font-family: wow;
+	color: #FFFF00;
+	text-shadow: 2px 2px #222;
+}
 
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;
@@ -11,13 +32,12 @@ body{
 	border-radius:5px;
 }
 
-
 .wikishell {
 	padding: 5px;
 	margin:0 auto;
 	align: center;
 	width: 90%;
-	font-family: monospace;
+	font-family: wow;
 	background-color: #000000;
 	color: #00ff00;
 	border-top-left-radius: 8px;
@@ -28,6 +48,7 @@ body{
 
 
 a{
+	font-family: wow;
       color: #ffff00;
 }
 a:hover{
@@ -38,7 +59,7 @@ a:visited{
 }
 
 td{
-    font-family: Verdana;
+    font-family: wow;
     font-size: 12px;
      color: #ffffff;
 }
@@ -59,7 +80,7 @@ td{
 
 .tabletop
 {
-    font-family: Verdana;
+    font-family: wow;
     font-size: 16px;
     color: #ffffff;
 }
@@ -74,7 +95,7 @@ height:24px;
 }
 
 .sc_top_menu_table {
-    font-family: Verdana;
+    font-family: wow;
     font-weight: bold;
     font-size: 16px;
     color: #ffffff;   
@@ -92,7 +113,7 @@ height:24px;
 .thirdtd{
    vertical-align: bottom;
     height: 24px;
-    font-family: Verdana;
+    font-family: wow;
     font-size: 12px;
     color: #ffffff;
     background-color: #03060c;
@@ -119,7 +140,7 @@ height:24px;
 }
     
 .toptd{
-    font-family: Verdana;
+    font-family: wow;
     font-size: 1px;
     font-weight: bold;
    		
@@ -170,8 +191,8 @@ height:24px;
 }
 
 .slogan{
-    font-family: Verdana;
-   font-size: 10px;
+	font-family: wow;
+	font-size: 10px;
     font-style: italic ;
     color: #FFFF00;
     text-shadow: 2px 2px #222;
@@ -179,18 +200,35 @@ height:24px;
 }
 
 input,select,textarea {
-    font-family: Arial;
+    font-family: wow;
     font-size: 12px;
     
     color: #000000;
     border: 1px;
     border-color: #c2c7f6;
     border-style: solid;
-    background-color: #888888;
-
+    background-color: #987808;
 }
 
 
+button, input[type="submit"] {
+	margin: 1px;
+	font-family: wow;
+	color: #FFFF00;
+	text-shadow: 2px 2px #222;
+	cursor: pointer;
+	background-color: #900;
+	border: 1px solid;
+	border-top-color: #888;
+	border-left-color: #666;
+	border-bottom-color: #444;
+	border-right-color: #444;
+	border-radius: 4px;
+	
+	-moz-box-shadow: 5px 5px 3px  #555;
+	-webkit-box-shadow: 5px 5px 3px   #555;
+	box-shadow: 2px 2px 2px  #000;
+}
 
 
 

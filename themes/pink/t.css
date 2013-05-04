@@ -69,6 +69,13 @@ hr {
 .contenttd {
     color: #000000;
 }
+
+.lefttd {
+	width: 1px;
+}
+.righttd {
+	width: 1px;
+}
    
 .toptd {
    padding: 5px;
