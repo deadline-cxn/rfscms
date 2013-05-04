@@ -500,7 +500,7 @@ function forums_action_forum_list() { eval(scg());
                             echo "<span class=\"gensmall\"><br />";
                             echo "<b>Moderator [</b>";
                             $foruser=sc_getuserdata($moder);
-                            echo "<a href=$RFS_SITE_URL/showprofile.php?user=$foruser->name>$foruser->name</a>]";
+                            echo "<a href=$RFS_SITE_URL/modules/profile/showprofile.php?user=$foruser->name>$foruser->name</a>]";
                             echo "</span>\n";
                             }
                             $fart=sc_query("select * from `forum_posts` where `forum`= '$der->id' and `thread_top`='yes'");
@@ -521,7 +521,7 @@ function forums_action_forum_list() { eval(scg());
                                 echo "posted ".sc_time($lastpost->time); //Tue 11 Jul, 2006 00:33<br>"; ****
                                 echo "<br>";
                                 $udata=sc_getuserdata($lastpost->poster);
-                                echo "by <a href=\"$RFS_SITE_URL/showprofile.php?user=$udata->name\">$udata->name</a>";
+                                echo "by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$udata->name\">$udata->name</a>";
                                 echo "<a href=\"$link\"><img src=\"$RFS_SITE_URL/images/icons/icon_latest_reply.gif\" width=\"18\" height=\"9\" class=\"imgspace\" border=\"0\" alt=\"View latest post\" title=\"View latest post\" /></a>";
                                 echo "</span>";
                             }
@@ -657,6 +657,8 @@ function forums_action_forum_showposts() { eval(scg());
         
     }
     else echo "<p align=center> There are no threads! </p>\n";    
+	
+	include("footer.php");
     
 }
 
