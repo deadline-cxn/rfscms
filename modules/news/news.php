@@ -114,28 +114,28 @@ if(sc_access_check("news","edit")) {
 
 if(($action=="view") || ($action=="ad")) {
 
-    echo "<table border=0 cellspacing=0 cellpadding=1 width=95%><tr><td>";
-    echo "<table border=0 width=100% ><tr>";
-    echo "<td valign=top class=td_cat>";
+    //echo "<table border=0 cellspacing=0 cellpadding=1 width=95 % ><tr><td>";
+    //echo "<table border=0 width=100% ><tr>";
+    //echo "<td valign=top class=td_cat>";
 	sc_show_news($nid);
     echo "<br>\n";
     echo "<p align=right><a href=news.php  class=\"a_cat\" align=right>More news stories...</a></p>";
-    echo "</td></tr></table>";
-    echo "</td></tr></table>";
+    //echo "</td></tr></table>";
+    //echo "</td></tr></table>";
     echo "<br>";
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    echo "<table border=0 cellspacing=0 cellpadding=1 width=100%><tr><td>";
-    echo "<table border=0 width=100% ><tr>";
-    echo "<td valign=top class=td_cat>";
+    //echo "<table border=0 cellspacing=0 cellpadding=1 width=100 % ><tr><td>";
+    //echo "<table border=0 width=100% ><tr>";
+    //echo "<td valign=top class=td_cat>";
 
     sc_module_mini_news(10);
     sc_module_popular_news(10);
 
     echo "<p align=right><a href=news.php  class=\"a_cat\" align=right>More news stories...</a></p>";
-    echo "</td></tr></table>";
-    echo "</td></tr></table>";
+    //echo "</td></tr></table>";
+    //echo "</td></tr></table>";
 
 }
 
