@@ -215,6 +215,7 @@ background-color:rgba(0,0,0,0.4);
 
 .righttd {
 	background-color:rgba(0,5,0,0.8);
+	width: 1px;
 }
 
 th {
