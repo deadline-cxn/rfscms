@@ -14,7 +14,7 @@ echo "</a></center></td>\n";
 
 echo "<td>\n";
 $gen=$userdata->gender;
-echo "<img src=\"$RFS_SITE_URL/images/sym_".$gen.".gif\" border=0 alt=\"$gen\" ><br>\n";
+echo "<img src=\"$RFS_SITE_URL/images/icons/sym_".$gen.".gif\" border=0 alt=\"$gen\" ><br>\n";
 
 if($userdata->show_contact_info=="yes") {
     
