@@ -235,7 +235,7 @@ function users_logged_details() {
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_useravatar($user) { echo sc_getuseravatar($user); }
 function sc_getuseravatar($user) { eval(scg()); $userdata=sc_getuserdata($user);
-	$ret = "<a href=\"$RFS_SITE_URL/showprofile.php?user=$userdata->name\">\n";
+	$ret = "<a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$userdata->name\">\n";
 	if(empty($userdata->avatar)) $userdata->avatar="$RFS_SITE_URL/images/icons/noimage.gif";
     $g=sc_getfiletype($userdata->avatar);
     if(($g=="png")||($g=="bmp") ||
