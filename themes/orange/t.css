@@ -10,6 +10,12 @@ body
     background-color: #FF8018;	
 }
 
+hr
+{
+	width: 98%;
+	border: dashed 1px ff9900;
+}
+
 
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;
@@ -204,6 +210,8 @@ td
 
 .midtd
 {
+	width: 100%;
+	margin: 5px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
@@ -227,6 +235,7 @@ td
     font-weight: bold;
     fcolor:   #4D440B;
     background-color: #FF8018;
+	max-width: 200px;
 }
 
 .sc_project_table_header

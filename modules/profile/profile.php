@@ -2,10 +2,6 @@
 $title="User Profile";
 chdir("../../");
 include("header.php");
-if(empty($email)) $email=$data->email;
-$email=str_replace("'at'","@",$email);
-$thisemail=str_replace("@","$at",$email);
-$enteremail=str_replace("@","'at'",$email);
 //////////////////////////////////////////////////////////////////////////////////////
 // CHANGE PASSWORD
 if($change_password == "yes")
@@ -47,7 +43,6 @@ if($_REQUEST['act']=="update") {
 	$birth_day=$_REQUEST['birth_day'];
 	$birth_month=$_REQUEST['birth_month'];
 
-    // echo "<h1>.: $RFS_SITE_NAME ~ Profile Update :.</h1>\n";
 	sc_info("UPDATED PROFILE","WHITE","GREEN");
     
     if(!empty($name)) sc_query("UPDATE users SET `real_name`='$name' where `name` = '$data->name'");
@@ -56,6 +51,7 @@ if($_REQUEST['act']=="update") {
         $sentence=addslashes($sentence);
         $result = sc_query("UPDATE users SET `sentence`='$sentence' where `name` = '$data->name'");
     }
+	
     sc_query("UPDATE users SET `email`='$email' where `name` = '$data->name'");
 	$webpage=addslashes($webpage);
     if(!empty($webpage))
@@ -129,13 +125,9 @@ $nm=$data->real_name;
 if(empty($nm)) $nm=str_replace("."," ",$data->name);
 echo ucwords("<h1> $nm's $RFS_SITE_NAME profile </h1>");
 pro_nav_bar($data);
+echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/modules/profile/profile.php\" >";
+
 echo "<table border=0 cellpadding=0 cellspacing=0><tr><td>";
-echo "
-<form 
-enctype=\"application/x-www-form-URLencoded\"
-method=\"post\"
-action=\"$RFS_SITE_URL/modules/profile/profile.php\"
->";
 echo "<input type=hidden name=act value=update>\n";
 echo "<td> ";
 $g=sc_getfiletype($data->avatar);
@@ -212,7 +204,7 @@ if($day_diff < 0)
  $years--;
 echo "<tr><td>Birthday:</td>\n";
 echo "<td>\n";
-echo "<select name=birth_month>\n";
+echo "<select name=birth_month style=\"width:60;\">\n";
 echo "<option value=$tmonth>$nmonth";
 echo "<option value=1>Jan\n";
 echo "<option value=2>Feb\n";
@@ -227,7 +219,7 @@ echo "<option value=10>Oct\n";
 echo "<option value=11>Nov\n";
 echo "<option value=12>Dec\n";
 echo "</select>\n";
-echo "<select name=birth_day>\n";
+echo "<select name=birth_day style=\"width:60;\">\n";
 echo "<option>$tday\n";
 $i=1; while($i<32)
 {
@@ -237,24 +229,19 @@ $i=1; while($i<32)
 }
 
 echo "</select>";
-echo "<select name=birth_year>\n";
+echo "<select name=birth_year style=\"width:80;\">\n";
 echo "<option>$tyear\n";
 $i=1901; while($i<2050) { echo "<option>$i"; $i=$i+1; }
 echo "</select> (<i>$years years old</i>)</td><td> </td></tr>\n";
+if(empty($data->country)) $data->country="Select Country";
 echo "<tr><td>Country   :</td><td> <select name=country><option>$data->country\n";
 sc_countries();
 echo "</select> </td><td>&nbsp;</td></tr>\n";
 echo "<tr><td>Quote     :</td>";
-echo "<td><textarea name=sentence rows=5 cols=30>";
+echo "<td><textarea name=sentence rows=5 cols=50>";
 echo $data->sentence;
 echo "</textarea>    </td><td>&nbsp;</td></tr>\n";
-echo "<tr><td>Email     :</td><td class=sc_email>";
-//echo "<a href=\"".sc_getemailcode($data->email)."\">$thisemail</a>";
-echo "</td><td>&nbsp;</td></tr>\n";
-echo "<tr><td>Modify it :</td><td> <input type=textbox name=email    size=30 value=\"$enteremail\">         </td><td></td></tr>\n";
-if($data->sc_emails=="") $data->sc_emails="no";
-if($data->forum_emails=="") $data->forum_emails="no";
-if($data->rpg_emails=="") $data->rpg_emails="no";
+echo "<tr><td>Email :</td><td> <input type=textbox name=email    size=30 value=\"$data->email\">         </td><td></td></tr>\n";
 
 echo "<tr><td>Personal Webpage:</td><td> <input type=textbox name=webpage  size=30 value=\"$data->webpage\">       </td><td> <a href=$data->webpage target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's website!\" title=\"Visit this person's website!\" height=16> </a></td></tr>\n";
 echo "<tr><td>Favorite Webpage:</td><td> <input type=textbox name=website_fav  size=30 value=\"$data->website_fav\">       </td><td> <a href=$data->website_fav target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's favorite website!\" title=\"Visit this person's favorite website!\" height=16> </a></td></tr>\n";
@@ -271,7 +258,8 @@ echo "<tr><td align=right>Update</td><td>\n";
 echo "<input type=submit name=\"update\" value=\"Go!\">\n";
 echo "</td><td>&nbsp;</td></tr>\n";
 echo "</table> ";
-echo "</td></tr></form></table>\n";
+echo "</td></tr></table>\n";
+echo "</form>\n";
 
 /* 
 /////////////////////////

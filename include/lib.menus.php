@@ -43,7 +43,7 @@ function sc_menu_draw($menu_location) {
                     $clr = sc_html2rgb($RFS_SITE_NAV_FONT_COLOR);
                     $bclr= sc_html2rgb($RFS_SITE_NAV_FONT_BGCOLOR);
 
-                    d_echo("\$RFS_SITE_NAV_IMG = $RFS_SITE_NAV_IMG");
+                    // d_echo("\$RFS_SITE_NAV_IMG = $RFS_SITE_NAV_IMG");
 
 						if($RFS_SITE_NAV_IMG == 1) {
 						$fntsz=16;

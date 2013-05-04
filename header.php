@@ -146,8 +146,7 @@ else {
 			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_left_corner.gif\" align=left>";
 			// echo "</td><td>";
 		}
-		else
-			echo "&nbsp;";
+		//else			echo "&nbsp;";
 		//echo "</td></tr></table>";
 		//echo "<tr><td class=\"midtd\">";
 		

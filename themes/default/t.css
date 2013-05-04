@@ -5,8 +5,10 @@ body{
 	background-image: url('/themes/default/t.background.jpg');
 	background-repeat:no-repeat;
 	background-attachment:fixed;
+	margin:0px;
 }
-	.wikishell {
+
+.wikishell {
 	margin:0 auto;
 	padding: 10px;
 	align: center;
@@ -42,13 +44,6 @@ body{
   background-color: #008800;
 }
 
-.tabletop{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
-    color: #FFFFFF;
-}
 
 .sc_top_menu_table{
   font-family: Lucidia; 
@@ -107,19 +102,33 @@ body{
     color: #00ff00;
 }
 
+hr {
+	border: 1px dashed #0f0;
+}
+
 h1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 32px;;
     font-weight: bold;
     font-style: italic;
-    color: #009900;
+    
+	color: #009900;
+	background-color:rgba(0,0,0,0.2);
+	padding:0;
+	margin:0;
 }
 h2 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 30px;;
+    font-size: 18px;;
     font-weight: bold;
     font-style: italic;
-    color: #009900;
+    
+	color: #009900;
+	
+	background-color:rgba(0,0,0,0.2);
+	padding:0;
+	margin:0;
+
 }
 h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -127,6 +136,7 @@ h3 {
     font-weight: bold;
     font-style: italic;
     color: #009900;
+
 }
 
 .font {
@@ -169,14 +179,16 @@ td {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
-    color:   #FFFFFF;
-	background-color: #003300;
+	padding: 5px;
+    color:   #FFFFFF;	
+	background-color:rgba(0,0,0,0.6);
 }
 
 .midtd{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
+	border: 1px solid #000;
 }
 
 .toptd {
@@ -185,6 +197,11 @@ td {
     font-style: italic;
     font-weight: bold;
     color:   #000000;
+	background-color:rgba(0,0,0,0.4);
+}
+
+.logged_in_td {
+background-color:rgba(0,0,0,0.4);
 }
 
 .lefttd {
@@ -192,6 +209,12 @@ td {
     font-size: xx-small;
     font-weight: bold;
     color:   #00FF00; 
+	background-color:rgba(0,0,0,0.2);
+	width:1px;
+}
+
+.righttd {
+	background-color:rgba(0,5,0,0.8);
 }
 
 th {
@@ -211,10 +234,83 @@ th {
 	color: #000000;
 }
 
+.news_box {
+	background-color:rgba(0,15,0,0.5);
+}
+
+.news_article {
+	padding: 10px;
+
+}
+
+.forum_box {
+	width: 100%;
+	color: #00FF00;
+	background-color: #114411;
+	float: left;
+	overflow: hidden;
+}
+
+.forum_user{
+	float: left;
+	min-height: 150px;
+	background-color: #225522;
+	border: 1px dashed #00ff00;
+	border-radius: 8px;
+	padding: 5px;
+}
+
+.forum_message{
+	overflow: hidden;
+	min-height: 160px;	
+	color: #00FF00;
+	// ackground-color: #000000;
+	padding: 5px;
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	color: #112211;	
+	background-color: #225522;
+	
+}
+
+
+.sc_forum_table_header {
+	background-color: #2c5c2c;
+}
+
+.sc_forum_table_1{
+	background-color: #407c40;
+	color: #000000;
+}
+
+.sc_forum_table_2 {
+	background-color: #3c6c3c;
+	color: #000000;
+}
+
+
+
+.file_category {
+	background-color: #2c5c2c;
+}
+
+.sc_file_table_1{
+	background-color: #407c40;
+	color: #000000;
+}
+
+.sc_file_table_0 {
+	background-color: #3c6c3c;
+	color: #000000;
+}
+
 
 a {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    ffont-size: xx-small;
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
@@ -223,7 +319,6 @@ a {
 
 a:link {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    dfont-size: xx-small;
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
@@ -239,6 +334,11 @@ a:hover {
     color: #000000;
     background-color: #00FF00;
     
+}
+
+.copyright {
+	
+	background-color:rgba(0,f,0,0.8);
 }
 
 

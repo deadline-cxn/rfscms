@@ -176,11 +176,13 @@ background-image: -webkit-gradient(	linear,	left bottom,	left top,	color-stop(0.
 
 
 .lefttd {
-	max-width:200px;
+	vertical-align: text-top;
+	width:1px;
 	padding: 5px;
 }
 
 .midtd {
+	vertical-align: text-top;
 	padding:10px;	
 	min-width: 900px;
 	border: 1px;
@@ -191,6 +193,7 @@ background-image: -webkit-gradient(	linear,	left bottom,	left top,	color-stop(0.
 }
 
 .righttd {
+	vertical-align: text-top;
 	max-width: 200px;
 	padding: 5px;
 }
@@ -235,6 +238,43 @@ background-image: -webkit-gradient(	linear,	left bottom,	left top,	color-stop(0.
 	border-top-right-radius: 8px;
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
+}
+
+
+
+.forum_box {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	background-color:rgba(0,15,150,0.5);
+	padding: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin: 2px;
+}
+
+.forum_user{
+	float: left;
+	min-height: 160px;
+	background-color:rgba(0,60,100,0.5);
+	padding: 5px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.forum_message{
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	color: #FFF;
+	background-color:rgba(0,0,0,0.5);
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	
 }
 
 
