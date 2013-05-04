@@ -38,8 +38,10 @@ else {
 	echo "<link rel=\"canonical\" href=\"".sc_canonical_url()."\" />";
 	rfs_echo($RFS_SITE_HEAD_CLOSE);	
 	rfs_echo($RFS_SITE_BODY_OPEN);	
+	
 	if($_SESSION['admin_show_top']!="hide") {	
-		echo "<table border=0 width=100% cellspacing=0 cellpadding=0 class=toptexttd>";
+		
+		echo "<table border=0 width=100% cellspacing=0 cellpadding=0 class=\"toptexttd\">";
 		echo "<tr><td class=toptd align=left >";
 		if ($RFS_SITE_TTF_TOP)  {
 			$clr 	= sc_html2rgb($RFS_SITE_TTF_TOP_COLOR);
@@ -70,7 +72,7 @@ else {
 		}
 		echo "</td><td class=toptd> ";
 
-		echo "<font class=toptd>$keywords</font> ";
+		echo "<!-- $keywords --> ";
 		echo "<font class=slogan>$RFS_SITE_SLOGAN</font>";
 		echo "</td>";
 		echo "<td class=toptd valign=bottom>";
@@ -91,8 +93,9 @@ else {
 		}
 		echo "</td>";		
 		echo "</tr></table>";
-		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0>
-		<tr class=sc_top_menu_table_td>";
+		
+		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0>";
+		echo "<tr class=sc_top_menu_table_td>";
 		echo "<td class=sc_top_menu_table_td valign=top>";
 		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
 		echo "<tr class=sc_top_menu_table_td>";

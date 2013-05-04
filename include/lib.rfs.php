@@ -27,23 +27,29 @@ function sc_maintenance() { eval(scg());
 	sc_get_modules();
 	$data=sc_getuserdata($_SESSION['valid_user']);
 	if($mc_gross>0) $data->donated="yes";
+	
+	
+	if(empty($theme)) $theme=$_SESSION['theme'];
+	else $_SESSION['theme']=$theme;	
+	
 	if(empty($theme))                   $theme=$RFS_SITE_DEFAULT_THEME;
-	if(!empty($data->theme))            $theme=$data->theme;
+	// if(!empty($data->theme))				 $theme=$data->theme;
 	if(sc_yes($RFS_SITE_FORCE_THEME))   $theme=$RFS_SITE_FORCED_THEME;
-    if(!empty($_GET['theme'])) {
-		$theme=$_GET['theme'];
-		sc_setuservar($data->id,"theme",$theme);
-    }
+	
+    //if(!empty($_REQUEST['theme'])) {
+		//$theme=$_REQUEST['theme'];
+		//sc_setuservar($data->id,"theme",$theme);
+    //}
+	
 	if(!empty($theme)) {
 		if($theme!="$data->theme") {
-            if($data) {
-                sc_query("UPDATE users SET theme='$theme' where name = '$data->name'");
-                $data->theme=$theme;
-            }
+			sc_query("UPDATE users SET theme='$theme' where name = '$data->name'");
+			$data->theme=$theme;            
 		} else {
 			$theme=$data->theme;
 		}
 	}
+	
 	sc_div("sc_maintenance end [$theme]");
 }
 /////////////////////////////////////////////////////////////////////////
