@@ -190,6 +190,7 @@ background-image: -webkit-gradient(	linear,	left bottom,	left top,	color-stop(0.
 	border-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
+	overflow: hidden;
 }
 
 .righttd {
