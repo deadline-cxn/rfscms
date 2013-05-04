@@ -3,7 +3,22 @@ body
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
-    background-color: #000000;
+    background-color: #a09060;
+    margin: 0px;
+}
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
+	margin: 15px;
+}
+
+.toptexttd {
+	background-size:505px 87px;
+	background-repeat:no-repeat;
+	height: 87px;	
+	background-image: url("t.top_image.gif");
 }
 
 .slogan
@@ -11,7 +26,8 @@ body
     font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
-    color: #443404;
+    color: #d4c494;
+	text-shadow: 5px 5px 5px #000;
 
 }
 
@@ -102,10 +118,9 @@ body
 
 .sc_top_menu_table
 {
-  font-family: Lucidia;  
-  font-style: normal;
-  background-color: #544510;
+
 }
+
 .sc_top_menu_table_td
 {
   font-family: Lucidia;  
@@ -255,7 +270,6 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
-	background-color: #a09060;
 }
 
 .downloadtd
@@ -287,11 +301,12 @@ td
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #241500;
-	background-color: #a09060;
+	
 }
 
 .midtd
 {
+	padding: 10px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;    
@@ -304,7 +319,7 @@ td
     font-size: 6px;
     font-weight: bold;
     color:   #807040;
-	background-color: #807040;
+	
 }
 
 
@@ -330,14 +345,19 @@ width: 1px;
 
 .lefttd
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
- 
-    color:   #746530;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold; 
+	color:   #746530;
 	background-color: #a09060;
-	background-image: url("http://localhost/sethcoder/rfs/themes/coffee/coffee.lefttdimage.gif");
-	width: 1px;
+	background-size:200px 1800px;
+	
+	fbackground-repeat:no-repeat;
+	background-image: url("t.lefttdimage.gif");
+	overflow:hidden;
+	width: 200px !important;
+	min-width: 200px;
+	max-width: 200px;
 }
 
 a

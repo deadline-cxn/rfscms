@@ -98,12 +98,12 @@ height:24px;
     font-family: wow;
     font-weight: bold;
     font-size: 16px;
-    color: #ffffff;   
+    color: #ffffff;
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    padding-bottom: 5px;    
-	background-image: url("uitop.png");	
+    padding-bottom: 5px;   
+	background-image: url("uitop.png");
 }
 
 .sc_top_menu_table_td{ 
