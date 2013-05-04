@@ -9,6 +9,8 @@ body{
 	box-shadow: 3px 3px 3px #222222;
 	border:solid 1px #222222;
 	border-radius:5px;
+	
+	margin: 10px;
 }
 
 .memebox {
@@ -195,7 +197,7 @@ hr{
 
 .righttd {
 	vertical-align: text-top;
-	max-width: 200px;
+	width: 1px;
 	padding: 5px;
 }
 
