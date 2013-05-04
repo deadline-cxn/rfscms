@@ -87,15 +87,14 @@ if(sc_access_check("files","xplorer")) {
 }
 
 echo "</tr></table>"; 	
+echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/files/files.php\" method=post>\n";
 echo "<table border=0 cellspacing=0 cellpadding=0 >";
 echo "<tr>\n";
-echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/files/files.php\" method=post>\n";
 echo "<input type=hidden name=action value=search>\n";
 echo "<td width=65 class=contenttd>Search:&nbsp;</td>\n";
 echo "<td width=90 class=contenttd><input type=textbox name=criteria></td>\n";
 echo "<td width=10 class=contenttd>&nbsp;in&nbsp;</td>\n";
 echo "<td width=80 class=contenttd>";
-
 echo "<select name=category style=\"min-width:250px;\"><option>all categories\n";
 $result=sc_query("select * from categories order by name asc");
 $numcats=mysql_num_rows($result);
@@ -108,9 +107,10 @@ echo "</select></td>\n";
 echo "<td width=30 class=contenttd>&nbsp;and&nbsp;display&nbsp;</td>\n";
 echo "<td width=15 class=contenttd><select name=amount><option>all<option>10<option>25<option>50<option>100</select></td>\n";
 echo "<td width=30 class=contenttd>&nbsp;results&nbsp;</td>\n";
-echo "<td width=50 class=contenttd><input type=submit value=\"go!\" name=submit> </form></td>\n";
+echo "<td width=50 class=contenttd><input type=submit value=\"go!\" name=submit></td>\n";
 echo "<td width=75% class=contenttd></td>";
 echo "</tr></table>\n";
+echo "</form>";
 
 if($action=="addfilelinktodb") {
     echo "<table border=0>\n";

@@ -53,7 +53,7 @@ if($give_file=="yes"){
 
 if(empty($name)) $name="home";
 $name=ucwords($name);
-echo "<table border=0 cellspacing=0 cellpadding=0 width=100%><tr><td class=rfswiki_contenttd>"; 
+
 rfs_echo("<h1>$name</h1>");
 
 //////////////////////////////////////////////////////////////////////////////
@@ -228,7 +228,6 @@ if($hide_wiki_menu!="true"){
     echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=createnewpage>create new page</a>]";
 }
 
-echo "</td></tr></table>";
 include($rfsw_footer);
 
 ?>

@@ -158,35 +158,41 @@ function pics_action_uploadpicgo(){ eval(scg());
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
 function pics_action_removepicture() { eval(scg());
-// if($action=="removepicture"){
+
+echo "Remove picture: $id<br>";
+
 	$res=sc_query("select * from `pictures` where `id`='$id'");
 	$picture=mysql_fetch_object($res);
 	if( ($data->access==255) ||
-		($data->id==$picture->poster) ){
-		echo "<table border=0>\n";
+		($data->id==$picture->poster) ){	
+			
+			
+		echo sc_picthumb("$RFS_SITE_URL/$picture->url",200,0,1);
+			
 		echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/pictures/pics.php method=post>\n";
+		echo "<table border=0>\n";
 		echo "<input type=hidden name=action value=removego>\n";
 		echo "<input type=hidden name=id value=\"$id\">\n";
-		echo "<tr><td>Are you sure you want to delete [$picture->sname]???</td>";
+		echo "<tr><td>Are you sure you want to delete [$picture->id]???</td>";
 		echo "<td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
 		echo "<tr><td>Annihilate the file from the server?</td>";
 		echo "<td><input name=\"annihilate\" type=\"checkbox\" value=\"yes\"></td></tr>\n";
-		echo "</form></table>\n";
+		echo "</table></form>\n";
 	} else {
 		echo "<p>You do not have picture removal privileges.</p>";
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
-function pics_action_remove_go() { eval(scg());
-// if($action=="removego"){
+function pics_action_removego() { eval(scg());
+
 	$res=sc_query("select * from `pictures` where `id`='$id'");
 	$picture=mysql_fetch_object($res);
 	if( ($data->access==255) ||
-		($data->id==$picture->poster)
-		)	 {
+		($data->id==$picture->poster) )	 {
+		
 		sc_query("delete from `pictures` where `id`='$id'");
-		echo "<p>Removed $picture->sname from the database...</p>";
+		echo "<p>Removed $picture->id from the database...</p>";
 		if($annihilate=="yes"){
 			$ftr=$picture->url;
 			$ftr=str_replace($RFS_SITE_URL,$RFS_SITE_PATH,$ftr);
@@ -357,8 +363,9 @@ function pics_action_modifypicture() { eval(scg());
 		$res=sc_query("select * from `pictures` where `id`='$id'");
 		$picture=mysql_fetch_object($res);
 		echo "<center><img src=$RFS_SITE_URL/$picture->url height=$editwidth>";
-		echo "<table border=0>";
+		
 		echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pics.php>";
+		echo "<table border=0>";
 		echo "<input type=hidden name=action value=modifygo>";
 		echo "<input type=hidden name=id value=\"$picture->id\">";
 		echo "<tr><td class=contenttd align=right>Short Name:</td><td class=contenttd><input size=60 name=sname value=\"$picture->sname\"></td></tr>";
@@ -405,9 +412,12 @@ function pics_action_modifypicture() { eval(scg());
 		echo "<tr><td class=contenttd align=right>Description:</td><td class=contenttd><textarea name=description rows=8 cols=80>$picture->description</textarea></td></tr>";
 		echo "<tr><td class=contenttd></td><td class=contenttd>";
 		echo "<input type=submit name=go value=go>";
-		echo "</form>";
+		
 		echo "</td></tr></table>";
+		echo "</form>";
 	}
+	include("footer.php");
+	exit();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE random
@@ -488,7 +498,7 @@ function pics_action_view($id) { eval(scg());
     if(!empty($categorym->name)) {
         echo "Gallery: $categorym->name<br>";
     }
-	echo "<div align=center>";
+	
 	if(empty($picture->sname)) {		
 		if(sc_access_check("pictures","edit")) {
 			sc_ajax("Short Name,70","pictures","id","$id","sname",70,"","pictures","edit","");
@@ -509,89 +519,46 @@ function pics_action_view($id) { eval(scg());
 		echo $picture->description;
 	}
 	echo "<br>";
-	echo "</div>";
-		
 	
-/*	
-echo "<script>function changepicname(x,id) {
-			var xmlhttp=new XMLHttpRequest();
-			var url=\"$RFS_SITE_URL/modules/pictures/pics.php?action=aname&sname=\"+x+\"&id=\"+id;
-			xmlhttp.open(\"GET\",url,false);
-			xmlhttp.send();
-			document.getElementById(\"picname\").innerHTML='<h1>'+xmlhttp.responseText+'</h1>'
-			} </script>";
-        
-echo "<div id=\"picname\">";
-		if(empty($picture->sname)) {
-			if(sc_access_check("pictures","edit")) {
-				$picture->sname="	EDIT THIS NAME!!!!
-						<input id='sname' name=sname value=\"\" 
-							onblur=\"changepicname(this.value,$picture->id)\"> ";
-			}  
-		}
-echo "<h1>$picture->sname</h1>";
-echo "</div>";
 
-*/
+	if($picture->sfw=="yes") {
+		$size = getimagesize("$RFS_SITE_PATH/$picture->url");
+		$nw=$size[0]; $nh=$size[1];
+		if($nw>1000) $w=1000;
+		else if($nh>1000) $h=1000;
 
-/* 		echo "<script>function changepicdesc(x,id) {
-			var xmlhttp=new XMLHttpRequest();
-			var url=\"$RFS_SITE_URL/modules/pictures/pics.php?action=adesc&desc=\"+x+\"&id=\"+id;
-			xmlhttp.open(\"GET\",url,false);
-			xmlhttp.send();
-			document.getElementById(\"picdesc\").innerHTML='<h1>'+xmlhttp.responseText+'</h1>'
-			} </script>";
-		
-			echo "<div id=\"picdesc\">";		
-			if(empty($picture->description)) {
-				if(sc_access_check("pictures","edit"))  {
-					$picture->description=" EDIT THIS DESCRIPTION!!!!
-				<textarea id='description' name=description
-				onblur=\"changepicdesc(this.value,$picture->id)\"></textarea>";
-				}
-			}
-			echo "<h3>$picture->description</h3>";
-			echo "</div>";
-		
-		*/
-		
-		if($picture->sfw=="yes") {
-			$size = getimagesize("$RFS_SITE_PATH/$picture->url");
-			$nw=$size[0]; $nh=$size[1];
-			if($nw>1000) $w=1000;
-			else if($nh>1000) $h=1000;
+		if(!stristr($picture->url,$RFS_SITE_URL))
+			$picture->url="$RFS_SITE_URL/$picture->url";
 
-			if(!stristr($picture->url,$RFS_SITE_URL))
-				$picture->url="$RFS_SITE_URL/$picture->url";
-
-			echo "<a href=\"$picture->url\" target=_blank>";
-			echo "<img src=\"$picture->url\" ";
-			if($w) echo "width='$w' ";
-			if($h) echo "height='$h' ";
-			echo "
-			style='
+		echo "<a href=\"$picture->url\" target=_blank>";
+		echo "<img src=\"$picture->url\" ";
+		if($w) echo "width='$w' ";
+		if($h) echo "height='$h' ";
+		echo "
+		style='
 	border:solid 1px #222222;
 	border-radius:15px; ' ";
-			echo " border=0>";
-			echo "</a>";
-			$w=''; $h='';
-		}
-		else {
-			if($viewsfw=="yes") {
-				echo "<img src=\"$picture->url\">";				
-			}
-			else{
-				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
-			}			
-		}
-		echo "<p>&nbsp;</p>";
-			$page="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id";	
-			sc_facebook_comments($page);		
+		echo " border=0>";
+		echo "</a>";
+		$w=''; $h='';
 	}
 	else {
-        echo "<h1>There are no pictures!</h1>";
+		if($viewsfw=="yes") {
+			echo "<img src=\"$picture->url\">";				
+		}
+		else{
+			echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
+		}			
+	}
+	echo "<p>&nbsp;</p>";
+		$page="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id";	
+		sc_facebook_comments($page);		
+	}
+	else {
+	echo "<h1>There are no pictures!</h1>";
 	}
 	echo "</center>";
+	include("footer.php");
 	
 }
 /////////////////////////////////////////////////////////////////////////////////

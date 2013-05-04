@@ -85,19 +85,19 @@ to("100% cellpadding=5"," align=center ");
 		   }
            else {
 			    rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-				// sc_facebook_login();
 		   }
             
         tcc();
     trc();
 tc();
-
 echo "</td></tr></table>";
 
 echo "<div style=\"height:3px;\"></div>";
+
 echo "<table width=100% cellpadding=0 cellspacing=0 border=0><tr>";
-echo "<td class=\"lefttd\"  style=\"vertical-align:text-top;\">";
+echo "<td class=\"lefttd\" valign=top>";
 sc_draw_module("left");
 echo "</td>";
 tco("midtd");
+
 ?>
