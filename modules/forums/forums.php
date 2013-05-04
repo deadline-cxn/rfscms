@@ -420,14 +420,7 @@ function forums_action_forum_list() { eval(scg());
 
             $seefolder=true;
             if($seefolder==true) {
-                //echo "<br>";
-                //echo "<table width=$site_singletablewidth cellspacing=0 cellpadding=0 bgcolor=\"".$dfold->bgcolor."\">";
-                //echo "<tr><th colspan=\"2\" width=\"100%\" align=left>&nbsp;
-                //echo "<h3>$dfold->name</h3>";
-                //&nbsp;";
-                //echo "</th></tr>\n";
-                //echo "</table>";
-                
+
                 $result = sc_query("select * from forum_list where `parent`='$dfold->id' order by priority");
                 $numforums=mysql_num_rows($result);
                 
