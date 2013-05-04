@@ -153,17 +153,18 @@ function sc_show_top_news() {
     sc_show_news($news->id);
 }
 function sc_show_news($nid) { eval(scg());
-
-    $result=sc_query("select * from news where id='$nid'");
+	
+	$result=sc_query("select * from news where id='$nid'");
     $news=mysql_fetch_object($result);
     $userdata=mfo1("select * from users where id='$news->submitter'");
-
-    echo "<table border=0 width=100% ><tr><td>";
-    echo "<h1>$news->headline</h1>";
-    echo "</td></tr>";
+	
+	echo "<div class=\"news_box\">";
+	echo "<h1>$news->headline</h1>";
+	echo "<div class=\"news_article\">";
+	
+     
     
-    echo "<tr> <td class=news_td> ";
-
+    
     $out_link=urlencode("$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id");
 
     if(!empty($news->image_url)) {
@@ -209,7 +210,7 @@ function sc_show_news($nid) { eval(scg());
 		
 	sc_socials_content($ourl,$news->headline);		
 		
-    echo "<table border=0 cellspacing=0><tr><td>";
+    
     $data=$GLOBALS['data'];
     if(($data->name==$userdata->name)||($data->access==255)) {
         
@@ -220,17 +221,12 @@ function sc_show_news($nid) { eval(scg());
 			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$nid\" class=news_a>edit</a>] \n";
 		}
         echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$nid\" class=news_a>remove</a>] \n";
-    }
-    echo "</td>";
-    echo "</tr>";
-    echo "</table>";
+    }   
 	
 	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
 	sc_facebook_comments($page);
 	
-    echo "<p>&nbsp;</p>";
-    echo "<p>&nbsp;</p>";
-    echo "</td></tr></table>";
+echo "</div>";
 }
 function put_news_image($fname) { eval(scg());
     

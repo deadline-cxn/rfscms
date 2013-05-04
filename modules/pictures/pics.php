@@ -34,38 +34,36 @@ if(empty($galleria)) {
 		$galleria="yes";	
 }
 
-echo "<table border=0><tr>"; 
-
-if(sc_access_check("pictures","orphanscan")) {
-	echo "<td>";
-	sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=addorphans","Add Orphans");
-	echo "</td>";
-}
-if(sc_access_check("pictures","upload")) {
-	echo "<td>";
-    sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=uploadpic","Upload picture");
-	echo "</td>";
-}
-if(sc_access_check("pictures","sort")) {
-    $cr=mfo1("select * from categories where name='!!!TEMP!!!'");
-    $res2=sc_query("select * from `pictures` where `category`='$cr->id'");
-    $numpics=mysql_num_rows($res2);
-    if($numpics>0){
+function pics_show_buttons() { eval(scg());
+	echo "<table border=0><tr>"; 
+	if(sc_access_check("pictures","orphanscan")) {
 		echo "<td>";
-		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp","Sort $numpics Pictures");
+		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=addorphans","Add Orphans");
 		echo "</td>";
 	}
-	
+	if(sc_access_check("pictures","upload")) {
+		echo "<td>";
+		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=uploadpic","Upload picture");
+		echo "</td>";
+	}
+	if(sc_access_check("pictures","sort")) {
+		$cr=mfo1("select * from categories where name='!!!TEMP!!!'");
+		$res2=sc_query("select * from `pictures` where `category`='$cr->id'");
+		$numpics=mysql_num_rows($res2);
+		if($numpics>0){
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp","Sort $numpics Pictures");
+			echo "</td>";
+		}
+	}
+	echo "</tr></table>"; 
 }
-
-
-echo "</tr></table>"; 
 
 $ourl="$RFS_SITE_URL/modules/pictures/pics.php?action=$action&id=$id";
 
-if(!empty($id))          $res=sc_query("select * from `pictures` where `id`='$id'");
-if($res)                 $picture=mysql_fetch_object($res);
-if(!empty($picture->id)) $category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$picture->category'"));
+//if(!empty($id))          $res=sc_query("select * from `pictures` where `id`='$id'");
+//if($res)                 $picture=mysql_fetch_object($res);
+//if(!empty($picture->id)) $category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$picture->category'"));
 
 $thumbwidth=200;
 $editwidth=256;
@@ -78,110 +76,85 @@ function pics_action_showmemes() { eval(scg());
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture
 function pics_action_uploadpic() { eval(scg());
-// if($action=="uploadpic"){
-			if($memeit=="yes") {
-				$donotshowcats=true;
-				echo "<p>Select a file to use for the caption.</p>\n";
-			}
-			else{
-				echo "<p>Upload a picture</p>\n";
-			}
-        echo "<table border=0>\n";
-        echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/pictures/pics.php\" method=\"post\">\n";
-        echo "<input type=hidden name=action value=uploadpicgo>\n";
-		 echo "<input type=hidden name=memeit value=$memeit>\n";
+	echo "<h1>Upload a picture</h1>\n";
+
+
+sc_bf(	"$RFS_SITE_URL/modules/pictures/pics.php",
+		"action=uploadpicgo".$RFS_SITE_DELIMITER.
+		"MAX_FILE_SIZE=99999999".$RFS_SITE_DELIMITER.
 		
-        echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"93000000\">";
-        echo "<tr><td align=right>Select file:      </td><td ><input name=\"userfile\" type=\"file\" size=80> </td></tr>\n";
-       
-        echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
-       
-	   echo "
-	   <tr>
-	   <td align=right>Hide from public: </td>
-	   <td><select name=hidden><option>no<option>yes</select> </td>
-	   </tr>
-	   ";
-	if($memeit=="yes") {
+		"SHOW_SELECTOR_categories#name#gallery#Choose a category".$RFS_SITE_DELIMITER.
+		"SHOW_SELECTOR_NOTABLE#IG#hidden#no#yes".$RFS_SITE_DELIMITER.
+		"SHOW_SELECTOR_NOTABLE#IG#sfw#yes#no".$RFS_SITE_DELIMITER.
+		"SHOW_CLEARFOCUSTEXT_sname=name".$RFS_SITE_DELIMITER.
+		"SHOW_TEXTAREA_10#100#desc".$RFS_SITE_DELIMITER.
+		"SHOW_FILE_userfile",		
+		"",	"",	"",	"",	"",	"","",
+		"Upload");
 		
-		echo "<input type=hidden name=category value=Meme>";
-		echo "<input type=hidden name=hidden value=no>";
-	}
-	else {
-		 
-		echo "<tr><td align=right>Gallery:         </td><td><select name=category>\n";
-        $result=sc_query("select * from categories order by name asc"); $numcats=mysql_num_rows($result);
-        for($i=0;$i<$numcats;$i++) { $cat=mysql_fetch_object($result); echo "<option>$cat->name"; }
-        echo "</select></td></tr>\n";		
-	}
+//		$table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit
 		
-        echo "<tr><td align=right>Short name :</td><td><input type=textbox name=sname value=\"$name\"></td></tr>\n";
-        echo "<tr><td align=right valign=top>Description:</td><td><textarea name=\"desc\" rows=\"7\" cols=\"40\"></textarea></td></tr>\n";
-        echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
-        echo "</form>\n";
-        echo "</table>\n";
+
+	
+	/*
+	//echo "<table border=0>\n";
+	//echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/pictures/pics.php\" method=\"post\">\n";
+	//echo "<input type=hidden name=action value=uploadpicgo>\n";
+	//echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"93000000\">";
+	echo "<tr><td align=right>Select file:      </td><td ><input name=\"userfile\" type=\"file\" size=80> </td></tr>\n";
+	echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
+	echo "<tr><td align=right>Hide from public: </td><td><select name=hidden><option>no<option>yes</select> </td>	</tr>	";
+	echo "<tr><td align=right>Gallery:         </td><td><select name=category>\n";
+	$result=sc_query("select * from categories order by name asc"); $numcats=mysql_num_rows($result);
+	for($i=0;$i<$numcats;$i++) { $cat=mysql_fetch_object($result); echo "<option>$cat->name"; }
+	echo "</select></td></tr>\n";		
+	echo "<tr><td align=right>Short name :</td><td><input type=textbox name=sname value=\"$name\"></td></tr>\n";
+	echo "<tr><td align=right valign=top>Description:</td><td><textarea name=\"desc\" rows=\"7\" cols=\"40\"></textarea></td></tr>\n";
+	echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
+	echo "</form>\n";
+	echo "</table>\n";
+	
+	*/
+	include("footer.php");
+	exit();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture confirm
-    if($action=="uploadpicgo"){
-            echo "Uploading picture...\n";
-            $furl="files/pictures/".$_FILES['userfile']['name'];
-            $furl =str_replace("//","/",$furl);
-            if(move_uploaded_file($_FILES['userfile']['tmp_name'], $furl))            {
-                $error="File is valid, and was successfully uploaded. ";
-                $error.="It was stored as [$furl]\n";
-					$filetype=sc_getfiletype($furl);
-					if(!stristr($sname,$filetype)) $sname.=$filetype;
-                $xp_ext = explode(".",$_FILES['userfile']['name'],40);
-                $j = count ($xp_ext)-1;
-                $ext = "$xp_ext[$j]";
-                $filetype=strtolower($ext);
-                $filesizebytes=$_FILES['userfile']['size'];
-                $time1=date("Y-m-d H:i:s");
-                $description=addslashes($description);
-                if(empty($name)) $name=$sname;
-                $poster=999;
-                if($data->id)$poster=$data->id;
-                sc_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
-                // $cid=mysql_fetch_object(sc_query("select * from categories where name = '$category'"));
-                sc_query("update `pictures` set `gallery`='$category'  where `name`='$name'");	
-                sc_query("update `pictures` set `sname`='$sname'        where `name`='$name'");
-                sc_query("update `pictures` set `sfw`='$sfw'            where `name`='$name'");
-                sc_query("update `pictures` set `hidden`='$hidden'      where `name`='$name'");
-                sc_query("update `pictures` set description='$desc' where name='$name'");
-                sc_query("update `pictures` set poster='$poster' where name='$name'");
-                $furl=addslashes($furl);
-                sc_query("update `pictures` set url = '$furl' where name='$name'");
-                sc_query("update `pictures` set time = '$time1' where name='$name'");
-                $error.= " ---- Added $name to database ---- ";
-				if(!empty($memeit)) {
-					$p=mfo1("select * from pictures where sname='$sname'");
-					$id=$p->id;
-					$basepic=$id;
-					$action="memegenerate";
-					$mid="";
-					$private=$hidden;
-				}
-            }
-            else{
-                $error ="File upload error!";
-                echo "File upload error! [\n";
-                echo $_FILES['userfile']['name'];
-                echo "][";
-                echo $_FILES['userfile']['error'];
-                echo "][";
-                echo $_FILES['userfile']['tmp_name'] ;
-                echo "][";
-                echo $uploadFile;
-                echo "]\n";
-            }
-            if(!$error){
-                $error .= "No files have been selected for upload";
-            }
-            sc_info("Status: [$error]","WHITE","GREEN");
-           // echo "<p>[<a href=$RFS_SITE_URL/files.php?action=upload>Add another file</a>]\n";
-
-    }
+function pics_action_uploadpicgo(){ eval(scg());
+	echo "Uploading picture...\n";
+	$furl="files/pictures/".$_FILES['userfile']['name'];
+	$furl=str_replace("//","/",$furl);
+	if(move_uploaded_file($_FILES['userfile']['tmp_name'], $furl)) {
+		$error="File is valid, and was successfully uploaded. It was stored as [$furl]\n";
+		$time1=date("Y-m-d H:i:s");
+		$desc=addslashes($desc);		
+		$poster=999;
+		if($data->id)$poster=$data->id;
+		$furl=addslashes($furl);
+		sc_query("INSERT INTO `pictures` (`url`) VALUES('$furl');");
+		$id=mysql_insert_id();
+		
+		sc_query("update `pictures` set `gallery`='$gallery'  	where `id`='$id'");	
+		sc_query("update `pictures` set `category`='$gallery' where `id`='$id'");
+		sc_query("update `pictures` set `sname`='$sname'        where `id`='$id'");	
+		sc_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");	
+		sc_query("update `pictures` set `hidden`='$hidden'      where `id`='$id'");	
+		sc_query("update `pictures` set description='$desc' 		where `id`='$id'");	
+		sc_query("update `pictures` set poster='$poster' 		where `id`='$id'");
+		sc_query("update `pictures` set time = '$time1' 			where `id`='$id'");
+		$error.= " ---- Added $name (id:$id) to database ---- ";
+	}
+	else{
+		$error ="File upload error!";
+		echo "File upload error! [\n";
+		echo $_FILES['userfile']['name']."][".$_FILES['userfile']['error']."][".$_FILES['userfile']['tmp_name']."][ $uploadFile]\n";
+	}
+	if(!$error){
+		$error .= "No files have been selected for upload";
+	}
+	sc_info("Status: [$error]","WHITE","GREEN");
+	include("footer.php");
+}
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
 function pics_action_removepicture() { eval(scg());
@@ -621,8 +594,6 @@ echo "</div>";
 	echo "</center>";
 	
 }
-
-
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view category
 function pics_action_viewcat($cat) {eval(scg());
@@ -686,7 +657,6 @@ function pics_action_viewcat($cat) {eval(scg());
 	include("footer.php");
 	exit();
 }
-
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE show categories
 function pics_action_viewcats(){ eval(scg());
@@ -743,8 +713,9 @@ function pics_action_viewcats(){ eval(scg());
 	exit();
 }
 
-
 function pics_action_() { eval(scg());
+	echo "<h1>Pictures</h1>";
+	pics_show_buttons();
 	pics_action_viewcats();
 }
 

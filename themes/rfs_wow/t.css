@@ -129,7 +129,44 @@ height:24px;
     padding-bottom: 8px;
     
     color: #000000;
-  
+}
+
+
+.forum_box {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	background-color:rgba(0,15,0,0.5);
+}
+
+.forum_user{
+	float: left;
+	min-height: 150px;
+	padding: 5px;
+}
+
+.forum_message{
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	background-color:rgba(0,0,0,0.5);
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	
+}
+
+
+
+.lefttd {
+	width: 1px;
+}
+
+.righttd {
+	width: 1px;
 }
 
 .slogan{

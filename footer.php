@@ -37,8 +37,10 @@ else{
 	
 	echo "</td></tr></table>";
 
-    echo "<center>$RFS_SITE_COPYRIGHT</center>";
-	for($i=0;$i<10;$i++) echo "<p> &nbsp; </p> <br> &nbsp; <br>";
+	echo "<div class=\"copyright\">";
+    echo $RFS_SITE_COPYRIGHT;
+	echo "</div>";
+	
     echo "</body></html>";
 }
 

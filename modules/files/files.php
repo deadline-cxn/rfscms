@@ -27,6 +27,8 @@ include_once("include/lib.all.php");
 include_once("3rdparty/ycTIN.php");
 include("header.php");
 
+echo "<h1>Files</h1>";
+
 sc_div("files.php");
 
 if($action=="show_temp") { 	$_SESSION['show_temp']=true;}

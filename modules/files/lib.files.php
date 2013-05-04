@@ -29,10 +29,11 @@ function sc_module_mini_files($x) { eval(scg());
         echo "<a href=\"$link\">$file->name</a> ";
         echo"</td><td class=sc_project_table_$gt>";
         echo sc_sizefile($file->size);
+		// echo "<br>";
         echo "</td></tr>";
     }
     echo "</table>";
-    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/files/files.php class=a_cat>More...</a>)</p>";
+    //echo "<p align=right>(<a href=$RFS_SITE_URL/modules/files/files.php class=a_cat>More...</a>)</p>";
 }
 
 function sc_scrubfiles() {

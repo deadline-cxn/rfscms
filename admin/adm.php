@@ -276,6 +276,16 @@ function adm_action_f_access_group_delete_go() { eval(scg());
 /////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_access_groups() { eval(scg());
 	echo "<h1>Modify Access Groups</h1>";
+	echo "<hr>";
+	echo "<h2>Create a new access group</h2>";
+	sc_div("ADD ACCESS GROUP FORM START");
+	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
+	echo "<input name=\"axnm\">\n";
+	echo "<input type=\"submit\" value=\"Add\">\n";
+	echo "</form>\n";
+	sc_div("ADD ACCESS GROUP FORM END");
+	
 	$r=sc_query("select distinct name from access");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		echo "<hr>";
@@ -314,15 +324,8 @@ function adm_action_access_groups() { eval(scg());
 		echo "</p>";
 	}
 	
-	echo "<hr>";
-	echo "<h2>Create a new access group</h2>";
-	sc_div("ADD ACCESS GROUP FORM START");
-	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
-	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
-	echo "<input name=\"axnm\">\n";
-	echo "<input type=\"submit\" value=\"Add\">\n";
-	echo "</form>\n";
-	sc_div("ADD ACCESS GROUP FORM END");
+	
+	
 	include( "footer.php" );
 	exit();
 }

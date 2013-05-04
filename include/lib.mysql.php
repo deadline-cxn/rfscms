@@ -682,7 +682,8 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 		$folder_mode=1;
 		$use_id_method=0;
 	}
-	if($return_page!="INLINE") echo "<form action=\"$return_page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
+	if($return_page!="INLINE")
+		echo "<form action=\"$return_page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
 	
 	$hv=explode(sc_delimiter($hiddenvars),$hiddenvars);
 	$omit='';
@@ -692,7 +693,7 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
     for($hz=0;$hz<count($hv);$hz++){
         $he=explode("=",$hv[$hz]);
         for($hy=0;$hy<count($he);$hy+=2){
-			$dontshowhv=false;			
+			$dontshowhv=false;
 			if($he[$hy]=="SELECTNAME") {
 				$selname=$he[$hy+1];
 				$dontshowhv=true;
@@ -717,7 +718,8 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 				
 			}
 			else {
-				echo "<input type=\"hidden\" name=\"".$he[$hy]."\" value=\"".$he[$hy+1]."\">";
+				if($return_page!="INLINE")
+					echo "<input type=\"hidden\" name=\"".$he[$hy]."\" value=\"".$he[$hy+1]."\">";
 			}
         }
     }
@@ -780,8 +782,13 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 				$key2=$xkey[1];				
 		 } else $key2='';		 
 		 if(empty($selname)) $selname=$key;
-
-		$scoq="select $distinct $key";
+		 
+		 $hasimage="";
+		 $result = mysql_query("SHOW COLUMNS FROM `$table` LIKE 'image'");
+		 $exists = (mysql_num_rows($result))?TRUE:FALSE;
+		 if($exists) $hasimage= ",image";
+		 
+		$scoq="select $distinct $key$hasimage";
 		if(!empty($key2))
 			$scoq.=",$key2";
 			
@@ -793,28 +800,35 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 		
 		// echo "<p> $scoq </p>";
 		
-		echo "<select id=\"optionizer_$selname\" name=\"$selname\" width=20   ";
-		if($on_change_method)
-			echo "onchange=\"this.form.submit()\" ";
+		echo "<select name=\"$selname\" "; // id=\"optionizer_$selname\"
+		if($on_change_method) echo "onchange=\"this.form.submit()\" ";
 		echo ">";
-		echo "<option >$default";
-		echo "<option >--- None ---";
+		echo "<option value=\"$default\">$default</option>";
+		echo "<option value=\"--- None ---\">--- None ---</option>";
 		
 		if($r) {
 			for($i=0;$i<mysql_num_rows($r);$i++){
 				$d=mysql_fetch_object($r);
 				echo "<option ";
+				
+				if(!empty($d->image))
+					if(file_exists("$RFS_SITE_PATH/$d->image"))
+						echo "data-image=\"".sc_picthumb_raw($d->image,16,0,0)."\" ";
+			
 				if($use_id_method){
 					echo "value=\"$d->id\" ";
 				}
 				else {
-					echo "value=\"$d->key\" ";
+					echo "value=\"".$d->$key."\" ";
 				}
 				echo ">".$d->$key;
 
 				if(!empty($d->$key2)) {
 					echo "(".$d->$key2.")";
 				}
+				
+				echo "</option>";
+
 			}
 		}
 		echo "</select>";
@@ -823,12 +837,11 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 	else {
 		if(empty($selname)) $selname=$key;
 
-		echo "<select id=\"optionizer_$selname\" name=\"$selname\" width=20   ";
-		if($on_change_method)
-			echo "onchange=\"this.form.submit()\" ";
+		echo "<select name=\"$selname\" "; // id=\"optionizer_$selname\"
+		if($on_change_method) echo "onchange=\"this.form.submit()\" ";
 		echo ">";
-		echo "<option >$default";
-		echo "<option >--- None ---";
+		echo "<option value=\"$default\">$default</option>";
+		echo "<option value=\"--- None ---\">--- None ---</option>";
 
 			$dirfiles = array();
 			if(stristr($table,"$RFS_SITE_URL/")) 
@@ -842,7 +855,7 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 			while(list ($key, $file) = each ($dirfiles)){
 			if($file!=".") if($file!="..")
 				if(!is_dir($dir."/".$file))
-					echo "<option>$file";
+					echo "<option value=\"$file\">$file</option>";
 			}
 
 		echo "</select>";
@@ -936,16 +949,20 @@ function sc_bqf($hiddenvars,$submit){ eval(scg());
 //						LABEL_XXX
 //						SHOW_XXX_#ROWS#COLS#<varname>=<defaultvault>
 //
-// 						SHOW_CODEAREA
-//						SHOW_TEXT
-//						SHOW_CLEARFOCUSTEXT
-//						SHOW_PASSWORD
-//						SHOW_SELECTOR
+//						SHOW_FILE_varname
+// 						SHOW_CODEAREA_varname
+//						SHOW_TEXT_varname
+//						SHOW_CLEARFOCUSTEXT_varname
+//						SHOW_PASSWORD_varname
+//						SHOW_SELECTOR_(TABLE_NAME OR NOTABLE)#(TABLE_FIELD OR IGNORED)#varname#DEFAULT#option1#option2#...
 //						SHOW_TEXTAREA
 // EXAMPLES: 
-// SHOW_TEXT_textlabel#textname#textvalue#text to add
-// SHOW_SELECTOR_colors#name#text_color#$ocolor
-// SHOW_SELECTOR_exam_question_types#type#type#$qt->type
+// 'SHOW_SELECTOR_colors#name#text_color#$ocolor'
+// 'SHOW_SELECTOR_exam_question_types#type#type#$qt->type'
+// 'SHOW_TEXT_address=1132 Jones Street'
+// 'SHOW_TEXT_subject=$subject'
+// 'SHOW_CODEAREA_300#600#message=$message'
+// 'SHOW_TEXTAREA_300#600#message=$message'
 // 
 // $table		  	= which table to use
 // $query       	= query of fields to include in the form, if empty will use all fields
@@ -962,9 +979,12 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 	$delimiter=$RFS_SITE_DELIMITER;	
     if(!stristr($page,$RFS_SITE_URL)) $page="$RFS_SITE_URL/$page";
     if(empty($svarf)) $svarf="omit";
+	
+	echo "<form action=\"$page\" method=\"POST\" enctype=\"multipart/form-data\">";
+	
 	echo "<table cellspacing=0 cellpadding=0>";
     echo "<tr><td>";
-	echo "<form action=\"$page\" method=\"POST\" enctype=\"multipart/form-data\">";
+	
 	    
 	d_echo($hiddenvars);
 	
@@ -1202,11 +1222,28 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
         $hidvar_b=explode("=",$hidvar_a[$j]);
         d_echo("[$hidvar_b[0]] [$hidvar_b[1]]");
 		
+		
+		if(stristr($hidvar_b[0],"SHOW_FILE_")) {
+			
+			 $field=explode("#",$hidvar_b[0]);
+            $hidvar_b[0]=str_replace("SHOW_FILE_","",$hidvar_b[0]);
+            $cols=$width;
+            $rows=6;
+            $taname=$hidvar_b[0];
+            $rw=explode("#",$hidvar_b[0]);
+			
+			echo "<tr><td class=sc_project_table_$gt align=right>";
+			echo ucwords(str_replace("_"," ",$taname));
+			echo " </td><td ><input name=\"$taname\" type=\"file\" size=80> </td></tr>\n";
+		}
+		
+		
 		if(stristr($hidvar_b[0],"SHOW_SELECTOR_")) {
 			
 			// examples:
 			// SHOW_SELECTOR_colors#name#text_color#$ocolor
 			// SHOW_SELECTOR_exam_question_types#type#type#$qt->type
+			// SHOW_SELECTOR_NOTABLE_
 			
             if($this_codearea==false){
             $field=explode("#",str_replace("SHOW_SELECTOR_","",$hidvar_b[0]));
@@ -1220,20 +1257,28 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 					$key=join($RFS_SITE_DELIMITER,$keys);
 				}
             
-            echo "<tr><td class=sc_project_table_$gt align=right>";
+            echo "<tr><td class=\"sc_project_table_$gt\" align=right>";
 			
-				echo ucwords($name);
+				echo ucwords(str_replace("_"," ",$name));
 			
-            echo "</td><td class=sc_project_table_$gt>";
-	
+            echo "</td><td class=\"sc_project_table_$gt\">";
 			
-				sc_optionizer("INLINE","SELECTNAME=$name".$RFS_SITE_DELIMITER,
-								$table,
-								$key,
-								0,
-								$default,
-								0
-								);
+			
+				if($table!="NOTABLE") {
+						sc_optionizer("INLINE",
+										"SELECTNAME=$name".$RFS_SITE_DELIMITER,
+										$table, $key, 0, $default, 0 );
+				}
+				else {					
+					echo "<select name =$name>";
+					echo "<option >$default";
+					for($i=4;$i<count($field);$i++) {
+						echo "<option>".$field[$i];
+					}
+					echo "</select>";					
+					
+				}
+				
 
             echo "</td></tr>";
             $gt++; if($gt>2) $gt=1;
@@ -1262,7 +1307,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 		}
 
 		if(stristr($hidvar_b[0],"SHOW_TEXT_")){
-				d_echo("SHOW_TEXT_ found... ".$hidvar_b[0]);
+			 d_echo("SHOW_TEXT_ found... ".$hidvar_b[0]);
             $field=explode("#",$hidvar_b[0]);
             $hidvar_b[0]=str_replace("SHOW_TEXT_","",$hidvar_b[0]);
             $cols=$width;
@@ -1284,7 +1329,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
             echo "</td><td class=sc_project_table_$gt>";
 
 				echo " <input ";
-				echo "size=$cols ";
+				echo "size=\"$cols\" ";
 				echo "name=\"".$taname."\" ";
 				echo "value=\"".$hidvar_b[1]."\"";
 				echo $clearfocus;
@@ -1383,8 +1428,9 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
         sc_makebuttonend();
 	    echo "</td></tr>";
     }
-    echo "</form>";
+    
     echo "</table>";
+	echo "</form>";
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_form_end($submit){
@@ -1486,7 +1532,6 @@ function show_codearea($id,$rows,$cols,$name,$indata){ eval(scg());
     echo "</textarea>";
     //echo "<BR><a href=\"http://sourceforge.net/projects/editarea/\" target=_blank>EditArea</a> JavaScript Browser Editor";
 }
-
 /////////////////////////////////////////////////////////////////////////
 function sc_option_countries() {
 	echo "
@@ -1873,12 +1918,8 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 	fclose($fp);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-
 function sc_ajax_spinner() { eval(scg()); 
 return "<img src=$RFS_SITE_URL/images/icons/spinner.gif>"; }
-
-
-
 function sc_ajax_callback_image(){ eval(scg());
 	if(sc_access_check($rfaapage,$rfaact)) {
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
@@ -1899,12 +1940,10 @@ function sc_ajax_callback_image(){ eval(scg());
 	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
 	exit;
 }
-
 function sc_ajax_callback_file(){ eval(scg());
 
 	exit;
 }
-
 function sc_ajax_callback(){ eval(scg());
 
 	if(sc_access_check($rfaapage,$rfaact)) {
@@ -1918,8 +1957,6 @@ function sc_ajax_callback(){ eval(scg());
 	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
 	exit;
 }
-
-
 function sc_ajax_javascript() { eval(scg());
 	echo '
 	<script>
@@ -1974,7 +2011,6 @@ function sc_ajax_javascript() { eval(scg());
 		}
 		</script> ';
 }
-
 function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
 	
 	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
@@ -2080,8 +2116,6 @@ function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$r
 	}
 	echo "<div style='clear:both;'></div>";
 }
-
-
 function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback) { eval(scg());
 	
 	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
