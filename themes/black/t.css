@@ -320,6 +320,11 @@ td
     font-weight: bold;
     color:   #777777;
 	background-color: #000000;
+	width: 1px;
+}
+
+.righttd {
+	width: 1px;
 }
 
 a

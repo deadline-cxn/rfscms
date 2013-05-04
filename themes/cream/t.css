@@ -186,7 +186,7 @@ td{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
-	background-color: #FFFFFF;
+	
 }
 
 
@@ -283,6 +283,10 @@ th {
     font-size: 10px;
     ffont-weight: bold;
     color:   #777777;
+	width: 1px;
+}
+.righttd {
+	width: 1px;
 }
 
 a:link {

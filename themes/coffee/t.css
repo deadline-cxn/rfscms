@@ -323,6 +323,10 @@ td
 	background-color: #807040;
 }
 
+.righttd {
+width: 1px;
+}
+
 
 .lefttd
 {
@@ -333,6 +337,7 @@ td
     color:   #746530;
 	background-color: #a09060;
 	background-image: url("http://localhost/sethcoder/rfs/themes/coffee/coffee.lefttdimage.gif");
+	width: 1px;
 }
 
 a

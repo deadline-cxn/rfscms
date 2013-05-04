@@ -2,6 +2,14 @@ body {
 background-color: #006E0C;
 } 
 
+.lefttd {
+	width: 1px;
+}
+
+.righttd {
+	width: 1px;
+}
+
 
 .memebox {
 	text-align: center;

@@ -166,6 +166,11 @@ td {
     font-size: xx-small;
     font-weight: bold;
     color:   #FF0000;
+	width: 1px;
+}
+
+.righttd {
+	width: 1px;
 }
 
 th {

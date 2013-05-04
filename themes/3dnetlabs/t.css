@@ -36,13 +36,21 @@ background-color: #33FF1C;
 }
 
 .lefttd {
+	max-width: 195px;
     width: 195px !important;
-	overflow: hide;
+	overflow: hidden;
     font-family: Terminal;
     font-size: medium;
     color:   #00FF00;	
     background-image: url('http://3dnetlabs.info/images/left_old.gif');
     background-repeat: repeat;
+	
+}
+
+.righttd {
+
+	background-color: #a6a68c;
+	width: 11px !important;
 }
 
 .rfs_thumb {
@@ -677,8 +685,9 @@ td
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    color:   #222200;
-	background-color: #a6a68c;
+    color:   #777777;
+	
+	fbackground-color: #a6a68c;
 }
 
 
@@ -718,10 +727,6 @@ td
 }
 
 
-.righttd{
-	margin: 0px;
-	width: 0px;
-}
 
 
 
