@@ -10,6 +10,36 @@ body
     background-color: #FF8018;	
 }
 
+.forum_box {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	background-color:rgba(0,15,0,0.2);
+	border-radius: 10px;
+	margin: 2px;
+}
+
+.forum_user{
+	float: left;
+	min-height: 150px;
+	padding: 5px;
+}
+
+.forum_message{
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	background-color:rgba(255,155,55,0.2);
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	
+}
+
+
 hr
 {
 	width: 98%;

@@ -349,6 +349,7 @@ if(empty($data->donated))
 echo "<table border=0 width=100% ><tr><td align=center>";
 if(empty($data->donated))
 	sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+	
 
 echo "</td></tr></table>";
 

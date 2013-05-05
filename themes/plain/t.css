@@ -80,3 +80,31 @@ body {
 	background-color: #880000;
 }
 
+
+
+.forum_box {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	margin: 2px;
+}
+
+.forum_user{
+	float: left;
+	min-height: 150px;
+	padding: 5px;
+}
+
+.forum_message{
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	background-color: #888;
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	
+}

@@ -475,6 +475,9 @@ function adm_action_f_theme_edit_css() { eval(scg());
 	if(!empty($update)) {
 		echo "<h1>UPDATE:</h1>";
 		echo " ($outfile)<br>";
+		$cssvalue=stripslashes($cssvalue);
+		$newvalue=stripslashes($newvalue);
+		$newvalue=trim($newvalue,";");
 		echo " (CHANGE $update{ $sub: $cssvalue; } TO $update{ $sub: $newvalue; ) <br>";
 		
 		system("sudo touch $outfile.out");

@@ -7,7 +7,6 @@ sc_access_method_add("pictures", "edit");
 sc_access_method_add("pictures", "delete");
 sc_access_method_add("pictures", "sort");
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE PICTURES
 function sc_module_mini_pictures($x) { eval(scg());
@@ -28,7 +27,7 @@ function sc_module_mini_pictures($x) { eval(scg());
         echo sc_trunc($picture->description,50);        
         echo "</td></tr>";
     }
-	echo "<tr><td></td><td>";
+	echo "<tr><td class=contenttd></td><td class=contenttd>";
     echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php?action=random class=a_cat>Random Picture</a>)<br>";
     echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php class=a_cat>More...</a>)";
 	echo "</td></tr>";
