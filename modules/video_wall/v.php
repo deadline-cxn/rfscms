@@ -5,7 +5,8 @@ chdir("../../");
 //include("include/session.php");
 include("include/lib.all.php");
 
- $data=sc_getuserdata($_SESSION['valid_user']);
+$data=sc_getuserdata($_SESSION['valid_user']);
+
 $count=sc_mcount($data->name);
 
 if($debug=="on") $_SESSION['debug_msgs']=true;
@@ -113,10 +114,9 @@ if( (empty($_SESSION['darr'])) ||
 	echo "<link rel=\"canonical\" href=\"$RFS_SITE_URL/modules/video_wall/v.php\" />";
 	
 	$theme=$data->theme;
-	if(empty($theme)) $theme="tmpl_white";
+	if(empty($theme)) $theme="white";
 	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
-		
-		
+				
     echo "</head>\n";
 	
 	echo "<body style=\" margin:0; \">\n";
