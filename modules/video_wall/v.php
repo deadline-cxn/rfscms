@@ -297,7 +297,7 @@ if($act=="add") {
 			
 			echo "</td><td class=contenttd>&nbsp;</td><td class=contenttd>";
 			echo $_SESSION["valid_user"];
-			echo " (<a href=$RFS_SITE_URL/logout.php?outpage=$RFS_SITE_URL/modules/video_wall/v.php>logout</a>)<BR>";
+			echo " (<a href=$RFS_SITE_URL/login.php?action=logout&outpage=$RFS_SITE_URL/modules/video_wall/v.php>logout</a>)<BR>";
 		}
 		echo "</td></tr></table>";
 				
