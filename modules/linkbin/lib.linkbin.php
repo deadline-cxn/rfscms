@@ -12,7 +12,7 @@ function sc_module_mini_link_friends($x) { eval(scg());
 		$url=$link->link;
 		$url = str_replace(":","_rfs_colon_",  $url);	
 		$url=urlencode($url);
-		echo "<div><a href=\"$RFS_SITE_URL/link_out.php?link=$url\" target=_blank>$link->sname</a></div>";
+		echo "<div class=contenttd><a href=\"$RFS_SITE_URL/link_out.php?link=$url\" target=_blank>$link->sname</a></div>";
    }
 	if($data->access=="255") {
 		echo "<div style='float: left;'>";

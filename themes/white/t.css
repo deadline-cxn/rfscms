@@ -1,13 +1,51 @@
 body {
-   margin: 0px;
-    scrollbar-base-color: #008888;
-    scrollbar-arrow-color: #00FFFF;
-    scrollbar-DarkShadow-Color: #004444;
+	margin: 0px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
     background-color: #FFFFFF;
 }
+
+
+.forum_box {
+	color: #444;
+	width: 96%;
+	float: left;
+	overflow: hidden;
+	background-color:rgba(150,200,255,0.5);
+	padding: 10px;
+	border-radius: 10px;	
+	margin: 2px;
+}
+
+.forum_user{
+	float: left;
+	min-height: 160px;
+	background-color:rgba(0,60,100,0.5);
+	padding: 5px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	color: #444;
+}
+
+.forum_message{
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	color: #FFF;
+	background-color:rgba(0,0,0,0.2);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	
+}
+
+
 
 
 .rfs_thumb {
@@ -338,6 +376,8 @@ th
     font-size: 12px;
     font-weight: bold;
     background-color: #FFFFFF;
+	
+	overflow: hidden;
 
 }
 

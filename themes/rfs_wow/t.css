@@ -1,13 +1,13 @@
 @font-face {
 	font-family: wow;
-	src: url('wow.ttf');
+src: url('wow.ttf');
 }
 
 
 body{
-	margin: 0px;
+margin: 0px;
 	background-color: #000000;
-	background-image: url("bkg.png");	
+background-image: url('bkg.png');
 }
 
 h1 {
@@ -153,11 +153,15 @@ height:24px;
 }
 
 
+
+
 .forum_box {
 	width: 100%;
 	float: left;
 	overflow: hidden;
 	background-color:rgba(0,15,0,0.5);
+	border-radius: 10px;
+	margin: 2px;
 }
 
 .forum_user{

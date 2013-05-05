@@ -12,6 +12,37 @@ html, body
 }
 
 
+.forum_box {
+	width: 98%;
+	float: left;
+	overflow: hidden;
+	background-color:rgba(0,0,0,0.2);
+	border-radius: 10px;
+	margin: 2px;
+}
+
+.forum_user{
+	float: left;
+	min-height: 150px;
+	padding: 5px;
+}
+
+.forum_message{
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	background-color:rgba(0,0,0,0.2);
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	
+}
+
+
+
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;
 	border:solid 1px #222222;

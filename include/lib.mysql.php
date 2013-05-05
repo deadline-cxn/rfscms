@@ -1787,6 +1787,9 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 			echo "</td><td>";
 			
 			echo "<a name=\"$base$sub\"></a>";
+			
+			$cssvalue=str_replace("\"","'",$cssvalue);
+			
 	
 			echo "<input type=\"hidden\" name=\"thm\" value=\"$thm\">";
 			echo "<input type=\"hidden\" name=\"outfile\" value=\"$css_file\">";

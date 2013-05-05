@@ -7,6 +7,8 @@ sc_access_method_add("forums", "edit");
 sc_access_method_add("forums", "delete");
 sc_access_method_add("forums", "moderate");
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MODULE FORUM
 function sc_module_mini_latest_forum_threads($x) { eval(scg());
     sc_div("FORUMS MODULE SECTION");
     echo "<h2>Last $x Threads</h2>";
@@ -26,8 +28,10 @@ function sc_module_mini_latest_forum_threads($x) { eval(scg());
 		}
 		
 	}
+	
+	echo "<tr><td class=contenttd>(<a href=$RFS_SITE_URL/modules/forums/forums.php class=\"a_cat\" align=right>More...</a>)</td></tr>";
     echo "</table>";
-    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/forums/forums.php class=\"a_cat\" align=right>More...</a>)</p>";
+    
 }
 
 
