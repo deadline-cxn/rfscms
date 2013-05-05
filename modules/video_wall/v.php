@@ -301,11 +301,15 @@ if($act=="add") {
 		}
 		echo "</td></tr></table>";
 				
-
+if(empty($data->donated))
+			echo "If you would like to get this page free
+					  from advertising, you can donate to my
+					paypal and the ads will be removed.
+					Thanks, Seth.<br>";
+					
 		echo "<table border=0 cellspacing=0><tr><td valign=top>";
 
-		if(empty($data->donated))
-			echo "If you would like to get this page free from advertising, you can donate to my paypal and the ads will be removed. Thanks, Seth.<br>";
+		
 
 		echo "If there is a glitch<br>in the matrix...<br>[<a href=$RFS_SITE_URL/modules/video_wall/v.php?action=resetmatrix>RESET EVERYTHING</a>]";
 		echo "</td><td>";
