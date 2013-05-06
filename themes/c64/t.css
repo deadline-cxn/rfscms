@@ -1,9 +1,10 @@
+
 body {
-margin: 45px;
-font-family: Fixed, monospace;
-    font-size: 12px;
-    font-style: normal;
-background-color: A397FF;
+	margin: 45px;
+	font-family: Fixed, monospace;
+	font-size: 12px;
+	font-style: normal;
+	background-color: A397FF;
 
 
 $RGBCOLOR0 :#000000;
@@ -353,6 +354,8 @@ hr
 
 .midtd
 {
+
+
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
