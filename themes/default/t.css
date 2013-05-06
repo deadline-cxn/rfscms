@@ -180,15 +180,16 @@ td {
     font-size: xx-small;
     font-weight: bold;
 	padding: 5px;
-    color:   #FFFFFF;	
+	color:   #FFFFFF;	
 	background-color:rgba(0,0,0,0.6);
 }
 
 .midtd{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	font-weight: bold;
 	border: 1px solid #000;
+	background-color:rgba(0,0,0,0.6);
 }
 
 .toptd {
@@ -340,7 +341,8 @@ a:hover {
 }
 
 .copyright {
-	
+	width: 100%;
+	text-align: center;	
 	background-color:rgba(0,f,0,0.8);
 }
 
