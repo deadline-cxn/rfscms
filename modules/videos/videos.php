@@ -5,16 +5,10 @@ include("header.php");
 $video=mfo1("select * from videos where id='$id'");
 $vc=sc_getuserdata($video->contributor);
 
-
-//echo "<table border=0 cellspacing=0 cellpadding=5 ";
-//echo " width=$RFS_SITE_SINGLETABELWIDTH><tr><td class=contenttd align=center>";
 function video_pagefinish(){
-  // echo "</td></tr></table>";
-
     include("footer.php");
     exit();
 }
-
 
 if($action=="modifyvideo"){
 	if( ($data->access==255) ||
@@ -94,14 +88,12 @@ if($res) $video=mysql_fetch_object($res);
 if(!empty($video->id))
 $category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
 
-echo "<table width=\"100%\" border=0><tr><td align=center>";
 if(!empty($category->name)) {
 	echo "<h1>$category->name Videos</h1>";
 }
 else {
 	echo "<h1>Videos</h1>";
 }
-echo "</tr></td></table>";
 
 if($action=="submitvidgo") {
 	if($_SESSION['logged_in'] != true) $cont=999;

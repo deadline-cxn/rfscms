@@ -1,7 +1,7 @@
 <?
 chdir("../../");
 include("header.php");
-echo "Comics <BR>";
+echo "<h1>Comics </h1>";
 echo "<table border=0 width=800 cellspacing=0 cellpadding=0><tr><td class=contenttd>";
 if($give_file=="comics") {
     if(empty($data->name)) echo "<p>No...</p>\n";
