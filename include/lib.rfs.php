@@ -27,6 +27,11 @@ function sc_maintenance() { eval(scg());
 	sc_get_modules();
 	$data=sc_getuserdata($_SESSION['valid_user']);
 	if($mc_gross>0) $data->donated="yes";
+	
+	if(!empty($_REQUEST['theme'])) {
+		$theme=$_REQUEST['theme'];
+		//sc_setuservar($data->id,"theme",$theme);
+    }	
 
 	if(empty($theme)) $theme=$_SESSION['theme'];
 	else $_SESSION['theme']=$theme;	
@@ -34,11 +39,6 @@ function sc_maintenance() { eval(scg());
 	if(empty($theme))                   $theme=$RFS_SITE_DEFAULT_THEME;
 	// if(!empty($data->theme))				 $theme=$data->theme;
 	if(sc_yes($RFS_SITE_FORCE_THEME))   $theme=$RFS_SITE_FORCED_THEME;
-	
-    //if(!empty($_REQUEST['theme'])) {
-		//$theme=$_REQUEST['theme'];
-		//sc_setuservar($data->id,"theme",$theme);
-    //}
 	
 	if(!empty($theme)) {
 		if($_SESSION['logged_in']) {
