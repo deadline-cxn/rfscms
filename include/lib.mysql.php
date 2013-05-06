@@ -788,7 +788,12 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 		 $exists = (mysql_num_rows($result))?TRUE:FALSE;
 		 if($exists) $hasimage= ",image";
 		 
-		$scoq="select $distinct $key$hasimage";
+		 $hasicon="";
+		 $result = mysql_query("SHOW COLUMNS FROM `$table` LIKE 'icon'");
+		 $exists = (mysql_num_rows($result))?TRUE:FALSE;
+		 if($exists) $hasicon= ",icon";
+		 
+		$scoq="select $distinct $key$hasimage$hasicon";
 		if(!empty($key2))
 			$scoq.=",$key2";
 			
@@ -811,9 +816,14 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 				$d=mysql_fetch_object($r);
 				echo "<option ";
 				
-				if(!empty($d->image))
+				if(!empty($d->image)) {
 					if(file_exists("$RFS_SITE_PATH/$d->image"))
-						echo "data-image=\"".sc_picthumb_raw($d->image,16,0,0)."\" ";
+						echo "data-image=\"".sc_picthumb_raw($d->image,16,0,0)."\" ";						
+				}
+				else if(!empty($d->icon)) {
+					if(file_exists("$RFS_SITE_PATH/$d->icon"))
+						echo "data-image=\"".sc_picthumb_raw($d->icon,16,0,0)."\" ";
+				}				
 			
 				if($use_id_method){
 					echo "value=\"$d->id\" ";
@@ -2047,9 +2057,9 @@ function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$r
 			$tab=$x[2];
 			$key=$x[3];
 			$val=$x[4];
-			
-			echo "<select data-description=\"$rfanname\"
-						data-maincss=\"blue\"
+		
+			echo "<select data-description=\"$rfanname\"  ";
+			echo "		data-maincss=\"blue\"
 							id=\"$rfanname"."_name\"
 							name=\"$rfanname"."_name\"
 							onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
@@ -2062,11 +2072,23 @@ function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$r
 			if(!empty($val)) {
 				$r=sc_query("select * from `$tab` where `$val`='".$d[$rfafield]."'");
 				$tdat=mysql_fetch_array($r);
-				echo "<option value=\"".$tdat[$val]."\">".$tdat[$key];
+				echo "<option value=\"".$tdat[$val]."\" ";
+				
+				if(!empty($tdat['image'])) {
+					if(file_exists("$RFS_SITE_PATH/".$tdat['image']))
+						echo "data-image=\"".sc_picthumb_raw($tdat['image'],16,0,0)."\" ";						
+				}
+				else if(!empty($d['icon'])) {
+					if(file_exists("$RFS_SITE_PATH/".$tdat['icon']))
+						echo "data-image=\"".sc_picthumb_raw($tdat['icon'],16,0,0)."\" ";
+				}
+				
+				echo "	>".$tdat[$key];
 			}
 			else		
 				echo "<option>".$d[$rfafield];
 			
+			echo "</option>";
 			
 			$r=sc_query("select * from `$tab` order by `$key` asc");
 			for($i=0;$i<mysql_num_rows($r);$i++) {
@@ -2153,29 +2175,56 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 			$key=$x[3];
 			$val=$x[4];
 			
-			echo "<select data-description=\"$rfanname\"
-						data-maincss=\"blue\"
-							id=\"$rfanname"."_name\"
-							name=\"$rfanname"."_name\"
-							onblur  =\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc	\"							
-							onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
-							
-							style='float:left;'>";
-			
-			
+		
 			if(!empty($val)) {
 				$r=sc_query("select * from `$tab` where `$val`='".$d[$rfafield]."'");
 				$tdat=mysql_fetch_array($r);
-				echo "<option value=\"".$tdat[$val]."\">".$tdat[$key];
+				$tvalue=$tdat[$val];
+				$tdata=$tdat[$key];
 			}
-			else		
-				echo "<option>".$d[$rfafield];
+			else {
+				$tvalue=$d[$rfafield];
+				$tdata=$d[$rfafield];
+			}
 			
+			echo "<select data-description=\"$rfanname\" ";
+			
+			echo "	data-maincss=\"blue\"
+					id=\"$rfanname"."_name\"
+					name=\"$rfanname"."_name\"
+					onblur  =\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc	\"							
+					onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
+					style='float:left;'>";
+					
+			echo "<option ";
+			
+				if(!empty($tdat['image'])) {
+					if(file_exists("$RFS_SITE_PATH/".$tdat['image']))
+						echo "data-image=\"".sc_picthumb_raw($tdat['image'],16,0,0)."\" ";						
+				}
+				else if(!empty($tdat['icon'])) {
+					if(file_exists("$RFS_SITE_PATH/".$tdat['icon']))
+						echo "data-image=\"".sc_picthumb_raw($tdat['icon'],16,0,0)."\" ";
+				}	
+			
+			
+			
+			echo "value=\"$tvalue\">$tdata</option>";
 			
 			$r=sc_query("select * from `$tab` order by `$key` asc");
 			for($i=0;$i<mysql_num_rows($r);$i++) {
 				$dat=mysql_fetch_array($r);
 				echo "<option ";
+				
+				if(!empty($dat['image'])) {
+					if(file_exists("$RFS_SITE_PATH/".$dat['image']))
+						echo "data-image=\"".sc_picthumb_raw($dat['image'],16,0,0)."\" ";						
+				}
+				else if(!empty($dat['icon'])) {
+					if(file_exists("$RFS_SITE_PATH/".$dat['icon']))
+						echo "data-image=\"".sc_picthumb_raw($dat['icon'],16,0,0)."\" ";
+				}	
+				
 				if(!empty($val)) {
 					echo "value=\"".$dat[$val]."\"";
 				}

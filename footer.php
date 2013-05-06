@@ -3,24 +3,19 @@
 // RFS CMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
-include("include/lib.all.php");
+// include("include/lib.all.php");
 
-$data=$GLOBALS['data'];
-if(empty($theme)) $theme=$data->theme;
-if(empty($theme)) $theme=$GLOBALS['theme'];
+// $data=$GLOBALS['data']; if(empty($theme)) $theme=$data->theme; if(empty($theme)) $theme=$GLOBALS['theme'];
 
-echo "<p align=left><pre>";
+// output some debug information
 sc_debugfooter(0);
-echo "</pre></p>";
 
-$tf="$RFS_SITE_PATH/themes/$theme/t.footer.php";
-if(file_exists($tf)){
-	include($tf);
+// include custom theme footer instead of this one
+if(file_exists("$RFS_SITE_PATH/themes/$theme/t.footer.php")){
+	include("$RFS_SITE_PATH/themes/$theme/t.footer.php");
 }
 else{
     echo "<BR><BR><BR>";
-	
-	
 		
 	if(empty($data->donated)) {
 		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
@@ -28,20 +23,25 @@ else{
 	else {
 		
 	}
+	echo "</td>"; // END MIDTD
 	
-	echo "</td>";
-		
+	
+	////////////////////////////////////////////////////////////////////
+	// DRAW THE RIGHT MODULES (RIGHTTD)
 	echo "<td class=\"righttd\" valign=top>";
+	sc_draw_module("right");	
+	echo "</td>"; // END RIGHTTD
 	
-		sc_draw_module("right");
-	
-	echo "</td></tr></table>";
+	echo "</tr></table>"; // FINISH PAGE TABLE
 
+	// PUT COPYRIGHT INFORMATION
 	echo "<div class=\"copyright\">";
-    echo $RFS_SITE_COPYRIGHT;
+	echo $RFS_SITE_COPYRIGHT;	
 	echo "</div>";
 	
-    echo "</body></html>";
+	// END THE PAGE
+	rfs_echo($RFS_SITE_BODY_CLOSE);
+	rfs_echo($RFS_SITE_HTML_CLOSE);
 }
 
 ?>

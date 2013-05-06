@@ -40,20 +40,23 @@ function sc_tail_error_log() { global $RFS_SITE_ERROR_LOG;
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_debugheader($quiet) { eval(scg()); 
 	sc_div("sc_debugheader start");
+	//$dout ="<p align=left><pre>";
 	$dout ="\$data->theme=$data->theme".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "\$RFS_SITE_SESSION_ID: ".$RFS_SITE_SESSION_ID.$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "VALID USER: ".$_SESSION["valid_user"].$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "LOGGED IN: ".$_SESSION["logged_in"].$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "THEME: $RFS_SITE_PATH/themes/$theme".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "USER ID: ".$data->id.$GLOBALS['RFS_SITE_DELIMITER'];
+	//$dout.="</pre></p>";
 	if(!$quiet) d_echo($dout);	
 	if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); } // $fp=fopen("error.log","wt"); fwrite($fp,"error.log\n\r"); fclose($fp); }
 	if($_SESSION['debug_msgs']=="true") { 	sc_tail_error_log(); }
 	return $dout;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_debugfooter($quiet) {
-	$dout ="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+function sc_debugfooter($quiet) { eval(scg());
+	//$dout ="<p align=left><pre>";
+	$dout="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="_REQUEST VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
 	foreach( $_REQUEST as $k=>$v ) $dout.="\$_REQUEST['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout ="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
@@ -90,8 +93,8 @@ function sc_debugfooter($quiet) {
 	}
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="[footer.php \$theme=$theme]";
-	if(!$quiet)
-	d_echo($dout);
+	//$dout.="</pre></p>";
+	if(!$quiet) d_echo($dout);
 	return $dout;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
