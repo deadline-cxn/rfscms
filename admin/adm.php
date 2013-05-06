@@ -1046,7 +1046,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
 		echo "<input type=hidden name=id value=\"$site_var->id\">";
 		$site_var->name=strtoupper(stripslashes(($site_var->name)));
-		echo "\$RFS_SITE_<input name=name value=\"$site_var->name\"> = ";
+		echo "\$RFS_SITE_<input name=name size=30 value=\"$site_var->name\"> = ";
 		$site_var->value=stripslashes( $site_var->value );
 		echo "<input name=val size=40 value=\"$site_var->value\">";
 		echo "<input type=submit value=\"Update\">";
@@ -1061,13 +1061,14 @@ function adm_action_edit_site_vars() { eval( scg() );
 	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=\"f_addsitevar\">";
 	echo "<input type=hidden name=id value=\"$site_var->id\">";
-	echo "\$RFS_SITE_<input name=name value=\"ADD NEW\"> = ";
+	echo "\$RFS_SITE_<input name=name size=30 value=\"ADD NEW\"> = ";
 	echo "<input name=val size=40 value=\"\">";
 	echo "<input type=submit value=\"go\">";
 	echo "</form>";
 	echo "</td><td>";
 	echo "</td></tr>";
 	echo "</table>";
+	include("footer.php");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU ADMIN

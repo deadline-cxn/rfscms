@@ -89,9 +89,9 @@ if($action=="logingo") {
             exit();
         }
         else{
-            echo "Invalid Login";
+            sc_info("Invalid Login","WHITE","RED");
             $_SESSION["valid_user"] = "invalid_user";
-            sc_log("***********************> $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
+            sc_log("***********> $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
         }    
 	$action="forgot";
 }
@@ -207,40 +207,44 @@ if(empty($action))
 
 /////////////////////////////////////////////////////////////////////
 ////////// LOGIN FORGOT PASSWORD
-if($action=="forgot_go"){
+if($action=="sendpass"){
+	
     if(empty($email)) {
-        echo "<p>You must enter a valid email address.</p>\n";		
+        echo "<h1>You must enter a valid email address.</h2>\n";
         $action="forgot";
     }
     else{
-        $user=sc_getuserdatabyfield("email",$email);
-        if(empty($user)) {
-				echo "<br><p>That email address is not in our records! You must <a href=login.php?action=regiester>REGISTER</a>!</p><br>\n";
-        }
-        else{
-            $subject="$RFS_SITE_NAME password reset.";
-            $message ="Username:$user->name<br>";
-            $message.="Password:$user->pass<br>\n";
-            $message.="
-            <p style=\"color: black\">
-            Cick <a href=\"$RFS_SITE_URL/login.php?userid=$user->name&password=$user->pass&action=logingo\">here</a> to login!</p><br>\n";
-            mailgo($user->email,$message,$subject);
-            echo "<br><p>Password sent to $email</p><p><a href=$outpage>Continue</a><br>\n";
+		$user=sc_getuserdatabyfield("email",$email);
+       if(empty($user)) {
+			echo "<h1>That email address is not in our records! You must <a href=login.php?action=join>REGISTER</a>!</h1>\n";
+		}
+       else {
+			echo "<h1>Sending new password</h1>";
+			$newpass=generate_password();
+			$md5pass=md5($newpass);
+			sc_query("update users set pass='$md5pass' where id='$user->id'");
+			$subject="$RFS_SITE_NAME password reset.";
+           $message ="Username:$user->name<br>";
+           $message.="Password:$newpass<br>\n";
+           $message.="<p style=\"color: black\">
+           Cick <a href=\"$RFS_SITE_URL/login.php?userid=$user->name&password=$user->pass&action=logingo\">here</a> to login!</p><br>\n";
+           mailgo($user->email,$message,$subject);
+           echo "<br><p>Password sent to $email</p><br>\n";
         }
     }
-    exit();
+	include("footer.php");
+	exit();
 }
 
 /////////////////////////////////////////////////////////////////////
 ////////// LOGIN FORGOT PASSWORD
 if($action=="forgot"){
-	echo "<p>You forgot your password!</p>";
-    echo "<table border=0 cellspacing=0 cellpadding=0>\n";
+	echo "<h1>Did you forgot your password?</h1>";
+    echo "<table border=0 cellspacing=0 cellpadding=0 style=\"margin: 10px;\">\n";
     echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$site_url/login.php?action=sendpass\">\n";
     echo "<tr>\n";
     echo "<td>Enter email &nbsp;</td>\n";
-    echo "<td><input type=textbox name=email>&nbsp;
-	<input type=hidden name=outpage value=\"$outpage\"> 	</td>\n";
+    echo "<td><input type=textbox name=email size=30>&nbsp;<input type=hidden name=outpage value=\"$outpage\"></td>\n";
     echo "<td><input type=\"submit\" name=\"Get Password\" value=\"Get Password\"></td>\n";
     echo "</form></table>";
 	include("footer.php");	

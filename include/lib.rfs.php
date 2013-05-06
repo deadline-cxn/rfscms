@@ -20,15 +20,14 @@ function sc_do_action() {
 }
 /////////////////////////////////////////////////////////////////////////
 function sc_maintenance() { eval(scg());
-    global $theme;
+	global $theme;
 	sc_div("sc_maintenance start");
 	// sc_multi_rename("$RFS_SITE_PATH/themes/$theme",$theme,"t");
 	// sc_count();
 	sc_get_modules();
 	$data=sc_getuserdata($_SESSION['valid_user']);
 	if($mc_gross>0) $data->donated="yes";
-	
-	
+
 	if(empty($theme)) $theme=$_SESSION['theme'];
 	else $_SESSION['theme']=$theme;	
 	
@@ -42,11 +41,13 @@ function sc_maintenance() { eval(scg());
     //}
 	
 	if(!empty($theme)) {
-		if($theme!="$data->theme") {
-			sc_query("UPDATE users SET theme='$theme' where name = '$data->name'");
-			$data->theme=$theme;            
-		} else {
-			$theme=$data->theme;
+		if($_SESSION['logged_in']) {
+			if($theme!=$data->theme) {
+				sc_query("UPDATE users SET theme='$theme' where name = '$data->name'");
+				$data->theme=$theme;
+			} else {
+				$theme=$data->theme;
+			}
 		}
 	}
 	
@@ -188,7 +189,6 @@ function smiles($text) {
 }
 /////////////////////////////////////////////////////////////////////////
 function rfs_echo($t) {  echo rfs_get($t); }
-
 function sc_calc($x) {
 	eval("echo($x);");
 }
@@ -322,7 +322,7 @@ function generate_password() {
 	$i=0;
 	$password="";
 	srand((double) microtime() * 1000000);
-	while($i<8) {
+	while($i<10) {
 		$password .= chr(rand(33,122)+1);
 		$i=$i+1;
 	}

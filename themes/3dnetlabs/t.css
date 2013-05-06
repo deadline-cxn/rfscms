@@ -9,6 +9,16 @@ html, body
     nonyua: what;
 }
 
+.copyright {
+	text-align: center;
+	color: #030;
+	background-color: #a6a68c;
+	width: 100%;
+	height: 100%;
+	margin-left: auto ;
+	margin-right: auto ;
+}
+
 
 .forum_box {
 	width: 98%;
