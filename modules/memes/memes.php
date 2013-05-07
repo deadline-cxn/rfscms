@@ -1,7 +1,7 @@
 <?
 $meme_thumbwidth=200;
 $meme_editwidth=256;
-$meme_fullsize=400;
+$meme_fullsize=512;
 
 if($_REQUEST['a']=="ms") {
 	$mid=$_REQUEST['mid'];
