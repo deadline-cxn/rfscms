@@ -4,27 +4,38 @@ chdir("../../");
 include("header.php");
 //////////////////////////////////////////////////////////////////////////////////////
 // CHANGE PASSWORD
-if($change_password == "yes")
-{    echo "<html><head><title>Change Password</title></head><body bgcolor=ff9900 text=000000>\n";
-    echo "<font face=verdana size=1><b>\n";
-    echo "Change the password...<br>\n";
+if($change_password == "yes"){
+    echo "<h1>Change Password</h1>\n";
     if(empty($data->name)) {
-        echo smiles(":X")."You must be <a href=$RFS_SITE_URL/login.php>logged in</a> to change your password!<br>\n";
+        echo sc_warn("You must be <a href=$RFS_SITE_URL/login.php>logged in</a> to change your password!");
     }
-    if( md5($pass1) != $data->pass ) {
-        echo smiles(":X")."You did not enter the correct current password!<br>\n";
+	
+    if( (!empty($data->pass)) &&
+			 ( md5($pass1) != $data->pass ) ) {
+			echo sc_warn("You did not enter the correct current password!");
+			$act="show_password_form";
     }
     else {
-        if($pass2==$pass3) {
-			$pass2=md5($pass2);
-	        sc_query("update users set pass='$pass2' where name = '$data->name'");
-            echo "Password changed!<br>\n";
+		
+        if($pass2==$pass3) {			
+				if(!empty($pass2)) {
+					$pass2=md5($pass2);
+					sc_query("update users set pass='$pass2' where name = '$data->name'");
+					sc_info("Password changed!","WHITE","GREEN");
+					include("footer.php");
+					exit;					
+				}
+				else {
+					echo sc_warn("The password can not be empty.");
+					$act="show_password_form";
+				}
         }
-        else echo smiles(":X")."The passwords do not match!<br>\n";
-    }
-    echo "Click <a href=$RFS_SITE_URL/modules/profile/profile.php>here</a> to continue!\n";    
-	include("footer.php");	
-	exit;
+        else {
+			echo sc_warn("The passwords do not match!");
+			$act="show_password_form";
+		}
+    }    
+
 }
 //////////////////////////////////////////////////////////////////////////////////////
 // UPDATE USER DATA
@@ -109,7 +120,10 @@ if($act=="show_password_form") {
     echo "<h2>Change Password</h2>";
     echo "<table border=0><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/profile/profile.php method=post>\n";
     echo "<input type=hidden name=change_password value=yes>\n";
-    echo "<tr><td>Current Password</td><td><input type=password name=pass1 value=\"\"></td></tr>\n";
+
+	if(!empty($data->pass))
+		echo "<tr><td>Current Password</td><td><input type=password name=pass1 value=\"\"></td></tr>\n";
+
     echo "<tr><td>New Password</td><td><input type=password name=pass2></td></tr>\n";
     echo "<tr><td>New Password (again)</td><td><input type=password name=pass3></td></tr>\n";
     echo "<tr><td>&nbsp;</td><td><input type=submit name=submit value=\"Go!\"></td></tr>\n";

@@ -1,22 +1,13 @@
 <?
-
 chdir("../../");
 include("include/lib.mysql.php");
 
+if(empty($action)) $action="list_exams";
+
 if(empty($_REQUEST['exam_id'])) $title="Exams";
-else  {
-        $tex=mfo1("select * from exams where id='".$_REQUEST['exam_id']."'");
-        $title="Exam ($tex->name)";
+else {	$tex=mfo1("select * from exams where id='".$_REQUEST['exam_id']."'");
+		$title="Exam ($tex->name)";
 }
-
-$answer_data[1]="A";
-$answer_data[2]="B";
-$answer_data[3]="C";
-$answer_data[4]="D";
-$answer_data[5]="E";
-$answer_data[6]="F";
-
-
 include("header.php");
 
 if(!sc_yes($_SESSION['logged_in'])) {
@@ -27,16 +18,14 @@ if(!sc_yes($_SESSION['logged_in'])) {
 }
 
 
-if(sc_access_check("exams.php","view_results")) {
-    
+// if(sc_access_check("exams","view_results")) {
+
 	$qc=$_SESSION['question_id'];
 	if($qc) {
 
         $r=sc_query("select * from exam_questions where id='$qc'");
         $q=mysql_fetch_assoc($r);
-		
-		//echo "<hr>";
-		
+				
 		$correct=false;
         
 		d_echo("PREVIOUS QUESTION RESULTS: ($exam_id.$qc) ");
@@ -67,11 +56,7 @@ if(sc_access_check("exams.php","view_results")) {
 				$correct=false;
 				//echo "INCORRECT!<BR>";
 			}
-			
-			
 		}
-		
-
 
 		if ( 	($q["type"]=="fib_dropdown") ||
 				($q["type"]=="fill_in_blank") ) {
@@ -192,7 +177,7 @@ if(sc_access_check("exams.php","view_results")) {
 		$_SESSION['question_id']="";
 	}
     
-}
+//}
 
 
 if($action=="reset_exam"){
@@ -205,11 +190,9 @@ if($action=="admin_exam_test") {
     $action="run_exam";
 }
 
-if(empty($action)) $action="list_exams";
+if($action=="list_exams") {
 
-if ($action=="list_exams") {
-
-    if( sc_access_check("exams.php","edit") ) { 
+    if( sc_access_check("exams","edit") ) { 
             echo "[<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit'>Exam Administration</a>]";
     }	
 	
@@ -277,7 +260,6 @@ if($action=="run_exam") {
 	$oclr="RED";
 	if($eprct>=$exam->pass_percent) $oclr="GREEN";
 	
-	
 	if($oclr=="GREEN") {
 		if( $etotq == $etotqa ) {
 			
@@ -287,10 +269,8 @@ if($action=="run_exam") {
 			<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam_id'><img src=$RFS_SITE_URL/images/icons/Play.png border=0>click here</a>. Note: This action can not be reversed.");
 			for($i=0;$i<35;$i++) echo "<br>";
 			include("footer.php");
-			exit();
-		
+			exit();		
 		}
-
 	}
 
     d_echo("Exam $exam_id");
@@ -504,9 +484,7 @@ if($action=="run_exam") {
 }
 
 
-
-if(sc_access_check("exams.php","edit") ) {
-	
+if(sc_access_check("exams","edit") ) {
 	
 	if($action=="admin_exam_edit_questions") {
 		if(!is_numeric($questions)) $questions=100;
@@ -531,50 +509,30 @@ if(sc_access_check("exams.php","edit") ) {
 		$action="admin_exam_edit";		
 	}
 		
-	
 	if($action=="admin_exam_question_edit") {
-		
-echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=run_exam&exam_id=$exam_id>Run this exam</a>]";
-echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit>List all exams</a>]";
-echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_edit&exam_id=$exam_id>List all questions</a>]<br>";
-		
+				
+		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=run_exam&exam_id=$exam_id>Run this exam</a>]";
+		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit>List all exams</a>]";
+		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_edit&exam_id=$exam_id>List all questions</a>]<br>";
+				
 		$qt=mfo1("select * from exam_questions where id='$q'");
-		
-	sc_bf( "$RFS_SITE_URL/modules/exams/exams.php",
-	       "action=admin_exam_question_edit_2".$RFS_SITE_DELIMITER.
-		   "SHOW_SELECTOR_exam_question_types#name#type#$qt->type".$RFS_SITE_DELIMITER.	
-		   "SHOW_SELECTOR_cfetp_tasks#task&name#task#$qt->task",
-	       "exam_questions",
-	       "select * from exam_questions where id='$q'",
-	       "id",
-	       "type".$RFS_SITE_DELIMITER."task",
-	       "omit",
-	       "",
-	       100,
-	       "submit" );		
+			
+		sc_bf( "$RFS_SITE_URL/modules/exams/exams.php",
+			   "action=admin_exam_question_edit_2".$RFS_SITE_DELIMITER.
+			   "SHOW_SELECTOR_exam_question_types#name#type#$qt->type".$RFS_SITE_DELIMITER.	
+			   "SHOW_SELECTOR_cfetp_tasks#task&name#task#$qt->task",
+			   "exam_questions",
+			   "select * from exam_questions where id='$q'",
+			   "id",
+			   "type".$RFS_SITE_DELIMITER."task",
+			   "omit",
+			   "",
+			   100,
+			   "submit" );		
 	}
+	
 	if($action=="admin_exam_question_edit_2") {
-		
-		/*		
-		echo "		 <BR>
-		id: $id <BR>
-			exam_id: $exam_id <BR>
-			exam_sequence: $exam_sequence <BR>
-			type: $type	 <BR>
-			intro: $intro	 <BR>
-			question: $question	 <BR>
-			question_image: $question_image	 <BR>
-			correct_answer: $correct_answer <BR>	
-			choice_1: $choice_1	 <BR>
-			choice_2: $choice_2	 <BR>
-			choice_3: $choice_3	 <BR>
-			choice_4: $choice_4	 <BR>
-			choice_5: $choice_5	 <BR>
-			choice_6: $choice_6  <BR>
-		";
-		
-		*/
-		
+	
 		$r=sc_query("select * from exam_question_types where name='$type'");
 		$eqt=mysql_fetch_object($r);
 		
@@ -585,21 +543,21 @@ echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_edit&exam
 		if(empty($eqt->type)) $eqt->type="multiple_choice";
 
 
-sc_query("update exam_questions set `exam_id`='$exam_id' where id='$id'");
-sc_query("update exam_questions set `exam_sequence` ='$exam_sequence' where id='$id'");
-sc_query("update exam_questions set `type`='$eqt->type' where id='$id'");
-sc_query("update exam_questions set `intro`='$intro' where id='$id'");
-sc_query("update exam_questions set `question`='$question' where id='$id'");
-sc_query("update exam_questions set `question_image`='$question_image' where id='$id'");
-sc_query("update exam_questions set `correct_answer`='$correct_answer' where id='$id'");
-sc_query("update exam_questions set `choice_1`='$choice_1' where id='$id'");
-sc_query("update exam_questions set `choice_2`='$choice_2' where id='$id'");
-sc_query("update exam_questions set `choice_3`='$choice_3' where id='$id'");
-sc_query("update exam_questions set `choice_4`='$choice_4' where id='$id'");
-sc_query("update exam_questions set `choice_5`='$choice_5' where id='$id'");
-sc_query("update exam_questions set `choice_6`='$choice_6' where id='$id'");
-sc_query("update exam_questions set `task`='$task' where id='$id'");
-		
+		sc_query("update exam_questions set `exam_id`='$exam_id' where id='$id'");
+		sc_query("update exam_questions set `exam_sequence` ='$exam_sequence' where id='$id'");
+		sc_query("update exam_questions set `type`='$eqt->type' where id='$id'");
+		sc_query("update exam_questions set `intro`='$intro' where id='$id'");
+		sc_query("update exam_questions set `question`='$question' where id='$id'");
+		sc_query("update exam_questions set `question_image`='$question_image' where id='$id'");
+		sc_query("update exam_questions set `correct_answer`='$correct_answer' where id='$id'");
+		sc_query("update exam_questions set `choice_1`='$choice_1' where id='$id'");
+		sc_query("update exam_questions set `choice_2`='$choice_2' where id='$id'");
+		sc_query("update exam_questions set `choice_3`='$choice_3' where id='$id'");
+		sc_query("update exam_questions set `choice_4`='$choice_4' where id='$id'");
+		sc_query("update exam_questions set `choice_5`='$choice_5' where id='$id'");
+		sc_query("update exam_questions set `choice_6`='$choice_6' where id='$id'");
+		sc_query("update exam_questions set `task`='$task' where id='$id'");
+			
 		$action="admin_exam_edit";
 		
 	}
@@ -649,36 +607,16 @@ sc_query("update exam_questions set `task`='$task' where id='$id'");
 	
 	if($action=="admin_exam_edit_add_3") {
 
-			$exam_id=$aeexam_id;
-			$exam_sequence=$aeexam_sequence;
-			$type=$aetype;
-		/*
-		echo "		 <BR>
-			exam_id: $exam_id <BR>
-			exam_sequence: $exam_sequence <BR>
-			type: $type	 <BR>
-			intro: $intro	 <BR>
-			question: $question	 <BR>
-			question_image: $question_image	 <BR>
-			correct_answer: $correct_answer <BR>	
-			choice_1: $choice_1	 <BR>
-			choice_2: $choice_2	 <BR>
-			choice_3: $choice_3	 <BR>
-			choice_4: $choice_4	 <BR>
-			choice_5: $choice_5	 <BR>
-			choice_6: $choice_6  <BR>
-		";
-		*/
-sc_query("
-insert into exam_questions 
-       (`exam_id`,`exam_sequence`,`type`, `intro`, `question`, `question_image`, `correct_answer`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `choice_5`, `choice_6`, `task` )
-VALUES ('$exam_id','$exam_sequence','$type', '$intro', '$question', '$question_image', '$correct_answer', '$choice_1', '$choice_2', '$choice_3', '$choice_4', '$choice_5', '$choice_6', '$task' )	");
-
+		$exam_id=$aeexam_id;
+		$exam_sequence=$aeexam_sequence;
+		$type=$aetype;
 		
+		sc_query(" insert into exam_questions 
+							(`exam_id`,`exam_sequence`,`type`, `intro`, `question`, `question_image`, `correct_answer`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `choice_5`, `choice_6`, `task` )
+					VALUES ('$exam_id','$exam_sequence','$type', '$intro', '$question', '$question_image', '$correct_answer', '$choice_1', '$choice_2', '$choice_3', '$choice_4', '$choice_5', '$choice_6', '$task' )	");
+		sc_query(" update exams set `questions`=`questions`+1 where id='$exam_id'");
 		$action="admin_exam_edit";
 	}
-	
-	
 	
     if($action=="admin_exam_edit") {
 		
@@ -716,31 +654,35 @@ VALUES ('$exam_id','$exam_sequence','$type', '$intro', '$question', '$question_i
 		
 		echo "<hr>Question Pool:<br>";
 		
+		$q= "select MAX(`exam_sequence`) from `exam_questions` where exam_id='$exam_id'";
+		$rrr=sc_query($q);
+		$exq=mysql_fetch_array($rrr);
+		$exam_sequence=$exq[0]+1;
+		
 		echo "[<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_edit_add&exam_id=$exam_id&exam_sequence=$exam_sequence'><img src='$RFS_SITE_URL/images/icons/plus_2.gif' width=16 border=0>Add Question</a>]<br>";		
 
-			echo "<table border=0 cellspacing=0>";
-			
-			echo "<tr>";
-			echo "<td> &nbsp; </td>";
-			echo "<td> &nbsp; </td>";
-			echo "<td> &nbsp; </td>";
-			echo "<td> &nbsp; </td>";
-			echo "<td> &nbsp; </td>";
-			echo "<td> Type </td>";
-			echo "<td> Intro </td>";
-			echo "<td> Question </td>";
-			echo "<td> Correct Answer </td>";
-			echo "<td> Choice 1 (A)</td>";
-			echo "<td> Choice 2 (B)</td>";
-			echo "<td> Choice 3 (C)</td>";
-			echo "<td> Choice 4 (D)</td>";
-			echo "<td> Choice 5 (E)</td>";
-			echo "<td> Choice 6 (F)</td>";
-			
-			echo "<td> Task </td>";
-			
-			
-			echo "</tr>";
+		echo "<table border=0 cellspacing=0>";
+		echo "<tr>";
+		echo "<td> &nbsp; </td>";
+		echo "<td> &nbsp; </td>";
+		echo "<td> &nbsp; </td>";
+		echo "<td> &nbsp; </td>";
+		echo "<td> &nbsp; </td>";
+		echo "<td> Type </td>";
+		echo "<td> Intro </td>";
+		echo "<td> Question </td>";
+		echo "<td> Correct Answer </td>";
+		echo "<td> Choice 1 (A)</td>";
+		echo "<td> Choice 2 (B)</td>";
+		echo "<td> Choice 3 (C)</td>";
+		echo "<td> Choice 4 (D)</td>";
+		echo "<td> Choice 5 (E)</td>";
+		echo "<td> Choice 6 (F)</td>";
+		
+		echo "<td> Task </td>";
+		
+		
+		echo "</tr>";
 			
         $r=sc_query("select * from exam_questions where exam_id='$exam_id' order by exam_sequence");
         $n=mysql_num_rows($r);
@@ -799,7 +741,6 @@ VALUES ('$exam_id','$exam_sequence','$type', '$intro', '$question', '$question_i
 
     }
 	
-
     if($action=="admin_new_exam") {
 
         $r=sc_query( "insert into exams (`name`) VALUES ('$name')");
@@ -812,29 +753,28 @@ VALUES ('$exam_id','$exam_sequence','$type', '$intro', '$question', '$question_i
         echo "</p> ";
     }
 
+	if($action=="admin_exam_change_pod") {
+	
+		echo "<p> CHANGE EXAM POD </p>";
+		echo "<p> Exam: $exam_id </p>";
+		echo "<p> POD: $name </p>";
+		// $pod=mfo1("select * from pods where name='$name'");
+		$q="update `exams` set `pod_id`='$name' where `id`='$exam_id'";
+		
+		sc_query($q);
+		
+		$action="admin_edit";
+	}
 
-if($action=="admin_exam_change_pod") {
-	
-	echo "<p> CHANGE EXAM POD </p>";
-	echo "<p> Exam: $exam_id </p>";
-	echo "<p> POD: $name </p>";
-	// $pod=mfo1("select * from pods where name='$name'");
-	$q="update `exams` set `pod_id`='$name' where `id`='$exam_id'";
-	
-	sc_query($q);
-	
-	$action="admin_edit";
-}
-
-    // Types of questions:
+    if($action=="admin_edit"){
+		
+		    // Types of questions:
     //
     // Multiple choice
     // Fill in the blank
     // Fill in the blank (with dropdown box)
     // True / False
     // Matching
-
-    if($action=="admin_edit"){
 
         sc_bqf("action=admin_new_exam".$RFS_SITE_DELIMITER."SHOW_TEXT_name=new exam","Create new exam");
 
@@ -975,381 +915,6 @@ if($action=="admin_exam_change_pod") {
 
         echo "</table>";        
     }
-
-
-
-/*
-if($action=="add_script_group"){
-	sc_query("insert into script_groups (`name`) values('$name')");
-	$r=sc_query("select * from script_groups where name = '$name'");
-	$scr=mysql_fetch_object($r) ;
-	echo "<h1>Add $scr->name</h1>";
-
-}
-
-if($action=="script_group_change_pod"){
-
-	echo "script_group [$script_group] <br>";
-	echo "name [$name] <br>";
-
-	sc_query("update script_groups set pod='$name' where id='$script_group'");
-
-	$action="show_script_groups";
-
-}
-
-if($action=="script_change_group"){
-	echo "<h1>Change GROUP!</h1>";
-
-	// remove_script_from_groups($script);
-
-	echo "$script<br>";
-	echo "$name<br>";
-	$sgr=sc_query("select * from script_groups where id=$name");
-	$sg=mysql_fetch_object($sgr);
-	echo "Script Group -> $sg->name <br>";
-	$sgsc=",$sg->scripts,";
-	$sgsc=str_replace(",$script,",",",$sgsc);
-	$sgsc=str_replace(",,",",",$sgsc);
-	$sgsc=rtrim($sgsc,",");
-	$sgsc=$script.$sgsc;
-
-	sc_query("update script_groups set scripts = '$sgsc' where id='$name'");
-	sc_query("update scripts set script_group='$name' where id='$sgsc'");
-
-	echo "Scripts in this group: $sgsc <br>";
-
-	$action="show_scripts";
-
-}
-
-if($action=="remove_script_from_group"){
-		//echo "Remove script[$script] from group [$group]<br><br>";
-		$r=sc_query("select * from script_groups where id='$group'");
-		$sg=mysql_fetch_object($r);
-		$sgx=explode(",",$sg->scripts);
-		$sgi="";
-		for($si=0;$si<count($sgx);$si++){
-			//echo "$sgx[$si] <BR>";
-			if($sgx[$si]==$script){
-
-			}
-				//echo " ^^^^^^ WINNER <BR>";
-			else
-				$sgi.=$sgx[$si].",";
-
-		}
-		$sgi=rtrim($sgi,",");
-		echo "$sgi<br>";
-		sc_query("update script_groups set scripts='$sgi' where id='$group'");
-		$action="show_script_groups";
-}
-
-if($action=="show_script_groups"){
-
-	$q="select * from script_groups";
-	$r=sc_query($q);
-	$n=mysql_num_rows($r);
-	echo "<table border=0>";
-
-	echo "<tr>";
-	echo "<td>Name</td>";
-	echo "<td>Pod</td>";
-	echo "<td>Scripts</td>";
-
-	echo "</tr>";
-
-	for($i=0;$i<$n;$i++){
-
-		$s=mysql_fetch_object($r);
-		$gt++; if($gt>2) $gt=1;
-
-		echo "<tr>";
-
-		echo "<td class=sc_project_table_$gt>$s->name</td>";
-
-		echo "<td class=sc_project_table_$gt>";
-
-		// echo $s->pod;
-
-		$dpod="Select Pod";
-		if($s->pod>0){
-			$pr=sc_query("select * from pods where id='$s->pod'");
-			$pod=mysql_fetch_object($pr);
-			$dpod=$pod->name;
-		}
-
-		sc_optionizer(	sc_phpself(), // return page
-							"action=script_group_change_pod¥". // variables to return
-							"script_group=$s->id",
-							"pods", // table to optionize
-							"name", // field to optionize
-							"1", // use id method
-							$dpod, // default text to show
-							"1"  // use on change method
-							);
-
-
-		echo "</td>";
-
-		echo "<td class=sc_project_table_$gt>";
-
-		//$sr=sc_query("select * from scripts where script_group='$s->id'");
-		//$ns=mysql_num_rows($sr);
-		//for($ni=0;$ni<$ns;$ni++){
-		//	$ins=mysql_fetch_object($sr);
-		//	echo "$ins->name $ins->network_device ($ins->file)<br>";
-		//}
-		$sx=explode(",",$s->scripts);
-
-		//echo "<BR> [COUNT [";
-		//echo count($sx);
-		//echo "]]<BR>";
-
-		for($sii=0;$sii<count($sx);$sii++){
-
-			if(!empty($sx[$sii])) {
-				$scr_name=mfo1("select * from scripts where id='$sx[$sii]'");
-				echo "<a href='$RFS_SITE_URL/net.php?action=remove_script_from_group&group=$s->id&script=$sx[$sii]'>";
-				echo "<img src=images/icons/network_devices/cross.png border=0>";
-				echo "</a>";
-				echo $scr_name->name."<br>";
-			}
-
-
-		}
-
-
-		echo "</td>";
-		echo "</tr>";
-	}
-
-	echo "</table>";
-
-	$page=$GLOBALS['site_url'].$GLOBALS['PHP_SELF'];
-	sc_bf($page,"action=add_script_group","script_groups","","","name","include","",60,"add");
-}
-
-
-function orphan_script_scan($dir){
-	echo "Scanning [$dir]<br>";
-	$dir_count=0;
-    $dirfiles = array();
-    $handle=opendir($dir) or die("Unable to open filepath");
-    while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
-    closedir($handle);
-    reset($dirfiles);
-    while(list ($key, $file) = each ($dirfiles)){
-        if($file!="."){
-            if($file!=".."){
-                if(is_dir($dir."/".$file)){
-					orphan_scan($dir."/".$file);
-				}
-				else {
-			        $filefound=0;
-                    $url = "$dir/$file";
-                    $res=sc_query("select * from `scripts` where `file` like '%$file%'");
-                    if(mysql_num_rows($res)>0) $filefound=1;
-                    $res=sc_query("select * from `scripts` where `name` = '%$file%'");
-                    if(mysql_num_rows($res)>0) $filefound=1;
-                    if($filefound){
-						// echo "Skipped [$url] already in database<br>";
-                    }
-                    else{
-                        $time=date("Y-m-d H:i:s");
-                        $filetype=sc_getfiletype($file);
-                        // $filesizebytes=filesize(getcwd()."/$dir/$file");
-                        $name=$file;
-                        sc_query("INSERT INTO `scripts` (`file`) VALUES('$file');");
-                        sc_query("UPDATE scripts SET `name`='$file' where `file`='$name'");
-                        sc_query("UPDATE scripts SET `type`='none' where `file`='$name'");
-                        echo "Added [$url] to database<br>";
-                        $dir_count++;
-                   }
-				 }
-            }
-        }
-    }
-	echo "Finished scan for orphan scripts<br>";
-}
-
-function purge_scripts(){
-	$scripts=sc_query("select * from scripts");
-	for($i=0;$i<mysql_num_rows($scripts);$i++){
-		$script=mysql_fetch_object($scripts);
-
-		if( (!file_exists("/var/www/scripts/$script->file"))  ||
-				(filesize("/var/www/scripts/$script->file")==0)
-			) {
-			system("rm /var/www/scripts/$script->file");
-			sc_query("delete from scripts where id = $script->id");
-			echo "-- > $script->file removed <BR>";
-
-		}
-
-
-	}
-
-}
-
-if($action=="orphan_scripts"){
-	echo "<h2>Searching for scripts</h2>";
-	orphan_script_scan("/var/www/scripts");
-	$action="show_scripts";
-}
-
-if($action=="purge_scripts"){
-	echo "<h2>Purging scripts</h2>";
-	purge_scripts();
-	$action="show_scripts";
-}
-
-if($action=="script_assoc"){
-	sc_query("update scripts set network_device='$network_device' where id='$name'");
-	$action="show_scripts";
-}
-
-if($action=="script_change_network_device"){
-
-	sc_query("update scripts set network_device='$ipaddress' where id='$script'");
-	$scr=mfo1("select * from scripts where id='$script'");
-
-	echo "SCRIPT: $scr->name <BR>";
-	$nd=mfo1("select * from network_devices where id='$ipaddress'");
-	echo "NETWORK DEVICE: $nd->name ($nd->ipaddress)<BR>";
-
-	$action="show_scripts";
-
-
-}
-*/
-/*
-function remove_script_from_groups($script){
-	$r=sc_query("select * from script_groups");
-	for($i=0;$i<mysql_num_rows($r);$i++) {
-		$sg=mysql_fetch_object($r);
-		$sgsx=explode(",",$sg->scripts);
-		$sgso="";
-		for($si=0;$si<count($sgsx);$si++){
-			if($sgsx[$si]!=$script){
-				$sgso.=$sgsx[$si].",";
-			}
-		}
-		$sgso=rtrim($sgso,",");
-		echo "removing script $script from $sg->name ($sgso)<br>";
-		sc_query("update script_groups set scripts='$sgso'");
-	}
-}
-  */
-
-  /*
-
-if($action=="script_modify_go") {
-
-	echo "<h1>Edit Script</h1>";
-	$action="show_scripts";
-	$scr=mfo1("select * from scripts where id=$id");
-	$fp=fopen("/var/www/scripts/$scr->file",wt);
-	if($fp){
-		fputs($fp,$config);
-		fclose($fp);
-	}
-	$action="show_scripts";
-
-}
-
-if($action=="show_script") {
-
-	$script=mfo1("select * from scripts where id=$id");
-
-	echo "<h1>Edit script $script->file </h1>";
-
-	$scr=file_get_contents("/var/www/scripts/$script->file");
-
-	// $scr=str_replace("<","&lt;",$scr);
-
-	$dorksz="id=$script->id";
-
-	sc_bqf("action=script_modify_go¥".$dorksz."¥".
-			"SHOW_TEXTAREA_32#110#config=$scr",
-			"Modify");
-}
-if($action=="script_remove_go"){
-	echo "<h1>Remove script confirmed</h1>";
-	$s=mfo1("select * from scripts where id='$script'");
-	echo sc_warn("$script $s->name $s->file removed");
-	sc_query("delete from scripts where id='$script'");
-
-	$cm="rm /var/www/scripts/$s->name";
-	echo "<br>$cm<br>";
-	system($cm);
-
-	$action="show_scripts";
-
-}
-if($action=="script_remove"){
-	echo "<h1>Remove script</h1>";
-	$s=mfo1("select * from scripts where id='$script'");
-	sc_confirmform(sc_warn("Remove $s->name from server and database?"),
-					"net.php",
-					"action=script_remove_go".
-					"¥script=$script" );
-	$action="show_scripts";
-}
-
-if($action=="script_rename_go") {
-	echo "<h1>Rename script</h1>";
-	$cm="mv '/var/www/scripts/$script' '/var/www/scripts/$new_name'";
-	echo "<br>$cm<br>";
-	system($cm);
-	purge_scripts();
-	orphan_script_scan("/var/www/scripts");
-	$action="show_scripts";
-}
-
-if($action=="script_rename") {
-	$s=mfo1("select * from scripts where id='$script'");
-	echo "<h1>Rename script</h1>";
-	echo "Rename: $s->name";
-	sc_bqf("action=script_rename_go".
-			"¥script=$s->name".
-			"¥SHOW_TEXT_1#60#new_name=$s->name",
-			"submit");
-	$action="show_scripts";
-}
-
-if($action=="script_copy_go") {
-	echo "<h1>Copy script</h1>";
-	sc_inform("copied /var/www/scripts/$script to /var/www/scripts/$copy_to_filename");
-	$cm="cp '/var/www/scripts/$script' '/var/www/scripts/$copy_to_filename'";
-	echo "<br>$cm<br>";
-	system($cm);
-
-	orphan_script_scan("/var/www/scripts");
-	$action="show_scripts";
-}
-
-if($action=="script_copy"){
-
-	$s=mfo1("select * from scripts where id='$script'");
-	$newname="copy-".time()."-".$s->name;
-	echo "<h1>Copy script</h1>";
-	sc_bqf("action=script_copy_go".
-			"¥script=$s->name".
-			"¥SHOW_TEXT_1#60#copy_to_filename=$newname",
-			"submit");
-
-	$action="show_scripts";
-}
-
-if($action=="script_push"){
-	$action="show_scripts";
-}
-*/
-
-
-
-
 
 }
 
