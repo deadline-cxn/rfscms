@@ -134,6 +134,9 @@ sc_google_analytics();
 // count the page
 sc_mcount($data->name);
 //////////////////////////////////////////////
+// system messages
+sc_system_message();
+//////////////////////////////////////////////
 // do action
 sc_do_action();
 ?>
