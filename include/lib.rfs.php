@@ -12,10 +12,10 @@ function sc_var($x) {
 	echo "\$$x=[".$GLOBALS[$x]."]<br>";
 }
 function sc_system_message() { eval(scg());
-	if(empty($data->pass)) {
+	if($_SESSION['logged_in'])
+		if(empty($data->pass)) {
 		sc_info("You have not established a password. [<a href=\"$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form\" style=\"font-size: 1em;\">Change your password</a>]","WHITE","RED");
-		
-		}
+	}
 	
 	
 }
