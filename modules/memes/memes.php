@@ -110,7 +110,7 @@ function memes_action_meme_delete_go() { eval(scg());
 // MEME save
 function memes_action_meme_save() { eval(scg());
     sc_query("update meme set status='SAVED' where id='$mid'");
-    sc_info("SAVED!","WHITE","RED");
+    sc_info("SAVED!","WHITE","GREEN");
 	 memes_action_showmemes();    
 }
 /////////////////////////////////////////////////////////////////////////////////
