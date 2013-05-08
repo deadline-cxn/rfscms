@@ -46,7 +46,7 @@ function sc_show1meme($inmid) { eval(scg());
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id","Edit");
 	}
 	if(sc_access_check("memes","delete")) {
-		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memedelete&mid=$m->id","Delete");
+		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=meme_delete&mid=$m->id","Delete");
 		echo "<br>";
 	}
 	echo "</div>";
