@@ -310,8 +310,18 @@ function memes_action_showmemes(){ eval(scg());
 	$toget=$mcols*$mrows;
     sc_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
 	$donotshowcats=true;
-	$rz=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED'");
-	$mtotal=mysql_num_rows($rz);
+	
+	$q="select * from meme  ";
+	$q.=" where ";
+	if(!empty($onlyshow))
+		$q.=" `name`='$onlyshow' and";
+	$q.=" `private`<>'yes' and `status` = 'SAVED'";
+	$q.=" order by rating desc limit $mtop,$mbot ";
+	$r=sc_query($q);
+	$n=mysql_num_rows($r); 
+	
+	
+		// $mtotal=mysql_num_rows($rz);
 	if(empty($mtop)) $mtop=0;
 	if(empty($mbot)) $mbot=$toget;
 	if( $mtop > 0 ) {
@@ -322,19 +332,12 @@ function memes_action_showmemes(){ eval(scg());
 			sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=","Show All Captions");
 		
 	}
-	if( ($mbot+$mtop) < $mtotal) {
+	if( ($mbot+$mtop) < $n) {
 		$mtop+=$mbot;
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
 	}
+	
 	echo "<hr>";
-	$q="select * from meme  ";
-	$q.=" where ";
-	if(!empty($onlyshow))
-		$q.=" `name`='$onlyshow' and";
-	$q.=" `private`<>'yes' and `status` = 'SAVED'";
-	$q.=" order by rating desc limit $mtop,$mbot ";
-	$r=sc_query($q);
-	$n=mysql_num_rows($r); 
 	for($i=0;$i<$n;$i++){
 		$m=mysql_fetch_object($r);
 		echo "<div id=$m->id style=\"float: left;\">";
