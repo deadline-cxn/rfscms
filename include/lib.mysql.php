@@ -2174,25 +2174,28 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 			$tab=$x[2];
 			$key=$x[3];
 			$val=$x[4];
-			
-		
+
 			if(!empty($val)) {
-				$r=sc_query("select * from `$tab` where `$val`='".$d[$rfafield]."'");
+				$r=sc_query("select * from `$tab` where `$key`='".$d[$rfafield]."'");
 				$tdat=mysql_fetch_array($r);
 				$tvalue=$tdat[$val];
 				$tdata=$tdat[$key];
+				
 			}
 			else {
 				$tvalue=$d[$rfafield];
 				$tdata=$d[$rfafield];
 			}
 			
+			if(empty($tvalue)) $tvalue="Select Category";
+			if(empty($tdata)) $tdata="Select Category";
+			
 			echo "<select data-description=\"$rfanname\" ";
 			
 			echo "	data-maincss=\"blue\"
 					id=\"$rfanname"."_name\"
 					name=\"$rfanname"."_name\"
-					onblur  =\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc	\"							
+					onblur  =\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc	\"
 					onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
 					style='float:left;'>";
 					
@@ -2208,26 +2211,34 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 				}	
 			
 			
-			
 			echo "value=\"$tvalue\">$tdata</option>";
 			
 			$r=sc_query("select * from `$tab` order by `$key` asc");
 			for($i=0;$i<mysql_num_rows($r);$i++) {
 				$dat=mysql_fetch_array($r);
+				
 				echo "<option ";
 				
 				if(!empty($dat['image'])) {
-					if(file_exists("$RFS_SITE_PATH/".$dat['image']))
-						echo "data-image=\"".sc_picthumb_raw($dat['image'],16,0,0)."\" ";						
+					if(file_exists("$RFS_SITE_PATH/".$dat['image'])) {
+						echo "data-image=\"".sc_picthumb_raw($dat['image'],16,0,0)."\" ";
+					}
 				}
 				else if(!empty($dat['icon'])) {
-					if(file_exists("$RFS_SITE_PATH/".$dat['icon']))
+					if(file_exists("$RFS_SITE_PATH/".$dat['icon'])) {
 						echo "data-image=\"".sc_picthumb_raw($dat['icon'],16,0,0)."\" ";
-				}	
-				
-				if(!empty($val)) {
-					echo "value=\"".$dat[$val]."\"";
+					}
 				}
+				
+				if( (!empty($val) && ($val!="nohide"))) {
+					
+					echo " value='".$dat[$val]."' ";
+					
+				} else {
+					
+					echo " value='".$dat[$key]."' ";
+				}
+				
 				echo ">".$dat[$key];
 			}
 			echo "</select>";
