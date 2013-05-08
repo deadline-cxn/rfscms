@@ -333,7 +333,7 @@ function memes_action_showmemes(){ eval(scg());
 	if(!empty($onlyshow)) {
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=","Show All Captions");
 	}
-	$ql=" limit ".$mtop+$mbot+$toget;
+	$ql=" limit ".$mtop+$mbot+$toget." ;";
 	$r2=sc_query($q.$ql);
 	$n2=mysql_num_rows($r2);
 	if( ($mbot+$mtop) < $n2) {
