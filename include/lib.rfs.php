@@ -59,6 +59,14 @@ function sc_maintenance() { eval(scg());
 		}
 	}
 	
+	
+	$r=sc_query("select * from categories");
+	for($i=0;$i<mysql_num_rows($r);$i++){ 
+		$cat=mysql_fetch_object($r);
+		$rr=sc_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");
+	}
+
+	
 	sc_div("sc_maintenance end [$theme]");
 }
 /////////////////////////////////////////////////////////////////////////
