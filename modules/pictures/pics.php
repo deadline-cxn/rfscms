@@ -4,6 +4,7 @@ if($_REQUEST['a']=="ms") {
 	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$mid.png&mid=$mid&owidth=512\" border=0></a>";
     exit();
 }
+
 if($_REQUEST['action']=="aname") {
 	$sname=$_REQUEST['sname'];
 	chdir("../../");
@@ -27,6 +28,16 @@ if($_REQUEST['action']=="adesc") {
 
 chdir("../../");
 include("header.php");
+
+
+$r=sc_query("select * from categories");
+for($i=0;$i<mysql_num_rows($r);$i++){ 
+	$cat=mysql_fetch_object($r);
+	$rr=sc_query("update pictures set category = '$cat->name' where category = '$cat->id'");
+}
+
+
+
 
 if(empty($galleria)) {
 	$galleria="no";
