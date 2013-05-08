@@ -308,6 +308,9 @@ function memes_action_showmemes(){ eval(scg());
 	echo "<h1>Meme generator</h1>";
 	$mcols=5; $mrows=5;
 	$toget=$mcols*$mrows;
+	if(empty($mtop)) $mtop=0;
+	if(empty($mbot)) $mbot=$toget;
+	
     sc_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
 	$donotshowcats=true;
 	
@@ -319,11 +322,8 @@ function memes_action_showmemes(){ eval(scg());
 	$q.=" order by rating desc limit $mtop,$mbot ";
 	$r=sc_query($q);
 	$n=mysql_num_rows($r); 
-	
-	
-		// $mtotal=mysql_num_rows($rz);
-	if(empty($mtop)) $mtop=0;
-	if(empty($mbot)) $mbot=$toget;
+
+
 	if( $mtop > 0 ) {
 		$tmtop=$mtop-$mbot;
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow","PREVIOUS PAGE");
