@@ -47,8 +47,8 @@ function pics_show_buttons() { eval(scg());
 		echo "</td>";
 	}
 	if(sc_access_check("pictures","sort")) {
-		$cr=mfo1("select * from categories where name='!!!TEMP!!!'");
-		$res2=sc_query("select * from `pictures` where `category`='$cr->id'");
+		//$cr=mfo1("select * from categories where name=''");
+		$res2=sc_query("select * from `pictures` where `category`='!!!TEMP!!!'");
 		$numpics=mysql_num_rows($res2);
 		if($numpics>0){
 			echo "<td>";
@@ -134,8 +134,7 @@ function pics_action_uploadpicgo(){ eval(scg());
 		sc_query("INSERT INTO `pictures` (`url`) VALUES('$furl');");
 		$id=mysql_insert_id();
 		
-		sc_query("update `pictures` set `category`='$category'  	where `id`='$id'");	
-		sc_query("update `pictures` set `category`='$category' where `id`='$id'");
+		sc_query("update `pictures` set `category`='$category'  	where `id`='$id'");			
 		sc_query("update `pictures` set `sname`='$sname'        where `id`='$id'");	
 		sc_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");	
 		sc_query("update `pictures` set `hidden`='$hidden'      where `id`='$id'");	
@@ -210,8 +209,8 @@ function pics_action_removego() { eval(scg());
 function pics_action_addorphans(){ eval(scg());
 // if($action=="addorphans"){
     if ($data->access==255) {
-        $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
-        $category=$categoryz->id;
+        // $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
+        // $category=$categoryz->id;
         sc_query("delete from pictures where category='$category'");
         $dir_count = addorphans("files/pictures",$category);
         if($dir_count==0)
@@ -231,8 +230,8 @@ function pics_action_sorttemp() { eval(scg());
                     VALUES('$newcat'); ");
                 $categorey=$newcat;
             }
-			$categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='$categorey'"));
-			$category=$categoryz->id;
+			// $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='$categorey'"));
+			//	$category=$categoryz->id;
 			$res=sc_query("select * from `pictures` where `category`='$category' order by time asc");
 			sc_query("update `pictures` set `category`='$category' where `id`='$id'");
 			$sname=addslashes($sname);
@@ -240,8 +239,8 @@ function pics_action_sorttemp() { eval(scg());
 			sc_query("update `pictures` set `sfw`='$sfw' where `id`='$id'");
 			sc_query("update `pictures` set `hidden`='$hidden' where `id`='$id'");
 		}
-		$categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
-		$category=$categoryz->id;
+		// $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
+		// $category=$categoryz->id;
 		$res=sc_query("select * from `pictures` where `category`='$category' order by time asc");
 		$numpics=mysql_num_rows($res);
 		if($numpics>0){
@@ -296,8 +295,8 @@ function pics_action_sorttemp() { eval(scg());
 			echo "Hidden<select name=hidden>";
             // if(!empty($picture->hidden))            echo "<option>$picture->hidden";
 			echo "<option>no<option>yes</select>";
-			$cat=mysql_fetch_object(sc_query("select * from `categories` where `id`='$picture->category'"));
-			echo "<select name=categorey>\n";
+			$cat=mysql_fetch_object(sc_query("select * from `categories` where `name`='$picture->category'"));
+			echo "<select name=category>\n";
 			echo "<option>Funny<option>$cat->name\n";
 			$result2=sc_query("select * from categories order by name asc");
 			$numcats=mysql_num_rows($result2);
@@ -338,8 +337,8 @@ if($action=="modifydescriptiongo") {
 }
 if($action=="modifygo"){
 	if ($data->access==255) {
-		$categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='$categorey'"));
-		$category=$categoryz->id;
+		//$categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='$categorey'"));
+		//$category=$categoryz->id;
 		sc_query("update `pictures` set `category`='$category' where `id`='$id'");
 		$sname=addslashes($sname);
 		sc_query("update `pictures` set `sname`='$sname'     where `id`='$id'");
@@ -373,7 +372,7 @@ function pics_action_modifypicture() { eval(scg());
 		echo "<tr><td class=contenttd align=right>";
 		echo "Category:";
 		echo "</td><td class=contenttd>";
-		$cat=mysql_fetch_object(sc_query("select * from `categories` where `id`='$picture->category'"));
+		$cat=mysql_fetch_object(sc_query("select * from `categories` where `name`='$picture->category'"));
 		echo "<select name=categorey>";
 		echo "<option>$cat->name";
 		$result2=sc_query("select * from categories order by name asc");
@@ -494,7 +493,7 @@ function pics_action_view($id) { eval(scg());
 		echo "</td>";
 		echo "</tr></table></center>";	
 		echo "<center>";
-    $categorym=mfo1("select * from categories where id='$category'");	
+    $categorym=mfo1("select * from categories where name='$category'");	
     if(!empty($categorym->name)) {
         echo "Category: $categorym->name<br>";
     }
@@ -566,7 +565,7 @@ function pics_action_view($id) { eval(scg());
 function pics_action_viewcat($cat) {eval(scg());
 	if($ipr) $ipr=mfo1("select * from pictures where id=$id");
 	else $ipr=mfo1("select * from pictures where category='$cat'");
-    $cat=mfo1("select * from categories where id='$cat'");
+    $cat=mfo1("select * from categories where name='$cat'");
     if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
     $r=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
 	$numpics=mysql_num_rows($r);	
