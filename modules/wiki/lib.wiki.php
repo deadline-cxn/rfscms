@@ -18,7 +18,8 @@ function sc_module_mini_wiki($x) { eval(scg());
     $num=mysql_num_rows($result);
     for($i=0;$i<$num;$i++) {
         $page=mysql_fetch_object($result);
-        echo "<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=$page->name\">$page->name</a> ";   // echo sc_time($page->updated)." by ".$page->author;
+		 $opage=urlencode($page->name);
+        echo "<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=$opage\">$page->name</a> ";   // echo sc_time($page->updated)." by ".$page->author;
         echo "<br>\n";
     }
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=contents class=a_cat>More...</a>)</p>";
