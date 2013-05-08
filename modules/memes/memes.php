@@ -310,7 +310,8 @@ function memes_action_showmemes(){ eval(scg());
 	$toget=$mcols*$mrows;
     sc_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
 	$donotshowcats=true;
-	$rz=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED'"); $mtotal=mysql_num_rows($rz);
+	$rz=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED'");
+	$mtotal=mysql_num_rows($rz);
 	if(empty($mtop)) $mtop=0;
 	if(empty($mbot)) $mbot=$toget;
 	if( $mtop > 0 ) {
@@ -325,6 +326,7 @@ function memes_action_showmemes(){ eval(scg());
 		$mtop+=$mbot;
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
 	}
+	echo "<hr>";
 	$q="select * from meme  ";
 	$q.=" where ";
 	if(!empty($onlyshow))
