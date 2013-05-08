@@ -83,7 +83,7 @@ sc_bf(	"$RFS_SITE_URL/modules/pictures/pics.php",
 		"action=uploadpicgo".$RFS_SITE_DELIMITER.
 		"MAX_FILE_SIZE=99999999".$RFS_SITE_DELIMITER.
 		
-		"SHOW_SELECTOR_categories#name#gallery#Choose a category".$RFS_SITE_DELIMITER.
+		"SHOW_SELECTOR_categories#name#category#Choose a category".$RFS_SITE_DELIMITER.
 		"SHOW_SELECTOR_NOTABLE#IG#hidden#no#yes".$RFS_SITE_DELIMITER.
 		"SHOW_SELECTOR_NOTABLE#IG#sfw#yes#no".$RFS_SITE_DELIMITER.
 		"SHOW_CLEARFOCUSTEXT_sname=name".$RFS_SITE_DELIMITER.
@@ -104,7 +104,7 @@ sc_bf(	"$RFS_SITE_URL/modules/pictures/pics.php",
 	echo "<tr><td align=right>Select file:      </td><td ><input name=\"userfile\" type=\"file\" size=80> </td></tr>\n";
 	echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
 	echo "<tr><td align=right>Hide from public: </td><td><select name=hidden><option>no<option>yes</select> </td>	</tr>	";
-	echo "<tr><td align=right>Gallery:         </td><td><select name=category>\n";
+	echo "<tr><td align=right>Category:         </td><td><select name=category>\n";
 	$result=sc_query("select * from categories order by name asc"); $numcats=mysql_num_rows($result);
 	for($i=0;$i<$numcats;$i++) { $cat=mysql_fetch_object($result); echo "<option>$cat->name"; }
 	echo "</select></td></tr>\n";		
@@ -134,8 +134,8 @@ function pics_action_uploadpicgo(){ eval(scg());
 		sc_query("INSERT INTO `pictures` (`url`) VALUES('$furl');");
 		$id=mysql_insert_id();
 		
-		sc_query("update `pictures` set `gallery`='$gallery'  	where `id`='$id'");	
-		sc_query("update `pictures` set `category`='$gallery' where `id`='$id'");
+		sc_query("update `pictures` set `category`='$category'  	where `id`='$id'");	
+		sc_query("update `pictures` set `category`='$category' where `id`='$id'");
 		sc_query("update `pictures` set `sname`='$sname'        where `id`='$id'");	
 		sc_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");	
 		sc_query("update `pictures` set `hidden`='$hidden'      where `id`='$id'");	
@@ -345,7 +345,7 @@ if($action=="modifygo"){
 		sc_query("update `pictures` set `sname`='$sname'     where `id`='$id'");
 		sc_query("update `pictures` set `sfw`='$sfw'         where `id`='$id'");
 		sc_query("update `pictures` set `hidden`='$hidden'   where `id`='$id'");
-		sc_query("update `pictures` set `gallery`='$gallery' where `id`='$id'");
+		sc_query("update `pictures` set `category`='$category' where `id`='$id'");
 		sc_query("update `pictures` set `poster`='$poster'   where `id`='$id'");
 		sc_query("update `pictures` set `lastupdate`='$time' where `id`='$id'");
 		sc_query("update `pictures` set `url`='$gurl'        where `id`='$id'");
@@ -406,7 +406,7 @@ function pics_action_modifypicture() { eval(scg());
 		}
 		echo "</select>\n";
 		echo "</td></tr>\n";
-		//  echo "<tr><td class=contenttd align=right>Gallery:</td><td class=contenttd><input name=gallery value=\"$picture->gallery\"></td></tr>";
+		//  echo "<tr><td class=contenttd align=right>Category:</td><td class=contenttd><input name=category value=\"$picture->category\"></td></tr>";
 		echo "<tr><td class=contenttd align=right>Rating:</td><td class=contenttd><input name=rating value=\"$picture->rating\"></td></tr>";
 		// echo "<tr><td class=contenttd align=right>Views:</td><td class=contenttd><input name=views value=\"$picture->views\"></td></tr>";
 		echo "<tr><td class=contenttd align=right>Description:</td><td class=contenttd><textarea name=description rows=8 cols=80>$picture->description</textarea></td></tr>";
@@ -496,7 +496,7 @@ function pics_action_view($id) { eval(scg());
 		echo "<center>";
     $categorym=mfo1("select * from categories where id='$category'");	
     if(!empty($categorym->name)) {
-        echo "Gallery: $categorym->name<br>";
+        echo "Category: $categorym->name<br>";
     }
 	
 	if(empty($picture->sname)) {		
@@ -567,7 +567,7 @@ function pics_action_viewcat($cat) {eval(scg());
 	if($ipr) $ipr=mfo1("select * from pictures where id=$id");
 	else $ipr=mfo1("select * from pictures where category='$cat'");
     $cat=mfo1("select * from categories where id='$cat'");
-    if(!empty($cat->name)) echo "<center><font class=th>Gallery: $cat->name</font></center>";
+    if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
     $r=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
 	$numpics=mysql_num_rows($r);	
 			echo "<center>";			
@@ -634,7 +634,7 @@ function pics_action_viewcats(){ eval(scg());
 		$numcols=0; echo "<tr>";
 		for($i=0;$i<$numcats;$i++) {
 			$cat=mysql_fetch_object($res);
-			$res2=sc_query("select * from `pictures` where `gallery`='$cat->name' and `hidden`!='yes' order by `sname` asc");
+			$res2=sc_query("select * from `pictures` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
 			$numpics=mysql_num_rows($res2);
 
 			if($numpics>0) {
@@ -654,6 +654,7 @@ function pics_action_viewcats(){ eval(scg());
 
 				echo "<tr>";
 					echo "<td class=contenttd valign=top height=200 width=220>";
+					
 					// make pictures table...
 					if($numpics>5) $numpics=5;
 					for($i2=0;$i2<$numpics;$i2++) {
