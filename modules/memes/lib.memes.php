@@ -59,7 +59,7 @@ function sc_show1minimeme($inmid) { eval(scg());
 	$t=$m->name."-".time();
 	echo "<div id='fl_$inmid' class=\"memebox\">";
 	echo "<div class=\"memepic\">";
-	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize' target=_blank><img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth' border=0></a>";
+	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize' target=_blank><img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth&forcerender=1' border=0></a>";
 	echo "</div>";
 	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 	sc_image_text(sc_num2txt($m->rating), "OCRA.ttf", 12, 78,24,   0,0, 1,155,1, 70,70,0, 1,0   );
