@@ -6,6 +6,22 @@ body{
 }
 
 
+.memebox {
+	text-align: center;
+	min-height: 324px;
+	margin: 5px;
+	box-shadow: 5px 5px 5px #888888;
+	border:solid 1px #777777;
+	border-radius: 5px;
+}
+
+.memepic {
+	text-align: center;
+	min-height: 220px;
+	max-height: 220px;
+	overflow-y: auto;
+}
+
 .forum_box {
 	width: 98%;
 	float: left;
