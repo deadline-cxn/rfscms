@@ -64,7 +64,8 @@ function memes_action_new_meme_go() { eval(scg());
 		
 		$p=mfo1("select * from pictures where sname='$sname'");
 		$id=$p->id;
-		global $basepic=$id;
+		global $basepic;
+		$basepic=$id;
 		$error.=" $basepic";
 		$action="memegenerate";
 		$mid="";
