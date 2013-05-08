@@ -325,7 +325,6 @@ function memes_action_showmemes(){ eval(scg());
 	$r=sc_query($q.$ql);
 	$n=mysql_num_rows($r); 
 
-
 	if( $mtop > 0 ) {
 		$tmtop=$mtop-$mbot;
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow","PREVIOUS PAGE");
@@ -334,10 +333,11 @@ function memes_action_showmemes(){ eval(scg());
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=","Show All Captions");
 	}
 	$ql=" limit ".$mtop+$mbot+$toget." ;";
-	$r2=sc_query($q.$ql);
-	$n2=mysql_num_rows($r2);
-	echo " [".$mtop+$mbot+$toget."] [".$mbot+$mtop."] [".$n2."] <BR>";
-	if( ($mbot+$mtop) < $n2) {
+	$rrr=sc_query($q.$ql);
+	
+	$nnn=mysql_num_rows($rrr);
+	echo "<hr> mtop+mbot+toget [".($mtop+$mbot+$toget)."] mbot+mtop [".($mbot+$mtop)."] nnn[".$nnn."] <BR>";
+	if( ($mbot+$mtop) < $nnn) {
 		$mtop+=$mbot;
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
 	}
