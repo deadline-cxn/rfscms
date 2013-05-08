@@ -336,7 +336,7 @@ function memes_action_showmemes(){ eval(scg());
 	$rrr=sc_query($q.$ql);
 	
 	$nnn=mysql_num_rows($rrr);
-	echo "<hr> mtop+mbot+toget [".($mtop+$mbot+$toget)."] mbot+mtop [".($mbot+$mtop)."] nnn[".$nnn."] <BR>";
+	//echo "<hr> mtop+mbot+toget [".($mtop+$mbot+$toget)."] mbot+mtop [".($mbot+$mtop)."] nnn[".$nnn."] <BR>";
 	if( ($mbot+$mtop) < $nnn) {
 		$mtop+=$mbot;
 		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
