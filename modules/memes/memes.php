@@ -68,11 +68,14 @@ function memes_action_new_meme_go() { eval(scg());
 		$action="memegenerate";
 		$mid="";
 		$private=$hidden;
+		sc_info("Status: [$error]","WHITE","GREEN");	
+		memes_action_memegenerate();
 	}
 	else{
 		$error ="File upload error!";
 		echo "File upload error! [".$_FILES['userfile']['name']."][".$_FILES['userfile']['error']."][".$_FILES['userfile']['tmp_name']."][".$uploadFile."]\n";
 	}
+	
 	if(!$error){
 		$error .= "No files have been selected for upload";
 	}
