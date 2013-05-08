@@ -248,7 +248,7 @@ function memes_action_memeedit() { eval(scg());
 						if($rb>255) $rb=0;
 		
 
-						echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&chgfont=$file&mid=$m->id'>
+	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&chgfont=$file&mid=$m->id'>
 							<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?action=showfont&font=$file&text_size=16&forcerender=1&oheight=120&forceheight=1&icr=$rr&icg=$rg&icb=$rb' border=0></a>";
 				}
 			}
