@@ -135,23 +135,33 @@ function memes_action_memegenerate() { eval(scg());
 			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
         sc_query($q);
         $GLOBALS['mid']=mysql_insert_id();
-       } else {
+       }
+	else {
 		$infoout="Updating caption $mid";
-		
+		if(!empty($_REQUEST['name']))
 		sc_query("update meme set `name`  			= '$name'   	     where id='$mid'");
+		if(!empty($_REQUEST['poster']))
 		sc_query("update meme set `poster`   	 	= '$poster'     	 where id='$mid'");
+		if(!empty($_REQUEST['texttop']))
 		sc_query("update meme set `texttop`     	= '$texttop'    	 where id='$mid'");
+		if(!empty($_REQUEST['textbottom']))
 		sc_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$mid'");
-		sc_query("update meme set `font`	        = '$chgfont'       where id='$mid'");
+		if(!empty($_REQUEST['chgfont']))
+		sc_query("update meme set `font`	       = '$chgfont'       where id='$mid'");
+		if(!empty($_REQUEST['text_color']))
 		sc_query("update meme set `text_color`		= '$text_color'    where id='$mid'");
+		if(!empty($_REQUEST['text_bg_color']))
 		sc_query("update meme set `text_bg_color`	= '$text_bg_color' where id='$mid'");
+		if(!empty($_REQUEST['text_size']))
 		sc_query("update meme set `text_size`		= '$text_size'     where id='$mid'");
-		sc_query("update meme set `private`		    = '$private'       where id='$mid'");
+		if(!empty($_REQUEST['private']))
+		sc_query("update meme set `private`		= '$private'       where id='$mid'");
+		if(!empty($_REQUEST['datborder']))
 		sc_query("update meme set `datborder`		= '$datborder'   	  where id='$mid'");
 	}	
     $meme=mfo1("select * from meme where id='$mid'");
     $data=sc_getuserdata($poster);
-    // $action="memeedit";
+	global $basepic;
     $basepic=$meme->basepic;
 	sc_info($infoout." >> $meme->id ($mid) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
 	memes_action_memeedit();
@@ -248,7 +258,7 @@ function memes_action_memeedit() { eval(scg());
 						if($rb>255) $rb=0;
 		
 
-	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&chgfont=$file&mid=$m->id'>
+	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&chgfont=$file&mid=$m->id'>
 							<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?action=showfont&font=$file&text_size=16&forcerender=1&oheight=120&forceheight=1&icr=$rr&icg=$rg&icb=$rb' border=0></a>";
 				}
 			}
