@@ -105,6 +105,7 @@ function memes_action_meme_delete_go() { eval(scg());
 	if(sc_access_check("memes","delete")) {
 		sc_query("delete from meme where id='$mid' limit 1");
 	}
+	memes_action_showmemes();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME save
