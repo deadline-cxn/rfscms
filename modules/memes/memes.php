@@ -306,7 +306,7 @@ function memes_action_mdv() { eval(scg());
 // MEME show memes
 function memes_action_showmemes(){ eval(scg());
 	echo "<h1>Meme generator</h1>";
-	$mcols=5; $mrows=6;
+	$mcols=5; $mrows=5;
 	$toget=$mcols*$mrows;
     sc_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
 	$donotshowcats=true;
