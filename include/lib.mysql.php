@@ -1766,17 +1766,21 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 			"&delete=".urlencode($base).			
 			"&cssvalue=".urlencode($cssvalue).
 			"&outfile=".urlencode($css_file);
+			
 			foreach ($hvar as $vn => $vv){
 				$buttout.="&$vn=$vv";
 			}
+			
 			sc_button($buttout,"Delete");
 
 		echo "$cssx2[0] { <br>";
+		
+		echo "<form method=post action=\"$returnpage\">";
+		
 		echo "<table border=0>";	
 		$cssx3=explode(";",$cssx2[1]);
 		for($j=0;$j<count($cssx3)-1;$j++) {
-			$cssx4=explode(":",$cssx3[$j]);
-			echo "<form method=post action=\"$returnpage\">";
+			$cssx4=explode(":",$cssx3[$j]);			
 			echo "<tr>";
 			echo "<td>";
 			$base=trim($cssx2[0]);
@@ -1788,20 +1792,30 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 			"&sub=".urlencode($sub).
 			"&cssvalue=".urlencode($cssvalue).
 			"&outfile=".urlencode($css_file);
+			
 			foreach ($hvar as $vn => $vv){
+				if($vn!="update")
 				$buttout.="&$vn=$vv";
 			}
-			sc_button($buttout,"Delete");
+			
+			echo "[<a href=\"$buttout\">delete</a>]";// sc_button($buttout,"Delete");
 			
 			
 			echo "</td>";
 			echo "<td width=200>";
 			echo " $cssx4[0]:";
-			echo "</td><td>";
+			echo "</td>";
+			
+			
+			echo "<td>";
+			
+			
+			
 			
 			echo "<a name=\"$base$sub\"></a>";
 			
 			$cssvalue=str_replace("\"","'",$cssvalue);
+			
 			
 	
 			echo "<input type=\"hidden\" name=\"thm\" value=\"$thm\">";
@@ -1818,10 +1832,16 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 			echo " size=60
 			
 			onblur=\"this.form.submit();\">";
+			
+			
+			
 
-			echo "</td></tr>";echo "</form>";
+			echo "</td>";
+			
+			echo "</tr>";
 		}
 		echo "</table> }";
+		echo "</form>";
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -1869,7 +1889,7 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 			echo "<tr>";			
 			echo "<form method=post action=\"$returnpage\">";
 			echo "<td>";
-			echo "[<a href=\"$returnpage?action=$returnaction&delete=$varx[0]&outfile=$php_file";
+			echo "[<a href=\"$returnpage?action=$returnaction&delete=$varx[0]&outfile=$php_file";	
 			foreach ($hvar as $vn => $vv){
 				echo "&$vn=$vv";
 			}
