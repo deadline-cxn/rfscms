@@ -22,10 +22,10 @@ body{
 }
 
 .memepic {
+	box-shadow: 5px 5px 5px #888888;
+	border:solid 1px #777777;
+	border-radius: 5px;
 	text-align: center;
-	min-height: 220px;
-	max-height: 220px;
-	overflow-y: auto;
 }
 
 .wikishell {

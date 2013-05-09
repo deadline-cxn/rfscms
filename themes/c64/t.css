@@ -309,19 +309,17 @@ td
 .downloadtd
 {
     font-family: C64;
-	font-size: 12px;
-    
+	font-size: 12px;    
 	color:   #4D44DB;
 	background-color: #A397FF;
 }
 
 .memebox
 {
+	margin: 5px;
 	border: 3px;
 	border-style: solid;
 	border-radius: 8px;
-	height: 380px;
-	margin: 15px 15px;
 }
 .memepic {
 	box-shadow: 3px 3px 3px #A397FF;

@@ -65,10 +65,45 @@ function sc_maintenance() { eval(scg());
 		$cat=mysql_fetch_object($r);
 		$rr=sc_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");
 	}
-
 	
 	sc_div("sc_maintenance end [$theme]");
 }
+
+function sc_get_content_ids() { eval(scg());
+
+	$q1="SHOW FULL TABLES";
+	$r1=sc_query($q1);
+	
+	for($i1=0;$i1<mysql_num_rows($r1);$i1++) {
+		$t=mysql_fetch_array($r1);
+		$table=$t[0];
+		$q2="DESCRIBE $table;";
+		echo $q2."<br>";
+		$hasid=false;
+		$r2=sc_query($q2);
+		if($r2)		
+		for($i2=0;$i2<mysql_num_rows($r2);$i2++) {
+			$t2=mysql_fetch_array($r2);			
+			echo $t2[0]."<br>";
+			if($t2[0]=="id") $hasid=true;			
+		}
+		if($hasid) {
+			echo " <font style='color:red;'>HAS ID!</font><BR>";
+		
+			$q3="INSERT INTO `contentid`(`table`,`table_id`) select '$table', `id` from `$table`";
+			echo $q3."<br>";
+			sc_query($q3);
+			
+		}
+		
+		
+	}
+
+
+	
+	
+}
+
 /////////////////////////////////////////////////////////////////////////
 function sc_info($t,$c,$c2) { 	echo "<div style=' font-size: 2em; color:$c; background-color:$c2; width:100%;'>$t</div>"; }
 /////////////////////////////////////////////////////////////////////////
