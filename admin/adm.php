@@ -908,26 +908,33 @@ function adm_action_theme() { eval(scg());
 	
 
 	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
-	echo "<table border=0>";
+	echo "<hr>";
+	
 	$thms=sc_get_themes();
 	while(list($key,$thm)=each($thms)) {
-		echo "<tr>";
 		
-		echo "<td>";
+		echo " <div class=\"picthumb\" style=\"float: left; height: 150px; margin: 20px;\">";
+	
+	
+		echo "$thm <br>";
 		$sample="themes/$thm/t.sample.png";
 		if(file_exists("$RFS_SITE_PATH/$sample")) {
 			
-			echo sc_picthumb("$RFS_SITE_PATH/$sample",120,120,1);
+			echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
 		}
-		echo "</td>";
 	
-		echo "<td>$thm</td><td>";
+		echo "<br>";
+		echo "<div>";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_clone&thm=$thm\">clone</a>] ";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_delete&thm=$thm\">delete</a>] ";
-		echo "</td></tr>";
+		echo "</div>";
+		echo "</div>";
+		
 	}
-	echo "</table>";
+	
+	echo "<div style=\"clear: both;\" ></div>";
+	
 	include( "footer.php" );
 	exit();
 }
