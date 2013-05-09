@@ -65,7 +65,7 @@ function wikiimg($text) { eval(scg());
                 //////////////////////////////////////////////////////////////////////////////
             } else {
 				if( ($w) || ($h)) {                    
-					$outtext.= sc_picthumb("$RFS_SITE_PATH/$img",$w,$h,0);
+					$outtext.= sc_picthumb("$RFS_SITE_PATH/$img",$w,$h,1);
                 }
 				else {
                     $outtext.="<img src=\"$RFS_SITE_URL/".$img."\" border=0 >";                    

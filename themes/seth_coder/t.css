@@ -4,7 +4,6 @@ body{
   margin: 3px;
 }
 
-
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;
 	border:solid 1px #222222;
@@ -43,11 +42,9 @@ body{
 	border-bottom-right-radius: 8px;
 }
 
-
 td{
     font-family: Verdana;
     font-size: 12px;
-
 }
 
 .news_img_td {
@@ -56,9 +53,8 @@ td{
 }
 .news_td {
 	vertical-align: top;
-	
-	
 }
+
 .news_a{
 	vertical-align: top;
 }
@@ -68,6 +64,24 @@ td{
     font-family: Verdana;
     font-size: 16px;
     color: #333377;
+}
+
+h1{
+	font-weight: bold;
+	font-size: 20px;
+	margin: 0px;
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 18px;
+	margin: 0px;
+}
+
+h3 {
+	font-weight: bold;
+	font-size: 16px;
+	margin: 0px;
 }
 
 hr{
@@ -126,8 +140,6 @@ hr{
     color: #000000;
 }
 
-
-
 .top_site_name {
     font-family: Verdana;
     font-size: 32px;
@@ -147,10 +159,6 @@ hr{
 	border-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
-	
-	
-	
-
 }
     
 .toptd {
@@ -225,9 +233,7 @@ hr{
     font-size: 12px;
     font-style: italic ;
     color: #c2c7FF;
-    
-
-}
+ }
 
 .wikishell {
 	margin:5px auto;
@@ -242,8 +248,6 @@ hr{
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 }
-
-
 
 .forum_box {
 	width: 100%;
@@ -277,11 +281,7 @@ hr{
 .forum_time{
 	overflow: hidden;
 	clear: both;
-	
 }
-
-
-
 
 input,textarea{
     font-family: Arial;
@@ -292,13 +292,13 @@ input,textarea{
     border-style: solid;
     background-color: #a2a7d6;
 }
+
 input[type="select"] {
 	background-color: #a2a7d6;
 }
 
 input[type="submit"] {
-border-width: 1px;
-	
+	border-width: 1px;
 	border-left-color: #ffffff;
 	border-top-color: #ffffff;
     border-bottom-color: #000000;
@@ -307,12 +307,8 @@ border-width: 1px;
 	border-top-right-radius: 4px;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
-	
 	-moz-box-shadow: 5px 5px 3px  #555;
 	-webkit-box-shadow: 5px 5px 3px   #555;
 	box-shadow: 5px 5px 3px  #555;
-	
 	cursor: pointer;
-
-
 }

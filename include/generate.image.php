@@ -7,9 +7,7 @@ $RFS_GEN_IMAGE=true;
 include_once("include/session.php");
 include_once("include/lib.genm.php");
 include_once("include/lib.mysql.php");
-$owidth=$_REQUEST['owidth'];
-if(empty($owidth))  { $owidth=128; }
-if($owidth!=512)    $usesmalltext=1;
+
 if($font=="random") {
     $dr=$RFS_SITE_PATH."/files/fonts/";
     $fonts=array(); $d = opendir($dr) or die("Wrong path: $dr");
@@ -30,6 +28,9 @@ if(!file_exists($font)) {
 }
 //////////////////////////////////////////// TEXT ONLY SECTION
 if( $action=="showfont") {
+	$owidth=$_REQUEST['owidth'];
+		if(empty($owidth))  { $owidth=128; }
+	if($owidth!=512)    $usesmalltext=1;
 	if(empty($text_size))        $text_size=9;
 	if(!empty($otext))        $fizont=$otext;
     $gfn=explode("/",$font); $font_name=$gfn[count($gfn)-1];
@@ -95,9 +96,10 @@ if( $action=="showfont") {
 	if($SESSION['debug_msgs']){
 	$color = imagecolorallocate($image_b, 0,255,0);
 	imagettftext($image_b, $text_size-1, 0, $zx, $zy,   $color, 		$font,  $fizont);
-}
+	}
 //////////////////////////////////////////// END OF TEXT ONLY SECTION		
-} else
+} 
+else
     {
     //////////////////////////////////////////// MERGE PICTURE WITH TEXT
 	$mid=$_REQUEST['mid'];
@@ -105,10 +107,33 @@ if( $action=="showfont") {
 	
 	$pic=mfo1("select * from pictures where id='$meme->basepic'");
 	$ptf=$RFS_SITE_PATH."/".$pic->url;
+	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";	
 	$px=explode("/",$pic->url);
 	$py=explode(".",$px[count($px)-1]);
-	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";
-	$renderfile =$RFS_SITE_PATH."/"."files/pictures/rendered/".$py[0].".$owidth.".$meme->id.".png";
+	
+	$image_in = genm_imgload($ptf);
+	
+	$owidth	= $_REQUEST['owidth'];
+	$oheight	= $_REQUEST['oheight'];
+	
+	if($owidth>0) $scaleby="width";	
+	if((empty($owidth))&&($oheight>0)) 		{ $owidth=128; $scaleby="height"; }
+	if((empty($owidth))&&(empty($oheight))) 	{ $owidth=128; $scaleby="width"; }	
+   
+   if($scaleby=="width")	{
+		$dbzf=@ImageSX($image_in);
+		if($dbzf==0) $dbzf=1;
+		$scale   = ( $owidth/$dbzf) *100;
+		$oheight = @ImageSY($image_in) * $scale/100;
+	}
+   else{
+	   $dbzf = @ImageSY($image_in);
+		if($dbzf==0) $dbzf=1;	
+		$scale   = ( $oheight/$dbzf) *100;    
+		$owidth  = @ImageSX($image_in) * $scale/100;
+	}
+		
+	$renderfile =$RFS_SITE_PATH."/"."files/pictures/rendered/".$py[0].".$owidth.".$meme->id.".png";	
 	if(!empty($renderfile)){
 		if($forcerender!=1) {
 			if(file_exists($renderfile)){
@@ -118,13 +143,13 @@ if( $action=="showfont") {
 			}
 		}
 	}
-	$image_in = genm_imgload($ptf);
-    $dbzf=@ImageSX($image_in);
-    if($dbzf==0) $dbzf=1;
-    $scale = ( $owidth/$dbzf) *100;
-    $oheight = @ImageSY($image_in) * $scale/100;
+	
+	//echo $owidth."<br>";
+	//echo $oheight."<br>";
 	$image_b = @imagecreatetruecolor($owidth,$oheight);
-    @imagealphablending($image_b, true);
+	
+	
+	@imagealphablending($image_b, true);
 	@imagesavealpha($image_b, true);
 	@imagecopyresampled(
     $image_b,   // dst

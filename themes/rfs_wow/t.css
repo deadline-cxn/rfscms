@@ -46,6 +46,10 @@ h3 {
 	border-bottom-right-radius: 8px;
 }
 
+.wikitext {
+	padding: 10px;
+}
+
 
 a{
 	font-family: wow;
@@ -213,7 +217,6 @@ input,select,textarea {
     border-style: solid;
     background-color: #987808;
 }
-
 
 button, input[type="submit"] {
 	margin: 1px;

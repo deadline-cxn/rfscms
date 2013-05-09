@@ -53,8 +53,8 @@ body{
 
 
 .rfs_thumb {
-	box-shadow: 3px 3px 3px #ff9900;
-	border:solid 1px #ff9900;
+	box-shadow: 3px 3px 3px #553300;
+	border:solid 1px #553300;
 	border-radius:5px;
 }
 
@@ -63,6 +63,13 @@ body{
     font-size: 12px;
     font-style: italic ;
     color: #000000;
+}
+
+hr{
+    border: 1px;
+    border-color: #ff9900;
+    border-style: dotted;
+	
 }
 
 .warning {
@@ -159,21 +166,21 @@ body{
 
 h1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 32px;;
+    font-size: 20px;;
     font-weight: bold;
     font-style: italic;
     color: #ff9900;
 }
 h2 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 30px;;
+    font-size: 18px;;
     font-weight: bold;
     font-style: italic;
     color: #ff9900;
 }
 h3 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 30px;;
+    font-size: 16px;;
     font-weight: bold;
     font-style: italic;
     color: #ff9900;

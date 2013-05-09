@@ -56,6 +56,9 @@ $name=ucwords($name);
 
 rfs_echo("<h1>$name</h1>");
 
+echo "<div class=\"wikitext\">";
+
+
 //////////////////////////////////////////////////////////////////////////////
 // backtrace this link
 
@@ -227,6 +230,8 @@ if($hide_wiki_menu!="true"){
     if($GLOBALS['rfsw_admin_mode']=="true")
     echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=createnewpage>create new page</a>]";
 }
+
+echo "</div>";
 
 include($rfsw_footer);
 
