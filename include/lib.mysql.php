@@ -818,11 +818,14 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 				
 				if(!empty($d->image)) {
 					if(file_exists("$RFS_SITE_PATH/$d->image"))
-						echo "data-image=\"".sc_picthumb_raw($d->image,16,0,0)."\" ";						
+						echo "data-image=\"".sc_picthumb_raw($d->image,16,0,0)."\" ";
+						
+						echo " IMAGE-WHAT=\"$d->image\" ";
 				}
 				else if(!empty($d->icon)) {
 					if(file_exists("$RFS_SITE_PATH/$d->icon"))
 						echo "data-image=\"".sc_picthumb_raw($d->icon,16,0,0)."\" ";
+						echo " ICON-WHAT=\"$d->icon\" ";
 				}				
 			
 				if($use_id_method){
