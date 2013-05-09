@@ -297,29 +297,28 @@ body
     color: #555555;
 }
 
+h1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #320;
+}
+
 h1
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: bold;
-    color: #332300; 
-}
-
-h1
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: #332300; 
+    color: #320; 
 }
 
 h3
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     font-style: italic;
-    color: #b4a570; 
+    color: #320; 
 }
 
 

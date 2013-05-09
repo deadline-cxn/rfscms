@@ -904,7 +904,7 @@ function adm_action_f_theme_view_classes() { eval(scg());
 }
 function adm_action_theme() { eval(scg());
 
-	echo "<h3>Theme Editor</h3>";
+	echo "<h1>Theme Editor</h1>";
 	
 
 	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
@@ -913,17 +913,17 @@ function adm_action_theme() { eval(scg());
 	$thms=sc_get_themes();
 	while(list($key,$thm)=each($thms)) {
 		
-		echo " <div class=\"picthumb\" style=\"float: left; height: 150px; margin: 20px;\">";
+		echo " <div  style=\"float: left; height: 150px; margin: 20px; padding: 10px;\">";
 	
 	
-		echo "$thm <br>";
+		echo ucwords("<h3> $thm </h3>");
 		$sample="themes/$thm/t.sample.png";
 		if(file_exists("$RFS_SITE_PATH/$sample")) {
 			
 			echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
 		}
 	
-		echo "<br>";
+		echo "<br><hr>";
 		echo "<div>";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_clone&thm=$thm\">clone</a>] ";

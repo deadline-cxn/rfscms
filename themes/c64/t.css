@@ -1,7 +1,12 @@
+@font-face {
+	font-family: C64;
+	
+	src: url('C64.ttf');
+}
 
 body {
-	margin: 45px;
-	font-family: Fixed, monospace;
+	margin: 15px;
+	font-family: C64;
 	font-size: 12px;
 	font-style: normal;
 	background-color: A397FF;
@@ -26,36 +31,49 @@ $RGBCOLOR15: #959595;
 	
 }
 
+.top_site_name {
+	font-size: 35px;
+	color: #FFFFFF;
+	text-shadow: 5px 5px 5px #000;
+}
 
 .forum_box {
 	width: 98%;
 	float: left;
-	overflow: hidden;
-	background-color:rgba(0,0,0,0.2);
-	border-radius: 10px;
+	overflow: hidden;	
+	background-color: #A397FF;
+	border: 1px;
+	border-color: #000;
+	border-radius: 12px;
 	margin: 2px;
 }
 
 .forum_user{
 	float: left;
-	min-height: 150px;
+	min-height: 160px;	
 	padding: 5px;
+	color: #F08C0A;
+	background-color: #9F14D1;
+	border-radius: 12px;
+	margin: 0 5px;
 }
 
 .forum_message{
 	overflow: hidden;
 	min-height: 160px;	
 	padding: 5px;
-	background-color:rgba(0,0,0,0.2);
-	
+	background-color: #4D44DB;
+	border-radius: 12px;
+	margin: 0 5px;
 }
 
 .forum_time{
+	color: #CF0808;
 	overflow: hidden;
 	clear: both;
+	margin: 5px 400px 15px;
 	
 }
-
 
 .menubutton {
 	margin:0 auto;
@@ -73,11 +91,13 @@ $RGBCOLOR15: #959595;
 	zoom:1;	
 	align: center;
 
-	font-family: monospace;
-background-color: #A397FF;
+	font-family: C64;
+	font-size: 12px;
+
+	background-color: #A397FF;
 	color: #4D44DB;
 	border-width: 1px;
-border-color: #4D44DB;
+	border-color: #4D44DB;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
@@ -86,7 +106,7 @@ border-color: #4D44DB;
 }
 .menubutton:hover {
 	border-color: #4D44DB;
-background-color: #ffff00;
+background-color: #F8F76F;
 	color: #000000;
 }
 
@@ -99,55 +119,57 @@ background-color: #ffff00;
 
 .slogan
 {
-    font-family: Verdana;
-    font-size: 12px;
-    font-style: italic ;
+    font-family: C64;
+	font-size: 12px;
+        
 	color: #A397FF;
 }
 
 .warning
 {
 
-  font-family: Lucidia;
-  font-size: x-large;
+  font-family: C64;
+	font-size: 12px;
+  
   font-style: normal;
     color: #FFFFFF;
   background-color: #880000;
 }
 
 .tabletop {
-    font-family:  Verdana;
-    font-size: large;
-    font-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     color: #A397FF;
 }
 
 .sc_top_menu_table
 {
-  font-family: Lucidia;
+  font-family: C64;
+	font-size: 12px;
   font-style: normal;
   background-color: #A397FF;
 }
 
 .sc_top_menu_table_td
 {
-  font-family: Lucidia;
+  font-family: C64;
+	font-size: 12px;
   font-style: normal;
   background-color: #A397FF;
 }
 
 .sc_top_menu_table_inner
 {
-  font-family: Lucidia;
+  font-family: C64;
+	font-size: 12px;
   font-style: normal;
   background-color: #A397FF;
 }
 
 .sc_top_menu_link
 {
-    font-family: System;
-    font-size: 17px;
-    font-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     font-style: normal;
     text-decoration: none;
     color: #4D44DB;
@@ -156,9 +178,8 @@ background-color: #ffff00;
 
 .sc_top_menu_link:link
 {
-    font-family: System;
-    font-size: 17px;
-    font-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     font-style: normal;
     text-decoration: none;
     color: #4D44DB;
@@ -166,151 +187,201 @@ background-color: #ffff00;
 }
 
 .sc_top_menu_link:hover{
-    font-family: System;
-    font-size: 17px;
-    font-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     font-style: normal;
     text-decoration: none;
-background-color: #A397FF;
-	color: #00202b;
+	background-color: #4D44DB;
+	color: #A397FF;
     background-image: none;
 
 }
 
+.wikitext {
+	padding: 12px;
+}
+
+.file_category {
+	background-color: #9AFF84;
+	
+}
+
+.file_category_link {
+	
+	font-size: 26px;
+	text-decoration: none;
+	background-color: #9AFF84;
+	color: #4D44DB;
+	
+}
+
+.file_category_link:link {
+	font-size: 26px;
+	text-decoration: none;	
+	color: #4D44DB;	
+	vertical-align: top;
+}
+
+.file_category_link:hover {
+	color: #9AFF84;
+	background-color: #38cd33;
+}
 
 .rfswiki_link {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
-    color: #ffffff;
+    font-family: C64;
+	font-size: 12px;
+    color: #F8F76F;
+
 }
 .rfswiki_link:link {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
-    color: #ffffff;
+    font-family: C64;
+	font-size: 12px;
+    color: #F8F76F;
+}
+.rfswiki_link:hover {
+    text-decoration: none;
+	background-color: #A397FF;
+	color: #4D44DB;
+}
+
+.news_article {
+	padding: 12px;
 }
 
 .news_a {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
+    font-family: C64;
+	font-size: 12px;
     color: #ffffff;
 }
 .news_a:link{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
+    font-family: C64;
+	font-size: 12px;
     color: #ffffff;
 }
 
 .news_headline{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
+    font-family: C64;
+	font-size: 12px;
     color: #ffffff;
 }
 
 .news_headline:link{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
+    font-family: C64;
+	font-size: 12px;
     color: #ffffff;
 }
 
 .news_headline:hover{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
-color: #A397FF;
+    font-family: C64;
+	font-size: 12px;
+	color: #A397FF;
 }
 
 h1{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
-color: #A397FF;
+	font-family: C64;
+	color: #FFFFFF;
+}
+h2 {
+	font-family: C64;
+	color: #FFFFFF;
+}
+h3 {
+	font-family: C64;	
+	color: #FFFFFF;
 }
 
 .font
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
+    font-family: C64;
+	font-size: 12px;
     font-style: normal;
     color: #FFFFFF;
 }
 
 td
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    ffont-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     color:   #A397FF;
 	background-color: #4D44DB;	
 }
 
 .downloadtd
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: C64;
+	font-size: 12px;
+    
 	color:   #4D44DB;
 	background-color: #A397FF;
+}
+
+.memebox
+{
+	border: 3px;
+	border-style: solid;
+	border-radius: 8px;
+	height: 380px;
+	margin: 15px 15px;
+}
+.memepic {
+	box-shadow: 3px 3px 3px #A397FF;
+	border:solid 1px #A397FF;
+	border-radius:5px;
+	overflow: hidden;
 }
 
 
 .contenttd
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: C64;
+	font-size: 12px;
+    
     color:   #4D44DB;
-background-color: #A397FF;
+	background-color: #A397FF;
+	border-radius: 8px;
+	
+	padding:  5px;
 }
 
 .sc_project_table_1
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: C64;
+	font-size: 12px;
+    
     color:   #4D44DB;
-background-color: #A397FF;
+	background-color: #A397FF;
 }
 
 .sc_project_table_2
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: C64;
+	font-size: 12px;
+    
     color:   #4D44DB;
-background-color: #60EEFF;
+	background-color: #60EEFF;
 }
 
 
 .sc_top_file_table
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-family: C64;
+	font-size: 12px;
 	color:   #4D44DB;
 	background-color: #A397FF;
 }
 
 .sc_file_table_0
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: C64;
+	font-size: 12px;    
 	color:   #4D44DB;
 	background-color: #A397FF;
 }
 
 .sc_file_table_1
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: C64;
+	font-size: 12px;
     color: #A397FF;
 	background-color:   #4D44DB;
 
@@ -318,8 +389,8 @@ background-color: #60EEFF;
 
 .sc_file_table_2
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: C64;
+	font-size: 12px;    
     color:   #4D44DB;
 background-color: #60EEFF;
 }
@@ -347,37 +418,31 @@ background-color: #60EEFF;
 
 hr
 {
-    border: 1px;
-    border-color: #4D44DB;
-    border-style: dotted;
+    border: 2px;
+    border-color: #A397FF;
+	border-style: solid;
+    margin: 15px 5px;
 }
 
 .midtd
 {
-
-
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-    fcolor:   #4D44DB;
-	background-color: #4D44DB; 
-
+	font-family: C64;
+	font-size: 12px;
+    background-color: #4D44DB;
 }
 
 .toptd
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 6px;
-    font-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     color:   #4D44DB;
 	background-color: #4D44DB;	
 }
 
 .lefttd
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     color:   #4D44DB;
 	background-color: #A397FF;
 	width: 1px;
@@ -389,99 +454,60 @@ hr
 
 
 .logged_in_td {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 6px;
-    font-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     color:   #4D44DB;
 	background-color: #A397FF;
 }
 .logged_in_box {
-	font-family: Verdana;
-    font-size: 12px;
-    font-style: italic ;
-color: #DBDBDB;
-	
-}
-
-.stp_td1
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-    color: #000000;
-background-color: #60EEFF;
-    background-image: url(images/td_bg.gif);
+	font-family: C64;
+	font-size: 12px;
+	color: #DBDBDB;	
 }
 
 a
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-    font-style: italic;
+    font-family: C64;
+	font-size: 12px;
     text-decoration: none;
-    color: #FFFF00; 
+    color: #F8F76F; 
 }
 
 a:link
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-    font-style: italic;
+    font-family: C64;
+	font-size: 12px;
     text-decoration: none;
-    color: #FFFF00;
+    color: #F8F76F;
 }
 
 a:hover
 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-    font-style: italic;
+    font-family: C64;
+	font-size: 12px;
     text-decoration: none;
-	color:   #FFFF00;
-background-color: #A397FF;
-}
-
-.atpb
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: none;
-    color: #000000;
-}
-
-.atpb:link
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: none;
-    color: #004040;
-}
-
-.atpb:hover
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: none;
-color: #60EEFF;
+	background-color: #A397FF;
+	color: #4D44DB;
 }
 
 input, select, textarea
 {
-    font-family: Verdana;
-    font-size : xx-small;
-    font-weight: bold;
+    font-family: C64;
+	font-size: 12px;
     color: #A397FF;
-    border-width : 2px;    
+    border-width : 3px;
+	border-color: #FFF;
+	border-radius: 8px;
+	padding: 6px;
     background-color : #4D44DB;
+}
 
+input[type="text"] {
+	border-color:#FFF;
+}
 
+button, input[type="submit"] {
+	font-family: C64;
+	font-size: 12px;
+	
 }
