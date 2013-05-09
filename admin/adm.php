@@ -480,8 +480,8 @@ function adm_action_f_theme_edit_css() { eval(scg());
 		$newvalue=trim($newvalue,";");
 		echo " (CHANGE $update{ $sub: $cssvalue; } TO $update{ $sub: $newvalue; ) <br>";
 		
-		system("sudo touch $outfile.out");
-		system("sudo chmod 777 $outfile.out");
+		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
 		$fo=fopen("$outfile.out",wt);
 		$fp=fopen($outfile,"rt");
 		$foundbase=0;
@@ -512,8 +512,8 @@ function adm_action_f_theme_edit_css() { eval(scg());
 		}		
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile $outfile.bak.".time());
-		system("sudo mv $outfile.out $outfile");
+		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
 		
 	}
 
@@ -523,8 +523,8 @@ function adm_action_f_theme_edit_css() { eval(scg());
 		echo " ($outfile)<br>";
 		echo " ($delete{ $sub: $cssvalue; }) <br>";
 		
-		system("sudo touch $outfile.out");
-		system("sudo chmod 777 $outfile.out");
+		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
 		$fo=fopen("$outfile.out",wt);
 		$fp=fopen($outfile,"rt");
 		$foundbase=0;
@@ -544,16 +544,16 @@ function adm_action_f_theme_edit_css() { eval(scg());
 		}		
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile $outfile.bak.".time());
-		system("sudo mv $outfile.out $outfile");
+		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
 	}
 	
 	if(!empty($add)) {
 		echo "<h1>ADD:</h1>";
 		echo " --- add[$addvar=$varvalue]<br>";
 		/*
-		system("sudo touch $outfile.out");
-		system("sudo chmod 777 $outfile.out");
+		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
 		$fo=fopen("$outfile.out",wt);
 		$fp=fopen($outfile,"rt");
 		while($ln=fgets($fp,256)) {
@@ -563,8 +563,8 @@ function adm_action_f_theme_edit_css() { eval(scg());
 		
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile $outfile.bak.".time());
-		system("sudo mv $outfile.out $outfile");
+		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
 		*/
 	}
 	adm_action_f_theme_edit();
@@ -612,14 +612,14 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		}
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile $outfile.bak.".time());
-		system("sudo mv $outfile.out $outfile");
+		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
 	}
 	if(!empty($add)) {
 		echo "<h1>ADD:</h1>";
 		echo " --- add[$addvar=$varvalue]<br>";
-		system("sudo touch $outfile.out");
-		system("sudo chmod 777 $outfile.out");
+		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
 		$fo=fopen("$outfile.out",wt);
 		$fp=fopen($outfile,"rt");
 		while($ln=fgets($fp,256)) {
@@ -639,7 +639,7 @@ function adm_action_f_theme_edit_delete_go() { eval(scg());
 	
 	echo " DELETING $file...<br>";
 	
-	system("sudo rm $file");
+	system("$RFS_SITE_SUDO_CMD rm $file");
 	adm_action_f_theme_edit();
 }
 function adm_action_f_theme_edit_delete() { eval(scg());
@@ -658,9 +658,9 @@ function adm_action_f_ajx_theme_edit_save_t_php() { eval(scg());
 	$taval=urldecode($taval);
 	$taval=stripslashes($taval);
 	$file="$RFS_SITE_PATH/themes/$thm/t.php";
-	system("sudo mv $file $file.bak.".time());
-	system("sudo touch $file");
-	system("sudo chmod 777 $file");
+	system("$RFS_SITE_SUDO_CMD mv $file $file.bak.".time());
+	system("$RFS_SITE_SUDO_CMD touch $file");
+	system("$RFS_SITE_SUDO_CMD chmod 777 $file");
 	if(!file_put_contents($file,$taval))
 		sc_info("ERROR SAVING FILE, CHECK PERMISSIONS","WHITE","RED");
 	else 
