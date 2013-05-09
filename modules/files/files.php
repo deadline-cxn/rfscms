@@ -458,7 +458,7 @@ if($action=="get_file"){
 				
 				case "svg":
 
-					echo "<img src=$filedata->location>";
+					echo "<img src=\"$RFS_SITE_URL/$filedata->location\">";
 					break;
 					
 				case "gif":
