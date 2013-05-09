@@ -27,18 +27,20 @@ function sc_show1meme($inmid) { eval(scg());
 
 	$m=mfo1("select * from meme where id='$inmid'");
 	$t=$m->name."-".time();
-	echo "<div id='fl_$inmid' class=\"memebox\">";
+	echo "<div id='fl_$inmid' class=\"memebox\" 
+	style=\"vertical-align:middle; text-align:center\"
+	>"; // display:table-cell;position:absolute; width:100%; height:100% \"
 	echo "<div class=\"memepic\">";
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize&forcerender=1' target=_blank>
 	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&oheight=$meme_thumbwidth&forcerender=1' border=0></a>"; // owidth=$meme_thumbwidth&
 	echo "</div>";
 	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-	echo "<hr>";
-	echo "Rating:";
-	sc_image_text(sc_num2txt($m->rating), "OCRA.ttf", 15, 78,24,   0,0, 1,155,1, 70,70,0, 1,0   );
+	// echo "<hr>";
+	
+	sc_image_text("Rating:".sc_num2txt($m->rating), "OCRA.ttf", 15, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
-	echo "<hr>";
+	echo "<hr>";	
 	sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&onlyshow=$m->name","$m->name");
 	sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$m->basepic&name=$m->name","New Caption");
 	echo "<br>";
@@ -62,7 +64,8 @@ function sc_show1minimeme($inmid) { eval(scg());
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&oheight=$meme_fullsize&forcerender=1' target=_blank><img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth&forcerender=1' border=0></a>";
 	echo "</div>";
 	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-	sc_image_text(sc_num2txt($m->rating), "OCRA.ttf", 12, 78,24,   0,0, 1,155,1, 70,70,0, 1,0   );
+	sc_image_text("Rating:".sc_num2txt($m->rating), "OCRA.ttf", 12, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
+	
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
 	echo "<hr>";		
