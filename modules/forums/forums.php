@@ -8,8 +8,8 @@ function forum_put_buttons($forum_which) { eval(scg());
     
     if($forum_list!="yes") {
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?forum_list=yes\">List Forums</a>]";
-        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?forum_showposts=yes&forum_which=$forum_which\">List Threads</a>]";
-        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=start_thread&forum_which=$forum_which&forum_showposts=no\">Start New Thread</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=start_thread&forum_which=$forum_which\">Start New Thread</a>]";
     }
     
     //if($data->access=="255") 
@@ -19,7 +19,8 @@ function forum_put_buttons($forum_which) { eval(scg());
         else
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_on&outpage=$thispage\">Forum Admin On</a>]";
     }
-    
+
+		echo "<hr>";
     
 }
 
@@ -43,10 +44,6 @@ if($_SESSION['forum_admin']=="yes") {
 }
 
 $der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));
-
-forum_put_buttons($der->id);
-
-
 
 if($action=="start_thread") {
     if($logged_in=="true") {
@@ -112,7 +109,7 @@ if($action=="start_thread_go") {
         sc_log("*****> $data->name started a new thread! [$header]");
     }
     else echo "<p class=sc_site_urlr>You must be logged in to post or reply!</p>\n";
-    get_thread($thread,$forum_which);
+    forums_action_get_thread($thread,$forum_which);
 }
 
 function show1message($post,$gx) { eval(scg());
@@ -164,17 +161,29 @@ function show1message($post,$gx) { eval(scg());
     }
 }
 
-function get_thread($thread,$forum_which) {    eval(scg());
+function forums_action_get_thread($thread,$forum_which) {    eval(scg());
+
 	$gt=1; $gx=4+$gt;
 	$result = sc_query("select * from `forum_posts` where `thread_top`='yes' and `thread`='".$thread."' order by time limit 0,30");
 	if($result) $numposts=mysql_num_rows($result);
 	if($numposts>0) $post=mysql_fetch_array($result);
+   if(empty($forum_which)){
+		$th=mfo1("select * from `forum_posts` where `thread`='$thread'");
+		$forum_which=$th->forum;
+   }
+   if(empty($forum_which)) {
+	   forums_action_forum_list();
+	   exit();
+   }
+   
+	forum_put_buttons($forum_which);
+	
 	if($forum_which!=$post['forum']) { echo "<p>Error! This post or reply has been moved or deleted.</p>"; return; }
 	$forum_which=$post['forum'];
 	$der=mysql_fetch_array(sc_query("select * from `forum_list` where `id`='$forum_which';"));
 	$title=stripslashes($post['title']);
 	$thread=$post['id'];
-	$GLOBALS['forum_showposts']="no";
+	// $GLOBALS['forum_showposts']="no";
 	$GLOBALS['forum_list']="no";
 	if($numposts>0) {
 		$views=$post['views']+1;
@@ -191,7 +200,7 @@ function get_thread($thread,$forum_which) {    eval(scg());
 		}
 		// form to add another reply
         if($logged_in=="true") {
-				echo "Reply";            
+				echo "Reply";
 				echo "<table width=".$GLOBALS['site_singletablewidth']." border=0 cellpadding=0 cellspacing=0><tr><td>";
 				echo "<table width=100% cellspacing=0 cellpadding=0>";
 				echo "<tr><td valign=top>\n";
@@ -229,23 +238,22 @@ if($action=="move_thread") {
 
 if($action=="delete_post_s") {
     if($logged_in=="true") {
-        echo "<table border=\"0\" align=center><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
+        echo "<table border=\"0\" align=center><tr><td class=\"sc_warning\"><center>".smiles("^X")."\n";
         echo "<br>WARNING:<br>The forum post and ALL replies will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
         echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
         echo "<input type=hidden name=action value=delete_post><input type=hidden name=reply value=$reply>\n";
-        echo "<input type=\"submit\" name=\"submit\" value=\"Fuck Yeah!\"></form></td>\n";
+        echo "<input type=\"submit\" name=\"submit\" value=\"Delete!\"></form></td>\n";
         echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/index.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";    
     }
 }
 
 if($action=="delete_post") {
     if($logged_in=="true") {
-        sc_query("delete from forum_posts where thread='$thread';");
-        echo "<h2><font color=red>Post was deleted...</font></h2>";
-        $forum_list="no";
-        $forum_showposts="yes";
-        $action="get_thread";
+       sc_query("delete from forum_posts where thread='$thread';");
+       sc_warn("<h2><font color=red>Post was deleted...</font></h2>");
+		$forum_list="no";
+		forums_action_get_thread($thread,$forum_which);
     }
 }
  
@@ -323,9 +331,7 @@ if($action=="reply_to_thread"){
     $action="get_thread";
 }
 
-if($action=="get_thread"){
-    get_thread($thread,$forum_which);
-}
+// if($action=="get_thread"){   get_thread($thread,$forum_which); }
 
 if($action=="create_forum"){
     if($data->access==255)    {
@@ -469,7 +475,7 @@ function forums_action_forum_list() { eval(scg());
                             
                             echo "<tr><td>\n";// style=\"color: $forum_font\" width=20% >\n";
                             
-                            echo $name;
+                            // echo $name;
                             echo "<table border=0 width=800>\n";
                             echo "<tr>\n";
                             echo "<td  class=\"row1\" align=\"left\" valign=\"middle\" height=\"50\">";
@@ -544,14 +550,17 @@ function forums_action_forum_list() { eval(scg());
 }
 
 function forums_action_forum_showposts() { eval(scg());
-//if($forum_showposts=="yes") {
+
     $res=sc_query("select * from `forum_list` where `id`='$forum_which'");
     $fold=mysql_fetch_object($res);
     $res=sc_query("select * from `forum_list` where `id`='$fold->parent'");
     $fold=mysql_fetch_object($res);
     $der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));   
 
-    echo $der->name;
+    echo "<h1>$der->name</h1>";
+	
+	forum_put_buttons($forum_which);
+	
 
     $result = sc_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' order by bumptime desc limit 0,30");
     if($result) $numposts=mysql_num_rows($result);
