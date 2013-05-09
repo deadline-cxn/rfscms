@@ -100,7 +100,7 @@ $result=sc_query("select * from categories order by name asc");
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++){
     $cat=mysql_fetch_object($result);
-	if(file_exists($RFS_SITE_PATH/$cat->image)) 
+	if(file_exists("$RFS_SITE_PATH/$cat->image")) 
 	echo "<option data-image=\"".sc_picthumb_raw($cat->image,16,0,0)."\" >$cat->name";
 }
 echo "</select></td>\n";
