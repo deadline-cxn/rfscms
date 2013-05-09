@@ -460,16 +460,15 @@ if($action=="get_file"){
 				case "gif":
 				case "jpg":
 				case "jpeg":
-				
-				
-				
+				case "svg":
 				case "png":
 				
 					$image_size   = @getimagesize($filedata->location);
 					$image_height = $image_size[1];
 					$image_width  = $image_size[0];
-					echo "<hr>IMAGE: $image_width x $image_height <BR>";
-					
+					echo "<hr>";
+					echo sc_picthumb($filedata->location,100,100,1);
+					echo "<hr>IMAGE: $image_width x $image_height <BR>";					
 					
 					$exif = exif_read_data($filedata->location, 0, true);
 					echo "<hr>EXIF Information:<br>";
@@ -481,6 +480,9 @@ if($action=="get_file"){
 					echo "<pre>";
 					echo system("7z l $filedata->location");
 					echo "</pre>";
+					
+					echo "<hr>";
+					
 					
 					
 					break;
