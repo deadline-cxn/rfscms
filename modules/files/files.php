@@ -103,7 +103,7 @@ for($i=0;$i<$numcats;$i++){
 	
 		echo "<option ";
 		
-		if(file_exists("$RFS_SITE_PATH/$cat->image")) 	{
+		if(!empty($cat->image) && file_exists("$RFS_SITE_PATH/$cat->image")) 	{
 			echo " data-image=\"".sc_picthumb_raw($cat->image,16,0,0)."\" ";
 			echo " IMAGE-DATA-WHAT=\"$cat->image\" ";
 		}
