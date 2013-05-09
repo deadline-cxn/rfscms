@@ -574,8 +574,8 @@ function adm_action_f_theme_edit_php() { eval(scg());
 	If(!empty($update)) {
 		echo "<h1>UPDATE:</h1>";
 		echo " --- update[$update][$phpvalue] to [$newvalue]<br>";
-		system("sudo touch $outfile.out");
-		system("sudo chmod 777 $outfile.out");
+		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
 		$fo=fopen("$outfile.out",wt);
 		$fp=fopen($outfile,"rt");
 		while($ln=fgets($fp,256)) {
@@ -589,8 +589,8 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		}
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile $outfile.bak.".time());
-		system("sudo mv $outfile.out $outfile");
+		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
 	}
 
 
@@ -599,8 +599,8 @@ function adm_action_f_theme_edit_php() { eval(scg());
 	if(!empty($delete)) {
 		echo "<h1>DELETE:</h1>";
 		echo " --- delete[$delete]<br>";
-		system("sudo touch $outfile.out");
-		system("sudo chmod 777 $outfile.out");
+		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
 		$fo=fopen("$outfile.out",wt);
 		$fp=fopen($outfile,"rt");
 		while($ln=fgets($fp,256)) {
@@ -629,8 +629,8 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		fputs($fo,"?>");
 		fclose($fo);
 		fclose($fp);
-		system("sudo mv $outfile $outfile.bak.".time());
-		system("sudo mv $outfile.out $outfile");
+		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
 	}
 	adm_action_f_theme_edit();
 }
