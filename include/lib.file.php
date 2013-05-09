@@ -83,6 +83,7 @@ function sc_file_get_readme($file_name) { eval (scg());
 	
 	exec("yes| 7z e -o/var/www/tmp '$file_name'");
 	
+	
 	system("renlow $RFS_SITE_PATH/tmp");
 	$dirfiles=sc_get_folder_files("$RFS_SITE_PATH/tmp");
 	
