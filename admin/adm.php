@@ -820,11 +820,9 @@ function adm_action_f_theme_clone() { eval(scg());
 			"Clone" );
 }
 function adm_action_f_theme_edit() { eval(scg());
-echo "<h1>Editing theme [$thm]</h1>";
-
+	echo "<h1>Editing theme [$thm]</h1>";
 	sc_button("$RFS_SITE_URL/admin/adm.php?action=theme","Themes list");
-	echo "<hr>";
-	
+	echo "<hr>";	
 	$folder="$RFS_SITE_PATH/themes/$thm";
 	echo "Elements of $folder <br>";
 	$d = opendir($folder);
@@ -837,9 +835,7 @@ echo "<h1>Editing theme [$thm]</h1>";
 						if($entry=="t.css") {
 							echo "<hr>";
 							echo "<h1>$entry</h1>";
-														
 							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_css&thm=$thm&tcss=$entry\">edit this file</a>]<br>";
-
 							sc_css_edit_form(	"$folder/$entry",
 												"$RFS_SITE_URL/admin/adm.php",
 												"f_theme_edit_css",
@@ -851,9 +847,6 @@ echo "<h1>Editing theme [$thm]</h1>";
 							echo "<hr>";
 							echo "<h1>$entry</h1>";
 							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_php&thm=$thm&tphp=$entry\">edit this file</a>]<br>";
-							
-							
-							
 							sc_php_edit_form(		"$folder/$entry",
 													"$RFS_SITE_URL/admin/adm.php",
 													"f_theme_edit_php",
