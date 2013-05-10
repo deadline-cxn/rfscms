@@ -2280,14 +2280,17 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 					}
 				}
 				
-				$rrrr=sc_query("select `$key` from `$tab` where id='".$dat['id']."';");
-				$wtf=mysql_fetch_array($rrrr);
-				$tvout=$wtf[0];
+				echo "value='";
 				
-				if((!empty($val) && ($val!="nohide"))) $tvout=$dat[$val];				
-				echo " value=\"$tvout\" ";
+				if((!empty($val) && ($val!="nohide"))) {
+					echo $dat[$val];
+				} else {
+					echo $dat[$key];
+				}
+				echo "' >";
 				
-				echo ">$tvout</option>";
+				echo $dat[$key];
+				echo "</option>";
 			}
 			echo "</select>";
 		}
