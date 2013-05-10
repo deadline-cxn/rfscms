@@ -2237,8 +2237,8 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 				$tdata=$d[$rfafield];
 			}
 			
-			if(empty($tvalue)) $tvalue="Select Category";
-			if(empty($tdata)) $tdata="Select Category";
+			if(empty($tvalue)) $tvalue="Select";
+			if(empty($tdata)) $tdata="Select";
 			
 			echo "<select data-description=\"$rfanname\" ";
 			
@@ -2280,14 +2280,15 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 					}
 				}
 				
+				$tout=$dat[$key];
+				
 				if((!empty($val) && ($val!="nohide"))) {
 					echo " value=\"".$dat[$val]."\" ";
 				} else {
-					echo " value=\"".$dat[$key]."\" ";
+					echo " value=\"$tout\" ";
 				}
 				
-				echo ">".$dat[$key];
-				echo "</option>";
+				echo ">$tout</option>";
 			}
 			echo "</select>";
 		}
