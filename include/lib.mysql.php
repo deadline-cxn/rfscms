@@ -2280,14 +2280,18 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 					}
 				}
 				
-				echo "value='";
+				
 				
 				if((!empty($val) && ($val!="nohide"))) {
+					echo "VALVAR='$val' value='";
 					echo $dat[$val];
+					echo "' >";
 				} else {
+					echo "NOVALVAR='NOPE' value='";
 					echo $dat[$key];
+					echo "' >";
 				}
-				echo "' >";
+				
 				
 				echo $dat[$key];
 				echo "</option>";
