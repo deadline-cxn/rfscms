@@ -1777,9 +1777,8 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 		
 echo "
 
-<!-- **** FORM START **** -->
 
-<form method=post action=\"$returnpage\">	
+
 <table border=0>
 ";	
 		$cssx3=explode(";",$cssx2[1]);
@@ -1821,6 +1820,11 @@ echo "
 <td width=200>";
 echo "$piece:";
 echo "</td>
+
+<!-- **** FORM START **** -->
+
+<form method=post action=\"$returnpage\">	
+
 <td>";
 echo "<a name=\"$base$sub\"></a> \n ";
 			
@@ -1847,6 +1851,11 @@ echo "
 echo " size=60 onblur=\"this.form.submit();\">
 
 </td>
+
+<!-- **** FORM END **** -->
+</form>
+
+
 </tr> 
 <!-- *** TR  END *** -->
 
@@ -1857,9 +1866,7 @@ echo " size=60 onblur=\"this.form.submit();\">
 }";
 		echo "
 		
-<!-- **** FORM END **** -->
 
-</form>
 
 ";
 	}
