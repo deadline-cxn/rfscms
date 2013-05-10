@@ -1010,7 +1010,7 @@ if(($action=="show_temp") || ($_SESSION['show_temp']==true)) {
 	$action="listcategory";
 	$category="unsorted";
 	$amount="50";
-	$query=" where `hidden`='yes' or category='unsorted' ";
+	$query=" where `hidden`='yes' or category='unsorted' or category='' ";
 	sc_info("SORT MODE","WHITE","RED");
 }
 
@@ -1024,7 +1024,7 @@ if(($action=="listcategory") || ($action=="search")) {
 		if($category!="all")
 			$query.="and `category` = '$category' ";
 		else {
-			$query.="and `category` != 'unsorted' ";
+			$query.="and `category` != 'unsorted' and `category` != '' ";
 		}
 		
     }
