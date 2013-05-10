@@ -255,15 +255,21 @@ function rfs_get($t) {
 			//$y="$key($z[2]);";
 			// echo "FOUND... DO:  [$y]";			
 			// echo "... RESULT[".eval($y)."]";
-		//}
-		
-		
-		
-		
+		//}		
 		
 		if(stristr($t,$value)) {
 			
 			switch($value) {
+				case "<!--RTAG_BUTTON":
+					$zx=explode("<!--RTAG_BUTTON",$t);
+					$yx=explode("-->",$zx[1]);
+					$xx=eplode(",",$yx[0]);
+					$t=$zx[0];
+					
+
+				
+					break;
+					
 				case "RFS_PHP_SELF": // echo "123.what";
 					$t=str_replace("$key",sc_phpself(),$t);
 					break;
@@ -273,7 +279,6 @@ function rfs_get($t) {
 					
 				default:
 					if(function_exists($key)) {
-						
 						$t=str_replace($value,call_user_func($key),$t);
 					}
 					else
