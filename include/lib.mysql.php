@@ -2283,11 +2283,11 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 				if((!empty($val) && ($val!="nohide"))) {
 					echo " value=\"".$dat[$val]."\" ";
 				} else {
-					
 					echo " value=\"".$dat[$key]."\" ";
 				}
 				
 				echo ">".$dat[$key];
+				echo "</option>";
 			}
 			echo "</select>";
 		}
