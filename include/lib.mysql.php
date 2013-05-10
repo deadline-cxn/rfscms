@@ -2280,12 +2280,12 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 					}
 				}
 				
-				$tout=$dat[$key];
+				$tout=$dat["$key"];
 				
-				if((!empty($val) && ($val!="nohide"))) $tout=$dat[$val];
+				if((!empty($val) && ($val!="nohide"))) $tout=$dat["$val"];
 				
 				echo " value=\"$tout\" 
-				what=\"$tout\" ";		
+				what=\"$tout\" ";
 				
 				echo ">$tout</option>";
 			}
