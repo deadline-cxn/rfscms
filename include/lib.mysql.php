@@ -1759,7 +1759,7 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 	$cssx=explode("}",$f);	
 	for($i=0;$i<count($cssx)-1;$i++) {
 		$cssx2=explode("{",$cssx[$i]);
-		echo "<hr>";
+		echo "\n\n<hr>\n\n";
 
 		$buttout="$returnpage?action=$returnaction".
 			"&delact=delbase".
@@ -1770,19 +1770,29 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 			foreach ($hvar as $vn => $vv){
 				$buttout.="&$vn=$vv";
 			}
-			
+			echo " \n <!-- *******************************	NEW SECTION ********************************************************* --> \n";
 			sc_button($buttout,"Delete");
 
 		echo "$cssx2[0] { <br>";
 		
-		echo "<form method=post action=\"$returnpage\">";
-		
-		echo "<table border=0>";	
+echo "
+
+<!-- **** FORM START **** -->
+
+<form method=post action=\"$returnpage\">	
+<table border=0>
+";	
 		$cssx3=explode(";",$cssx2[1]);
 		for($j=0;$j<count($cssx3)-1;$j++) {
 			$cssx4=explode(":",$cssx3[$j]);			
-			echo "<tr>";
-			echo "<td>";
+echo "
+
+
+<!-- *** TR  START *** -->
+
+<tr>
+<td>
+";
 			$base=trim($cssx2[0]);
 			$sub=trim($cssx4[0]);
 			$cssvalue=trim($cssx4[1]);
@@ -1798,50 +1808,60 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 				$buttout.="&$vn=$vv";
 			}
 			
-			echo "[<a href=\"$buttout\">delete</a>]";// sc_button($buttout,"Delete");
+$piece = trim($cssx4[0]);			
+			
+echo "
+[<a href=\"$buttout\">delete</a>]
+			
+</td>
 			
 			
-			echo "</td>";
-			echo "<td width=200>";
-			echo " $cssx4[0]:";
-			echo "</td>";
+<!-- **** PIECE [ $piece ]  START **** -->			
 			
-			
-			echo "<td>";
-			
-			
-			
-			
-			echo "<a name=\"$base$sub\"></a>";
+<td width=200>";
+echo "$piece:";
+echo "</td>
+<td>";
+echo "<a name=\"$base$sub\"></a> \n ";
 			
 			$cssvalue=str_replace("\"","'",$cssvalue);
 			
 			
 	
-			echo "<input type=\"hidden\" name=\"thm\" value=\"$thm\">";
-			echo "<input type=\"hidden\" name=\"outfile\" value=\"$css_file\">";
-			echo "<input type=\"hidden\" name=\"action\" value=\"$returnaction\">";
-			echo "<input type=\"hidden\" name=\"update\" value=\"$base\">";
-			echo "<input type=\"hidden\" name=\"sub\" value=\"$sub\">";
-			echo "<input type=\"hidden\" name=\"cssvalue\" value=\"$cssvalue\">";
-			echo "<input name=\"newvalue\" value=\"$cssvalue\" ";
+echo "
+<input type=\"hidden\" name=\"thm\" value=\"$thm\">
+<input type=\"hidden\" name=\"outfile\" value=\"$css_file\">
+<input type=\"hidden\" name=\"action\" value=\"$returnaction\">
+<input type=\"hidden\" name=\"update\" value=\"$base\">
+<input type=\"hidden\" name=\"sub\" value=\"$sub\">
+<input type=\"hidden\" name=\"cssvalue\" value=\"$cssvalue\">
+
+
+<!-- **** PIECE [ $piece ]  VALUE [$cssvalue] **** -->
+
+<input name=\"newvalue\" value=\"$cssvalue\" ";
 			
 			if( 	(substr(trim($cssx4[1]),0,1)=="#") || 
 					(    stristr($cssx4[0],"color")) )
 				echo "class='color' ";
-			echo " size=60
-			
-			onblur=\"this.form.submit();\">";
-			
-			
-			
+echo " size=60 onblur=\"this.form.submit();\">
 
-			echo "</td>";
-			
-			echo "</tr>";
-		}
-		echo "</table> }";
-		echo "</form>";
+</td>
+</tr> 
+<!-- *** TR  END *** -->
+
+";
+	}
+		echo "
+</table>
+}";
+		echo "
+		
+<!-- **** FORM END **** -->
+
+</form>
+
+";
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
