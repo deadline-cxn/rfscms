@@ -775,7 +775,7 @@ function adm_action_f_theme_edit_t_css() { eval(scg());
 		,charmap_default: "arrows" });
 		</script> ';
 		
-	echo "<textarea id=\"codecode_t_css\" style=\"height: 400px; width: 700px;\" name=\"codecode_t_css\">";
+	echo "<textarea id=\"codecode_t_css\" style=\"height: 700px; width: 100% ;\" name=\"codecode_t_css\">";
 	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.css");
 	$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
 	echo $fc;
