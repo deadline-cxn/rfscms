@@ -519,7 +519,7 @@ function sc_db_query($query,$becho){
         
         $num=@mysql_num_rows($res);
         
-		//echo "<br>query returned $num results<hr>";
+		echo "<br>$num rows affected<br>";
         echo "<table border=0 cellpadding=5>";
         $hdr=0;
         while($row=@mysql_fetch_assoc($res)){
