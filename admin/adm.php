@@ -706,7 +706,7 @@ function adm_action_f_theme_edit_t_php() { eval(scg());
 		</script> ';
 		
 	echo "	<textarea id=\"codecode_t_php\"
-			style=\"height: 400px; width: 700px;\"
+			style=\"height: 700px; width: 100%;\"
 			name=\"codecode_t_php\">";
 	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.php");
 	
