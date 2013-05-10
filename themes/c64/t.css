@@ -75,6 +75,10 @@ $RGBCOLOR15: #959595;
 	
 }
 
+pre {
+	font-family: C64;
+}
+
 .menubutton {
 	margin:0 auto;
 	display: inline-block;
