@@ -1108,14 +1108,14 @@ for($i=0;$i<$numcats;$i++) {
 			$iconp=$RFS_SITE_PATH."/".$cat->image;
 			$icon=$RFS_SITE_URL."/".$cat->image;
 			if(file_exists($iconp)) {
-				echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\">";
+				echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" title=\"List all $buffer files\">";
 				echo "<img src=$icon border=0 width=32 height=32>";
 				echo "</a>";
 			}
 			
-			echo "<a class=file_category_link href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" >";			
+			echo "<a class=file_category_link href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" title=\"List all $buffer files\">[";			
 			echo ucwords("$buffer");			
-			echo "</a>";
+			echo "]</a>";
 			echo "</div>";
 			
 			while($i<count($filelist)) {
