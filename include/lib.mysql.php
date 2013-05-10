@@ -2280,10 +2280,11 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 					}
 				}
 				
-				$tvout=$dat[$key];
+				$rrrr=sc_query("select `$key` from `$tab` where id='".$dat['id']."';");
+				$wtf=mysql_fetch_array($rrrr);
+				$tvout=$wtf[0];
 				
-				if((!empty($val) && ($val!="nohide"))) $tvout=$dat[$val];
-				
+				if((!empty($val) && ($val!="nohide"))) $tvout=$dat[$val];				
 				echo " value=\"$tvout\" ";
 				
 				echo ">$tvout</option>";
