@@ -42,7 +42,7 @@ function adm_action_lib_news_news_submit() { eval(scg());
 function adm_action_lib_news_news_edit() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
 }
-function sc_module_mini_news($x) { eval(scg());
+function sc_module_news_list($x) { eval(scg());
     sc_div("NEWS MODULE SECTION");
     echo "<h2>Last $x News Articles</h2>";
     $newslist=sc_getnewslist($newssearch);
@@ -73,7 +73,7 @@ function sc_module_mini_news($x) { eval(scg());
     echo "</table>";
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/news/news.php class=\"a_cat\" align=right>More...</a>)</p>";
 }
-function sc_module_popular_news($x) { eval(scg());
+function sc_module_news_list_popular($x) { eval(scg());
     sc_div("NEWS MODULE SECTION");
     echo "<h2>Popular News Articles</h2>";
     //search method dictate sort order?
@@ -110,6 +110,16 @@ function sc_module_popular_news($x) { eval(scg());
 function sc_module_news_top_story() {
     sc_show_top_news();
 }
+function sc_module_news_blog_style($x) { eval(scg());
+	sc_show_top_news();
+	$newslist=sc_getnewslist(""); $ct=count($newslist); if($ct>$x) $ct=$x;
+	echo "Older news...<br>";
+	for($cci=0;$cci<$ct;$cci++) {
+		$news=sc_getnewsdata($newslist[$cci]);
+		sc_show_news($news->id);
+    }
+}
+
 function sc_getnewstopstory(){
     $result=sc_query("select * from news where topstory='yes' and published='yes'");
     $news=mysql_fetch_object($result);
@@ -159,44 +169,38 @@ function sc_show_news($nid) { eval(scg());
     $userdata=mfo1("select * from users where id='$news->submitter'");
 	
 	echo "<div class=\"news_box\">";
-	echo "<h1>$news->headline</h1>";
-	echo "<div class=\"news_article\">";
-	
-     
-    
-    
+		echo "<div class=\"news_headline_bar\">";
+			echo "<div class=\"news_headline\">$news->headline</div>";
+			echo "<div class=\"news_time\">Posted on ".sc_time($news->time)."</div>";
+		echo "</div>";
+		echo "<div class=\"news_article\">";
+		
+		echo "<div class=\"news_image\">";
+	   
     $out_link=urlencode("$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id");
 
-    if(!empty($news->image_url)) {
-		
+    if(!empty($news->image_url)) {		
 		$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
-		$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);
-		
-		$altern=stripslashes($news->image_alt);
-		
+		$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);		
+		$altern=stripslashes($news->image_alt);		
 		if(empty($news->image_link))
 			$news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";
 		echo "<a href=\"$news->image_link\" target=\"_blank\" class=\"news_a\" >";
-
 		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
 			$oldimage=$news->image_url;
 			$news->image_url="$RFS_SITE_URL/images/icons/404.png";
 			echo "<br>($oldimage)";
-		}
-		
+		}		
 		if(!stristr($news->image_url,$RFS_SITE_URL))
-			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
-			
-		echo "<img src=\"";
-		echo sc_picthumb_raw($news->image_url,100,0,1); 
-		echo "\" border=\"0\" title = '$altern' alt='$altern' align=left class='rfs_thumb'>";
-		
-		// 
-	}
-	
+			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");		
+		echo "<img src=\"".sc_picthumb_raw($news->image_url,100,0,1)."\" border=\"0\" title = '$altern' alt='$altern' class='rfs_thumb'>";
+	}	
 	if(!empty($news->image_url)) {
 		echo  "</a>";
-	}	
+	}
+		echo "</div>";
+	
+		
 
     if(!empty($news->wiki)) {
             $wikipage=mfo1("select * from wiki where `name`='$news->wiki'");
@@ -205,12 +209,16 @@ function sc_show_news($nid) { eval(scg());
         $news->message=str_replace("<a h","<a class=news_a h",$news->message);
         echo nl2br(smiles(stripslashes(wikitext($news->message))));
     }
-    echo "<br>";
     $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
 		
 	sc_socials_content($ourl,$news->headline);		
-		
+	
+$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
+	sc_facebook_comments($page);
+	
+		echo "</div>";
     
+		echo "<div class=\"news_edit_bar\">";
     $data=$GLOBALS['data'];
     if(($data->name==$userdata->name)||($data->access==255)) {
         
@@ -222,11 +230,8 @@ function sc_show_news($nid) { eval(scg());
 		}
         echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$nid\" class=news_a>remove</a>] \n";
     }   
-	
-	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
-	sc_facebook_comments($page);
-	
-echo "</div>";
+		echo "</div>";
+	echo "</div>";
 }
 function put_news_image($fname) { eval(scg());
     
