@@ -167,12 +167,9 @@ function wikitext($text) { eval(scg());
                         
                     if($fnc=="codestart"){
            				$t=md5(generate_password());
-							$outtext.='<script
-												language="Javascript"
-												type="text/javascript"
-												src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
-										</script>
-										<script>
+						// <script language="Javascript" type="text/javascript" src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">										</script>
+										
+							$outtext.='<script>
 											editAreaLoader.init({
 												id: "codecode_'.$t.'",
 												start_highlight: true,
