@@ -64,17 +64,12 @@ echo "<div class=\"wikitext\">";
 
 if($action=="editname") {
     sc_query("update wiki set name='$nname' where name='$name'");
-
    	$res = rfs_query(" 	select * from wiki where `text` like '%[$name]%' or `text` like '%,$name]%' order by name asc" ); 
-    $npg=@mysql_num_rows($res);
-    
+    $npg=@mysql_num_rows($res);    
     for($ni=0;$ni<$npg;$ni++) {
         $pg=mysql_fetch_object($res);
-        
-    
     $pg->text=str_ireplace("[$name]","[$nname]",$pg->text);
     $pg->text=str_ireplace("\@$name,","\@$nname,",$pg->text);
-        
         sc_query("update wiki set text='$pg->text' where name='$pg->name'");
     }
     echo "Name is changed, and links have been updated throughout $npg wiki pages.<br>";
@@ -175,7 +170,7 @@ if($action=="edit"){
         
         echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/wiki/rfswiki.php><input type=hidden name=action value=editgo>";
         echo "<input type=hidden name=name value=\"$name\">";
-        echo "<textarea rows=30 cols=120 name=wikiedittext>";
+        echo "<textarea rows=30 cols=120 style=\"width: 80%;\" name=wikiedittext>";
         echo stripslashes($wikipage->text);
         echo "</textarea>";
         echo "<br><br><input type=submit name=submit value=update>";

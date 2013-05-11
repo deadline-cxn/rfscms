@@ -16,8 +16,6 @@ function sc_system_message() { eval(scg());
 		if(empty($data->pass)) {
 		sc_info("You have not established a password. [<a href=\"$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form\" style=\"font-size: 1em;\">Change your password</a>]","WHITE","RED");
 	}
-	
-	
 }
 function sc_do_action() {
 	/////////////////////////////////////////////// Automatic action function
@@ -68,9 +66,8 @@ function sc_maintenance() { eval(scg());
 	
 	sc_div("sc_maintenance end [$theme]");
 }
-
+/////////////////////////////////////////////////////////////////////////
 function sc_get_content_ids() { eval(scg());
-
 	$q1="SHOW FULL TABLES";
 	$r1=sc_query($q1);
 	

@@ -30,9 +30,7 @@ function sc_module_mini_wiki($x) { eval(scg());
 function wikiimg($text) { eval(scg());    
     $text=stripslashes($text);
     $text=str_replace("{{","&#123;",$text);
-    $text=str_replace("}}","&#125",$text);
-	$text=str_replace("$$","&#36;",$text);
-	$text=str_replace("^^","&#94;",$text);
+    $text=str_replace("}}","&#125;",$text);
 	
     $outtext="";
     $ila=explode("{",$text);
@@ -93,13 +91,22 @@ function wikitext($text) { eval(scg());
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 
-    $text=wikiimg($text);
+	$text=str_replace("$$","&#36;",$text);
+
+	$text= wikiimg($text);    
+	
 	$text=str_replace("</h1>\r\n","</h1>",$text);
 	$text=str_replace("</h2>\r\n","</h2>",$text);
 	$text=str_replace("</h3>\r\n","</h3>",$text);
 	$text=str_replace("\r\n<hr>","<hr>",$text);
 	$text=str_replace("<hr>\r\n","<hr>",$text);
 	$text=str_replace("<hr>\n","<hr>",$text);
+	//$text=str_replace("\"","&#34;",$text);
+	//$text=str_replace("'","&#39;",$text);
+	$text=str_replace("<?","&lt;?",$text);
+	$text=str_replace("?>","?&gt;",$text);
+	
+	$text=str_replace("^^","&#94;",$text);	
     $text=stripslashes($text);
     $text=str_replace("[[","&#91;",$text);
     $text=str_replace("]]","&#93;",$text);
@@ -141,17 +148,7 @@ function wikitext($text) { eval(scg());
                     $fnc=strtolower($fnc);//substr($ila2[0],1));
                     
                     if($GLOBALS['RFS_DEBUG']=="yes")
-                        $outtext.=" # FUNCTION $fnc()\n{";
-                        
-                    if($fnc=="ubegin") {
-                        $outtext.="<a href=\"".$ila2[1];
-                        $outtext.="\" target=\"".$ar1."\">";
-                        $outtext.="$ila2[1]</a>";                        
-                        
-                    }
-                    if($fnc=="uend") {
-                        $outtext.=nl2br($ila2[1]);
-                    }
+                        $outtext.=" # FUNCTION $fnc()\n{";                        
                         
                     if($fnc=="shellstart"){							  
 
@@ -169,14 +166,14 @@ function wikitext($text) { eval(scg());
                     }
                         
                     if($fnc=="codestart"){
-           				$t=time();                            
+           				$t=md5(generate_password());
 							$outtext.='<script
 												language="Javascript"
 												type="text/javascript"
 												src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">
 										</script>
 										<script>
-											editAreaLoader.init({ 
+											editAreaLoader.init({
 												id: "codecode_'.$t.'",
 												start_highlight: true,
 												font_size: "8",
@@ -189,7 +186,7 @@ function wikitext($text) { eval(scg());
 												load_callback: "my_load",
 												save_callback: "my_save",
 												plugins: "charmap",
-												charmap_default: "arrows" });
+											charmap_default: "arrows" });												
 										</script> ';
 
 							$lns=substr_count($ila2[1],"\n");
@@ -198,7 +195,7 @@ function wikitext($text) { eval(scg());
 												rows=\"$lns\"
 												style=\"width: 80%;\"
 												name=\"codecode_$t\">";
-							$outtext.=stripslashes(str_replace("<","&lt;",$ila2[1]))."</textarea>";
+							$outtext.=stripslashes(str_replace("<","&lt;",$ila2[1]))."</textarea></center>";
                     }
                     if($fnc=="codeend"){ 
                         $outtext.=nl2br($ila2[1]);
@@ -270,6 +267,7 @@ function wikitext($text) { eval(scg());
         else
             $outtext.=nl2br($ila[$i]);
     }
+	
     return $outtext;
 }
 

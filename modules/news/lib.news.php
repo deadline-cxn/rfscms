@@ -204,10 +204,10 @@ function sc_show_news($nid) { eval(scg());
 
     if(!empty($news->wiki)) {
             $wikipage=mfo1("select * from wiki where `name`='$news->wiki'");
-            echo smiles(nl2br(wikitext($wikipage->text)));
+            echo smiles(wikitext($wikipage->text));
     }	else {
         $news->message=str_replace("<a h","<a class=news_a h",$news->message);
-        echo nl2br(smiles(stripslashes(wikitext($news->message))));
+        echo smiles(stripslashes(wikitext($news->message)));
     }
     $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
 		
@@ -401,7 +401,11 @@ echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_
 		$otxt=str_replace("<","&lt;",$otxt);
 		$otxt=stripslashes($otxt);
 		echo "<tr><td>Message</td><td>
-			<textarea cols=\"70\" rows=\"30\" name=\"posttext\" >$otxt</textarea>
+			<textarea 
+				cols=\"70\" 
+				rows=\"30\" 
+				style=\"width: 80%;\"
+				name=\"posttext\" >$otxt</textarea>
 			</td></tr>\n";		
 	}
 	else echo "<tr><td>WIKI PAGE:</td><td>$news->wiki</td></tr>";
