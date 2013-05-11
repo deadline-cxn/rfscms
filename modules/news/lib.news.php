@@ -244,36 +244,37 @@ function put_news_image($fname) { eval(scg());
     return $httppath;
 }
 function updatenews($nid){ 	eval(scg());
-    $p=addslashes($GLOBALS['headline']); sc_query("UPDATE news SET headline ='$p' where id = '$nid'");
-    
-	
-	
-	$name=$_REQUEST['name']; if(stristr($name,"--- NONE ---")) $name="";
+	$p=addslashes($GLOBALS['headline']); sc_query("UPDATE news SET headline ='$p' where id = '$nid'");
+
+
+	$name=$_REQUEST['name'];
+	if(stristr($name,"Choose a wiki page to use for this news article")) $name="";
+	if(stristr($name,"--- NONE ---")) $name="";
 	sc_query("update news set `wiki` = '$name' where `id`='$nid'");
-	
-	$p=addslashes($GLOBALS['posttext']); sc_query("UPDATE news SET message ='$p' where id = '$nid'");
 
-    $p=addslashes($GLOBALS['category1']);
-    sc_query("UPDATE `news` SET `category1` ='$p' where id = '$nid'");
-    $p=addslashes($GLOBALS['category2']);
-    if($p!="none") sc_query("UPDATE `news` SET `category2` ='$p' where id = '$nid'");
-    $p=addslashes($GLOBALS['category3']);
-    if($p!="none") sc_query("UPDATE `news` SET `category3` ='$p' where id = '$nid'");
-    $p=addslashes($GLOBALS['category4']);
-    if($p!="none") sc_query("UPDATE `news` SET `category4` ='$p' where id = '$nid'");
+	$p=addslashes($GLOBALS['posttext']);
+	sc_query("UPDATE news SET message ='$p' where id = '$nid'");
+	$p=addslashes($GLOBALS['category1']);
+	sc_query("UPDATE `news` SET `category1` ='$p' where id = '$nid'");
+	$p=addslashes($GLOBALS['category2']);
+	if($p!="none") sc_query("UPDATE `news` SET `category2` ='$p' where id = '$nid'");
+	$p=addslashes($GLOBALS['category3']);
+	if($p!="none") sc_query("UPDATE `news` SET `category3` ='$p' where id = '$nid'");
+	$p=addslashes($GLOBALS['category4']);
+	if($p!="none") sc_query("UPDATE `news` SET `category4` ='$p' where id = '$nid'");
 
-    $p=$GLOBALS['topstory'];
-    if($p=="yes") {
-        sc_query("update news set topstory='no'");
-        sc_query("update news set topstory='yes' where id='$nid'");
-    }
+	$p=$GLOBALS['topstory'];
+	if($p=="yes") {
+		sc_query("update news set topstory='no'");
+		sc_query("update news set topstory='yes' where id='$nid'");
+	}
 
-    $p=$GLOBALS['published'];
-    if($p=="yes") sc_query("update news set published='yes' where id='$nid'");
-    else          sc_query("update news set published='no' where id='$nid'");
+	$p=$GLOBALS['published'];
+	if($p=="yes") sc_query("update news set published='yes' where id='$nid'");
+	else          sc_query("update news set published='no' where id='$nid'");
 
-    echo "<p>News article [$nid] has been updated...</p>\n";
-    $loggit="*****> ".$GLOBALS['data']->name." updated news article $nid...";
+	echo "<p>News article [$nid] has been updated...</p>\n";
+	$loggit="*****> ".$GLOBALS['data']->name." updated news article $nid...";
 }
 function deletenews($nid) { eval(scg());
     echo "<table border=\"0\" align=center><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
@@ -369,10 +370,10 @@ echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_
     echo "Select a wiki page to use instead of text </td><td>";
     
 	$wikistatus=$news->wiki;
-	if(empty($wikistatus)) $wikistatus="Choose a wiki page as this news article";
+	if(empty($wikistatus))
+		$wikistatus="Choose a wiki page to use for this news article";
     
-	sc_optionizer(  "INLINE",
-					//"action=edgo_make_wiki".$RFS_SITE_DELIMITER.
+	sc_optionizer("INLINE",
 					"nid=$nid",
 					"wiki",
 					"name",
