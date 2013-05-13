@@ -7,6 +7,56 @@
 srand((double) microtime() * 1000000);  // randomize timer
 setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
 /////////////////////////////////////////////////////////////////////////
+function sc_togglediv($x) {
+	$id=generate_password();	
+	sc_togglediv_start("did_".md5($id),"");
+	echo "$x";
+	sc_togglediv_end();
+}
+function sc_togglediv_start($x,$y) {
+echo "
+<script> state['$x']='block'; </script>
+<a href=\"#\" onclick=\"showhide('$x');\" title=\"$x\">
+<div id=\"$x"."plusminus\" style='float:left;'>[-]</div>
+</a> $y";
+echo "<div id=\"$x\" style=\"clear:both;\">";
+}
+function sc_togglediv_end() {
+	echo "</div>
+	<div style=\"clear:both\"></div>";
+}
+
+function sc_javascript() { eval(scg());
+echo "<script language=\"javascript\"><!--";
+echo "
+var state = {};
+function showhide(layer_ref) {
+if (state[layer_ref] == 'block') {
+	state[layer_ref] = 'none';
+	document.getElementById(layer_ref+\"plusminus\").innerHTML=\"[+]\";
+} 
+else {
+	state[layer_ref] = 'block';
+	document.getElementById(layer_ref+\"plusminus\").innerHTML=\"[-]\";
+} 
+if (document.all) { //IS IE 4 or 5 (or 6 beta) 
+	eval( \"document.all.\" + layer_ref + \".style.display = state[layer_ref]\"); 
+} 
+if (document.layers) { //IS NETSCAPE 4 or below 
+	document.layers[layer_ref].display = state[layer_ref]; 
+} 
+if (document.getElementById &&!document.all) { 
+	hza = document.getElementById(layer_ref); 
+	hza.style.display = state[layer_ref]; 
+	} 
+} 
+
+";
+echo " //--> </script>";
+}
+
+
+
 function sc_var($x) {
 	$GLOBALS[$x]=$_REQUEST[$x];
 	echo "\$$x=[".$GLOBALS[$x]."]<br>";
