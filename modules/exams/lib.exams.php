@@ -28,9 +28,24 @@ function exams_get_total_questions($exam_id) {
 }
 
 function exams_get_total_questions_answered($user,$exam_id) {
-	$r=sc_query("select * from exam_users where user='$user' and exam_id='$exam_id'");
-	$nqca=mysql_num_rows($r);
-	return $nqca;
+$r=sc_query("select * from `exam_users` where `user`='$user' 
+												and `exam_id`='$exam_id' 
+												and `completed` IS NOT NULL; ");
+		$nqca=mysql_num_rows($r);
+return $nqca;
+}
+
+function exams_get_completed_prct($user,$exam_id) {
+	$nq=exams_get_total_questions_answered($user,$exam_id);
+	$nqc=exams_get_score($user,$exam_id);
+	if($nq>0) { 
+		$prct=$nqc/$nq;
+		$prct=round($prct*100);
+	}
+	else {
+		$prct=0;
+	}
+	return $prct;
 }
 
 function exams_get_prct($user,$exam_id) {
@@ -53,6 +68,13 @@ function exams_get_score($user,$exam_id) {
 
 function exams_wipe_user_exam($user,$exam_id) {
 	sc_query("delete from exam_users where user='$user' and exam_id='$exam_id'");
+	$exam=mfo1("select * from exams where id='$exam_id'");
+	for($i=1;$i<($exam->questions+1);$i++) {
+		$exq=mfo1("select * from exam_questions where `exam_id`='$exam_id' and `exam_sequence`='$i'");
+		sc_query("insert into exam_users (`user`,`exam_id`,`question_id`)
+										values('$user', '$exam_id', '$exq->id') ");
+	}
+	
 }
 
 ?>

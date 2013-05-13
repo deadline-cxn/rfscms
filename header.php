@@ -124,11 +124,14 @@ else {
 //////////////////////////////////////////////
 // Load javascripts
 sc_ajax_javascript();
+sc_javascript();
+
 rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
 rfs_echo($RFS_SITE_JS_JQUERY);
 rfs_echo($RFS_SITE_JS_COLOR);
 rfs_echo($RFS_SITE_JS_EDITAREA);
 rfs_echo($RFS_SITE_JS_MSDROPDOWN);
+
 //////////////////////////////////////////////
 // google analytics
 sc_google_analytics();

@@ -45,6 +45,7 @@ if(!sc_yes($_SESSION['logged_in'])) {
 			if($f=="F") $correct.=",$f";
 
 			$correct=ltrim($correct,",");
+			$answer=$correct;
 
 			// echo " $correct <BR>";
 			//echo $q['correct_answer']." <br>";
@@ -60,7 +61,6 @@ if(!sc_yes($_SESSION['logged_in'])) {
 
 		if ( 	($q["type"]=="fib_dropdown") ||
 				($q["type"]=="fill_in_blank") ) {
-
 
 					if(!empty($qx[0])) {
 						//echo $qx[0]." --- ".$a." --- ";
@@ -123,11 +123,11 @@ if(!sc_yes($_SESSION['logged_in'])) {
 			//echo " --- $group1 --- ";
 			//echo $q['correct_answer'];
 			/// echo " --- ";
-			
+			$answer=$group1;
 			
 			if($group1==$q["correct_answer"])  {
 				//echo "CORRECT";
-				$correct=true;	
+				$correct=true;
 			}				
 		}  // c3745-is-mz.122-13.T9.bin
 		
@@ -136,6 +136,8 @@ if(!sc_yes($_SESSION['logged_in'])) {
 			//echo " --- $group1 --- ";
 			//echo $q['correct_answer'];
 			//echo " --- ";
+			
+			$answer=$group1;		
 			
 			if(strtolower($group1)==$q["correct_answer"]) {
 				
@@ -162,14 +164,11 @@ if(!sc_yes($_SESSION['logged_in'])) {
 			$eud=@mysql_fetch_object($r);
 															
 			if($eud->id) { 
-								sc_query("update exam_users set `correct`='$correct'  where `question_id`='$qc' and
-																	  `user`='$data->name' and
-																	   `exam_id`='$exam_id'");
+					sc_query("update exam_users set `correct`='$correct'  where `question_id`='$qc' and `user`='$data->name' and `exam_id`='$exam_id' ");
+					sc_query("update exam_users set `completed`='$answer'  where `question_id`='$qc' and `user`='$data->name' and `exam_id`='$exam_id' ");
 			}
 			else {
-		
-					sc_query("insert into exam_users   (`user`, `exam_id`, `question_id`, `correct`)
-													values ('$data->name', '$exam_id', '$qc', '$correct') ");
+					sc_query("insert into exam_users   (`user`, `exam_id`, `question_id`, `correct`) values ('$data->name', '$exam_id', '$qc', '$correct') ");
 													
 			}
 
@@ -200,22 +199,29 @@ if($action=="list_exams") {
 	$n=0;
     $r=sc_query("select * from exams");
     if($r) $n=mysql_num_rows($r);
-	echo "<table border=0 cellspacing=0 cellpadding=2>";
 	
-	echo "<tr> <td></td> <td> Name </td>  <td>Your Score</td>  <td>Passing Score</td> </tr>";
+	echo "<table border=0 cellspacing=0 cellpadding=2>";	
+	echo "<tr> <td></td> <td> Name </td>  <td>Completed</td> <td>Your Score</td>  <td>Passing Score</td> </tr>";
     for($i=0;$i<$n;$i++) {
 			$gt++; if($gt>1) $gt=0;
 			$exam=mysql_fetch_object($r);
 			echo "<tr>";
 			
 			echo "<td class=sc_project_table_$gt>";			
-			echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=run_exam&exam_id=$exam->id'>
+			echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam->id'>
 			<img src='$RFS_SITE_URL/images/icons/Play.png' width=16 border=0></a>
 			</td>";
 			
 			echo "<td class=sc_project_table_$gt>";
 			
-			echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=run_exam&exam_id=$exam->id'>$exam->name</a>";
+			echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam->id'>$exam->name</a>";
+			
+			echo "</td>";
+			
+			echo "<td class=sc_project_table_$gt>";
+			echo exams_get_total_questions_answered($data->name,$exam->id);
+			
+			echo " ( ".exams_get_completed_prct($data->name,$exam->id)."% )";
 			
 			echo "</td>";
 			
@@ -246,6 +252,33 @@ if($action=="list_exams") {
 }
 
 if($action=="wipe_exam") {
+		
+	$exam   = mfo1("select * from exams where id='$exam_id'");
+	$eprct  = exams_get_prct($data->name,$exam_id);
+	$escor  = exams_get_score($data->name,$exam_id);
+	$etotq  = exams_get_total_questions($exam_id);
+	$etotqa = exams_get_total_questions_answered($data->name,$exam_id);
+	$oclr="RED";
+	if($eprct>=$exam->pass_percent)
+		$oclr="GREEN";
+	if(!$confirmed)
+	if($oclr=="GREEN") {
+		if( $etotq == $etotqa ) {
+			if($_SESSION['question_id']<1) {
+				sc_info("$escor/$etotq : $eprct%", "WHITE", $oclr);
+				sc_info($exam->pass_percent."% minimum passing score required.", "WHITE", "BLUE");
+				sc_warn("You have already taken this exam and passed. If you wish, you may retake the exam, but your current score will be erased and you will have to take the exam in it's entirety with a passing score to recieve credit. If you are sure then
+				<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam_id&confirmed=true'><img src=$RFS_SITE_URL/images/icons/Play.png border=0>click here</a>. Note: This action can not be reversed.");
+				for($i=0;$i<35;$i++) echo "<br>";
+				include("footer.php");
+				exit();		
+				
+			}
+		}
+	}
+	
+	
+	
 	exams_wipe_user_exam($data->name,$exam_id);
 	$action="run_exam";
 }
@@ -257,22 +290,10 @@ if($action=="run_exam") {
 	$escor  = exams_get_score($data->name,$exam_id);
 	$etotq  = exams_get_total_questions($exam_id);			
 	$etotqa = exams_get_total_questions_answered($data->name,$exam_id);
+	
 	$oclr="RED";
 	if($eprct>=$exam->pass_percent) $oclr="GREEN";
 	
-	if($oclr=="GREEN") {
-		if( $etotq == $etotqa ) {
-			
-			sc_info("$escor/$etotq : $eprct%", "WHITE", $oclr);
-			sc_info($exam->pass_percent."% minimum passing score required.", "WHITE", "BLUE");
-			sc_warn("You have already taken this exam and passed. If you wish, you may retake the exam, but your current score will be erased and you will have to take the exam in it's entirety with a passing score to recieve credit. If you are sure then
-			<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam_id'><img src=$RFS_SITE_URL/images/icons/Play.png border=0>click here</a>. Note: This action can not be reversed.");
-			for($i=0;$i<35;$i++) echo "<br>";
-			include("footer.php");
-			exit();		
-		}
-	}
-
     d_echo("Exam $exam_id");
     $exam=mfo1("select * from exams where id='$exam_id'");
     d_echo("$exam->name");
@@ -337,7 +358,7 @@ if($action=="run_exam") {
 		}		
 		$qq.="<hr></h1>";
 
-		$qq.="[<a href=\"$RFS_SITE_URL/modules/exams/exams.php?action=run_exam&exam_id=$exam_id\">Take this exam again</a>]";
+		$qq.="[<a href=\"$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam_id\">Take this exam again</a>]";
 		$qq.="[Review missed questions]";
 		$qq.="[Review all questions]";
 		
