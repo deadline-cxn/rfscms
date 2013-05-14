@@ -45,7 +45,7 @@ if($action=="logingo") {
                     $data=sc_getuserdata($userid);
                     sc_setuservar($userid,"last_login",$data->last_activity);
                     sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
-                    sc_log("***********************> $data->name logged in!");
+                    sc_log("[LOGIN]: $data->name ($data->email)");
                     if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
                     sc_gotopage($outpage);
                     exit();
@@ -65,8 +65,8 @@ if($action=="logingo") {
 			
             $data=sc_getuserdata($userid);
             sc_setuservar($userid,"last_login",$data->last_activity);
-            sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
-            sc_log("***********************> $data->name logged in!");
+            sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));				
+            sc_log("[LOGIN]: $data->name ($data->email)");
             if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
 			
 				session_destroy();				
@@ -91,7 +91,7 @@ if($action=="logingo") {
         else{
             sc_info("Invalid Login","WHITE","RED");
             $_SESSION["valid_user"] = "invalid_user";
-            sc_log("***********> $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
+            sc_log("[INVALID LOGIN]: $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
         }    
 	$action="forgot";
 }
@@ -177,7 +177,7 @@ if($action=="join_go") {
 		echo "<p>Check your email for an automated response email and follow the instructions to continue.</p>";
 		echo "<p>Note: Accounts will be purged after 1 week unless confirmed.</p>";
 		echo "<a href=$outpage>Continue</a>";
-		sc_log("****> $userid joined!");
+		sc_log("[REGISTRATION]: $userid ($email) registered");
 	}
 	else{
 		/////////////////////////////////////////////////////////////////////

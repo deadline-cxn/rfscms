@@ -495,10 +495,10 @@ function sc_confirmform($message,$page,$hiddenvars){
         $hidvar_b=explode("=",$hidvar_a[$i]);
         echo "<input type=hidden name=\"".$hidvar_b[0]."\" value=\"".$hidvar_b[1]."\">\n";
     }
-    sc_makebuttonstart();
+    
     echo "<input style='font-size:x-small' type=submit name=yes value=Yes>\n";
-    // echo "<input style='font-size:x-small' type=submit name=no value=No>\n";
-    sc_makebuttonend();	
+    
+    
     echo "</div>";
     echo "<br><br>\n";
     echo "</td></tr>\n";
@@ -632,10 +632,10 @@ function sc_db_dumptable($table,$showform,$key,$search){ eval(scg());
                 next($row);
             }
 
-            sc_makebuttonstart();
-            sc_makebutton("$page?action=".$showform_action."edit_$table&$key=$key_val","Edit");
-            sc_makebutton("$page?action=".$showform_action."del_$table&$key=$key_val","Delete");
-            sc_makebuttonend();
+            
+            sc_button("$page?action=".$showform_action."edit_$table&$key=$key_val","Edit");
+            sc_button("$page?action=".$showform_action."del_$table&$key=$key_val","Delete");
+            
 
             echo"</td>";
         }
@@ -1436,9 +1436,9 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 
     if(!empty($submit)){
 	    echo "<tr><td></td><td>";
-        sc_makebuttonstart();
+        
 	    echo "<input style='font-size:x-small; min-width:100px;' type=submit name=submit value=\"$submit\">";
-        sc_makebuttonend();
+        
 	    echo "</td></tr>";
     }
     

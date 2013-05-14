@@ -137,7 +137,7 @@ if(!$_SESSION['valid_user']) {
             $timezone       = $user_profile->timezone;
             $locale         = $user_profile->locale;
 
-
+/*
             $dbg_info="============[FACEBOOK LOGIN ATTEMPT]=======================================<br>".
             "facebook_id :".$facebook_id."<br>".
             "facebook_name :".$facebook_name."<br>".
@@ -150,6 +150,8 @@ if(!$_SESSION['valid_user']) {
             "timezone :".$timezone."<br>".
             "locale :".$locale."<br>".
             "================================================================================================<br>";
+	*/		
+			  $dbg_info="[LOGIN (FACEBOOK)]: $fname ($email)";
 
             sc_log($dbg_info);
 
