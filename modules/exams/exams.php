@@ -17,10 +17,7 @@ if(!sc_yes($_SESSION['logged_in'])) {
 	exit;
 }
 
-
-// if(sc_access_check("exams","view_results")) {
-
-	$qc=$_SESSION['question_id'];
+	$qc=$_SESSION["question_id"];
 	if($qc) {
 
         $r=sc_query("select * from exam_questions where id='$qc'");
@@ -164,16 +161,25 @@ if(!sc_yes($_SESSION['logged_in'])) {
 			$eud=@mysql_fetch_object($r);
 															
 			if($eud->id) { 
+				
+				
 					sc_query("update exam_users set `correct`='$correct'  where `question_id`='$qc' and `user`='$data->name' and `exam_id`='$exam_id' ");
 					sc_query("update exam_users set `completed`='$answer'  where `question_id`='$qc' and `user`='$data->name' and `exam_id`='$exam_id' ");
+					
+					
 			}
 			else {
-					sc_query("insert into exam_users   (`user`, `exam_id`, `question_id`, `correct`) values ('$data->name', '$exam_id', '$qc', '$correct') ");
+					if(!empty($exam_id)) {
+						$q= "insert into exam_users   (`user`, `exam_id`, `question_id`, `correct`) values ('$data->name', '$exam_id', '$qc', '$correct') ";
+						echo $q."<br>";
+						sc_query($q);
+						
+					}
 													
 			}
 
 		//echo "<hr>";
-		$_SESSION['question_id']="";
+		$_SESSION["question_id"]="";
 	}
     
 //}
@@ -181,11 +187,11 @@ if(!sc_yes($_SESSION['logged_in'])) {
 
 if($action=="reset_exam"){
     $qid=0;
-    $_SESSION['exam_$exam_id']="0";
+    $_SESSION["exam_$exam_id"]="0";
 }
 
 if($action=="admin_exam_test") {
-    $_SESSION['exam_$exam_id']="1";
+    $_SESSION["exam_$exam_id"]="1";
     $action="run_exam";
 }
 
@@ -264,7 +270,7 @@ if($action=="wipe_exam") {
 	if(!$confirmed)
 	if($oclr=="GREEN") {
 		if( $etotq == $etotqa ) {
-			if($_SESSION['question_id']<1) {
+			if($_SESSION["question_id"]<1) {
 				sc_info("$escor/$etotq : $eprct%", "WHITE", $oclr);
 				sc_info($exam->pass_percent."% minimum passing score required.", "WHITE", "BLUE");
 				sc_warn("You have already taken this exam and passed. If you wish, you may retake the exam, but your current score will be erased and you will have to take the exam in it's entirety with a passing score to recieve credit. If you are sure then
@@ -277,18 +283,62 @@ if($action=="wipe_exam") {
 		}
 	}
 	
-	
+	$x=exams_get_last_question_answered($data->name,$exam_id);
+	if($x) {
+		$a = exams_convert_question_id_to_sequence($x);
+		$texam_sequence	= $a["exam_sequence"];
+		if(($texam_sequence) > 1) { 
+			$_SESSION["exam_$exam_id"]=$texam_sequence;
+			$question=mfo1("select * from exam_questions where exam_sequence='$texam_sequence' and exam_id='$exam_id'");	
+			
+			sc_question(" 
+			<h1> $exam->name CBT
+			
+			<hr>
+			You have already completed a portion of this test.<br>
+			Would you like to resume this test, or restart it?<br>
+						
+			<hr>
+			
+			<center>
+			".
+			sc_makebutton("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=really_wipe_exam","RESTART")
+			.
+			sc_makebutton("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=run_exam","RESUME")."
+			</center>
+			<hr>
+			<br>
+			
+			
+			");
+			
+			
+			// $action="run_exam";
+		}
+		else {
+			$action="really_wipe_exam";
+		}
+	}
+	else {
+			$action="really_wipe_exam";
+	}
+}
+
+if($action=="really_wipe_exam") {
 	
 	exams_wipe_user_exam($data->name,$exam_id);
+	$_SESSION["question_id"]=0;
+	$_SESSION["exam_$exam_id"]=1;
 	$action="run_exam";
+	
 }
 
 if($action=="run_exam") {
 	
-	$exam   = mfo1("select * from exams where id='$exam_id'");			
+	$exam   = mfo1("select * from exams where id='$exam_id'");
 	$eprct  = exams_get_prct($data->name,$exam_id);
 	$escor  = exams_get_score($data->name,$exam_id);
-	$etotq  = exams_get_total_questions($exam_id);			
+	$etotq  = exams_get_total_questions($exam_id);
 	$etotqa = exams_get_total_questions_answered($data->name,$exam_id);
 	
 	$oclr="RED";
@@ -298,28 +348,37 @@ if($action=="run_exam") {
     $exam=mfo1("select * from exams where id='$exam_id'");
     d_echo("$exam->name");
 
-    if($qsid!=$_SESSION['exam_$exam_id']) $_SESSION['exam_$exam_id']=$qsid;
+    if($qsid!=$_SESSION["exam_$exam_id"]) {
+		if(!empty($qsid)) 
+		$_SESSION["exam_$exam_id"]=$qsid;		
+	} 
 
     $r=sc_query("select * from exam_questions where exam_id='$exam_id'");
     $nq=mysql_num_rows($r);
 
     d_echo("$nq");
 
-    $qsid=$_SESSION['exam_$exam_id'];
+    $qsid=$_SESSION["exam_$exam_id"];
+	
+	// echo "exam_$exam_id <br> \$qsid: $qsid <br>";
 
-    if($qsid<1) $qsid=1;
-        $_SESSION['exam_$exam_id']=1;
+    if($qsid<2) $qsid=1;
+        $_SESSION["exam_$exam_id"]=1;
 
     d_echo("$qsid");
     $question=mfo1("select * from exam_questions where exam_sequence='$qsid' and exam_id='$exam_id'");
     d_echo($question->type);
 	
-	$_SESSION['question_id']=$question->id;
+	$_SESSION["question_id"]=$question->id;
+	
+	// echo "!!!! \$question->type = $question->type<br>";
+	// echo "!!!! \$question->id = $question->id<br>";
+	
 	
 	if(empty($question->type)) {
 		
 		
-		$qq=" <BR><BR> END OF EXAM! <HR>";
+		$qq=" <BR><h1>END OF EXAM!</h1><HR>";
 		
 		/*
 		$r=sc_query("select * from exam_users where user='$data->name' and exam_id='$exam_id'");		
@@ -375,12 +434,9 @@ if($action=="run_exam") {
 		
 	}
 	else {
-		
-		
 
+    $qq= "<br><h1> EXAM: $exam->name question ($qsid / $nq) </h1> ";
 
-    $qq="<br><h1> EXAM: $exam->name question ($qsid / $nq) </h1> ";
-    // $qq.="<span style='color:red;background-color:black;'>    Development mode: this question is type: $question->type (ignore this) </span>";
     $qq.="<hr>";
 
     $qsid++;
@@ -498,7 +554,9 @@ if($action=="run_exam") {
 
 
     $qq.="<BR><BR><BR>";
+	
     sc_question($qq);
+	
     sc_div("END OF TEST QUESTION");
 	
 	}
