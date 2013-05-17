@@ -154,13 +154,13 @@ function wikitext($text) { eval(scg());
 							
 							$lstd=explode(",",$ila2[0]);
 							$outtext.=sc_togglediv_start_ne($lstd[1],$lstd[2]);
-							$outtext.=$ila2[1];
+							$outtext.=nl2br($ila2[1]);
 							
 							
 						}
 						if($fnc=="toggledivend") {
 							$outtext.=sc_togglediv_end_ne();
-							$outtext.=$ila2[1];
+							$outtext.=nl2br($ila2[1]);
 							
 						}
                         
