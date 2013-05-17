@@ -153,7 +153,7 @@ function wikitext($text) { eval(scg());
 						if($fnc=="toggledivstart") {
 							
 							$lstd=explode(",",$ila2[0]);
-							$outtext.=sc_togglediv_start_ne($lstd[1],$lstd[2]);
+							$outtext.=sc_togglediv_start_ne($lstd[1],$lstd[2],$lstd[3]);
 							$outtext.=nl2br($ila2[1]);
 							
 							
