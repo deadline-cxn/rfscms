@@ -7,23 +7,31 @@
 srand((double) microtime() * 1000000);  // randomize timer
 setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
 /////////////////////////////////////////////////////////////////////////
-function sc_togglediv($x) {
+function sc_togglediv_ne($x) {
 	$id=generate_password();	
-	sc_togglediv_start("did_".md5($id),"");
-	echo "$x";
-	sc_togglediv_end();
+	$r=	sc_togglediv_start_ne("did_".md5($id),"");
+	$r.=$x;
+	$r.=sc_togglediv_end_ne();
+	return $r;
+}
+function sc_togglediv($x) {
+	echo sc_togglediv_ne($x);
+}
+function sc_togglediv_start_ne($x,$y) {
+	$r="<script> state['$x']='block'; </script>
+	<a href=\"#\" onclick=\"showhide('$x');\" title=\"$x\">
+	<div id=\"$x"."plusminus\" style='float:left;'>[-]</div>
+	</a> $y<div id=\"$x\" style=\"clear:both;\">";
+	return $r;
 }
 function sc_togglediv_start($x,$y) {
-echo "
-<script> state['$x']='block'; </script>
-<a href=\"#\" onclick=\"showhide('$x');\" title=\"$x\">
-<div id=\"$x"."plusminus\" style='float:left;'>[-]</div>
-</a> $y";
-echo "<div id=\"$x\" style=\"clear:both;\">";
+	echo sc_toggle_div_start_ne($x,$y);
+}
+function sc_togglediv_end_ne() {
+	return  "</div><div style=\"clear:both\"></div>";
 }
 function sc_togglediv_end() {
-	echo "</div>
-	<div style=\"clear:both\"></div>";
+	echo sc_togglediv_end_ne();
 }
 
 function sc_javascript() { eval(scg());

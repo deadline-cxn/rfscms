@@ -149,6 +149,19 @@ function wikitext($text) { eval(scg());
                     
                     if($GLOBALS['RFS_DEBUG']=="yes")
                         $outtext.=" # FUNCTION $fnc()\n{";                        
+						
+						if($fnc=="toggledivstart") {
+							
+							$lstd=explode(",",$ila2[0]);
+							$outtext.=sc_togglediv_start_ne($lstd[1],$lstd[2]);
+							$outtext.=$ila2[1];
+							
+							
+						}
+						if($fnc=="toggledivend") {
+							$outtext.=sc_togglediv_end_ne();
+							
+						}
                         
                     if($fnc=="shellstart"){							  
 
