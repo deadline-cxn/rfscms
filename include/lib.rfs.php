@@ -34,7 +34,7 @@ function sc_togglediv_start($x,$y,$folded) {
 	echo sc_togglediv_start_ne($x,$y,$folded);
 }
 function sc_togglediv_end_ne() {
-	return  "</div><div style=\"clear:both\"></div>";
+	return  "</div>";// <div style=\"clear:both\"></div>";
 }
 function sc_togglediv_end() {
 	echo sc_togglediv_end_ne();
