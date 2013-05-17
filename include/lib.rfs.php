@@ -20,9 +20,12 @@ function sc_togglediv($x) {
 function sc_togglediv_start_ne($x,$y,$folded) {
 	$fold="[-]"; if($folded) $fold="[+]";
 	$foldstate="block"; if($folded) $foldstate="none";
+	
 	$anchor=md5($x.$y.$foldstate);
+	
 	$r="<script> state['$x']='$foldstate'; </script>	
-	<a href=\"#$anchor\" onclick=\"showhide('$x');\" title=\"$x\">
+	<a name=\"$x\"></a>
+	<a href=\"#$x\" onclick=\"showhide('$x');\" title=\"$x\">
 	<div id=\"$x"."plusminus\" style='float:left;'>$fold</div>
 	</a> $y<div id=\"$x\" style=\"clear:both; display:$foldstate;\">";
 	return $r;
