@@ -160,6 +160,7 @@ function wikitext($text) { eval(scg());
 						}
 						if($fnc=="toggledivend") {
 							$outtext.=sc_togglediv_end_ne();
+							$outtext.=$ila2[1];
 							
 						}
                         
