@@ -3,8 +3,23 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
-if($argv[1]=="scrub") { $RFS_CMD_LINE=true; include_once("include/lib.all.php"); sc_scrubfiles(); exit(); }
-if($argv[1]=="orph")  { $RFS_CMD_LINE=true; include_once("include/lib.all.php"); $data=sc_getuserdata(1); system("clear"); orphan_scan("files"); exit(); }
+if($argv[1]=="scrub") {
+	if(stristr(getcwd(),"modules")) { chdir("../../"); }
+	$RFS_CMD_LINE=true;
+	include_once("include/lib.all.php");
+	sc_scrubfiledatabase();
+	exit();
+}
+
+if($argv[1]=="orph") {
+	if(stristr(getcwd(),"modules")) { chdir("../../"); }
+	$RFS_CMD_LINE=true;
+	include_once("include/lib.all.php");
+	$data=sc_getuserdata(1);
+	system("clear");
+	orphan_scan("files");
+	exit();
+}
 
 if($_REQUEST['action']=="get_file_go") {
 	$id=$_REQUEST['id'];
@@ -22,7 +37,7 @@ if($_REQUEST['action']=="get_file_go") {
 	exit();
 }
 
-chdir("../../");
+if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("include/lib.all.php");
 include_once("3rdparty/ycTIN.php");
 include("header.php");
@@ -157,10 +172,8 @@ if($action=="addfilelinktodb_go") {
         sc_query("UPDATE files SET submitter='$data->name' where name='$name'");
         sc_query("UPDATE files SET category='$category' where name='$name'");
         sc_query("UPDATE files SET description='$description' where name='$name'");
-        sc_query("UPDATE files SET category='$category' where name='$name'");
         sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
         sc_query("UPDATE files SET size='$size' where name='$name'");
-        //sc_query("UPDATE files SET local_path='$file_add' where name='$name'");
         sc_query("UPDATE files SET time='$time1' where name='$name'");
         sc_query("UPDATE files SET worksafe='$sfw' where name='$name'");
         sc_query("UPDATE files SET homepage='$homepage' where name='$name'");
@@ -209,30 +222,24 @@ if($action=="addfiletodb_go") {
         sc_query("UPDATE files SET location='$file_url' where name='$name'");
         sc_query("UPDATE files SET submitter='$data->name' where name='$name'");
         sc_query("UPDATE files SET category='$category' where name='$name'");
-        sc_query("UPDATE files SET description='$description' where name='$name'");
-        sc_query("UPDATE files SET category='$category' where name='$name'");
+        sc_query("UPDATE files SET description='$description' where name='$name'");        
         sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
         sc_query("UPDATE files SET size='$fsize' where name='$name'");
-        //sc_query("UPDATE files SET local_path='$file_add' where name='$name'");
         sc_query("UPDATE files SET time='$time1' where name='$name'");
         sc_query("UPDATE files SET worksafe='$sfw' where name='$name'");
     }
 }
 
 if($action=="get_file"){
-	
 	if(		(sc_yes($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
-			($_SESSION["logged_in"]=="true") ) {		
-		
+			($_SESSION["logged_in"]=="true") ) {
 		$filedata=sc_getfiledata($_REQUEST['id']);
 		if(empty($filedata)) {
             echo "Error 3392! File does not exist?\n";
             include("footer.php");
             exit();
 		}
-
-		$size = sc_sizefile($filedata->size);		
-        
+		$size = sc_sizefile($filedata->size);
        echo "<p>";
 		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\" target=_new_window>";
 		echo "<img src=\"$RFS_SITE_URL/images/icons/Download.png\" border=0>";
@@ -691,7 +698,7 @@ function orphan_scan($dir) { eval(scg());
 								sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
 								sc_query("UPDATE files SET size='$filesizebytes' where name='$name'");
 								echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
-								sc_flush_buffers();
+								if(!$RFS_CMD_LINE) sc_flush_buffers();
 								$dir_count++;
 								
 			}
@@ -733,13 +740,15 @@ function files_action_f_upload_go() { eval(scg());
 	sc_var("fu_dir");
 	
 	if($fu_dir=="- Select -") { sc_info("You must choose a location","WHITE","RED"); files_action_upload(); exit(); }
-	sc_var("MAX_FILE_SIZE");
+	
+	sc_var("MAX_FILE_SIZE");	
 	sc_var("fu_userfile");
 	sc_var("fu_hidden");
 	sc_var("fu_sfw");
 	sc_var("fu_category");
 	sc_var("fu_name");
 	sc_var("fu_desc");
+	
 	$newpath     = "$RFS_SITE_PATH/$fu_dir";
 	$httppath    = "$RFS_SITE_URL/$fu_dir";
 
@@ -1102,7 +1111,6 @@ for($i=0;$i<$numcats;$i++) {
 		if(count($filelist)){
 			
 			echo "<div class=file_list >";
-						
 			echo "<div class=file_category >";
 			
 			$iconp=$RFS_SITE_PATH."/".$cat->image;
@@ -1115,8 +1123,12 @@ for($i=0;$i<$numcats;$i++) {
 			
 			echo "<a class=file_category_link href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" title=\"List all $buffer files\">[";			
 			echo ucwords("$buffer");			
-			echo "]</a>";
-			echo "</div>";
+			echo "] ";
+			$myr=sc_getfilelist("where category='$buffer' and hidden='no'",999999999);
+			echo "(";
+			echo count($myr);
+			echo " files)";
+			echo "</a></div>";
 			
 			while($i<count($filelist)) {
 				$filedata=sc_getfiledata($filelist[$i]);

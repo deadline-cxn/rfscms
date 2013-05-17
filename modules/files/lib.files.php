@@ -16,7 +16,7 @@ sc_access_method_add("files", "xplorershell");
 function sc_module_mini_files($x) { eval(scg());
     sc_div("FILES MODULE SECTION");
     echo "<h2>Last $x Files</h2>";
-    $result=sc_query("select * from files order by `time` desc limit 0,$x");
+    $result=sc_query("select * from files where category !='unsorted' order by `time` desc limit 0,$x");
     $numfiles=mysql_num_rows($result);
     echo "<table border=0 cellspacing=0 cellpadding=0 >";
     $gt=2;
@@ -36,8 +36,8 @@ function sc_module_mini_files($x) { eval(scg());
     //echo "<p align=right>(<a href=$RFS_SITE_URL/modules/files/files.php class=a_cat>More...</a>)</p>";
 }
 
-function sc_scrubfiles() {
-    sc_query(" CREATE TABLE files2 like files; ");
+function sc_scrubfiledatabase() {
+	sc_query(" CREATE TABLE files2 like files; ");
 	sc_query(" INSERT files2 SELECT * FROM files GROUP BY location;" );
 	sc_query(" RENAME TABLE `files`  TO `files_scrub`; ");
 	sc_query(" RENAME TABLE `files2` TO `files`; " );
