@@ -26,6 +26,15 @@ if($act=="select_image_chdir") {
     sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+function sc_database_add($table, $field, $type, $default) {
+	$q="CREATE TABLE IF NOT EXISTS `$table` ( `id` int NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+	sc_query($q);
+	$q="ALTER TABLE `$table` add column `$field` $type $default;";
+	sc_query($q);
+
+	
+}
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_phpself() { eval(scg()); 
 	$page=$_SERVER['PHP_SELF'];
 	return $page;
