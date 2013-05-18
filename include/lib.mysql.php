@@ -31,7 +31,17 @@ function sc_database_add($table, $field, $type, $default) {
 	sc_query($q);
 	$q="ALTER TABLE `$table` add column `$field` $type $default;";
 	sc_query($q);
-
+}
+function sc_database_data_add($table,$field,$value,$id) {
+	if($id) {
+		$chkid=" and `id`='$id' ";
+	}
+	
+	$r=mfo1("select * from `$table` where `$field`='$value' $chkid");
+	if($r->id) return $r->id;
+	sc_query("insert into `$table` (`$field`) VALUES ('$value'); ");
+	$i=mysql_insert_id();
+	return $i;
 	
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -2032,6 +2042,8 @@ function sc_ajax_callback(){ eval(scg());
 function sc_ajax_javascript() { eval(scg());
 	echo '
 	<script>
+	
+	
 	function rfs_ajax_hide(x) {
         var div = document.getElementById(x);
         if (div.style.display == "block") 
@@ -2202,7 +2214,16 @@ function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,
 	}
 	echo "<div style='clear:both;'></div>";
 }
-function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback) { eval(scg());
+function sc_ajax(		$rfalabel,
+						$rfatable,
+						$rfaikey,
+						$rfakv,
+						$rfafield,
+						$rfawidth,
+						$rfatype,
+						$rfaapage,
+						$rfaact,
+						$rfacallback	) { eval(scg());
 	
 	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
 	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
@@ -2313,9 +2334,34 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 			}
 			echo "</select>";
 		}
+		echo "</div>";
 		echo "<div style='clear:both;'></div>";
 		return;		
 	}
+	
+	if($rfatype=="checkbox") {
+		$cbx=mfo1("select * from `$rfatable` where `$rfaikey`='$rfakv'");
+		$cbxo="off"; if(sc_yes($cbx->enabled)) $cbxo="on";
+		echo "<input 	
+						id=\"$rfanname"."_input\"
+						type=\"$rfatype\"
+						name=\"$rfanname"."_name\"							
+						onchange=\"
+						
+						
+						rfs_ajax_func(	'$rfalabel','$rfanname',this.checked,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+						$hidefunc
+						\"
+						";
+		if($cbxo=="on") echo " checked ";
+		echo " >";
+		
+		echo "</div>";
+		echo "<div style='clear:both;'></div>";
+		return;
+	}
+	
+	
 	
 	if($rfatype=="textarea") {
 		$rx=explode(",",$rfawidth);
