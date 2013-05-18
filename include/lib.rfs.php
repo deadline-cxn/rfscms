@@ -23,17 +23,14 @@ function sc_togglediv_start_ne($x,$y,$folded) {
 	
 	$anchor=md5($x.$y.$foldstate);
 	$titley=str_replace("\"","'",$y);
-	$r="<script> state['$x']='$foldstate'; </script>		
-	<a href=\"#\" onclick=\"showhide('$x');\" title=\"$titley\">
-	<div id=\"$x"."plusminus\" style='float:left;'>$fold</div>
-	</a> $y<div id=\"$x\" style=\"clear:both; display:$foldstate;\">";
+	$r="<script> state['$x']='$foldstate'; </script>	<a href=\"#\" onclick=\"showhide('$x');\" title=\"$titley\"><div id=\"$x"."plusminus\" style='float:left;'>$fold</div></a>$y<div id=\"$x\" style=\"clear:both; display:$foldstate;\">";
 	return $r;
 }
 function sc_togglediv_start($x,$y,$folded) {
 	echo sc_togglediv_start_ne($x,$y,$folded);
 }
 function sc_togglediv_end_ne() {
-	return  "</div>";// <div style=\"clear:both\"></div>";
+	return  "</div>";
 }
 function sc_togglediv_end() {
 	echo sc_togglediv_end_ne();

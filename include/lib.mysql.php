@@ -2083,7 +2083,8 @@ function sc_ajax_javascript() { eval(scg());
 		}
 		</script> ';
 }
-function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
+function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,
+						$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
 	
 	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
 	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
@@ -2121,11 +2122,12 @@ function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$r
 			echo "		data-maincss=\"blue\"
 							id=\"$rfanname"."_name\"
 							name=\"$rfanname"."_name\"
-							onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+							onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
 							$hidefunc
 							\"
-							onchange=\"this.blur();\"
+							
 							style='float:left;'>";
+							// onchange=\"this.blur();\"
 			
 			
 			if(!empty($val)) {
@@ -2218,7 +2220,8 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 	$rfanname="RFAJAX_".time()."_".md5($rfakv.$rfalabel.$rfatable.$rfaikey);	
 	
 	echo "<div id='$rfanname"."_div' style='float:left;'>&nbsp;</div>\n";
-	echo "<div id='$rfanname"."_label' style='float:left; $minwidth'>$rfalabel</div>\n";
+	echo "<div id='$rfanname"."_label' style='float:left; $minwidth; margin-top: 5px; margin-right: 10px;'>$rfalabel</div>\n";
+	echo "<div style='min-width: $rfawidth;'>";
 	
 	$rfakv=addslashes($rfakv);	
 	$q="select * from `$rfatable` where `$rfaikey`='$rfakv'";
@@ -2249,14 +2252,16 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 			if(empty($tvalue)) $tvalue="Select";
 			if(empty($tdata)) $tdata="Select";
 			
-			echo "<select data-description=\"$rfanname\" ";
-			
-			echo "	data-maincss=\"blue\"
+			echo "<select
+					width=\"$rfawidth\"
+					data-description=\"$rfanname\" 
+					data-maincss=\"blue\"
 					id=\"$rfanname"."_name\"
 					name=\"$rfanname"."_name\"
-					onblur  =\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc	\"
+					
 					onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
-					style='float:left;'>";
+					style='float:left; min-width: $rfawidth;  '>";
+					//onblur  =\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc	\"
 					
 			echo "<option ";
 			
@@ -2346,6 +2351,7 @@ function sc_ajax(	$rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfaty
 					onkeyup=\"if((event.keyCode==13)) {this.blur();}\"style='float:left;'>";
 	
 	}
+	echo "</div>";
 	echo "<div style='clear:both;'></div>";
 }
 
