@@ -85,8 +85,13 @@ else {
 		else
 			echo " &nbsp; ";
 		if($_SESSION["logged_in"]!="true")    {
+			
 			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+			
+			
+			
 			echo "</td><td class=logged_in_td>";
+			
 		}
 		else    {
 			echo "</td>";

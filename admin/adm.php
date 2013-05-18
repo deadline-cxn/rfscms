@@ -59,9 +59,7 @@ if(stristr($_REQUEST['action'],"ajx")) {
 	sc_do_action();
 	exit();
 }
-else
-	include( "header.php" );
-
+else include( "header.php" );
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
 if(!sc_access_check("admin","access")) {
@@ -82,6 +80,57 @@ function adm_action_update() { eval(scg());
 	echo "</pre>";
 	include("footer.php");
 	exit();
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_AUTH FUNCTIONS
+function adm_action_auth_config() { eval(scg());
+
+	sc_database_add("rfsauth","name","text","NOT NULL");
+	sc_database_add("rfsauth","enabled","text","NOT NULL");
+	sc_database_add("rfsauth","value","text","NOT NULL");
+	sc_database_add("rfsauth","value2","text","NOT NULL");
+	
+	$id =	sc_database_data_add("rfsauth","name","EBSR",0);
+			sc_database_data_add("rfsauth","enabled","true",$id);
+			sc_database_data_add("rfsauth","value","",$id);
+			
+	$id =	sc_database_data_add("rfsauth","name","FACEBOOK",0);
+			sc_database_data_add("rfsauth","enabled","false",$id);
+			sc_database_data_add("rfsauth","value","",$id);
+			sc_database_data_add("rfsauth","value2","",$id);
+			
+	$id =	sc_database_data_add("rfsauth","name","OPENID",0);
+			sc_database_data_add("rfsauth","enabled","false",$id);
+			sc_database_data_add("rfsauth","value","",$id);
+	
+
+	echo "<h1>Authentication Configuration</h1>";
+	echo "<hr>";
+	
+	echo "<div> EBSR (Email-based Self-registration)";
+	sc_ajax(	"Enabled",		"rfsauth",	"name", "EBSR", "enabled", 		1, "checkbox", "admin", "access", "");
+	sc_ajax(	"EBSR Value,180",	"rfsauth", "name", "EBSR", "value", 		60, "", 		"admin", "access", "");						
+	echo "</div>";
+	echo "<hr>";
+
+	echo "<div> Facebook";
+	sc_ajax(	"Enabled",				"rfsauth",	"name", "FACEBOOK", "enabled", 		1, "checkbox", "admin", "access", "");
+	sc_ajax(	"Facebook  APP  ID,180",	"rfsauth", "name", "FACEBOOK", "value", 		60, "", 		"admin", "access", "");						
+	sc_ajax(	"Facebook SECRET ID,180","rfsauth", "name", "FACEBOOK", "value2", 		60, "", 		"admin", "access", "");						
+	echo "</div>";
+	echo "<hr>";
+	
+	echo "<div> OpenID";
+	sc_ajax(	"Enabled",		"rfsauth",	"name", "OPENID", "enabled", 		1, "checkbox", "admin", "access", "");
+	sc_ajax(	"OpenID ID,180",	"rfsauth", "name", "OPENID", "value", 		60, "", 		"admin", "access", "");						
+	echo "</div>";
+	
+	
+	
+	
+	
+	
+	
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_ARRANGE FUNCTIONS
@@ -146,7 +195,6 @@ function sc_admin_module( $loc ) { eval( scg() );
 	echo "</select>";
 	echo "</form>";
 }
-
 function adm_action_f_arrange_move_up() { eval(scg());
 	
 	$ar=mfo1("select * from arrangement where `id`='$arid'");	
@@ -178,7 +226,6 @@ function adm_action_f_arrange_move_up() { eval(scg());
 	adm_action_arrange();
 	
 }
-
 function adm_action_f_arrange_delete_go() { eval(scg());
     sc_query("delete from arrangement where `id`='$id'");
     adm_action_arrange();
@@ -236,13 +283,11 @@ function adm_action_network_query_tool() {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM ACCESS GROUPS FUNCTIONS
-////////////////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_add() { eval(scg());
 	echo " Adding new access group named [$axnm] <br>";
 	sc_query(" insert into access (`name`) VALUES ('$axnm'); ");
 	adm_action_f_access_group_edit();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_edit_go() { eval(scg());
 	sc_query("delete from `access` where name='$axnm'");
 	$r=sc_query("select * from access_methods");
@@ -255,7 +300,6 @@ function adm_action_f_access_group_edit_go() { eval(scg());
 	}
 	adm_action_access_groups();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_edit() { eval(scg()); 
 	echo "<h1>Edit Access Group</h1>";
 	echo "<h2>$axnm</h2>";
@@ -284,14 +328,12 @@ function adm_action_f_access_group_edit() { eval(scg());
 	include( "footer.php" );
 	exit();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_add_user() { eval(scg());
 	$usr=sc_getuserdata($name);
 	$usr->access_groups.=",$axnm";	
 	sc_query("update users set access_groups ='$usr->access_groups' where id='$usr->id'");
 	adm_action_access_groups();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_del_user() { eval(scg());
 	echo $user;
 	echo "<br>";
@@ -306,7 +348,6 @@ function adm_action_f_access_group_del_user() { eval(scg());
 	sc_query("update users set access_groups='$outag' where name='$user'");
 	adm_action_access_groups();	
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_delete() { eval(scg());
 	sc_confirmform( "Delete $axnm?",
                     "$RFS_SITE_URL/admin/adm.php",
@@ -314,13 +355,11 @@ function adm_action_f_access_group_delete() { eval(scg());
 					  "axnm=$axnm" );
 	adm_action_access_groups();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_access_group_delete_go() { eval(scg());
 	echo "DELETE $axnm access group... <BR>";
 	sc_query("delete from `access` where name='$axnm'");
 	adm_action_access_groups();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_access_groups() { eval(scg());
 	echo "<h1>Modify Access Groups</h1>";
 	echo "<hr>";
@@ -403,7 +442,7 @@ function adm_action_new_page_go() { eval(scg());
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_EMAIL
-function adm_action_email(){			eval(scg());
+function adm_action_email() { eval(scg());
 	echo"<p>Send an email</p>";
 	sc_bqf( 	"action=email_go".$RFS_SITE_DELIMITER.
 				"SHOW_TEXT_address=address".$RFS_SITE_DELIMITER.
@@ -411,11 +450,9 @@ function adm_action_email(){			eval(scg());
 				"SHOW_CODEAREA_300#600#message=message".$RFS_SITE_DELIMITER,
 				"Email");
 	include( "footer.php" );
-	exit();
-	
+	exit();	
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function adm_action_email_go(){ 					eval(scg());
+function adm_action_email_go() { eval(scg());
     echo "Sending message:<br>";
     echo "TO:$address<br>SUBJECT:$subject<br>MESSAGE:<br>$message<br>";
     mailgo($address,$message,$subject);
@@ -945,7 +982,6 @@ function adm_action_f_modify_forum() { eval(scg());
 	sc_updb( "forum_list","id",$id, 1 );
 	adm_action_forum_admin();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_edit_forum() { eval( scg() );
 	$result=sc_query( "select * from forum_list where `name`='$name'" );
 	$der=mysql_fetch_object( $result );
@@ -958,12 +994,10 @@ function adm_action_f_edit_forum() { eval( scg() );
 	       "id","","omit","",100,"submit" );
 	adm_action_forum_admin();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_add_forum() { eval( scg() );
 	sc_query( "insert into forum_list (`name`) VALUES ('$name') ; " );
 	adm_action_f_edit_forum();
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_forum_admin() { eval( scg() );
 	$name=addslashes( $name );
 	$r=sc_query( "select * from forum_list" );
@@ -1137,7 +1171,6 @@ function adm_action_f_admin_menu_edit_mod() { eval( scg() );
 	if( $_SESSION['admed']=="on" ) adm_action_();
 	else adm_action_admin_menu_edit();
 }
-
 function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
         $id=$inid;
         d_echo("EDITING ADMIN MENU ENTRY: $id");
@@ -1207,7 +1240,6 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
 			echo "</form>";
 			echo "</tr> ";
 }
-
 function adm_action_f_admin_menu_edit_entry() { eval(scg());
 	echo "<h3>Edit Admin Menu item $id</h3>";
 	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
@@ -1243,7 +1275,6 @@ function adm_action_f_admin_menu_edit_entry() { eval(scg());
     if( $_SESSION['admed']=="on" ) adm_action_();
 	else adm_action_admin_menu_edit();
 }
-
 function adm_action_admin_menu_edit() { eval( scg() );
 	echo "<h3>Edit Admin Menu</h3>";
 	echo "<table border=0 cellspacing=0 cellpadding=0>";
@@ -1636,7 +1667,6 @@ function adm_action_f_edit_users_go() {
 	sc_updb( "users","id",$id,1 );
 	adm_action_user_edit();
 }
-
 function adm_action_f_edit_users() { eval( scg() );
 
 	echo "WHAT";
@@ -1719,7 +1749,6 @@ function adm_action_user_edit() {
 	include("footer.php");
 	exit();
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_RSS EDITOR
 function adm_action_f_rss_edit_go_edit() {
@@ -1759,8 +1788,7 @@ function adm_action_rss_edit() {
 	include("footer.php");
 	exit();
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_SMILEY EDITOR
 function adm_action_edit_smilies() {
 	eval( scg() );
@@ -1851,8 +1879,7 @@ function adm_action_edit_smilies() {
 	include("footer.php");
 	exit();
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_LOG STUFF
 function adm_action_f_domain_quiet() {
 	eval( scg() );
@@ -1883,7 +1910,7 @@ function adm_action_log_view() {
 	include("footer.php");
 	exit();
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_COUNTERS
 function adm_action_counters() {
 	echo "<h3>Counters</h3>\n";
@@ -1891,7 +1918,7 @@ function adm_action_counters() {
 	include("footer.php");
 	exit();
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AWARD EDIT
 function adm_action_awards_edit() {
 	echo "<h3>Award Editor</h3>\n";
@@ -1923,7 +1950,7 @@ function adm_action_f_edit_award_go() {
 	adm_action_awards_edit();
 	
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_LINK EDIT
 function adm_action_f_add_link() {
 	eval( scg() );
@@ -2078,7 +2105,8 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 	include("footer.php");
 	exit();
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_DEFAULT_ACTION
 function adm_action_() { eval(scg());
 
 		// sc_ajax($label,$table,$key,$kv,$field,$width,$type)
@@ -2151,9 +2179,6 @@ function adm_action_() { eval(scg());
 
 	finishadminpage();
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
 function admin_menu_built_in() { eval(scg());
     
         $arr=get_defined_functions();
@@ -2314,7 +2339,6 @@ echo "<a href=\"";
 	
 	echo "<div style='clear: left; '>&nbsp;</div>";	
 }
-
 function finishadminpage() {
 	eval( scg() );
 
@@ -2328,5 +2352,4 @@ function finishadminpage() {
 	include( "footer.php" );
 	exit();
 }
-
 ?>

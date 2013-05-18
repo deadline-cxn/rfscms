@@ -163,6 +163,10 @@ function show1message($post,$gx) { eval(scg());
 
 function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 
+    $der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));   
+    echo "<h1>$der->name</h1>";
+
+
 	$gt=1; $gx=4+$gt;
 	$result = sc_query("select * from `forum_posts` where `thread_top`='yes' and `thread`='".$thread."' order by time limit 0,30");
 	if($result) $numposts=mysql_num_rows($result);
@@ -183,7 +187,7 @@ function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 	$der=mysql_fetch_array(sc_query("select * from `forum_list` where `id`='$forum_which';"));
 	$title=stripslashes($post['title']);
 	$thread=$post['id'];
-	// $GLOBALS['forum_showposts']="no";
+	
 	$GLOBALS['forum_list']="no";
 	if($numposts>0) {
 		$views=$post['views']+1;
@@ -200,25 +204,28 @@ function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 		}
 		// form to add another reply
         if($logged_in=="true") {
-				echo "Reply";
-				echo "<table width=".$GLOBALS['site_singletablewidth']." border=0 cellpadding=0 cellspacing=0><tr><td>";
-				echo "<table width=100% cellspacing=0 cellpadding=0>";
-				echo "<tr><td valign=top>\n";
+			
+				echo "<div class=\"forum_box\">";
+				echo "<h2>Reply</h2>";
+				
+				
+				
 				echo "<table width=100% >\n";
 				echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\" method=post>\n";
 				echo "<input type=hidden name=action value=reply_to_thread>\n";
 				echo "<input type=hidden name=forum_which value=\"$forum_which\">\n";
 				echo "<input type=hidden name=thread value=\"".$thread."\">\n";
-				echo "<tr><td align=right valigh=top>Title:</td><td><input type=text name=header value=\"re:";
+				echo "<tr><td align=right >Title:</td><td><input type=text name=header value=\"re:";
 				echo stripslashes($title);
 				echo "\" size=78></td></tr>\n";
-				echo "<tr><td align=right valigh=top>Reply:</td><td><textarea name=reply cols=78 rows=10></textarea></td></tr>\n";
-				echo "<tr><td align=right valigh=top>Anonymous:</td><td><select name=anonymous><option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\"></td></tr>\n";
+				echo "<tr><td align=right valign=top>Reply:</td><td><textarea name=reply cols=78 rows=20 
+					style=\" width: 98%; \" ></textarea></td></tr>\n";
+				echo "<tr><td align=right >Anonymous:</td><td><select name=anonymous><option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\"></td></tr>\n";
 				echo "<tr><td>&nbsp;</td><td></td></tr>\n";
 				echo "</form>\n";
 				echo "</table>\n";
-				echo "</td></tr></table>\n";
-				echo "</td></tr></table>\n";
+				
+				echo "</div>";
         } else {
             echo "<p class=sc_site_urlr><a href=$RFS_SITE_URL/login.php>Login</a> to reply to this post!</p>\n";
         }
@@ -328,7 +335,8 @@ if($action=="reply_to_thread"){
     }    else    {
         echo "<p class=sc_site_urlr><a href=$RFS_SITE_URL/login>Login</a> to reply</p>\n";
     }
-    $action="get_thread";
+	forums_action_get_thread($thread,$forum_which);
+    // $action="get_thread";
 }
 
 // if($action=="get_thread"){   get_thread($thread,$forum_which); }
@@ -473,9 +481,11 @@ function forums_action_forum_list() { eval(scg());
                             $link="$RFS_SITE_URL/modules/forums/forums.php?forum_which=$der->id&action=forum_showposts";
                             $gt=$gt+1; if($gt>2) $gt=1; $gx=$gt+2; $gy=$gt+4;
                             
-                            echo "<tr><td>\n";// style=\"color: $forum_font\" width=20% >\n";
+                            echo "<tr><td>\n";
                             
-                            // echo $name;
+                            echo "<div class=\"forum_box\">";
+							
+							
                             echo "<table border=0 width=800>\n";
                             echo "<tr>\n";
                             echo "<td  class=\"row1\" align=\"left\" valign=\"middle\" height=\"50\">";
@@ -527,6 +537,7 @@ function forums_action_forum_list() { eval(scg());
                             echo "</td>\n";
                             echo "</tr>";
                             echo "</table>\n";
+							echo "</div>";
                             
                             echo "</td></tr>\n";
                             
@@ -556,20 +567,21 @@ function forums_action_forum_showposts() { eval(scg());
     $res=sc_query("select * from `forum_list` where `id`='$fold->parent'");
     $fold=mysql_fetch_object($res);
     $der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));   
-
     echo "<h1>$der->name</h1>";
 	
 	forum_put_buttons($forum_which);
-	
+
 
     $result = sc_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' order by bumptime desc limit 0,30");
     if($result) $numposts=mysql_num_rows($result);
     else $numposts=0;
     if($numposts) {
        $gt=1; $i=0;
-        echo "<table width=100% cellspacing=0 cellpadding=0>\n";
+	   
+        // echo "<table width=100% cellspacing=0 cellpadding=0>\n";
 
-        echo "<tr><td>Topics&nbsp;</td><td>Replies&nbsp;</td><td>Views&nbsp;</td><td>Latest Reply&nbsp;</td><td></td></tr>";
+        echo "<h2>Topics</h2>";
+		
         for($i=0;$i<$numposts;$i++) {
             $new=0;
             $gt=$gt+1; if($gt>2) $gt=1; $gx=$gt+2; $gy=$gt+4;
@@ -581,40 +593,18 @@ function forums_action_forum_showposts() { eval(scg());
                 $fart=mysql_fetch_array($fork);
                 if($fart['time']>=$data->last_login) $new=1;
             }
+			
+			echo "<div class=\"forum_box\">";
             
-            $link="<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">".stripslashes($post['title'])."</a>\n";
-            echo "<tr>";
-            
-            
-            echo "<td style=\"color: $forum_font\" width=400>\n";
-            
-            echo "<table border=0 cellspacing=0 cellpadding=0>";            
-            echo "<tr><td>\n";
-            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=24> &nbsp;\n";
-            echo "</td><td>";
-            
+            $link="<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">".stripslashes($post['title'])."</a>\n";          
+            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=16>\n";
             echo "$link\n";
-            echo "</td></tr>";
-
-            echo "<tr><td>";
-            echo "</td><td>";
-            
             $time=sc_time($post['time']);
             $great=sc_getuserdata($post['poster']);
             echo "Posted by ".$great->name." on $time";
-            echo "</td></tr>";
-
-            echo "</table>\n";
-
-            echo "</td><td align=left>";
-            
             echo " $posts ";
 		    
-		    echo "</td><td align=left>";
-		    
-		    echo $post['views'];
-		    
-		    echo "</td><td>";
+				echo $post['views'];
 		    
 		    $lreply="";
 			$lrepr=sc_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no' order by `time` desc limit 1");
@@ -623,15 +613,13 @@ function forums_action_forum_showposts() { eval(scg());
 
 				$great=sc_getuserdata($lreply->poster);
 				echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
-				echo "<br>by $great->name on ".sc_time($lreply->time);
+				echo "by $great->name on ".sc_time($lreply->time);
 			} else {
 				echo "none";
 			}
 		    
-		    echo"</td>";		    
-		    echo "<td>";
 
-            if( ($data->access==255) & ($_SESSION['forum_admin']=="yes")) {
+           if( ($data->access==255) & ($_SESSION['forum_admin']=="yes")) {
                 echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
                 echo "<input type=hidden name=action value=move_thread><input type=hidden name=id value=".$post['id'].">\n";
                 
@@ -646,16 +634,10 @@ function forums_action_forum_showposts() { eval(scg());
                 echo "</select>";
                 echo "<input type=\"submit\" name=\"submit\" value=\"go\"></form>";
             }
-
-		    echo "</td>";		    
-		    
-		    echo"</tr>";
-		    
-		    echo "</td>";
-
-            echo "</tr>\n";
+			echo "</div> <br style=\"clear:both;\"> ";
         }
-        echo "</table>\n";
+		
+		
         
     }
     else echo "<p align=center> There are no threads! </p>\n";    
