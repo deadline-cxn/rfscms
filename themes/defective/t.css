@@ -145,7 +145,7 @@ hr{
 }
 
 .news_headline_bar {
-	background-color:rgba(220,150,0,0.1);
+	background-color:rgba(220,150,0,0.2);
 	height: 25px;
 	padding: 5px;
 	border-top-left-radius: 15px;
@@ -156,7 +156,7 @@ hr{
     font-size: large;
     font-weight: bold;
     font-style: italic;
-	color: #DFFFC9;
+	color: #FFC900;
 	float: left;
 	text-shadow: 2px 2px 2px #000;
 }
@@ -177,13 +177,13 @@ hr{
 	border-top: 1px solid #000;
 	clear: both; 
 	padding: 15px;
-	background-color:rgba(0,0,0,0.1);
+	background-color:rgba(0,0,0,0.2);
 }
 
 .news_edit_bar {
 	border-top: 1px solid #000;
 	clear: both;
-	background-color:rgba(160,80,0,0.1);
+	background-color:rgba(160,80,0,0.2);
 	padding: 25px;
 	margin: 0 0 25px 0;
 	border-bottom-left-radius: 15px;
