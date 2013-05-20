@@ -94,7 +94,7 @@ if($_REQUEST['act']=="update") {
 $data=sc_getuserdata($data->name);
 
 function pro_nav_bar($data) {    eval(scg());
-    echo "<center>\n";	
+    
 if(sc_access_check("news","edit")) 
 	sc_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
 if(sc_access_check("news","submit")) 
@@ -106,7 +106,7 @@ if(sc_access_check("admin","access"))
 
 sc_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
 
-    echo "</center>\n";
+    
 }
 
 if(empty($data->name))
@@ -168,7 +168,7 @@ echo "</tr></table>";
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // status stuff
 
-echo "<center>\n";
+
 echo "<table border=0 cellspacing=2 cellpadding=2><tr><td>\n";
 echo "<a href=\"javascript:win('helpposts.php')\">News Posts</a>:$data->posts\n";
 echo "</td><td>\n";
@@ -186,7 +186,7 @@ echo "<a href=\"javascript:win('helpfreply.php')\">Links Added</a>:$data->linksa
 echo "</td><td>\n";
 echo "<a href=\"javascript:win('helpref.php')\">Referrals</a>:$data->referrals\n";
 echo "</td></tr></table>\n";
-echo "</center>\n";
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // profile data start

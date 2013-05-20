@@ -10,6 +10,8 @@ else {	$tex=mfo1("select * from exams where id='".$_REQUEST['exam_id']."'");
 }
 include("header.php");
 
+echo "<h1>Exams</h1>";
+
 if(!sc_yes($_SESSION['logged_in'])) {
 	echo "You're not logged in. <br> "; 
 	for($i=0;$i<35;$i++) echo "<br>";

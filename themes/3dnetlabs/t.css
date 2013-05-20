@@ -27,6 +27,7 @@ html, body
 	background-color:rgba(0,0,0,0.2);
 	border-radius: 10px;
 	margin: 2px;
+	padding: 10px;
 }
 
 .forum_user{
@@ -116,9 +117,9 @@ background-color: #33FF1C;
 
 
 .message_mini_indicator {
-    color: black;
-	background-color: #979700;
-    outline: red dotted thin;
+    3color: black;
+	3background-color: #979700;
+    feoutline: red dotted thin;
 }
 
 
@@ -699,7 +700,8 @@ h1
     font-style: italic;
 	position:relative;
     left: 2%;
-    color: #003300;
+    
+	margin: 0px;
 }
 
 h2
@@ -710,7 +712,8 @@ h2
     font-style: italic;
 	position:relative;
     left: 2%;
-    color: #003300;
+    
+	margin: 0px;
 }
 
 h3
@@ -721,7 +724,13 @@ h3
     font-style: italic;
 	position:relative;
     left: 2%;
-    color: #003300;
+    
+	margin: 0px;
+}
+
+h1,h2,h3 {
+	color: #33cc33;
+	text-shadow: 2px 2px 2px #000;
 }
 
 td
@@ -805,6 +814,7 @@ hr
     border: 1px;
     border-color: #004400;
     border-style: dotted;
+	padding: 0px;
 }
 
 

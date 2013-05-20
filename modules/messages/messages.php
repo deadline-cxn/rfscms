@@ -16,7 +16,7 @@ if($_SESSION["logged_in"]!="true") {
 if(empty($to)) if(!empty($sto)) $to=$sto;
 if(empty($subject)) if(!empty($sj)) $subject=$sj;
 
-sc_info("Private Messages","dark green", "green");
+echo "<h1>Private Messages</h1>";
 echo "<hr>";
 if($action=="mark as unread"){
 	sc_query("update `pmsg` set `read` = 'no' where `id` = '$id'");

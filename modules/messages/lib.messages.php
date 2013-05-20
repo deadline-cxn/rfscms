@@ -56,8 +56,8 @@ function send_all($from,$subject,$message) {
 
 function sc_module_mini_messages_link() { eval(scg());
 
+		echo "<h2>Private Messages</h2>";
 		if($_SESSION["logged_in"]!="true") return;
-
 		echo "<table border=0 cellspacing=0 cellpadding=3>";
 		echo "<tr class='message_mini_indicator'>";
        echo "<td>";
@@ -67,12 +67,13 @@ function sc_module_mini_messages_link() { eval(scg());
        echo "</td>";
        echo "<td>";
        echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
-       echo "Private messages</a>";
+       echo "Messages</a>";
        echo "</td>";
        echo "</tr></table>";
 }
 
 function sc_module_mini_messages_indicator_small() { eval(scg());
+	echo "<h2>Private Messages</h2>";
 	if($_SESSION["logged_in"]!="true") return;
     $ur=get_unread_messages();
     if($ur) {
@@ -88,7 +89,21 @@ function sc_module_mini_messages_indicator_small() { eval(scg());
         echo " $ur unread messages</a>";
         echo "</td>";
         echo "</tr></table>";
-    }
+    } else  {
+		
+		echo "<table border=0 cellspacing=0 cellpadding=3>";
+		echo "<tr class='message_mini_indicator'>";
+       echo "<td>";
+       echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
+       echo "<img border=0 width=16 height=16 src=$RFS_SITE_URL/modules/messages/mail.png>";
+       echo "</a>";
+       echo "</td>";
+       echo "<td>";
+       echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
+       echo "Messages</a>";
+       echo "</td>";
+       echo "</tr></table>";
+	}
 
 }
 
@@ -113,6 +128,12 @@ function sc_module_mini_latest_messages($x) { eval(scg());
     echo "</table>";
 
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/messages/messages.php class=\"a_cat\" align=right>More...</a>)</p>";
+}
+
+function sc_module_f_messages_send($to,$from,$title,$message) { eval(scg()); 
+/*   "admin",  $usr->name,  "REQUEST TO ACCESS POD: $pod",        "	<a class=pmsglink href=$RFS_SITE_URL/index.php?action=netman_add_pod&useradd=$usr->id&pod=$pod > 		$usr->name is requesting access to pod: $pod 		</a>"         */
+	
+
 }
 
 
