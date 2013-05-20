@@ -138,7 +138,7 @@ function show1message($post,$gx) { eval(scg());
 				echo  "</div>";
 		
 			echo "<div class=\"forum_message\">";
-			echo smiles(stripslashes($post['message']));
+			echo smiles(wikitext(stripslashes($post['message'])));
 			echo "</div>";
 		
 		echo "<div class=\"forum_time\">";
