@@ -11,13 +11,13 @@ sc_access_method_add("memes", "delete");
 function sc_module_mini_memes($x) { eval(scg());
 	echo "<h2>Last $x Memes</h2>";
 	$r=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc limit $x");
+	if($r)
 	for($i=0;$i<$x;$i++) {
 		$m=mysql_fetch_object($r);
 		if($m) {
 			echo "<div id=$m->id style=\"float: left;\">";
 			sc_show1minimeme($m->id);
 			echo "</div>";
-		
 		}
 	}
 	echo "<br style='clear: both;'>"; 
