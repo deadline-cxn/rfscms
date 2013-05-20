@@ -3,6 +3,33 @@ $title="My Bullets";
 chdir("../../");
 include("header.php");
 
+function bullet_log_action_change_category_image() { eval(scg());
+	$page ="$RFS_SITE_URL/include/lib.mysql.php?act=select_image_chdir&";
+	$page.="rtnpage=modules/bullet_log/bullet_log.php&";
+	$page.="rtnact=edit_categories&";
+	$page.="id=$bcid&";
+	$page.="npath=icons&";
+	$page.="table=rfsm_bullet_category&";
+	$page.="image_field=image&";
+	$page.="spath=$RFS_SITE_PATH";
+	sc_gotopage($page);
+}
+
+function bullet_log_action_edit_categories() { eval(scg());
+	echo "<h1>Edit Bullet Categories</h1>";
+	$r=sc_query("select * from rfsm_bullet_category");
+	$x=mysql_num_rows($r);
+	for($i=0;$i<$x;$i++) {
+		$bcat=mysql_fetch_object($r);
+		
+		if(empty($bcat->image)) $bcat->image="$RFS_SITE_URL/images/icons/noimage.gif";
+		
+		echo " $bcat->name <br>
+				<a href=\"$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=change_category_image&bcid=$bcat->id\"><img src=\"$bcat->image\" width=32></a> <BR>";
+	}
+	
+}
+
 function bullet_log_action_share_bullet() { eval(scg());
 	echo "<h1>Share Bullet</h1>";
 	$bullet=mfo1("select * from rfsm_bullet_log where id=$bid");
@@ -96,8 +123,14 @@ function bullet_log_action_edit_bullets() { eval(scg());
 	       "","","","","","",50,"New Bullet" );
 	echo "</div>";
 	echo "<hr>";
+	
 	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=short_list","Brief List");
 	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=epr_format","Format for EPR");
+	
+	if(sc_access_check("bullet_log","admin")) {
+		sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_categories","Edit Categories");
+		
+	}
 	
 	echo "<hr>";			   
 	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' order by `when` desc");

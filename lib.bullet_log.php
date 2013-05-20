@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_access_method_add("bullet_log", "admin");
+
 sc_database_add("rfsm_bullet_log","username","text","NOT NULL");
 sc_database_add("rfsm_bullet_log","name","text","NOT NULL");
 sc_database_add("rfsm_bullet_log","category","text","NOT NULL");
@@ -18,8 +20,9 @@ sc_database_data_add("rfsm_bullet_category","name","Volunteer",0);
 sc_database_data_add("rfsm_bullet_category","name","Self Improvement",0);
 
 function sc_module_bullet_log($x) { eval(scg());
-	echo "<hr>";
+	
 	echo "<h2>My Bullets</h2>";
+	
 	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' order by `when` desc limit $x");
 	$x=mysql_num_rows($r);
 	if($x) {
