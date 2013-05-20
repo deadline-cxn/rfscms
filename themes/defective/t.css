@@ -20,6 +20,8 @@ body{
 	min-height: 220px;
 	max-height: 220px;
 	overflow-y: auto;
+	border-radius: 5px;
+	border:solid 1px #777777;
 }
 
 .forum_box {
