@@ -155,7 +155,6 @@ function sc_admin_module( $loc ) { eval( scg() );
 				echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_move_up&arid=$ar->id'>";				
 				echo " <img src=$RFS_SITE_URL/images/icons/arrow-up.png width=32 height=32 border=0> ";
 				echo "</a>";
-				
 			}
 			if( $ar->sequence < $n ) {
 				echo " <img src=$RFS_SITE_URL/images/icons/arrow-down.png width=32 height=32 border=0> ";
@@ -263,7 +262,7 @@ function adm_action_arrange() { eval( scg() );
 				PRIMARY KEY (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ; ");
 
 	echo "<table border=0><tr>"; // TOP START
-	echo "<td valign=top class=lefttd>";	
+	echo "<td valign=top>";// class=lefttd>";	
 	sc_admin_module("left");
 	echo "</td><td valign=top>"; // MIDDLE START
     sc_admin_module("middle");
