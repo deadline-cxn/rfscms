@@ -308,8 +308,11 @@ if($action=="edit_reply") {
 
 if($action=="edit_reply_go"){
     if($logged_in=="true")    {
-        sc_query("UPDATE forum_posts SET message = '$message' where id = '$reply'");
-        sc_query("UPDATE forum_posts SET title   = '$title'   where id = '$reply'");
+		
+		echo "$reply ... <br>";
+		
+		sc_query("UPDATE forum_posts SET message = '$message' where id = '$reply'");
+		sc_query("UPDATE forum_posts SET title   = '$title'   where id = '$reply'");
         $action="get_thread";
 		forums_action_get_thread($thread,$forum_which);
 		exit();
