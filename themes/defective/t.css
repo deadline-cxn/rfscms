@@ -62,6 +62,7 @@ body{
 	box-shadow: 3px 3px 3px #553300;
 	border:solid 1px #553300;
 	border-radius:5px;
+	margin: 10px;
 }
 
 .slogan {
@@ -175,7 +176,7 @@ hr{
 }
 
 .news_image {
-	
+	padding: 15px;
 	float: left;
 }
 
