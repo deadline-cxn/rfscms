@@ -3,7 +3,14 @@ body{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
-    background-color: #221100;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#a90), to(#530));
+	background-image: -webkit-linear-gradient(top, #a90, #530);
+	background-image:    -moz-linear-gradient(top, #a90, #530);
+	background-image:      -o-linear-gradient(top,   #a90, #530);
+	background-image:         linear-gradient(to bottom, #a90, #530);
+	background-repeat:no-repeat;
+	background-position:right top;
+	background-attachment: fixed;
 }
 
 .memebox {
