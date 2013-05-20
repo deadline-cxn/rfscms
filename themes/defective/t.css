@@ -340,21 +340,16 @@ a:hover {
 
 input[type=text]
 {
-	background-color: #1E1E1E;
-    color: #000;
+	background-color: #895900;
+    color: #f90;
     height: 22px;
-    color: #bbbbbb;
-    box-shadow:-1px 2px #99660A inset;
+    box-shadow: 2px 2px #99660A ;
     border:solid 1px #BFBDBD;
     padding-left:10px;    
-    box-shadow: 2px 2px 0 #828181 inset;
 }
 input[type=button]
 {
-    background-color: #1E1E1E;
-    color: #000;
     height: 22px;
-    color: #bbbbbb;
     box-shadow:-1px 2px #99660A inset;
 }
 
@@ -374,6 +369,5 @@ select, textarea {
     border-width : 2px;
     border-color : #000000;
 	color: #ff9900;
-    background-color : #662200;
-
+    background-color : #664400;
 }
