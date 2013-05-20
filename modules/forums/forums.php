@@ -311,6 +311,8 @@ if($action=="edit_reply_go"){
         sc_query("UPDATE forum_posts SET message = '$message' where id = '$reply'");
         sc_query("UPDATE forum_posts SET title   = '$title'   where id = '$reply'");
         $action="get_thread";
+		forums_action_get_thread($thread,$forum_which);
+		exit();
     }
 }
 
