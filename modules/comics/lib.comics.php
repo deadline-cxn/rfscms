@@ -80,7 +80,7 @@ function sc_comics_page_mini_preview($id){
         $url=$page[$var];
         if(empty($url)) $url="$site_url/images/comics_page_bkg.gif";
 //echo "<img src='$RFS_SITE_URL/include/generate.image.php/$url.png?mid=$m->id&owidth=$meme_thumbwidth&forcerender=1' border=0>";
-echo sc_phpthumb($url,$x,$y,0);
+echo sc_picthumb($url,$x,$y,0);
         //echo "<img src=\"$url\" width=$x height=$y> ";
         if($l=="yes") echo "<br> ";
     }
