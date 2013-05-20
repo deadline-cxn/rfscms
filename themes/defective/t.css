@@ -236,7 +236,6 @@ td {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: xx-small;
     font-weight: bold;
-    background-color: #000000;
 	padding: 10px;
 }
 
@@ -246,7 +245,7 @@ td {
     font-style: italic;
     font-weight: bold;
     color:   #ff9900;
-	background-color: #000000;
+	background-color: #201000;
 }
 
 .righttd {
