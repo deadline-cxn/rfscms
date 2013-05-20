@@ -210,11 +210,12 @@ function sc_show_news($nid) { eval(scg());
         echo smiles(stripslashes(wikitext($news->message)));
     }
     $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
-		
-	sc_socials_content($ourl,$news->headline);		
+	 sc_socials_content($ourl,$news->headline);		
 	
-$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
-	sc_facebook_comments($page);
+	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
+	
+	if($RFS_SITE_FACEBOOK_NEWS_COMMENTS) 
+		sc_facebook_comments($page);
 	
 		echo "</div>";
     
