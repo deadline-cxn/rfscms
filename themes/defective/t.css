@@ -3,11 +3,11 @@ body{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#a90), to(#530));
-	background-image: -webkit-linear-gradient(top, #f90, #530);
-	background-image:    -moz-linear-gradient(top, #f90, #530);
-	background-image:      -o-linear-gradient(top,   #f90, #530);
-	background-image:         linear-gradient(to bottom, #f90, #530);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#000), to(#a90));
+	background-image: -webkit-linear-gradient(top, 			#000, #f90);
+	background-image:    -moz-linear-gradient(top, 			#000, #f90);
+	background-image:      -o-linear-gradient(top,   		#000, #f90);
+	background-image:         linear-gradient(to bottom,	#000, #f90);
 	background-repeat:no-repeat;
 	background-position:right top;
 	background-attachment: fixed;
