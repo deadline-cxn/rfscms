@@ -650,8 +650,7 @@ function forums_action_forum_showposts() { eval(scg());
 function forums_action_() {
 	forums_action_forum_list();
 }
-if ($forum_list=="yes"){
-	forums_action_forum_list();
-}
+
+//if ($forum_list=="yes"){	forums_action_forum_list(); }
 
 ?>
