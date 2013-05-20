@@ -27,13 +27,19 @@ if($_REQUEST['action']=="get_file_go") {
 	include_once("include/lib.all.php");
 	include("modules/files/lib.files.php");
 	$filedata=sc_getfiledata($id);
-	if(empty($filedata)) {
-		echo "Error, file does not exist?\n";
-		exit();
+	if(empty($filedata)) { echo "Error, file does not exist?\n"; exit(); }
+	sc_adddownloads($data->name,1); sc_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
+	
+	if(	(stristr($filedata->location,"http:")) ||
+		(stristr($filedata->location,"https:")) ||
+		(stristr($filedata->location,"ftp:")) ||
+		(stristr($filedata->location,"ftps:")) ) {
+		
+		sc_gotopage("$filedata->location");
 	}
-	sc_adddownloads($data->name,1);
-	sc_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
-	sc_gotopage("$RFS_SITE_URL/$filedata->location");
+	else {
+		sc_gotopage("$RFS_SITE_URL/$filedata->location");
+	}
 	exit();
 }
 
