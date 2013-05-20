@@ -36,13 +36,11 @@ function sc_database_data_add($table,$field,$value,$id) {
 	if($id) {
 		$chkid=" and `id`='$id' ";
 	}
-	
 	$r=mfo1("select * from `$table` where `$field`='$value' $chkid");
 	if($r->id) return $r->id;
 	sc_query("insert into `$table` (`$field`) VALUES ('$value'); ");
 	$i=mysql_insert_id();
-	return $i;
-	
+	return $i;	
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_phpself() { eval(scg()); 
@@ -998,7 +996,7 @@ function sc_bqf($hiddenvars,$submit){ eval(scg());
 // 
 // $table		  	= which table to use
 // $query       	= query of fields to include in the form, if empty will use all fields
-// $hidevars    	= list of vars to hide, seperated by comma
+// $hidevars    	= list of vars to hide, seperated by $RFS_SITE_DELIMITER
 // $specifiedvars	= specify a var
 // $svarf      	= include or omit (will either include only $specifiedvars, or will omit only $specifiedvars)
 // $tabrefvars 	=

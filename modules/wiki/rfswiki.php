@@ -198,7 +198,8 @@ if($action=="edit"){
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
 		
 		$page="$RFS_SITE_URL/modules/wiki/rfswiki.php?name=$name";	
-		sc_facebook_comments($page);
+		if($RFS_SITE_FACEBOOK_WIKI_COMMENTS) 
+			sc_facebook_comments($page);
     }
 }
 echo "<hr>";
