@@ -4,10 +4,10 @@ body{
     font-size: 12px;
     font-style: normal;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#a90), to(#530));
-	background-image: -webkit-linear-gradient(top, #a90, #530);
-	background-image:    -moz-linear-gradient(top, #a90, #530);
-	background-image:      -o-linear-gradient(top,   #a90, #530);
-	background-image:         linear-gradient(to bottom, #a90, #530);
+	background-image: -webkit-linear-gradient(top, #f90, #530);
+	background-image:    -moz-linear-gradient(top, #f90, #530);
+	background-image:      -o-linear-gradient(top,   #f90, #530);
+	background-image:         linear-gradient(to bottom, #f90, #530);
 	background-repeat:no-repeat;
 	background-position:right top;
 	background-attachment: fixed;
@@ -282,7 +282,6 @@ td {
     font-style: italic;
     font-weight: bold;
     color:   #ff9900;
-	background-color: #201000;
 }
 
 .righttd {
