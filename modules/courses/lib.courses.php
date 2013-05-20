@@ -34,7 +34,6 @@ function sc_module_course_list($x) { eval(scg());
 		sc_togglediv_end();
     }
     echo "</div>";
-	echo "<hr>";
 }
 
 
