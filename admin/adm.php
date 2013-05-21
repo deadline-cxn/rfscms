@@ -125,12 +125,6 @@ function adm_action_auth_config() { eval(scg());
 	sc_ajax(	"OpenID ID,180",	"rfsauth", "name", "OPENID", "value", 		60, "", 		"admin", "access", "");						
 	echo "</div>";
 	
-	
-	
-	
-	
-	
-	
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_ARRANGE FUNCTIONS
@@ -1105,6 +1099,12 @@ function adm_action_edit_site_vars() { eval( scg() );
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU ADMIN
+
+function adm_action_f_admin_menu_dump_options() { 
+	sc_show_menu_options();
+	finishadminpage();
+}
+
 function adm_action_f_admin_menu_change_icon() { eval( scg() );
 	$_SESSION['select_image_path']="";
 	sc_selectimage( "images","admin/adm.php","", "admin_menu", $id, "icon" );
@@ -1136,6 +1136,12 @@ function adm_action_f_admin_menu_edit_add() { eval( scg() );
 	$mname		=addslashes( $_REQUEST['mname'] );
 	$murl		=addslashes( $_REQUEST['murl'] );
 	$mtarget	=addslashes( $_REQUEST['mtarget'] );
+	
+	if(empty($mcategory)) {
+		$mcat=mfo1("select * from categories");
+		$mcategory=$mcat->name;
+	}
+		
 	$q="INSERT INTO `admin_menu`	(`category`,      `name`,    `icon`,    `url`,     `target`)
 	   VALUES ('$mcategory',  '$mname',  '$micon',  '$murl',   '$mtarget') ;";
 	echo $q."<BR>";

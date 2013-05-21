@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_add_menu_option("RSS Feeds","$RFS_SITE_URL/modules/rss/rss.php");
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE RSS
 function sc_module_mini_rss() { eval(scg());

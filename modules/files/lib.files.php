@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_add_menu_option("Files","$RFS_SITE_URL/modules/files/files.php");
+
 sc_access_method_add("files", "upload");
 sc_access_method_add("files", "addlink");
 sc_access_method_add("files", "orphanscan");
