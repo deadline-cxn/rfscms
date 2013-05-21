@@ -45,43 +45,46 @@ if($_SESSION['forum_admin']=="yes") {
 
 $der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));
 
-if($action=="start_thread") {
+
+function forums_action_start_thread() { eval(scg());
+	$der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));   
+    echo "<h1>$der->name</h1>";
+	forum_put_buttons($forum_which);
     if($logged_in=="true") {
 	    $der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));	
-	    
-		echo "New Thread";
-        echo "<table width=$site_singletablewidth border=0 cellpadding=0 cellspacing=0><tr><td>";
-
-        echo "<table width=100% cellspacing=0 cellpadding=0>";
-        echo "<tr><td valign=top>\n";
-
-	    echo "<table width=100% border=0><th align=center>Start a new thread in $der->name</th></table>";
-        echo "<table width=100%>\n";
+		echo "<div class=\"forum_box\">";
+	    echo "<h2>Start a new thread in $der->name</h2>";
         echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\" method=post>\n";
         echo "<input type=hidden name=action value=start_thread_go>\n";
         echo "<input type=hidden name=forum_which value=\"$forum_which\">\n";
-        echo "<tr><td align=right valign=top>Title:</td><td><input type=text name=header value=\"\" size=78></td></tr>\n";
-        echo "<tr><td align=right valign=top>Message:</td><td><textarea name=reply cols=78 rows=10></textarea></td></tr>\n";
-        if($data->name=="Visitor")
-        { 
-            echo "<tr><td align=right valign=top>Name:</td><td><input name=name></td></tr>";
-            echo "<input type=hidden name=visitor value=true>";
+        echo "<table border=0 cellspacing=0 cellpadding=0>";
+		echo "<tr><td>Title: </td><td><input type=text name=\"theader\" value=\"\" size=78> </td></tr>\n";
+		echo "<tr><td>Message:</td><td><textarea name=reply cols=78 rows=10></textarea> </td></tr>\n";
+        if($data->name=="Visitor") { 
+		echo "<tr><td>Name:</td><td><input type=hidden name=visitor value=true></td></tr>";
         }
-        else
-            echo "<tr><td align=right valign=top>Anonymous:</td><td><select name=anonymous><option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\"> </td> </tr>\n";
-        echo "<tr><td>&nbsp;</td><td></td></tr>\n";
-        echo "</form>\n";
+        else {
+            echo "<tr><td>Anonymous:</td><td>
+					<select id=\"anonymous\" name=anonymous
+						style=\"width:160px; min-width: 160px;\"
+						width=160>
+			<option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\">
+			</td></tr>\n";        
+			}
         echo "</table>\n";   
+		echo "</form>\n";
     }
-    else echo "<p class=sc_site_urlr>You must be logged in to post!</p>\n";
+    else  {
+		echo "<h2>You must be logged in to post!</h2>\n";
+	}
     
-    echo "</td></tr></table>\n";
-    echo "</td></tr></table>\n";
-    
+	echo "</div>";
+	include("footer.php");
 }
 
-if($action=="start_thread_go") {
+function forums_action_start_thread_go() { eval(scg());
     if($logged_in=="true") {
+		
         $user=$data->id;
         if($anonymous=="yes") $user=999;
         if($data->name=="Visitor") $user=999;
@@ -91,11 +94,11 @@ if($action=="start_thread_go") {
         $lick=mysql_fetch_array($fart);
         $id=$lick['id'];
         $thread=$id;
-        $header=addslashes($header);
+        $theader=addslashes($theader);
         $reply=addslashes($reply);
         sc_query("UPDATE `forum_posts` set `poster`       = '$user' where `id`='$id';");
         sc_query("UPDATE `forum_posts` set `poster_name`  = '$name' where `id`='$id';");
-        sc_query("UPDATE `forum_posts` set `title`        = '$header' where `id`='$id';");
+        sc_query("UPDATE `forum_posts` set `title`        = '$theader' where `id`='$id';");
         sc_query("UPDATE `forum_posts` set `message`      = '$reply' where `id`='$id';");
         sc_query("UPDATE `forum_posts` set `thread`       = '$thread' where `id`='$id';");
         sc_query("UPDATE `forum_posts` set `forum`        = '$forum_which' where `id`='$id';");
@@ -115,9 +118,13 @@ if($action=="start_thread_go") {
 function show1message($post,$gx) { eval(scg());
 	$pster=sc_getuserdata($post['poster']);	
 	$forum=mysql_fetch_object(sc_query("select * from forum_list where id=".$post['forum']));	
+	
 	if(	($forum->private=="yes") &&	(	($logged_in!="true") || ($data->access!=255)  ) )  // TODO: FIX ACCESS TO FORUMS
 	{ echo "<p>You don't have access to this forum.</p>";}
 	else {
+		
+		echo "<a id=\"".$post['id']."\"></a>";
+		
 		echo "<div class=\"forum_box\">";
         echo "<h2>".$post['title']."</h2>";
 		 echo "<div class=\"sc_forum_table_1\">";
@@ -163,30 +170,36 @@ function show1message($post,$gx) { eval(scg());
 
 function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 
-    $der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));   
-    echo "<h1>$der->name</h1>";
-
-
+   
 	$gt=1; $gx=4+$gt;
-	$result = sc_query("select * from `forum_posts` where `thread_top`='yes' and `thread`='".$thread."' order by time limit 0,30");
+	$result = sc_query("select * from `forum_posts` 
+							where `thread_top`='yes' and 
+							`thread`='".$thread."' order by time limit 0,30");
+							
 	if($result) $numposts=mysql_num_rows($result);
 	if($numposts>0) $post=mysql_fetch_array($result);
+	
+	
    if(empty($forum_which)){
 		$th=mfo1("select * from `forum_posts` where `thread`='$thread'");
 		$forum_which=$th->forum;
+		
+		
    }
    if(empty($forum_which)) {
 	   forums_action_forum_list();
 	   exit();
    }
-   
-	forum_put_buttons($forum_which);
-	
+
 	if($forum_which!=$post['forum']) { echo "<p>Error! This post or reply has been moved or deleted.</p>"; return; }
 	$forum_which=$post['forum'];
 	$der=mysql_fetch_array(sc_query("select * from `forum_list` where `id`='$forum_which';"));
 	$title=stripslashes($post['title']);
 	$thread=$post['id'];
+	
+   	$der=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));
+    echo "<h1>$der->name >> $title</h1>";
+	forum_put_buttons($forum_which);
 	
 	$GLOBALS['forum_list']="no";
 	if($numposts>0) {
@@ -220,7 +233,15 @@ function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 				echo "\" size=78></td></tr>\n";
 				echo "<tr><td align=right valign=top>Reply:</td><td><textarea name=reply cols=78 rows=20 
 					style=\" width: 98%; \" ></textarea></td></tr>\n";
-				echo "<tr><td align=right >Anonymous:</td><td><select name=anonymous><option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\"></td></tr>\n";
+echo "<tr><td align=right>Anonymous:</td><td>
+					<select id=\"anonymous\" name=anonymous
+						style=\"width:160px; min-width: 160px;\"
+						width=160>
+			<option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\">
+			</td></tr>\n";        
+			
+			
+			
 				echo "<tr><td>&nbsp;</td><td></td></tr>\n";
 				echo "</form>\n";
 				echo "</table>\n";
@@ -289,13 +310,15 @@ if($action=="edit_reply") {
         $posttt=sc_query("select * from forum_posts where id='$reply';");
         $post=mysql_fetch_object($posttt);
         $fw=$forum_which;
+		echo "<div class=\"forum_box\">";
+		echo "<h2>Editing reply #$reply: $post->title</h2>";
         echo "<table border=0 width=100%>\n";
         echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/forums/forums.php method=post>\n";
         echo "<input type=hidden name=action value=edit_reply_go>\n";
         echo "<input type=hidden name=reply value=$reply>\n";
         echo "<input type=hidden name=forum_which value=$forum_which>\n";
         echo "<input type=hidden name=thread value=$thread>\n";
-        echo "<tr><td align=right>Message Title:</td><td><input type=text name=title value=\"";
+        echo "<tr><td align=right>Message Title:</td><td><input type=text name=theader value=\"";
 	    echo stripslashes($post->title);
 	    echo "\"></td></tr>\n";
         echo "<tr><td align=right>Message:</td><td><textarea name=message cols=110 rows=20>";
@@ -303,17 +326,22 @@ if($action=="edit_reply") {
 	    echo "</textarea></td></tr>\n";
         echo "<tr><td>&nbsp;</td><td><input type=submit name=submit value=go></td></tr>\n";
         echo "</form></table>\n";
+		echo "</div>";
     }
 }
 
 if($action=="edit_reply_go"){
     if($logged_in=="true")    {
 		
-		echo "$reply ... $thread ... $forum_which<br>";
+		// echo "$reply ... $thread ... $forum_which<br>";
+		
+		$message=$_POST['message'];
+		$message=addslashes($message);
+		$theader=addslashes($theader);
 		
 		sc_query("UPDATE forum_posts SET message = '$message' where id = '$reply'");
-		sc_query("UPDATE forum_posts SET title   = '$title'   where id = '$reply'");
-        $action="get_thread";
+		sc_query("UPDATE forum_posts SET title   = '$theader'   where id = '$reply'");
+
 		forums_action_get_thread($thread,$forum_which);
 		exit();
     }
@@ -530,7 +558,7 @@ function forums_action_forum_list() { eval(scg());
                                 echo "<span class=\"gensmall\">";
                                 $link="$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lastpost->id";
                                 $link="$RFS_SITE_URL/modules/forums/forums.php?forum_list=no&action=get_thread&thread=$lastpost->thread&forum_which=$lastpost->forum";
-                                echo "latest post: <a href=\"$link\" title=\"$lastpost->title\">$lastpost->title</a>";
+                                echo "latest post: <a href=\"$link#$lastpost->id\" title=\"$lastpost->title\">$lastpost->title</a>";
                                 echo "<br>";
                                 echo "posted ".sc_time($lastpost->time); //Tue 11 Jul, 2006 00:33<br>"; ****
                                 echo "<br>";
@@ -584,6 +612,7 @@ function forums_action_forum_showposts() { eval(scg());
        $gt=1; $i=0;
 	   
         // echo "<table width=100% cellspacing=0 cellpadding=0>\n";
+		echo "<div class=\"forum_box\">";
 
         echo "<h2>Topics</h2>";
 		
@@ -599,17 +628,24 @@ function forums_action_forum_showposts() { eval(scg());
                 if($fart['time']>=$data->last_login) $new=1;
             }
 			
-			echo "<div class=\"forum_box\">";
+				echo "<div class=\"forum_message\"
+				style =\"
+					min-height: 1px;
+					margin: 0px;
+				\"
+				>";
+
             
-            $link="<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">".stripslashes($post['title'])."</a>\n";          
-            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=16>\n";
-            echo "$link\n";
+            echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
+            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=12>\n";
+			echo stripslashes($post['title']);
             $time=sc_time($post['time']);
             $great=sc_getuserdata($post['poster']);
-            echo "Posted by ".$great->name." on $time";
-            echo " $posts ";
-		    
-				echo $post['views'];
+			echo "<br>";
+            echo " Posted by ".$great->name." on $time <br>";
+            echo " $posts replies <br>";			
+		    echo $post['views']." views <br>";
+			echo "</a>";
 		    
 		    $lreply="";
 			$lrepr=sc_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no' order by `time` desc limit 1");
@@ -617,10 +653,10 @@ function forums_action_forum_showposts() { eval(scg());
 			if($lreply) {
 
 				$great=sc_getuserdata($lreply->poster);
-				echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
-				echo "by $great->name on ".sc_time($lreply->time);
+				echo "Latest reply: <a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
+				echo "by $great->name on ".sc_time($lreply->time)."<br>";
 			} else {
-				echo "none";
+				echo " <br>";
 			}
 		    
 
@@ -640,6 +676,7 @@ function forums_action_forum_showposts() { eval(scg());
                 echo "<input type=\"submit\" name=\"submit\" value=\"go\"></form>";
             }
 			echo "</div> <br style=\"clear:both;\"> ";
+			
         }
 		
 		
@@ -647,6 +684,7 @@ function forums_action_forum_showposts() { eval(scg());
     }
     else echo "<p align=center> There are no threads! </p>\n";    
 	
+	echo "</div> <br style=\"clear:both;\"> ";
 	include("footer.php");
     
 }
