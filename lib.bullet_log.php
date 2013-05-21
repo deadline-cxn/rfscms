@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_add_menu_option("My Bullets","$RFS_SITE_URL/modules/bullet_log/bullet_log.php");
+
 sc_access_method_add("bullet_log", "admin");
 
 sc_database_add("rfsm_bullet_log","username","text","NOT NULL");
