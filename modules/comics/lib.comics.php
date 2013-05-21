@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_add_menu_option("Comics","$RFS_SITE_URL/modules/comics/comics.php");
+
 sc_access_method_add("comics", "create");
 sc_access_method_add("comics", "delete");
 sc_access_method_add("comics", "deleteothers");

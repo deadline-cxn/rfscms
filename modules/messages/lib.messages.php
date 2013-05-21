@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_add_menu_option("Private Messages","$RFS_SITE_URL/modules/messages/messages.php");
+
 sc_query( "
 CREATE TABLE IF NOT EXISTS `pmsg` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

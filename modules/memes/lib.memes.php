@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_add_menu_option("Memes","$RFS_SITE_URL/modules/memes/memes.php");
+
 sc_access_method_add("memes", "upload");
 sc_access_method_add("memes", "edit");
 sc_access_method_add("memes", "delete");

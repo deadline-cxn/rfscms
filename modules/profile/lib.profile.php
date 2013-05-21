@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_add_menu_option("My Profile","$RFS_SITE_URL/modules/profile/profile.php");
+
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE profile
 function sc_module_mini_profile($x) { eval(scg());

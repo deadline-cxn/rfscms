@@ -1,6 +1,8 @@
 <?
 include_once("include/lib.all.php");
 
+sc_add_menu_option("News","$RFS_SITE_URL/modules/news/news.php");
+
 sc_access_method_add("news", "edit");
 sc_access_method_add("news", "editothers");
 sc_access_method_add("news", "submit");
