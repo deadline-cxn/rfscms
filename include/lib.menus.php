@@ -11,10 +11,15 @@ function sc_add_menu_option($short,$url) {
 		$RFS_MENU_OPTION[$short]=$url;
 }
 function sc_show_menu_options() {
+	echo "<h1>Menu Options registered by Modules</h1>";
+	echo "<hr>";
 	global $RFS_MENU_OPTION;
+	echo "<table border=0>";
+	asort($RFS_MENU_OPTION);
 	foreach($RFS_MENU_OPTION as $k => $v) {
-		echo "  [$k]=[$v] <br>";
+		echo wikitext("<tr><td>$k</td><td>[$v]</td></tr>");
 	}
+	echo "</table>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_menu_draw($menu_location) {
