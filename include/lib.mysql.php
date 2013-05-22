@@ -43,19 +43,6 @@ function sc_database_data_add($table,$field,$value,$id) {
 	return $i;	
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_phpself() { eval(scg()); 
-	$page=$_SERVER['PHP_SELF'];
-	return $page;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_canonical_url(){
-	$page_url = 'http';
-	if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'){
-		$page_url .= 's';
-	}
-	return $page_url.'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-}
-/////////////////////////////////////////////////////////////////////////////////////////
 function sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(scg());
 
     if(!stristr($_SESSION['select_image_path'],$RFS_SITE_PATH))
