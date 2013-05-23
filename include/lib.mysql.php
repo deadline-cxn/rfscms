@@ -262,6 +262,21 @@ function sc_setvar($table,$var,$set,$name,$sname) {
 	sc_query("UPDATE `$table` SET `$var`='$set' where `$name` = '$sname'");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+function sc_hiddenvar($name,$value) {
+	echo sc_hiddenvar_r($name,$value);
+}
+function sc_hiddenvar_r($name,$value) {
+	return "<input type=\"hidden\" name=\"$name\" value=\"$value\">";
+}
+
+function sc_copyrow($table,$id) {
+	sc_query("		CREATE TEMPORARY TABLE `tmp` SELECT * FROM `$table` WHERE `id` = '$id';
+					ALTER TABLE `tmp` DROP `id`;
+					INSERT INTO `$table` SELECT * FROM `tmp`;");
+
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_getusername($x){
     $o=$x;
     if(is_numeric($x)) {

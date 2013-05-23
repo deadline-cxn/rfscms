@@ -23,11 +23,12 @@ html, body
 .forum_box {
 	width: 98%;
 	float: left;
-	overflow: hidden;
+	
 	background-color:rgba(0,0,0,0.2);
 	border-radius: 10px;
-	margin: 2px;
-	padding: 10px;
+	margin: 10px;
+	padding: 15px;
+	box-shadow: 3px 3px 3px #222222;
 }
 
 .forum_user{
@@ -40,7 +41,9 @@ html, body
 	overflow: hidden;
 	min-height: 160px;	
 	padding: 5px;
-	background-color:rgba(0,0,0,0.2);
+	background-color:rgba(255,255,255,0.2);
+	border-radius: 10px;
+	box-shadow: 3px 3px 3px #222222;
 	
 }
 
@@ -413,27 +416,17 @@ div.pod{
 }
 
 .warning{
-	//position: relative;
-	//top: 5px;
-	margin-top: auto;
-	//margin-left: 25px;
-	//margin-right: auto;
-	width: 95%; //640px;
-	//height: 240px;
-	padding-left: 25px;
-	//border-top-left-radius: 33em;
-	//border-top-right-radius: 1em;
-	//border-bottom-left-radius: 1em;
-	//border-bottom-right-radius: 1em;
-	border: 1px;
-	outline-width: thin;
-	outline-color: black;
-	outline-style: solid;
+	margin: 25px;	
+	width: 95%;
+	padding: 10px;
+	border: 2px solid #000;
+	border-radius: 10px;
 	font-family: Lucidia;
 	font-size: 2em;
 	font-style: normal;
 	color: #FF0000;
 	background-color: #FF8888;
+	box-shadow: 3px 3px 3px #222222;
 }
 
 .inform {
@@ -698,9 +691,6 @@ h1
     font-size: x-large;
     font-weight: bold;
     font-style: italic;
-	position:relative;
-    left: 2%;
-    
 	margin: 0px;
 }
 
@@ -710,9 +700,6 @@ h2
     font-size: large;
     font-weight: bold;
     font-style: italic;
-	position:relative;
-    left: 2%;
-    
 	margin: 0px;
 }
 
@@ -722,9 +709,7 @@ h3
     font-size: medium;
     font-weight: bold;
     font-style: italic;
-	position:relative;
-    left: 2%;
-    
+   
 	margin: 0px;
 }
 
