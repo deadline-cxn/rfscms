@@ -65,16 +65,18 @@ if (document.getElementById &&!document.all) {
 echo " //--> </script>";
 }
 
-
-
 function sc_var($x) {
 	$GLOBALS[$x]=$_REQUEST[$x];
 	echo "\$$x=[".$GLOBALS[$x]."]<br>";
 }
 function sc_system_message() { eval(scg());
-	if($_SESSION['logged_in'])
+	if($_SESSION['logged_in']){
 		if(empty($data->pass)) {
-		sc_info("You have not established a password. [<a href=\"$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form\" style=\"font-size: 1em;\">Change your password</a>]","WHITE","RED");
+			sc_info("You have not established a password. [<a href=\"$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form\" style=\"font-size: 1em;\">Change your password</a>]","WHITE","RED");
+		}
+		if(empty($data->email)) {
+			sc_info("You have not established an email address. [<a href=\"$RFS_SITE_URL/modules/profile/profile.php\" style=\"font-size: 1em;\">Add your email</a>]","WHITE","RED");
+		}
 	}
 }
 function sc_do_action() {
@@ -262,7 +264,9 @@ function sc_blue()  { 	return "<font style='color:white; background-color:blue;'
 /////////////////////////////////////////////////////////////////////////
 function sc_flush () { 	echo(str_repeat(' ',256)); 		if (ob_get_length()) { 		@ob_flush();		@flush();		@ob_end_flush(); 	} 	@ob_start();}
 /////////////////////////////////////////////////////////////////////////
-function sc_warn($x) { 	eval(scg()); 	echo "<div class=warning><br><img src='$RFS_SITE_URL/images/icons/exclamation2.png' border=0><br><br>$x<br>&nbsp;</div>"; }
+function sc_warn($x) { 	eval(scg()); 
+echo "<div class=warning><br><img src='$RFS_SITE_URL/images/icons/exclamation2.png' border=0 align=left>$x</div>";
+}
 /////////////////////////////////////////////////////////////////////////
 function sc_inform($x) { eval(scg());
     echo "<div class=inform>
