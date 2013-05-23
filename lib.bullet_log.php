@@ -13,6 +13,8 @@ sc_database_add("rfsm_bullet_log","how","text","NOT NULL");
 sc_database_add("rfsm_bullet_log","impact","text","NOT NULL");
 sc_database_add("rfsm_bullet_log","other","text","NOT NULL");
 sc_database_add("rfsm_bullet_log","when","timestamp"," ");
+sc_database_add("rfsm_bullet_log","date","text"," ");
+sc_database_add("rfsm_bullet_log","shared","text","NOT NULL");
 sc_query("ALTER TABLE  `rfsm_bullet_log` CHANGE  `when`  `when` DATETIME ON UPDATE CURRENT_TIMESTAMP;");
 
 sc_database_add("rfsm_bullet_category","name","text","NOT NULL");
@@ -23,8 +25,7 @@ sc_database_data_add("rfsm_bullet_category","name","Self Improvement",0);
 
 function sc_module_bullet_log($x) { eval(scg());
 	
-	echo "<h2>My Bullets</h2>";
-	
+	echo "<h2>My Bullets</h2>";	
 	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' order by `when` desc limit $x");
 	$x=mysql_num_rows($r);
 	if($x) {
@@ -49,13 +50,14 @@ function sc_module_bullet_log_long($x) { eval(scg());
 
 	echo "<table border=0 cellspacing=0 cellpadding=6>";
 	echo "<tr>";
-	echo "<td> Date </td>";					
+	echo "<td> Date </td>";
 	echo "<td> Name </td>";
 	echo "<td> What </td>";
 	echo "<td> How </td>";
 	echo "<td> Impact </td>";
 	echo "<td> Category </td>";	
 	echo "<td> Other </td>";	
+	echo "<td> Shared by </td>";
 	echo "</tr>";
 	$gt=0;
 	if($x) {
@@ -67,7 +69,7 @@ function sc_module_bullet_log_long($x) { eval(scg());
 					echo "<tr>";
 					
 					echo "<td class=\"sc_file_table_$gt\">";
-					echo "$bullet->when";
+					echo "$bullet->date";
 					echo "</td>";
 					
 					echo "<td class=\"sc_file_table_$gt\">";	
@@ -93,6 +95,10 @@ function sc_module_bullet_log_long($x) { eval(scg());
 					
 					echo "<td class=\"sc_file_table_$gt\">";
 					echo "$bullet->other <br>";
+					echo "</td>";
+					
+					echo "<td class=\"sc_file_table_$gt\">";
+					echo "$bullet->shared <br>";
 					echo "</td>";
 										
 					echo "</tr>";
