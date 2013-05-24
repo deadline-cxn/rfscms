@@ -529,13 +529,3 @@ CREATE TABLE IF NOT EXISTS `wab_engine` (
   `code` text COLLATE utf8_unicode_ci NOT NULL,
   KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
-
-CREATE TABLE IF NOT EXISTS `wiki` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `author` text NOT NULL,
-  `text` text NOT NULL,
-  `tags` text NOT NULL,
-  `updated` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
