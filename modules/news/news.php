@@ -47,6 +47,7 @@ if($showform=="yes"){
         	echo smiles("<p>:X</p><p>You can not edit or submit news!</p>");
 	}
 	else {
+			echo "<div class=\"forum_box\">";
         echo "<h1>Submit News</h1>";
         echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\"> \n";
         echo "<br><form enctype=application/x-www-form-URLencoded method=POST action=\"news.php\">\n";
@@ -54,6 +55,7 @@ if($showform=="yes"){
         echo "<tr><td>Headline:</td><td><input type=\"text\" name=\"headline\" size=\"100\"></td></tr>\n";
         echo "<tr><td></td><td><input type=\"submit\" value=\"Add News\" class=b4button></td></tr>\n";
         echo "</table></form><br>\n";
+		echo "</div>";
     }
 }
 
@@ -130,8 +132,8 @@ if(($action=="view") || ($action=="ad")) {
     //echo "<table border=0 width=100% ><tr>";
     //echo "<td valign=top class=td_cat>";
 
-    sc_module_mini_news(10);
-    sc_module_popular_news(10);
+    sc_module_news_list(10);
+    // sc_module_popular_news(10);
 
     echo "<p align=right><a href=news.php  class=\"a_cat\" align=right>More news stories...</a></p>";
     //echo "</td></tr></table>";

@@ -11,32 +11,34 @@ sc_access_method_add("news", "deleteothers");
 
 sc_touch_dir("$RFS_SITE_PATH/images/news");
 
-sc_query( " CREATE TABLE IF NOT EXISTS `news` (
-			  `name` text COLLATE utf8_unicode_ci NOT NULL,
-			  `id` int(11) NOT NULL AUTO_INCREMENT,
-			  `headline` text COLLATE utf8_unicode_ci NOT NULL,
-			  `message` text COLLATE utf8_unicode_ci NOT NULL,
-			  `category1` text COLLATE utf8_unicode_ci NOT NULL,
-			  `submitter` int(11) NOT NULL DEFAULT '0',
-			  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-			  `lastupdate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-			  `image_url` text COLLATE utf8_unicode_ci NOT NULL,
-			  `image_link` text COLLATE utf8_unicode_ci NOT NULL,
-			  `image_alt` text COLLATE utf8_unicode_ci NOT NULL,
-			  `topstory` text COLLATE utf8_unicode_ci NOT NULL,
-			  `published` text COLLATE utf8_unicode_ci NOT NULL,
-			  `views` int(11) NOT NULL DEFAULT '0',
-			  `rating` text COLLATE utf8_unicode_ci NOT NULL,
-			  `sfw` text COLLATE utf8_unicode_ci NOT NULL,
-			  `page` int(11) NOT NULL,
-			  `wiki` text not null,
-			  PRIMARY KEY (`id`)
-			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ; ");
-			
-			sc_query("ALTER TABLE news add wiki text not null");
+sc_database_add("news","name",		"text",	"NOT NULL");
+sc_database_add("news","headline",	"text",	"NOT NULL");
+sc_database_add("news","message",	"text",	"NOT NULL");
+sc_database_add("news","category1","text",	"NOT NULL");
+sc_database_add("news","submitter","int",		"NOT NULL DEFAULT '0'");
+sc_database_add("news","time",		"timestamp","NOT NULL");
+sc_database_add("news","lastupdate","timestamp","ON UPDATE CURRENT_TIMESTAMP NOT NULL");
+sc_database_add("news","image_url","text",	"NOT NULL");
+sc_database_add("news","image_link","text",	"NOT NULL");
+sc_database_add("news","image_alt","text",	"NOT NULL");
+sc_database_add("news","topstory",	"text",	"NOT NULL");
+sc_database_add("news","published","text",	"NOT NULL");
+sc_database_add("news","views",		"int",		"NOT NULL DEFAULT '0'");
+sc_database_add("news","rating",	"text",	"NOT NULL");
+sc_database_add("news","sfw",		"text",	"NOT NULL");
+sc_database_add("news","page",		"int",		"NOT NULL");
+sc_database_add("news","wiki",		"text",	"NOT NULL");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
+
+function news_buttons() { eval(scg());
+		if(sc_access_check("news","submit")) {
+				
+			sc_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
+		}
+	
+}
 
 function adm_action_lib_news_news_submit() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/news/news.php?showform=yes");
@@ -113,6 +115,7 @@ function sc_module_news_top_story() {
     sc_show_top_news();
 }
 function sc_module_news_blog_style($x) { eval(scg());
+	news_buttons();
 	sc_show_top_news();
 	$newslist=sc_getnewslist(""); $ct=count($newslist); if($ct>$x) $ct=$x;
 	echo "Older news...<br>";

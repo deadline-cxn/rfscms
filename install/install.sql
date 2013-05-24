@@ -279,28 +279,6 @@ CREATE TABLE IF NOT EXISTS `menu_top` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
-CREATE TABLE IF NOT EXISTS `news` (
-  `name` text NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `headline` text NOT NULL,
-  `wiki` text NOT NULL,
-  `message` text NOT NULL,
-  `category1` text NOT NULL,
-  `submitter` int(11) NOT NULL DEFAULT '0',
-  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `lastupdate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `image_url` text NOT NULL,
-  `image_link` text NOT NULL,
-  `image_alt` text NOT NULL,
-  `topstory` text NOT NULL,
-  `published` text NOT NULL,
-  `views` int(11) NOT NULL DEFAULT '0',
-  `rating` text NOT NULL,
-  `sfw` text NOT NULL,
-  `page` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='news' AUTO_INCREMENT=1;
-
 CREATE TABLE IF NOT EXISTS `pictures` (
   `name` text NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
