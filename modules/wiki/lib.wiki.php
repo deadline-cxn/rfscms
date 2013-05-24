@@ -4,8 +4,19 @@ include_once("include/lib.all.php");
 sc_add_menu_option("Wiki","$RFS_SITE_URL/modules/wiki/rfswiki.php");
 
 sc_access_method_add("wiki", "admin");
+sc_access_method_add("wiki", "edit");
+sc_access_method_add("wiki", "delete");
 sc_access_method_add("wiki", "editothers");
 sc_access_method_add("wiki", "deleteothers");
+
+sc_database_add("wiki","name",   		"text","NOT NULL");
+sc_database_add("wiki","revision",		"int",	"NOT NULL");
+sc_database_add("wiki","revised_by",	"text","NOT NULL");
+sc_database_add("wiki","revision_note","text","NOT NULL");
+sc_database_add("wiki","author", 		"text","NOT NULL");
+sc_database_add("wiki","text",   		"text","NOT NULL");
+sc_database_add("wiki","tags",   		"text","NOT NULL");
+sc_database_add("wiki","updated",		"timestamp","ON UPDATE CURRENT_TIMESTAMP NOT NULL");
 
 sc_touch_dir("$RFS_SITE_PATH/images/wiki");
 
@@ -16,12 +27,12 @@ function sc_module_mini_wiki($x) { eval(scg());
     echo "<h2>Last $x Wiki Page Updates</h2>";
     echo "<table width=100% border=0><tr>";
     echo "<td valign=top class=contenttd>";
-    $result=sc_query("select * from wiki order by `updated` desc limit 0, $x");
-    $num=mysql_num_rows($result);
+	$res=sc_query(" SELECT name, MAX( updated ) FROM wiki GROUP BY name ORDER BY MAX( updated ) DESC LIMIT 0 , $x");
+    $num=mysql_num_rows($res);
     for($i=0;$i<$num;$i++) {
-        $page=mysql_fetch_object($result);
+        $page=mysql_fetch_object($res);
 		 $opage=urlencode($page->name);
-        echo "<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=$opage\">$page->name</a> ";   // echo sc_time($page->updated)." by ".$page->author;
+        echo "<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=$opage\">$page->name</a> ";
         echo "<br>\n";
     }
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=contents class=a_cat>More...</a>)</p>";

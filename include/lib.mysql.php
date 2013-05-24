@@ -312,6 +312,7 @@ function sc_getuserdata($name){
     if(is_numeric($name)){
 		$result = sc_query_user_db("select * from `users` where `id` = '$name'");
 		$d=mysql_fetch_object($result); 
+		if(empty($d->name_shown)) $d->name_shown=$d->name;
 		return ($d);
 	}	
     else {
@@ -319,10 +320,16 @@ function sc_getuserdata($name){
         $n=mysql_num_rows($r);
         for($i=0;$i<$n;$i++) {
             $d=mysql_fetch_object($r);
-            if($d->name==$name) return $d;
+            if($d->name==$name) {
+				if(empty($d->name_shown)) $d->name_shown=$d->name;
+				return $d;
+			}
             $ax=explode(",",$d->alias);
             for($j=0;$j<count($ax);$j++) {
-                if($ax[$j]==$name) return $ax[$j];
+                if($ax[$j]==$name) {
+						if(empty($d->name_shown)) $d->name_shown=$d->name;
+						return $d;
+					}
             }
         }
     }

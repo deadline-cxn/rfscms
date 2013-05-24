@@ -272,7 +272,7 @@ function adm_action_arrange() { eval( scg() );
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_NQT
 function adm_action_network_query_tool() {
-	sc_gotopage("$RFS_SITE_URL/nqt/nqt.php");
+	sc_gotopage("$RFS_SITE_URL/modules/nqt/rfsnqt.php");
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM ACCESS GROUPS FUNCTIONS
@@ -296,7 +296,7 @@ function adm_action_f_access_group_edit_go() { eval(scg());
 function adm_action_f_access_group_edit() { eval(scg()); 
 	echo "<h1>Edit Access Group</h1>";
 	echo "<h2>$axnm</h2>";
-	echo "<hr>";
+	echo "<div class=\"forum_box\">";
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
@@ -313,7 +313,7 @@ function adm_action_f_access_group_edit() { eval(scg());
 		echo "</div>";
 	}	
 	echo "<div style=\"clear: left;\"></div>";
-	echo "<hr>";
+	echo "</div>";
 	
 	echo "<input type=\"submit\" value=\"Update\">";
 	
@@ -367,7 +367,8 @@ function adm_action_access_groups() { eval(scg());
 	
 	$r=sc_query("select distinct name from access");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
-		echo "<hr>";
+		
+		echo "<div class=\"forum_box\" style=\"float:left; width:300px;\">";
 		$a=mysql_fetch_object($r);
 		echo "<h2>$a->name</h2>";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
@@ -385,7 +386,7 @@ function adm_action_access_groups() { eval(scg());
 					
 					echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_del_user&axnm=$a->name&user=$usr->name\">remove</a>] ";
 					
-					echo " $usr->name ";
+					echo " $usr->name <br>";
 				}
 			}
 		}
@@ -401,6 +402,7 @@ function adm_action_access_groups() { eval(scg());
 							"Add a user to this group",
 							1 );
 		echo "</p>";
+		echo "</div>";
 	}
 	
 	
@@ -453,11 +455,15 @@ function adm_action_email_go() { eval(scg());
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_DATABASE
 function adm_action_db_query() { eval(scg());
-    $query=str_replace("zlect","select",$query);
-   echo "<h3>Database Query</h3>";
-   echo "<iframe id=\"QU\" width=100% class='iframez' frameborder=0
-               src=$RFS_SITE_URL/admin/adm.php?db_queries=list ></iframe>";
+	$query=str_replace("zlect","select",$query);
+   echo "<h3>Select a previously entered query</h3>";
+   echo "<iframe id=\"QU\" width=800 height=600 class='iframez' frameborder=0
+			src=$RFS_SITE_URL/admin/adm.php?db_queries=list
+			style=\"float:left;\"></iframe>";
+	echo "<div style=\"float:left;\">";
+	echo "<h3>Enter a new query</h3>";
 	sc_db_query_form( "$RFS_SITE_URL/admin/adm.php","db_query","$query" );
+	echo "</div><div style=\"clear:both;\">";
 	if( !empty( $query ) ) {
 		$query=stripslashes($query);
 		echo $query;
@@ -465,8 +471,8 @@ function adm_action_db_query() { eval(scg());
 		echo "<table cellspacing=0 cellpadding=0 border=0><tr><td class=contenttd>";
 		sc_db_query( $query, "true" );
 		echo "</td></tr></table>";
-
 	}
+	
     finishadminpage();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1099,12 +1105,6 @@ function adm_action_edit_site_vars() { eval( scg() );
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU ADMIN
-
-function adm_action_f_admin_menu_dump_options() { 
-	sc_show_menu_options();
-	finishadminpage();
-}
-
 function adm_action_f_admin_menu_change_icon() { eval( scg() );
 	$_SESSION['select_image_path']="";
 	sc_selectimage( "images","admin/adm.php","", "admin_menu", $id, "icon" );
@@ -1420,6 +1420,10 @@ function adm_action_admin_menu_edit() { eval( scg() );
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU TOP
+function adm_action_registered_menu_items() { 
+	sc_show_menu_options();
+	finishadminpage();
+}
 function adm_action_f_menu_topedit_del_go() { eval( scg() );
 	$res=sc_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
