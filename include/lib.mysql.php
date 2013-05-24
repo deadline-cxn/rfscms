@@ -151,10 +151,9 @@ function sc_access_method_add($func_page,$act) {
 function sc_access_check($func_page,$act){
 
 	if(empty($func_page)) $func_page=sc_phpself();
-	$ret=false; 
+	$ret=false;
+	$d=sc_getuserdata($_SESSION['valid_user']);
 	
-	$d=$GLOBALS['data'];
-
 	$ax=$d->access;
 	if($ax>1) {
 		$q="select * from `access` where `access`='$ax' and `page`='$func_page' and action='$act'";
@@ -164,8 +163,11 @@ function sc_access_check($func_page,$act){
 	$ax=$d->access_groups;
 	$axs=explode(",",$ax);
 	for($i=0;$i<count($axs);$i++) {
-		$q="select * from `access` where `name`='$axs[$i]' and `page`='$func_page' and action='$act'";
-		$r=sc_query($q); if(mysql_num_rows($r)) $ret=true;
+		if(!empty($axs[$i])) {
+			$q="select * from `access` where `name`='$axs[$i]' and `page`='$func_page' and action='$act'";
+			$r=sc_query($q);
+			if(mysql_num_rows($r)) $ret=true;		
+		}
 	}
 	return $ret;
 }
@@ -327,8 +329,11 @@ function sc_getuserdata($name){
             $ax=explode(",",$d->alias);
             for($j=0;$j<count($ax);$j++) {
                 if($ax[$j]==$name) {
-						if(empty($d->name_shown)) $d->name_shown=$d->name;
-						return $d;
+						if(!empty($name)) {
+							if(empty($d->name_shown))
+								$d->name_shown=$d->name;							
+							return $d; //$ax[$j];
+						}
 					}
             }
         }

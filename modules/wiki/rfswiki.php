@@ -91,12 +91,15 @@ if($action=="editname") {
 if($action!="edit") {
 
 } else {
+	if(sc_access_check("wiki","edit")) {
 
 	echo  "<form action='$RFS_SITE_URL/modules/wiki/rfswiki.php' method='post'>
 			<input type=hidden name=action value=editname>
 			<input type=hidden name=name value='$name'>
 			<input id='nname' name=nname value=\"$name\" size=120 onblur=\"this.form.submit()\">
 			</form> \n";
+	
+	}
     
 }
 
@@ -265,14 +268,17 @@ if($hide_wiki_menu!="true"){
     if( ($name=="Home") || ($name=="Contents")  || ($name=="contents") ){
         if($name=="Home")    {
             if($GLOBALS['rfsw_admin_mode']=="true")        {
+				if(sc_access_check("wiki","admin"))
                 echo "[<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$name&id=$id\">edit this page</a>]";
             }
         }
     } else {
         $name=urlencode($name);
         if($GLOBALS['rfsw_admin_mode']=="true")    {
+			if(sc_access_check("wiki","admin")) {
             echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$name&id=$id>edit this page</a>]";
             echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=deletepage&name=$name&id=$id>delete this page</a>]";
+			}
         }
     }
     if($GLOBALS['rfsw_admin_mode']=="true")
