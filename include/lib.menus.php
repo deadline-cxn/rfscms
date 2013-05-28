@@ -15,9 +15,22 @@ function sc_show_menu_options() {
 	echo "<hr>";
 	global $RFS_MENU_OPTION;
 	echo "<table border=0>";
+	echo "<tr><th></th><th></th><th>Link Short Name</th><th>Link URL</th></tr>";
 	asort($RFS_MENU_OPTION);
 	foreach($RFS_MENU_OPTION as $k => $v) {
-		echo wikitext("<tr><td>$k</td><td>[$v]</td></tr>");
+		echo "<tr>";
+		if(sc_access_check("admin","access")) {
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&lname=$k&lurl=$v","Add to Top Menu");
+			echo "</td>";
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_admin_add_link&lname=$k&lurl=$v","Add to Admin Menu");
+			echo "</td>";
+		}
+		
+		echo "<td>";		
+		echo wikitext("$k</td><td>[$v]</td></tr>");
+		
 	}
 	echo "</table>";
 }

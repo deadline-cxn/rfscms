@@ -126,6 +126,10 @@ function sc_maintenance() { eval(scg());
 		$rr=sc_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");
 	}
 	
+	
+	sc_database_data_add("categories","name","unsorted",0);
+	
+	
 	sc_div("sc_maintenance end [$theme]");
 }
 /////////////////////////////////////////////////////////////////////////
