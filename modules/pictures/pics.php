@@ -563,8 +563,10 @@ function pics_action_view($id) { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view category
-function pics_action_viewcat($cat) { eval(scg());
-		if(empty($cat)) $cat=$_REQUEST['cat'];
+function pics_action_viewcat($cizat) { eval(scg());
+	
+	if(empty($cat)) $cat=$_REQUEST['cat'];
+	if(empty($cat)) $cat=$cizat;
 	if($ipr) $ipr=mfo1("select * from pictures where id=$id");
 	else $ipr=mfo1("select * from pictures where category='$cat'");
     $cat=mfo1("select * from categories where name='$cat'");
