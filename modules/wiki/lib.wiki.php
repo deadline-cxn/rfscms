@@ -184,11 +184,9 @@ function wikitext($text) { eval(scg());
 							($fnc=="ss") ) {
 
                         $outtext.="<div class='wikishell'><BR>";
-							//$xx=str_replace("\r","\r # " ,$xx);
-							//$xx=str_replace("\n","\n # " ,$xx);							
 							$xx=nl2br($ila2[1]);
-							$xx=str_replace("<br>","<br> PROMPT:# " ,$xx);							
-							$xx=str_replace("\\","&#92;" ,$xx);							
+							$xx=str_replace("<br />","<br /> $" ,$xx);
+							$xx=str_replace("\\","&#92;" ,$xx);
                         $outtext.=$xx;
                         $outtext.="<br><br></div>";
                     }
