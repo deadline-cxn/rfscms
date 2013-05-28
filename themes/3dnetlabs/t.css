@@ -55,7 +55,7 @@ html, body
 .news_edit_bar {
 	border-top: 1px solid #000;
 	clear: both;
-	background-color:rgba(250,150,0,0.2);
+	background-color:rgba(250,250,250,0.2);
 	padding: 25px;
 	margin: 0 0 25px 0;
 	border-bottom-left-radius: 15px;
