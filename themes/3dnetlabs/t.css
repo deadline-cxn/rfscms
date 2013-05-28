@@ -17,7 +17,7 @@ html, body
 }
 
 .news_headline_bar {
-	background-color:rgba(220,150,0,0.2);
+	background-color:rgba(220,220,220,0.2);
 	height: 25px;
 	padding: 5px;
 	border-top-left-radius: 15px;
