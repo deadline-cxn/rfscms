@@ -569,10 +569,12 @@ function pics_action_viewcat($cizat) { eval(scg());
 	if(empty($cat)) $cat=$cizat;
 	
 	echo "$cat <br>";
-	
 	if($ipr) $ipr=mfo1("select * from pictures where id=$id");
 	else $ipr=mfo1("select * from pictures where category='$cat'");
-    $cat=mfo1("select * from categories where name='$cat'");
+	$catn=mfo1("select * from categories where name='$cat'");
+    $cati=mfo1("select * from categories where id='$cat'");
+	if($catn->id) $cat=$catn;
+	if($cati->id) $cat=$cati;
     if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
     $r=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
 	$numpics=mysql_num_rows($r);	
