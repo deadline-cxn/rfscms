@@ -179,18 +179,22 @@ function wikitext($text) { eval(scg());
 							
 						}
                         
-                    if($fnc=="shellstart"){							  
+						
+                    if(	($fnc=="shellstart") ||
+							($fnc=="ss") ) {
 
                         $outtext.="<div class='wikishell'><BR>";
+							//$xx=str_replace("\r","\r # " ,$xx);
+							$xx=str_replace("\n","\n # " ,$xx);
 							
-							$xx=str_replace("\r","\r # " ,$xx);
 							$xx=nl2br($ila2[1]);
 							$xx=str_replace("\\","&#92;" ,$xx);
 							
                         $outtext.=$xx;
                         $outtext.="<br><br></div>";
                     }
-                    if($fnc=="shellend") {
+                    if(	($fnc=="shellend") ||
+							($fnc=="se")) {
                         $outtext.=nl2br($ila2[1]);                        
                     }
                         
