@@ -37,6 +37,60 @@ $RGBCOLOR15: #959595;
 	text-shadow: 5px 5px 5px #000;
 }
 
+
+
+.news_box {
+	clear: both;
+	margin: 0px;
+}
+
+.news_headline_bar {
+	background-color:rgba(0,220,150,0.1);
+	height: 25px;
+	padding: 5px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+.news_headline {
+    font-family: C64;
+	font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+	color: #DFFFC9;
+	float: left;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.news_time {
+	font-style: italic;
+	padding: 5px 25px;
+	vertical-align: text-bottom;
+	float: left;
+}
+
+.news_image {
+	margin: 0px 10px 10px 0px;
+	float: left;
+}
+
+.news_article {
+	border-top: 1px solid #000;
+	clear: both; 
+	padding: 15px;
+	background-color:rgba(0,0,0,0.1);
+}
+
+.news_edit_bar {
+	border-top: 1px solid #000;
+	clear: both;
+	background-color:rgba(0,160,150,0.1);
+	padding: 25px;
+	margin: 0 0 25px 0;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+
 .forum_box {
 	width: 98%;
 	float: left;
