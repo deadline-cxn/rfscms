@@ -19,6 +19,7 @@ include_once("themes/_templates/theme_templates.php");
 include_once("lib.buttons.php");
 include_once("lib.file.php");
 include_once("lib.images.php");
+include_once("lib.genm.php");
 include_once("lib.network.php");
 include_once("lib.modules.php");
 /////////////////////////////////////////////////////////////////////////////////////////

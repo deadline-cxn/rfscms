@@ -1131,19 +1131,34 @@ function adm_action_f_admin_menu_edit_del() { eval( scg() );
 	if( $_SESSION['admed']=="on" ) adm_action_();
 	else adm_action_admin_menu_edit();
 }
+
+
+function adm_action_f_menu_admin_add_link() { eval(scg());
+	echo "<h3>Edit Admin Menu :: Add $lname</h3>";
+	echo $lname."<br>";
+	echo $lurl."<br>";	
+	global $mname;
+	$mname=$lname;
+	global $murl;
+	$murl=$lurl;
+	global $mcategory;
+	$mcategory="unsorted";
+	adm_action_f_admin_menu_edit_add();
+}
+
 function adm_action_f_admin_menu_edit_add() { eval( scg() );
 	echo "<h3>Edit Admin Menu :: Add $mname</h3>";
-	$mname		=addslashes( $_REQUEST['mname'] );
-	$murl		=addslashes( $_REQUEST['murl'] );
-	$mtarget	=addslashes( $_REQUEST['mtarget'] );
+	if(empty($mname))		$mname		= addslashes( $_REQUEST['mname'] );
+	if(empty($murl)) 		$murl		= addslashes( $_REQUEST['murl'] );
+	if(empty($mtarget))	$mtarget	= addslashes( $_REQUEST['mtarget'] );
 	
 	if(empty($mcategory)) {
 		$mcat=mfo1("select * from categories");
 		$mcategory=$mcat->name;
 	}
 		
-	$q="INSERT INTO `admin_menu`	(`category`,      `name`,    `icon`,    `url`,     `target`)
-	   VALUES ('$mcategory',  '$mname',  '$micon',  '$murl',   '$mtarget') ;";
+	$q="INSERT INTO `admin_menu`	 (`category`,      `name`,    `icon`,    `url`,     `target`)
+							    VALUES ('$mcategory',  '$mname',  '$micon',    '$murl',   '$mtarget') ;";
 	echo $q."<BR>";
 	sc_query( $q );
 	if( $_SESSION['admed']=="on" ) adm_action_();
@@ -1442,7 +1457,20 @@ function adm_action_f_menu_topedit_del() { eval( scg() );
 
 	adm_action_menu_topedit();
 }
-function adm_action_f_menu_topedit_add() { eval( scg() );
+function adm_action_f_menu_top_add_link() { eval(scg());
+	echo "<h3>Edit Top Menu :: Add $lname</h3>";
+	echo $lname."<br>";
+	echo $lurl."<br>";	
+	global $mname;
+	$mname=$lname;
+	global $menu_url;
+	$menu_url=$lurl;
+	global $msor;
+	$msor=9999;
+		
+	adm_action_f_menu_topedit_add();
+}
+function adm_action_f_menu_topedit_add() { eval( scg());
 	echo "<h3>Edit Top Menu :: Add $mname</h3>";
 	
 	echo "$mname <br>";

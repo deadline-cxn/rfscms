@@ -22,6 +22,12 @@ function genm_imgtype($x){
 	return $image_info[2];
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+function genm_img_out($x) {
+	header('Content-Type: image/png');
+	imagepng($x);
+	return;
+}
+/////////////////////////////////////////////////////////////////////////////////////////
 function genm_imgload($x){
     $y=genm_imgtype($x);
     if($y==IMAGETYPE_XBM)  $iz = imagecreatefromxbm($x);
@@ -37,7 +43,7 @@ function genm_imgload($x){
     imagecreatefromwbmp
     imagecreatefromxbm
     imagecreatefromxpm
-    imagecreatetruecolor  */    
+    imagecreatetruecolor  */
 	return $iz;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
