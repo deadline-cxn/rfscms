@@ -568,7 +568,7 @@ function pics_action_viewcat($cizat) { eval(scg());
 	if(empty($cat)) $cat=$_REQUEST['cat'];
 	if(empty($cat)) $cat=$cizat;
 	
-	echo "$cat <br>";
+	
 	if($ipr) $ipr=mfo1("select * from pictures where id=$id");
 	else $ipr=mfo1("select * from pictures where category='$cat'");
 	$catn=mfo1("select * from categories where name='$cat'");
