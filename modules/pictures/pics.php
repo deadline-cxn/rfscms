@@ -576,7 +576,7 @@ function pics_action_viewcat($cizat) { eval(scg());
 	if($catn->id) $cat=$catn;
 	if($cati->id) $cat=$cati;
     if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
-    $r=sc_query("select * from `pictures` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
+    $r=sc_query("select * from `pictures` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
 	$numpics=mysql_num_rows($r);	
 			echo "<center>";			
 			if($galleria=="yes") {
