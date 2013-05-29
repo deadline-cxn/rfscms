@@ -24,6 +24,30 @@ function sc_get_modules_array() {
 	return $modules;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+function sc_module_register($x) { eval(scg());
+	global $RFS_MODULE;
+	$RFS_MODULE[$x]=true;
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function sc_module_installed($x) { eval(scg());
+	global $RFS_MODULE;
+	return $RFS_MODULE[$x];
+}
+
+function sc_show_registered_modules() {
+	echo "<h1>Modules Installed</h1><hr>";
+	global $RFS_MODULE;
+	asort($RFS_MODULE);
+	foreach($RFS_MODULE as $k => $v) {
+		echo "$k <br>";
+	
+	}
+	
+}
+	
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 function sc_get_modules() {
 	eval(scg());
 	$dr="$RFS_SITE_PATH/modules";
