@@ -48,8 +48,7 @@ function sc_show_registered_modules() {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_get_modules() {
-	eval(scg());
+function sc_get_modules() { eval(scg());
 	$dr="$RFS_SITE_PATH/modules";
 	$modules=array();
     $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - sc_get_modules() -> [$dr]");
