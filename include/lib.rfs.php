@@ -189,74 +189,75 @@ function scg() {
 	$out="";
 
 	foreach($GLOBALS as $k => $v) {
+		
+		// echo $k."<br>";
+		if(!stristr($k,"-")) {
 
-       $nmc=$k[0];
+		$nmc=$k[0];
 
-       if(is_numeric($nmc)) $k="__".$k;
+		if(is_numeric($nmc)) $k="__".$k;
+		if(!is_numeric($nmc))
+			if( ($k != 'GLOBALS') &&
+				($k != '_ENV') &&
+				($k != 'HTTP_ENV_VARS') &&
+				($k != 'DOCUMENT_ROOT') &&
+			   ($k != 'GATEWAY_INTERFACE') &&
+				($k != 'HTTP_ACCEPT') &&
+				($k != 'HTTP_ACCEPT_CHARSET') &&
+				($k != 'HTTP_ACCEPT_ENCODING') &&
+				($k != 'HTTP_ACCEPT_LANGUAGE') &&
+				($k != 'PHPRC') &&
+				($k != 'HTTP_CACHE_CONTROL') &&
+				($k != 'HTTP_CONNECTION') &&
+				($k != 'HTTP_COOKIE') &&
+				($k != 'HTTP_HOST') &&
+				($k != 'HTTP_REFERER') &&
+				($k != 'HTTP_USER_AGENT') &&
+				($k != 'PATH') &&
+				($k != 'QUERY_STRING') &&
+				($k != 'REDIRECT_STATUS') &&
+				($k != 'REMOTE_ADDR') &&
+				($k != 'REMOTE_PORT') &&
+				($k != 'REQUEST_METHOD') &&
+				($k != 'REQUEST_URI') &&
+				($k != 'SCRIPT_FILENAME') &&
+				($k != 'SCRIPT_NAME') &&
+				($k != 'SERVER_ADDR') &&
+				($k != 'SERVER_ADMIN') &&
+				($k != 'SERVER_NAME') &&
+				($k != 'SERVER_PORT') &&
+				($k != 'SERVER_PROTOCOL') &&
+				($k != 'SERVER_SIGNATURE') &&
+				($k != 'SERVER_SOFTWARE') &&
+				($k != 'UNIQUE_ID') &&
+				($k != '__utma') &&
+				($k != '__utmz') &&
 
-    if(!is_numeric($nmc))
-		if( ($k != 'GLOBALS') &&
-		    ($k != '_ENV') &&
-		    ($k != 'HTTP_ENV_VARS') &&
-		    ($k != 'DOCUMENT_ROOT') &&
-           ($k != 'GATEWAY_INTERFACE') &&
-		    ($k != 'HTTP_ACCEPT') &&
-		    ($k != 'HTTP_ACCEPT_CHARSET') &&
-		    ($k != 'HTTP_ACCEPT_ENCODING') &&
-		    ($k != 'HTTP_ACCEPT_LANGUAGE') &&
-		    ($k != 'PHPRC') &&
-		    ($k != 'HTTP_CACHE_CONTROL') &&
-		    ($k != 'HTTP_CONNECTION') &&
-		    ($k != 'HTTP_COOKIE') &&
-		    ($k != 'HTTP_HOST') &&
-		    ($k != 'HTTP_REFERER') &&
-		    ($k != 'HTTP_USER_AGENT') &&
-		    ($k != 'PATH') &&
-		    ($k != 'QUERY_STRING') &&
-		    ($k != 'REDIRECT_STATUS') &&
-		    ($k != 'REMOTE_ADDR') &&
-		    ($k != 'REMOTE_PORT') &&
-		    ($k != 'REQUEST_METHOD') &&
-		    ($k != 'REQUEST_URI') &&
-		    ($k != 'SCRIPT_FILENAME') &&
-		    ($k != 'SCRIPT_NAME') &&
-		    ($k != 'SERVER_ADDR') &&
-		    ($k != 'SERVER_ADMIN') &&
-		    ($k != 'SERVER_NAME') &&
-		    ($k != 'SERVER_PORT') &&
-		    ($k != 'SERVER_PROTOCOL') &&
-		    ($k != 'SERVER_SIGNATURE') &&
-		    ($k != 'SERVER_SOFTWARE') &&
-		    ($k != 'UNIQUE_ID') &&
-		    ($k != '__utma') &&
-		    ($k != '__utmz') &&
-
-		    ($k != '__utmb') &&
-		    ($k != '__utmc') &&
-		    ($k != '__atuvc') &&
-		    ($k != 'PHP_SELF') &&
-		    ($k != 'REQUEST_TIME') &&
-		    ($k != '_POST') &&
-		    ($k != 'HTTP_POST_VARS') &&
-		    ($k != '_GET') &&
-		    ($k != 'HTTP_GET_VARS') &&
-		    ($k != '_COOKIE') &&
-		    ($k != 'HTTP_COOKIE_VARS') &&
-		    ($k != '_SERVER') &&
-		    ($k != 'HTTP_SERVER_VARS') &&
-		    ($k != '_FILES') &&
-		    ($k != 'HTTP_POST_FILES') &&
-		    ($k != '_REQUEST') &&
-           (!function_exists($k)) ) {
-
-               $k=str_replace("\$","_",$k);
-
-            $out.="\$$k=\$GLOBALS['$k'];\n";
+				($k != '__utmb') &&
+				($k != '__utmc') &&
+				($k != '__atuvc') &&
+				($k != 'PHP_SELF') &&
+				($k != 'REQUEST_TIME') &&
+				($k != '_POST') &&
+				($k != 'HTTP_POST_VARS') &&
+				($k != '_GET') &&
+				($k != 'HTTP_GET_VARS') &&
+				($k != '_COOKIE') &&
+				($k != 'HTTP_COOKIE_VARS') &&
+				($k != '_SERVER') &&
+				($k != 'HTTP_SERVER_VARS') &&
+				($k != '_FILES') &&
+				($k != 'HTTP_POST_FILES') &&
+				($k != '_REQUEST') &&
+			   (!function_exists($k)) ) {
+				   $k=str_replace("\$","_",$k);
+				$out.="\$$k=\$GLOBALS['$k'];\n";
+			}
 
 		}
-
 	}
     // d_echo($out);
+	// echo "<pre>$out</pre>";
 	return $out;
 }
 /////////////////////////////////////////////////////////////////////////
