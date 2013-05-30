@@ -107,4 +107,12 @@ function genm_print($image, $font_size, $color, $font, $text, $start_x, $start_y
 }
 /* imagefttext  ( $image_b, $text_size-1, 0,					$zx, $zy,					$color,					$font,					$fizont);    imagettftext ( resource $image , float $size , float $angle , 					int $x , int $y , 					int $color ,					string $fontfile ,					string $text ); 					*/
 // this file can not have trailing spaces
+
+function genm_imageline( $img,$x,$y,$x2,$y2,$color,$thickness) {
+	
+	imagesetthickness($img,$thickness);
+	imageline($img,$x,$y,$x2,$y2,$color);
+}
+									
+
 ?>
