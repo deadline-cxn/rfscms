@@ -1265,20 +1265,20 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 
         $hidvar_b=explode("=",$hidvar_a[$j]);
         d_echo("[$hidvar_b[0]] [$hidvar_b[1]]");
-		
-		
+				
 		if(stristr($hidvar_b[0],"SHOW_FILE_")) {
 			
-			 $field=explode("#",$hidvar_b[0]);
-            $hidvar_b[0]=str_replace("SHOW_FILE_","",$hidvar_b[0]);
-            $cols=$width;
-            $rows=6;
-            $taname=$hidvar_b[0];
-            $rw=explode("#",$hidvar_b[0]);
+			$field=explode("#",str_replace("SHOW_FILE_","",$hidvar_b[0]));
+			$cols=$width;
+			$rows=6;
+			$taname=$hidvar_b[0];
+			if($field[0]) $taname=$field[0];
+			$rw=explode("#",$hidvar_b[0]);
 			
 			echo "<tr><td class=sc_project_table_$gt align=right>";
 			echo ucwords(str_replace("_"," ",$taname));
-			echo " </td><td ><input name=\"$taname\" type=\"file\" size=80> </td></tr>\n";
+			echo " </td>
+			<td ><input name=\"$taname\" type=\"file\" size=80> </td></tr>\n";
 		}
 		
 		
