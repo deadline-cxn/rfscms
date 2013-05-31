@@ -7,6 +7,22 @@
 srand((double) microtime() * 1000000);  // randomize timer
 setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
 /////////////////////////////////////////////////////////////////////////
+
+function sc_generate_long_uid($y) {
+	global $data;
+	$x=time().".".md5($y.$data->name.generate_password());
+	return $x;
+}
+
+function sc_generate_uid($y) {
+	global $data;
+	$x=
+	substr(time(),5,5).".".
+	substr(md5($y.$data->name.generate_password()),0,3);
+	return $x;
+}
+
+
 function sc_togglediv_ne($x) {
 	$id=generate_password();	
 	$r=	sc_togglediv_start_ne("did_".md5($id),"");
