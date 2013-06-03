@@ -50,15 +50,60 @@ function genm_imgload($x){
 function genm_newimg($w,$h){
 	if(empty($w)) $w=100;
 	if(empty($h)) $h=$w;
-	$iz=imagecreate($w,$h);
-	imagecolortransparent($iz, imagecolorallocatealpha($iz, 0, 0, 0, 127));
-	imagealphablending($iz, false);
-	imagesavealpha($iz, true);
+	$iz=imagecreatetruecolor($w,$h);
+	imagecolortransparent($iz, imagecolorallocate($iz,0,0,0));
+	//imagecolorallocatealpha($iz, 0,0,0, 255));
+	//imagealphablending($iz, false);
+	//imagesavealpha($iz, true);
 	return $iz;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function genm_scale($x,$s) {
 	 // TODO: LOL
+}
+function genm_print_rot_outlined($image,$font_size,$ocolor,$color,$font,$text,$start_x,$start_y,$max_width,$rot) {
+	for(     $xx = -1; $xx < 2; $xx++) {
+        for( $yy = -1; $yy < 2; $yy++) {
+            genm_print_rot($image, $font_size, $ocolor, $font, $text, $start_x+$xx, $start_y+$yy, $max_width,$rot);
+        }
+    }
+    genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width,$rot);
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+function genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width,$rot) {
+    $text=urldecode($text);
+    $dim=imagettfbbox($font_size, 0, $font, ".");
+    $bh=-$dim[7];
+    $zxy=$dim[2];
+    $zxw=imagesx($image);
+    $zxz=floor(imagesx($image)/$zxy);
+    //$text=str_replace("."," . ",$text);
+    $text=str_replace("_"," ",$text);
+    $text=wordwrap($text, $zxz, "\n", true);
+    $text=str_replace("\n"," ",$text);
+    $words = explode(" ", $text);
+    $string = "";
+    $b = imagecolorallocate($image, 0,0,0);
+    //imagettftext($image, $font_size, 0, -1, 9, $b, $font, " $zxy  $zxw  $zxz $bh");
+    //imagettftext($image, $font_size, 0, 0, 10, $color, $font, " $zxy  $zxw  $zxz $bh");
+    for($i=0; $i< count($words); $i++) {
+        $dim=imagettfbbox($font_size, $rot, $font, $string.$words[$i]." ");
+        $bh=-$dim[7];
+        if( (floor($dim[2])) > imagesx($image) ) {
+            imagettftext($image, $font_size, $rot, $start_x, $start_y, $color, $font, $string);
+            $string = "";
+            $start_y += ($bh);
+        }
+        $string .= $words[$i]." ";
+        $dim=imagettfbbox($font_size, $rot, $font, $string);
+        $bh=-$dim[7];
+        if( (floor($dim[2])) > imagesx($image) ) {
+            imagettftext($image, $font_size, $rot, $start_x, $start_y, $color, $font, $string);
+            $string = "";
+            $start_y += ($bh);
+        }
+	}
+    imagettftext(	$image, $font_size, $rot, $start_x, $start_y, $color, $font, $string);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function genm_print_outlined($image, $font_size, $ocolor, $color, $font, $text, $start_x, $start_y, $max_width) {

@@ -106,7 +106,7 @@ function wikitext($text) { eval(scg());
 
 	$text=str_replace("$$","&#36;",$text);
 
-	$text= wikiimg($text);    
+	$text= wikiimg($text);
 	
 	$text=str_replace("</h1>\r\n","</h1>",$text);
 	$text=str_replace("</h2>\r\n","</h2>",$text);
@@ -127,9 +127,6 @@ function wikitext($text) { eval(scg());
 	$text=sc_twitter_url($text);
 	$text=sc_email_url($text);
 	$text=sc_inline_url($text);
-	
-	
-	
 	
     $outtext="";
     $ila=explode("[",$text);
