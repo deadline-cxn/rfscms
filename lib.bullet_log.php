@@ -26,19 +26,28 @@ sc_database_data_add("rfsm_bullet_category","name","Self Improvement",0);
 function sc_module_bullet_log($x) { eval(scg());
 	
 	echo "<h2>My Bullets</h2>";	
-	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' order by `when` desc limit $x");
-	$x=mysql_num_rows($r);
-	if($x) {
-		for($i=0;$i<$x;$i++) {
-				$bullet=mysql_fetch_object($r);			
-				if(!empty($bullet->name)) 
-					echo "<a href=$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullet&bid=$bullet->id>$bullet->name</a><br>";
-		}		
+	
+	if(!$_SESSION['logged_in']) {
+		echo "Log in to view/edit bullets.<br>";
+		
 	}
 	else {
-		echo "No bullets yet.<br>";
+	
+		$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' order by `when` desc limit $x");
+		$x=mysql_num_rows($r);
+		if($x) {
+			for($i=0;$i<$x;$i++) {
+					$bullet=mysql_fetch_object($r);			
+					if(!empty($bullet->name)) 
+						echo "<a href=$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullet&bid=$bullet->id>$bullet->name</a><br>";
+			}		
+		}
+		else {
+			echo "No bullets yet.<br>";
+		}
+		sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullets","My Bullets");
+		
 	}
-	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullets","My Bullets");
 }
 
 function sc_module_bullet_log_long($x) { eval(scg());
