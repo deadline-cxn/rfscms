@@ -4,6 +4,7 @@ chdir("../../");
 include("header.php");
 
 function courses_action_() { eval(scg());
+	sc_module_course_admin();
 	sc_module_course_list();
 }
 
