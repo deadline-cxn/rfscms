@@ -18,6 +18,11 @@ sc_database_add("course_component","name","text","NOT NULL");
 sc_database_add("course_component","image","text","NOT NULL");
 sc_database_add("course_component","type","text","NOT NULL COMMENT 'course_component_type'");
 
+// add an admin function to be visible in the admin menu
+function adm_action_lib_courses_courses() { eval(scg());
+    sc_gotopage("$RFS_SITE_URL/modules/courses/courses.php");
+}
+
 function sc_module_course_list($x) { eval(scg());
     echo "<h2>Courses available</h2><hr>";
     echo "<div class=\"courses_box\">";
@@ -38,7 +43,13 @@ function sc_module_course_list($x) { eval(scg());
     echo "</div>";
 }
 
+function sc_module_course_admin() { eval(scg());
 
+	if(sc_access_check("course","edit")) {
+		
+	}
+	
+}
 
 
 ?>
