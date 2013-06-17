@@ -3,6 +3,18 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 
+
+// check for config.php file
+if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
+// include all libraries (this will not output any text)
+include_once("include/lib.all.php");
+
+// check for site name definition
+if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
+// housekeeping
+sc_maintenance();
+sc_debugheader(0);
+
 // divert ajax requests
 
 if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
@@ -10,15 +22,7 @@ if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
 	eval("$action();");
 	exit();
 }
-// check for config.php file
-if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
-// include all libraries (this will not output any text)
-include_once("include/lib.all.php");
-// check for site name definition
-if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
-// housekeeping
-sc_maintenance();
-sc_debugheader(0);
+
 // inlude theme definition file (if it exists)
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
 // include theme header file (if it exists)

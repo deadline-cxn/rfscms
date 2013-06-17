@@ -2041,8 +2041,12 @@ function sc_ajax_callback_file(){ eval(scg());
 function sc_ajax_callback(){ eval(scg());
 
 	if(sc_access_check($rfaapage,$rfaact)) {
+		
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
 		$r=sc_query($q);
+		
+		
+		
 		if($r) {
 			echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
 		}
@@ -2237,8 +2241,14 @@ function sc_ajax(		$rfalabel,
 						$rfaact,
 						$rfacallback	) { eval(scg());
 	
+	
+	$rfacbx=explode(",",$rfacallback);
+	$rfacallback=$rfacbx[0];
+	$rfajscallback=$rfacbx[1];
+	
 	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
-	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
+	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";
+	
 	
 	if(!sc_access_check($rfaapage,$rfaact)) {
 		return;
@@ -2292,7 +2302,7 @@ function sc_ajax(		$rfalabel,
 					id=\"$rfanname"."_name\"
 					name=\"$rfanname"."_name\"
 					
-					onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
+					onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur(); $rfajscallback;\"
 					style='float:left; min-width: $rfawidth;  '>";
 					//onblur  =\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc	\"
 					
