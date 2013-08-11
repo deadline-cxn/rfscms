@@ -8,22 +8,24 @@ include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
 /////////////////////////////////////////////////////////////////////////////////////////
-if($act=="select_image_go") {
-	include("lib.all.php");
-    $npath=$_SESSION['select_image_path']."/".$npath;
-    $npath=str_replace($RFS_SITE_PATH,"",$npath);
-    echo "Image changed to $npath<BR>";
-    echo "<br>$rtnpage , $rtnact, $table, $id, $image_field, $npath <br>";
-    $q="update `$table` set `$image_field` = '$npath' where `id`='$id'";
-    echo $q;
-    sc_query($q);
-    echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_SITE_URL/$rtnpage?action=$rtnact\">";
-    exit();
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-if($act=="select_image_chdir") {
-    include("lib.all.php");
-    sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field);
+if(isset($act)) {
+	if($act=="select_image_go") {
+		include("lib.all.php");
+		$npath=$_SESSION['select_image_path']."/".$npath;
+		$npath=str_replace($RFS_SITE_PATH,"",$npath);
+		echo "Image changed to $npath<BR>";
+		echo "<br>$rtnpage , $rtnact, $table, $id, $image_field, $npath <br>";
+		$q="update `$table` set `$image_field` = '$npath' where `id`='$id'";
+		echo $q;
+		sc_query($q);
+		echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_SITE_URL/$rtnpage?action=$rtnact\">";
+		exit();
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////
+	if($act=="select_image_chdir") {
+		include("lib.all.php");
+		sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field);
+	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_database_add($table, $field, $type, $default) {
@@ -33,10 +35,9 @@ function sc_database_add($table, $field, $type, $default) {
 	sc_query($q);
 }
 function sc_database_data_add($table,$field,$value,$id) {
-	if($id) {
-		$chkid=" and `id`='$id' ";
-	}
-	$r=mfo1("select * from `$table` where `$field`='$value' $chkid");
+	$chkid=" ";
+	if($id) { $chkid=" and `id`='$id' "; }
+	$r=mfo1("select * from `$table` where `$field`='$value' $chkid");	
 	if($r->id) return $r->id;
 	sc_query("insert into `$table` (`$field`) VALUES ('$value'); ");
 	$i=mysql_insert_id();

@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 if(!function_exists("sc_div")) {
 function sc_div($t) {	
-	if(!$GLOBALS['RFS_GEN_IMAGE']) {	
+	if(!isset($GLOBALS['RFS_GEN_IMAGE'])) {	
 		//echo "\n<!-- ******************** ($t) ******************** -->\n";		
 		}
 	}
