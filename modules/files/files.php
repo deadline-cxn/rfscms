@@ -2,24 +2,47 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-
-if($argv[1]=="scrub") {
+if(isset($argv[1])) {
 	if(stristr(getcwd(),"modules")) { chdir("../../"); }
-	$RFS_CMD_LINE=true;
 	include_once("include/lib.all.php");
-	sc_scrubfiledatabase();
-	exit();
-}
-
-if($argv[1]=="orph") {
-	if(stristr(getcwd(),"modules")) { chdir("../../"); }
-	$RFS_CMD_LINE=true;
-	include_once("include/lib.all.php");
-	$data=sc_getuserdata(1);
 	system("clear");
-	orphan_scan("files");
-	exit();
+	sc_get_modules();
+	if($argv[1]=="scrub") {
+		sc_scrubfiledatabase(1);
+		exit();
+	}
+	if($argv[1]=="orph") {
+		orphan_scan("files",1);
+		exit();
+	}
+	if($argv[1]=="purge") {
+		purge_files(1);
+		exit();
+	}
+	if($argv[1]=="md5") {
+		md5_scan(1);
+		exit();
+	}
+	if($argv[1]=="imgrar") {
+		// img_rar_scan(1);
+		exit();
+	}
+	if($argv[1]=="dupes") {
+		sc_show_duplicate_files(1);
+		exit();
+	}
+
+	
+	echo "files.php command line options:\n";
+	echo "scrub  (This will regenerate the files database)\n";
+	echo "orph   (Scan files for orphans not in the database)\n";
+	echo "purge  (Purge files from the database if they are missing from disk)\n";
+	echo "md5    (Rescan md5 hash for each file in the database)\n";
+	echo "imgrar (Scan image files for embedded archives)\n";
+	echo "dupes  (Shows duplicate md5)\n";
+	exit;
 }
+
 
 if($_REQUEST['action']=="get_file_go") {
 	$id=$_REQUEST['id'];
@@ -80,6 +103,11 @@ if(sc_access_check("files","purge")) {
 	echo "</td>";
 }
 if(sc_access_check("files","sort")) {
+	
+	echo "<td>";
+	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_duplicates","Show Duplicates");
+	echo "</td>";
+	
 	echo "<td>";
 	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_ignore","Show Hidden");
 	echo "</td>";
@@ -640,102 +668,24 @@ if($file_mod=="yes"){
     }
     else echo "<p>You can't modify files if you are not <a href=$RFS_SITE_URL/login.php>logged in</a>!</p>\n";
 }
+if($action=="show_duplicates") {
+	sc_show_duplicate_files(0);
+	include("footer.php");
+	exit;
+}
 
 if($action=="remove_duplicates") {
 }
 
-function orphan_scan($dir) { eval(scg());
-	if(!$RFS_CMD_LINE) {
-		if(!sc_access_check("files","orphanscan")) {
-			echo "You don't have access to scan orphan files.<br>";
-			include("footer.php");
-			exit();
-		}
-	}
-	echo "Scanning [$RFS_SITE_PATH/$dir] \n"; if(!$RFS_CMD_LINE) echo "<br>";
-	$dir_count=0; $dirfiles = array();
-	$handle=opendir($RFS_SITE_PATH."/".$dir);
-	if(!$handle) return 0;
-	while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
-	closedir($handle);
-	reset($dirfiles);	
-	while(list ($key, $file) = each ($dirfiles))  {
-        if($file!=".") {
-            if($file!="..") {			
-                if(is_dir($dir."/".$file)){
-  				if(substr($file,0,1)!=".")
-				    orphan_scan($dir."/".$file);
-				}
-				else {
-			        $filefound=0; 
-                    $url = "$dir/$file";
-						$loc=addslashes("$dir/$file");
-                    $res=sc_query("select * from `files` where `location` like '%$loc%'");
-						if($res)  {
-							if(mysql_num_rows($res)>0)
-								$filefound=1;
-								$res=sc_query("select * from `files` where `name` = '$file'");
-								if($res)
-									if(mysql_num_rows($res)>0) $filefound=1;
-						}
-						if($filefound){
-                    }
-                    else{
-                        $time=date("Y-m-d H:i:s");
-                        $filetype=sc_getfiletype($file);
-                        $filesizebytes=filesize(getcwd()."/$dir/$file");
-
-						if($filesizebytes>0) {
-
-								$name=addslashes($file);
-									$infile=addslashes($file);							
-								sc_query("INSERT INTO `files` (`name`) VALUES('$infile');");
-									$loc=addslashes("$dir/$file");
-								sc_query("UPDATE files SET `location`='$loc' where name='$name'");
-
-									$dname="system";
-									if(!empty($data)) $dname=$data->name;							
-
-								sc_query("UPDATE files SET `submitter`='$dname' where name='$name'");
-
-								sc_query("UPDATE files SET `category`='unsorted' where name='$name'");
-								sc_query("UPDATE files SET `hidden`='no' where name='$name'");
-								sc_query("UPDATE files SET `time`='$time' where name='$name'");
-								sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
-								sc_query("UPDATE files SET size='$filesizebytes' where name='$name'");
-								echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
-								if(!$RFS_CMD_LINE) sc_flush_buffers();
-								$dir_count++;
-								
-			}
-                   }
-    	       }
-            }
-        }
-    }
-}
 ///////////////////////////////////////////////////////////////////////////////////
 if($action=="getorphans") {
-	orphan_scan("files");
+	orphan_scan("files",0);
 	include("footer.php");
     exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////
 if($action=="purge") {
-if(!sc_access_check("files","purge")) {
-		echo "You don't have access to purge files.<br>";
-		include("footer.php");
-		exit();
-	}	
-	
-	$r=sc_query("select * from files");
-	for($i=0;$i<mysql_num_rows($r);$i++){
-		$file=mysql_fetch_object($r);
-		if(!file_exists($file->location)) {
-			echo "$file->location purged<br>";
-			sc_query("delete from files where location = '$file->location'");
-		}
-	}		
+	purge_files(0);
 	include("footer.php");
 	exit();	
 }

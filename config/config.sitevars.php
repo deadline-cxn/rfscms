@@ -17,11 +17,16 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // SYSTEM STUFF
 $RFS_SITE_SESSION_ID        = "RFS_CMS_";
+if(isset($_SESSION))
 $RFS_SITE_SESSION_USER      = $_SESSION['valid_user'];
 $RFS_SITE_ADMIN             = "Administrator";
+if(isset($SERVER))
 $RFS_SITE_ADMIN_EMAIL       = "admin@".$SERVER['DOCUMENT_ROOT'];
 $RFS_SITE_SLOGAN            = "Powered by <a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">RFSCMS</a>";
+if(isset($SERVER))
 $RFS_SITE_URL               = $SERVER['DOCUMENT_ROOT'];
+else
+$RFS_SITE_URL				= " ";
 $RFS_SITE_PATH              = getcwd();
 $RFS_SITE_ERROR_LOG         = "/var/log/apache2/error.log";
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -80,8 +85,8 @@ $RFS_SITE_JOIN_FORM_CODE		= "
 <table border=0 cellspacing=0 cellpadding=0>
 <form method=post action=\"$RFS_SITE_URL/login.php\">
 <input type=hidden name=action value=join_go>
-<tr><td> User ID </td><td><input type=textbox  name=userid value=\"$userid\">  </td></tr>
-<tr><td> Email   </td><td><input type=textbox  name=email value=\"$email\">    </td></tr>
+<tr><td> User ID </td><td><input type=textbox  name=userid value=\"\$userid\">  </td></tr>
+<tr><td> Email   </td><td><input type=textbox  name=email value=\"\$email\">    </td></tr>
 <tr><td>         </td><td> </td></tr>
 <tr><td>         </td><td><input type=\"submit\" name=\"Register\" value=\"Register\"></td></tr>
 </form></table>\n";
@@ -100,7 +105,7 @@ $RFS_SITE_LOGIN_FORM_CODE   = "
 <tr>\n
 <td align=right class=login><font class=slogan>Password</font></td>
 <td class=login><input type=password name=password size=10 class=\"b4text\"></td>\n
-<input type=hidden name=outpage value=$PHP_SELF>\n
+<input type=hidden name=outpage value=\$PHP_SELF>\n
 <input type=hidden name=login value=fo_shnizzle>\n
 <td valign=middle>\n <input type=\"submit\" name=\"Login\" value=\"Login\">\n</td>
 </tr>
@@ -108,7 +113,7 @@ $RFS_SITE_LOGIN_FORM_CODE   = "
 <tr>
 <td></td>
 <td></td>
-<td> &nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=$PHP_SELF>Register</a>)
+<td> &nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=\$PHP_SELF>Register</a>)
 </td>
 </tr>
 </table>
@@ -159,6 +164,7 @@ $RFS_SITE_JS_MSDROPDOWN_THEME = "<link rel=\"stylesheet\" type=\"text/css\" href
             $title=sc_get_news_headline($_GET['nid']);
         if(!empty($what)) $title=$what;
 */
+if(!isset($title)) $title=" ";
 $RFS_SITE_TITLE         ="<TITLE> \$RFS_SITE_NAME $title </TITLE>";
 /////////////////////////////////////////////////////////////////////////////////////////
 // KEYWORDS
