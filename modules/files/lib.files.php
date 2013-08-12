@@ -12,9 +12,14 @@ sc_access_method_add("files", "edit");
 sc_access_method_add("files", "delete");
 sc_access_method_add("files", "xplorer");
 sc_access_method_add("files", "xplorershell");
-
-sc_database_add("files","md5",		"text",	"NOT NULL");
-
+// MD5 hash
+sc_database_add("files","md5", "text", "NOT NULL");
+// Duplicates table
+sc_database_add("file_duplicates", "loc1", "text", "NOT NULL");
+sc_database_add("file_duplicates", "size1", "text", "NOT NULL");
+sc_database_add("file_duplicates", "loc2", "text", "NOT NULL");
+sc_database_add("file_duplicates", "size2", "text", "NOT NULL");
+sc_database_add("file_duplicates", "md5", "text", "NOT NULL");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FILES
 function sc_module_mini_files($x) { eval(scg());
@@ -226,13 +231,211 @@ function purge_files($RFS_CMD_LINE){
 		}
 	}
 }
+function sc_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
+	
+	$loc1=addslashes($loc1);
+	$size1=addslashes($size1);
+	$loc2=addslashes($loc2);
+	$size2=addslashes($size2);
+	$md5=addslashes($md5);
+	$r=sc_query("select * from file_duplicates where loc1 = '$loc1'");
+	if($r) if(mysql_num_rows($r)) return;
+
+	sc_query("INSERT INTO `file_duplicates` (`loc1`,   `size1`,   `loc2`, `size2`,    `md5` )
+				                      VALUES ( '$loc1', '$size1', '$loc2',  '$size2', '$md5' ) ;");
+
+	
+}
+
+function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
+
+	echo "<h1>Duplicate files</h1>";
+	
+	$x=sc_row_count("file_duplicates");
+	echo "There are $x duplicate files total";
+
+	if(empty($fdlo)) $fdlo="0";
+	if(empty($fdhi)) $fdhi="50";
+		$limit=" limit $fdlo,$fdhi ";
+	
+    $result = sc_query("select id, location, size, category from files");
+    for($i=0;$i<mysql_num_rows($result);$i++) {
+		$x=mysql_fetch_array($result);
+		$filelist[$x['location']]=$x;
+	}
+	
+	
+	// echo "<form 
+	
+	$r=sc_query("select * from file_duplicates $limit");
+	echo "<table border=0>";	
+	echo "<tr><th>id</th><th>category</th><th>file size</th><th>file location</th><th>md5</th></tr>";
+	for($i=0;$i<mysql_num_rows($r);$i++) {
+		$dupe=mysql_fetch_object($r);
+		
+		$clr++; if($clr>2) $clr=1;
+		$color="sc_project_table_$clr";
+		echo "<tr>";
+		
+		echo "<td	class='$color'>";
+
+		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?file_mod=yes&action=del&id=".
+							$filelist[$dupe->loc1]['id'].
+							"&retpage=".urlencode(sc_canonical_url()),
+							"Delete ".$dupe->loc1,
+							"$RFS_SITE_URL/images/icons/Delete.png",
+							16,16);
+
+			
+		echo "</td>";
+		
+		echo "<td class='$color'>";
+		/*
+		if($filelist[$dupe->loc1]['category']!="unsorted")
+		echo "<font color='green'>";			  
+		else  echo "<font color='red'>";		
+		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?action=f_mv_file_cat&id=".
+							$filelist[$dupe->loc1]['id'].
+							"&retpage=".urlencode(sc_canonical_url()),
+							"Change Category (".$filelist[$dupe->loc1]['category'].")",
+							"$RFS_SITE_URL/images/icons/arrow-right.png",
+							16,16);	
+		echo $filelist[$dupe->loc1]['category'];
+		 * */
+sc_ajax(" ","files","id",$filelist[$dupe->loc1]['id'],"category",70,"select,table,categories,name","files","edit","");
+				
+		echo "</td>";
+		
+		echo "<td class='$color'>";
+		echo $filelist[$dupe->loc1]['size'];
+		echo "</td>";
+		
+		echo "<td class='$color'>";
+		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=".$filelist[$dupe->loc1]['id']."\">";
+		echo $filelist[$dupe->loc1]['location'];
+		echo "</a>";
+		echo "</td>";
+		
+		echo "<td class='$color'>";
+		echo $dupe->md5;
+		echo "</td>";
+		
+		echo "</tr>";
+		
+		echo "<tr>";
+		
+		echo "<td	class='$color'>";
+		
+		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?file_mod=yes&action=del&id=".
+							$filelist[$dupe->loc2]['id'].
+							"&retpage=".urlencode(sc_canonical_url()),
+							"Delete ".$dupe->loc2,
+							"$RFS_SITE_URL/images/icons/Delete.png",
+							16,16);
+		
+		echo "</td>";
+		
+		echo "<td	class='$color'>";		
+sc_ajax(" ","files","id",$filelist[$dupe->loc2]['id'],"category",70,"select,table,categories,name","files","edit","");		
+		echo "</td>";
+		
+		echo "<td	class='$color'>";
+		echo $filelist[$dupe->loc2]['size'];
+		echo "</td>";
+		
+		echo "<td	class='$color'>";
+		
+		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=".$filelist[$dupe->loc2]['id']."\">";
+		echo $filelist[$dupe->loc2]['location'];
+		echo "</a>";
+		echo "</td>";
+		
+		echo "<td class='$color'>";
+		echo $dupe->md5;
+		echo "</td>";
+		
+		echo "</tr>";
+		
+		
+		// echo "<tr><td>id[$dupe2->id]</td><td>$dupe2->category</td><td>$dupe2->size</td><td>$dupe2->location</td></tr>";
+
+		// echo "\n"; if(!$RFS_CMD_LINE) echo "<br>";		
+	}
+	echo "</table>";
+}
 
 function sc_show_duplicate_files($RFS_CMD_LINE) {
-	
-	echo "MD5 SEARCH \n"; if(!$RFS_CMD_LINE) echo "<br>";
-		
-	// $filelist=sc_getfilelist(" ",0);
+	$result = sc_query("select * from files");
+	$i=0; $k=mysql_num_rows($result);	
+	while($i<$k) {
+		$der = mysql_fetch_object($result);
+		$r2 = 
+		sc_query("select * from files where (md5 = '$der->md5' ) and 
+												 (location != '$der->location') ");
+		if($r2)
+		for($z=0;$z<mysql_num_rows($r2);$z++) {
+			$dupe = mysql_fetch_object($r2);
+			
+		sc_duplicate_add( $der->location, $der->size,
+							$dupe->location,$dupe->size,$der->md5);
+			
+			echo "F1: $der->md5 $der->size $der->location \n"; if(!$RFS_CMD_LINE) echo "<br>";
+			echo "F2: $dupe->md5 $dupe->size $dupe->location \n"; if(!$RFS_CMD_LINE) echo "<br>";
+			echo "\n"; if(!$RFS_CMD_LINE) echo "<br>";
+		}
+		if(!$RFS_CMD_LINE) sc_flush_buffers();
+		$i++;
+	}
+}
 
+function sc_scan_duplicate_files2($RFS_CMS_LINE) {
+
+	$result = sc_query("select * from files");
+	$i=0; $k=mysql_num_rows($result);
+	while($i<$k) {	
+		$der = mysql_fetch_array($result);
+
+		$filelist[$i]  = 	$der['location'];
+		$filemd5[$i]   = 	$der['md5'];
+		$filesize[$i]  = 	$der['size'];
+
+		$x				= $der['location'];
+		$loc_md5[$x] 	= $der['md5'];
+		$loc_size[$x] = $der['size'];
+		$i=$i+1;
+	}
+	
+	echo "TOTAL FILES ".count($filelist)." \n"; if(!$RFS_CMD_LINE) echo "<br>";
+	if(!$RFS_CMD_LINE) echo "<table border=0>";
+	
+	for($i=0;$i<count($filelist);$i++) {
+		$tmd5=$filemd5[$i];
+		foreach($loc_md5 as $k => $v) {
+			
+			if(!empty($v)) {
+				if($v==$tmd5) {
+					if($k!=$filelist[$i]) {
+						
+						if(!isset($dupefound[$filelist[$i]])) {
+
+							echo "$k = $filelist[$i]\n";
+							
+							sc_duplicate_add( $filelist[$x],$filesize[$x],$k,$loc_size[$filelist[$x]],$tmd5);
+							
+							
+							$dupefound["$k"]=true;
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	if(!$RFS_CMD_LINE) 
+		echo "</table>";	
+}
+function sc_show_duplicate_files2($RFS_CMD_LINE) {
+	echo "MD5 SEARCH \n"; if(!$RFS_CMD_LINE) echo "<br>";
     $result = sc_query("select * from files");
     $i=0; $k=mysql_num_rows($result);
     while($i<$k) {

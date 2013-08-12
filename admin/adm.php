@@ -10,6 +10,8 @@ function adm_db_query( $x ) { eval( scg() );
 	for( $i=0; $i<count( $ax ); $i++ )
 		if( strtolower( $ax[$i] )=="select" ) $ax[$i]="zlect";
 	$ox=join( " ",$ax );
+	
+	echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_rm_db_query&query=$ox\" target=_top>Delete</a>]";
 	echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=db_query&query=$ox\" target=_top>$x</a><br>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -454,6 +456,22 @@ function adm_action_email_go() { eval(scg());
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_DATABASE
+function adm_action_f_rm_db_query() { eval(scg());
+	$query=str_replace("zlect","select",$query);
+	sc_query("delete from `db_queries` where `query` = '$query'");
+	$_GLOBALS['query']="";
+	$_POST['query']="";
+	$_GET['query']="";
+   echo "<h3>Select a previously entered query</h3>";
+   echo "<iframe id=\"QU\" width=800 height=600 class='iframez' frameborder=0
+			src=$RFS_SITE_URL/admin/adm.php?db_queries=list
+			style=\"float:left;\"></iframe>";
+	echo "<div style=\"float:left;\">";
+	echo "<h3>Enter a new query</h3>";
+	sc_db_query_form( "$RFS_SITE_URL/admin/adm.php","db_query","$query" );
+	echo "</div><div style=\"clear:both;\">";
+	finishadminpage();
+}
 function adm_action_db_query() { eval(scg());
 	$query=str_replace("zlect","select",$query);
    echo "<h3>Select a previously entered query</h3>";
@@ -464,10 +482,10 @@ function adm_action_db_query() { eval(scg());
 	echo "<h3>Enter a new query</h3>";
 	sc_db_query_form( "$RFS_SITE_URL/admin/adm.php","db_query","$query" );
 	echo "</div><div style=\"clear:both;\">";
-	if( !empty( $query ) ) {
+	if( !empty( $query ) ) {		
+		sc_query( "insert into `db_queries` (`id`, `query`) VALUES ('','$query' ) " );
 		$query=stripslashes($query);
 		echo $query;
-		sc_query( "insert into `db_queries` (`id`, `query`) VALUES ('','$query' ) " );
 		echo "<table cellspacing=0 cellpadding=0 border=0><tr><td class=contenttd>";
 		sc_db_query( $query, "true" );
 		echo "</td></tr></table>";

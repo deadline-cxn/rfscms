@@ -6,8 +6,24 @@ sc_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
 if(!empty($_REQUEST['textbuttons'])){	$_SESSION['textbuttons']=$_REQUEST['textbuttons']; }
 /////////////////////////////////////////////////////////////////////////////////////////
+function sc_img_button_x($link,$name,$img,$x,$y) {
+if(!empty($x)) $w=" width=\"$x\" ";
+if(!empty($y)) $h=" height=\"$y\" ";
+echo "	
+<a href=$link>
+<img src=\"$img\"
+border=0
+alt=\"$name\"
+text=\"$name\"
+title=\"$name\"
+$w
+$h
+>
+</a>";	
+}
 function sc_img_button($link,$name,$img){
-	echo "<a href=$link><img src=$img border=0 alt=\"$name\" text=\"$name\"><br>[$name]</a>";
+	
+	sc_img_button_x($link,$name,$img,"","");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_button_l($link,$name){    
