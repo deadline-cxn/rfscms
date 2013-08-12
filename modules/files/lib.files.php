@@ -78,7 +78,8 @@ function md5_scan($RFS_CMD_LINE) {
 	$filelist=sc_getfilelist(" ",0);
 	for($i=0;$i<count($filelist);$i++) {
 		$filedata=sc_getfiledata($filelist[$i]);
-		$tmd5=@md5_file ($filedata->location);
+		$fl=stripslashes($filedata->location);
+		$tmd5=@md5_file ($fl);
 		if($tmd5) {
 			if($tmd5!=$filedata->md5) {
 				if(!empty($filedata->md5))
@@ -89,11 +90,39 @@ function md5_scan($RFS_CMD_LINE) {
 				}
 			} 
 			else {
+				/// echo ".";
 				// echo "(MD5 MATCHES) $filedata->location $tmd5 $filedata->md5 \n";  if(!$RFS_CMD_LINE) echo "<br>";
 			}
 		}
 	}
 }
+
+
+function quick_md5_scan($RFS_CMD_LINE) {
+	$filelist=sc_getfilelist(" ",0);
+	for($i=0;$i<count($filelist);$i++) {
+		$filedata=sc_getfiledata($filelist[$i]);
+		$fl=stripslashes($filedata->location);
+		if(empty($filedata->md5)) {
+			$tmd5=@md5_file ($fl);
+			if($tmd5) {
+				if($tmd5!=$filedata->md5) {
+					if(!empty($filedata->md5))
+						echo "(MD5 WARNING) $filedata->location $tmd5 (database: $filedata->md5)  \n"; if(!$RFS_CMD_LINE) echo "<br>";
+					else {
+						echo "(MD5 UPDATED) $filedata->location $tmd5  \n"; if(!$RFS_CMD_LINE) echo "<br>";
+						sc_query("UPDATE files SET md5='$tmd5' where id='$filedata->id'");
+					}
+				} 
+				else {
+					/// echo ".";
+					// echo "(MD5 MATCHES) $filedata->location $tmd5 $filedata->md5 \n";  if(!$RFS_CMD_LINE) echo "<br>";
+				}
+			}
+		}
+	}
+}
+
 
 
 function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
@@ -109,10 +138,22 @@ function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 	if(!$handle) return 0;
 	while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
 	closedir($handle);
-	reset($dirfiles);	
+	reset($dirfiles);
+	
+    $result = sc_query("select * from files");
+    $i=0; $k=mysql_num_rows($result);
+    while($i<$k) {
+        $der = mysql_fetch_array($result);
+        $filelist[$i] = stripslashes($der['location']);
+        $i=$i+1;
+    }
+	for($x=0;$x<count($filelist);$x++) {
+		// echo "$filelist[$x] \n";
+		$filearray["$filelist[$x]"]=true;
+	}
 	while(list ($key, $file) = each ($dirfiles))  {
         if($file!=".") {
-            if($file!="..") {			
+            if($file!="..") {
                 if(is_dir($dir."/".$file)){
   				if( (substr($file,0,1)!=".") &&
 					(substr($file,0,1)!="$") &&
@@ -120,25 +161,22 @@ function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 				    orphan_scan($dir."/".$file,$RFS_CMD_LINE);
 				}
 				else {
-			        $filefound=0; 
-                    $url = "$dir/$file";
-						$loc=addslashes("$dir/$file");
-                    $res=sc_query("select * from `files` where `location` like '%$loc%'");
-						if($res)  {
-							if(mysql_num_rows($res)>0)
-								$filefound=1;
-								$res=sc_query("select * from `files` where `name` = '$file'");
-								if($res)
-									if(mysql_num_rows($res)>0) $filefound=1;
-						}
-						if($filefound){
-                    }
-                    else{
-                        $time=date("Y-m-d H:i:s");
-                        $filetype=sc_getfiletype($file);
-                        $filesizebytes=filesize(getcwd()."/$dir/$file");
+                    $url="$dir/$file";
+					$loc=addslashes("$dir/$file");
+					
+					// echo ".. $url ".$filearray[$url]."\n";
+					if(isset($filearray["$url"])){
 
-						if($filesizebytes>0) {
+                    }
+                    else{						
+                        $time=date("Y-m-d H:i:s");
+                        $filetype=sc_getfiletype($file);						
+						$tdir=getcwd()."/$dir/$file";
+						//echo "--- $tdir --- \n ";
+                        $filesizebytes=filesize("$tdir");
+						//echo "$filesizebytes \n";
+
+						// if($filesizebytes>0) {
 
 								$name=addslashes($file);
 								$infile=addslashes($file);							
@@ -154,13 +192,16 @@ function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 								sc_query("UPDATE files SET `time`='$time' where id='$fid'");
 								sc_query("UPDATE files SET filetype='$filetype' where id='$fid'");
 								sc_query("UPDATE files SET size='$filesizebytes' where id='$fid'");
-								$tmd5=md5_file ($loc);
+								
+								$tmd5=md5_file ("$dir/$file");
+								
 								sc_query("UPDATE files SET md5='$tmd5' where id='$fid'");
+
 								echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
 								if(!$RFS_CMD_LINE) sc_flush_buffers();
 								$dir_count++;
 								
-						}
+						// }
 					}
 				}
             }
@@ -173,14 +214,15 @@ function purge_files($RFS_CMD_LINE){
 		if(!sc_access_check("files","purge")) {
 			echo "You don't have access to purge files. \n"; if(!$RFS_CMD_LINE) echo "<br>";
 			return;
-		}		
+		}
 	}
 	$r=sc_query("select * from files");
 	for($i=0;$i<mysql_num_rows($r);$i++){
 		$file=mysql_fetch_object($r);
 		if(!file_exists($file->location)) {
 			echo "$file->location purged \n"; if(!$RFS_CMD_LINE) echo "<br>";
-			sc_query("delete from files where location = '$file->location'");
+			$dloc=addslashes($file->location);
+			sc_query("delete from files where location = '$dloc'");
 		}
 	}
 }
@@ -189,68 +231,42 @@ function sc_show_duplicate_files($RFS_CMD_LINE) {
 	
 	echo "MD5 SEARCH \n"; if(!$RFS_CMD_LINE) echo "<br>";
 		
-	$filelist=sc_getfilelist(" ",0);
+	// $filelist=sc_getfilelist(" ",0);
+
+    $result = sc_query("select * from files");
+    $i=0; $k=mysql_num_rows($result);
+    while($i<$k) {
+        $der = mysql_fetch_array($result);
+        $filelist[$i] = $der['location'];
+		$filemd5[$i]  = $der['md5'];
+		$x=$der['location'];
+		$filearray[$x]=$der['md5'];
+        $i=$i+1;
+    }
 	
 	echo "TOTAL FILES ".count($filelist)." \n"; if(!$RFS_CMD_LINE) echo "<br>";
 	
 	if(!$RFS_CMD_LINE) echo "<table border=0>";
-
-	for($i=0;$i<count($filelist);$i++) {			
-		$filedata=sc_getfiledata($filelist[$i]);
-
-
-		for($x=0;$x<count($filelist);$x++) {
-			if($x!=$i) {
-				$xfile=sc_getfiledata($filelist[$x]);
-				$bfound=0;
-				if(!empty($filedata->md5))
-					if($xfile->md5==$filedata->md5) {
-						if(!$RFS_CMD_LINE) 
-							echo "<tr><td>MD5 Match</td><td>$filedata->md5</td>"; 
-						else echo "(MD5 Match)\n";
-						$bfound=1;
-					}
-					/*
-				
-				if(!empty($filedata->size)) {
-					if($xfile->size==$filedata->size) {
-						echo "<tr><td>Size Match</td><td>$filedata->size</td>"; 
-						$bfound=1;
-					}
-				}
-				if(!empty($filedata->name)) {
-					// $xloc=explode($xfile->size);
-					if($xfile->name==$filedata->name) {
-						echo "<tr><td>Name Match</td><td>$filedata->name</td>"; 
-						$bfound=1;
-					}
-				}
-				*/
-				if($bfound) {
-					if(!$RFS_CMD_LINE) {
-					$ft=sc_getfiletype($filedata->location);
-					$fx=sc_getfiletype($xfile->location);
-					if( ($ft=="gif") || ($ft=="jpg") || ($ft=="jpeg") || ($ft=="png") || ($ft=="bmp") )
-						echo "<td><img width=200 src=\"$RFS_SITE_URL/$filedata->location\"></td>";
-					else 
-						echo "<td>$filedata->location</td>";
-					if( ($fx=="gif") || ($fx=="jpg") || ($fx=="jpeg") || ($fx=="png") || ($fx=="bmp") )
-						echo "<td><img width=200 src=\"$RFS_SITE_URL/$xfile->location\"></td>";
-					else
-						echo "<td>$xfile->location</td></tr>";
-					}
-					else {
-						echo "$filedata->location\n$xfile->location \n";
+	
+	for($i=0;$i<count($filelist);$i++) {
+		$tmd5=$filemd5[$i];
+		foreach($filearray as $k => $v) {
+			if(!empty($v)) {
+				if($v==$tmd5) {
+					if($k!=$filelist[$i]) {
+						
+						if(!isset($dupefound[$filelist[$i]])) {
+						
+							echo "$k = $filelist[$i]\n";
+							$dupefound["$k"]=true;
+							
+						}
 					}
 				}
 			}
 		}
-		if(!$RFS_CMD_LINE)
-			sc_flush_buffers();
-		else echo ".";
-
 	}
-
-	echo "</table>";
+	if(!$RFS_CMD_LINE) 
+		echo "</table>";
 }
 ?>

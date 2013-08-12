@@ -23,6 +23,10 @@ if(isset($argv[1])) {
 		md5_scan(1);
 		exit();
 	}
+	if($argv[1]=="quickmd5") {
+		quick_md5_scan(1);
+		exit();
+	}
 	if($argv[1]=="imgrar") {
 		// img_rar_scan(1);
 		exit();
@@ -34,12 +38,13 @@ if(isset($argv[1])) {
 
 	
 	echo "files.php command line options:\n";
-	echo "scrub  (This will regenerate the files database)\n";
-	echo "orph   (Scan files for orphans not in the database)\n";
-	echo "purge  (Purge files from the database if they are missing from disk)\n";
-	echo "md5    (Rescan md5 hash for each file in the database)\n";
-	echo "imgrar (Scan image files for embedded archives)\n";
-	echo "dupes  (Shows duplicate md5)\n";
+	echo "scrub    (This will regenerate the files database)\n";
+	echo "orph     (Scan files for orphans not in the database)\n";
+	echo "purge    (Purge files from the database if they are missing from disk)\n";
+	echo "md5      (Rescan md5 hash for each file in the database)\n";
+	echo "quickmd5 (Rescan md5 hash only for database files missing md5 hash)\n";	
+	echo "imgrar   (Scan image files for embedded archives)\n";
+	echo "dupes    (Shows duplicate md5)\n";
 	exit;
 }
 
