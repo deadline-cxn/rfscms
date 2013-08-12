@@ -279,6 +279,11 @@ function sc_copyrow($table,$id) {
 
 }
 
+function sc_row_count($table) {
+	$r=sc_query("select * from `$table`");
+	$n=mysql_num_rows($r);
+	return $n;
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_getusername($x){
     $o=$x;

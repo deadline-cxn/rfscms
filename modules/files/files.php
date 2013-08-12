@@ -581,28 +581,35 @@ if($file_mod=="yes"){
             if(!empty($name)) sc_query("UPDATE files SET name='$name' where id = '$id'");
         }
         if($action=="del")        {
-            $filedata=sc_getfiledata($id);
-			echo "<p></p>";						
-            echo "<table border=0>\n";
-            echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
+			
+			$filedata=sc_getfiledata($id);
+			sc_info("REMOVE FILE <br>[$filedata->location]","WHITE","RED");
+			
+			
+			echo "<p></p>";
+			echo "<table border=0>\n";
+			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
 			echo "<input type=hidden name=retpage value=\"$retpage\">";
-            echo "<input type=hidden name=file_mod value=yes>\n";
-            echo "<input type=hidden name=action value=del_conf>\n";
-            echo "<input type=hidden name=id value=\"$id\">\n";
-            echo "<tr><td>Are you sure you want to delete [$filedata->name]???</td><td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
-            echo "<tr><td>Annihilate the file from the server?</td><td><input name=\"annihilate\" type=\"checkbox\" value=\"yes\"></td></tr>\n";
-            echo "<tr><td>Important! If you do not want to delete this file, 
+			echo "<input type=hidden name=file_mod value=yes>\n";
+			echo "<input type=hidden name=action value=del_conf>\n";
+			echo "<input type=hidden name=id value=\"$id\">\n";
+			echo "<tr><td>Are you sure you want to delete<br>[$filedata->location]???</td>";
+			echo "<td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
+			echo "<tr><td>Annihilate the file from the server?</td><td><input name=\"annihilate\" type=\"checkbox\" value=\"yes\"></td></tr>\n";
+			echo "<tr><td>Important! If you do not want to delete this file, 
 				<a href=\"$retpage\">click here</a>!</td>\n";
-            echo "<td>&nbsp;</td><td>&nbsp;</td></tr>\n";
-            echo "</form></table>\n";
-            echo "</td></tr></table>";
+			echo "<td>&nbsp;</td><td>&nbsp;</td></tr>\n";
+			echo "</form></table>\n";
+			echo "</td></tr></table>";
 			
             include("footer.php");
             exit();
         }
         if($action=="del_conf")        {
             $filedata=sc_getfiledata($id);
-            sc_query("delete from files where id = '$id'");
+				sc_query("delete from files where id = '$id'");
+				sc_query("delete from file_duplicates where loc1 = '$filedata->location'");
+				sc_query("delete from file_duplicates where loc2 = '$filedata->location'");
             echo "<p>Delete [$filedata->name] is deleted from the database...</p>\n";
             if($annihilate=="yes") {
                 unlink($RFS_SITE_PATH."/".$filedata->location);
@@ -674,7 +681,7 @@ if($file_mod=="yes"){
     else echo "<p>You can't modify files if you are not <a href=$RFS_SITE_URL/login.php>logged in</a>!</p>\n";
 }
 if($action=="show_duplicates") {
-	sc_show_duplicate_files(0);
+	sc_show_scanned_duplicates(0);
 	include("footer.php");
 	exit;
 }
