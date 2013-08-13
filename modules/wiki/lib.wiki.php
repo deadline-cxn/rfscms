@@ -95,6 +95,50 @@ function wikiimg($text) { eval(scg());
     return $outtext;
 }
 
+
+function wikicode($text) {
+	$ila=explode("[",$text);
+    for($i=0;$i<count($ila);$i++) {
+        if(stristr($ila[$i],"]")) {
+            $ila2=explode("]",$ila[$i]);
+			$fnc= $ila2[0][0];			
+            switch($fnc) {
+				
+				case "#":
+                       
+                    $fnc_=explode(",",substr($ila2[0],1));
+                    $fnc=$fnc_[0];
+                    $ar1=$fnc_[1];
+                    $ar2=$fnc_[2];
+					
+				switch($fnc) {
+					
+					case "shellstart":
+					case "ss":
+						$ila2[1]=str_replace("$","&#36;",$ila2[1]);
+					case "codestart":
+						$ila2[1]=str_replace("{","&#123;",$ila2[1]);
+						$ila2[1]=str_replace("}","&#125;",$ila2[1]);
+						
+						$outtext.="[".$ila2[0]."]".$ila2[1];
+					break;
+			
+				default:
+					$outtext.="[".$ila2[0]."]".$ila2[1];
+					break;
+				}
+
+			}
+        }
+		else
+            $outtext.=$ila[$i];
+	}    
+	return $outtext;
+}
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////
 // WIKITEXT FUNCTION
 function wikitext($text) { eval(scg());
@@ -104,9 +148,13 @@ function wikitext($text) { eval(scg());
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 
-	$text=str_replace("$$","&#36;",$text);
-	$text= wikiimg($text);
 	
+		
+	$text=wikicode($text);
+
+	$text= wikiimg($text);
+
+	$text=str_replace("$$","&#36;",$text);	
 	$text=str_replace("</h1>\r\n","</h1>",$text);
 	$text=str_replace("</h2>\r\n","</h2>",$text);
 	$text=str_replace("</h3>\r\n","</h3>",$text);
@@ -289,5 +337,7 @@ function wikitext($text) { eval(scg());
 	
     return $outtext;
 }
+
+
 
 ?>
