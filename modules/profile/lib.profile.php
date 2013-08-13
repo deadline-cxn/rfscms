@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_add_menu_option("My Profile","$RFS_SITE_URL/modules/profile/profile.php");
+sc_menus_register("My Profile","$RFS_SITE_URL/modules/profile/profile.php");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE profile

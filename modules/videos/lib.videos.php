@@ -1,6 +1,6 @@
 <?
 include_once("include/lib.all.php");
 
-sc_add_menu_option("Videos","$RFS_SITE_URL/modules/videos/videos.php");
+sc_menus_register("Videos","$RFS_SITE_URL/modules/videos/videos.php");
 
 ?>

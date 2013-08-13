@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_add_menu_option("Private Messages","$RFS_SITE_URL/modules/messages/messages.php");
+sc_menus_register("Private Messages","$RFS_SITE_URL/modules/messages/messages.php");
 
 sc_query( "
 CREATE TABLE IF NOT EXISTS `pmsg` (

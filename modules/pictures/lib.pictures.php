@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_add_menu_option("Pictures","$RFS_SITE_URL/modules/pictures/pics.php");
+sc_menus_register("Pictures","$RFS_SITE_URL/modules/pictures/pics.php");
 
 sc_access_method_add("pictures", "orphanscan");
 sc_access_method_add("pictures", "upload");

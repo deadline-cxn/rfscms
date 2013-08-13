@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_add_menu_option("Exams","$RFS_SITE_URL/modules/exams/exams.php");
+sc_menus_register("Exams","$RFS_SITE_URL/modules/exams/exams.php");
 
 sc_access_method_add("exams", "create");
 sc_access_method_add("exams", "add");

@@ -61,7 +61,11 @@ if(stristr($_REQUEST['action'],"ajx")) {
 	sc_do_action();
 	exit();
 }
-else include( "header.php" );
+else {
+	include( "lilheader.php" );
+	sc_do_action();
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
 if(!sc_access_check("admin","access")) {
@@ -2185,6 +2189,8 @@ function adm_action_() { eval(scg());
 
 	$data=sc_getuserdata( $_SESSION['valid_user'] );
 	if(!sc_access_check("admin","access")) return;
+	
+	echo "<div align=center width=80%>";
 
 	echo "<h1>Administration Panel</h1>";
 	
@@ -2232,6 +2238,8 @@ function adm_action_() { eval(scg());
 
     admin_menu_built_in();
 
+	echo "</div>";
+	
 	finishadminpage();
 }
 function admin_menu_built_in() { eval(scg());

@@ -6,9 +6,9 @@ sc_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
 $RFS_MENU_OPTION = array();
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_add_menu_option($short,$url) { 
-		global $RFS_MENU_OPTION;
-		$RFS_MENU_OPTION[$short]=$url;
+function sc_menus_register($short,$url) { 
+	global $RFS_MENU_OPTION;
+	$RFS_MENU_OPTION[$short]=$url;
 }
 function sc_show_menu_options() {
 	echo "<h1>Menu Options registered by Modules</h1>";

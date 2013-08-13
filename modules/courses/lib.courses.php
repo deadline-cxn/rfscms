@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_add_menu_option("Courses","$RFS_SITE_URL/modules/courses/courses.php");
+sc_menus_register("Courses","$RFS_SITE_URL/modules/courses/courses.php");
 
 sc_access_method_add("course", "edit");
 sc_access_method_add("course", "delete");

@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_add_menu_option("Links","$RFS_SITE_URL/modules/linkbin/linkbin.php");
+sc_menus_register("Links","$RFS_SITE_URL/modules/linkbin/linkbin.php");
 
 ///////////////////////////////////////////////////////////////
 // MODULE LINK FRIENDS
