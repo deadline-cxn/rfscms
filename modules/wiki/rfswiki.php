@@ -191,11 +191,11 @@ if($GLOBALS['rfsw_admin_mode']=="true"){
 		$tpage=mysql_fetch_object($res);
 		$wikipage=mfo1("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 		$revision=$wikipage->revision+1;
-        $wikiedittext=addslashes($wikiedittext);
+		$wikiedittext=addslashes($wikiedittext);
         if(empty($data->name)) $data->name="Guest";
-rfs_query("insert into
-		wiki 	(`name`,`author`,		`text`,				`updated`,`revision`,	`revised_by`,`revision_note`)
-		values	('$name','$data->name','$wikiedittext',	'$time',	'$revision', '$data->name', '$revision_note');");
+		rfs_query("insert into
+					wiki 	(`name`,`author`,		`text`,				`updated`,`revision`,	`revised_by`,`revision_note`)
+					values	('$name','$data->name','$wikiedittext',	'$time',	'$revision', '$data->name', '$revision_note');");
     }
 }
 
@@ -213,7 +213,7 @@ if($action=="edit"){
 		echo "<input type=hidden name=action value=editgo>";
         echo "<input type=hidden name=name value=\"$name\">";
         echo "<textarea rows=30 cols=120 style=\"width: 80%;\" name=wikiedittext>";
-        echo stripslashes($wikipage->text);
+        echo   $wikipage->text;
         echo "</textarea><br>";
 		
 		$lastpage=mfo1("select * from wiki where name='$wikipage->name' order by revision desc limit 1");
@@ -239,7 +239,11 @@ else {
             }
     }
     else    {
-        echo smiles(wikitext($wikipage->text));
+		
+		
+		//echo "<pre>$wikipage->text </pre> ";
+        
+		echo wikitext($wikipage->text);
         if($hide_wiki_menu!="true")
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
 		
