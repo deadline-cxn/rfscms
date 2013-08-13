@@ -40,22 +40,23 @@ else {
 	rfs_echo($RFS_SITE_HEAD_CLOSE);	
 	rfs_echo($RFS_SITE_BODY_OPEN);	
 }
-echo "<div>";
-sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
-echo "</div>";
+if(!$RFS_DO_NOT_SHOW_MENU) {
+	echo "<div>";
+	sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
+	echo "</div>";
+}
 //////////////////////////////////////////////
 // Load javascripts
 
 sc_ajax_javascript();
 sc_javascript();
 
-rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
+//rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
 rfs_echo($RFS_SITE_JS_JQUERY);
 rfs_echo($RFS_SITE_JS_COLOR);
 rfs_echo($RFS_SITE_JS_EDITAREA);
 
-if(!stristr(sc_canonical_url(),"/net.php"))
-rfs_echo($RFS_SITE_JS_MSDROPDOWN);
+// if(!stristr(sc_canonical_url(),"/net.php"))	rfs_echo($RFS_SITE_JS_MSDROPDOWN);
 
 //////////////////////////////////////////////
 // google analytics

@@ -74,7 +74,11 @@ if($_REQUEST['action']=="get_file_go") {
 if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("include/lib.all.php");
 include_once("3rdparty/ycTIN.php");
-include("header.php");
+
+if($_REQUEST['action']=="show_duplicates")
+	include("lilheader.php");
+else
+	include("header.php");
 
 echo "<h1>Files</h1>";
 
@@ -580,12 +584,28 @@ if($file_mod=="yes"){
         if($action=="ren")        {
             if(!empty($name)) sc_query("UPDATE files SET name='$name' where id = '$id'");
         }
-        if($action=="del")        {
+		
+		if($action=="f_dup_rem_checked") {
+			foreach( $_POST as $k => $v) {
+				if( (stristr($k,"check_")) && ($v=="on")) {
+					// echo " $k --- $v <br>";
+					$wid=str_replace("check_","",$k);					
+					$delar[$wid]=$wid;
+				}
+			}
+			foreach($delar as $k => $v) {
+				// echo "DELETE FILE ID [$v]<br>";
+				sc_lib_file_delete($v,"yes");
+			}
+			sc_show_scanned_duplicates($RFS_CMD_LINE);
+			
+			exit();
+		}
+		
+        if($action=="del") {
 			
 			$filedata=sc_getfiledata($id);
 			sc_info("REMOVE FILE <br>[$filedata->location]","WHITE","RED");
-			
-			
 			echo "<p></p>";
 			echo "<table border=0>\n";
 			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
@@ -601,24 +621,18 @@ if($file_mod=="yes"){
 			echo "<td>&nbsp;</td><td>&nbsp;</td></tr>\n";
 			echo "</form></table>\n";
 			echo "</td></tr></table>";
-			
             include("footer.php");
             exit();
         }
-        if($action=="del_conf")        {
-            $filedata=sc_getfiledata($id);
-				sc_query("delete from files where id = '$id'");
-				sc_query("delete from file_duplicates where loc1 = '$filedata->location'");
-				sc_query("delete from file_duplicates where loc2 = '$filedata->location'");
-            echo "<p>Delete [$filedata->name] is deleted from the database...</p>\n";
-            if($annihilate=="yes") {
-                unlink($RFS_SITE_PATH."/".$filedata->location);
-                echo "<p> $filedata->location annihilated!</p>\n";
-				if(!empty($retpage)) {
-					sc_gotopage($retpage);
-					exit();
-				}
-            }
+		
+        if($action=="del_conf") {
+			sc_lib_file_delete($id,$annihilate);			
+		
+			if(!empty($retpage)) {
+				sc_gotopage($retpage);
+				exit();
+			}
+			
         }
         if($action=="mod")        {
 			
@@ -682,7 +696,7 @@ if($file_mod=="yes"){
 }
 if($action=="show_duplicates") {
 	sc_show_scanned_duplicates(0);
-	include("footer.php");
+	
 	exit;
 }
 

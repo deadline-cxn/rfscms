@@ -2260,7 +2260,7 @@ function sc_ajax(		$rfalabel,
 		return;
 	}
  
-	if(empty($rfalabel)) $rfalabel="&nbsp;";
+	//if(empty($rfalabel)) $rfalabel="";
 	
 	$rlx=explode(",",$rfalabel);
 	$rfalabel=$rlx[0];
@@ -2268,8 +2268,11 @@ function sc_ajax(		$rfalabel,
 	
 	$rfanname="RFAJAX_".time()."_".md5($rfakv.$rfalabel.$rfatable.$rfaikey);	
 	
-	echo "<div id='$rfanname"."_div' style='float:left;'>&nbsp;</div>\n";
+	if($rfalabel!="") {
+	echo "<div id='$rfanname"."_div' style='float:left;'>&nbsp;</div>\n";	
 	echo "<div id='$rfanname"."_label' style='float:left; $minwidth; margin-top: 5px; margin-right: 10px;'>$rfalabel</div>\n";
+	
+	}
 	echo "<div style='min-width: $rfawidth;'>";
 	
 	$rfakv=addslashes($rfakv);	
