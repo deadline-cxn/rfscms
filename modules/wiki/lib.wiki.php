@@ -105,7 +105,6 @@ function wikitext($text) { eval(scg());
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 
 	$text=str_replace("$$","&#36;",$text);
-
 	$text= wikiimg($text);
 	
 	$text=str_replace("</h1>\r\n","</h1>",$text);
@@ -114,13 +113,9 @@ function wikitext($text) { eval(scg());
 	$text=str_replace("\r\n<hr>","<hr>",$text);
 	$text=str_replace("<hr>\r\n","<hr>",$text);
 	$text=str_replace("<hr>\n","<hr>",$text);
-	//$text=str_replace("\"","&#34;",$text);
-	//$text=str_replace("'","&#39;",$text);
 	$text=str_replace("<?","&lt;?",$text);
-	$text=str_replace("?>","?&gt;",$text);
-	
-	$text=str_replace("^^","&#94;",$text);	
-    $text=stripslashes($text);
+	$text=str_replace("?>","?&gt;",$text);	
+	$text=str_replace("^^","&#94;",$text);	    
     $text=str_replace("[[","&#91;",$text);
     $text=str_replace("]]","&#93;",$text);
 	
@@ -155,7 +150,7 @@ function wikitext($text) { eval(scg());
                                   
                     d_echo($fnc." ".$ar1." ".$ar2);
                     
-                    $fnc=strtolower($fnc);//substr($ila2[0],1));
+                    $fnc=strtolower($fnc);
                     
                     if($GLOBALS['RFS_DEBUG']=="yes")
                         $outtext.=" # FUNCTION $fnc()\n{";                        
@@ -181,18 +176,15 @@ function wikitext($text) { eval(scg());
 							($fnc=="ss") ) {
 
                         $outtext.="<div class='wikishell'><BR>";
-							$xx=nl2br($ila2[1]);
-							// $xx=str_replace("\\","&#92;" ,$xx);
+							$xx=$ila2[1];
 							$xx=str_replace("<br />","<br /> " ,$xx);
-							
 
-							
-                        $outtext.=$xx;
+                        $outtext.="<pre>".$xx;
                         $outtext.="<br><br></div>";
                     }
                     if(	($fnc=="shellend") ||
 							($fnc=="se")) {
-                        $outtext.=nl2br($ila2[1]);                        
+                        $outtext.="</pre>".nl2br($ila2[1]);                        
                     }
                         
                     if($fnc=="codestart"){
@@ -222,7 +214,7 @@ function wikitext($text) { eval(scg());
 												rows=\"$lns\"
 												style=\"width: 80%;\"
 												name=\"codecode_$t\">";
-							$outtext.=stripslashes(str_replace("<","&lt;",$ila2[1]))."</textarea></center>";
+							$outtext.=str_replace("<","&lt;",$ila2[1])."</textarea></center>";
                     }
                     if($fnc=="codeend"){ 
                         $outtext.=nl2br($ila2[1]);
