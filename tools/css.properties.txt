@@ -1,0 +1,307 @@
+align-content stretch
+align-items stretch
+align-self auto
+alignment-adjust auto
+alignment-baseline baseline
+all
+anchor-point none
+animation
+animation-delay 0
+animation-direction normal
+animation-duration 0
+animation-iteration-count 1
+animation-name none
+animation-play-state running
+animation-timing-function ease
+appearance normal
+azimuth center
+backface-visibility visible
+background
+background-attachment scroll
+background-clip border-box
+background-color transparent
+background-image none
+background-origin padding-box
+background-position 0% 0%
+background-repeat repeat
+background-size auto
+baseline-shift baseline
+binding none
+bleed 6pt
+bookmark-label content()
+bookmark-level none
+bookmark-state open
+bookmark-target none
+border
+border-bottom
+border-bottom-color
+border-bottom-left-radius 0
+border-bottom-right-radius 0
+border-bottom-style none
+border-bottom-width medium
+border-collapse separate
+border-color
+border-image none
+border-image-outset 0
+border-image-repeat stretch
+border-image-slice 100%
+border-image-source none
+border-image-width 1
+border-left
+border-left-color
+border-left-style none
+border-left-width medium
+border-radius 0
+border-right
+border-right-color
+border-right-style none
+border-right-width medium
+border-spacing 0
+border-style
+border-top
+border-top-color
+border-top-left-radius 0
+border-top-right-radius 0
+border-top-style none
+border-top-width medium
+border-width
+bottom auto
+box-decoration-break slice
+box-shadow none
+box-sizing content-box
+break-after auto
+break-before auto
+break-inside auto
+caption-side top
+clear none
+clip auto
+color
+color-profile auto
+column-count auto
+column-fill balance
+column-gap normal
+column-rule
+column-rule-color
+column-rule-style medium
+column-rule-width medium
+column-span 1
+column-width auto
+columns
+content normal
+counter-increment none
+counter-reset none
+crop auto
+cue
+cue-after none
+cue-before none
+cursor auto
+direction ltr
+display inline
+dominant-baseline auto
+drop-initial-after-adjust text-after-edge
+drop-initial-after-align baseline
+drop-initial-before-adjust text-before-edge
+drop-initial-before-align caps-height
+drop-initial-size auto
+drop-initial-value initial
+elevation level
+empty-cells show
+fit fill
+fit-position 0% 0%
+flex
+flex-basis auto
+flex-direction row
+flex-flow
+flex-grow 0
+flex-shrink 1
+flex-wrap nowrap
+float none
+float-offset 0 0
+font
+font-feature-settings normal
+font-family
+font-kerning auto
+font-language-override normal
+font-size medium
+font-size-adjust none
+font-stretch normal
+font-style normal
+font-synthesis weight style
+font-variant normal
+font-variant-alternates normal
+font-variant-caps normal
+font-variant-east-asian normal
+font-variant-ligatures normal
+font-variant-numeric normal
+font-variant-position normal
+font-weight normal
+grid-cell none
+grid-column auto
+grid-column-align stretch
+grid-column-sizing auto
+grid-column-span 1
+grid-columns none
+grid-flow none
+grid-row auto
+grid-row-align stretch
+grid-row-sizing auto
+grid-row-span 1
+grid-rows none
+grid-template none
+hanging-punctuation none
+height auto
+hyphens manual
+icon auto
+image-orientation auto
+image-rendering auto
+image-resolution normal
+ime-mode auto
+inline-box-align last
+justify-content flex-start
+left auto
+letter-spacing normal
+line-break auto
+line-height normal
+line-stacking
+line-stacking-ruby exclude-ruby
+line-stacking-shift consider-shifts
+line-stacking-strategy inline-line-height
+list-style
+list-style-image none
+list-style-position outside
+list-style-type disc
+margin
+margin-bottom 0
+margin-left 0
+margin-right 0
+margin-top 0
+marker-offset auto
+marks none
+marquee-direction forward
+marquee-loop 1
+marquee-play-count 1
+marquee-speed normal
+marquee-style scroll
+max-height none
+max-lines none
+max-width none
+min-height 0
+min-width 0
+move-to normal
+nav-down auto
+nav-index auto
+nav-left auto
+nav-right auto
+nav-up auto
+opacity 1
+order 0
+orphans 2
+outline
+outline-color invert
+outline-offset 0
+outline-style none
+outline-width medium
+overflow
+overflow-style auto
+overflow-wrap normal
+overflow-x visible
+overflow-y visible
+padding
+padding-bottom 0
+padding-left 0
+padding-right 0
+padding-top 0
+page auto
+page-break-after auto
+page-break-before auto
+page-break-inside auto
+page-policy start
+pause
+pause-after
+pause-before
+perspective none
+perspective-origin 50% 50%
+pitch medium
+pitch-range 50
+play-during auto
+position static
+presentation-level 0
+punctuation-trim none
+quotes
+rendering-intent auto
+resize none
+rest
+rest-after
+rest-before
+richness 50
+right auto
+rotation 0
+rotation-point 50% 50%
+ruby-align auto
+ruby-overhang none
+ruby-position before
+ruby-span none
+size auto
+speak auto
+speak-as normal
+speak-header once
+speak-numeral continuous
+speak-punctuation none
+speech-rate medium
+stress 50
+string-set none
+tab-size 8
+table-layout auto
+target
+target-name current
+target-new window
+target-position above
+text-align start
+text-align-last start
+text-decoration none
+text-decoration-color currentColor
+text-decoration-line none
+text-decoration-skip objects
+text-decoration-style solid
+text-emphasis none
+text-emphasis-color currentColor
+text-emphasis-position above right
+text-emphasis-style none
+text-height auto
+text-indent 0
+text-justify auto
+text-outline none
+text-overflow clip
+text-shadow none
+text-space-collapse collapse
+text-transform none
+text-underline-position auto
+text-wrap normal
+top auto
+transform none
+transform-origin 50% 50% 0
+transform-style flat
+transition
+transition-delay 0
+transition-duration 0
+transition-property all
+transition-timing-function ease
+unicode-bidi normal
+vertical-align baseline
+visibility visible
+voice-balance center
+voice-duration
+voice-family
+voice-pitch medium
+voice-range medium
+voice-rate
+voice-stress moderate
+voice-volume medium
+volume medium
+white-space normal
+widows 2
+width auto
+word-break normal
+word-spacing normal
+word-wrap normal
+z-index
