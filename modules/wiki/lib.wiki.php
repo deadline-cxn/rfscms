@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_add_menu_option("Wiki","$RFS_SITE_URL/modules/wiki/rfswiki.php");
+sc_menus_register("Wiki","$RFS_SITE_URL/modules/wiki/rfswiki.php");
 
 sc_access_method_add("wiki", "admin");
 sc_access_method_add("wiki", "edit");

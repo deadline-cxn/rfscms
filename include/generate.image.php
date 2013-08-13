@@ -65,6 +65,9 @@ if( $action=="showfont") {
         $bgc=imagecolorallocate($image_b,$bgr,$bgg,$bgb);
         imagefill($image_b,1,1,$bgc);
     }
+	if($bcr==0) $bcr=1;
+	if($bcg==0) $bcr=1;
+	if($bcb==0) $bcb=1;
 	$bordercolor  = imagecolorallocate($image_b, $bcr, $bcg, $bcb);
 	
 	

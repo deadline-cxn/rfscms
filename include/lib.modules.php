@@ -27,6 +27,7 @@ function sc_get_modules_array() {
 function sc_module_register($x) { eval(scg());
 	global $RFS_MODULE;
 	$RFS_MODULE[$x]=true;
+	// sc_menus_register()
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_module_installed($x) { eval(scg());
