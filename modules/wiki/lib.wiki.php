@@ -182,8 +182,8 @@ function wikitext($text) { eval(scg());
 
                         $outtext.="<div class='wikishell'><BR>";
 							$xx=nl2br($ila2[1]);
-							$xx=str_replace("\\","&#92;" ,$xx);
-							$xx=str_replace("<br />","<br /> $" ,$xx);
+							// $xx=str_replace("\\","&#92;" ,$xx);
+							$xx=str_replace("<br />","<br /> " ,$xx);
 							
 
 							

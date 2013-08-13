@@ -247,6 +247,48 @@ function sc_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
 	
 }
 
+
+function sc_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
+		$f=mfo1("select * from files where id='$id'");
+	
+		echo "<tr>";		
+		echo "<td	class='$color'>";
+		echo " <input type=\"checkbox\" name=\"check_".$f->id."\">";		
+		echo "</td>";
+		
+		echo "<td	class='$color'>";
+
+		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?file_mod=yes&action=del&id=".
+							$f->id.
+							"&retpage=".urlencode(sc_canonical_url()),
+							"Delete ",
+							"$RFS_SITE_URL/images/icons/Delete.png",
+							16,16);
+
+			
+		echo "</td>";
+		
+		echo "<td class='$color'>";
+		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$f->id\">";
+		echo $f->location;
+		echo "</a>";
+		echo "</td>";
+		
+		echo "<td class='$color'>";
+		echo $f->size;
+		echo "</td>";
+		
+		echo "<td class='$color'>";		
+		sc_ajax("","files","id",$f->id,"category",70,"select,table,categories,name","files","edit","");
+		echo "</td>";
+		
+		echo "<td class='$color'>";
+		echo $f->md5;
+		echo "</td>";
+		
+		echo "</tr>";
+		
+}
 function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 
 	echo "<h1>Duplicate files</h1>";
@@ -255,7 +297,7 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 	echo "There are $x duplicate files total";
 
 	if(empty($fdlo)) $fdlo="0";
-	if(empty($fdhi)) $fdhi="50";
+	if(empty($fdhi)) $fdhi="5";
 		$limit=" limit $fdlo,$fdhi ";
 	
     $result = sc_query("select id, location, size, category from files");
@@ -265,103 +307,36 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 	}
 	
 	
-	// echo "<form 
+	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/files/files.php\" method=post>\n";
+	echo "<input type=hidden name=file_mod value=yes>";
+	echo "<input type=hidden name=action value=f_dup_rem_checked>";
 	
 	$r=sc_query("select * from file_duplicates $limit");
-	echo "<table border=0>";	
-	echo "<tr><th>id</th><th>category</th><th>file size</th><th>file location</th><th>md5</th></tr>";
+	echo "<div style=\"padding: 15px;\">";
+	echo "<table border=0>";
+	echo "<tr><th>";
+	
+	echo "<input type=checkbox name=whatly_diddly_do onclick=\"	\" >";	
+	echo "</th><th>id</th><th>file location</th><th>file size</th><th>category</th><th>md5</th></tr>";
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$dupe=mysql_fetch_object($r);
 		
 		$clr++; if($clr>2) $clr=1;
 		$color="sc_project_table_$clr";
-		echo "<tr>";
 		
-		echo "<td	class='$color'>";
-
-		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?file_mod=yes&action=del&id=".
-							$filelist[$dupe->loc1]['id'].
-							"&retpage=".urlencode(sc_canonical_url()),
-							"Delete ".$dupe->loc1,
-							"$RFS_SITE_URL/images/icons/Delete.png",
-							16,16);
-
+		$rr=sc_query("select * from files where md5 = '$dupe->md5'");
+		for($u=0;$u<mysql_num_rows($rr);$u++)  {		
+			$f=mysql_fetch_object($rr);
+			sc_show_one_scanned_duplicate($RFS_CMD_LINE,$f->id,$color);
 			
-		echo "</td>";
+		}
+		// sc_show_one_scanned_duplicate($RFS_CMD_LINE,$filelist[$dupe->loc2]['id'],$color);
 		
-		echo "<td class='$color'>";
-		/*
-		if($filelist[$dupe->loc1]['category']!="unsorted")
-		echo "<font color='green'>";			  
-		else  echo "<font color='red'>";		
-		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?action=f_mv_file_cat&id=".
-							$filelist[$dupe->loc1]['id'].
-							"&retpage=".urlencode(sc_canonical_url()),
-							"Change Category (".$filelist[$dupe->loc1]['category'].")",
-							"$RFS_SITE_URL/images/icons/arrow-right.png",
-							16,16);	
-		echo $filelist[$dupe->loc1]['category'];
-		 * */
-sc_ajax(" ","files","id",$filelist[$dupe->loc1]['id'],"category",70,"select,table,categories,name","files","edit","");
-				
-		echo "</td>";
-		
-		echo "<td class='$color'>";
-		echo $filelist[$dupe->loc1]['size'];
-		echo "</td>";
-		
-		echo "<td class='$color'>";
-		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=".$filelist[$dupe->loc1]['id']."\">";
-		echo $filelist[$dupe->loc1]['location'];
-		echo "</a>";
-		echo "</td>";
-		
-		echo "<td class='$color'>";
-		echo $dupe->md5;
-		echo "</td>";
-		
-		echo "</tr>";
-		
-		echo "<tr>";
-		
-		echo "<td	class='$color'>";
-		
-		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?file_mod=yes&action=del&id=".
-							$filelist[$dupe->loc2]['id'].
-							"&retpage=".urlencode(sc_canonical_url()),
-							"Delete ".$dupe->loc2,
-							"$RFS_SITE_URL/images/icons/Delete.png",
-							16,16);
-		
-		echo "</td>";
-		
-		echo "<td	class='$color'>";		
-sc_ajax(" ","files","id",$filelist[$dupe->loc2]['id'],"category",70,"select,table,categories,name","files","edit","");		
-		echo "</td>";
-		
-		echo "<td	class='$color'>";
-		echo $filelist[$dupe->loc2]['size'];
-		echo "</td>";
-		
-		echo "<td	class='$color'>";
-		
-		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=".$filelist[$dupe->loc2]['id']."\">";
-		echo $filelist[$dupe->loc2]['location'];
-		echo "</a>";
-		echo "</td>";
-		
-		echo "<td class='$color'>";
-		echo $dupe->md5;
-		echo "</td>";
-		
-		echo "</tr>";
-		
-		
-		// echo "<tr><td>id[$dupe2->id]</td><td>$dupe2->category</td><td>$dupe2->size</td><td>$dupe2->location</td></tr>";
-
-		// echo "\n"; if(!$RFS_CMD_LINE) echo "<br>";		
 	}
 	echo "</table>";
+	echo "<input type=submit name=submit value=\"Delete All Checked\">";
+	echo "</form>";
+	echo "</div>";
 }
 
 function sc_show_duplicate_files($RFS_CMD_LINE) {
@@ -472,4 +447,18 @@ function sc_show_duplicate_files2($RFS_CMD_LINE) {
 	if(!$RFS_CMD_LINE) 
 		echo "</table>";
 }
+
+
+function sc_lib_file_delete($id,$annihilate) { eval(scg());
+	$filedata=sc_getfiledata($id);
+	sc_query("delete from files where id = '$id'");
+	sc_query("delete from file_duplicates where loc1 = '$filedata->location'");
+	sc_query("delete from file_duplicates where loc2 = '$filedata->location'");
+	echo "<p>Deleted [$filedata->location] from the database...</p>\n";
+	if($annihilate=="yes") {
+		unlink($RFS_SITE_PATH."/".$filedata->location);
+		echo "<p> $filedata->location annihilated!</p>\n";
+	}
+}
+
 ?>
