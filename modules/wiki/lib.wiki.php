@@ -40,6 +40,18 @@ function sc_module_mini_wiki($x) { eval(scg());
 }
 
 
+function wiki_img($text) {
+// search for pattern {image.png,x,y} 
+// replace with image box
+
+	$r=preg_match('/(\{(.+)\.(.+))(,(.+))?(,(.+))?(\})+/', $text, $matches);
+	foreach($matches as $k) {
+		echo "$k <br>";
+	}
+
+
+}
+
 function wikiimg($text) { eval(scg());    
     $text=stripslashes($text);
     $text=str_replace("{{","&#123;",$text);
@@ -94,8 +106,6 @@ function wikiimg($text) { eval(scg());
     }
     return $outtext;
 }
-
-
 function wikicode($text) {
 	$ila=explode("[",$text);
     for($i=0;$i<count($ila);$i++) {
@@ -135,10 +145,6 @@ function wikicode($text) {
 	}    
 	return $outtext;
 }
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////
 // WIKITEXT FUNCTION
 function wikitext($text) { eval(scg());
@@ -147,9 +153,7 @@ function wikitext($text) { eval(scg());
 		$RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
-
 	
-		
 	$text=wikicode($text);
 
 	$text= wikiimg($text);
@@ -164,8 +168,7 @@ function wikitext($text) { eval(scg());
 	$text=str_replace("<?","&lt;?",$text);
 	$text=str_replace("?>","?&gt;",$text);	
 	$text=str_replace("^^","&#94;",$text);	    
-    $text=str_replace("[[","&#91;",$text);
-    $text=str_replace("]]","&#93;",$text);
+   
 	
 	$text=sc_twitter_url($text);
 	$text=sc_email_url($text);
@@ -178,9 +181,11 @@ function wikitext($text) { eval(scg());
             $ila2=explode("]",$ila[$i]);
             $fnc= $ila2[0][0];
 			
-            switch($fnc)             {
-                case "@": 
-                
+			
+			
+            switch($fnc) {
+								
+                case "@":                 
                     // symbolic page link
                     $fnc=explode(",",substr($ila2[0],1));
 						$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($fnc[0])."\">".$fnc[1]."</a>";
@@ -205,6 +210,7 @@ function wikitext($text) { eval(scg());
 						
 						if($fnc=="toggledivstart") {
 							
+							
 							$lstd=explode(",",$ila2[0]);
 							$outtext.=sc_togglediv_start_ne($lstd[1],$lstd[2],$lstd[3]);							
 							$outtext.=$ila2[1];
@@ -212,6 +218,7 @@ function wikitext($text) { eval(scg());
 							
 						}
 						if($fnc=="toggledivend") {
+							
 							$outtext.=sc_togglediv_end_ne();
 							$outtext.="<br>";
 							$outtext.=$ila2[1];
@@ -222,6 +229,8 @@ function wikitext($text) { eval(scg());
 						
                     if(	($fnc=="shellstart") ||
 							($fnc=="ss") ) {
+								
+								
 
                         $outtext.="<div class='wikishell'><BR>";
 							$xx=$ila2[1];
@@ -232,43 +241,31 @@ function wikitext($text) { eval(scg());
                     }
                     if(	($fnc=="shellend") ||
 							($fnc=="se")) {
+								
                         $outtext.="</pre>".nl2br($ila2[1]);                        
                     }
                         
                     if($fnc=="codestart"){
-           				$t=md5(generate_password());
-						// <script language="Javascript" type="text/javascript" src="'.$RFS_SITE_URL.'/3rdparty/editarea/edit_area/edit_area_full.js">										</script>
-										
-							$outtext.='<script>
-											editAreaLoader.init({
-												id: "codecode_'.$t.'",
-												start_highlight: true,
-												font_size: "8",
-												font_family: "terminal, verdana, monospace",
-												allow_resize: "both",
-												allow_toggle: false,
-												language: "en",
-												syntax: "php",
-												toolbar: "search",												
-												load_callback: "my_load",
-												save_callback: "my_save",
-												plugins: "charmap",
-											charmap_default: "arrows" });												
-										</script> ';
-
-							$lns=substr_count($ila2[1],"\n");
-							$outtext.="<center><textarea 
-												id=\"codecode_$t\"
-												rows=\"$lns\"
-												style=\"width: 80%;\"
-												name=\"codecode_$t\">";
-							$outtext.=str_replace("<","&lt;",$ila2[1])."</textarea></center>";
+							
+							$language=$ar1;
+							if(empty($language)) $language="php";
+						
+							include_once("$RFS_SITE_PATH/3rdparty/geshi/geshi.php");
+							$geshi=new GeSHi($ila2[1],$language);
+							
+							$code=$geshi->parse_code();
+							$code=str_replace("class=","class='codez' ff=",$code);
+							$outtext.=$code;
+							
+							
                     }
                     if($fnc=="codeend"){ 
+					
                         $outtext.=nl2br($ila2[1]);
                     }
                         
                     if($fnc=="beginlist"){
+						
                         $outtext.="<table class=rfs_bulletlist width=100%>";
                         $outtext.="<tr><td class=rfs_bulletlist_txt_td>";
                         $outtext.="<table border=0>";
@@ -301,6 +298,7 @@ function wikitext($text) { eval(scg());
                     break;
 
                 default:
+					
 						if( 	stristr($ila2[0],"http:") || 
 								stristr($ila2[0],"https:") ||
 								stristr($ila2[0],"ftp:") ||
@@ -328,8 +326,12 @@ function wikitext($text) { eval(scg());
 							}
 						else
 							$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($ila2[0])."\">".$ila2[0]."</a>".nl2br($ila2[1]);
+							
+					
+					
                     break;
-           }
+			}
+			
         }
         else
             $outtext.=nl2br($ila[$i]);

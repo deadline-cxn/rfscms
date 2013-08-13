@@ -149,6 +149,21 @@ h1, h2, h3
 	box-shadow: 5px 5px 5px #020;
 }
 
+.codez {
+	padding: 10px;
+	margin:0 auto;
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #ffffdd;
+	color: #000000;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	box-shadow: 5px 5px 5px #020;
+}
+
 hr {
     border: 1px;
 	border-color: #3D3D3D;
