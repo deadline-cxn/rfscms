@@ -300,11 +300,11 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 	if(empty($fdhi)) $fdhi="5";
 		$limit=" limit $fdlo,$fdhi ";
 	
-    $result = sc_query("select id, location, size, category from files");
+    /*$result = sc_query("select id, location, size, category from files");
     for($i=0;$i<mysql_num_rows($result);$i++) {
 		$x=mysql_fetch_array($result);
 		$filelist[$x['location']]=$x;
-	}
+	}*/
 	
 	
 	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/files/files.php\" method=post>\n";
