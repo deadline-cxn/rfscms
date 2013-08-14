@@ -1,6 +1,9 @@
-<?
+<? 
 
-$inname=$_REQUEST['inname'];
+if(isset($argv[1])) $inname=$argv[1]; 
+else 				$inname=$_REQUEST['inname'];
+if(isset($argv[2])) $dtrip=$argv[2];
+else $dtrip=$_REQUEST['dtrip'];
 ////////////////////////////////////////////////////////////////////////
 function gT($name){
 	$test = strpos($name, "#");
@@ -22,26 +25,34 @@ function gT($name){
 	$salt = preg_replace('/[^\.-z]/', '.', $salt);
 	$salt = strtr($salt, ':;<=>?@[\]^_`', 'ABCDEFGabcdef');
 	$output = substr(crypt($trip, $salt), -10);
-
-	if(!empty($output))
-	echo "<div style='color: green; float: left;'>$name   </div>";
-	echo "<div style='color: black; background-color: red; float: left;'> $output </div>";
-	echo "<br style='float: none;'>";
-
+	return $name." ".$output;
+	
 }
 
 ////////////////////////////////////////////////////////////////////////
 
-echo "<h3>BASED TRIP CODE GENERATOR</h3>";
-echo "<form><input type=hidden name=aaa value=a>Enter name<input name=inname value='$inname'><input type=submit ></form>";
-for($i=0;$i<30;$i++) {
+echo "BASED TRIP CODE GENERATOR\n ";
+
+if(!isset($argv[1])) {
+echo "<form><input type=hidden name=aaa value=a>
+Enter name<input name=inname value='$inname'>
+Desired Trip<input name=dtrip value='$dtrip'> <input type=submit ></form>";
+}
+
+$f=0;
+while(!$f){
 	if(!empty($inname)) {
 		$name=$inname."#";
 		for($x=0;$x<10;$x++) {
 			$name.=chr(rand ( 64, 122));				
 		}
-		gT($name);	
+		$x=gT($name);
+		$y=explode(" ",$x);
+		if(stristr($y[1],$dtrip)) {
+			
+			echo $x."\n";
+		}
 	}
 }
+exit();
 ?>
-
