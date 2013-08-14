@@ -1,9 +1,11 @@
 <?
 
+
 chdir("../../");
 
 //include("include/session.php");
 include("include/lib.all.php");
+
 
 $data=sc_getuserdata($_SESSION['valid_user']);
 
@@ -489,35 +491,6 @@ sc_debugfooter(0);
 echo "</body>";
 echo "</html>";
 
-////////////////////////////////////////////////////////////////////////
-function gT($name){
-	$test = strpos($name, "#");
-	if($test === FALSE){
-		$nameo;
-		$trip = $name;
-	}
-	else{
-		$k = explode('#', $name);
-		$nameo = $k[0];
-		$trip = $k[1];
-	}
-	if((function_exists('mb_convert_encoding'))){
-		mb_substitute_character('none');
-		$recoded_cap = mb_convert_encoding($trip, 'Shift_JIS', 'UTF-8');
-	}
-	$trip = (($recoded_cap != '') ? $recoded_cap : $trip);
-	$salt = substr($trip.'H.', 1, 2);
-	$salt = preg_replace('/[^\.-z]/', '.', $salt);
-	$salt = strtr($salt, ':;<=>?@[\]^_`', 'ABCDEFGabcdef');
-	$output = substr(crypt($trip, $salt), -10);
-	echo '<table border="0"><tr><th scope="row">Input</th><td>'.$name.'</td></tr><tr><th scope="row">Read (debug)</th><td>'.$trip.'</td></tr><tr><th scope="row">Output</th><td>'.$nameo.'!'.$output.'</td></tr></table>';
-}
-////////////////////////////////////////////////////////////////////////
-if($aaa=="a") {
-		echo "<h1>BASED TRIP CODE GENERATOR</h1>";
-		gT($gt);
-		exit();
-}
 
 
 
