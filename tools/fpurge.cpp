@@ -7,6 +7,16 @@
 #include <string.h>
 #include <mysql.h>
 using namespace std;
+// define your database config in this file
+#include "db_config.h"
+// example:
+/*
+#define DB_HOST "localhost"
+#define DB_USER "root"
+#define DB_PASS "password"
+#define DB_DB   "database_name"
+*/
+
 MYSQL *con;
 void finish_with_error(MYSQL *con) { fprintf(stderr, "%s\n", mysql_error(con)); mysql_close(con); exit(1); }
 void purge_file(int id, char * filename) {
@@ -19,8 +29,8 @@ void purge_file(int id, char * filename) {
 int main() {
 	chdir("..");
 	con = mysql_init(NULL); if(con==NULL) { fprintf(stderr, "%s\n", mysql_error(con)); exit(1); }
-	printf("Find Orphan Files (MySQL: %s)\n", mysql_get_client_info());
-	if(mysql_real_connect(con, "localhost", "root", "!QAZ2wsx", "area56", 0, NULL, 0) == NULL) { finish_with_error(con); }
+	printf("RFSCMS Purge Files command line utility\n(MySQL: %s)\n", mysql_get_client_info());
+	if(mysql_real_connect(con, DB_HOST, DB_USER, DB_PASS, DB_DB, 0, NULL, 0) == NULL) { finish_with_error(con); }
 	if(mysql_query(con, "SELECT id, location FROM files")) { finish_with_error(con); }
 	MYSQL_RES *result = mysql_store_result(con);
 	if(result==NULL) { finish_with_error(con); }

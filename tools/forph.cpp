@@ -10,6 +10,16 @@
 #include <mysql.h>
 #include <dirent.h>
 using namespace std;
+// define your database config in this file
+#include "db_config.h"
+// example:
+/*
+#define DB_HOST "localhost"
+#define DB_USER "root"
+#define DB_PASS "password"
+#define DB_DB   "database_name"
+*/
+
 MYSQL *con;
 vector<string> files;
 void finish_with_error(MYSQL *con) { fprintf(stderr, "%s\n", mysql_error(con)); mysql_close(con); exit(1); }
@@ -30,7 +40,6 @@ bool file_in_db(char *filename) {
 	return false;
 }
 void scan_dir(char *dir) {
-	//	printf("Scanning [%s]\n",dir);
 	char nfn[1024];
 	DIR *dpdf;
         struct dirent *epdf;
@@ -57,8 +66,8 @@ void scan_dir(char *dir) {
 int main() {
 	chdir("..");
 	con = mysql_init(NULL); if(con==NULL) { fprintf(stderr, "%s\n", mysql_error(con)); exit(1); }
-	printf("Find Orphan Files (MySQL: %s)\n", mysql_get_client_info());
-	if(mysql_real_connect(con, "localhost", "root", "!QAZ2wsx", "area56", 0, NULL, 0) == NULL) { finish_with_error(con); }
+	printf("RFSCMS Find Orphan Files command line utility\n(MySQL: %s)\n", mysql_get_client_info());
+	if(mysql_real_connect(con, DB_HOST, DB_USER, DB_PASS, DB_DB, 0, NULL, 0) == NULL) { finish_with_error(con); }
 	scan_dir("files");
 	mysql_close(con);
 	exit(0);
