@@ -452,18 +452,12 @@ function mfo1($query){
 	else return $res;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function mfo($res){
-	return mysql_fetch_object($res);
-}
+function mfo($res){ return mysql_fetch_object($res); }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function mnr($res){
-    if(!$res)  return 0;
-	return mysql_num_rows($res);
-}
+function mnr($res){ if(!$res) return 0; return mysql_num_rows($res); }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_db_get($table,$key,$kv,$field){
     $q="select $field from $table where $key = \"$kv\"";
-    //echo $q;
     $res=sc_query($q);
     $i=mysql_fetch_assoc($res);
     reset($i);
@@ -554,8 +548,7 @@ function sc_db_query($query,$becho){
     if($res)
     if($becho){
         
-        $num=@mysql_num_rows($res);
-        
+		$num=@mysql_num_rows($res);
 		echo "<br>$num rows affected<br>";
         echo "<table border=0 cellpadding=5>";
         $hdr=0;
@@ -2117,8 +2110,8 @@ function sc_ajax_javascript() { eval(scg());
 		}
 		</script> ';
 }
-function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,
-						$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
+
+function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
 	
 	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
 	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
