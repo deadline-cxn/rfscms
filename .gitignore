@@ -6,7 +6,6 @@ config/config.php
 files/*
 develop/*
 images/*
-projects/*
 tmp/*
 wtf/*
 modules/bullet_log/*
