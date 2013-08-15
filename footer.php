@@ -4,11 +4,17 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 
 // include("include/lib.all.php");
-
 // $data=$GLOBALS['data']; if(empty($theme)) $theme=$data->theme; if(empty($theme)) $theme=$GLOBALS['theme'];
 
 // output some debug information
 sc_debugfooter(0);
+if(isset($RFS_LITTLE_HEADER)) {
+	if($RFS_LITTLE_HEADER==true) {
+		rfs_echo($RFS_SITE_BODY_CLOSE);
+		rfs_echo($RFS_SITE_HTML_CLOSE);
+		return;
+	}
+}
 
 // include custom theme footer instead of this one
 if(file_exists("$RFS_SITE_PATH/themes/$theme/t.footer.php")){
@@ -23,8 +29,7 @@ else{
 	else {
 		
 	}
-	echo "</td>"; // END MIDTD
-	
+	echo "</td>"; // END MIDTD	
 	
 	////////////////////////////////////////////////////////////////////
 	// DRAW THE RIGHT MODULES (RIGHTTD)

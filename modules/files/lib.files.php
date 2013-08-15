@@ -166,53 +166,58 @@ function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 				    orphan_scan($dir."/".$file,$RFS_CMD_LINE);
 				}
 				else {
-                    $url="$dir/$file";
-					$loc=addslashes("$dir/$file");
 					
-					// echo ".. $url ".$filearray[$url]."\n";
-					if(isset($filearray["$url"])){
+					
+					if(	($file!="desktop.ini") &&
+						($file!="Thumbs.db") &&
+						($file!="Folder.jpg") ) {
+						
+						
+						
+							
+							
+							
+							
+							$url="$dir/$file";
+							$loc=addslashes("$dir/$file");
+							if(isset($filearray["$url"])){
 
-                    }
-                    else{						
-                        $time=date("Y-m-d H:i:s");
-                        $filetype=sc_getfiletype($file);						
-						$tdir=getcwd()."/$dir/$file";
-						//echo "--- $tdir --- \n ";
-                        $filesizebytes=filesize("$tdir");
-						//echo "$filesizebytes \n";
-
-						// if($filesizebytes>0) {
-
-								$name=addslashes($file);
-								$infile=addslashes($file);							
-								sc_query("INSERT INTO `files` (`name`) VALUES('$infile');");
-								$fid=mysql_insert_id();
-								$loc=addslashes("$dir/$file");
-								sc_query("UPDATE files SET `location`='$loc' where id='$fid'");
-								$dname="system";
-								if(!empty($data)) $dname=$data->name;							
-								sc_query("UPDATE files SET `submitter`='$dname' where id='$fid'");
-								sc_query("UPDATE files SET `category`='unsorted' where id='$fid'");
-								sc_query("UPDATE files SET `hidden`='no' where id='$fid'");
-								sc_query("UPDATE files SET `time`='$time' where id='$fid'");
-								sc_query("UPDATE files SET filetype='$filetype' where id='$fid'");
-								sc_query("UPDATE files SET size='$filesizebytes' where id='$fid'");
+							}
+							else{						
+									$time=date("Y-m-d H:i:s");
+									$filetype=sc_getfiletype($file);						
+									$tdir=getcwd()."/$dir/$file";
 								
-								$tmd5=md5_file ("$dir/$file");
-								
-								sc_query("UPDATE files SET md5='$tmd5' where id='$fid'");
+									$filesizebytes=filesize("$tdir");
+									$name=addslashes($file);
+									$infile=addslashes($file);							
+									sc_query("INSERT INTO `files` (`name`) VALUES('$infile');");
+									$fid=mysql_insert_id();
+									$loc=addslashes("$dir/$file");
+									sc_query("UPDATE files SET `location`='$loc' where id='$fid'");
+									$dname="system";
+									if(!empty($data)) $dname=$data->name;							
+									sc_query("UPDATE files SET `submitter`='$dname' where id='$fid'");
+									sc_query("UPDATE files SET `category`='unsorted' where id='$fid'");
+									sc_query("UPDATE files SET `hidden`='no' where id='$fid'");
+									sc_query("UPDATE files SET `time`='$time' where id='$fid'");
+									sc_query("UPDATE files SET filetype='$filetype' where id='$fid'");
+									sc_query("UPDATE files SET size='$filesizebytes' where id='$fid'");
+									
+									$tmd5=md5_file ("$dir/$file");
+									
+									sc_query("UPDATE files SET md5='$tmd5' where id='$fid'");
 
-								echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
-								if(!$RFS_CMD_LINE) sc_flush_buffers();
-								$dir_count++;
-								
-						// }
+									echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
+									if(!$RFS_CMD_LINE) sc_flush_buffers();
+									$dir_count++;
+							}
+						}
 					}
 				}
-            }
-        }
-    }
-}
+			}
+		}
+	}
 
 function purge_files($RFS_CMD_LINE){
 	if(!$RFS_CMD_LINE)  {

@@ -75,19 +75,23 @@ if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("include/lib.all.php");
 include_once("3rdparty/ycTIN.php");
 
-if($_REQUEST['action']=="show_duplicates")
-	include("lilheader.php");
-else
-	include("header.php");
+
+if($_REQUEST['action']=="show_temp") { 	$_SESSION['show_temp']=true;}
+if($_REQUEST['action']=="hide_temp") {	$_SESSION['show_temp']=false;}
+if($_REQUEST['action']=="editmodeon") {	$_SESSION['editmode']=true;}
+if($_REQUEST['action']=="editmodeoff"){ $_SESSION['editmode']=false;}
+
+if( ($_REQUEST['action']=="show_duplicates") ||
+	($_SESSION['show_temp']==true) ||
+	($_SESSION['editmode']==true) ) {
+	$RFS_LITTLE_HEADER=true;
+}
+include("header.php");
 
 echo "<h1>Files</h1>";
 
 sc_div("files.php");
 
-if($action=="show_temp") { 	$_SESSION['show_temp']=true;}
-if($action=="hide_temp") {	$_SESSION['show_temp']=false;}
-if($action=="editmodeon") {	$_SESSION['editmode']=true;}
-if($action=="editmodeoff"){ $_SESSION['editmode']=false;}
 
 echo "<table border=0><tr>"; 
 
@@ -540,7 +544,7 @@ if($action=="get_file"){
 						}
 					}
 					echo "<pre>";
-					echo system("7z l $filedata->location");
+					echo system("7z l '$filedata->location'");
 					echo "</pre>";
 					
 					echo "<hr>";
@@ -548,6 +552,12 @@ if($action=="get_file"){
 					
 					
 					break;
+				case "nfo":
+				case "txt":
+					echo "<pre>";
+					include($filedata->location);
+					echo "</pre>";
+						break;
 
 				default:
 					break;

@@ -3,8 +3,10 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 if(isset($RFS_LITTLE_HEADER)) {
-	include("lilheader.php");
-	exit();
+	if($RFS_LITTLE_HEADER==true) {
+		include("lilheader.php");
+		return;		
+	}
 }
 
 // check for config.php file
