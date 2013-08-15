@@ -1,2 +1,4 @@
-g++ -g forph.cpp -o forph `mysql_config --cflags --libs`
+g++ -Wwrite-strings -g forph.cpp -o forph `mysql_config --cflags --libs`
+
+
 
