@@ -48,10 +48,66 @@ while(!$f){
 		}
 		$x=gT($name);
 		$y=explode(" ",$x);
-		if(stristr($y[1],$dtrip)) {
-			
-			echo $x."\n";
-		}
+		$otrip=$dtrip;
+		if(stristr($y[1],$dtrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("a","4",$dtrip);
+		if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("i","1",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("A","4",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("I","1",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("e","3",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("s","$",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("g","6",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("t","7",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("s","5",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("o","0",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("i","!",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("o","*",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("h","#",$dtrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+
+
+
+
+
+
+		$otrip=str_replace("A","4",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("I","1",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("e","3",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("s","$",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("g","6",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("t","7",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("s","5",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("o","0",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("i","!",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+                $otrip=str_replace("l","1",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+		$otrip=str_replace("h","#",$otrip);
+                if(stristr($y[1],$otrip)) { echo $x."\n"; continue; }
+
+
+
+
 	}
 }
 exit();

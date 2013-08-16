@@ -2037,6 +2037,9 @@ function sc_ajax_callback_file(){ eval(scg());
 
 	exit;
 }
+function sc_ajax_callback_delete() { eval(scg());
+echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";	
+}
 function sc_ajax_callback(){ eval(scg());
 
 	if(sc_access_check($rfaapage,$rfaact)) {
@@ -2054,21 +2057,19 @@ function sc_ajax_callback(){ eval(scg());
 	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
 	exit;
 }
+		//        if(div.style.display == "block") { 
+        //}
+        //else {
+        //    div.style.display = "block";
+       // }
 function sc_ajax_javascript() { eval(scg());
 	echo '
 	<script>
 	
 	
 	function rfs_ajax_hide(x) {
-        var div = document.getElementById(x);
-        if (div.style.display == "block") 
-        {
-            div.style.display = "none";
-        }
-        else 
-        {
-            div.style.display = "block";
-        }
+			var div = document.getElementById(x);
+			div.style.display = "none";
 		
 	};
 		function rfs_ajax_func(
@@ -2263,7 +2264,9 @@ function sc_ajax(		$rfalabel,
 	
 	if($rfalabel!="") {
 	echo "<div id='$rfanname"."_div' style='float:left;'>&nbsp;</div>\n";	
-	echo "<div id='$rfanname"."_label' style='float:left; $minwidth; margin-top: 5px; margin-right: 10px;'>$rfalabel</div>\n";
+	
+	echo "<div id='$rfanname"."_label' style='float:left; 
+	$minwidth; margin-top: 5px; margin-right: 10px;'>$rfalabel</div>\n";
 	
 	}
 	echo "<div style='min-width: $rfawidth;'>";
@@ -2380,6 +2383,24 @@ function sc_ajax(		$rfalabel,
 		if($cbxo=="on") echo " checked ";
 		echo " >";
 		
+		echo "</div>";
+		echo "<div style='clear:both;'></div>";
+		return;
+	}
+	
+	if(stristr($rfatype,"button")) {
+		echo "<button	id=\"$rfanname"."_input\"
+		
+					size=\"$rfawidth\"
+					
+					name=\"$rfanname"."_name\"
+					
+					value=\"$rfalabel\" 
+					onclick=\"
+					rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');					
+					$hidefunc \"> 
+					<span class=\"ui-button-text\">$rfalabel</span></button>";
+			
 		echo "</div>";
 		echo "<div style='clear:both;'></div>";
 		return;

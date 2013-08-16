@@ -7,67 +7,45 @@ body
     margin: 0px;
 }
 
-
-.sc_top_file_table
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    color:   #000000;
-    background-color: #8888ff;
-}
-
-.sc_file_table_0
-{
+.sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
     background-color: #a09060;
 }
 
-.sc_file_table_1
-{
+.sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
     background-color: #c0b070;
 }
 
-.sc_file_table_2
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    color:   #000000;
-    background-color: #e0d090;
-}
-
-.file_list {
-
-}
-
-.file_category_link {
+.file_category_link, .file_category_link:link {
     font-family: Verdana;
-    font-size: 24px;
-    font-style: italic ;
-    color: #F90;
+    font-size: 20px;
+    font-style: normal;
+    color: #000;
 }
 
-.file_category_link:link {
-    font-family: Verdana;
-    font-size: 24px;
-    font-style: italic ;
-    color: #F90;
-}
 
 .file_category {
-	background-color: #630;
-	border: 1px;
-	border-color: #000000;
-	border-style: solid;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color:   #000000;
+    background-color:rgba(150,60,0,0.1);
+	height: 36px;
+	padding-left: 10px;
+	font-style: none;
 }
 
+.ile_category { ackground-color: #630;	order: 1px;order-color: #000000;order-style: solid;order-top-left-radius: 8px;order-top-right-radius: 8px; }
 
+.file_link, .file_link:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: none;
+	color: #000;
+}
 
 .forum_box {
 	width: 98%;
