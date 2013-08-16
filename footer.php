@@ -10,6 +10,11 @@
 sc_debugfooter(0);
 if(isset($RFS_LITTLE_HEADER)) {
 	if($RFS_LITTLE_HEADER==true) {
+		
+		echo "<p>&nbsp;</p>";
+		echo "<p>&nbsp;</p>";
+		echo "<p>&nbsp;</p>";
+		
 		rfs_echo($RFS_SITE_BODY_CLOSE);
 		rfs_echo($RFS_SITE_HTML_CLOSE);
 		return;

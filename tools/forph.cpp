@@ -46,7 +46,7 @@ bool file_in_db(char *filename) {
 	return false;
 }
 void scan_dir(char *dir) {
-	printf("Scanning [%s]\n",dir);
+//	printf("Scanning [%s]\n",dir);
 	char nfn[1024];
 	DIR *dpdf;
         struct dirent *epdf;

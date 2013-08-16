@@ -1633,7 +1633,7 @@ function adm_action_f_delete_category() {
 function adm_action_f_add_category() {
 	eval( scg() );
 	echo "<p>Added category $category</p>";
-	sc_query( "insert into categories (`name`, `image` ) values ('$category', '$image')" );
+	sc_query( "insert into categories (`name`, `image`, `worksafe` ) values ('$category', '$image', '$worksafe')" );
 	adm_action_edit_categories();
 }
 function adm_action_f_rename_category() {
@@ -1641,11 +1641,16 @@ function adm_action_f_rename_category() {
 	echo "<p>Renamed category from $category to $newname</p>";
 	sc_query( "update categories set image='$image' where name = '$category'" );
 	sc_query( "update categories set name='$newname' where name = '$category'" );
+	sc_query( "update categories set worksafe='$worksafe' where name = '$category'");
 	sc_query( "update admin_menu set category = '$newname' where category = '$category'" );
 	adm_action_edit_categories();
 }
 function adm_action_edit_categories() {
 	eval( scg() );
+	
+	// sc_database
+	sc_database_add("categories","worksafe", "text", "NOT NULL");
+	
 	echo "<h3>Edit Categories (aka tags)</h3>";
 	$result=sc_query( "select * from categories order by name asc" );
 	$numcats=mysql_num_rows( $result );
@@ -1670,6 +1675,11 @@ function adm_action_edit_categories() {
 	<td>
 	<input type=text name=image value=''>
 	</td>
+	
+	<td>
+	<input type=text name=worksafe value=''>
+	</td>
+	
 	<td>
 	<div class=menutop>
 	<input type=submit name=submit        value=add>
@@ -1706,6 +1716,10 @@ function adm_action_edit_categories() {
 		</td>
 		<td>
 		<input type=text name=image value='$cat->image'>
+		</td>
+		
+		<td>
+		<input type=text name=worksafe value='$cat->worksafe'>
 		</td>
 
 		<td>\n";

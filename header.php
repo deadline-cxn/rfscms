@@ -5,7 +5,7 @@
 if(isset($RFS_LITTLE_HEADER)) {
 	if($RFS_LITTLE_HEADER==true) {
 		include("lilheader.php");
-		return;		
+		return;
 	}
 }
 
@@ -21,7 +21,6 @@ sc_maintenance();
 sc_debugheader(0);
 
 // divert ajax requests
-
 if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
 	include("include/lib.all.php");
 	eval("$action();");

@@ -404,12 +404,39 @@ td
     background-color: #8888ff;
 }
 
+
+.file_category_link, .file_category_link:link {
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-style: normal;
+	text-decoration: none;
+	color: #000;
+	padding-top:5px;
+	padding-left: 20px;
+}
+.file_category_link:hover {
+	color: #fff;
+	background-color: #000;
+}
+
+.file_category {
+    font-family: Verdana;
+    font-size: 32px;
+    font-style: italic ;
+    color: #00F;
+	
+}
+
+
+
 .sc_file_table_0
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
     background-color: #cccccc;
+	padding-left: 5px;
 }
 
 .sc_file_table_1
@@ -418,14 +445,7 @@ td
     font-size: 12px;
     color:   #000000;
     background-color: #dddddd;
-}
-
-.sc_file_table_2
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    color:   #000000;
-    background-color: #eeeeee;
+	padding-left: 5px;
 }
 
 .rfs_bulletlist

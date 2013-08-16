@@ -324,20 +324,35 @@ th {
 }
 
 
-
 .file_category {
-	background-color: #2c5c2c;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color:   #0f0;
+    background-color:rgba(0,160,0,0.1);
+	height: 36px;
+	padding-left: 10px;
+	font-style: none;
 }
 
-.sc_file_table_1{
-	background-color: #407c40;
-	color: #000000;
+.file_category_link, .file_category_link:link {
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-style: none;
+	text-decoration: none;
+	color: #0f0;
+	padding-top:5px;
+	padding-left: 20px;
 }
 
-.sc_file_table_0 {
-	background-color: #3c6c3c;
-	color: #000000;
+.file_link, .file_link:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: none;
+	color: #0f0;
 }
+
+.sc_file_table_1 { 	height: 32px; background-color:rgba(0,160,0,0.1); 	color: #000000; }
+.sc_file_table_0 { 	height: 32px; background-color:rgba(0,260,0,0.1); 	color: #000000; }
 
 
 a {

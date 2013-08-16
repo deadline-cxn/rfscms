@@ -17,7 +17,6 @@ if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
 	eval("$action();");
 	exit();
 }
-
 // inlude theme definition file (if it exists)
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
 // include theme header file (if it exists)
@@ -56,7 +55,7 @@ rfs_echo($RFS_SITE_JS_JQUERY);
 rfs_echo($RFS_SITE_JS_COLOR);
 rfs_echo($RFS_SITE_JS_EDITAREA);
 
-// if(!stristr(sc_canonical_url(),"/net.php"))	rfs_echo($RFS_SITE_JS_MSDROPDOWN);
+//if(!stristr(sc_canonical_url(),"/net.php")) rfs_echo($RFS_SITE_JS_MSDROPDOWN);
 
 //////////////////////////////////////////////
 // google analytics
@@ -67,4 +66,7 @@ sc_mcount($data->name);
 //////////////////////////////////////////////
 // system messages
 sc_system_message();
+//////////////////////////////////////////////
+// do action
+sc_do_action();
 ?>

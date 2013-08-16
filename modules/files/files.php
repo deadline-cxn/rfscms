@@ -75,18 +75,32 @@ if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("include/lib.all.php");
 include_once("3rdparty/ycTIN.php");
 
+$outvars="action=$action&category=$category&amount=$amount&top=$top&criteria=$criteria";
 
-if($_REQUEST['action']=="show_temp") { 	$_SESSION['show_temp']=true;}
-if($_REQUEST['action']=="hide_temp") {	$_SESSION['show_temp']=false;}
-if($_REQUEST['action']=="editmodeon") {	$_SESSION['editmode']=true;}
-if($_REQUEST['action']=="editmodeoff"){ $_SESSION['editmode']=false;}
 
-if( ($_REQUEST['action']=="show_duplicates") ||
-	($_SESSION['show_temp']==true) ||
-	($_SESSION['editmode']==true) ) {
-	$RFS_LITTLE_HEADER=true;
-}
+if($_REQUEST['temp']=="show") { 	$_SESSION['show_temp']=true;}
+if($_REQUEST['temp']=="hide") {		$_SESSION['show_temp']=false;}
+if($_REQUEST['editmode']=="on") {	$_SESSION['editmode']=true;}
+if($_REQUEST['editmode']=="off"){ 	$_SESSION['editmode']=false;}
+if($_REQUEST['worksafe']=="on")  {	$_SESSION['worksafemode']="on";}
+if($_REQUEST['worksafe']=="off") { $_SESSION['worksafemode']="off";}
+
+
+$RFS_LITTLE_HEADER=true;
 include("header.php");
+
+
+?>
+
+<script> 
+function playvid(x,y) { document.getElementById(x).innerHTML="<iframe src=\""+y+"\" width=400 height=300> </iframe>"; }
+function stopvid(x)  { document.getElementById(x).innerHTML=" "; }
+
+
+</script>
+
+
+<?
 
 echo "<h1>Files</h1>";
 
@@ -94,6 +108,11 @@ sc_div("files.php");
 
 
 echo "<table border=0><tr>"; 
+
+if($_SESSION['worksafemode']!="off") {
+	sc_button("$RFS_SITE_URL/modules/files/files.php?worksafe=off&$outvars","Worksafe mode off");
+}else 
+	sc_button("$RFS_SITE_URL/modules/files/files.php?worksafe=on&$outvars","Worksafe mode on");
 
 if(sc_access_check("files","upload")) {
 	echo "<td>";
@@ -126,19 +145,19 @@ if(sc_access_check("files","sort")) {
 	echo "</td>";
 	echo "<td>";
 	if($_SESSION['show_temp']==true){
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=hide_temp","Sort Mode Off");
+		sc_button("$RFS_SITE_URL/modules/files/files.php?temp=hide&$outvars","Sort Mode Off");
 	}
 	else {
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_temp","Sort Mode");
+		sc_button("$RFS_SITE_URL/modules/files/files.php?temp=show&$outvars","Sort Mode");
 	}
 	echo "</td>";
 }
 if(sc_access_check("files","edit")) {	
 	echo "<td>";
 	if($_SESSION['editmode']==true){
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=editmodeoff","Edit Mode Off");		
+		sc_button("$RFS_SITE_URL/modules/files/files.php?editmode=off&$outvars","Edit Mode Off");		
 	}else {
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=editmodeon","Edit Mode On");		
+		sc_button("$RFS_SITE_URL/modules/files/files.php?editmode=on&$outvars","Edit Mode On");		
 	}
 	echo "</td>";
 }
@@ -915,103 +934,21 @@ if($action=="upload_avatar"){
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-function show1file($filedata,$bg) { eval(scg());
-
-	echo "<div id=\"$filedata->id\"  style=' display: block; width:100%; margin: 0 auto;' class='sc_file_table_$bg' > ";
-
-    $filetype=sc_getfiletype($filedata->location);
-    $fti="images/icons/filetypes/$filetype.gif";
-    if(file_exists("images/icons/filetypes/$filetype.png"))
-		$fti="images/icons/filetypes/$filetype.png";
-
-	echo "<div style='float:left; width: 100%;' class='sc_file_table_$bg'>";
-	
-	echo "<div style='float:left; ' class='sc_file_table_$bg'>";
-		
-		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">";
-		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
-		echo "</a>";
-		
-	echo "</div>";
-	
-	echo "<div style='float:left; min-width:200px;' class='sc_file_table_$bg'> ";
-		if( (sc_access_check("files","edit")) &&
-			($_SESSION['editmode']==true) ) {
-			sc_ajax("Name"	,"files","name","$filedata->name","name",20,"","files","edit","");
-		} else {
-			echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">$filedata->name</a>";
-		}
-	echo "</div>";
-	
-	$size=(sc_sizefile($filedata->size));
-
-	echo "<div style='float:left;' class='sc_file_table_$bg'>";
-	if( ($filetype=="ttf") || 
-		($filetype=="otf") ||
-		($filetype=="fon") ) {
-			$fn=stripslashes("$filedata->name");
-			sc_image_text($fn,$fn, 12, 1,1, 0,0, 244,245,1, 1,1,0, 1,0 );
-		} else {	
-			if( (sc_access_check("files","edit")) &&
-					($_SESSION['editmode']==true) ) {
-				sc_ajax(""	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
-				echo "$filedata->location<br>";
-				if(sc_yes($filedata->hidden))
-					sc_info("HIDDEN","WHITE","RED");
-			} else {	
-				
-				echo "<div style='float: left; width: 300px;' class='sc_file_table_$bg'>";
-				$fd=sc_trunc($filedata->description,80);
-				echo str_replace("<","&lt;",$fd);
-				echo "</div>";
-				
-			}
-		}
-		
-		echo "</div>";
-	
-		
-		$data=$GLOBALS['data'];
-		if( (sc_access_check("files","edit")) &&
-			($_SESSION['editmode']==true) ) {
-			$hide="nohide";
-			if($_SESSION['show_temp']==true) $hide="hide";			
-			
-			sc_ajax("","files","id","$filedata->id","category",70,"select,table,categories,name,$hide","files","edit","");
-			
-		
-		}		
-		if((sc_access_check("files","delete")) &&
-			($_SESSION['editmode']==true) ) {
-			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id&retpage=".urlencode(sc_canonical_url()),"Delete");
-		}
-		
-	echo "<div style='float:left; ' class='sc_file_table_$bg'>";
-	if(!empty($size)) echo "$size ";
-	if(!empty($filedata->version)) echo"$filedata->version ";
-	if(!empty($filedata->platform)) echo"$filedata->platform ";
-	if(!empty($filedata->os)) echo"$filedata->os ";
-	if(!empty($filedata->downloads)) echo"$filedata->downloads ";
-		
-	echo "</div>
-	</div>
-	</div>
-	
-	<div style='clear:both;'></div>";
-}
-
-///////////////////////////////////////////////////////////////////////////////////
-
 if($action=="file_change_category") {
 	sc_query("update files set category = '$name' where id = '$id'");
 	$name=""; $action="search"; $category="all categories";	
 }
 
 if(($action=="show_temp") || ($_SESSION['show_temp']==true)) {
+	
 	$action="listcategory";
-	$category="unsorted";
+	if(empty($category)) $category="unsorted";
 	$amount="50";
-	$query=" where `hidden`='yes' or category='unsorted' or category='' ";
+	$query=" where (`hidden`='yes' or (category='unsorted' or category='')) ";
+	if(!empty($md5))
+		$query.=" and md5 = '$md5' ";
+	
+	
 	sc_info("SORT MODE","WHITE","RED");
 }
 
@@ -1022,16 +959,18 @@ if(($action=="listcategory") || ($action=="search")) {
 	if($action=="search"){
 		$query=" where (`name` like '%$criteria%' or `description` like '%$criteria%' or `category` like '%$criteria%') ";
 
-		if($category!="all")
+	if($category!="all")
 			$query.="and `category` = '$category' ";
 		else {
 			$query.="and `category` != 'unsorted' and `category` != '' ";
-		}
-		
+		}		
     }
 
     if($action=="listcategory")
 		if(empty($query)) $query="where `category` = '$category' ";	
+		
+	
+	echo $query;
 		
     if($top=="")    $top=0;
     if($amount=="") $amount=25;
@@ -1133,6 +1072,7 @@ for($i=0;$i<$numcats;$i++) {
 					break;
 					}
 			}
+
 			echo "</div>";
 			if($i==$la){
 				
