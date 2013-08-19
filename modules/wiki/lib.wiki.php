@@ -154,7 +154,7 @@ function wikitext($text) { eval(scg());
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 	
-	$text=wikicode($text);
+	// $text=wikicode($text);
 
 	$text= wikiimg($text);
 
