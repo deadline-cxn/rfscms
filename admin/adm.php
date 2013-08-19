@@ -1600,6 +1600,7 @@ function adm_action_f_category_change_icon() {
 	eval( scg() );
 	$_SESSION['select_image_path']="";
 	sc_selectimage( "images","admin/adm.php","edit_categories", "categories", $id, "image" );
+	exit();
 }
 function adm_action_f_delete_category() {
 	eval( scg() );

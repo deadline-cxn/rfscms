@@ -153,27 +153,14 @@ function sc_maintenance() { eval(scg());
 	$r=sc_query("select * from categories");
 	for($i=0;$i<mysql_num_rows($r);$i++){ 
 		$cat=mysql_fetch_object($r);
-		$rr=sc_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");
-		
+		$rr=sc_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");		
 		
 		if($cat->worksafe=="no") {
-			
-			sc_query("update files set worksafe='no' where worksafe!='no and category = '$cat->name'");
+			// sc_query("update files set worksafe='no' where worksafe!='no and category = '$cat->name'");
 			// sc_query("update pictures set worksafe='no' where category = '$cat->name'");
-			
-			
-			
-			
-			
 		}
-		
 	}
-
 	sc_database_data_add("categories","name","unsorted",0);
-	
-	
-	
-	
 	sc_div("sc_maintenance end [$theme]");
 }
 /////////////////////////////////////////////////////////////////////////

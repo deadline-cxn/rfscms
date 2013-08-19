@@ -91,21 +91,15 @@ include("header.php");
 
 
 ?>
-
 <script> 
 function playvid(x,y) { document.getElementById(x).innerHTML="<iframe src=\""+y+"\" width=400 height=300> </iframe>"; }
 function stopvid(x)  { document.getElementById(x).innerHTML=" "; }
-
-
 </script>
-
-
 <?
 
 echo "<h1>Files</h1>";
 
 sc_div("files.php");
-
 
 echo "<table border=0><tr>"; 
 
@@ -261,8 +255,7 @@ if($action=="addfiletodb") {
     echo "<tr><td align=right>category:         </td><td><select name=category>\n";
     $result=sc_query("select * from categories order by name asc");
     $numcats=mysql_num_rows($result);
-    for($i=0;$i<$numcats;$i++)
-    {
+    for($i=0;$i<$numcats;$i++) {
         $cat=mysql_fetch_object($result);
         echo "<option>$cat->name";
     }
