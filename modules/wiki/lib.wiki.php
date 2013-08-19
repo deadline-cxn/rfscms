@@ -158,6 +158,8 @@ function wikitext($text) { eval(scg());
 
 	$text= wikiimg($text);
 
+	$text=str_replace("[[","&#91;",$text);
+	$text=str_replace("]]","&#93;",$text);
 	$text=str_replace("$$","&#36;",$text);	
 	$text=str_replace("</h1>\r\n","</h1>",$text);
 	$text=str_replace("</h2>\r\n","</h2>",$text);
