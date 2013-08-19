@@ -44,6 +44,13 @@ if(!$RFS_DO_NOT_SHOW_MENU) {
 	sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
 	echo "</div>";
 }
+
+if($_SESSION["logged_in"]!="true")    {
+	rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+}
+else    {
+	rfs_echo($RFS_SITE_LOGGED_IN_CODE);
+}
 //////////////////////////////////////////////
 // Load javascripts
 
