@@ -605,7 +605,7 @@ function sc_db_query($query,$becho){
 function sc_db_query_form($page,$action,$query){
     echo "<form action=\"$page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
     echo "<input type=\"hidden\" name=\"action\" value=\"$action\">";
-    echo "<textarea rows=5 cols=100 name=\"query\">";
+    echo "<textarea rows=5 cols=70 name=\"query\">";
     $query=str_replace("</textarea>","&lt;/textarea>",$query);
     echo stripslashes($query);
     echo "</textarea><br>";
@@ -2043,7 +2043,7 @@ echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
 function sc_ajax_callback(){ eval(scg());
 
 	if(sc_access_check($rfaapage,$rfaact)) {
-		
+		$rfaajv=addslashes($rfaajv);
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
 		$r=sc_query($q);
 		
