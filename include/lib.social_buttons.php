@@ -112,7 +112,7 @@ function sc_social_buttons(){
 	echo "</td></tr></table>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_google_adsense_2(){
+function sc_google_adsense_2(){ eval(scg());
     global $RFS_SITE_GOOGLE_ADSENSE;
 	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
 		echo ' <script type="text/javascript">

@@ -940,20 +940,18 @@ if($action=="file_change_category") {
 }
 
 if(($action=="show_temp") || ($_SESSION['show_temp']==true)) {
-	
 	$action="listcategory";
 	if(empty($category)) $category="unsorted";
 	$amount="50";
 	$query=" where (`hidden`='yes' or (category='unsorted' or category='')) ";
 	if(!empty($md5))
 		$query.=" and md5 = '$md5' ";
-	
-	
+	$query.=" order by location asc ";
 	sc_info("SORT MODE","WHITE","RED");
+	
 }
 
 if(($action=="listcategory") || ($action=="search")) {
-	
 	$category=rtrim($category);
 	if($category=="all categories") $category="all";
 	if($action=="search"){
@@ -965,13 +963,9 @@ if(($action=="listcategory") || ($action=="search")) {
 			$query.="and `category` != 'unsorted' and `category` != '' ";
 		}		
     }
-
     if($action=="listcategory")
 		if(empty($query)) $query="where `category` = '$category' ";	
-		
 	
-	echo $query;
-		
     if($top=="")    $top=0;
     if($amount=="") $amount=25;
     if($amount!="all") $limit="$top,$amount";

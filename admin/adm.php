@@ -4,57 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 $title="Administration";
 /////////////////////////////////////////////////////////////////////////////////////////
-function adm_db_query( $x ) { eval( scg() );
-	$x=urldecode( $x );
-	$ax=explode( " ", $x );
-	for( $i=0; $i<count( $ax ); $i++ )
-		if( strtolower( $ax[$i] )=="select" ) $ax[$i]="zlect";
-	$ox=join( " ",$ax );
-	
-	echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_rm_db_query&query=$ox\" target=_top>Delete</a>]";
-	echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=db_query&query=$ox\" target=_top>$x</a><br>";
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-if( $_REQUEST['db_queries']=="list" ) {
-	if(array_pop(explode("/",getcwd()))=="admin") chdir("..");
-	include_once("include/lib.all.php");
-	if(!sc_access_check("admin","access")) exit();
-	if( empty( $theme ) )               $theme=$RFS_SITE_DEFAULT_THEME;
-	if( !empty( $data->theme ) )        $theme=$data->theme;
-	if( sc_yes( $RFS_SITE_FORCE_THEME ) ) $theme=$RFS_SITE_FORCED_THEME;
-	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
-	
-	adm_db_query( "SELECT name,email,donated FROM users" );
-	adm_db_query( "SELECT * FROM users" );
-	adm_db_query( "SHOW FULL COLUMNS FROM users" );
-	
-	sc_query( " CREATE TABLE db_queries2 like db_queries; " );
-	sc_query( " INSERT db_queries2 SELECT * FROM db_queries GROUP BY query;" );
-	sc_query( " RENAME TABLE `db_queries`  TO `db_goto_hell`; " );
-	sc_query( " RENAME TABLE `db_queries2` TO `db_queries`; " );
-	sc_query( " DROP TABLE db_goto_hell; " );
-
-	sc_query(" CREATE TABLE IF NOT EXISTS `db_queries` (
-				`id` int(11) NOT NULL AUTO_INCREMENT,
-				`query` text COLLATE utf8_unicode_ci NOT NULL,
-				`time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-				PRIMARY KEY (`id`)) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=350 ; ");
-
-	$r=sc_query("select distinct query from `db_queries` order by `time`");
-    if($r) {
-        $n=mysql_num_rows($r);
-        for( $i=0; $i<$n; $i++ ) {
-            $dq=mysql_fetch_object( $r );
-            $y=$dq->query;
-            $y=str_replace( "\n","",$y );
-            $x=urlencode( $y );
-            adm_db_query( $x );            
-        }
-    }
-	include("footer.php");
-	exit();
-}
-/////////////////////////////////////////////////////////////////////////////////////////
+include("lib.adm.php");
 chdir( "../" );
 if(stristr($_REQUEST['action'],"ajx")) {
 	include("include/lib.all.php");
@@ -62,8 +12,8 @@ if(stristr($_REQUEST['action'],"ajx")) {
 	exit();
 }
 else {
-	include( "lilheader.php" );
-	sc_do_action();
+		include( "lilheader.php" );
+		sc_do_action();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -460,15 +410,27 @@ function adm_action_email_go() { eval(scg());
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_DATABASE
+/////////////////////////////////////////////////////////////////////////////////////////
+
+function adm_db_query( $x ) { eval( scg() );
+	$y=urlencode($x);
+	echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_rm_db_query&query=$y\" target=_top>Delete</a>]";	
+	echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=db_query&query=$y\" target=_top>$x</a><br>";
+}
 function adm_action_f_rm_db_query() { eval(scg());
-	$query=str_replace("zlect","select",$query);
-	sc_query("delete from `db_queries` where `query` = '$query'");
+	// $query=addslashes($query);
+	// $query=urldecode($query);
+	echo "DING DING [$query]<BR>";	
+	$q="delete from `db_queries` where `query` = \"$query\";";
+	echo "DING DING [$q] <br>";
+	sc_query($q);
+	$query="";
 	$_GLOBALS['query']="";
 	$_POST['query']="";
 	$_GET['query']="";
    echo "<h3>Select a previously entered query</h3>";
-   echo "<iframe id=\"QU\" width=800 height=600 class='iframez' frameborder=0
-			src=$RFS_SITE_URL/admin/adm.php?db_queries=list
+   echo "<iframe id=\"QU\" width=600 height=400 class='iframez' frameborder=0
+			src=\"$RFS_SITE_URL/admin/adm.php?action=sc_ajax_callback_query_list\"
 			style=\"float:left;\"></iframe>";
 	echo "<div style=\"float:left;\">";
 	echo "<h3>Enter a new query</h3>";
@@ -477,18 +439,32 @@ function adm_action_f_rm_db_query() { eval(scg());
 	finishadminpage();
 }
 function adm_action_db_query() { eval(scg());
-	$query=str_replace("zlect","select",$query);
+
+	$r=sc_query("select * from db_queries");
+	
+	for($x=0;$x<mysql_num_rows($r);$x++) {
+		$q=mysql_fetch_object($r);
+		$q->query=rtrim($q->query,"\r");
+		$q->query=rtrim($q->query,"\n");
+		$q->query=rtrim($q->query,"\r");
+		$q->query=rtrim($q->query,"\n");
+		$q->query=rtrim($q->query,"\r");
+		$q->query=rtrim($q->query,"\n");
+		sc_query("update db_queries set query= '$q->query' where `id`='$q->id'");
+	}
+
    echo "<h3>Select a previously entered query</h3>";
-   echo "<iframe id=\"QU\" width=800 height=600 class='iframez' frameborder=0
-			src=$RFS_SITE_URL/admin/adm.php?db_queries=list
+   echo "<iframe id=\"QU\" width=600 height=400 class='iframez' frameborder=0
+			src=\"$RFS_SITE_URL/admin/adm.php?action=sc_ajax_callback_query_list\"
 			style=\"float:left;\"></iframe>";
 	echo "<div style=\"float:left;\">";
 	echo "<h3>Enter a new query</h3>";
 	sc_db_query_form( "$RFS_SITE_URL/admin/adm.php","db_query","$query" );
 	echo "</div><div style=\"clear:both;\">";
-	if( !empty( $query ) ) {		
-		sc_query( "insert into `db_queries` (`id`, `query`) VALUES ('','$query' ) " );
-		$query=stripslashes($query);
+	if( !empty( $query ) ) {	
+		// echo " DING [$query] <BR>";	
+		sc_query( "insert into `db_queries` (`id`, `query`) VALUES ('',\"$query\" ) " );
+
 		echo $query;
 		echo "<table cellspacing=0 cellpadding=0 border=0><tr><td class=contenttd>";
 		sc_db_query( $query, "true" );
@@ -1124,6 +1100,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 	echo "</td></tr>";
 	echo "</table>";
 	include("footer.php");
+	exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU ADMIN
@@ -2181,7 +2158,7 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_DEFAULT_ACTION
 function adm_action_() { eval(scg());
-
+	if($db_queries=="list" ) { adm_db_query_list();  exit(); }
 		// sc_ajax($label,$table,$key,$kv,$field,$width,$type)
 		// echo "<table border=0>";
 		// sc_ajax("Avatar","users", "name", "$data->name","avatar", 60, "","admin","access","sc_ajax_callback_image");

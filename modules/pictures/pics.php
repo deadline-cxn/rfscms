@@ -27,6 +27,7 @@ if($_REQUEST['action']=="adesc") {
 }
 
 chdir("../../");
+$RFS_LITTLE_HEADER=true;
 include("header.php");
 
 if(empty($galleria)) {
@@ -49,11 +50,11 @@ function pics_show_buttons() { eval(scg());
 	}
 	if(sc_access_check("pictures","sort")) {
 		//$cr=mfo1("select * from categories where name=''");
-		$res2=sc_query("select * from `pictures` where `category`='!!!TEMP!!!'");
+		$res2=sc_query("select * from `pictures` where `category`='unsorted'");
 		$numpics=mysql_num_rows($res2);
 		if($numpics>0){
 			echo "<td>";
-			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp","Sort $numpics Pictures");
+			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&category=unsorted","Sort $numpics Pictures");
 			echo "</td>";
 		}
 	}
@@ -258,7 +259,7 @@ function pics_action_sorttemp() { eval(scg());
             echo "</td><td>";
 			$w=""; $h="";
 			echo "Select a category:<br>";
-            $rc=sc_query("select * from categories order by name"); 
+            $rc=sc_query("select * from categories where name != 'unsorted' order by name"); 
             $rn=mysql_num_rows($rc);
             // echo "<table border=0><tr>";
 			// $table_row_counter=0;

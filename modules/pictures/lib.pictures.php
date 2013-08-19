@@ -63,7 +63,7 @@ function pics_addorphans($folder,$cat) { eval(scg());
                         if(!mysql_num_rows($res)) {
                             $time=date("Y-m-d H:i:s");
                             sc_query("insert into `pictures` (`time`,`url`,`category`,`hidden`)
-                                                       VALUES('$time','$url','$cat','yes')");
+                                                       VALUES('$time','$url','unsorted','yes')");
                             echo "Added [$url] to database<br>";
                             $dir_count++;
                         }

@@ -15,6 +15,8 @@ sc_access_method_add("files", "xplorer");
 sc_access_method_add("files", "xplorershell");
 // MD5 hash
 sc_database_add("files","md5", "text", "NOT NULL");
+sc_database_add("files","tags","text", "NOT NULL");
+sc_database_add("files","ignore","text", "NOT NULL");
 // Duplicates table
 sc_database_add("file_duplicates", "loc1", "text", "NOT NULL");
 sc_database_add("file_duplicates", "size1", "text", "NOT NULL");
@@ -66,6 +68,65 @@ function sc_update_file($fid) {
 }
 ///////////////////////////////////////////////////////////////////////////////////
 
+function sc_ajax_callback_files_new_category() { eval(scg());
+	if(sc_access_check($rfaapage,$rfaact)) {
+		$q="insert into categories (`name`, `image`, `worksafe` ) values ('$rfaajv', '', 'yes')";
+		sc_query($q);
+		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
+		sc_query($q);
+		echo "<font style='color:white; background-color:green;'>NEW CATEGORY: $rfaajv</font>";
+	}
+}
+
+function sc_ajax_callback_file_ignore() {eval(scg());
+	if(sc_access_check($rfaapage,$rfaact)) {
+		$q="update files set `ignore`='yes' where id='$rfakv'";
+		echo $q;
+		sc_query($q);
+		echo "<font style='color:white; background-color:green;'>IGNORED</font>";
+	}
+}
+
+function sc_ajax_callback_files_move_to_pictures() { eval(scg());
+	if(sc_access_check($rfaapage,$rfaact)) {
+		$f=mfo1("select * from files where id='$rfakv'");
+		$oname="$RFS_SITE_PATH/$f->location";
+		$snamex=explode("/",$f->location); $sname=$snamex[count($snamex)-1];
+		$nname="$RFS_SITE_PATH/files/pictures/$sname";
+		$nsloc="files/pictures/$sname";
+		if(rename($oname,$nname)) {
+			$q="delete from `files` where `id`='$rfakv'";	
+			sc_query($q);
+			$q="insert into `pictures` (`time`,`url`,`category`,`hidden`) VALUES('$time','$nsloc','unsorted','yes')";
+			sc_query($q);
+		
+			echo "<font style='color:white; background-color:green;'>MOVED</font>";
+		}
+		else {
+			echo "<font style='color:white; background-color:red;'>FAILURE</font>";
+		}
+	}
+}
+
+function sc_ajax_callback_file_move()  { eval(scg());
+	if(sc_access_check($rfaapage,$rfaact)) {
+		$f=mfo1("select * from files where id='$rfakv'");
+		$oname="$RFS_SITE_PATH/$f->location";
+		$nname="$RFS_SITE_PATH/$rfaajv";
+		if(rename($oname,$nname)) {
+			$snamex=explode("/",$rfaajv); $sname=$snamex[count($snamex)-1];
+			$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
+			sc_query($q);
+			$q="update `$rfatable` set `name` = '$sname' where `$rfaikey` = '$rfakv'" ;
+			sc_query($q);
+			echo "<font style='color:white; background-color:green;'>MOVED</font>";
+		}
+		else {
+			echo "<font style='color:white; background-color:red;'>FAILURE</font>";
+		}
+	}
+}
+
 function sc_ajax_callback_rename_file() { eval(scg());
  	if(sc_access_check($rfaapage,$rfaact)) {
 		$f=mfo1("select * from files where id='$rfakv'");
@@ -79,7 +140,7 @@ function sc_ajax_callback_rename_file() { eval(scg());
 			$q="update `$rfatable` set `location`='$nloc' where `location` = '$f->location'";
 			sc_query($q);
 			
-			echo "<font style='color:white; background-color:red;'>RENAMED</font>";
+			echo "<font style='color:white; background-color:green;'>RENAMED</font>";
 		}
 		else {
 			
@@ -103,6 +164,11 @@ function sc_ajax_callback_delete_file() { eval(scg());
 
 function show1file($filedata,$bg) { eval(scg());
 
+	if((($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) )
+		$fedit=true;
+	if(($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
+		$fworksafe=true;
+
 	sc_update_file($filedata->id);
 	$filedata=mfo1("select * from files where id='$filedata->id'");
 	
@@ -119,7 +185,9 @@ function show1file($filedata,$bg) { eval(scg());
 	$fd=sc_trunc($filedata->description,180);
 	$dout=str_replace("<","&lt;",$filedata->description);
 	$fd=str_replace("<","&lt;",$fd);
-
+	
+	$dout=str_replace("\"","'",$dout);
+	
 	$span="<span title=\"$filedata->name\n$dout\">";
 	
 	echo "<td class='sc_file_table_$bg'>";		
@@ -130,88 +198,68 @@ function show1file($filedata,$bg) { eval(scg());
 		echo "</span>";
 	echo "</td>";
 	
-	echo "<td class='sc_file_table_$bg' style='width:500x; max-width:500px; min-width:500px;'>";	
+	echo "<td class='sc_file_table_$bg' style='width:280x; max-width:280px; min-width:280px;'>";	
 	
 		echo $span;
-		if( (sc_access_check("files","edit")) &&
-			(($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) ) {
-				sc_ajax("Name"	,"files","id","$filedata->id","name",20,"nohide","files","edit","sc_ajax_callback_rename_file");
-			
-		} else {
-						
-			$shortname=sc_trunc($filedata->name,24);		
+		if((sc_access_check("files","edit")) && $fedit) {
+			sc_ajax("Name"	,"files","id","$filedata->id","name",36,"nohide","files","edit","sc_ajax_callback_rename_file");
+			echo "<br>URL <a href=\"$RFS_SITE_URL/$filedata->location\" target=\"_blank\">$filedata->name</a> ";
+		}
+		else {
+			$shortname=sc_trunc($filedata->name,24);
 			if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
-			
-			echo "<a class=\"file_link\" href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\"	 >";
-			echo $shortname;
-			echo "</a>";
+			echo "<a class=\"file_link\" href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\"	 >$shortname</a>";
 		}
+		
 		echo "<br>";
-
 		echo "</span>";
-		if( ($filetype=="jpg") || ($filetype=="png") || ($filetype=="gif") || ($filetype=="bmp") || ($filetype=="svg") || ($filetype=="jpeg") )
-			if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
-				echo sc_picthumb("$RFS_SITE_URL/$filedata->location",400,0,1);
-				
-	if( ($filetype=="mpg") || ($filetype=="mpeg") || ($filetype=="wmv") || ($filetype=="avi") || ($filetype=="flv")  ) {
-		
-				if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") ) {
-					
+		if(	($filetype=="jpg") ||
+			($filetype=="png") ||
+			($filetype=="gif") ||
+			($filetype=="bmp") ||
+			($filetype=="svg") ||
+			($filetype=="jpeg"))
+			if($fworksafe)
+				echo sc_picthumb("$RFS_SITE_URL/$filedata->location",250,0,1)."<br>";
 
-// <iframe src=$RFS_SITE_URL/$filedata->location width=400 height=300> </iframe>\"
-				echo "<br> 
-				
-    <div name=\"play$filedata->id\" id=\"play$filedata->id\"> 
-	
-	</div>
-	
-<a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a>
-<a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a> 
-
-	
-	<br>
-
-	
-		 
-		 
-		 ";
+		if(	($filetype=="mpg") ||
+			($filetype=="mpeg") ||
+			($filetype=="wmv") ||
+			($filetype=="avi") ||
+			($filetype=="flv")  ) {		
+				if($fworksafe) {
+					echo "<br><div name=\"play$filedata->id\" id=\"play$filedata->id\"></div>
+							<a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a>
+							<a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>";
 		}
-			echo "<br><a href=\"$RFS_SITE_URL/$filedata->location\" target=\"_blank\">$filedata->name</a>";
 	}
-	
-	if (($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) 
-		echo "<br> $RFS_SITE_URL/$filedata->location ";
-			
-				
-		
 		
 		$data=$GLOBALS['data'];
-		if(($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true))  {
+		if($fedit) {
 			if(sc_access_check("files","edit")) {
-				
-				
-				
-sc_ajax("$filedata->name","files","id","$filedata->id","category",70,
-"select,table,categories,name,hide","files","edit","");
-
-				
-			}		
-			if(sc_access_check("files","delete")) {
-				
-// $rfalabel, $rfatable, $rfaikey,         $rfakv, $rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback
-				
-sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,
- "button", "files","delete","sc_ajax_callback_delete_file");
-
+				sc_ajax("Category","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
+				sc_ajax("New Category","files","id","$filedata->id","category",36,"","files","edit","sc_ajax_callback_files_new_category");
+				sc_ajax("Tags",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","");
+				sc_ajax("Move to Pictures", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","sc_ajax_callback_files_move_to_pictures");
+				sc_ajax("Ignore", "files",   "id", "$filedata->id", "id", 20, "button", "files","delete","sc_ajax_callback_file_ignore");
 			}
-			
+			if(sc_access_check("files","delete")) {
+				sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button", "files","delete","sc_ajax_callback_delete_file");
+			}			
+		}
+		else {
+			$tagz=explode(",",$filedata->tags);
+			if(!empty($tagz[0])) {
+				echo "Tags:  ";
+				foreach($tagz as $tk => $tv) echo "$tv ";
+			}
 		}
 
 	echo "</td>";
 	
 	$size=(sc_sizefile($filedata->size));
 
-	echo "<td class='sc_file_table_$bg' style='width:400x; max-width:400px; min-width:400px;'>";
+	echo "<td class='sc_file_table_$bg' style='width:340x; max-width:340px; min-width:340px;'>";
 	echo $span;
 	if( ($filetype=="ttf") || 
 		($filetype=="otf") ||
@@ -220,14 +268,17 @@ sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,
 			sc_image_text($fn,$fn, 12, 1,1, 0,0, 244,245,1, 1,1,0, 1,0 );
 			
 		} else {	
-			if( (sc_access_check("files","edit")) &&
-				 (($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) ) {
-				sc_ajax(""	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
-				
-				if(sc_yes($filedata->hidden))
-					sc_info("HIDDEN","WHITE","RED");
-			} else {			
-				echo "$fd";				
+			if( (sc_access_check("files","edit")) && $fedit) {
+					sc_ajax("Description"	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
+
+					sc_ajax("Location",    	"files","id",	   "$filedata->id","location", 76,"nohide","files","edit","sc_ajax_callback_file_move");
+
+					sc_ajax("Hidden",    	"files","id",	   "$filedata->id","hidden", 36,"nohide","files","edit","");
+					if(sc_yes($filedata->hidden))
+						sc_info("HIDDEN","WHITE","RED");
+			}
+			else {
+				echo "$fd";
 			}
 			if( ($_SESSION['show_temp']==true) || ($_SESSION['editmode']==true)) {
 				$filedata->location=str_replace("/","/<wbr />",$filedata->location);
@@ -293,7 +344,7 @@ sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,
 					$ftype=sc_getfiletype($dfile->name);
 					if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
 						if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
-							echo sc_picthumb("$RFS_SITE_URL/$dfile->location",100,0,1);
+							echo sc_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
 
 					echo "<br>$dfile->name";
 						
@@ -334,8 +385,13 @@ function sc_getfiledata($file){
 function sc_getfilelist($filesearch,$limit){
     $query = "select * from files";
     if(!empty($filesearch)) $query.=" ".$filesearch;
-    $query.=" order by `name` asc ";
+	if(!stristr($query,"order by"))
+     $query.=" order by `name` asc ";
     if(!empty($limit)) $query.=" limit $limit";
+	
+	$query=str_replace("where","where (`ignore` != 'yes') and ",$query);
+	
+		
     $result = sc_query($query);
     $i=0; $k=mysql_num_rows($result);
     while($i<$k) {

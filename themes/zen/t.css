@@ -13,6 +13,10 @@ body {
 	background-attachment: fixed;
 }
 
+pre {
+ font-family: fixedsys, monospace;
+}
+
 h1, h2, h3 {
 	color: #DFFFC9;
 	margin: 0px;
