@@ -22,6 +22,7 @@ include_once("lib.images.php");
 include_once("lib.genm.php");
 include_once("lib.network.php");
 include_once("lib.modules.php");
+include_once("lib.tags.php");
 /////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_SESSION['valid_user']))
 $data=sc_getuserdata($_SESSION['valid_user']);

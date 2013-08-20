@@ -50,23 +50,25 @@ if(isset($argv[1])) {
 
 
 if($_REQUEST['action']=="get_file_go") {
-	$id=$_REQUEST['id'];
 	chdir("../../");
 	include_once("include/lib.all.php");
 	include("modules/files/lib.files.php");
-	$filedata=sc_getfiledata($id);
-	if(empty($filedata)) { echo "Error, file does not exist?\n"; exit(); }
-	sc_adddownloads($data->name,1); sc_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
-	
-	if(	(stristr($filedata->location,"http:")) ||
-		(stristr($filedata->location,"https:")) ||
-		(stristr($filedata->location,"ftp:")) ||
-		(stristr($filedata->location,"ftps:")) ) {
-		
-		sc_gotopage("$filedata->location");
-	}
-	else {
-		sc_gotopage("$RFS_SITE_URL/$filedata->location");
+	// echo "GETTING FILE...<BR>";
+	if($_SESSION["logged_in"]=="true") {
+		// echo "LOGGED IN...<BR>"; 		
+		$id=$_REQUEST['id'];
+		$filedata=sc_getfiledata($id);
+		if(empty($filedata)) { echo "Error, file does not exist?\n"; exit(); }
+		sc_adddownloads($data->name,1); sc_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
+		// echo "FILE EXISTS...<BR>";
+		 if(stristr($filedata->location,":")) {			
+			 sc_gotopage("$filedata->location");
+		 }
+		 else {
+			$fl="$RFS_SITE_URL/$filedata->location";
+			echo $fl;
+			sc_gotopage($fl);
+		 }
 	}
 	exit();
 }
@@ -75,15 +77,21 @@ if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("include/lib.all.php");
 include_once("3rdparty/ycTIN.php");
 
-$outvars="action=$action&category=$category&amount=$amount&top=$top&criteria=$criteria";
+$outvars="action=$action&category=$category&amount=$amount&top=$top&criteria=$criteria&tagsearch=$tagsearch";
 
 
 if($_REQUEST['temp']=="show") { 	$_SESSION['show_temp']=true;}
 if($_REQUEST['temp']=="hide") {		$_SESSION['show_temp']=false;}
 if($_REQUEST['editmode']=="on") {	$_SESSION['editmode']=true;}
 if($_REQUEST['editmode']=="off"){ 	$_SESSION['editmode']=false;}
+if($_REQUEST['deletemode']=="on") {$_SESSION['deletemode']=true;}
+if($_REQUEST['deletemode']=="off"){$_SESSION['deletemode']=false;}
 if($_REQUEST['worksafe']=="on")  {	$_SESSION['worksafemode']="on";}
 if($_REQUEST['worksafe']=="off") { $_SESSION['worksafemode']="off";}
+if($_REQUEST['hidden']=="show") {  $_SESSION['hidden']="yes"; }
+if($_REQUEST['hidden']=="hide") {  $_SESSION['hidden']="no"; }
+if($_REQUEST['tagmode']=="on")  {  $_SESSION['tagmode']=true; }
+if($_REQUEST['tagmode']=="off") {  $_SESSION['tagmode']=false; }
 
 
 $RFS_LITTLE_HEADER=true;
@@ -103,65 +111,125 @@ sc_div("files.php");
 
 echo "<table border=0><tr>"; 
 
-if($_SESSION['worksafemode']!="off") {
-	sc_button("$RFS_SITE_URL/modules/files/files.php?worksafe=off&$outvars","Worksafe mode off");
-}else 
-	sc_button("$RFS_SITE_URL/modules/files/files.php?worksafe=on&$outvars","Worksafe mode on");
 
-if(sc_access_check("files","upload")) {
-	echo "<td>";
-	sc_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload");
-	echo "</td>";
-}
-if(sc_access_check("files","addlink")) {
-	echo "<td>";    
-    sc_button("$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb","Add Link as File");
-	echo "</td>";
-}
-if(sc_access_check("files","orphanscan")) {
-	echo "<td>";
-    sc_button("$RFS_SITE_URL/modules/files/files.php?action=getorphans","Add orphan files");
-	echo "</td>";
-}
-if(sc_access_check("files","purge")) {
-	echo "<td>";
-	sc_button("$RFS_SITE_URL/modules/files/files.php?action=purge","Purge missing files");
-	echo "</td>";
-}
 if(sc_access_check("files","sort")) {
 	
 	echo "<td>";
-	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_duplicates","Show Duplicates");
+	if($_SESSION['hidden']=="yes") {
+		echo "<font style='background-color:red;'>SHOW HIDDEN</font><br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?hidden=hide&$outvars","Hidden Off");		
+	}
+	else {
+		echo "HIDE HIDDEN<br>";
+		sc_button("$RFS_SITE_URL/modules/files/files.php?hidden=show&$outvars","Hidden On");
+	}
 	echo "</td>";
 	
 	echo "<td>";
-	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_ignore","Show Hidden");
+	if($_SESSION['worksafemode']!="off") {
+		echo "WORKSAFE ON<br>";
+		sc_button("$RFS_SITE_URL/modules/files/files.php?worksafe=off&$outvars","Worksafe off");
+	}else {
+		echo "<font style='background-color:red;'>WORKSAFE OFF</font><br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?worksafe=on&$outvars","Worksafe on");		
+	}
 	echo "</td>";
+
+	
 	echo "<td>";
 	if($_SESSION['show_temp']==true){
-		sc_button("$RFS_SITE_URL/modules/files/files.php?temp=hide&$outvars","Sort Mode Off");
+		echo "<font style='background-color:red;'>SORT ON</font><br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?temp=hide&$outvars","Sort Off");
 	}
-	else {
-		sc_button("$RFS_SITE_URL/modules/files/files.php?temp=show&$outvars","Sort Mode");
+	else {		
+		echo "SORT OFF<br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?temp=show&$outvars","Sort On");
 	}
 	echo "</td>";
 }
 if(sc_access_check("files","edit")) {	
 	echo "<td>";
 	if($_SESSION['editmode']==true){
-		sc_button("$RFS_SITE_URL/modules/files/files.php?editmode=off&$outvars","Edit Mode Off");		
+		echo "<font style='background-color:red;'>EDIT ON</font><br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?editmode=off&$outvars","Edit Off");		
 	}else {
-		sc_button("$RFS_SITE_URL/modules/files/files.php?editmode=on&$outvars","Edit Mode On");		
+		echo "EDIT OFF<br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?editmode=on&$outvars","Edit On");		
 	}
 	echo "</td>";
 }
-if(sc_access_check("files","xplorer")) {	
+
+if(sc_access_check("files","delete")) {	
 	echo "<td>";
-    sc_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
+	if($_SESSION['deletemode']==true){
+		echo "<font style='background-color:red;'>DELETE ON</font><br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?deletemode=off&$outvars","Delete Off");
+	}else {
+		echo "DELETE OFF<br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?deletemode=on&$outvars","Delete On");
+	}
+	echo "</td>";
+}
+
+if(sc_access_check("files","edit")) {	
+	echo "<td>";
+	if($_SESSION['tagmode']==true){
+		echo "<font style='background-color:red;'>TAG ON</font><br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?tagmode=off&$outvars","Tag Off");
+	}else {
+		echo "TAG OFF<br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?tagmode=on&$outvars","Tag On");
+	}
 	echo "</td>";
 }
 
 echo "</tr></table>"; 	
+
+
+if($_SESSION['editmode']) {
+echo "<table border=0> <tr>";
+
+if(sc_access_check("files","sort")) {
+	echo "<td>";
+	echo "<br>";
+	sc_button("$RFS_SITE_URL/modules/files/files.php?action=show_duplicates","Show Duplicates");
+	echo "</td>";
+}
+	
+if(sc_access_check("files","upload")) {
+	echo "<td>";
+	echo "<br>";
+	sc_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload");
+	echo "</td>";
+}
+if(sc_access_check("files","addlink")) {
+	echo "<td>";    
+	echo "<br>";
+    sc_button("$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb","Add Link as File");
+	echo "</td>";
+}
+if(sc_access_check("files","orphanscan")) {
+	echo "<td>";
+	echo "<br>";
+    sc_button("$RFS_SITE_URL/modules/files/files.php?action=getorphans","Add orphan files");
+	echo "</td>";
+}
+if(sc_access_check("files","purge")) {
+	echo "<td>";
+	echo "<br>";
+	sc_button("$RFS_SITE_URL/modules/files/files.php?action=purge","Purge missing files");
+	echo "</td>";
+}
+if(sc_access_check("files","xplorer")) {	
+	echo "<td>";
+	echo "<br>";
+    sc_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
+	echo "</td>";
+}
+echo "</tr></table>";
+	
+}
+
 echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/files/files.php\" method=post>\n";
 echo "<table border=0 cellspacing=0 cellpadding=0 >";
 echo "<tr>\n";
@@ -195,7 +263,7 @@ echo "<td width=75% class=contenttd></td>";
 echo "</tr></table>\n";
 echo "</form>";
 
-if($action=="addfilelinktodb") {
+function files_action_addfilelinktodb() { eval(scg()); // if($action=="addfilelinktodb") {
     echo "<table border=0>\n";
     echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
     echo "<input type=hidden name=action value=addfilelinktodb_go>\n";
@@ -219,7 +287,7 @@ if($action=="addfilelinktodb") {
     include("footer.php");
     exit();
 }
-if($action=="addfilelinktodb_go") {
+function files_action_addfilelinktodb_go() { eval(scg()); //if($action=="addfilelinktodb_go") {
     $file_url=addslashes($file_url);
     $file_add=addslashes($file_add);
     $description=addslashes($description);
@@ -242,8 +310,7 @@ if($action=="addfilelinktodb_go") {
         sc_query("UPDATE files SET owner='$owner' where name='$name'");
         sc_query("UPDATE files SET version='$version' where name='$name'");
 }
-
-if($action=="addfiletodb") {
+function files_action_addfiletodb() { eval(scg()); // if($action=="addfiletodb") {
     echo "<p>You are adding:</p><p>$file_url</p><p>$file_add</p>\n";
     echo "<table border=0>\n";
     echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
@@ -267,7 +334,7 @@ if($action=="addfiletodb") {
     include("footer.php");
     exit();
 }
-if($action=="addfiletodb_go") {
+function files_action_addfiletodb_go() { eval(scg()); //  if($action=="addfiletodb_go") {
     $file_url=addslashes($file_url);
     $file_add=addslashes($file_add);
     $description=addslashes($description);
@@ -288,67 +355,59 @@ if($action=="addfiletodb_go") {
         sc_query("UPDATE files SET worksafe='$sfw' where name='$name'");
     }
 }
-
-if($action=="get_file"){
-	if(		(sc_yes($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
-			($_SESSION["logged_in"]=="true") ) {
+function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
+	if( (sc_yes($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
+		($_SESSION["logged_in"]=="true")) {
 		$filedata=sc_getfiledata($_REQUEST['id']);
 		if(empty($filedata)) {
-            echo "Error 3392! File does not exist?\n";
-            include("footer.php");
-            exit();
+			echo "Error 3392! File does not exist?\n";
+			include("footer.php");
+			exit();
 		}
 		$size = sc_sizefile($filedata->size);
-       echo "<p>";
+		echo "<p>";
+		if(!empty($filedata->thumb)) {
+			echo sc_picthumb($filedata->thumb);
+			// echo "<img src=$filedata->thumb>";
+		}
 		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\" target=_new_window>";
-		echo "<img src=\"$RFS_SITE_URL/images/icons/Download.png\" border=0>";
+		
 		echo "<font size=4>";
 		echo "$filedata->name ($size)";
 		echo "</font>";
 		echo "</a>";
+		
+		
+		
 		echo "</p>\n";
-		echo "<p>(Right click and 'save target as' to save the file to your computer...)</p>\n";
-
-		echo "<table border=0><tr>";
 		
+		echo "<div style='clear:both;'>";		
+		lib_tags_show_tags("files",$filedata->id);		
+		echo "</div>";
 		
-		echo "<td>";
-		sc_button(sc_canonical_url()."&get_file_extended=yes","Get Extended File Information");
-		echo "</td>";
+		echo "<div style='clear:both;'>";		
 		
-		if(sc_access_check("files","edit")) {
-			echo "<td>";
-				sc_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id","Edit");		
-			echo "</td>";
-		}
-	
-		if(sc_access_check("files","delete")) {
-			echo "<td>";
-			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id","Delete");
-			echo "</td>";
-		}
-		
-		echo "</tr></table>";
-		
-		if(!empty($filedata->thumb)) {
-			echo "<img src=$filedata->thumb>";
-		}
 		
 		if(empty($get_file_extended)) {
-
 			echo "<table border=0>";
-			echo "<tr><td>Posted by:</td><td> <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a></td></tr>";
-			echo "<tr><td>Downloaded:</td><td> $filedata->downloads times</td></tr>";
-			echo "<tr><td>Rating:</td><td> $filedata->rating</td></tr>";		
-			echo "<tr><td>Category:</td><td>$filedata->category</td></tr>";
-			echo "<tr><td>Version:</td><td>$filedata->version</td></tr>";
-			echo "<tr><td>Homepage:</td><td>$filedata->homepage</td></tr>";
 			echo "<tr><td>Bytes:</td><td>$filedata->size ($size)</td></tr>";
 			echo "<tr><td>md5 hash:</td><td>".md5($filedata->location)."</td></tr>";
+			echo "<tr><td>Posted by:</td><td> <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a></td></tr>";
+			echo "<tr><td>Downloaded:</td><td> $filedata->downloads times</td></tr>";
+			if(empty($filedata->rating)) $filedata->rating="unrated";
+			echo "<tr><td>Rating:</td><td> $filedata->rating</td></tr>";
+			echo "<tr><td>Category:</td><td>$filedata->category</td></tr>";
+			if(!empty($filedata->version))
+			echo "<tr><td>Version:</td><td>$filedata->version</td></tr>";
+			if(!empty($filedata->homepage))
+			echo "<tr><td>Homepage:</td><td>$filedata->homepage</td></tr>";			
+			if(!empty($filedata->platform))
 			echo "<tr><td>Platform:</td><td>$filedata->platform</td></tr>";
+			if(!empty($filedata->os))
 			echo "<tr><td>Operating System:</td><td>$filedata->os</td></tr>";
 			echo "<tr><td>Added:</td><td>$filedata->time</td></tr>";
 			echo "<tr><td>Last update:</td><td>$filedata->lastupdate</td></tr>";
+			if(empty($filedata->worksafe)) $filedata->worksafe="yes";
 			echo "<tr><td>Safe for work:</td><td>$filedata->worksafe</td></tr>";
 			echo "</table>";
 						
@@ -377,6 +436,26 @@ if($action=="get_file"){
 			}
 			
 		}
+		
+		echo "<p>(Right click and 'save target as' to save the file to your computer...)</p>\n";
+
+		echo "<table border=0><tr>";
+		echo "<td>";
+		sc_button(sc_canonical_url()."&get_file_extended=yes","Get Extended File Information");
+		echo "</td>";
+		if(sc_access_check("files","edit")) {
+			echo "<td>";
+				sc_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&id=$filedata->id","Edit");		
+			echo "</td>";
+		}
+		if(sc_access_check("files","delete")) {
+			echo "<td>";
+			sc_button("$RFS_SITE_URL/modules/files/files.php?action=del&id=$filedata->id","Delete");
+			echo "</td>";
+		}		
+		echo "</tr></table>";
+
+
 		
 		if($get_file_extended=="yes") {
 		
@@ -582,11 +661,12 @@ if($action=="get_file"){
 
 			echo "</td></tr></table>";
 		}
-		
-		
-	}
 
+	echo "</div>";		
+	}
+	
 	else echo "<p> You can't download files unless you are <a href=\"$RFS_SITE_URL/login.php\">Logged in</a>!</p>\n";
+
 
 	
 	
@@ -594,145 +674,162 @@ if($action=="get_file"){
 	exit();
 }
 
-if($file_mod=="yes"){
-	
-	if(!sc_access_check("files","edit")) {
-		echo "You don't have access to edit files.<br>";
-		include("footer.php");
-		exit();
-	}	
+function files_action_f_dup_rem_checked() { eval(scg());
+	if(sc_access_check("files","delete")) {
+		foreach( $_POST as $k => $v) {
+			if( (stristr($k,"check_")) && ($v=="on")) {
+				$wid=str_replace("check_","",$k);
+				$delar[$wid]=$wid;
+			}
+		}
+		foreach($delar as $k => $v) {
+			sc_lib_file_delete($v,"yes");
+		}
+		sc_show_scanned_duplicates($RFS_CMD_LINE);
+	}
+	else {
+		echo "You can't delete files.<br>";
+	}
+	exit();
+}
 
-    if(!empty($data->name))    {
-        if($action=="ren")        {
+function files_action_ren() { eval(scg()); 
+	if(sc_access_check("files","edit")) {
+		if(!empty($data->name))    {
+			
             if(!empty($name)) sc_query("UPDATE files SET name='$name' where id = '$id'");
         }
-		
-		if($action=="f_dup_rem_checked") {
-			foreach( $_POST as $k => $v) {
-				if( (stristr($k,"check_")) && ($v=="on")) {
-					// echo " $k --- $v <br>";
-					$wid=str_replace("check_","",$k);					
-					$delar[$wid]=$wid;
-				}
-			}
-			foreach($delar as $k => $v) {
-				// echo "DELETE FILE ID [$v]<br>";
-				sc_lib_file_delete($v,"yes");
-			}
-			sc_show_scanned_duplicates($RFS_CMD_LINE);
-			
+	}
+	else { 
+		echo "You can't edit files.<br>";
+	}
+	include("footer.php");
+	exit();	
+}
+
+function files_action_del_conf() { eval(scg()); 
+	if(sc_access_check("files","delete")) {
+		sc_lib_file_delete($id,$annihilate);			
+		if(!empty($retpage)) {
+			sc_gotopage($retpage);
 			exit();
 		}
-		
-        if($action=="del") {
-			
-			$filedata=sc_getfiledata($id);
-			sc_info("REMOVE FILE <br>[$filedata->location]","WHITE","RED");
-			echo "<p></p>";
-			echo "<table border=0>\n";
-			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
-			echo "<input type=hidden name=retpage value=\"$retpage\">";
-			echo "<input type=hidden name=file_mod value=yes>\n";
-			echo "<input type=hidden name=action value=del_conf>\n";
-			echo "<input type=hidden name=id value=\"$id\">\n";
-			echo "<tr><td>Are you sure you want to delete<br>[$filedata->location]???</td>";
-			echo "<td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
-			echo "<tr><td>Annihilate the file from the server?</td><td><input name=\"annihilate\" type=\"checkbox\" value=\"yes\"></td></tr>\n";
-			echo "<tr><td>Important! If you do not want to delete this file, 
-				<a href=\"$retpage\">click here</a>!</td>\n";
-			echo "<td>&nbsp;</td><td>&nbsp;</td></tr>\n";
-			echo "</form></table>\n";
-			echo "</td></tr></table>";
-            include("footer.php");
-            exit();
-        }
-		
-        if($action=="del_conf") {
-			sc_lib_file_delete($id,$annihilate);			
-		
-			if(!empty($retpage)) {
-				sc_gotopage($retpage);
-				exit();
-			}
-			
-        }
-        if($action=="mod")        {
-			
-            if(!empty($name)) sc_query("UPDATE files SET name='".addslashes($name)."' where id = '$id'");
-            if(!empty($location)){
-                sc_query("UPDATE files SET location='$location' where id = '$id'");
-                $filetype=sc_getfiletype($location);
-                sc_query("UPDATE files SET filetype='$filetype' where id = '$id'");
-            }
-
-            sc_query("UPDATE files SET category='$category' where id='$id'");
-            sc_query("UPDATE files SET hidden='$hidden' where id='$id'");
-            sc_query("UPDATE files SET downloads='$downloads' where id='$id'");
-            sc_query("UPDATE files SET description='".addslashes($description)."' where id = '$id'");
-            sc_query("UPDATE files SET size='$size' where id='$id'");
-            $time=date("Y-m-d H:i:s");
-            sc_query("UPDATE files SET time='$time' where id='$id'");
-            sc_query("UPDATE files SET thumb='$thumbr' where id='$id'");
-            sc_query("UPDATE files SET version='$vers' where id='$id'");
-            sc_query("UPDATE files SET homepage='$homepage' where id='$id'");
-            sc_query("UPDATE files SET owner='$owner' where id='$id'");
-            sc_query("UPDATE files SET platform='$platform' where id='$id'");
-            sc_query("UPDATE files SET os='$fos' where id='$id'");
-            sc_query("UPDATE files SET rating='$rating' where id='$id'");
-            sc_query("UPDATE files SET worksafe='$sfw' where id = '$id'");
-
-            echo "<p><a href=$RFS_SITE_URL/modules/files/files.php>File</a> modified...</p><br>\n";
-        }
-
-        if($action=="mdf")  { // show a form to modify the file attributes...        
-            // if($data->access==255) sc_dtv("files");
-            $filedata=sc_getfiledata($id);
-            echo "<p>Modify [$filedata->name]</p>\n";
-			
-			sc_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
-			sc_ajax("Location,80","files","id","$id","location",70,"","files","edit","");
-			sc_ajax("Thumbnail,80","files","id","$id","thumb",70,"","files","edit","");
-			sc_ajax("Homepage,80","files","id","$id","homepage",70,"","files","edit","");
-			
-			sc_ajax("Category,80","files","id","$id","category",70,"select,table,categories,name","files","edit","");
-						
-			sc_ajax("Description,80","files","id","$id","description","15,70","textarea","files","edit","");
-			
-			sc_ajax("Filesize,80","files","id","$id","size",30,"","files","edit","");
-			sc_ajax("Version,80","files","id","$id","version",30,"","files","edit","");			
-			sc_ajax("Owner,80","files","id","$id","owner",30,"","files","edit","");
-			sc_ajax("Platform,80","files","id","$id","platform",30,"","files","edit","");
-			sc_ajax("OS,80","files","id","$id","os",30,"","files","edit","");
-			
-			sc_ajax("Downloads,80","files","id","$id","downloads",10,"","files","edit","");
-			sc_ajax("Hidden,80","files","id","$id","hidden",10,"","files","edit","");
-			sc_ajax("Worksafe,80","files","id","$id","worksafe",10,"","files","edit","");
-			sc_ajax("Rating,80","files","id","$id","rating",10,"","files","edit","");
-			
-			
-            include("footer.php");
-            exit();
-        }
-    }
-    else echo "<p>You can't modify files if you are not <a href=$RFS_SITE_URL/login.php>logged in</a>!</p>\n";
+	}
+	else {
+		echo "You can't delete files<br>";
+		include("footer.php");
+		exit();
+	}
 }
-if($action=="show_duplicates") {
+
+function files_action_del() { eval(scg()); 
+	if(sc_access_check("files","delete")) {
+		$filedata=sc_getfiledata($id);
+		sc_info("REMOVE FILE <br>[$filedata->location]","WHITE","RED");
+		echo "<p></p>";
+		echo "<table border=0>\n";
+		echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
+		echo "<input type=hidden name=retpage value=\"$retpage\">";
+		echo "<input type=hidden name=action value=del_conf>\n";
+		echo "<input type=hidden name=id value=\"$id\">\n";
+		echo "<tr><td>Are you sure you want to delete<br>[$filedata->location]???</td>";
+		echo "<td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
+		echo "<tr><td>Annihilate the file from the server?</td><td><input name=\"annihilate\" type=\"checkbox\" value=\"yes\"></td></tr>\n";
+		echo "<tr><td>Important! If you do not want to delete this file, 
+			<a href=\"$retpage\">click here</a>!</td>\n";
+		echo "<td>&nbsp;</td><td>&nbsp;</td></tr>\n";
+		echo "</form></table>\n";
+		echo "</td></tr></table>";
+	}
+	else {
+		echo "You can't delete files<br>";
+	}
+	include("footer.php");
+	exit();
+}
+
+function files_action_mod() { eval(scg()); // //  if($action=="mod")        {
+	if(sc_access_check("files","edit")) {
+		if(!empty($name)) sc_query("UPDATE files SET name='".addslashes($name)."' where id = '$id'");
+		if(!empty($location)){
+			sc_query("UPDATE files SET location='$location' where id = '$id'");
+			$filetype=sc_getfiletype($location);
+			sc_query("UPDATE files SET filetype='$filetype' where id = '$id'");
+		}
+		sc_query("UPDATE files SET category='$category' where id='$id'");
+		sc_query("UPDATE files SET hidden='$hidden' where id='$id'");
+		sc_query("UPDATE files SET downloads='$downloads' where id='$id'");
+		sc_query("UPDATE files SET description='".addslashes($description)."' where id = '$id'");
+		sc_query("UPDATE files SET size='$size' where id='$id'");
+		$time=date("Y-m-d H:i:s");
+		sc_query("UPDATE files SET time='$time' where id='$id'");
+		sc_query("UPDATE files SET thumb='$thumbr' where id='$id'");
+		sc_query("UPDATE files SET version='$vers' where id='$id'");
+		sc_query("UPDATE files SET homepage='$homepage' where id='$id'");
+		sc_query("UPDATE files SET owner='$owner' where id='$id'");
+		sc_query("UPDATE files SET platform='$platform' where id='$id'");
+		sc_query("UPDATE files SET os='$fos' where id='$id'");
+		sc_query("UPDATE files SET rating='$rating' where id='$id'");
+		sc_query("UPDATE files SET worksafe='$sfw' where id = '$id'");
+
+		echo "<p><a href=$RFS_SITE_URL/modules/files/files.php>File</a> modified...</p><br>\n";
+	}
+	else {
+		echo "You don't have access to edit files.<br>";
+	}	
+	include("footer.php");
+	exit();
+}
+
+
+function files_action_mdf() { eval(scg()); //  if($action=="mdf")  { // show a form to modify the file attributes...        
+	if(sc_access_check("files","edit")) {
+	$filedata=sc_getfiledata($id);
+	echo "<p>Modify [$filedata->name]</p>\n";
+
+	sc_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
+	sc_ajax("Location,80","files","id","$id","location",70,"","files","edit","");
+	sc_ajax("Thumbnail,80","files","id","$id","thumb",70,"","files","edit","");
+	sc_ajax("Homepage,80","files","id","$id","homepage",70,"","files","edit","");
+
+	sc_ajax("Category,80","files","id","$id","category",70,"select,table,categories,name","files","edit","");
+				
+	sc_ajax("Description,80","files","id","$id","description","15,70","textarea","files","edit","");
+
+	sc_ajax("Filesize,80","files","id","$id","size",30,"","files","edit","");
+	sc_ajax("Version,80","files","id","$id","version",30,"","files","edit","");			
+	sc_ajax("Owner,80","files","id","$id","owner",30,"","files","edit","");
+	sc_ajax("Platform,80","files","id","$id","platform",30,"","files","edit","");
+	sc_ajax("OS,80","files","id","$id","os",30,"","files","edit","");
+
+	sc_ajax("Downloads,80","files","id","$id","downloads",10,"","files","edit","");
+	sc_ajax("Hidden,80","files","id","$id","hidden",10,"","files","edit","");
+	sc_ajax("Worksafe,80","files","id","$id","worksafe",10,"","files","edit","");
+	sc_ajax("Rating,80","files","id","$id","rating",10,"","files","edit","");
+	}
+	else {
+		echo "You don't have access to edit files.<br>";
+	}	
+	include("footer.php");
+	exit();
+}
+
+function files_action_show_duplicates() { eval(scg()); // if($action=="show_duplicates") {
 	sc_show_scanned_duplicates(0);
-	
-	exit;
+	exit();
 }
-
-if($action=="remove_duplicates") {
+function files_action_remove_duplicates() { eval(scg()); // if($action=="remove_duplicates") {
+	exit();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-if($action=="getorphans") {
+function files_action_getorphans() { eval(scg()); //if($action=="getorphans") {
 	orphan_scan("files",0);
 	include("footer.php");
     exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////
-if($action=="purge") {
+function files_action_purge() { eval(scg()); // if($action=="purge") {
 	purge_files(0);
 	include("footer.php");
 	exit();	
@@ -902,7 +999,8 @@ if($give_file=="avatar"){
     include("footer.php");
     exit();
 }
-if($action=="upload_avatar"){
+
+function files_action_upload_avatar() { eval(scg()); // if($action=="upload_avatar"){
     if(empty($data->name))    {
         echo "<p>You must be logged in to upload files...</p>\n";
     }    else     {
@@ -923,11 +1021,9 @@ if($action=="upload_avatar"){
     exit();
 }
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////
 
-if($action=="file_change_category") {
+function files_action_file_change_category() { eval(scg()); //if($action=="file_change_category") {
 	sc_query("update files set category = '$name' where id = '$id'");
 	$name=""; $action="search"; $category="all categories";	
 }
@@ -948,7 +1044,10 @@ if(($action=="listcategory") || ($action=="search")) {
 	$category=rtrim($category);
 	if($category=="all categories") $category="all";
 	if($action=="search"){
-		$query=" where (`name` like '%$criteria%' or `description` like '%$criteria%' or `category` like '%$criteria%') ";
+		$query=" where (	`name` like '%$criteria%' or
+							`description` like '%$criteria%' or
+							`category` like '%$criteria%' or
+							`tags` like  '%$criteria%' ) ";
 
 	if($category!="all")
 			$query.="and `category` = '$category' ";
@@ -958,6 +1057,22 @@ if(($action=="listcategory") || ($action=="search")) {
     }
     if($action=="listcategory")
 		if(empty($query)) $query="where `category` = '$category' ";	
+		
+	if(!empty($tagsearch))  {
+		$ts=" (`tags` like '%$tagsearch%' ) "; 
+		$top=0;
+		$amount=25;		
+		if(stristr($query,"where")) $query=str_replace("where ","where $ts and ",$query);
+		else $query="where $ts ";
+	}
+	
+	if($_SESSION['tagmode']) {
+		$ts=" `tags`='' ";
+		if(stristr($query,"where")) $query=$query." and $ts ";
+		else $query="where $ts ";
+	}
+	
+	$reload="amount=$amount&top=$top";
 	
     if($top=="")    $top=0;
     if($amount=="") $amount=25;
@@ -967,7 +1082,7 @@ if(($action=="listcategory") || ($action=="search")) {
 	$nexttop=$top+$amount+1;
 	$prevtop=$top-$amount;
 	if($prevtop<0) $prevtop=0;
-	
+		
     $filelist= sc_getfilelist($query,$limit);
     $x=count($filelist);	
     if($x==0){
@@ -983,11 +1098,13 @@ if(($action=="listcategory") || ($action=="search")) {
 	}
 	
 	if($prevtop>0) 
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria","PREV PAGE");
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch","PREV PAGE");
 	if($x==$amount) 
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria","NEXT PAGE");
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch","NEXT PAGE");
 
     if(count($filelist)) {
+		echo "<div class=file_list style='float: left;' >";
+		echo "<div class=file_category style='float:left;' >";
 		echo "<h1>".ucwords($buffer)."</h1>";
 		$i=0; $bg=0;
 		while($i<count($filelist)){
@@ -1003,33 +1120,44 @@ if(($action=="listcategory") || ($action=="search")) {
 				}
 			}
 		}		
+		echo "</div>";
+		echo "</div>";
 	}
+	echo "<div style='clear: both;'></div>";
 	
 	if($prevtop>0) 
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria","PREV PAGE");
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch","PREV PAGE");
 	if($x==$amount) 
-		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria","NEXT PAGE");
+		sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch","NEXT PAGE");
+		
+	sc_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&$reload&category=$category&criteria=$criteria","RELOAD");
+	
 	
     include("footer.php");
     exit();
 }
 
-$result=sc_query("
-select * from categories 
-	where 	name != 'unsorted' order by name asc");
+$q="select * from categories  where  (`name` != 'unsorted')  order by name asc";
+$result=sc_query($q);
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++) {
     $cat=mysql_fetch_object($result);
     if(!empty($cat->name))     {
         $i=0; $bg=0;
-        // $buffer=rtrim($buffer);
         $buffer=rtrim($cat->name);
-        $filelist=sc_getfilelist("where category = '$buffer' and hidden='no' ",50);
+		
+		if(sc_yes($_SESSION['hidden']))  $shide="";
+		else $shide=" and hidden='no' "; 
+
+		$q="";
+		if(!empty($tagsearch)) $q.=" (`tags` like '%$tagsearch%' ) and ";
+		
+		$filelist=sc_getfilelist("where $q category = '$buffer' $shide ",50);
 
 		if(count($filelist)){
 			
-			echo "<div class=file_list >";
-			echo "<div class=file_category >";
+			echo "<div class=file_list style='float: left;' >";
+			echo "<div class=file_category style='float:left;' >";
 			
 			$iconp=$RFS_SITE_PATH."/".$cat->image;
 			$icon=$RFS_SITE_URL."/".$cat->image;
@@ -1042,11 +1170,12 @@ for($i=0;$i<$numcats;$i++) {
 			echo "<a class=file_category_link href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" title=\"List all $buffer files\">[";			
 			echo ucwords("$buffer");			
 			echo "] ";
-			$myr=sc_getfilelist("where category='$buffer' and hidden='no'",999999999);
+			$myr=sc_getfilelist("where category='$buffer' $shide ",999999999);
 			echo "(";
 			echo count($myr);
 			echo " files)";
-			echo "</a></div>";
+			echo "</a>";
+			echo "</div>";
 			
 			while($i<count($filelist)) {
 				$filedata=sc_getfiledata($filelist[$i]);

@@ -6,6 +6,16 @@ body {
     background-color: #FFFFFF;
 }
 
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #fc6;
+}
 
 .news_box {
 	clear: both;

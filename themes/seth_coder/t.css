@@ -4,6 +4,19 @@ body{
   margin: 3px;
 }
 
+
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #fc6;
+}
+
+
 .rfs_thumb {
 	box-shadow: 3px 3px 3px #222222;
 	border:solid 1px #222222;

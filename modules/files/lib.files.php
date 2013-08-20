@@ -68,6 +68,22 @@ function sc_update_file($fid) {
 }
 ///////////////////////////////////////////////////////////////////////////////////
 
+function sc_ajax_callback_files_add_tag() { eval(scg());
+
+	// update `files` set `tags`='blowjob' where `id` = '412524'
+	$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
+	sc_query($q);
+	$tx=explode(",",$rfaajv);
+	foreach($tx as $k => $v) {
+		// echo " [$v] <br>";
+		lib_tags_add_tag($v);
+	}
+	echo "TAGGED";
+	
+	exit();
+	
+}
+
 function sc_ajax_callback_files_new_category() { eval(scg());
 	if(sc_access_check($rfaapage,$rfaact)) {
 		$q="insert into categories (`name`, `image`, `worksafe` ) values ('$rfaajv', '', 'yes')";
@@ -139,15 +155,11 @@ function sc_ajax_callback_rename_file() { eval(scg());
 			$nloc=str_replace($f->name,$rfaajv,$f->location);
 			$q="update `$rfatable` set `location`='$nloc' where `location` = '$f->location'";
 			sc_query($q);
-			
 			echo "<font style='color:white; background-color:green;'>RENAMED</font>";
 		}
-		else {
-			
+		else {	
 			echo "<font style='color:white; background-color:red;'>FAILURE</font>";
 		}
-		
-		
 	}
 	exit;
 }
@@ -162,19 +174,66 @@ function sc_ajax_callback_delete_file() { eval(scg());
 }
 
 
+
+function sc_ajax_javascript_file() { eval(scg());
+	echo '
+	<script>
+
+	function sc_ajax_javascript_dupefile_delete(
+					rfalabel,
+					rfanname,
+					rfaajv,
+					rfatable,
+					rfaikey,
+					rfakv,
+					rfafield,
+					rfaapage,
+					rfaact,
+					rfacallback)
+				{
+			var http=new XMLHttpRequest();
+			var url = "'.$RFS_SITE_URL.'/header.php";
+			var params = "action="+rfacallback+
+			"&rfaajv="   +encodeURIComponent(rfaajv)+
+			"&rfanname=" +encodeURIComponent(rfanname)+
+			"&rfatable=" +encodeURIComponent(rfatable)+
+			"&rfaikey="  +encodeURIComponent(rfaikey)+
+			"&rfakv="    +encodeURIComponent(rfakv)+
+			"&rfafield=" +encodeURIComponent(rfafield)+
+			"&rfaapage=" +encodeURIComponent(rfaapage)+
+			"&rfaact="   +encodeURIComponent(rfaact);
+			document.getElementById("dfd_"+rfakv).innerHTML="'.sc_ajax_spinner().'";
+			http.open("POST", url, true);
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			http.setRequestHeader("Content-length", params.length);
+			http.setRequestHeader("Connection", "close");
+			http.onreadystatechange = function() {
+					if(http.readyState == 4 && http.status == 200) {
+					document.getElementById("dfd_"+rfakv).innerHTML=http.responseText;	
+					document.getElementById("dfd_"+rfakv).style.display = "none";
+				}
+			}
+			http.send(params);
+		}
+		</script> ';
+}
+
+
 function show1file($filedata,$bg) { eval(scg());
 
-	if((($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) )
-		$fedit=true;
-	if(($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
-		$fworksafe=true;
+	if((($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) ) $fedit=true;
+	if(($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") ) $fworksafe=true;
 
-	sc_update_file($filedata->id);
+	// sc_update_file($filedata->id);
 	$filedata=mfo1("select * from files where id='$filedata->id'");
 	
-	echo "<div id=\"$filedata->id\" >";
-	echo "<table border=0 cellspacing=0>";
-	echo "<tr>";
+	echo "<div style='clear: both;' id=\"$filedata->id\">";
+	
+	///////////////////////////////////
+	
+	echo "<div style='display: block; float:left;' class='sc_file_table_$bg'>"; 
+	
+	///////////////////////////////////
 
     $filetype=sc_getfiletype($filedata->location);
     $fti="images/icons/filetypes/$filetype.gif";
@@ -188,19 +247,65 @@ function show1file($filedata,$bg) { eval(scg());
 	
 	$dout=str_replace("\"","'",$dout);
 	
-	$span="<span title=\"$filedata->name\n$dout\">";
+	///////////////////////////////////
 	
-	echo "<td class='sc_file_table_$bg'>";		
-		echo $span;
+	echo "<div style='display: block; float:left;' class='sc_file_table_$bg'>"; 
 		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">";
 		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
 		echo "</a>";		
-		echo "</span>";
-	echo "</td>";
+	echo "</div>";
 	
-	echo "<td class='sc_file_table_$bg' style='width:280x; max-width:280px; min-width:280px;'>";	
 	
-		echo $span;
+	///////////////////////////////////
+	
+	
+	if($fedit || $_SESSION['deletemode']) {
+		if(sc_access_check("files","delete")) {
+			echo "$filedata->location <br>";
+			sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button,nolabel", "files","delete","sc_ajax_callback_delete_file");
+		}			
+
+		echo "<div style='display: block; float:left; min-width:250px;' class='sc_file_table_$bg'>";
+			echo"$filedata->md5 ";
+			$fdr=sc_query("select * from files where md5='$filedata->md5'");
+			if(mysql_num_rows($fdr)>1) {
+				echo "<br>Matching MD5:<br>";
+				for($jjq=0;$jjq<mysql_num_rows($fdr);$jjq++) {
+					$dfile=mysql_fetch_object($fdr);
+					if($dfile->id!=$filedata->id) {
+						echo "<div style='display: block; float:left; padding:5px; margin:5px; background-color: #500; color: #f00;
+						border: 1px dashed #f00; border-radius: 10px;
+						' id='dfd_$dfile->id'> ";
+							echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$dfile->id\"
+								title=\"matching file $dfile->location\">";
+							$ftype=sc_getfiletype($dfile->name);
+							if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
+								if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
+									echo sc_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
+							echo "<br>$dfile->name";
+							echo "</a><BR>
+							$dfile->location<br>";
+							echo "<div style='clear:both;'>";
+								lib_tags_show_tags("files",$dfile->id);
+							echo "</div>";
+							echo "<div style='clear:both;'>";
+								if(sc_access_check("files","delete")) {
+									sc_ajax("Delete", "files",   "id", "$dfile->id", "id", 20,"button,nolabel", "files","delete","sc_ajax_callback_delete_file,sc_ajax_javascript_dupefile_delete");
+								}
+							echo "</div>";
+						echo "</div>";
+					}			
+				}
+			}
+		echo "</div>";		
+	}
+	echo "<div style='clear:both;'> </div>"; 
+	
+	
+
+	if($fedit || $_SESSION['deletemode']) 
+		$nwidth=550; else $nwidth=250;
+	echo "<div style='display: block; float:left; width:$nwidth px; max-width:$nwidth px; min-width:$nwidth px;' class='sc_file_table_$bg'>"; 
 		if((sc_access_check("files","edit")) && $fedit) {
 			sc_ajax("Name"	,"files","id","$filedata->id","name",36,"nohide","files","edit","sc_ajax_callback_rename_file");
 			echo "<br>URL <a href=\"$RFS_SITE_URL/$filedata->location\" target=\"_blank\">$filedata->name</a> ";
@@ -212,15 +317,16 @@ function show1file($filedata,$bg) { eval(scg());
 		}
 		
 		echo "<br>";
-		echo "</span>";
+
 		if(	($filetype=="jpg") ||
 			($filetype=="png") ||
 			($filetype=="gif") ||
 			($filetype=="bmp") ||
 			($filetype=="svg") ||
 			($filetype=="jpeg"))
-			if($fworksafe)
-				echo sc_picthumb("$RFS_SITE_URL/$filedata->location",250,0,1)."<br>";
+			if($fworksafe) {
+					echo sc_picthumb("$RFS_SITE_URL/$filedata->location",$nwidth,0,1)."<br>";	
+				}
 
 		if(	($filetype=="mpg") ||
 			($filetype=="mpeg") ||
@@ -228,9 +334,11 @@ function show1file($filedata,$bg) { eval(scg());
 			($filetype=="avi") ||
 			($filetype=="flv")  ) {		
 				if($fworksafe) {
-					echo "<br><div name=\"play$filedata->id\" id=\"play$filedata->id\"></div>
-							<a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a>
-							<a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>";
+					echo "<br>
+					
+					 <div style='display: block; float: left;' name=\"play$filedata->id\" id=\"play$filedata->id\"></div>
+					<a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a>
+					<a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>";
 		}
 	}
 		
@@ -239,126 +347,90 @@ function show1file($filedata,$bg) { eval(scg());
 			if(sc_access_check("files","edit")) {
 				sc_ajax("Category","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
 				sc_ajax("New Category","files","id","$filedata->id","category",36,"","files","edit","sc_ajax_callback_files_new_category");
-				sc_ajax("Tags",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","");
+				
+				sc_ajax("Tags",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","sc_ajax_callback_files_add_tag");				
 				sc_ajax("Move to Pictures", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","sc_ajax_callback_files_move_to_pictures");
-				sc_ajax("Ignore", "files",   "id", "$filedata->id", "id", 20, "button", "files","delete","sc_ajax_callback_file_ignore");
-			}
-			if(sc_access_check("files","delete")) {
-				sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button", "files","delete","sc_ajax_callback_delete_file");
-			}			
-		}
-		else {
-			$tagz=explode(",",$filedata->tags);
-			if(!empty($tagz[0])) {
-				echo "Tags:  ";
-				foreach($tagz as $tk => $tv) echo "$tv ";
+				sc_ajax("Ignore", "files",   "id", "$filedata->id", "id", 20, "button,nolabel", "files","delete","sc_ajax_callback_file_ignore");
 			}
 		}
+		
+		echo "<div style='display: block; float:left;' class='sc_file_table_$bg'
+			id=\"tags_$filedata->id\"> &nbsp; </div>"; 
+		
+		if($_SESSION['tagmode'])
+				lib_tags_add_link("files",$filedata->id);
+		lib_tags_show_tags("files",$filedata->id);
 
-	echo "</td>";
+	echo "</div>";
+	
+	///////////////////////////////////
 	
 	$size=(sc_sizefile($filedata->size));
-
-	echo "<td class='sc_file_table_$bg' style='width:340x; max-width:340px; min-width:340px;'>";
-	echo $span;
+	echo "<div style='display: block; float:left; width:340x; max-width:340px; min-width:340px;' class='sc_file_table_$bg'>";
 	if( ($filetype=="ttf") || 
 		($filetype=="otf") ||
 		($filetype=="fon") ) {
 			$fn=stripslashes("$filedata->name");
 			sc_image_text($fn,$fn, 12, 1,1, 0,0, 244,245,1, 1,1,0, 1,0 );
 			
-		} else {	
-			if( (sc_access_check("files","edit")) && $fedit) {
-					sc_ajax("Description"	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
-
-					sc_ajax("Location",    	"files","id",	   "$filedata->id","location", 76,"nohide","files","edit","sc_ajax_callback_file_move");
-
-					sc_ajax("Hidden",    	"files","id",	   "$filedata->id","hidden", 36,"nohide","files","edit","");
-					if(sc_yes($filedata->hidden))
-						sc_info("HIDDEN","WHITE","RED");
 			}
 			else {
-				echo "$fd";
+				echo "$fd &nbsp;";
 			}
-			if( ($_SESSION['show_temp']==true) || ($_SESSION['editmode']==true)) {
+			if( (sc_access_check("files","edit")) && $fedit) {
+				sc_ajax("Description"	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
+
+				sc_ajax("Location",    	"files","id",	   "$filedata->id","location", 76,"nohide","files","edit","sc_ajax_callback_file_move");
+
+				sc_ajax("Hidden",    	"files","id",	   "$filedata->id","hidden", 36,"nohide","files","edit","");
+				if(sc_yes($filedata->hidden))
+					sc_info("HIDDEN","WHITE","RED");
+
 				$filedata->location=str_replace("/","/<wbr />",$filedata->location);
 				echo "<br>[$filedata->location]";
 				
 			}
 			
-		}
-		echo "</span>";
-		echo "</td>";
 		
+	echo "</div>";
 	
+	///////////////////////////////////
 		
-		
-	echo "<td class='sc_file_table_$bg' style='min-width:80px;'>";	
-		echo $span;
+	echo "<div style='display: block; float:left; min-width:60px;' class='sc_file_table_$bg'>";
 		echo "$size ";
-		if( ($_SESSION['show_temp']==true) || ($_SESSION['editmode']==true))
+		if($fedit)
 			echo "<br> Submitted by:<br>$filedata->submitter ";
-		echo "</span>";
-	echo "</td>";
+	echo "</div>";
 	
-	echo "<td class='sc_file_table_$bg' style='min-width:80px;'>";	
-	echo $span;
-		echo"$filedata->version ";
-	echo "</span>";
-	echo "</td>";
+	///////////////////////////////////
+	
+	echo "<div style='display: block; float:left; min-width:80px;' class='sc_file_table_$bg'>";
+		echo"$filedata->version &nbsp;";
+	echo "</div>";
+	
+	///////////////////////////////////
 		
-	echo "<td class='sc_file_table_$bg' style='min-width:80px;'>";	
-	echo $span;
-		echo"$filedata->platform ";
-	echo "</span>";
-	echo "</td>";
+	echo "<div style='display: block; float:left; min-width:40px;' class='sc_file_table_$bg'>";
+		echo"$filedata->platform &nbsp;";
+	echo "</div>";
 	
-	echo "<td class='sc_file_table_$bg' style='min-width:80px;'>";	
-	echo $span;
-		echo"$filedata->os ";
-	echo "</span>";
-	echo "</td>";
+	///////////////////////////////////
 	
-	echo "<td class='sc_file_table_$bg' style='min-width:40px;'>";	
-		echo $span;
-		echo"$filedata->downloads ";
-	echo "</span>";
-	echo "</td>";
+	echo "<div style='display: block; float:left; min-width:40px;' class='sc_file_table_$bg'>"; 
+		echo"$filedata->os &nbsp;";
+	echo "</div>";
 	
-	echo "<td class='sc_file_table_$bg' style='min-width:200px;'>";	
-		echo $span;
-		echo"$filedata->md5 ";
-		
-		$fdr=sc_query("select * from files where md5='$filedata->md5'");
-		if(mysql_num_rows($fdr)>1) {
-			echo "<br>Matching MD5:<br>";
-			for($jjq=0;$jjq<mysql_num_rows($fdr);$jjq++) {
-				$dfile=mysql_fetch_object($fdr);
-				if($dfile->id!=$filedata->id) {
-					
-					
-					echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\"
-						title=\"matching file $dfile->location\">";
-					
-					
-					$ftype=sc_getfiletype($dfile->name);
-					if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
-						if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
-							echo sc_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
-
-					echo "<br>$dfile->name";
-						
-					echo "</a> <BR>";
-					
-				}
-			
-			}
-		}
-	echo "</span>";
-	echo "</td>";
-
-	echo "</tr>";
-	echo "</table>";
+	
+	///////////////////////////////////
+	
+	echo "<div style='display: block; float:left; min-width:20px;' class='sc_file_table_$bg'>";
+		echo" &nbsp;";
+	echo "</div>";
+	
+	///////////////////////////////////
+	
+	echo "</div>";
+	
 	echo "</div>";
 	
 }
@@ -385,13 +457,13 @@ function sc_getfiledata($file){
 function sc_getfilelist($filesearch,$limit){
     $query = "select * from files";
     if(!empty($filesearch)) $query.=" ".$filesearch;
-	if(!stristr($query,"order by"))
-     $query.=" order by `name` asc ";
-    if(!empty($limit)) $query.=" limit $limit";
-	
-	$query=str_replace("where","where (`ignore` != 'yes') and ",$query);
-	
 		
+	if(!stristr($query,"order by"))
+		$query.=" order by `name` asc ";
+    if(!empty($limit)) $query.=" limit $limit";	
+	$query=str_replace("where","where (`ignore` != 'yes') and ",$query);	
+	
+
     $result = sc_query($query);
     $i=0; $k=mysql_num_rows($result);
     while($i<$k) {
@@ -585,7 +657,7 @@ function sc_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
 		
 		echo "<td	class='$color'>";
 
-		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?file_mod=yes&action=del&id=".
+		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?action=del&id=".
 							$f->id.
 							"&retpage=".urlencode(sc_canonical_url()),
 							"Delete ",
@@ -635,7 +707,6 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 	
 	
 	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/files/files.php\" method=post>\n";
-	echo "<input type=hidden name=file_mod value=yes>";
 	echo "<input type=hidden name=action value=f_dup_rem_checked>";
 	
 	$r=sc_query("select * from file_duplicates $limit");
@@ -781,11 +852,11 @@ function sc_lib_file_delete($id,$annihilate) { eval(scg());
 	sc_query("delete from files where id = '$id'");
 	sc_query("delete from file_duplicates where loc1 = '$filedata->location'");
 	sc_query("delete from file_duplicates where loc2 = '$filedata->location'");
-	echo "<p>Deleted [$filedata->location] from the database...</p>\n";
+	
 	if($annihilate=="yes") {
-		unlink($RFS_SITE_PATH."/".$filedata->location);
-		echo "<p> $filedata->location annihilated!</p>\n";
+		unlink($RFS_SITE_PATH."/".$filedata->location);	
 	}
+	echo "<font style='color: red;'>Deleted [$filedata->id]...</font>";
 }
 
 ?>

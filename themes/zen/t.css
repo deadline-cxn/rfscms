@@ -23,6 +23,17 @@ h1, h2, h3 {
 	text-shadow: 2px 2px 2px #000;
 }
 
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #fc6;
+}
+
 .news_box {
 	clear: both;
 	margin: 0px;
@@ -358,15 +369,19 @@ td {
 }
 
 .file_list {
-	background-color:rgba(0,220,150,0.1);
-	margin: 10px;
+	background-color: #474;
+	margin: 16px;
+	padding: 10px;
+	border: 1px solid #000;
+	border-radius: 5px;
+	
 }
 
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     color:   #000000;
-    background-color:rgba(0,220,150,0.1);
-	height: 36px;
+	background-color: #474;
+    fbackground-color:rgba(0,220,150,0.1);
 	padding-left: 10px;
 	font-style: none;
 	
@@ -383,7 +398,6 @@ td {
 }
 
 .file_link, .file_link:link {
-	
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	font-weight: normal;
@@ -398,9 +412,7 @@ td {
     font-size: 10px;
 	font-weight: normal;
     color:   #000000;
-	background-color:rgba(0,220,150,0.1);
-	height: 32px;
-	padding-left: 5px;
+	background-color: #696;
 }
 
 .sc_file_table_1 {
@@ -408,9 +420,7 @@ td {
     font-size: 10px;
 	font-weight: normal;
     color:   #000000;
-	background-color:rgba(0,220,150,0.2);	
-	height: 32px;
-	padding-left: 5px;
+	background-color: #585;
 }
 
 .rfs_bulletlist {
