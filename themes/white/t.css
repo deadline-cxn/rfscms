@@ -406,12 +406,8 @@ td
 }
 
 
-.sc_top_file_table
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    color:   #000000;
-    background-color: #8888ff;
+.file_list { 
+ margin: 10px;
 }
 
 
@@ -439,22 +435,19 @@ td
 }
 
 
-
-.sc_file_table_0
-{
+.sc_file_table_outer_0 {  background-color: #cccccc; }
+.sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    color:   #000000;
-    background-color: #cccccc;
+    color:   #000000;    
 	padding-left: 5px;
 }
 
-.sc_file_table_1
-{
+.sc_file_table_outer_1 { background-color: #dddddd; }
+.sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
-    background-color: #dddddd;
 	padding-left: 5px;
 }
 

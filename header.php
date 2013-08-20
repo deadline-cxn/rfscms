@@ -27,7 +27,7 @@ if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
 	exit();
 }
 
-// inlude theme definition file (if it exists)
+// include theme definition file (if it exists)
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
 // include theme header file (if it exists)
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) include("$RFS_SITE_PATH/themes/$theme/t.header.php");

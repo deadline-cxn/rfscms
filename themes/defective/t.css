@@ -103,22 +103,19 @@ hr{
     color: #FFFFFF;
 }
 
-.sc_top_menu_table
-{
+.sc_top_menu_table {
   font-family: Lucidia; 
   font-style: normal;
   background-color: #996600;
 }
 
-.sc_top_menu_table_td
-{
+.sc_top_menu_table_td {
   font-family: Lucidia; 
   font-style: normal;
   background-color: #996600;
 }
 
-.sc_top_menu_table_inner
-{
+.sc_top_menu_table_inner {
   font-family: Lucidia; 
   font-style: normal;
   background-color: #996600;
@@ -131,7 +128,6 @@ hr{
     font-style: normal;
     text-decoration: none;
     color: #FFFF00;
-    background-color: #996600;
 }
 .sc_top_menu_link:link {
     font-family: System;
@@ -140,7 +136,6 @@ hr{
     font-style: normal;
     text-decoration: none;
     color: #FFFF00;
-
 }
 .sc_top_menu_link:hover {
     font-family: System;
@@ -148,9 +143,8 @@ hr{
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
-	background-color:  #ffff00;
 	color: #000000;
-    background-image: none;
+	background-color: none;
 }
 
 .rfs_thumb {
@@ -327,6 +321,20 @@ th {
 }
 
 
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #762;
+}
+
+
+
+
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     color:   #000000;
@@ -354,23 +362,31 @@ th {
 	color: #000;
 }
 
+.sc_file_table_outer_0 {
+	background-color:rgba(260,160,0,0.1);
+	border-top: 1px dashed #530; 
+}
+
+
 .sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
     color:   #000;
-	background-color:rgba(80,20,0,0.1);
-	height: 32px;
 	padding-left: 5px;
 }
+
+.sc_file_table_outer_1 {
+	background-color:rgba(160,70,0,0.1);
+	border-top: 1px dashed #530; 
+}
+
 
 .sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
     color:   #000;
-	background-color:rgba(150,60,0,0.1);
-	height: 32px;
 	padding-left: 5px;
 }
 
@@ -406,8 +422,7 @@ a:hover {
     
 }
 
-input[type=text], textarea
-{
+input[type=text],input[type=password],input[type=textbox],textarea {
 	background-color: #895900;
     color: #f90;
     min-height: 22px;
@@ -419,25 +434,29 @@ input[type=text], textarea
 	border-right-color: #520;
     padding-left:10px;
 }
-input[type=button]
-{
+input[type=button],button,input[type=submit] {
     height: 22px;
+	background-color: #895900;
+    color: #f90;
     box-shadow:-1px 2px #99660A inset;
+	border-width : 1px;
+	border-radius: 5px;
+    border-color : #000000;
 }
 
-input[type=button], input[type=text], textarea
-{
+input[type=button],input[type=password],input[type=text],input[type=textbox], textarea {
     border-radius:5px;
     font-family: Sansation,Arial;
 }
 
 
 select {
-    font-family: Verdana;
-    font-size : x-small;
-    font-weight: bold;
+    ffont-family: Verdana;
+    ffont-size : x-small;
+    ffont-weight: bold;
     border-style : solid;
-    border-width : 2px;
+    border-width : 1px;
+	border-radius: 5px;
     border-color : #000000;
 	color: #ff9900;
     background-color : #664400;

@@ -2,6 +2,17 @@ body {
 	background-color: #5555ff;
 }
 
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #fc6;
+	text-decoration: none;
+}
 
 .news_box {
 	clear: both;
@@ -81,7 +92,68 @@ body {
 .forum_time{
 	overflow: hidden;
 	clear: both;
+}
+
+
+.file_list {
+	background-color: #447;
+	margin: 16px;
+	padding: 10px;
+	border: 1px solid #000;
+	border-radius: 5px;
 	
+}
+
+.file_category {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color:   #000000;
+	background-color: #447;
+    fbackground-color:rgba(0,220,150,0.1);
+	padding-left: 10px;
+	font-style: none;
+	
+}
+
+.file_category_link, .file_category_link:link {
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-style: none;
+	color: #99f;
+	padding-top:5px;
+	padding-left: 20px;
+}
+.file_category_link:hover {
+	color: #ff9;
+}
+
+.file_link, .file_link:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+	text-shadow: 0px 0px 0px #000;
+	padding-left: 5px;
+}
+.file_link:hover {
+	color: #ff9;
+}
+
+.sc_file_table_0 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	font-weight: normal;
+    color:   #000000;
+	background-color: #669;
+}
+
+.sc_file_table_1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	font-weight: normal;
+    color:   #000000;
+	background-color: #558;
 }
 
 

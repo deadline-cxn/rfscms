@@ -78,12 +78,22 @@ background-color: #006E0C;
 	
 }
 
+.tags {
+	border: 1px solid #fff;	
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	background-color: #888;
+	margin: 2px;
+	padding: 2px;
+}
+
 .forum_time{
 	overflow: hidden;
 	clear: both;
 	
 }
 
+.file_list {  margin: 10px; }
 
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -112,23 +122,21 @@ background-color: #006E0C;
 	color: #000;
 }
 
+.sc_file_table_outer_0 { background-color:rgba(0,20,0,0.1); }
 .sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
-    color:   #000;
-	background-color:rgba(0,20,0,0.1);
-	height: 32px;
+    color:   #000;	
 	padding-left: 5px;
 }
 
+.sc_file_table_outer_1 { background-color:rgba(0,60,0,0.1); }
 .sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
-    color:   #000;
-	background-color:rgba(0,60,0,0.1);
-	height: 32px;
+    color:   #000;	
 	padding-left: 5px;
 }
 

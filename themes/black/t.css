@@ -344,38 +344,53 @@ td
 }
 
 
-.sc_top_file_table
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    color:   #777777;
-    background-color: #000000;
+
+
+.file_list {
+
 }
 
-.sc_file_table_0
-{
+.file_category {
+	margin: 25px 0 0 0;
+	padding: 5px;
+	background-color: #555;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+
+.file_category_link {
+	padding: 5px;
+	font-size: 22px;
+	text-decoration: none;
+	color: #222;
+}
+
+.file_category_link:link {
+	font-size: 22px;
+	text-decoration: none;	
+	color: #222;
+	vertical-align: top;
+}
+
+.file_category_link:hover {
+	color: #ff0;
+	background-color: #777;
+}
+
+.sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
-    background-color: #000000;
+    background-color: #333;
 }
 
-.sc_file_table_1
-{
+.sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
-    background-color: #444444;
+    background-color: #444;
 }
-
-.sc_file_table_2
-{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    color:   #777777;
-    background-color: #222222;
-}
-
 
 .midtd
 {

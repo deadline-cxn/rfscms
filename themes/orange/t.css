@@ -338,7 +338,14 @@ td
 	color: #000000;
 }
 
+.tags {
 
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 1px;
+	margin: 2px;
+	background-color: #f90;
+}
 
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -366,23 +373,21 @@ td
 	color: #000;
 }
 
+.sc_file_table_outer_0 { background-color:rgba(50,20,0,0.1); }
 .sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
-    color:   #000;
-	background-color:rgba(50,20,0,0.1);
-	height: 32px;
+    color:   #000;	
 	padding-left: 5px;
 }
 
+.sc_file_table_outer_1 { background-color:rgba(150,60,0,0.1); }
 .sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
-    color:   #000;
-	background-color:rgba(150,60,0,0.1);
-	height: 32px;
+    color:   #000;	
 	padding-left: 5px;
 }
 

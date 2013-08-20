@@ -2156,7 +2156,8 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 	include("footer.php");
 	exit();
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_ACTION_EDIT_TAGS
 function adm_action_edit_tags() { eval(scg()); 
 
 	echo "<h3>Edit Tags</h3>";
@@ -2165,15 +2166,30 @@ function adm_action_edit_tags() { eval(scg());
 	$r=sc_query("select * from tags order by tag asc");
 	$n=mysql_num_rows($r);
 	
+	echo "<p>Hidden tags will not be shown to the public. They won't even show up in listings of available tags.</p>";
+	
+	echo "<div style='clear:both;' class='sc_file_table_$gt'  >";
+		echo "<div style='float:left; width:170px;'>";		
+			echo "Tag";
+		echo "</div>";
+		echo "<div style='float:left;'>";
+			echo "Hidden";
+		echo "</div>";
+	echo "</div>";
+	
 	for($i=0;$i<$n;$i++) {
 		$tag=mysql_fetch_object($r);
 		$gt++;if($gt>1) $gt=0;		
-		echo "<div style='clear:both;' class='sc_file_table_$gt'  >";	
-		echo " [$tag->id][$tag->tag] <br>";
-		sc_ajax("Tag,80"			  	, "tags"  	,  "id",    "$tag->id",      "tag",       "", "nohide",	"admin", "access", "");
-		sc_ajax("Hidden,80"		  	, "tags"  	,  "id",    "$tag->id",   "hidden",       "", "nohide",	"admin", "access", "");
+		echo "<div style='clear:both;' class='sc_file_table_$gt'  >";
+			echo "<div style='float:left;'>";		
+				sc_ajax("Tag,80"			  	, "tags"  	,  "id",    "$tag->id",      "tag",       "", "nohide,nolabel",	"admin", "access", "");
+			echo "</div>";
+			echo "<div style='float:left;'>";
+				sc_ajax("Hidden,30"		  	, "tags"  	,  "id",    "$tag->id",   "hidden",       "", "nohide,nolabel",	"admin", "access", "");
+			echo "</div>";
 		echo "</div>";
 	}
+	
 	exit();
 
 }

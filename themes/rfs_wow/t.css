@@ -241,6 +241,22 @@ height:24px;
 }
 
 
+.tags {
+background-image: url('button.png');
+background-size: 100% 100%;
+padding: 6px;
+margin: 3px;
+}
+
+.file_list {
+margin: 20px;
+background-image: url('bkg4.png');
+background-size:100% ;
+border: 1px solid #ff0;
+border-radius: 5px;
+}
+
+
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     color:   #000000;
@@ -261,20 +277,22 @@ height:24px;
 	padding-left: 20px;
 }
 
+.sc_file_table_outer_0 { background-color:rgba(110,110,0,0.2); }
 .sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
-    color:   #ff0;
-	background-color:rgba(50,50,0,0.1);
+    color:   #ff0;	
+	padding: 5px;
 }
 
+.sc_file_table_outer_1 { 	background-color:rgba(150,150,0,0.2); }
 .sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
     color:   #ff0;
-	background-color:rgba(150,150,0,0.1);
+	padding: 5px;
 }
 
 
@@ -300,7 +318,7 @@ input,select,textarea {
     font-family: wow;
     font-size: 12px;
     color: #ffffff;
-    border: 2px;
+    border: 1px;
     border-color: #ffffff;
     border-style: solid;
     border-radius: 8px;
