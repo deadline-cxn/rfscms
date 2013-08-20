@@ -7,45 +7,54 @@ body
     margin: 0px;
 }
 
-.sc_file_table_0 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    color:   #000000;
-    background-color: #a09060;
+
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #fc6;
 }
 
-.sc_file_table_1 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    color:   #000000;
-    background-color: #c0b070;
-}
 
-.file_category_link, .file_category_link:link {
-    font-family: Verdana;
-    font-size: 20px;
-    font-style: normal;
-    color: #000;
-}
-
+.file_list { background-color: #742; margin: 16px; padding: 10px; border: 1px solid #000; border-radius: 5px; }
 
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     color:   #000000;
-    background-color:rgba(150,60,0,0.1);
-	height: 36px;
+	background-color: #742;
 	padding-left: 10px;
-	font-style: none;
+	font-style: none;	
 }
 
-.ile_category { ackground-color: #630;	order: 1px;order-color: #000000;order-style: solid;order-top-left-radius: 8px;order-top-right-radius: 8px; }
+.file_category_link, .file_category_link:link {
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-style: none;
+	color: #f94;
+	padding-top:5px;
+	padding-left: 20px;
+}
 
 .file_link, .file_link:link {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-style: none;
-	color: #000;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+	text-shadow: 0px 0px 0px #000;
+	padding-left: 5px;
 }
+
+.sc_file_table_0 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; 
+		color: #000000; background-color: #973; }
+
+.sc_file_table_1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal;
+		color: #000000; background-color: #863; }
 
 .forum_box {
 	width: 98%;
@@ -186,65 +195,58 @@ body
 
 
 
-.sc_top_menu_table
-{
+.sc_top_menu_table {
 
 }
 
-.sc_top_menu_table_td
-{
+.sc_top_menu_table_td {
   font-family: Lucidia;  
   font-style: normal;
   background-color: #544510;
 }
-.sc_top_menu_table_inner
-{
+.sc_top_menu_table_inner {
   font-family: Lucidia;  
   font-style: normal;
   background-color: #544510;
 }
 
-.sc_top_menu_link
-{
+.sc_top_menu_link {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
     color: #FFFFFF;
-    background-color: #544510;
+    frbackground-color: #544510;
 }
 
-.sc_top_menu_link:link
-{
+.sc_top_menu_link:link {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
     color: #FAFAFA;
-    background-color: #544510;
+    dfbackground-color: #544510;
 }
 
-.sc_top_menu_link:visited
-{
+.sc_top_menu_link:visited {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
     color: #000000;
-    background-color: #544510;
+    dfbackground-color: #544510;
 }
 
-.sc_top_menu_link:hover
-{
+.sc_top_menu_link:hover {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
-	background-color: #544510;
+	fdbackground-color: #544510;
 	color: #b59443;
 }
 

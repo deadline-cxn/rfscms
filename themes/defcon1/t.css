@@ -187,6 +187,20 @@ hr {
 }
 
 
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #762;
+}
+
+
+
+
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     color:   #f00;
@@ -214,23 +228,29 @@ hr {
 	color: #ff0;
 }
 
+.sc_file_table_outer_0 {
+	background-color:rgba(260,0,0,0.1);
+	border-top: 1px dashed #700; 
+}
+
 .sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
     color:   #f00;
-	background-color:rgba(100,0,0,0.1);
-	height: 32px;
 	padding-left: 5px;
+}
+
+.sc_file_table_outer_1 {
+	background-color:rgba(160,0,0,0.1);
+	border-top: 1px dashed #700; 
 }
 
 .sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
-    color:   #f00;
-	background-color:rgba(200,0,0,0.1);
-	height: 32px;
+    color:   #f00;	
 	padding-left: 5px;
 }
 

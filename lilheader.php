@@ -38,20 +38,21 @@ else {
 	echo "<link rel=\"canonical\" href=\"".sc_canonical_url()."\" />";
 	rfs_echo($RFS_SITE_HEAD_CLOSE);	
 	rfs_echo($RFS_SITE_BODY_OPEN);	
-}
-if(!$RFS_DO_NOT_SHOW_MENU) {
-	echo "<div>";
-	sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
-	echo "</div>";
-}
 
-if($_SESSION["logged_in"]!="true")    {
-	rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+	if(!$RFS_DO_NOT_SHOW_MENU) {
+		echo "<div>";
+		sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
+		echo "</div>";
+	}
+
+	if($_SESSION["logged_in"]!="true")    {
+		rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+	}
+	else    {
+		rfs_echo($RFS_SITE_LOGGED_IN_CODE);
+	}
+	sc_theme_form();
 }
-else    {
-	rfs_echo($RFS_SITE_LOGGED_IN_CODE);
-}
-sc_theme_form();
 //////////////////////////////////////////////
 // Load javascripts
 

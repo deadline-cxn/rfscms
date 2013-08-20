@@ -368,14 +368,7 @@ td {
 	background-color: #eeeeee;
 }
 
-.file_list {
-	background-color: #474;
-	margin: 16px;
-	padding: 10px;
-	border: 1px solid #000;
-	border-radius: 5px;
-	
-}
+.file_list { background-color: #474; margin: 16px; padding: 10px; border: 1px solid #000; border-radius: 5px; }
 
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -383,8 +376,7 @@ td {
 	background-color: #474;
     fbackground-color:rgba(0,220,150,0.1);
 	padding-left: 10px;
-	font-style: none;
-	
+	font-style: none;	
 }
 
 .file_category_link, .file_category_link:link {
@@ -407,21 +399,11 @@ td {
 	padding-left: 5px;
 }
 
-.sc_file_table_0 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 10px;
-	font-weight: normal;
-    color:   #000000;
-	background-color: #696;
-}
+.sc_file_table_0 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; 
+		color: #000000; background-color: #696; }
 
-.sc_file_table_1 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 10px;
-	font-weight: normal;
-    color:   #000000;
-	background-color: #585;
-}
+.sc_file_table_1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal;
+		color: #000000; background-color: #585; }
 
 .rfs_bulletlist {
     color: #000000;

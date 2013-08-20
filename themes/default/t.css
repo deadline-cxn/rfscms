@@ -9,6 +9,19 @@ body{
 }
 
 
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #762;
+}
+
+
+
 .news_box {
 	clear: both;
 	margin: 0px;
@@ -324,6 +337,9 @@ th {
 }
 
 
+
+.file_list { }
+
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     color:   #0f0;
@@ -351,8 +367,24 @@ th {
 	color: #0f0;
 }
 
-.sc_file_table_1 { 	height: 32px; background-color:rgba(0,160,0,0.1); 	color: #000000; }
-.sc_file_table_0 { 	height: 32px; background-color:rgba(0,260,0,0.1); 	color: #000000; }
+.sc_file_table_outer_0 {
+	background-color:rgba(0,260,0,0.1);
+	border-top: 1px dashed #070; 
+}
+.sc_file_table_0 {
+
+	color: #000000;
+}
+
+.sc_file_table_outer_1 {
+	background-color:rgba(0,160,0,0.1);
+	border-top: 1px dashed #070; 
+}
+.sc_file_table_1 {
+	
+ 	color: #000000;
+}
+
 
 
 a {

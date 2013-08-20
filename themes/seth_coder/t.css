@@ -296,22 +296,19 @@ hr{
 	border-top-right-radius: 8px;
 }
 
-
+.sc_file_table_outer_0 { background-color: #ddd;  }
 .sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
-	background-color: #ddd; 
-	height: 32px;
 	padding-left: 5px;
 }
 
+.sc_file_table_outer_1 { background-color: #ccc;  }
 .sc_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
-    background-color: #ccc; 
-	height: 32px;
 	padding-left: 5px;
 }
 

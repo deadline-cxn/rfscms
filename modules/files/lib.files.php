@@ -227,11 +227,11 @@ function show1file($filedata,$bg) { eval(scg());
 	// sc_update_file($filedata->id);
 	$filedata=mfo1("select * from files where id='$filedata->id'");
 	
-	echo "<div style='clear: both;' id=\"$filedata->id\">";
+	echo "<div style='clear: both;' id=\"$filedata->id\" >";
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left;' class='sc_file_table_$bg'>"; 
+	echo "<div style='display: block; float:left;' class='sc_file_table_outer_$bg'>"; 
 	
 	///////////////////////////////////
 
@@ -252,16 +252,23 @@ function show1file($filedata,$bg) { eval(scg());
 	echo "<div style='display: block; float:left;' class='sc_file_table_$bg'>"; 
 		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">";
 		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
-		echo "</a>";		
+		echo "</a>";
 	echo "</div>";
-	
 	
 	///////////////////////////////////
 	
-	
+	if($fedit || $_SESSION['deletemode']) $nwidth=550; else $nwidth=250;
+
+	echo "<div style='display: block; 
+						float:left; 
+						width:$nwidth"."px; 
+						max-width:$nwidth"."px; 
+						min-width:$nwidth"."px;' 
+				class='sc_file_table_$bg'>";
+
 	if($fedit || $_SESSION['deletemode']) {
 		if(sc_access_check("files","delete")) {
-			echo "$filedata->location <br>";
+			echo "$filedata->location <br>";			
 			sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button,nolabel", "files","delete","sc_ajax_callback_delete_file");
 		}			
 
@@ -299,13 +306,7 @@ function show1file($filedata,$bg) { eval(scg());
 			}
 		echo "</div>";		
 	}
-	echo "<div style='clear:both;'> </div>"; 
 	
-	
-
-	if($fedit || $_SESSION['deletemode']) 
-		$nwidth=550; else $nwidth=250;
-	echo "<div style='display: block; float:left; width:$nwidth px; max-width:$nwidth px; min-width:$nwidth px;' class='sc_file_table_$bg'>"; 
 		if((sc_access_check("files","edit")) && $fedit) {
 			sc_ajax("Name"	,"files","id","$filedata->id","name",36,"nohide","files","edit","sc_ajax_callback_rename_file");
 			echo "<br>URL <a href=\"$RFS_SITE_URL/$filedata->location\" target=\"_blank\">$filedata->name</a> ";
@@ -328,7 +329,10 @@ function show1file($filedata,$bg) { eval(scg());
 					echo sc_picthumb("$RFS_SITE_URL/$filedata->location",$nwidth,0,1)."<br>";	
 				}
 
-		if(	($filetype=="mpg") ||
+		if(	($filetype=="mp3") ||
+			($filetype=="wav") ||
+			($filetype=="wma") ||
+			($filetype=="mpg") ||		
 			($filetype=="mpeg") ||
 			($filetype=="wmv") ||
 			($filetype=="avi") ||
@@ -336,21 +340,25 @@ function show1file($filedata,$bg) { eval(scg());
 				if($fworksafe) {
 					echo "<br>
 					
-					 <div style='display: block; float: left;' name=\"play$filedata->id\" id=\"play$filedata->id\"></div>
-					<a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a>
-					<a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>";
+<div style='display: block; float: left;' name=\"play$filedata->id\" id=\"play$filedata->id\"></div>
+<a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a>
+<a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>";
 		}
 	}
 		
 		$data=$GLOBALS['data'];
 		if($fedit) {
+			
 			if(sc_access_check("files","edit")) {
+				echo "<div style='float: left;'>";
+				
 				sc_ajax("Category","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
 				sc_ajax("New Category","files","id","$filedata->id","category",36,"","files","edit","sc_ajax_callback_files_new_category");
 				
 				sc_ajax("Tags",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","sc_ajax_callback_files_add_tag");				
 				sc_ajax("Move to Pictures", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","sc_ajax_callback_files_move_to_pictures");
 				sc_ajax("Ignore", "files",   "id", "$filedata->id", "id", 20, "button,nolabel", "files","delete","sc_ajax_callback_file_ignore");
+				echo "</div>";
 			}
 		}
 		
@@ -366,7 +374,14 @@ function show1file($filedata,$bg) { eval(scg());
 	///////////////////////////////////
 	
 	$size=(sc_sizefile($filedata->size));
-	echo "<div style='display: block; float:left; width:340x; max-width:340px; min-width:340px;' class='sc_file_table_$bg'>";
+	
+	echo "<div style='display: block;
+						float:left;
+						width:340px;
+						max-width:340px;
+						min-width:340px;'
+				class='sc_file_table_$bg'>";
+	
 	if( ($filetype=="ttf") || 
 		($filetype=="otf") ||
 		($filetype=="fon") ) {
