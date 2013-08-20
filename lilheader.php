@@ -51,6 +51,7 @@ if($_SESSION["logged_in"]!="true")    {
 else    {
 	rfs_echo($RFS_SITE_LOGGED_IN_CODE);
 }
+sc_theme_form();
 //////////////////////////////////////////////
 // Load javascripts
 

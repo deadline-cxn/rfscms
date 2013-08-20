@@ -67,6 +67,7 @@ function sc_togglediv_end() {
 }
 
 function sc_javascript() { eval(scg());
+
 echo "<script language=\"javascript\"><!--";
 echo "
 var state = {};
@@ -161,6 +162,12 @@ function sc_maintenance() { eval(scg());
 		}
 	}
 	sc_database_data_add("categories","name","unsorted",0);
+	
+	
+	
+	lib_mysql_scrub("tags","tag");
+	
+	
 	sc_div("sc_maintenance end [$theme]");
 }
 /////////////////////////////////////////////////////////////////////////

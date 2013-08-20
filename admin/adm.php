@@ -8,12 +8,12 @@ include("lib.adm.php");
 chdir( "../" );
 if(stristr($_REQUEST['action'],"ajx")) {
 	include("include/lib.all.php");
-	sc_do_action();
+	// sc_do_action();
 	exit();
 }
 else {
 		include( "lilheader.php" );
-		sc_do_action();
+		//sc_do_action();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -2154,6 +2154,45 @@ echo "<td class=sc_project_table_$gt>Category</td>";
             "include", "category",
             20, "add link" );
 	include("footer.php");
+	exit();
+}
+
+function adm_action_edit_tags() { eval(scg()); 
+
+	echo "<h3>Edit Tags</h3>";
+	lib_mysql_scrub("tags","tag");
+
+	$r=sc_query("select * from tags order by tag asc");
+	$n=mysql_num_rows($r);
+	
+	for($i=0;$i<$n;$i++) {
+		$tag=mysql_fetch_object($r);
+		$gt++;if($gt>1) $gt=0;		
+		echo "<div style='clear:both;' class='sc_file_table_$gt'  >";	
+		echo " [$tag->id][$tag->tag] <br>";
+		sc_ajax("Tag,80"			  	, "tags"  	,  "id",    "$tag->id",      "tag",       "", "nohide",	"admin", "access", "");
+		sc_ajax("Hidden,80"		  	, "tags"  	,  "id",    "$tag->id",   "hidden",       "", "nohide",	"admin", "access", "");
+		echo "</div>";
+	}
+	exit();
+
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_ACTION_DISK_FREE
+function adm_action_disk_free() { eval(scg());
+	echo "<div class='wikishell'>";	
+	echo "<pre>";
+	$x=array();
+	array_push($x,"===================================================================");
+	exec("df ",$x);
+	array_push($x,"===================================================================");
+	exec("df -h",$x);
+	array_push($x,"===================================================================");
+	foreach($x as $k => $v) 
+		echo $v."\n";
+	echo "</pre>";
+	echo "</div>";
+	
 	exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////

@@ -17,7 +17,9 @@ function sc_canonical_url(){
 	return $page_url.'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_gotopage($x) { echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$x\">";}
+function sc_gotopage($x) {
+	echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$x\">";
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_getdomain($link) {
 	$a=explode("/",$link,4);
