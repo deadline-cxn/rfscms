@@ -2094,53 +2094,41 @@ function sc_ajax_javascript() { eval(scg());
 			eval($v."();");
 		}
 	}
-	
+echo '
 
-	echo '
-	<script>	
-	function rfs_ajax_hide(x) {
-			var div = document.getElementById(x);
-			div.style.display = "none";
-		
-	};
-		function rfs_ajax_func(
-					rfalabel,
-					rfanname,
-					rfaajv,
-					rfatable,
-					rfaikey,
-					rfakv,
-					rfafield,
-					rfaapage,
-					rfaact,
-					rfacallback)
-				{
+<script>	
+
+function rfs_ajax_hide(x) {
+	var div = document.getElementById(x);
+	div.style.display = "none";
+};
+	
+function rfs_ajax_func(name, ajv, table, ikey, kv, field, page, act, callback) {
 			var http=new XMLHttpRequest();
 			var url = "'.$RFS_SITE_URL.'/header.php";
-			var params = "action="+rfacallback+
-			"&rfaajv="   +encodeURIComponent(rfaajv)+
-			"&rfanname=" +encodeURIComponent(rfanname)+
-			"&rfatable=" +encodeURIComponent(rfatable)+
-			"&rfaikey="  +encodeURIComponent(rfaikey)+
-			"&rfakv="    +encodeURIComponent(rfakv)+
-			"&rfafield=" +encodeURIComponent(rfafield)+
-			"&rfaapage=" +encodeURIComponent(rfaapage)+
-			"&rfaact="   +encodeURIComponent(rfaact);
-			document.getElementById(rfanname+"_div").innerHTML="'.sc_ajax_spinner().'";
+			var params = "action="+callback+
+			"&rfaajv="   +encodeURIComponent(ajv)+
+			"&rfanname=" +encodeURIComponent(name)+
+			"&rfatable=" +encodeURIComponent(table)+
+			"&rfaikey="  +encodeURIComponent(ikey)+
+			"&rfakv="    +encodeURIComponent(kv)+
+			"&rfafield=" +encodeURIComponent(field)+
+			"&rfaapage=" +encodeURIComponent(page)+
+			"&rfaact="   +encodeURIComponent(act);
+			document.getElementById(name+"_div").innerHTML="'.sc_ajax_spinner().'";
 			http.open("POST", url, true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.setRequestHeader("Content-length", params.length);
 			http.setRequestHeader("Connection", "close");
 			http.onreadystatechange = function() {
 					if(http.readyState == 4 && http.status == 200) {
-					
-					document.getElementById(rfanname+"_div").innerHTML=http.responseText;
-					
+					document.getElementById(name+"_div").innerHTML=http.responseText;
 				}
 			}
 			http.send(params);
 		}
-		</script> ';
+</script>
+';
 }
 
 function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
@@ -2181,7 +2169,7 @@ function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$r
 			echo "		data-maincss=\"blue\"
 							id=\"$rfanname"."_name\"
 							name=\"$rfanname"."_name\"
-							onchange=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+							onchange=\"rfs_ajax_func('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
 							$hidefunc
 							\"
 							
@@ -2232,7 +2220,7 @@ function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$r
 							cols=\"$cols\"
 							type=\"$rfatype\"
 							name=\"$rfanname"."_name\"							
-							onblur=\"rfs_ajax_func(	'$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+							onblur=\"rfs_ajax_func('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
 							$hidefunc
 							\"
 							
@@ -2248,7 +2236,7 @@ function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$r
 					type=\"$rfatype\"
 					name=\"$rfanname"."_name\"
 					value=\"".$d[$rfafield]."\"
-					onblur=\"rfs_ajax_func('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+					onblur=\"rfs_ajax_func('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
 					
 					$hidefunc
 					\"
@@ -2358,7 +2346,7 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_proper
 					name=\"$rfanname"."_name\"
 					
 					onchange=\"
-					$rfajscallback('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
+					$rfajscallback('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
 					style='float:left; min-width: $width;  '>";
 			
 			echo "<option ";
@@ -2412,7 +2400,7 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_proper
 						type=\"$rfatype\"
 						name=\"$rfanname"."_name\"							
 						onchange=\"
-						$rfajscallback(	'$rfalabel','$rfanname',this.checked,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+						$rfajscallback('$rfanname',this.checked,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
 						$hidefunc;	 \" ";
 		if($cbxo=="on") echo " checked ";
 		echo " ></div><div style='clear:both;'></div>";
@@ -2424,7 +2412,7 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_proper
 					size=\"$width\"					
 					name=\"$rfanname"."_name\"					
 					value=\"$rfalabel\" 
-					onclick=\"	$rfajscallback('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; \"> 
+					onclick=\"	$rfajscallback('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; \"> 
 					<span class=\"ui-button-text\">$rfalabel</span></button>";
 		echo "</div><div style='clear:both;'></div>";
 		return;
@@ -2436,7 +2424,7 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_proper
 							cols=\"$height\"
 							type=\"$rfatype\"
 							name=\"$rfanname"."_name\"							
-							onblur=\"$rfajscallback(	'$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+							onblur=\"$rfajscallback('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
 							$hidefunc;	\" style='float:left;'>";
 		$tout=str_replace("<","&lt;",$d[$rfafield]);
 		echo $tout."</textarea>";
@@ -2450,7 +2438,7 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_proper
 					type=\"$rfatype\"
 					name=\"$rfanname"."_name\"
 					value=\"".$d[$rfafield]."\"
-					onblur=\"$rfajscallback('$rfalabel','$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
+					onblur=\"$rfajscallback('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
 					$hidefunc;\"
 					onkeyup=\"if((event.keyCode==13)) {this.blur();}\"style='float:left;'>";
 	echo "</div><div style='clear:both;'></div>";

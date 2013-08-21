@@ -49,8 +49,9 @@ if($action=="logingo") {
                     sc_setuservar($userid,"last_login",$data->last_activity);
                     sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
                     sc_log("[LOGIN]: $data->name ($data->email)");
-                    if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
-                    sc_gotopage($outpage);
+                    if(empty($outpage))
+							$outpage="$RFS_SITE_URL/index.php";
+                    //sc_gotopage($outpage);
                     exit();
                 }	
             }

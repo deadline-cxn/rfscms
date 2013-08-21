@@ -1,4 +1,5 @@
 <?
+if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include("header.php");
 include("3rdparty/rsslib/rsslib.php");
 

@@ -1443,7 +1443,9 @@ function adm_action_f_menu_topedit_del_go() { eval( scg() );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Top Menu :: Delete $menuitem->name :: DELETED!</h3>";
 	sc_query( "delete from menu_top where `id`='$id'" );
-	adm_action_menu_topedit();
+	// adm_action_menu_topedit();
+	sc_show_menu_options();
+	exit();
 }
 function adm_action_f_menu_topedit_del() { eval( scg() );
 	$res=sc_query( "select * from menu_top where `id`='$id'" );
@@ -1453,8 +1455,9 @@ function adm_action_f_menu_topedit_del() { eval( scg() );
 	echo "<input type=hidden name=action value=f_menu_topedit_del_go>";
 	echo "<input type=hidden name=id value=$id>";
 	echo "<input type=submit name=submit value=confirm></form>";
-
-	adm_action_menu_topedit();
+	// adm_action_menu_topedit();
+	sc_show_menu_options();
+	exit();
 }
 function adm_action_f_menu_top_add_link() { eval(scg());
 	echo "<h3>Edit Top Menu :: Add $lname</h3>";
@@ -1466,7 +1469,6 @@ function adm_action_f_menu_top_add_link() { eval(scg());
 	$menu_url=$lurl;
 	global $msor;
 	$msor=9999;
-		
 	adm_action_f_menu_topedit_add();
 }
 function adm_action_f_menu_topedit_add() { eval( scg());
@@ -1480,7 +1482,9 @@ function adm_action_f_menu_topedit_add() { eval( scg());
 	
 	sc_query( "insert into menu_top (   `name`,      `link`, `target`, `sort_order`, `access`)
 								  values('$mname', '$menu_url', '$target',     '$msor', '$access');" );
-	adm_action_menu_topedit();
+	// adm_action_menu_topedit();
+	sc_show_menu_options();
+	exit();
 }
 function adm_action_f_menu_topedit_mod() { eval( scg() );
 	$res=sc_query( "select * from menu_top where `id`='$id'" );
@@ -1491,8 +1495,9 @@ function adm_action_f_menu_topedit_mod() { eval( scg() );
 	sc_query( "update menu_top set `target`='$target' where `id`='$id'" );
 	sc_query( "update menu_top set `sort_order`='$msor' where `id`='$id'" );
 	sc_query( "update menu_top set `access`='$access' where `id`='$id'" );
-
-	adm_action_menu_topedit();
+	// adm_action_menu_topedit();
+	sc_show_menu_options();
+	exit();
 }
 function adm_action_menu_topedit() { eval( scg() );
 	echo "<h3>Edit Top Menu</h3>";
@@ -1516,11 +1521,6 @@ function adm_action_menu_topedit() { eval( scg() );
 		echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 		echo "<td class=contenttd>";
 
-		
-		
-		
-
-		
 		echo "<input type=hidden name=action value=f_menu_topedit_del>";
 		echo "<input type=hidden name=id value=$menuitem->id>";
 		echo "<input type=submit name=submit value=delete>";

@@ -1,45 +1,34 @@
 <?
 
 function sc_ajax_javascript_tags() { eval(scg());
-	echo '
-	<script>
-
-	function rfs_ajax_func_tags(
-					rfalabel,
-					rfanname,
-					rfaajv,
-					rfatable,
-					rfaikey,
-					rfakv,
-					rfafield,
-					rfaapage,
-					rfaact,
-					rfacallback)
-				{
+echo '
+<script>
+function rfs_ajax_func_tags(name,ajv,table,ikey,kv,field,page,act,callback) {
 			var http=new XMLHttpRequest();
 			var url = "'.$RFS_SITE_URL.'/header.php";
-			var params = "action="+rfacallback+
-			"&rfaajv="   +encodeURIComponent(rfaajv)+
-			"&rfanname=" +encodeURIComponent(rfanname)+
-			"&rfatable=" +encodeURIComponent(rfatable)+
-			"&rfaikey="  +encodeURIComponent(rfaikey)+
-			"&rfakv="    +encodeURIComponent(rfakv)+
-			"&rfafield=" +encodeURIComponent(rfafield)+
-			"&rfaapage=" +encodeURIComponent(rfaapage)+
-			"&rfaact="   +encodeURIComponent(rfaact);
-			document.getElementById("tags_"+rfakv).innerHTML="'.sc_ajax_spinner().'";
+			var params = "action="+callback+
+			"&rfaajv="   +encodeURIComponent(ajv)+
+			"&rfanname=" +encodeURIComponent(name)+
+			"&rfatable=" +encodeURIComponent(table)+
+			"&rfaikey="  +encodeURIComponent(ikey)+
+			"&rfakv="    +encodeURIComponent(kv)+
+			"&rfafield=" +encodeURIComponent(field)+
+			"&rfaapage=" +encodeURIComponent(page)+
+			"&rfaact="   +encodeURIComponent(act);
+			document.getElementById("tags_"+kv).innerHTML="'.sc_ajax_spinner().'";
 			http.open("POST", url, true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.setRequestHeader("Content-length", params.length);
 			http.setRequestHeader("Connection", "close");
 			http.onreadystatechange = function() {
 					if(http.readyState == 4 && http.status == 200) {
-					document.getElementById("tags_"+rfakv).innerHTML=http.responseText;					
+					document.getElementById("tags_"+kv).innerHTML=http.responseText;
 				}
 			}
 			http.send(params);
 		}
-		</script> ';
+</script>
+';
 }
 
 function sc_ajax_callback_tags_new_tag() { eval(scg());

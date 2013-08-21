@@ -40,18 +40,40 @@ else {
 	rfs_echo($RFS_SITE_BODY_OPEN);	
 
 	if(!$RFS_DO_NOT_SHOW_MENU) {
-		echo "<div>";
-		sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
-		echo "</div>";
+		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0>";
+		echo "<tr class=sc_top_menu_table_td>";
+		echo "<td class=sc_top_menu_table_td valign=top>";
+		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
+		echo "<tr class=sc_top_menu_table_td>";
+		echo "<td class=sc_top_menu_table_td>";
+		echo "$RFS_SITE_NAME :";
+		echo "</td>";
+			sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
+		echo "<td class=sc_top_menu_table_td>";
+		echo " : ";
+		echo "</td>";
+		echo "<td align=right class=sc_top_menu_table_td>";
+			echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
+			echo "<td class=sc_top_menu_table_inner class=contenttd>";
+				sc_theme_form();
+			echo "</td></tr></table>\n";
+		echo "</td>";
+		echo "<td class=sc_top_menu_table_td>";
+		echo " : ";
+		echo "</td>";
+		echo "<td class=logged_in_td>";
+		if($_SESSION["logged_in"]!="true")    {
+			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+			echo "</td><td class=logged_in_td>";
+		}
+		else    {
+			echo "</td>";
+			echo "<td class=logged_in_td>";
+			rfs_echo($RFS_SITE_LOGGED_IN_CODE);
+		}
+		echo "</td></tr></table>";
+		echo "</td></tr></table>";
 	}
-
-	if($_SESSION["logged_in"]!="true")    {
-		rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-	}
-	else    {
-		rfs_echo($RFS_SITE_LOGGED_IN_CODE);
-	}
-	sc_theme_form();
 }
 //////////////////////////////////////////////
 // Load javascripts

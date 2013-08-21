@@ -377,15 +377,17 @@ function rfs_get($t) {
 					$yx=explode("-->",$zx[1]);
 					$xx=eplode(",",$yx[0]);
 					$t=$zx[0];
-					
-
+					break;
 				
+				case "RFS_TAG_CANONICAL":
+					$t=str_replace("$key",sc_canonical_url(),$t);
 					break;
 					
-				case "RFS_PHP_SELF": // echo "123.what";
+				case "RFS_TAG_PHP_SELF": 
 					$t=str_replace("$key",sc_phpself(),$t);
 					break;
-				case "RFS_SITE_FUNCTION":
+					
+				case "RFS_TAG_FUNCTION":
 					$t=str_replace("$key","RUNNING:($key)($value)",$t);				
 					break;
 					
