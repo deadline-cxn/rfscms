@@ -2212,6 +2212,32 @@ function adm_action_disk_free() { eval(scg());
 	exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_ACTION_AJAX_TESTPAGE
+function adm_action_ajax_testpage() { eval(scg());
+	echo "<h3>Ajax test page</h3>";
+
+sc_info("
+rfs_ajax(data,size,properties,access,callback)<br>
+data = table,key_field,key_field_value,field_to_modify<br>
+size = width[,height]<br>
+properties = [[type[,]][,nohide][,nolabel]<br>
+access = access_type, access_action<br>
+callback = [ajaxcallback][,javascript_callback]<br>
+",white, green);
+
+rfs_ajax("users,id,$data->id,webpage","","nohide","admin,access","");
+
+// rfs_ajax("users,id,$data->id,alias","","select,categories
+	
+	
+	
+	
+	
+	exit();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_DEFAULT_ACTION
 function adm_action_() { eval(scg());
 	if($db_queries=="list" ) { adm_db_query_list();  exit(); }
