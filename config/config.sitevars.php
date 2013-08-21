@@ -22,7 +22,7 @@ $RFS_SITE_SESSION_USER      = $_SESSION['valid_user'];
 $RFS_SITE_ADMIN             = "Administrator";
 if(isset($SERVER))
 $RFS_SITE_ADMIN_EMAIL       = "admin@".$SERVER['DOCUMENT_ROOT'];
-$RFS_SITE_SLOGAN            = "Powered by <a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">RFSCMS</a>";
+$RFS_SITE_SLOGAN            = " (SITE VAR: SLOGAN) Powered by <a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">RFSCMS</a>";
 if(isset($SERVER))
 $RFS_SITE_URL               = $SERVER['DOCUMENT_ROOT'];
 else
@@ -33,6 +33,8 @@ $RFS_SITE_ERROR_LOG         = "/var/log/apache2/error.log";
 // TAGS  (Experimental)
 $RFS_TAGS=array(
 "RFS_TAG_FUNCTION" 			=> "RFS_TAG_FUNCTION",
+"RFS_TAG_PHP_SELF"			=> "RFS_TAG_PHP_SELF",
+"RFS_TAG_CANONICAL"			=> "RFS_TAG_CANONICAL",
 "sc_facebook_login_r" 		=> "<!--RTAG_FACEBOOK_LOGIN-->",
 "sc_button"					=> "<!--RTAG_BUTTON"
 );
@@ -105,7 +107,7 @@ $RFS_SITE_LOGIN_FORM_CODE   = "
 <tr>\n
 <td align=right class=login><font class=slogan>Password</font></td>
 <td class=login><input type=password name=password size=10 class=\"b4text\"></td>\n
-<input type=hidden name=outpage value=\$PHP_SELF>\n
+<input type=hidden name=outpage value='RFS_TAG_CANONICAL'>\n
 <input type=hidden name=login value=fo_shnizzle>\n
 <td valign=middle>\n <input type=\"submit\" name=\"Login\" value=\"Login\">\n</td>
 </tr>

@@ -176,46 +176,35 @@ function sc_ajax_callback_delete_file() { eval(scg());
 
 
 function sc_ajax_javascript_file() { eval(scg());
-	echo '
-	<script>
-
-	function sc_ajax_javascript_dupefile_delete(
-					rfalabel,
-					rfanname,
-					rfaajv,
-					rfatable,
-					rfaikey,
-					rfakv,
-					rfafield,
-					rfaapage,
-					rfaact,
-					rfacallback)
-				{
+echo '
+<script>
+function sc_ajax_javascript_dupefile_delete(name,ajv,table,ikey,kv,field,page,act,callback) {
 			var http=new XMLHttpRequest();
 			var url = "'.$RFS_SITE_URL.'/header.php";
-			var params = "action="+rfacallback+
-			"&rfaajv="   +encodeURIComponent(rfaajv)+
-			"&rfanname=" +encodeURIComponent(rfanname)+
-			"&rfatable=" +encodeURIComponent(rfatable)+
-			"&rfaikey="  +encodeURIComponent(rfaikey)+
-			"&rfakv="    +encodeURIComponent(rfakv)+
-			"&rfafield=" +encodeURIComponent(rfafield)+
-			"&rfaapage=" +encodeURIComponent(rfaapage)+
-			"&rfaact="   +encodeURIComponent(rfaact);
-			document.getElementById("dfd_"+rfakv).innerHTML="'.sc_ajax_spinner().'";
+			var params = "action="+callback+
+			"&rfaajv="   +encodeURIComponent(ajv)+
+			"&rfanname=" +encodeURIComponent(name)+
+			"&rfatable=" +encodeURIComponent(table)+
+			"&rfaikey="  +encodeURIComponent(ikey)+
+			"&rfakv="    +encodeURIComponent(kv)+
+			"&rfafield=" +encodeURIComponent(field)+
+			"&rfaapage=" +encodeURIComponent(page)+
+			"&rfaact="   +encodeURIComponent(act);
+			document.getElementById("dfd_"+kv).innerHTML="'.sc_ajax_spinner().'";
 			http.open("POST", url, true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.setRequestHeader("Content-length", params.length);
 			http.setRequestHeader("Connection", "close");
 			http.onreadystatechange = function() {
 					if(http.readyState == 4 && http.status == 200) {
-					document.getElementById("dfd_"+rfakv).innerHTML=http.responseText;	
-					document.getElementById("dfd_"+rfakv).style.display = "none";
+					document.getElementById("dfd_"+kv).innerHTML=http.responseText;	
+					document.getElementById("dfd_"+kv).style.display = "none";
 				}
 			}
 			http.send(params);
 		}
-		</script> ';
+</script>
+';
 }
 
 

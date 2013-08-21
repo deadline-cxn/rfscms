@@ -117,6 +117,7 @@ else {
 		echo "</td></tr></table>\n";
 		echo "</td></tr></table>";
 		echo "</td></tr></table>";
+		
 		echo "<table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";
 		echo "<td class=lefttd valign=top>";
     	sc_draw_module("left");
