@@ -408,9 +408,23 @@ function odb(){
 	mysql_select_db( $GLOBALS['authdbname'], $mysql);
 	return $mysql;
 }
+function n_odb() {
+	$mysqli=new mysqli(	$GLOBALS['authdbaddress'],
+							$GLOBALS['authdbuser'],
+							$GLOBALS['authdbpass'],
+							$GLOBALS['authdbname'] );
+	if($mysqli->connect_errno) {
+		echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";
+	}
+	return $mysqli;
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////
+function n_sc_query($query) {
+	if(stristr($query,"`users`")) { return sc_query_user_db($query); }
+	return mysqli_query(odb(),$query);
+}
 function sc_query($query) {
-	if(stristr($query,"`users`")) { $x=sc_query_user_db($query); return $x; }
+	if(stristr($query,"`users`")) { return sc_query_user_db($query); }
 	$mysql=odb(); if($mysql==false) return false;
 	$result=mysql_query($query,$mysql);
 	if(empty($result)) return false;
@@ -510,68 +524,58 @@ function sc_updb($table,$key_field,$key_value,$md5_password) {
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // update database (only show results dont updat database)
 function sc_updb_2($table,$key_field,$key_value){
-    $res=sc_query("select * from `$table` where `$key_field`='$key_value' limit 1");
-    if(mysql_num_rows($res)==0)
-    sc_query("insert into `$table` (`$key_field`) values ('$key_value');");
-    $res=sc_query("DESCRIBE $table");
-    while($i = mysql_fetch_assoc($res)){
-        //echo $i['Field']."::".$_REQUEST[$i['Field']]."<br>";
-        if($_REQUEST[$i['Field']]!=''){
-            $q ="update $table set `";
-            $q.=$i['Field'];
-            $q.="`='".addslashes($_REQUEST["{$i['Field']}"])."' ";
-            $q.="where `$key_field`='".addslashes($key_value)."'";
-            echo "$q<br>";
-            //sc_query($q);
-        }
-    }
+	$res=sc_query("select * from `$table` where `$key_field`='$key_value' limit 1");
+	if(mysql_num_rows($res)==0)
+	sc_query("insert into `$table` (`$key_field`) values ('$key_value');");
+	$res=sc_query("DESCRIBE $table");
+	while($i = mysql_fetch_assoc($res)){
+		//echo $i['Field']."::".$_REQUEST[$i['Field']]."<br>";
+		if($_REQUEST[$i['Field']]!=''){
+			$q ="update $table set `";
+			$q.=$i['Field'];
+			$q.="`='".addslashes($_REQUEST["{$i['Field']}"])."' ";
+			$q.="where `$key_field`='".addslashes($key_value)."'";
+			echo "$q<br>";
+			//sc_query($q);
+		}
+	}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_confirmform($message,$page,$hiddenvars){
 	echo "\n<sc_confirmform [START]================================================ />\n";
-
     echo "<table border=0 width=400>\n";
     echo "<tr><td align=center>\n";
     echo "<br>\n";
     echo "<form action=\"$page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">\n";
-
     echo "<div class=confirmform>";
     echo "$message";
-
-    $hidvar_a=explode(sc_delimiter($hiddenvars),$hiddenvars);
+	$hidvar_a=explode(sc_delimiter($hiddenvars),$hiddenvars);
     for($i=0;$i<count($hidvar_a);$i++){
         $hidvar_b=explode("=",$hidvar_a[$i]);
         echo "<input type=hidden name=\"".$hidvar_b[0]."\" value=\"".$hidvar_b[1]."\">\n";
     }
-    
-    echo "<input style='font-size:x-small' type=submit name=yes value=Yes>\n";
-    
-    
-    echo "</div>";
-    echo "<br><br>\n";
-    echo "</td></tr>\n";
-    echo "</table>\n";
-    echo "</form>\n";
+	echo "<input style='font-size:x-small' type=submit name=yes value=Yes>\n";
+	echo "</div>";
+	echo "<br><br>\n";
+	echo "</td></tr>\n";
+	echo "</table>\n";
+	echo "</form>\n";
 	echo "<sc_confirmform [END]================================================ />\n";
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_db_query($query,$becho){
-    
-    $gt=0;
-    
+	$gt=0;    
 	if(stristr($query,"users")) 	 $res=sc_query_user_db($query);
-    else                             $res=sc_query($query);
-        
-    if($res)
-    if($becho){
-        
+	else                             $res=sc_query($query);
+	if($res)
+	if($becho){
 		$num=@mysql_num_rows($res);
 		echo "<br>$num rows affected<br>";
-        echo "<table border=0 cellpadding=5>";
-        $hdr=0;
-        while($row=@mysql_fetch_assoc($res)){
-            $gt++; if($gt>2) $gt=1;
-            if($hdr==0){
+		echo "<table border=0 cellpadding=5>";
+		$hdr=0;
+		while($row=@mysql_fetch_assoc($res)){
+			$gt++; if($gt>2) $gt=1;
+			if($hdr==0){
                 echo "<tr>";
                 reset($row);
                 while(key($row)!==NULL){
@@ -932,17 +936,14 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 // select / option a file
 function sc_optionize_file( $select_name, $file,	$default )  {
 	echo "<select name=\"$select_name\">";
-	
 	echo "<option>$default";
-
-if(file_exists($file)) {
-	$fp=fopen($file,"r");	
-	while( $ln=fgets($fp)) {
-			echo "<option>$ln";
-	}
-	fclose($fp);
-}	
-	
+	if(file_exists($file)) {
+		$fp=fopen($file,"r");	
+		while( $ln=fgets($fp)) {
+				echo "<option>$ln";
+		}
+		fclose($fp);
+	}	
 	echo "</select>";
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -953,7 +954,7 @@ if(file_exists($file)) {
 // $include_dirs	= true/false
 // $include_files	= true/false
 // $default 		= default text to put in the select (first option))
-function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$include_files,$default )  {
+function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$include_files,$default ) {
 	echo "<select name=\"$select_name\">";
 	if(!empty($default))
 		echo "<option>$default";
@@ -968,10 +969,8 @@ function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$inclu
 	asort($dirfiles);
 	while(list ($key, $file) = each ($dirfiles)){		
 		$chack="$folder/$file";
-		
 		if( ($file=="lost+found") ||
-			($file=="\$RECYCLE.BIN") ) {
-				
+			($file=="\$RECYCLE.BIN") ) {				
 		}
 		else {
 			if(substr($file,0,1)!=".") {
@@ -990,16 +989,12 @@ function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$inclu
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // simple add form based on table
-function sc_bfa($table){ eval(scg());
-	sc_bf(sc_phpself(),"action=add",$table,"","","name","include","",60,"add");
-}
+function sc_bfa($table){ eval(scg()); sc_bf(sc_phpself(),"action=add",$table,"","","name","include","",60,"add"); }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // sc_bqf (build quick form)
 // $hiddenvars = list of 
 // takes 2 vars and will build a form using sc_bf
-function sc_bqf($hiddenvars,$submit){ eval(scg());
-	sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit);
-}
+function sc_bqf($hiddenvars,$submit){ eval(scg()); sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit); }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // sc_bf (build form)
 // $page        	= page that the form will action 
@@ -2029,7 +2024,7 @@ function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eva
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_ajax_spinner() { eval(scg()); 
-	return "<img src=$RFS_SITE_URL/images/icons/spinner.gif>";
+ return "<img src=$RFS_SITE_URL/images/icons/spinner.gif>";
 }
 
 function sc_ajax_callback_image(){ eval(scg());
@@ -2037,72 +2032,41 @@ function sc_ajax_callback_image(){ eval(scg());
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
 		$r=sc_query($q);
 		if($r) {
-			
-			
-			
-				echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
-				$oimg=str_replace("$RFS_SITE_URL/","",$rfaajv);				
-				echo sc_picthumb($oimg,64,64,1);
-		}
-		
-		
-		
-		else   echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
+			echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+			$oimg=str_replace("$RFS_SITE_URL/","",$rfaajv);
+			echo sc_picthumb($oimg,64,64,1);
+		}		
+		else echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
 	}
-	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
+	else echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
 	exit;
 }
-function sc_ajax_callback_file(){ eval(scg());
-
-	exit;
-}
+function sc_ajax_callback_file(){ eval(scg()); exit; }
 function sc_ajax_callback_delete() { eval(scg());
-echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";	
+	echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
 }
-function sc_ajax_callback(){ eval(scg());
 
+//////////////////////////////////////////////////////////////////////////////
+// default ajax callback function
+function sc_ajax_callback(){ eval(scg());
 	if(sc_access_check($rfaapage,$rfaact)) {
 		$rfaajv=addslashes($rfaajv);
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
-		$r=sc_query($q);
-		
-		
-		
-		if($r) {
-			echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
-		}
+		$r=sc_query($q);		
+		if($r) echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
 		else   echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
 	}
-	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
+	else     	echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
 	exit;
 }
-		//        if(div.style.display == "block") { 
-        //}
-        //else {
-        //    div.style.display = "block";
-       // }
+//////////////////////////////////////////////////////////////////////////////
+// default ajax javascript function
 function sc_ajax_javascript() { eval(scg());
-	/////////////////////////////////////////////// Automatic action function
-	// $_thisfunk=str_replace(" ","_",str_replace(".php","",$px[count($px)-1])."_action_$action");
-	// eval("if(function_exists(\"$_thisfunk\") == true) @$_thisfunk(); else if(\$_SESSION[\"debug_msgs\"]==true) sc_info(\"DEBUG >> WARNING: MISSING $_thisfunk(); \",\"WHITE\",\"BLUE\");");
-	
 	$arr=get_defined_functions();
-
-	
-	foreach( $arr['user'] as $k=>$v ) {
-		if(stristr($v,"sc_ajax_javascript_")) {
-			eval($v."();");
-		}
-	}
+	foreach( $arr['user'] as $k=>$v ) if(stristr($v,"sc_ajax_javascript_")) eval($v."();");
 echo '
-
-<script>	
-
-function rfs_ajax_hide(x) {
-	var div = document.getElementById(x);
-	div.style.display = "none";
-};
-	
+<script>
+function rfs_ajax_hide(x) { var div = document.getElementById(x); div.style.display = "none"; };
 function rfs_ajax_func(name, ajv, table, ikey, kv, field, page, act, callback) {
 			var http=new XMLHttpRequest();
 			var url = "'.$RFS_SITE_URL.'/header.php";
@@ -2130,122 +2094,8 @@ function rfs_ajax_func(name, ajv, table, ikey, kv, field, page, act, callback) {
 </script>
 ';
 }
-
-function sc_ajax_file($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$rfawidth,$rfatype,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
-	
-	if(!stristr($rfatype,"nohide")) $hidefunc="rfs_ajax_hide('$rfakv');";
-	if(empty($rfacallback)) $rfacallback="sc_ajax_callback";	
-	
-	if(!sc_access_check($rfaapage,$rfaact)) {
-		return;
-	}
- 
-	if(empty($rfalabel)) $rfalabel="&nbsp;";
-	
-	$rlx=explode(",",$rfalabel);
-	$rfalabel=$rlx[0];
-	$minwidth="min-width: ".$rlx[1].";";
-	
-	$rfanname="RFAJAX_".time()."_".md5($rfakv.$rfalabel.$rfatable.$rfaikey);	
-	
-	echo "<div id='$rfanname"."_div' style='float:left;'>&nbsp;</div>\n";
-	echo "<div id='$rfanname"."_label' style='float:left; $minwidth'>$rfalabel</div>\n";
-	
-	$rfakv=addslashes($rfakv);	
-	$q="select * from `$rfatable` where `$rfaikey`='$rfakv'";
-	$r=sc_query($q);
-	$d=mysql_fetch_array($r);
-	
-	if(stristr($rfatype,"select")) {
-		
-		$x=explode(",",$rfatype);		
-		$typ=$x[1];		
-		if($typ=="table") {
-			$tab=$x[2];
-			$key=$x[3];
-			$val=$x[4];
-		
-			echo "<select data-description=\"$rfanname\"  ";
-			echo "		data-maincss=\"blue\"
-							id=\"$rfanname"."_name\"
-							name=\"$rfanname"."_name\"
-							onchange=\"rfs_ajax_func('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
-							$hidefunc
-							\"
-							
-							style='float:left;'>";
-
-			if(!empty($val)) {
-				$r=sc_query("select * from `$tab` where `$val`='".$d[$rfafield]."'");
-				$tdat=mysql_fetch_array($r);
-				echo "<option value=\"".$tdat[$val]."\" ";
-				
-				if(!empty($tdat['image'])) {
-					if(file_exists("$RFS_SITE_PATH/".$tdat['image']))
-						echo "data-image=\"".sc_picthumb_raw($tdat['image'],16,0,0)."\" ";						
-				}
-				else if(!empty($d['icon'])) {
-					if(file_exists("$RFS_SITE_PATH/".$tdat['icon']))
-						echo "data-image=\"".sc_picthumb_raw($tdat['icon'],16,0,0)."\" ";
-				}
-				
-				echo "	>".$tdat[$key];
-			}
-			else		
-				echo "<option>".$d[$rfafield];
-			
-			echo "</option>";
-			
-			$r=sc_query("select * from `$tab` order by `$key` asc");
-			for($i=0;$i<mysql_num_rows($r);$i++) {
-				$dat=mysql_fetch_array($r);
-				echo "<option ";
-				if(!empty($val)) {
-					echo "value=\"".$dat[$val]."\"";
-				}
-				echo ">".$dat[$key];
-			}
-			echo "</select>";
-		}
-		echo "<div style='clear:both;'></div>";
-		return;		
-	}
-	
-	if($rfatype=="textarea") {
-		$rx=explode(",",$rfawidth);
-		$rows=$rx[0];
-		$cols=$rx[1];
-		echo "<textarea 	id=\"$rfanname"."_input\"
-							rows=\"$rows\"
-							cols=\"$cols\"
-							type=\"$rfatype\"
-							name=\"$rfanname"."_name\"							
-							onblur=\"rfs_ajax_func('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
-							$hidefunc
-							\"
-							
-			style='float:left;'>";
-			$tout=str_replace("<","&lt;",$d[$rfafield]);
-			echo $tout;
-			echo "</textarea>";	
-		
-	}
-	else {
-	echo "<input	id=\"$rfanname"."_input\"
-					size=\"$rfawidth\"
-					type=\"$rfatype\"
-					name=\"$rfanname"."_name\"
-					value=\"".$d[$rfafield]."\"
-					onblur=\"rfs_ajax_func('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback');
-					
-					$hidefunc
-					\"
-					onkeyup=\"if((event.keyCode==13)) {this.blur();}\"style='float:left;'>";
-	
-	}
-	echo "<div style='clear:both;'></div>";
-}
-
+//////////////////////////////////////////////////////////////////////////////
+// short ajax function
 function rfs_ajax($data,$size,$properties,$access,$callback) {
 	$x=explode(",",$data);
 	$table=$x[0];
@@ -2262,7 +2112,8 @@ function rfs_ajax($data,$size,$properties,$access,$callback) {
 				$size,$properties,$access_type,$access_action,$callback);
 
 }
-
+//////////////////////////////////////////////////////////////////////////////
+// long ajax function
 function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_properties,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
 	if(!sc_access_check($rfaapage,$rfaact)) return;
 	
