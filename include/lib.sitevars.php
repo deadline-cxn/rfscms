@@ -21,6 +21,9 @@ foreach($GLOBALS as $key => $value){
        //echo "[$key] => [".str_replace("<","&lt;",$value)."]<br>";
     }
 }
+
+if(!isset($RFS_SITE_SUDO_CMD)) $RFS_SITE_SUDO_CMD=" ";
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // This file can not have any trailing spaces
 ?>
