@@ -11,6 +11,7 @@ develop/*
 images/*
 tmp/*
 wtf/*
+modules/rfsft/*
 modules/bullet_log/*
 modules/netman/*
 modules/gns3/*
