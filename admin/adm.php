@@ -5,6 +5,7 @@
 $title="Administration";
 /////////////////////////////////////////////////////////////////////////////////////////
 include("lib.adm.php");
+
 chdir( "../" );
 if(stristr($_REQUEST['action'],"ajx")) {
 	include("include/lib.all.php");
