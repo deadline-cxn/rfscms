@@ -144,7 +144,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
         echo "<div width=100% style='background-color: cyan; color: black;'>Attempting to create $RFS_SITE_PATH/config/config.php</div>";
         $fp=fopen("$RFS_SITE_PATH/config/config.php","wt");
 
-        fwrite($fp, "<?\n// RFSCMS $RFS_VERSION http://www.sethcoder.com/\n");
+        fwrite($fp, "<?\n// RFSCMS $RFS_VERSION \n// http://www.sethcoder.com/\n");
         fwrite($fp, "\$GLOBALS['authdbname']    = \"$rfs_db_name\"; \n");
         fwrite($fp, "\$GLOBALS['authdbaddress'] = \"$rfs_db_address\"; \n");
         fwrite($fp, "\$GLOBALS['authdbuser']    = \"$rfs_db_user\"; \n");
