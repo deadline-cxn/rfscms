@@ -33,7 +33,7 @@ $message=str_replace("<select","(form tags are unauthorized)<no ",$message);
 function bumpthread($id) {
     $bumptime=date("Y-m-d H:i:s"); // 0000-00-00 00:00:00
     sc_query("update forum_posts set `bumptime`='$bumptime' where id='$id'");
-}
+} 
 
 if($action=="forum_admin_on") { $_SESSION['forum_admin']="yes"; }
 if($action=="forum_admin_off") { $_SESSION['forum_admin']="no"; }
@@ -588,7 +588,7 @@ function forums_action_forum_list() { eval(scg());
         }
     }
     else    {
-        echo "<p> Folder Error! </p>";
+        echo "<p> Forums not configured </p>";
     }
 	include("footer.php");
 }
