@@ -5,8 +5,8 @@
 $title="Administration";
 /////////////////////////////////////////////////////////////////////////////////////////
 include("lib.adm.php");
-
 chdir( "../" );
+
 if(stristr($_REQUEST['action'],"ajx")) {
 	include("include/lib.all.php");
 	// sc_do_action();
@@ -997,40 +997,39 @@ function adm_action_f_add_forum() { eval( scg() );
 	adm_action_f_edit_forum();
 }
 function adm_action_forum_admin() { eval( scg() );
+
 	$name=addslashes( $name );
 	$r=sc_query( "select * from forum_list" );
 	$n=mysql_num_rows( $r );
-	if( $n==0 ) echo "<p>No forums defined.</p>";
+	
+	
+	
+
 	sc_bf( "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_add_forum".$RFS_SITE_DELIMITER.
 	       "SHOW_TEXT_New_Forum=new forum".$RFS_SITE_DELIMITER.
-	       "name=$name",
-	       "forum_list",
-	       "select * from forum_list where name='$name';",
-	       "",
-	       "",
-	       "include",
-	       "",
-	       100,
-	       "Add" );
-	for( $i=0; $i<$n; $i++ ) {
-		$der=mysql_fetch_object( $r );
-		$name=$der->name;
+	       "name=$name", "forum_list",
+		   "select * from forum_list where name='$name';",
+	       "", "", "include", "", 100, "Add" );
 
-		sc_bf( "$RFS_SITE_URL/admin/adm.php",
-		       "action=f_edit_forum".$RFS_SITE_DELIMITER.
-			   "DBX_35#140#code=codearea".$RFS_SITE_DELIMITER.
-		       "name=$name",
-		       "forum_list",
-		       "select * from forum_list where name='$name';",
-		       "",
-		       "",
-		       "include",
-		       "",
-		       100,
-		       "Edit" );
-			   
-		echo $name;
+	if( $n==0 ) {
+		echo "<p>No forums defined.</p>";
+	}
+	else {
+		for( $i=0; $i<$n; $i++ ) {
+
+			$der=mysql_fetch_object( $r );
+			$name=$der->name;
+
+			sc_bf( "$RFS_SITE_URL/admin/adm.php",
+				   "action=f_edit_forum".$RFS_SITE_DELIMITER.
+				   "DBX_35#140#code=codearea".$RFS_SITE_DELIMITER.
+				   "name=$name", "forum_list",
+				   "select * from forum_list where name='$name';",
+				   "", "", "include", "", 100, "Edit" );
+
+			echo $name;
+		}	
 	}
 	
 }

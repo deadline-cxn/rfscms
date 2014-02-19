@@ -1,5 +1,5 @@
 <?
-
+ 
 function sc_ajax_callback_query_list() { eval( scg()) ;
 	if(array_pop(explode("/",getcwd()))=="admin") chdir("..");
 	include_once("include/lib.all.php");
