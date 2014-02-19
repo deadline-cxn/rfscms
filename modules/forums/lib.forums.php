@@ -69,14 +69,20 @@ function adm_action_forum_admin() { eval( scg() );
 			
 			echo "<div class=forum_box>";
 			
-			echo "<h2>FORUM CATEGORY:";
-						
-			rfs_db_element_edit(
-			"$folder->name",
-			"$RFS_SITE_URL/admin/adm.php",
-			"forum_admin",
-			"forum_list",$folder->id);
-			echo "</h2>";		
+			echo "<img src=$RFS_SITE_URL/images/icons/folder_big.gif style='float: left;'>";
+			
+			echo "<div>";
+				
+						echo "<h2>";						
+						rfs_db_element_edit(
+						"$folder->name",
+						"$RFS_SITE_URL/admin/adm.php",
+						"forum_admin",
+						"forum_list",$folder->id);
+						echo "</h2>";
+			echo "</div>";
+			echo "<div style='clear: both;'>"; echo "</div>";	
+			
 			
 			
 			$rr=sc_query("select * from `forum_list` where parent='$folder->id'");
@@ -86,9 +92,15 @@ function adm_action_forum_admin() { eval( scg() );
 				echo "<p>No forums defined.</p>";				
 			}
 			else {
+				
+				echo "<div style='margin-left: 100px;'>";
+				
 				for($j=0;$j<$nn;$j++) {
 					$forum=mysql_fetch_object($rr);
 					echo "<div>";
+					
+					echo "<img src=$RFS_SITE_URL/images/icons/icon_minipost.gif>";//style='float: left;'>";
+			
 					rfs_db_element_edit(
 						"$forum->name",
 						"$RFS_SITE_URL/admin/adm.php",
@@ -96,7 +108,10 @@ function adm_action_forum_admin() { eval( scg() );
 						"forum_list",$forum->id);
 					echo "</div>";
 				}
+				echo "</div>";
 			}
+			
+			echo "<div style='margin-left: 200px;'>";
 			
 			sc_bf(
 				"$RFS_SITE_URL/admin/adm.php",
@@ -105,16 +120,20 @@ function adm_action_forum_admin() { eval( scg() );
 				"SHOW_TEXT_#20#name=forum",
 				"forum_list", "", "", "", "include", "", 100, "Add" );
 				
+				
+			echo "</div>";
 			echo "</div>";
 		}
 	}
 	
 
+	echo "<div class='forum_box'>";
 	sc_bf(
 		"$RFS_SITE_URL/admin/adm.php",
 		"action=f_add_forum_folder".$RFS_SITE_DELIMITER.
 		"SHOW_TEXT_#20#name=folder",
 		"forum_list", "", "", "", "include", "", 100, "Add" );
+	echo "</div>";
 
 
 }
