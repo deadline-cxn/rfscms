@@ -974,66 +974,6 @@ function adm_action_theme() { eval(scg());
 	exit();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// ADM_FORUMS
-function adm_action_f_modify_forum() { eval(scg());
-	echo "<h3>Forum $name updated</h3>";
-	sc_updb( "forum_list","id",$id, 1 );
-	adm_action_forum_admin();
-}
-function adm_action_f_edit_forum() { eval( scg() );
-	$result=sc_query( "select * from forum_list where `name`='$name'" );
-	$der=mysql_fetch_object( $result );
-	$forum_name=$der->name;
-	echo "<h3>[$forum_name] (id:$der->id)</h3>\n";
-	sc_bf( "$RFS_SITE_URL/admin/adm.php",
-	       "action=f_modify_forum".$RFS_SITE_DELIMITER.
-		   "DBX_35#140#code=codearea",
-	       "forum_list", "select * from forum_list where name='$forum_name';",
-	       "id","","omit","",100,"submit" );
-	adm_action_forum_admin();
-}
-function adm_action_f_add_forum() { eval( scg() );
-	sc_query( "insert into forum_list (`name`) VALUES ('$name') ; " );
-	adm_action_f_edit_forum();
-}
-function adm_action_forum_admin() { eval( scg() );
-
-	$name=addslashes( $name );
-	$r=sc_query( "select * from forum_list" );
-	$n=mysql_num_rows( $r );
-	
-	
-	
-
-	sc_bf( "$RFS_SITE_URL/admin/adm.php",
-	       "action=f_add_forum".$RFS_SITE_DELIMITER.
-	       "SHOW_TEXT_New_Forum=new forum".$RFS_SITE_DELIMITER.
-	       "name=$name", "forum_list",
-		   "select * from forum_list where name='$name';",
-	       "", "", "include", "", 100, "Add" );
-
-	if( $n==0 ) {
-		echo "<p>No forums defined.</p>";
-	}
-	else {
-		for( $i=0; $i<$n; $i++ ) {
-
-			$der=mysql_fetch_object( $r );
-			$name=$der->name;
-
-			sc_bf( "$RFS_SITE_URL/admin/adm.php",
-				   "action=f_edit_forum".$RFS_SITE_DELIMITER.
-				   "DBX_35#140#code=codearea".$RFS_SITE_DELIMITER.
-				   "name=$name", "forum_list",
-				   "select * from forum_list where name='$name';",
-				   "", "", "include", "", 100, "Edit" );
-
-			echo $name;
-		}	
-	}
-	
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_SITE VARS
 function adm_action_f_addsitevar() { eval( scg() );
 	$name=strtolower( $name );
@@ -1261,11 +1201,13 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
 }
 function adm_action_f_admin_menu_edit_entry() { eval(scg());
 	echo "<h3>Edit Admin Menu item $id</h3>";
+	
 	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
             "action=f_admin_menu_edit_mod".$RFS_SITE_DELIMITER."id=$id",
             "admin_menu",
             "select * from admin_menu where `id`='$id'",
             "", "id", "omit", "", 60, "Modify" );
+			
 /* sc_bf(  "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.	       "id=$id",
 	       "users",
@@ -2268,21 +2210,28 @@ function adm_action_() { eval(scg());
 	echo "<h1>Administration Panel</h1>";
 	
 	echo "Running RFS CMS version $RFS_VERSION ( BUILD $RFS_BUILD )";	
-	
-	system("rm vercheck");
-	system("rm buildcheck");
-	system("wget -O vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");
-	system("wget -O buildcheck https://raw.github.com/sethcoder/rfscms/master/build.dat");
-	$rver="remote version unknown"; 
-	$file=fopen("vercheck", "r");  if($file) { $rver=fgets($file,256); fclose($file); }
-	$file=fopen("buildcheck","r"); if($file) { $rbld=fgets($file,256); fclose($file); }
-	system("rm vercheck");
-	system("rm buildcheck"); 
-	$rverx=explode("\"",$rver);
-	if( ($RFS_VERSION!=$rverx[1]) ||
-		 (intval($RFS_BUILD)!=intval($rbld))) {
-		sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld");
+		
+	if($RFS_SITE_CHECK_UPDATE=="true") {
+			system("rm vercheck");
+			system("rm buildcheck");
+			system("wget -O vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");
+			system("wget -O buildcheck https://raw.github.com/sethcoder/rfscms/master/build.dat");
+			$rver="remote version unknown"; 
+			$file=fopen("vercheck", "r");  if($file) { $rver=fgets($file,256); fclose($file); }
+			$file=fopen("buildcheck","r"); if($file) { $rbld=fgets($file,256); fclose($file); }
+			system("rm vercheck");
+			system("rm buildcheck"); 
+			$rverx=explode("\"",$rver);
+			if( ($RFS_VERSION!=$rverx[1]) ||
+				 (intval($RFS_BUILD)!=intval($rbld))) {
+				sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld");
+			}
+			else {
+				echo "No new updates";
+			}
 	}
+	
+	
 	echo "<br>";
 	echo "<hr>";
 

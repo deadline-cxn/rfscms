@@ -204,7 +204,6 @@ function sc_get_content_ids() { eval(scg());
 	
 	
 }
-
 /////////////////////////////////////////////////////////////////////////
 function sc_info($t,$c,$c2) { 	echo "<div style=' font-size: 2em; color:$c; background-color:$c2; width:100%;'>$t</div>"; }
 /////////////////////////////////////////////////////////////////////////
@@ -299,18 +298,23 @@ function scg() {
 	return $out;
 }
 /////////////////////////////////////////////////////////////////////////
+function rfs_red() { sc_red(); }
 function sc_red()   { 	return "<font style='color:white; background-color:red;'>"; }
 /////////////////////////////////////////////////////////////////////////
+function rfs_green() { sc_green(); }
 function sc_green() { 	return "<font style='color:white; background-color:green;'>"; }
 /////////////////////////////////////////////////////////////////////////
+function rfs_blue() { sc_blue(); }
 function sc_blue()  { 	return "<font style='color:white; background-color:blue;'>"; }
 /////////////////////////////////////////////////////////////////////////
 function sc_flush () { 	echo(str_repeat(' ',256)); 		if (ob_get_length()) { 		@ob_flush();		@flush();		@ob_end_flush(); 	} 	@ob_start();}
 /////////////////////////////////////////////////////////////////////////
+function rfs_warn($x) { sc_warn($x); }
 function sc_warn($x) { 	eval(scg()); 
 echo "<div class=warning><br><img src='$RFS_SITE_URL/images/icons/exclamation2.png' border=0 align=left>$x</div>";
 }
 /////////////////////////////////////////////////////////////////////////
+function rfs_inform($x) { sc_inform($x); }
 function sc_inform($x) { eval(scg());
     echo "<div class=inform>
     <img src='$RFS_SITE_URL/images/icons/Warning.png' width=\"12\" border=\"0\">
@@ -352,6 +356,7 @@ function smiles($text) {
 }
 /////////////////////////////////////////////////////////////////////////
 function rfs_echo($t) {  echo rfs_get($t); }
+/////////////////////////////////////////////////////////////////////////
 function sc_calc($x) {
 	eval("echo($x);");
 }

@@ -44,6 +44,65 @@ function sc_database_data_add($table,$field,$value,$id) {
 	return $i;	
 }
 
+function adm_action_f_rfs_db_element_ed1() { eval(scg());
+
+	echo "<p> </p>";
+	sc_button("$rtnpage?action=$rtnact","Go back");
+	echo "<h2>Edit $label</h2>";
+	
+	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+            "action=f_rfs_db_element_ed2".$RFS_SITE_DELIMITER.
+			"table=$table".$RFS_SITE_DELIMITER.
+			"id=$id".$RFS_SITE_DELIMITER.
+			"rtnpage=$rtnpage".$RFS_SITE_DELIMITER.
+			"rtnact=$rtnact".$RFS_SITE_DELIMITER,
+            "$table",
+            "select * from $table where `id`='$id'",
+            "", "id", "omit", "", 60, "Modify" );
+	
+}
+
+
+function adm_action_f_rfs_db_element_ed2() { eval(scg());
+	sc_updb($table,"id",$id,"");
+	sc_gotopage("$rtnpage?action=$rtnact");
+}
+
+function adm_action_f_rfs_db_element_del1($rtnpage,$rtnact,$table,$id) {
+	eval(scg());
+	//echo "DEL ELEMENT 1 <br>";
+	//echo "$table $id<br>";
+	//echo "$rtnpage<br>";
+	//echo "$rtnact<br>";
+	
+	$r=sc_query("select * from `$table` where id='$id'");
+	$element=mysql_fetch_object($r);
+	
+	sc_confirmform(	"Delete database element <br>
+						table:$table<br>
+						id:$id<br>
+						name: $element->name<br>
+						?",
+					"$RFS_SITE_URL/admin/adm.php?action=f_rfs_db_element_del2",
+					"table=$table".$RFS_SITE_DELIMITER.
+					"id=$id".$RFS_SITE_DELIMITER.
+					"rtnpage=$rtnpage".$RFS_SITE_DELIMITER.
+					"rtnact=$rtnact");
+	
+}
+
+function adm_action_f_rfs_db_element_del2($rtnpage,$rtnact,$table,$id) { eval(scg());
+	sc_query("delete from `$table` where `id`='$id' limit 1");
+	sc_gotopage("$rtnpage?action=$rtnact");
+}
+
+function rfs_db_element_edit($label,$rtnpage,$rtnact,$table, $id) { eval(scg());
+
+sc_button("$rtnpage?action=f_rfs_db_element_ed1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Edit");
+sc_button("$rtnpage?action=f_rfs_db_element_del1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Delete");
+	echo "$label ";
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(scg());
 
@@ -498,7 +557,14 @@ function sc_db_get($table,$key,$kv,$field){
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // update database
 function sc_updb($table,$key_field,$key_value,$md5_password) {
-    $res=sc_query("select * from `$table` where `$key_field`='$key_value' limit 1");
+	
+	$q="select * from `$table` where `$key_field`='$key_value' limit 1";
+	
+	d_echo("$q");
+    $res=sc_query($q);
+	
+	
+	
     if(mysql_num_rows($res)==0)
 		sc_query("insert into `$table` (`$key_field`) values ('$key_value');");
     $res=sc_query("DESCRIBE $table");
@@ -517,7 +583,9 @@ function sc_updb($table,$key_field,$key_value,$md5_password) {
 			$q.="' ";			
 			$v=addslashes($key_value);
 			$q.="where `$key_field`='$v'";
+			
 			d_echo("[$q]");
+			
 			sc_query($q);
     }
 }
