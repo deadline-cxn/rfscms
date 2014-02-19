@@ -48,8 +48,27 @@ if($folder!="install") $RFS_SITE_URL.="/".$folder;
 $table_width="85%";
 
 include("../include/version.php");
-$build=file_get_contents("../build.dat");
-$RFS_VERSION.=" BUILD $build";
+$RFS_BUILD=file_get_contents("../build.dat");
+
+system("rm install.vercheck");
+system("rm install.buildcheck");
+system("wget -O install.vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");
+system("wget -O install.buildcheck https://raw.github.com/sethcoder/rfscms/master/build.dat");
+$rver="remote version unknown";
+$file=fopen("install.vercheck", "r");  if($file) { $rver=fgets($file,256); fclose($file); }
+$file=fopen("install.buildcheck","r"); if($file) { $rbld=fgets($file,256); fclose($file); }
+system("rm install.vercheck");
+system("rm install.buildcheck");
+$rverx=explode("\"",$rver);
+// echo " [$RFS_VERSION][$RFS_BUILD] [$rverx[1]][$rbld]\n";
+if( ($RFS_VERSION!=$rverx[1]) ||
+	 (intval($RFS_BUILD)!=intval($rbld))) {
+	echo "<div width=100% style='font-size: 23px; background-color: red; color:white;'>
+	ATTENTION: NEW VERSION AVAILABLE: \n".
+			$rverx[1]." BUILD $rbld. Get it at 
+			<a href=\"https://www.github.com/sethcoder/rfscms/\">Github</a>.
+			</div>";
+}
 
 echo "<html><head><title>RFS CMS $RFS_VERSION Installer</title>";
 echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/install/install.css\" type=\"text/css\">\n";
@@ -77,7 +96,7 @@ if(($action=="go_install") || (empty($action)) ) {
 
 	echo "<center> <p></p><p></p>";
     echo "<table border=0 width=$table_width><tr><td class=formboxd>";
-	echo "<center><h1> RFS CMS $RFS_VERSION </h1></center>";
+	echo "<center><h1> RFS CMS $RFS_VERSION ( Build: $RFS_BUILD)</h1></center>";
     echo "</td></tr></table>";
     echo "
         <table border=0 width=$table_width><tr><td class=formboxd>
@@ -85,18 +104,15 @@ if(($action=="go_install") || (empty($action)) ) {
 		echo "
         <p align=center>Really Frickin Simple Content Management System (RFSCMS) $RFS_VERSION Installation.</p>";
 		echo "
-<p align = center>
-Thank you for deciding to try out RFSCMS.<br>
-I have put a lot of hard work into making this over the years.<br>
-My goal was to make the best possible CMS, while at the same time making it easy to use.<br>
-
-If you have any questions or comments, or would like to make suggestions for further releases of RFS, please contact me.<br>
-<br>
-<a href='mailto:defectiveseth@gmail.com'>Email me!</a></p>";
+<p style=\"padding: 20px;\">
+Thank you for deciding to try out RFSCMS. I have put a lot of hard work into making this over the years. My goal was to make the best possible CMS, while at the same time making it easy to use. If you have any questions or comments, or would like to make suggestions for further releases of RFS, or if you would like to help develop this open source CMS, please contact me.<br><br>
+</p>";
 
   echo "<p align=center>
-  Follow me on Twitter!<br>
-  <br>
+<a href='mailto:defectiveseth@gmail.com' target=_blank>Email me!<br> 
+ <img src=\"$RFS_SITE_URL/images/icons/email.gif\"></a><br>
+Follow me on Twitter!<br>
+<br>
 <a href=\"https://twitter.com/sethcoder\"
 class=\"twitter-follow-button\"
 data-show-count=\"true\"
@@ -107,18 +123,19 @@ data-show-screen-name=\"false\"> </a> <script>!function(d,s,id)
 	fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");
 	</script> </p>";
 
-echo '
+echo "
 <p align=center>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WP3BJCCH5P8N2">Please Read! A personal appeal by the founder of RFS CMS...<br>
-Like my site? Then please donate so I can buy nom noms...</a>
-</p>';
+
+<a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WP3BJCCH5P8N2' target=_blank>Donate!<br>
+<img src=\"$RFS_SITE_URL/images/icons/paypal.gif\"></a>
+</p>";
         echo "<br></td></tr></table>
         <table width=$table_width><tr><td class=formboxd><center>
         <br>
-       <p align=center>I'm going to ask you some questions, and I want to have them answered immediately.</p>
-        <p align=center>If you don't know what to enter, you should contact your system administrator.
-		Press the button to continue...</p>
-        <a href=$RFS_SITE_URL/install/install.php?action=step_a&submit=Begin>BEGIN!</a>
+        <a href=$RFS_SITE_URL/install/install.php?action=step_a&submit=Begin>BEGIN!<br>
+		
+		<img src=\"$RFS_SITE_URL/images/icons/next.png\">
+		</a>
         <br>&nbsp;<br>
         </td></tr></table>
         </center>
@@ -144,7 +161,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
         echo "<div width=100% style='background-color: cyan; color: black;'>Attempting to create $RFS_SITE_PATH/config/config.php</div>";
         $fp=fopen("$RFS_SITE_PATH/config/config.php","wt");
 
-        fwrite($fp, "<?\n// RFSCMS $RFS_VERSION \n// http://www.sethcoder.com/\n");
+        fwrite($fp, "<?\n/////////////////////////////////////////////////////\n// RFSCMS $RFS_VERSION\n// http://www.sethcoder.com/ \n");
         fwrite($fp, "\$GLOBALS['authdbname']    = \"$rfs_db_name\"; \n");
         fwrite($fp, "\$GLOBALS['authdbaddress'] = \"$rfs_db_address\"; \n");
         fwrite($fp, "\$GLOBALS['authdbuser']    = \"$rfs_db_user\"; \n");
@@ -171,60 +188,60 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 
 			echo $GLOBALS["authdbname"]." DB IN USE <BR>";
 			
-///////////////////////////////////////////////////////////////////////////////
-// UPDATE DATABASE install.sql
-$qx=explode(";",file_get_contents("$RFS_SITE_PATH/install/install.sql"));
-for($i=0;$i<count($qx);$i++) {
-	$q=$qx[$i];
-	sc_query("$q;");
-}
-$rfs_password=md5($rfs_password);
-sc_query("
-INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `access_groups`, `theme`) VALUES
-('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255',  'Administrator', 'default'); ");
+			///////////////////////////////////////////////////////////////////////////////
+			// UPDATE DATABASE install.sql
+			$qx=explode(";",file_get_contents("$RFS_SITE_PATH/install/install.sql"));
+			for($i=0;$i<count($qx);$i++) {
+				$q=$qx[$i];
+				sc_query("$q;");
+			}
+			$rfs_password=md5($rfs_password);
+			sc_query("
+			INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `access_groups`, `theme`) VALUES
+			('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255',  'Administrator', 'default'); ");
+											
+			///////////////////////////////////////////////////////////////////////////////
+			// CHECK DATABASE				
+			$r=sc_query("select * from users");
+			$n=0;
+			if($r) $n=mysql_num_rows($r);
+			if(!$n) {
+				echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
+				$action="step_a";
+			} else {
+				echo "<div width=100% style='background-color: green; color:white;'>Database activated... Adding RFSCMS data.</div>";
+			///////////////////////////////////////////////////////////////////////////////
+			// UPDATE DATABASE				
+			sc_query("
+			INSERT INTO `site_vars` (`name`, `value`) VALUES
+			('path', '$RFS_SITE_PATH'),
+			('url',  '$RFS_SITE_URL'),
+			('name', '$rfs_site_name'); ");
+			///////////////////////////////////////////////////////////////////////////////
+			// UPDATE DATABASE install.data.sql
+			$f="$RFS_SITE_PATH/install/install.data.sql";
+			$qx=explode("-;-",file_get_contents($f));
+			for($i=0;$i<count($qx);$i++) {
+				$q=$qx[$i];
+				echo "<hr>";
+				// echo nl2br("$q;");
+				sc_query("$q;");
+			}
+			///////////////////////////////////////////////////////////////////////////////
 					
-///////////////////////////////////////////////////////////////////////////////
-// CHECK DATABASE				
-$r=sc_query("select * from users");
-$n=0;
-if($r) $n=mysql_num_rows($r);
-if(!$n) {
-	echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
-	$action="step_a";
-} else {
-
-echo "<div width=100% style='background-color: green; color:white;'>Database activated... Adding RFSCMS junk so stuff works correctly.</div>";
-///////////////////////////////////////////////////////////////////////////////
-// UPDATE DATABASE				
-sc_query("
-INSERT INTO `site_vars` (`name`, `value`) VALUES
-('path', '$RFS_SITE_PATH'),
-('url',  '$RFS_SITE_URL'),
-('name', '$rfs_site_name'); ");
-///////////////////////////////////////////////////////////////////////////////
-// UPDATE DATABASE install.data.sql
-$f="$RFS_SITE_PATH/install/install.data.sql";
-$qx=explode("-;-",file_get_contents($f));
-for($i=0;$i<count($qx);$i++) {
-	$q=$qx[$i];
-	echo "<hr>";
-	echo nl2br("$q;");
-	sc_query("$q;");
-}
-///////////////////////////////////////////////////////////////////////////////
-		
-///////////////////////////////////////////////////////////////////////////////
-// Make system folders
-system("mkdir $RFS_SITE_PATH/log");
-system("mkdir $RFS_SITE_PATH/files");
-system("mkdir $RFS_SITE_PATH/files/pictures");
-system("mkdir $RFS_SITE_PATH/images");
-system("mkdir $RFS_SITE_PATH/images/avatars");
+			///////////////////////////////////////////////////////////////////////////////
+			// Make system folders
+			system("mkdir $RFS_SITE_PATH/log");
+			system("mkdir $RFS_SITE_PATH/files");
+			system("mkdir $RFS_SITE_PATH/files/pictures");
+			system("mkdir $RFS_SITE_PATH/images");
+			system("mkdir $RFS_SITE_PATH/images/avatars");
 
 
            echo "  <center> <p>&nbsp;</p><p>&nbsp;</p>
 					<table border=0 width=$table_width>
 					<tr><td class=formboxd><center>
+					<img src=\"$RFS_SITE_URL/images/icons/thumbup.png\">
 					<p>Congratulations, Your site is configured!</p>
 					<p>You should now delete the install folder, 
 					unless you want malicious stuff to happen.</p>	
@@ -259,8 +276,14 @@ if($action=="step_a") {
 	if(empty($rfs_country))     $rfs_country="Country of your home";
 	if(empty($rfs_admin_email)) $rfs_admin_email="youremail@youremaildomain.what";
 
-    echo "  <center> <p></p><p></p><table border=0 width=$table_width><tr><td class=formboxd>
+    echo "  <center> <p></p><p></p><table border=0 width=$table_width><tr><td class=formboxd>";
+	
+	echo "<img src=\"$RFS_SITE_URL/images/icons/infobox.png\" style=\"float: right;\"> ";
+	
+	echo "
+			<p style=\"vertical-align: center;\"><br>
             <center><h1>Enter your information</h1></center>
+			</p>
             </td></tr></table>
             <table width=$table_width><tr><td class=formboxd><center>
             <table width=100%><tr><td><p></p></td></tr></table>
@@ -319,34 +342,15 @@ if($action=="step_a") {
 </tr>
 <tr>
 <td>Database Password</td>
-<td><input size=100 type=\"password\" name=\"rfs_db_password\" value=\"\">                    </td>
+<td><input size=100 type=\"password\" name=\"rfs_db_password\" value=\"$rfs_db_password\"></td>
 </tr>
 <tr>
 <td>(Confirm Password)</td>
-<td><input size=100 type=\"password\" name=\"rfs_db_password_confirm\" value=\"\"></td>
+<td><input size=100 type=\"password\" name=\"rfs_db_password_confirm\" value=\"$rfs_db_password_confirm\"></td>
 </tr>
 <tr>
 
-<tr>
-<td>User Database Name (leave blank if it is the same database as above)</td>
-<td><input size=100 type=\"text\" name=\"rfs_udb_name\" value=\"$rfs_udb_name\"></td>
-</tr>
-<tr>
-<td>User Database Address</td>
-<td><input  size=100 type=\"text\" name=\"rfs_udb_address\" value=\"$rfs_udb_address\"></td>
-</tr>
-<tr>
-<td>User Database User</td>
-<td><input  size=100 type=\"text\" name=\"rfs_udb_user\" value=\"$rfs_udb_user\"></td>
-</tr>
-<tr>
-<td>User Database Password</td>
-<td><input size=100 type=\"password\" name=\"rfs_udb_password\" value=\"\">                    </td>
-</tr>
-<tr>
-<td>(Confirm Password)</td>
-<td><input size=100 type=\"password\" name=\"rfs_udb_password_confirm\" value=\"\"></td>
-</tr>
+
 <tr>
 <td></td>
 <td><input type=submit name=submit value=\"Proceed\">
@@ -360,3 +364,31 @@ if($action=="step_a") {
 </td></tr></table>
 </center> ";
 }
+
+/*
+ * 
+ * <tr>
+<td>User Database Name (leave blank if it is the same database as above)</td>
+<td><input size=100 type=\"text\" name=\"rfs_udb_name\" value=\"\"></td>
+</tr>
+<tr>
+<td>User Database Address</td>
+<td><input  size=100 type=\"text\" name=\"rfs_udb_address\" value=\"\"></td>
+</tr>
+<tr>
+<td>User Database User</td>
+<td><input  size=100 type=\"text\" name=\"rfs_udb_user\" value=\"\"></td>
+</tr>
+<tr>
+<td>User Database Password</td>
+<td><input size=100 type=\"password\" name=\"rfs_udb_password\" value=\"\"></td>
+</tr>
+<tr>
+<td>(Confirm Password)</td>
+<td><input size=100 type=\"password\" name=\"rfs_udb_password_confirm\" value=\"\"></td>
+</tr>
+
+ * */
+ 
+
+?>
