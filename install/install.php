@@ -3,6 +3,13 @@
 @session_cache_expire(99999);
 @session_start();
 
+$RFS_OS="X";
+$RFS_PATH_SEP="/";
+if(substr(PHP_OS,0,3)=="WIN") {
+	$RFS_PATH_SEP="\\";
+	$RFS_OS="Windows";
+}
+
 function odb(){
 	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'], $GLOBALS['authdbuser'], $GLOBALS['authdbpass']);
 	if(empty($mysql))	{
@@ -30,11 +37,11 @@ function sc_query_other_db($db,$host,$user,$pass,$query){
 }
 
 $RFS_SITE_PATH = getcwd();
-$cwdx=explode("/",$RFS_SITE_PATH);
+$cwdx=explode($RFS_PATH_SEP,$RFS_SITE_PATH);
 $installd=array_pop($cwdx);
-$RFS_SITE_PATH=join("/",$cwdx);
+$RFS_SITE_PATH=join($RFS_PATH_SEP,$cwdx);
 if($installd!="install") {
-	$RFS_SITE_PATH.="/".$installd;
+	$RFS_SITE_PATH.=$RFS_PATH_SEP.$installd;
 	chdir("install");
 }
 
@@ -49,18 +56,13 @@ $table_width="85%";
 
 include("../include/version.php");
 $RFS_BUILD=file_get_contents("../build.dat");
+$rver=file_get_contents("https://raw.github.com/sethcoder/rfscms/master/include/version.php");
+$rbld=file_get_contents("https://raw.github.com/sethcoder/rfscms/master/build.dat");
 
-system("rm install.vercheck");
-system("rm install.buildcheck");
-system("wget -O install.vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");
-system("wget -O install.buildcheck https://raw.github.com/sethcoder/rfscms/master/build.dat");
-$rver="remote version unknown";
-$file=fopen("install.vercheck", "r");  if($file) { $rver=fgets($file,256); fclose($file); }
-$file=fopen("install.buildcheck","r"); if($file) { $rbld=fgets($file,256); fclose($file); }
-system("rm install.vercheck");
-system("rm install.buildcheck");
 $rverx=explode("\"",$rver);
+
 // echo " [$RFS_VERSION][$RFS_BUILD] [$rverx[1]][$rbld]\n";
+
 if( ($RFS_VERSION!=$rverx[1]) ||
 	 (intval($RFS_BUILD)!=intval($rbld))) {
 	echo "<div width=100% style='font-size: 23px; background-color: red; color:white;'>
@@ -88,9 +90,17 @@ target=_blank>SethCoder.com</a> (Home of RFS CMS)
 </div>
 ";
 
+$rfs_password="";
+$rfs_password_c="";
+$rfs_site_url="";
+$rfs_db_password="";
+$rfs_db_password_confirm="";
+
+
 foreach( $_REQUEST as $k => $v ) { if(stristr($k,"rfs_")) { $GLOBALS["$k"]=$v; } }
 
-$action=$_REQUEST['action'];
+$action="";
+if(isset($_REQUEST['action'])) $action=$_REQUEST['action'];
 
 if(($action=="go_install") || (empty($action)) ) {
 
@@ -275,6 +285,7 @@ if($action=="step_a") {
 	if(empty($rfs_admin_name))  $rfs_admin_name="Your Real Name";
 	if(empty($rfs_country))     $rfs_country="Country of your home";
 	if(empty($rfs_admin_email)) $rfs_admin_email="youremail@youremaildomain.what";
+	
 
     echo "  <center> <p></p><p></p><table border=0 width=$table_width><tr><td class=formboxd>";
 	
