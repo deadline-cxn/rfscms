@@ -979,19 +979,20 @@ function adm_action_f_addsitevar() { eval( scg() );
 	$name=strtolower( $name );
 	$name=str_replace( " ","_",$name );
 	$val=addslashes( $_REQUEST['val'] );
-	sc_query( "insert into `site_vars` (`name`,`value`) values ('$name','$val')" );
+	sc_query( "insert into `site_vars` 			(`name`, `type`, `value`, `desc`)
+	
+										values ('$name', '$type', '$val', '$desc')" );
+	
 	adm_action_edit_site_vars();
 }
 function adm_action_f_upsitevar() { eval( scg() );
-	echo $name;
-	echo "<br>";
-	echo $val;
-	$name=strtolower( $name );
-	$name=str_replace( " ","_",$name );
+	$sv=mfo1("select * from site_vars where id=$id");
+	$x=strtoupper($sv->name);
+	echo "[\$RFS_SITE_$x] set to [$val] <br>";
 	$val=addslashes( $_REQUEST['val'] );
-	// sc_query("update `site_vars` set `name`='$name' where id='$id'");
 	sc_query("update `site_vars` set `type`='$type' where id='$id'");
 	sc_query("update `site_vars` set `value`='$val' where id='$id'");
+	sc_query("update `site_vars` set `desc`='$desc' where id='$id'");
 	adm_action_edit_site_vars();
 }
 function adm_action_f_delsitevar_go() { eval( scg() );
@@ -1015,6 +1016,8 @@ function adm_action_edit_site_vars() { eval( scg() );
 	echo "<p>These variables will be loaded into global scope.</p>";
 	
 	echo "<table border=0>";
+	
+	echo "<tr><th>Variable</th><th>Type</th><th>Value</th><th>Description</th><th></th><th></th></tr>";
 	$res=sc_query( "select * from site_vars order by name" );
 	for( $i=0; $i<mysql_num_rows( $res ); $i++ ) {
 		$site_var=mysql_fetch_object( $res );
@@ -1085,28 +1088,45 @@ function adm_action_edit_site_vars() { eval( scg() );
 			break;
 		
 		}
-		
-		echo "<input type=submit value=\"Update\">";
 		echo "</td><td>";
 		
+		echo "<textarea cols=60 rows=6 name=desc>$site_var->desc</textarea>";
+		
+		echo "</td><td>";
+		
+		echo "<input type=submit value=\"Update\">";
 		echo "</td>";
+				
 		echo "</form>";
 		echo "<td>";
 		sc_button("$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&id=$site_var->id","Delete");
 		echo "</td></tr>";
 	}
-	echo "</table><table>";
+	echo "</table>";
+	
+	echo "<div class=\"forum_box\">";
+	echo "<table>";
 	echo "<tr><td>";
 	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=\"f_addsitevar\">";
 	echo "<input type=hidden name=id value=\"$site_var->id\">";
-	echo "\$RFS_SITE_<input name=name size=30 value=\"ADD NEW\"> = ";
-	echo "<input name=val size=40 value=\"\">";
+	echo "\$RFS_SITE_<input name=name size=17 value=\"ADD NEW\"> ";
+	echo "<select name=\"type\">";		
+		echo "<option>text";
+		echo "<option>bool";
+		echo "<option>file";
+		echo "<option>theme";
+		echo "<option>number";
+		echo "<option>password";
+		echo "</select>";
+	echo "<input name=val size=40 value=\"INITIAL VALUE\">";
+	echo "<br><textarea cols=100 name=desc>DESCRIPTION OF THIS VARIABLE</textarea>";
 	echo "<input type=submit value=\"go\">";
 	echo "</form>";
 	echo "</td><td>";
 	echo "</td></tr>";
 	echo "</table>";
+	echo "</div>";
 	
 	
 	foreach($GLOBALS as $k => $v)  {
