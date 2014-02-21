@@ -417,7 +417,7 @@ function rfs_get($t) {
 }
 /////////////////////////////////////////////////////////////////////////
 function sc_theme_form() { eval(scg());
-	// if(sc_yes($_SESSION["logged_in"])) {
+
 		if(sc_yes($GLOBALS["RFS_SITE_THEME_DROPDOWN"])) {
 			$data=sc_getuserdata($_SESSION['valid_user']);
 			$loc=sc_canonical_url();
@@ -426,10 +426,10 @@ function sc_theme_form() { eval(scg());
 			$sep="?";
 			if(stristr($loc,"?")) $sep="&";
 			echo "<select name=\"theme\"
-						id=\"theme\"
-						onchange='document.location=\"$loc$sep\"+\"theme=\"+this.value'
-						style=\"width:120px;\">
-						<option>Theme\n";
+						onchange=\"";
+					echo "document.location='$loc$sep'+'theme='+this.value\"";
+			echo "	style=\"width:120px;\"><option>Theme\n";
+			
 			$thms=sc_get_themes();
 			while(list($key,$thm)=each($thms)){
 				echo "<option";
@@ -438,7 +438,6 @@ function sc_theme_form() { eval(scg());
 			}
 			echo "</select>";
 		}
-	// }
 }
 /////////////////////////////////////////////////////////////////////////
 function sc_get_themes() {
