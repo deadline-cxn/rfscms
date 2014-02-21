@@ -52,7 +52,9 @@ file to make the following changes.
 short_open_tags=on
 
 In the error reporting I recommend adding the following onto the end
-~E_NOTICE
+
+> ~E_NOTICE
+
 This should take care of the Notice messages.
 
 ================================================================
