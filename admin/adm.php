@@ -989,7 +989,8 @@ function adm_action_f_upsitevar() { eval( scg() );
 	$name=strtolower( $name );
 	$name=str_replace( " ","_",$name );
 	$val=addslashes( $_REQUEST['val'] );
-	sc_query("update `site_vars` set `name`='$name' where id='$id'");
+	// sc_query("update `site_vars` set `name`='$name' where id='$id'");
+	sc_query("update `site_vars` set `type`='$type' where id='$id'");
 	sc_query("update `site_vars` set `value`='$val' where id='$id'");
 	adm_action_edit_site_vars();
 }
@@ -1004,10 +1005,15 @@ function adm_action_f_delsitevar() { eval(scg());
 }
 function adm_action_edit_site_vars() { eval( scg() );
 
-	sc_query("ALTER TABLE `site_vars` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
+	echo "<h3>Edit Site Variables</h3>";
 
-	echo "<h3>Edit Site Information</h3>";
+	// TODO: Move these alterations into install
+	sc_query("ALTER TABLE `site_vars` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
+	sc_query("ALTER TABLE `site_vars` ADD `desc` TEXT");
+	sc_query("ALTER TABLE `site_vars` ADD `type` TEXT");
+	
 	echo "<p>These variables will be loaded into global scope.</p>";
+	
 	echo "<table border=0>";
 	$res=sc_query( "select * from site_vars order by name" );
 	for( $i=0; $i<mysql_num_rows( $res ); $i++ ) {
@@ -1017,10 +1023,71 @@ function adm_action_edit_site_vars() { eval( scg() );
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
 		echo "<input type=hidden name=id value=\"$site_var->id\">";
 		$site_var->name=strtoupper(stripslashes(($site_var->name)));
-		echo "\$RFS_SITE_<input name=name size=30 value=\"$site_var->name\"> = ";
+		echo "\$RFS_SITE_$site_var->name ";
+		echo "</td><td>";
+		echo "<select name=\"type\" onchange=\"form.submit();\">";
+		
+		if(empty($site_var->type)) $site_var->type="text";
+		echo "<option>$site_var->type";
+		
+		echo "<option>text";
+		echo "<option>bool";
+		echo "<option>file";
+		echo "<option>theme";
+		echo "<option>number";
+		echo "<option>password";
+		echo "</select>";
+		// echo "<input name=\"type\" value=\"$site_var->type\">";
+		
+		echo "</td><td>";	
+		
+		
 		$site_var->value=stripslashes( $site_var->value );
-		echo "<input name=val size=40 value=\"$site_var->value\">";
+		
+		
+		switch($site_var->type) {
+		case "bool":
+			echo "<select name=val onchange=\"form.submit();\">";			
+			if(sc_yes($site_var->value)) {
+				echo "<option>on";
+				echo "<option>off";
+			}
+			else {
+				echo "<option>off";
+				echo "<option>on";
+			}
+			echo "</select>";
+			break;
+			
+		case "theme":
+			echo "<select name=\"val\" onchange=\"form.submit();\">";
+			$thms=sc_get_themes();
+			while(list($key,$thm)=each($thms)){
+				echo "<option";
+				if($thm==$site_var->value) echo " selected=selected";
+				echo ">".$thm;
+			}
+			echo "</select>";
+			
+			break;
+			
+		case "file":		
+			echo "<input name=val size=40 value=\"$site_var->value\">";
+			if(!file_exists($site_var->value)) {
+						
+						echo sc_red()."<br>FILE DOES NOT EXIST";
+			}
+			
+			break;
+		
+		default:		
+			echo "<input name=val size=40 value=\"$site_var->value\">";
+			break;
+		
+		}
+		
 		echo "<input type=submit value=\"Update\">";
+		echo "</td><td>";
 		
 		echo "</td>";
 		echo "</form>";
@@ -1028,6 +1095,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 		sc_button("$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&id=$site_var->id","Delete");
 		echo "</td></tr>";
 	}
+	echo "</table><table>";
 	echo "<tr><td>";
 	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=\"f_addsitevar\">";
@@ -1039,6 +1107,13 @@ function adm_action_edit_site_vars() { eval( scg() );
 	echo "</td><td>";
 	echo "</td></tr>";
 	echo "</table>";
+	
+	
+	foreach($GLOBALS as $k => $v)  {
+		if(strtolower(substr($k,0,8))=="rfs_site")
+		echo "[$k]<br>";
+	}
+	
 	include("footer.php");
 	exit();
 }
