@@ -17,39 +17,41 @@ There are two ways to install. GIT and ZIP.
 
 GIT:
 ====
-If you use git to install, you gain the benefit of git pull updates.
-One caveat to this is that you must not alter any of the files from
-the repository. If you do, the admin update feature will not work 
-untill you remove or stash those modified files.
+Clone the repository. Replace www with the name of the folder where 
+you want the clone.
 
-mkdir /path/to/your/www
-cd /path/to/your/www
-git init
-git remote add github git://github.com/sethcoder/rfscms.git
-git pull github master
-chmod 777 config
+> git clone https://github.com/sethcoder/rfscms.git www
+> sudo chmod -R 777 www
+
 
 ZIP:
 ====
-I plan on adding zip updating to the update feature in admin. As of
-right now, the only way to use the admin update feature is by using git.
+Download the zip file and unzip the folder to the root of your www folder.
 
-Download the zip file:
-https://github.com/sethcoder/rfscms/archive/master.zip
-Unzip the folder to the root of your www folder.
-cd /path/to/your/www
-chmod 777 config
+> wget https://github.com/sethcoder/rfscms/archive/master.zip
+> sudo chmod -R 777 (unzipped folder location)
 
-After you have the files, simply use your browser and navigate to
+After you have the files installed, simply use your browser and navigate to
 your domain. The install script should take it from there.
 
 If you haven't already done so, you can click on the phpmyadmin
 link and update your database to include a valid user and table 
 for RFSCMS to use.
 
-Please note, this install has only been tested using linux, if you
-use other OS configurations, please let me know if it works ok, or
-if you encounter problems.
+Please note, this install has only been tested using linux, and only
+limited testing with Windows. If you use other OS configurations,
+please let me know if it works ok, or if you encounter problems.
+
+NOTES:
+====
+In order for this package to work properly, you must edit your php.ini
+file to make the following changes.
+
+short_open_tags=on
+
+In the error reporting I recommend adding the following onto the end
+~E_NOTICE
+This should take care of the Notice messages.
 
 ================================================================
 
