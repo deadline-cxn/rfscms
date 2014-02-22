@@ -372,11 +372,13 @@ function adm_action_access_groups() { eval(scg());
 function adm_action_phpmyadmin() { eval(scg()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORM BUILDER FUNCTIONS
+/*
 function adm_action_form_builder() { eval(scg());
 	echo"<p>Form Builder</p>";
 	include( "footer.php" );
 	exit();
 }
+*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_NEW PAGE FUNCTIONS
 function adm_action_new_page() { eval(scg());
@@ -1017,7 +1019,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 	
 	echo "<table border=0>";
 	
-	echo "<tr><th>Variable</th><th>Type</th><th>Value</th><th>Description</th><th></th><th></th></tr>";
+	echo "<tr><th>Variable</th><th>Type</th><th>Value</th><th></th><th></th></tr>";
 	$res=sc_query( "select * from site_vars order by name" );
 	for( $i=0; $i<mysql_num_rows( $res ); $i++ ) {
 		$site_var=mysql_fetch_object( $res );
@@ -1026,7 +1028,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
 		echo "<input type=hidden name=id value=\"$site_var->id\">";
 		$site_var->name=strtoupper(stripslashes(($site_var->name)));
-		echo "\$RFS_SITE_$site_var->name ";
+		echo "\$RFS_SITE_$site_var->name <br>$site_var->desc";
 		echo "</td><td>";
 		echo "<select name=\"type\" onchange=\"form.submit();\">";
 		
@@ -1075,7 +1077,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 			break;
 			
 		case "file":		
-			echo "<input name=val size=40 value=\"$site_var->value\">";
+			echo "<input name=val size=40 value=\"$site_var->value\" onblur=\"form.submit();\">";
 			if(!file_exists($site_var->value)) {
 						
 						echo sc_red()."<br>FILE DOES NOT EXIST";
@@ -1084,22 +1086,24 @@ function adm_action_edit_site_vars() { eval( scg() );
 			break;
 		
 		default:		
-			echo "<input name=val size=40 value=\"$site_var->value\">";
+			echo "<input name=val size=40 value=\"$site_var->value\" onblur=\"form.submit();\">";
 			break;
 		
 		}
-		echo "</td><td>";
-		
-		echo "<textarea cols=60 rows=6 name=desc>$site_var->desc</textarea>";
-		
-		echo "</td><td>";
-		
-		echo "<input type=submit value=\"Update\">";
+		// echo "</td><td>";
+		// echo "<textarea cols=60 rows=6 name=desc></textarea>";		
 		echo "</td>";
+		
+		// echo "<td>";		
+		// echo "<input type=submit value=\"Update\">";
+		// echo "</td>";
 				
 		echo "</form>";
 		echo "<td>";
-		sc_button("$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&id=$site_var->id","Delete");
+		
+		// sc_button("$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&id=$site_var->id","Delete");
+		
+		rfs_db_element_edit("","$RFS_SITE_URL/admin/adm.php","edit_site_vars","site_vars", $site_var->id);
 		echo "</td></tr>";
 	}
 	echo "</table>";

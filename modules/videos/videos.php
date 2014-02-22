@@ -87,6 +87,8 @@ $res=sc_query("select * from `videos` where `id`='$id'");
 if($res) $video=mysql_fetch_object($res);
 if(!empty($video->id))
 $category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
+if(!empty($cat)) 
+$category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$cat  '"));
 
 if(!empty($category->name)) {
 	echo "<h1>$category->name Videos</h1>";
@@ -94,6 +96,21 @@ if(!empty($category->name)) {
 else {
 	echo "<h1>Videos</h1>";
 }
+echo "<hr>";
+if($action=="viewcat") {
+	
+	$res2=sc_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
+	for($i=0;$i<mysql_num_rows($res2);$i++) {
+		$vid=mysql_fetch_object($res2);
+		
+		echo "<a href=videos.php?action=view&id=$vid->id>";
+				echo "$vid->sname</a><br>";
+				
+		
+	}
+	
+}
+
 
 if($action=="submitvidgo") {
 	if($_SESSION['logged_in'] != true) $cont=999;
@@ -324,9 +341,7 @@ if($data->access==255){
 echo "<center>";
 
 if($action=="view"){
-	
-	
-	
+
     $category=$video->category;
     $res2=sc_query("select * from `videos` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
     $numres2=mysql_num_rows($res2);
@@ -411,7 +426,13 @@ for($i=0;$i<$numcats;$i++){
 			echo "<table border=0 cellspacing=0 cellpadding=3 width=100%><tr><td>";
 			echo "<table border=0 cellspacing=0 cellpadding=0 width=100% ><tr>";
 			echo "<td class=td_cat valign=top width=220>";
-			echo "<h1>$cat->name videos ($numvids)</h1><br>";
+			echo "<h1>
+			<a href=\"$RFS_SITE_URL/modules/videos/videos.php?action=viewcat&cat=$cat->id\">
+			$cat->name videos ($numvids)
+			</a>
+			
+			
+			</h1><br>";
 			echo "</td></tr><tr>";
 			echo "<td class=td_cat valign=top height=200 width=220>";
 		
