@@ -115,7 +115,10 @@ function sc_do_action() {
 	$action=$_REQUEST['action'];
 	$px=explode("/",$_SERVER['PHP_SELF']);
 	$_thisfunk=str_replace(" ","_",str_replace(".php","",$px[count($px)-1])."_action_$action");
-	eval("if(function_exists(\"$_thisfunk\") == true) @$_thisfunk(); else if(\$_SESSION[\"debug_msgs\"]==true) sc_info(\"DEBUG >> WARNING: MISSING $_thisfunk(); \",\"WHITE\",\"BLUE\");");
+	eval("
+	if(function_exists(\"$_thisfunk\") == true) @$_thisfunk();
+		else if(\$_SESSION[\"debug_msgs\"]==true)
+			sc_info(\"DEBUG >> WARNING: MISSING $_thisfunk(); \",\"WHITE\",\"BLUE\");");
 }
 /////////////////////////////////////////////////////////////////////////
 function sc_maintenance() { eval(scg());
