@@ -226,11 +226,7 @@ function adm_action_arrange() { eval( scg() );
 	include( "footer.php" );
 	exit();
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// ADM_NQT
-function adm_action_network_query_tool() {
-	sc_gotopage("$RFS_SITE_URL/modules/nqt/rfsnqt.php");
-}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM ACCESS GROUPS FUNCTIONS
 function adm_action_f_access_group_add() { eval(scg());
@@ -369,7 +365,7 @@ function adm_action_access_groups() { eval(scg());
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_PHPMYADMIN
-function adm_action_phpmyadmin() { eval(scg()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
+function adm_action_phpmyadmin_out() { eval(scg()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORM BUILDER FUNCTIONS
 /*
@@ -2006,7 +2002,34 @@ function adm_action_log_view() {
 // ADM_COUNTERS
 function adm_action_counters() {
 	echo "<h3>Counters</h3>\n";
-	$counters=sc_db_dumptable("counters","","","");
+	$hits_raw=$_REQUEST['hits_raw']; if(empty($hits_raw)) $hits_raw=10;
+	echo "Showing pages with at least $hits_raw hits<br>";
+	echo "<table>";
+	$r=sc_query("select * from counters where hits_raw > $hits_raw");
+	$n=mysql_num_rows($r);
+	for($x=0;$x<$n;$x++){
+		$counter=mysql_fetch_object($r);
+		echo "<tr><td width='200'>";
+		// echo "$counter->user ";		echo "</td><td>";
+		echo "$counter->user_timestamp ";
+		echo "</td><td>";
+		echo "$counter->last_ip";
+		echo "</td><td>";
+		echo "$counter->hits_raw";
+		echo "</td><td>";
+		echo "$counter->hits_unique ";
+		echo "</td><td>";
+		echo sc_trunc($counter->page,200);
+		// user
+		// user_timestamp
+		// last_ip
+		// hits_raw
+		// hits_unique
+		echo "</td><tr>";
+		
+	}
+	echo "<table>";
+	
 	include("footer.php");
 	exit();
 }
@@ -2372,23 +2395,31 @@ function admin_menu_built_in() { eval(scg());
                     if( !stristr( $v,"_go" ) ) {
                         if( !stristr( $v,"_f_" ) ) {
                             $x=str_replace( "adm_action_","",$v );
+							
+							$lx=$x;
+							
                             if(!empty($x)) {
-                                echo "<div style='	float:left; 
-															border: 1px solid #000000; 
-															margin: 5px; 
-															padding:5px 10px; 
-															background:#555535; 
-															border-radius:12px;' > ";
-															
-                                echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
-                                if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" ) ) {
-										echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
-                                } else {										
-										
-										 
-                                }
+								
+								$target="";
+								if(stristr($x,"_out")) {
+									$target=" target=\"_blank\" ";
+									$x=str_replace("_out","",$x);
+								}
+							
+								
+								echo "<div style='	float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#555535; border-radius:12px;' > ";
+                                echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$lx\" $target>";
+								
+								$imglnk="<img src='$RFS_SITE_URL/admin/images/";
+                                if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" )) $imglnk.="$x.png'";
+								if( file_exists( "$RFS_SITE_PATH/admin/images/$x.gif" )) $imglnk.="$x.gif'";
+								if( file_exists( "$RFS_SITE_PATH/admin/images/$x.jpg" )) $imglnk.="$x.jpg'";
+
+                                $imglnk.=" width=64 height=64 border='0' align=center>";
+								echo $imglnk;
+								
 								echo "</a><br>";
-								echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>";
+								echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$lx'>";
 								echo ucwords(str_replace("_"," ",$x));
 								echo "</a>";
 								echo "</div>";
@@ -2424,17 +2455,8 @@ function admin_menu_built_in() { eval(scg());
 
 						if(!file_exists("$RFS_SITE_PATH/$icon->icon"))
 							$icon->icon="images/icons/exclamation.png";
-						echo "<img
-src=\"$RFS_SITE_URL/include/button.php?
-im=$RFS_SITE_PATH/$icon->icon&
-t=$icon->name&
-w=64&
-h=64&
-y=20\"
-						border='0'></a><br>";
-						
-						
-echo "<a href=\""; 
+						echo "<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/$icon->icon&t=$icon->name&w=64&h=64&y=20\" border='0'></a><br>";
+				echo "<a href=\""; 
                 $icon->url=str_replace( ";","%3b",$icon->url );
                 rfs_echo( $icon->url );
                 echo "\" target=\"$icon->target\" style='color: #cFcF00;'>";
@@ -2444,7 +2466,6 @@ echo "<a href=\"";
                 if( $_SESSION['admed']=="on" ) {
 
                         sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_entry&id=$icon->id","Edit" );
-
                         sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_del&id=$icon->id","Delete" );
                         sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_change_icon&id=$icon->id","Change Icon" );
                         sc_optionizer( "$RFS_SITE_URL/admin/adm.php",
