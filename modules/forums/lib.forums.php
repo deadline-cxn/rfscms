@@ -55,7 +55,7 @@ function adm_action_f_add_forum_folder() { eval( scg() );
 function adm_action_forum_admin() { eval( scg() );
 	
 	// Select forum folders
-	$r=sc_query( "select * from forum_list where folder='yes'" );
+	$r=sc_query( "select * from forum_list where folder='yes' order by priority asc" );
 	$n=mysql_num_rows( $r );
 
 	if( $n==0 ) {
@@ -79,13 +79,13 @@ function adm_action_forum_admin() { eval( scg() );
 						"$RFS_SITE_URL/admin/adm.php",
 						"forum_admin",
 						"forum_list",$folder->id);
-						echo "</h2>";
+						echo " Priority: $folder->priority</h2>";
 			echo "</div>";
 			echo "<div style='clear: both;'>"; echo "</div>";	
 			
 			
 			
-			$rr=sc_query("select * from `forum_list` where parent='$folder->id'");
+			$rr=sc_query("select * from `forum_list` where parent='$folder->id' order by priority asc");
 
 			$nn=mysql_num_rows($rr);
 			if($nn==0) {
@@ -99,13 +99,16 @@ function adm_action_forum_admin() { eval( scg() );
 					$forum=mysql_fetch_object($rr);
 					echo "<div>";
 					
-					echo "<img src=$RFS_SITE_URL/images/icons/icon_minipost.gif>";//style='float: left;'>";
+					echo "<img src=$RFS_SITE_URL/images/icons/icon_minipost.gif>";
+					
+					
 			
 					rfs_db_element_edit(
 						"$forum->name",
 						"$RFS_SITE_URL/admin/adm.php",
 						"forum_admin",
 						"forum_list",$forum->id);
+					echo " Priority: $forum->priority";	
 					echo "</div>";
 				}
 				echo "</div>";
