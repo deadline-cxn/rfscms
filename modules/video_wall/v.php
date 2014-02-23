@@ -376,6 +376,8 @@ echo "</td></tr></table>";
 
 					$vid=$_SESSION['darr'][$darx][$dary]['url'];
 
+				$vid=str_replace("w=\"400","w=\"$w",$vid);
+				$vid=str_replace("h=\"300","h=\"$h",$vid);
 				$vid=str_replace("width:400","width:$w",   $vid);
 				$vid=str_replace("height:300","height:$h",   $vid);
 				$vid=str_replace("width='400","width='$w",   $vid);
