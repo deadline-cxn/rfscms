@@ -9,17 +9,6 @@ sc_access_method_add("wiki", "delete");
 sc_access_method_add("wiki", "editothers");
 sc_access_method_add("wiki", "deleteothers");
 
-sc_database_add("wiki","name",   		"text","NOT NULL");
-sc_database_add("wiki","revision",		"int",	"NOT NULL");
-sc_database_add("wiki","revised_by",	"text","NOT NULL");
-sc_database_add("wiki","revision_note","text","NOT NULL");
-sc_database_add("wiki","author", 		"text","NOT NULL");
-sc_database_add("wiki","text",   		"text","NOT NULL");
-sc_database_add("wiki","tags",   		"text","NOT NULL");
-sc_database_add("wiki","updated",		"timestamp","ON UPDATE CURRENT_TIMESTAMP NOT NULL");
-
-sc_touch_dir("$RFS_SITE_PATH/images/wiki");
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI
 function sc_module_mini_wiki($x) { eval(scg());

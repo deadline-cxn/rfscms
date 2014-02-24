@@ -3,19 +3,6 @@ include_once("include/lib.all.php");
 
 sc_menus_register("Private Messages","$RFS_SITE_URL/modules/messages/messages.php");
 
-sc_query( "
-CREATE TABLE IF NOT EXISTS `pmsg` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `to` text NOT NULL,
-  `from` text NOT NULL,
-  `subject` text NOT NULL,
-  `message` text NOT NULL,  
-  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `read` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=149 ;
-");
-
 function adm_action_lib_messages_messages() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/messages/messages.php");
 }

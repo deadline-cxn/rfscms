@@ -164,16 +164,13 @@ function sc_maintenance() { eval(scg());
 			// sc_query("update pictures set worksafe='no' where category = '$cat->name'");
 		}
 	}
-	sc_database_data_add("categories","name","unsorted",0);
 	
 	
-	
-	lib_mysql_scrub("tags","tag");
-	
+	lib_mysql_scrub("tags","tag");	
 
-$x="$RFS_SITE_PATH/install/database_upgrades.php";
-// echo $x;
-include($x);	
+	$x="$RFS_SITE_PATH/install/database_upgrades.php";
+	// echo $x;
+	include($x);	
 	
 	
 	sc_div("sc_maintenance end [$theme]");

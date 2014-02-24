@@ -1,8 +1,6 @@
 <?
 include_once("include/lib.all.php");
-
 sc_menus_register("Comics","$RFS_SITE_URL/modules/comics/comics.php");
-
 sc_access_method_add("comics", "create");
 sc_access_method_add("comics", "delete");
 sc_access_method_add("comics", "deleteothers");
@@ -14,9 +12,6 @@ sc_access_method_add("comics", "editothers");
 function sc_module_mini_comics($x) { eval(scg());
     sc_div("COMIC MODULE SECTION");
     echo "<h2>Last $x Comics</h2>";
-    
-	
-	
     $res=sc_query("select * from comics where `published`='yes' order by time desc limit 1");
     $numc=mysql_num_rows($res);
     for($i=0;$i<$numc;$i++) {

@@ -9,25 +9,6 @@ sc_access_method_add("news", "submit");
 sc_access_method_add("news", "delete");
 sc_access_method_add("news", "deleteothers");
 
-sc_touch_dir("$RFS_SITE_PATH/images/news");
-
-sc_database_add("news","name",		"text",	"NOT NULL");
-sc_database_add("news","headline",	"text",	"NOT NULL");
-sc_database_add("news","message",	"text",	"NOT NULL");
-sc_database_add("news","category1","text",	"NOT NULL");
-sc_database_add("news","submitter","int",		"NOT NULL DEFAULT '0'");
-sc_database_add("news","time",		"timestamp","NOT NULL");
-sc_database_add("news","lastupdate","timestamp","ON UPDATE CURRENT_TIMESTAMP NOT NULL");
-sc_database_add("news","image_url","text",	"NOT NULL");
-sc_database_add("news","image_link","text",	"NOT NULL");
-sc_database_add("news","image_alt","text",	"NOT NULL");
-sc_database_add("news","topstory",	"text",	"NOT NULL");
-sc_database_add("news","published","text",	"NOT NULL");
-sc_database_add("news","views",		"int",		"NOT NULL DEFAULT '0'");
-sc_database_add("news","rating",	"text",	"NOT NULL");
-sc_database_add("news","sfw",		"text",	"NOT NULL");
-sc_database_add("news","page",		"int",		"NOT NULL");
-sc_database_add("news","wiki",		"text",	"NOT NULL");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS

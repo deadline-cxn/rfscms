@@ -13,16 +13,7 @@ sc_access_method_add("files", "edit");
 sc_access_method_add("files", "delete");
 sc_access_method_add("files", "xplorer");
 sc_access_method_add("files", "xplorershell");
-// MD5 hash
-sc_database_add("files","md5", "text", "NOT NULL");
-sc_database_add("files","tags","text", "NOT NULL");
-sc_database_add("files","ignore","text", "NOT NULL");
-// Duplicates table
-sc_database_add("file_duplicates", "loc1", "text", "NOT NULL");
-sc_database_add("file_duplicates", "size1", "text", "NOT NULL");
-sc_database_add("file_duplicates", "loc2", "text", "NOT NULL");
-sc_database_add("file_duplicates", "size2", "text", "NOT NULL");
-sc_database_add("file_duplicates", "md5", "text", "NOT NULL");
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FILES
 function sc_module_mini_files($x) { eval(scg());
