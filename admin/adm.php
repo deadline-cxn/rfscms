@@ -1655,9 +1655,6 @@ function adm_action_f_rename_category() {
 function adm_action_edit_categories() {
 	eval( scg() );
 	
-	// sc_database
-	sc_database_add("categories","worksafe", "text", "NOT NULL");
-	
 	echo "<h3>Edit Categories (aka tags)</h3>";
 	$result=sc_query( "select * from categories order by name asc" );
 	$numcats=mysql_num_rows( $result );
