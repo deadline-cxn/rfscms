@@ -16,6 +16,12 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 // SYSTEM STUFF
+$RFS_SITE_OS="X";
+$RFS_SITE_PATH_SEP="/";
+if(substr(PHP_OS,0,3)=="WIN") {
+	$RFS_SITE_PATH_SEP="\\";
+	$RFS_SITE_OS="Windows";
+}
 $RFS_SITE_SESSION_ID        = "RFS_CMS_";
 if(isset($_SESSION))
 $RFS_SITE_SESSION_USER      = $_SESSION['valid_user'];

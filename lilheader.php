@@ -46,11 +46,11 @@ else {
 		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
 		echo "<tr class=sc_top_menu_table_td>";
 		echo "<td class=sc_top_menu_table_td>";
-		echo "$RFS_SITE_NAME :";
+		echo "$RFS_SITE_NAME";
 		echo "</td>";
 			sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
 		echo "<td class=sc_top_menu_table_td>";
-		echo " : ";
+		// echo " : ";
 		echo "</td>";
 		echo "<td align=right class=sc_top_menu_table_td>";
 			echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
@@ -59,7 +59,7 @@ else {
 			echo "</td></tr></table>\n";
 		echo "</td>";
 		echo "<td class=sc_top_menu_table_td>";
-		echo " : ";
+		// echo " : ";
 		echo "</td>";
 		echo "<td class=logged_in_td>";
 		if($_SESSION["logged_in"]!="true")    {

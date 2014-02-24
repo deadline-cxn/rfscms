@@ -45,9 +45,33 @@ function sc_menu_draw($menu_location) {
     for($i=0;$i<$num;$i++)    {
         $link=mysql_fetch_object($res);
 		$link->link=urldecode($link->link);
+		
         $showlink=0;
-        if($data->access >= $link->access) $showlink=1;
-        if($link->access == 0) $showlink=1;
+		if($link->access == 0) $showlink=1;
+		
+		$access_check=explode(",",$link->access_method);
+		if(!empty($access_check[1])) {
+			$showlink=0;
+			if(sc_access_check($access_check[0],$access_check[1])) $showlink=1;
+		}
+		
+		if(!empty($link->other_requirement)) {
+			$showlink=0;
+			$req=explode("=",$link->other_requirement);
+			switch($req[0]) {
+				
+				case "loggedin":
+					
+					if(sc_yes($logged_in)==sc_yes($req[1]))
+						$showlink=1;
+				
+					break;
+				
+				default:
+					break;
+			}
+		}
+        
         
         //if(!stristr($link->link,$RFS_SITE_URL)) $link->link="$RFS_SITE_URL/$link->link";
 
@@ -90,11 +114,7 @@ function sc_menu_draw($menu_location) {
 										1,0 );
                     }
                     else {
-
-
                         echo $link->name;
-
-
                     }
 
                     echo "</a>";
@@ -103,7 +123,6 @@ function sc_menu_draw($menu_location) {
                 if($menu_location=="top") {
                         echo "</td> <td class=sc_top_menu_table_td> &nbsp;&nbsp; </td>";
                 }
-
 
                 if($menu_location=="left") {
                         echo "</td></tr>\n";
