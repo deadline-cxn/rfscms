@@ -24,8 +24,6 @@ if(!sc_access_check("admin","access")) {
 	exit();
 }
 
-include("$RFS_SITE_PATH/install/database_upgrades.php");
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM CHECK FOR UPDATES
 function adm_action_update() { eval(scg());
