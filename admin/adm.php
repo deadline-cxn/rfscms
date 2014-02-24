@@ -9,12 +9,10 @@ chdir( "../" );
 
 if(stristr($_REQUEST['action'],"ajx")) {
 	include("include/lib.all.php");
-	// sc_do_action();
 	exit();
 }
 else {
 		include( "lilheader.php" );
-		//sc_do_action();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +23,9 @@ if(!sc_access_check("admin","access")) {
 	include("footer.php");
 	exit();
 }
+
+include("$RFS_SITE_PATH/install/database_upgrades.php");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM CHECK FOR UPDATES
 function adm_action_update() { eval(scg());
@@ -1006,11 +1007,6 @@ function adm_action_edit_site_vars() { eval( scg() );
 
 	echo "<h3>Edit Site Variables</h3>";
 
-	// TODO: Move these alterations into install
-	sc_query("ALTER TABLE `site_vars` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
-	sc_query("ALTER TABLE `site_vars` ADD `desc` TEXT");
-	sc_query("ALTER TABLE `site_vars` ADD `type` TEXT");
-	
 	echo "<p>These variables will be loaded into global scope.</p>";
 	
 	echo "<table border=0>";
