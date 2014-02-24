@@ -315,6 +315,7 @@ function show1file($filedata,$bg) { eval(scg());
 			($filetype=="svg") ||
 			($filetype=="jpeg"))
 			if($fworksafe) {
+				if($_SESSION['thumbs'])
 					echo sc_picthumb("$RFS_SITE_URL/$filedata->location",$nwidth,0,1)."<br>";	
 				}
 

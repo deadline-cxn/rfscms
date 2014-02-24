@@ -1038,13 +1038,10 @@ function adm_action_edit_site_vars() { eval( scg() );
 		echo "<option>number";
 		echo "<option>password";
 		echo "</select>";
-		// echo "<input name=\"type\" value=\"$site_var->type\">";
 		
 		echo "</td><td>";	
 		
-		
 		$site_var->value=stripslashes( $site_var->value );
-		
 		
 		switch($site_var->type) {
 		case "bool":
@@ -1069,14 +1066,12 @@ function adm_action_edit_site_vars() { eval( scg() );
 				echo ">".$thm;
 			}
 			echo "</select>";
-			
 			break;
 			
 		case "file":		
 			echo "<input name=val size=40 value=\"$site_var->value\" onblur=\"form.submit();\">";
 			if(!file_exists($site_var->value)) {
-						
-						echo sc_red()."<br>FILE DOES NOT EXIST";
+				echo sc_red()."<br>FILE DOES NOT EXIST";
 			}
 			
 			break;
@@ -1086,23 +1081,26 @@ function adm_action_edit_site_vars() { eval( scg() );
 			break;
 		
 		}
-		// echo "</td><td>";
-		// echo "<textarea cols=60 rows=6 name=desc></textarea>";		
 		echo "</td>";
-		
-		// echo "<td>";		
-		// echo "<input type=submit value=\"Update\">";
-		// echo "</td>";
-				
 		echo "</form>";
 		echo "<td>";
-		
-		// sc_button("$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&id=$site_var->id","Delete");
-		
 		rfs_db_element_edit("","$RFS_SITE_URL/admin/adm.php","edit_site_vars","site_vars", $site_var->id);
 		echo "</td></tr>";
 	}
 	echo "</table>";
+	
+	
+	
+	$rfsvars=file_get_contents("admin/rfsvars_out.txt");
+	
+	$rfsvars_opt=str_replace('$',"<option>",$rfsvars);
+	
+	
+
+	echo "<select name=existing>";
+	echo $rfsvars_opt;
+	echo "</select>";
+	
 	
 	echo "<div class=\"forum_box\">";
 	echo "<table>";
@@ -1129,10 +1127,10 @@ function adm_action_edit_site_vars() { eval( scg() );
 	echo "</div>";
 	
 	
-	foreach($GLOBALS as $k => $v)  {
-		if(strtolower(substr($k,0,8))=="rfs_site")
-		echo "[$k]<br>";
-	}
+	
+	
+	
+	// foreach($GLOBALS as $k => $v)  { if(strtolower(substr($k,0,8))=="rfs_site") echo "[$k]<br>"; }
 	
 	include("footer.php");
 	exit();
@@ -2002,7 +2000,7 @@ function adm_action_log_view() {
 // ADM_COUNTERS
 function adm_action_counters() {
 	echo "<h3>Counters</h3>\n";
-	$hits_raw=$_REQUEST['hits_raw']; if(empty($hits_raw)) $hits_raw=10;
+	$hits_raw=$_REQUEST['hits_raw']; if(empty($hits_raw)) $hits_raw=50;
 	echo "Showing pages with at least $hits_raw hits<br>";
 	echo "<table>";
 	$r=sc_query("select * from counters where hits_raw > $hits_raw");
@@ -2010,7 +2008,6 @@ function adm_action_counters() {
 	for($x=0;$x<$n;$x++){
 		$counter=mysql_fetch_object($r);
 		echo "<tr><td width='200'>";
-		// echo "$counter->user ";		echo "</td><td>";
 		echo "$counter->user_timestamp ";
 		echo "</td><td>";
 		echo "$counter->last_ip";
@@ -2020,11 +2017,6 @@ function adm_action_counters() {
 		echo "$counter->hits_unique ";
 		echo "</td><td>";
 		echo sc_trunc($counter->page,200);
-		// user
-		// user_timestamp
-		// last_ip
-		// hits_raw
-		// hits_unique
 		echo "</td><tr>";
 		
 	}
@@ -2035,12 +2027,8 @@ function adm_action_counters() {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AWARD EDIT
-function adm_action_awards_edit() {
-	echo "<h3>Award Editor</h3>\n";
-	sc_awards_list();
-	include("footer.php");
-	exit();
-}
+// function adm_action_awards_edit() { 	echo "<h3>Award Editor</h3>\n"; 	sc_awards_list(); 	include("footer.php");	exit();}
+
 function adm_action_f_add_award_go() {
 	eval( scg() );
 	echo "<h3>Add award!</h3>\n";
