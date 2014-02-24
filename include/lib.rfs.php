@@ -170,6 +170,11 @@ function sc_maintenance() { eval(scg());
 	
 	lib_mysql_scrub("tags","tag");
 	
+
+$x="$RFS_SITE_PATH/install/database_upgrades.php";
+// echo $x;
+include($x);	
+	
 	
 	sc_div("sc_maintenance end [$theme]");
 }
