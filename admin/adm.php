@@ -1513,10 +1513,10 @@ function adm_action_f_menu_topedit_add() { eval( scg());
 	echo "$menu_url<br>";
 	echo "$target<br>";
 	echo "$msor<br>";
-	echo "$access<br>";
+	echo "$access_method<br>";
 	
-	sc_query( "insert into menu_top (   `name`,      `link`, `target`, `sort_order`, `access`)
-								  values('$mname', '$menu_url', '$target',     '$msor', '$access');" );
+	sc_query( "insert into menu_top (   `name`,      `link`, `target`, `sort_order`, `access_method`)
+								  values('$mname', '$menu_url', '$target',     '$msor', '$access_method');" );
 	// adm_action_menu_topedit();
 	sc_show_menu_options();
 	exit();
@@ -1529,7 +1529,7 @@ function adm_action_f_menu_topedit_mod() { eval( scg() );
 	sc_query( "update menu_top set `link`='$menu_url' where `id`='$id'" );
 	sc_query( "update menu_top set `target`='$target' where `id`='$id'" );
 	sc_query( "update menu_top set `sort_order`='$msor' where `id`='$id'" );
-	sc_query( "update menu_top set `access`='$access' where `id`='$id'" );
+	sc_query( "update menu_top set `access_method`='$access_method' where `id`='$id'" );
 	// adm_action_menu_topedit();
 	sc_show_menu_options();
 	exit();
@@ -1544,7 +1544,7 @@ function adm_action_menu_topedit() { eval( scg() );
 	echo "<td class=contenttd> link </td>";
 	echo "<td class=contenttd> target </td>";
 	echo "<td class=contenttd> sort order </td>";
-	echo "<td class=contenttd> access </td>";
+	echo "<td class=contenttd> access method </td>";
 	echo "<td class=contenttd> &nbsp; </td>";
 	echo "</tr>";
 	$res=sc_query( "select * from menu_top order by sort_order asc" );
@@ -1582,11 +1582,11 @@ function adm_action_menu_topedit() { eval( scg() );
 		echo "</td>";
 
 		echo "<td class=\"contenttd\">";
-		echo "<input size=\"10\" type=\"text\" name=\"msor\" value=\"$menuitem->sort_order\">";
+		echo "<input size=\"5\" type=\"text\" name=\"msor\" value=\"$menuitem->sort_order\">";
 		echo "</td>";
 
 		echo "<td class=\"contenttd\">";
-		echo "<input size=\"10\" type=\"text\" name=\"access\" value=\"$menuitem->access\">";
+		echo "<input size=\"15\" type=\"text\" name=\"access_method\" value=\"$menuitem->access_method\">";
 		echo "</td>";
 		
 		echo "<td class=\"contenttd\">";
@@ -1612,10 +1612,10 @@ function adm_action_menu_topedit() { eval( scg() );
 	echo "</td>";
 	
 	echo "<td class=contenttd>";
-	echo "<input size=10 name=msor>";
+	echo "<input size=5 name=msor>";
 	echo "</td>";
 	echo "<td class=contenttd>";
-	echo "<input size=10 name=access>";
+	echo "<input size=15 name=access_method>";
 	echo "</td>";
 	echo "<td class=contenttd>";
 	echo "<input type=submit name=submit value=add>";

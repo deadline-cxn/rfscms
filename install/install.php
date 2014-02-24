@@ -3,11 +3,11 @@
 @session_cache_expire(99999);
 @session_start();
 
-$RFS_OS="X";
-$RFS_PATH_SEP="/";
+$RFS_SITE_OS="X";
+$RFS_SITE_PATH_SEP="/";
 if(substr(PHP_OS,0,3)=="WIN") {
-	$RFS_PATH_SEP="\\";
-	$RFS_OS="Windows";
+	$RFS_SITE_PATH_SEP="\\";
+	$RFS_SITE_OS="Windows";
 }
 
 function odb(){
@@ -37,11 +37,11 @@ function sc_query_other_db($db,$host,$user,$pass,$query){
 }
 
 $RFS_SITE_PATH = getcwd();
-$cwdx=explode($RFS_PATH_SEP,$RFS_SITE_PATH);
+$cwdx=explode($RFS_SITE_PATH_SEP,$RFS_SITE_PATH);
 $installd=array_pop($cwdx);
-$RFS_SITE_PATH=join($RFS_PATH_SEP,$cwdx);
+$RFS_SITE_PATH=join($RFS_SITE_PATH_SEP,$cwdx);
 if($installd!="install") {
-	$RFS_SITE_PATH.=$RFS_PATH_SEP.$installd;
+	$RFS_SITE_PATH.=$RFS_SITE_PATH_SEP.$installd;
 	chdir("install");
 }
 
