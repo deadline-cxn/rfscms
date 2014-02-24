@@ -93,6 +93,9 @@ if($_REQUEST['hidden']=="hide") {  $_SESSION['hidden']="no"; }
 if($_REQUEST['tagmode']=="on")  {  $_SESSION['tagmode']=true; }
 if($_REQUEST['tagmode']=="off") {  $_SESSION['tagmode']=false; }
 
+if($_REQUEST['thumbs']=="on")  {  $_SESSION['thumbs']=true; }
+if($_REQUEST['thumbs']=="off") {  $_SESSION['thumbs']=false; }
+
 
 $RFS_LITTLE_HEADER=true;
 include("header.php");
@@ -113,6 +116,17 @@ echo "<table border=0><tr>";
 
 
 if(sc_access_check("files","sort")) {
+	
+	echo "<td>";
+	if($_SESSION['thumbs']=="true") {
+		echo "<font style='background-color:red;'>SHOW THUMBS</font><br>";	
+		sc_button("$RFS_SITE_URL/modules/files/files.php?thumbs=off&$outvars","Thumbs Off");		
+	}
+	else {
+		echo "HIDE Thumbs<br>";
+		sc_button("$RFS_SITE_URL/modules/files/files.php?thumbs=on&$outvars","Thumbs On");
+	}
+	echo "</td>";
 	
 	echo "<td>";
 	if($_SESSION['hidden']=="yes") {

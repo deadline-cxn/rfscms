@@ -9,7 +9,7 @@ body {
 }
 
 .news_headline_bar {
-	background-color:rgba(0,220,150,0.1);
+background-color: #CFECFF;
 	height: 25px;
 	padding: 5px;
 	border-top-left-radius: 15px;
@@ -20,7 +20,7 @@ body {
     font-size: large;
     font-weight: bold;
     font-style: italic;
-	color: #DFFFC9;
+color: #FFFDFA;
 	float: left;
 	text-shadow: 2px 2px 2px #000;
 }
@@ -47,7 +47,7 @@ body {
 .news_edit_bar {
 	border-top: 1px solid #000;
 	clear: both;
-	background-color:rgba(0,160,150,0.1);
+background-color: #CFECFF;
 	padding: 25px;
 	margin: 0 0 25px 0;
 	border-bottom-left-radius: 15px;
@@ -152,7 +152,7 @@ body {
 	overflow: hidden;
 	min-height: 160px;	
 	padding: 5px;
-	background-color: #888;
+background-color: #BDBDBD;
 	
 }
 

@@ -27,63 +27,63 @@ body {
 .news_box { clear: both; margin: 0px; }
 
 .news_headline_bar {
-	gbackground-color: #bbb;	
-	gheight: 25px;
-	gpadding: 5px;
-	gborder-top-left-radius: 15px;
-	gborder-top-right-radius: 15px;
+	background-color: #bbb;	
+	height: 25px;
+	padding: 5px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
 }
 .news_headline {
-    gfont-family: Verdana, Arial, Helvetica, sans-serif;
-    gfont-size: large;
-    gfont-weight: bold;
-    gfont-style: italic;
-    gcolor: #777777;
-	gfloat: left;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #777777;
+	float: left;
 }
 
 .news_time {
-	gfont-style: italic;
-	gpadding: 5px 25px;
-	gvertical-align: text-bottom;
-	gfloat: left;
+	font-style: italic;
+	padding: 5px 25px;
+	vertical-align: text-bottom;
+	float: left;
 }
 
 .news_image {
-	gfloat: left;
+	float: left;
 }
 
 .news_article {
-	gborder-top: 1px solid #000;
-	gclear: both; 
-	gpadding: 15px;
-	gbackground-color:rgba(0,0,0,0.1);
+	border-top: 1px solid #000;
+	clear: both; 
+	padding: 15px;
+	background-color:rgba(0,0,0,0.1);
 }
 
 .news_edit_bar {
-	gborder-top: 1px solid #000;
-	gclear: both;
-	gbackground-color:rgba(0,160,150,0.1);
-	gpadding: 25px;
-	gmargin: 0 0 25px 0;
-	gborder-bottom-left-radius: 15px;
-	gborder-bottom-right-radius: 15px;
+	border-top: 1px solid #000;
+	clear: both;
+	background-color:rgba(0,160,150,0.1);
+	padding: 25px;
+	margin: 0 0 25px 0;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
 }
 
 .news_headline:link {
-    gfont-family: Verdana, Arial, Helvetica, sans-serif;
-    gfont-size: large;
-    gfont-weight: bold;
-    gfont-style: italic;
-    gcolor: #777777;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #777777;
 }
 
 .news_headline:hover {
-    gfont-family: Verdana, Arial, Helvetica, sans-serif;
-    gfont-size: large;
-    gfont-weight: bold;
-    gfont-style: italic;
-    gcolor: #555555;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #555555;
 }
 
 .forum_box {
