@@ -33,7 +33,8 @@ function bumpthread($id) {
 if($action=="forum_admin_on") { $_SESSION['forum_admin']="yes"; }
 if($action=="forum_admin_off") { $_SESSION['forum_admin']="no"; }
 if($_SESSION['forum_admin']=="yes") {
-    if(sc_access_check("forums","admin")) echo "<p> ".smiles(":X")." You do not have access to the Forum Administration Panel (FAP)!</p>";
+    if(sc_access_check("admin","forums")) 
+		echo "<p> ".smiles(":X")." You do not have access to the Forum Administration Panel (FAP)!</p>";
 	$_SESSION['forum_admin']=="no";
 }
 
@@ -562,11 +563,13 @@ function forums_action_forum_showposts() { eval(scg());
        $gt=1; $i=0;
 		
 		echo "<h2>Topics</h2>";
+		echo "<div class=\"forum_box\">";
 		echo "<table>";
         
         for($i=0;$i<$numposts;$i++) {
             $new=0;
             $gt=$gt+1; if($gt>2) $gt=1; $gx=$gt+2; $gy=$gt+4;
+			
             $post=mysql_fetch_array($result);
             $fork = sc_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no'");
             $posts=0;
@@ -577,30 +580,31 @@ function forums_action_forum_showposts() { eval(scg());
             }
 			$flink="<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
 			
-			echo "<tr>";
-			
-			echo "<td>";
+			echo "<tr>";			
+			echo "<td width=300>";
 
             echo $flink;
-            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=24>\n";
+            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 >\n";
 			echo stripslashes($post['title']);
 			echo "</a> ";
 			
-			echo "</td><td>";
+			echo "</td><td width=200>";
+			
+			$great=sc_getuserdata($post['poster']);
+            echo " Posted by ".$great->name;
+
+			
+			echo "</td><td width=250>";
 			
 			$time=sc_time($post['time']);
 			echo $time;
 			
-			echo "</td><td>";
+			echo "</td><td width=200>";
             
-            $great=sc_getuserdata($post['poster']);
-			
+            			
 			echo " $posts replies / ";			
 		    echo $post['views']." views";
 			
-			echo "</td><td>";
-			
-            echo " Posted by ".$great->name;
 			
 			echo "</td><td>";
 		    
@@ -638,9 +642,12 @@ function forums_action_forum_showposts() { eval(scg());
 			echo "</td></tr>";
 			
 			
+			
+			
 
         }
 		echo "</table>";
+		echo "</div>";
     }
     else echo "<p align=center> There are no threads! </p>\n";    
 	
