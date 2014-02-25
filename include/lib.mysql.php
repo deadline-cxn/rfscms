@@ -703,7 +703,18 @@ function sc_db_query_form($page,$action,$query){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_db_dumptable($table,$showform,$key,$search){ eval(scg());
-
+	
+	$fields="*";
+	if(stristr($table,",")) { 
+		$tbx=explode(",",$table);
+		$table=$tbx[0];
+		$fields="";
+		for($x=1;$x<count($tbx);$x++) {
+			$fields.=$tbx[$x].",";
+		}
+		$fields=rtrim($fields,",");
+	}
+	
     if(stristr($showform, $RFS_SITE_DELIMITER)) {
             $gx=explode($RFS_SITE_DELIMITER,$showform);
             $showform=$gx[0];
@@ -711,7 +722,7 @@ function sc_db_dumptable($table,$showform,$key,$search){ eval(scg());
 
     $page=$RFS_SITE_URL.sc_phpself();
     $gt=0;
-    $res=sc_query("select * from `$table` $search");
+    $res=sc_query("select $fields from `$table` $search");
     $num=mysql_num_rows($res);
     echo "<table border=0 cellpadding=5>";
     $hdr=0;

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
@@ -21,17 +20,33 @@
 <!--[if IE]><![endif]><![endif]-->
  
 <link rel="shortcut icon" href="favicon.ico">
-<? 
-// <script type="text/javascript" src="./PHP  PHP 5.4.0 Release Announcement_files/userprefs.js"></script>
-?>
+
 <style type="text/css"></style></head>
 <body>
 
 
 <div id="headnav">
- <? echo "<a href=\"$RFS_SITE_URL\" rel=\"home\">"; 
+ <?
+ 
+ echo "<a href=\"$RFS_SITE_URL\" rel=\"home\">"; 
+ 
+ if ($RFS_THEME_TTF_TOP)  {
+			$clr 	= sc_html2rgb($RFS_THEME_TTF_TOP_COLOR);
+           $bclr	= sc_html2rgb($RFS_THEME_TTF_TOP_BGCOLOR);
+			echo sc_image_text(
+						$RFS_SITE_NAME,
+						$RFS_THEME_TTF_TOP_FONT,						
+						$RFS_THEME_TTF_TOP_FONT_SIZE,
+						812,0,
+						$RFS_THEME_TTF_TOP_FONT_X_OFFSET,
+						$RFS_THEME_TTF_TOP_FONT_Y_OFFSET,
+						$clr[0], $clr[1], $clr[2],
+						$bclr[0], $bclr[1], $bclr[2],
+						1,0 );
+		}
+		else
  echo "<font style=\" font-size: 32px; \">$RFS_SITE_NAME</font>";
- //<img src="./PHP  PHP 5.4.0 Release Announcement_files/php.gif" alt="PHP" width="120" height="67" id="phplogo"> 
+ 
  ?>
  </a>
  
