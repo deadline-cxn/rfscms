@@ -4,12 +4,13 @@ body {
 
 
 .news_box {
+	border: 1px #000;
 	clear: both;
 	margin: 0px;
 }
 
 .news_headline_bar {
-background-color: #CFECFF;
+	background-color: #BBBBBB;
 	height: 25px;
 	padding: 5px;
 	border-top-left-radius: 15px;
@@ -20,7 +21,7 @@ background-color: #CFECFF;
     font-size: large;
     font-weight: bold;
     font-style: italic;
-color: #FFFDFA;
+	color: #EBE9E6;
 	float: left;
 	text-shadow: 2px 2px 2px #000;
 }
@@ -47,7 +48,7 @@ color: #FFFDFA;
 .news_edit_bar {
 	border-top: 1px solid #000;
 	clear: both;
-background-color: #CFECFF;
+	background-color: #CCCCCC;
 	padding: 25px;
 	margin: 0 0 25px 0;
 	border-bottom-left-radius: 15px;
