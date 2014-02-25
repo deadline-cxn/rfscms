@@ -1829,7 +1829,7 @@ function adm_action_user_edit() {
             20,
             "add new user" );
 
-	sc_db_dumptable( "users",
+	sc_db_dumptable( "users,id,first_name,last_name,name,email,forumposts,forumreplies,downloads,uploads",
                      "showform".$RFS_SITE_DELIMITER."f_",
                      "id",
                      "" );

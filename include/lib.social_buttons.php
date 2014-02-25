@@ -127,8 +127,9 @@ function sc_google_adsense_2(){ eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_adsense($x){
+	if(stristr(sc_phpself(),"adm.php")) return;
 	global $RFS_SITE_GOOGLE_ADSENSE;
-	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {		
+	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
 		sc_div("GOOGLE ADSENSE");
 		echo "<script type=\"text/javascript\"><!--
 				google_ad_client = \"$RFS_SITE_GOOGLE_ADSENSE\";
