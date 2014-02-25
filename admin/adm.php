@@ -248,8 +248,18 @@ function adm_action_f_access_group_edit_go() { eval(scg());
 function adm_action_f_access_group_edit() { eval(scg()); 
 	echo "<h1>Edit Access Group</h1>";
 	echo "<h2>$axnm</h2>";
+	
+echo "Check all <input type=checkbox onclick=\"
+for(c in document.getElementsByID('g1'))
+	document.getElementsByID('g1').item(c).checked = this.checked
+	\">";	
 	echo "<div class=\"forum_box\">";
+	
+	
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
+
+
+	
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
 	
@@ -260,7 +270,7 @@ function adm_action_f_access_group_edit() { eval(scg());
 		$rw=mfo1("select * from access where name='$axnm' and page='$am->page' and action='$am->action'");
 		if($rw->name==$axnm) { $checked="checked";}
 		echo "<div style=\"float: left; width: 200px;\">";
-		echo "<input name=\"$am->page"."_$am->action\" type=checkbox $checked>";
+		echo "<input id='g1' name=\"$am->page"."_$am->action\" type=checkbox $checked>";
 		echo " $am->page -> $am->action";
 		echo "</div>";
 	}	

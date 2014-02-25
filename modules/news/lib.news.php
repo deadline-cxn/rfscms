@@ -149,7 +149,11 @@ function sc_show_top_news() {
     sc_show_news($news->id);
 }
 function sc_show_news($nid) { eval(scg());
-	
+	if(empty($nid)) {
+		
+		news_buttons();
+		return;
+	}
 	$result=sc_query("select * from news where id='$nid'");
     $news=mysql_fetch_object($result);
     $userdata=mfo1("select * from users where id='$news->submitter'");

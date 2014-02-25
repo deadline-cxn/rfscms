@@ -53,16 +53,16 @@ else {
 		
 		echo "<table border=0 width=100% cellspacing=0 cellpadding=0 class=\"toptexttd\">";
 		echo "<tr><td class=toptd align=left >";
-		if ($RFS_SITE_TTF_TOP)  {
-			$clr 	= sc_html2rgb($RFS_SITE_TTF_TOP_COLOR);
-           $bclr	= sc_html2rgb($RFS_SITE_TTF_TOP_BGCOLOR);
+		if ($RFS_THEME_TTF_TOP)  {
+			$clr 	= sc_html2rgb($RFS_THEME_TTF_TOP_COLOR);
+           $bclr	= sc_html2rgb($RFS_THEME_TTF_TOP_BGCOLOR);
 			echo sc_image_text(
 						$RFS_SITE_NAME,
-						$RFS_SITE_TTF_TOP_FONT,						
-						$RFS_SITE_TTF_TOP_FONT_SIZE,
+						$RFS_THEME_TTF_TOP_FONT,						
+						$RFS_THEME_TTF_TOP_FONT_SIZE,
 						812,0,
-						$RFS_SITE_TTF_TOP_FONT_X_OFFSET,
-						$RFS_SITE_TTF_TOP_FONT_Y_OFFSET,
+						$RFS_THEME_TTF_TOP_FONT_X_OFFSET,
+						$RFS_THEME_TTF_TOP_FONT_Y_OFFSET,
 						$clr[0], $clr[1], $clr[2],
 						$bclr[0], $bclr[1], $bclr[2],
 						1,0 );
@@ -109,7 +109,7 @@ else {
 		echo "<td class=sc_top_menu_table_td valign=top>";
 		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
 		echo "<tr class=sc_top_menu_table_td>";
-		sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
+		sc_menu_draw($RFS_THEME_TOP_MENU_LOCATION);
 		echo "<td align=right class=sc_top_menu_table_td >";
 		echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
 		echo "<td class=sc_top_menu_table_inner class=contenttd>";
