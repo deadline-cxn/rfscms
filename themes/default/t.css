@@ -427,8 +427,8 @@ input, select, textarea {
     font-weight: bold;
     border-style : solid;
     border-width : 2px;
-	color: #004F00;
-    border-color : #005F00;
-    background-color : #00F800;
+	background-color: #001100;
+    fborder-color : #005F00;
+	color: #00F800;
 
 }

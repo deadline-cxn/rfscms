@@ -560,8 +560,10 @@ function forums_action_forum_showposts() { eval(scg());
     else $numposts=0;
     if($numposts) {
        $gt=1; $i=0;
-		echo "<div class=\"forum_box\">";
-        echo "<h2>Topics</h2>";
+		
+		echo "<h2>Topics</h2>";
+		echo "<table>";
+        
         for($i=0;$i<$numposts;$i++) {
             $new=0;
             $gt=$gt+1; if($gt>2) $gt=1; $gx=$gt+2; $gy=$gt+4;
@@ -574,28 +576,33 @@ function forums_action_forum_showposts() { eval(scg());
                 if($fart['time']>=$data->last_login) $new=1;
             }
 			$flink="<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
+			
+			echo "<tr>";
+			
+			echo "<td>";
 
-			echo "<div style=\"float: left;\">";            
-			
-			echo "<div style=\"float: left;\">";			
-			
             echo $flink;
-            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=12>\n";
+            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=24>\n";
 			echo stripslashes($post['title']);
 			echo "</a> ";
 			
-			echo "<div style=\"float:left;\">";
+			echo "</td><td>";
 			
 			$time=sc_time($post['time']);
 			echo $time;
 			
+			echo "</td><td>";
             
             $great=sc_getuserdata($post['poster']);
 			
 			echo " $posts replies / ";			
 		    echo $post['views']." views";
 			
-            echo " Posted by ".$great->name."<br>";
+			echo "</td><td>";
+			
+            echo " Posted by ".$great->name;
+			
+			echo "</td><td>";
 		    
 		    $lreply="";
 			$lrepr=sc_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no' order by `time` desc limit 1");
@@ -605,9 +612,12 @@ function forums_action_forum_showposts() { eval(scg());
 				$great=sc_getuserdata($lreply->poster);
 				echo "Latest reply: <a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
 				echo "by $great->name on ".sc_time($lreply->time);
-			} else {
+				}
+				else {
 				echo " ";
 			}
+			
+			echo "</td><td>";
 
            if( (sc_access_check("forums","admin")) & ($_SESSION['forum_admin']=="yes")) {
                 echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
@@ -625,16 +635,16 @@ function forums_action_forum_showposts() { eval(scg());
                 echo "<input type=\"submit\" name=\"submit\" value=\"go\"></form>";
             }
 			
-			echo "</div>";
-			echo "</div>";
+			echo "</td></tr>";
 			
-			echo "</div>
-			<br style=\"clear:both;\"> ";
+			
+
         }
+		echo "</table>";
     }
     else echo "<p align=center> There are no threads! </p>\n";    
 	
-	echo "</div> <br style=\"clear:both;\"> ";
+	
 	include("footer.php");
     
 }
