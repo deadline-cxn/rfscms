@@ -48,7 +48,7 @@ else {
 		echo "<td class=sc_top_menu_table_td>";
 		echo "$RFS_SITE_NAME";
 		echo "</td>";
-			sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
+			sc_menu_draw($RFS_THEME_TOP_MENU_LOCATION);
 		echo "<td class=sc_top_menu_table_td>";
 		// echo " : ";
 		echo "</td>";

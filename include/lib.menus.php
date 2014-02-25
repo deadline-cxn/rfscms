@@ -83,7 +83,7 @@ function sc_menu_draw($menu_location) {
                         echo "<td class=sc_top_menu_table_td >";
                 }
 
-                if(sc_yes($RFS_SITE_NAV_BUTTONS)) {
+                if(sc_yes($RFS_THEME_NAV_BUTTONS)) {
                     sc_button(rfs_get($link->link),$link->name);
                 }
                 else {
@@ -95,20 +95,20 @@ function sc_menu_draw($menu_location) {
 					}					
 					echo ">";
 
-                    $clr = sc_html2rgb($RFS_SITE_NAV_FONT_COLOR);
-                    $bclr= sc_html2rgb($RFS_SITE_NAV_FONT_BGCOLOR);
+                    $clr = sc_html2rgb($RFS_THEME_NAV_FONT_COLOR);
+                    $bclr= sc_html2rgb($RFS_THEME_NAV_FONT_BGCOLOR);
 
-                    // d_echo("\$RFS_SITE_NAV_IMG = $RFS_SITE_NAV_IMG");
+                    // d_echo("\$RFS_THEME_NAV_IMG = $RFS_THEME_NAV_IMG");
 
-						if($RFS_SITE_NAV_IMG == 1) {
+						if($RFS_THEME_NAV_IMG == 1) {
 						$fntsz=16;
-						if($RFS_SITE_NAV_FONT_SIZE>0) $fntsz=$RFS_SITE_NAV_FONT_SIZE;
+						if($RFS_THEME_NAV_FONT_SIZE>0) $fntsz=$RFS_THEME_NAV_FONT_SIZE;
 						sc_image_text($link->name,
-										$RFS_SITE_NAV_FONT,
+										$RFS_THEME_NAV_FONT,
 										$fntsz,
 										155,1,
-										0+$RFS_SITE_NAV_FONT_X_OFFSET,
-										0+$RFS_SITE_NAV_FONT_Y_OFFSET,
+										0+$RFS_THEME_NAV_FONT_X_OFFSET,
+										0+$RFS_THEME_NAV_FONT_Y_OFFSET,
 										$clr[0], $clr[1], $clr[2],
 										$bclr[0], $bclr[1], $bclr[2],
 										1,0 );
