@@ -140,6 +140,11 @@ body {
 	color: #ff9;
 }
 
+
+.sc_top_menu_link {
+	padding-left: 10px;
+}
+
 .sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;

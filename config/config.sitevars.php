@@ -79,9 +79,9 @@ $RFS_SITE_FACEBOOK_SDK      = "$RFS_SITE_PATH/facebook/src/facebook.php";
 // FILES STUFF
 $RFS_SITE_ALLOW_FREE_DOWNLOADS = "false";
 /////////////////////////////////////////////////////////////////////////////////////////
-$RFS_SITE_CSS               = "<LINK rel=\"stylesheet\" href=\"\$RFS_SITE_THEME_CSS_URL\" type=\"text/css\">\n";
-$RFS_SITE_MENU_TOP_LOCATION = "top";
-$RFS_SITE_MENU_LEFT_LOCATION= "left";
+$RFS_THEME_CSS               = "<LINK rel=\"stylesheet\" href=\"\$RFS_SITE_THEME_CSS_URL\" type=\"text/css\">\n";
+$RFS_THEME_MENU_TOP_LOCATION = "top"; 
+$RFS_THEME_MENU_LEFT_LOCATION= "left";
 $RFS_SITE_FOOTER            = "";
 $RFS_SITE_COPYRIGHT         = "<a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">Powered by RFS CMS</a>";
 $RFS_SITE_SINGLETABLEWIDTH  = 940;

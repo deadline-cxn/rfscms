@@ -107,21 +107,27 @@ else {
 		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0>";
 		echo "<tr class=sc_top_menu_table_td>";
 		echo "<td class=sc_top_menu_table_td valign=top>";
+		
 		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
 		echo "<tr class=sc_top_menu_table_td>";
-		sc_menu_draw($RFS_THEME_TOP_MENU_LOCATION);
-		echo "<td align=right class=sc_top_menu_table_td >";
-		echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
+		             
+		sc_menu_draw($RFS_THEME_MENU_TOP_LOCATION); 
+		//echo "<td align=right class=sc_top_menu_table_td>";
 		echo "<td class=sc_top_menu_table_inner class=contenttd>";
-		sc_theme_form();
-		echo "</td></tr></table>\n";
-		echo "</td></tr></table>";
-		echo "</td></tr></table>";
+		sc_theme_form();		
+		echo "</td>";
+		echo "</tr></table>\n";
+		//echo "</td></tr></table>";
 		
-		if(empty($data->donated))
-				sc_donate_button();
+		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0 align=center>";
+		echo "<tr><td align=center>";
+		
+		if(empty($data->donated)) sc_donate_button();
 		
 		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+		echo "</td></tr></table>";
+		
+		// echo "</td></tr></table>";
 		
 		echo "<table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";
 		echo "<td class=lefttd valign=top>";
