@@ -8,6 +8,17 @@ srand((double) microtime() * 1000000);  // randomize timer
 if(isset($RFS_SITE_LOCALE))
 setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
 /////////////////////////////////////////////////////////////////////////
+
+function rfs_user_age($birthDay) {
+	// date in yyyy-mm-dd format
+	echo $birthDay;
+	$birthday = explode("-", $birthDay);
+	$age = (date("md", date("U", mktime(0, 0, 0, $birthday[1], $birthday[2], $birthday[0]))) > date("md")
+    ? ((date("Y") - $birthday[0]) - 1)
+    : (date("Y") - $birthday[0]));
+	return $age;
+}
+
 function sc_hextorgb($hex) {
 	$hex=str_replace("#","",$hex);
 	if(strlen($hex) == 3) {

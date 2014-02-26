@@ -198,22 +198,18 @@ echo "<tr><td>Real Name :</td><td>";
 echo "<input type=textbox name=name size=30 value=\"$data->real_name\"> </td>";
 echo "<td>&nbsp;</td></tr>\n";
 
+
 $dtq=explode(" ",$data->birthday);
+$years=rfs_user_age($dtq[0]);
 $date=explode("-",$dtq[0]);
 $time=explode(":",$dtq[1]);
-$t=@mktime( $time[0],$time[1],$time[2],
-		    $date[1],$date[2],$date[0]);  // h,s,m,mnth,d,y
+
+$t=@mktime( $time[0],$time[1],$time[2], $date[1],$date[2],$date[0]); // h,s,m,mnth,d,y
 $tyear=date("Y",$t);
 $tmonth=date("m",$t);
 $nmonth=date("M",$t);
 $tday=date("d",$t);
 
-$years = date("Y") - $tyear;
-$month_diff = date("m") - $tmonth;
-$day_diff = date("d") - $tday;
-if($month_diff < 0)
-if($day_diff < 0)
- $years--;
 echo "<tr><td>Birthday:</td>\n";
 echo "<td>\n";
 echo "<select name=birth_month style=\"width:60;\">\n";
@@ -233,8 +229,7 @@ echo "<option value=12>Dec\n";
 echo "</select>\n";
 echo "<select name=birth_day style=\"width:60;\">\n";
 echo "<option>$tday\n";
-$i=1; while($i<32)
-{
+$i=1; while($i<32) {
     if($i<10) echo "<option>0$i";
     else      echo "<option>$i";
     $i=$i+1;
@@ -258,7 +253,8 @@ echo "<tr><td>Email :</td><td> <input type=textbox name=email    size=30 value=\
 echo "<tr><td>Personal Webpage:</td><td> <input type=textbox name=webpage  size=30 value=\"$data->webpage\">       </td><td> <a href=$data->webpage target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's website!\" title=\"Visit this person's website!\" height=16> </a></td></tr>\n";
 echo "<tr><td>Favorite Webpage:</td><td> <input type=textbox name=website_fav  size=30 value=\"$data->website_fav\">       </td><td> <a href=$data->website_fav target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's favorite website!\" title=\"Visit this person's favorite website!\" height=16> </a></td></tr>\n";
 echo "<tr><td>Avatar:</td><td> <input type=textbox name=avatar size=30 value=\"$data->avatar\"> </td><td> \n";
-echo "<a href=$RFS_SITE_URL/modules/files/files.php?action=upload_avatar> \n";// <img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
+echo "<a href=$RFS_SITE_URL/modules/files/files.php?action=upload_avatar> \n";
+// <img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
 echo "Upload an swf, gif, or jpg avatar!</a></td></tr>\n";
 echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
 echo "<tr><td>Show Contact Info:</td><td><select name=show_contact_info>\n";
