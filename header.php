@@ -118,6 +118,11 @@ else {
 		echo "</td></tr></table>";
 		echo "</td></tr></table>";
 		
+		if(empty($data->donated))
+				sc_donate_button();
+		
+		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+		
 		echo "<table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";
 		echo "<td class=lefttd valign=top>";
     	sc_draw_module("left");

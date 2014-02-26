@@ -73,6 +73,11 @@ else {
 		}
 		echo "</td></tr></table>";
 		echo "</td></tr></table>";
+		
+	if(empty($data->donated))
+				sc_donate_button();
+		
+		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);		
 	}
 }
 //////////////////////////////////////////////
