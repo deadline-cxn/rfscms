@@ -21,7 +21,9 @@ repository.
 GIT:
 ====
 Example:
+
 > git clone https://github.com/sethcoder/rfscms.git www
+
 > sudo chmod -R 777 www
 
 
@@ -29,8 +31,11 @@ ZIP:
 ====
 Download the zip file and unzip the folder to the root of your www folder.
 Example:
+
 > wget https://github.com/sethcoder/rfscms/archive/master.zip
+
 > sudo chmod -R 777 (unzipped folder location)
+
 
 After you have the files installed, simply use your browser and navigate to
 your domain. The install page should take it from there.
