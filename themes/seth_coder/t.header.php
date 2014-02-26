@@ -6,7 +6,8 @@ rfs_echo($RFS_SITE_TITLE);
 
 $RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
 
-rfs_echo($RFS_SITE_CSS);
+rfs_echo($RFS_THEME_CSS);
+
 rfs_echo($RFS_SITE_HEAD_CLOSE);
 rfs_echo($RFS_SITE_BODY_OPEN);
 echo "<center>";
@@ -52,7 +53,7 @@ echo "<table width=100% cellpadding=0 cellspacing=0 border=0><tr><td style=\"bor
 
 to("100% cellpadding=3"," align=center ");
     tro("");
-        sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
+        sc_menu_draw($RFS_THEME_MENU_TOP_LOCATION);
     trc();
 tc();
 echo "</td></tr></table>";
