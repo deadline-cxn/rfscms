@@ -96,20 +96,7 @@ if(!empty($category->name)) {
 else {
 	echo "<h1>Videos</h1>";
 }
-echo "<hr>";
-if($action=="viewcat") {
-	
-	$res2=sc_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
-	for($i=0;$i<mysql_num_rows($res2);$i++) {
-		$vid=mysql_fetch_object($res2);
-		
-		echo "<a href=videos.php?action=view&id=$vid->id>";
-				echo "$vid->sname</a><br>";
-				
-		
-	}
-	
-}
+
 
 
 if($action=="submitvidgo") {
@@ -392,10 +379,46 @@ if($action=="view"){
     }
 	echo $linknext;
 	
-	
+	$action="viewcat";
+	$cat=$video->category;
 	
 	
 }
+
+echo "<hr>";
+if($action=="viewcat") {
+	
+	$res2=sc_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
+	for($i=0;$i<mysql_num_rows($res2);$i++) {
+		$vid=mysql_fetch_object($res2);
+		
+		
+		
+		$ytthumb="";
+		if(stristr($vid->url,"youtube")) {
+			$ytx=explode("\"",$vid->url);
+			for($yti=0;$yti<count($ytx);$yti++) {
+				if(stristr($ytx[$yti],"youtube")) {
+					$ytx2=explode("/",$ytx[$yti]);
+					$ytthumb=$ytx2[count($ytx2)-1];
+				}
+			}
+		}
+		
+		echo "<div style='float: left; width: 100px;'>";
+		
+		echo "<a href=videos.php?action=view&id=$vid->id>";	
+		if($ytthumb)
+		echo "<img src=\"http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg\" width=100><br>";
+		echo "$vid->sname</a>";
+		
+		echo "</div>";
+		
+	}
+	echo "<br style='clear: both;'>";
+	
+}
+
 
 echo "<p>[<a href=videos.php?action=random>Random Video</a>]</p>";
 echo "<p>[<a href=videos.php?action=submitvid>Submit new Video</a>]</p>";
