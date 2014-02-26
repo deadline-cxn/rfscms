@@ -184,6 +184,11 @@ background-color: #BDBDBD;
 	padding-left: 20px;
 }
 
+
+.sc_top_menu_link {
+	padding-left: 10px;
+}
+
 .sc_file_table_outer_0 { 	background-color: #fff; }
 .sc_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;

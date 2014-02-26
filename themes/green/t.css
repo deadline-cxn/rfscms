@@ -237,6 +237,10 @@ color: #0D2B0F;
 background-color: #05FF05;
 }
 
+.sc_top_menu_link {
+	padding-left: 10px;
+}
+
 
 .rfs_thumb {
 box-shadow: 3px 3px 3px #005500;

@@ -35,8 +35,8 @@ function sc_show_menu_options() {
 	echo "</table>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_menu_draw($menu_location) {
-    eval(scg());
+function sc_menu_draw($menu_location) {   eval(scg());
+
     $res=sc_query("select * from `menu_top` order by `sort_order` asc");
     $num=mysql_num_rows($res);
     if($menu_location=="left") {
@@ -71,9 +71,6 @@ function sc_menu_draw($menu_location) {
 					break;
 			}
 		}
-        
-        
-        //if(!stristr($link->link,$RFS_SITE_URL)) $link->link="$RFS_SITE_URL/$link->link";
 
         if($showlink==1) {
                 if($menu_location=="left") {
@@ -98,20 +95,19 @@ function sc_menu_draw($menu_location) {
                     $clr = sc_html2rgb($RFS_THEME_NAV_FONT_COLOR);
                     $bclr= sc_html2rgb($RFS_THEME_NAV_FONT_BGCOLOR);
 
-                    // d_echo("\$RFS_THEME_NAV_IMG = $RFS_THEME_NAV_IMG");
-
-						if($RFS_THEME_NAV_IMG == 1) {
+					if($RFS_THEME_NAV_IMG == 1) {
 						$fntsz=16;
-						if($RFS_THEME_NAV_FONT_SIZE>0) $fntsz=$RFS_THEME_NAV_FONT_SIZE;
+						if($RFS_THEME_NAV_FONT_SIZE>0)
+							$fntsz=$RFS_THEME_NAV_FONT_SIZE;
 						sc_image_text($link->name,
-										$RFS_THEME_NAV_FONT,
-										$fntsz,
-										155,1,
-										0+$RFS_THEME_NAV_FONT_X_OFFSET,
-										0+$RFS_THEME_NAV_FONT_Y_OFFSET,
-										$clr[0], $clr[1], $clr[2],
-										$bclr[0], $bclr[1], $bclr[2],
-										1,0 );
+									$RFS_THEME_NAV_FONT,
+									$fntsz,
+									155,1,
+									0+$RFS_THEME_NAV_FONT_X_OFFSET,
+									0+$RFS_THEME_NAV_FONT_Y_OFFSET,
+									$clr[0], $clr[1], $clr[2],
+									$bclr[0], $bclr[1], $bclr[2],
+									1,0 );
                     }
                     else {
                         echo $link->name;
@@ -121,7 +117,7 @@ function sc_menu_draw($menu_location) {
                 }
 
                 if($menu_location=="top") {
-                        echo "</td> <td class=sc_top_menu_table_td> &nbsp;&nbsp; </td>";
+                        echo "</td>";
                 }
 
                 if($menu_location=="left") {
