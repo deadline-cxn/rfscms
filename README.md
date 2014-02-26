@@ -54,7 +54,7 @@ NOTES:
 In order for this package to work properly, you must edit your php.ini
 file to make the following changes.
 
-short_open_tags=on
+> short_open_tags=on
 
 In the error reporting I recommend adding the following onto the end
 
