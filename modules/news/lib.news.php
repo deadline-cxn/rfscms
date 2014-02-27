@@ -197,7 +197,7 @@ function sc_show_news($nid) { eval(scg());
             echo smiles(wikitext($wikipage->text));
     }	else {
         $news->message=str_replace("<a h","<a class=news_a h",$news->message);
-        echo smiles(stripslashes(wikitext($news->message)));
+        rfs_echo(smiles(stripslashes(wikitext($news->message))));
     }
     $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
 	 sc_socials_content($ourl,$news->headline);		

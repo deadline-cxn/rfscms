@@ -438,7 +438,16 @@ function forums_action_forum_list() { eval(scg());
             if($seefolder==true) {
 				
 				echo "<div class=\"forum_box\" >";
-				echo "<h2>$dfold->name</h2>";
+
+				echo "<table>";
+				
+				echo "<tr>
+				<td class=forum_table_head>$dfold->name</td>
+				<td class=forum_table_head>Moderator</td>
+				<td class=forum_table_head>Topics</td>
+				<td class=forum_table_head>Posts</td>
+				<td class=forum_table_head>Last Post</td>
+				</tr>";
 
                 $result = sc_query("select * from forum_list where `parent`='$dfold->id' order by priority");
                 $numforums=mysql_num_rows($result);
@@ -482,7 +491,7 @@ function forums_action_forum_list() { eval(scg());
                                     if($farter['time']>=$data->last_login) $new=1;
                                 }
                             }
-                            $link="$RFS_SITE_URL/modules/forums/forums.php?forum_which=$folder->id&action=forum_showposts";
+							$link="$RFS_SITE_URL/modules/forums/forums.php?forum_which=$folder->id&action=forum_showposts";
                             $gt=$gt+1; if($gt>2) $gt=1; $gx=$gt+2; $gy=$gt+4;
                             
 							$alttxt="No new posts";
@@ -492,51 +501,72 @@ function forums_action_forum_list() { eval(scg());
 								$alttxt="New posts";
 							}
 							
-							echo "<div style='float:left;'>";
+							
+							echo"<tr><td>";
+							
+							echo "<table><tr><td>";							
 							$folderpic=sc_get_theme_image("images/icons/$folder_filename");
 							echo "<a href=\"$link\" class=\"forumlink\">";
 							echo "<img src=\"$folderpic\" alt=\"$alttxt\" title=\"$alttxt\" border=0>";
-							echo "</a>";
+							echo "</a>";							
+							echo "</td><td>";
 							echo "<a href=\"$link\" class=\"forumlink\">$name</a>";
-							echo " $comment <br>";
+							echo "<br> $comment";							
+							echo "</td></tr></table>";
+							
+							echo "</td>";
+							echo "<td>";
 							
 							if($folder->moderated=="yes") {
-								echo "<span class=\"gensmall\">";
 								echo "<b>Moderator [</b>";
 								$foruser=sc_getuserdata($moder);
 								echo "<a href=$RFS_SITE_URL/modules/profile/showprofile.php?user=$foruser->name>$foruser->name</a>]";
-								echo "</span>\n";
                             }
 							
+							echo "</td>";
+							echo "<td>";
+							
 
-                            $fart=sc_query("select * from `forum_posts` where `forum`= '$folder->id' and `thread_top`='yes'");
-                            $topics=mysql_num_rows($fart);
-                            $fart=sc_query("select * from `forum_posts` where `forum`='$folder->id';");
-                            $posts=mysql_num_rows($fart);
-							echo " $topics topics / $posts posts <br>";
+                            $topres=sc_query("select id from `forum_posts` where `forum`= '$folder->id' and `thread_top`='yes'");
+                            $topics=mysql_num_rows($topres);
+                            $postres=sc_query("select id from `forum_posts` where `forum`='$folder->id';");
+                            $posts=mysql_num_rows($postres);
+							echo "$topics";
+							echo "</td>";
+							echo "<td>";
+							echo "$posts";
+							echo "</td>";
+							echo "<td>";
                             $ruhroh=sc_query("select * from `forum_posts` where `forum` = '$folder->id' order by time desc limit 1");
                             
                             if(mysql_num_rows($ruhroh)) {
                                 $lastpost=mysql_fetch_object($ruhroh);
                                 $link="$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lastpost->id";
                                 $link="$RFS_SITE_URL/modules/forums/forums.php?forum_list=no&action=get_thread&thread=$lastpost->thread&forum_which=$lastpost->forum";
-                                echo " Latest post: <a href=\"$link#$lastpost->id\" title=\"$lastpost->title\">$lastpost->title</a>";
-                                echo " posted ".sc_time($lastpost->time);
+                                echo "<a href=\"$link#$lastpost->id\" title=\"$lastpost->title\">$lastpost->title</a><br>";
+                                echo sc_time($lastpost->time);
                                 $udata=sc_getuserdata($lastpost->poster);
                                 echo " by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$udata->name\">$udata->name</a>";
                                 echo " <a href=\"$link\"><img src=\"$RFS_SITE_URL/images/icons/icon_latest_reply.gif\" width=\"18\" height=\"9\" class=\"imgspace\" border=\"0\" alt=\"View latest post\" title=\"View latest post\" /></a>";
                             }
-							echo "</div><br style='clear:both;'>";
-							echo "<br>";
+
+							echo "</td>";
+							echo "</tr>";
+							
                         }
                         $i=$i+1;
+						
+						
                     }
+					echo "</table>";
 					echo "</div>";
+					
                 }
                 else {
                     echo "There are no forums defined!\n";
                 }
             }
+			
         }
     }
     else    {
@@ -562,9 +592,10 @@ function forums_action_forum_showposts() { eval(scg());
     if($numposts) {
        $gt=1; $i=0;
 		
-		echo "<h2>Topics</h2>";
+		// echo "<h2>Topics</h2>";
 		echo "<div class=\"forum_box\">";
 		echo "<table>";
+		echo "<tr><td>Topics</td><td>Replies</td><td>Views</td><td>Latest Post</td></tr>";
         
         for($i=0;$i<$numposts;$i++) {
             $new=0;
@@ -581,41 +612,47 @@ function forums_action_forum_showposts() { eval(scg());
 			$flink="<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
 			
 			echo "<tr>";			
-			echo "<td width=300>";
-
+			echo "<td>";
+			
+			echo "<table border=0><tr><td>";
+			
             echo $flink;
-            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 >\n";
+            echo "<img src=\"$RFS_SITE_URL/images/icons/Documents.png\" height=32 border=0 >\n";
+			echo "</a>";
+			echo "</td><td>";
+			echo $flink;
 			echo stripslashes($post['title']);
-			echo "</a> ";
-			
-			echo "</td><td width=200>";
-			
+			echo "</a><br>";
 			$great=sc_getuserdata($post['poster']);
-            echo " Posted by ".$great->name;
 
-			
-			echo "</td><td width=250>";
-			
 			$time=sc_time($post['time']);
-			echo $time;
+
+            echo " posted $time by ".$great->name;
 			
-			echo "</td><td width=200>";
-            
-            			
-			echo " $posts replies / ";			
-		    echo $post['views']." views";
-			
+			echo "</td></tr></table>";
 			
 			echo "</td><td>";
-		    
-		    $lreply="";
+                        			
+			echo $posts;
+			echo "</td><td>";
+			
+		    echo $post['views'];
+			
+			echo "</td><td>";
+			
+			$lreply="";
 			$lrepr=sc_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no' order by `time` desc limit 1");
 			if($lrepr) $lreply=mysql_fetch_object($lrepr);
 			if($lreply) {
 
 				$great=sc_getuserdata($lreply->poster);
-				echo "Latest reply: <a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
-				echo "by $great->name on ".sc_time($lreply->time);
+				// echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
+				
+				
+				echo "<a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$great->name\">$great->name</a><br>";
+				echo sc_time($lreply->time);
+				
+				
 				}
 				else {
 				echo " ";
@@ -640,10 +677,6 @@ function forums_action_forum_showposts() { eval(scg());
             }
 			
 			echo "</td></tr>";
-			
-			
-			
-			
 
         }
 		echo "</table>";
