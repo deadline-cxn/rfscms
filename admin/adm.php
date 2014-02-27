@@ -2171,7 +2171,7 @@ function adm_action_() { eval(scg());
 	
 	echo "Running RFS CMS version $RFS_VERSION ( BUILD $RFS_BUILD )";	
 		
-	if($RFS_SITE_CHECK_UPDATE=="true") {
+	if(sc_yes($RFS_SITE_CHECK_UPDATE)) {
 			system("rm vercheck");
 			system("rm buildcheck");
 			system("wget -O vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");

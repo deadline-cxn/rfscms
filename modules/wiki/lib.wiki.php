@@ -137,15 +137,11 @@ function wikicode($text) {
 //////////////////////////////////////////////////////////////////////////////
 // WIKITEXT FUNCTION
 function wikitext($text) { eval(scg());
-
-	if(empty($RFSW_BULLET_IMAGE))
-		$RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
-	if(empty($RFSW_LINK_IMAGE))
-		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
+	if(empty($RFSW_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
+	if(empty($RFSW_LINK_IMAGE))   $RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 	
 	// $text=wikicode($text);
-
-	$text= wikiimg($text);
+	// $text= wikiimg($text);
 
 	$text=str_replace("[[","&#91;",$text);
 	$text=str_replace("]]","&#93;",$text);

@@ -39,8 +39,11 @@ to("100%"," align=center cellpadding=0");
 									';
 					*/
 					 tcr("toptd");
-							sc_reddit();
-							sc_social_buttons();
+					 
+					 		sc_donate_button();
+							sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+							//sc_reddit();
+							//sc_social_buttons();
                     tcc();
                 trc();
             tc();
@@ -73,11 +76,10 @@ to("100% cellpadding=5"," align=center ");
 			tcr("thirdtd ");
 			
 			if(empty($data->donated))
-				sc_donate_button();
-			
+
 			tcr("thirdtd align=center");
 
-				sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+				
 				
            tcr("thirdtd align=right ");
 
@@ -100,5 +102,12 @@ echo "<td class=\"lefttd\" valign=top>";
 sc_draw_module("left");
 echo "</td>";
 tco("midtd");
+
+echo "<script>
+
+
+</script>";
+
+
 
 ?>

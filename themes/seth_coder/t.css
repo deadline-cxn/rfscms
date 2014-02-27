@@ -63,31 +63,40 @@ td{
 
 .news_box {
 	clear: both;
-	margin: 0px;
+	margin: 5px;
 }
 
 .news_headline_bar {
-	background-color:rgba(0,220,150,0.1);
-	height: 25px;
+	background-color:rgba(0,0,150,0.1);
+	height: 35px;
 	padding: 5px;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 }
 .news_headline {
+	padding: 5px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
-    font-weight: bold;
-    font-style: italic;
-	color: #DFFFC9;
+    font-size: x-large;
+    ffont-weight: bold;
+    ffont-style: italic;
+	color: #5F79FF;
+	fcolor: #000;
 	float: left;
-	text-shadow: 2px 2px 2px #000;
+	text-shadow: 1px 1px 1px #000;
 }
 
 .news_time {
+
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: small;
+    
+	color: #5F79FF;
+	
 	font-style: italic;
-	padding: 5px 25px;
+	padding: 6px 25px;
 	vertical-align: text-bottom;
-	float: left;
+	float: right;
+	text-shadow: 1px 1px 1px #000;
 }
 
 .news_image {
@@ -97,15 +106,16 @@ td{
 
 .news_article {
 	border-top: 1px solid #000;
+	min-height: 160px;
 	clear: both; 
 	padding: 15px;
-	background-color:rgba(0,0,0,0.1);
+	background-color:rgba(0,0,100,0.3);
 }
 
 .news_edit_bar {
 	border-top: 1px solid #000;
 	clear: both;
-	background-color:rgba(0,160,150,0.1);
+	background-color:rgba(0,0,200,0.1);
 	padding: 25px;
 	margin: 0 0 25px 0;
 	border-bottom-left-radius: 15px;
@@ -231,12 +241,12 @@ hr{
     font-family: Verdana;
     font-size: 32px;
     font-weight: bold;
-    padding-left: 45px;
-    padding-top: 8px;
-    padding-right: 8px;
-    padding-bottom: 8px;
+    padding: 5px; g-left: 45px;
+    gpadding-top: 8px;
+    gpadding-right: 8px;
+    fpadding-bottom: 8px;
     color: #6267bF;
-    text-shadow: 2px 2px #000;
+    text-shadow: 1px 1px 2px #000;
     
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -253,8 +263,9 @@ hr{
 
 .midtd {
 	vertical-align: text-top;
-	padding:10px;	
-	min-width: 900px;
+	padding:10px;
+	width: 600px;
+	fmin-width: 900px;
 	border: 1px;
 	border-color: #000000;
 	border-style: solid;
@@ -265,8 +276,9 @@ hr{
 
 .righttd {
 	vertical-align: text-top;
-	width: 1px;
+	width: 250px;
 	padding: 5px;
+	
 }
 
 .file_category_link, .file_category_link:link {
@@ -337,7 +349,7 @@ hr{
 .forum_box {
 	width: 100%;
 	float: left;
-	overflow: hidden;
+	
 	background-color:rgba(0,15,150,0.5);
 	padding: 10px;
 	border-top-left-radius: 10px;
@@ -347,19 +359,27 @@ hr{
 
 .forum_user{
 	float: left;
-	min-height: 160px;
+	min-height: 120px;
 	background-color:rgba(0,60,100,0.5);
-	padding: 5px;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 10px;
+	fborder-bottom-left-radius: 10px;
+	
+	box-shadow: 3px 3px 3px #222222;
+	ffborder:solid 1px #222222;
+	
 }
 
 .forum_message{
-	overflow: hidden;
+	
 	min-height: 160px;	
-	padding: 5px;
-	color: #FFF;
-	background-color:rgba(0,0,0,0.5);
+	padding: 15px;
+	margin: 15px;
+	color: #000;
+	background-color: #fff;
+	background-color:rgba(0,0,0,.2);
+	border-radius: 10px;
 	
 }
 
@@ -367,6 +387,58 @@ hr{
 	overflow: hidden;
 	clear: both;
 }
+
+
+a {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #7799FF;
+	text-shadow: 1px 1px 1px #000;
+	
+}
+
+a:link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #5577FF;
+}
+
+a:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #a5a555;
+	fbackground-color: #000000;
+}
+
+
+a.sc_top_menu_link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+    font-style: italic; 
+    text-decoration: none;
+    color: #7799FF;
+	text-shadow: 1px 1px 1px #000;
+}
+
+a.sc_top_menu_link:link {
+    color: #5577FF;
+}
+
+a.sc_top_menu_link:hover {
+    color: #a5a555;
+}
+
+
 
 input,textarea{
     font-family: Arial;
