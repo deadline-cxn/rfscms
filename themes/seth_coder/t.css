@@ -263,8 +263,6 @@ hr{
 .midtd {
 	vertical-align: text-top;
 	padding:10px;
-	gwfidth: 600px;
-	min-width: 80%;
 	border: 1px;
 	border-color: #000000;
 	border-style: solid;
@@ -275,7 +273,7 @@ hr{
 
 .righttd {
 	vertical-align: text-top;
-	fwidfth: 250px;
+	max-widfth: 250px;
 	padding: 5px;
 	
 }
