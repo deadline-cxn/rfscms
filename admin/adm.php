@@ -2374,11 +2374,19 @@ function admin_menu_built_in() { eval(scg());
 function finishadminpage() {
 	eval( scg() );
 
-    $arr=get_defined_functions();
+    
 
-	echo "<!-- FUNCTIONS AVAILABLE... JUST LOOK ";
-	foreach( $arr['user'] as $k=>$v ) { echo "$v"; }
-	echo " -->";
+echo "BETA DEV MODE:<hr>";
+
+echo "TODO LIST:<hr>";
+echo "
+Make TODO List admin functions<br>";
+
+echo "FUNCTION LIST:<hr>";
+$arr=get_defined_functions();
+natcasesort($arr['user']);
+foreach( $arr['user'] as $k=>$v ) { echo "$v <br>"; }
+echo "";
 
 
 	include( "footer.php" );

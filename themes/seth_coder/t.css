@@ -254,7 +254,6 @@ hr{
 
 }
 
-
 .lefttd {
 	vertical-align: text-top;
 	width:1px;
@@ -264,19 +263,19 @@ hr{
 .midtd {
 	vertical-align: text-top;
 	padding:10px;
-	width: 600px;
+	gwfidth: 600px;
 	fmin-width: 900px;
 	border: 1px;
 	border-color: #000000;
 	border-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
-	overflow: hidden;
+	foverflow: hidden;
 }
 
 .righttd {
 	vertical-align: text-top;
-	width: 250px;
+	fwidfth: 250px;
 	padding: 5px;
 	
 }

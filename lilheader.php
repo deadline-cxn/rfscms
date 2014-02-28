@@ -45,9 +45,9 @@ else {
 		echo "<td class=sc_top_menu_table_td valign=top>";
 		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
 		echo "<tr class=sc_top_menu_table_td>";
-		echo "<td class=sc_top_menu_table_td>";
-		echo "$RFS_SITE_NAME";
-		echo "</td>";
+		//echo "<td class=sc_top_menu_table_td>";
+		// echo "$RFS_SITE_NAME";
+		// echo "</td>";
 			sc_menu_draw($RFS_THEME_TOP_MENU_LOCATION);
 		echo "<td class=sc_top_menu_table_td>";
 		// echo " : ";
@@ -74,10 +74,11 @@ else {
 		echo "</td></tr></table>";
 		echo "</td></tr></table>";
 		
-	if(empty($data->donated))
+	if(empty($data->donated)) {
 				sc_donate_button();
 		
 		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);		
+		}
 	}
 }
 //////////////////////////////////////////////
