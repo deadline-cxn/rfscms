@@ -152,6 +152,8 @@ h2 {
 	font-weight: bold;
 	font-size: 18px;
 	margin: 0px;
+	padding-left: 10px;
+	
 }
 
 h3 {
@@ -268,12 +270,12 @@ hr{
 	border-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
-	foverflow: hidden;
 }
 
 .righttd {
 	vertical-align: text-top;
-	max-widfth: 250px;
+	min-width: 300px;
+	max-width: 300px;
 	padding: 5px;
 	
 }
@@ -346,12 +348,14 @@ hr{
 .forum_box {
 	width: 100%;
 	float: left;
-	
 	background-color:rgba(0,15,150,0.5);
-	padding: 10px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
-	margin: 2px;
+	margin: 5px;
+	
 }
 
 .forum_user{
@@ -381,8 +385,8 @@ hr{
 }
 
 .forum_time{
-	overflow: hidden;
-	clear: both;
+	float: right;
+	
 }
 
 

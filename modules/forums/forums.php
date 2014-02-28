@@ -215,12 +215,15 @@ function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 				echo "<input type=hidden name=thread value=\"".$thread."\">\n";
 				
 				echo "Title:<input type=text name=header value=\"re:";
+				
 				echo stripslashes($title);
-				echo "\" size=78>";				
-				echo "Reply:";
-				echo "<textarea name=reply cols=78 rows=20 
-					style=\" width: 98%; \" ></textarea>";
-				echo "Anonymous:";
+				echo "\" size=78>";
+				
+				echo "<div class=forum_message>";
+				echo "<textarea name=reply rows=15 style='width: 100%;'></textarea>";
+				echo "</div>";
+				
+				echo "<br>Anonymous:";
 				echo "<select id=\"anonymous\" name=anonymous style=\"width:160px; min-width: 160px;\" width=160>
 						<option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\">";
 				echo "</form>\n";

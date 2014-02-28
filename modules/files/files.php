@@ -2,8 +2,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
+if(stristr(getcwd(),"modules")) { chdir("../../"); }
 if(isset($argv[1])) {
-	if(stristr(getcwd(),"modules")) { chdir("../../"); }
 	include_once("include/lib.all.php");
 	system("clear");
 	sc_get_modules();
@@ -1157,7 +1157,7 @@ $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++) {
     $cat=mysql_fetch_object($result);
     if(!empty($cat->name))     {
-        $i=0; $bg=0;
+        $bg=0;
         $buffer=rtrim($cat->name);
 		
 		if(sc_yes($_SESSION['hidden']))  $shide="";
@@ -1182,7 +1182,7 @@ for($i=0;$i<$numcats;$i++) {
 			}
 			
 			echo "<a class=file_category_link href=\"$RFS_SITE_URL/modules/files/files.php?action=listcategory&category=$buffer\" title=\"List all $buffer files\">[";			
-			echo ucwords("$buffer");			
+			echo ucwords("$buffer");
 			echo "] ";
 			$myr=sc_getfilelist("where category='$buffer' $shide ",999999999);
 			echo "(";
@@ -1190,27 +1190,32 @@ for($i=0;$i<$numcats;$i++) {
 			echo " files)";
 			echo "</a>";
 			echo "</div>";
-			
-			while($i<count($filelist)) {
-				$filedata=sc_getfiledata($filelist[$i]);
+			$i2=0;
+			while($i2<count($filelist)) {
+				$filedata=sc_getfiledata($filelist[$i2]);
 				$bg=$bg+1; if($bg>1) $bg=0;
 					show1file($filedata,$bg);
-				$i=$i+1;				
+				$i2=$i2+1;
 				$la=$amount;
 				if(empty($la)) $la=5;
-				if($i==$la){
+				if($i2==$la){
 					break;
-					}
+				}
 			}
 
 			echo "</div>";
-			if($i==$la){
+			echo "<br style=\"clear:both;\">";
+			
+			
+			if($i2==$la){
 				
 			}
-			
 		}
 	}
 }
+
+
 include("footer.php");
+
 
 ?>
