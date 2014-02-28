@@ -2,8 +2,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-if(stristr(getcwd(),"modules")) { chdir("../../"); }
+
 if(isset($argv[1])) {
+	if(stristr(getcwd(),"modules")) { chdir("../../"); }
 	include_once("include/lib.all.php");
 	system("clear");
 	sc_get_modules();
@@ -480,6 +481,20 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 			$ft=sc_getfiletype($filedata->location);	
 
 			switch($ft){
+				
+				case "pdf":
+				
+					if(!file_exists("$RFS_SITE_PATH/$filedata->location.png")) {
+				
+						$myurl = "$RFS_SITE_PATH/$filedata->location[0]";
+						$image = new Imagick($myurl);
+						$image->setResolution( 200, 300 );
+						$image->setImageFormat( "png" );
+						$image->writeImage("$RFS_SITE_PATH/$filedata->location.png");
+						
+					}
+					echo "<img src=\"$RFS_SITE_URL/$filedata->location.png\">";
+					break;
 
 				case "exe":
 				case "msi":
