@@ -6,6 +6,7 @@
 // interim database changes
 sc_database_add("users","downloads", "text", "NOT NULL");
 sc_database_add("users","uploads", "text", "NOT NULL");
+sc_database_add("users","donated", "text", "NOT NULL");
 
 sc_query("ALTER TABLE `site_vars` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
 sc_query("ALTER TABLE `site_vars` ADD `desc` TEXT");

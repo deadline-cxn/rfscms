@@ -25,13 +25,9 @@ function todo_list_action_() { eval(scg());
 							"todo_list",
 							$tdl->id); 
 		echo "<br>";
-
-/*	todo_list: 			name	description	assigned_to	owner
-	todo_list_task: 	name	opened	due	 */
-
+	// todo_list: 			name	description	assigned_to	owner
 	}
 }
-
 
 function todo_list_action_view_todo_list() { eval(scg());
 	$r=sc_query("select * from todo_list where id=$id");
@@ -39,14 +35,109 @@ function todo_list_action_view_todo_list() { eval(scg());
 	
 	echo "<h1>$tdl->name</h1>";
 	echo "$tdl->description<br>";
-	echo "Assigned to: $tdl->assigned_to Owner: $tdl->owner <br>";
+	
+	if(!empty($tdl->assigned_to))
+		echo "Assigned to: $tdl->assigned_to<br>";
+	if(!empty($tdl->owner))
+	echo "Owner: $tdl->owner<br>";
+	
+	echo "List: $tdl->id<br>";
 	echo "<hr>";
 	
+	echo "<style>
 	
-	$r=sc_query("select * from todo_list_tasks where list='$tdl->id'");
+.todo_ {
+
+	margin: 5px;
+	padding: 5px;
+	background-color: #0F0;
+	color: #FFF;
+
+}
+	
+	</style>";
+	
+$r=sc_query("
+select * from `todo_list_task` 
+where (`list`='$tdl->id') and
+	  (`name`='Stuff') ;");
+	  
 	$n=mysql_num_rows($r);
-	if($n) {
+
+	if($n>0) {
 		echo "Open tasks:<br>";
+		
+		echo "<table border=0 cellpadding=5 cellspacing=0>";
+			echo "<tr>";
+			
+			echo "<th>";
+			echo "Status";
+			echo "</th>";
+			
+			echo "<th>";
+			echo "Priority";
+			echo "</th>";
+			
+			echo "<th>";
+			echo "Name";
+			echo "</th>";
+			
+			echo "<th>";
+			echo "Opened";
+			echo "</th>";
+			
+			echo "<th>";
+			echo "Due";
+			echo "</th>";
+			
+			echo "<th>";
+			echo "Step";
+			echo "</th>";
+			
+			echo "<th>";
+			echo "Action";
+			echo "</th>";
+			
+			echo "</tr>";		
+		
+		for($i=0;$i<$n;$i++) {
+			$task=mysql_fetch_object($r);
+			
+			// todo_list_task: name opened due list priority step
+			
+			echo "<tr>";
+			
+			echo "<td class=\"todo_$tdl->status\">";
+			echo "$tdl->status";
+			echo "</td>";
+			
+			echo "<td class=\"todo_$tdl->status\">";
+			echo "$tdl->priority";
+			echo "</td>";
+			
+			echo "<td class=\"todo_$tdl->status\">";
+			echo "$task->name";
+			echo "</td>";
+			
+			echo "<td class=\"todo_$tdl->status\">";
+			echo "$task->opened";
+			echo "</td>";
+			
+			echo "<td class=\"todo_$tdl->status\">";
+			echo "$task->due";
+			echo "</td>";
+			
+			echo "<td class=\"todo_$tdl->status\">";
+			echo "$task->step";
+			echo "</td>";
+			
+			echo "<td class=\"todo_$tdl->status\">";
+			echo "$task->action";
+			echo "</td>";
+			
+			echo "</tr>";
+		}
+		echo "</table>";
 		
 	}
 	else {
