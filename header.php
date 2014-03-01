@@ -122,9 +122,11 @@ else {
 		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0 align=center>";
 		echo "<tr><td align=center>";
 		
-		if(empty($data->donated)) sc_donate_button();
+		if(!sc_yes($data->donated)) {
+			sc_donate_button();		
+			sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 		
-		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+		}
 		echo "</td></tr></table>";
 		
 		// echo "</td></tr></table>";

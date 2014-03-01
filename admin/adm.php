@@ -7,13 +7,8 @@ $title="Administration";
 include("lib.adm.php");
 chdir( "../" );
 
-if(stristr($_REQUEST['action'],"ajx")) {
-	include("include/lib.all.php");
-	exit();
-}
-else {
-		include( "lilheader.php" );
-}
+if(stristr($_REQUEST['action'],"ajx")) { include("include/lib.all.php"); exit(); }
+else { include( "lilheader.php" ); }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
@@ -1757,12 +1752,9 @@ function adm_action_f_edit_users_go() {
 }
 function adm_action_f_edit_users() { eval( scg() );
 
-	echo "WHAT";
-
 	$res=sc_query( "select * from users where `id`='$id'" );
 	$user=mysql_fetch_object( $res );
-	
-	
+
 	echo "<h3>Editing User [$user->name]</h3>";
 	
 	sc_bf( "$RFS_SITE_URL/admin/adm.php",
@@ -1829,7 +1821,7 @@ function adm_action_user_edit() {
             20,
             "add new user" );
 
-	sc_db_dumptable( "users,id,first_name,last_name,name,email,forumposts,forumreplies,downloads,uploads",
+	sc_db_dumptable( "users,id,first_name,last_name,name,email,donated,forumposts,forumreplies,downloads,uploads",
                      "showform".$RFS_SITE_DELIMITER."f_",
                      "id",
                      "" );

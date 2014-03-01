@@ -40,10 +40,13 @@ to("100%"," align=center cellpadding=0");
 					*/
 					 tcr("toptd");
 					 
+					 if(!sc_yes($data->donated)) {
 					 		sc_donate_button();
 							sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 							//sc_reddit();
 							//sc_social_buttons();
+					 
+					 }
                     tcc();
                 trc();
             tc();
