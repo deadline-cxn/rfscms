@@ -6,17 +6,18 @@ if(empty($action)) $action="forum_list";
 
 function forum_put_buttons($forum_which) { eval(scg());
 
-	$thispage=sc_canonical_url();// "$RFS_SITE_URL/modules/forums/forums.php";
-    if($forum_list!="yes") {
+	$thispage=explode("?",sc_canonical_url());
+	$opage=$thispage[1];
+	if($forum_list!="yes") {
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php\">List Forums</a>]";
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=start_thread&forum_which=$forum_which\">Start New Thread</a>]";
     }
 	if(sc_access_check("forums","admin")) {
         if($_SESSION['forum_admin']=="yes")
-        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_off&outpage=$thispage\">Forum Admin Off</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_off&outpage=$opage\">Forum Admin Off</a>]";
         else
-        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_on&outpage=$thispage\">Forum Admin On</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_on&outpage=$opage\">Forum Admin On</a>]";
     }
 	echo "<hr>";
 }
