@@ -200,6 +200,7 @@ where (`list`='$tdl->id')  ;");
 			// echo "<td class=\"todo_$task_status\"> $task->due </td>";			
 			// echo "<td class=\"todo_$task_status\">$task->step</td>";
 			
+			
 			echo "</tr>";
 		}
 		echo "</table>";
