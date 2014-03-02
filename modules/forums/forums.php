@@ -3,8 +3,9 @@ $title="FORUMS";
 chdir("../../");
 include("header.php");
 if(empty($action)) $action="forum_list";
-$thispage=$_SERVER['PHP_SELF'];
+
 function forum_put_buttons($forum_which) { eval(scg());
+	$thispage=sc_phpself();
     if($forum_list!="yes") {
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php\">List Forums</a>]";
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";
