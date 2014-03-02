@@ -25,13 +25,10 @@ $message=str_replace("<form enctype=application/x-www-form-URLencoded","(form ta
 $message=str_replace("<textarea","(form tags are unauthorized)<no ",$message);
 $message=str_replace("<select","(form tags are unauthorized)<no ",$message);
 
-function bumpthread($id) {
-    $bumptime=date("Y-m-d H:i:s"); // 0000-00-00 00:00:00
-    sc_query("update forum_posts set `bumptime`='$bumptime' where id='$id'");
-}
+function bumpthread($id) { $bumptime=date("Y-m-d H:i:s"); sc_query("update forum_posts set `bumptime`='$bumptime' where id='$id'"); }
 
-function forum_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; }
-function forum_action_forum_admin_off() { $_SESSION['forum_admin']="no"; }
+function forum_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; forums_action_forum_showposts(); }
+function forum_action_forum_admin_off() { $_SESSION['forum_admin']="no";  forums_action_forum_showposts(); }
 
 if(sc_yes($_SESSION['forum_admin'])) {
     if(sc_access_check("admin","forums")) 
@@ -580,6 +577,8 @@ function forums_action_forum_list() { eval(scg());
 }
 
 function forums_action_forum_showposts() { eval(scg());
+
+echo $forum_which;
 
     $res=sc_query("select * from `forum_list` where `id`='$forum_which'");
     $fold=mysql_fetch_object($res);
