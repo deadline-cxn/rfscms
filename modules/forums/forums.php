@@ -15,9 +15,9 @@ function forum_put_buttons($forum_which) { eval(scg());
     }
 	if(sc_access_check("forums","admin")) {
         if($_SESSION['forum_admin']=="yes")
-        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_off&outpage=$opage\">Forum Admin Off</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_off&$opage\">Forum Admin Off</a>]";
         else
-        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_on&outpage=$opage\">Forum Admin On</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_on&$opage\">Forum Admin On</a>]";
     }
 	echo "<hr>";
 }
