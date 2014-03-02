@@ -270,6 +270,7 @@ hr{
 	border-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
+	min-width: 800px;
 }
 
 .righttd {

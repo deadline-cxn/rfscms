@@ -21,6 +21,17 @@ sc_database_add("todo_list_task","status","text","not null");
 sc_database_add("todo_list_task","opened","timestamp","DEFAULT CURRENT_TIMESTAMP");
 sc_database_add("todo_list_task","due","timestamp","not null");
 
+sc_database_add("todo_list_status","name","text","not null");
+sc_database_data_add("todo_list_status","name","Open","");
+sc_database_data_add("todo_list_status","name","In Progress","");
+sc_database_data_add("todo_list_status","name","Resolved","");
+sc_database_data_add("todo_list_status","name","Closed","");
+
+sc_database_add("todo_list_type","name","text","not null");
+sc_database_data_add("todo_list_type","name","Personal","");
+sc_database_data_add("todo_list_type","name","Bug","");
+sc_database_data_add("todo_list_type","name","Task","");
+
 sc_access_method_add("todo_list", "add");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -205,7 +205,7 @@ function sc_access_method_add($func_page,$act) {
 
 	$r=sc_query("select * from `access_methods` where `page`='$func_page' and `action`='$act'");
 	if(mysql_num_rows($r)>0) return;
-	echo "INSERTin $func_page, $act <br>";
+	// echo "INSERTin $func_page, $act <br>";
 	sc_query("insert into `access_methods` (`page`,`action`) VALUES('$func_page','$act'); ");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -2193,7 +2193,8 @@ function rfs_ajax($data,$size,$properties,$access,$callback) {
 }
 //////////////////////////////////////////////////////////////////////////////
 // long ajax function
-function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_properties,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
+function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,
+					$rfa_properties,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
 	if(!sc_access_check($rfaapage,$rfaact)) return;
 	
 	// extract callback functions
