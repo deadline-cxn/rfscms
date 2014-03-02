@@ -123,8 +123,10 @@ function lib_tags_show_tags($table,$id) {
 			
 				$tv=ltrim($tv," "); $tv=rtrim($tv," ");
 				echo "<div style='float:left;' class='tags'>";
-				if(stristr(sc_canonical_url(),"?"))  echo"<a href=\"".sc_canonical_url()."&tagsearch=$tv\">$tv</a>";
-				else echo"<a href=\"".sc_canonical_url()."?tagsearch=$tv\">$tv</a>";
+				if(stristr(sc_canonical_url(),"?"))
+					echo"<a href=\"".sc_canonical_url()."&tagsearch=$tv\" class=\"tag_link\">$tv</a>";
+				else
+					echo"<a href=\"".sc_canonical_url()."?tagsearch=$tv\" class=\"tag_link\">$tv</a>";
 				echo "</div>";
 			}
 		}

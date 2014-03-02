@@ -15,7 +15,7 @@ sc_database_add("todo_list","type","text","not null");
 sc_database_add("todo_list_task","name","text","not null");
 sc_database_add("todo_list_task","list","text","not null");
 sc_database_add("todo_list_task","priority","text","not null");
-sc_database_add("todo_list_task","action","text","not null");
+sc_database_add("todo_list_task","description","text","not null");
 sc_database_add("todo_list_task","step","text","not null");
 sc_database_add("todo_list_task","status","text","not null");
 sc_database_add("todo_list_task","opened","timestamp","DEFAULT CURRENT_TIMESTAMP");

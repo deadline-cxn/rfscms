@@ -38,22 +38,22 @@ function sc_button_warn($link,$name){
 	sc_makebutton_warntest($link,$name);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_makebutton($link,$name){
+function sc_makebutton($button_link,$button_name){ eval(scg());
 
-	if($_SESSION['textbuttons']=="true") {
-		return "[<a href=$link>$name</a>] ";
+	if( ($_SESSION['textbuttons']=="true") ||  (sc_yes($RFS_SITE_TEXT_BUTTONS))) {
+		return "[<a href=\"$button_link\">$button_name</a>] ";
 	}
 	else
 		return "<button
 					id=\"button\" 
 					style=\"font-size:x-small; min-width: 100px;\"
-				onclick=\"window.location='$link';\"
+				onclick=\"window.location='$button_link';\"
 				
 					class=\"menubutton\"
 					role=\"button\"
 					aria-disabled=\"false\">
 			
-			<span class=\"ui-button-text\">$name</span>
+			<span class=\"ui-button-text\">$button_name</span>
 			
 			</button>";
 }
