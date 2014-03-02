@@ -25,8 +25,25 @@ function todo_list_action_() { eval(scg());
 							"todo_list",
 							$tdl->id); 
 		echo "<br>";
-	// todo_list: 			name	description	assigned_to	owner
+		// todo_list: 			name	description	assigned_to	owner
 	}
+}
+
+function todo_list_status_icon() { eval(scg());
+	
+}
+
+function todo_list_action_open() { eval(scg());
+	$tdl=mfo1("select * from todo_list where id='$tdl'");
+	echo "<h1>$tdl->name</h1>";
+	echo "Open task<br>";
+}
+
+function todo_list_action_search() { eval(scg());
+	$tdl=mfo1("select * from todo_list where id='$tdl'");
+	echo "<h1>$tdl->name</h1>";
+	echo "Search tasks<br>";
+	sc_bqf("SHOW_TEXT_Name","Search");
 }
 
 function todo_list_action_view_todo_list() { eval(scg());
@@ -35,24 +52,33 @@ function todo_list_action_view_todo_list() { eval(scg());
 	
 	echo "<h1>$tdl->name</h1>";
 	echo "$tdl->description<br>";
-	
-	if(!empty($tdl->assigned_to))
-		echo "Assigned to: $tdl->assigned_to<br>";
-	if(!empty($tdl->owner))
-	echo "Owner: $tdl->owner<br>";
-	
-	echo "List: $tdl->id<br>";
+	sc_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=search&tdl=$tdl->id","Search");
+	sc_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=open&tdl=$tdl->id","Open");
+	// if(!empty($tdl->assigned_to)) echo "Assigned to: $tdl->assigned_to<br>";
+	// if(!empty($tdl->owner))       echo "Owner: $tdl->owner<br>";
 	echo "<hr>";
 	
 	echo "<style>
 	
-.todo_ {
-
+.todo_Resolved {
 	margin: 5px;
 	padding: 5px;
-	background-color: #0F0;
-	color: #FFF;
+	background-color: #AFA;
+	color: #000;
+}
 
+.todo_Open {
+	margin: 5px;
+	padding: 5px;
+	background-color: #FAA;
+	color: #000;
+}
+
+.todo_Unknown {
+	margin: 5px;
+	padding: 5px;
+	background-color: #FAA;
+	color: #000;
 }
 	
 	</style>";
@@ -65,10 +91,12 @@ where (`list`='$tdl->id') and
 	$n=mysql_num_rows($r);
 
 	if($n>0) {
-		echo "Open tasks:<br>";
 		
 		echo "<table border=0 cellpadding=5 cellspacing=0>";
 			echo "<tr>";
+			
+			echo "<th>";
+			echo "</th>";
 			
 			echo "<th>";
 			echo "Status";
@@ -100,38 +128,49 @@ where (`list`='$tdl->id') and
 			
 			echo "</tr>";		
 		
-		for($i=0;$i<$n;$i++) {
-			$task=mysql_fetch_object($r);
+		while($task=mysql_fetch_object($r)) {
 			
 			// todo_list_task: name opened due list priority step
 			
 			echo "<tr>";
+			if(empty($task->status)) $task->status="Unknown";
 			
-			echo "<td class=\"todo_$tdl->status\">";
-			echo "$tdl->status";
+			echo "<td class=\"todo_$task->status\">";
+			echo "<img src=\"$RFS_SITE_URL/modules/todo_list/icons/$task->status.png\">	";
 			echo "</td>";
 			
-			echo "<td class=\"todo_$tdl->status\">";
-			echo "$tdl->priority";
+			echo "<td class=\"todo_$task->status\">";
+			//echo "$task->status<br>";
+
+			// if(sc_access_check());
+			
+			sc_ajax("Status","todo_list_task","id",$task->id,"status","30",
+					"select,table,todo_list_status,name,nolabel","admin","access","");
+					
+			
 			echo "</td>";
 			
-			echo "<td class=\"todo_$tdl->status\">";
+			echo "<td class=\"todo_$task->status\">";
+			echo "$task->priority";
+			echo "</td>";
+			
+			echo "<td class=\"todo_$task->status\">";
 			echo "$task->name";
 			echo "</td>";
 			
-			echo "<td class=\"todo_$tdl->status\">";
+			echo "<td class=\"todo_$task->status\">";
 			echo "$task->opened";
 			echo "</td>";
 			
-			echo "<td class=\"todo_$tdl->status\">";
+			echo "<td class=\"todo_$task->status\">";
 			echo "$task->due";
 			echo "</td>";
 			
-			echo "<td class=\"todo_$tdl->status\">";
+			echo "<td class=\"todo_$task->status\">";
 			echo "$task->step";
 			echo "</td>";
 			
-			echo "<td class=\"todo_$tdl->status\">";
+			echo "<td class=\"todo_$task->status\">";
 			echo "$task->action";
 			echo "</td>";
 			
@@ -143,8 +182,6 @@ where (`list`='$tdl->id') and
 	else {
 		echo "There are no tasks.<br>";
 	}
-		
-	
 }
 
 function todo_list_action_new_todo_list_go() { eval(scg());

@@ -5,7 +5,7 @@ include("header.php");
 $video=mfo1("select * from videos where id='$id'");
 $vc=sc_getuserdata($video->contributor);
 
-function video_pagefinish(){
+function video_pagefinish(){ eval(scg());
     include("footer.php");
     exit();
 }
@@ -405,11 +405,11 @@ if($action=="viewcat") {
 			}
 		}
 		
-		echo "<div style='float: left; width: 100px;'>";
+		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
 		
 		echo "<a href=videos.php?action=view&id=$vid->id>";	
 		if($ytthumb)
-		echo "<img src=\"http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg\" width=100><br>";
+		echo "<img src=\"http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg\" width=100 class=rfs_thumb><br>";
 		echo "$vid->sname</a>";
 		
 		echo "</div>";

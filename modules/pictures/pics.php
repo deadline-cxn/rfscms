@@ -223,17 +223,14 @@ function pics_action_addorphans(){ eval(scg());
 /////////////////////////////////////////////////////////////////////////////////
 // Sort !!!TEMP!!! category
 function pics_action_sorttemp() { eval(scg());
-// if($action=="sorttemp"){	
+
 	if ($data->access==255) {
         if($subact=="place"){
             if(!empty($newcat)) {
-                sc_query("insert into categories
-                        (`name`)
-                    VALUES('$newcat'); ");
-                $categorey=$newcat;
+                sc_query("insert into categories (`name`) VALUES('$newcat'); ");
+                $category=$newcat;
             }
-			// $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='$categorey'"));
-			//	$category=$categoryz->id;
+
 			$res=sc_query("select * from `pictures` where `category`='$category' order by time asc");
 			sc_query("update `pictures` set `category`='$category' where `id`='$id'");
 			$sname=addslashes($sname);
@@ -241,9 +238,8 @@ function pics_action_sorttemp() { eval(scg());
 			sc_query("update `pictures` set `sfw`='$sfw' where `id`='$id'");
 			sc_query("update `pictures` set `hidden`='$hidden' where `id`='$id'");
 		}
-		// $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
-		// $category=$categoryz->id;
-		$res=sc_query("select * from `pictures` where `category`='$category' order by time asc");
+
+		$res=sc_query("select * from `pictures` where `category`='unsorted' order by time asc");
 		$numpics=mysql_num_rows($res);
 		if($numpics>0){
             $picture=mysql_fetch_object($res);
@@ -261,11 +257,8 @@ function pics_action_sorttemp() { eval(scg());
 			echo "Select a category:<br>";
             $rc=sc_query("select * from categories where name != 'unsorted' order by name"); 
             $rn=mysql_num_rows($rc);
-            // echo "<table border=0><tr>";
-			// $table_row_counter=0;
 
 			for($ri=0;$ri<$rn;$ri++) {
-				// echo "<td>";
 				echo "<div style='float: left; padding: 10px; text-align: center; width: 80px; height: 120px;'>";
 				$incat=mysql_fetch_object($rc);
 				$imout=$incat->image;
@@ -273,17 +266,10 @@ function pics_action_sorttemp() { eval(scg());
 					$imout="images/noimage_file.gif";
 				if(!$incat->image)
 					$imout="images/noimage.gif";
-				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&subact=place&id=$picture->id&categorey=$incat->name&sname=$picture->sname&sfw=yes'>";
+				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&subact=place&id=$picture->id&category=$incat->name&sname=$picture->sname&sfw=yes'>";
 				echo "<img src='$RFS_SITE_URL/$imout' width=70 height=70><br>$incat->name</a>";
 				echo "</div>";
-				// echo "</td>";
-				// $table_row_counter++;
-				//if($table_row_counter > 8) {
-				//   $table_row_counter=0;
-				//echo "</tr><tr>";
-				//}
 			}
-			// echo "</tr></td></table>";
             echo "</td></tr></table>";
 			echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pics.php>";
 			echo "<input type=hidden name=action value=sorttemp>";
@@ -295,7 +281,7 @@ function pics_action_sorttemp() { eval(scg());
             if(!empty($picture->sfw)) echo "<option>$picture->sfw";            
 			echo "<option>yes<option>no</select>";
 			echo "Hidden<select name=hidden>";
-            // if(!empty($picture->hidden))            echo "<option>$picture->hidden";
+
 			echo "<option>no<option>yes</select>";
 			$cat=mysql_fetch_object(sc_query("select * from `categories` where `name`='$picture->category'"));
 			echo "<select name=category>\n";
