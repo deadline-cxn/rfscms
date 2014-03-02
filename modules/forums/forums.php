@@ -31,11 +31,12 @@ $message=str_replace("<select","(form tags are unauthorized)<no ",$message);
 function bumpthread($id) {
     $bumptime=date("Y-m-d H:i:s"); // 0000-00-00 00:00:00
     sc_query("update forum_posts set `bumptime`='$bumptime' where id='$id'");
-} 
+}
 
-if($action=="forum_admin_on") { $_SESSION['forum_admin']="yes"; }
-if($action=="forum_admin_off") { $_SESSION['forum_admin']="no"; }
-if($_SESSION['forum_admin']=="yes") {
+function forum_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; }
+function forum_action_forum_admin_off() { $_SESSION['forum_admin']="no"; }
+
+if(sc_yes($_SESSION['forum_admin'])) {
     if(sc_access_check("admin","forums")) 
 		echo "<p> ".smiles(":X")." You do not have access to the Forum Administration Panel (FAP)!</p>";
 	$_SESSION['forum_admin']=="no";
