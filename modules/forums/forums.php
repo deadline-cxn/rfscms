@@ -5,7 +5,8 @@ include("header.php");
 if(empty($action)) $action="forum_list";
 
 function forum_put_buttons($forum_which) { eval(scg());
-	$thispage=sc_phpself();
+
+	$thispage=sc_canonical_url();// "$RFS_SITE_URL/modules/forums/forums.php";
     if($forum_list!="yes") {
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php\">List Forums</a>]";
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";
