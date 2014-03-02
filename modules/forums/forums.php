@@ -595,10 +595,10 @@ function forums_action_forum_showposts() { eval(scg());
     if($numposts) {
        $gt=1; $i=0;
 		
-		// echo "<h2>Topics</h2>";
+		
 		echo "<div class=\"forum_box\">";
-		echo "<table>";
-		echo "<tr><td>Topics</td><td>Replies</td><td>Views</td><td>Latest Post</td></tr>";
+		echo "<table border=0 cellpadding=0 cellspacing=0>";
+		echo "<tr><td>Topics</td><td>Replies</td><td>Views</td><td>Latest Post</td><td></td></tr>";
         
         for($i=0;$i<$numposts;$i++) {
             $new=0;
