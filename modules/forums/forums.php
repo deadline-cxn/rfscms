@@ -5,9 +5,6 @@ include("header.php");
 if(empty($action)) $action="forum_list";
 
 function forum_put_buttons($forum_which) { eval(scg());
-
-	$thispage=explode("?",sc_canonical_url());
-	$opage=$thispage[1];
 	if($forum_list!="yes") {
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php\">List Forums</a>]";
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";
@@ -15,9 +12,9 @@ function forum_put_buttons($forum_which) { eval(scg());
     }
 	if(sc_access_check("forums","admin")) {
         if($_SESSION['forum_admin']=="yes")
-        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_off&$opage\">Forum Admin Off</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_off&forum_which=$forum_which\">Forum Admin Off</a>]";
         else
-        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_on&$opage\">Forum Admin On</a>]";
+        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_on&forum_which=$forum_which\">Forum Admin On</a>]";
     }
 	echo "<hr>";
 }
