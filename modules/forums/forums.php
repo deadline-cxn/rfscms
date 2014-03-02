@@ -442,7 +442,7 @@ function forums_action_forum_list() { eval(scg());
 				
 				echo "<div class=\"forum_box\" >";
 
-				echo "<table>";
+				echo "<table border=0 cellpadding=0 cellspacing=0>";
 				
 				echo "<tr>
 				<td class=forum_table_head>$dfold->name</td>
