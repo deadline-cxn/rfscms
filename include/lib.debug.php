@@ -5,11 +5,20 @@
 sc_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_REQUEST['debug'])) {
-if($_REQUEST['debug']=="on") sc_debug_on();
-if($_REQUEST['debug']=="off") sc_debug_off();
+	if($_REQUEST['debug']=="on") sc_debug_on();
+	if($_REQUEST['debug']=="off") sc_debug_off();
 }
 function sc_debug_on()  { $_SESSION['debug_msgs']=true;  }
 function sc_debug_off() { $_SESSION['debug_msgs']=false; }
+if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); }
+if($_REQUEST['debug_view_error_log']==1) {
+	echo "<pre style='background-color: #000000; color: #00FF00;'> ERROR LOG: ";
+	$cmd="cat $RFS_SITE_ERROR_LOG";
+	echo " $cmd ";
+	system( $cmd );    
+	echo "</pre>";
+	
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 function d_echo($t){
     if(isset($_SESSION['debug_msgs']))
@@ -36,7 +45,10 @@ function sc_tail_error_log() { global $RFS_SITE_ERROR_LOG;
 	echo " $cmd ";
 	system( $cmd );    
     echo "</pre>";
-    echo "<p><a href=./?clear_error_log=true>CLEAR ERROR LOG</a></p>";
+	echo "<p>";
+	echo "[<a href=./?debug_view_error_log=1>VIEW FULL ERROR LOG</a>]";
+    echo "[<a href=./?clear_error_log=true>CLEAR ERROR LOG</a>]";
+	echo "</p>";
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -49,9 +61,9 @@ function sc_debugheader($quiet) { eval(scg());
 	$dout.= "LOGGED IN: ".$_SESSION["logged_in"].$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "THEME: $RFS_SITE_PATH/themes/$theme".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "USER ID: ".$data->id.$GLOBALS['RFS_SITE_DELIMITER'];
+	$dout.= "DATABASE UPGRADE: ".$GLOBALS['RFS_SITE_DATABASE_UPGRADE'];
 	//$dout.="</pre></p>";
 	if(!$quiet) d_echo($dout);	
-	if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); } // $fp=fopen("error.log","wt"); fwrite($fp,"error.log\n\r"); fclose($fp); }
 	if($_SESSION['debug_msgs']=="true") { 	sc_tail_error_log(); }
 	return $dout;
 }

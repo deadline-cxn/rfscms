@@ -1,13 +1,20 @@
 <?
 
-// TODO: Add database build tracking 
-// sc_database_add("rfs_system","var","text","NOT NULL");
+// Interim Database Changes. These changes will be rotated out into the install script
 
-// interim database changes
+if($RFS_SITE_DATABASE_UPGRADE<$RFS_BUILD) {
+	$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
+	install_database_upgrades_update($RFS_SITE_DATABASE_UPGRADE);
+}
+
+// INITIAL UPDATES
+if(empty($RFS_SITE_DATABASE_UPGRADE)) {
+$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
+install_database_upgrades_update($RFS_SITE_DATABASE_UPGRADE);
+
 sc_database_add("users","downloads", "text", "NOT NULL");
 sc_database_add("users","uploads", "text", "NOT NULL");
 sc_database_add("users","donated", "text", "NOT NULL");
-
 sc_query("ALTER TABLE `site_vars` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
 sc_query("ALTER TABLE `site_vars` ADD `desc` TEXT");
 sc_query("ALTER TABLE `site_vars` ADD `type` TEXT");
@@ -56,19 +63,15 @@ sc_database_add("news","rating",	"text",	"NOT NULL");
 sc_database_add("news","sfw",		"text",	"NOT NULL");
 sc_database_add("news","page",		"int",		"NOT NULL");
 sc_database_add("news","wiki",		"text",	"NOT NULL");
+sc_query( "CREATE TABLE IF NOT EXISTS `pmsg` (`id` int(11) NOT NULL AUTO_INCREMENT,`to` text NOT NULL, `from` text NOT NULL, `subject` text NOT NULL, `message` text NOT NULL, `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',`read` text NOT NULL, PRIMARY KEY (`id`) ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=149 ; ");
+}
 
-sc_query( "
-CREATE TABLE IF NOT EXISTS `pmsg` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `to` text NOT NULL,
-  `from` text NOT NULL,
-  `subject` text NOT NULL,
-  `message` text NOT NULL,  
-  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `read` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=149 ;
-");
+function install_database_upgrades_update($x) {
+	$dbu=mfo1("select * from site_vars where name='database_upgrade'");
+	if(empty($dbu->id)) sc_query("insert into site_vars (`name`,`value`) values('database_upgrade','$x');");
+	else sc_query("update site_vars set `value` = '$x' where `name`='database_upgrade'");
+}
+
 
 
 ?>

@@ -2166,7 +2166,7 @@ function adm_action_() { eval(scg());
 	if(sc_yes($RFS_SITE_CHECK_UPDATE)) {
 			system("rm vercheck");
 			system("rm buildcheck");
-			system("wget -O vercheck https://raw.github.com/sethcoder/rfscms/master/include/version.php");
+			system("wget -O vercheck   https://raw.github.com/sethcoder/rfscms/master/include/version.php");
 			system("wget -O buildcheck https://raw.github.com/sethcoder/rfscms/master/build.dat");
 			$rver="remote version unknown"; 
 			$file=fopen("vercheck", "r");  if($file) { $rver=fgets($file,256); fclose($file); }
@@ -2176,10 +2176,13 @@ function adm_action_() { eval(scg());
 			$rverx=explode("\"",$rver);
 			if( ($RFS_VERSION!=$rverx[1]) ||
 				 (intval($RFS_BUILD)!=intval($rbld))) {
-				sc_inform("NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld");
+				sc_inform("
+				<font style='background-color:red; color:white;'>NEW VERSION AVAILABLE: ".$rverx[1]." BUILD $rbld </font>");
 			}
 			else {
-				echo "No new updates";
+				echo "
+				
+				<font style='background-color:green; color:white;'>Up to date, no new updates.</font>";
 			}
 	}
 	
@@ -2367,13 +2370,6 @@ function finishadminpage() {
 	eval( scg() );
 
     
-
-echo "BETA DEV MODE:<hr>";
-
-echo "TODO LIST:<hr>";
-echo "
-Make TODO List admin functions<br>";
-
 echo "FUNCTION LIST:<hr>";
 $arr=get_defined_functions();
 natcasesort($arr['user']);
