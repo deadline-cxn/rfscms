@@ -593,8 +593,7 @@ echo $forum_which;
     if($result) $numposts=mysql_num_rows($result);
     else $numposts=0;
     if($numposts) {
-       $gt=1; $i=0;
-		
+       $gt=1; $i=0; 		
 		
 		echo "<div class=\"forum_box\">";
 		echo "<table border=0 cellpadding=0 cellspacing=0>";
