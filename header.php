@@ -2,25 +2,26 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-if(isset($RFS_LITTLE_HEADER)) {
-	if($RFS_LITTLE_HEADER==true) {
-		include("lilheader.php");
-		return;
-	}
-}
+
+// Switch to little header
+if(isset($RFS_LITTLE_HEADER)) { if($RFS_LITTLE_HEADER==true) { include("lilheader.php"); return; } }
 
 // check for config.php file
 if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
+
 // include all libraries (this will not output any text)
 include_once("include/lib.all.php");
 
 // check for site name definition
 if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
-// housekeeping
+
+// Housekeeping
 sc_maintenance();
+
+// Display debug info 
 sc_debugheader(0);
 
-// divert ajax requests
+// Divert ajax requests
 if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
 	include("include/lib.all.php");
 	eval("$action();");
