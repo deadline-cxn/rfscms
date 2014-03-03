@@ -933,34 +933,76 @@ function adm_action_f_theme_edit() { eval(scg());
 	exit();
 }
 function adm_action_f_theme_view_classes() { eval(scg());
-	$file="$RFS_SITE_PATH/classes.out.txt";
+	$file="$RFS_SITE_PATH/tools/classes.out.txt";
 	echo $file."<BR>";
 	echo "<pre>";
 	include($file);
 	echo "</pre>";
 	adm_action_theme();
 }
-function adm_action_theme() { eval(scg());
 
-	echo "<h1>Theme Editor</h1>";
-	
-
-	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
-	echo "<hr>";
-	
+function adm_action_f_theme_add_css_value_go() { eval(scg());
+	echo "<h1> $css </h1>";
+	echo "<h1> $cssvalue</h1>";
 	$thms=sc_get_themes();
 	while(list($key,$thm)=each($thms)) {
+		echo "<p>$thm</p>";
+		$x=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.css");
+		if(stristr($x,$css)) {
+			echo sc_green()."EXISTS</font>";
+		}
+		else {
+			echo sc_red()."Adding [$css]</font>";
+			file_put_contents("$RFS_SITE_PATH/themes/$thm/t.css", $css."\n".$cssvalue."\n", FILE_APPEND);
+		}
+	}
+}
+function adm_action_f_theme_add_css_value() { eval(scg());
+	sc_bqf(	"SHOW_TEXT_css".$RFS_SITE_DELIMITER.
+			"SHOW_TEXTAREA_cssvalue".$RFS_SITE_DELIMITER.
+			"action=f_theme_add_css_value_go","Add");
+}
+
+function adm_action_f_theme_css_checker() { eval(scg());
+	$file="$RFS_SITE_PATH/tools/classes.out.txt";
+	
+	$cssf=file_get_contents($file);
+	$css=explode("\n",$cssf);
+	
+	foreach($css as $x => $y) {
+		$y=".$y";
+		echo "$y<br>";
+		$css=$y;
+		$cssvalue="{\n}\n";
 		
+		$thms=sc_get_themes();
+		while(list($key,$thm)=each($thms)) {
+			echo "<p>$thm</p>";
+			$x=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.css");
+			if(stristr($x,$css)) {
+				echo sc_green()."EXISTS</font>";
+			}
+			else {
+				echo sc_red()."Adding [$css]</font>";
+				file_put_contents("$RFS_SITE_PATH/themes/$thm/t.css", $css."\n".$cssvalue."\n", FILE_APPEND);
+			}
+		}		
+	}
+	adm_action_theme();
+}
+
+function adm_action_theme() { eval(scg());
+	echo "<h1>Theme Editor</h1>";	
+	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
+	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_add_css_value","Write CSS value to all themes");
+	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_css_checker","Check themes for missing CSS");
+	echo "<hr>";	
+	$thms=sc_get_themes();
+	while(list($key,$thm)=each($thms)) {
 		echo " <div  style=\"float: left; height: 150px; margin: 20px; padding: 10px;\">";
-	
-	
 		echo ucwords("<h3> $thm </h3>");
 		$sample="themes/$thm/t.sample.png";
-		if(file_exists("$RFS_SITE_PATH/$sample")) {
-			
-			echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
-		}
-	
+		if(file_exists("$RFS_SITE_PATH/$sample")) echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
 		echo "<br><hr>";
 		echo "<div>";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";
@@ -968,11 +1010,8 @@ function adm_action_theme() { eval(scg());
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_delete&thm=$thm\">delete</a>] ";
 		echo "</div>";
 		echo "</div>";
-		
 	}
-	
 	echo "<div style=\"clear: both;\" ></div>";
-	
 	include( "footer.php" );
 	exit();
 }

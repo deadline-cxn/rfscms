@@ -26,14 +26,14 @@ $message=str_replace("<textarea","(form tags are unauthorized)<no ",$message);
 $message=str_replace("<select","(form tags are unauthorized)<no ",$message);
 
 function bumpthread($id) { $bumptime=date("Y-m-d H:i:s"); sc_query("update forum_posts set `bumptime`='$bumptime' where id='$id'"); }
-
-function forum_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; forums_action_forum_showposts(); }
-function forum_action_forum_admin_off() { $_SESSION['forum_admin']="no";  forums_action_forum_showposts(); }
+function forums_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; forums_action_forum_showposts(); }
+function forums_action_forum_admin_off() { $_SESSION['forum_admin']="no";  forums_action_forum_showposts(); }
 
 if(sc_yes($_SESSION['forum_admin'])) {
-    if(sc_access_check("admin","forums")) 
+    if(sc_access_check("admin","forums")) {
 		echo "<p> ".smiles(":X")." You do not have access to the Forum Administration Panel (FAP)!</p>";
-	$_SESSION['forum_admin']=="no";
+		$_SESSION['forum_admin']=="no";
+	}
 }
 
 $folder=mysql_fetch_object(sc_query("select * from `forum_list` where `id`='$forum_which';"));
@@ -234,13 +234,14 @@ function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 	include("footer.php");
 }
 
-if($action=="move_thread") {
+function forums_action_move_thread() { eval(scg());
     $tofor=sc_query("select * from forum_list where name='$move'");
     $toforum=mysql_fetch_object($tofor);
     sc_query("update forum_posts set forum='$toforum->id' where id='$id'");
     sc_query("update forum_posts set forum='$toforum->id' where thread='$id'");
-    echo "<p>Move thread $id to $move ($toforum->id)</p>";
-    $action="get_thread";
+	$thread=mfo1("select * from forum_posts where id='$id'");
+    echo "<p style='color:white; background-color:green;'>Moved thread $id ($thread->title) to forum $toforum->id ($move)</p>";
+    forums_action_get_thread($id,$toforum->id);//ction="get_thread";
 }
 
 if($action=="delete_post_s") {
@@ -578,8 +579,6 @@ function forums_action_forum_list() { eval(scg());
 
 function forums_action_forum_showposts() { eval(scg());
 
-echo $forum_which;
-
     $res=sc_query("select * from `forum_list` where `id`='$forum_which'");
     $fold=mysql_fetch_object($res);
     $res=sc_query("select * from `forum_list` where `id`='$fold->parent'");
@@ -597,7 +596,13 @@ echo $forum_which;
 		
 		echo "<div class=\"forum_box\">";
 		echo "<table border=0 cellpadding=0 cellspacing=0>";
-		echo "<tr><td>Topics</td><td>Replies</td><td>Views</td><td>Latest Post</td><td></td></tr>";
+		echo "<tr>";
+		echo "<td class=\"forum_table_head\">Topics</td>";
+		echo "<td class=\"forum_table_head\">Replies</td>";
+		echo "<td class=\"forum_table_head\">Views</td>";
+		echo "<td class=\"forum_table_head\">Latest Post</td>";
+		echo "<td class=\"forum_table_head\"> </td>";
+		echo "</tr>";
         
         for($i=0;$i<$numposts;$i++) {
             $new=0;
