@@ -47,7 +47,7 @@ function sc_database_data_add($table,$field,$value,$id) {
 function adm_action_f_rfs_db_element_ed1() { eval(scg());
 
 	echo "<p> </p>";
-	sc_button("$rtnpage?action=$rtnact","Go back");
+	lib_button("$rtnpage?action=$rtnact","Go back");
 	echo "<h2>Edit $label</h2>";
 	
 	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
@@ -98,8 +98,8 @@ function adm_action_f_rfs_db_element_del2($rtnpage,$rtnact,$table,$id) { eval(sc
 
 function rfs_db_element_edit($label,$rtnpage,$rtnact,$table, $id) { eval(scg());
 
-sc_button("$rtnpage?action=f_rfs_db_element_ed1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Edit");
-sc_button("$rtnpage?action=f_rfs_db_element_del1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Delete");
+lib_button("$rtnpage?action=f_rfs_db_element_ed1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Edit");
+lib_button("$rtnpage?action=f_rfs_db_element_del1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Delete");
 	echo "$label ";
 }
 
@@ -779,8 +779,8 @@ function sc_db_dumptable($table,$showform,$key,$search){ eval(scg());
             }
 
             
-            sc_button("$page?action=".$showform_action."edit_$table&$key=$key_val","Edit");
-            sc_button("$page?action=".$showform_action."del_$table&$key=$key_val","Delete");
+            lib_button("$page?action=".$showform_action."edit_$table&$key=$key_val","Edit");
+            lib_button("$page?action=".$showform_action."del_$table&$key=$key_val","Delete");
             
 
             echo"</td>";
@@ -1908,7 +1908,7 @@ function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eva
 				$buttout.="&$vn=$vv";
 			}
 			echo " \n <!-- *******************************	NEW SECTION ********************************************************* --> \n";
-			sc_button($buttout,"Delete");
+			lib_button($buttout,"Delete");
 
 		echo "$cssx2[0] { <br>";
 		

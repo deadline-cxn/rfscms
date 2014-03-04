@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFS CMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-sc_div(__FILE__);
+lib_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
 $RFS_MENU_OPTION = array();
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -21,10 +21,10 @@ function sc_show_menu_options() {
 		echo "<tr>";
 		if(sc_access_check("admin","access")) {
 			echo "<td>";
-			sc_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&lname=$k&lurl=$v","Add to Top Menu");
+			lib_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&lname=$k&lurl=$v","Add to Top Menu");
 			echo "</td>";
 			echo "<td>";
-			sc_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_admin_add_link&lname=$k&lurl=$v","Add to Admin Menu");
+			lib_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_admin_add_link&lname=$k&lurl=$v","Add to Admin Menu");
 			echo "</td>";
 		}
 		
@@ -81,7 +81,7 @@ function sc_menu_draw($menu_location) {   eval(scg());
                 }
 
                 if(sc_yes($RFS_THEME_NAV_BUTTONS)) {
-                    sc_button(rfs_get($link->link),$link->name);
+                    lib_button(rfs_get($link->link),$link->name);
                 }
                 else {
                     echo "<a class=sc_top_menu_link href=\"";

@@ -97,7 +97,7 @@ function sc_module_mini_messages_indicator_small() { eval(scg());
 }
 
 function sc_module_mini_latest_messages($x) { eval(scg());
-    sc_div("MESSAGES MODULE SECTION");
+    lib_div("MESSAGES MODULE SECTION");
     echo "<h2>Private Messages</h2>";
 
     echo "<table border=0 cellspacing=0>";

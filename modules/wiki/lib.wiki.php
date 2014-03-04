@@ -12,7 +12,7 @@ sc_access_method_add("wiki", "deleteothers");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI
 function sc_module_mini_wiki($x) { eval(scg());
-    sc_div("WIKI MODULE SECTION");
+    lib_div("WIKI MODULE SECTION");
     echo "<h2>Last $x Wiki Page Updates</h2>";
     echo "<table width=100% border=0><tr>";
     echo "<td valign=top class=contenttd>";

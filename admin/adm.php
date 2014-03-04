@@ -295,13 +295,13 @@ function adm_action_access_groups() { eval(scg());
 	echo "<h1>Modify Access Groups</h1>";
 	echo "<hr>";
 	echo "<h2>Create a new access group</h2>";
-	sc_div("ADD ACCESS GROUP FORM START");
+	lib_div("ADD ACCESS GROUP FORM START");
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_add\">\n";
 	echo "<input name=\"axnm\">\n";
 	echo "<input type=\"submit\" value=\"Add\">\n";
 	echo "</form>\n";
-	sc_div("ADD ACCESS GROUP FORM END");
+	lib_div("ADD ACCESS GROUP FORM END");
 	
 	$r=sc_query("select distinct name from access");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
@@ -690,7 +690,7 @@ function adm_action_f_ajx_theme_edit_save_t_php() { eval(scg());
 }
 function adm_action_f_theme_edit_t_php() { eval(scg()); 
 	echo "<h3> Editing theme [$thm] </h3>";	
-	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
+	lib_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
 
 	echo '<div id="file_status"></div>
 		<script>
@@ -760,7 +760,7 @@ function adm_action_f_theme_edit_t_css() { eval(scg());
 
 
 	echo "<h3> Editing theme [$thm] </h3>";	
-	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
+	lib_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
 
 	echo '	<div id="file_status"></div> <script>
 											
@@ -843,7 +843,7 @@ function adm_action_f_theme_clone() { eval(scg());
 }
 function adm_action_f_theme_edit() { eval(scg());
 	echo "<h1>Editing theme [$thm]</h1>";
-	sc_button("$RFS_SITE_URL/admin/adm.php?action=theme","Themes list");
+	lib_button("$RFS_SITE_URL/admin/adm.php?action=theme","Themes list");
 	echo "<hr>";	
 	$folder="$RFS_SITE_PATH/themes/$thm";
 	echo "Elements of $folder <br>";
@@ -977,9 +977,9 @@ function adm_action_f_theme_css_checker() { eval(scg());
 
 function adm_action_theme() { eval(scg());
 	echo "<h1>Theme Editor</h1>";	
-	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
-	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_add_css_value","Write CSS value to all themes");
-	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_css_checker","Check themes for missing CSS");
+	lib_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
+	lib_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_add_css_value","Write CSS value to all themes");
+	lib_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_css_checker","Check themes for missing CSS");
 	echo "<hr>";	
 	$thms=sc_get_themes();
 	while(list($key,$thm)=each($thms)) {
@@ -2217,20 +2217,20 @@ function adm_action_() { eval(scg());
 
 	echo "<table border=0><tr><td>";
 
-	sc_button( "$RFS_SITE_URL/admin/adm.php?debug=on","Debug on <font style='color: green; background-color: dark-green;'> ON </font>" );
-	sc_button( "$RFS_SITE_URL/admin/adm.php?debug=off","Debug <font style='color:red; background-color: dark-green;'> OFF </font>" );
+	lib_button( "$RFS_SITE_URL/admin/adm.php?debug=on","Debug on <font style='color: green; background-color: dark-green;'> ON </font>" );
+	lib_button( "$RFS_SITE_URL/admin/adm.php?debug=off","Debug <font style='color:red; background-color: dark-green;'> OFF </font>" );
 	echo "</td><td>";
 
-	sc_button( "$RFS_SITE_URL/admin/adm.php?admed=on&what=1","Adm Edit <font style='color: green; background-color: dark-green;'> ON </font>" );
-	sc_button( "$RFS_SITE_URL/admin/adm.php?admed=off&what=1","Adm Edit <font style='color:red; background-color: dark-green;'> OFF </font>" );
+	lib_button( "$RFS_SITE_URL/admin/adm.php?admed=on&what=1","Adm Edit <font style='color: green; background-color: dark-green;'> ON </font>" );
+	lib_button( "$RFS_SITE_URL/admin/adm.php?admed=off&what=1","Adm Edit <font style='color:red; background-color: dark-green;'> OFF </font>" );
 	echo "</td><td>";
 
-	sc_button( "$RFS_SITE_URL/admin/adm.php?textbuttons=true","Text Buttons <font style='color: green; background-color: dark-green;'> ON </font>" );
-	sc_button( "$RFS_SITE_URL/admin/adm.php?textbuttons=false","Text Buttons <font style='color:red; background-color: dark-green;'> OFF </font>" );
+	lib_button( "$RFS_SITE_URL/admin/adm.php?textbuttons=true","Text Buttons <font style='color: green; background-color: dark-green;'> ON </font>" );
+	lib_button( "$RFS_SITE_URL/admin/adm.php?textbuttons=false","Text Buttons <font style='color:red; background-color: dark-green;'> OFF </font>" );
 	echo "</td><td>";
 
-	sc_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=hide","Hide banner" );
-	sc_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=show","Show banner" );
+	lib_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=hide","Hide banner" );
+	lib_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=show","Show banner" );
 
 	echo "</td></tr></table>";
 
@@ -2320,9 +2320,9 @@ function adm_menu_built_in() { eval(scg());
 
                 if( $_SESSION['admed']=="on" ) {
 
-                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_entry&id=$icon->id","Edit" );
-                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_del&id=$icon->id","Delete" );
-                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_change_icon&id=$icon->id","Change Icon" );
+                        lib_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_entry&id=$icon->id","Edit" );
+                        lib_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_del&id=$icon->id","Delete" );
+                        lib_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_change_icon&id=$icon->id","Change Icon" );
                         sc_optionizer( "$RFS_SITE_URL/admin/adm.php",
                                        "action=f_admin_change_category".$RFS_SITE_DELIMITER.
                                        "id=$icon->id",
@@ -2394,10 +2394,7 @@ function finishadminpage() {
 
     
 echo "FUNCTION LIST:<hr>";
-
-echo "<pre>";
-include("$RFS_SITE_PATH/tools/funx.out.txt");
-echo "</pre>";
+// echo "<pre>"; include("$RFS_SITE_PATH/tools/funx.out.txt"); echo "</pre>";
 
 $arr=get_defined_functions();
 natcasesort($arr['user']);

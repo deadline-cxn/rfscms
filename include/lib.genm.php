@@ -8,7 +8,7 @@ include_once("lib.debug.php");
 include_once("lib.sitevars.php");
 /////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_SESSION['debug_msgs']))
-if($_SESSION['debug_msgs']) { genmlog(sc_debugfooter('1')); }
+if($_SESSION['debug_msgs']) { genmlog(lib_debug_footer('1')); }
 /////////////////////////////////////////////////////////////////////////////////////////
 function genmlog($x){ eval(scg());
 	if($_SESSION['debug_msgs']){

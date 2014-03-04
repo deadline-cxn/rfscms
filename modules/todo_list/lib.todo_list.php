@@ -37,7 +37,7 @@ sc_access_method_add("todo_list", "add");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE TODO LIST
 function sc_module_todo_list($x) { eval(scg());
-    sc_div("TODO MODULE SECTION");
+    lib_div("TODO MODULE SECTION");
     echo "<h2>TODO</h2>";
     $result=sc_query("select * from todo_list limit 0,$x");
     $num=mysql_num_rows($result);

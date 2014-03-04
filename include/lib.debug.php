@@ -2,14 +2,14 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-sc_div(__FILE__);
+lib_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_REQUEST['debug'])) {
-	if($_REQUEST['debug']=="on") sc_debug_on();
-	if($_REQUEST['debug']=="off") sc_debug_off();
+	if($_REQUEST['debug']=="on") lib_debug_on();
+	if($_REQUEST['debug']=="off") lib_debug_off();
 }
-function sc_debug_on()  { $_SESSION['debug_msgs']=true;  }
-function sc_debug_off() { $_SESSION['debug_msgs']=false; }
+function lib_debug_on()  { $_SESSION['debug_msgs']=true;  }
+function lib_debug_off() { $_SESSION['debug_msgs']=false; }
 if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); }
 if($_REQUEST['debug_view_error_log']==1) {
 	echo "<pre style='background-color: #000000; color: #00FF00;'> ERROR LOG: ";
@@ -33,7 +33,7 @@ function d_echo($t){
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_tail_error_log() { global $RFS_SITE_ERROR_LOG;	
+function lib_debug_tail_error_log() { global $RFS_SITE_ERROR_LOG;	
 	if(empty($RFS_SITE_ERROR_LOG)) {
         $RFS_SITE_ERROR_LOG="/var/log/apache2/error.log";
         if(@file_exists("error_log")) { $RFS_SITE_ERROR_LOG="error_log"; }		
@@ -52,8 +52,8 @@ function sc_tail_error_log() { global $RFS_SITE_ERROR_LOG;
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_debugheader($quiet) { eval(scg()); 
-	sc_div("sc_debugheader start");
+function lib_debug_header($quiet) { eval(scg()); 
+	lib_div("lib_debug_debugheader start");
 	//$dout ="<p align=left><pre>";
 	$dout ="\$data->theme=$data->theme".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "\$RFS_SITE_SESSION_ID: ".$RFS_SITE_SESSION_ID.$GLOBALS['RFS_SITE_DELIMITER'];
@@ -64,11 +64,11 @@ function sc_debugheader($quiet) { eval(scg());
 	$dout.= "DATABASE UPGRADE: ".$GLOBALS['RFS_SITE_DATABASE_UPGRADE'];
 	//$dout.="</pre></p>";
 	if(!$quiet) d_echo($dout);	
-	if($_SESSION['debug_msgs']=="true") { 	sc_tail_error_log(); }
+	if($_SESSION['debug_msgs']=="true") { 	lib_debug_tail_error_log(); }
 	return $dout;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_debugfooter($quiet) { eval(scg());
+function lib_debug_footer($quiet) { eval(scg());
 	//$dout ="<p align=left><pre>";
 	$dout="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="_REQUEST VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
@@ -101,10 +101,7 @@ function sc_debugfooter($quiet) { eval(scg());
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="RFS_SITE VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
 	$res=sc_query("select * from `site_vars`");
-	for($i=0;$i<mysql_num_rows($res);$i++){
-		$sv=mysql_fetch_object($res);
-		$dout.="\$RFS_SITE_". ($sv->name)."='$sv->value'<br>".$GLOBALS['RFS_SITE_DELIMITER'];
-	}
+	while($sv=mysql_fetch_object($res))$dout.="\$RFS_SITE_". ($sv->name)."='$sv->value'<br>".$GLOBALS['RFS_SITE_DELIMITER'];	
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="[footer.php \$theme=$theme]";
 	//$dout.="</pre></p>";

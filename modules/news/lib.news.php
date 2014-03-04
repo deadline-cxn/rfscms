@@ -16,7 +16,7 @@ sc_access_method_add("news", "deleteothers");
 function news_buttons() { eval(scg());
 		if(sc_access_check("news","submit")) {
 				
-			sc_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
+			lib_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
 		}
 	
 }
@@ -28,7 +28,7 @@ function adm_action_lib_news_news_edit() { eval(scg());
     sc_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
 }
 function sc_module_news_list($x) { eval(scg());
-    sc_div("NEWS MODULE SECTION");
+    lib_div("NEWS MODULE SECTION");
     echo "<h2>Last $x News Articles</h2>";
     $newslist=sc_getnewslist($newssearch);
     echo "<table border=0 cellspacing=0>";
@@ -59,7 +59,7 @@ function sc_module_news_list($x) { eval(scg());
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/news/news.php class=\"a_cat\" align=right>More...</a>)</p>";
 }
 function sc_module_news_list_popular($x) { eval(scg());
-    sc_div("NEWS MODULE SECTION");
+    lib_div("NEWS MODULE SECTION");
     echo "<h2>Popular News Articles</h2>";
     //search method dictate sort order?
     $result=sc_query("select * from news where topstory!='yes' and published='yes' order by views desc limit $x");

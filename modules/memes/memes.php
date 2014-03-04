@@ -327,10 +327,10 @@ function memes_action_showmemes(){ eval(scg());
 
 	if( $mtop > 0 ) {
 		$tmtop=$mtop-$mbot;
-		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow","PREVIOUS PAGE");
+		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow","PREVIOUS PAGE");
 	} 
 	if(!empty($onlyshow)) {
-		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=","Show All Captions");
+		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=","Show All Captions");
 	}
 	$ql=" limit ".($mtop+$mbot+$toget)." ;";
 	$rrr=sc_query($q.$ql);
@@ -339,7 +339,7 @@ function memes_action_showmemes(){ eval(scg());
 	//echo "<hr> mtop+mbot+toget [".($mtop+$mbot+$toget)."] mbot+mtop [".($mbot+$mtop)."] nnn[".$nnn."] <BR>";
 	if( ($mbot+$mtop) < $nnn) {
 		$mtop+=$mbot;
-		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
+		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
 	}
 	
 	echo "<hr>";

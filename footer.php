@@ -6,7 +6,7 @@
 // $data=$GLOBALS['data']; if(empty($theme)) $theme=$data->theme; if(empty($theme)) $theme=$GLOBALS['theme'];
 // output some debug information
 
-sc_debugfooter(0);
+lib_debug_footer(0);
 // include custom theme footer instead of this one
 if(file_exists("$RFS_SITE_PATH/themes/$theme/t.footer.php")){
 	include("$RFS_SITE_PATH/themes/$theme/t.footer.php");

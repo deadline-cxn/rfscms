@@ -10,7 +10,7 @@ sc_access_method_add("comics", "editothers");
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE COMICS
 function sc_module_mini_comics($x) { eval(scg());
-    sc_div("COMIC MODULE SECTION");
+    lib_div("COMIC MODULE SECTION");
     echo "<h2>Last $x Comics</h2>";
     $res=sc_query("select * from comics where `published`='yes' order by time desc limit 1");
     $numc=mysql_num_rows($res);

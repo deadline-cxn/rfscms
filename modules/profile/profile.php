@@ -96,15 +96,15 @@ $data=sc_getuserdata($data->name);
 function pro_nav_bar($data) {    eval(scg());
     
 if(sc_access_check("news","edit")) 
-	sc_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
+	lib_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
 if(sc_access_check("news","submit")) 
-	sc_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
+	lib_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
 if(sc_access_check("files","upload"))
-	sc_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
+	lib_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
 if(sc_access_check("admin","access"))
-	sc_button("$RFS_SITE_URL/admin/adm.php","Admin");
+	lib_button("$RFS_SITE_URL/admin/adm.php","Admin");
 
-sc_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
+lib_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
 
     
 }

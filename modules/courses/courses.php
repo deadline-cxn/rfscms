@@ -11,7 +11,7 @@ function courses_action_() { eval(scg());
 function courses_action_edit_list() { eval(scg());
 	if(sc_access_check("course","edit")) {	
 		echo "<h2>EDIT COURSES</h2>";
-		sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types","Edit Component Types");		
+		lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types","Edit Component Types");		
 		$r=sc_query("select * from courses");
 		for($i=0;$i<mysql_num_rows($r);$i++){
 			$course=mysql_fetch_object($r);
@@ -64,8 +64,8 @@ function courses_action_edit_components() { eval(scg());
 	if(sc_access_check("course","edit")) {
 	$course=mfo1("select * from courses where id='$id'");
 	echo "<h2>EDIT COURSE: $course->id $course->name </h2>";	
-	sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
-	sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types&id=$course->id","Edit Component Types");
+	lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
+	lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types&id=$course->id","Edit Component Types");
 	echo "<hr>";	
 		sc_ajax("Type,10","course_component","id","$course->id","type",420, 
 					"select,table,course_component_type,name","course","edit","");
@@ -108,7 +108,7 @@ function courses_action_edit() { eval(scg());
 		
 		$course=mfo1("select * from courses where id='$id'");
 		echo "<h2>EDIT COURSE: $course->id $course->name </h2>";
-		// if(sc_access_check("course","edit"))			sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_components&id=$course->id","Edit Components");
+		// if(sc_access_check("course","edit"))			lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_components&id=$course->id","Edit Components");
 		echo "<hr>";
 		
 		sc_ajax("Name,80","courses","id","$course->id","name",60,"","course","edit","");	
