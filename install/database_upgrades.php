@@ -82,6 +82,9 @@ if($RFS_SITE_DATABASE_UPGRADE<890) {
 	sc_database_add("menu_top","access_method","text","not null");
 	sc_database_add("menu_top","other_requirement","text","not null");
 }
+if($RFS_SITE_DATABASE_UPGRADE<891) {
+		sc_database_add("site_vars","desc","text","not null");
+}
 
 
 
