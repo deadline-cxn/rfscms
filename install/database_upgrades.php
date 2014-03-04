@@ -2,6 +2,10 @@
 // Interim Database Changes. These changes will be rotated out into the install script
 // INITIAL UPDATES
 
+$a=intval($RFS_SITE_DATABASE_UPGRADE);
+$b=intval($RFS_BUILD);
+//echo "[$a][$b]<br>";
+
 if(empty($RFS_SITE_DATABASE_UPGRADE)) {
 sc_database_add("rfsauth","name","text","NOT NULL");
 sc_database_add("rfsauth","enabled","text","NOT NULL");
@@ -75,26 +79,25 @@ sc_database_add("news","wiki",		"text",	"NOT NULL");
 sc_query( "CREATE TABLE IF NOT EXISTS `pmsg` (`id` int(11) NOT NULL AUTO_INCREMENT,`to` text NOT NULL, `from` text NOT NULL, `subject` text NOT NULL, `message` text NOT NULL, `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',`read` text NOT NULL, PRIMARY KEY (`id`) ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=149 ; ");
 }
 
-if($RFS_SITE_DATABASE_UPGRADE<889) {
+if($a<889) {
 	sc_database_add("site_vars","type","text","not null");
 	sc_database_add("menu_top","access_method","text","not null");
 }
-if($RFS_SITE_DATABASE_UPGRADE<890) {
+if($a<890) {
 	sc_database_add("menu_top","access_method","text","not null");
 	sc_database_add("menu_top","other_requirement","text","not null");
 }
-if($RFS_SITE_DATABASE_UPGRADE<891) {
+if($a<891) {
 		sc_database_add("site_vars","desc","text","not null");
 }
 
-if(intval($RFS_SITE_DATABASE) < intval($RFS_BUILD)) {
+if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=mfo1("select * from site_vars where name='database_upgrade'");
 	if(empty($dbu->id)) sc_query("insert into site_vars (`name`,`value`) values('database_upgrade','$RFS_SITE_DATABASE_UPGRADE');");
 	else sc_query("update site_vars set `value` = '$RFS_SITE_DATABASE_UPGRADE' where `name`='database_upgrade'");
 	echo "Added interim database changes $RFS_SITE_DATABASE_UPGRADE<br>";
 }
-
 
 
 ?>
