@@ -87,7 +87,7 @@ if($RFS_SITE_DATABASE_UPGRADE<891) {
 		sc_database_add("site_vars","desc","text","not null");
 }
 
-if($RFS_SITE_DATABASE!=$RFS_BUILD) {
+if($RFS_SITE_DATABASE<$RFS_BUILD) {
 	$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
 	$dbu=mfo1("select * from site_vars where name='database_upgrade'");
 	if(empty($dbu->id)) sc_query("insert into site_vars (`name`,`value`) values('database_upgrade','$RFS_SITE_DATABASE_UPGRADE');");
