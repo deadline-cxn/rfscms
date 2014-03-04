@@ -36,25 +36,6 @@ function adm_action_update() { eval(scg());
 // ADM_AUTH FUNCTIONS
 function adm_action_auth_config() { eval(scg());
 
-	sc_database_add("rfsauth","name","text","NOT NULL");
-	sc_database_add("rfsauth","enabled","text","NOT NULL");
-	sc_database_add("rfsauth","value","text","NOT NULL");
-	sc_database_add("rfsauth","value2","text","NOT NULL");
-	
-	$id =	sc_database_data_add("rfsauth","name","EBSR",0);
-			sc_database_data_add("rfsauth","enabled","true",$id);
-			sc_database_data_add("rfsauth","value","",$id);
-			
-	$id =	sc_database_data_add("rfsauth","name","FACEBOOK",0);
-			sc_database_data_add("rfsauth","enabled","false",$id);
-			sc_database_data_add("rfsauth","value","",$id);
-			sc_database_data_add("rfsauth","value2","",$id);
-			
-	$id =	sc_database_data_add("rfsauth","name","OPENID",0);
-			sc_database_data_add("rfsauth","enabled","false",$id);
-			sc_database_data_add("rfsauth","value","",$id);
-	
-
 	echo "<h1>Authentication Configuration</h1>";
 	echo "<hr>";
 	
@@ -443,9 +424,7 @@ function adm_action_f_rm_db_query() { eval(scg());
 	finishadminpage();
 }
 function adm_action_db_query() { eval(scg());
-
 	$r=sc_query("select * from db_queries");
-	
 	for($x=0;$x<mysql_num_rows($r);$x++) {
 		$q=mysql_fetch_object($r);
 		$q->query=rtrim($q->query,"\r");
@@ -456,7 +435,6 @@ function adm_action_db_query() { eval(scg());
 		$q->query=rtrim($q->query,"\n");
 		sc_query("update db_queries set query= '$q->query' where `id`='$q->id'");
 	}
-
    echo "<h3>Select a previously entered query</h3>";
    echo "<iframe id=\"QU\" width=600 height=400 class='iframez' frameborder=0
 			src=\"$RFS_SITE_URL/admin/adm.php?action=sc_ajax_callback_query_list\"
@@ -474,9 +452,15 @@ function adm_action_db_query() { eval(scg());
 		sc_db_query( $query, "true" );
 		echo "</td></tr></table>";
 	}
-	
     finishadminpage();
 }
+function adm_action_database_backup() { eval(scg());
+	$sn=str_replace("http://","",$RFS_SITE_URL);
+	$sn=str_replace("/","",$sn);	
+	echo (lib_mysql_backup_database($RFS_SITE_PATH."/files/.backups/$sn"));
+	finishadminpage();
+}
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_EVAL FUNCTIONS
 function eval_callback( $txt ) {
@@ -2250,13 +2234,13 @@ function adm_action_() { eval(scg());
 
 	echo "</td></tr></table>";
 
-    admin_menu_built_in();
+    adm_menu_built_in();
 
 	echo "</div>";
 	
 	finishadminpage();
 }
-function admin_menu_built_in() { eval(scg());
+function adm_menu_built_in() { eval(scg());
     
         $arr=get_defined_functions();
         foreach( $arr['user'] as $k=>$v ) {
@@ -2410,9 +2394,18 @@ function finishadminpage() {
 
     
 echo "FUNCTION LIST:<hr>";
+
+echo "<pre>";
+include("$RFS_SITE_PATH/tools/funx.out.txt");
+echo "</pre>";
+
 $arr=get_defined_functions();
 natcasesort($arr['user']);
-foreach( $arr['user'] as $k=>$v ) { echo "$v <br>"; }
+foreach( $arr['user'] as $k=>$v ) {
+	
+	echo "$v <br>";
+	
+}
 echo "";
 
 

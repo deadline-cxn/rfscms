@@ -12,6 +12,24 @@ if(empty($RFS_SITE_DATABASE_UPGRADE)) {
 $RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
 install_database_upgrades_update($RFS_SITE_DATABASE_UPGRADE);
 
+sc_database_add("rfsauth","name","text","NOT NULL");
+sc_database_add("rfsauth","enabled","text","NOT NULL");
+sc_database_add("rfsauth","value","text","NOT NULL");
+sc_database_add("rfsauth","value2","text","NOT NULL");
+
+$id =	sc_database_data_add("rfsauth","name","EBSR",0);
+		sc_database_data_add("rfsauth","enabled","true",$id);
+		sc_database_data_add("rfsauth","value","",$id);
+		
+$id =	sc_database_data_add("rfsauth","name","FACEBOOK",0);
+		sc_database_data_add("rfsauth","enabled","false",$id);
+		sc_database_data_add("rfsauth","value","",$id);
+		sc_database_data_add("rfsauth","value2","",$id);
+		
+$id =	sc_database_data_add("rfsauth","name","OPENID",0);
+		sc_database_data_add("rfsauth","enabled","false",$id);
+		sc_database_data_add("rfsauth","value","",$id);
+		
 sc_database_add("users","downloads", "text", "NOT NULL");
 sc_database_add("users","uploads", "text", "NOT NULL");
 sc_database_add("users","donated", "text", "NOT NULL");

@@ -1,0 +1,613 @@
+../admin/adm.php:24:function adm_action_update() { eval(scg());
+../admin/adm.php:37:function adm_action_auth_config() { eval(scg());
+../admin/adm.php:63:function sc_admin_module( $loc ) { eval( scg() );
+../admin/adm.php:123:function adm_action_f_arrange_move_up() { eval(scg());
+../admin/adm.php:154:function adm_action_f_arrange_delete_go() { eval(scg());
+../admin/adm.php:158:function adm_action_f_arrange_delete() { eval(scg());
+../admin/adm.php:166:function adm_action_f_module_add() { eval( scg() );
+../admin/adm.php:176:function adm_action_f_module_chg_num() { 	eval( scg() );
+../admin/adm.php:180:function adm_action_arrange() { eval( scg() );
+../admin/adm.php:207:function adm_action_f_access_group_add() { eval(scg());
+../admin/adm.php:212:function adm_action_f_access_group_edit_go() { eval(scg());
+../admin/adm.php:224:function adm_action_f_access_group_edit() { eval(scg()); 
+../admin/adm.php:262:function adm_action_f_access_group_add_user() { eval(scg());
+../admin/adm.php:268:function adm_action_f_access_group_del_user() { eval(scg());
+../admin/adm.php:282:function adm_action_f_access_group_delete() { eval(scg());
+../admin/adm.php:289:function adm_action_f_access_group_delete_go() { eval(scg());
+../admin/adm.php:294:function adm_action_access_groups() { eval(scg());
+../admin/adm.php:353:function adm_action_phpmyadmin_out() { eval(scg()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
+../admin/adm.php:357:function adm_action_form_builder() { eval(scg());
+../admin/adm.php:366:function adm_action_new_page() { eval(scg());
+../admin/adm.php:372:function adm_action_new_page_go() { eval(scg());
+../admin/adm.php:381:function adm_action_email() { eval(scg());
+../admin/adm.php:391:function adm_action_email_go() { eval(scg());
+../admin/adm.php:400:function adm_db_query( $x ) { eval( scg() );
+../admin/adm.php:405:function adm_action_f_rm_db_query() { eval(scg());
+../admin/adm.php:426:function adm_action_db_query() { eval(scg());
+../admin/adm.php:457:function adm_action_database_backup() { eval(scg());
+../admin/adm.php:466:function eval_callback( $txt ) {
+../admin/adm.php:477:function adm_action_eval_form_go() {
+../admin/adm.php:485:function adm_action_eval_form() {
+../admin/adm.php:496:function adm_action_f_theme_edit_css() { eval(scg());
+../admin/adm.php:594:function adm_action_f_theme_edit_php() { eval(scg());
+../admin/adm.php:659:function adm_action_f_theme_edit_delete_go() { eval(scg());
+../admin/adm.php:667:function adm_action_f_theme_edit_delete() { eval(scg());
+../admin/adm.php:677:function adm_action_f_ajx_theme_edit_save_t_php() { eval(scg());
+../admin/adm.php:691:function adm_action_f_theme_edit_t_php() { eval(scg()); 
+../admin/adm.php:697:		function save_t_php(ta,taval) {
+../admin/adm.php:745:function adm_action_f_ajx_theme_edit_save_t_css() { eval(scg());
+../admin/adm.php:759:function adm_action_f_theme_edit_t_css() { eval(scg()); 
+../admin/adm.php:767:		function save_t_css(ta,taval) {
+../admin/adm.php:807:function adm_action_f_theme_clone_go() { eval(scg());
+../admin/adm.php:825:function adm_action_f_theme_clone() { eval(scg());
+../admin/adm.php:844:function adm_action_f_theme_edit() { eval(scg());
+../admin/adm.php:919:function adm_action_f_theme_view_classes() { eval(scg());
+../admin/adm.php:928:function adm_action_f_theme_add_css_value_go() { eval(scg());
+../admin/adm.php:944:function adm_action_f_theme_add_css_value() { eval(scg());
+../admin/adm.php:950:function adm_action_f_theme_css_checker() { eval(scg());
+../admin/adm.php:978:function adm_action_theme() { eval(scg());
+../admin/adm.php:1004:function adm_action_f_addsitevar() { eval( scg() );
+../admin/adm.php:1014:function adm_action_f_upsitevar() { eval( scg() );
+../admin/adm.php:1024:function adm_action_f_delsitevar_go() { eval( scg() );
+../admin/adm.php:1028:function adm_action_f_delsitevar() { eval(scg());
+../admin/adm.php:1033:function adm_action_edit_site_vars() { eval( scg() );
+../admin/adm.php:1163:function adm_action_f_admin_menu_change_icon() { eval( scg() );
+../admin/adm.php:1167:function adm_action_f_admin_menu_edit_del_go() { eval( scg() );
+../admin/adm.php:1175:function adm_action_f_admin_menu_edit_del() { eval( scg() );
+../admin/adm.php:1191:function adm_action_f_menu_admin_add_link() { eval(scg());
+../admin/adm.php:1204:function adm_action_f_admin_menu_edit_add() { eval( scg() );
+../admin/adm.php:1223:function adm_action_f_admin_change_category() { eval( scg() );
+../admin/adm.php:1230:function adm_action_f_admin_menu_edit_mod() { eval( scg() );
+../admin/adm.php:1249:function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
+../admin/adm.php:1318:function adm_action_f_admin_menu_edit_entry() { eval(scg());
+../admin/adm.php:1355:function adm_action_admin_menu_edit() { eval( scg() );
+../admin/adm.php:1495:function adm_action_registered_menu_items() { 
+../admin/adm.php:1499:function adm_action_f_menu_topedit_del_go() { eval( scg() );
+../admin/adm.php:1508:function adm_action_f_menu_topedit_del() { eval( scg() );
+../admin/adm.php:1520:function adm_action_f_menu_top_add_link() { eval(scg());
+../admin/adm.php:1532:function adm_action_f_menu_topedit_add() { eval( scg());
+../admin/adm.php:1547:function adm_action_f_menu_topedit_mod() { eval( scg() );
+../admin/adm.php:1560:function adm_action_menu_topedit() { eval( scg() );
+../admin/adm.php:1657:function adm_action_f_category_change_icon() {
+../admin/adm.php:1663:function adm_action_f_delete_category() {
+../admin/adm.php:1669:function adm_action_f_add_category() {
+../admin/adm.php:1675:function adm_action_f_rename_category() {
+../admin/adm.php:1684:function adm_action_edit_categories() {
+../admin/adm.php:1770:function adm_action_f_edit_users_go() {
+../admin/adm.php:1776:function adm_action_f_edit_users() { eval( scg() );
+../admin/adm.php:1802:function adm_action_f_del_users_go() {
+../admin/adm.php:1812:function adm_action_f_del_users() {
+../admin/adm.php:1823:function adm_action_f_add_user() {
+../admin/adm.php:1830:function adm_action_user_edit() {
+../admin/adm.php:1858:function adm_action_f_rss_edit_go_edit() {
+../admin/adm.php:1864:function adm_action_f_rss_edit_go_add() {
+../admin/adm.php:1869:function adm_action_rss_edit() {
+../admin/adm.php:1898:function adm_action_edit_smilies() {
+../admin/adm.php:1989:function adm_action_f_domain_quiet() {
+../admin/adm.php:1993:function adm_action_log_rotate() {
+../admin/adm.php:2011:function adm_action_log_view() {
+../admin/adm.php:2020:function adm_action_counters() {
+../admin/adm.php:2049:// function adm_action_awards_edit() { 	echo "<h3>Award Editor</h3>\n"; 	sc_awards_list(); 	include("footer.php");	exit();}
+../admin/adm.php:2051:function adm_action_f_add_award_go() {
+../admin/adm.php:2062:function adm_action_f_edit_award_go() {
+../admin/adm.php:2078:function adm_action_edit_tags() { eval(scg()); 
+../admin/adm.php:2115:function adm_action_disk_free() { eval(scg());
+../admin/adm.php:2133:function adm_action_ajax_testpage() { eval(scg());
+../admin/adm.php:2159:function adm_action_() { eval(scg());
+../admin/adm.php:2243:function adm_menu_built_in() { eval(scg());
+../admin/adm.php:2392:function finishadminpage() {
+../admin/lib.adm.php:3:function sc_ajax_callback_query_list() { eval( scg()) ;
+../include/lib.images.php:7:function sc_getimagecode($url,$width,$height,$alt) {
+../include/lib.images.php:15:function imgn($url,$alt) {
+../include/lib.images.php:20:function imgs($url,$alt,$w,$h) {
+../include/lib.images.php:25:function imgawh($url,$w,$h,$alt,$ourl){
+../include/lib.images.php:30:function imgat($url,$alt,$ourl,$target) {
+../include/lib.images.php:35:function imga($url,$alt,$ourl,$target) {
+../include/lib.images.php:40:function sc_html2rgb($color) {
+../include/lib.images.php:58:function sc_rgb2html($r, $g=-1, $b=-1){
+../include/lib.images.php:72:function sc_picthumb($zimg,$w,$h,$s) { eval(scg());
+../include/lib.images.php:77:function sc_picthumb_raw($zimg,$w,$h,$s) { eval(scg());
+../include/lib.images.php:82:function sc_image_text_s($text,$font,$r,$g,$b){
+../include/lib.images.php:85:function sc_image_text_s_rt($text,$font,$r,$g,$b){
+../include/lib.images.php:89:function sc_image_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight) {
+../include/lib.images.php:93:function sc_image_text_rt( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight) { eval(scg());
+../include/lib.images.php:98:function sc_image_text_small_raw($text,$font) { eval(scg());
+../include/lib.images.php:102:function sc_percent_bar($percent){ eval(scg());
+../include/lib.images.php:106:function sc_webpage_to_png($webpage) { eval(scg());
+../include/lib.buttons.php:9:function sc_img_button_x($link,$name,$img,$x,$y) {
+../include/lib.buttons.php:24:function sc_img_button($link,$name,$img){
+../include/lib.buttons.php:29:function sc_button_l($link,$name){    
+../include/lib.buttons.php:33:function sc_button($link,$name){
+../include/lib.buttons.php:37:function sc_button_warn($link,$name){
+../include/lib.buttons.php:41:function sc_makebutton($button_link,$button_name){ eval(scg());
+../include/lib.buttons.php:61:function sc_makebutton_vw($link,$name,$w){
+../include/lib.buttons.php:66:function sc_makebutton_warntest($link,$name){
+../include/lib.file.php:7:function sc_getfiletype($filen){
+../include/lib.file.php:12:function sc_process_upload(
+../include/lib.file.php:76:function sc_sizefile($bytesize) {
+../include/lib.file.php:89:function sc_folder_to_array($folder) {
+../include/lib.file.php:109:function sc_get_folder_files($folder){
+../include/lib.file.php:121:function sc_multi_rename($folder,$old_pattern,$new_pattern) {
+../include/lib.file.php:139:function sc_echo_file($file) { eval(scg()); 
+../include/lib.file.php:148:function sc_file_get_readme($file_name) { eval (scg());
+../include/lib.file.php:228:function sc_touch_dir($dir) { eval(scg());
+../include/lib.social_buttons.php:5:function sc_twitter_url($t) { eval(scg());
+../include/lib.social_buttons.php:11:function sc_email_url($t) { eval(scg());
+../include/lib.social_buttons.php:15:function sc_inline_url($t){ eval(scg());
+../include/lib.social_buttons.php:21:function sc_stumble_upon($url) {
+../include/lib.social_buttons.php:34:function sc_donate_button_small() {
+../include/lib.social_buttons.php:44:function sc_donate_button() { eval(scg());
+../include/lib.social_buttons.php:53:function sc_donate_button2() {
+../include/lib.social_buttons.php:62:function sc_socials_content($u,$t) { eval(scg());
+../include/lib.social_buttons.php:91:function sc_socials_content2($u,$t) {
+../include/lib.social_buttons.php:105:function sc_social_buttons(){
+../include/lib.social_buttons.php:115:function sc_google_adsense_2(){ eval(scg());
+../include/lib.social_buttons.php:129:function sc_google_adsense($x){
+../include/lib.social_buttons.php:146:function sc_google_analytics(){
+../include/lib.social_buttons.php:163:function sc_reddit() { eval(scg());
+../include/lib.social_buttons.php:182:function sc_google_plus_badge(){
+../include/lib.social_buttons.php:189:function sc_google_plus_badge2(){
+../include/lib.social_buttons.php:196:function sc_google_plus($url){
+../include/lib.social_buttons.php:209:function sc_tweet($url,$hash,$text){	
+../include/lib.social_buttons.php:228:function sc_facebook_likebox($url){
+../include/lib.social_buttons.php:247:function sc_facebook_like($url){
+../include/lib.social_buttons.php:268:function sc_facebook_like_little($url){    
+../include/lib.social_buttons.php:288:function sc_facebook_like2(){
+../include/lib.social_buttons.php:294:function sc_twitter_follow() {	
+../include/lib.social_buttons.php:313:function sc_facebook_login() { echo sc_facebook_login_r(); }
+../include/lib.social_buttons.php:314:function sc_facebook_login_r() {
+../include/lib.social_buttons.php:330:function sc_facebook_comments($page) {
+../include/lib.social_buttons.php:354:function sc_follow_vertical_small() {
+../include/lib.social_buttons.php:377:function sc_follow_vertical() {
+../include/lib.social_buttons.php:402:function sc_follow_horizontal_small() {
+../include/lib.social_buttons.php:426:function sc_follow_horizontal() {
+../include/lib.menus.php:9:function sc_menus_register($short,$url) { 
+../include/lib.menus.php:13:function sc_show_menu_options() {
+../include/lib.menus.php:38:function sc_menu_draw($menu_location) {   eval(scg());
+../include/lib.tags.php:3:function sc_ajax_javascript_tags() { eval(scg());
+../include/lib.tags.php:6:function rfs_ajax_func_tags(name,ajv,table,ikey,kv,field,page,act,callback) {
+../include/lib.tags.php:34:function sc_ajax_callback_tags_new_tag() { eval(scg());
+../include/lib.tags.php:41:function sc_ajax_callback_tags_add_tag() { eval(scg());
+../include/lib.tags.php:65:function lib_tags_add_link($table,$id) {
+../include/lib.tags.php:108:function lib_tags_add_tag($tag) {
+../include/lib.tags.php:114:function lib_tags_show_tags($table,$id) {
+../include/lib.network.php:7:function echo_updown($x){
+../include/lib.network.php:22:function sc_ping($ip){
+../include/lib.network.php:35:function ping($host, $port, $timeout) {
+../include/lib.network.php:43:function sc_show_galaga_status(){
+../include/lib.network.php:56:function sc_valid_ip($ip_addr){
+../include/lib.div.php:6:function sc_div($t) {	
+../include/lib.flash.php:6:function flashnosize($swf){
+../include/lib.flash.php:21:function flash_color($swf,$bgcolor,$width,$height){
+../include/lib.flash.php:29:function flash_white($swf,$width,$height){
+../include/lib.flash.php:37:function flash($swf,$width,$height){
+../include/lib.flash.php:51:function al_flash($swf,$width,$height,$align){
+../include/lib.flash.php:65:function sc_getflashcode($swf,$width,$height){
+../include/lib.mysql.php:31:function sc_database_add($table, $field, $type, $default) {
+../include/lib.mysql.php:37:function sc_database_data_add($table,$field,$value,$id) {
+../include/lib.mysql.php:47:function adm_action_f_rfs_db_element_ed1() { eval(scg());
+../include/lib.mysql.php:66:function adm_action_f_rfs_db_element_ed2() { eval(scg());
+../include/lib.mysql.php:71:function adm_action_f_rfs_db_element_del1($rtnpage,$rtnact,$table,$id) {
+../include/lib.mysql.php:94:function adm_action_f_rfs_db_element_del2($rtnpage,$rtnact,$table,$id) { eval(scg());
+../include/lib.mysql.php:99:function rfs_db_element_edit($label,$rtnpage,$rtnact,$table, $id) { eval(scg());
+../include/lib.mysql.php:107:function sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(scg());
+../include/lib.mysql.php:180:function sc_is_csv_data($table,$where,$field,$var) {
+../include/lib.mysql.php:190:function sc_set_csv_data($table,$field,$var) {
+../include/lib.mysql.php:194:function sc_clear_csv_data($table,$field,$var) {
+../include/lib.mysql.php:198:function sc_access_method_add($func_page,$act) {
+../include/lib.mysql.php:212:function sc_access_check($func_page,$act){
+../include/lib.mysql.php:236:function usersonline($name) {
+../include/lib.mysql.php:281:function usersloggedin() {
+../include/lib.mysql.php:287:function users_logged_details() {
+../include/lib.mysql.php:303:function sc_useravatar($user) { echo sc_getuseravatar($user); }
+../include/lib.mysql.php:304:function sc_getuseravatar($user) { eval(scg()); $userdata=sc_getuserdata($user);
+../include/lib.mysql.php:321:function sc_setuservar($name,$var,$set) {
+../include/lib.mysql.php:324:function sc_setvar($table,$var,$set,$name,$sname) {
+../include/lib.mysql.php:328:function sc_hiddenvar($name,$value) {
+../include/lib.mysql.php:331:function sc_hiddenvar_r($name,$value) {
+../include/lib.mysql.php:335:function sc_copyrow($table,$id) {
+../include/lib.mysql.php:342:function sc_row_count($table) {
+../include/lib.mysql.php:348:function sc_getusername($x){
+../include/lib.mysql.php:358:function sc_newuser($name,$pass,$e){
+../include/lib.mysql.php:364:function sc_query_user_db($q){
+../include/lib.mysql.php:370:function sc_is_alias($x) {
+../include/lib.mysql.php:379:function sc_getuserdata($name){
+../include/lib.mysql.php:410:function sc_query_other_db($db,$host,$user,$pass,$query){
+../include/lib.mysql.php:417:function sc_getuserdatabyfield($field,$data){
+../include/lib.mysql.php:423:function sc_adddownloads($user,$points){
+../include/lib.mysql.php:432:function sc_delimiter($t){
+../include/lib.mysql.php:440:function sc_mcount($user) {
+../include/lib.mysql.php:464:function lib_mysql_backup_database($filename) { eval(scg());
+../include/lib.mysql.php:480:function odb(){
+../include/lib.mysql.php:486:function n_odb() {
+../include/lib.mysql.php:497:function n_sc_query($query) {
+../include/lib.mysql.php:501:function sc_query($query) {
+../include/lib.mysql.php:509:function sc_dtv($table){
+../include/lib.mysql.php:518:function sc_tableexists($table) {
+../include/lib.mysql.php:526:function sc_newtable($table){
+../include/lib.mysql.php:538:function lib_mysql_scrub($table,$group) {
+../include/lib.mysql.php:554:function mfo1($query){
+../include/lib.mysql.php:561:function mfo($res){ return mysql_fetch_object($res); }
+../include/lib.mysql.php:563:function mnr($res){ if(!$res) return 0; return mysql_num_rows($res); }
+../include/lib.mysql.php:565:function sc_db_get($table,$key,$kv,$field){
+../include/lib.mysql.php:575:function sc_updb($table,$key_field,$key_value,$md5_password) {
+../include/lib.mysql.php:610:function sc_updb_2($table,$key_field,$key_value){
+../include/lib.mysql.php:628:function sc_confirmform($message,$page,$hiddenvars){
+../include/lib.mysql.php:650:function sc_db_query($query,$becho){
+../include/lib.mysql.php:710:function sc_db_query_form($page,$action,$query){
+../include/lib.mysql.php:721:function sc_db_dumptable($table,$showform,$key,$search){ eval(scg());
+../include/lib.mysql.php:803:function sc_db_dumptables(){
+../include/lib.mysql.php:806:function sc_vars_join($x){
+../include/lib.mysql.php:824:function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method, $default, $on_change_method){ eval(scg());
+../include/lib.mysql.php:1032:function sc_optionize_file( $select_name, $file,	$default )  {
+../include/lib.mysql.php:1052:function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$include_files,$default ) {
+../include/lib.mysql.php:1087:function sc_bfa($table){ eval(scg()); sc_bf(sc_phpself(),"action=add",$table,"","","name","include","",60,"add"); }
+../include/lib.mysql.php:1092:function sc_bqf($hiddenvars,$submit){ eval(scg()); sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit); }
+../include/lib.mysql.php:1127:function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit){ eval(scg());
+../include/lib.mysql.php:1586:function sc_form_end($submit){
+../include/lib.mysql.php:1591:function sc_form_start($page,$action){
+../include/lib.mysql.php:1596:function show_codearea($id,$rows,$cols,$name,$indata){ eval(scg());
+../include/lib.mysql.php:1623:		function my_save(id, content){
+../include/lib.mysql.php:1627:		function my_load(id){
+../include/lib.mysql.php:1628:			editAreaLoader.setValue(id, "The content is loaded from the load_callback function into EditArea");
+../include/lib.mysql.php:1630:		function test_setSelectionRange(id){
+../include/lib.mysql.php:1633:		function test_getSelectionRange(id){
+../include/lib.mysql.php:1637:		function test_setSelectedText(id){
+../include/lib.mysql.php:1641:		function test_getSelectedText(id){
+../include/lib.mysql.php:1644:		function editAreaLoaded(id){
+../include/lib.mysql.php:1650:		function open_file1(){
+../include/lib.mysql.php:1657:		function open_file2(){
+../include/lib.mysql.php:1663:		function toogle_editable(id){
+../include/lib.mysql.php:1669:	//// function close_file1(){	editAreaLoader.closeFile("example_2", "to\\ Ã© # â¬ to");}
+../include/lib.mysql.php:1686:function sc_option_countries() {
+../include/lib.mysql.php:1886:function sc_css_edit_form($css_file,$returnpage,$returnaction,$hiddenvars) { eval(scg());
+../include/lib.mysql.php:2012:function sc_php_edit_form($php_file,$returnpage,$returnaction,$hiddenvars) { eval(scg());
+../include/lib.mysql.php:2121:function sc_ajax_spinner() { eval(scg()); 
+../include/lib.mysql.php:2125:function sc_ajax_callback_image(){ eval(scg());
+../include/lib.mysql.php:2139:function sc_ajax_callback_file(){ eval(scg()); exit; }
+../include/lib.mysql.php:2140:function sc_ajax_callback_delete() { eval(scg());
+../include/lib.mysql.php:2146:function sc_ajax_callback(){ eval(scg());
+../include/lib.mysql.php:2159:function sc_ajax_javascript() { eval(scg());
+../include/lib.mysql.php:2164:function rfs_ajax_hide(x) { var div = document.getElementById(x); div.style.display = "none"; };
+../include/lib.mysql.php:2165:function rfs_ajax_func(name, ajv, table, ikey, kv, field, page, act, callback) {
+../include/lib.mysql.php:2194:function rfs_ajax($data,$size,$properties,$access,$callback) {
+../include/lib.mysql.php:2212:function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,
+../include/lib.domain.php:7:function sc_phpself() { eval(scg()); 
+../include/lib.domain.php:12:function sc_canonical_url(){
+../include/lib.domain.php:20:function sc_gotopage($x) {
+../include/lib.domain.php:24:function sc_getdomain($link) {
+../include/lib.domain.php:30:function sc_ban_domain($domain) {
+../include/lib.domain.php:37:function sc_ban_ref($refer){
+../include/lib.domain.php:42:function sc_ban_ip($ip){
+../include/lib.domain.php:47:function sc_unban_domain($domain){
+../include/lib.domain.php:52:function sc_unban_ref($refer){
+../include/lib.domain.php:56:function sc_unban_ip($ip){
+../include/lib.domain.php:60:function sc_banned_domain($domain){
+../include/lib.domain.php:66:function sc_banned_ref($refer){
+../include/lib.domain.php:72:function sc_banned_ip($ip){
+../include/lib.debug.php:11:function sc_debug_on()  { $_SESSION['debug_msgs']=true;  }
+../include/lib.debug.php:12:function sc_debug_off() { $_SESSION['debug_msgs']=false; }
+../include/lib.debug.php:23:function d_echo($t){
+../include/lib.debug.php:36:function sc_tail_error_log() { global $RFS_SITE_ERROR_LOG;	
+../include/lib.debug.php:55:function sc_debugheader($quiet) { eval(scg()); 
+../include/lib.debug.php:71:function sc_debugfooter($quiet) { eval(scg());
+../include/lib.modules.php:8:function sc_get_modules_array() {
+../include/lib.modules.php:27:function sc_module_register($x) { eval(scg());
+../include/lib.modules.php:33:function sc_module_installed($x) { eval(scg());
+../include/lib.modules.php:38:function sc_show_registered_modules() {
+../include/lib.modules.php:52:function sc_get_modules() { eval(scg());
+../include/lib.modules.php:74:function sc_draw_module($location) {
+../include/md5.js:2:function md5 (str) {
+../include/md5.js:17:  var rotateLeft = function (lValue, iShiftBits) {
+../include/md5.js:21:  var addUnsigned = function (lX, lY) {
+../include/md5.js:42:  var _F = function (x, y, z) {
+../include/md5.js:45:  var _G = function (x, y, z) {
+../include/md5.js:48:  var _H = function (x, y, z) {
+../include/md5.js:51:  var _I = function (x, y, z) {
+../include/md5.js:55:  var _FF = function (a, b, c, d, x, s, ac) {
+../include/md5.js:60:  var _GG = function (a, b, c, d, x, s, ac) {
+../include/md5.js:65:  var _HH = function (a, b, c, d, x, s, ac) {
+../include/md5.js:70:  var _II = function (a, b, c, d, x, s, ac) {
+../include/md5.js:75:  var convertToWordArray = function (str) {
+../include/md5.js:98:  var wordToHex = function (lValue) {
+../include/lib.log.php:5:function sc_kill($what) {
+../include/lib.log.php:15:function sc_count() {
+../include/lib.log.php:196:function sc_log($logtext) { eval(scg());
+../include/lib.genm.php:13:function genmlog($x){ eval(scg());
+../include/lib.genm.php:21:function genm_imgtype($x){
+../include/lib.genm.php:26:function genm_img_out($x) {
+../include/lib.genm.php:32:function genm_imgload($x){
+../include/lib.genm.php:51:function genm_newimg($w,$h){
+../include/lib.genm.php:62:function genm_scale($x,$s) {
+../include/lib.genm.php:65:function genm_print_rot_outlined($image,$font_size,$ocolor,$color,$font,$text,$start_x,$start_y,$max_width,$rot) {
+../include/lib.genm.php:74:function genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width,$rot) {
+../include/lib.genm.php:110:function genm_print_outlined($image, $font_size, $ocolor, $color, $font, $text, $start_x, $start_y, $max_width) {
+../include/lib.genm.php:119:function genm_print($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width) {
+../include/lib.genm.php:157:function genm_imageline( $img,$x,$y,$x2,$y2,$color,$thickness) {
+../include/lib.rfs.php:12:function rfs_user_age($birthDay) {
+../include/lib.rfs.php:22:function sc_hextorgb($hex) {
+../include/lib.rfs.php:36:function sc_generate_long_uid($y) {
+../include/lib.rfs.php:42:function sc_generate_uid($y) {
+../include/lib.rfs.php:51:function sc_togglediv_ne($x) {
+../include/lib.rfs.php:58:function sc_togglediv($x) {
+../include/lib.rfs.php:61:function sc_togglediv_start_ne($x,$y,$folded) {
+../include/lib.rfs.php:70:function sc_togglediv_start($x,$y,$folded) {
+../include/lib.rfs.php:73:function sc_togglediv_end_ne() {
+../include/lib.rfs.php:76:function sc_togglediv_end() {
+../include/lib.rfs.php:80:function sc_javascript() { eval(scg());
+../include/lib.rfs.php:85:function showhide(layer_ref) {
+../include/lib.rfs.php:110:function sc_var($x) {
+../include/lib.rfs.php:114:function sc_system_message() { eval(scg());
+../include/lib.rfs.php:124:function sc_do_action() {
+../include/lib.rfs.php:135:function sc_maintenance() { eval(scg());
+../include/lib.rfs.php:190:function sc_get_content_ids() { eval(scg());
+../include/lib.rfs.php:224:function sc_info($t,$c,$c2) { 	echo "<div style=' font-size: 2em; color:$c; background-color:$c2; width:100%;'>$t</div>"; }
+../include/lib.rfs.php:226:function sc_num2txt($x) { 
+../include/lib.rfs.php:233:function sc_flush_buffers(){ 
+../include/lib.rfs.php:241:function scg() {
+../include/lib.rfs.php:317:function rfs_red() { sc_red(); }
+../include/lib.rfs.php:318:function sc_red()   { 	return "<font style='color:white; background-color:red;'>"; }
+../include/lib.rfs.php:320:function rfs_green() { sc_green(); }
+../include/lib.rfs.php:321:function sc_green() { 	return "<font style='color:white; background-color:green;'>"; }
+../include/lib.rfs.php:323:function rfs_blue() { sc_blue(); }
+../include/lib.rfs.php:324:function sc_blue()  { 	return "<font style='color:white; background-color:blue;'>"; }
+../include/lib.rfs.php:326:function sc_flush () { 	echo(str_repeat(' ',256)); 		if (ob_get_length()) { 		@ob_flush();		@flush();		@ob_end_flush(); 	} 	@ob_start();}
+../include/lib.rfs.php:328:function rfs_warn($x) { sc_warn($x); }
+../include/lib.rfs.php:329:function sc_warn($x) { 	eval(scg()); 
+../include/lib.rfs.php:333:function rfs_inform($x) { sc_inform($x); }
+../include/lib.rfs.php:334:function sc_inform($x) { eval(scg());
+../include/lib.rfs.php:339:function sc_question($inquest) {
+../include/lib.rfs.php:349:function sc_yes($x) { $x=strtolower($x); if( (stristr($x,"true")) || (stristr($x,"yes")) || (stristr($x,"on")) || (stristr($x,"1")) ) return true;	return false;}
+../include/lib.rfs.php:351:function smiles($text) {
+../include/lib.rfs.php:374:function rfs_echo($t) {  echo rfs_get($t); }
+../include/lib.rfs.php:376:function sc_calc($x) {
+../include/lib.rfs.php:380:function rfs_get($t) {
+../include/lib.rfs.php:435:function sc_theme_form() { eval(scg());
+../include/lib.rfs.php:459:function sc_get_themes() {
+../include/lib.rfs.php:476:function sc_get_theme_image($x) {
+../include/lib.rfs.php:483:function mailto($user,$domain) {
+../include/lib.rfs.php:487:function sc_time($whattime) { // 0000-00-00 00:00:00
+../include/lib.rfs.php:496:function mailgo($email,$message,$subject) {
+../include/lib.rfs.php:511:function generate_password() {
+../include/lib.rfs.php:529:function sc_is_valid_email($field) {
+../include/lib.rfs.php:535:function sc_is_valid_name($field) {
+../include/lib.rfs.php:541:function sc_trunc($str,$max_len) {
+../include/lib.rfs.php:549:function sc_countries() {
+../install/database_upgrades.php:87:function install_database_upgrades_update($x) {
+../install/install.php:13:function odb(){
+../install/install.php:21:function sc_query($query) {
+../install/install.php:28:function sc_query_user_db($q){
+../install/install.php:32:function sc_query_other_db($db,$host,$user,$pass,$query){
+../modules/linkbin/lib.linkbin.php:8:function sc_module_mini_link_friends($x) { eval(scg());
+../modules/linkbin/lib.linkbin.php:30:function adm_action_f_add_link() {
+../modules/linkbin/lib.linkbin.php:41:function adm_action_f_modify_link() {
+../modules/linkbin/lib.linkbin.php:85:function adm_action_edit_linkbin() {
+../modules/linkbin/linkbin.php:5:function linkbin_showaddform() {
+../modules/pictures/pics.php:39:function pics_show_buttons() { eval(scg());
+../modules/pictures/pics.php:74:function pics_action_showmemes() { eval(scg());
+../modules/pictures/pics.php:80:function pics_action_uploadpic() { eval(scg());
+../modules/pictures/pics.php:125:function pics_action_uploadpicgo(){ eval(scg());
+../modules/pictures/pics.php:161:function pics_action_removepicture() { eval(scg());
+../modules/pictures/pics.php:188:function pics_action_removego() { eval(scg());
+../modules/pictures/pics.php:211:function pics_action_addorphans(){ eval(scg());
+../modules/pictures/pics.php:225:function pics_action_sorttemp() { eval(scg());
+../modules/pictures/pics.php:347:function pics_action_modifypicture() { eval(scg());
+../modules/pictures/pics.php:411:function pics_action_random() { eval(scg());
+../modules/pictures/pics.php:425:function pics_action_view($id) { eval(scg());
+../modules/pictures/pics.php:553:function pics_action_viewcat($cizat) { eval(scg());
+../modules/pictures/pics.php:624:function pics_action_viewcats(){ eval(scg());
+../modules/pictures/pics.php:679:function pics_action_() { eval(scg());
+../modules/pictures/lib.pictures.php:14:function sc_module_mini_pictures($x) { eval(scg());
+../modules/pictures/lib.pictures.php:41:function pics_addorphans($folder,$cat) { eval(scg());
+../modules/bullet_log/bullet_log.php:6:function bullet_buttons() { eval(scg());
+../modules/bullet_log/bullet_log.php:20:function bullet_log_action_send_report_go() {	eval(scg());
+../modules/bullet_log/bullet_log.php:42:function bullet_log_action_send_report() { eval(scg());
+../modules/bullet_log/bullet_log.php:55:function bullet_log_action_change_category_image() { eval(scg());
+../modules/bullet_log/bullet_log.php:67:function bullet_log_action_edit_categories() { eval(scg());
+../modules/bullet_log/bullet_log.php:82:function bullet_log_action_share_go() { eval(scg());
+../modules/bullet_log/bullet_log.php:120:function bullet_log_action_share_bullet() { eval(scg());
+../modules/bullet_log/bullet_log.php:147:function bullet_log_action_add_bullet_go() { eval(scg());
+../modules/bullet_log/bullet_log.php:171:function bullet_log_action_edit_bullet() { eval(scg());
+../modules/bullet_log/bullet_log.php:192:function bullet_log_action_add_bullet() { eval(scg());
+../modules/bullet_log/bullet_log.php:202:function bullet_log_action_f_delete_bullet_go () { eval(scg());
+../modules/bullet_log/bullet_log.php:210:function bullet_log_action_delete_bullet() { eval(scg());
+../modules/bullet_log/bullet_log.php:220:function bullet_log_action_edit_bullets() { eval(scg());
+../modules/bullet_log/bullet_log.php:282:function bullet_log_action_epr_format() { eval(scg());
+../modules/bullet_log/bullet_log.php:336:function bullet_log_action_short_list() { eval(scg());
+../modules/bullet_log/bullet_log.php:343:function bullet_log_action_() { eval(scg());
+../modules/bullet_log/lib.bullet_log.php:26:function sc_module_bullet_log($x) { eval(scg());
+../modules/bullet_log/lib.bullet_log.php:53:function sc_module_bullet_log_long($x) { eval(scg());
+../modules/videos/videos.php:8:function video_pagefinish(){ eval(scg());
+../modules/political_game/political_game.php:11:function political_game_buttons() { eval(scg());
+../modules/political_game/political_game.php:22:function political_game_action_() { eval(scg());
+../modules/political_game/political_game.php:56:      function initialize() {
+../modules/political_game/political_game.php:73:		google.maps.event.addListener(map, "click", function (e) { 
+../modules/political_game/lib.political_game.php:32:function sc_module_political_game($x) { eval(scg());
+../modules/rfsft/lib.rfsft.php:7:function sc_module_fitness_tracker_chart($x) { eval(scg());
+../modules/rfsft/lib.rfsft.php:13:function sc_module_fitness_tracker_quick_entry($x) { eval(scg());
+../modules/profile/lib.profile.php:8:function sc_module_mini_profile($x) { eval(scg());
+../modules/profile/profile.php:96:function pro_nav_bar($data) {    eval(scg());
+../modules/news/lib.news.php:16:function news_buttons() { eval(scg());
+../modules/news/lib.news.php:24:function adm_action_lib_news_news_submit() { eval(scg());
+../modules/news/lib.news.php:27:function adm_action_lib_news_news_edit() { eval(scg());
+../modules/news/lib.news.php:30:function sc_module_news_list($x) { eval(scg());
+../modules/news/lib.news.php:61:function sc_module_news_list_popular($x) { eval(scg());
+../modules/news/lib.news.php:95:function sc_module_news_top_story() {
+../modules/news/lib.news.php:98:function sc_module_news_blog_style($x) { eval(scg());
+../modules/news/lib.news.php:109:function sc_getnewstopstory(){
+../modules/news/lib.news.php:114:function sc_getnewsdata($news){
+../modules/news/lib.news.php:120:function sc_getnewslist($newssearch) {
+../modules/news/lib.news.php:137:function sc_get_news_headline($id){
+../modules/news/lib.news.php:142:function sc_get_top_news_id(){
+../modules/news/lib.news.php:147:function sc_show_top_news() {
+../modules/news/lib.news.php:151:function sc_show_news($nid) { eval(scg());
+../modules/news/lib.news.php:227:function put_news_image($fname) { eval(scg());
+../modules/news/lib.news.php:242:function updatenews($nid){ 	eval(scg());
+../modules/news/lib.news.php:275:function deletenews($nid) { eval(scg());
+../modules/news/lib.news.php:284:function deletenewsgo($nid){ 	eval(scg());
+../modules/news/lib.news.php:291:function editnews($nid) { eval(scg());
+../modules/news/lib.news.php:462:function shownews() { eval(scg());
+../modules/xplorer/xplorer.php:95:function xp_mysql_install()
+../modules/xplorer/xplorer.php:135:function xp_help()
+../modules/xplorer/xplorer.php:149:function xp_rename($oldname,$newname)
+../modules/xplorer/xplorer.php:163:function xp_newfolder($newfolder)
+../modules/xplorer/xplorer.php:177:function xp_delete($file)
+../modules/xplorer/xplorer.php:192:function get_mp3_info($filename)
+../modules/xplorer/xplorer.php:402:function optionrecursedirs($dir)
+../modules/xplorer/xplorer.php:663:function xp_dirs($path)
+../modules/xplorer/xplorer.php:710:function xplore($path,$xp_thumbs)
+../modules/system/lib.system.php:3:function sc_module_system_linefeed($x) { for($i=0;$i<$x;$i++) echo "<br>"; }
+../modules/system/lib.system.php:4:function sc_module_system_custom($x) { echo $x; }
+../modules/gns3/gns3.php:315:function gns3_buttons() { eval(scg());
+../modules/gns3/gns3.php:328:function gns3_action_list_configs() { eval(scg());
+../modules/gns3/gns3.php:359:function gns3_action_upload_go() { eval(scg());
+../modules/gns3/gns3.php:378:function gns3_action_upload() { eval(scg());
+../modules/gns3/gns3.php:400:function gns3_action_render() { eval(scg());
+../modules/gns3/gns3.php:551:function gns3_action_() { eval(scg());
+../modules/gns3/lib.gns3.php:16:function sc_module_gns3_list($x) { eval(scg());
+../modules/gns3/lib.gns3.php:20:function sc_module_gns3_getdb_id($file) {
+../modules/gns3/lib.gns3.php:25:function sc_module_gns3_parse_file($file) {
+../modules/gns3/lib.gns3.php:79:function sc_gns3_coords($x, $name) {
+../modules/gns3/lib.gns3.php:101:function sc_module_gns3_dump($x) {
+../modules/gns3/lib.gns3.php:117:function sc_module_gns3_get_max_x($x) {
+../modules/gns3/lib.gns3.php:140:function sc_module_gns3_get_min_x($x) {
+../modules/gns3/lib.gns3.php:163:function sc_module_gns3_get_max_y($x) {
+../modules/gns3/lib.gns3.php:186:function sc_module_gns3_get_min_y($x) {
+../modules/video_wall/v.php:32:function save_vw(){
+../modules/video_wall/v.php:49:function load_vw($data){
+../modules/wiki/rfswiki.php:26:    function rfs_query($query)  {
+../modules/wiki/rfswiki.php:36:function rfs_time($whattime){
+../modules/wiki/lib.wiki.php:14:function sc_module_mini_wiki($x) { eval(scg());
+../modules/wiki/lib.wiki.php:32:function wiki_img($text) {
+../modules/wiki/lib.wiki.php:44:function wikiimg($text) { eval(scg());    
+../modules/wiki/lib.wiki.php:98:function wikicode($text) {
+../modules/wiki/lib.wiki.php:139:function wikitext($text) { eval(scg());
+../modules/forums/lib.forums.php:14:function sc_module_mini_latest_forum_threads($x) { eval(scg());
+../modules/forums/lib.forums.php:46:function adm_action_f_add_forum() { eval( scg() );
+../modules/forums/lib.forums.php:51:function adm_action_f_add_forum_folder() { eval( scg() );
+../modules/forums/lib.forums.php:55:function adm_action_forum_admin() { eval( scg() );
+../modules/forums/forums.php:7:function forum_put_buttons($forum_which) { eval(scg());
+../modules/forums/forums.php:28:function bumpthread($id) { $bumptime=date("Y-m-d H:i:s"); sc_query("update forum_posts set `bumptime`='$bumptime' where id='$id'"); }
+../modules/forums/forums.php:29:function forums_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; forums_action_forum_showposts(); }
+../modules/forums/forums.php:30:function forums_action_forum_admin_off() { $_SESSION['forum_admin']="no";  forums_action_forum_showposts(); }
+../modules/forums/forums.php:41:function forums_action_start_thread() { eval(scg());
+../modules/forums/forums.php:76:function forums_action_start_thread_go() { eval(scg());
+../modules/forums/forums.php:109:function show1message($post,$gx) { eval(scg());
+../modules/forums/forums.php:157:function forums_action_get_thread($thread,$forum_which) {    eval(scg());
+../modules/forums/forums.php:237:function forums_action_move_thread() { eval(scg());
+../modules/forums/forums.php:414:function forums_action_forum_list() { eval(scg());
+../modules/forums/forums.php:580:function forums_action_forum_showposts() { eval(scg());
+../modules/forums/forums.php:699:function forums_action_() {
+../modules/top_referrers/linkbin.php:4:function linkbin_showaddform()
+../modules/top_referrers/lib.top_referrers.php:6:function sc_module_mini_top_referrers($x) { eval(scg());
+../modules/wab/wab.php:57:function no_func($wbna){
+../modules/wab/wab.php:60:        $ec=" function $wbna() { eval(scg());
+../modules/wab/wab.php:61:				echo \"<p class=warning>$wbna() function is undefined!</p>\";
+../modules/wab/wab.php:96:function wab_engine_action_(){ eval(scg());
+../modules/wab/wab.php:133:function wab_engine_action_edcodego() { eval(scg());
+../modules/wab/wab.php:143:function wab_engine_action_edcode() { eval(scg());
+../modules/wab/wab.php:155:            "code=function $_function() {
+../modules/wab/wab.php:164:function wab_engine_action_add() { eval(scg());
+../modules/wab/wab.php:176:function wab_engine_action_add_form() { eval(scg());
+../modules/wab/wab.php:183:function wab_engine_action_editapp() { eval(scg());
+../modules/wab/wab.php:201:function wab_engine_action_add_database() { eval(scg());
+../modules/wab/wab.php:226:function wab_engine_action_hide_wab_admin_menu() {
+../modules/wab/wab.php:231:function wab_engine_action_show_wab_admin_menu() {
+../modules/wab/wab.php:236:function wab_engine_action_add_function() {
+../modules/wab/wab.php:244:function wab_database($id) { eval(scg());
+../modules/wab/wab.php:269:function wab_variables($id) { eval(scg());
+../modules/wab/wab.php:281:function wab_functions($id) { eval(scg());
+../modules/wab/wab.php:303:function wab_engine_actions($id) {
+../modules/wab/wab.php:313:function wab_form($action,$vars,$width,$submittxt) { eval(scg());
+../modules/wab/lib.wab.php:6:function adm_action_lib_wab_wab() { eval(scg());
+../modules/todo_list/todo_list.php:10:function todo_list_action_f_rfs_db_element_del1() { adm_action_f_rfs_db_element_del1(); }
+../modules/todo_list/todo_list.php:11:function todo_list_action_f_rfs_db_element_ed1() { adm_action_f_rfs_db_element_ed1(); }
+../modules/todo_list/todo_list.php:13:function todo_list_action_() { eval(scg());
+../modules/todo_list/todo_list.php:32:function todo_list_status_icon() { eval(scg());
+../modules/todo_list/todo_list.php:36:function todo_list_action_open_task_go() { eval(scg());
+../modules/todo_list/todo_list.php:45:function todo_list_action_open_task() { eval(scg());
+../modules/todo_list/todo_list.php:62:function todo_list_action_search() { eval(scg());
+../modules/todo_list/todo_list.php:69:function todo_list_action_edit_task_go() { eval(scg());
+../modules/todo_list/todo_list.php:75:function todo_list_action_edit_task() { eval(scg());
+../modules/todo_list/todo_list.php:96:function todo_list_action_view_todo_list() { eval(scg());
+../modules/todo_list/todo_list.php:214:function todo_list_action_new_todo_list_go() { eval(scg());
+../modules/todo_list/todo_list.php:218:function todo_list_action_new_todo_list() { eval(scg());
+../modules/todo_list/lib.todo_list.php:39:function sc_module_todo_list($x) { eval(scg());
+../modules/exams/lib.exams.php:22:function adm_action_lib_exams_exam_edit() { eval(scg());
+../modules/exams/lib.exams.php:26:function exams_convert_question_id_to_sequence($question_id) {
+../modules/exams/lib.exams.php:35:function exams_get_last_question_answered($user,$exam_id) {
+../modules/exams/lib.exams.php:45:function exams_get_total_questions($exam_id) {
+../modules/exams/lib.exams.php:51:function exams_get_total_questions_answered($user,$exam_id) {
+../modules/exams/lib.exams.php:59:function exams_get_completed_prct($user,$exam_id) {
+../modules/exams/lib.exams.php:72:function exams_get_prct($user,$exam_id) {
+../modules/exams/lib.exams.php:84:function exams_get_score($user,$exam_id) {		
+../modules/exams/lib.exams.php:90:function exams_wipe_user_exam($user,$exam_id) {
+../modules/nqt/nqt.php:52:# 03/01: The behavior of the gethostbyaddr() function appears to have  #
+../modules/nqt/nqt.php:56:# gethostbyaddr() function would accept a hostname. If you're getting' #
+../modules/nqt/nqt.php:106:function update_whois_file(){
+../modules/nqt/nqt.php:126:function get_whois_servers(){
+../modules/nqt/nqt.php:146:echo "<script>function m(el) {
+../modules/nqt/nqt.php:217:function errmessage($msg){
+../modules/nqt/nqt.php:221:function message($msg){
+../modules/nqt/nqt.php:226:function lookup($target){
+../modules/nqt/nqt.php:237:function dig($target){
+../modules/nqt/nqt.php:254:function wwwhois($target){
+../modules/nqt/nqt.php:313:function arin($target){
+../modules/nqt/nqt.php:362:function checkp($target,$portNum){
+../modules/nqt/nqt.php:374:function p($target){
+../modules/nqt/nqt.php:382:function tr($target){
+../modules/memes/memes.php:17:function memes_action_new_meme() { eval(scg());
+../modules/memes/memes.php:35:function memes_action_new_meme_go() { eval(scg());
+../modules/memes/memes.php:87:function memes_action_meme_delete() { eval(scg());
+../modules/memes/memes.php:104:function memes_action_meme_delete_go() { eval(scg());
+../modules/memes/memes.php:112:function memes_action_meme_save() { eval(scg());
+../modules/memes/memes.php:119:function memes_action_memegenerate() { eval(scg());
+../modules/memes/memes.php:172:function memes_action_memeedit() { eval(scg()); 
+../modules/memes/memes.php:277:function memes_action_muv() { eval(scg()); 
+../modules/memes/memes.php:292:function memes_action_mdv() { eval(scg());
+../modules/memes/memes.php:308:function memes_action_showmemes(){ eval(scg());
+../modules/memes/memes.php:358:function memes_action_() { eval(scg());
+../modules/memes/lib.memes.php:13:function sc_module_mini_memes($x) { eval(scg());
+../modules/memes/lib.memes.php:28:function sc_show1meme($inmid) { eval(scg());
+../modules/memes/lib.memes.php:59:function sc_show1minimeme($inmid) { eval(scg());
+../modules/comics/lib.comics.php:12:function sc_module_mini_comics($x) { eval(scg());
+../modules/comics/lib.comics.php:33:function sc_comics_mini_preview_link($id,$link){
+../modules/comics/lib.comics.php:61:function sc_comics_page_mini_preview($id){
+../modules/comics/lib.comics.php:87:function page_full_view($id){
+../modules/comics/comics.php:43:function renumber_pages($id) {
+../modules/comics/comics.php:54:function template_mini_preview($id) { eval(scg());
+../modules/comics/comics.php:76:function template_full_preview($id) { eval(scg());
+../modules/comics/comics.php:95:function getcomic($title,$volume,$issue) {
+../modules/messages/lib.messages.php:6:function adm_action_lib_messages_messages() { eval(scg());
+../modules/messages/lib.messages.php:10:function get_unread_messages() { eval(scg());
+../modules/messages/lib.messages.php:27:function send_message($to,$from,$subject,$message) {
+../modules/messages/lib.messages.php:36:function send_all($from,$subject,$message) {
+../modules/messages/lib.messages.php:46:function sc_module_mini_messages_link() { eval(scg());
+../modules/messages/lib.messages.php:64:function sc_module_mini_messages_indicator_small() { eval(scg());
+../modules/messages/lib.messages.php:99:function sc_module_mini_latest_messages($x) { eval(scg());
+../modules/messages/lib.messages.php:122:function sc_module_f_messages_send($to,$from,$title,$message) { eval(scg()); 
+../modules/courses/lib.courses.php:23:// add an admin function to be visible in the admin menu
+../modules/courses/lib.courses.php:24:function adm_action_lib_courses_courses() { eval(scg());
+../modules/courses/lib.courses.php:28:function sc_module_course_list($x) { eval(scg());
+../modules/courses/lib.courses.php:51:function sc_module_course_admin() { eval(scg());
+../modules/courses/lib.courses.php:59:function sc_course_components_list($id) { eval(scg());
+../modules/courses/lib.courses.php:70:function sc_ajax_callback_component_add() {
+../modules/courses/courses.php:6:function courses_action_() { eval(scg());
+../modules/courses/courses.php:11:function courses_action_edit_list() { eval(scg());
+../modules/courses/courses.php:23:function courses_action_add_component_type() { eval(scg());
+../modules/courses/courses.php:30:function courses_action_edit_component_types_image() { eval(scg());
+../modules/courses/courses.php:36:function courses_action_edit_component_types() { eval(scg());
+../modules/courses/courses.php:63:function courses_action_edit_components() { eval(scg());
+../modules/courses/courses.php:76:function courses_action_add_course() { eval(scg());
+../modules/courses/courses.php:90:function sc_ajax_callback_courses_action_ccl() { eval(scg());
+../modules/courses/courses.php:95:function courses_action_edit() { eval(scg());
+../modules/courses/courses.php:120:			function compup(x) {
+../modules/courses/courses.php:148:function courses_action_run() { eval(scg());
+../modules/rss/lib.rss.php:8:function sc_module_mini_rss() { eval(scg());
+../themes/_templates/theme_templates.php:3:function to($width,$ot)
+../themes/_templates/theme_templates.php:8:function tro($trclass)
+../themes/_templates/theme_templates.php:13:function trc()
+../themes/_templates/theme_templates.php:18:function tco($tdclass)
+../themes/_templates/theme_templates.php:23:function tcc()
+../themes/_templates/theme_templates.php:28:function tcr($tdclass)
+../themes/_templates/theme_templates.php:34:function tc()

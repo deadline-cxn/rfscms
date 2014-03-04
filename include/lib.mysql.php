@@ -362,7 +362,7 @@ function sc_newuser($name,$pass,$e){
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_query_user_db($q){
-//echo "sc_query_user_db();		";
+	//echo "sc_query_user_db();		";
     $r=sc_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
     return$r;
 }
@@ -459,6 +459,22 @@ function sc_mcount($user) {
 		sc_query($q);
 	}
 	return $r->hits_unique;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+function lib_mysql_backup_database($filename) { eval(scg());
+	$tm=time();
+	$a="mysqldump -u $authdbuser -p$authdbpass --databases $authdbname > ";
+	$r1="$filename.$tm.sql";
+	system($a.$r1);
+	if( ( $userdbname == $authdbname ) && ( $userdbaddress == $authdbaddress) ){
+			$r2="(user database is the same)";
+	}
+	else {
+			$a="mysqldump -u $userdbuser -p$userdbpass --databases $userdbname > ";
+			$r2="$filename.userdb.$tm.sql";
+			system($a.$r2);
+	}
+	return ($r1."<br>".$r2."<br>");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function odb(){
