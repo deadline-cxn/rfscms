@@ -17,7 +17,7 @@ sc_access_method_add("files", "xplorershell");
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FILES
 function sc_module_mini_files($x) { eval(scg());
-    sc_div("FILES MODULE SECTION");
+    lib_div("FILES MODULE SECTION");
     echo "<h2>Last $x Files</h2>";
     $result=sc_query("select * from files where category !='unsorted' order by `time` desc limit 0,$x");
     $numfiles=mysql_num_rows($result);
