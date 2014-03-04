@@ -1,6 +1,7 @@
 <?
 // Interim Database Changes. These changes will be rotated out into the install script
 // INITIAL UPDATES
+echo " [$$RFS_SITE_DATABASE_UPGRADE] <BR>";
 if(empty($RFS_SITE_DATABASE_UPGRADE)) {
 sc_database_add("rfsauth","name","text","NOT NULL");
 sc_database_add("rfsauth","enabled","text","NOT NULL");
