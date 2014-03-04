@@ -1,17 +1,7 @@
 <?
-
 // Interim Database Changes. These changes will be rotated out into the install script
-
-if($RFS_SITE_DATABASE_UPGRADE<$RFS_BUILD) {
-	$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
-	install_database_upgrades_update($RFS_SITE_DATABASE_UPGRADE);
-}
-
 // INITIAL UPDATES
 if(empty($RFS_SITE_DATABASE_UPGRADE)) {
-$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
-install_database_upgrades_update($RFS_SITE_DATABASE_UPGRADE);
-
 sc_database_add("rfsauth","name","text","NOT NULL");
 sc_database_add("rfsauth","enabled","text","NOT NULL");
 sc_database_add("rfsauth","value","text","NOT NULL");
@@ -83,6 +73,14 @@ sc_database_add("news","page",		"int",		"NOT NULL");
 sc_database_add("news","wiki",		"text",	"NOT NULL");
 sc_query( "CREATE TABLE IF NOT EXISTS `pmsg` (`id` int(11) NOT NULL AUTO_INCREMENT,`to` text NOT NULL, `from` text NOT NULL, `subject` text NOT NULL, `message` text NOT NULL, `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',`read` text NOT NULL, PRIMARY KEY (`id`) ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=149 ; ");
 }
+
+if($RFS_SITE_DATABASE_UPGRADE<887) {
+	sc_database_add("site_vars","type","text","not null");
+	sc_database_add("menu_top","access","text","not null");
+}
+
+$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
+install_database_upgrades_update($RFS_SITE_DATABASE_UPGRADE);
 
 function install_database_upgrades_update($x) {
 	$dbu=mfo1("select * from site_vars where name='database_upgrade'");
