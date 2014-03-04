@@ -74,7 +74,7 @@ sc_database_add("news","wiki",		"text",	"NOT NULL");
 sc_query( "CREATE TABLE IF NOT EXISTS `pmsg` (`id` int(11) NOT NULL AUTO_INCREMENT,`to` text NOT NULL, `from` text NOT NULL, `subject` text NOT NULL, `message` text NOT NULL, `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',`read` text NOT NULL, PRIMARY KEY (`id`) ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=149 ; ");
 }
 
-if($RFS_SITE_DATABASE_UPGRADE<887) {
+if($RFS_SITE_DATABASE_UPGRADE<889) {
 	sc_database_add("site_vars","type","text","not null");
 	sc_database_add("menu_top","access","text","not null");
 }
