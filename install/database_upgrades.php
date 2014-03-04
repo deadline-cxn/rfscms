@@ -1,7 +1,7 @@
 <?
 // Interim Database Changes. These changes will be rotated out into the install script
 // INITIAL UPDATES
-echo " [$RFS_SITE_DATABASE_UPGRADE] [$RFS_BUILD] <BR>";
+
 if(empty($RFS_SITE_DATABASE_UPGRADE)) {
 sc_database_add("rfsauth","name","text","NOT NULL");
 sc_database_add("rfsauth","enabled","text","NOT NULL");
@@ -87,8 +87,8 @@ if($RFS_SITE_DATABASE_UPGRADE<891) {
 		sc_database_add("site_vars","desc","text","not null");
 }
 
-if($RFS_SITE_DATABASE<$RFS_BUILD) {
-	$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
+if(intval($RFS_SITE_DATABASE) < intval($RFS_BUILD)) {
+	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=mfo1("select * from site_vars where name='database_upgrade'");
 	if(empty($dbu->id)) sc_query("insert into site_vars (`name`,`value`) values('database_upgrade','$RFS_SITE_DATABASE_UPGRADE');");
 	else sc_query("update site_vars set `value` = '$RFS_SITE_DATABASE_UPGRADE' where `name`='database_upgrade'");
