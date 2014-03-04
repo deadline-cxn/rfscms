@@ -76,8 +76,15 @@ sc_query( "CREATE TABLE IF NOT EXISTS `pmsg` (`id` int(11) NOT NULL AUTO_INCREME
 
 if($RFS_SITE_DATABASE_UPGRADE<889) {
 	sc_database_add("site_vars","type","text","not null");
-	sc_database_add("menu_top","access","text","not null");
+	sc_database_add("menu_top","access_method","text","not null");
 }
+if($RFS_SITE_DATABASE_UPGRADE<890) {
+	sc_database_add("menu_top","access_method","text","not null");
+	sc_database_add("menu_top","other_requirement","text","not null");
+}
+
+
+
 
 $RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
 install_database_upgrades_update($RFS_SITE_DATABASE_UPGRADE);
