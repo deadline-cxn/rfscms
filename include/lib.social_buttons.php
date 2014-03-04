@@ -130,7 +130,7 @@ function sc_google_adsense($x){
 	if(stristr(sc_phpself(),"adm.php")) return;
 	global $RFS_SITE_GOOGLE_ADSENSE;
 	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
-		sc_div("GOOGLE ADSENSE");
+		lib_div("GOOGLE ADSENSE");
 		echo "<script type=\"text/javascript\"><!--
 				google_ad_client = \"$RFS_SITE_GOOGLE_ADSENSE\";
 				google_ad_slot = \"9276856171\";
@@ -144,7 +144,7 @@ function sc_google_adsense($x){
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_analytics(){
-	sc_div("GOOGLE ANALYTICS");
+	lib_div("GOOGLE ANALYTICS");
     global $RFS_SITE_GOOGLE_ANALYTICS;
 	if(!empty($RFS_SITE_GOOGLE_ANALYTICS)) {
 			echo "<script type=\"text/javascript\">

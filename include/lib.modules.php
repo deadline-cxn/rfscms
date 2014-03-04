@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-sc_div(__FILE__);
+lib_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
 // GET MODULES
 function sc_get_modules_array() {
@@ -58,7 +58,7 @@ function sc_get_modules() { eval(scg());
         else {
             if(is_dir($dr."/".$entry)) {
                 $module="$dr/$entry/lib.$entry.php";
-                sc_div($module);
+                lib_div($module);
                 include($module);
                 array_push($modules,$entry);
             }

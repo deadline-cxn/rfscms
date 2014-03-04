@@ -13,7 +13,7 @@ function todo_list_action_f_rfs_db_element_ed1() { adm_action_f_rfs_db_element_e
 function todo_list_action_() { eval(scg());
 	echo "<h1>TODO List</h1>";
 	echo "<hr>";
-	sc_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=new_todo_list","New List");
+	lib_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=new_todo_list","New List");
 	echo "<hr>";
 	$r=sc_query("select * from todo_list");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
@@ -99,8 +99,8 @@ function todo_list_action_view_todo_list() { eval(scg());
 	
 	echo "<h1>$tdl->name</h1>";
 	echo "$tdl->description<br>";
-	sc_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=search&tdl=$tdl->id","Search");
-	sc_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=open_task&tdl=$tdl->id","Open");
+	lib_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=search&tdl=$tdl->id","Search");
+	lib_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=open_task&tdl=$tdl->id","Open");
 	// if(!empty($tdl->assigned_to)) echo "Assigned to: $tdl->assigned_to<br>";
 	// if(!empty($tdl->owner))       echo "Owner: $tdl->owner<br>";
 	echo "<hr>";
@@ -180,7 +180,7 @@ where (`list`='$tdl->id')  ;");
 			echo "<td class=\"todo_$task_status\">$task->id</td>";
 			
 			echo "<td class=\"todo_$task_status\">";
-			sc_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=edit_task&task=$task->id","Edit");
+			lib_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=edit_task&task=$task->id","Edit");
 			echo "</td>";
 			
 			echo "<td class=\"todo_$task_status\"><img src=\"$RFS_SITE_URL/modules/todo_list/icons/$task->status.png\"></td>";

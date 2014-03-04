@@ -35,9 +35,9 @@ function sc_module_course_list($x) { eval(scg());
         $course=mysql_fetch_object($result);
 			echo "<div>";
 		sc_togglediv_start("course_info$course->id"," COURSE: $course->id $course->name",1);
-		sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=run&id=$course->id","Take This Course");
+		lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=run&id=$course->id","Take This Course");
 		if(sc_access_check("course","edit")) {
-			sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
+			lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
 		}
 		echo "<div class=\"course_info\">";
 		echo $course->description;
@@ -51,7 +51,7 @@ function sc_module_course_list($x) { eval(scg());
 function sc_module_course_admin() { eval(scg());
 
 	if(sc_access_check("course","edit")) {
-		sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_list","Edit Courses");		
+		lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_list","Edit Courses");		
 	}
 	
 }

@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////
-// sc_div(__FILE__);
+// lib_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////
 srand((double) microtime() * 1000000);  // randomize timer
 if(isset($RFS_SITE_LOCALE))
@@ -134,7 +134,7 @@ function sc_do_action() {
 /////////////////////////////////////////////////////////////////////////
 function sc_maintenance() { eval(scg());
 	global $theme;
-	sc_div("sc_maintenance start");
+	lib_div("sc_maintenance start");
 	// sc_multi_rename("$RFS_SITE_PATH/themes/$theme",$theme,"t");
 	// sc_count();
 	sc_get_modules();
@@ -184,7 +184,7 @@ function sc_maintenance() { eval(scg());
 	include($x);	
 	
 	
-	sc_div("sc_maintenance end [$theme]");
+	lib_div("sc_maintenance end [$theme]");
 }
 /////////////////////////////////////////////////////////////////////////
 function sc_get_content_ids() { eval(scg());

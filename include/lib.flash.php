@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-sc_div(__FILE__);
+lib_div(__FILE__);
 function flashnosize($swf){
         echo "<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" \n";
         echo "codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\" >\n";

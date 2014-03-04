@@ -12,7 +12,7 @@ sc_access_method_add("forums", "moderate");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FORUM
 function sc_module_mini_latest_forum_threads($x) { eval(scg());
-    sc_div("FORUMS MODULE SECTION");
+    lib_div("FORUMS MODULE SECTION");
     echo "<h2>Last $x Threads</h2>";
     echo "<table border=0 cellspacing=0>";//  width=190>";
     $result = sc_query("select * from forum_posts 

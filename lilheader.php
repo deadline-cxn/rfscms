@@ -10,7 +10,7 @@ include_once("include/lib.all.php");
 if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
 // housekeeping
 sc_maintenance();
-sc_debugheader(0);
+lib_debug_header(0);
 // divert ajax requests
 if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
 	include("include/lib.all.php");

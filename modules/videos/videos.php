@@ -2,19 +2,17 @@
 chdir("../../");
 include("header.php");
 
-
 function videos_buttons() { eval(scg()); 
-	sc_button("$RFS_SITE_URL/modules/videos/videos.php?action=random","Random Video");
+	lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=random","Random Video");
 	if(sc_access_check("videos","submit"))
-		sc_button("$RFS_SITE_URL/modules/videos/videos.php?action=submitvid","Submit Video");
+		lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=submitvid","Submit Video");
 }
 
 function videos_pagefinish(){ eval(scg()); include("footer.php"); exit(); }
 
 function videos_action_modifyvideo() { eval(scg());
-	$video=mfo1("select * from videos where id='$id'");
-	$vc=sc_getuserdata($video->contributor);
-	if( sc_access_check("videos","edit") ) { 
+	if( sc_access_check("videos","edit") ) {
+		$video=mfo1("select * from videos where id='$id'");
 		echo "<p align=center>";
 		echo "$video->url<br>";	
 		echo "<form enctype=application/x-www-form-URLencoded method=post action=videos.php>";
@@ -22,21 +20,16 @@ function videos_action_modifyvideo() { eval(scg());
 		echo "<input type=hidden name=id value=\"$video->id\">";
 		echo "Short Name<input name=sname value=\"$video->sname\">";
 		echo "Safe For Work<select name=sfw>";
-		if(!empty($video->sfw))
-			echo "<option>$video->sfw";
+		if(!empty($video->sfw)) echo "<option>$video->sfw";
 		echo "<option>yes<option>no</select>";
 		echo "Hidden<select name=hidden>";
 		if(!empty($video->hidden)) echo "<option>$video->hidden";
 		echo "<option>no<option>yes</select>";
-		$cat=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
 		echo "<select name=categorey>";
+		$cat=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
 		echo "<option>$cat->name";
 		$result2=sc_query("select * from categories order by name asc");
-		$numcats=mysql_num_rows($result2);
-		for($i2=0;$i2<$numcats;$i2++){
-			$cat=mysql_fetch_object($result2);
-			echo "<option>$cat->name";
-		}
+		while($cat=mysql_fetch_object($result2)) echo "<option>$cat->name";
 		echo "</select>\n";
 		echo "<br>";
 		echo "<textarea rows=10 cols=40 name=vurl>$video->url</textarea>";	
@@ -45,7 +38,7 @@ function videos_action_modifyvideo() { eval(scg());
 		echo "</p>";		
 	}
 	else {
-		echo "This isn't your video."; 
+		echo "You can't edit videos."; 
 	}
 }
 
@@ -88,8 +81,8 @@ function videos_action_submitvidgo() {
 				category $category<br>
 				sfw $sfw <br>"	 ;
 	 
-		sc_query(" INSERT INTO `videos` (`contributor`, `sname`, `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
-					VALUES ('$cont','$sname','$vurl','$time','$time','$category','0','$sfw');");
+		sc_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
+								 VALUES ('$cont',	 	'$sname','$vurl','$time',    '$time','$category',      '0','$sfw');");
 
 		$v=mfo1("select * from videos where `sname`='$sname'");
 		$id=$v->id;
@@ -105,24 +98,22 @@ function videos_action_submitvid() { eval(scg());
 	
 		echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/videos/videos.php\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"submitvidgo\">\n";
-		echo "<tr><td>Title</td><td>";
-		
-		echo "<input size=60 name=\"sname\"></td></tr>\n";
-		
-		echo "<tr><td>URL (Embeded)</td><td>";
-		echo "<textarea rows=10 cols=60 name=\"vurl\"></textarea></td></tr>\n";
-		echo "<tr><td>";
-		echo "Safe For Work</td><td><select name=sfw>";
-		if(!empty($video->sfw))
-			echo "<option>$video->sfw";
-		echo "<option>yes<option>no</select></td></tr>";
 
+		
+		echo "<tr><td>Title</td><td><input size=60 name=\"sname\"></td></tr>\n";
+		
+		echo "<tr><td>Link</td><td><input size=60 name=\"link\"></td></tr>\n";
+		
+		echo "<tr><td>Embed Code</td><td><textarea rows=10 cols=60 name=\"vurl\"></textarea></td></tr>\n";
+		
+		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
+		if(!empty($video->sfw)) echo "<option>$video->sfw";
+		echo "<option>yes<option>no</select></td></tr>";
+		
 		$res=sc_query("select * from `categories` order by name asc");
-		$numcat=mysql_num_rows($res);	
 		echo "<tr><td>Category</td><td><select name=category>";
 		if(!empty($category_in)) echo "<option>$category_in";
-		for($i=0;$i<$numcat;$i++){
-			$cat=mysql_fetch_object($res);
+		while($cat=mysql_fetch_object($res)) {
 			echo "<option>$cat->name";
 		}
 		
@@ -133,29 +124,23 @@ function videos_action_submitvid() { eval(scg());
 	}
 }
 
-
-
 function videos_action_removego() { eval(scg());
 	if(sc_access_check("videos","delete")) {
-		$res=sc_query("select * from `videos` where `id`='$id'");
-		$video=mysql_fetch_object($res);
+		$video=mfo1("select * from `videos` where `id`='$id'");		
 		sc_query("delete from `videos` where `id`='$id'");
 		echo "<p>Removed $video->sname from the database...</p>";
 	}
 }
 
 function videos_action_removevideo() { eval(scg());
-
 	if(sc_access_check("videos","delete")) {
-        $res=sc_query("select * from `videos` where `id`='$id'");
-        $video=mysql_fetch_object($res);
+        $video=mfo1("select * from `videos` where `id`='$id'");        
         echo "<table border=0>\n";
         echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/videos/videos.php method=post>\n";
         echo "<input type=hidden name=action value=removego>\n";
         echo "<input type=hidden name=id value=\"$id\">\n";
         echo "<tr><td>Are you sure you want to delete [$video->sname]???</td>";
         echo "<td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
-        // echo "<tr><td>Annihilate the file from the server?</td>";        echo "<td><input name=\"annihilate\" type=\"checkbox\" value=\"yes\"></td></tr>\n";
         echo "</form></table>\n";
         video_pagefinish();
 	}	
@@ -170,13 +155,10 @@ function videos_action_view($id) { eval(scg());
 	echo "<h1>$category->name videos</h1>";
 	
 	$res2=sc_query("select * from `videos` where `category`='$category->id' and `hidden`!='yes' order by `sname` asc");
-	$numres2=mysql_num_rows($res2);
 	$linkprev="";
 	$linknext="";
-	
-	for($i=0;$i<$numres2;$i++){
-		$video2=mysql_fetch_object($res2);
-		if($video2->id==$video->id){
+	while($video2=mysql_fetch_object($res2)){		
+		if($video2->id==$video->id) {
 			$video2=mysql_fetch_object($res2);
 			if(!empty($video2->id)){
 				$linknext="[<a href=videos.php?action=view&id=$video2->id>Next</a>]";
@@ -203,22 +185,18 @@ function videos_action_view($id) { eval(scg());
     }
 	echo "<br>";	
 	echo $linkprev;
-	if(sc_access_check("videos","edit"))    sc_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit"); //($data->id==$video->contributor)||($data->access==255)){			 
-	if(sc_access_check("videos","delete")) sc_button("$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&id=$video->id","Delete");
+	if(sc_access_check("videos","edit"))    lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit"); //($data->id==$video->contributor)||($data->access==255)){			 
+	if(sc_access_check("videos","delete")) lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&id=$video->id","Delete");
 	echo $linknext;
-	
-	echo "</div>";
-	
+	echo "</div>";	
 	videos_action_viewcat($video->category);
 	videos_action_view_cats();
 	videos_pagefinish();
 }
 
-
 function videos_action_viewcat($cat) { eval(scg());
 	$res2=sc_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
-	for($i=0;$i<mysql_num_rows($res2);$i++) {
-		$vid=mysql_fetch_object($res2);
+	while($vid=mysql_fetch_object($res2)) {		
 		$ytthumb="";
 		if(stristr($vid->url,"youtube")) {
 			$ytx=explode("\"",$vid->url);
@@ -233,7 +211,7 @@ function videos_action_viewcat($cat) { eval(scg());
 		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
 		echo "<a href=videos.php?action=view&id=$vid->id>";
 		if($ytthumb)
-		echo "<img src=\"http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg\" width=100 class=rfs_thumb><br>";
+			echo "<img src=\"http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg\" width=100 class=rfs_thumb><br>";
 		echo "$vid->sname</a>";
 		echo "</div>";
 	}
@@ -253,7 +231,6 @@ function videos_action_random() { eval(scg());
 		videos_action_view($id);
 	}
 }
-
 
 function videos_action_view_cats() { eval(scg());
 	$numcols=0;
@@ -302,23 +279,22 @@ function videos_action_view_cats() { eval(scg());
 }
 
 function videos_action_() { eval(scg());
-	
-
-	if(!empty($id)) $res=sc_query("select * from `videos` where `id`='$id'");
-	if($res) $video=mysql_fetch_object($res);
-	if(!empty($video->id))
-	$category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
-	if(!empty($cat)) 
-	$category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$cat  '"));
-
-	if(!empty($category->name)) { echo "<h1>$category->name Videos</h1>"; }	
-	else { 	echo "<h1>Videos</h1>"; }
-	
+/*	if(!empty($id)) 			$res=sc_query("select * from `videos` where `id`='$id'");
+	if($res) 					$video=mysql_fetch_object($res);
+	if(!empty($video->id))		$category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
+	if(!empty($cat)) 			$category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$cat  '"));
+	if(!empty($category->name)) echo "<h1>$category->name ";
+	echo "Videos</h1>"; 	*/
 	videos_action_random();
-	
-
 	videos_pagefinish();
 }
 
+
+// http://youtu.be/0KSOMA3QBU0
+// http://youtu.be/0KSOMA3QBU0?t=34s
+// http://youtu.be/0KSOMA3QBU0?t=2m34s
+// <iframe width="560" height="315" src="http://www.youtube.com/embed/0KSOMA3QBU0" frameborder="0" allowfullscreen></i4frame>
+// <iframe width="420" height="315" src="http://www.youtube.com/embed/SAnFLgThTgo" frameborder="0" allowfullscreen></iframe>
+// <iframe width="420" height="315" src="http://www.youtube.com/embed/ZaY910CCYu0" frameborder="0" allowfullscreen></iframe>
 ?>
 

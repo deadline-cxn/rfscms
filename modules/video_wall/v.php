@@ -1,14 +1,8 @@
 <?
-
-
 chdir("../../");
-
-//include("include/session.php");
 include("include/lib.all.php");
 
-
 $data=sc_getuserdata($_SESSION['valid_user']);
-
 $count=sc_mcount($data->name);
 
 if($debug=="on") $_SESSION['debug_msgs']=true;
@@ -488,7 +482,7 @@ echo "</td></tr></table>";
 	
 echo "</center>";
 
-sc_debugfooter(0);
+lib_debug_footer(0);
 
 echo "</body>";
 echo "</html>";

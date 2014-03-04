@@ -6,7 +6,7 @@ sc_menus_register("My Profile","$RFS_SITE_URL/modules/profile/profile.php");
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE profile
 function sc_module_mini_profile($x) { eval(scg());
-    sc_div("PROFILE MODULE SECTION");
+    lib_div("PROFILE MODULE SECTION");
     echo "<h2>Profile</h2>";
     /*
     echo "<table border=0 cellspacing=0>";

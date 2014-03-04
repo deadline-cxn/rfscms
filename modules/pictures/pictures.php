@@ -36,16 +36,16 @@ if(empty($galleria)) {
 		$galleria="yes";	
 }
 
-function pics_show_buttons() { eval(scg());
+function pictures_show_buttons() { eval(scg());
 	echo "<table border=0><tr>"; 
 	if(sc_access_check("pictures","orphanscan")) {
 		echo "<td>";
-		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=addorphans","Add Orphans");
+		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=addorphans","Add Orphans");
 		echo "</td>";
 	}
 	if(sc_access_check("pictures","upload")) {
 		echo "<td>";
-		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=uploadpic","Upload picture");
+		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=uploadpic","Upload picture");
 		echo "</td>";
 	}
 	if(sc_access_check("pictures","sort")) {
@@ -54,14 +54,14 @@ function pics_show_buttons() { eval(scg());
 		$numpics=mysql_num_rows($res2);
 		if($numpics>0){
 			echo "<td>";
-			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&category=unsorted","Sort $numpics Pictures");
+			lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=sorttemp&category=unsorted","Sort $numpics Pictures");
 			echo "</td>";
 		}
 	}
 	echo "</tr></table>"; 
 }
 
-$ourl="$RFS_SITE_URL/modules/pictures/pics.php?action=$action&id=$id";
+$ourl="$RFS_SITE_URL/modules/pictures/pictures.php?action=$action&id=$id";
 
 //if(!empty($id))          $res=sc_query("select * from `pictures` where `id`='$id'");
 //if($res)                 $picture=mysql_fetch_object($res);
@@ -71,17 +71,17 @@ $thumbwidth=200;
 $editwidth=256;
 $fullsize=512;
 
-function pics_action_showmemes() { eval(scg());
+function pictures_action_showmemes() { eval(scg());
 	sc_gotopage("$RFS_SITE_URL/modules/memes/memes.php");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture
-function pics_action_uploadpic() { eval(scg());
+function pictures_action_uploadpic() { eval(scg());
 	echo "<h1>Upload a picture</h1>\n";
 
 
-sc_bf(	"$RFS_SITE_URL/modules/pictures/pics.php",
+sc_bf(	"$RFS_SITE_URL/modules/pictures/pictures.php",
 		"action=uploadpicgo".$RFS_SITE_DELIMITER.
 		"MAX_FILE_SIZE=99999999".$RFS_SITE_DELIMITER.
 		
@@ -100,7 +100,7 @@ sc_bf(	"$RFS_SITE_URL/modules/pictures/pics.php",
 	
 	/*
 	//echo "<table border=0>\n";
-	//echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/pictures/pics.php\" method=\"post\">\n";
+	//echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/pictures/pictures.php\" method=\"post\">\n";
 	//echo "<input type=hidden name=action value=uploadpicgo>\n";
 	//echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"93000000\">";
 	echo "<tr><td align=right>Select file:      </td><td ><input name=\"userfile\" type=\"file\" size=80> </td></tr>\n";
@@ -122,7 +122,7 @@ sc_bf(	"$RFS_SITE_URL/modules/pictures/pics.php",
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture confirm
-function pics_action_uploadpicgo(){ eval(scg());
+function pictures_action_uploadpicgo(){ eval(scg());
 	echo "Uploading picture...\n";
 	$furl="files/pictures/".$_FILES['userfile']['name'];
 	$furl=str_replace("//","/",$furl);
@@ -158,7 +158,7 @@ function pics_action_uploadpicgo(){ eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
-function pics_action_removepicture() { eval(scg());
+function pictures_action_removepicture() { eval(scg());
 
 echo "Remove picture: $id<br>";
 
@@ -170,7 +170,7 @@ echo "Remove picture: $id<br>";
 			
 		echo sc_picthumb("$RFS_SITE_URL/$picture->url",200,0,1);
 			
-		echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/pictures/pics.php method=post>\n";
+		echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/pictures/pictures.php method=post>\n";
 		echo "<table border=0>\n";
 		echo "<input type=hidden name=action value=removego>\n";
 		echo "<input type=hidden name=id value=\"$id\">\n";
@@ -185,7 +185,7 @@ echo "Remove picture: $id<br>";
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
-function pics_action_removego() { eval(scg());
+function pictures_action_removego() { eval(scg());
 
 	$res=sc_query("select * from `pictures` where `id`='$id'");
 	$picture=mysql_fetch_object($res);
@@ -208,7 +208,7 @@ function pics_action_removego() { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Add orphans
-function pics_action_addorphans(){ eval(scg());
+function pictures_action_addorphans(){ eval(scg());
 // if($action=="addorphans"){
     if ($data->access==255) {
         // $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
@@ -222,7 +222,7 @@ function pics_action_addorphans(){ eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Sort !!!TEMP!!! category
-function pics_action_sorttemp() { eval(scg());
+function pictures_action_sorttemp() { eval(scg());
 
 	if ($data->access==255) {
         if($subact=="place"){
@@ -245,7 +245,7 @@ function pics_action_sorttemp() { eval(scg());
             $picture=mysql_fetch_object($res);
             echo "<p align=center>$picture->url<br>";
             echo "<table border=0><tr><td width=610 valign=top>";
-            echo "<center><a href='$RFS_SITE_URL/modules/pictures/pics.php?action=removego&gosorttemp=yes&id=$picture->id&annihilate=yes'><img src=$RFS_SITE_URL/images/icons/Delete.png border=0><br>Delete (Warning there is no confirmation)</a><br>";
+            echo "<center><a href='$RFS_SITE_URL/modules/pictures/pictures.php?action=removego&gosorttemp=yes&id=$picture->id&annihilate=yes'><img src=$RFS_SITE_URL/images/icons/Delete.png border=0><br>Delete (Warning there is no confirmation)</a><br>";
 			$size = getimagesize($picture->url);
 			$nw=$size[0]; $nh=$size[1]; if($nw>600) $w=600; if($nh>600) $h=600;
             echo "<img src=\"$RFS_SITE_URL/$picture->url\" ";
@@ -266,12 +266,12 @@ function pics_action_sorttemp() { eval(scg());
 					$imout="images/noimage_file.gif";
 				if(!$incat->image)
 					$imout="images/noimage.gif";
-				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&subact=place&id=$picture->id&category=$incat->name&sname=$picture->sname&sfw=yes'>";
+				echo "<a href='$RFS_SITE_URL/modules/pictures/pictures.php?action=sorttemp&subact=place&id=$picture->id&category=$incat->name&sname=$picture->sname&sfw=yes'>";
 				echo "<img src='$RFS_SITE_URL/$imout' width=70 height=70><br>$incat->name</a>";
 				echo "</div>";
 			}
             echo "</td></tr></table>";
-			echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pics.php>";
+			echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pictures.php>";
 			echo "<input type=hidden name=action value=sorttemp>";
 			echo "<input type=hidden name=subact value=place>";
 			echo "<input type=hidden name=id value=\"$picture->id\">";
@@ -344,14 +344,14 @@ if($action=="modifygo"){
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Modify picture information
-function pics_action_modifypicture() { eval(scg());
+function pictures_action_modifypicture() { eval(scg());
 // if($action=="modifypicture"){
 	if ($data->access==255) {
 		$res=sc_query("select * from `pictures` where `id`='$id'");
 		$picture=mysql_fetch_object($res);
 		echo "<center><img src=$RFS_SITE_URL/$picture->url height=$editwidth>";
 		
-		echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pics.php>";
+		echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pictures.php>";
 		echo "<table border=0>";
 		echo "<input type=hidden name=action value=modifygo>";
 		echo "<input type=hidden name=id value=\"$picture->id\">";
@@ -408,7 +408,7 @@ function pics_action_modifypicture() { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE random
-function pics_action_random() { eval(scg());
+function pictures_action_random() { eval(scg());
 // if($action=="random"){
     $res=sc_query("select * from `pictures` where `hidden`!='yes'");
     $num=mysql_num_rows($res);
@@ -416,13 +416,13 @@ function pics_action_random() { eval(scg());
         $pict=rand(1,($num))-1;
         mysql_data_seek($res,$pict);
         $pic=mysql_fetch_object($res);
-        pics_action_view($pic->id);//$GLOBALS['id']=$pic->id;
+        pictures_action_view($pic->id);//$GLOBALS['id']=$pic->id;
     }
     
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view
-function pics_action_view($id) { eval(scg());
+function pictures_action_view($id) { eval(scg());
     $res=sc_query("select * from `pictures` where `id`='$id' order by time asc");
     $picture=mysql_fetch_object($res);
 	$category=$picture->category;
@@ -435,9 +435,9 @@ function pics_action_view($id) { eval(scg());
         if($picture2->id==$picture->id)        {
             $picture2=mysql_fetch_object($res2);
             if(!empty($picture2->id))            {
-					$linknext="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture2->id";
+					$linknext="$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture2->id";
                 if(!empty($picture3->id))
-					$linkprev="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id";
+					$linkprev="$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture3->id";
                 break;
             }
         }
@@ -448,36 +448,36 @@ function pics_action_view($id) { eval(scg());
 	echo "<center><table border=0><tr>";
         if(!empty($picture3->id)) {
 			echo "<td>";
-			sc_button($linkprev,"Previous");
+			lib_button($linkprev,"Previous");
 			echo "</td>";
 		}
     
     if($id) {
 		if(sc_yes($RFS_SITE_CAPTIONS)){
 		echo "<td>";
-		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
+		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
 		echo "</td>";
 		}
 		
 		echo "<td>";
-		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=random","Random Picture");
+		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=random","Random Picture");
 		echo "</td>";
 
 		if(sc_access_check("pictures","edit")) {
 			echo "<td>";
-			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$picture->id","Edit");
+			lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=modifypicture&id=$picture->id","Edit");
 			echo "</td>";
 		}
 		
 		if(sc_access_check("pictures","delete")) {
 			echo "<td>";
-			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=removepicture&id=$picture->id","Delete");
+			lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=removepicture&id=$picture->id","Delete");
 			echo "</td>";
 		}
 		
 		echo "<td>";
 		if(!empty($picture2->id))
-			sc_button($linknext,"Next");
+			lib_button($linknext,"Next");
 		echo "</td>";
 		echo "</tr></table></center>";	
 		echo "<center>";
@@ -534,11 +534,11 @@ function pics_action_view($id) { eval(scg());
 			echo "<img src=\"$picture->url\">";				
 		}
 		else{
-			echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
+			echo "<a href='$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
 		}			
 	}
 	echo "<p>&nbsp;</p>";
-		$page="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id";	
+		$page="$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id";	
 		sc_facebook_comments($page);		
 	}
 	else {
@@ -550,7 +550,7 @@ function pics_action_view($id) { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view category
-function pics_action_viewcat($cizat) { eval(scg());
+function pictures_action_viewcat($cizat) { eval(scg());
 	
 	if(empty($cat)) $cat=$_REQUEST['cat'];
 	if(empty($cat)) $cat=$cizat;
@@ -597,7 +597,7 @@ function pics_action_viewcat($cizat) { eval(scg());
 
 			}
 			else {
-				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
+				echo "<a href='$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id'>";
 				$img=$RFS_SITE_URL."/".$picture->url;
 				echo sc_picthumb($img,96,0,1);
 				echo "</a>\n";
@@ -621,7 +621,7 @@ function pics_action_viewcat($cizat) { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE show categories
-function pics_action_viewcats(){ eval(scg());
+function pictures_action_viewcats(){ eval(scg());
 	if(!$donotshowcats) {
 		$res=sc_query("select * from `categories` order by name asc");
 		$numcats=mysql_num_rows($res);
@@ -640,7 +640,7 @@ function pics_action_viewcats(){ eval(scg());
 			if(empty($cat->image)) $cat->image="buttfea2.gif";
 			if(!file_exists("$RFS_SITE_PATH/$cat->image")) $cat->image="images/icons/404.png";
 				echo "
-				<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=viewcat&cat=$cat->id'>
+				<a href='$RFS_SITE_URL/modules/pictures/pictures.php?action=viewcat&cat=$cat->id'>
 				<h1><img src='$RFS_SITE_URL/$cat->image' border=0 width=64 height=64>$cat->name ($numpics)</h1>
 				</a>
 				<br>";
@@ -655,7 +655,7 @@ function pics_action_viewcats(){ eval(scg());
 					for($i2=0;$i2<$numpics;$i2++) {
 						$picture=mysql_fetch_object($res2);
 						if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
-						echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
+						echo "<a href='$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id'>";
 						$img=$RFS_SITE_URL."/".$picture->url;
 						echo sc_picthumb($img,96,0,1);
 						echo "</a>\n";
@@ -676,10 +676,10 @@ function pics_action_viewcats(){ eval(scg());
 	exit();
 }
 
-function pics_action_() { eval(scg());
+function pictures_action_() { eval(scg());
 	echo "<h1>Pictures</h1>";
-	pics_show_buttons();
-	pics_action_viewcats();
+	pictures_show_buttons();
+	pictures_action_viewcats();
 }
 
 ?>

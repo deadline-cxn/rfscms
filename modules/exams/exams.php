@@ -304,9 +304,9 @@ if($action=="wipe_exam") {
 			
 			<center>
 			".
-			sc_makebutton("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=really_wipe_exam","RESTART")
+			lib_button_text("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=really_wipe_exam","RESTART")
 			.
-			sc_makebutton("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=run_exam","RESUME")."
+			lib_button_text("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=run_exam","RESUME")."
 			</center>
 			<hr>
 			<br>
@@ -455,7 +455,7 @@ if($action=="run_exam") {
 
     if($question->type=="multiple_choice") {
 
-        sc_div("MULTIPLE CHOICE TEST QUESTION");
+        lib_div("MULTIPLE CHOICE TEST QUESTION");
 
         $qq.="$question->question <BR>\n";
         $qq.="<center><img src='$question->question_image' border=0 align=center width=64></center><hr>\n";
@@ -478,7 +478,7 @@ if($action=="run_exam") {
     }
 
     if($question->type=="multi_select") {		
-        sc_div("MULTI SELECT TEST QUESTION");
+        lib_div("MULTI SELECT TEST QUESTION");
 				
 		$qq.="$question->question<br><br>";
 
@@ -500,7 +500,7 @@ if($action=="run_exam") {
     if($question->type=="true_false") {
 
 
-        sc_div("TRUE OR FALSE TEST QUESTION");
+        lib_div("TRUE OR FALSE TEST QUESTION");
 
         $qq.="$question->question<br><br>";
 
@@ -513,7 +513,7 @@ if($action=="run_exam") {
 
     if($question->type=="fill_in_blank") {
 
-        sc_div("FILL IN THE BLANK TEST QUESTION");
+        lib_div("FILL IN THE BLANK TEST QUESTION");
 
         $oq=str_replace("-a-","<input type=text name=a>", $question->question);
         $oq=str_replace("-b-","<input type=text name=b>", $oq);
@@ -529,7 +529,7 @@ if($action=="run_exam") {
 				           
     if($question->type=="fib_dropdown") {
 
-            sc_div("FILL IN THE BLANK DROP DOWN TEST QUESTION");
+            lib_div("FILL IN THE BLANK DROP DOWN TEST QUESTION");
 
             $opts = "<option name=none>Fill in the blank\n";
             $opts.= "<option>$question->choice_1\n";
@@ -559,7 +559,7 @@ if($action=="run_exam") {
 	
     sc_question($qq);
 	
-    sc_div("END OF TEST QUESTION");
+    lib_div("END OF TEST QUESTION");
 	
 	}
 }
