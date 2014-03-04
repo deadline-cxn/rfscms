@@ -86,16 +86,12 @@ if($RFS_SITE_DATABASE_UPGRADE<891) {
 		sc_database_add("site_vars","desc","text","not null");
 }
 
-
-
-
-$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
-install_database_upgrades_update($RFS_SITE_DATABASE_UPGRADE);
-
-function install_database_upgrades_update($x) {
+if($RFS_SITE_DATABASE!=$RFS_BUILD) {
+	$RFS_SITE_DATABASE_UPGRADE=$RFS_BUILD;
 	$dbu=mfo1("select * from site_vars where name='database_upgrade'");
-	if(empty($dbu->id)) sc_query("insert into site_vars (`name`,`value`) values('database_upgrade','$x');");
-	else sc_query("update site_vars set `value` = '$x' where `name`='database_upgrade'");
+	if(empty($dbu->id)) sc_query("insert into site_vars (`name`,`value`) values('database_upgrade','$RFS_SITE_DATABASE_UPGRADE');");
+	else sc_query("update site_vars set `value` = '$RFS_SITE_DATABASE_UPGRADE' where `name`='database_upgrade'");
+	echo "Added interim database changes $RFS_SITE_DATABASE_UPGRADE<br>";
 }
 
 
