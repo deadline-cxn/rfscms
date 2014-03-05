@@ -32,6 +32,54 @@ function adm_action_update() { eval(scg());
 	include("footer.php");
 	exit();
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_ADDONS MANAGEMENT
+function adm_action_addons() { eval(scg());
+	echo "<h1>Addons</h1>";
+	
+	echo "[Installed Addons]<br>";
+	
+	echo "[Browse Addons]<br>";
+	///////////////////////////////////////////////
+	//
+	// get list of addons from sethcoder.com
+	// 
+	// download the database once every 24 hours to addon_database table
+	// addon_database: 
+	// 
+	// 		name
+	//		datetime_added
+	//		datetime_updated
+	//		version
+	//		sub_version
+	// 		release
+	//		description
+	//		requirements
+	//		cost
+	// 		license
+	//		dependencies
+	//		author
+	//		author_website
+	//		documentation_website
+	// 		rating
+	// 
+	// add rfs_site_addon_database_time to check for time
+	
+	$time=time();
+	if($time-intval($RFS_SITE_ADDON_DATABASE_TIME)>86400) {
+		$addon_database=file_get_contents("http://www.sethcoder.com/files/addon_database.sql");
+		sc_query($addon_database);
+	}
+	
+
+}
+function adm_action_registered_menu_items() { 
+	sc_show_menu_options();
+	finishadminpage();
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AUTH FUNCTIONS
 function adm_action_auth_config() { eval(scg());
@@ -1492,10 +1540,6 @@ function adm_action_admin_menu_edit() { eval( scg() );
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU TOP
-function adm_action_registered_menu_items() { 
-	sc_show_menu_options();
-	finishadminpage();
-}
 function adm_action_f_menu_topedit_del_go() { eval( scg() );
 	$res=sc_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
@@ -2243,6 +2287,7 @@ function adm_action_() { eval(scg());
 function adm_menu_built_in() { eval(scg());
     
         $arr=get_defined_functions();
+		asort($arr['user']);
         foreach( $arr['user'] as $k=>$v ) {
             if( stristr( $v,"adm_action_" ) ) {
                 if( !stristr( $v,"_lib_") ) {
