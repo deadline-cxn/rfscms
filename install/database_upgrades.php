@@ -90,6 +90,9 @@ if($a<890) {
 if($a<891) {
 		sc_database_add("site_vars","desc","text","not null");
 }
+if($a<898) {
+	sc_access_method_add("debug", "view");
+}
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
