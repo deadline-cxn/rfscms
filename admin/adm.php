@@ -2437,18 +2437,19 @@ function adm_menu_built_in() { eval(scg());
 function finishadminpage() {
 	eval( scg() );
 
-    
-echo "FUNCTION LIST:<hr>";
-// echo "<pre>"; include("$RFS_SITE_PATH/tools/funx.out.txt"); echo "</pre>";
 
-$arr=get_defined_functions();
-natcasesort($arr['user']);
-foreach( $arr['user'] as $k=>$v ) {
-	
-	echo "$v <br>";
-	
-}
-echo "";
+if(!sc_access_check("debug","view")) return;
+    if(isset($_SESSION['debug_msgs']))
+    if(sc_yes($_SESSION['debug_msgs'])){    
+		d_echo("======================================================================");
+		d_echo("FUNCTION LIST:");
+		d_echo("======================================================================");
+		$arr=get_defined_functions();
+		natcasesort($arr['user']);
+		foreach( $arr['user'] as $k=>$v ) {
+			d_echo($v);	
+		}
+	}
 
 
 	include( "footer.php" );
