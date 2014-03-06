@@ -290,8 +290,7 @@ hr{
 }
 
 .righttd {
-	vertical-align: top;
-	min-width: 300px;
+	vertical-align: top;	
 	max-width: 300px;
 	padding: 5px;
 	
@@ -460,8 +459,6 @@ a.sc_top_menu_link:hover {
     color: #a5a555;
 }
 
-
-
 input,textarea{
     font-family: Arial;
     font-size: 12px;
@@ -490,8 +487,11 @@ input[type="submit"] {
 	-webkit-box-shadow: 5px 5px 3px   #555;
 	box-shadow: 5px 5px 3px  #555;
 	cursor: pointer;
-}.warning
-{
+}
+
+.warning {
+	background-color: #F00;
+	color: #FFF;
 }
 
 .iframez

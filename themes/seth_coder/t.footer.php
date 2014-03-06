@@ -1,4 +1,5 @@
 <?
+
 	
 	if(!sc_yes($data->donated)) {
 		echo "<center>";
@@ -30,5 +31,6 @@
 	
 	
     echo "</body></html>";
+	
 
 ?>
