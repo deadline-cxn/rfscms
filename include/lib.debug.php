@@ -8,7 +8,9 @@ if(isset($_REQUEST['debug'])) {
 	if($_REQUEST['debug']=="on") lib_debug_on();
 	if($_REQUEST['debug']=="off") lib_debug_off();
 }
-function lib_debug_on()  { $_SESSION['debug_msgs']=true;  }
+function lib_debug_on()  { 
+	if(sc_access_check("debug","view")) $_SESSION['debug_msgs']=true;
+}
 function lib_debug_off() { $_SESSION['debug_msgs']=false; }
 if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); }
 if($_REQUEST['debug_view_error_log']==1) {
@@ -21,6 +23,7 @@ if($_REQUEST['debug_view_error_log']==1) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function d_echo($t){
+	if(!sc_access_check("debug","view")) return;
     if(isset($_SESSION['debug_msgs']))
     if(sc_yes($_SESSION['debug_msgs'])){
         $t=str_replace("<","&lt;",$t);    
