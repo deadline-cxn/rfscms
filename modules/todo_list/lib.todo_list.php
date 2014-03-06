@@ -4,36 +4,6 @@ include_once("include/lib.all.php");
 sc_module_register("TODO");
 sc_menus_register("TODO","$RFS_SITE_URL/modules/todo_list/todo_list.php");
 
-sc_database_add("todo_list","name","text","not null");
-sc_database_add("todo_list","description","text","not null");
-sc_database_add("todo_list","assigned_to","text","not null");
-sc_database_add("todo_list","assigned_to_group","text","not null");
-sc_database_add("todo_list","public","text","not null");
-sc_database_add("todo_list","owner","text","not null");
-sc_database_add("todo_list","type","text","not null");
-
-sc_database_add("todo_list_task","name","text","not null");
-sc_database_add("todo_list_task","list","text","not null");
-sc_database_add("todo_list_task","priority","text","not null");
-sc_database_add("todo_list_task","description","text","not null");
-sc_database_add("todo_list_task","step","text","not null");
-sc_database_add("todo_list_task","status","text","not null");
-sc_database_add("todo_list_task","opened","timestamp","DEFAULT CURRENT_TIMESTAMP");
-sc_database_add("todo_list_task","due","timestamp","not null");
-
-sc_database_add("todo_list_status","name","text","not null");
-sc_database_data_add("todo_list_status","name","Open","");
-sc_database_data_add("todo_list_status","name","In Progress","");
-sc_database_data_add("todo_list_status","name","Resolved","");
-sc_database_data_add("todo_list_status","name","Closed","");
-
-sc_database_add("todo_list_type","name","text","not null");
-sc_database_data_add("todo_list_type","name","Personal","");
-sc_database_data_add("todo_list_type","name","Bug","");
-sc_database_data_add("todo_list_type","name","Task","");
-
-sc_access_method_add("todo_list", "add");
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE TODO LIST
 function sc_module_todo_list($x) { eval(scg());
