@@ -1037,7 +1037,7 @@ function adm_action_theme() { eval(scg());
 		
 		if( (!file_exists("$RFS_SITE_PATH/$sample")) || 
 			 $force_images=="1"	) {
-			$cmd="$RFS_SITE_PATH/tools/bin/wkhtmltoimage --crop-h 800 $RFS_SITE_URL?theme=$thm $RFS_SITE_PATH/$sample";
+			$cmd="$RFS_SITE_PATH/tools/bin/wkhtmltoimage --crop-h 800 --crop-w 1200 $RFS_SITE_URL?theme=$thm $RFS_SITE_PATH/$sample";
 			system($cmd);
 		}
 		echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
