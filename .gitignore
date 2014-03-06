@@ -2,6 +2,7 @@ error.log
 tripwords2.txt
 tripwords.txt
 db_config.h
+.cache
 .Trash-1000
 .out
 log/*
