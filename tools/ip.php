@@ -1,8 +1,7 @@
 <? 
-// foreach ($_SERVER as $a => $b ) { echo "$a [$b]<br>"; }
 $fp=fopen("ip.txt","wt");
-fputs($fp,$_SERVER['REMOTE_ADDR']);
+fputs($fp,$_SERVER['REMOTE_ADDR']."\n");
 $t=date('Y-m-d i:s');
-fputs($fp,"\n<br>\nLast updated:$t\n<br>");
+fputs($fp,"Last updated:$t\n");
 fclose($fp);
 ?>
