@@ -88,9 +88,9 @@ if($a<890) {
 	sc_database_add("menu_top","other_requirement","text","not null");
 }
 if($a<891) {
-		sc_database_add("site_vars","desc","text","not null");
+	sc_database_add("site_vars","desc","text","not null");
 }
-if($a<898) {
+if($a<901) {
 	sc_access_method_add("debug", "view");
 }
 
