@@ -39,7 +39,7 @@ echo "INSERTING";
 	$id=mysql_insert_id();
 	sc_updb("todo_list_task","id","$id","");
 	$id=$list;
-	todo_list_action_view_todo_list();
+	todo_list_action_view_todo_list($list);
 }
 
 function todo_list_action_open_task() { eval(scg());
@@ -68,8 +68,7 @@ function todo_list_action_search() { eval(scg());
 
 function todo_list_action_edit_task_go() { eval(scg());
 	sc_updb("todo_list_task","id",$id,"");
-	$id=$list;
-	todo_list_action_view_todo_list();
+	todo_list_action_view_todo_list($list);
 }
 
 function todo_list_action_edit_task() { eval(scg());
@@ -93,7 +92,8 @@ function todo_list_action_edit_task() { eval(scg());
 	
 }
 
-function todo_list_action_view_todo_list() { eval(scg());
+function todo_list_action_view_todo_list($list) { eval(scg());
+	if(!empty($list)) $id=$list;
 	$r=sc_query("select * from todo_list where id=$id");
 	$tdl=mysql_fetch_object($r);
 	
@@ -164,8 +164,10 @@ where (`list`='$tdl->id')  ;");
 			echo "<th>Name</th>";
 			echo "<th>Description</th>";
 			echo "<th>Opened</th>";
-			// echo "<th>Due</th>";
-			// echo "<th>Step</th>";
+			echo "<th>Opened By</th>";
+			echo "<th>Closed</th>";
+			echo "<th>Closed By</th>";
+			echo "<th>Resolve Action</th>";
 			
 			echo "</tr>";		
 		
@@ -196,9 +198,10 @@ where (`list`='$tdl->id')  ;");
 			echo "<td class=\"todo_$task_status\"> $task->name </td>";			
 			echo "<td class=\"todo_$task_status\"> $task->description </td>";			
 			echo "<td class=\"todo_$task_status\"> $task->opened </td>";
-			
-			// echo "<td class=\"todo_$task_status\"> $task->due </td>";			
-			// echo "<td class=\"todo_$task_status\">$task->step</td>";
+			echo "<td class=\"todo_$task_status\"> $task->opened_by</td>";
+			echo "<td class=\"todo_$task_status\"> $task->closed </td>";
+			echo "<td class=\"todo_$task_status\"> $task->closed_by</td>";
+			echo "<td class=\"todo_$task_status\"> $task->resolve_action</td>";
 			
 			
 			echo "</tr>";

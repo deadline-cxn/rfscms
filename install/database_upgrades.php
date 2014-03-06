@@ -94,6 +94,42 @@ if($a<901) {
 	sc_access_method_add("debug", "view");
 }
 
+if($a<903) {
+	sc_database_add("todo_list","name","text","not null");
+	sc_database_add("todo_list","description","text","not null");
+	sc_database_add("todo_list","assigned_to","text","not null");
+	sc_database_add("todo_list","assigned_to_group","text","not null");
+	sc_database_add("todo_list","public","text","not null");
+	sc_database_add("todo_list","owner","text","not null");
+	sc_database_add("todo_list","type","text","not null");
+
+	sc_database_add("todo_list_task","name","text","not null");
+	sc_database_add("todo_list_task","list","text","not null");
+	sc_database_add("todo_list_task","priority","text","not null");
+	sc_database_add("todo_list_task","description","text","not null");
+	sc_database_add("todo_list_task","resolve_action","text","not null");
+	sc_database_add("todo_list_task","step","text","not null");
+	sc_database_add("todo_list_task","status","text","not null");
+	sc_database_add("todo_list_task","opened","timestamp","DEFAULT CURRENT_TIMESTAMP");
+	sc_database_add("todo_list_task","opened_by","text","not null");
+	sc_database_add("todo_list_task","due","timestamp","not null");
+	sc_database_add("todo_list_task","closed","timestamp","not null");
+	sc_database_add("todo_list_task","closed_by","text","not null");	
+
+	sc_database_add("todo_list_status","name","text","not null");
+	sc_database_data_add("todo_list_status","name","Open","");
+	sc_database_data_add("todo_list_status","name","In Progress","");
+	sc_database_data_add("todo_list_status","name","Resolved","");
+	sc_database_data_add("todo_list_status","name","Closed","");
+
+	sc_database_add("todo_list_type","name","text","not null");
+	sc_database_data_add("todo_list_type","name","Personal","");
+	sc_database_data_add("todo_list_type","name","Bug","");
+	sc_database_data_add("todo_list_type","name","Task","");
+
+	sc_access_method_add("todo_list", "add");	
+}
+
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=mfo1("select * from site_vars where name='database_upgrade'");
