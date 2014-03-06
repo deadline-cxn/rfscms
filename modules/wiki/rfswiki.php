@@ -243,7 +243,7 @@ else {
 		
 		//echo "<pre>$wikipage->text </pre> ";
         
-		echo wikitext(wikiimg(($wikipage->text)));
+		rfs_echo(wikitext(wikiimg(($wikipage->text))));
         if($hide_wiki_menu!="true")
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
 		
