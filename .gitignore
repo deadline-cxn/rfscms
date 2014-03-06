@@ -2,7 +2,10 @@ error.log
 tripwords2.txt
 tripwords.txt
 db_config.h
+<<<<<<< HEAD
 .cache
+=======
+>>>>>>> 76a6b581af2b187d95bd76c3ebb4678a1fcea02e
 .Trash-1000
 .out
 log/*

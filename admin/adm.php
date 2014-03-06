@@ -662,10 +662,17 @@ function adm_action_f_theme_edit_php() { eval(scg());
 		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
 		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
 	}
+<<<<<<< HEAD
 
 
 
 
+=======
+
+
+
+
+>>>>>>> 76a6b581af2b187d95bd76c3ebb4678a1fcea02e
 	if(!empty($delete)) {
 		echo "<h1>DELETE:</h1>";
 		echo " --- delete[$delete]<br>";
@@ -943,7 +950,11 @@ function adm_action_f_theme_edit() { eval(scg());
 				switch($ft) {					
 					case "gif":
 					case "jpg":
+<<<<<<< HEAD
 					case "png":
+=======
+					case "png":					
+>>>>>>> 76a6b581af2b187d95bd76c3ebb4678a1fcea02e
 						$img="$RFS_SITE_URL/themes/$thm/$entry";
 						echo "<hr>";
 						echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_delete&thm=$thm&dfile=$entry\" >
@@ -1032,6 +1043,7 @@ function adm_action_theme() { eval(scg());
 	$thms=sc_get_themes();
 	while(list($key,$thm)=each($thms)) {
 		echo " <div  style=\"float: left; height: 150px; margin: 20px; padding: 10px;\">";
+<<<<<<< HEAD
 		echo ucwords("<h3> $thm </h3>");		
 		$sample="themes/$thm/t.sample.png";
 		
@@ -1041,6 +1053,11 @@ function adm_action_theme() { eval(scg());
 			system($cmd);
 		}
 		echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
+=======
+		echo ucwords("<h3> $thm </h3>");
+		$sample="themes/$thm/t.sample.png";
+		if(file_exists("$RFS_SITE_PATH/$sample")) echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
+>>>>>>> 76a6b581af2b187d95bd76c3ebb4678a1fcea02e
 		echo "<br><hr>";
 		echo "<div>";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";
