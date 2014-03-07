@@ -59,7 +59,7 @@ echo "<table width=100% cellpadding=0 cellspacing=0 border=0><tr><td style=\"bor
 
 to("100% cellpadding=3"," align=center ");
     tro("");
-        sc_menu_draw($RFS_THEME_MENU_TOP_LOCATION);
+        lib_menus_draw($RFS_THEME_MENU_TOP_LOCATION);
     trc();
 tc();
 echo "</td></tr></table>";
@@ -102,7 +102,7 @@ echo "<div style=\"height:3px;\"></div>";
 
 echo "<table width=100% cellpadding=0 cellspacing=0 border=0><tr>";
 echo "<td class=\"lefttd\" valign=top>";
-sc_draw_module("left");
+lib_modules_draw("left");
 echo "</td>";
 tco("midtd");
 

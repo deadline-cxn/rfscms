@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-sc_menus_register("My Profile","$RFS_SITE_URL/modules/profile/profile.php");
+lib_menus_register("My Profile","$RFS_SITE_URL/modules/profile/profile.php");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE profile
@@ -18,7 +18,7 @@ function sc_module_mini_profile($x) { eval(scg());
         $altern=stripslashes($profile->image_alt);
         $picf="$RFS_SITE_PATH/$profile->image_url";
         $picf=str_replace($RFS_SITE_URL,"",$picf);
-        echo "<a href=\"$RFS_SITE_URL/profile.php?action=view&nid=$profile->id\">".sc_picthumb("$picf",30,0,1	)."</a>\n";
+        echo "<a href=\"$RFS_SITE_URL/profile.php?action=view&nid=$profile->id\">".lib_images_thumb("$picf",30,0,1	)."</a>\n";
         echo "</td><td valign=top  class=contenttd 90%>";
         echo "<a href=\"$RFS_SITE_URL/profile.php?action=view&nid=$profile->id\" class=\"a_cat\">".sc_trunc("$profile->headline",50)."</a>";
         $ntext=str_replace("<p>"," ",$ntext);

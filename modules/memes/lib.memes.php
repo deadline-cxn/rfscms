@@ -1,18 +1,13 @@
 <?
 include_once("include/lib.all.php");
 
-sc_menus_register("Memes","$RFS_SITE_URL/modules/memes/memes.php");
-
-sc_access_method_add("memes", "upload");
-sc_access_method_add("memes", "edit");
-sc_access_method_add("memes", "delete");
-
+lib_menus_register("Memes","$RFS_SITE_URL/modules/memes/memes.php");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE MEMES
 function sc_module_mini_memes($x) { eval(scg());
 	echo "<h2>Last $x Memes</h2>";
-	$r=sc_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc limit $x");
+	$r=lib_mysql_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc limit $x");
 	if($r)
 	for($i=0;$i<$x;$i++) {
 		$m=mysql_fetch_object($r);
@@ -36,20 +31,20 @@ function sc_show1meme($inmid) { eval(scg());
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize&forcerender=1' target=_blank>
 	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&oheight=$meme_thumbwidth&forcerender=1' border=0></a>"; // owidth=$meme_thumbwidth&
 	echo "</div>";
-	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
+	$muser=lib_users_get_data($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 	// echo "<hr>";
 	
-	sc_image_text("Rating:".sc_num2txt($m->rating), "OCRA.ttf", 15, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
+	lib_images_text("Rating:".sc_num2txt($m->rating), "OCRA.ttf", 15, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
 	echo "<hr>";	
 	lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&onlyshow=$m->name","$m->name");
 	lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$m->basepic&name=$m->name","New Caption");
 	echo "<br>";
-	if(sc_access_check("memes","edit")) {
+	if(lib_access_check("memes","edit")) {
 		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id","Edit");
 	}
-	if(sc_access_check("memes","delete")) {
+	if(lib_access_check("memes","delete")) {
 		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=meme_delete&mid=$m->id","Delete");
 		echo "<br>";
 	}
@@ -65,8 +60,8 @@ function sc_show1minimeme($inmid) { eval(scg());
 	echo "<div class=\"memepic\">";
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&oheight=$meme_fullsize&forcerender=1' target=_blank><img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth&forcerender=1' border=0></a>";
 	echo "</div>";
-	$muser=sc_getuserdata($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-	sc_image_text("Rating:".sc_num2txt($m->rating), "OCRA.ttf", 12, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
+	$muser=lib_users_get_data($m->poster); if(empty($muser->name)) $muser->name="anonymous";
+	lib_images_text("Rating:".sc_num2txt($m->rating), "OCRA.ttf", 12, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
 	
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";

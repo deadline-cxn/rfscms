@@ -7,7 +7,7 @@ if(isset($argv[1])) {
 	if(stristr(getcwd(),"modules")) { chdir("../../"); }
 	include_once("include/lib.all.php");
 	system("clear");
-	sc_get_modules();
+	lib_modules_array();
 	if($argv[1]=="scrub") {
 		sc_scrubfiledatabase(1);
 		exit();
@@ -60,15 +60,15 @@ if($_REQUEST['action']=="get_file_go") {
 		$id=$_REQUEST['id'];
 		$filedata=sc_getfiledata($id);
 		if(empty($filedata)) { echo "Error, file does not exist?\n"; exit(); }
-		sc_adddownloads($data->name,1); sc_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
+		sc_adddownloads($data->name,1); lib_mysql_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
 		// echo "FILE EXISTS...<BR>";
 		 if(stristr($filedata->location,":")) {			
-			 sc_gotopage("$filedata->location");
+			 lib_domain_gotopage("$filedata->location");
 		 }
 		 else {
 			$fl="$RFS_SITE_URL/$filedata->location";
 			echo $fl;
-			sc_gotopage($fl);
+			lib_domain_gotopage($fl);
 		 }
 	}
 	exit();
@@ -116,7 +116,7 @@ lib_div("files.php");
 echo "<table border=0><tr>"; 
 
 
-if(sc_access_check("files","sort")) {
+if(lib_access_check("files","sort")) {
 	
 	echo "<td>";
 	if($_SESSION['thumbs']=="true") {
@@ -162,7 +162,7 @@ if(sc_access_check("files","sort")) {
 	}
 	echo "</td>";
 }
-if(sc_access_check("files","edit")) {	
+if(lib_access_check("files","edit")) {	
 	echo "<td>";
 	if($_SESSION['editmode']==true){
 		echo "<font style='background-color:red;'>EDIT ON</font><br>";	
@@ -174,7 +174,7 @@ if(sc_access_check("files","edit")) {
 	echo "</td>";
 }
 
-if(sc_access_check("files","delete")) {	
+if(lib_access_check("files","delete")) {	
 	echo "<td>";
 	if($_SESSION['deletemode']==true){
 		echo "<font style='background-color:red;'>DELETE ON</font><br>";	
@@ -186,7 +186,7 @@ if(sc_access_check("files","delete")) {
 	echo "</td>";
 }
 
-if(sc_access_check("files","edit")) {	
+if(lib_access_check("files","edit")) {	
 	echo "<td>";
 	if($_SESSION['tagmode']==true){
 		echo "<font style='background-color:red;'>TAG ON</font><br>";	
@@ -204,38 +204,38 @@ echo "</tr></table>";
 if($_SESSION['editmode']) {
 echo "<table border=0> <tr>";
 
-if(sc_access_check("files","sort")) {
+if(lib_access_check("files","sort")) {
 	echo "<td>";
 	echo "<br>";
 	lib_button("$RFS_SITE_URL/modules/files/files.php?action=show_duplicates","Show Duplicates");
 	echo "</td>";
 }
 	
-if(sc_access_check("files","upload")) {
+if(lib_access_check("files","upload")) {
 	echo "<td>";
 	echo "<br>";
 	lib_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload");
 	echo "</td>";
 }
-if(sc_access_check("files","addlink")) {
+if(lib_access_check("files","addlink")) {
 	echo "<td>";    
 	echo "<br>";
     lib_button("$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb","Add Link as File");
 	echo "</td>";
 }
-if(sc_access_check("files","orphanscan")) {
+if(lib_access_check("files","orphanscan")) {
 	echo "<td>";
 	echo "<br>";
     lib_button("$RFS_SITE_URL/modules/files/files.php?action=getorphans","Add orphan files");
 	echo "</td>";
 }
-if(sc_access_check("files","purge")) {
+if(lib_access_check("files","purge")) {
 	echo "<td>";
 	echo "<br>";
 	lib_button("$RFS_SITE_URL/modules/files/files.php?action=purge","Purge missing files");
 	echo "</td>";
 }
-if(sc_access_check("files","xplorer")) {	
+if(lib_access_check("files","xplorer")) {	
 	echo "<td>";
 	echo "<br>";
     lib_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
@@ -254,7 +254,7 @@ echo "<td width=90 class=contenttd><input type=textbox name=criteria></td>\n";
 echo "<td width=10 class=contenttd>&nbsp;in&nbsp;</td>\n";
 echo "<td width=80 class=contenttd>";
 echo "<select name=category style=\"min-width:250px;\"><option>all categories\n";
-$result=sc_query("select * from categories where name != 'ignore' order by name asc");
+$result=lib_mysql_query("select * from categories where name != 'ignore' order by name asc");
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++){
     $cat=mysql_fetch_object($result);
@@ -262,7 +262,7 @@ for($i=0;$i<$numcats;$i++){
 		echo "<option ";
 		
 		if(!empty($cat->image) && file_exists("$RFS_SITE_PATH/$cat->image")) 	{
-			echo " data-image=\"".sc_picthumb_raw($cat->image,16,0,0)."\" ";
+			echo " data-image=\"".lib_images_thumb_raw($cat->image,16,0,0)."\" ";
 			echo " IMAGE-DATA-WHAT=\"$cat->image\" ";
 		}
 		
@@ -278,7 +278,7 @@ echo "<td width=75% class=contenttd></td>";
 echo "</tr></table>\n";
 echo "</form>";
 
-function files_action_addfilelinktodb() { eval(scg()); // if($action=="addfilelinktodb") {
+function files_action_addfilelinktlib_mysql_open_database() { eval(scg()); // if($action=="addfilelinktodb") {
     echo "<table border=0>\n";
     echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
     echo "<input type=hidden name=action value=addfilelinktodb_go>\n";
@@ -289,7 +289,7 @@ function files_action_addfilelinktodb() { eval(scg()); // if($action=="addfileli
     echo "<tr><td>Size in bytes</td><td><input name=size></td></tr>\n";
     echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
     echo "<tr><td align=right>category:         </td><td><select name=category>\n";
-    $result=sc_query("select * from categories order by name asc"); $numcats=mysql_num_rows($result); for($i=0;$i<$numcats;$i++)
+    $result=lib_mysql_query("select * from categories order by name asc"); $numcats=mysql_num_rows($result); for($i=0;$i<$numcats;$i++)
 	{ $cat=mysql_fetch_object($result);  echo "<option>$cat->name"; }
     echo "</select></td></tr>\n";
     echo "<tr><td>Description</td><td><textarea name=description rows=7 cols=60>$filedata->description</textarea></td></tr>\n";
@@ -310,22 +310,22 @@ function files_action_addfilelinktodb_go() { eval(scg()); //if($action=="addfile
     $filetype=sc_getfiletype($file_add);
     echo "<p>New file link added: $name</p>";
         $time1=date("Y-m-d H:i:s");
-        sc_query("INSERT INTO `files` (`name`) VALUES ('$name');");
-        sc_query("UPDATE files SET location='$file_url' where name='$name'");
-        sc_query("UPDATE files SET submitter='$data->name' where name='$name'");
-        sc_query("UPDATE files SET category='$category' where name='$name'");
-        sc_query("UPDATE files SET description='$description' where name='$name'");
-        sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
-        sc_query("UPDATE files SET size='$size' where name='$name'");
-        sc_query("UPDATE files SET time='$time1' where name='$name'");
-        sc_query("UPDATE files SET worksafe='$sfw' where name='$name'");
-        sc_query("UPDATE files SET homepage='$homepage' where name='$name'");
-        sc_query("UPDATE files SET platform='$platform' where name='$name'");
-        sc_query("UPDATE files SET os='$os' where name='$name'");
-        sc_query("UPDATE files SET owner='$owner' where name='$name'");
-        sc_query("UPDATE files SET version='$version' where name='$name'");
+        lib_mysql_query("INSERT INTO `files` (`name`) VALUES ('$name');");
+        lib_mysql_query("UPDATE files SET location='$file_url' where name='$name'");
+        lib_mysql_query("UPDATE files SET submitter='$data->name' where name='$name'");
+        lib_mysql_query("UPDATE files SET category='$category' where name='$name'");
+        lib_mysql_query("UPDATE files SET description='$description' where name='$name'");
+        lib_mysql_query("UPDATE files SET filetype='$filetype' where name='$name'");
+        lib_mysql_query("UPDATE files SET size='$size' where name='$name'");
+        lib_mysql_query("UPDATE files SET time='$time1' where name='$name'");
+        lib_mysql_query("UPDATE files SET worksafe='$sfw' where name='$name'");
+        lib_mysql_query("UPDATE files SET homepage='$homepage' where name='$name'");
+        lib_mysql_query("UPDATE files SET platform='$platform' where name='$name'");
+        lib_mysql_query("UPDATE files SET os='$os' where name='$name'");
+        lib_mysql_query("UPDATE files SET owner='$owner' where name='$name'");
+        lib_mysql_query("UPDATE files SET version='$version' where name='$name'");
 }
-function files_action_addfiletodb() { eval(scg()); // if($action=="addfiletodb") {
+function files_action_addfiletlib_mysql_open_database() { eval(scg()); // if($action=="addfiletodb") {
     echo "<p>You are adding:</p><p>$file_url</p><p>$file_add</p>\n";
     echo "<table border=0>\n";
     echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
@@ -335,7 +335,7 @@ function files_action_addfiletodb() { eval(scg()); // if($action=="addfiletodb")
     echo "<tr><td>Short name </td><td><input name=name value=\"$filedata->name\"></td></tr>\n";
     echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
     echo "<tr><td align=right>category:         </td><td><select name=category>\n";
-    $result=sc_query("select * from categories order by name asc");
+    $result=lib_mysql_query("select * from categories order by name asc");
     $numcats=mysql_num_rows($result);
     for($i=0;$i<$numcats;$i++) {
         $cat=mysql_fetch_object($result);
@@ -359,15 +359,15 @@ function files_action_addfiletodb_go() { eval(scg()); //  if($action=="addfileto
     $fsize = intval($fsize);
     if($fsize!="0")     {
         $time1=date("Y-m-d H:i:s");
-        sc_query("INSERT INTO `files` (`name`) VALUES('$name');");
-        sc_query("UPDATE files SET location='$file_url' where name='$name'");
-        sc_query("UPDATE files SET submitter='$data->name' where name='$name'");
-        sc_query("UPDATE files SET category='$category' where name='$name'");
-        sc_query("UPDATE files SET description='$description' where name='$name'");        
-        sc_query("UPDATE files SET filetype='$filetype' where name='$name'");
-        sc_query("UPDATE files SET size='$fsize' where name='$name'");
-        sc_query("UPDATE files SET time='$time1' where name='$name'");
-        sc_query("UPDATE files SET worksafe='$sfw' where name='$name'");
+        lib_mysql_query("INSERT INTO `files` (`name`) VALUES('$name');");
+        lib_mysql_query("UPDATE files SET location='$file_url' where name='$name'");
+        lib_mysql_query("UPDATE files SET submitter='$data->name' where name='$name'");
+        lib_mysql_query("UPDATE files SET category='$category' where name='$name'");
+        lib_mysql_query("UPDATE files SET description='$description' where name='$name'");        
+        lib_mysql_query("UPDATE files SET filetype='$filetype' where name='$name'");
+        lib_mysql_query("UPDATE files SET size='$fsize' where name='$name'");
+        lib_mysql_query("UPDATE files SET time='$time1' where name='$name'");
+        lib_mysql_query("UPDATE files SET worksafe='$sfw' where name='$name'");
     }
 }
 function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
@@ -379,10 +379,10 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 			include("footer.php");
 			exit();
 		}
-		$size = sc_sizefile($filedata->size);
+		$size = lib_file_sizefile($filedata->size);
 		echo "<p>";
 		if(!empty($filedata->thumb)) {
-			echo sc_picthumb($filedata->thumb);
+			echo lib_images_thumb($filedata->thumb);
 			// echo "<img src=$filedata->thumb>";
 		}
 		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file_go&id=$filedata->id\" target=_new_window>";
@@ -456,14 +456,14 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 
 		echo "<table border=0><tr>";
 		echo "<td>";
-		lib_button(sc_canonical_url()."&get_file_extended=yes","Get Extended File Information");
+		lib_button(lib_domain_canonical_url()."&get_file_extended=yes","Get Extended File Information");
 		echo "</td>";
-		if(sc_access_check("files","edit")) {
+		if(lib_access_check("files","edit")) {
 			echo "<td>";
 				lib_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&id=$filedata->id","Edit");		
 			echo "</td>";
 		}
-		if(sc_access_check("files","delete")) {
+		if(lib_access_check("files","delete")) {
 			echo "<td>";
 			lib_button("$RFS_SITE_URL/modules/files/files.php?action=del&id=$filedata->id","Delete");
 			echo "</td>";
@@ -478,7 +478,7 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 			echo "<tr>";
 			echo "<td>";
 
-			$ft=sc_getfiletype($filedata->location);	
+			$ft=lib_file_getfiletype($filedata->location);	
 
 			switch($ft){
 				
@@ -508,7 +508,7 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 					if( (!empty($fver)) &&
 						(empty($filedata->version)) ) {
 						echo " UPDATING DATABASE...";
-						sc_query("update files set version='$fver' where id='$filedata->id'");
+						lib_mysql_query("update files set version='$fver' where id='$filedata->id'");
 					}
 					
 					echo "<br><br>";
@@ -521,7 +521,7 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 				case "otf":
 				case "fon":
 				case "eot":
-					sc_image_text(	"$filedata->name",
+					lib_images_text(	"$filedata->name",
 							"$filedata->name", 72, // font, fontsize
 							1,1, // w,h
 							0,0, // offset x, offset y
@@ -635,7 +635,7 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 					echo "</td></tr></table>";
 					sc_adddownloads($data->name,1);
 					$dl=$filedata->downloads+1;
-					sc_query("UPDATE files SET downloads='$dl' where id = '$id'");
+					lib_mysql_query("UPDATE files SET downloads='$dl' where id = '$id'");
 					break;
 				
 				case "svg":
@@ -653,7 +653,7 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 					$image_width  = $image_size[0];
 					
 					echo "<hr>";
-					echo sc_picthumb($filedata->location,100,100,1);
+					echo lib_images_thumb($filedata->location,100,100,1);
 					echo "<hr>IMAGE: $image_width x $image_height <BR>";					
 					
 					$exif = exif_read_data($filedata->location, 0, true);
@@ -685,7 +685,7 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 			
 			echo "<hr>Looking for file information<br>";
 			echo "<pre>";
-				sc_file_get_readme("$RFS_SITE_PATH/$filedata->location");
+				lib_file_file_get_readme("$RFS_SITE_PATH/$filedata->location");
 			echo"</pre>";
 
 			echo "</td></tr></table>";
@@ -704,7 +704,7 @@ function files_action_get_file() { eval(scg()); //  if($action=="get_file"){
 }
 
 function files_action_f_dup_rem_checked() { eval(scg());
-	if(sc_access_check("files","delete")) {
+	if(lib_access_check("files","delete")) {
 		foreach( $_POST as $k => $v) {
 			if( (stristr($k,"check_")) && ($v=="on")) {
 				$wid=str_replace("check_","",$k);
@@ -723,10 +723,10 @@ function files_action_f_dup_rem_checked() { eval(scg());
 }
 
 function files_action_ren() { eval(scg()); 
-	if(sc_access_check("files","edit")) {
+	if(lib_access_check("files","edit")) {
 		if(!empty($data->name))    {
 			
-            if(!empty($name)) sc_query("UPDATE files SET name='$name' where id = '$id'");
+            if(!empty($name)) lib_mysql_query("UPDATE files SET name='$name' where id = '$id'");
         }
 	}
 	else { 
@@ -737,10 +737,10 @@ function files_action_ren() { eval(scg());
 }
 
 function files_action_del_conf() { eval(scg()); 
-	if(sc_access_check("files","delete")) {
+	if(lib_access_check("files","delete")) {
 		sc_lib_file_delete($id,$annihilate);			
 		if(!empty($retpage)) {
-			sc_gotopage($retpage);
+			lib_domain_gotopage($retpage);
 			exit();
 		}
 	}
@@ -752,7 +752,7 @@ function files_action_del_conf() { eval(scg());
 }
 
 function files_action_del() { eval(scg()); 
-	if(sc_access_check("files","delete")) {
+	if(lib_access_check("files","delete")) {
 		$filedata=sc_getfiledata($id);
 		sc_info("REMOVE FILE <br>[$filedata->location]","WHITE","RED");
 		echo "<p></p>";
@@ -778,28 +778,28 @@ function files_action_del() { eval(scg());
 }
 
 function files_action_mod() { eval(scg()); // //  if($action=="mod")        {
-	if(sc_access_check("files","edit")) {
-		if(!empty($name)) sc_query("UPDATE files SET name='".addslashes($name)."' where id = '$id'");
+	if(lib_access_check("files","edit")) {
+		if(!empty($name)) lib_mysql_query("UPDATE files SET name='".addslashes($name)."' where id = '$id'");
 		if(!empty($location)){
-			sc_query("UPDATE files SET location='$location' where id = '$id'");
+			lib_mysql_query("UPDATE files SET location='$location' where id = '$id'");
 			$filetype=sc_getfiletype($location);
-			sc_query("UPDATE files SET filetype='$filetype' where id = '$id'");
+			lib_mysql_query("UPDATE files SET filetype='$filetype' where id = '$id'");
 		}
-		sc_query("UPDATE files SET category='$category' where id='$id'");
-		sc_query("UPDATE files SET hidden='$hidden' where id='$id'");
-		sc_query("UPDATE files SET downloads='$downloads' where id='$id'");
-		sc_query("UPDATE files SET description='".addslashes($description)."' where id = '$id'");
-		sc_query("UPDATE files SET size='$size' where id='$id'");
+		lib_mysql_query("UPDATE files SET category='$category' where id='$id'");
+		lib_mysql_query("UPDATE files SET hidden='$hidden' where id='$id'");
+		lib_mysql_query("UPDATE files SET downloads='$downloads' where id='$id'");
+		lib_mysql_query("UPDATE files SET description='".addslashes($description)."' where id = '$id'");
+		lib_mysql_query("UPDATE files SET size='$size' where id='$id'");
 		$time=date("Y-m-d H:i:s");
-		sc_query("UPDATE files SET time='$time' where id='$id'");
-		sc_query("UPDATE files SET thumb='$thumbr' where id='$id'");
-		sc_query("UPDATE files SET version='$vers' where id='$id'");
-		sc_query("UPDATE files SET homepage='$homepage' where id='$id'");
-		sc_query("UPDATE files SET owner='$owner' where id='$id'");
-		sc_query("UPDATE files SET platform='$platform' where id='$id'");
-		sc_query("UPDATE files SET os='$fos' where id='$id'");
-		sc_query("UPDATE files SET rating='$rating' where id='$id'");
-		sc_query("UPDATE files SET worksafe='$sfw' where id = '$id'");
+		lib_mysql_query("UPDATE files SET time='$time' where id='$id'");
+		lib_mysql_query("UPDATE files SET thumb='$thumbr' where id='$id'");
+		lib_mysql_query("UPDATE files SET version='$vers' where id='$id'");
+		lib_mysql_query("UPDATE files SET homepage='$homepage' where id='$id'");
+		lib_mysql_query("UPDATE files SET owner='$owner' where id='$id'");
+		lib_mysql_query("UPDATE files SET platform='$platform' where id='$id'");
+		lib_mysql_query("UPDATE files SET os='$fos' where id='$id'");
+		lib_mysql_query("UPDATE files SET rating='$rating' where id='$id'");
+		lib_mysql_query("UPDATE files SET worksafe='$sfw' where id = '$id'");
 
 		echo "<p><a href=$RFS_SITE_URL/modules/files/files.php>File</a> modified...</p><br>\n";
 	}
@@ -812,7 +812,7 @@ function files_action_mod() { eval(scg()); // //  if($action=="mod")        {
 
 
 function files_action_mdf() { eval(scg()); //  if($action=="mdf")  { // show a form to modify the file attributes...        
-	if(sc_access_check("files","edit")) {
+	if(lib_access_check("files","edit")) {
 	$filedata=sc_getfiledata($id);
 	echo "<p>Modify [$filedata->name]</p>\n";
 
@@ -886,7 +886,7 @@ function files_action_f_upload_go() { eval(scg());
 		echo "<p> You must be logged in to upload files...</p>\n";
 	}
 	else {
-		if(!sc_access_check("files","upload")) { echo "<p>You are not authorized to upload files!</p>\n";
+		if(!lib_access_check("files","upload")) { echo "<p>You are not authorized to upload files!</p>\n";
 	}
 	else {
 		echo "<p> Uploading files... </p>\n";
@@ -906,21 +906,21 @@ function files_action_f_upload_go() { eval(scg());
 				if(empty($fu_name)) $fu_name=$_FILES['fu_userfile']['name'];
 				$fu_name=addslashes($fu_name);
 				$time1=date("Y-m-d H:i:s");
-				sc_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)
+				lib_mysql_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)
 											VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");
 				$id=mysql_insert_id();
 				echo "DATABASE ID[$id]<br>";
 				
 				echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$id\">View file information</a><br>";
 				$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
-				sc_query("UPDATE files SET location	='$httppath' 		where id='$id'");								
+				lib_mysql_query("UPDATE files SET location	='$httppath' 		where id='$id'");								
 				$fu_desc=addslashes($fu_desc);
-				sc_query("UPDATE files SET description	='$fu_desc'	 	where id='$id'");	
+				lib_mysql_query("UPDATE files SET description	='$fu_desc'	 	where id='$id'");	
 				$filesizebytes=$_FILES['fu_userfile']['size'];
-				sc_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");					
+				lib_mysql_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");					
 				$extra_sp=$_FILES['fu_userfile']['size']/10240;
 				$data->files_uploaded=$data->files_uploaded+1;
-				sc_query("update users set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
+				lib_mysql_query("update users set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
 			}
 		}
 		else {
@@ -944,7 +944,7 @@ function files_action_f_upload_go() { eval(scg());
 function files_action_upload() { eval(scg()); 
 	if(empty($data->name)) {  echo "<p>You must be logged in to upload files...</p>\n"; }
 	else {
-		if(!sc_access_check("files","upload")) {  echo "<p>You are not authorized to upload files!</p>\n";  }
+		if(!lib_access_check("files","upload")) {  echo "<p>You are not authorized to upload files!</p>\n";  }
 			else {
 				lib_div("UPLOAD FILE FORM START");
 				echo "<p>Upload a file</p>\n";				
@@ -967,7 +967,7 @@ function files_action_upload() { eval(scg());
 				echo "<tr>  <td align=right>Hide from public: </td><td><select name=fu_hidden><option>no<option>yes</select>(no will place file entry into database viewable by the public)</td></tr>\n";
 				echo "<tr>  <td align=right>Safe for work:    </td><td><select name=fu_sfw><option>yes<option>no</select></td></tr>\n";
 				echo "<tr>  <td align=right>category:         </td><td><select name=fu_category>\n";
-				$result=sc_query("select * from categories order by name asc");
+				$result=lib_mysql_query("select * from categories order by name asc");
 				$numcats=mysql_num_rows($result);
 				for($i=0;$i<$numcats;$i++) { $cat=mysql_fetch_object($result); echo "<option>$cat->name"; }
 				echo "</select></td></tr>\n";
@@ -1053,7 +1053,7 @@ function files_action_upload_avatar() { eval(scg()); // if($action=="upload_avat
 ///////////////////////////////////////////////////////////////////////////////////
 
 function files_action_file_change_category() { eval(scg()); //if($action=="file_change_category") {
-	sc_query("update files set category = '$name' where id = '$id'");
+	lib_mysql_query("update files set category = '$name' where id = '$id'");
 	$name=""; $action="search"; $category="all categories";	
 }
 
@@ -1167,7 +1167,7 @@ if(($action=="listcategory") || ($action=="search")) {
 }
 
 $q="select * from categories  where  (`name` != 'unsorted')  order by name asc";
-$result=sc_query($q);
+$result=lib_mysql_query($q);
 $numcats=mysql_num_rows($result);
 for($i=0;$i<$numcats;$i++) {
     $cat=mysql_fetch_object($result);

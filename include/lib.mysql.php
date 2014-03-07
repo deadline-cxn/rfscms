@@ -2,55 +2,35 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-if(array_pop(explode("/",getcwd()))=="include")
-	chdir("..");
+if(array_pop(explode("/",getcwd()))=="include")	chdir("..");
 include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
 /////////////////////////////////////////////////////////////////////////////////////////
-if(isset($act)) {
-	if($act=="select_image_go") {
-		include("lib.all.php");
-		$npath=$_SESSION['select_image_path']."/".$npath;
-		$npath=str_replace($RFS_SITE_PATH,"",$npath);
-		echo "Image changed to $npath<BR>";
-		echo "<br>$rtnpage , $rtnact, $table, $id, $image_field, $npath <br>";
-		$q="update `$table` set `$image_field` = '$npath' where `id`='$id'";
-		echo $q;
-		sc_query($q);
-		echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_SITE_URL/$rtnpage?action=$rtnact\">";
-		exit();
-	}
-	/////////////////////////////////////////////////////////////////////////////////////////
-	if($act=="select_image_chdir") {
-		include("lib.all.php");
-		sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field);
-	}
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_database_add($table, $field, $type, $default) {
+function lib_mysql_add($table, $field, $type, $default) {
 	$q="CREATE TABLE IF NOT EXISTS `$table` ( `id` int NOT NULL AUTO_INCREMENT, PRIMARY KEY (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
-	sc_query($q);
+	lib_mysql_query($q);
 	$q="ALTER TABLE `$table` add column `$field` $type $default;";
-	sc_query($q);
+	lib_mysql_query($q);
 }
-function sc_database_data_add($table,$field,$value,$id) {
+function lib_mysql_data_add($table,$field,$value,$id) {
 	$chkid=" ";
 	if($id) { $chkid=" and `id`='$id' "; }
 	$r=mfo1("select * from `$table` where `$field`='$value' $chkid");	
 	if($r->id) return $r->id;
-	sc_query("insert into `$table` (`$field`) VALUES ('$value'); ");
+	lib_mysql_query("insert into `$table` (`$field`) VALUES ('$value'); ");
 	$i=mysql_insert_id();
 	return $i;	
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_rfs_db_element_ed1() { eval(scg());
 
 	echo "<p> </p>";
 	lib_button("$rtnpage?action=$rtnact","Go back");
 	echo "<h2>Edit $label</h2>";
 	
-	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+	lib_mysql_build_form(  "$RFS_SITE_URL/admin/adm.php",
             "action=f_rfs_db_element_ed2".$RFS_SITE_DELIMITER.
 			"table=$table".$RFS_SITE_DELIMITER.
 			"id=$id".$RFS_SITE_DELIMITER.
@@ -61,13 +41,10 @@ function adm_action_f_rfs_db_element_ed1() { eval(scg());
             "", "id", "omit", "", 60, "Modify" );
 	
 }
-
-
 function adm_action_f_rfs_db_element_ed2() { eval(scg());
 	sc_updb($table,"id",$id,"");
-	sc_gotopage("$rtnpage?action=$rtnact");
+	lib_domain_gotopage("$rtnpage?action=$rtnact");
 }
-
 function adm_action_f_rfs_db_element_del1($rtnpage,$rtnact,$table,$id) {
 	eval(scg());
 	//echo "DEL ELEMENT 1 <br>";
@@ -75,7 +52,7 @@ function adm_action_f_rfs_db_element_del1($rtnpage,$rtnact,$table,$id) {
 	//echo "$rtnpage<br>";
 	//echo "$rtnact<br>";
 	
-	$r=sc_query("select * from `$table` where id='$id'");
+	$r=lib_mysql_query("select * from `$table` where id='$id'");
 	$element=mysql_fetch_object($r);
 	
 	sc_confirmform(	"Delete database element <br>
@@ -90,12 +67,10 @@ function adm_action_f_rfs_db_element_del1($rtnpage,$rtnact,$table,$id) {
 					"rtnact=$rtnact");
 	
 }
-
 function adm_action_f_rfs_db_element_del2($rtnpage,$rtnact,$table,$id) { eval(scg());
-	sc_query("delete from `$table` where `id`='$id' limit 1");
-	sc_gotopage("$rtnpage?action=$rtnact");
+	lib_mysql_query("delete from `$table` where `id`='$id' limit 1");
+	lib_domain_gotopage("$rtnpage?action=$rtnact");
 }
-
 function rfs_db_element_edit($label,$rtnpage,$rtnact,$table, $id) { eval(scg());
 
 lib_button("$rtnpage?action=f_rfs_db_element_ed1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Edit");
@@ -103,331 +78,29 @@ lib_button("$rtnpage?action=f_rfs_db_element_del1&label=$label&table=$table&id=$
 	echo "$label ";
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_selectimage($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(scg());
-
-    if(!stristr($_SESSION['select_image_path'],$RFS_SITE_PATH))
-        $_SESSION['select_image_path']=$RFS_SITE_PATH.$_SESSION['select_image_path'];
-
-    if($npath==".."){
-        $dx=explode("/",$_SESSION['select_image_path']);
-        $dp=array_pop($dx);
-        $_SESSION['select_image_path']=join("/",$dx);
-        echo $_SESSION['select_image_path']."2<BR>";
-    }
-    else {
-        $dc=$_SESSION['select_image_path']."/".$npath;
-        echo $dc."<br>";
-        if( (filetype($dc)=="dir") ||
-            (filetype($dc)=="link") ) {
-            $_SESSION['select_image_path']=$dc;
-        }
-    }
-
-    $wh=mfo1("select * from `$table` where id='$id'");
-    echo "Select Image for (Table $table id[$id] ($wh->name) field[$image_field])<br>";
-
-    $thispath=$_SESSION['select_image_path'];
-    echo "$thispath<br>";
-
-
-    $dir_count=0;
-    $dirfiles = array();
-    $handle=opendir($thispath) or die("Unable to open filepath");
-    while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
-    closedir($handle);
-    reset($dirfiles);
-    asort($dirfiles);
-    while(list ($key, $file) = each ($dirfiles)){
-        if($file!=".") {
-                $op="$thispath/$file";
-                $ot=$_SESSION['select_image_path']."/$file";
-                /// echo " $op $ot<br>";
-
-                if( (@filetype("$op")=="dir") ||
-                    (@filetype("$op")=="link") ) {
-                   $out="act=select_image_chdir&rtnpage=$rtnpage&rtnact=$rtnact&id=$id&npath=";
-                   $out.=urlencode($file);
-                   $out.="&table=$table&image_field=$image_field&spath=$RFS_SITE_PATH";
-                   echo "<a href='$RFS_SITE_URL/include/lib.mysql.php?$out'>
-                   <img src='$RFS_SITE_URL/images/icons/Folder.png' width=32>($file)</a>";
-
-                            }
-                        }
-                    }
-                    echo "<hr>";
-                    reset($dirfiles);
-                    asort($dirfiles);
-                    while(list ($key, $file) = each ($dirfiles)){
-                    if($file!=".") if($file!="..") {
-                            $op="$thispath/$file";
-                            if(@filetype("$op")=="file") {
-
-                                $ft = sc_getfiletype($op);
-                                // echo "$ft<br>";
-                if( ($ft=="jpg") || ($ft=="png") || ($ft=="gif") || ($ft=="ico") || ($ft=="bmp") ||($ft=="jpeg") ){
-                    $out="act=select_image_go&rtnpage=$rtnpage&rtnact=$rtnact&id=$id&npath=";
-                    $out.=urlencode($file);
-                    $out.="&table=$table&image_field=$image_field&spath=$RFS_SITE_PATH";
-                    echo "<a href='$RFS_SITE_URL/include/lib.mysql.php?$out'><img src='$RFS_SITE_URL/include/button.php?im=".$_SESSION['select_image_path']."/$file&t=$file&w=96&h=96&y=90&fcr=1&fcg=255&fcb=1' border=0></a>";
-                }
-            }
-        }
-    }
-    for($xyz=0;$xyz<20;$xyz++) echo "<br>";
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_is_csv_data($table,$where,$field,$var) {
-    $r=sc_query("select * from $table where $where");
-    $row=mysql_fetch_array($r);
-    $fx=explode(",",$row["$field"]);
-    for($i=0;$i<count($fx);$i++){
-        if($fx[$i]==$var) return true;
-    }
-    return false;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_set_csv_data($table,$field,$var) {
-
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_clear_csv_data($table,$field,$var) {
-
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_access_method_add($func_page,$act) {
-	sc_query(" CREATE TABLE IF NOT EXISTS `access_methods` (
-	  `id` int(11) NOT NULL AUTO_INCREMENT,
-	  `page` text COLLATE utf8_unicode_ci NOT NULL,
-	  `action` text COLLATE utf8_unicode_ci NOT NULL,
-	  PRIMARY KEY (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ; ");
-
-	$r=sc_query("select * from `access_methods` where `page`='$func_page' and `action`='$act'");
-	if(mysql_num_rows($r)>0) return;
-	// echo "INSERTin $func_page, $act <br>";
-	sc_query("insert into `access_methods` (`page`,`action`) VALUES('$func_page','$act'); ");
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_access_check($func_page,$act){
-
-	if(empty($func_page)) $func_page=sc_phpself();
-	$ret=false;
-	$d=sc_getuserdata($_SESSION['valid_user']);
-	
-	$ax=$d->access;
-	if($ax>1) {
-		$q="select * from `access` where `access`='$ax' and `page`='$func_page' and action='$act'";
-		$r=sc_query($q); if(mysql_num_rows($r)) $ret=true;	
-	}
-	
-	$ax=$d->access_groups;
-	$axs=explode(",",$ax);
-	for($i=0;$i<count($axs);$i++) {
-		if(!empty($axs[$i])) {
-			$q="select * from `access` where `name`='$axs[$i]' and `page`='$func_page' and action='$act'";
-			$r=sc_query($q);
-			if(mysql_num_rows($r)) $ret=true;		
-		}
-	}
-	return $ret;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function usersonline($name) {
-	if(empty($name)) $name="(Guest)";
-	$li="0";
-	$data=$GLOBALS['data'];
-	if($data->name==$name) $li="1";
-
-	$REMOTE_ADDR=getenv("REMOTE_ADDR");
-
-	// $PHP_SELF=$_SERVER['PHP_SELF'];
-	$PHP_SELF=sc_phpself();
-
-	$refer=getenv("HTTP_REFERER");
-	$timeoutseconds = 300;
-	$timestamp = time();
-	$timeout = $timestamp-$timeoutseconds;
-
-	$res=sc_query("select * from useronline where `ip`='$REMOTE_ADDR'");
-	if(mysql_num_rows($res)) {
-		$usro=mysql_fetch_object($res);
-		$insert = sc_query("update useronline set `name`='$name' where `ip`='$REMOTE_ADDR'");
-		$insert = sc_query("update useronline set `timestamp`='$timestamp' where `ip`='$REMOTE_ADDR'");
-		$insert = sc_query("update useronline set `loggedin`='$li' where `ip`='$REMOTE_ADDR'");
-
-	} else {
-		$res=sc_query("select * from useronline where name='$name'");
-		if(mysql_num_rows($res)) {
-			$insert = sc_query("update useronline set timestamp='$timestamp' where name='$name'");
-			$insert = sc_query("update useronline set page='$PHP_SELF' where name='$name'");
-			$insert = sc_query("update useronline set `loggedin`='$li' where `ip`='$REMOTE_ADDR'");
-		} else {
-			$insert = sc_query("INSERT INTO useronline
-			                   (`timestamp`, `ip`,           `name`,   `loggedin`, `page`)
-			                   VALUES ('$timestamp','$REMOTE_ADDR', '$name',  '$li', '$PHP_SELF')"); // '$refer',
-		}
-
-		// if(!($insert)) { print "Useronline Insert Failed > "; }
-	}
-
-	$delete = sc_query("DELETE FROM useronline WHERE timestamp<$timeout");
-
-	$result = sc_query("SELECT DISTINCT ip FROM useronline");
-	$user = mysql_num_rows($result);
-	return $user;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function usersloggedin() {
-	$result = sc_query("SELECT DISTINCT ip FROM useronline WHERE loggedin='1'");
-	$user = mysql_num_rows($result);
-	return $user;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function users_logged_details() {
-	$result = sc_query("SELECT DISTINCT ip,page,name FROM useronline");
-	$nusers = mysql_num_rows($result);
-	$user="";
-	for($i=0; $i<$nusers; $i++) {
-		$usrdata=mysql_fetch_object($result);
-		// $usrdata->page=str_replace("/","",$usrdata->page);
-		$pg=explode("/",$usrdata->page);
-		$upg=$pg[count($pg)-1];
-		$user.="$usrdata->name ($upg)";
-		if(($nusers>1) && ($i<( $nusers-1)))
-			$user.="<br>";
-	}
-	return $user;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_useravatar($user) { echo sc_getuseravatar($user); }
-function sc_getuseravatar($user) { eval(scg()); $userdata=sc_getuserdata($user);
-	$ret = "<a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$userdata->name\">\n";
-	if(empty($userdata->avatar)) $userdata->avatar="$RFS_SITE_URL/images/icons/noimage.gif";
-    $g=sc_getfiletype($userdata->avatar);
-    if(($g=="png")||($g=="bmp") ||
-		($g=="gif")||($g=="jpg") )  {
-        $ret.= "<img src=\"$userdata->avatar\" ";
-        $ret.= "title=\"$userdata->sentence\" ";
-        $ret.= "alt=\"$userdata->sentence\" width=100 border=0>";
-    }
-    if($g=="swf") $ret.= sc_getflashcode($userdata->avatar,100,100);
-    $ret.= "</a>\n";
-    return($ret);
-}
-
+function sc_setvar($table,$var,$set,$name,$sname) { lib_mysql_query("UPDATE `$table` SET `$var`='$set' where `$name` = '$sname'"); }
 
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_setuservar($name,$var,$set) {
-	sc_query_user_db("UPDATE users SET `$var`='$set' where name = '$name'");
-}
-function sc_setvar($table,$var,$set,$name,$sname) {
-	sc_query("UPDATE `$table` SET `$var`='$set' where `$name` = '$sname'");
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_hiddenvar($name,$value) {
-	echo sc_hiddenvar_r($name,$value);
-}
-function sc_hiddenvar_r($name,$value) {
-	return "<input type=\"hidden\" name=\"$name\" value=\"$value\">";
-}
 
-function sc_copyrow($table,$id) {
-	sc_query("		CREATE TEMPORARY TABLE `tmp` SELECT * FROM `$table` WHERE `id` = '$id';
-					ALTER TABLE `tmp` DROP `id`;
-					INSERT INTO `$table` SELECT * FROM `tmp`;");
+function sc_hiddenvar($name,$value) { echo sc_hiddenvar_r($name,$value); }
+function sc_hiddenvar_r($name,$value) { return "<input type=\"hidden\" name=\"$name\" value=\"$value\">"; }
 
-}
+function sc_copyrow($table,$id) { lib_mysql_query("CREATE TEMPORARY TABLE `tmp` SELECT * FROM `$table` WHERE `id` = '$id'; ALTER TABLE `tmp` DROP `id`; INSERT INTO `$table` SELECT * FROM `tmp`;"); }
+function sc_row_count($table) { $r=lib_mysql_query("select * from `$table`"); $n=mysql_num_rows($r); return $n; }
 
-function sc_row_count($table) {
-	$r=sc_query("select * from `$table`");
-	$n=mysql_num_rows($r);
-	return $n;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_getusername($x){
-    $o=$x;
-    if(is_numeric($x)) {
-        $ur=sc_query_user_db("select * from users where id='$x'");
-        $u=mysql_fetch_object($ur);
-        $o=$u->first_name;
-    }
-    return $o;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_newuser($name,$pass,$e){
-    $time1=date("Y-m-d H:i:s");
-    $result=sc_query_user_db("INSERT INTO `users` (`name`, `pass`, `email`, `first_login`)
-                                           VALUES ('$name', '$pass', '$e', '$time1');");
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_query_user_db($q){
-	//echo "sc_query_user_db();		";
-    $r=sc_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
+function lib_mysql_query_user_db($q){
+    $r=lib_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
     return$r;
 }
+
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_is_alias($x) {
-    $data=sc_getuserdata($_SESSION['valid_user']);
-    $ax=explode(",",$data->alias);
-    for($j=0;$j<count($ax);$j++) {
-        if($ax[$j]==$x) return TRUE;
-    }
-    return FALSE;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_getuserdata($name){
-    if(is_numeric($name)){
-		$result = sc_query_user_db("select * from `users` where `id` = '$name'");
-		$d=mysql_fetch_object($result); 
-		if(empty($d->name_shown)) $d->name_shown=$d->name;
-		return ($d);
-	}	
-    else {
-        $r=sc_query_user_db("select * from users");
-        $n=mysql_num_rows($r);
-        for($i=0;$i<$n;$i++) {
-            $d=mysql_fetch_object($r);
-            if($d->name==$name) {
-				if(empty($d->name_shown)) $d->name_shown=$d->name;
-				return $d;
-			}
-            $ax=explode(",",$d->alias);
-            for($j=0;$j<count($ax);$j++) {
-                if($ax[$j]==$name) {
-						if(!empty($name)) {
-							if(empty($d->name_shown))
-								$d->name_shown=$d->name;							
-							return $d; //$ax[$j];
-						}
-					}
-            }
-        }
-    }
-    return 0;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_query_other_db($db,$host,$user,$pass,$query){
+function lib_mysql_query_other_db($db,$host,$user,$pass,$query){
 $mysql=mysql_connect($host,$user,$pass);
 mysql_select_db($db, $mysql);
 $result=mysql_query($query,$mysql);
 return $result;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_getuserdatabyfield($field,$data){
-    $result=
-    sc_query_user_db("select * from users where `$field` = '$data'");
-    return mysql_fetch_object($result);
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-function sc_adddownloads($user,$points){
-  $result = sc_query("select * from users where name = '$user'");
-  if(mysql_num_rows($result) >0 ){
-    $ud=mysql_fetch_object($result);
-    $downloads=intval($ud->downloads)+intval($points);
-    sc_query("UPDATE users SET files_downloaded=$downloads where name = '$user'");
-  }
-}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_delimiter($t){
 	$d="\n";
@@ -438,7 +111,7 @@ function sc_delimiter($t){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_mcount($user) {
-	$p=sc_canonical_url();
+	$p=lib_domain_canonical_url();
 	$ip=getenv("REMOTE_ADDR");
 	$r=mfo1("select * from counters where page = '$p'");
 	if(!empty($r->page)){
@@ -447,16 +120,16 @@ function sc_mcount($user) {
 			$r->last_ip=$ip;
 			$r->hits_unique+=1;
 		}
-		sc_query("update counters set user='$user' where page='$r->page'");
-		sc_query("update counters set hits_raw='$r->hits_raw' where page='$r->page'");
-		sc_query("update counters set hits_unique='$r->hits_unique' where page='$r->page'");
-		sc_query("update counters set last_ip='$r->last_ip' where page='$r->page'");
+		lib_mysql_query("update counters set user='$user' where page='$r->page'");
+		lib_mysql_query("update counters set hits_raw='$r->hits_raw' where page='$r->page'");
+		lib_mysql_query("update counters set hits_unique='$r->hits_unique' where page='$r->page'");
+		lib_mysql_query("update counters set last_ip='$r->last_ip' where page='$r->page'");
 	}
 	else{
 		$ct=1;
 		$q="INSERT INTO `counters` (`id`, `page`, `user`, `last_ip`, `hits_raw`, `hits_unique`)
 							 VALUES (NULL, '$p', '$user', '$ip', '$ct', '$ct');";
-		sc_query($q);
+		lib_mysql_query($q);
 	}
 	return $r->hits_unique;
 }
@@ -477,13 +150,13 @@ function lib_mysql_backup_database($filename) { eval(scg());
 	return ($r1."<br>".$r2."<br>");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function odb(){
+function lib_mysql_open_database(){
 	$mysql=@mysql_connect($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass']);
 	if(empty($mysql)) return false;	
 	mysql_select_db( $GLOBALS['authdbname'], $mysql);
 	return $mysql;
 }
-function n_odb() {
+function n_lib_mysql_open_database() {
 	$mysqli=new mysqli(	$GLOBALS['authdbaddress'],
 							$GLOBALS['authdbuser'],
 							$GLOBALS['authdbpass'],
@@ -494,13 +167,13 @@ function n_odb() {
 	return $mysqli;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function n_sc_query($query) {
-	if(stristr($query,"`users`")) { return sc_query_user_db($query); }
-	return mysqli_query(odb(),$query);
+function n_lib_mysql_query($query) {
+	if(stristr($query,"`users`")) { return lib_mysql_query_user_db($query); }
+	return mysqli_query(lib_mysql_open_database(),$query);
 }
-function sc_query($query) {
-	if(stristr($query,"`users`")) { return sc_query_user_db($query); }
-	$mysql=odb(); if($mysql==false) return false;
+function lib_mysql_query($query) {
+	if(stristr($query,"`users`")) { return lib_mysql_query_user_db($query); }
+	$mysql=lib_mysql_open_database(); if($mysql==false) return false;
 	$result=mysql_query($query,$mysql);
 	if(empty($result)) return false;
 	return $result;
@@ -516,21 +189,18 @@ function sc_dtv($table){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_tableexists($table) {
-    $r=sc_query("SELECT '$table '
-        FROM information_schema.tables
-        WHERE table_schema = '".$GLOBALS['authdbname']."'
-        AND table_name = '$table';");
+    $r=lib_mysql_query("SELECT '$table ' FROM information_schema.tables WHERE table_schema = '".$GLOBALS['authdbname']."' AND table_name = '$table';");
     return(mnr($r));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_newtable($table){
-    if(!sc_tableexists($table)){
+	if(!sc_tableexists($table)){
         $dbn=$GLOBALS['authdbname'];
         $q="CREATE TABLE  `$dbn`.`$table` (`name` TEXT NOT NULL) ENGINE = MYISAM ;";
         echo "CREATING TABLE [$table]<br>";
-        $r=sc_query($q);
+        $r=lib_mysql_query($q);
     }
-    else{
+    else {
         echo "TABLE [$table] already exists!<br>";
     }
 }
@@ -539,32 +209,26 @@ function lib_mysql_scrub($table,$group) {
 	$tab2=$table."2";
 	$tab3=$table."3";
 	$q=" CREATE TABLE `$tab2` like `$table`; ";
-	sc_query($q);
+	lib_mysql_query($q);
 	$q=" INSERT `$tab2` SELECT * FROM `$table` GROUP BY $group;" ;
-	sc_query($q);
+	lib_mysql_query($q);
 	$q=" RENAME TABLE `$table`  TO `$tab3`; ";
-	sc_query($q);
+	lib_mysql_query($q);
 	$q=" RENAME TABLE `$tab2` TO `$table`; " ;
-	sc_query($q);
+	lib_mysql_query($q);
 	$q=" DROP TABLE `$tab3`; ";
-	sc_query($q);
-
+	lib_mysql_query($q);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function mfo1($query){
-    $res=sc_query($query);
-	if($res)
-		return mysql_fetch_object($res);
-	else return $res;
-}
+function mfo1($query){ $res=lib_mysql_query($query); if($res) return mysql_fetch_object($res); else return $res; }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function mfo($res){ return mysql_fetch_object($res); }
+function mfo($res) { return mysql_fetch_object($res); }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function mnr($res){ if(!$res) return 0; return mysql_num_rows($res); }
+function mnr($res) { if(!$res) return 0; return mysql_num_rows($res); }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_db_get($table,$key,$kv,$field){
     $q="select $field from $table where $key = \"$kv\"";
-    $res=sc_query($q);
+    $res=lib_mysql_query($q);
     $i=mysql_fetch_assoc($res);
     reset($i);
     $j=current($i);
@@ -573,45 +237,38 @@ function sc_db_get($table,$key,$kv,$field){
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // update database
 function sc_updb($table,$key_field,$key_value,$md5_password) {
-	
 	$q="select * from `$table` where `$key_field`='$key_value' limit 1";
-	
 	d_echo("$q");
-    $res=sc_query($q);
-	
-	
-	
+    $res=lib_mysql_query($q);
     if(mysql_num_rows($res)==0)
-		sc_query("insert into `$table` (`$key_field`) values ('$key_value');");
-    $res=sc_query("DESCRIBE $table");
+		lib_mysql_query("insert into `$table` (`$key_field`) values ('$key_value');");
+    $res=lib_mysql_query("DESCRIBE $table");
     while($i = mysql_fetch_assoc($res)) {
-			$q ="update $table set `";
-			$q.=$i['Field'];
-			$q.="`='";			
-			$f=$_REQUEST["{$i['Field']}"];
-			if($md5_password) {
-				if(  ($i['Field']=="pass") ||
-					 ($i['Field']=="password") ) {
-						$f=md5($f);
-					}
-			}
-			$q.=addslashes($f);
-			$q.="' ";			
-			$v=addslashes($key_value);
-			$q.="where `$key_field`='$v'";
-			
-			d_echo("[$q]");
-			
-			sc_query($q);
+		$q ="update $table set `";
+		$q.=$i['Field'];
+		$q.="`='";			
+		$f=$_REQUEST["{$i['Field']}"];
+		if($md5_password) {
+			if(  ($i['Field']=="pass") ||
+				 ($i['Field']=="password") ) {
+					$f=md5($f);
+				}
+		}
+		$q.=addslashes($f);
+		$q.="' ";			
+		$v=addslashes($key_value);
+		$q.="where `$key_field`='$v'";
+		d_echo("[$q]");
+		lib_mysql_query($q);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // update database (only show results dont updat database)
 function sc_updb_2($table,$key_field,$key_value){
-	$res=sc_query("select * from `$table` where `$key_field`='$key_value' limit 1");
+	$res=lib_mysql_query("select * from `$table` where `$key_field`='$key_value' limit 1");
 	if(mysql_num_rows($res)==0)
-	sc_query("insert into `$table` (`$key_field`) values ('$key_value');");
-	$res=sc_query("DESCRIBE $table");
+	lib_mysql_query("insert into `$table` (`$key_field`) values ('$key_value');");
+	$res=lib_mysql_query("DESCRIBE $table");
 	while($i = mysql_fetch_assoc($res)){
 		//echo $i['Field']."::".$_REQUEST[$i['Field']]."<br>";
 		if($_REQUEST[$i['Field']]!=''){
@@ -620,7 +277,7 @@ function sc_updb_2($table,$key_field,$key_value){
 			$q.="`='".addslashes($_REQUEST["{$i['Field']}"])."' ";
 			$q.="where `$key_field`='".addslashes($key_value)."'";
 			echo "$q<br>";
-			//sc_query($q);
+			//lib_mysql_query($q);
 		}
 	}
 }
@@ -649,8 +306,8 @@ function sc_confirmform($message,$page,$hiddenvars){
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function sc_db_query($query,$becho){
 	$gt=0;    
-	if(stristr($query,"users")) 	 $res=sc_query_user_db($query);
-	else                             $res=sc_query($query);
+	if(stristr($query,"users")) 	 $res=lib_mysql_query_user_db($query);
+	else                             $res=lib_mysql_query($query);
 	if($res)
 	if($becho){
 		$num=@mysql_num_rows($res);
@@ -736,9 +393,9 @@ function sc_db_dumptable($table,$showform,$key,$search){ eval(scg());
             $showform=$gx[0];
     }
 
-    $page=$RFS_SITE_URL.sc_phpself();
+    $page=$RFS_SITE_URL.lib_domain_phpself();
     $gt=0;
-    $res=sc_query("select $fields from `$table` $search");
+    $res=lib_mysql_query("select $fields from `$table` $search");
     $num=mysql_num_rows($res);
     echo "<table border=0 cellpadding=5>";
     $hdr=0;
@@ -947,7 +604,7 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 			$scoq.=",id";
 			
 		$scoq.=" from $table $where order by $key asc";			
-		$r=sc_query($scoq);
+		$r=lib_mysql_query($scoq);
 		
 		// echo "<p> $scoq </p>";
 		
@@ -964,13 +621,13 @@ function sc_optionizer(	$return_page, $hiddenvars, $table, $key, $use_id_method,
 				
 				if(!empty($d->image)) {
 					if(file_exists("$RFS_SITE_PATH/$d->image"))
-						echo "data-image=\"".sc_picthumb_raw($d->image,16,0,0)."\" ";
+						echo "data-image=\"".lib_images_thumb_raw($d->image,16,0,0)."\" ";
 						
 						echo " IMAGE-WHAT=\"$d->image\" ";
 				}
 				else if(!empty($d->icon)) {
 					if(file_exists("$RFS_SITE_PATH/$d->icon"))
-						echo "data-image=\"".sc_picthumb_raw($d->icon,16,0,0)."\" ";
+						echo "data-image=\"".lib_images_thumb_raw($d->icon,16,0,0)."\" ";
 						echo " ICON-WHAT=\"$d->icon\" ";
 				}				
 			
@@ -1084,14 +741,18 @@ function sc_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$inclu
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // simple add form based on table
-function sc_bfa($table){ eval(scg()); sc_bf(sc_phpself(),"action=add",$table,"","","name","include","",60,"add"); }
+function lib_mysql_build_form_add($table){ eval(scg());
+	lib_mysql_build_form(lib_domain_phpself(),"action=add",$table,"","","name","include","",60,"add");
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // sc_bqf (build quick form)
 // $hiddenvars = list of 
-// takes 2 vars and will build a form using sc_bf
-function sc_bqf($hiddenvars,$submit){ eval(scg()); sc_bf(sc_phpself(),$hiddenvars, "", "", "", "", "", "", 20, $submit); }
+// takes 2 vars and will build a form using lib_mysql_build_form
+function lib_mysql_build_form_quick($hiddenvars,$submit){ eval(scg()); 
+	lib_mysql_build_form(lib_domain_phpself(),$hiddenvars,"","","","","","",20,$submit);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// sc_bf (build form)
+// lib_mysql_build_form (build form)
 // $page        	= page that the form will action 
 // $hiddenvars	= list of hiddenvars and/or
 //
@@ -1099,7 +760,7 @@ function sc_bqf($hiddenvars,$submit){ eval(scg()); sc_bf(sc_phpself(),$hiddenvar
 //						LABEL_XXX
 //						SHOW_XXX_#ROWS#COLS#<varname>=<defaultvault>
 //
-//						SHOW_FILE_varname
+//						SHOW_FILE_varname	
 // 						SHOW_CODEAREA_varname
 //						SHOW_TEXT_varname
 //						SHOW_CLEARFOCUSTEXT_varname
@@ -1124,25 +785,19 @@ function sc_bqf($hiddenvars,$submit){ eval(scg()); sc_bf(sc_phpself(),$hiddenvar
 // $submit     	= the submit button text
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////
-function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit){ eval(scg());
+function lib_mysql_build_form($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit){ eval(scg());
 	$gt=1;
 	$delimiter=$RFS_SITE_DELIMITER;	
     if(!stristr($page,$RFS_SITE_URL)) $page="$RFS_SITE_URL/$page";
-    if(empty($svarf)) $svarf="omit";
-	
+    if(empty($svarf)) $svarf="omit";	
 	echo "<form action=\"$page\" method=\"POST\" enctype=\"multipart/form-data\">";
-	
 	echo "<table cellspacing=0 cellpadding=0>";
     echo "<tr><td>";
-	
-	    
-	d_echo($hiddenvars);
-	
+	d_echo($hiddenvars);	
 	$hidvar_a=explode(sc_delimiter($hiddenvars),$hiddenvars);
     for($i=0;$i<count($hidvar_a);$i++){
         $hidvar_b=explode("=",$hidvar_a[$i]);
          d_echo("$hidvar_b[0] $hidvar_b[1]");
-
         if( (!stristr($hidvar_b[0],"DBX_")) &&
             (!stristr($hidvar_b[0],"LABEL_")) &&
             (!stristr($hidvar_b[0],"SHOW_")) ){
@@ -1161,7 +816,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 	$tvars=explode(sc_delimiter($tabrefvars),$tabrefvars);
 
     if(!empty($query)) {
-        $res=sc_query($query);
+        $res=lib_mysql_query($query);
 		if($res) {
 			$dat=mysql_fetch_object($res);
 			for($i=0;$i<count($hidvar_a);$i++) {
@@ -1172,7 +827,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 		}
     }
     if(!empty($table)){
-        $result = sc_query("SHOW FULL COLUMNS FROM $table");
+        $result = lib_mysql_query("SHOW FULL COLUMNS FROM $table");
         while($i = mysql_fetch_assoc($result)){
             $this_codearea=false;
             $name=ucwords(str_replace("_"," ",$i['Field']));
@@ -1196,12 +851,12 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
                    $q="select * from `$tref_table` where `id`='";
                    $q.=$dat->{$i['Field']};
                    $q.="'";
-                   $tres=sc_query($q);
+                   $tres=lib_mysql_query($q);
                    $obj=mysql_fetch_object($tres);
 				   echo "<option value=$obj->id>$obj->name";
 					//echo "<option>".$dat->$i['Field'];
                }
-                $tres=sc_query("select * from `$tref_table` order by `name`");
+                $tres=lib_mysql_query("select * from `$tref_table` order by `name`");
                 for($k=0;$k<mysql_num_rows($tres);$k++){
                     $obj=mysql_fetch_object($tres);
                     echo "<option value=$obj->id>$obj->name";
@@ -1299,7 +954,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 						case "codearea":
 							$this_codearea=true;
 							$godat=$dat->{$i['Field']};
-							show_codearea("sc_bf_codearea", $rows,$cols,$i['Field'],$godat);
+							show_codearea("lib_mysql_build_form_codearea", $rows,$cols,$i['Field'],$godat);
 							break;
 							
 						case "colorpicker":						
@@ -1328,7 +983,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
 							if($type=="file"){
 								$fn=$dat->{$i['Field']};
 								if(!empty($fn)){
-									$ft=sc_getfiletype($fn);
+									$ft=lib_file_getfiletype($fn);
 									if( ($ft=="gif") ||
 										($ft=="png") ||
 										($ft=="jpg") ||
@@ -1445,7 +1100,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
             //echo "[".$hidvar_b[0]."][$rows][$cols]";
             echo "<tr><td class=sc_project_table_$gt align=right>";
             echo "</td><td class=sc_project_table_$gt>";
-            show_codearea( "sc_bf_codearea",$rows,$cols,$name,$hidvar_b[1]);
+            show_codearea( "lib_mysql_build_form_codearea",$rows,$cols,$name,$hidvar_b[1]);
             echo "</td></tr>";
             $gt++; if($gt>2) $gt=1;
             }
@@ -1582,16 +1237,7 @@ function sc_bf($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $s
     echo "</table>";
 	echo "</form>";
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-function sc_form_end($submit){
-    echo "<input type=submit name=submit value=\"$submit\">";
-    echo "</form>";
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-function sc_form_start($page,$action){
-    echo "<form action=\"$page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
-    echo "<input type=\"hidden\" name=\"action\" value=\"$action\">";
-}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function show_codearea($id,$rows,$cols,$name,$indata){ eval(scg());
 
@@ -2123,13 +1769,13 @@ function sc_ajax_spinner() { eval(scg());
 }
 
 function sc_ajax_callback_image(){ eval(scg());
-	if(sc_access_check($rfaapage,$rfaact)) {
+	if(lib_access_check($rfaapage,$rfaact)) {
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
-		$r=sc_query($q);
+		$r=lib_mysql_query($q);
 		if($r) {
 			echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
 			$oimg=str_replace("$RFS_SITE_URL/","",$rfaajv);
-			echo sc_picthumb($oimg,64,64,1);
+			echo lib_images_thumb($oimg,64,64,1);
 		}		
 		else echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
 	}
@@ -2144,10 +1790,10 @@ function sc_ajax_callback_delete() { eval(scg());
 //////////////////////////////////////////////////////////////////////////////
 // default ajax callback function
 function sc_ajax_callback(){ eval(scg());
-	if(sc_access_check($rfaapage,$rfaact)) {
+	if(lib_access_check($rfaapage,$rfaact)) {
 		$rfaajv=addslashes($rfaajv);
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
-		$r=sc_query($q);		
+		$r=lib_mysql_query($q);		
 		if($r) echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
 		else   echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
 	}
@@ -2209,9 +1855,8 @@ function rfs_ajax($data,$size,$properties,$access,$callback) {
 }
 //////////////////////////////////////////////////////////////////////////////
 // long ajax function
-function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,
-					$rfa_properties,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
-	if(!sc_access_check($rfaapage,$rfaact)) return;
+function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_properties,$rfaapage,$rfaact,$rfacallback ) { eval(scg());
+	if(!lib_access_check($rfaapage,$rfaact)) return;
 	
 	// extract callback functions
 	$x=explode(",",$rfacallback);
@@ -2258,7 +1903,7 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,
 	
 	$rfakv=addslashes($rfakv);	
 	$q="select * from `$rfatable` where `$rfaikey`='$rfakv'";
-	$r=sc_query($q);
+	$r=lib_mysql_query($q);
 	$d=mysql_fetch_array($r);
 
 	if($rfatype=="select") {	
@@ -2271,7 +1916,7 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,
 			$val=$properties[4];
 
 			if(!empty($val)) {
-				$r=sc_query("select * from `$tab` where `$key`='".$d[$rfafield]."'");
+				$r=lib_mysql_query("select * from `$tab` where `$key`='".$d[$rfafield]."'");
 				$tdat=mysql_fetch_array($r);
 				$tvalue=$tdat[$val];
 				$tdata=$tdat[$key];
@@ -2300,16 +1945,16 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,
 			
 				if(!empty($tdat['image'])) {
 					if(file_exists("$RFS_SITE_PATH/".$tdat['image']))
-						echo "data-image=\"".sc_picthumb_raw($tdat['image'],16,0,0)."\" ";						
+						echo "data-image=\"".lib_images_thumb_raw($tdat['image'],16,0,0)."\" ";						
 				}
 				else if(!empty($tdat['icon'])) {
 					if(file_exists("$RFS_SITE_PATH/".$tdat['icon']))
-						echo "data-image=\"".sc_picthumb_raw($tdat['icon'],16,0,0)."\" ";
+						echo "data-image=\"".lib_images_thumb_raw($tdat['icon'],16,0,0)."\" ";
 				}
 
 			echo "value=\"$tvalue\">$tdata</option>";
 
-			$r=sc_query("select * from `$tab` order by `$key` asc");
+			$r=lib_mysql_query("select * from `$tab` order by `$key` asc");
 			for($i=0;$i<mysql_num_rows($r);$i++) {
 				$dat=mysql_fetch_array($r);
 
@@ -2317,12 +1962,12 @@ function sc_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,
 
 				if(!empty($dat['image'])) {
 					if(file_exists("$RFS_SITE_PATH/".$dat['image'])) {
-						echo "data-image=\"".sc_picthumb_raw($dat['image'],16,0,0)."\" ";
+						echo "data-image=\"".lib_images_thumb_raw($dat['image'],16,0,0)."\" ";
 					}
 				}
 				else if(!empty($dat['icon'])) {
 					if(file_exists("$RFS_SITE_PATH/".$dat['icon'])) {
-						echo "data-image=\"".sc_picthumb_raw($dat['icon'],16,0,0)."\" ";
+						echo "data-image=\"".lib_images_thumb_raw($dat['icon'],16,0,0)."\" ";
 					}
 				}
 				

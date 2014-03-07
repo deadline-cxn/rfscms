@@ -6,11 +6,11 @@ lib_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
 $RFS_MENU_OPTION = array();
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_menus_register($short,$url) { 
+function lib_menus_register($short,$url) { 
 	global $RFS_MENU_OPTION;
 	$RFS_MENU_OPTION[$short]=$url;
 }
-function sc_show_menu_options() {
+function lib_menus_options() {
 	echo "<h1>Menu Options registered by Modules</h1>";
 	echo "<hr>";
 	global $RFS_MENU_OPTION;
@@ -19,7 +19,7 @@ function sc_show_menu_options() {
 	asort($RFS_MENU_OPTION);
 	foreach($RFS_MENU_OPTION as $k => $v) {
 		echo "<tr>";
-		if(sc_access_check("admin","access")) {
+		if(lib_access_check("admin","access")) {
 			echo "<td>";
 			lib_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&lname=$k&lurl=$v","Add to Top Menu");
 			echo "</td>";
@@ -34,25 +34,18 @@ function sc_show_menu_options() {
 	}
 	echo "</table>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_menu_draw($menu_location) {   eval(scg());
+function lib_menus_draw($menu_location) {   eval(scg());
 
-    $res=sc_query("select * from `menu_top` order by `sort_order` asc");
-    $num=mysql_num_rows($res);
-    if($menu_location=="left") {
-        echo "<table  border=0 cellspacing=0 cellpadding=0 align=center>\n";
-    }
-    for($i=0;$i<$num;$i++)    {
-        $link=mysql_fetch_object($res);
-		$link->link=urldecode($link->link);
-		
+    $res=lib_mysql_query("select * from `menu_top` order by `sort_order` asc");
+    if($menu_location=="left") echo "<table  border=0 cellspacing=0 cellpadding=0 align=center>\n";
+    while($link=mysql_fetch_object($res))    {        
+		$link->link=urldecode($link->link);		
         $showlink=0;
-		if($link->access == 0) $showlink=1;
-		
+		if($link->access == 0) $showlink=1;		
 		$access_check=explode(",",$link->access_method);
 		if(!empty($access_check[1])) {
 			$showlink=0;
-			if(sc_access_check($access_check[0],$access_check[1])) $showlink=1;
+			if(lib_access_check($access_check[0],$access_check[1])) $showlink=1;
 		}
 		
 		if(!empty($link->other_requirement)) {
@@ -92,14 +85,14 @@ function sc_menu_draw($menu_location) {   eval(scg());
 					}					
 					echo ">";
 
-                    $clr = sc_html2rgb($RFS_THEME_NAV_FONT_COLOR);
-                    $bclr= sc_html2rgb($RFS_THEME_NAV_FONT_BGCOLOR);
+                    $clr = lib_images_html2rgb($RFS_THEME_NAV_FONT_COLOR);
+                    $bclr= lib_images_html2rgb($RFS_THEME_NAV_FONT_BGCOLOR);
 
 					if($RFS_THEME_NAV_IMG == 1) {
 						$fntsz=16;
 						if($RFS_THEME_NAV_FONT_SIZE>0)
 							$fntsz=$RFS_THEME_NAV_FONT_SIZE;
-						sc_image_text($link->name,
+						lib_images_text($link->name,
 									$RFS_THEME_NAV_FONT,
 									$fntsz,
 									155,1,
@@ -126,10 +119,7 @@ function sc_menu_draw($menu_location) {   eval(scg());
             }
         }
 
-    if($menu_location=="left")     {
-        echo "</table>\n";
-
-    }
+    if($menu_location=="left") echo "</table>\n";
 }
 
 

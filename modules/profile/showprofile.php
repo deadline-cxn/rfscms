@@ -3,7 +3,7 @@ chdir("../../");
 include("header.php");
 $user=$_REQUEST['user'];
 if(empty($user)) $user=$data->name;
-$userdata=sc_getuserdata($user);
+$userdata=lib_users_get_data($user);
 
 echo "<br><h1>$userdata->name's $RFS_SITE_NAME profile</h1>";
 

@@ -20,7 +20,7 @@ if($change_password == "yes"){
         if($pass2==$pass3) {			
 				if(!empty($pass2)) {
 					$pass2=md5($pass2);
-					sc_query("update users set pass='$pass2' where name = '$data->name'");
+					lib_mysql_query("update users set pass='$pass2' where name = '$data->name'");
 					sc_info("Password changed!","WHITE","GREEN");
 					include("footer.php");
 					exit;					
@@ -56,27 +56,27 @@ if($_REQUEST['act']=="update") {
 
 	sc_info("UPDATED PROFILE","WHITE","GREEN");
     
-    if(!empty($name)) sc_query("UPDATE users SET `real_name`='$name' where `name` = '$data->name'");
+    if(!empty($name)) lib_mysql_query("UPDATE users SET `real_name`='$name' where `name` = '$data->name'");
 	
     if(!empty($sentence)) {
         $sentence=addslashes($sentence);
-        $result = sc_query("UPDATE users SET `sentence`='$sentence' where `name` = '$data->name'");
+        $result = lib_mysql_query("UPDATE users SET `sentence`='$sentence' where `name` = '$data->name'");
     }
 	
-    sc_query("UPDATE users SET `email`='$email' where `name` = '$data->name'");
+    lib_mysql_query("UPDATE users SET `email`='$email' where `name` = '$data->name'");
 	$webpage=addslashes($webpage);
     if(!empty($webpage))
-		sc_query("UPDATE users SET `webpage`='$webpage' where `name` = '$data->name'");
+		lib_mysql_query("UPDATE users SET `webpage`='$webpage' where `name` = '$data->name'");
     if(!empty($website_fav))
-		sc_query("UPDATE users SET `website_fav`='$website_fav' where `name` = '$data->name'");
+		lib_mysql_query("UPDATE users SET `website_fav`='$website_fav' where `name` = '$data->name'");
     if(!empty($avatar))
-		sc_query("UPDATE users SET `avatar`='$avatar' where `name` = '$data->name'");
+		lib_mysql_query("UPDATE users SET `avatar`='$avatar' where `name` = '$data->name'");
     if(!empty($country))
-		sc_query("UPDATE users SET `country`='$country' where `name` = '$data->name'");
+		lib_mysql_query("UPDATE users SET `country`='$country' where `name` = '$data->name'");
 		
-    sc_query("UPDATE users set gender='$gender' where name='$data->name'");
+    lib_mysql_query("UPDATE users set gender='$gender' where name='$data->name'");
 	if(!empty($show_contact_info))
-		sc_query("UPDATE users SET show_contact_info='$show_contact_info' where name = '$data->name'");    
+		lib_mysql_query("UPDATE users SET show_contact_info='$show_contact_info' where name = '$data->name'");    
     if((!empty($birth_year))&&(!empty($birth_day))&&(!empty($birth_month)) ) {
         $der  = $birth_year;
         $der .="-";
@@ -88,20 +88,20 @@ if($_REQUEST['act']=="update") {
         if($birth_month<10) $der .= "0";
         $der .= $birth_day;
         $der .= " 01:01:01";
-        sc_query("UPDATE users SET birthday='$der' where name = '$data->name'");
+        lib_mysql_query("UPDATE users SET birthday='$der' where name = '$data->name'");
     }
 }
-$data=sc_getuserdata($data->name);
+$data=lib_users_get_data($data->name);
 
 function pro_nav_bar($data) {    eval(scg());
     
-if(sc_access_check("news","edit")) 
+if(lib_access_check("news","edit")) 
 	lib_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
-if(sc_access_check("news","submit")) 
+if(lib_access_check("news","submit")) 
 	lib_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
-if(sc_access_check("files","upload"))
+if(lib_access_check("files","upload"))
 	lib_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
-if(sc_access_check("admin","access"))
+if(lib_access_check("admin","access"))
 	lib_button("$RFS_SITE_URL/admin/adm.php","Admin");
 
 lib_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
@@ -142,13 +142,13 @@ echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action
 echo "<table border=0 cellpadding=0 cellspacing=0><tr><td>";
 echo "<input type=hidden name=act value=update>\n";
 echo "<td> ";
-$g=sc_getfiletype($data->avatar);
+$g=lib_file_getfiletype($data->avatar);
 if(	($g=="gif")||
 	($g=="jpg")||
 	($g=="png"))
 echo "<img src=$data->avatar align=left title=\"$data->sentence\" alt=\"$data->sentence\" width=100>";
 if($g=="swf")
-flash($data->avatar,100,100);
+lib_flash_embed($data->avatar,100,100);
 echo "</td>\n";
 if(empty($data->gender)) $data->gender="male";
 
@@ -242,7 +242,7 @@ $i=1901; while($i<2050) { echo "<option>$i"; $i=$i+1; }
 echo "</select> (<i>$years years old</i>)</td><td> </td></tr>\n";
 if(empty($data->country)) $data->country="Select Country";
 echo "<tr><td>Country   :</td><td> <select name=country><option>$data->country\n";
-sc_countries();
+lib_log_countries();
 echo "</select> </td><td>&nbsp;</td></tr>\n";
 echo "<tr><td>Quote     :</td>";
 echo "<td><textarea name=sentence rows=5 cols=50>";
@@ -289,9 +289,9 @@ if(count($filelist)) {
   
 	sc_info("Your files...","BLACK","WHITE");
   
-	if(sc_access_check("files","upload")) 
+	if(lib_access_check("files","upload")) 
 		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>]";
-	if(sc_access_check("files","addlink")) 
+	if(lib_access_check("files","addlink")) 
 		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
   
 	  echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=sc_black>\n";

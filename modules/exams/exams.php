@@ -22,7 +22,7 @@ if(!sc_yes($_SESSION['logged_in'])) {
 	$qc=$_SESSION["question_id"];
 	if($qc) {
 
-        $r=sc_query("select * from exam_questions where id='$qc'");
+        $r=lib_mysql_query("select * from exam_questions where id='$qc'");
         $q=mysql_fetch_assoc($r);
 				
 		$correct=false;
@@ -156,7 +156,7 @@ if(!sc_yes($_SESSION['logged_in'])) {
 		
 		d_echo (" CORRECT: $correct ");		
 
-			$r=sc_query("select * from exam_users where `question_id`='$qc' and
+			$r=lib_mysql_query("select * from exam_users where `question_id`='$qc' and
 															  `user`='$data->name' and
 															  `exam_id`='$exam_id' ");
 															  
@@ -165,8 +165,8 @@ if(!sc_yes($_SESSION['logged_in'])) {
 			if($eud->id) { 
 				
 				
-					sc_query("update exam_users set `correct`='$correct'  where `question_id`='$qc' and `user`='$data->name' and `exam_id`='$exam_id' ");
-					sc_query("update exam_users set `completed`='$answer'  where `question_id`='$qc' and `user`='$data->name' and `exam_id`='$exam_id' ");
+					lib_mysql_query("update exam_users set `correct`='$correct'  where `question_id`='$qc' and `user`='$data->name' and `exam_id`='$exam_id' ");
+					lib_mysql_query("update exam_users set `completed`='$answer'  where `question_id`='$qc' and `user`='$data->name' and `exam_id`='$exam_id' ");
 					
 					
 			}
@@ -174,7 +174,7 @@ if(!sc_yes($_SESSION['logged_in'])) {
 					if(!empty($exam_id)) {
 						$q= "insert into exam_users   (`user`, `exam_id`, `question_id`, `correct`) values ('$data->name', '$exam_id', '$qc', '$correct') ";
 						echo $q."<br>";
-						sc_query($q);
+						lib_mysql_query($q);
 						
 					}
 													
@@ -199,13 +199,13 @@ if($action=="admin_exam_test") {
 
 if($action=="list_exams") {
 
-    if( sc_access_check("exams","edit") ) { 
+    if( lib_access_check("exams","edit") ) { 
             echo "[<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit'>Exam Administration</a>]";
     }	
 	
 	
 	$n=0;
-    $r=sc_query("select * from exams");
+    $r=lib_mysql_query("select * from exams");
     if($r) $n=mysql_num_rows($r);
 	
 	echo "<table border=0 cellspacing=0 cellpadding=2>";	
@@ -355,7 +355,7 @@ if($action=="run_exam") {
 		$_SESSION["exam_$exam_id"]=$qsid;		
 	} 
 
-    $r=sc_query("select * from exam_questions where exam_id='$exam_id'");
+    $r=lib_mysql_query("select * from exam_questions where exam_id='$exam_id'");
     $nq=mysql_num_rows($r);
 
     d_echo("$nq");
@@ -383,10 +383,10 @@ if($action=="run_exam") {
 		$qq=" <BR><h1>END OF EXAM!</h1><HR>";
 		
 		/*
-		$r=sc_query("select * from exam_users where user='$data->name' and exam_id='$exam_id'");		
+		$r=lib_mysql_query("select * from exam_users where user='$data->name' and exam_id='$exam_id'");		
 		$nq=mysql_num_rows($r);
 		
-		$r=sc_query("select * from exam_users where user='$data->name' and exam_id='$exam_id' and correct='1'");
+		$r=lib_mysql_query("select * from exam_users where user='$data->name' and exam_id='$exam_id' and correct='1'");
 		$nqc=mysql_num_rows($r);
 		
 		$prct=$nqc/$nq;
@@ -406,7 +406,7 @@ if($action=="run_exam") {
 		if($prct>$exam->pass_percent) {
 			$qq.="<BR>Congratulations, you passed.<br><BR><hr>";
 			$qq.="Tasks covered by this exam:<br>";
-			$r=sc_query("select distinct task from exam_questions where exam_id='$exam_id'");
+			$r=lib_mysql_query("select distinct task from exam_questions where exam_id='$exam_id'");
 			for($i=0;$i<mysql_num_rows($r);$i++) {
 				$eq=mysql_fetch_object($r);
 				$qq.= " $eq->task <br>";
@@ -423,7 +423,7 @@ if($action=="run_exam") {
 		$qq.="[Review missed questions]";
 		$qq.="[Review all questions]";
 		
-		if( sc_access_check("exam_questions","edit") ) {
+		if( lib_access_check("exam_questions","edit") ) {
 				$qq.="[<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit'>Exam Administration</a>]";
 		}
 		
@@ -565,28 +565,28 @@ if($action=="run_exam") {
 }
 
 
-if(sc_access_check("exams","edit") ) {
+if(lib_access_check("exams","edit") ) {
 	
 	if($action=="admin_exam_edit_questions") {
 		if(!is_numeric($questions)) $questions=100;
 		
-		$r=sc_query("select * from exam_questions where exam_id='$exam_id' order by exam_sequence");
+		$r=lib_mysql_query("select * from exam_questions where exam_id='$exam_id' order by exam_sequence");
 		$n=mysql_num_rows($r);
 		if($questions>$n) $questions=$n;
 		
-		sc_query("update exams set `questions` = '$questions' where id='$exam_id'");
+		lib_mysql_query("update exams set `questions` = '$questions' where id='$exam_id'");
 		$action="admin_exam_edit";
 	}
 	
 	if($action=="admin_exam_edit_method") {
-		sc_query("update exams set `method`='$method' where id='$exam_id'");
+		lib_mysql_query("update exams set `method`='$method' where id='$exam_id'");
 		$action="admin_exam_edit";
 	}
 	
 	if($action=="admin_exam_edit_pass_percent") {
 		if(!is_numeric($pass_percent)) $pass_percent=70;
 		// echo " $exam_id  $pass_percent <br>";
-		sc_query("update exams set `pass_percent`='$pass_percent' where id='$exam_id'");
+		lib_mysql_query("update exams set `pass_percent`='$pass_percent' where id='$exam_id'");
 		$action="admin_exam_edit";		
 	}
 		
@@ -598,7 +598,7 @@ if(sc_access_check("exams","edit") ) {
 				
 		$qt=mfo1("select * from exam_questions where id='$q'");
 			
-		sc_bf( "$RFS_SITE_URL/modules/exams/exams.php",
+		lib_mysql_build_form( "$RFS_SITE_URL/modules/exams/exams.php",
 			   "action=admin_exam_question_edit_2".$RFS_SITE_DELIMITER.
 			   "SHOW_SELECTOR_exam_question_types#name#type#$qt->type".$RFS_SITE_DELIMITER.	
 			   "SHOW_SELECTOR_cfetp_tasks#task&name#task#$qt->task",
@@ -614,30 +614,30 @@ if(sc_access_check("exams","edit") ) {
 	
 	if($action=="admin_exam_question_edit_2") {
 	
-		$r=sc_query("select * from exam_question_types where name='$type'");
+		$r=lib_mysql_query("select * from exam_question_types where name='$type'");
 		$eqt=mysql_fetch_object($r);
 		
 		if(empty($eqt->type)){
-			$r=sc_query("select * from exam_question_types where type='$type'");
+			$r=lib_mysql_query("select * from exam_question_types where type='$type'");
 			$eqt=mysql_fetch_object($r);
 		}
 		if(empty($eqt->type)) $eqt->type="multiple_choice";
 
 
-		sc_query("update exam_questions set `exam_id`='$exam_id' where id='$id'");
-		sc_query("update exam_questions set `exam_sequence` ='$exam_sequence' where id='$id'");
-		sc_query("update exam_questions set `type`='$eqt->type' where id='$id'");
-		sc_query("update exam_questions set `intro`='$intro' where id='$id'");
-		sc_query("update exam_questions set `question`='$question' where id='$id'");
-		sc_query("update exam_questions set `question_image`='$question_image' where id='$id'");
-		sc_query("update exam_questions set `correct_answer`='$correct_answer' where id='$id'");
-		sc_query("update exam_questions set `choice_1`='$choice_1' where id='$id'");
-		sc_query("update exam_questions set `choice_2`='$choice_2' where id='$id'");
-		sc_query("update exam_questions set `choice_3`='$choice_3' where id='$id'");
-		sc_query("update exam_questions set `choice_4`='$choice_4' where id='$id'");
-		sc_query("update exam_questions set `choice_5`='$choice_5' where id='$id'");
-		sc_query("update exam_questions set `choice_6`='$choice_6' where id='$id'");
-		sc_query("update exam_questions set `task`='$task' where id='$id'");
+		lib_mysql_query("update exam_questions set `exam_id`='$exam_id' where id='$id'");
+		lib_mysql_query("update exam_questions set `exam_sequence` ='$exam_sequence' where id='$id'");
+		lib_mysql_query("update exam_questions set `type`='$eqt->type' where id='$id'");
+		lib_mysql_query("update exam_questions set `intro`='$intro' where id='$id'");
+		lib_mysql_query("update exam_questions set `question`='$question' where id='$id'");
+		lib_mysql_query("update exam_questions set `question_image`='$question_image' where id='$id'");
+		lib_mysql_query("update exam_questions set `correct_answer`='$correct_answer' where id='$id'");
+		lib_mysql_query("update exam_questions set `choice_1`='$choice_1' where id='$id'");
+		lib_mysql_query("update exam_questions set `choice_2`='$choice_2' where id='$id'");
+		lib_mysql_query("update exam_questions set `choice_3`='$choice_3' where id='$id'");
+		lib_mysql_query("update exam_questions set `choice_4`='$choice_4' where id='$id'");
+		lib_mysql_query("update exam_questions set `choice_5`='$choice_5' where id='$id'");
+		lib_mysql_query("update exam_questions set `choice_6`='$choice_6' where id='$id'");
+		lib_mysql_query("update exam_questions set `task`='$task' where id='$id'");
 			
 		$action="admin_exam_edit";
 		
@@ -661,12 +661,12 @@ if(sc_access_check("exams","edit") ) {
 	
 	if($action=="admin_exam_edit_add_2") {
 		
-		$r=sc_query("select * from exam_question_types where name='$name'");
+		$r=lib_mysql_query("select * from exam_question_types where name='$name'");
 		$eqt=mysql_fetch_object($r);
 				
 		echo "Adding new question to exam: $exam_id -> $exam_sequence -> $name ($eqt->type)<br>";		
 		
-		sc_bf( "$RFS_SITE_URL/modules/exams/exams.php",
+		lib_mysql_build_form( "$RFS_SITE_URL/modules/exams/exams.php",
 	       "action=admin_exam_edit_add_3".$RFS_SITE_DELIMITER.
 		   "aeexam_id=$exam_id".$RFS_SITE_DELIMITER.
 		   "aeexam_sequence=$exam_sequence".$RFS_SITE_DELIMITER.
@@ -692,10 +692,10 @@ if(sc_access_check("exams","edit") ) {
 		$exam_sequence=$aeexam_sequence;
 		$type=$aetype;
 		
-		sc_query(" insert into exam_questions 
+		lib_mysql_query(" insert into exam_questions 
 							(`exam_id`,`exam_sequence`,`type`, `intro`, `question`, `question_image`, `correct_answer`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `choice_5`, `choice_6`, `task` )
 					VALUES ('$exam_id','$exam_sequence','$type', '$intro', '$question', '$question_image', '$correct_answer', '$choice_1', '$choice_2', '$choice_3', '$choice_4', '$choice_5', '$choice_6', '$task' )	");
-		sc_query(" update exams set `questions`=`questions`+1 where id='$exam_id'");
+		lib_mysql_query(" update exams set `questions`=`questions`+1 where id='$exam_id'");
 		$action="admin_exam_edit";
 	}
 	
@@ -736,7 +736,7 @@ if(sc_access_check("exams","edit") ) {
 		echo "<hr>Question Pool:<br>";
 		
 		$q= "select MAX(`exam_sequence`) from `exam_questions` where exam_id='$exam_id'";
-		$rrr=sc_query($q);
+		$rrr=lib_mysql_query($q);
 		$exq=mysql_fetch_array($rrr);
 		$exam_sequence=$exq[0]+1;
 		
@@ -765,7 +765,7 @@ if(sc_access_check("exams","edit") ) {
 		
 		echo "</tr>";
 			
-        $r=sc_query("select * from exam_questions where exam_id='$exam_id' order by exam_sequence");
+        $r=lib_mysql_query("select * from exam_questions where exam_id='$exam_id' order by exam_sequence");
         $n=mysql_num_rows($r);
         for($i=0;$i<$n;$i++){
 			
@@ -824,7 +824,7 @@ if(sc_access_check("exams","edit") ) {
 	
     if($action=="admin_new_exam") {
 
-        $r=sc_query( "insert into exams (`name`) VALUES ('$name')");
+        $r=lib_mysql_query( "insert into exams (`name`) VALUES ('$name')");
         $id = mysql_insert_id();
         echo "<p> ";
         if($id)
@@ -842,7 +842,7 @@ if(sc_access_check("exams","edit") ) {
 		// $pod=mfo1("select * from pods where name='$name'");
 		$q="update `exams` set `pod_id`='$name' where `id`='$exam_id'";
 		
-		sc_query($q);
+		lib_mysql_query($q);
 		
 		$action="admin_edit";
 	}
@@ -860,7 +860,7 @@ if(sc_access_check("exams","edit") ) {
         sc_bqf("action=admin_new_exam".$RFS_SITE_DELIMITER."SHOW_TEXT_name=new exam","Create new exam");
 
         $q="select * from exams order by name ";
-        $r=sc_query($q); $n=mysql_num_rows($r);
+        $r=lib_mysql_query($q); $n=mysql_num_rows($r);
 
         echo "<table border=0 cellspacing=o cell padding=0>";
 
@@ -957,7 +957,7 @@ if(sc_access_check("exams","edit") ) {
                //// exam total questions
 
                 echo "<td class=sc_project_table_$gt>";
-				$rnq=sc_query("select * from exam_questions where exam_id='$exam->id'");
+				$rnq=lib_mysql_query("select * from exam_questions where exam_id='$exam->id'");
 				$nq=mysql_num_rows($rnq);
 					echo $nq;
                 echo "</td>";
@@ -979,7 +979,7 @@ if(sc_access_check("exams","edit") ) {
                     }
 					
 
-                sc_optionizer(	sc_phpself(),
+                sc_optionizer(	lib_domain_phpself(),
                                 "action=admin_exam_change_pod".$RFS_SITE_DELIMITER.
                                 "exam_id=$exam->id",
                                 "pods",

@@ -3,7 +3,7 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
-function flashnosize($swf){
+function lib_flash_embed_nosize($swf){
         echo "<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" \n";
         echo "codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\" >\n";
         echo "<param name=src value=\"$swf\">";
@@ -18,15 +18,15 @@ function flashnosize($swf){
         echo "</embed></object>";
 }
 
-function flash_color($swf,$bgcolor,$width,$height){
+function lib_flash_embed_color($swf,$bgcolor,$width,$height){
     echo "<table border=0 bgcolor=black><tr><td>";
     echo "<table border=0 bgcolor=$bgcolor><tr><td>";
-    flash($swf,$width,$height);
+    lib_flash_embed($swf,$width,$height);
     echo "</td></tr></table>";
     echo "</td></tr></table>";
 }
 
-function flash_white($swf,$width,$height){
+function lib_flash_embed_white($swf,$width,$height){
     echo "<table border=0 bgcolor=black><tr><td>";
     echo "<table border=0 bgcolor=white><tr><td>";
     flash($swf,$width,$height);
@@ -34,7 +34,7 @@ function flash_white($swf,$width,$height){
     echo "</td></tr></table>";
 }
 
-function flash($swf,$width,$height){
+function lib_flash_embed($swf,$width,$height){
         echo "<object align=center classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" \n";
         echo "codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\" width=$width height=$height>\n";
         echo "<param name=src value=\"$swf\">";
@@ -48,7 +48,7 @@ function flash($swf,$width,$height){
         echo "</embed></object>";
 }
 
-function al_flash($swf,$width,$height,$align){
+function lib_flash_embed_align($swf,$width,$height,$align){
     echo "<object align=\"$align\" classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" \n";
     echo "codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\" width=$width height=$height>\n";
     echo "<param name=src value=\"$swf\">";
@@ -62,7 +62,7 @@ function al_flash($swf,$width,$height,$align){
     echo "</embed></object>";
 }
 
-function sc_getflashcode($swf,$width,$height){
+function lib_flash_embed_code($swf,$width,$height){
 
     $d=  "<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" \n";
     $d.= "codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\" width=$width height=$height>\n";

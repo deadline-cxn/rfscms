@@ -39,7 +39,7 @@ function sc_ajax_callback_tags_new_tag() { eval(scg());
 }
 
 function sc_ajax_callback_tags_add_tag() { eval(scg());
-	sc_database_add($rfatable,"tags","text","not null");
+	lib_mysql_add($rfatable,"tags","text","not null");
 	$obj=mfo1("select * from `$rfatable` where `$rfaikey` = '$rfakv'");
 	$tags=$obj->tags;
 	$tx=explode(",",$tags);	
@@ -51,7 +51,7 @@ function sc_ajax_callback_tags_add_tag() { eval(scg());
 	else
 		$tags.=",$rfaajv";
 	$q="update `$rfatable` set `$rfafield`='$tags' where `$rfaikey` = '$rfakv'";
-	sc_query($q);	
+	lib_mysql_query($q);	
 	$tagz=explode(",",$tags);
 	if(!empty($tagz[0])) {
 		echo "<div style='clear:both;' >";
@@ -64,8 +64,8 @@ function sc_ajax_callback_tags_add_tag() { eval(scg());
 
 function lib_tags_add_link($table,$id) {
 	
-	sc_query("delete from tags where tag = ''");
-	$r=sc_query("select * from tags order by tag asc");
+	lib_mysql_query("delete from tags where tag = ''");
+	$r=lib_mysql_query("select * from tags order by tag asc");
 	$n=mysql_num_rows($r);
 	
 	echo "<div style='clear:both;'>";
@@ -106,9 +106,9 @@ function lib_tags_add_link($table,$id) {
 }
 
 function lib_tags_add_tag($tag) {
-	sc_database_add("tags","tag","text","not null");	
-	sc_database_add("tags","hidden","text","not null");
-	sc_query("insert into tags (`tag`) values('$tag');");
+	lib_mysql_add("tags","tag","text","not null");	
+	lib_mysql_add("tags","hidden","text","not null");
+	lib_mysql_query("insert into tags (`tag`) values('$tag');");
 }
 
 function lib_tags_show_tags($table,$id) {
@@ -123,10 +123,10 @@ function lib_tags_show_tags($table,$id) {
 			
 				$tv=ltrim($tv," "); $tv=rtrim($tv," ");
 				echo "<div style='float:left;' class='tags'>";
-				if(stristr(sc_canonical_url(),"?"))
-					echo"<a href=\"".sc_canonical_url()."&tagsearch=$tv\" class=\"tag_link\">$tv</a>";
+				if(stristr(lib_domain_canonical_url(),"?"))
+					echo"<a href=\"".lib_domain_canonical_url()."&tagsearch=$tv\" class=\"tag_link\">$tv</a>";
 				else
-					echo"<a href=\"".sc_canonical_url()."?tagsearch=$tv\" class=\"tag_link\">$tv</a>";
+					echo"<a href=\"".lib_domain_canonical_url()."?tagsearch=$tv\" class=\"tag_link\">$tv</a>";
 				echo "</div>";
 			}
 		}

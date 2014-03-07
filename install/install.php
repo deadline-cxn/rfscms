@@ -10,7 +10,7 @@ if(substr(PHP_OS,0,3)=="WIN") {
 	$RFS_SITE_OS="Windows";
 }
 
-function odb(){
+function lib_mysql_open_database(){
 	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'], $GLOBALS['authdbuser'], $GLOBALS['authdbpass']);
 	if(empty($mysql))	{
 		return false;
@@ -18,18 +18,18 @@ function odb(){
 	mysql_select_db( $GLOBALS['authdbname'], $mysql);
 	return $mysql;
 }
-function sc_query($query) {
-	if(stristr($query,"`users`")) { $x=sc_query_user_db($query); return $x; }
-	$mysql=odb(); if($mysql==false) return false;
+function lib_mysql_query($query) {
+	if(stristr($query,"`users`")) { $x=lib_mysql_query_user_db($query); return $x; }
+	$mysql=lib_mysql_open_database(); if($mysql==false) return false;
 	$result=mysql_query($query,$mysql);
 	if(empty($result)) return false;
 	return $result;
 }
-function sc_query_user_db($q){
-    $r=sc_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
+function lib_mysql_query_user_db($q){
+    $r=lib_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
     return$r;
 }
-function sc_query_other_db($db,$host,$user,$pass,$query){
+function lib_mysql_query_other_db($db,$host,$user,$pass,$query){
 	$mysql=mysql_connect($host,$user,$pass);
 	mysql_select_db($db, $mysql);
 	$result=mysql_query($query,$mysql);
@@ -203,16 +203,16 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			$qx=explode(";",file_get_contents("$RFS_SITE_PATH/install/install.sql"));
 			for($i=0;$i<count($qx);$i++) {
 				$q=$qx[$i];
-				sc_query("$q;");
+				lib_mysql_query("$q;");
 			}
 			$rfs_password=md5($rfs_password);
-			sc_query("
+			lib_mysql_query("
 			INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `access_groups`, `theme`) VALUES
 			('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255',  'Administrator', 'default'); ");
 											
 			///////////////////////////////////////////////////////////////////////////////
 			// CHECK DATABASE				
-			$r=sc_query("select * from users");
+			$r=lib_mysql_query("select * from users");
 			$n=0;
 			if($r) $n=mysql_num_rows($r);
 			if(!$n) {
@@ -222,7 +222,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				echo "<div width=100% style='background-color: green; color:white;'>Database activated... Adding RFSCMS data.</div>";
 			///////////////////////////////////////////////////////////////////////////////
 			// UPDATE DATABASE				
-			sc_query("
+			lib_mysql_query("
 			INSERT INTO `site_vars` (`name`, `value`) VALUES
 			('path', '$RFS_SITE_PATH'),
 			('url',  '$RFS_SITE_URL'),
@@ -235,7 +235,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				$q=$qx[$i];
 				echo "<hr>";
 				// echo nl2br("$q;");
-				sc_query("$q;");
+				lib_mysql_query("$q;");
 			}
 			///////////////////////////////////////////////////////////////////////////////
 					

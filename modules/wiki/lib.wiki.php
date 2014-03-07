@@ -1,13 +1,13 @@
 <?
 include_once("include/lib.all.php");
 
-sc_menus_register("Wiki","$RFS_SITE_URL/modules/wiki/rfswiki.php");
+lib_menus_register("Wiki","$RFS_SITE_URL/modules/wiki/rfswiki.php");
 
-sc_access_method_add("wiki", "admin");
-sc_access_method_add("wiki", "edit");
-sc_access_method_add("wiki", "delete");
-sc_access_method_add("wiki", "editothers");
-sc_access_method_add("wiki", "deleteothers");
+lib_access_add_method("wiki", "admin");
+lib_access_add_method("wiki", "edit");
+lib_access_add_method("wiki", "delete");
+lib_access_add_method("wiki", "editothers");
+lib_access_add_method("wiki", "deleteothers");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI
@@ -16,7 +16,7 @@ function sc_module_mini_wiki($x) { eval(scg());
     echo "<h2>Last $x Wiki Page Updates</h2>";
     echo "<table width=100% border=0><tr>";
     echo "<td valign=top class=contenttd>";
-	$res=sc_query(" SELECT name, MAX( updated ) FROM wiki GROUP BY name ORDER BY MAX( updated ) DESC LIMIT 0 , $x");
+	$res=lib_mysql_query(" SELECT name, MAX( updated ) FROM wiki GROUP BY name ORDER BY MAX( updated ) DESC LIMIT 0 , $x");
     $num=mysql_num_rows($res);
     for($i=0;$i<$num;$i++) {
         $page=mysql_fetch_object($res);
@@ -60,7 +60,7 @@ function wikiimg($text) { eval(scg());
 
 				if(!file_exists($img)) {
 					$outtext.= "<table border=0 class=warning><tr><td class=warning> ";
-					$outtext.= sc_picthumb("$RFS_SITE_WIKI_IMAGES_PATH/wiki_warning.png",32,32,1);
+					$outtext.= lib_images_thumb("$RFS_SITE_WIKI_IMAGES_PATH/wiki_warning.png",32,32,1);
 					$outtext.="</td><td class=warning> Image not found";
 					//////////////////////////////////////////////////////////////////////////////
 					if($GLOBALS['rfsw_admin_mode']=="true") {
@@ -77,7 +77,7 @@ function wikiimg($text) { eval(scg());
                 //////////////////////////////////////////////////////////////////////////////
             } else {
 				if( ($w) || ($h)) {                    
-					$outtext.= sc_picthumb("$RFS_SITE_PATH/$img",$w,$h,1);
+					$outtext.= lib_images_thumb("$RFS_SITE_PATH/$img",$w,$h,1);
                 }
 				else {
                     $outtext.="<img src=\"$RFS_SITE_URL/".$img."\" border=0 >";                    

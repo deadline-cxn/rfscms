@@ -8,18 +8,12 @@ srand((double) microtime() * 1000000);  // randomize timer
 if(isset($RFS_SITE_LOCALE))
 setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
 /////////////////////////////////////////////////////////////////////////
-
-function rfs_user_age($birthDay) {
-	// date in yyyy-mm-dd format
-	echo $birthDay;
-	$birthday = explode("-", $birthDay);
-	$age = (date("md", date("U", mktime(0, 0, 0, $birthday[1], $birthday[2], $birthday[0]))) > date("md")
-    ? ((date("Y") - $birthday[0]) - 1)
-    : (date("Y") - $birthday[0]));
+function rfs_user_age($birthDay) { // date in yyyy-mm-dd format
+	$birthday = explode("-", $birthDay); 
+	$age = (date("md", date("U", mktime(0, 0, 0, $birthday[1], $birthday[2], $birthday[0]))) > date("md") ? ((date("Y") - $birthday[0]) - 1) : (date("Y") - $birthday[0]));
 	return $age;
 }
-
-function sc_hextorgb($hex) {
+function sc_hextorgb($hex) { // returns an array with the rgb values	
 	$hex=str_replace("#","",$hex);
 	if(strlen($hex) == 3) {
       $r = hexdec(substr($hex,0,1).substr($hex,0,1));
@@ -31,23 +25,18 @@ function sc_hextorgb($hex) {
       $b = hexdec(substr($hex,4,2));
    }
    $rgb = array($r, $g, $b);
-   return $rgb; // returns an array with the rgb values	
+   return $rgb;
 }
 function sc_generate_long_uid($y) {
 	global $data;
 	$x=time().".".md5($y.$data->name.generate_password());
 	return $x;
 }
-
 function sc_generate_uid($y) {
 	global $data;
-	$x=
-	substr(time(),5,5).".".
-	substr(md5($y.$data->name.generate_password()),0,3);
+	$x=substr(time(),5,5).".".substr(md5($y.$data->name.generate_password()),0,3);
 	return $x;
 }
-
-
 function sc_togglediv_ne($x) {
 	$id=generate_password();	
 	$r=	sc_togglediv_start_ne("did_".md5($id),"");
@@ -61,7 +50,6 @@ function sc_togglediv($x) {
 function sc_togglediv_start_ne($x,$y,$folded) {
 	$fold="[-]"; if($folded) $fold="[+]";
 	$foldstate="block"; if($folded) $foldstate="none";
-	
 	$anchor=md5($x.$y.$foldstate);
 	$titley=str_replace("\"","'",$y);
 	$r="<script> state['$x']='$foldstate'; </script>	<a href=\"#\" onclick=\"showhide('$x');\" title=\"$titley\"><div id=\"$x"."plusminus\" style='float:left;'>$fold</div></a>$y<div id=\"$x\" style=\"clear:both; display:$foldstate;\">";
@@ -78,9 +66,8 @@ function sc_togglediv_end() {
 }
 
 function sc_javascript() { eval(scg());
-
-echo "<script language=\"javascript\"><!--";
-echo "
+echo "<script language=\"javascript\">
+<!--
 var state = {};
 function showhide(layer_ref) {
 if (state[layer_ref] == 'block') {
@@ -102,9 +89,8 @@ if (document.getElementById &&!document.all) {
 	hza.style.display = state[layer_ref]; 
 	} 
 } 
-
-";
-echo " //--> </script>";
+//-->
+</script>";
 }
 
 function sc_var($x) {
@@ -135,10 +121,10 @@ function sc_do_action() {
 function sc_maintenance() { eval(scg());
 	global $theme;
 	lib_div("sc_maintenance start");
-	// sc_multi_rename("$RFS_SITE_PATH/themes/$theme",$theme,"t");
-	// sc_count();
-	sc_get_modules();
-	$data=sc_getuserdata($_SESSION['valid_user']);
+	// lib_file_multi_rename("$RFS_SITE_PATH/themes/$theme",$theme,"t");
+	// lib_log_count();
+	lib_modules_array();
+	$data=lib_users_get_data($_SESSION['valid_user']);
 	if($mc_gross>0) $data->donated="yes";
 	
 	if(!empty($_REQUEST['theme'])) {
@@ -156,7 +142,7 @@ function sc_maintenance() { eval(scg());
 	if(!empty($theme)) {
 		if($_SESSION['logged_in']) {
 			if($theme!=$data->theme) {
-				sc_query("UPDATE users SET theme='$theme' where name = '$data->name'");
+				lib_mysql_query("UPDATE users SET theme='$theme' where name = '$data->name'");
 				$data->theme=$theme;
 			} else {
 				$theme=$data->theme;
@@ -165,14 +151,14 @@ function sc_maintenance() { eval(scg());
 	}
 	
 	
-	$r=sc_query("select * from categories");
+	$r=lib_mysql_query("select * from categories");
 	for($i=0;$i<mysql_num_rows($r);$i++){ 
 		$cat=mysql_fetch_object($r);
-		$rr=sc_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");		
+		$rr=lib_mysql_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");		
 		
 		if($cat->worksafe=="no") {
-			// sc_query("update files set worksafe='no' where worksafe!='no and category = '$cat->name'");
-			// sc_query("update pictures set worksafe='no' where category = '$cat->name'");
+			// lib_mysql_query("update files set worksafe='no' where worksafe!='no and category = '$cat->name'");
+			// lib_mysql_query("update pictures set worksafe='no' where category = '$cat->name'");
 		}
 	}
 	
@@ -189,39 +175,30 @@ function sc_maintenance() { eval(scg());
 /////////////////////////////////////////////////////////////////////////
 function sc_get_content_ids() { eval(scg());
 	$q1="SHOW FULL TABLES";
-	$r1=sc_query($q1);
-	
-	for($i1=0;$i1<mysql_num_rows($r1);$i1++) {
-		$t=mysql_fetch_array($r1);
+	$r1=lib_mysql_query($q1);	
+	while($t=mysql_fetch_array($r1)) {		
 		$table=$t[0];
 		$q2="DESCRIBE $table;";
 		echo $q2."<br>";
 		$hasid=false;
-		$r2=sc_query($q2);
-		if($r2)		
-		for($i2=0;$i2<mysql_num_rows($r2);$i2++) {
-			$t2=mysql_fetch_array($r2);			
+		$r2=lib_mysql_query($q2);
+		if($r2)
+		while($t2=mysql_fetch_array($r2)) {
 			echo $t2[0]."<br>";
-			if($t2[0]=="id") $hasid=true;			
+			if($t2[0]=="id") $hasid=true;
 		}
 		if($hasid) {
 			echo " <font style='color:red;'>HAS ID!</font><BR>";
-		
 			$q3="INSERT INTO `contentid`(`table`,`table_id`) select '$table', `id` from `$table`";
 			echo $q3."<br>";
-			sc_query($q3);
-			
+			lib_mysql_query($q3);
 		}
-		
-		
 	}
-
-
-	
-	
 }
 /////////////////////////////////////////////////////////////////////////
-function sc_info($t,$c,$c2) { 	echo "<div style=' font-size: 2em; color:$c; background-color:$c2; width:100%;'>$t</div>"; }
+function sc_info($t,$c,$c2) {
+	echo "<div style=' font-size: 2em; color:$c; background-color:$c2; width:100%;'>$t</div>";
+}
 /////////////////////////////////////////////////////////////////////////
 function sc_num2txt($x) { 
 	$txt=$x." "; if($x==0) $txt=" 0 "; if($x>0) { 	$txt="%2B".$x." "; }
@@ -240,21 +217,17 @@ function sc_flush_buffers(){
 // Make globals available to functions -- >> eval(scg());
 function scg() {
 	$out="";
-
-	foreach($GLOBALS as $k => $v) {
-		
+	foreach($GLOBALS as $k => $v) {		
 		// echo $k."<br>";
 		if(!stristr($k,"-")) {
-
 		$nmc=$k[0];
-
 		if(is_numeric($nmc)) $k="__".$k;
 		if(!is_numeric($nmc))
 			if( ($k != 'GLOBALS') &&
 				($k != '_ENV') &&
 				($k != 'HTTP_ENV_VARS') &&
 				($k != 'DOCUMENT_ROOT') &&
-			   ($k != 'GATEWAY_INTERFACE') &&
+			    ($k != 'GATEWAY_INTERFACE') &&
 				($k != 'HTTP_ACCEPT') &&
 				($k != 'HTTP_ACCEPT_CHARSET') &&
 				($k != 'HTTP_ACCEPT_ENCODING') &&
@@ -285,7 +258,6 @@ function scg() {
 				($k != 'UNIQUE_ID') &&
 				($k != '__utma') &&
 				($k != '__utmz') &&
-
 				($k != '__utmb') &&
 				($k != '__utmc') &&
 				($k != '__atuvc') &&
@@ -306,7 +278,6 @@ function scg() {
 				   $k=str_replace("\$","_",$k);
 				$out.="\$$k=\$GLOBALS['$k'];\n";
 			}
-
 		}
 	}
     // d_echo($out);
@@ -350,7 +321,7 @@ function sc_yes($x) { $x=strtolower($x); if( (stristr($x,"true")) || (stristr($x
 /////////////////////////////////////////////////////////////////////////
 function smiles($text) {
 	$query = "select * from smilies";
-	$smiley_result = sc_query($query);
+	$smiley_result = lib_mysql_query($query);
 	$num_smilies=mysql_num_rows($smiley_result);
 	if($num_smilies>0) {
 		for($i=0; $i<$num_smilies; $i++) {
@@ -371,16 +342,16 @@ function smiles($text) {
 	return rfs_get($text);
 }
 /////////////////////////////////////////////////////////////////////////
-function rfs_echo($t) {  echo rfs_get($t); }
+function rfs_echo($t) {
+	echo rfs_get($t);
+}
 /////////////////////////////////////////////////////////////////////////
 function sc_calc($x) {
 	eval("echo($x);");
 }
 /////////////////////////////////////////////////////////////////////////
 function rfs_get($t) {
-
-	foreach($GLOBALS['RFS_TAGS'] as $key => $value) {
-		
+	foreach($GLOBALS['RFS_TAGS'] as $key => $value) {		
 		//$x=explode("RFS_FTAG",$t);
 		// echo("0".$result[0]."1".$result[1]."2".$result[2]."<br>");
 		//$z=explode(" ",$x[1]);
@@ -388,10 +359,8 @@ function rfs_get($t) {
 			//$y="$key($z[2]);";
 			// echo "FOUND... DO:  [$y]";			
 			// echo "... RESULT[".eval($y)."]";
-		//}		
-		
-		if(stristr($t,$value)) {
-			
+		//}
+		if(stristr($t,$value)) {			
 			switch($value) {
 				case "<!--RTAG_BUTTON":
 					$zx=explode("<!--RTAG_BUTTON",$t);
@@ -401,11 +370,11 @@ function rfs_get($t) {
 					break;
 				
 				case "RFS_TAG_CANONICAL":
-					$t=str_replace("$key",sc_canonical_url(),$t);
+					$t=str_replace("$key",lib_domain_canonical_url(),$t);
 					break;
 					
 				case "RFS_TAG_PHP_SELF": 
-					$t=str_replace("$key",sc_phpself(),$t);
+					$t=str_replace("$key",lib_domain_phpself(),$t);
 					break;
 					
 				case "RFS_TAG_FUNCTION":
@@ -422,21 +391,18 @@ function rfs_get($t) {
 			}
 		}
 	}
-
 	foreach($GLOBALS as $key => $value) { 
 		if(is_string($value)) {
 			$t=str_replace("\$$key",$value,$t);
 		}
 	}
-	
 	return $t;
 }
 /////////////////////////////////////////////////////////////////////////
 function sc_theme_form() { eval(scg());
-
 		if(sc_yes($GLOBALS["RFS_SITE_THEME_DROPDOWN"])) {
-			$data=sc_getuserdata($_SESSION['valid_user']);
-			$loc=sc_canonical_url();
+			$data=lib_users_get_data($_SESSION['valid_user']);
+			$loc=lib_domain_canonical_url();
 			$loc=str_replace("&theme=$theme","",$loc);
 			$loc=str_replace("?theme=$theme","",$loc);
 			$sep="?";
@@ -445,7 +411,6 @@ function sc_theme_form() { eval(scg());
 						onchange=\"";
 					echo "document.location='$loc$sep'+'theme='+this.value\"";
 			echo "	style=\"width:120px;\"><option>Theme\n";
-			
 			$thms=sc_get_themes();
 			while(list($key,$thm)=each($thms)){
 				echo "<option";
@@ -500,12 +465,7 @@ function mailgo($email,$message,$subject) {
 	$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 	$message  = $begin.$message;
 	$message .= "<p>Automated message from <a href=$RFS_SITE_URL>$RFS_SITE_NAME</a> ~ Do not reply!</p>\n";
-	return mail(
-    $email,
-    $subject ,
-    $message,
-
-    "From: $RFS_SITE_ADMIN_EMAIL\r\n$headers");
+	return mail($email,$subject,$message,"From: $RFS_SITE_ADMIN_EMAIL\r\n$headers");
 }
 /////////////////////////////////////////////////////////////////////////
 function generate_password() {
@@ -546,8 +506,9 @@ function sc_trunc($str,$max_len) {
 	return $str;
 }
 /////////////////////////////////////////////////////////////////////////
-function sc_countries() {
-	echo "<option>United States
+function lib_log_countries() {
+echo "
+<option>United States
 <option>Afghanistan
 <option>Albania
 <option>Algeria

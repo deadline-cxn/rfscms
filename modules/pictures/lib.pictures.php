@@ -1,20 +1,14 @@
 <?
 include_once("include/lib.all.php");
 
-sc_menus_register("Pictures","$RFS_SITE_URL/modules/pictures/pictures.php");
-
-sc_access_method_add("pictures", "orphanscan");
-sc_access_method_add("pictures", "upload");
-sc_access_method_add("pictures", "edit");
-sc_access_method_add("pictures", "delete");
-sc_access_method_add("pictures", "sort");
+lib_menus_register("Pictures","$RFS_SITE_URL/modules/pictures/pictures.php");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE PICTURES
 function sc_module_mini_pictures($x) { eval(scg());
     lib_div("PICTURES MODULE SECTION");
     echo "<h2>Last $x Pictures</h2>";
-    $res2=sc_query("select * from `pictures` where `hidden`='no' order by time desc limit 0,$x");
+    $res2=lib_mysql_query("select * from `pictures` where `hidden`='no' order by time desc limit 0,$x");
     $numpics=mysql_num_rows($res2); // make pictures table...
 	echo "<table border=0 cellspacing=0 cellpadding=0>";
     for($i=0;$i<$numpics;$i++) {
@@ -22,7 +16,7 @@ function sc_module_mini_pictures($x) { eval(scg());
         if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";        
         echo "<tr><td class=contenttd>";
         echo "<a href=\"$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id\">".
-		        sc_picthumb("$RFS_SITE_PATH/$picture->url",50,0,1)."</a>";
+		        lib_images_thumb("$RFS_SITE_PATH/$picture->url",50,0,1)."</a>";
         echo "</td><td class=contenttd width='95%' valign=top>";
         echo "<a href=\"$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id\">";
         echo "$picture->sname</a><br>";
@@ -40,7 +34,7 @@ function sc_module_mini_pictures($x) { eval(scg());
 
 function pics_addorphans($folder,$cat) { eval(scg());
         $dir_count=0;
-        $dirfiles = sc_folder_to_array($folder);        
+        $dirfiles = lib_file_folder_to_array($folder);        
         while(list ($key, $file) = each ($dirfiles)){
             if($file!="."){
                 if($file!="..")
@@ -54,15 +48,20 @@ function pics_addorphans($folder,$cat) { eval(scg());
                         echo "$dircheck is a folder... checking<br>";
                         $dir_count += pics_addorphans("$dircheck",$cat);  
                     } 
-                    if( (sc_getfiletype($file)=="gif") ||
-						   (sc_getfiletype($file)=="png") ||
-                        (sc_getfiletype($file)=="jpg") ) {
+					$ft=lib_file_getfiletype($file);
+                    if( ($ft=="gif") ||
+						($ft=="tif") ||
+						($ft=="png") ||
+						($ft=="bmp") ||
+						($ft=="svg") ||
+                        ($ft=="jpg") ||
+						($ft=="jpeg") ) {
                         // $ofolder=str_replace($GLOBALS['RFS_SITE_PATH'],"",$folder);
                         $url = "$folder/$file";
-                        $res=sc_query("select * from `pictures` where `url`='$url'");
+                        $res=lib_mysql_query("select * from `pictures` where `url`='$url'");
                         if(!mysql_num_rows($res)) {
                             $time=date("Y-m-d H:i:s");
-                            sc_query("insert into `pictures` (`time`,`url`,`category`,`hidden`)
+                            lib_mysql_query("insert into `pictures` (`time`,`url`,`category`,`hidden`)
                                                        VALUES('$time','$url','unsorted','yes')");
                             echo "Added [$url] to database<br>";
                             $dir_count++;

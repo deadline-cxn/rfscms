@@ -5,7 +5,7 @@ include_once("include/lib.all.php");
 require_once("facebook/src/facebook.php");
 
 
-sc_query_user_db("
+lib_mysql_query_user_db("
 CREATE TABLE IF NOT EXISTS `users` (
   `name` text COLLATE utf8_unicode_ci NOT NULL,
   `alias` text COLLATE utf8_unicode_ci NOT NULL,
@@ -53,19 +53,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1005 ;
 ");
-sc_query_user_db("ALTER TABLE `users` ADD `facebook_id` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `facebook_username` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `facebook_name` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `first_name` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `last_name` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `facebook_link` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `timezone` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `locale` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `country` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `gender` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `email` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `paypal_email` text NOT NULL;");
-sc_query_user_db("ALTER TABLE `users` ADD `first_login` timestamp NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `facebook_id` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `facebook_username` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `facebook_name` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `first_name` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `last_name` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `facebook_link` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `timezone` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `locale` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `country` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `gender` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `email` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `paypal_email` text NOT NULL;");
+lib_mysql_query_user_db("ALTER TABLE `users` ADD `first_login` timestamp NOT NULL;");
 
 // echo "Connecting with facebook...";
 
@@ -153,10 +153,10 @@ if(!$_SESSION['valid_user']) {
 	*/		
 			  $dbg_info="[LOGIN (FACEBOOK)]: $fname ($email)";
 
-            sc_log($dbg_info);
+            lib_log_add_entry($dbg_info);
 
             // echo "$facebook_id... $facebook_name fetching your account details<br>";
-            $r=sc_query_user_db("select * from users where `facebook_id` = '$facebook_id'");
+            $r=lib_mysql_query_user_db("select * from users where `facebook_id` = '$facebook_id'");
             $user=mysql_fetch_object($r);
 
             //echo "name: $first_name<br>";
@@ -167,28 +167,28 @@ if(!$_SESSION['valid_user']) {
 
             if($user->facebook_id!=$facebook_id) {
                     $time1=date("Y-m-d H:i:s");
-                    sc_query_user_db("  insert into `users` ( `name`, `facebook_id`, `first_login` )
+                    lib_mysql_query_user_db("  insert into `users` ( `name`, `facebook_id`, `first_login` )
                                                      VALUES ( '$fname', '$facebook_id', '$time1' ); " );
                     echo "WARNING: a1b2c3<br>";
             }
 
-            $r=sc_query_user_db("select * from users where `facebook_id` = '$facebook_id'");            
+            $r=lib_mysql_query_user_db("select * from users where `facebook_id` = '$facebook_id'");            
             $user=@mysql_fetch_object($r);
 			  if(!$user->id) {
                   echo "ERROR 3473. Please report this.<br>\n";
                   exit();
             }
 
-            sc_query_user_db("update users set facebook_name='$facebook_name'   where `facebook_id`='$facebook_id'");
-            sc_query_user_db("update users set first_name='$first_name'         where `facebook_id`='$facebook_id'");
-            sc_query_user_db("update users set last_name='$last_name'           where `facebook_id`='$facebook_id'");
-            sc_query_user_db("update users set facebook_link='$facebook_link'   where `facebook_id`='$facebook_id'");
-            // sc_query_user_db("update users set name='$name'                     where `facebook_id`='$facebook_id'");
-            sc_query_user_db("update users set gender='$gender'                 where `facebook_id`='$facebook_id'");
-            sc_query_user_db("update users set timezone='$timezone'             where `facebook_id`='$facebook_id'");
-            sc_query_user_db("update users set locale='$locale'                 where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update users set facebook_name='$facebook_name'   where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update users set first_name='$first_name'         where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update users set last_name='$last_name'           where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update users set facebook_link='$facebook_link'   where `facebook_id`='$facebook_id'");
+            // lib_mysql_query_user_db("update users set name='$name'                     where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update users set gender='$gender'                 where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update users set timezone='$timezone'             where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update users set locale='$locale'                 where `facebook_id`='$facebook_id'");
 
-            $r=sc_query_user_db("select * from users  where `facebook_id`='$facebook_id'");
+            $r=lib_mysql_query_user_db("select * from users  where `facebook_id`='$facebook_id'");
             $user=@mysql_fetch_object($r);
             if($user->id) {
                 $_SESSION['valid_user']  = $user->name;
@@ -198,7 +198,7 @@ if(!$_SESSION['valid_user']) {
                   
 						$retpage=$_SESSION['retpage'];
 						if(!empty($retpage)) {
-							sc_gotopage($retpage);
+							lib_domain_gotopage($retpage);
 							$_SESSION['retpage']="";
 						}
 						else {
@@ -227,28 +227,28 @@ if(!$_SESSION['valid_user']) {
 }
 
 /*
-$r=sc_query_user_db("select * from users where `facebook_id`='$facebook_id'");
+$r=lib_mysql_query_user_db("select * from users where `facebook_id`='$facebook_id'");
 $user=@mysql_fetch_object($r);
 
 
-$r=sc_query_user_db("select * from users where `email` = '$email'");
+$r=lib_mysql_query_user_db("select * from users where `email` = '$email'");
 if($r) {
             $user=mysql_fetch_object($r);
             if($user->facebook_id=="") { // First time visiting with a facebook id, update database
                 echo "First visit from facebook... Welcome $first_name.<br>";
-                sc_query_user_db("update users set facebook_id='$facebook_id' where `email`='$email'");
-                sc_query_user_db("update users set facebook_name='$facebook_name' where `email`='$email'");
-                sc_query_user_db("update users set first_name='$first_name' where `email`='$email'");
-                sc_query_user_db("update users set last_name='$last_name' where `email`='$email'");
-                sc_query_user_db("update users set facebook_link='$facebook_link' where `email`='$email'");
-                sc_query_user_db("update users set name='$name' where `email`='$email'");
-                sc_query_user_db("update users set gender='$gender' where `email`='$email'");
-                sc_query_user_db("update users set timezone='$timezone' where `email`='$email'");
-                sc_query_user_db("update users set locale='$locale' where `email`='$email'");
+                lib_mysql_query_user_db("update users set facebook_id='$facebook_id' where `email`='$email'");
+                lib_mysql_query_user_db("update users set facebook_name='$facebook_name' where `email`='$email'");
+                lib_mysql_query_user_db("update users set first_name='$first_name' where `email`='$email'");
+                lib_mysql_query_user_db("update users set last_name='$last_name' where `email`='$email'");
+                lib_mysql_query_user_db("update users set facebook_link='$facebook_link' where `email`='$email'");
+                lib_mysql_query_user_db("update users set name='$name' where `email`='$email'");
+                lib_mysql_query_user_db("update users set gender='$gender' where `email`='$email'");
+                lib_mysql_query_user_db("update users set timezone='$timezone' where `email`='$email'");
+                lib_mysql_query_user_db("update users set locale='$locale' where `email`='$email'");
         }
     }
 
-        $r=sc_query_user_db("select * from users where `facebook_id`='$facebook_id'");
+        $r=lib_mysql_query_user_db("select * from users where `facebook_id`='$facebook_id'");
         $user=@mysql_fetch_object($r);
         if($user->id) {                
             $_SESSION['valid_user']  = $user->id;

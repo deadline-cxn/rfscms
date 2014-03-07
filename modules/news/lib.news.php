@@ -1,31 +1,27 @@
 <?
 include_once("include/lib.all.php");
 
-sc_menus_register("News","$RFS_SITE_URL/modules/news/news.php");
+lib_menus_register("News","$RFS_SITE_URL/modules/news/news.php");
 
-sc_access_method_add("news", "edit");
-sc_access_method_add("news", "editothers");
-sc_access_method_add("news", "submit");
-sc_access_method_add("news", "delete");
-sc_access_method_add("news", "deleteothers");
-
+lib_access_add_method("news", "edit");
+lib_access_add_method("news", "editothers");
+lib_access_add_method("news", "submit");
+lib_access_add_method("news", "delete");
+lib_access_add_method("news", "deleteothers");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
-
 function news_buttons() { eval(scg());
-		if(sc_access_check("news","submit")) {
-				
-			lib_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
-		}
-	
+	if(lib_access_check("news","submit")) {
+		lib_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
+	}
 }
 
 function adm_action_lib_news_news_submit() { eval(scg());
-    sc_gotopage("$RFS_SITE_URL/modules/news/news.php?showform=yes");
+    lib_domain_gotopage("$RFS_SITE_URL/modules/news/news.php?showform=yes");
 }
 function adm_action_lib_news_news_edit() { eval(scg());
-    sc_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
+    lib_domain_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
 }
 function sc_module_news_list($x) { eval(scg());
     lib_div("NEWS MODULE SECTION");
@@ -46,7 +42,7 @@ function sc_module_news_list($x) { eval(scg());
         $altern=stripslashes($news->image_alt);
         $picf="$RFS_SITE_PATH/$news->image_url";
         $picf=str_replace($RFS_SITE_URL,"",$picf);
-        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">".sc_picthumb("$picf",30,0,1	)."</a>\n";
+        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">".lib_images_thumb("$picf",30,0,1	)."</a>\n";
         echo "</td><td valign=top  class=contenttd 90%>";
         echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".sc_trunc("$news->headline",50)."</a>";
         $ntext=str_replace("<p>"," ",$ntext);
@@ -62,7 +58,7 @@ function sc_module_news_list_popular($x) { eval(scg());
     lib_div("NEWS MODULE SECTION");
     echo "<h2>Popular News Articles</h2>";
     //search method dictate sort order?
-    $result=sc_query("select * from news where topstory!='yes' and published='yes' order by views desc limit $x");
+    $result=lib_mysql_query("select * from news where topstory!='yes' and published='yes' order by views desc limit $x");
     echo "<table border=0>";
     $ct=mysql_num_rows($result);
     for($i=0;$i<$ct;$i++)    {
@@ -107,13 +103,13 @@ function sc_module_news_blog_style($x) { eval(scg());
 }
 
 function sc_getnewstopstory(){
-    $result=sc_query("select * from news where topstory='yes' and published='yes'");
+    $result=lib_mysql_query("select * from news where topstory='yes' and published='yes'");
     $news=mysql_fetch_object($result);
     return $news;
 }
 function sc_getnewsdata($news){
     $query="select * from news where id = '$news'";
-    $result=sc_query($query);
+    $result=lib_mysql_query($query);
     if(mysql_num_rows($result) >0 ) $news = mysql_fetch_object($result);
     return $news;
 }
@@ -124,7 +120,7 @@ function sc_getnewslist($newssearch) {
     if(!empty($newssearch)) { $query.=" ".$newssearch; unset($newssearch); }
     if(empty($newsbeg)) $newsbeg=0; if(empty($newsend)) $newsend=10;
     $query .= " order by time desc";
-    $result = sc_query($query);
+    $result = lib_mysql_query($query);
     $numnews=mysql_num_rows($result);
     $i=0;
     while($i<$numnews) {
@@ -135,12 +131,12 @@ function sc_getnewslist($newssearch) {
     return $newslist;
 }
 function sc_get_news_headline($id){
-    $result=sc_query("select * from news where id='$id'");
+    $result=lib_mysql_query("select * from news where id='$id'");
     $news=@mysql_fetch_object($result);
     return $news->headline;
 }
 function sc_get_top_news_id(){
-    $result=sc_query("select * from news where topstory='yes' and published='yes'");
+    $result=lib_mysql_query("select * from news where topstory='yes' and published='yes'");
     $news=@mysql_fetch_object($result);
     return $news->id;
 }
@@ -154,7 +150,7 @@ function sc_show_news($nid) { eval(scg());
 		news_buttons();
 		return;
 	}
-	$result=sc_query("select * from news where id='$nid'");
+	$result=lib_mysql_query("select * from news where id='$nid'");
     $news=mysql_fetch_object($result);
     $userdata=mfo1("select * from users where id='$news->submitter'");
 	
@@ -183,7 +179,7 @@ function sc_show_news($nid) { eval(scg());
 		}		
 		if(!stristr($news->image_url,$RFS_SITE_URL))
 			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");		
-		echo "<img src=\"".sc_picthumb_raw($news->image_url,100,0,1)."\" border=\"0\" title = '$altern' alt='$altern' class='rfs_thumb'>";
+		echo "<img src=\"".lib_images_thumb_raw($news->image_url,100,0,1)."\" border=\"0\" title = '$altern' alt='$altern' class='rfs_thumb'>";
 	}	
 	if(!empty($news->image_url)) {
 		echo  "</a>";
@@ -225,9 +221,8 @@ function sc_show_news($nid) { eval(scg());
 	echo "</div>";
 }
 function put_news_image($fname) { eval(scg());
-    
 	$file=$_FILES[$fname]['name'];
-    $f_ext=sc_getfiletype($file);
+    $f_ext=lib_file_getfiletype($file);
     $uploadFile=$RFS_SITE_PATH."/images/news/$file";
     if(($f_ext=="gif")||($f_ext=="jpg")||($f_ext=="swf")) {
         $oldname=$file;
@@ -240,34 +235,34 @@ function put_news_image($fname) { eval(scg());
     return $httppath;
 }
 function updatenews($nid){ 	eval(scg());
-	$p=addslashes($GLOBALS['headline']); sc_query("UPDATE news SET headline ='$p' where id = '$nid'");
+	$p=addslashes($GLOBALS['headline']); lib_mysql_query("UPDATE news SET headline ='$p' where id = '$nid'");
 
 
 	$name=$_REQUEST['name'];
 	if(stristr($name,"Choose a wiki page to use for this news article")) $name="";
 	if(stristr($name,"--- NONE ---")) $name="";
-	sc_query("update news set `wiki` = '$name' where `id`='$nid'");
+	lib_mysql_query("update news set `wiki` = '$name' where `id`='$nid'");
 
 	$p=addslashes($GLOBALS['posttext']);
-	sc_query("UPDATE news SET message ='$p' where id = '$nid'");
+	lib_mysql_query("UPDATE news SET message ='$p' where id = '$nid'");
 	$p=addslashes($GLOBALS['category1']);
-	sc_query("UPDATE `news` SET `category1` ='$p' where id = '$nid'");
+	lib_mysql_query("UPDATE `news` SET `category1` ='$p' where id = '$nid'");
 	$p=addslashes($GLOBALS['category2']);
-	if($p!="none") sc_query("UPDATE `news` SET `category2` ='$p' where id = '$nid'");
+	if($p!="none") lib_mysql_query("UPDATE `news` SET `category2` ='$p' where id = '$nid'");
 	$p=addslashes($GLOBALS['category3']);
-	if($p!="none") sc_query("UPDATE `news` SET `category3` ='$p' where id = '$nid'");
+	if($p!="none") lib_mysql_query("UPDATE `news` SET `category3` ='$p' where id = '$nid'");
 	$p=addslashes($GLOBALS['category4']);
-	if($p!="none") sc_query("UPDATE `news` SET `category4` ='$p' where id = '$nid'");
+	if($p!="none") lib_mysql_query("UPDATE `news` SET `category4` ='$p' where id = '$nid'");
 
 	$p=$GLOBALS['topstory'];
 	if($p=="yes") {
-		sc_query("update news set topstory='no'");
-		sc_query("update news set topstory='yes' where id='$nid'");
+		lib_mysql_query("update news set topstory='no'");
+		lib_mysql_query("update news set topstory='yes' where id='$nid'");
 	}
 
 	$p=$GLOBALS['published'];
-	if($p=="yes") sc_query("update news set published='yes' where id='$nid'");
-	else          sc_query("update news set published='no' where id='$nid'");
+	if($p=="yes") lib_mysql_query("update news set published='yes' where id='$nid'");
+	else          lib_mysql_query("update news set published='no' where id='$nid'");
 
 	echo "<p>News article [$nid] has been updated...</p>\n";
 	$loggit="*****> ".$GLOBALS['data']->name." updated news article $nid...";
@@ -282,15 +277,15 @@ function deletenews($nid) { eval(scg());
     echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/news/news.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
 }
 function deletenewsgo($nid){ 	eval(scg());
-    sc_query("DELETE FROM news where id = '$nid'");
+    lib_mysql_query("DELETE FROM news where id = '$nid'");
     echo "<p>News article $nid has been deleted...</p>\n";
     $loggit="*****> ".$GLOBALS['data']->name." deleted news article $nid...";
-    sc_log($loggit);
+    lib_log_add_entry($loggit);
 
 }
 function editnews($nid) { eval(scg());
 
-    $news=mysql_fetch_object(sc_query("select * from news where id='$nid'"));
+    $news=mysql_fetch_object(lib_mysql_query("select * from news where id='$nid'"));
     
 	echo "<a href=$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid>Preview</a>";
 	
@@ -312,7 +307,7 @@ function editnews($nid) { eval(scg());
 	//echo "<img src=\"$news->image_url\" width=100 height=100><br>";
 	
 	echo "<img src=\"";
-	echo sc_picthumb_raw($news->image_url,100,0,1); 
+	echo lib_images_thumb_raw($news->image_url,100,0,1); 
 	echo "\" border=\"0\" title = '$altern' alt='$altern' align=left class='rfs_thumb'>";
 	
 	
@@ -413,7 +408,7 @@ echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_
     echo "<option>no<option>yes</select></td></tr>\n";
     echo "<tr><td>Main Category:</td><td><select name=category1>";
     if(!empty($news->category1)) echo "<option>$news->category1";
-    $res=sc_query("select * from `categories` order by `name` asc");
+    $res=lib_mysql_query("select * from `categories` order by `name` asc");
     $ncats=mysql_num_rows($res);
     for($i=0;$i<$ncats;$i++) {
         $cat=mysql_fetch_object($res);
@@ -423,7 +418,7 @@ echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_
     echo "<tr><td>Sub Category 1:</td><td><select name=category2>";
     if(!empty($news->category2)) echo "<option>$news->category2";
     echo "<option>none";
-    $res=sc_query("select * from `categories` order by `name` asc");
+    $res=lib_mysql_query("select * from `categories` order by `name` asc");
     $ncats=mysql_num_rows($res);
     for($i=0;$i<$ncats;$i++) {
         $cat=mysql_fetch_object($res);
@@ -433,7 +428,7 @@ echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_
     echo "<tr><td>Sub Category 2:</td><td><select name=category3>";
     if(!empty($news->category3)) echo "<option>$news->category3";
     echo "<option>none";
-    $res=sc_query("select * from `categories` order by `name` asc");
+    $res=lib_mysql_query("select * from `categories` order by `name` asc");
     $ncats=mysql_num_rows($res);
     for($i=0;$i<$ncats;$i++) {
         $cat=mysql_fetch_object($res);
@@ -443,7 +438,7 @@ echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_
     echo "<tr><td>Sub Category:</td><td><select name=category4>";
     if(!empty($news->category4)) echo "<option>$news->category4";
     echo "<option>none";
-    $res=sc_query("select * from `categories` order by `name` asc");
+    $res=lib_mysql_query("select * from `categories` order by `name` asc");
     $ncats=mysql_num_rows($res);
     for($i=0;$i<$ncats;$i++) {
         $cat=mysql_fetch_object($res);

@@ -14,7 +14,7 @@
 	
 	echo "<td class=\"righttd\" valign=top>";
 
-		sc_draw_module("right");
+		lib_modules_draw("right");
 		
 		
 	echo "</td></tr>";

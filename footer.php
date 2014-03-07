@@ -39,7 +39,7 @@ else{
 	////////////////////////////////////////////////////////////////////
 	// DRAW THE RIGHT MODULES (RIGHTTD)
 	echo "<td class=\"righttd\" valign=top>";
-	sc_draw_module("right");	
+	lib_modules_draw("right");	
 	echo "</td>"; // END RIGHTTD
 	
 	echo "</tr></table>"; // FINISH PAGE TABLE

@@ -5,7 +5,7 @@ if(isset($argv[1])) $inname=$argv[1];
 else 				$inname=$_REQUEST['inname'];
 if(isset($argv[2])) $dtrip=$argv[2];
 else $dtrip=$_REQUEST['dtrip'];
-$r=sc_query("select * from tripcodes");
+$r=lib_mysql_query("select * from tripcodes");
 $n=mysql_num_rows($r);
 echo "<html><head><title>BASED TRIP CODE SEARCH</title></head><body>";
 sc_google_adsense("a");

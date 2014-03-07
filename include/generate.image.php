@@ -234,7 +234,7 @@ else
     $oclr, $font_file,
     $meme->textbottom);
     
-    $data=sc_getuserdata($_SESSION['valid_user']);
+    $data=lib_users_get_data($_SESSION['valid_user']);
 
     if(empty($data->donated)) {
             $renderfile=$renderfile.".nd";

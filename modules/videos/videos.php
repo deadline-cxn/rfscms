@@ -4,14 +4,14 @@ include("header.php");
 
 function videos_buttons() { eval(scg()); 
 	lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=random","Random Video");
-	if(sc_access_check("videos","submit"))
+	if(lib_access_check("videos","submit"))
 		lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=submitvid","Submit Video");
 }
 
 function videos_pagefinish(){ eval(scg()); include("footer.php"); exit(); }
 
 function videos_action_modifyvideo() { eval(scg());
-	if( sc_access_check("videos","edit") ) {
+	if( lib_access_check("videos","edit") ) {
 		$video=mfo1("select * from videos where id='$id'");
 		echo "<p align=center>";
 		echo "$video->url<br>";	
@@ -26,9 +26,9 @@ function videos_action_modifyvideo() { eval(scg());
 		if(!empty($video->hidden)) echo "<option>$video->hidden";
 		echo "<option>no<option>yes</select>";
 		echo "<select name=categorey>";
-		$cat=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
+		$cat=mysql_fetch_object(lib_mysql_query("select * from `categories` where `id`='$video->category'"));
 		echo "<option>$cat->name";
-		$result2=sc_query("select * from categories order by name asc");
+		$result2=lib_mysql_query("select * from categories order by name asc");
 		while($cat=mysql_fetch_object($result2)) echo "<option>$cat->name";
 		echo "</select>\n";
 		echo "<br>";
@@ -44,27 +44,27 @@ function videos_action_modifyvideo() { eval(scg());
 
 function videos_action_modifygo() { eval(scg());
 	$video=mfo1("select * from videos where id='$id'");
-	$vc=sc_getuserdata($video->contributor);
-    $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='$categorey'"));
+	$vc=lib_users_get_data($video->contributor);
+    $categoryz=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$categorey'"));
     $category=$categoryz->id;
-	if(sc_access_check("videos","edit")) {	
-		if((!sc_access_check("videos","editothers"))  &&
+	if(lib_access_check("videos","edit")) {	
+		if((!lib_access_check("videos","editothers"))  &&
 			($data->id!=$video->contributor)) {
 			echo "This isn't your video.";
 		}
 		else {
-			sc_query("update `videos` set `category`='$category' where `id`='$id'");
-			sc_query("update `videos` set `sname`='$sname' where `id`='$id'");
-			sc_query("update `videos` set `sfw`='$sfw' where `id`='$id'");
-			sc_query("update `videos` set `hidden`='$hidden' where `id`='$id'");
-			sc_query("update `videos` set `url`='$vurl' where `id`='$id'");
+			lib_mysql_query("update `videos` set `category`='$category' where `id`='$id'");
+			lib_mysql_query("update `videos` set `sname`='$sname' where `id`='$id'");
+			lib_mysql_query("update `videos` set `sfw`='$sfw' where `id`='$id'");
+			lib_mysql_query("update `videos` set `hidden`='$hidden' where `id`='$id'");
+			lib_mysql_query("update `videos` set `url`='$vurl' where `id`='$id'");
 		}
 	}
 	videos_action_view();
 }
 
 function videos_action_submitvidgo() {
-	if(sc_access_check("videos","submit")) {
+	if(lib_access_check("videos","submit")) {
 		
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s"); 
@@ -81,7 +81,7 @@ function videos_action_submitvidgo() {
 				category $category<br>
 				sfw $sfw <br>"	 ;
 	 
-		sc_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
+		lib_mysql_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
 								 VALUES ('$cont',	 	'$sname','$vurl','$time',    '$time','$category',      '0','$sfw');");
 
 		$v=mfo1("select * from videos where `sname`='$sname'");
@@ -94,7 +94,7 @@ function videos_action_submitvidgo() {
 }
 
 function videos_action_submitvid() { eval(scg());
-	if(sc_access_check("videos","submit")) {
+	if(lib_access_check("videos","submit")) {
 	
 		echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/videos/videos.php\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"submitvidgo\">\n";
@@ -110,7 +110,7 @@ function videos_action_submitvid() { eval(scg());
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
 		echo "<option>yes<option>no</select></td></tr>";
 		
-		$res=sc_query("select * from `categories` order by name asc");
+		$res=lib_mysql_query("select * from `categories` order by name asc");
 		echo "<tr><td>Category</td><td><select name=category>";
 		if(!empty($category_in)) echo "<option>$category_in";
 		while($cat=mysql_fetch_object($res)) {
@@ -125,15 +125,15 @@ function videos_action_submitvid() { eval(scg());
 }
 
 function videos_action_removego() { eval(scg());
-	if(sc_access_check("videos","delete")) {
+	if(lib_access_check("videos","delete")) {
 		$video=mfo1("select * from `videos` where `id`='$id'");		
-		sc_query("delete from `videos` where `id`='$id'");
+		lib_mysql_query("delete from `videos` where `id`='$id'");
 		echo "<p>Removed $video->sname from the database...</p>";
 	}
 }
 
 function videos_action_removevideo() { eval(scg());
-	if(sc_access_check("videos","delete")) {
+	if(lib_access_check("videos","delete")) {
         $video=mfo1("select * from `videos` where `id`='$id'");        
         echo "<table border=0>\n";
         echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/videos/videos.php method=post>\n";
@@ -148,13 +148,13 @@ function videos_action_removevideo() { eval(scg());
 
 function videos_action_view($id) { eval(scg());
 	$video=mfo1("select * from videos where id='$id'");
-	$vc=sc_getuserdata($video->contributor);
+	$vc=lib_users_get_data($video->contributor);
 	echo "<div class=forum_message > <center> ";
 	
 	$category=mfo1("select * from categories where id ='$video->category'");
 	echo "<h1>$category->name videos</h1>";
 	
-	$res2=sc_query("select * from `videos` where `category`='$category->id' and `hidden`!='yes' order by `sname` asc");
+	$res2=lib_mysql_query("select * from `videos` where `category`='$category->id' and `hidden`!='yes' order by `sname` asc");
 	$linkprev="";
 	$linknext="";
 	while($video2=mysql_fetch_object($res2)){		
@@ -185,8 +185,8 @@ function videos_action_view($id) { eval(scg());
     }
 	echo "<br>";	
 	echo $linkprev;
-	if(sc_access_check("videos","edit"))    lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit"); //($data->id==$video->contributor)||($data->access==255)){			 
-	if(sc_access_check("videos","delete")) lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&id=$video->id","Delete");
+	if(lib_access_check("videos","edit"))    lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit"); //($data->id==$video->contributor)||($data->access==255)){			 
+	if(lib_access_check("videos","delete")) lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&id=$video->id","Delete");
 	echo $linknext;
 	echo "</div>";	
 	videos_action_viewcat($video->category);
@@ -195,7 +195,7 @@ function videos_action_view($id) { eval(scg());
 }
 
 function videos_action_viewcat($cat) { eval(scg());
-	$res2=sc_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
+	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
 	while($vid=mysql_fetch_object($res2)) {		
 		$ytthumb="";
 		if(stristr($vid->url,"youtube")) {
@@ -219,14 +219,14 @@ function videos_action_viewcat($cat) { eval(scg());
 }
 
 function videos_action_random() { eval(scg());
-	$res=sc_query("select * from `videos` where `hidden`!='yes'");
+	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
 	$num=mysql_num_rows($res);	
 	if($num==0) { echo "<p>There are no videos.</p>"; }
 	else {
 		$vid=rand(1,$num)-1;
 		mysql_data_seek($res,$vid);
 		$video=mysql_fetch_object($res);
-		$vc=sc_getuserdata($video->contributor);
+		$vc=lib_users_get_data($video->contributor);
 		$id=$video->id;
 		videos_action_view($id);
 	}
@@ -235,9 +235,9 @@ function videos_action_random() { eval(scg());
 function videos_action_view_cats() { eval(scg());
 	$numcols=0;
 	echo "<table border=0><tr>";
-	$res=sc_query("select * from `categories` order by name asc");	
+	$res=lib_mysql_query("select * from `categories` order by name asc");	
 	while($cat=mysql_fetch_object($res)) {		
-		$res2=sc_query("select * from `videos` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
+		$res2=lib_mysql_query("select * from `videos` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
 		$numvids=mysql_num_rows($res2);
 		if(!empty($cat->name))
 			if($numvids>0){
@@ -279,10 +279,10 @@ function videos_action_view_cats() { eval(scg());
 }
 
 function videos_action_() { eval(scg());
-/*	if(!empty($id)) 			$res=sc_query("select * from `videos` where `id`='$id'");
+/*	if(!empty($id)) 			$res=lib_mysql_query("select * from `videos` where `id`='$id'");
 	if($res) 					$video=mysql_fetch_object($res);
-	if(!empty($video->id))		$category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$video->category'"));
-	if(!empty($cat)) 			$category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$cat  '"));
+	if(!empty($video->id))		$category=mysql_fetch_object(lib_mysql_query("select * from `categories` where `id`='$video->category'"));
+	if(!empty($cat)) 			$category=mysql_fetch_object(lib_mysql_query("select * from `categories` where `id`='$cat  '"));
 	if(!empty($category->name)) echo "<h1>$category->name ";
 	echo "Videos</h1>"; 	*/
 	videos_action_random();

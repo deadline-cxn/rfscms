@@ -222,7 +222,7 @@ class NewsFeedParser_Atom extends NewsFeedParser {
     // Misc informations
     $this->channelTitle    = (string)$xml->title;
     $this->channelSubtitle  = (string)$xml->subtitle;
-    $this->channelHome    = preg_replace('/(\.\w+)\/.*$/', '$1', (string)$xml->id);
+    $this->channelHome    = preg_replace('/(\.\w+)\/.*$/', '$2', (string)$xml->id);
 
     // Entries
     foreach ($xml->entry as $item) {
@@ -280,7 +280,7 @@ function indentXML($string) {
 function beautifulXML($string) {
 
   function beautifulXML_tagging($string) {
-    $string = preg_replace('/^(\w+)/i', '<span class="nodeName">$1</span>', $string);
+    $string = preg_replace('/^(\w+)/i', '<span class="nodeName">$2</span>', $string);
     return $string;
   }
 

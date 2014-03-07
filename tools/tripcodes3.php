@@ -1,17 +1,17 @@
 <?
 chdir("..");
 include("include/lib.all.php");
-sc_database_add("tripcodes","word","text","not null");
-sc_database_add("tripcodes","code","text","not null");
-sc_database_add("tripcodes","result","text","not null");
+lib_mysql_add("tripcodes","word","text","not null");
+lib_mysql_add("tripcodes","code","text","not null");
+lib_mysql_add("tripcodes","result","text","not null");
 
 if(isset($argv[1])) { 
 	if($argv[1]=="scrub") {
-		sc_query( " CREATE TABLE `tripcodes2` like `tripcodes`; " );
-		sc_query( " INSERT `tripcodes2` SELECT * FROM `tripcodes` GROUP BY `code`;" );
-		sc_query( " RENAME TABLE `tripcodes`  TO `tripcodes3`; " );
-		sc_query( " RENAME TABLE `tripcodes2` TO `tripcodes`; " );
-		sc_query( " DROP TABLE `tripcodes3`; " );
+		lib_mysql_query( " CREATE TABLE `tripcodes2` like `tripcodes`; " );
+		lib_mysql_query( " INSERT `tripcodes2` SELECT * FROM `tripcodes` GROUP BY `code`;" );
+		lib_mysql_query( " RENAME TABLE `tripcodes`  TO `tripcodes3`; " );
+		lib_mysql_query( " RENAME TABLE `tripcodes2` TO `tripcodes`; " );
+		lib_mysql_query( " DROP TABLE `tripcodes3`; " );
 	}
 }
 ////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ function gT($trip){
 
 function add_trip($word,$code,$trip) {
 	$code=addslashes($code);
-	sc_query("insert into tripcodes (`word`, `code`,`result`) values('$word', '$code','$trip');");
+	lib_mysql_query("insert into tripcodes (`word`, `code`,`result`) values('$word', '$code','$trip');");
 	$i=mysql_insert_id();
 	$code=stripslashes($code);
 	// echo " $i] $trip ($word) $code \n";

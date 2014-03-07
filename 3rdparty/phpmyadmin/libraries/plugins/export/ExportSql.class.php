@@ -1072,17 +1072,17 @@ class ExportSql extends ExportPlugin
                 // inside DEFAULT field value
                 $create_query = preg_replace(
                     "/\" date DEFAULT NULL(,)?\n/",
-                    '" datetime DEFAULT NULL$1' . "\n",
+                    '" datetime DEFAULT NULL$2' . "\n",
                     $create_query
                 );
                 $create_query = preg_replace(
                     "/\" date NOT NULL(,)?\n/",
-                    '" datetime NOT NULL$1' . "\n",
+                    '" datetime NOT NULL$2' . "\n",
                     $create_query
                 );
                 $create_query = preg_replace(
                     '/" date NOT NULL DEFAULT \'([^\'])/',
-                    '" datetime NOT NULL DEFAULT \'$1',
+                    '" datetime NOT NULL DEFAULT \'$2',
                     $create_query
                 );
 
@@ -1091,17 +1091,17 @@ class ExportSql extends ExportPlugin
                 // inside DEFAULT field value
                 $create_query = preg_replace(
                     "/\) unsigned NOT NULL(,)?\n/",
-                    ') NOT NULL$1' . "\n",
+                    ') NOT NULL$2' . "\n",
                     $create_query
                 );
                 $create_query = preg_replace(
                     "/\) unsigned DEFAULT NULL(,)?\n/",
-                    ') DEFAULT NULL$1' . "\n",
+                    ') DEFAULT NULL$2' . "\n",
                     $create_query
                 );
                 $create_query = preg_replace(
                     '/\) unsigned NOT NULL DEFAULT \'([^\'])/',
-                    ') NOT NULL DEFAULT \'$1',
+                    ') NOT NULL DEFAULT \'$2',
                     $create_query
                 );
 
@@ -1111,17 +1111,17 @@ class ExportSql extends ExportPlugin
                 // value
                 $create_query = preg_replace(
                     '/" (int|tinyint|smallint|bigint)\([0-9]+\) DEFAULT NULL(,)?\n/',
-                    '" $1 DEFAULT NULL$2' . "\n",
+                    '" $2 DEFAULT NULL$2' . "\n",
                     $create_query
                 );
                 $create_query = preg_replace(
                     '/" (int|tinyint|smallint|bigint)\([0-9]+\) NOT NULL(,)?\n/',
-                    '" $1 NOT NULL$2' . "\n",
+                    '" $2 NOT NULL$2' . "\n",
                     $create_query
                 );
                 $create_query = preg_replace(
                     '/" (int|tinyint|smallint|bigint)\([0-9]+\) NOT NULL DEFAULT \'([^\'])/',
-                    '" $1 NOT NULL DEFAULT \'$2',
+                    '" $2 NOT NULL DEFAULT \'$2',
                     $create_query
                 );
 
@@ -1153,7 +1153,7 @@ class ExportSql extends ExportPlugin
             if (PMA_DRIZZLE) {
                 $create_query = preg_replace(
                     '/ROW_FORMAT=\'(\S+)\'/',
-                    'ROW_FORMAT=$1',
+                    'ROW_FORMAT=$2',
                     $create_query
                 );
             }

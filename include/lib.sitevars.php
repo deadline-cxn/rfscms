@@ -7,7 +7,7 @@ foreach($_REQUEST as $k => $v) $GLOBALS["$k"]=$v;
 include_once("lib.mysql.php");
 include_once("config/config.sitevars.php");
 // Fill in site variables from database
-$res=sc_query("select * from `site_vars`");
+$res=lib_mysql_query("select * from `site_vars`");
 for($i=0;$i<@mysql_num_rows($res);$i++) {
     $site_var=mysql_fetch_object($res);
     $upsitevar=strtoupper($site_var->name);

@@ -33,7 +33,7 @@ if($action=="logingo") {
 
     $password = urldecode($password);
 
-    $r=sc_query_user_db("select * from users");
+    $r=lib_mysql_query_user_db("select * from users");
     $n=mysql_num_rows($r);
 	
     for($i=0;$i<$n;$i++) {
@@ -45,13 +45,13 @@ if($action=="logingo") {
                 if($u->pass==md5($password)){
 						$_SESSION["valid_user"] = $userid;
 						$_SESSION["logged_in"]  = "true";
-                    $data=sc_getuserdata($userid);
+                    $data=lib_users_get_data($userid);
                     sc_setuservar($userid,"last_login",$data->last_activity);
                     sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
-                    sc_log("[LOGIN]: $data->name ($data->email)");
+                    lib_log_add_entry("[LOGIN]: $data->name ($data->email)");
                     if(empty($outpage))
 							$outpage="$RFS_SITE_URL/index.php";
-                    //sc_gotopage($outpage);
+                    //lib_domain_gotopage($outpage);
                     exit();
                 }	
             }
@@ -59,7 +59,7 @@ if($action=="logingo") {
     }
 	
 
-    $result = sc_query_user_db("select * from users where name = '$userid' and pass = '".md5($password)."'");
+    $result = lib_mysql_query_user_db("select * from users where name = '$userid' and pass = '".md5($password)."'");
     
         if(mysql_num_rows($result) > 0){
 			
@@ -67,10 +67,10 @@ if($action=="logingo") {
 				
 
 			
-            $data=sc_getuserdata($userid);
+            $data=lib_users_get_data($userid);
             sc_setuservar($userid,"last_login",$data->last_activity);
             sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));				
-            sc_log("[LOGIN]: $data->name ($data->email)");
+            lib_log_add_entry("[LOGIN]: $data->name ($data->email)");
             if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
 			
 				session_destroy();				
@@ -88,14 +88,14 @@ if($action=="logingo") {
 				// echo $_SESSION["valid_user"]."<br>";
 				// echo $_SESSION["logged_in"]."<br>";
 				echo "Valid login... Please wait, redirecting...";			
-				sc_gotopage($outpage);
+				lib_domain_gotopage($outpage);
 				//  include("footer.php");
             exit();
         }
         else{
             sc_info("Invalid Login","WHITE","RED");
             $_SESSION["valid_user"] = "invalid_user";
-            sc_log("[INVALID LOGIN]: $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
+            lib_log_add_entry("[INVALID LOGIN]: $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
         }    
 	$action="forgot";
 }
@@ -119,7 +119,7 @@ if($action=="join_go") {
 	} else {
 		/////////////////////////////////////////////////////////////////////
 		// CHECK USERID IN DB
-		$result = sc_query_user_db("select * from users where name = '$userid'");
+		$result = lib_mysql_query_user_db("select * from users where name = '$userid'");
 		if(mysql_num_rows($result) > 0 ){
 			echo "<p>Sorry! There is already a user named $userid</p>\n";
 			include("footer.php");
@@ -128,7 +128,7 @@ if($action=="join_go") {
 	}
 	/////////////////////////////////////////////////////////////////////
 	// CHECK EMAIL IN DB
-	$result = sc_query_user_db("select * from users where email = '$email'");
+	$result = lib_mysql_query_user_db("select * from users where email = '$email'");
 	if(mysql_num_rows($result) > 0 ){
 		echo "<p>Sorry! That email is already being used.</p>\n";
 		include("footer.php");
@@ -156,7 +156,7 @@ if($action=="join_go") {
 	if(empty($gender)) $gender="male";
 	if(!empty($userid))
     $md5password=md5($password);
-	$result=sc_query("INSERT INTO `users` (`name`,      `pass`, `gender`, `email`, `first_login`)
+	$result=lib_mysql_query("INSERT INTO `users` (`name`,      `pass`, `gender`, `email`, `first_login`)
 									   VALUES ('$userid', '$md5password', '$gender', '$email', '$time1');");
 	if($result){
 
@@ -181,7 +181,7 @@ if($action=="join_go") {
 		echo "<p>Check your email for an automated response email and follow the instructions to continue.</p>";
 		echo "<p>Note: Accounts will be purged after 1 week unless confirmed.</p>";
 		echo "<a href=$outpage>Continue</a>";
-		sc_log("[REGISTRATION]: $userid ($email) registered");
+		lib_log_add_entry("[REGISTRATION]: $userid ($email) registered");
 	}
 	else{
 		/////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ if($action=="sendpass"){
         $action="forgot";
     }
     else{
-		$user=sc_getuserdatabyfield("email",$email);
+		$user=lib_users_get_databyfield("email",$email);
        if(empty($user)) {
 			echo "<h1>That email address is not in our records! You must <a href=login.php?action=join>REGISTER</a>!</h1>\n";
 		}
@@ -226,7 +226,7 @@ if($action=="sendpass"){
 			echo "<h1>Sending new password</h1>";
 			$newpass=generate_password();
 			$md5pass=md5($newpass);
-			sc_query("update users set pass='$md5pass' where id='$user->id'");
+			lib_mysql_query("update users set pass='$md5pass' where id='$user->id'");
 			$subject="$RFS_SITE_NAME password reset.";
            $message ="Username:$user->name<br>";
            $message.="Password:$newpass<br>\n";

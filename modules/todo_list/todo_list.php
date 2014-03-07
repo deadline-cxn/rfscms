@@ -15,7 +15,7 @@ function todo_list_action_() { eval(scg());
 	echo "<hr>";
 	lib_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=new_todo_list","New List");
 	echo "<hr>";
-	$r=sc_query("select * from todo_list");
+	$r=lib_mysql_query("select * from todo_list");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$tdl=mysql_fetch_object($r);
 		
@@ -35,7 +35,7 @@ function todo_list_status_icon() { eval(scg());
 
 function todo_list_action_open_task_go() { eval(scg());
 echo "INSERTING";
-	sc_query("insert into `todo_list_task` (`name`,`list`) values ('$name','$list');");
+	lib_mysql_query("insert into `todo_list_task` (`name`,`list`) values ('$name','$list');");
 	$id=mysql_insert_id();
 	sc_updb("todo_list_task","id","$id","");
 	$id=$list;
@@ -47,7 +47,7 @@ function todo_list_action_open_task() { eval(scg());
 	echo "<h1>$tdl->name</h1>";
 	echo "Open task<br>";
 	
-	sc_bf(	sc_phpself(),
+	lib_mysql_build_form(	lib_domain_phpself(),
 			"action=open_task_go".$RFS_SITE_DELIMITER."list=$tdl->id",
 			"todo_list_task",
 			"",
@@ -77,7 +77,7 @@ function todo_list_action_edit_task() { eval(scg());
 	echo "<h1>$task->name</h1>";
 	echo "Edit task<br>";
 	
-	sc_bf(	sc_phpself(),
+	lib_mysql_build_form(	lib_domain_phpself(),
 			"action=edit_task_go".$RFS_SITE_DELIMITER.
 			"id=$task->id".$RFS_SITE_DELIMITER.
 			"list=$task->list",
@@ -94,7 +94,7 @@ function todo_list_action_edit_task() { eval(scg());
 
 function todo_list_action_view_todo_list($list) { eval(scg());
 	if(!empty($list)) $id=$list;
-	$r=sc_query("select * from todo_list where id=$id");
+	$r=lib_mysql_query("select * from todo_list where id=$id");
 	$tdl=mysql_fetch_object($r);
 	
 	echo "<h1>$tdl->name</h1>";
@@ -144,7 +144,7 @@ echo "<style>
 	
 	</style>";
 	
-$r=sc_query("
+$r=lib_mysql_query("
 select * from `todo_list_task` 
 where (`list`='$tdl->id')  ;");
 	  
@@ -215,12 +215,12 @@ where (`list`='$tdl->id')  ;");
 }
 
 function todo_list_action_new_todo_list_go() { eval(scg());
-	sc_query("insert into todo_list (`name`,`owner`) values ('$name','$data->name')");
+	lib_mysql_query("insert into todo_list (`name`,`owner`) values ('$name','$data->name')");
 	todo_list_action_();
 }
 function todo_list_action_new_todo_list() { eval(scg());
 	echo "<h1> Create TODO List</h1>";
-	sc_bf( 	sc_phpself(),
+	lib_mysql_build_form( 	lib_domain_phpself(),
 			"action=new_todo_list_go".$RFS_SITE_DELIMITER,
 			"todo_list","","id","","","",50,"New TODO List" );
 }		   

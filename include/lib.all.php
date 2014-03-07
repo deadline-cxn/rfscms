@@ -3,13 +3,14 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 $this_dir=getcwd();
-
 include_once("session.php");
 include_once("lib.div.php");
 include_once("lib.log.php");
 include_once("version.php");
 include_once("lib.debug.php");
+include_once("lib.access.php");
 include_once("lib.mysql.php");
+include_once("lib.users.php");
 include_once("lib.sitevars.php");
 include_once("lib.rfs.php");
 include_once("lib.social_buttons.php");
@@ -25,6 +26,6 @@ include_once("lib.modules.php");
 include_once("lib.tags.php");
 /////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_SESSION['valid_user']))
-$data=sc_getuserdata($_SESSION['valid_user']);
+$data=lib_users_get_data($_SESSION['valid_user']);
 /////////////////////////////////////////////////////////////////////////////////////////
 ?>

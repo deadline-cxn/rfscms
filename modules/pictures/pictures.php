@@ -9,8 +9,8 @@ if($_REQUEST['action']=="aname") {
 	$sname=$_REQUEST['sname'];
 	chdir("../../");
 	include("include/lib.all.php");
-	if(sc_access_check("pictures","edit")) {
-		sc_query("update pictures set sname='$sname' where id='$id'");
+	if(lib_access_check("pictures","edit")) {
+		lib_mysql_query("update pictures set sname='$sname' where id='$id'");
 		echo $sname;	
 	} else echo "You can't edit pictures.";
 	exit();
@@ -19,8 +19,8 @@ if($_REQUEST['action']=="adesc") {
 	$desc=$_REQUEST['desc'];
 	chdir("../../");
 	include("include/lib.all.php");
-	if(sc_access_check("pictures","edit")) {
-		sc_query("update pictures set description='$desc' where id='$id'");
+	if(lib_access_check("pictures","edit")) {
+		lib_mysql_query("update pictures set description='$desc' where id='$id'");
 		echo $desc;
 	} else echo "You can't edit pictures.";
 	exit();
@@ -38,19 +38,19 @@ if(empty($galleria)) {
 
 function pictures_show_buttons() { eval(scg());
 	echo "<table border=0><tr>"; 
-	if(sc_access_check("pictures","orphanscan")) {
+	if(lib_access_check("pictures","orphanscan")) {
 		echo "<td>";
 		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=addorphans","Add Orphans");
 		echo "</td>";
 	}
-	if(sc_access_check("pictures","upload")) {
+	if(lib_access_check("pictures","upload")) {
 		echo "<td>";
 		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=uploadpic","Upload picture");
 		echo "</td>";
 	}
-	if(sc_access_check("pictures","sort")) {
+	if(lib_access_check("pictures","sort")) {
 		//$cr=mfo1("select * from categories where name=''");
-		$res2=sc_query("select * from `pictures` where `category`='unsorted'");
+		$res2=lib_mysql_query("select * from `pictures` where `category`='unsorted'");
 		$numpics=mysql_num_rows($res2);
 		if($numpics>0){
 			echo "<td>";
@@ -63,16 +63,16 @@ function pictures_show_buttons() { eval(scg());
 
 $ourl="$RFS_SITE_URL/modules/pictures/pictures.php?action=$action&id=$id";
 
-//if(!empty($id))          $res=sc_query("select * from `pictures` where `id`='$id'");
+//if(!empty($id))          $res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 //if($res)                 $picture=mysql_fetch_object($res);
-//if(!empty($picture->id)) $category=mysql_fetch_object(sc_query("select * from `categories` where `id`='$picture->category'"));
+//if(!empty($picture->id)) $category=mysql_fetch_object(lib_mysql_query("select * from `categories` where `id`='$picture->category'"));
 
 $thumbwidth=200;
 $editwidth=256;
 $fullsize=512;
 
 function pictures_action_showmemes() { eval(scg());
-	sc_gotopage("$RFS_SITE_URL/modules/memes/memes.php");
+	lib_domain_gotopage("$RFS_SITE_URL/modules/memes/memes.php");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@ function pictures_action_uploadpic() { eval(scg());
 	echo "<h1>Upload a picture</h1>\n";
 
 
-sc_bf(	"$RFS_SITE_URL/modules/pictures/pictures.php",
+lib_mysql_build_form(	"$RFS_SITE_URL/modules/pictures/pictures.php",
 		"action=uploadpicgo".$RFS_SITE_DELIMITER.
 		"MAX_FILE_SIZE=99999999".$RFS_SITE_DELIMITER.
 		
@@ -107,7 +107,7 @@ sc_bf(	"$RFS_SITE_URL/modules/pictures/pictures.php",
 	echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
 	echo "<tr><td align=right>Hide from public: </td><td><select name=hidden><option>no<option>yes</select> </td>	</tr>	";
 	echo "<tr><td align=right>Category:         </td><td><select name=category>\n";
-	$result=sc_query("select * from categories order by name asc"); $numcats=mysql_num_rows($result);
+	$result=lib_mysql_query("select * from categories order by name asc"); $numcats=mysql_num_rows($result);
 	for($i=0;$i<$numcats;$i++) { $cat=mysql_fetch_object($result); echo "<option>$cat->name"; }
 	echo "</select></td></tr>\n";		
 	echo "<tr><td align=right>Short name :</td><td><input type=textbox name=sname value=\"$name\"></td></tr>\n";
@@ -133,16 +133,16 @@ function pictures_action_uploadpicgo(){ eval(scg());
 		$poster=999;
 		if($data->id)$poster=$data->id;
 		$furl=addslashes($furl);
-		sc_query("INSERT INTO `pictures` (`url`) VALUES('$furl');");
+		lib_mysql_query("INSERT INTO `pictures` (`url`) VALUES('$furl');");
 		$id=mysql_insert_id();
 		
-		sc_query("update `pictures` set `category`='$category'  	where `id`='$id'");			
-		sc_query("update `pictures` set `sname`='$sname'        where `id`='$id'");	
-		sc_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");	
-		sc_query("update `pictures` set `hidden`='$hidden'      where `id`='$id'");	
-		sc_query("update `pictures` set description='$desc' 		where `id`='$id'");	
-		sc_query("update `pictures` set poster='$poster' 		where `id`='$id'");
-		sc_query("update `pictures` set time = '$time1' 			where `id`='$id'");
+		lib_mysql_query("update `pictures` set `category`='$category'  	where `id`='$id'");			
+		lib_mysql_query("update `pictures` set `sname`='$sname'        where `id`='$id'");	
+		lib_mysql_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");	
+		lib_mysql_query("update `pictures` set `hidden`='$hidden'      where `id`='$id'");	
+		lib_mysql_query("update `pictures` set description='$desc' 		where `id`='$id'");	
+		lib_mysql_query("update `pictures` set poster='$poster' 		where `id`='$id'");
+		lib_mysql_query("update `pictures` set time = '$time1' 			where `id`='$id'");
 		$error.= " ---- Added $name (id:$id) to database ---- ";
 	}
 	else{
@@ -162,13 +162,13 @@ function pictures_action_removepicture() { eval(scg());
 
 echo "Remove picture: $id<br>";
 
-	$res=sc_query("select * from `pictures` where `id`='$id'");
+	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 	$picture=mysql_fetch_object($res);
 	if( ($data->access==255) ||
 		($data->id==$picture->poster) ){	
 			
 			
-		echo sc_picthumb("$RFS_SITE_URL/$picture->url",200,0,1);
+		echo lib_images_thumb("$RFS_SITE_URL/$picture->url",200,0,1);
 			
 		echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/pictures/pictures.php method=post>\n";
 		echo "<table border=0>\n";
@@ -187,12 +187,12 @@ echo "Remove picture: $id<br>";
 // Remove picture	confirm
 function pictures_action_removego() { eval(scg());
 
-	$res=sc_query("select * from `pictures` where `id`='$id'");
+	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 	$picture=mysql_fetch_object($res);
 	if( ($data->access==255) ||
 		($data->id==$picture->poster) )	 {
 		
-		sc_query("delete from `pictures` where `id`='$id'");
+		lib_mysql_query("delete from `pictures` where `id`='$id'");
 		echo "<p>Removed $picture->id from the database...</p>";
 		if($annihilate=="yes"){
 			$ftr=$picture->url;
@@ -211,9 +211,9 @@ function pictures_action_removego() { eval(scg());
 function pictures_action_addorphans(){ eval(scg());
 // if($action=="addorphans"){
     if ($data->access==255) {
-        // $categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='!!!TEMP!!!'"));
+        // $categoryz=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='!!!TEMP!!!'"));
         // $category=$categoryz->id;
-        sc_query("delete from pictures where category='$category'");
+        lib_mysql_query("delete from pictures where category='$category'");
         $dir_count = addorphans("files/pictures",$category);
         if($dir_count==0)
 			echo "No new pictures added to database.<br>";
@@ -227,19 +227,19 @@ function pictures_action_sorttemp() { eval(scg());
 	if ($data->access==255) {
         if($subact=="place"){
             if(!empty($newcat)) {
-                sc_query("insert into categories (`name`) VALUES('$newcat'); ");
+                lib_mysql_query("insert into categories (`name`) VALUES('$newcat'); ");
                 $category=$newcat;
             }
 
-			$res=sc_query("select * from `pictures` where `category`='$category' order by time asc");
-			sc_query("update `pictures` set `category`='$category' where `id`='$id'");
+			$res=lib_mysql_query("select * from `pictures` where `category`='$category' order by time asc");
+			lib_mysql_query("update `pictures` set `category`='$category' where `id`='$id'");
 			$sname=addslashes($sname);
-			sc_query("update `pictures` set `sname`='$sname' where `id`='$id'");
-			sc_query("update `pictures` set `sfw`='$sfw' where `id`='$id'");
-			sc_query("update `pictures` set `hidden`='$hidden' where `id`='$id'");
+			lib_mysql_query("update `pictures` set `sname`='$sname' where `id`='$id'");
+			lib_mysql_query("update `pictures` set `sfw`='$sfw' where `id`='$id'");
+			lib_mysql_query("update `pictures` set `hidden`='$hidden' where `id`='$id'");
 		}
 
-		$res=sc_query("select * from `pictures` where `category`='unsorted' order by time asc");
+		$res=lib_mysql_query("select * from `pictures` where `category`='unsorted' order by time asc");
 		$numpics=mysql_num_rows($res);
 		if($numpics>0){
             $picture=mysql_fetch_object($res);
@@ -255,7 +255,7 @@ function pictures_action_sorttemp() { eval(scg());
             echo "</td><td>";
 			$w=""; $h="";
 			echo "Select a category:<br>";
-            $rc=sc_query("select * from categories where name != 'unsorted' order by name"); 
+            $rc=lib_mysql_query("select * from categories where name != 'unsorted' order by name"); 
             $rn=mysql_num_rows($rc);
 
 			for($ri=0;$ri<$rn;$ri++) {
@@ -283,10 +283,10 @@ function pictures_action_sorttemp() { eval(scg());
 			echo "Hidden<select name=hidden>";
 
 			echo "<option>no<option>yes</select>";
-			$cat=mysql_fetch_object(sc_query("select * from `categories` where `name`='$picture->category'"));
+			$cat=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$picture->category'"));
 			echo "<select name=category>\n";
 			echo "<option>Funny<option>$cat->name\n";
-			$result2=sc_query("select * from categories order by name asc");
+			$result2=lib_mysql_query("select * from categories order by name asc");
 			$numcats=mysql_num_rows($result2);
 			for($i2=0;$i2<$numcats;$i2++){
 				$cat=mysql_fetch_object($result2);
@@ -311,7 +311,7 @@ if($action=="modifynamego") {
     if ($data->access==255) {
         $sname=addslashes($sname);
         if($id)
-        sc_query("update `pictures` set `sname`='$sname'     where `id`='$id'");
+        lib_mysql_query("update `pictures` set `sname`='$sname'     where `id`='$id'");
     }
     $action="view";
 }
@@ -319,27 +319,27 @@ if($action=="modifydescriptiongo") {
     if ($data->access==255) {
         $description=addslashes($description);
         if($id)
-        sc_query("update `pictures` set `description`='$description'     where `id`='$id'");
+        lib_mysql_query("update `pictures` set `description`='$description'     where `id`='$id'");
     }
     $action="view";
 }
 if($action=="modifygo"){
 	if ($data->access==255) {
-		//$categoryz=mysql_fetch_object(sc_query("select * from `categories` where `name`='$categorey'"));
+		//$categoryz=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$categorey'"));
 		//$category=$categoryz->id;
-		sc_query("update `pictures` set `category`='$category' where `id`='$id'");
+		lib_mysql_query("update `pictures` set `category`='$category' where `id`='$id'");
 		$sname=addslashes($sname);
-		sc_query("update `pictures` set `sname`='$sname'     where `id`='$id'");
-		sc_query("update `pictures` set `sfw`='$sfw'         where `id`='$id'");
-		sc_query("update `pictures` set `hidden`='$hidden'   where `id`='$id'");
-		sc_query("update `pictures` set `category`='$category' where `id`='$id'");
-		sc_query("update `pictures` set `poster`='$poster'   where `id`='$id'");
-		sc_query("update `pictures` set `lastupdate`='$time' where `id`='$id'");
-		sc_query("update `pictures` set `url`='$gurl'        where `id`='$id'");
-		sc_query("update `pictures` set `rating`='$rating'   where `id`='$id'");
-		sc_query("update `pictures` set `views`='$views'     where `id`='$id'");
+		lib_mysql_query("update `pictures` set `sname`='$sname'     where `id`='$id'");
+		lib_mysql_query("update `pictures` set `sfw`='$sfw'         where `id`='$id'");
+		lib_mysql_query("update `pictures` set `hidden`='$hidden'   where `id`='$id'");
+		lib_mysql_query("update `pictures` set `category`='$category' where `id`='$id'");
+		lib_mysql_query("update `pictures` set `poster`='$poster'   where `id`='$id'");
+		lib_mysql_query("update `pictures` set `lastupdate`='$time' where `id`='$id'");
+		lib_mysql_query("update `pictures` set `url`='$gurl'        where `id`='$id'");
+		lib_mysql_query("update `pictures` set `rating`='$rating'   where `id`='$id'");
+		lib_mysql_query("update `pictures` set `views`='$views'     where `id`='$id'");
 		$description=addslashes($description);
-		sc_query("update `pictures` set `description`='$description' where `id`='$id'");
+		lib_mysql_query("update `pictures` set `description`='$description' where `id`='$id'");
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////
@@ -347,7 +347,7 @@ if($action=="modifygo"){
 function pictures_action_modifypicture() { eval(scg());
 // if($action=="modifypicture"){
 	if ($data->access==255) {
-		$res=sc_query("select * from `pictures` where `id`='$id'");
+		$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 		$picture=mysql_fetch_object($res);
 		echo "<center><img src=$RFS_SITE_URL/$picture->url height=$editwidth>";
 		
@@ -360,10 +360,10 @@ function pictures_action_modifypicture() { eval(scg());
 		echo "<tr><td class=contenttd align=right>";
 		echo "Category:";
 		echo "</td><td class=contenttd>";
-		$cat=mysql_fetch_object(sc_query("select * from `categories` where `name`='$picture->category'"));
+		$cat=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$picture->category'"));
 		echo "<select name=categorey>";
 		echo "<option>$cat->name";
-		$result2=sc_query("select * from categories order by name asc");
+		$result2=lib_mysql_query("select * from categories order by name asc");
 		$numcats=mysql_num_rows($result2);
 		for($i2=0;$i2<$numcats;$i2++){
 			$cat=mysql_fetch_object($result2);
@@ -383,9 +383,9 @@ function pictures_action_modifypicture() { eval(scg());
 		echo "</td></tr>";
 		echo "<tr><td class=contenttd align=right>Poster:</td><td class=contenttd>";//<input name=poster value=\"$picture->poster\"></td></tr>";
 		echo "<select name=poster>";
-			$poster=sc_getuserdata($picture->poster);
+			$poster=lib_users_get_data($picture->poster);
 		echo "<option>$poster->name";
-		$result2=sc_query_user_db("select * from users order by name asc");
+		$result2=lib_mysql_query_user_db("select * from users order by name asc");
 		$numusrs=mysql_num_rows($result2);
 		for($i2=0;$i2<$numusrs;$i2++){
 			$usr=mysql_fetch_object($result2);
@@ -410,7 +410,7 @@ function pictures_action_modifypicture() { eval(scg());
 // PICTURE random
 function pictures_action_random() { eval(scg());
 // if($action=="random"){
-    $res=sc_query("select * from `pictures` where `hidden`!='yes'");
+    $res=lib_mysql_query("select * from `pictures` where `hidden`!='yes'");
     $num=mysql_num_rows($res);
     if($num>0) {
         $pict=rand(1,($num))-1;
@@ -423,10 +423,10 @@ function pictures_action_random() { eval(scg());
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view
 function pictures_action_view($id) { eval(scg());
-    $res=sc_query("select * from `pictures` where `id`='$id' order by time asc");
+    $res=lib_mysql_query("select * from `pictures` where `id`='$id' order by time asc");
     $picture=mysql_fetch_object($res);
 	$category=$picture->category;
-    $res2=sc_query("select * from `pictures` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
+    $res2=lib_mysql_query("select * from `pictures` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
     $numres2=mysql_num_rows($res2);
     $linkprev="";
     $linknext="";
@@ -463,13 +463,13 @@ function pictures_action_view($id) { eval(scg());
 		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=random","Random Picture");
 		echo "</td>";
 
-		if(sc_access_check("pictures","edit")) {
+		if(lib_access_check("pictures","edit")) {
 			echo "<td>";
 			lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=modifypicture&id=$picture->id","Edit");
 			echo "</td>";
 		}
 		
-		if(sc_access_check("pictures","delete")) {
+		if(lib_access_check("pictures","delete")) {
 			echo "<td>";
 			lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=removepicture&id=$picture->id","Delete");
 			echo "</td>";
@@ -487,7 +487,7 @@ function pictures_action_view($id) { eval(scg());
     }
 	
 	if(empty($picture->sname)) {		
-		if(sc_access_check("pictures","edit")) {
+		if(lib_access_check("pictures","edit")) {
 			sc_ajax("Short Name,70","pictures","id","$id","sname",70,"","pictures","edit","");
 			//sc_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
 		}
@@ -497,7 +497,7 @@ function pictures_action_view($id) { eval(scg());
 	}
 	echo "<br>";
 	if(empty($picture->description)) {		
-		if(sc_access_check("pictures","edit")) {
+		if(lib_access_check("pictures","edit")) {
 			sc_ajax("Description,70","pictures","id","$id","description","5,70","textarea","pictures","edit","");
 			//sc_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
 		}
@@ -563,7 +563,7 @@ function pictures_action_viewcat($cizat) { eval(scg());
 	if($catn->id) $cat=$catn;
 	if($cati->id) $cat=$cati;
     if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
-    $r=sc_query("select * from `pictures` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
+    $r=lib_mysql_query("select * from `pictures` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
 	$numpics=mysql_num_rows($r);	
 			echo "<center>";			
 			if($galleria=="yes") {
@@ -599,7 +599,7 @@ function pictures_action_viewcat($cizat) { eval(scg());
 			else {
 				echo "<a href='$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id'>";
 				$img=$RFS_SITE_URL."/".$picture->url;
-				echo sc_picthumb($img,96,0,1);
+				echo lib_images_thumb($img,96,0,1);
 				echo "</a>\n";
 				
 			}
@@ -623,13 +623,13 @@ function pictures_action_viewcat($cizat) { eval(scg());
 // PICTURE show categories
 function pictures_action_viewcats(){ eval(scg());
 	if(!$donotshowcats) {
-		$res=sc_query("select * from `categories` order by name asc");
+		$res=lib_mysql_query("select * from `categories` order by name asc");
 		$numcats=mysql_num_rows($res);
 		echo "<table border=0 width=100%>";
 		$numcols=0; echo "<tr>";
 		for($i=0;$i<$numcats;$i++) {
 			$cat=mysql_fetch_object($res);
-			$res2=sc_query("select * from `pictures` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
+			$res2=lib_mysql_query("select * from `pictures` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
 			$numpics=mysql_num_rows($res2);
 
 			if($numpics>0) {
@@ -657,7 +657,7 @@ function pictures_action_viewcats(){ eval(scg());
 						if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
 						echo "<a href='$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id'>";
 						$img=$RFS_SITE_URL."/".$picture->url;
-						echo sc_picthumb($img,96,0,1);
+						echo lib_images_thumb($img,96,0,1);
 						echo "</a>\n";
 					}
 					echo "</td></tr></table>";

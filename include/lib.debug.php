@@ -2,15 +2,14 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
+include_once("lib.access.php");
 lib_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_REQUEST['debug'])) {
 	if($_REQUEST['debug']=="on") lib_debug_on();
 	if($_REQUEST['debug']=="off") lib_debug_off();
 }
-function lib_debug_on()  { 
-	if(sc_access_check("debug","view")) $_SESSION['debug_msgs']=true;
-}
+function lib_debug_on()  { if(lib_access_check("debug","view")) $_SESSION['debug_msgs']=true; }
 function lib_debug_off() { $_SESSION['debug_msgs']=false; }
 if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); }
 if($_REQUEST['debug_view_error_log']==1) {
@@ -23,7 +22,7 @@ if($_REQUEST['debug_view_error_log']==1) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function d_echo($t){
-	if(!sc_access_check("debug","view")) return;
+	if(!lib_access_check("debug","view")) return;
     if(isset($_SESSION['debug_msgs']))
     if(sc_yes($_SESSION['debug_msgs'])){
         $t=str_replace("<","&lt;",$t);    
@@ -103,7 +102,7 @@ function lib_debug_footer($quiet) { eval(scg());
 	foreach( $_SERVER as $k=>$v ) $dout.= "\$_SERVER['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="RFS_SITE VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
-	$res=sc_query("select * from `site_vars`");
+	$res=lib_mysql_query("select * from `site_vars`");
 	while($sv=mysql_fetch_object($res))$dout.="\$RFS_SITE_". ($sv->name)."='$sv->value'<br>".$GLOBALS['RFS_SITE_DELIMITER'];	
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="[footer.php \$theme=$theme]";

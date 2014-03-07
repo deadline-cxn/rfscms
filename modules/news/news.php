@@ -16,7 +16,7 @@ if($give_file=="news"){
     else {
         $httppath=put_news_image('userfile');
     }
-    sc_query("update `news` set `image_url`='$httppath' where `id`='$nid'");
+    lib_mysql_query("update `news` set `image_url`='$httppath' where `id`='$nid'");
     $action="ed";
 }
 
@@ -43,7 +43,7 @@ else {
 
 if($showform=="yes"){
 	
-	if(!sc_access_check("news","submit")) {
+	if(!lib_access_check("news","submit")) {
         	echo smiles("<p>:X</p><p>You can not edit or submit news!</p>");
 	}
 	else {
@@ -60,23 +60,23 @@ if($showform=="yes"){
 }
 
 
-if(sc_access_check("news","edit")) {
+if(lib_access_check("news","edit")) {
 	
 	if($action == "clearnewsimage") {
-		sc_query("update news set image_url='' where id='$nid'");
+		lib_mysql_query("update news set image_url='' where id='$nid'");
 		$action="ed";
 	}
 	if($action == "imageurl") {
-		sc_query("update news set image_url='$userfile' where id='$nid'");
+		lib_mysql_query("update news set image_url='$userfile' where id='$nid'");
 		$action="ed";
 	}
 	
 	if($action == "createnewsgo"){
     $time=date("Y-m-d H:i:s");
-    $result=sc_query("INSERT INTO `news` (`headline`, `submitter`,`time`, `published`)
+    $result=lib_mysql_query("INSERT INTO `news` (`headline`, `submitter`,`time`, `published`)
                                   VALUES ('$headline','$data->id','$time','no');");
     echo "<p>News headline entered into database... The story is unpublished.</p>";
-    $result=sc_query("select * from news where `headline`='$headline' and `submitter`='$data->id'");
+    $result=lib_mysql_query("select * from news where `headline`='$headline' and `submitter`='$data->id'");
     $news=mysql_fetch_object($result);
     $nid=$news->id;
     $action="ed";
@@ -84,13 +84,13 @@ if(sc_access_check("news","edit")) {
 
 	if($action=="publish"){
 		echo "Publishing news article $nid";
-		sc_query("update `news` set `published`='yes' where `id`='$nid'");
+		lib_mysql_query("update `news` set `published`='yes' where `id`='$nid'");
 		$action="edityournews";
 	}
 
 	if($action=="unpublish"){
 		echo "Unpublishing news article $nid";
-		sc_query("update `news` set `published`='no' where `id`='$nid'");
+		lib_mysql_query("update `news` set `published`='no' where `id`='$nid'");
 		$action="edityournews";
 	}
 
@@ -148,7 +148,7 @@ if($action=="edityournews"){
     echo "<table border=0 cellspacing=0 cellpadding=5 width=100%><tr><td class=contenttd>";
     echo "<p>Unpublished:</p>";
     echo "<p align=left>";
-    $res=sc_query("select * from news where submitter='$data->id' and published='no' order by time desc");
+    $res=lib_mysql_query("select * from news where submitter='$data->id' and published='no' order by time desc");
     $count=mysql_num_rows($res);
     for($i=0;$i<$count;$i++) {
         $news=mysql_fetch_object($res);
@@ -162,7 +162,7 @@ if($action=="edityournews"){
     echo "<p>Published:</p>";
 
     echo "<p align=left>";
-    $res=sc_query("select * from news where submitter='$data->id' and published='yes' order by time desc");
+    $res=lib_mysql_query("select * from news where submitter='$data->id' and published='yes' order by time desc");
     $count=mysql_num_rows($res);
     for($i=0;$i<$count;$i++) {
         $news=mysql_fetch_object($res);
@@ -177,7 +177,7 @@ if($action=="edityournews"){
 
     echo "<p>Unpublished:</p>";
     echo "<p align=left>";
-    $res=sc_query("select * from news where submitter!='$data->id' and published='no' order by time desc");
+    $res=lib_mysql_query("select * from news where submitter!='$data->id' and published='no' order by time desc");
 
     $count=mysql_num_rows($res);
     for($i=0;$i<$count;$i++) {
@@ -193,11 +193,11 @@ if($action=="edityournews"){
     echo "<p>Published:</p>";
 
     echo "<p align=left>";
-    $res=sc_query("select * from news where submitter!='$data->id' and published='yes' order by time desc");
+    $res=lib_mysql_query("select * from news where submitter!='$data->id' and published='yes' order by time desc");
     $count=mysql_num_rows($res);
     for($i=0;$i<$count;$i++) {
         $news=mysql_fetch_object($res);
-        $userdata=sc_getuserdata($news->submitter);
+        $userdata=lib_users_get_data($news->submitter);
         echo "[<a href=news.php?action=de&nid=$news->id>Delete</a>] ";
         echo "[<a href=news.php?action=ed&nid=$news->id>Edit</a>] ";
         echo "[<a href=news.php?action=unpublish&nid=$news->id>Unpublish</a>] ";

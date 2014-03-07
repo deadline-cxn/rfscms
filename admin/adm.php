@@ -12,9 +12,9 @@ else { include( "lilheader.php" ); }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
-if(!sc_access_check("admin","access")) {
+if(!lib_access_check("admin","access")) {
 	echo smiles( "<table border=0 width=300><tr><td class=warning><center>^X<br>You can not use admin</td></tr></table>\n" );
-	sc_log( "*****> $data->name tried to access the admin area!" );
+	lib_log_add_entry( "*****> $data->name tried to access the admin area!" );
 	include("footer.php");
 	exit();
 }
@@ -69,13 +69,13 @@ function adm_action_addons() { eval(scg());
 	$time=time();
 	if($time-intval($RFS_SITE_ADDON_DATABASE_TIME)>86400) {
 		$addon_database=file_get_contents("http://www.sethcoder.com/files/addon_database.sql");
-		sc_query($addon_database);
+		lib_mysql_query($addon_database);
 	}
 	
 
 }
 function adm_action_registered_menu_items() { 
-	sc_show_menu_options();
+	lib_menus_options();
 	finishadminpage();
 }
 
@@ -110,7 +110,7 @@ function adm_action_auth_config() { eval(scg());
 // ADM_ARRANGE FUNCTIONS
 function sc_admin_module( $loc ) { eval( scg() );
     $location=$loc;
-	$r=sc_query( "select * from arrangement where location='$location' order by sequence " );
+	$r=lib_mysql_query( "select * from arrangement where location='$location' order by sequence " );
 	if($r){
 		echo "<center><h2>Arrange location $location";
 		if( $location=="left" ) echo " (left panel)";
@@ -177,7 +177,7 @@ function adm_action_f_arrange_move_up() { eval(scg());
 	//echo $ar->sequence."<br>";
 	
 	$arrange=array();
-	$r=sc_query("select * from arrangement where `location`='$ar->location'");
+	$r=lib_mysql_query("select * from arrangement where `location`='$ar->location'");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$tar=mysql_fetch_object($r);
 		$arrange[$tar->id]=$tar->sequence;
@@ -190,7 +190,7 @@ function adm_action_f_arrange_move_up() { eval(scg());
 	$arrange[$ar->id]=$ar->sequence;
 	foreach($arrange as $k => $v) {
 		//$x=mfo1("select * from arrangement where `id`='$k'");
-		sc_query("update arrangement set `sequence`='".$arrange[$k]."' where `id`='$k'");
+		lib_mysql_query("update arrangement set `sequence`='".$arrange[$k]."' where `id`='$k'");
 	}
 	
 	
@@ -200,7 +200,7 @@ function adm_action_f_arrange_move_up() { eval(scg());
 	
 }
 function adm_action_f_arrange_delete_go() { eval(scg());
-    sc_query("delete from arrangement where `id`='$id'");
+    lib_mysql_query("delete from arrangement where `id`='$id'");
     adm_action_arrange();
 }
 function adm_action_f_arrange_delete() { eval(scg());
@@ -213,21 +213,21 @@ function adm_action_f_arrange_delete() { eval(scg());
 }
 function adm_action_f_module_add() { eval( scg() );
 	echo ".. $module... $location";
-	$r=sc_query("select max(sequence) as seq from arrangement where location = '$location'");
+	$r=lib_mysql_query("select max(sequence) as seq from arrangement where location = '$location'");
 	$ars=mysql_fetch_object($r);
 	$nseq=$ars->seq+1;
 	echo "$ars->seq $nseq  <br>";
-	sc_query( "insert into arrangement  (`mini`,`location`,`num`,`sequence`)
+	lib_mysql_query( "insert into arrangement  (`mini`,`location`,`num`,`sequence`)
 	          values('$module','$location','5','$nseq');" );
 	adm_action_arrange();
 }
 function adm_action_f_module_chg_num() { 	eval( scg() );
-	sc_query( "update arrangement set num='$num' where id='$id'" );
+	lib_mysql_query( "update arrangement set num='$num' where id='$id'" );
 	adm_action_arrange();
 }
 function adm_action_arrange() { eval( scg() );
     $location="";
-	sc_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
+	lib_mysql_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`location` text NOT NULL,
 				`mini` text NOT NULL,
@@ -254,16 +254,16 @@ function adm_action_arrange() { eval( scg() );
 // ADM ACCESS GROUPS FUNCTIONS
 function adm_action_f_access_group_add() { eval(scg());
 	echo " Adding new access group named [$axnm] <br>";
-	sc_query(" insert into access (`name`) VALUES ('$axnm'); ");
+	lib_mysql_query(" insert into access (`name`) VALUES ('$axnm'); ");
 	adm_action_f_access_group_edit();
 }
 function adm_action_f_access_group_edit_go() { eval(scg());
-	sc_query("delete from `access` where name='$axnm'");
-	$r=sc_query("select * from access_methods");
+	lib_mysql_query("delete from `access` where name='$axnm'");
+	$r=lib_mysql_query("select * from access_methods");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$am=mysql_fetch_object($r);
 		if($_POST["$am->page"."_$am->action"]=="on") {
-			sc_query("insert into access (`name`,`page`,`action`) 
+			lib_mysql_query("insert into access (`name`,`page`,`action`) 
 			VALUES('$axnm','$am->page','$am->action')");
 		}
 	}
@@ -287,7 +287,7 @@ for(c in document.getElementsByID('g1'))
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
 	
-	$r=sc_query("select * from access_methods order by page,action");
+	$r=lib_mysql_query("select * from access_methods order by page,action");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$am=mysql_fetch_object($r);	
 		$checked="";
@@ -308,15 +308,15 @@ for(c in document.getElementsByID('g1'))
 	exit();
 }
 function adm_action_f_access_group_add_user() { eval(scg());
-	$usr=sc_getuserdata($name);
+	$usr=lib_users_get_data($name);
 	$usr->access_groups.=",$axnm";	
-	sc_query("update users set access_groups ='$usr->access_groups' where id='$usr->id'");
+	lib_mysql_query("update users set access_groups ='$usr->access_groups' where id='$usr->id'");
 	adm_action_access_groups();
 }
 function adm_action_f_access_group_del_user() { eval(scg());
 	echo $user;
 	echo "<br>";
-	$usr=sc_getuserdata($user);
+	$usr=lib_users_get_data($user);
 	$agx=explode(",",$usr->access_groups);
 	for($i=0;$i<count($agx);$i++){
 		if($agx[$i]!=$axnm) {
@@ -324,7 +324,7 @@ function adm_action_f_access_group_del_user() { eval(scg());
 		}
 	}
 	$outag=rtrim($outag,",");
-	sc_query("update users set access_groups='$outag' where name='$user'");
+	lib_mysql_query("update users set access_groups='$outag' where name='$user'");
 	adm_action_access_groups();	
 }
 function adm_action_f_access_group_delete() { eval(scg());
@@ -336,7 +336,7 @@ function adm_action_f_access_group_delete() { eval(scg());
 }
 function adm_action_f_access_group_delete_go() { eval(scg());
 	echo "DELETE $axnm access group... <BR>";
-	sc_query("delete from `access` where name='$axnm'");
+	lib_mysql_query("delete from `access` where name='$axnm'");
 	adm_action_access_groups();
 }
 function adm_action_access_groups() { eval(scg());
@@ -351,7 +351,7 @@ function adm_action_access_groups() { eval(scg());
 	echo "</form>\n";
 	lib_div("ADD ACCESS GROUP FORM END");
 	
-	$r=sc_query("select distinct name from access");
+	$r=lib_mysql_query("select distinct name from access");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		
 		echo "<div class=\"forum_box\" style=\"float:left; width:300px;\">";
@@ -363,7 +363,7 @@ function adm_action_access_groups() { eval(scg());
 		echo "<p>Members: </p>";
 		echo "<p>";
 		
-		$usrs=sc_query("select * from `users`");
+		$usrs=lib_mysql_query("select * from `users`");
 		for($j=0;$j<mysql_num_rows($usrs);$j++) {
 			$usr=mysql_fetch_object($usrs);
 			$agrps=explode(",",$usr->access_groups);
@@ -456,7 +456,7 @@ function adm_action_f_rm_db_query() { eval(scg());
 	echo "DING DING [$query]<BR>";	
 	$q="delete from `db_queries` where `query` = \"$query\";";
 	echo "DING DING [$q] <br>";
-	sc_query($q);
+	lib_mysql_query($q);
 	$query="";
 	$_GLOBALS['query']="";
 	$_POST['query']="";
@@ -472,7 +472,7 @@ function adm_action_f_rm_db_query() { eval(scg());
 	finishadminpage();
 }
 function adm_action_db_query() { eval(scg());
-	$r=sc_query("select * from db_queries");
+	$r=lib_mysql_query("select * from db_queries");
 	for($x=0;$x<mysql_num_rows($r);$x++) {
 		$q=mysql_fetch_object($r);
 		$q->query=rtrim($q->query,"\r");
@@ -481,7 +481,7 @@ function adm_action_db_query() { eval(scg());
 		$q->query=rtrim($q->query,"\n");
 		$q->query=rtrim($q->query,"\r");
 		$q->query=rtrim($q->query,"\n");
-		sc_query("update db_queries set query= '$q->query' where `id`='$q->id'");
+		lib_mysql_query("update db_queries set query= '$q->query' where `id`='$q->id'");
 	}
    echo "<h3>Select a previously entered query</h3>";
    echo "<iframe id=\"QU\" width=600 height=400 class='iframez' frameborder=0
@@ -493,7 +493,7 @@ function adm_action_db_query() { eval(scg());
 	echo "</div><div style=\"clear:both;\">";
 	if( !empty( $query ) ) {	
 		// echo " DING [$query] <BR>";	
-		sc_query( "insert into `db_queries` (`id`, `query`) VALUES ('',\"$query\" ) " );
+		lib_mysql_query( "insert into `db_queries` (`id`, `query`) VALUES ('',\"$query\" ) " );
 
 		echo $query;
 		echo "<table cellspacing=0 cellpadding=0 border=0><tr><td class=contenttd>";
@@ -533,7 +533,7 @@ function adm_action_eval_form_go() {
 function adm_action_eval_form() {
 	eval( scg() );
 	echo "<h3>Enter PHP code to eval:</h3><br>";
-	sc_bf( sc_phpself(),
+	lib_mysql_build_form( lib_domain_phpself(),
 	       "action=eval_form_go".$RFS_SITE_DELIMITER.
 	       "id=$id".$RFS_SITE_DELIMITER.
 	       "SHOW_TEXTAREA_16#70#eval=enter code here",
@@ -871,9 +871,9 @@ function adm_action_f_theme_clone() { eval(scg());
 	echo "<h1>Clone $thm theme</h1>";
 	$sample="themes/$thm/t.sample.png";
 		if(file_exists("$RFS_SITE_PATH/$sample")) {
-			echo sc_picthumb("$RFS_SITE_PATH/$sample",300,0,0);
+			echo lib_images_thumb("$RFS_SITE_PATH/$sample",300,0,0);
 		}
-	sc_bf(	"$RFS_SITE_URL/admin/adm.php",
+	lib_mysql_build_form(	"$RFS_SITE_URL/admin/adm.php",
 			"action=f_theme_clone_go".$RFS_SITE_DELIMITER.
 			"thm=$thm".$RFS_SITE_DELIMITER.
 			"SHOW_CLEARFOCUSTEXT_50#50#new_name=Enter cloned theme name",
@@ -896,7 +896,7 @@ function adm_action_f_theme_edit() { eval(scg());
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
 			if($entry[0]=="t") {
-				$ft=sc_getfiletype($entry);
+				$ft=lib_file_getfiletype($entry);
 				switch($ft) {
 					case "css":
 						if($entry=="t.css") {
@@ -936,7 +936,7 @@ function adm_action_f_theme_edit() { eval(scg());
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
 			if($entry[0]=="t") {
-				$ft=sc_getfiletype($entry);				
+				$ft=lib_file_getfiletype($entry);				
 				switch($ft) {					
 					case "gif":
 					case "jpg":
@@ -1039,7 +1039,7 @@ function adm_action_theme() { eval(scg());
 			system($cmd);
 		}
 		
-		echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
+		echo lib_images_thumb("$RFS_SITE_PATH/$sample",100,80,0);
 
 		echo "<br><hr>";
 		echo "<div>";
@@ -1059,7 +1059,7 @@ function adm_action_f_addsitevar() { eval( scg() );
 	$name=strtolower( $name );
 	$name=str_replace( " ","_",$name );
 	$val=addslashes( $_REQUEST['val'] );
-	sc_query( "insert into `site_vars` 			(`name`, `type`, `value`, `desc`)
+	lib_mysql_query( "insert into `site_vars` 			(`name`, `type`, `value`, `desc`)
 	
 										values ('$name', '$type', '$val', '$desc')" );
 	
@@ -1070,13 +1070,13 @@ function adm_action_f_upsitevar() { eval( scg() );
 	$x=strtoupper($sv->name);
 	echo "[\$RFS_SITE_$x] set to [$val] <br>";
 	$val=addslashes( $_REQUEST['val'] );
-	sc_query("update `site_vars` set `type`='$type' where id='$id'");
-	sc_query("update `site_vars` set `value`='$val' where id='$id'");
-	sc_query("update `site_vars` set `desc`='$desc' where id='$id'");
+	lib_mysql_query("update `site_vars` set `type`='$type' where id='$id'");
+	lib_mysql_query("update `site_vars` set `value`='$val' where id='$id'");
+	lib_mysql_query("update `site_vars` set `desc`='$desc' where id='$id'");
 	adm_action_edit_site_vars();
 }
 function adm_action_f_delsitevar_go() { eval( scg() );
-	sc_query( "delete from `site_vars` where `id`='$id'" );
+	lib_mysql_query( "delete from `site_vars` where `id`='$id'" );
 	adm_action_edit_site_vars();
 }
 function adm_action_f_delsitevar() { eval(scg());
@@ -1093,7 +1093,7 @@ function adm_action_edit_site_vars() { eval( scg() );
 	echo "<table border=0>";
 	
 	echo "<tr><th>Variable</th><th>Type</th><th>Value</th><th></th><th></th></tr>";
-	$res=sc_query( "select * from site_vars order by name" );
+	$res=lib_mysql_query( "select * from site_vars order by name" );
 	for( $i=0; $i<mysql_num_rows( $res ); $i++ ) {
 		$site_var=mysql_fetch_object( $res );
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
@@ -1216,18 +1216,18 @@ function adm_action_edit_site_vars() { eval( scg() );
 // ADM_MENU ADMIN
 function adm_action_f_admin_menu_change_icon() { eval( scg() );
 	$_SESSION['select_image_path']="";
-	sc_selectimage( "images","admin/adm.php","", "admin_menu", $id, "icon" );
+	lib_images_select( "images","admin/adm.php","", "admin_menu", $id, "icon" );
 }
 function adm_action_f_admin_menu_edit_del_go() { eval( scg() );
-	$res=sc_query( "select * from admin_menu where `id`='$id'" );
+	$res=lib_mysql_query( "select * from admin_menu where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Admin Menu :: Delete $menuitem->name :: DELETED!</h3>";
-	sc_query( "delete from admin_menu where `id`='$id'" );
+	lib_mysql_query( "delete from admin_menu where `id`='$id'" );
 	if( $_SESSION['admed']=="on" ) adm_action_();
 	else adm_action_admin_menu_edit();
 }
 function adm_action_f_admin_menu_edit_del() { eval( scg() );
-	$res=sc_query( "select * from admin_menu where `id`='$id'" );
+	$res=lib_mysql_query( "select * from admin_menu where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Admin Menu</h3>";
 	echo "<table class=warning><tr><td>";
@@ -1269,7 +1269,7 @@ function adm_action_f_admin_menu_edit_add() { eval( scg() );
 	$q="INSERT INTO `admin_menu`	 (`category`,      `name`,    `icon`,    `url`,     `target`)
 							    VALUES ('$mcategory',  '$mname',  '$micon',    '$murl',   '$mtarget') ;";
 	echo $q."<BR>";
-	sc_query( $q );
+	lib_mysql_query( $q );
 	if( $_SESSION['admed']=="on" ) adm_action_();
 	else adm_action_admin_menu_edit();
 
@@ -1277,12 +1277,12 @@ function adm_action_f_admin_menu_edit_add() { eval( scg() );
 function adm_action_f_admin_change_category() { eval( scg() );
 	echo "id: $id<br>";
 	echo "cat: $name<br>";
-	sc_query( "update admin_menu set `category`='$name' where `id`='$id'" );
+	lib_mysql_query( "update admin_menu set `category`='$name' where `id`='$id'" );
     if( $_SESSION['admed']=="on" ) adm_action_();
 	else adm_action_admin_menu_edit();
 }
 function adm_action_f_admin_menu_edit_mod() { eval( scg() );
-	$res=sc_query( "select * from admin_menu where `id`='$id'" );
+	$res=lib_mysql_query( "select * from admin_menu where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
     if(empty($mname)) $mname=$name;
 	echo "<h3>Edit Admin Menu :: Modify $menuitem->name = $mname</h3>";
@@ -1292,11 +1292,11 @@ function adm_action_f_admin_menu_edit_mod() { eval( scg() );
 	if( empty( $mtarget ) )     $mtarget=$menuitem->target;
 	if( empty( $mcategory ) )   $mcategory=$menuitem->category;
 	echo $murl;
-	sc_query( "update admin_menu set `name`='$mname' where `id`='$id'" );
-	sc_query( "update admin_menu set `url`='$murl' where `id`='$id'" );
-	sc_query( "update admin_menu set `icon`='$micon' where `id`='$id'" );
-	sc_query( "update admin_menu set `target`='$mtarget' where `id`='$id'" );
-	sc_query( "update admin_menu set `category`='$mcategory' where `id`='$id'" );
+	lib_mysql_query( "update admin_menu set `name`='$mname' where `id`='$id'" );
+	lib_mysql_query( "update admin_menu set `url`='$murl' where `id`='$id'" );
+	lib_mysql_query( "update admin_menu set `icon`='$micon' where `id`='$id'" );
+	lib_mysql_query( "update admin_menu set `target`='$mtarget' where `id`='$id'" );
+	lib_mysql_query( "update admin_menu set `category`='$mcategory' where `id`='$id'" );
 	if( $_SESSION['admed']=="on" ) adm_action_();
 	else adm_action_admin_menu_edit();
 }
@@ -1331,7 +1331,7 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
 			if( !empty( $menuitem->category ) )
 				echo "<option>$menuitem->category";
 
-			$cres=sc_query( "select * from categories order by name" );
+			$cres=lib_mysql_query( "select * from categories order by name" );
 			$j3=mysql_num_rows( $cres );
 
 			for( $i3=0; $i3<$j3; $i3++ ) {
@@ -1372,13 +1372,13 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(scg());
 function adm_action_f_admin_menu_edit_entry() { eval(scg());
 	echo "<h3>Edit Admin Menu item $id</h3>";
 	
-	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+	lib_mysql_build_form(  "$RFS_SITE_URL/admin/adm.php",
             "action=f_admin_menu_edit_mod".$RFS_SITE_DELIMITER."id=$id",
             "admin_menu",
             "select * from admin_menu where `id`='$id'",
             "", "id", "omit", "", 60, "Modify" );
 			
-/* sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+/* lib_mysql_build_form(  "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.	       "id=$id",
 	       "users",
 	       "select * from users where `id`='$id'",
@@ -1434,7 +1434,7 @@ function adm_action_admin_menu_edit() { eval( scg() );
 	echo "<td>";
 	echo "<Select name=mcategory>";
 
-	$cres=sc_query( "select * from categories order by name" );
+	$cres=lib_mysql_query( "select * from categories order by name" );
 	$j3=mysql_num_rows( $cres );
 	for( $i3=0; $i3<$j3; $i3++ ) {
 		$c=mysql_fetch_object( $cres );
@@ -1461,11 +1461,11 @@ function adm_action_admin_menu_edit() { eval( scg() );
 	echo "</form>";
 	echo "</tr>";
 
-	$cresz=sc_query( "select * from categories order by name asc" );
+	$cresz=lib_mysql_query( "select * from categories order by name asc" );
 	$ccount=mysql_num_rows( $cresz );
 	for( $ci=0; $ci<$ccount; $ci++ ) {
 		$cc=mysql_fetch_object( $cresz );
-		$res=sc_query( "select * from admin_menu where category = '$cc->name' order by name asc" );
+		$res=lib_mysql_query( "select * from admin_menu where category = '$cc->name' order by name asc" );
 		$count=mysql_num_rows( $res );
 		for( $i=0; $i<$count; $i++ ) {
 			$menuitem=mysql_fetch_object( $res );
@@ -1498,7 +1498,7 @@ function adm_action_admin_menu_edit() { eval( scg() );
 			if( !empty( $menuitem->category ) )
 				echo "<option>$menuitem->category";
 
-			$cres=sc_query( "select * from categories order by name" );
+			$cres=lib_mysql_query( "select * from categories order by name" );
 			$j3=mysql_num_rows( $cres );
 
 			for( $i3=0; $i3<$j3; $i3++ ) {
@@ -1547,16 +1547,16 @@ function adm_action_admin_menu_edit() { eval( scg() );
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU TOP
 function adm_action_f_menu_topedit_del_go() { eval( scg() );
-	$res=sc_query( "select * from menu_top where `id`='$id'" );
+	$res=lib_mysql_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Top Menu :: Delete $menuitem->name :: DELETED!</h3>";
-	sc_query( "delete from menu_top where `id`='$id'" );
+	lib_mysql_query( "delete from menu_top where `id`='$id'" );
 	// adm_action_menu_topedit();
-	sc_show_menu_options();
+	lib_menus_options();
 	exit();
 }
 function adm_action_f_menu_topedit_del() { eval( scg() );
-	$res=sc_query( "select * from menu_top where `id`='$id'" );
+	$res=lib_mysql_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Top Menu :: Delete $menuitem->name</h3>";
 	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
@@ -1564,7 +1564,7 @@ function adm_action_f_menu_topedit_del() { eval( scg() );
 	echo "<input type=hidden name=id value=$id>";
 	echo "<input type=submit name=submit value=confirm></form>";
 	// adm_action_menu_topedit();
-	sc_show_menu_options();
+	lib_menus_options();
 	exit();
 }
 function adm_action_f_menu_top_add_link() { eval(scg());
@@ -1588,23 +1588,23 @@ function adm_action_f_menu_topedit_add() { eval( scg());
 	echo "$msor<br>";
 	echo "$access_method<br>";
 	
-	sc_query( "insert into menu_top (   `name`,      `link`, `target`, `sort_order`, `access_method`)
+	lib_mysql_query( "insert into menu_top (   `name`,      `link`, `target`, `sort_order`, `access_method`)
 								  values('$mname', '$menu_url', '$target',     '$msor', '$access_method');" );
 	// adm_action_menu_topedit();
-	sc_show_menu_options();
+	lib_menus_options();
 	exit();
 }
 function adm_action_f_menu_topedit_mod() { eval( scg() );
-	$res=sc_query( "select * from menu_top where `id`='$id'" );
+	$res=lib_mysql_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Top Menu :: Modify $menuitem->name = $mname</h3>";
-	sc_query( "update menu_top set `name`='$mname' where `id`='$id'" );
-	sc_query( "update menu_top set `link`='$menu_url' where `id`='$id'" );
-	sc_query( "update menu_top set `target`='$target' where `id`='$id'" );
-	sc_query( "update menu_top set `sort_order`='$msor' where `id`='$id'" );
-	sc_query( "update menu_top set `access_method`='$access_method' where `id`='$id'" );
+	lib_mysql_query( "update menu_top set `name`='$mname' where `id`='$id'" );
+	lib_mysql_query( "update menu_top set `link`='$menu_url' where `id`='$id'" );
+	lib_mysql_query( "update menu_top set `target`='$target' where `id`='$id'" );
+	lib_mysql_query( "update menu_top set `sort_order`='$msor' where `id`='$id'" );
+	lib_mysql_query( "update menu_top set `access_method`='$access_method' where `id`='$id'" );
 	// adm_action_menu_topedit();
-	sc_show_menu_options();
+	lib_menus_options();
 	exit();
 }
 function adm_action_menu_topedit() { eval( scg() );
@@ -1620,7 +1620,7 @@ function adm_action_menu_topedit() { eval( scg() );
 	echo "<td class=contenttd> access method </td>";
 	echo "<td class=contenttd> &nbsp; </td>";
 	echo "</tr>";
-	$res=sc_query( "select * from menu_top order by sort_order asc" );
+	$res=lib_mysql_query( "select * from menu_top order by sort_order asc" );
 	$count=mysql_num_rows( $res );
 	for( $i=0; $i<$count; $i++ ) {
 		$menuitem=mysql_fetch_object( $res );
@@ -1707,35 +1707,35 @@ function adm_action_menu_topedit() { eval( scg() );
 function adm_action_f_category_change_icon() {
 	eval( scg() );
 	$_SESSION['select_image_path']="";
-	sc_selectimage( "images","admin/adm.php","edit_categories", "categories", $id, "image" );
+	lib_images_select( "images","admin/adm.php","edit_categories", "categories", $id, "image" );
 	exit();
 }
 function adm_action_f_delete_category() {
 	eval( scg() );
 	echo "<p>Category $category deleted</p>";
-	sc_query( "delete from categories where `name`='$category'" );
+	lib_mysql_query( "delete from categories where `name`='$category'" );
 	adm_action_edit_categories();
 }
 function adm_action_f_add_category() {
 	eval( scg() );
 	echo "<p>Added category $category</p>";
-	sc_query( "insert into categories (`name`, `image`, `worksafe` ) values ('$category', '$image', '$worksafe')" );
+	lib_mysql_query( "insert into categories (`name`, `image`, `worksafe` ) values ('$category', '$image', '$worksafe')" );
 	adm_action_edit_categories();
 }
 function adm_action_f_rename_category() {
 	eval( scg() );
 	echo "<p>Renamed category from $category to $newname</p>";
-	sc_query( "update categories set image='$image' where name = '$category'" );
-	sc_query( "update categories set name='$newname' where name = '$category'" );
-	sc_query( "update categories set worksafe='$worksafe' where name = '$category'");
-	sc_query( "update admin_menu set category = '$newname' where category = '$category'" );
+	lib_mysql_query( "update categories set image='$image' where name = '$category'" );
+	lib_mysql_query( "update categories set name='$newname' where name = '$category'" );
+	lib_mysql_query( "update categories set worksafe='$worksafe' where name = '$category'");
+	lib_mysql_query( "update admin_menu set category = '$newname' where category = '$category'" );
 	adm_action_edit_categories();
 }
 function adm_action_edit_categories() {
 	eval( scg() );
 	
 	echo "<h3>Edit Categories (aka tags)</h3>";
-	$result=sc_query( "select * from categories order by name asc" );
+	$result=lib_mysql_query( "select * from categories order by name asc" );
 	$numcats=mysql_num_rows( $result );
 	if( $numcats==0 ) echo "<p>There are no categories!</p>\n";
 	echo "<table border=0>";
@@ -1825,12 +1825,12 @@ function adm_action_f_edit_users_go() {
 }
 function adm_action_f_edit_users() { eval( scg() );
 
-	$res=sc_query( "select * from users where `id`='$id'" );
+	$res=lib_mysql_query( "select * from users where `id`='$id'" );
 	$user=mysql_fetch_object( $res );
 
 	echo "<h3>Editing User [$user->name]</h3>";
 	
-	sc_bf( "$RFS_SITE_URL/admin/adm.php",
+	lib_mysql_build_form( "$RFS_SITE_URL/admin/adm.php",
 	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.
 	       "id=$id",
 	       "users",
@@ -1851,18 +1851,18 @@ function adm_action_f_edit_users() { eval( scg() );
 }
 function adm_action_f_del_users_go() {
 	eval( scg() );
-	$res=sc_query( "select * from users where `id`='$id'" );
+	$res=lib_mysql_query( "select * from users where `id`='$id'" );
 	$user=mysql_fetch_object( $res );
 	if( $yes=="Yes" ) {
 		echo "User $user->name removed from database";
-		sc_query( "delete from users where `id`='$id'" );
+		lib_mysql_query( "delete from users where `id`='$id'" );
 	}
 	adm_action_user_edit();
 }
 function adm_action_f_del_users() {
 	eval( scg() );
 	echo smiles( "<p class=warning>^X<br>WARNING!<BR></p>" );
-	$res=sc_query( "select * from users where `id`='$id'" );
+	$res=lib_mysql_query( "select * from users where `id`='$id'" );
 	$user=mysql_fetch_object( $res );
 	sc_confirmform( "Delete $user->name?",
                     "$RFS_SITE_URL/admin/adm.php",
@@ -1874,7 +1874,7 @@ function adm_action_f_add_user() {
 	eval( scg() );
 	echo "<h3>Add user $name</h3>";
 	$pmd5=md5( $pass );
-	sc_query( "insert into `users` (`name`,`pass`) VALUES ('$name','$pmd5');" );
+	lib_mysql_query( "insert into `users` (`name`,`pass`) VALUES ('$name','$pmd5');" );
 	adm_action_user_edit();
 }
 function adm_action_user_edit() {
@@ -1883,7 +1883,7 @@ function adm_action_user_edit() {
     echo "<h1>User Editor</h1>";
 	echo "<h2>Add User</h2>";
 
-	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+	lib_mysql_build_form(  "$RFS_SITE_URL/admin/adm.php",
             "action=f_add_user",
             "users",
             "",
@@ -1907,18 +1907,18 @@ function adm_action_user_edit() {
 /*
 function adm_action_f_rss_edit_go_edit() {
 	eval( scg() );
-	if( $update=="update" ) sc_query( "UPDATE rss_feeds SET `feed`='$edfeed' where `id`='$oid'" );
-	if( $delete=="delete" ) sc_query( "DELETE FROM rss_feeds WHERE id = '$oid' " );
+	if( $update=="update" ) lib_mysql_query( "UPDATE rss_feeds SET `feed`='$edfeed' where `id`='$oid'" );
+	if( $delete=="delete" ) lib_mysql_query( "DELETE FROM rss_feeds WHERE id = '$oid' " );
 	adm_action_rss_edit();
 }
 function adm_action_f_rss_edit_go_add() {
 	eval( scg() );
-	sc_query( "insert into rss_feeds values('$edfeed',0);" );
+	lib_mysql_query( "insert into rss_feeds values('$edfeed',0);" );
 	adm_action_rss_edit();
 }
 function adm_action_rss_edit() {
 	eval( scg() );
-	$result=sc_query( "select * from rss_feeds" );
+	$result=lib_mysql_query( "select * from rss_feeds" );
 	$num_feeds=mysql_num_rows( $result );
 	echo "<h3>Editing RSS Feeds </h3>";
 
@@ -1956,26 +1956,26 @@ function adm_action_edit_smilies() {
 			$sfrom=addslashes( $sfrom );
 			rfs_echo("$sfrom -> $sto updated");
 			$sto=addslashes( $sto );
-			sc_query( "UPDATE `smilies` SET `sto`='$sto' where `sfrom`='$ofrom';" );
-			sc_query( "UPDATE `smilies` SET `sfrom`='$sfrom' where `sfrom` = '$ofrom';" );
+			lib_mysql_query( "UPDATE `smilies` SET `sto`='$sto' where `sfrom`='$ofrom';" );
+			lib_mysql_query( "UPDATE `smilies` SET `sfrom`='$sfrom' where `sfrom` = '$ofrom';" );
 			break;
 		case "delete":
 			$sfrom=addslashes( $sfrom );
 			echo "$sfrom -> $sto deleted";
 			$sto=addslashes( $sto );
-			sc_query( "delete from `smilies` where `sfrom` = '$sfrom' and `sto` = '$sto' limit 1;" );
+			lib_mysql_query( "delete from `smilies` where `sfrom` = '$sfrom' and `sto` = '$sto' limit 1;" );
 			break;
 		case "new":
 			$sfrom=addslashes( $sfrom );
 			echo "$sfrom -> $sto created";
 			$sto=addslashes( $sto );
-			sc_query( "INSERT INTO `smilies` VALUES ('$sfrom', '$sto');" );
+			lib_mysql_query( "INSERT INTO `smilies` VALUES ('$sfrom', '$sto');" );
 			break;
 	}
 	echo "<table width=100% cellspacing=0 cellpadding=0 class=\"dm_news\">\n";
 	echo "<tr>\n";
 	echo "<td class=contenttd>";
-	$result=sc_query( "select * from smilies" );
+	$result=lib_mysql_query( "select * from smilies" );
 	$num_smilies=mysql_num_rows( $result );
 	echo "<td class=contenttd>\n";
 	echo "$num_smilies smilies";
@@ -2038,7 +2038,7 @@ function adm_action_edit_smilies() {
 // ADM_LOG STUFF
 function adm_action_f_domain_quiet() {
 	eval( scg() );
-	sc_query( "insert into `quiet` (`ip`,`domain`) values(\"$domain\",\"$domain\")" );
+	lib_mysql_query( "insert into `quiet` (`ip`,`domain`) values(\"$domain\",\"$domain\")" );
 }
 function adm_action_log_rotate() {
 	eval( scg() );
@@ -2054,7 +2054,7 @@ function adm_action_log_rotate() {
 		system( "mv $dr/log/log.htm $dr/log/log_$t.htm" );
 		echo "cp $dr/log/blanklog.htm $dr/log/log.htm";
 		system( "cp $dr/log/blanklog.htm $dr/log/log.htm" );
-		sc_log( "Log restarted" );
+		lib_log_add_entry( "Log restarted" );
 	}
 	adm_action_log_view();
 }
@@ -2072,7 +2072,7 @@ function adm_action_counters() {
 	$hits_raw=$_REQUEST['hits_raw']; if(empty($hits_raw)) $hits_raw=50;
 	echo "Showing pages with at least $hits_raw hits<br>";
 	echo "<table>";
-	$r=sc_query("select * from counters where hits_raw > $hits_raw");
+	$r=lib_mysql_query("select * from counters where hits_raw > $hits_raw");
 	$n=mysql_num_rows($r);
 	for($x=0;$x<$n;$x++){
 		$counter=mysql_fetch_object($r);
@@ -2106,7 +2106,7 @@ function adm_action_f_add_award_go() {
 	$description=addslashes( $description );
 	$image=addslashes( $image );
 	$time=date( "Y-m-d H:i:s" );
-	sc_query( "insert into awards values('', '$name', '$description', '$image', '$time')" );
+	lib_mysql_query( "insert into awards values('', '$name', '$description', '$image', '$time')" );
 	adm_action_awards_edit();
 }
 function adm_action_f_edit_award_go() {
@@ -2116,9 +2116,9 @@ function adm_action_f_edit_award_go() {
 	$name=addslashes( $name );
 	$description=addslashes( $description );
 	$image=addslashes( $image );
-	sc_query( "update awards set name = '$name' where id = '$id'" );
-	sc_query( "update awards set description = '$description' where id = '$id'" );
-	sc_query( "update awards set image = '$image' where id = '$id'" );
+	lib_mysql_query( "update awards set name = '$name' where id = '$id'" );
+	lib_mysql_query( "update awards set description = '$description' where id = '$id'" );
+	lib_mysql_query( "update awards set image = '$image' where id = '$id'" );
 	adm_action_awards_edit();
 	
 }
@@ -2130,7 +2130,7 @@ function adm_action_edit_tags() { eval(scg());
 	echo "<h3>Edit Tags</h3>";
 	lib_mysql_scrub("tags","tag");
 
-	$r=sc_query("select * from tags order by tag asc");
+	$r=lib_mysql_query("select * from tags order by tag asc");
 	$n=mysql_num_rows($r);
 	
 	echo "<p>Hidden tags will not be shown to the public. They won't even show up in listings of available tags.</p>";
@@ -2216,19 +2216,19 @@ function adm_action_() { eval(scg());
 		// sc_ajax("File",      "files","name","amwifi.exe","name",60,"","files","edit");
 		// echo "</table>";	
 
-	sc_access_method_add("admin", "access");
-	sc_access_method_add("admin", "categories");
+	lib_access_add_method("admin", "access");
+	lib_access_add_method("admin", "categories");
 	
 	$ax=mfo1("select * from access where name='Administrator' and action='access' and page='admin'");
 	if(!$ax->id) {
-		sc_query("insert into access (name,action,page) values('Administrator','access','admin')");
+		lib_mysql_query("insert into access (name,action,page) values('Administrator','access','admin')");
 	}
 	
 
 	if( !empty( $_GET['admed'] ) ) $_SESSION['admed']=$_GET['admed'];
 
-	$data=sc_getuserdata( $_SESSION['valid_user'] );
-	if(!sc_access_check("admin","access")) return;
+	$data=lib_users_get_data( $_SESSION['valid_user'] );
+	if(!lib_access_check("admin","access")) return;
 	
 	echo "<div align=center width=80%>";
 
@@ -2337,11 +2337,11 @@ function adm_menu_built_in() { eval(scg());
 
 	echo "<div style='clear: left; '>&nbsp;</div>";	
 
-	$cres=sc_query( "select * from categories order by name asc" );
+	$cres=lib_mysql_query( "select * from categories order by name asc" );
 	$ccount=mysql_num_rows( $cres );
 	for( $ci=0; $ci<$ccount; $ci++ ) {
         $cc=mysql_fetch_object( $cres );
-        $res=sc_query( "select * from admin_menu where category = '$cc->name' order by name asc" );
+        $res=lib_mysql_query( "select * from admin_menu where category = '$cc->name' order by name asc" );
         $count=mysql_num_rows( $res );
         if( $count ) {
             for( $i=0; $i<$count; $i++ ) {
@@ -2390,7 +2390,7 @@ function adm_menu_built_in() { eval(scg());
 
 	echo "<div style='clear: left; '>&nbsp;</div>";	
 
-    $mods=sc_get_modules_array() ;
+    $mods=lib_modules_get_array() ;
 	
     foreach($mods as $mk=>$mv ) {
         $func_count=0;
@@ -2444,7 +2444,7 @@ function finishadminpage() {
 	eval( scg() );
 
 
-if(!sc_access_check("debug","view")) return;
+if(!lib_access_check("debug","view")) return;
     if(isset($_SESSION['debug_msgs']))
     if(sc_yes($_SESSION['debug_msgs'])){    
 		d_echo("======================================================================");

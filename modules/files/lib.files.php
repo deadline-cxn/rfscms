@@ -1,25 +1,14 @@
 <?
 include_once("include/lib.all.php");
 
-
-sc_menus_register("Files","$RFS_SITE_URL/modules/files/files.php");
-
-sc_access_method_add("files", "upload");
-sc_access_method_add("files", "addlink");
-sc_access_method_add("files", "orphanscan");
-sc_access_method_add("files", "purge");
-sc_access_method_add("files", "sort");
-sc_access_method_add("files", "edit");
-sc_access_method_add("files", "delete");
-sc_access_method_add("files", "xplorer");
-sc_access_method_add("files", "xplorershell");
+lib_menus_register("Files","$RFS_SITE_URL/modules/files/files.php");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FILES
 function sc_module_mini_files($x) { eval(scg());
     lib_div("FILES MODULE SECTION");
     echo "<h2>Last $x Files</h2>";
-    $result=sc_query("select * from files where category !='unsorted' order by `time` desc limit 0,$x");
+    $result=lib_mysql_query("select * from files where category !='unsorted' order by `time` desc limit 0,$x");
     $numfiles=mysql_num_rows($result);
     echo "<table border=0 cellspacing=0 cellpadding=0 >";
     $gt=2;
@@ -31,30 +20,27 @@ function sc_module_mini_files($x) { eval(scg());
         echo "<tr><td class=sc_file_table_$gt>";
         echo "<a href=\"$link\">$file->name</a> ";
         echo"</td><td class=sc_file_table_$gt>";
-        echo sc_sizefile($file->size);
-		// echo "<br>";
+        echo lib_file_sizefile($file->size);
         echo "</td></tr>";
     }
     echo "</table>";
-    //echo "<p align=right>(<a href=$RFS_SITE_URL/modules/files/files.php class=a_cat>More...</a>)</p>";
 }
-
 
 function sc_update_file($fid) {
 	$file=mfo1("select * from files where id = '$fid'");
 	if($file->id!=$fid) return;
 	
 	$time=date("Y-m-d H:i:s");
-	$filetype=sc_getfiletype($file->name);						
+	$filetype=lib_file_getfiletype($file->name);						
 	$filesizebytes=filesize($file->location);
-	if(empty($file->submitter)) sc_query("UPDATE files SET `submitter`='system' where id='$fid'");
-	if(empty($file->category))  sc_query("UPDATE files SET `category`='unsorted' where id='$fid'");
-	if(empty($file->hidden))    sc_query("UPDATE files SET `hidden`='no' where id='$fid'");
-	if(empty($file->time))      sc_query("UPDATE files SET `time`='$time' where id='$fid'");
-	if(empty($file->filetype))  sc_query("UPDATE files SET filetype='$filetype' where id='$fid'");
-	if(empty($file->size))  	   sc_query("UPDATE files SET size='$filesizebytes' where id='$fid'");
+	if(empty($file->submitter)) lib_mysql_query("UPDATE files SET `submitter`='system' where id='$fid'");
+	if(empty($file->category))  lib_mysql_query("UPDATE files SET `category`='unsorted' where id='$fid'");
+	if(empty($file->hidden))    lib_mysql_query("UPDATE files SET `hidden`='no' where id='$fid'");
+	if(empty($file->time))      lib_mysql_query("UPDATE files SET `time`='$time' where id='$fid'");
+	if(empty($file->filetype))  lib_mysql_query("UPDATE files SET filetype='$filetype' where id='$fid'");
+	if(empty($file->size))  	   lib_mysql_query("UPDATE files SET size='$filesizebytes' where id='$fid'");
 	if(empty($file->md5)) { $tmd5=md5_file ($file->location);									
-		sc_query("UPDATE files SET md5='$tmd5' where id='$fid'");
+		lib_mysql_query("UPDATE files SET md5='$tmd5' where id='$fid'");
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +49,7 @@ function sc_ajax_callback_files_add_tag() { eval(scg());
 
 	// update `files` set `tags`='blowjob' where `id` = '412524'
 	$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
-	sc_query($q);
+	lib_mysql_query($q);
 	$tx=explode(",",$rfaajv);
 	foreach($tx as $k => $v) {
 		// echo " [$v] <br>";
@@ -76,26 +62,26 @@ function sc_ajax_callback_files_add_tag() { eval(scg());
 }
 
 function sc_ajax_callback_files_new_category() { eval(scg());
-	if(sc_access_check($rfaapage,$rfaact)) {
+	if(lib_access_check($rfaapage,$rfaact)) {
 		$q="insert into categories (`name`, `image`, `worksafe` ) values ('$rfaajv', '', 'yes')";
-		sc_query($q);
+		lib_mysql_query($q);
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
-		sc_query($q);
+		lib_mysql_query($q);
 		echo "<font style='color:white; background-color:green;'>NEW CATEGORY: $rfaajv</font>";
 	}
 }
 
 function sc_ajax_callback_file_ignore() {eval(scg());
-	if(sc_access_check($rfaapage,$rfaact)) {
+	if(lib_access_check($rfaapage,$rfaact)) {
 		$q="update files set `ignore`='yes' where id='$rfakv'";
 		echo $q;
-		sc_query($q);
+		lib_mysql_query($q);
 		echo "<font style='color:white; background-color:green;'>IGNORED</font>";
 	}
 }
 
 function sc_ajax_callback_files_move_to_pictures() { eval(scg());
-	if(sc_access_check($rfaapage,$rfaact)) {
+	if(lib_access_check($rfaapage,$rfaact)) {
 		$f=mfo1("select * from files where id='$rfakv'");
 		$oname="$RFS_SITE_PATH/$f->location";
 		$snamex=explode("/",$f->location); $sname=$snamex[count($snamex)-1];
@@ -103,9 +89,9 @@ function sc_ajax_callback_files_move_to_pictures() { eval(scg());
 		$nsloc="files/pictures/$sname";
 		if(rename($oname,$nname)) {
 			$q="delete from `files` where `id`='$rfakv'";	
-			sc_query($q);
+			lib_mysql_query($q);
 			$q="insert into `pictures` (`time`,`url`,`category`,`hidden`) VALUES('$time','$nsloc','unsorted','yes')";
-			sc_query($q);
+			lib_mysql_query($q);
 		
 			echo "<font style='color:white; background-color:green;'>MOVED</font>";
 		}
@@ -116,16 +102,16 @@ function sc_ajax_callback_files_move_to_pictures() { eval(scg());
 }
 
 function sc_ajax_callback_file_move()  { eval(scg());
-	if(sc_access_check($rfaapage,$rfaact)) {
+	if(lib_access_check($rfaapage,$rfaact)) {
 		$f=mfo1("select * from files where id='$rfakv'");
 		$oname="$RFS_SITE_PATH/$f->location";
 		$nname="$RFS_SITE_PATH/$rfaajv";
 		if(rename($oname,$nname)) {
 			$snamex=explode("/",$rfaajv); $sname=$snamex[count($snamex)-1];
 			$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
-			sc_query($q);
+			lib_mysql_query($q);
 			$q="update `$rfatable` set `name` = '$sname' where `$rfaikey` = '$rfakv'" ;
-			sc_query($q);
+			lib_mysql_query($q);
 			echo "<font style='color:white; background-color:green;'>MOVED</font>";
 		}
 		else {
@@ -135,17 +121,17 @@ function sc_ajax_callback_file_move()  { eval(scg());
 }
 
 function sc_ajax_callback_rename_file() { eval(scg());
- 	if(sc_access_check($rfaapage,$rfaact)) {
+ 	if(lib_access_check($rfaapage,$rfaact)) {
 		$f=mfo1("select * from files where id='$rfakv'");
 		$loc=$RFS_SITE_PATH."/".$f->location;
 		$oname=$loc;
 		$nname=str_replace($f->name,$rfaajv,$loc);
 		if(rename($oname,$nname)) {
 			$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
-			sc_query($q);
+			lib_mysql_query($q);
 			$nloc=str_replace($f->name,$rfaajv,$f->location);
 			$q="update `$rfatable` set `location`='$nloc' where `location` = '$f->location'";
-			sc_query($q);
+			lib_mysql_query($q);
 			echo "<font style='color:white; background-color:green;'>RENAMED</font>";
 		}
 		else {	
@@ -156,7 +142,7 @@ function sc_ajax_callback_rename_file() { eval(scg());
 }
 
 function sc_ajax_callback_delete_file() { eval(scg());
-	if(sc_access_check($rfaapage,$rfaact)) {
+	if(lib_access_check($rfaapage,$rfaact)) {
 		sc_lib_file_delete($rfakv,"yes");
 			
 	}
@@ -215,7 +201,7 @@ function show1file($filedata,$bg) { eval(scg());
 	
 	///////////////////////////////////
 
-    $filetype=sc_getfiletype($filedata->location);
+    $filetype=lib_file_getfiletype($filedata->location);
     $fti="images/icons/filetypes/$filetype.gif";
     if(file_exists("images/icons/filetypes/$filetype.png"))
 		$fti="images/icons/filetypes/$filetype.png";
@@ -247,14 +233,14 @@ function show1file($filedata,$bg) { eval(scg());
 				class='sc_file_table_$bg'>";
 
 	if($fedit || $_SESSION['deletemode']) {
-		if(sc_access_check("files","delete")) {
+		if(lib_access_check("files","delete")) {
 			echo "$filedata->location <br>";			
 			sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button,nolabel", "files","delete","sc_ajax_callback_delete_file");
 		}			
 
 		echo "<div style='display: block; float:left; min-width:250px;' class='sc_file_table_$bg'>";
 			echo"$filedata->md5 ";
-			$fdr=sc_query("select * from files where md5='$filedata->md5'");
+			$fdr=lib_mysql_query("select * from files where md5='$filedata->md5'");
 			if(mysql_num_rows($fdr)>1) {
 				echo "<br>Matching MD5:<br>";
 				for($jjq=0;$jjq<mysql_num_rows($fdr);$jjq++) {
@@ -265,7 +251,7 @@ function show1file($filedata,$bg) { eval(scg());
 						' id='dfd_$dfile->id'> ";
 							echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$dfile->id\"
 								title=\"matching file $dfile->location\">";
-							$ftype=sc_getfiletype($dfile->name);
+							$ftype=lib_file_getfiletype($dfile->name);
 							if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
 								if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
 									echo sc_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
@@ -276,7 +262,7 @@ function show1file($filedata,$bg) { eval(scg());
 								lib_tags_show_tags("files",$dfile->id);
 							echo "</div>";
 							echo "<div style='clear:both;'>";
-								if(sc_access_check("files","delete")) {
+								if(lib_access_check("files","delete")) {
 									sc_ajax("Delete", "files",   "id", "$dfile->id", "id", 20,"button,nolabel", "files","delete","sc_ajax_callback_delete_file,sc_ajax_javascript_dupefile_delete");
 								}
 							echo "</div>";
@@ -287,7 +273,7 @@ function show1file($filedata,$bg) { eval(scg());
 		echo "</div>";		
 	}
 	
-		if((sc_access_check("files","edit")) && $fedit) {
+		if((lib_access_check("files","edit")) && $fedit) {
 			sc_ajax("Name"	,"files","id","$filedata->id","name",36,"nohide","files","edit","sc_ajax_callback_rename_file");
 			echo "<br>URL <a href=\"$RFS_SITE_URL/$filedata->location\" target=\"_blank\">$filedata->name</a> ";
 		}
@@ -330,7 +316,7 @@ function show1file($filedata,$bg) { eval(scg());
 		$data=$GLOBALS['data'];
 		if($fedit) {
 			
-			if(sc_access_check("files","edit")) {
+			if(lib_access_check("files","edit")) {
 				echo "<div style='float: left;'>";
 				
 				sc_ajax("Category","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
@@ -354,7 +340,7 @@ function show1file($filedata,$bg) { eval(scg());
 	
 	///////////////////////////////////
 	
-	$size=(sc_sizefile($filedata->size));
+	$size=(lib_file_sizefile($filedata->size));
 	
 	echo "<div style='display: block;
 						float:left;
@@ -367,13 +353,13 @@ function show1file($filedata,$bg) { eval(scg());
 		($filetype=="otf") ||
 		($filetype=="fon") ) {
 			$fn=stripslashes("$filedata->name");
-			sc_image_text($fn,$fn, 12, 1,1, 0,0, 244,245,1, 1,1,0, 1,0 );
+			lib_images_text($fn,$fn, 12, 1,1, 0,0, 244,245,1, 1,1,0, 1,0 );
 			
 			}
 			else {
 				echo "$fd &nbsp;";
 			}
-			if( (sc_access_check("files","edit")) && $fedit) {
+			if( (lib_access_check("files","edit")) && $fedit) {
 				sc_ajax("Description"	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
 
 				sc_ajax("Location",    	"files","id",	   "$filedata->id","location", 76,"nohide","files","edit","sc_ajax_callback_file_move");
@@ -434,18 +420,18 @@ function show1file($filedata,$bg) { eval(scg());
 
 
 function sc_scrubfiledatabase() {
-	sc_query(" CREATE TABLE files2 like files; ");
-	sc_query(" INSERT files2 SELECT * FROM files GROUP BY location;" );
-	sc_query(" RENAME TABLE `files`  TO `files_scrub`; ");
-	sc_query(" RENAME TABLE `files2` TO `files`; " );
-	sc_query(" DROP TABLE files_scrub; ");
+	lib_mysql_query(" CREATE TABLE files2 like files; ");
+	lib_mysql_query(" INSERT files2 SELECT * FROM files GROUP BY location;" );
+	lib_mysql_query(" RENAME TABLE `files`  TO `files_scrub`; ");
+	lib_mysql_query(" RENAME TABLE `files2` TO `files`; " );
+	lib_mysql_query(" DROP TABLE files_scrub; ");
 }
 
 function sc_getfiledata($file){
     $query = "select * from files where `name` = '$file' ";
     if(intval($file)!=0)
     $query = "select * from files where `id` = '$file'";
-    $result = sc_query($query);
+    $result = lib_mysql_query($query);
     if(mysql_num_rows($result) >0 ) $filedata = mysql_fetch_object($result);
     return $filedata;
 }
@@ -460,7 +446,7 @@ function sc_getfilelist($filesearch,$limit){
 	$query=str_replace("where","where (`ignore` != 'yes') and ",$query);	
 	
 
-    $result = sc_query($query);
+    $result = lib_mysql_query($query);
     $i=0; $k=mysql_num_rows($result);
     while($i<$k) {
         $der = mysql_fetch_array($result);
@@ -483,7 +469,7 @@ function md5_scan($RFS_CMD_LINE) {
 					echo "(MD5 WARNING) $filedata->location $tmd5 (database: $filedata->md5)  \n"; if(!$RFS_CMD_LINE) echo "<br>";
 				else {
 					echo "(MD5 UPDATED) $filedata->location $tmd5  \n"; if(!$RFS_CMD_LINE) echo "<br>";
-					sc_query("UPDATE files SET md5='$tmd5' where id='$filedata->id'");
+					lib_mysql_query("UPDATE files SET md5='$tmd5' where id='$filedata->id'");
 				}
 			} 
 			else {
@@ -508,7 +494,7 @@ function quick_md5_scan($RFS_CMD_LINE) {
 						echo "(MD5 WARNING) $filedata->location $tmd5 (database: $filedata->md5)  \n"; if(!$RFS_CMD_LINE) echo "<br>";
 					else {
 						echo "(MD5 UPDATED) $filedata->location $tmd5  \n"; if(!$RFS_CMD_LINE) echo "<br>";
-						sc_query("UPDATE files SET md5='$tmd5' where id='$filedata->id'");
+						lib_mysql_query("UPDATE files SET md5='$tmd5' where id='$filedata->id'");
 					}
 				} 
 				else {
@@ -524,7 +510,7 @@ function quick_md5_scan($RFS_CMD_LINE) {
 
 function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 	if(!$RFS_CMD_LINE) {
-		if(!sc_access_check("files","orphanscan")) {
+		if(!lib_access_check("files","orphanscan")) {
 			echo "You don't have access to scan orphan files.<br>";
 			return;
 		}
@@ -537,7 +523,7 @@ function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 	closedir($handle);
 	reset($dirfiles);
 	
-    $result = sc_query("select * from files");
+    $result = lib_mysql_query("select * from files");
     $i=0; $k=mysql_num_rows($result);
     while($i<$k) {
         $der = mysql_fetch_array($result);
@@ -577,26 +563,26 @@ function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 							}
 							else{						
 									$time=date("Y-m-d H:i:s");
-									$filetype=sc_getfiletype($file);						
+									$filetype=lib_file_getfiletype($file);						
 									$tdir=getcwd()."/$dir/$file";
 								
 									$filesizebytes=filesize("$tdir");
 									$name=addslashes($file);
 									$infile=addslashes($file);							
-									sc_query("INSERT INTO `files` (`name`) VALUES('$infile');");
+									lib_mysql_query("INSERT INTO `files` (`name`) VALUES('$infile');");
 									$fid=mysql_insert_id();
 									$loc=addslashes("$dir/$file");
-									sc_query("UPDATE files SET `location`='$loc' where id='$fid'");
+									lib_mysql_query("UPDATE files SET `location`='$loc' where id='$fid'");
 									$dname="system";
 									if(!empty($data)) $dname=$data->name;							
-									sc_query("UPDATE files SET `submitter`='$dname' where id='$fid'");
-									sc_query("UPDATE files SET `category`='unsorted' where id='$fid'");
-									sc_query("UPDATE files SET `hidden`='no' where id='$fid'");
-									sc_query("UPDATE files SET `time`='$time' where id='$fid'");
-									sc_query("UPDATE files SET filetype='$filetype' where id='$fid'");
-									sc_query("UPDATE files SET size='$filesizebytes' where id='$fid'");
+									lib_mysql_query("UPDATE files SET `submitter`='$dname' where id='$fid'");
+									lib_mysql_query("UPDATE files SET `category`='unsorted' where id='$fid'");
+									lib_mysql_query("UPDATE files SET `hidden`='no' where id='$fid'");
+									lib_mysql_query("UPDATE files SET `time`='$time' where id='$fid'");
+									lib_mysql_query("UPDATE files SET filetype='$filetype' where id='$fid'");
+									lib_mysql_query("UPDATE files SET size='$filesizebytes' where id='$fid'");
 									$tmd5=md5_file ("$dir/$file");									
-									sc_query("UPDATE files SET md5='$tmd5' where id='$fid'");
+									lib_mysql_query("UPDATE files SET md5='$tmd5' where id='$fid'");
 
 									echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
 									if(!$RFS_CMD_LINE) sc_flush_buffers();
@@ -611,18 +597,18 @@ function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 
 function purge_files($RFS_CMD_LINE){
 	if(!$RFS_CMD_LINE)  {
-		if(!sc_access_check("files","purge")) {
+		if(!lib_access_check("files","purge")) {
 			echo "You don't have access to purge files. \n"; if(!$RFS_CMD_LINE) echo "<br>";
 			return;
 		}
 	}
-	$r=sc_query("select * from files");
+	$r=lib_mysql_query("select * from files");
 	for($i=0;$i<mysql_num_rows($r);$i++){
 		$file=mysql_fetch_object($r);
 		if(!file_exists($file->location)) {
 			echo "$file->location purged \n"; if(!$RFS_CMD_LINE) echo "<br>";
 			$dloc=addslashes($file->location);
-			sc_query("delete from files where location = '$dloc'");
+			lib_mysql_query("delete from files where location = '$dloc'");
 		}
 	}
 }
@@ -633,10 +619,10 @@ function sc_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
 	$loc2=addslashes($loc2);
 	$size2=addslashes($size2);
 	$md5=addslashes($md5);
-	$r=sc_query("select * from file_duplicates where loc1 = '$loc1'");
+	$r=lib_mysql_query("select * from file_duplicates where loc1 = '$loc1'");
 	if($r) if(mysql_num_rows($r)) return;
 
-	sc_query("INSERT INTO `file_duplicates` (`loc1`,   `size1`,   `loc2`, `size2`,    `md5` )
+	lib_mysql_query("INSERT INTO `file_duplicates` (`loc1`,   `size1`,   `loc2`, `size2`,    `md5` )
 				                      VALUES ( '$loc1', '$size1', '$loc2',  '$size2', '$md5' ) ;");
 
 	
@@ -695,7 +681,7 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 	if(empty($fdhi)) $fdhi="5";
 		$limit=" limit $fdlo,$fdhi ";
 	
-    /*$result = sc_query("select id, location, size, category from files");
+    /*$result = lib_mysql_query("select id, location, size, category from files");
     for($i=0;$i<mysql_num_rows($result);$i++) {
 		$x=mysql_fetch_array($result);
 		$filelist[$x['location']]=$x;
@@ -705,7 +691,7 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/files/files.php\" method=post>\n";
 	echo "<input type=hidden name=action value=f_dup_rem_checked>";
 	
-	$r=sc_query("select * from file_duplicates $limit");
+	$r=lib_mysql_query("select * from file_duplicates $limit");
 	echo "<div style=\"padding: 15px;\">";
 	echo "<table border=0>";
 	echo "<tr><th>";
@@ -718,7 +704,7 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 		$clr++; if($clr>2) $clr=1;
 		$color="sc_project_table_$clr";
 		
-		$rr=sc_query("select * from files where md5 = '$dupe->md5'");
+		$rr=lib_mysql_query("select * from files where md5 = '$dupe->md5'");
 		for($u=0;$u<mysql_num_rows($rr);$u++)  {		
 			$f=mysql_fetch_object($rr);
 			sc_show_one_scanned_duplicate($RFS_CMD_LINE,$f->id,$color);
@@ -734,12 +720,12 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
 }
 
 function sc_show_duplicate_files($RFS_CMD_LINE) {
-	$result = sc_query("select * from files");
+	$result = lib_mysql_query("select * from files");
 	$i=0; $k=mysql_num_rows($result);	
 	while($i<$k) {
 		$der = mysql_fetch_object($result);
 		$r2 = 
-		sc_query("select * from files where (md5 = '$der->md5' ) and 
+		lib_mysql_query("select * from files where (md5 = '$der->md5' ) and 
 												 (location != '$der->location') ");
 		if($r2)
 		for($z=0;$z<mysql_num_rows($r2);$z++) {
@@ -759,7 +745,7 @@ function sc_show_duplicate_files($RFS_CMD_LINE) {
 
 function sc_scan_duplicate_files2($RFS_CMS_LINE) {
 
-	$result = sc_query("select * from files");
+	$result = lib_mysql_query("select * from files");
 	$i=0; $k=mysql_num_rows($result);
 	while($i<$k) {	
 		$der = mysql_fetch_array($result);
@@ -805,7 +791,7 @@ function sc_scan_duplicate_files2($RFS_CMS_LINE) {
 }
 function sc_show_duplicate_files2($RFS_CMD_LINE) {
 	echo "MD5 SEARCH \n"; if(!$RFS_CMD_LINE) echo "<br>";
-    $result = sc_query("select * from files");
+    $result = lib_mysql_query("select * from files");
     $i=0; $k=mysql_num_rows($result);
     while($i<$k) {
         $der = mysql_fetch_array($result);
@@ -845,9 +831,9 @@ function sc_show_duplicate_files2($RFS_CMD_LINE) {
 
 function sc_lib_file_delete($id,$annihilate) { eval(scg());
 	$filedata=sc_getfiledata($id);
-	sc_query("delete from files where id = '$id'");
-	sc_query("delete from file_duplicates where loc1 = '$filedata->location'");
-	sc_query("delete from file_duplicates where loc2 = '$filedata->location'");
+	lib_mysql_query("delete from files where id = '$id'");
+	lib_mysql_query("delete from file_duplicates where loc1 = '$filedata->location'");
+	lib_mysql_query("delete from file_duplicates where loc2 = '$filedata->location'");
 	
 	if($annihilate=="yes") {
 		unlink($RFS_SITE_PATH."/".$filedata->location);	

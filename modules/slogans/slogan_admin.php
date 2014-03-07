@@ -3,20 +3,20 @@ if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("header.php");
 $newslogn   = addslashes($_REQUEST['newslogn']);
    
-if(sc_access_check("slogan","edit")) {
+if(lib_access_check("slogan","edit")) {
 	if($action=="add_slogan") {
-        sc_query("insert into slogans values (0,'$newslogn')");
+        lib_mysql_query("insert into slogans values (0,'$newslogn')");
         echo "<p>New slogan [".stripslashes($newslogn)."] added...</p>\n";
     }
     if($action=="del_slogan"){
-        sc_query("delete from slogans where `id` = '$sid'");
+        lib_mysql_query("delete from slogans where `id` = '$sid'");
         echo "<p>Slogan removed...</p>\n";
     }
     if($action=="ren_slogan") {
-        sc_query("update slogans set `slogan` = '$newslogn' where `id` = '$sid'");
+        lib_mysql_query("update slogans set `slogan` = '$newslogn' where `id` = '$sid'");
         echo "<p>Slogan renamed...</p>\n";
     }
-    $result=sc_query("select * from slogans");
+    $result=lib_mysql_query("select * from slogans");
     $numslogans=mysql_num_rows($result);
 
     echo "<table border=0 width=100%>\n";
@@ -44,7 +44,7 @@ if(sc_access_check("slogan","edit")) {
 }
 else {
     echo "<p>You do not have access to edit slogans!</p>\n";
-    // sc_log("*****> $data->name tried to access the slogans admin area!");
+    // lib_log_add_entry("*****> $data->name tried to access the slogans admin area!");
 }
 include("footer.php");
 exit();

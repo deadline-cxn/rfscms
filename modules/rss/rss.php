@@ -8,7 +8,7 @@ include("3rdparty/rsslib/rsslib.php");
 echo "<table width=$site_singletablewidth border=0><tr>";
 echo "<td valign=top class=contenttd>";
 
-$result=sc_query("select * from rss_feeds");
+$result=lib_mysql_query("select * from rss_feeds");
 $num_feeds=mysql_num_rows($result);
 for($i=0;$i<$num_feeds;$i++)
 {

@@ -36,17 +36,17 @@ if($action=="uploadpicgo"){
         $sname=$name;
         $poster=999;
         if($data->id) $poster=$data->id;
-        sc_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
-        $cid=mysql_fetch_object(sc_query("select * from categories where name = '$category'"));
-        sc_query("update `pictures` set `category`='$cid->id'   where `name`='$name'");
-        sc_query("update `pictures` set `sname`='$sname'        where `name`='$name'");
-        sc_query("update `pictures` set `sfw`='$sfw'            where `name`='$name'");
-        sc_query("update `pictures` set `hidden`='$hidden'      where `name`='$name'");
-        sc_query("update `pictures` set description='$desc'     where name='$name'");
-        sc_query("update `pictures` set poster='$poster'        where name='$name'");
+        lib_mysql_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
+        $cid=mysql_fetch_object(lib_mysql_query("select * from categories where name = '$category'"));
+        lib_mysql_query("update `pictures` set `category`='$cid->id'   where `name`='$name'");
+        lib_mysql_query("update `pictures` set `sname`='$sname'        where `name`='$name'");
+        lib_mysql_query("update `pictures` set `sfw`='$sfw'            where `name`='$name'");
+        lib_mysql_query("update `pictures` set `hidden`='$hidden'      where `name`='$name'");
+        lib_mysql_query("update `pictures` set description='$desc'     where name='$name'");
+        lib_mysql_query("update `pictures` set poster='$poster'        where name='$name'");
         $furl=addslashes($furl);
-        sc_query("update `pictures` set url = '$furl'           where name='$name'");
-        sc_query("update `pictures` set time = '$time1' where   name='$name'");
+        lib_mysql_query("update `pictures` set url = '$furl'           where name='$name'");
+        lib_mysql_query("update `pictures` set time = '$time1' where   name='$name'");
         $error.= " ---- Added $name to database ---- ";
     }
     else{
@@ -101,7 +101,7 @@ sc_debugfooter(0);
 // if($data->id) { echo "<BR>Logged in as $data->name <BR>"; echo "Visit the main website <a href=http://www.defectiveminds.com/>http://www.defectiveminds.com/</a>"; }
 
 
-$r=sc_query("select * from meme where status = 'SAVED'");
+$r=lib_mysql_query("select * from meme where status = 'SAVED'");
 
 echo "
 <hr>

@@ -1,12 +1,12 @@
 <?
 include_once("include/lib.all.php");
 
-sc_menus_register("Links","$RFS_SITE_URL/modules/linkbin/linkbin.php");
+lib_menus_register("Links","$RFS_SITE_URL/modules/linkbin/linkbin.php");
 
 ///////////////////////////////////////////////////////////////
 // MODULE LINK FRIENDS
 function sc_module_mini_link_friends($x) { eval(scg());
-	$result=sc_query("select * from link_bin where friend='yes' order by time limit $x");
+	$result=lib_mysql_query("select * from link_bin where friend='yes' order by time limit $x");
 	$numlinks=mysql_num_rows($result);
 	echo "<h2>Link Friends</h2>";
 	for($i=0;$i<$numlinks;$i++) {
@@ -32,10 +32,10 @@ function adm_action_f_add_link() {
 	$link=$_REQUEST['link'];
 	$time=date( "Y-m-d H:i:s" );
 	if( $data->id==0 ) $data->id=999;
-	sc_query( "insert into `link_bin` (`link`,`sname`,`time`,`bumptime`,`poster`,`description`)
+	lib_mysql_query( "insert into `link_bin` (`link`,`sname`,`time`,`bumptime`,`poster`,`description`)
 	          values('$link','$sname','$time','$time',   '$id','$description')" );
 	echo "<p>Link [$link][$sname] added to linkbin...</p>\n";
-	sc_log( "*****> $data->name added a link to the linkbin [$link]" );
+	lib_log_add_entry( "*****> $data->name added a link to the linkbin [$link]" );
 	adm_action_edit_linkbin();
 }
 function adm_action_f_modify_link() {
@@ -49,8 +49,8 @@ function adm_action_f_modify_link() {
 	if( $deletelink=="delete_go" ) {
 
 		$l=mfo1( "select * from link_bin where `id`='$linkid'" );
-		sc_query( "DELETE FROM link_bin where `id` = '$linkid' limit 1", $mysql );
-		sc_log( "*****> $data->name deleted a link from the linkbin $l->short_name $l->link" );
+		lib_mysql_query( "DELETE FROM link_bin where `id` = '$linkid' limit 1", $mysql );
+		lib_log_add_entry( "*****> $data->name deleted a link from the linkbin $l->short_name $l->link" );
 
 		sc_info( "$l->link deleted from the link bin","white","red" );
 
@@ -62,9 +62,9 @@ function adm_action_f_modify_link() {
 		$linkurl=addslashes( $linkurl );
 		$description=addslashes( $description );
 		$category=addslashes( $category );
-		sc_query( "update link_bin set `sname` = '$short_name' where `id` = '$linkid'" );
-		sc_query( "update link_bin set `link` = '$linkurl' where `id` = '$linkid'" );
-		sc_query( "update link_bin set `description` = '$description' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `sname` = '$short_name' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `link` = '$linkurl' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `description` = '$description' where `id` = '$linkid'" );
 		$hide=0;
 		if( $hidden=="yes" ) {
 			$hide=1;
@@ -72,20 +72,20 @@ function adm_action_f_modify_link() {
 		if( $hidden=="no" )  {
 			$hide=0;
 		}
-		sc_query( "update link_bin set `friend` = '$friend' where `id` = '$linkid'");
-		sc_query( "update link_bin set `hidden` = '$hide' where `id` = '$linkid'" );
-		sc_query( "update link_bin set `referral` = '$referral' where `id` = '$linkid'" );
-		sc_query( "update link_bin set `referrals` = '$referrals' where `id` = '$linkid'" );
-		sc_query( "update link_bin set `clicks` = '$clicks' where `id` = '$linkid'" );
-		sc_query( "update link_bin set `category` = '$category' where `id` = '$linkid'" );
-		sc_query( "update link_bin set `rating` = '$rating' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `friend` = '$friend' where `id` = '$linkid'");
+		lib_mysql_query( "update link_bin set `hidden` = '$hide' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `referral` = '$referral' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `referrals` = '$referrals' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `clicks` = '$clicks' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `category` = '$category' where `id` = '$linkid'" );
+		lib_mysql_query( "update link_bin set `rating` = '$rating' where `id` = '$linkid'" );
 		adm_action_edit_linkbin();
 	}
 }
 function adm_action_edit_linkbin() {
 	eval( scg() );
 	echo "<h3>Link Bin Editor</h3>\n";
-	$result=sc_query( "select * from link_bin order by time desc" );
+	$result=lib_mysql_query( "select * from link_bin order by time desc" );
 	$numlinks=mysql_num_rows( $result );
 	echo "<table width=100% border=0 cellspacing=0 cellpadding=4 align=center>\n";
 	$gt=2;
@@ -94,7 +94,7 @@ function adm_action_edit_linkbin() {
 		if( $gt>2 )$gt=1;
 		echo "<tr><td class=sc_project_table_$gt><br>\n";
 		$link=mysql_fetch_object( $result );
-		$userdata=sc_getuserdata( $link->poster );
+		$userdata=lib_users_get_data( $link->poster );
 		echo "<table border=0 cellspacing=0 cellpadding=0 width=100% >\n";
 		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"f_modify_link\">\n";
@@ -121,7 +121,7 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 		echo "<select name=category>\n";
 		echo "<option>$link->category\n";
 
-		$result2=sc_query( "select * from `categories` order by name asc" );
+		$result2=lib_mysql_query( "select * from `categories` order by name asc" );
 		$numcats=mysql_num_rows( $result2 );
 		for( $i2=0; $i2<$numcats; $i2++ ) {
 			$cat=mysql_fetch_object( $result2 );
@@ -172,7 +172,7 @@ echo "<td class=sc_project_table_$gt>Category</td>";
 
 	echo "<h2>Add Link</h2>\n";
 
-	sc_bf(  "$RFS_SITE_URL/admin/adm.php", "action=f_add_link",
+	lib_mysql_build_form(  "$RFS_SITE_URL/admin/adm.php", "action=f_add_link",
             "link_bin", "", "id",
             "sname".$RFS_SITE_DELIMITER."link".$RFS_SITE_DELIMITER."description",
             "include", "category",

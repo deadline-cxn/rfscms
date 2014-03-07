@@ -13,7 +13,7 @@ if(empty($RFSW_LINK_IMAGE))
 if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = getcwd();
 if(!empty($rfsw_header)) include($rfsw_header);
 $rfsw_admin_mode="false";
-if(sc_access_check("wiki","admin"))
+if(lib_access_check("wiki","admin"))
 	$rfsw_admin_mode="true";
 ///////////////////////////////////////////////////////////////////////////////
 // DO NOT MODIFY BELOW THIS LINE
@@ -58,7 +58,7 @@ if($action=="history") {
 	echo "<hr>";
 	echo "$name history: <br>";
 	echo "<hr>";
-	$r=sc_query("select * from wiki where name='$name'");
+	$r=lib_mysql_query("select * from wiki where name='$name'");
 	for($i=0;$i<mysql_num_rows($r);$i++){
 		echo "<div class=\"forum_box\">";
 		$wpage=mysql_fetch_object($r);
@@ -76,14 +76,14 @@ echo "<div class=\"wikitext\">";
 //////////////////////////////////////////////////////////////////////////////
 // backtrace this link
 if($action=="editname") {
-    sc_query("update wiki set name='$nname' where name='$name'");
+    lib_mysql_query("update wiki set name='$nname' where name='$name'");
    	$res = rfs_query(" 	select * from wiki where `text` like '%[$name]%' or `text` like '%,$name]%' order by name asc" ); 
     $npg=@mysql_num_rows($res);    
     for($ni=0;$ni<$npg;$ni++) {
         $pg=mysql_fetch_object($res);
     $pg->text=str_ireplace("[$name]","[$nname]",$pg->text);
     $pg->text=str_ireplace("\@$name,","\@$nname,",$pg->text);
-        sc_query("update wiki set text='$pg->text' where name='$pg->name'");
+        lib_mysql_query("update wiki set text='$pg->text' where name='$pg->name'");
     }
     echo "Name is changed, and links have been updated throughout $npg wiki pages.<br>";
     $action="edit"; $name=$nname;
@@ -91,7 +91,7 @@ if($action=="editname") {
 if($action!="edit") {
 
 } else {
-	if(sc_access_check("wiki","edit")) {
+	if(lib_access_check("wiki","edit")) {
 
 	echo  "<form action='$RFS_SITE_URL/modules/wiki/rfswiki.php' method='post'>
 			<input type=hidden name=action value=editname>
@@ -187,7 +187,7 @@ if($GLOBALS['rfsw_admin_mode']=="true"){
 
     if($action=="editgo")    {
         $time=date("Y-m-d H:i:s");
-        $res=sc_query("select * from wiki where name='$name'");
+        $res=lib_mysql_query("select * from wiki where name='$name'");
 		$tpage=mysql_fetch_object($res);
 		$wikipage=mfo1("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 		$revision=$wikipage->revision+1;
@@ -272,14 +272,14 @@ if($hide_wiki_menu!="true"){
     if( ($name=="Home") || ($name=="Contents")  || ($name=="contents") ){
         if($name=="Home")    {
             if($GLOBALS['rfsw_admin_mode']=="true")        {
-				if(sc_access_check("wiki","admin"))
+				if(lib_access_check("wiki","admin"))
                 echo "[<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$name&id=$id\">edit this page</a>]";
             }
         }
     } else {
         $name=urlencode($name);
         if($GLOBALS['rfsw_admin_mode']=="true")    {
-			if(sc_access_check("wiki","admin")) {
+			if(lib_access_check("wiki","admin")) {
             echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$name&id=$id>edit this page</a>]";
             echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=deletepage&name=$name&id=$id>delete this page</a>]";
 			}

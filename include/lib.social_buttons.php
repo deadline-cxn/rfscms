@@ -5,17 +5,17 @@
 function sc_twitter_url($t) { eval(scg());
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
-	return preg_replace("/\s\@(\w+)/"," <a href=\"http://www.twitter.com/$1\" target=_blank>@$1 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
+	return preg_replace("/\s\@(\w+)/"," <a href=\"http://www.twitter.com/$2\" target=_blank>@$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_email_url($t) { eval(scg());
-	return preg_replace( "/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/","<a href=\"mailto:$1@$2.$3\">$1@$2.$3</a>",$t);
+	return preg_replace( "/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/","<a href=\"mailto:$2@$2.$3\">$2@$2.$3</a>",$t);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_inline_url($t){ eval(scg());
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
-	 return preg_replace(	"/\s(http|https|ftp)\:\/\/(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])|([a-zA-Z0-9_\-\.])+\.(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum|uk|me))((:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~])*)\s/",	" <a href=\"$1://$2\" target=_blank>$1://$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ",	$t);
+	 return preg_replace(	"/\s(http|https|ftp)\:\/\/(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])|([a-zA-Z0-9_\-\.])+\.(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum|uk|me))((:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~])*)\s/",	" <a href=\"$2://$2\" target=_blank>$2://$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ",	$t);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_stumble_upon($url) {
@@ -127,7 +127,7 @@ function sc_google_adsense_2(){ eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_adsense($x){
-	if(stristr(sc_phpself(),"adm.php")) return;
+	if(stristr(lib_domain_phpself(),"adm.php")) return;
 	global $RFS_SITE_GOOGLE_ADSENSE;
 	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
 		lib_div("GOOGLE ADSENSE");
@@ -286,7 +286,7 @@ function sc_facebook_like_little($url){
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_facebook_like2(){
-	echo "<iframe src='https://www.facebook.com/plugins/like.php?href=".sc_canonical_url()."'
+	echo "<iframe src='https://www.facebook.com/plugins/like.php?href=".lib_domain_canonical_url()."'
 			scrolling='no' frameborder='0' style='border:none; height:25px '>";
 	echo "</iframe> ";
 }
@@ -314,7 +314,7 @@ function sc_facebook_login() { echo sc_facebook_login_r(); }
 function sc_facebook_login_r() {
 	if(!empty($GLOBALS['RFS_SITE_FACEBOOK_APP_ID'])) {
 		if(!empty($GLOBALS['RFS_SITE_FACEBOOK_SECRET'])) {
-			$page=urlencode(sc_canonical_url());
+			$page=urlencode(lib_domain_canonical_url());
 			$r="<a href=\"$RFS_SITE_URL/facebook/fb.login.php?goback=1";
 			if(!empty($page)) 
 				$r.="&retpage=$page";

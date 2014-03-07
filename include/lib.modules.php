@@ -3,13 +3,11 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
-/////////////////////////////////////////////////////////////////////////////////////////
-// GET MODULES
-function sc_get_modules_array() {
+function lib_modules_get_array() {
 	eval(scg());
 	$dr="$RFS_SITE_PATH/modules";
 	$modules=array();
-    $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - sc_get_modules() -> [$dr]");
+    $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
 	while(false!==($entry = readdir($d))) {
         if( ($entry == '.') || ($entry == '..') ) { }
         else {
@@ -23,36 +21,26 @@ function sc_get_modules_array() {
 	reset($modules);
 	return $modules;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_module_register($x) { eval(scg());
+function lib_modules_register($x) { eval(scg());
 	global $RFS_MODULE;
 	@$RFS_MODULE[$x]=true;
-	// sc_menus_register()
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_module_installed($x) { eval(scg());
+function lib_modules_installed($x) { eval(scg());
 	global $RFS_MODULE;
 	return $RFS_MODULE[$x];
 }
-
-function sc_show_registered_modules() {
+function lib_modules_show_registered() {
 	echo "<h1>Modules Installed</h1><hr>";
 	global $RFS_MODULE;
 	asort($RFS_MODULE);
 	foreach($RFS_MODULE as $k => $v) {
 		echo "$k <br>";
-	
 	}
-	
 }
-	
-
-
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_get_modules() { eval(scg());
+function lib_modules_array() { eval(scg());
 	$dr="$RFS_SITE_PATH/modules";
 	$modules=array();
-    $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - sc_get_modules() -> [$dr]");
+    $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
 	while(false!==($entry = readdir($d))) {
         if( ($entry == '.') || ($entry == '..') ) { }
         else {
@@ -69,11 +57,9 @@ function sc_get_modules() { eval(scg());
 	reset($modules);
 	return $modules;
 }
-//////////////////////////////////////////////////////////////////////////////////
-// MODULE DRAW		  
-function sc_draw_module($location) {
-	if(stristr(sc_canonical_url(),"admin/adm.php")) return;
-	$r=sc_query("select * from arrangement where location='$location' order by sequence");
+function lib_modules_draw($location) {
+	if(stristr(lib_domain_canonical_url(),"admin/adm.php")) return;
+	$r=lib_mysql_query("select * from arrangement where location='$location' order by sequence");
 	if($r) {
 		$n=mysql_num_rows($r);
 		for($i=0;$i<$n;$i++) {
@@ -85,5 +71,4 @@ function sc_draw_module($location) {
 		}
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 ?>

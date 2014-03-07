@@ -1,10 +1,10 @@
 <?
 include_once("include/lib.all.php");
 
-sc_menus_register("Private Messages","$RFS_SITE_URL/modules/messages/messages.php");
+lib_menus_register("Private Messages","$RFS_SITE_URL/modules/messages/messages.php");
 
 function adm_action_lib_messages_messages() { eval(scg());
-    sc_gotopage("$RFS_SITE_URL/modules/messages/messages.php");
+    lib_domain_gotopage("$RFS_SITE_URL/modules/messages/messages.php");
 }
 
 function get_unread_messages() { eval(scg());
@@ -18,7 +18,7 @@ function get_unread_messages() { eval(scg());
     $q.= "`to`='null' )";
     $q.= " and  `read` = 'no'";
 
-    $urresult=sc_query($q);
+    $urresult=lib_mysql_query($q);
     $numunread=mysql_num_rows($urresult);
     if(empty($numunread)) $numunread=0;
     return $numunread;
@@ -28,13 +28,13 @@ function send_message($to,$from,$subject,$message) {
    $mtime=date("Y-m-d H:i:s");
    $subject=addslashes($subject);
    $message=addslashes($message);
-	sc_query("  insert into `pmsg` (`to`, `from`,`subject`, `message`,   `time`, `read`)
+	lib_mysql_query("  insert into `pmsg` (`to`, `from`,`subject`, `message`,   `time`, `read`)
                            VALUES ('$to','$from','$subject','$message', '$mtime', 'no');");
 	echo "<p>Message to $to sent!</p>";
 }
 
 function send_all($from,$subject,$message) {
-    $r=sc_query("select * from users");
+    $r=lib_mysql_query("select * from users");
     $n=mysql_num_rows($r);
     for($i=0;$i<$n;$i++) {
         $u=mysql_fetch_object($r);
@@ -102,7 +102,7 @@ function sc_module_mini_latest_messages($x) { eval(scg());
 
     echo "<table border=0 cellspacing=0>";
 
-    $result = sc_query("select * from pmsg where 'to' = '$data->name' ");
+    $result = lib_mysql_query("select * from pmsg where 'to' = '$data->name' ");
     if($result) $numposts=mysql_num_rows($result);
     else $numposts=0;
     if($numposts) {

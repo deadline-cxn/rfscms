@@ -10,7 +10,7 @@ function linkbin_showaddform()
     echo "<tr><td align=right>Link Short Name:</td><td><input name=short_name size=40></td></tr>\n";
     echo "<tr><td align=right>Description:    </td><td><textarea name=description rows=10 cols=70></textarea></td></tr>\n";
     echo "<tr><td align=right>Category:</td><td><select name=category>\n";
-    $result=sc_query("select * from link_bin_categories");
+    $result=lib_mysql_query("select * from link_bin_categories");
     $numcats=mysql_num_rows($result);
     for($i=0;$i<$numcats;$i++)
     {
@@ -37,7 +37,7 @@ if($action=="addlinkgo")
     $short_name=addslashes($short_name);
     $time=date("Y-m-d H:i:s");
     if($data->id==0) $data->id=999;
-    sc_query("insert into `link_bin` values('','$linkurl','$data->id','$time','$short_name','0','0','$description','0','3','')");
+    lib_mysql_query("insert into `link_bin` values('','$linkurl','$data->id','$time','$short_name','0','0','$description','0','3','')");
     addsp($data->name,10);
     addlinks($data->name,1);
     echo "<p>Link [$short_name][$linkurl] added to linkbin...</p>\n";
@@ -49,8 +49,8 @@ if($action=="modifylinknow")
 	if($deletelink=="delete")
     {
         echo "<p><h1>Deleting Link!</h1></p>\n";
-        sc_query("DELETE FROM link_bin where `id` = '$linkid' limit 1", $mysql);
-        //sc_log("*****> $data->name deleted a link from the linkbin $short_name $link");
+        lib_mysql_query("DELETE FROM link_bin where `id` = '$linkid' limit 1", $mysql);
+        //lib_log_add_entry("*****> $data->name deleted a link from the linkbin $short_name $link");
         $action="editlinkbin";
     }
     if($renamelink=="modify")
@@ -60,15 +60,15 @@ if($action=="modifylinknow")
         $linkurl=addslashes($linkurl);
         $description=addslashes($description);
         $category=addslashes($category);
-    	sc_query("update link_bin set `sname` = '$short_name' where `id` = '$linkid'");
-    	sc_query("update link_bin set `link` = '$linkurl' where `id` = '$linkid'");
-    	sc_query("update link_bin set `description` = '$description' where `id` = '$linkid'");
+    	lib_mysql_query("update link_bin set `sname` = '$short_name' where `id` = '$linkid'");
+    	lib_mysql_query("update link_bin set `link` = '$linkurl' where `id` = '$linkid'");
+    	lib_mysql_query("update link_bin set `description` = '$description' where `id` = '$linkid'");
     	$hide=0; if($hidden=="yes") { $hide=1; } if($hidden=="no")  { $hide=0; }
-    	sc_query("update link_bin set `hidden` = '$hide' where `id` = '$linkid'");
-    	sc_query("update link_bin set `referrals` = '$referrals' where `id` = '$linkid'");
-    	sc_query("update link_bin set `clicks` = '$clicks' where `id` = '$linkid'");
-    	sc_query("update link_bin set `category` = '$category' where `id` = '$linkid'");
-    	sc_query("update link_bin set `rating` = '$rating' where `id` = '$linkid'");
+    	lib_mysql_query("update link_bin set `hidden` = '$hide' where `id` = '$linkid'");
+    	lib_mysql_query("update link_bin set `referrals` = '$referrals' where `id` = '$linkid'");
+    	lib_mysql_query("update link_bin set `clicks` = '$clicks' where `id` = '$linkid'");
+    	lib_mysql_query("update link_bin set `category` = '$category' where `id` = '$linkid'");
+    	lib_mysql_query("update link_bin set `rating` = '$rating' where `id` = '$linkid'");
         $action="editlinkbin";
     }
 
@@ -77,15 +77,15 @@ if($action=="addlink2bin")
 {
     echo "<h1>Dump a Link in the Bin!</h1>\n";
     $time=date("Y-m-d H:i:s");
-    sc_query("INSERT INTO link_bin VALUES ('', '$linkurl', '".$data->id."', '".$time."', '".$_REQUEST['linksn']."', '', '' ,'','3');");
-    sc_log("*****> $data->name added a link to the linkbin [".$_REQUEST['linksn']."]");
+    lib_mysql_query("INSERT INTO link_bin VALUES ('', '$linkurl', '".$data->id."', '".$time."', '".$_REQUEST['linksn']."', '', '' ,'','3');");
+    lib_log_add_entry("*****> $data->name added a link to the linkbin [".$_REQUEST['linksn']."]");
     $action="linkbin";
 }
 if($action=="editlinkbin")
 {
     echo "<p><h1>Link Bin Edirator</h1></p>\n";
     // list all the links here with edit or delete buttons...
-    $result=sc_query("select * from link_bin order by time desc");
+    $result=lib_mysql_query("select * from link_bin order by time desc");
     $numlinks=mysql_num_rows($result);
     echo "<table width=100% border=0 cellspacing=0 cellpadding=0 align=center>\n";
 
@@ -96,7 +96,7 @@ if($action=="editlinkbin")
             echo "<tr><td bgcolor=$forum_color[$gt]>\n";
 
             $link=mysql_fetch_object($result);
-            $userdata=sc_getuserdata($link->poster);
+            $userdata=lib_users_get_data($link->poster);
 
             echo "<table border=0 cellspacing=0 cellpadding=0 width=100% bgcolor=$forum_color[$gt]>\n";
             echo "<form enctype=application/x-www-form-URLencoded action=linkbin.php method=\"post\">\n";
@@ -116,7 +116,7 @@ if($action=="editlinkbin")
                 echo "<select name=category>\n";
                 echo "<option>$link->category\n";
                 
-                $result2=sc_query("select * from categories order by name asc");
+                $result2=lib_mysql_query("select * from categories order by name asc");
                 $numcats=mysql_num_rows($result2);
                 for($i2=0;$i2<$numcats;$i2++)
                 {
@@ -155,7 +155,7 @@ if($action=="editlinkbin")
 
 
 
-$result=sc_query("select * from link_bin order by time desc");
+$result=lib_mysql_query("select * from link_bin order by time desc");
 $numlinks=mysql_num_rows($result);
 echo "<table width=100% cellspacing=0 cellpadding=0 border=0>\n";
 $gt=4;
@@ -163,7 +163,7 @@ for($u=0;$u<$numlinks;$u++)
 {
     $gt++; if($gt>5) $gt=4;
     $link=mysql_fetch_object($result);
-    $userdata=sc_getuserdata($link->poster);
+    $userdata=lib_users_get_data($link->poster);
     list($lmonth,$lday,$lyear,$ltime,$lampm) = explode(" ",sc_time($link->time));
     if($lmonth!=$lastmonth)
     {

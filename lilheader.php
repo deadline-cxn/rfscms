@@ -35,7 +35,7 @@ else {
 	rfs_echo($RFS_SITE_TITLE);
 	if(file_exists("$RFS_SITE_PATH/themes/$theme/t.css"))
 		echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
-	echo "<link rel=\"canonical\" href=\"".sc_canonical_url()."\" />";
+	echo "<link rel=\"canonical\" href=\"".lib_domain_canonical_url()."\" />";
 	rfs_echo($RFS_SITE_HEAD_CLOSE);	
 	rfs_echo($RFS_SITE_BODY_OPEN);	
 
@@ -48,7 +48,7 @@ else {
 		//echo "<td class=sc_top_menu_table_td>";
 		// echo "$RFS_SITE_NAME";
 		// echo "</td>";
-			sc_menu_draw($RFS_THEME_TOP_MENU_LOCATION);
+			lib_menus_draw($RFS_THEME_TOP_MENU_LOCATION);
 		echo "<td class=sc_top_menu_table_td>";
 		// echo " : ";
 		echo "</td>";
@@ -92,7 +92,7 @@ rfs_echo($RFS_SITE_JS_JQUERY);
 rfs_echo($RFS_SITE_JS_COLOR);
 rfs_echo($RFS_SITE_JS_EDITAREA);
 
-//if(!stristr(sc_canonical_url(),"/net.php")) rfs_echo($RFS_SITE_JS_MSDROPDOWN);
+//if(!stristr(lib_domain_canonical_url(),"/net.php")) rfs_echo($RFS_SITE_JS_MSDROPDOWN);
 
 //////////////////////////////////////////////
 // google analytics

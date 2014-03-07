@@ -31,9 +31,9 @@
  echo "<a href=\"$RFS_SITE_URL\" rel=\"home\">"; 
  
  if ($RFS_THEME_TTF_TOP)  {
-			$clr 	= sc_html2rgb($RFS_THEME_TTF_TOP_COLOR);
-           $bclr	= sc_html2rgb($RFS_THEME_TTF_TOP_BGCOLOR);
-			echo sc_image_text(
+			$clr 	= lib_images_html2rgb($RFS_THEME_TTF_TOP_COLOR);
+           $bclr	= lib_images_html2rgb($RFS_THEME_TTF_TOP_BGCOLOR);
+			echo lib_images_text(
 						$RFS_SITE_NAME,
 						$RFS_THEME_TTF_TOP_FONT,						
 						$RFS_THEME_TTF_TOP_FONT_SIZE,
@@ -56,7 +56,7 @@
  
  <div id="headmenu">
  <?
-$res=sc_query("select * from `menu_top` order by `sort_order` asc");
+$res=lib_mysql_query("select * from `menu_top` order by `sort_order` asc");
 for($i=0;$i<mysql_num_rows($res);$i++) {
 	$link=mysql_fetch_object($res);
 	$link->link=urldecode($link->link);

@@ -2,31 +2,20 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-
-// Switch to little header
-if(isset($RFS_LITTLE_HEADER)) { if($RFS_LITTLE_HEADER==true) { include("lilheader.php"); return; } }
-
-// check for config.php file
+if(isset($RFS_LITTLE_HEADER)) { if($RFS_LITTLE_HEADER==true) { include("lilheader.php"); exit(); } }
 if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
-
-// include all libraries (this will not output any text)
 include_once("include/lib.all.php");
-
-// check for site name definition
 if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
-
-// Housekeeping
 sc_maintenance();
-
-// Display debug info 
 lib_debug_header(0);
-
 // Divert ajax requests
 if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
 	include("include/lib.all.php");
 	eval("$action();");
 	exit();
 }
+
+lib_log_count();
 
 // include theme definition file (if it exists)
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
@@ -46,7 +35,7 @@ else {
 	rfs_echo($RFS_SITE_TITLE);
 	if(file_exists("$RFS_SITE_PATH/themes/$theme/t.css"))
 		echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
-	echo "<link rel=\"canonical\" href=\"".sc_canonical_url()."\" />";
+	echo "<link rel=\"canonical\" href=\"".lib_domain_canonical_url()."\" />";
 	rfs_echo($RFS_SITE_HEAD_CLOSE);	
 	rfs_echo($RFS_SITE_BODY_OPEN);	
 	
@@ -55,9 +44,9 @@ else {
 		echo "<table border=0 width=100% cellspacing=0 cellpadding=0 class=\"toptexttd\">";
 		echo "<tr><td class=toptd align=left >";
 		if ($RFS_THEME_TTF_TOP)  {
-			$clr 	= sc_html2rgb($RFS_THEME_TTF_TOP_COLOR);
-           $bclr	= sc_html2rgb($RFS_THEME_TTF_TOP_BGCOLOR);
-			echo sc_image_text(
+			$clr 	= lib_images_html2rgb($RFS_THEME_TTF_TOP_COLOR);
+           $bclr	= lib_images_html2rgb($RFS_THEME_TTF_TOP_BGCOLOR);
+			echo lib_images_text(
 						$RFS_SITE_NAME,
 						$RFS_THEME_TTF_TOP_FONT,						
 						$RFS_THEME_TTF_TOP_FONT_SIZE,
@@ -112,7 +101,7 @@ else {
 		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
 		echo "<tr class=sc_top_menu_table_td>";
 		             
-		sc_menu_draw($RFS_THEME_MENU_TOP_LOCATION); 
+		lib_menus_draw($RFS_THEME_MENU_TOP_LOCATION); 
 		//echo "<td align=right class=sc_top_menu_table_td>";
 		echo "<td class=sc_top_menu_table_inner class=contenttd>";
 		sc_theme_form();		
@@ -134,7 +123,7 @@ else {
 		
 		echo "<table border=0 cellpadding=0 cellspacing=0 width=100%><tr>";
 		echo "<td class=lefttd valign=top>";
-    	sc_draw_module("left");
+    	lib_modules_draw("left");
 		echo "</td>";		
 		echo "<td valign=top class=midtd>";
 		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_left_corner.gif"))    {
@@ -144,8 +133,6 @@ else {
 	} else {
 	}
 }
-//////////////////////////////////////////////
-// Load javascripts
 
 sc_ajax_javascript();
 sc_javascript();
@@ -154,20 +141,10 @@ rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
 rfs_echo($RFS_SITE_JS_JQUERY);
 rfs_echo($RFS_SITE_JS_COLOR);
 rfs_echo($RFS_SITE_JS_EDITAREA);
-
-if(!stristr(sc_canonical_url(),"/net.php"))
 rfs_echo($RFS_SITE_JS_MSDROPDOWN);
 
-//////////////////////////////////////////////
-// google analytics
 sc_google_analytics();
-//////////////////////////////////////////////
-// count the page
 sc_mcount($data->name);
-//////////////////////////////////////////////
-// system messages
 sc_system_message();
-//////////////////////////////////////////////
-// do action
 sc_do_action();
 ?>

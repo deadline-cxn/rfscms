@@ -4,53 +4,39 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_getfiletype($filen){
+function lib_file_getfiletype($filen){
 	$finfo=pathinfo($filen);
 	return strtolower( $finfo['extension']	);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_process_upload(
-$filedata,		// from the form
-$chmod,		// chmod the file to this value
-$filepath,		// path to folder where to save this file
-$pre,$suf,		// alter name of saved file (ie; $pre="_username."; $suf=".bak";
-$table,$key	// insert file location (as text) to this table/key
-) { eval(scg());
-
-		echo "<p> Upload file</p>\n";
-		
+function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$key) { eval(scg());
+		echo "<p> Upload file</p>\n";		
 		$fx=$_FILES[$filedata];
-
 		$uploadFile=$filepath."/".$pre.$fx['name'].$suf;
 		$uploadFile =str_replace("//","/",$uploadFile);
-		if(!stristr($uploadFile,$RFS_SITE_PATH)) $uploadFile=$RFS_SITE_PATH.$uploadFile;
-		
+		if(!stristr($uploadFile,$RFS_SITE_PATH)) $uploadFile=$RFS_SITE_PATH.$uploadFile;		
 		if(move_uploaded_file($fx['tmp_name'], $uploadFile)) {
-			system("chmod $chmod $uploadFile");
-			
+			system("chmod $chmod $uploadFile");			
 			$error="File is valid, and was successfully uploaded. ";
 			echo "<P>You sent: ".$fx['name'].", a ".$fx['size']." byte file with a mime type of ";
 			echo $fx['type']."</p>\n";
 			echo "<p>It was stored as [$httppath"."/".$fx['name']."]</p>\n";
-			/*
-			if($fu_hidden=="no") {
+		/* if($fu_hidden=="no") {
 				$httppath=$httppath."/".$fx['name'];					
 				$finfo=pathinfo($uploadFile);
 				$filetype=strtolower($finfo['extension']);
-				// if(empty($fu_name)) $fu_name=$fx['name'];				// $fu_name=addslashes($fu_name);				// $time1=date("Y-m-d H:i:s");				sc_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)											VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");$id=mysql_insert_id();echo "DATABASE ID[$id]<br>";
+				// if(empty($fu_name)) $fu_name=$fx['name'];				// $fu_name=addslashes($fu_name);				// $time1=date("Y-m-d H:i:s");				lib_mysql_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)											VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");$id=mysql_insert_id();echo "DATABASE ID[$id]<br>";
 				echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$id\">View file information</a><br>";
 				$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
-				sc_query("UPDATE files SET location	='$httppath' 		where id='$id'");								
+				lib_mysql_query("UPDATE files SET location	='$httppath' 		where id='$id'");								
 				$fu_desc=addslashes($fu_desc);
-				sc_query("UPDATE files SET description	='$fu_desc'	 	where id='$id'");	
+				lib_mysql_query("UPDATE files SET description	='$fu_desc'	 	where id='$id'");	
 				$filesizebytes=$fx['size'];
-				sc_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");					
+				lib_mysql_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");					
 				$extra_sp=$fx['size']/10240;
 				$data->files_uploaded=$data->files_uploaded+1;
-				sc_query("update users set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
-				}
-				*/
-				
+				lib_mysql_query("update users set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
+				} */
 			return $uploadFile;
 		}
 		else {
@@ -68,12 +54,11 @@ $table,$key	// insert file location (as text) to this table/key
 		}
 		if(!$error) {
 			$error .= "No files have been selected for upload";
-		}
-		
+		}		
 	return false;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_sizefile($bytesize) {
+function lib_file_sizefile($bytesize) {
     $size = $bytesize." bytes";	
     if($bytesize>1024)       		$size = (round($bytesize/1024,2))."kB"; 				// kilobyte 2^10
     if($bytesize>1048576)    		$size = (round($bytesize/1048576,2))."MB";			// megabyte 2^20
@@ -86,7 +71,7 @@ function sc_sizefile($bytesize) {
     return $size;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_folder_to_array($folder) {
+function lib_file_folder_to_array($folder) {
 	$dirfiles = array();
 	$handle=opendir($folder);
 	if(!$handle) return 0;
@@ -106,7 +91,7 @@ function sc_folder_to_array($folder) {
 	return $dirfiles;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_get_folder_files($folder){
+function lib_file_get_folder_files($folder){
     $dirfiles = array();
     $handle=opendir($folder);
     if(!$handle) return 0;
@@ -118,25 +103,22 @@ function sc_get_folder_files($folder){
     return $dirfiles;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_multi_rename($folder,$old_pattern,$new_pattern) {
-	$dirfiles=sc_get_folder_files($folder);
+function lib_file_multi_rename($folder,$old_pattern,$new_pattern) {
+	$dirfiles=lib_file_get_folder_files($folder);
     while(list ($key, $file) = each ($dirfiles)) {
         if($file!=".") {
             if($file!="..") {
                 if(is_dir($file)){ }
                 else {
                     $nfile=str_replace($old_pattern,$new_pattern,$file);
-						// echo getcwd()." OLD[$folder/$file] NEW[$folder/$nfile]<BR>";
-						system("mv $folder/$file $folder/$nfile");
-
+					system("mv $folder/$file $folder/$nfile");
                 }
             }
         }
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-// Echo file
-function sc_echo_file($file) { eval(scg()); 
+function lib_file_echo_file($file) { eval(scg()); 
 	if(file_exists($file)) {
 		echo "Filename: $file\n";
 		$f=file_get_contents($file);
@@ -145,41 +127,31 @@ function sc_echo_file($file) { eval(scg());
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_file_get_readme($file_name) { eval (scg());
-	
+function lib_file_file_get_readme($file_name) { eval (scg());
 	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
 	system("yes| rm -R $RFS_SITE_PATH/tmp/.*");
-	
 	system("cd $RFS_SITE_PATH/tmp");
-	
 	exec("yes| 7z e -o/var/www/tmp '$file_name'");
-		
 	system("renlow $RFS_SITE_PATH/tmp");
-	$dirfiles=sc_get_folder_files("$RFS_SITE_PATH/tmp");
-	
+	$dirfiles=lib_file_get_folder_files("$RFS_SITE_PATH/tmp");
 	while(list ($key, $file) = each ($dirfiles)) {
-		
 		// TODO: Add customizable filetype results
-		
 		if(substr($file,0,1)!=".") {
 			if(stristr($file,".ico")) {
 				echo system("icontopbm -x $RFS_SITE_URL/tmp/$file");
 				echo "$file<br>";
 				echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
-				
 			}
 		}
-			
 		if(substr($file,0,1)!=".") {
 			if((stristr($file,".png")) ||
 				(stristr($file,".jpg")) ||
 				(stristr($file,".bmp")) ||
-				
 				(stristr($file,".jpeg")) ||
 				(stristr($file,".gif")) )  { 
-					echo "$file<br>";
-					echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
-				}
+				echo "$file<br>";
+				echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
+			}
 		}
 	}
 
@@ -208,7 +180,7 @@ function sc_file_get_readme($file_name) { eval (scg());
 					(!stristr($file,".chm")) &&
 					(!stristr($file,".class"))
 				) {
-				$x=sc_echo_file("$RFS_SITE_PATH/tmp/$file");
+				$x=lib_file_echo_file("$RFS_SITE_PATH/tmp/$file");
 				echo $x;
 				echo "<hr>";
 				
@@ -217,7 +189,7 @@ function sc_file_get_readme($file_name) { eval (scg());
 					$x=addslashes($x);
 					$cf=mfo1("select * from files where location='$db_file'");
 					if(empty($cf->description)) {
-						sc_query("update files set description=\"$x\" where location='$db_file'");
+						lib_mysql_query("update files set description=\"$x\" where location='$db_file'");
 					}
 				}				
 			}
@@ -225,7 +197,7 @@ function sc_file_get_readme($file_name) { eval (scg());
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_touch_dir($dir) { eval(scg());
+function lib_file_touch_dir($dir) { eval(scg());
 	if(!file_exists($dir)) {
 		system("$RFS_SITE_SUDO_CMD mkdir $dir");
 		system("$RFS_SITE_SUDO_CMD chmod 775 $dir");

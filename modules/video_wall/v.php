@@ -2,7 +2,7 @@
 chdir("../../");
 include("include/lib.all.php");
 
-$data=sc_getuserdata($_SESSION['valid_user']);
+$data=lib_users_get_data($_SESSION['valid_user']);
 $count=sc_mcount($data->name);
 
 if($debug=="on") $_SESSION['debug_msgs']=true;
@@ -24,7 +24,7 @@ if(!empty($across)) { $_SESSION['cols']=$across; $across=''; save_vw(); }
 if(!empty($down))   { $_SESSION['rows']=$down;   $down='';   save_vw(); }
 
 function save_vw(){
-	$data=sc_getuserdata($_SESSION['valid_user']);
+	$data=lib_users_get_data($_SESSION['valid_user']);
 	$vw =$_SESSION['cols']."|";
 	$vw.=$_SESSION['rows']."|";
 	$vw.=$_SESSION['wi']."|";
@@ -36,7 +36,7 @@ function save_vw(){
 				
 			}
 		}
-		sc_query_user_db("update users set videowall = '$vw' where id='$data->id'");
+		lib_mysql_query_user_db("update users set videowall = '$vw' where id='$data->id'");
 	}
 }
 
@@ -65,7 +65,7 @@ function load_vw($data){
 
 if( (empty($_SESSION['darr'])) ||
 	($action=="resetmatrix") )	{
-	$rr=sc_query("select * from videos where category = '$cat' order by id asc");
+	$rr=lib_mysql_query("select * from videos where category = '$cat' order by id asc");
 	for($darx=0;$darx<10;$darx++){
 		for($dary=0;$dary<10;$dary++){
 			$vs=mysql_fetch_object($rr);
@@ -122,11 +122,11 @@ if( (empty($_SESSION['darr'])) ||
 	echo "<center>";
 
 if($action=="fixall") {
-	$r=sc_query("select * from videos where category='87'");
+	$r=lib_mysql_query("select * from videos where category='87'");
 	for($i=0;$i<mysql_num_rows($r);$i++){
 		$video=mysql_fetch_object($r);
 		$video->sname=str_replace("(BROKEN)","",$video->sname);
-		sc_query("update videos set sname='$video->sname' where id='$video->id'");
+		lib_mysql_query("update videos set sname='$video->sname' where id='$video->id'");
 	}
 }
 if($action=="report"){
@@ -157,7 +157,7 @@ if($action=="report_go"){
 	mailgo($email,$message,$subject);
 	$video->sname=str_replace("(BROKEN)","",$video->sname);
 	$video->sname.="(BROKEN)";
-	sc_query("update videos set sname='$video->sname' where id='$video->id'");
+	lib_mysql_query("update videos set sname='$video->sname' where id='$video->id'");
 	sc_info("Thank you for reporting the video $video->sname.","black","red");
 }
 
@@ -176,7 +176,7 @@ if($act=="chg") {
 }
 
 if($action=="rmconfirmed"){
-	sc_query("update videos set category=88 where id='$id' limit 1");
+	lib_mysql_query("update videos set category=88 where id='$id' limit 1");
 		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
 		REMOVED $id
 		</td></tr></table>";
@@ -204,8 +204,8 @@ if($action=="edgo") {
 			
 				$vurl=addslashes($vurl);
 				
-		sc_query("update videos set url='$vurl' where id='$id'");
-		sc_query("update videos set sname='$sname' where id='$id'");
+		lib_mysql_query("update videos set url='$vurl' where id='$id'");
+		lib_mysql_query("update videos set sname='$sname' where id='$id'");
 		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
 		Modified</td></tr></table>";
 	}
@@ -238,7 +238,7 @@ if($act=="add") {
 
 		$cont=$data->id; if(!$cont) $cont=999;
 
-	   $r=sc_query("insert into videos  (`contributor`, `sname`,`url` , `time`, `category`)
+	   $r=lib_mysql_query("insert into videos  (`contributor`, `sname`,`url` , `time`, `category`)
 			     					 VALUES('$cont', '$name','$embed_code', '$time', '87')" );
 	}
 
@@ -415,7 +415,7 @@ echo "</td></tr></table>";
 		
 		echo "Submit a new live feed for the wall... enter embed code below<BR> ";
 
-    sc_bf(  "$RFS_SITE_URL/modules/video_wall/v.php",
+    lib_mysql_build_form(  "$RFS_SITE_URL/modules/video_wall/v.php",
 				"SHOW_TEXT_10#120#name=".$RFS_SITE_DELIMITER.
 				"SHOW_TEXTAREA_20#120#embed_code=".$RFS_SITE_DELIMITER."act=add"
                 , "", "", "", "", "", "", 20, "Add new stream");
@@ -435,14 +435,14 @@ echo "</td></tr></table>";
 		echo "</tr>";
 		
 		
-		$r=sc_query("select * from videos where category='$cat' order by sname asc");
+		$r=lib_mysql_query("select * from videos where category='$cat' order by sname asc");
 		for($jj=0;$jj<mysql_num_rows($r);$jj++){
 			$v=mysql_fetch_object($r);
 			
 			echo "<tr>";
 			
 			echo "<td><a id='EDIT$v->id'></a> $v->sname </td>";
-			echo "<td>".sc_getuserdata($v->contributor)->name."</td>";			
+			echo "<td>".lib_users_get_data($v->contributor)->name."</td>";			
 			echo "<td> $v->time </td>";
 			echo "<td> [<a href=$RFS_SITE_URL/modules/video_wall/v.php?action=report&id=$v->id>Report broken</a>] ";
 			

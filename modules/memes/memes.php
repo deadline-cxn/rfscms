@@ -49,18 +49,18 @@ function memes_action_new_meme_go() { eval(scg());
 		if(empty($name)) $name=$sname;
 		$poster=999;
 		if($data->id)$poster=$data->id;
-		sc_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
+		lib_mysql_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
 		$id=mysql_insert_id();
-		//$cid=mysql_fetch_object(sc_query("select * from categories where name = '$category'"));
-		sc_query("update `pictures` set `category`='$category'  where `id`='$id'");
-		sc_query("update `pictures` set `sname`='$sname'        where `id`='$id'");
-		sc_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");
-		sc_query("update `pictures` set `hidden`='$hidden'      where `id`='$id'");
-		sc_query("update `pictures` set description='$desc'		where `id`='$id'");
-		sc_query("update `pictures` set poster='$poster'			where `id`='$id'");
+		//$cid=mysql_fetch_object(lib_mysql_query("select * from categories where name = '$category'"));
+		lib_mysql_query("update `pictures` set `category`='$category'  where `id`='$id'");
+		lib_mysql_query("update `pictures` set `sname`='$sname'        where `id`='$id'");
+		lib_mysql_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");
+		lib_mysql_query("update `pictures` set `hidden`='$hidden'      where `id`='$id'");
+		lib_mysql_query("update `pictures` set description='$desc'		where `id`='$id'");
+		lib_mysql_query("update `pictures` set poster='$poster'			where `id`='$id'");
 		$furl=addslashes($furl);
-		sc_query("update `pictures` set url = '$furl' where `id`='$id'");
-		sc_query("update `pictures` set time = '$time1' where `id`='$id'");
+		lib_mysql_query("update `pictures` set url = '$furl' where `id`='$id'");
+		lib_mysql_query("update `pictures` set time = '$time1' where `id`='$id'");
 		$error.= " ---- Added $name to database ---- ";
 		global $basepic;
 		$basepic=$id;
@@ -86,7 +86,7 @@ function memes_action_new_meme_go() { eval(scg());
 // MEME delete confirm
 function memes_action_meme_delete() { eval(scg());
 	$donotshowcats=true;
-	if(sc_access_check("memes","delete")){
+	if(lib_access_check("memes","delete")){
 		$dd="<form action=$RFS_SITE_URL/modules/memes/memes.php method=post>Confirm delete meme:
 		<input type=submit name=memedelete value=Delete>
 		<input type=hidden name=action value=meme_delete_go>
@@ -102,15 +102,15 @@ function memes_action_meme_delete() { eval(scg());
 	}
 }
 function memes_action_meme_delete_go() { eval(scg());
-	if(sc_access_check("memes","delete")) {
-		sc_query("delete from meme where id='$mid' limit 1");
+	if(lib_access_check("memes","delete")) {
+		lib_mysql_query("delete from meme where id='$mid' limit 1");
 	}
 	memes_action_showmemes();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME save
 function memes_action_meme_save() { eval(scg());
-    sc_query("update meme set status='SAVED' where id='$mid'");
+    lib_mysql_query("update meme set status='SAVED' where id='$mid'");
     sc_info("SAVED!","WHITE","GREEN");
 	 memes_action_showmemes();    
 }
@@ -134,34 +134,34 @@ function memes_action_memegenerate() { eval(scg());
 			$q="insert into meme
 				  ( `name`,`poster`, `basepic`,`texttop`,`status`)
 			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
-        sc_query($q);
+        lib_mysql_query($q);
         $GLOBALS['mid']=mysql_insert_id();
        }
 	else {
 		$infoout="Updating caption $mid";
 		if(!empty($_REQUEST['name']))
-		sc_query("update meme set `name`  			= '$name'   	     where id='$mid'");
+		lib_mysql_query("update meme set `name`  			= '$name'   	     where id='$mid'");
 		if(!empty($_REQUEST['poster']))
-		sc_query("update meme set `poster`   	 	= '$poster'     	 where id='$mid'");
+		lib_mysql_query("update meme set `poster`   	 	= '$poster'     	 where id='$mid'");
 		if(!empty($_REQUEST['texttop']))
-		sc_query("update meme set `texttop`     	= '$texttop'    	 where id='$mid'");
+		lib_mysql_query("update meme set `texttop`     	= '$texttop'    	 where id='$mid'");
 		if(!empty($_REQUEST['textbottom']))
-		sc_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$mid'");
+		lib_mysql_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$mid'");
 		if(!empty($_REQUEST['chgfont']))
-		sc_query("update meme set `font`	       = '$chgfont'       where id='$mid'");
+		lib_mysql_query("update meme set `font`	       = '$chgfont'       where id='$mid'");
 		if(!empty($_REQUEST['text_color']))
-		sc_query("update meme set `text_color`		= '$text_color'    where id='$mid'");
+		lib_mysql_query("update meme set `text_color`		= '$text_color'    where id='$mid'");
 		if(!empty($_REQUEST['text_bg_color']))
-		sc_query("update meme set `text_bg_color`	= '$text_bg_color' where id='$mid'");
+		lib_mysql_query("update meme set `text_bg_color`	= '$text_bg_color' where id='$mid'");
 		if(!empty($_REQUEST['text_size']))
-		sc_query("update meme set `text_size`		= '$text_size'     where id='$mid'");
+		lib_mysql_query("update meme set `text_size`		= '$text_size'     where id='$mid'");
 		if(!empty($_REQUEST['private']))
-		sc_query("update meme set `private`		= '$private'       where id='$mid'");
+		lib_mysql_query("update meme set `private`		= '$private'       where id='$mid'");
 		if(!empty($_REQUEST['datborder']))
-		sc_query("update meme set `datborder`		= '$datborder'   	  where id='$mid'");
+		lib_mysql_query("update meme set `datborder`		= '$datborder'   	  where id='$mid'");
 	}	
     $meme=mfo1("select * from meme where id='$mid'");
-    $data=sc_getuserdata($poster);
+    $data=lib_users_get_data($poster);
 	global $basepic;
     $basepic=$meme->basepic;
 	sc_info($infoout." >> $meme->id ($mid) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
@@ -231,13 +231,13 @@ function memes_action_memeedit() { eval(scg());
 
 
 		echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=meme_save&mid=$m->id&showfonts=true'>";
-		sc_image_text("SAVE THIS MEME","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,150,150,0,0,0,0,1,1);
+		lib_images_text("SAVE THIS MEME","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,150,150,0,0,0,0,1,1);
 		echo "</a><BR>";
 
 		echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id&showfonts=true'>";
 		$wf=str_replace("fonts/","",$m->font);
 
-		sc_image_text(	"Change Font ($wf)","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,10,145,148,1,1,0,1,1);
+		lib_images_text(	"Change Font ($wf)","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,10,145,148,1,1,0,1,1);
 		echo "</a><BR>";
 
 
@@ -280,7 +280,7 @@ function memes_action_muv() { eval(scg());
     if(!$_SESSION[$muv]){        
         $m=mfo1("select * from meme where id='$mid'");
         $m->rating+=1;
-        sc_query("update meme set rating='$m->rating' where id='$mid'");
+        lib_mysql_query("update meme set rating='$m->rating' where id='$mid'");
         $_SESSION[$muv]=true;
     } else {
         sc_info("Multiple upvoting is not allowed.","white","red");
@@ -295,7 +295,7 @@ function memes_action_mdv() { eval(scg());
 	if(!$_SESSION[$mdv]){
         $m=mfo1("select * from meme where id='$mid'");
         $m->rating-=1;
-        sc_query("update meme set rating='$m->rating' where id='$mid'");
+        lib_mysql_query("update meme set rating='$m->rating' where id='$mid'");
         $_SESSION[$mdv]=true;
     }
     else {
@@ -312,7 +312,7 @@ function memes_action_showmemes(){ eval(scg());
 	if(empty($mtop)) $mtop=0;
 	if(empty($mbot)) $mbot=$toget;
 	
-    sc_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
+    lib_mysql_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
 	$donotshowcats=true;
 	
 	$q="select * from meme  ";
@@ -322,7 +322,7 @@ function memes_action_showmemes(){ eval(scg());
 	$q.=" `private`<>'yes' and `status` = 'SAVED'";
 	$q.=" order by rating desc ";
 	$ql=" limit $mtop,$mbot ";
-	$r=sc_query($q.$ql);
+	$r=lib_mysql_query($q.$ql);
 	$n=mysql_num_rows($r); 
 
 	if( $mtop > 0 ) {
@@ -333,7 +333,7 @@ function memes_action_showmemes(){ eval(scg());
 		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=","Show All Captions");
 	}
 	$ql=" limit ".($mtop+$mbot+$toget)." ;";
-	$rrr=sc_query($q.$ql);
+	$rrr=lib_mysql_query($q.$ql);
 	
 	$nnn=mysql_num_rows($rrr);
 	//echo "<hr> mtop+mbot+toget [".($mtop+$mbot+$toget)."] mbot+mtop [".($mbot+$mtop)."] nnn[".$nnn."] <BR>";

@@ -19,7 +19,7 @@ if(empty($subject)) if(!empty($sj)) $subject=$sj;
 echo "<h1>Private Messages</h1>";
 echo "<hr>";
 if($action=="mark as unread"){
-	sc_query("update `pmsg` set `read` = 'no' where `id` = '$id'");
+	lib_mysql_query("update `pmsg` set `read` = 'no' where `id` = '$id'");
 	unset($action);
 }
 
@@ -30,12 +30,12 @@ if($action=="delete_single"){
 }
 
 if($action=="delete message"){
-	sc_query("delete from `pmsg` where `id`='$id'");
+	lib_mysql_query("delete from `pmsg` where `id`='$id'");
 	unset($action);
 }
 
 if($action=="reply"){
-	$result=sc_query("select * from `pmsg` where `id`='$id'"); $msg=mysql_fetch_object($result);
+	$result=lib_mysql_query("select * from `pmsg` where `id`='$id'"); $msg=mysql_fetch_object($result);
 	echo "<p><form action=$RFS_SITE_URL/modules/messages/messages.php method=post>";
 	echo "To: <input name=to value=\"$msg->from\">";
 	echo "Subject: <input name=subject value=\"re: $msg->subject\"><br>";
@@ -52,7 +52,7 @@ if($action=="new message"){
     else
 	echo "To:<select name=to>";
 
-	$res=sc_query("select * from users order by  `name` asc");
+	$res=lib_mysql_query("select * from users order by  `name` asc");
 	$count=mysql_num_rows($res);
 
 	for($i=0;$i<$count;$i++)	{
@@ -81,11 +81,11 @@ if($action=="messagego"){
 }
 
 if($action=="read"){
-	sc_query("update `pmsg` set `read` = 'yes' where `id` = '$id'");
-	$urresult=sc_query("select * from `pmsg` where `id` = '$id'");
+	lib_mysql_query("update `pmsg` set `read` = 'yes' where `id` = '$id'");
+	$urresult=lib_mysql_query("select * from `pmsg` where `id` = '$id'");
 	$msg=mysql_fetch_object($urresult);
 
-	$userdatar=sc_query("select * from users where `name`='$msg->from'");
+	$userdatar=lib_mysql_query("select * from users where `name`='$msg->from'");
 
 	$userdata=mysql_fetch_object($userdatar);
 
@@ -145,14 +145,14 @@ if($action=="delete") {
     }
     $q.= "`to`='null' ";
     $q.=" order by id desc ;";
-    $result=sc_query($q);
+    $result=lib_mysql_query($q);
 
     for($i=0;$i<mysql_num_rows($result);$i++){
         $p=mysql_fetch_object($result);
 
         if(!empty($_POST["pmsg_$p->id"])) {
 
-            sc_query("delete from pmsg where id = '$p->id'");
+            lib_mysql_query("delete from pmsg where id = '$p->id'");
 
         }
     }
@@ -173,14 +173,14 @@ if($action=="mark read") {
     }
     $q.= "`to`='null' ";
     $q.=" order by id desc ;";
-    $result=sc_query($q);
+    $result=lib_mysql_query($q);
 
     for($i=0;$i<mysql_num_rows($result);$i++){
         $p=mysql_fetch_object($result);
 
         if(!empty($_POST["pmsg_$p->id"])) {
 
-            sc_query("update `pmsg` set `read` = 'yes' where `id` = '$p->id'");
+            lib_mysql_query("update `pmsg` set `read` = 'yes' where `id` = '$p->id'");
 //            echo "MARKING MESSAGE $p->id as READ<BR>";
 
         }
@@ -201,14 +201,14 @@ if($action=="mark unread") {
     }
     $q.= "`to`='null' ";
     $q.=" order by id desc ;";
-    $result=sc_query($q);
+    $result=lib_mysql_query($q);
 
     for($i=0;$i<mysql_num_rows($result);$i++){
         $p=mysql_fetch_object($result);
 
         if(!empty($_POST["pmsg_$p->id"])) {
 
-            sc_query("update `pmsg` set `read` = 'no' where `id` = '$p->id'");
+            lib_mysql_query("update `pmsg` set `read` = 'no' where `id` = '$p->id'");
 
             //echo "MARKING MESSAGE $p->id as UNREAD<BR>";
 
@@ -239,7 +239,7 @@ if(empty($action)) {
     }
     $q.= "`to`='null')";
     $q.=" order by id desc ;";
-    $result=sc_query($q);
+    $result=lib_mysql_query($q);
 
 	$numpmsg=mysql_num_rows($result); if(empty($numpmsg)) $numpmsg=0;
 
