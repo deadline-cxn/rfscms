@@ -146,6 +146,11 @@ if($a<903) {
 	lib_access_add_method("todo_list", "add");	
 }
 
+
+if($a<923) {
+	lib_file_touch_dir("$RFS_SITE_PATH/modules/videos/cache");
+}
+
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=mfo1("select * from site_vars where name='database_upgrade'");

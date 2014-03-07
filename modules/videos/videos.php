@@ -210,8 +210,29 @@ function videos_action_viewcat($cat) { eval(scg());
 		
 		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
 		echo "<a href=videos.php?action=view&id=$vid->id>";
-		if($ytthumb)
-			echo "<img src=\"http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg\" width=100 class=rfs_thumb><br>";
+
+	
+		echo 
+		"$ytthumb<br>";
+		if($ytthumb) {
+			$yttlocal="$RFS_SITE_PATH/modules/videos/cache/$ytthumb.jpg";
+			$ytturl="$RFS_SITE_URL/modules/videos/cache/$ytthumb.jpg";
+
+			if(!file_exists($yttlocal)) {				
+				$ch = curl_init("http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg");
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+				$ytt = curl_exec($ch); 
+				curl_close($ch); 
+				file_put_contents("$yttlocal", $ytt);
+			}
+			if(!file_exists($yttlocal)) {
+				$ytturl="$RFS_SITE_URL/modules/videos/cache/oops.png";
+			}
+			
+			
+			echo "<img src=\"$ytturl\" width=100 class=rfs_thumb><br>";
+	
+		} 
 		echo "$vid->sname</a>";
 		echo "</div>";
 	}
