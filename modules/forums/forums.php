@@ -504,7 +504,7 @@ function forums_action_forum_list() { eval(scg());
 							}
 							
 							
-							echo"<tr><td>";
+							echo"<tr><td width=500>";
 							
 							echo "<table><tr><td>";							
 							$folderpic=sc_get_theme_image("images/icons/$folder_filename");
@@ -523,7 +523,10 @@ function forums_action_forum_list() { eval(scg());
 								echo "<b>Moderator [</b>";
 								$foruser=lib_users_get_data($moder);
 								echo "<a href=$RFS_SITE_URL/modules/profile/showprofile.php?user=$foruser->name>$foruser->name</a>]";
-                            }
+							}
+							else {
+								echo "no one";
+							}
 							
 							echo "</td>";
 							echo "<td>";
@@ -626,7 +629,7 @@ function forums_action_forum_showposts() { eval(scg());
             echo $flink;
             echo "<img src=\"$RFS_SITE_URL/images/icons/Documents.png\" height=32 border=0 >\n";
 			echo "</a>";
-			echo "</td><td>";
+			echo "</td><td width=500>";
 			echo $flink;
 			echo stripslashes($post['title']);
 			echo "</a><br>";
