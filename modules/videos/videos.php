@@ -212,13 +212,11 @@ function videos_action_viewcat($cat) { eval(scg());
 		echo "<a href=videos.php?action=view&id=$vid->id>";
 
 	
-		echo 
-		"$ytthumb<br>";
+		$ytturl="$RFS_SITE_URL/modules/videos/cache/oops.png";
 		if($ytthumb) {
 			$yttlocal="$RFS_SITE_PATH/modules/videos/cache/$ytthumb.jpg";
 			$ytturl="$RFS_SITE_URL/modules/videos/cache/$ytthumb.jpg";
-
-			if(!file_exists($yttlocal)) {				
+			if(!file_exists($yttlocal)) {
 				$ch = curl_init("http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
 				$ytt = curl_exec($ch); 
@@ -227,12 +225,11 @@ function videos_action_viewcat($cat) { eval(scg());
 			}
 			if(!file_exists($yttlocal)) {
 				$ytturl="$RFS_SITE_URL/modules/videos/cache/oops.png";
-			}
-			
-			
-			echo "<img src=\"$ytturl\" width=100 class=rfs_thumb><br>";
+			}		
 	
 		} 
+		echo "<img src=\"$ytturl\" width=100 class=rfs_thumb><br>";
+		
 		echo "$vid->sname</a>";
 		echo "</div>";
 	}
