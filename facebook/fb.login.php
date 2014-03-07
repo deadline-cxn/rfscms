@@ -202,7 +202,7 @@ if(!$_SESSION['valid_user']) {
 							$_SESSION['retpage']="";
 						}
 						else {
-							sc_gotopage($RFS_SITE_URL);
+							lib_domain_gotopage($RFS_SITE_URL);
 						}
 					
                     exit();
@@ -212,11 +212,11 @@ if(!$_SESSION['valid_user']) {
 					
 						$retpage=$_SESSION['retpage'];
 						if(!empty($retpage)) {
-							sc_gotopage($retpage);
+							lib_domain_gotopage($retpage);
 							$_SESSION['retpage']="";
 						}
 						else {
-							sc_gotopage($RFS_SITE_URL);
+							lib_domain_gotopage($RFS_SITE_URL);
 						}
                     
                     exit();
@@ -255,7 +255,7 @@ if($r) {
             $_SESSION["logged_in"]  = "true";
             echo $_SESSION['goback'];
             if(sc_yes($_SESSION['goback'])) {
-              sc_gotopage($RFS_SITE_URL);
+              lib_domain_gotopage($RFS_SITE_URL);
             }
             else {
                 echo "Authenticated<br>";
