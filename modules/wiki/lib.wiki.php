@@ -11,7 +11,7 @@ lib_access_add_method("wiki", "deleteothers");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI
-function sc_module_mini_wiki($x) { eval(scg());
+function sc_module_mini_wiki($x) { eval(lib_rfs_get_globals());
     lib_div("WIKI MODULE SECTION");
     echo "<h2>Last $x Wiki Page Updates</h2>";
     echo "<table width=100% border=0><tr>";
@@ -41,7 +41,7 @@ function wiki_img($text) {
 
 }
 
-function wikiimg($text) { eval(scg());    
+function wikiimg($text) { eval(lib_rfs_get_globals());    
     $text=stripslashes($text);
     $text=str_replace("{{","&#123;",$text);
     $text=str_replace("}}","&#125;",$text);
@@ -136,7 +136,7 @@ function wikicode($text) {
 }
 //////////////////////////////////////////////////////////////////////////////
 // WIKITEXT FUNCTION
-function wikitext($text) { eval(scg());
+function wikitext($text) { eval(lib_rfs_get_globals());
 	if(empty($RFSW_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
 	if(empty($RFSW_LINK_IMAGE))   $RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 	

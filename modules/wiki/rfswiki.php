@@ -52,7 +52,7 @@ if($give_file=="yes"){
 }
 if(empty($name)) $name="home";
 $name=ucwords($name);
-rfs_echo("<h1>$name</h1>");
+lib_rfs_echo("<h1>$name</h1>");
 
 if($action=="history") {
 	echo "<hr>";
@@ -133,7 +133,7 @@ if($name=="Contents") {
     echo "<table border=0 cellspacing=0 cellpadding=0>";
     for($i=0;$i<$num;$i++)    {
 		$tpage=mysql_fetch_object($res);
-		$wpage=mfo1("select * from wiki where name='$tpage->name' order by revision desc limit 1");
+		$wpage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 		
 		
         echo "<tr><td class=rfswiki_contenttd>";
@@ -189,7 +189,7 @@ if($GLOBALS['rfsw_admin_mode']=="true"){
         $time=date("Y-m-d H:i:s");
         $res=lib_mysql_query("select * from wiki where name='$name'");
 		$tpage=mysql_fetch_object($res);
-		$wikipage=mfo1("select * from wiki where name='$tpage->name' order by revision desc limit 1");
+		$wikipage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 		$revision=$wikipage->revision+1;
 		$wikiedittext=addslashes($wikiedittext);
         if(empty($data->name)) $data->name="Guest";
@@ -201,9 +201,9 @@ if($GLOBALS['rfsw_admin_mode']=="true"){
 
 $res=rfs_query("select * from wiki where name='$name'");
 $tpage=mysql_fetch_object($res);	
-$wikipage=mfo1("select * from wiki where name='$tpage->name' order by revision desc limit 1");
+$wikipage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 if( ($action=="viewpagebyid") || ($id) ) {
-	$wikipage=mfo1("select * from wiki where id='$id'");
+	$wikipage=lib_mysql_fetch_one_object("select * from wiki where id='$id'");
 }
 
 
@@ -216,7 +216,7 @@ if($action=="edit"){
         echo   $wikipage->text;
         echo "</textarea><br>";
 		
-		$lastpage=mfo1("select * from wiki where name='$wikipage->name' order by revision desc limit 1");
+		$lastpage=lib_mysql_fetch_one_object("select * from wiki where name='$wikipage->name' order by revision desc limit 1");
 		$revision=$lastpage->revision+1;
 		
 		echo "<textarea style=\"width:80%\" name=revision_note>Enter revision note here. REVISION: $revision</textarea>";
@@ -243,7 +243,7 @@ else {
 		
 		//echo "<pre>$wikipage->text </pre> ";
         
-		rfs_echo(wikitext(wikiimg(($wikipage->text))));
+		lib_rfs_echo(wikitext(wikiimg(($wikipage->text))));
         if($hide_wiki_menu!="true")
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
 		
@@ -255,7 +255,7 @@ else {
 echo "<hr>";
 
 if($hide_wiki_menu!="true"){
-	$wpage=mfo1("select * from wiki where name='$name' order by revision desc limit 1");
+	$wpage=lib_mysql_fetch_one_object("select * from wiki where name='$name' order by revision desc limit 1");
 	if($wpage->revision) {
 		echo "Page Revision: $wpage->revision (revised by: $wpage->revised_by) ";
 	}

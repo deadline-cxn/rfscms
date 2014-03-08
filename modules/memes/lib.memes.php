@@ -5,7 +5,7 @@ lib_menus_register("Memes","$RFS_SITE_URL/modules/memes/memes.php");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE MEMES
-function sc_module_mini_memes($x) { eval(scg());
+function sc_module_mini_memes($x) { eval(lib_rfs_get_globals());
 	echo "<h2>Last $x Memes</h2>";
 	$r=lib_mysql_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc limit $x");
 	if($r)
@@ -20,9 +20,9 @@ function sc_module_mini_memes($x) { eval(scg());
 	echo "<br style='clear: both;'>"; 
 }
 
-function sc_show1meme($inmid) { eval(scg());
+function sc_show1meme($inmid) { eval(lib_rfs_get_globals());
 
-	$m=mfo1("select * from meme where id='$inmid'");
+	$m=lib_mysql_fetch_one_object("select * from meme where id='$inmid'");
 	$t=$m->name."-".time();
 	echo "<div id='fl_$inmid' class=\"memebox\" 
 	style=\"vertical-align:middle; text-align:center\"
@@ -34,7 +34,7 @@ function sc_show1meme($inmid) { eval(scg());
 	$muser=lib_users_get_data($m->poster); if(empty($muser->name)) $muser->name="anonymous";
 	// echo "<hr>";
 	
-	lib_images_text("Rating:".sc_num2txt($m->rating), "OCRA.ttf", 15, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
+	lib_images_text("Rating:".lib_string_number_to_text($m->rating), "OCRA.ttf", 15, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
 	echo "<hr>";	
@@ -51,17 +51,17 @@ function sc_show1meme($inmid) { eval(scg());
 	echo "</div>";
 }
 
-function sc_show1minimeme($inmid) { eval(scg());
+function sc_show1minimeme($inmid) { eval(lib_rfs_get_globals());
 	$meme_fullsize=512;
 	$meme_thumbwidth=160;
-	$m=mfo1("select * from meme where id='$inmid' and `status`='SAVED'");
+	$m=lib_mysql_fetch_one_object("select * from meme where id='$inmid' and `status`='SAVED'");
 	$t=$m->name."-".time();
 	echo "<div id='fl_$inmid' class=\"memeboxmini\">";
 	echo "<div class=\"memepic\">";
 	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&oheight=$meme_fullsize&forcerender=1' target=_blank><img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth&forcerender=1' border=0></a>";
 	echo "</div>";
 	$muser=lib_users_get_data($m->poster); if(empty($muser->name)) $muser->name="anonymous";
-	lib_images_text("Rating:".sc_num2txt($m->rating), "OCRA.ttf", 12, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
+	lib_images_text("Rating:".lib_string_number_to_text($m->rating), "OCRA.ttf", 12, 78,24,   0,0, 1,255,1, 0, 55,0, 1,0   );
 	
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";

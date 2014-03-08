@@ -10,7 +10,7 @@ include("header.php");
 function todo_list_action_f_rfs_db_element_del1() { adm_action_f_rfs_db_element_del1(); }
 function todo_list_action_f_rfs_db_element_ed1() { adm_action_f_rfs_db_element_ed1(); }
 
-function todo_list_action_() { eval(scg());
+function todo_list_action_() { eval(lib_rfs_get_globals());
 	echo "<h1>TODO List</h1>";
 	echo "<hr>";
 	lib_button("$RFS_SITE_URL/modules/todo_list/todo_list.php?action=new_todo_list","New List");
@@ -29,25 +29,25 @@ function todo_list_action_() { eval(scg());
 	}
 }
 
-function todo_list_status_icon() { eval(scg());
+function todo_list_status_icon() { eval(lib_rfs_get_globals());
 	
 }
 
-function todo_list_action_open_task_go() { eval(scg());
+function todo_list_action_open_task_go() { eval(lib_rfs_get_globals());
 echo "INSERTING";
 	lib_mysql_query("insert into `todo_list_task` (`name`,`list`) values ('$name','$list');");
 	$id=mysql_insert_id();
-	sc_updb("todo_list_task","id","$id","");
+	lib_mysql_update_database("todo_list_task","id","$id","");
 	$id=$list;
 	todo_list_action_view_todo_list($list);
 }
 
-function todo_list_action_open_task() { eval(scg());
-	$tdl=mfo1("select * from todo_list where id='$tdl'");
+function todo_list_action_open_task() { eval(lib_rfs_get_globals());
+	$tdl=lib_mysql_fetch_one_object("select * from todo_list where id='$tdl'");
 	echo "<h1>$tdl->name</h1>";
 	echo "Open task<br>";
 	
-	lib_mysql_build_form(	lib_domain_phpself(),
+	lib_forms_build(	lib_domain_phpself(),
 			"action=open_task_go".$RFS_SITE_DELIMITER."list=$tdl->id",
 			"todo_list_task",
 			"",
@@ -59,25 +59,25 @@ function todo_list_action_open_task() { eval(scg());
 			"Open" );	
 }
 
-function todo_list_action_search() { eval(scg());
-	$tdl=mfo1("select * from todo_list where id='$tdl'");
+function todo_list_action_search() { eval(lib_rfs_get_globals());
+	$tdl=lib_mysql_fetch_one_object("select * from todo_list where id='$tdl'");
 	echo "<h1>$tdl->name</h1>";
 	echo "Search tasks<br>";
 	sc_bqf("SHOW_TEXT_Name","Search");
 }
 
-function todo_list_action_edit_task_go() { eval(scg());
-	sc_updb("todo_list_task","id",$id,"");
+function todo_list_action_edit_task_go() { eval(lib_rfs_get_globals());
+	lib_mysql_update_database("todo_list_task","id",$id,"");
 	todo_list_action_view_todo_list($list);
 }
 
-function todo_list_action_edit_task() { eval(scg());
+function todo_list_action_edit_task() { eval(lib_rfs_get_globals());
 	
-	$task=mfo1("select * from todo_list_task where id='$task'");
+	$task=lib_mysql_fetch_one_object("select * from todo_list_task where id='$task'");
 	echo "<h1>$task->name</h1>";
 	echo "Edit task<br>";
 	
-	lib_mysql_build_form(	lib_domain_phpself(),
+	lib_forms_build(	lib_domain_phpself(),
 			"action=edit_task_go".$RFS_SITE_DELIMITER.
 			"id=$task->id".$RFS_SITE_DELIMITER.
 			"list=$task->list",
@@ -92,7 +92,7 @@ function todo_list_action_edit_task() { eval(scg());
 	
 }
 
-function todo_list_action_view_todo_list($list) { eval(scg());
+function todo_list_action_view_todo_list($list) { eval(lib_rfs_get_globals());
 	if(!empty($list)) $id=$list;
 	$r=lib_mysql_query("select * from todo_list where id=$id");
 	$tdl=mysql_fetch_object($r);
@@ -188,7 +188,7 @@ where (`list`='$tdl->id')  ;");
 			echo "<td class=\"todo_$task_status\"><img src=\"$RFS_SITE_URL/modules/todo_list/icons/$task->status.png\"></td>";
 			
 			echo "<td class=\"todo_$task_status\">";
-			sc_ajax("Status","todo_list_task","id",$task->id,"status","30",
+			lib_ajax("Status","todo_list_task","id",$task->id,"status","30",
 					"select,table,todo_list_status,name,nolabel","admin","access","");
 
 			echo "</td>";
@@ -214,13 +214,13 @@ where (`list`='$tdl->id')  ;");
 	}
 }
 
-function todo_list_action_new_todo_list_go() { eval(scg());
+function todo_list_action_new_todo_list_go() { eval(lib_rfs_get_globals());
 	lib_mysql_query("insert into todo_list (`name`,`owner`) values ('$name','$data->name')");
 	todo_list_action_();
 }
-function todo_list_action_new_todo_list() { eval(scg());
+function todo_list_action_new_todo_list() { eval(lib_rfs_get_globals());
 	echo "<h1> Create TODO List</h1>";
-	lib_mysql_build_form( 	lib_domain_phpself(),
+	lib_forms_build( 	lib_domain_phpself(),
 			"action=new_todo_list_go".$RFS_SITE_DELIMITER,
 			"todo_list","","id","","","",50,"New TODO List" );
 }		   

@@ -24,7 +24,7 @@ if($_REQUEST['debug_view_error_log']==1) {
 function d_echo($t){
 	if(!lib_access_check("debug","view")) return;
     if(isset($_SESSION['debug_msgs']))
-    if(sc_yes($_SESSION['debug_msgs'])){
+    if(lib_rfs_bool_true($_SESSION['debug_msgs'])){
         $t=str_replace("<","&lt;",$t);    
         $tx=explode($GLOBALS['RFS_SITE_DELIMITER'],$t);
         for($ti=0;$ti<count($tx);$ti++){
@@ -54,7 +54,7 @@ function lib_debug_tail_error_log() { global $RFS_SITE_ERROR_LOG;
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_debug_header($quiet) { eval(scg()); 
+function lib_debug_header($quiet) { eval(lib_rfs_get_globals()); 
 	lib_div("lib_debug_debugheader start");
 	//$dout ="<p align=left><pre>";
 	$dout ="\$data->theme=$data->theme".$GLOBALS['RFS_SITE_DELIMITER'];
@@ -70,7 +70,7 @@ function lib_debug_header($quiet) { eval(scg());
 	return $dout;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_debug_footer($quiet) { eval(scg());
+function lib_debug_footer($quiet) { eval(lib_rfs_get_globals());
 	//$dout ="<p align=left><pre>";
 	$dout="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="_REQUEST VARS:".$GLOBALS['RFS_SITE_DELIMITER'];

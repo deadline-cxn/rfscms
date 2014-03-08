@@ -14,7 +14,7 @@ include("header.php");
 
 /////////////////////////////////////////////////////////////////////////////////
 // New meme
-function memes_action_new_meme() { eval(scg());
+function memes_action_new_meme() { eval(lib_rfs_get_globals());
 	echo "<p>Select a file to use for the caption.</p>\n";
 	echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/memes/memes.php\" method=\"post\">\n";
 	echo "<table border=0>\n";
@@ -32,7 +32,7 @@ function memes_action_new_meme() { eval(scg());
 	echo "</form>\n";
 	include("footer.php");
 }
-function memes_action_new_meme_go() { eval(scg());
+function memes_action_new_meme_go() { eval(lib_rfs_get_globals());
 	echo "Uploading meme picture...\n";
 	$furl="files/pictures/".$_FILES['userfile']['name'];
 	$furl =str_replace("//","/",$furl);
@@ -68,7 +68,7 @@ function memes_action_new_meme_go() { eval(scg());
 		$action="memegenerate";
 		$mid="";
 		$private=$hidden;
-		sc_info("Status: [$error]","WHITE","GREEN");	
+		lib_forms_info("Status: [$error]","WHITE","GREEN");	
 		memes_action_memegenerate();
 	}
 	else{
@@ -79,12 +79,12 @@ function memes_action_new_meme_go() { eval(scg());
 	if(!$error){
 		$error .= "No files have been selected for upload";
 	}
-	sc_info("Status: [$error]","WHITE","GREEN");	
+	lib_forms_info("Status: [$error]","WHITE","GREEN");	
 	include("footer.php");
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME delete confirm
-function memes_action_meme_delete() { eval(scg());
+function memes_action_meme_delete() { eval(lib_rfs_get_globals());
 	$donotshowcats=true;
 	if(lib_access_check("memes","delete")){
 		$dd="<form action=$RFS_SITE_URL/modules/memes/memes.php method=post>Confirm delete meme:
@@ -92,7 +92,7 @@ function memes_action_meme_delete() { eval(scg());
 		<input type=hidden name=action value=meme_delete_go>
 		<input type=hidden name=mid value=$mid>
 		</form>";	
-		sc_info($dd,"black","red");	
+		lib_forms_info($dd,"black","red");	
 		$t=$m->name."-".time();// /$t.png
 		echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize' target=_blank>
 		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$mid&owidth=256' border=0></a>";
@@ -101,7 +101,7 @@ function memes_action_meme_delete() { eval(scg());
 		echo "<p>You can not delete memes.</p>";
 	}
 }
-function memes_action_meme_delete_go() { eval(scg());
+function memes_action_meme_delete_go() { eval(lib_rfs_get_globals());
 	if(lib_access_check("memes","delete")) {
 		lib_mysql_query("delete from meme where id='$mid' limit 1");
 	}
@@ -109,14 +109,14 @@ function memes_action_meme_delete_go() { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME save
-function memes_action_meme_save() { eval(scg());
+function memes_action_meme_save() { eval(lib_rfs_get_globals());
     lib_mysql_query("update meme set status='SAVED' where id='$mid'");
-    sc_info("SAVED!","WHITE","GREEN");
+    lib_forms_info("SAVED!","WHITE","GREEN");
 	 memes_action_showmemes();    
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME generate
-function memes_action_memegenerate() { eval(scg());
+function memes_action_memegenerate() { eval(lib_rfs_get_globals());
     	
 	$name 		= addslashes($name);
 	$texttop 	= addslashes($_REQUEST['texttop']);
@@ -160,25 +160,25 @@ function memes_action_memegenerate() { eval(scg());
 		if(!empty($_REQUEST['datborder']))
 		lib_mysql_query("update meme set `datborder`		= '$datborder'   	  where id='$mid'");
 	}	
-    $meme=mfo1("select * from meme where id='$mid'");
+    $meme=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
     $data=lib_users_get_data($poster);
 	global $basepic;
     $basepic=$meme->basepic;
-	sc_info($infoout." >> $meme->id ($mid) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
+	lib_forms_info($infoout." >> $meme->id ($mid) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
 	memes_action_memeedit();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME editor
-function memes_action_memeedit() { eval(scg()); 
+function memes_action_memeedit() { eval(lib_rfs_get_globals()); 
 	if(empty($mid)) $mid=$id;
-	sc_info("Editing $name caption #$mid","BLACK","#ff9900");
-	$m=mfo1("select * from meme where id='$mid'");
-	$pic=mfo1("select * from pictures where id='$m->basepic'");	
+	lib_forms_info("Editing $name caption #$mid","BLACK","#ff9900");
+	$m=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
+	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$m->basepic'");	
     $p=$data->id;
     if(empty($p)) $p=999;
 	if( ($m->poster==$p) || ($data->access==255) ) {
 		if($m->poster!=$p)
-            sc_info("NOT YOURS ADMIN! / EDIT ANYWAY (LOL)","WHITE","RED");
+            lib_forms_info("NOT YOURS ADMIN! / EDIT ANYWAY (LOL)","WHITE","RED");
 		if(empty($name)) $name=$m->name;
 		if(empty($name)) $nout="SHOW_TEXT_10#20#name=$name".$RFS_SITE_DELIMITER;
 		else  { 		
@@ -221,7 +221,7 @@ function memes_action_memeedit() { eval(scg());
 
 		echo "</td><td width=80% valign=top>";
         
-		/*sc_info("<BR>Planning following features<br>
+		/*lib_forms_info("<BR>Planning following features<br>
 					TODO: Add upload ttf font.<br>
 					TODO: Add text color pickers <br>
 					TODO: Add border color picker<br>
@@ -274,38 +274,38 @@ function memes_action_memeedit() { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME vote up
-function memes_action_muv() { eval(scg()); 
+function memes_action_muv() { eval(lib_rfs_get_globals()); 
     $muv="MUV$mid";    
     $action="showmemes";
     if(!$_SESSION[$muv]){        
-        $m=mfo1("select * from meme where id='$mid'");
+        $m=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
         $m->rating+=1;
         lib_mysql_query("update meme set rating='$m->rating' where id='$mid'");
         $_SESSION[$muv]=true;
     } else {
-        sc_info("Multiple upvoting is not allowed.","white","red");
+        lib_forms_info("Multiple upvoting is not allowed.","white","red");
     }
 	memes_action_showmemes();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME vote down
-function memes_action_mdv() { eval(scg());
+function memes_action_mdv() { eval(lib_rfs_get_globals());
     $mdv="MDV$mid";
     $action="showmemes";
 	if(!$_SESSION[$mdv]){
-        $m=mfo1("select * from meme where id='$mid'");
+        $m=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
         $m->rating-=1;
         lib_mysql_query("update meme set rating='$m->rating' where id='$mid'");
         $_SESSION[$mdv]=true;
     }
     else {
-        sc_info("Multiple downvoting is not allowed.","white","red");
+        lib_forms_info("Multiple downvoting is not allowed.","white","red");
     }
 	memes_action_showmemes();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME show memes
-function memes_action_showmemes(){ eval(scg());
+function memes_action_showmemes(){ eval(lib_rfs_get_globals());
 	echo "<h1>Meme generator</h1>";
 	$mcols=5; $mrows=5;
 	$toget=$mcols*$mrows;
@@ -355,7 +355,7 @@ function memes_action_showmemes(){ eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME default action
-function memes_action_() { eval(scg());
+function memes_action_() { eval(lib_rfs_get_globals());
 	memes_action_showmemes();
 }
 

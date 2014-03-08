@@ -1,18 +1,19 @@
 <?
 $title="User Profile";
 chdir("../../");
+
 include("header.php");
 //////////////////////////////////////////////////////////////////////////////////////
 // CHANGE PASSWORD
 if($change_password == "yes"){
     echo "<h1>Change Password</h1>\n";
     if(empty($data->name)) {
-        echo sc_warn("You must be <a href=$RFS_SITE_URL/login.php>logged in</a> to change your password!");
+        echo lib_forms_warn("You must be <a href=$RFS_SITE_URL/login.php>logged in</a> to change your password!");
     }
 	
     if( (!empty($data->pass)) &&
 			 ( md5($pass1) != $data->pass ) ) {
-			echo sc_warn("You did not enter the correct current password!");
+			echo lib_forms_warn("You did not enter the correct current password!");
 			$act="show_password_form";
     }
     else {
@@ -21,17 +22,17 @@ if($change_password == "yes"){
 				if(!empty($pass2)) {
 					$pass2=md5($pass2);
 					lib_mysql_query("update users set pass='$pass2' where name = '$data->name'");
-					sc_info("Password changed!","WHITE","GREEN");
+					lib_forms_info("Password changed!","WHITE","GREEN");
 					include("footer.php");
 					exit;					
 				}
 				else {
-					echo sc_warn("The password can not be empty.");
+					echo lib_forms_warn("The password can not be empty.");
 					$act="show_password_form";
 				}
         }
         else {
-			echo sc_warn("The passwords do not match!");
+			echo lib_forms_warn("The passwords do not match!");
 			$act="show_password_form";
 		}
     }    
@@ -54,7 +55,7 @@ if($_REQUEST['act']=="update") {
 	$birth_day=$_REQUEST['birth_day'];
 	$birth_month=$_REQUEST['birth_month'];
 
-	sc_info("UPDATED PROFILE","WHITE","GREEN");
+	lib_forms_info("UPDATED PROFILE","WHITE","GREEN");
     
     if(!empty($name)) lib_mysql_query("UPDATE users SET `real_name`='$name' where `name` = '$data->name'");
 	
@@ -93,7 +94,7 @@ if($_REQUEST['act']=="update") {
 }
 $data=lib_users_get_data($data->name);
 
-function pro_nav_bar($data) {    eval(scg());
+function pro_nav_bar($data) {    eval(lib_rfs_get_globals());
     
 if(lib_access_check("news","edit")) 
 	lib_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
@@ -142,16 +143,9 @@ echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action
 echo "<table border=0 cellpadding=0 cellspacing=0><tr><td>";
 echo "<input type=hidden name=act value=update>\n";
 echo "<td> ";
-$g=lib_file_getfiletype($data->avatar);
-if(	($g=="gif")||
-	($g=="jpg")||
-	($g=="png"))
-echo "<img src=$data->avatar align=left title=\"$data->sentence\" alt=\"$data->sentence\" width=100>";
-if($g=="swf")
-lib_flash_embed($data->avatar,100,100);
+echo lib_users_avatar_code($data->name);
 echo "</td>\n";
 if(empty($data->gender)) $data->gender="male";
-
 echo "<td><img src=$RFS_SITE_URL/images/icons/sym_$data->gender.gif border=0 title=\"$data->gender\" alt=\"$data->gender\"></td>\n";
 echo "<td><select name=gender><option>$data->gender<option>male<option>female</select></td>";
 list($adate,$atime)=explode(" ",$data->first_login );
@@ -200,7 +194,7 @@ echo "<td>&nbsp;</td></tr>\n";
 
 
 $dtq=explode(" ",$data->birthday);
-$years=rfs_user_age($dtq[0]);
+$years=lib_users_age($dtq[0]);
 $date=explode("-",$dtq[0]);
 $time=explode(":",$dtq[1]);
 
@@ -242,7 +236,7 @@ $i=1901; while($i<2050) { echo "<option>$i"; $i=$i+1; }
 echo "</select> (<i>$years years old</i>)</td><td> </td></tr>\n";
 if(empty($data->country)) $data->country="Select Country";
 echo "<tr><td>Country   :</td><td> <select name=country><option>$data->country\n";
-lib_log_countries();
+lib_forms_option_countries();
 echo "</select> </td><td>&nbsp;</td></tr>\n";
 echo "<tr><td>Quote     :</td>";
 echo "<td><textarea name=sentence rows=5 cols=50>";
@@ -286,15 +280,12 @@ $q="where submitter='$data->name'";
 $l="$filetop,$filelimit";  
 $i=0; $bg=0; $filelist=@sc_getfilelist($q,$l);
 if(count($filelist)) {
-  
-	sc_info("Your files...","BLACK","WHITE");
-  
+	lib_forms_info("Your files...","BLACK","WHITE");
 	if(lib_access_check("files","upload")) 
 		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>]";
 	if(lib_access_check("files","addlink")) 
 		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
-  
-	  echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=sc_black>\n";
+      echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=sc_black>\n";
 	  echo "<tr bgcolor=$file_header height=16 class=sc_black>\n";
 	  echo "<td class=\"sc_black\">Work Safe</td>\n";
 	  echo "<td class=\"sc_black\">Type</td>\n";
@@ -310,9 +301,7 @@ if(count($filelist)) {
   if(empty($filetop)) 	$filetop=0;
   if(empty($filelimit))	$filelimit=25;
   
-  
   while($i<count($filelist)) {
-	  
     $filedata=sc_getfiledata($filelist[$i]);
     $colr=$file_color[1];
     if($bg=="1") $colr=$file_color[2];

@@ -32,11 +32,11 @@ include("header.php");
 
 if(empty($galleria)) {
 	$galleria="no";
-	if(sc_yes($RFS_SITE_GALLERIAS))
+	if(lib_rfs_bool_true($RFS_SITE_GALLERIAS))
 		$galleria="yes";	
 }
 
-function pictures_show_buttons() { eval(scg());
+function pictures_show_buttons() { eval(lib_rfs_get_globals());
 	echo "<table border=0><tr>"; 
 	if(lib_access_check("pictures","orphanscan")) {
 		echo "<td>";
@@ -49,7 +49,7 @@ function pictures_show_buttons() { eval(scg());
 		echo "</td>";
 	}
 	if(lib_access_check("pictures","sort")) {
-		//$cr=mfo1("select * from categories where name=''");
+		//$cr=lib_mysql_fetch_one_object("select * from categories where name=''");
 		$res2=lib_mysql_query("select * from `pictures` where `category`='unsorted'");
 		$numpics=mysql_num_rows($res2);
 		if($numpics>0){
@@ -71,17 +71,17 @@ $thumbwidth=200;
 $editwidth=256;
 $fullsize=512;
 
-function pictures_action_showmemes() { eval(scg());
+function pictures_action_showmemes() { eval(lib_rfs_get_globals());
 	lib_domain_gotopage("$RFS_SITE_URL/modules/memes/memes.php");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture
-function pictures_action_uploadpic() { eval(scg());
+function pictures_action_uploadpic() { eval(lib_rfs_get_globals());
 	echo "<h1>Upload a picture</h1>\n";
 
 
-lib_mysql_build_form(	"$RFS_SITE_URL/modules/pictures/pictures.php",
+lib_forms_build(	"$RFS_SITE_URL/modules/pictures/pictures.php",
 		"action=uploadpicgo".$RFS_SITE_DELIMITER.
 		"MAX_FILE_SIZE=99999999".$RFS_SITE_DELIMITER.
 		
@@ -122,7 +122,7 @@ lib_mysql_build_form(	"$RFS_SITE_URL/modules/pictures/pictures.php",
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Upload picture confirm
-function pictures_action_uploadpicgo(){ eval(scg());
+function pictures_action_uploadpicgo(){ eval(lib_rfs_get_globals());
 	echo "Uploading picture...\n";
 	$furl="files/pictures/".$_FILES['userfile']['name'];
 	$furl=str_replace("//","/",$furl);
@@ -153,12 +153,12 @@ function pictures_action_uploadpicgo(){ eval(scg());
 	if(!$error){
 		$error .= "No files have been selected for upload";
 	}
-	sc_info("Status: [$error]","WHITE","GREEN");
+	lib_forms_info("Status: [$error]","WHITE","GREEN");
 	include("footer.php");
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
-function pictures_action_removepicture() { eval(scg());
+function pictures_action_removepicture() { eval(lib_rfs_get_globals());
 
 echo "Remove picture: $id<br>";
 
@@ -185,7 +185,7 @@ echo "Remove picture: $id<br>";
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Remove picture	confirm
-function pictures_action_removego() { eval(scg());
+function pictures_action_removego() { eval(lib_rfs_get_globals());
 
 	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 	$picture=mysql_fetch_object($res);
@@ -208,7 +208,7 @@ function pictures_action_removego() { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Add orphans
-function pictures_action_addorphans(){ eval(scg());
+function pictures_action_addorphans(){ eval(lib_rfs_get_globals());
 // if($action=="addorphans"){
     if ($data->access==255) {
         // $categoryz=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='!!!TEMP!!!'"));
@@ -222,7 +222,7 @@ function pictures_action_addorphans(){ eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Sort !!!TEMP!!! category
-function pictures_action_sorttemp() { eval(scg());
+function pictures_action_sorttemp() { eval(lib_rfs_get_globals());
 
 	if ($data->access==255) {
         if($subact=="place"){
@@ -344,7 +344,7 @@ if($action=="modifygo"){
 }
 /////////////////////////////////////////////////////////////////////////////////
 // Modify picture information
-function pictures_action_modifypicture() { eval(scg());
+function pictures_action_modifypicture() { eval(lib_rfs_get_globals());
 // if($action=="modifypicture"){
 	if ($data->access==255) {
 		$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
@@ -408,7 +408,7 @@ function pictures_action_modifypicture() { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE random
-function pictures_action_random() { eval(scg());
+function pictures_action_random() { eval(lib_rfs_get_globals());
 // if($action=="random"){
     $res=lib_mysql_query("select * from `pictures` where `hidden`!='yes'");
     $num=mysql_num_rows($res);
@@ -422,7 +422,7 @@ function pictures_action_random() { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view
-function pictures_action_view($id) { eval(scg());
+function pictures_action_view($id) { eval(lib_rfs_get_globals());
     $res=lib_mysql_query("select * from `pictures` where `id`='$id' order by time asc");
     $picture=mysql_fetch_object($res);
 	$category=$picture->category;
@@ -453,7 +453,7 @@ function pictures_action_view($id) { eval(scg());
 		}
     
     if($id) {
-		if(sc_yes($RFS_SITE_CAPTIONS)){
+		if(lib_rfs_bool_true($RFS_SITE_CAPTIONS)){
 		echo "<td>";
 		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
 		echo "</td>";
@@ -481,15 +481,15 @@ function pictures_action_view($id) { eval(scg());
 		echo "</td>";
 		echo "</tr></table></center>";	
 		echo "<center>";
-    $categorym=mfo1("select * from categories where name='$category'");	
+    $categorym=lib_mysql_fetch_one_object("select * from categories where name='$category'");	
     if(!empty($categorym->name)) {
         echo "Category: $categorym->name<br>";
     }
 	
 	if(empty($picture->sname)) {		
 		if(lib_access_check("pictures","edit")) {
-			sc_ajax("Short Name,70","pictures","id","$id","sname",70,"","pictures","edit","");
-			//sc_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
+			lib_ajax("Short Name,70","pictures","id","$id","sname",70,"","pictures","edit","");
+			//lib_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
 		}
 	}
 	else {
@@ -498,8 +498,8 @@ function pictures_action_view($id) { eval(scg());
 	echo "<br>";
 	if(empty($picture->description)) {		
 		if(lib_access_check("pictures","edit")) {
-			sc_ajax("Description,70","pictures","id","$id","description","5,70","textarea","pictures","edit","");
-			//sc_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
+			lib_ajax("Description,70","pictures","id","$id","description","5,70","textarea","pictures","edit","");
+			//lib_ajax("Name,80","files","id","$id","name",70,"","files","edit","");
 		}
 	}
 	else {
@@ -550,16 +550,16 @@ function pictures_action_view($id) { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE view category
-function pictures_action_viewcat($cizat) { eval(scg());
+function pictures_action_viewcat($cizat) { eval(lib_rfs_get_globals());
 	
 	if(empty($cat)) $cat=$_REQUEST['cat'];
 	if(empty($cat)) $cat=$cizat;
 	
 	
-	if($ipr) $ipr=mfo1("select * from pictures where id=$id");
-	else $ipr=mfo1("select * from pictures where category='$cat'");
-	$catn=mfo1("select * from categories where name='$cat'");
-    $cati=mfo1("select * from categories where id='$cat'");
+	if($ipr) $ipr=lib_mysql_fetch_one_object("select * from pictures where id=$id");
+	else $ipr=lib_mysql_fetch_one_object("select * from pictures where category='$cat'");
+	$catn=lib_mysql_fetch_one_object("select * from categories where name='$cat'");
+    $cati=lib_mysql_fetch_one_object("select * from categories where id='$cat'");
 	if($catn->id) $cat=$catn;
 	if($cati->id) $cat=$cati;
     if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
@@ -621,7 +621,7 @@ function pictures_action_viewcat($cizat) { eval(scg());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // PICTURE show categories
-function pictures_action_viewcats(){ eval(scg());
+function pictures_action_viewcats(){ eval(lib_rfs_get_globals());
 	if(!$donotshowcats) {
 		$res=lib_mysql_query("select * from `categories` order by name asc");
 		$numcats=mysql_num_rows($res);
@@ -676,7 +676,7 @@ function pictures_action_viewcats(){ eval(scg());
 	exit();
 }
 
-function pictures_action_() { eval(scg());
+function pictures_action_() { eval(lib_rfs_get_globals());
 	echo "<h1>Pictures</h1>";
 	pictures_show_buttons();
 	pictures_action_viewcats();

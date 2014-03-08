@@ -44,7 +44,7 @@ else {
 if($showform=="yes"){
 	
 	if(!lib_access_check("news","submit")) {
-        	echo smiles("<p>:X</p><p>You can not edit or submit news!</p>");
+        	echo lib_string_convert_smiles("<p>:X</p><p>You can not edit or submit news!</p>");
 	}
 	else {
 			echo "<div class=\"forum_box\">";

@@ -7,7 +7,6 @@ include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
 lib_div(__FILE__); 
-/////////////////////////////////////////////////////////////////////////////////////////
 if(isset($act)) {
 	if($act=="select_image_go") {
 		include("lib.all.php");
@@ -26,7 +25,7 @@ if(isset($act)) {
 		lib_images_select($npath, $rtnpage, $rtnact, $table, $id, $image_field);
 	}
 }
-function lib_images_select($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(scg());
+function lib_images_select($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(lib_rfs_get_globals());
     if(!stristr($_SESSION['select_image_path'],$RFS_SITE_PATH))
         $_SESSION['select_image_path']=$RFS_SITE_PATH.$_SESSION['select_image_path'];
     if($npath==".."){
@@ -43,7 +42,7 @@ function lib_images_select($npath, $rtnpage, $rtnact, $table, $id, $image_field)
             $_SESSION['select_image_path']=$dc;
         }
     }
-    $wh=mfo1("select * from `$table` where id='$id'");
+    $wh=lib_mysql_fetch_one_object("select * from `$table` where id='$id'");
     echo "Select Image for (Table $table id[$id] ($wh->name) field[$image_field])<br>";
     $thispath=$_SESSION['select_image_path'];
     echo "$thispath<br>";
@@ -89,7 +88,6 @@ function lib_images_select($npath, $rtnpage, $rtnact, $table, $id, $image_field)
     }
     for($xyz=0;$xyz<20;$xyz++) echo "<br>";
 }
-/////////////////////////////////////////////////////////////////////////
 function lib_images_html2rgb($color) {
     if ($color[0] == '#') $color = substr($color, 1);
     if (strlen($color) == 6)     list($r, $g, $b) = array($color[0].$color[1],$color[2].$color[3],$color[4].$color[5]);
@@ -110,11 +108,11 @@ function lib_images_rgb2html($r, $g=-1, $b=-1){
     $color .= (strlen($b) < 2?'0':'').$b;
     return '#'.$color;
 }
-function lib_images_thumb($zimg,$w,$h,$s) { eval(scg());
+function lib_images_thumb($zimg,$w,$h,$s) { eval(lib_rfs_get_globals());
 $r="<img src='$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s' class='rfs_thumb'>";
 return $r;
 }
-function lib_images_thumb_raw($zimg,$w,$h,$s) { eval(scg());
+function lib_images_thumb_raw($zimg,$w,$h,$s) { eval(lib_rfs_get_globals());
 $r="$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s";
 return $r;
 }
@@ -127,17 +125,17 @@ function lib_images_text_s_rt($text,$font,$r,$g,$b){
 function lib_images_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight) {
 	echo lib_images_text_rt( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
 }
-function lib_images_text_rt( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight) { eval(scg());
+function lib_images_text_rt( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight) { eval(lib_rfs_get_globals());
 	$rt="<img src=\"$RFS_SITE_URL/include/generate.image.php/$text.png?action=showfont&font=$font&otext=$text&text_size=$fontsize&owidth=$w&oheight=$h&offx=$ox&offy=$oy&icr=$inicr&icg=$inicg&icb=$inicb&bcr=$inbcr&bcg=$inbcg&bcb=$inbcb&forcerender=$forcerender&forceheight=$forceheight\" border='0' alt='$text' >";
 	return $rt;
 }
-function lib_images_text_small_raw($text,$font) { eval(scg());
+function lib_images_text_small_raw($text,$font) { eval(lib_rfs_get_globals());
 	return "$RFS_SITE_URL/include/generate.image.php/$text.png?action=showfont&font=$font&otext=$text&text_size=16&icr=255&icg=255&icb=255&bcr=0&bcg=0&bcb=0&forcerender=1";
 }
-function lib_images_percent_bar($percent){ eval(scg());
+function lib_images_percent_bar($percent){ eval(lib_rfs_get_globals());
 	echo "<img src=\"$RFS_SITE_URL/include/percentage_bar.php?per=$percent\" alt=\"$percent %\" /> ";
 }
-function lib_images_webpage_to_png($webpage) { eval(scg());
+function lib_images_webpage_to_png($webpage) { eval(lib_rfs_get_globals());
 	$md5=md5($webpage);
 	system("wkhtmltopdf '$webpage' $RFS_SITE_PATH/tmp/$md5.pdf");
 	system("convert $RFS_SITE_PATH/tmp/$md5.pdf -append $RFS_SITE_PATH/tmp/$md5.png");

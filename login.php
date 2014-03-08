@@ -93,7 +93,7 @@ if($action=="logingo") {
             exit();
         }
         else{
-            sc_info("Invalid Login","WHITE","RED");
+            lib_forms_info("Invalid Login","WHITE","RED");
             $_SESSION["valid_user"] = "invalid_user";
             lib_log_add_entry("[INVALID LOGIN]: $userid [$password] invalid login attempt from ".getenv("REMOTE_ADDR"));
         }    
@@ -136,21 +136,21 @@ if($action=="join_go") {
 	}
 	/////////////////////////////////////////////////////////////////////
 	// CHECK EMAIL VALIDITY
-	if(sc_is_valid_email($email)){
+	if(lib_string_check_email($email)){
 		if(!empty($email)) echo "<p>Email address is invalid!</p>\n";
 		include("footer.php");
 		exit();
 	}
 	/////////////////////////////////////////////////////////////////////
 	// CHECK VALID CHARACTERS IN USERID
-	if(sc_is_valid_name($userid)){
+	if(lib_string_check_name($userid)){
 		echo "<p>Invalid characters in your userid. Characters allowed are: a-z, A-Z, 0-9, and _ (No spaces)</p>\n";
 		include("footer.php");
 		exit();
 	}
 	/////////////////////////////////////////////////////////////////////
 	// GENERATE TEMPORARY PASSWORD
-	$password=generate_password();
+	$password=lib_string_generate_password();
 	// create user account, then send an email confirmation
 	$time1=date("Y-m-d H:i:s");
 	if(empty($gender)) $gender="male";
@@ -196,7 +196,7 @@ if($action=="join_go") {
 ///////// LOGIN (JOIN)
 if($action=="join") {
 
-    rfs_echo($RFS_SITE_JOIN_FORM_CODE);
+    lib_rfs_echo($RFS_SITE_JOIN_FORM_CODE);
 
     include("footer.php");
     exit;
@@ -224,7 +224,7 @@ if($action=="sendpass"){
 		}
        else {
 			echo "<h1>Sending new password</h1>";
-			$newpass=generate_password();
+			$newpass=lib_string_generate_password();
 			$md5pass=md5($newpass);
 			lib_mysql_query("update users set pass='$md5pass' where id='$user->id'");
 			$subject="$RFS_SITE_NAME password reset.";
@@ -263,7 +263,7 @@ if(($hi=="invalid_user")||($join=="true")||(empty($hi))){
         if($join!="true") {
             echo "<p>Invalid username or password! </p>";
             echo "Did you <a href=\"$site_url/login.php?action=forgot&outpage=$outpage\">forget</a>?</p>\n";
-            rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+            lib_rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
     }
     include("footer.php");
     exit();

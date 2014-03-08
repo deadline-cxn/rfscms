@@ -7,7 +7,7 @@ include("header.php");
 
 if($_SESSION["logged_in"]!="true") {
 	
-	sc_info("You must be logged in to access private messages.","WHITE","RED");
+	lib_forms_info("You must be logged in to access private messages.","WHITE","RED");
 	include("footer.php");
 	exit();
 	
@@ -117,7 +117,7 @@ if($action=="read"){
  	echo "</td><td width=100%>";
 
     echo "<table width=90% border=0 cellspacing=0 cellpadding=0><tr><td width=100% class=private_message_from> From...: $msg->from              </td></tr></table>";
-    echo "<table width=90% border=0 cellspacing=0 cellpadding=0><tr><td width=100% class=private_message_sent> Sent...: ".sc_time($msg->time)." </td></tr></table>";
+    echo "<table width=90% border=0 cellspacing=0 cellpadding=0><tr><td width=100% class=private_message_sent> Sent...: ".lib_string_current_time($msg->time)." </td></tr></table>";
     echo "<table width=90% border=0 cellspacing=0 cellpadding=0><tr><td width=100% class=private_message_subject> Subject: $msg->subject        </td></tr></table>";
 
 

@@ -1,6 +1,6 @@
 <?
 
-function sc_ajax_javascript_tags() { eval(scg());
+function lib_ajax_javascript_tags() { eval(lib_rfs_get_globals());
 echo '
 <script>
 function rfs_ajax_func_tags(name,ajv,table,ikey,kv,field,page,act,callback) {
@@ -15,7 +15,7 @@ function rfs_ajax_func_tags(name,ajv,table,ikey,kv,field,page,act,callback) {
 			"&rfafield=" +encodeURIComponent(field)+
 			"&rfaapage=" +encodeURIComponent(page)+
 			"&rfaact="   +encodeURIComponent(act);
-			document.getElementById("tags_"+kv).innerHTML="'.sc_ajax_spinner().'";
+			document.getElementById("tags_"+kv).innerHTML="'.lib_ajax_spinner().'";
 			http.open("POST", url, true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.setRequestHeader("Content-length", params.length);
@@ -31,16 +31,16 @@ function rfs_ajax_func_tags(name,ajv,table,ikey,kv,field,page,act,callback) {
 ';
 }
 
-function sc_ajax_callback_tags_new_tag() { eval(scg());
+function lib_ajax_callback_tags_new_tag() { eval(lib_rfs_get_globals());
 	$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
 	lib_tags_add_tag($rfaajv);
-	sc_ajax_callback_tags_add_tag();
+	lib_ajax_callback_tags_add_tag();
 	exit();
 }
 
-function sc_ajax_callback_tags_add_tag() { eval(scg());
+function lib_ajax_callback_tags_add_tag() { eval(lib_rfs_get_globals());
 	lib_mysql_add($rfatable,"tags","text","not null");
-	$obj=mfo1("select * from `$rfatable` where `$rfaikey` = '$rfakv'");
+	$obj=lib_mysql_fetch_one_object("select * from `$rfatable` where `$rfaikey` = '$rfakv'");
 	$tags=$obj->tags;
 	$tx=explode(",",$tags);	
 	foreach($tx as $k => $v) {
@@ -72,10 +72,10 @@ function lib_tags_add_link($table,$id) {
 	
 	for($i=0;$i<$n;$i++){
 	$tag=mysql_fetch_object($r);
-	if( (($tag->hidden=="yes") && (sc_yes($_SESSION['hidden']))) ||
+	if( (($tag->hidden=="yes") && (lib_rfs_bool_true($_SESSION['hidden']))) ||
 		$tag->hidden!="yes" ) {
 			echo "<div style='float:left;'>";
-			sc_ajax(	"$tag->tag",
+			lib_ajax(	"$tag->tag",
 						$table,
 						"id",
 						"$id",
@@ -84,7 +84,7 @@ function lib_tags_add_link($table,$id) {
 						"button,nohide,nolabel",
 						"files",
 						"edit",
-						"sc_ajax_callback_tags_add_tag,rfs_ajax_func_tags");
+						"lib_ajax_callback_tags_add_tag,rfs_ajax_func_tags");
 					
 			echo "</div>";
 		}
@@ -92,7 +92,7 @@ function lib_tags_add_link($table,$id) {
 	}
 	echo "</div>";
 
-	sc_ajax(	"New Tag",
+	lib_ajax(	"New Tag",
 				$table,
 				"id",
 				"$id",
@@ -101,7 +101,7 @@ function lib_tags_add_link($table,$id) {
 				"nohide",
 				"files",
 				"edit",
-				"sc_ajax_callback_tags_new_tag,rfs_ajax_func_tags");
+				"lib_ajax_callback_tags_new_tag,rfs_ajax_func_tags");
 	
 }
 
@@ -112,13 +112,13 @@ function lib_tags_add_tag($tag) {
 }
 
 function lib_tags_show_tags($table,$id) {
-	$obj=mfo1("select tags from $table where id='$id'");
+	$obj=lib_mysql_fetch_one_object("select tags from $table where id='$id'");
 	$tagz=explode(",",$obj->tags);
 	if(!empty($tagz[0])) {
 		foreach($tagz as $tk => $tv) {
 			
-			$tag=mfo1("select * from tags where tag='$tv'"); 
-			if( (($tag->hidden=="yes") && (sc_yes($_SESSION['hidden']))) ||
+			$tag=lib_mysql_fetch_one_object("select * from tags where tag='$tv'"); 
+			if( (($tag->hidden=="yes") && (lib_rfs_bool_true($_SESSION['hidden']))) ||
 				$tag->hidden!="yes" ) {
 			
 				$tv=ltrim($tv," "); $tv=rtrim($tv," ");

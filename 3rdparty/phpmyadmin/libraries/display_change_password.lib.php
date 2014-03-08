@@ -79,7 +79,7 @@ function PMA_getHtmlForChangePassword($username, $hostname)
         . '<label for="radio_pw_hash_new">MySQL&nbsp;4.1+</label>'
         . '</td>'
         . '</tr>'
-        . '<tr id="tr_element_before_generate_password">'
+        . '<tr id="tr_element_before_lib_string_generate_password">'
         . '<td>&nbsp;</td>'
         . '<td>'
         . '<input type="radio" name="pw_hash" id="radio_pw_hash_old" '

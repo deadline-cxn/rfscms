@@ -10,7 +10,7 @@ if(substr(PHP_OS,0,3)=="WIN") {
 	$RFS_SITE_OS="Windows";
 }
 
-function lib_mysql_open_database(){
+function install_mysql_open_database(){
 	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'], $GLOBALS['authdbuser'], $GLOBALS['authdbpass']);
 	if(empty($mysql))	{
 		return false;
@@ -18,18 +18,18 @@ function lib_mysql_open_database(){
 	mysql_select_db( $GLOBALS['authdbname'], $mysql);
 	return $mysql;
 }
-function lib_mysql_query($query) {
+function install_mysql_query($query) {
 	if(stristr($query,"`users`")) { $x=lib_mysql_query_user_db($query); return $x; }
 	$mysql=lib_mysql_open_database(); if($mysql==false) return false;
 	$result=mysql_query($query,$mysql);
 	if(empty($result)) return false;
 	return $result;
 }
-function lib_mysql_query_user_db($q){
+function install_mysql_query_user_db($q){
     $r=lib_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
     return$r;
 }
-function lib_mysql_query_other_db($db,$host,$user,$pass,$query){
+function install_mysql_query_other_db($db,$host,$user,$pass,$query){
 	$mysql=mysql_connect($host,$user,$pass);
 	mysql_select_db($db, $mysql);
 	$result=mysql_query($query,$mysql);

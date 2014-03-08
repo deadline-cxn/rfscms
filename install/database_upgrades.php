@@ -151,9 +151,22 @@ if($a<923) {
 	lib_file_touch_dir("$RFS_SITE_PATH/modules/videos/cache");
 }
 
+if($a<925) {
+	lib_access_add_method("admin", "access");
+	lib_access_add_method("admin", "categories");
+	$r=lib_mysql_query("select * from categories");
+	while($cat=mysql_fetch_object($r)){ 
+		lib_mysql_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");
+		if($cat->worksafe=="no") {
+			lib_mysql_query("update files set worksafe='no' where worksafe!='no and category = '$cat->name'");
+			lib_mysql_query("update pictures set worksafe='no' where category = '$cat->name'");
+		}
+	}
+}
+
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
-	$dbu=mfo1("select * from site_vars where name='database_upgrade'");
+	$dbu=lib_mysql_fetch_one_object("select * from site_vars where name='database_upgrade'");
 	if(empty($dbu->id)) lib_mysql_query("insert into site_vars (`name`,`value`) values('database_upgrade','$RFS_SITE_DATABASE_UPGRADE');");
 	else lib_mysql_query("update site_vars set `value` = '$RFS_SITE_DATABASE_UPGRADE' where `name`='database_upgrade'");
 	echo "Added interim database changes $RFS_SITE_DATABASE_UPGRADE<br>";

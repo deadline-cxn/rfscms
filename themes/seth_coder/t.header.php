@@ -1,15 +1,15 @@
 <?
-rfs_echo($RFS_SITE_DOC_TYPE);
-rfs_echo($RFS_SITE_HTML_OPEN);
-rfs_echo($RFS_SITE_HEAD_OPEN);
-rfs_echo($RFS_SITE_TITLE);
+lib_rfs_echo($RFS_SITE_DOC_TYPE);
+lib_rfs_echo($RFS_SITE_HTML_OPEN);
+lib_rfs_echo($RFS_SITE_HEAD_OPEN);
+lib_rfs_echo($RFS_SITE_TITLE);
 
 $RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
 
-rfs_echo($RFS_THEME_CSS);
+lib_rfs_echo($RFS_THEME_CSS);
 
-rfs_echo($RFS_SITE_HEAD_CLOSE);
-rfs_echo($RFS_SITE_BODY_OPEN);
+lib_rfs_echo($RFS_SITE_HEAD_CLOSE);
+lib_rfs_echo($RFS_SITE_BODY_OPEN);
 echo "<center>";
 
 to("100%"," align=center cellpadding=0");
@@ -40,7 +40,7 @@ to("100%"," align=center cellpadding=0");
 					*/
 					 tcr("toptd");
 					 
-					 if(!sc_yes($data->donated)) {
+					 if(!lib_rfs_bool_true($data->donated)) {
 					 		sc_donate_button();
 							sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 							//sc_reddit();
@@ -74,7 +74,7 @@ to("100% cellpadding=5"," align=center ");
 
 			tcr("thirdtd ");
 
-			sc_theme_form();
+			lib_forms_theme_select();
 
 			tcr("thirdtd ");
 			
@@ -87,10 +87,10 @@ to("100% cellpadding=5"," align=center ");
            tcr("thirdtd align=right ");
 
            if($_SESSION['logged_in']) {
-				rfs_echo($RFS_SITE_LOGGED_IN_CODE);				
+				lib_rfs_echo($RFS_SITE_LOGGED_IN_CODE);				
 		   }
            else {
-			    rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+			    lib_rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
 		   }
             
         tcc();

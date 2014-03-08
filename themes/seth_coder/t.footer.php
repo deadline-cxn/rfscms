@@ -1,7 +1,7 @@
 <?
 
 	
-	if(!sc_yes($data->donated)) {
+	if(!lib_rfs_bool_true($data->donated)) {
 		echo "<center>";
 		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 		echo "</center>";

@@ -102,7 +102,7 @@ if($action=="editlinkbin") {
             echo "<tr bgcolor=$forum_color[$gt]>\n";
             echo "<td bgcolor=$forum_color[$gt] width=130><input type=text name=short_name value=\"$link->sname\" size=18></td>";
             echo "<td width=250><input type=text name=linkurl value=\"$link->link\" size=40> </td>\n";
-            echo "<td width=300>(submitted by $userdata->name on ".sc_time($link->time).")</td>\n";
+            echo "<td width=300>(submitted by $userdata->name on ".lib_string_current_time($link->time).")</td>\n";
             echo "<td>Rating:</td>\n";
             echo "<td bgcolor=$forum_color[$gt] width=100 align=center><input type=submit name=renamelink value=modify></td>\n";
             echo "</tr>\n";
@@ -157,7 +157,7 @@ for($u=0;$u<$numlinks;$u++) {
     $gt++; if($gt>1) $gt=0;
     $link=mysql_fetch_object($result);
     $userdata=lib_users_get_data($link->poster);
-    list($lmonth,$lday,$lyear,$ltime,$lampm) = explode(" ",sc_time($link->time));
+    list($lmonth,$lday,$lyear,$ltime,$lampm) = explode(" ",lib_string_current_time($link->time));
     if($lmonth!=$lastmonth) {
         echo "<tr><td><h1>$lmonth $lyear</h1></td></tr>\n";
         $lastmonth=$lmonth;

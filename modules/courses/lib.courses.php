@@ -21,11 +21,11 @@ lib_mysql_add("course_component","sequence","text","NOT NULL");
 lib_mysql_add("course_component","type","text","NOT NULL COMMENT 'course_component_type'");
 
 // add an admin function to be visible in the admin menu
-function adm_action_lib_courses_courses() { eval(scg());
+function adm_action_lib_courses_courses() { eval(lib_rfs_get_globals());
     lib_domain_gotopage("$RFS_SITE_URL/modules/courses/courses.php");
 }
 
-function sc_module_course_list($x) { eval(scg());
+function sc_module_course_list($x) { eval(lib_rfs_get_globals());
     echo "<h2>Courses available</h2><hr>";
 	
     echo "<div class=\"courses_box\">";
@@ -48,7 +48,7 @@ function sc_module_course_list($x) { eval(scg());
     echo "</div>";
 }
 
-function sc_module_course_admin() { eval(scg());
+function sc_module_course_admin() { eval(lib_rfs_get_globals());
 
 	if(lib_access_check("course","edit")) {
 		lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_list","Edit Courses");		
@@ -56,7 +56,7 @@ function sc_module_course_admin() { eval(scg());
 	
 }
 
-function sc_course_components_list($id) { eval(scg());
+function sc_course_components_list($id) { eval(lib_rfs_get_globals());
 	$out="";
 	$r=lib_mysql_query("select * from course_component where parent='$id'");
 		for($i=0;$i<mysql_num_rows($r);$i++) {
@@ -67,8 +67,8 @@ function sc_course_components_list($id) { eval(scg());
 }
 
 
-function sc_ajax_callback_component_add() {
-	eval(scg());
+function lib_ajax_callback_component_add() {
+	eval(lib_rfs_get_globals());
 	if(lib_access_check($rfaapage,$rfaact)) {		
 		$q="insert into `$rfatable` (`$rfafield`,`$rfaikey`) VALUES('$rfaajv','$rfakv')";
 		// $q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";

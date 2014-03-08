@@ -194,7 +194,7 @@ if(!$_SESSION['valid_user']) {
                 $_SESSION['valid_user']  = $user->name;
                 $_SESSION["logged_in"]  = "true";
                 //  echo $_SESSION['goback'];
-                if(sc_yes($_SESSION['goback'])) {					
+                if(lib_rfs_bool_true($_SESSION['goback'])) {					
                   
 						$retpage=$_SESSION['retpage'];
 						if(!empty($retpage)) {
@@ -254,7 +254,7 @@ if($r) {
             $_SESSION['valid_user']  = $user->id;
             $_SESSION["logged_in"]  = "true";
             echo $_SESSION['goback'];
-            if(sc_yes($_SESSION['goback'])) {
+            if(lib_rfs_bool_true($_SESSION['goback'])) {
               lib_domain_gotopage($RFS_SITE_URL);
             }
             else {

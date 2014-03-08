@@ -4,7 +4,7 @@ chdir("../../");
 include("header.php");
 if(empty($action)) $action="forum_list";
 
-function forum_put_buttons($forum_which) { eval(scg());
+function forum_put_buttons($forum_which) { eval(lib_rfs_get_globals());
 	if($forum_list!="yes") {
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php\">List Forums</a>]";
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";
@@ -29,16 +29,16 @@ function bumpthread($id) { $bumptime=date("Y-m-d H:i:s"); lib_mysql_query("updat
 function forums_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; forums_action_forum_showposts(); }
 function forums_action_forum_admin_off() { $_SESSION['forum_admin']="no";  forums_action_forum_showposts(); }
 
-if(sc_yes($_SESSION['forum_admin'])) {
+if(lib_rfs_bool_true($_SESSION['forum_admin'])) {
     if(lib_access_check("admin","forums")) {
-		echo "<p> ".smiles(":X")." You do not have access to the Forum Administration Panel (FAP)!</p>";
+		echo "<p> ".lib_string_convert_smiles(":X")." You do not have access to the Forum Administration Panel (FAP)!</p>";
 		$_SESSION['forum_admin']=="no";
 	}
 }
 
 $folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));
 
-function forums_action_start_thread() { eval(scg());
+function forums_action_start_thread() { eval(lib_rfs_get_globals());
 	$folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));   
     echo "<h1>$folder->name</h1>";
 	forum_put_buttons($forum_which);
@@ -73,7 +73,7 @@ function forums_action_start_thread() { eval(scg());
 	include("footer.php");
 }
 
-function forums_action_start_thread_go() { eval(scg());
+function forums_action_start_thread_go() { eval(lib_rfs_get_globals());
     if($logged_in=="true") {
 		
         $user=$data->id;
@@ -106,7 +106,7 @@ function forums_action_start_thread_go() { eval(scg());
     forums_action_get_thread($thread,$forum_which);
 }
 
-function show1message($post,$gx) { eval(scg());
+function show1message($post,$gx) { eval(lib_rfs_get_globals());
 	$pster=lib_users_get_data($post['poster']);	
 	$forum=mysql_fetch_object(lib_mysql_query("select * from forum_list where id=".$post['forum']));	
 	
@@ -123,7 +123,7 @@ function show1message($post,$gx) { eval(scg());
 		$pname=$pster->name;
 			
 			echo "<div class=\"forum_user\" >";
-			sc_useravatar($pname);
+			echo lib_users_avatar_code($pname);
 			echo "<br><a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$pname\">$pname</a><br>";
 			echo "posts:$pster->forumposts<br>";
 			echo "replies:$pster->forumreplies";
@@ -131,11 +131,11 @@ function show1message($post,$gx) { eval(scg());
 			echo  "</div>";
 		
 			echo "<div class=\"forum_message\">";
-			echo smiles(wikitext(stripslashes($post['message'])));
+			echo lib_string_convert_smiles(wikitext(stripslashes($post['message'])));
 			echo "</div>";
 		
 		echo "<div class=\"forum_time\">";
-        $time=sc_time($post['time']);
+        $time=lib_string_current_time($post['time']);
         echo "posted $time by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$pname\">$pname</a> ";
         if($logged_in=="true") {
             if( ($pster->name==$data->name) || (lib_access_check("forums","admin"))  ) {
@@ -154,7 +154,7 @@ function show1message($post,$gx) { eval(scg());
     }
 }
 
-function forums_action_get_thread($thread,$forum_which) {    eval(scg());
+function forums_action_get_thread($thread,$forum_which) {    eval(lib_rfs_get_globals());
 
    
 	$gt=1; $gx=4+$gt;
@@ -167,7 +167,7 @@ function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 	
 	
    if(empty($forum_which)){
-		$th=mfo1("select * from `forum_posts` where `thread`='$thread'");
+		$th=lib_mysql_fetch_one_object("select * from `forum_posts` where `thread`='$thread'");
 		$forum_which=$th->forum;
 		
 		
@@ -234,19 +234,19 @@ function forums_action_get_thread($thread,$forum_which) {    eval(scg());
 	include("footer.php");
 }
 
-function forums_action_move_thread() { eval(scg());
+function forums_action_move_thread() { eval(lib_rfs_get_globals());
     $tofor=lib_mysql_query("select * from forum_list where name='$move'");
     $toforum=mysql_fetch_object($tofor);
     lib_mysql_query("update forum_posts set forum='$toforum->id' where id='$id'");
     lib_mysql_query("update forum_posts set forum='$toforum->id' where thread='$id'");
-	$thread=mfo1("select * from forum_posts where id='$id'");
+	$thread=lib_mysql_fetch_one_object("select * from forum_posts where id='$id'");
     echo "<p style='color:white; background-color:green;'>Moved thread $id ($thread->title) to forum $toforum->id ($move)</p>";
     forums_action_get_thread($id,$toforum->id);//ction="get_thread";
 }
 
 if($action=="delete_post_s") {
     if($logged_in=="true") {
-        echo "<table border=\"0\" align=center><tr><td class=\"sc_warning\"><center>".smiles("^X")."\n";
+        echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles("^X")."\n";
         echo "<br>WARNING:<br>The forum post and ALL replies will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
         echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
@@ -259,7 +259,7 @@ if($action=="delete_post_s") {
 if($action=="delete_post") {
     if($logged_in=="true") {
        lib_mysql_query("delete from forum_posts where thread='$thread';");
-       sc_warn("<h2><font color=red>Post was deleted...</font></h2>");
+       lib_forms_warn("<h2><font color=red>Post was deleted...</font></h2>");
 		$forum_list="no";
 		forums_action_get_thread($thread,$forum_which);
     }
@@ -267,7 +267,7 @@ if($action=="delete_post") {
  
 if($action=="delete_reply_s") {
     if($logged_in=="true") {
-        echo "<table border=\"0\" align=center><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
+        echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles(":X")."\n";
         echo "<br>WARNING:<br>The forum reply will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
         echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
@@ -379,16 +379,16 @@ if($action=="modify_forum"){
         if($con==1)        {
             $forum_name=stripslashes($forum_name);
             echo "$forum_name";
-            sc_setvar("forum_list","name",addslashes($forum_name),"name",$old_name);
-            sc_setvar("forum_list","comment",addslashes($forum_desc),"name",addslashes($forum_name));
-            sc_setvar("forum_list","usepass",$forum_usepass,"name",addslashes($forum_name));
-            sc_setvar("forum_list","password",$forum_pass1,"name",addslashes($forum_name));
-            sc_setvar("forum_list","private",$forum_private,"name",addslashes($forum_name));
-            sc_setvar("forum_list","moderated",$forum_moderated,"name",addslashes($forum_name));
+            lib_mysql_setvar("forum_list","name",addslashes($forum_name),"name",$old_name);
+            lib_mysql_setvar("forum_list","comment",addslashes($forum_desc),"name",addslashes($forum_name));
+            lib_mysql_setvar("forum_list","usepass",$forum_usepass,"name",addslashes($forum_name));
+            lib_mysql_setvar("forum_list","password",$forum_pass1,"name",addslashes($forum_name));
+            lib_mysql_setvar("forum_list","private",$forum_private,"name",addslashes($forum_name));
+            lib_mysql_setvar("forum_list","moderated",$forum_moderated,"name",addslashes($forum_name));
             $userdata=lib_users_get_data($forum_moderator);
-            sc_setvar("forum_list","moderator",$userdata->id,   "name",addslashes($forum_name));
-            // sc_setvar("forum_list","bgcolor",  $forum_bgcolor,  "name",addslashes($forum_name));
-            sc_setvar("forum_list","priority", $forum_priority, "name",addslashes($forum_name));
+            lib_mysql_setvar("forum_list","moderator",$userdata->id,   "name",addslashes($forum_name));
+            // lib_mysql_setvar("forum_list","bgcolor",  $forum_bgcolor,  "name",addslashes($forum_name));
+            lib_mysql_setvar("forum_list","priority", $forum_priority, "name",addslashes($forum_name));
             /*
             $tym=lib_mysql_query("select * from `access_groups`");
             $tymr=mysql_num_rows($tym);
@@ -405,13 +405,13 @@ if($action=="modify_forum"){
             */
         }
     }    else    {
-        echo "<p> ".smiles("^X")." You do not have access to modify the forums!</p>";
+        echo "<p> ".lib_string_convert_smiles("^X")." You do not have access to modify the forums!</p>";
         lib_log_add_entry("*****> $data->name tried to access the forum administration panel...");
     }
 }
 
 
-function forums_action_forum_list() { eval(scg());
+function forums_action_forum_list() { eval(lib_rfs_get_globals());
 
 	echo "<h1>Forums</h1>";
 
@@ -507,7 +507,7 @@ function forums_action_forum_list() { eval(scg());
 							echo"<tr><td width=500>";
 							
 							echo "<table><tr><td>";							
-							$folderpic=sc_get_theme_image("images/icons/$folder_filename");
+							$folderpic=lib_themes_get_image("images/icons/$folder_filename");
 							echo "<a href=\"$link\" class=\"forumlink\">";
 							echo "<img src=\"$folderpic\" alt=\"$alttxt\" title=\"$alttxt\" border=0>";
 							echo "</a>";							
@@ -549,7 +549,7 @@ function forums_action_forum_list() { eval(scg());
                                 $link="$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lastpost->id";
                                 $link="$RFS_SITE_URL/modules/forums/forums.php?forum_list=no&action=get_thread&thread=$lastpost->thread&forum_which=$lastpost->forum";
                                 echo "<a href=\"$link#$lastpost->id\" title=\"$lastpost->title\">$lastpost->title</a><br>";
-                                echo sc_time($lastpost->time);
+                                echo lib_string_current_time($lastpost->time);
                                 $udata=lib_users_get_data($lastpost->poster);
                                 echo " by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$udata->name\">$udata->name</a>";
                                 echo " <a href=\"$link\"><img src=\"$RFS_SITE_URL/images/icons/icon_latest_reply.gif\" width=\"18\" height=\"9\" class=\"imgspace\" border=\"0\" alt=\"View latest post\" title=\"View latest post\" /></a>";
@@ -580,7 +580,7 @@ function forums_action_forum_list() { eval(scg());
 	include("footer.php");
 }
 
-function forums_action_forum_showposts() { eval(scg());
+function forums_action_forum_showposts() { eval(lib_rfs_get_globals());
 
     $res=lib_mysql_query("select * from `forum_list` where `id`='$forum_which'");
     $fold=mysql_fetch_object($res);
@@ -635,7 +635,7 @@ function forums_action_forum_showposts() { eval(scg());
 			echo "</a><br>";
 			$great=lib_users_get_data($post['poster']);
 
-			$time=sc_time($post['time']);
+			$time=lib_string_current_time($post['time']);
 
             echo " posted $time by ".$great->name;
 			
@@ -660,7 +660,7 @@ function forums_action_forum_showposts() { eval(scg());
 				
 				
 				echo "<a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$great->name\">$great->name</a><br>";
-				echo sc_time($lreply->time);
+				echo lib_string_current_time($lreply->time);
 				
 				
 				}

@@ -11,7 +11,7 @@ lib_access_add_method("forums", "moderate");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FORUM
-function sc_module_mini_latest_forum_threads($x) { eval(scg());
+function sc_module_mini_latest_forum_threads($x) { eval(lib_rfs_get_globals());
     lib_div("FORUMS MODULE SECTION");
     echo "<h2>Last $x Threads</h2>";
     echo "<table border=0 cellspacing=0>";//  width=190>";
@@ -24,7 +24,7 @@ function sc_module_mini_latest_forum_threads($x) { eval(scg());
 				$gt++; if($gt>2) $gt=1;
 				echo "<tr><td class=\"sc_forum_table_$gt\">";
 				$thread=mysql_fetch_object($result);
-				$lastreply=mfo1("	select * from `forum_posts` where `thread` = '$thread->thread'
+				$lastreply=lib_mysql_fetch_one_object("	select * from `forum_posts` where `thread` = '$thread->thread'
 										order by time desc limit 1");
 				echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$thread->thread&forum_which=$thread->forum#$lastreply->id\">";
 				echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 >";
@@ -43,16 +43,16 @@ function sc_module_mini_latest_forum_threads($x) { eval(scg());
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORUMS
 
-function adm_action_f_add_forum() { eval( scg() );
+function adm_action_f_add_forum() { eval( lib_rfs_get_globals() );
 	lib_mysql_query( "insert into forum_list (`name`,`folder`,`parent`) VALUES ('$name','no','$parent') ; " );
 	adm_action_forum_admin();
 }
 
-function adm_action_f_add_forum_folder() { eval( scg() );
+function adm_action_f_add_forum_folder() { eval( lib_rfs_get_globals() );
 	lib_mysql_query( "insert into forum_list (`name`,`folder`) VALUES ('$name','yes') ; " );
 	adm_action_forum_admin();
 }
-function adm_action_forum_admin() { eval( scg() );
+function adm_action_forum_admin() { eval( lib_rfs_get_globals() );
 	
 	// Select forum folders
 	$r=lib_mysql_query( "select * from forum_list where folder='yes' order by priority asc" );
@@ -116,7 +116,7 @@ function adm_action_forum_admin() { eval( scg() );
 			
 			echo "<div style='margin-left: 200px;'>";
 			
-			lib_mysql_build_form(
+			lib_forms_build(
 				"$RFS_SITE_URL/admin/adm.php",
 				"action=f_add_forum".$RFS_SITE_DELIMITER.
 				"parent=$folder->id".$RFS_SITE_DELIMITER.
@@ -131,7 +131,7 @@ function adm_action_forum_admin() { eval( scg() );
 	
 
 	echo "<div class='forum_box'>";
-	lib_mysql_build_form(
+	lib_forms_build(
 		"$RFS_SITE_URL/admin/adm.php",
 		"action=f_add_forum_folder".$RFS_SITE_DELIMITER.
 		"SHOW_TEXT_#20#name=folder",

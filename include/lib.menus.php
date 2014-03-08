@@ -34,7 +34,7 @@ function lib_menus_options() {
 	}
 	echo "</table>";
 }
-function lib_menus_draw($menu_location) {   eval(scg());
+function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
 
     $res=lib_mysql_query("select * from `menu_top` order by `sort_order` asc");
     if($menu_location=="left") echo "<table  border=0 cellspacing=0 cellpadding=0 align=center>\n";
@@ -55,7 +55,7 @@ function lib_menus_draw($menu_location) {   eval(scg());
 				
 				case "loggedin":
 					
-					if(sc_yes($logged_in)==sc_yes($req[1]))
+					if(lib_rfs_bool_true($logged_in)==lib_rfs_bool_true($req[1]))
 						$showlink=1;
 				
 					break;
@@ -73,15 +73,15 @@ function lib_menus_draw($menu_location) {   eval(scg());
                         echo "<td class=sc_top_menu_table_td >";
                 }
 
-                if(sc_yes($RFS_THEME_NAV_BUTTONS)) {
-                    lib_button(rfs_get($link->link),$link->name);
+                if(lib_rfs_bool_true($RFS_THEME_NAV_BUTTONS)) {
+                    lib_button(lib_rfs_get($link->link),$link->name);
                 }
                 else {
                     echo "<a class=sc_top_menu_link href=\"";
-                    rfs_echo($link->link);
+                    lib_rfs_echo($link->link);
 					echo "\" ";
 					if(!empty($link->target)) {
-						rfs_echo("target=\"$link->target\" ");
+						lib_rfs_echo("target=\"$link->target\" ");
 					}					
 					echo ">";
 

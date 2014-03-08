@@ -388,7 +388,7 @@ $data=getuserdata($HTTP_SESSION_VARS['valid_user']);
 
 if($HTTP_SESSION_VARS["logged_in"]!="true")
 {
-    //$skull=smiles("%X");
+    //$skull=lib_string_convert_smiles("%X");
     echo"<table align=center><tr><td class=dm_warning><center>$skull ATTENTION!<br>You must be logged in to use xplorer! ";
     echo "What are you waiting for? <a href=join.php style=\"color: black\">JOIN</a> NOW! </td></tr></table>\n";
     include("footer.php");
@@ -519,9 +519,9 @@ if($action=="editfileform")
     	
         //echo $pwd;
     }
-    if(function_exists('show_codearea'))
+    if(function_exists('lib_forms_codearea'))
     {
-        show_codearea("adm_code",40,120,"editedtext",$pwd);
+        lib_forms_codearea("adm_code",40,120,"editedtext",$pwd);
     }
     else
     {
@@ -1194,7 +1194,7 @@ if($data->access==255)
 }
 else
 {
-    $skull=smiles("^X");
+    $skull=lib_string_convert_smiles("^X");
     echo"<table align=center><tr><td class=warning><center>$skull ATTENTION!<br>You are not authorized to use xplorer!</td></tr></table>\n";
 }
 

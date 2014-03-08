@@ -5,7 +5,7 @@ lib_menus_register("Pictures","$RFS_SITE_URL/modules/pictures/pictures.php");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE PICTURES
-function sc_module_mini_pictures($x) { eval(scg());
+function sc_module_mini_pictures($x) { eval(lib_rfs_get_globals());
     lib_div("PICTURES MODULE SECTION");
     echo "<h2>Last $x Pictures</h2>";
     $res2=lib_mysql_query("select * from `pictures` where `hidden`='no' order by time desc limit 0,$x");
@@ -20,7 +20,7 @@ function sc_module_mini_pictures($x) { eval(scg());
         echo "</td><td class=contenttd width='95%' valign=top>";
         echo "<a href=\"$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id\">";
         echo "$picture->sname</a><br>";
-        echo sc_trunc($picture->description,50);        
+        echo lib_string_truncate($picture->description,50);        
         echo "</td></tr>";
     }
 	echo "<tr><td class=contenttd></td><td class=contenttd>";
@@ -32,7 +32,7 @@ function sc_module_mini_pictures($x) { eval(scg());
     
 }
 
-function pics_addorphans($folder,$cat) { eval(scg());
+function pics_addorphans($folder,$cat) { eval(lib_rfs_get_globals());
         $dir_count=0;
         $dirfiles = lib_file_folder_to_array($folder);        
         while(list ($key, $file) = each ($dirfiles)){

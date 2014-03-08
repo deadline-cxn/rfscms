@@ -5,14 +5,14 @@ include("include/lib.mysql.php");
 if(empty($action)) $action="list_exams";
 
 if(empty($_REQUEST['exam_id'])) $title="Exams";
-else {	$tex=mfo1("select * from exams where id='".$_REQUEST['exam_id']."'");
+else {	$tex=lib_mysql_fetch_one_object("select * from exams where id='".$_REQUEST['exam_id']."'");
 		$title="Exam ($tex->name)";
 }
 include("header.php");
 
 echo "<h1>Exams</h1>";
 
-if(!sc_yes($_SESSION['logged_in'])) {
+if(!lib_rfs_bool_true($_SESSION['logged_in'])) {
 	echo "You're not logged in. <br> "; 
 	for($i=0;$i<35;$i++) echo "<br>";
 	include("footer.php");
@@ -242,7 +242,7 @@ if($action=="list_exams") {
 			$oclr="RED";
 			if($eprct>=$exam->pass_percent) $oclr="GREEN";
 			
-			sc_info("$escor/$etotq : $eprct%", "WHITE", $oclr);
+			lib_forms_info("$escor/$etotq : $eprct%", "WHITE", $oclr);
 			
 			echo "</td>";
 			
@@ -261,7 +261,7 @@ if($action=="list_exams") {
 
 if($action=="wipe_exam") {
 		
-	$exam   = mfo1("select * from exams where id='$exam_id'");
+	$exam   = lib_mysql_fetch_one_object("select * from exams where id='$exam_id'");
 	$eprct  = exams_get_prct($data->name,$exam_id);
 	$escor  = exams_get_score($data->name,$exam_id);
 	$etotq  = exams_get_total_questions($exam_id);
@@ -273,9 +273,9 @@ if($action=="wipe_exam") {
 	if($oclr=="GREEN") {
 		if( $etotq == $etotqa ) {
 			if($_SESSION["question_id"]<1) {
-				sc_info("$escor/$etotq : $eprct%", "WHITE", $oclr);
-				sc_info($exam->pass_percent."% minimum passing score required.", "WHITE", "BLUE");
-				sc_warn("You have already taken this exam and passed. If you wish, you may retake the exam, but your current score will be erased and you will have to take the exam in it's entirety with a passing score to recieve credit. If you are sure then
+				lib_forms_info("$escor/$etotq : $eprct%", "WHITE", $oclr);
+				lib_forms_info($exam->pass_percent."% minimum passing score required.", "WHITE", "BLUE");
+				lib_forms_warn("You have already taken this exam and passed. If you wish, you may retake the exam, but your current score will be erased and you will have to take the exam in it's entirety with a passing score to recieve credit. If you are sure then
 				<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam_id&confirmed=true'><img src=$RFS_SITE_URL/images/icons/Play.png border=0>click here</a>. Note: This action can not be reversed.");
 				for($i=0;$i<35;$i++) echo "<br>";
 				include("footer.php");
@@ -291,9 +291,9 @@ if($action=="wipe_exam") {
 		$texam_sequence	= $a["exam_sequence"];
 		if(($texam_sequence) > 1) { 
 			$_SESSION["exam_$exam_id"]=$texam_sequence;
-			$question=mfo1("select * from exam_questions where exam_sequence='$texam_sequence' and exam_id='$exam_id'");	
+			$question=lib_mysql_fetch_one_object("select * from exam_questions where exam_sequence='$texam_sequence' and exam_id='$exam_id'");	
 			
-			sc_question(" 
+			lib_forms_question(" 
 			<h1> $exam->name CBT
 			
 			<hr>
@@ -337,7 +337,7 @@ if($action=="really_wipe_exam") {
 
 if($action=="run_exam") {
 	
-	$exam   = mfo1("select * from exams where id='$exam_id'");
+	$exam   = lib_mysql_fetch_one_object("select * from exams where id='$exam_id'");
 	$eprct  = exams_get_prct($data->name,$exam_id);
 	$escor  = exams_get_score($data->name,$exam_id);
 	$etotq  = exams_get_total_questions($exam_id);
@@ -347,7 +347,7 @@ if($action=="run_exam") {
 	if($eprct>=$exam->pass_percent) $oclr="GREEN";
 	
     d_echo("Exam $exam_id");
-    $exam=mfo1("select * from exams where id='$exam_id'");
+    $exam=lib_mysql_fetch_one_object("select * from exams where id='$exam_id'");
     d_echo("$exam->name");
 
     if($qsid!=$_SESSION["exam_$exam_id"]) {
@@ -368,7 +368,7 @@ if($action=="run_exam") {
         $_SESSION["exam_$exam_id"]=1;
 
     d_echo("$qsid");
-    $question=mfo1("select * from exam_questions where exam_sequence='$qsid' and exam_id='$exam_id'");
+    $question=lib_mysql_fetch_one_object("select * from exam_questions where exam_sequence='$qsid' and exam_id='$exam_id'");
     d_echo($question->type);
 	
 	$_SESSION["question_id"]=$question->id;
@@ -400,7 +400,7 @@ if($action=="run_exam") {
 		$qq.="You answered $nqc questions correctly out of $nq <br>";		
 		$qq.="Percentage answered correctly $prct %<br>";		
 		
-		$exam=mfo1("select * from exams where id='$exam_id'");
+		$exam=lib_mysql_fetch_one_object("select * from exams where id='$exam_id'");
 		
 		$qq.="Minimum passing score for this exam: $exam->pass_percent <br> <hr>";		
 		if($prct>$exam->pass_percent) {
@@ -429,7 +429,7 @@ if($action=="run_exam") {
 		
 		$qq.="<BR><BR> <BR><BR>";
 		
-		sc_question($qq);
+		lib_forms_question($qq);
 			
 		
 		
@@ -557,7 +557,7 @@ if($action=="run_exam") {
 
     $qq.="<BR><BR><BR>";
 	
-    sc_question($qq);
+    lib_forms_question($qq);
 	
     lib_div("END OF TEST QUESTION");
 	
@@ -596,9 +596,9 @@ if(lib_access_check("exams","edit") ) {
 		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit>List all exams</a>]";
 		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_edit&exam_id=$exam_id>List all questions</a>]<br>";
 				
-		$qt=mfo1("select * from exam_questions where id='$q'");
+		$qt=lib_mysql_fetch_one_object("select * from exam_questions where id='$q'");
 			
-		lib_mysql_build_form( "$RFS_SITE_URL/modules/exams/exams.php",
+		lib_forms_build( "$RFS_SITE_URL/modules/exams/exams.php",
 			   "action=admin_exam_question_edit_2".$RFS_SITE_DELIMITER.
 			   "SHOW_SELECTOR_exam_question_types#name#type#$qt->type".$RFS_SITE_DELIMITER.	
 			   "SHOW_SELECTOR_cfetp_tasks#task&name#task#$qt->task",
@@ -648,7 +648,7 @@ if(lib_access_check("exams","edit") ) {
 		
 		// echo "<p>Choose the type of exam question.</p>";
 				
-		sc_optionizer(	"$RFS_SITE_URL/modules/exams/exams.php",
+		lib_forms_optionize(	"$RFS_SITE_URL/modules/exams/exams.php",
 						   "action=admin_exam_edit_add_2".$RFS_SITE_DELIMITER.
 						   "exam_id=$exam_id".$RFS_SITE_DELIMITER.
 						   "exam_sequence=$exam_sequence",
@@ -666,7 +666,7 @@ if(lib_access_check("exams","edit") ) {
 				
 		echo "Adding new question to exam: $exam_id -> $exam_sequence -> $name ($eqt->type)<br>";		
 		
-		lib_mysql_build_form( "$RFS_SITE_URL/modules/exams/exams.php",
+		lib_forms_build( "$RFS_SITE_URL/modules/exams/exams.php",
 	       "action=admin_exam_edit_add_3".$RFS_SITE_DELIMITER.
 		   "aeexam_id=$exam_id".$RFS_SITE_DELIMITER.
 		   "aeexam_sequence=$exam_sequence".$RFS_SITE_DELIMITER.
@@ -701,7 +701,7 @@ if(lib_access_check("exams","edit") ) {
 	
     if($action=="admin_exam_edit") {
 		
-		$exam=mfo1("select * from exams where id='$exam_id'");
+		$exam=lib_mysql_fetch_one_object("select * from exams where id='$exam_id'");
 		
 		echo "<h1>EDIT EXAM $exam_id $exam->name</h1>";
 		
@@ -791,7 +791,7 @@ if(lib_access_check("exams","edit") ) {
 				echo "<td class=sc_project_table_$gt><img src='$RFS_SITE_URL/images/icons/arrow-down.png' border=0 width=16></td>";
 				echo "<td class=sc_project_table_$gt>$q->exam_sequence)</td>";
 				echo "<td class=sc_project_table_$gt>$q->type</td>";
-				echo "<td class=sc_project_table_$gt>".sc_trunc($q->intro,85)."</td>";
+				echo "<td class=sc_project_table_$gt>".lib_string_truncate($q->intro,85)."</td>";
 				echo "<td class=sc_project_table_$gt>$q->question</td>";
 				echo "<td class=sc_project_table_$gt>$q->correct_answer</td>";
 				
@@ -811,7 +811,7 @@ if(lib_access_check("exams","edit") ) {
 				
 				echo "<td class=sc_project_table_$gt>";
 				if(!empty($q->question_image)) 
-					rfs_echo("<img src=$q->question_image width=32>");
+					lib_rfs_echo("<img src=$q->question_image width=32>");
 				echo "</td>";
 				echo "</tr>";
 				$exam_sequence=$q->exam_sequence;
@@ -839,7 +839,7 @@ if(lib_access_check("exams","edit") ) {
 		echo "<p> CHANGE EXAM POD </p>";
 		echo "<p> Exam: $exam_id </p>";
 		echo "<p> POD: $name </p>";
-		// $pod=mfo1("select * from pods where name='$name'");
+		// $pod=lib_mysql_fetch_one_object("select * from pods where name='$name'");
 		$q="update `exams` set `pod_id`='$name' where `id`='$exam_id'";
 		
 		lib_mysql_query($q);
@@ -974,12 +974,12 @@ if(lib_access_check("exams","edit") ) {
                         $pod="Select POD to associate with this exam";
                     }
                     else	{
-                            $podd=mfo1("select * from pods where id='$pod_id'");
+                            $podd=lib_mysql_fetch_one_object("select * from pods where id='$pod_id'");
 							$pod=$podd->name;
                     }
 					
 
-                sc_optionizer(	lib_domain_phpself(),
+                lib_forms_optionize(	lib_domain_phpself(),
                                 "action=admin_exam_change_pod".$RFS_SITE_DELIMITER.
                                 "exam_id=$exam->id",
                                 "pods",

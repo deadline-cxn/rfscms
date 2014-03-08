@@ -58,7 +58,7 @@ if( $action=="showfont") {
     if(!$forcewidth) $owidth=$w+5;
     if($forceheight) $h=$oheight;
 	else $oheight=$h+15;
-	$image_b=genm_newimg($owidth,$oheight);
+	$image_b=lib_genm_newimg($owidth,$oheight);
 	
 	// DEFINE FONT BORDER COLOR
     if( ($bgr) || ($bgg) || ($bgb) ){
@@ -106,15 +106,15 @@ else
     {
     //////////////////////////////////////////// MERGE PICTURE WITH TEXT
 	$mid=$_REQUEST['mid'];
-	$meme=mfo1("select * from meme where id='$mid'");
+	$meme=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
 	
-	$pic=mfo1("select * from pictures where id='$meme->basepic'");
+	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$meme->basepic'");
 	$ptf=$RFS_SITE_PATH."/".$pic->url;
 	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";	
 	$px=explode("/",$pic->url);
 	$py=explode(".",$px[count($px)-1]);
 	
-	$image_in = genm_imgload($ptf);
+	$image_in = lib_genm_imgload($ptf);
 	
 	$owidth	= $_REQUEST['owidth'];
 	$oheight	= $_REQUEST['oheight'];
@@ -179,10 +179,10 @@ else
 	$red    = imagecolorallocate($image_b, 255, 0, 0);
 
 	if(empty($meme->text_color)) $meme->text_color="white";
-	$clr  = mfo1("select * from colors where name='$meme->text_color'");
+	$clr  = lib_mysql_fetch_one_object("select * from colors where name='$meme->text_color'");
 	$oclr = imagecolorallocate($image_b, $clr->r, $clr->g, $clr->b);
 	if(empty($meme->text_bg_color)) $meme->text_bg_color="black";
-	$clr  = mfo1("select * from colors where name='$meme->text_bg_color'");
+	$clr  = lib_mysql_fetch_one_object("select * from colors where name='$meme->text_bg_color'");
 	$bclr = imagecolorallocate($image_b, $clr->r, $clr->g, $clr->b);
            
     $font_file=str_replace("files/fonts/","",$meme->font);
@@ -270,7 +270,4 @@ if(!empty($renderfile)){
 header('Content-Type: image/png');
 imagepng($image_b);
 exit();
-
-
-
 ?>

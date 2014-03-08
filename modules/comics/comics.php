@@ -51,7 +51,7 @@ function renumber_pages($id) {
 	}
 }
 
-function template_mini_preview($id) { eval(scg());
+function template_mini_preview($id) { eval(lib_rfs_get_globals());
     $template=mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='$id'"));
     echo "<table border=0><tr><td class=contenttd>&nbsp;";    
     for($i=0;$i<$template['panels'];$i++) {
@@ -73,7 +73,7 @@ function template_mini_preview($id) { eval(scg());
     echo "</td></tr></table>";
 }
 
-function template_full_preview($id) { eval(scg());
+function template_full_preview($id) { eval(lib_rfs_get_globals());
     $template=mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='$id'"));
     echo "<table border=0><tr><td class=contenttd>";    
     for($i=0;$i<$template['panels'];$i++) {
@@ -195,7 +195,7 @@ if($data->access==255){
 
         template_mini_preview($tid);
         
-        echo "<table border=\"0\"><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
+        echo "<table border=\"0\"><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles(":X")."\n";
         echo "<br>WARNING:<br>The template $template->name will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
         echo "<table><tr><td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\">\n";
@@ -596,7 +596,7 @@ if($data->access==255){
 			
 			sc_comics_page_mini_preview($pid);
         
-        echo "<table border=\"0\"><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
+        echo "<table border=\"0\"><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles(":X")."\n";
         echo "<br>WARNING:<br>The page will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
         echo "<table><tr><td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\">\n";

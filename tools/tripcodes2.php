@@ -17,7 +17,7 @@ echo "<form><input type=hidden name=aaa value=a>
 Desired Trip<input name=dtrip value='$dtrip'> <input type=submit ></form>";
 }
 if(isset($dtrip)) {
-	sc_db_dumptable("tripcodes","no","word"," where 
+	lib_mysql_dump_table("tripcodes","no","word"," where 
 		(result like '%$dtrip%') or
 	   (word like '%$dtrip%') 
 	   order by length(`word`) desc");

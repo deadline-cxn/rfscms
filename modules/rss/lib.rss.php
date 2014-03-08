@@ -5,7 +5,7 @@ lib_menus_register("RSS Feeds","$RFS_SITE_URL/modules/rss/rss.php");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE RSS
-function sc_module_mini_rss() { eval(scg());
+function sc_module_mini_rss() { eval(lib_rfs_get_globals());
 	lib_div("RSS MODULE SECTION");
 	echo "<h2>News from around the world</h2>";
     include("$RFS_SITE_PATH/3rdparty/rsslib/rsslib.php");    

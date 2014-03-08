@@ -8,29 +8,29 @@ include_once("lib.debug.php");
 include_once("lib.sitevars.php");
 /////////////////////////////////////////////////////////////////////////////////////////
 if(isset($_SESSION['debug_msgs']))
-if($_SESSION['debug_msgs']) { genmlog(lib_debug_footer('1')); }
+if($_SESSION['debug_msgs']) { lib_genmlog(lib_debug_footer('1')); }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genmlog($x){ eval(scg());
+function lib_genmlog($x){ eval(lib_rfs_get_globals());
 	if($_SESSION['debug_msgs']){
-		$fp=@fopen("$RFS_SITE_PATH/log/genm.log","at");
+		$fp=@fopen("$RFS_SITE_PATH/log/lib_genm.log","at");
 		if($fp) @fwrite($fp,"$x\n\r");
 		@fclose($fp);
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genm_imgtype($x){
+function lib_genm_imgtype($x){
 	$image_info = getimagesize($x);
 	return $image_info[2];
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genm_img_out($x) {
+function lib_genm_img_out($x) {
 	header('Content-Type: image/png');
 	imagepng($x);
 	return;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genm_imgload($x){
-    $y=genm_imgtype($x);
+function lib_genm_imgload($x){
+    $y=lib_genm_imgtype($x);
     if($y==IMAGETYPE_XBM)  $iz = imagecreatefromxbm($x);
     if($y==IMAGETYPE_BMP)  $iz = imagecreatefromwbmp($x);
     if($y==IMAGETYPE_ICO)  $iz = imagecreatefromwbmp($x);
@@ -48,7 +48,7 @@ function genm_imgload($x){
 	return $iz;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genm_newimg($w,$h){
+function lib_genm_newimg($w,$h){
 	if(empty($w)) $w=100;
 	if(empty($h)) $h=$w;
 	$iz=imagecreatetruecolor($w,$h);
@@ -59,19 +59,19 @@ function genm_newimg($w,$h){
 	return $iz;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genm_scale($x,$s) {
+function lib_genm_scale($x,$s) {
 	 // TODO: LOL
 }
-function genm_print_rot_outlined($image,$font_size,$ocolor,$color,$font,$text,$start_x,$start_y,$max_width,$rot) {
+function lib_genm_print_rot_outlined($image,$font_size,$ocolor,$color,$font,$text,$start_x,$start_y,$max_width,$rot) {
 	for(     $xx = -1; $xx < 2; $xx++) {
         for( $yy = -1; $yy < 2; $yy++) {
-            genm_print_rot($image, $font_size, $ocolor, $font, $text, $start_x+$xx, $start_y+$yy, $max_width,$rot);
+            lib_genm_print_rot($image, $font_size, $ocolor, $font, $text, $start_x+$xx, $start_y+$yy, $max_width,$rot);
         }
     }
-    genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width,$rot);
+    lib_genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width,$rot);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width,$rot) {
+function lib_genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width,$rot) {
     $text=urldecode($text);
     $dim=imagettfbbox($font_size, 0, $font, ".");
     $bh=-$dim[7];
@@ -107,16 +107,16 @@ function genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $sta
     imagettftext(	$image, $font_size, $rot, $start_x, $start_y, $color, $font, $string);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genm_print_outlined($image, $font_size, $ocolor, $color, $font, $text, $start_x, $start_y, $max_width) {
+function lib_genm_print_outlined($image, $font_size, $ocolor, $color, $font, $text, $start_x, $start_y, $max_width) {
     for(     $xx = -1; $xx < 2; $xx++) {
         for( $yy = -1; $yy < 2; $yy++) {
-            genm_print($image, $font_size, $ocolor, $font, $text, $start_x+$xx, $start_y+$yy, $max_width);
+            lib_genm_print($image, $font_size, $ocolor, $font, $text, $start_x+$xx, $start_y+$yy, $max_width);
         }
     }
-    genm_print($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width);
+    lib_genm_print($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function genm_print($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width) {
+function lib_genm_print($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width) {
     $text=urldecode($text);
     $dim=imagettfbbox($font_size, 0, $font, ".");
     $bh=-$dim[7];
@@ -154,7 +154,7 @@ function genm_print($image, $font_size, $color, $font, $text, $start_x, $start_y
 /* imagefttext  ( $image_b, $text_size-1, 0,					$zx, $zy,					$color,					$font,					$fizont);    imagettftext ( resource $image , float $size , float $angle , 					int $x , int $y , 					int $color ,					string $fontfile ,					string $text ); 					*/
 // this file can not have trailing spaces
 
-function genm_imageline( $img,$x,$y,$x2,$y2,$color,$thickness) {
+function lib_genm_imageline( $img,$x,$y,$x2,$y2,$color,$thickness) {
 	
 	imagesetthickness($img,$thickness);
 	imageline($img,$x,$y,$x2,$y2,$color);

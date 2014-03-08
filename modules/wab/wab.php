@@ -13,7 +13,7 @@ if(!empty($_REQUEST['runapp'])) {
 }
 if(empty($runapp)) $runapp="1";
 
-$wab_engine   =mfo1("select * from `wab_engine` where `id`='$runapp'");
+$wab_engine   =lib_mysql_fetch_one_object("select * from `wab_engine` where `id`='$runapp'");
 $wab_database=$wab_engine->value;
 
 if(empty($wab_database)) {
@@ -34,9 +34,9 @@ if($data->access==255) {
         echo "[<a href=$lnk>List all Apps</A>] ";
         echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=RFS+Website+Application+Builder\">What is this?</a>] ";
         echo "</td><td align=left class=sc_project_table_0>";
-        lib_mysql_build_form(  lib_domain_phpself(),
+        lib_forms_build(  lib_domain_phpself(),
                         "action=hide_wab_admin_menu".$RFS_SITE_DELIMITER.
-                        "runapp=".mfo1("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`")->id.$RFS_SITE_DELIMITER.
+                        "runapp=".lib_mysql_fetch_one_object("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`")->id.$RFS_SITE_DELIMITER.
                         "gotoapp=$wab_engine->id",
                         "", "", "", "", "", "", 20, "Hide this");
         echo "</td></tr></table>";
@@ -46,7 +46,7 @@ if($data->access==255) {
 echo "<table border=0 width=$site_singletablewidth><tr><td>";
 //eval functions
 $res=lib_mysql_query("select * from `$wab_database` where `type`='function' and `parent`='$wab_engine->id'");
-while($wab_engine_function=mfo($res)) {
+while($wab_engine_function=mysql_fetch_object($res)) {
 	//echo stripslashes($wab_engine_function->code)."<br>";
     eval(stripslashes($wab_engine_function->code));	
 }
@@ -56,8 +56,8 @@ no_func($wbna);
 
 function no_func($wbna){
     if(!function_exists($wbna)){
-        $we=mfo1("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`");
-        $ec=" function $wbna() { eval(scg());
+        $we=lib_mysql_fetch_one_object("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`");
+        $ec=" function $wbna() { eval(lib_rfs_get_globals());
 				echo \"<p class=warning>$wbna() function is undefined!</p>\";
 				\$lnk=\"\$RFS_SITE_URL/modules/wab/wab.php?action=edcode\";
 				\$lnk.=\"&runapp=".$we->id."\";
@@ -73,7 +73,7 @@ function no_func($wbna){
 
 $found_action=0;
 $res=lib_mysql_query("select * from `$wab_database` where `type`='action' and `parent`='$wab_engine->id'");
-while($wab_engine_action=mfo($res)){
+while($wab_engine_action=mysql_fetch_object($res)){
     if($action==$wab_engine_action->value){
         $found_action=1;
         eval($wab_engine_action->code);
@@ -93,13 +93,13 @@ exit();
 
 ////////////////////////////////////////////////////////////
 // FUNCTIONS
-function wab_engine_action_(){ eval(scg());
+function wab_engine_action_(){ eval(lib_rfs_get_globals());
     echo "<p>WAB Engine $wab_version by Seth Parson.</p><p>Available Apps:</p>";    
     $gt=0;
     echo "<table border=0>";
     $data=$GLOBALS['data'];
     $res=lib_mysql_query("select * from wab_engine where parent=id");
-    while($app=mfo($res)) {   
+    while($app=mysql_fetch_object($res)) {   
         if(!$app->hidden) {
             $gt++; if($gt>1) $gt=0;
             echo "<tr><td class=sc_project_table_$gt>";		
@@ -107,7 +107,7 @@ function wab_engine_action_(){ eval(scg());
             echo "</td><td class=sc_project_table_$gt>";
             if($data->access==255) {
                 if($_SESSION['hide_wab_admin_menu']!=true)
-                    lib_mysql_build_form(  lib_domain_phpself(),
+                    lib_forms_build(  lib_domain_phpself(),
                         "action=editapp".$RFS_SITE_DELIMITER.
                         "edapp=$app->id",
                         "", "", "", "", "", "", 20, "Edit");
@@ -119,10 +119,10 @@ function wab_engine_action_(){ eval(scg());
         echo "<tr><td class=sc_project_table_$gt></td>";
         echo "<td class=sc_project_table_$gt>";        
 		if($_SESSION['hide_wab_admin_menu']==true){
-				lib_mysql_build_form(  lib_domain_phpself(),"action=show_wab_admin_menu","", "", "", "", "", "", 20, "Show WAB Admin");
+				lib_forms_build(  lib_domain_phpself(),"action=show_wab_admin_menu","", "", "", "", "", "", 20, "Show WAB Admin");
 		}                        
 		else{        
-				lib_mysql_build_form(  lib_domain_phpself(), "action=add_form", "", "", "", "", "", "", 20, "Start a new App");        
+				lib_forms_build(  lib_domain_phpself(), "action=add_form", "", "", "", "", "", "", 20, "Start a new App");        
 		}
         echo "</td></tr>";
         
@@ -130,24 +130,24 @@ function wab_engine_action_(){ eval(scg());
     echo "</table>";
 }
 
-function wab_engine_action_edcodego() { eval(scg());
+function wab_engine_action_edcodego() { eval(lib_rfs_get_globals());
     $edapp=$GLOBALS['edapp'];
-    $app=mfo1("select * from `wab_engine` where `id`='$edapp'");
-    $db =mfo1("select * from `wab_engine` where `parent`='$edapp' and `type`='database'");
-    sc_updb("$db->value","value",$_REQUEST['value'],0);
+    $app=lib_mysql_fetch_one_object("select * from `wab_engine` where `id`='$edapp'");
+    $db =lib_mysql_fetch_one_object("select * from `wab_engine` where `parent`='$edapp' and `type`='database'");
+    lib_mysql_update_database("$db->value","value",$_REQUEST['value'],0);
     lib_mysql_query("update `$db->value` set `name`='$app->name' where `value`='".$_REQUEST['value']."'");
     echo "<p class=warning>FUNCTION: [".$_REQUEST['value']."] updated</p>";
     wab_engine_action_editapp();
 }
 
-function wab_engine_action_edcode() { eval(scg());
+function wab_engine_action_edcode() { eval(lib_rfs_get_globals());
     echo "CODE EDITOR<br>";    
     $_function=$GLOBALS['_function'];
     $edapp=$GLOBALS['edapp'];
-    $app=mfo1("select * from `wab_engine` where `id`='$edapp' and `parent`='0'");
-    $db =mfo1("select * from `wab_engine` where `parent`='$edapp' and `type`='database'");
+    $app=lib_mysql_fetch_one_object("select * from `wab_engine` where `id`='$edapp' and `parent`='0'");
+    $db =lib_mysql_fetch_one_object("select * from `wab_engine` where `parent`='$edapp' and `type`='database'");
     echo "Editing $app->name::$_function()<br>";
-    lib_mysql_build_form(  lib_domain_phpself(),
+    lib_forms_build(  lib_domain_phpself(),
             "action=edcodego".$RFS_SITE_DELIMITER."type=function".$RFS_SITE_DELIMITER.
             "SHOW_CODEAREA_35#140#code=l".$RFS_SITE_DELIMITER."hidden=1".$RFS_SITE_DELIMITER.
             "DBX_35#140#code=codearea".$RFS_SITE_DELIMITER.
@@ -161,9 +161,9 @@ function wab_engine_action_edcode() { eval(scg());
             "", "value,code", "include", "",60,"submit");
 }
 
-function wab_engine_action_add() { eval(scg());
+function wab_engine_action_add() { eval(lib_rfs_get_globals());
     if($GLOBALS['data']->access==255)  {
-        sc_updb("wab_engine","name",$_REQUEST['name'],0);
+        lib_mysql_update_database("wab_engine","name",$_REQUEST['name'],0);
         lib_mysql_query("update `wab_engine` set `parent`=`id` where `name`='".$_REQUEST['name']."'");
         lib_mysql_query("update `wab_engine` set `type`='database' where `name`='".$_REQUEST['name']."'");
         lib_mysql_query("update `wab_engine` set `value`='wab_engine' where `name`='".$_REQUEST['name']."'");
@@ -173,17 +173,17 @@ function wab_engine_action_add() { eval(scg());
     }
 }
 
-function wab_engine_action_add_form() { eval(scg());
+function wab_engine_action_add_form() { eval(lib_rfs_get_globals());
     if($GLOBALS['data']->access==255) {
         echo "<h3>Start a new application:</h3>";
-        lib_mysql_build_form( lib_domain_phpself(), "action=add".$RFS_SITE_DELIMITER."parent=0".$RFS_SITE_DELIMITER."hidden=0", "wab_engine", "", "", "name", "include", "",30,"add");
+        lib_forms_build( lib_domain_phpself(), "action=add".$RFS_SITE_DELIMITER."parent=0".$RFS_SITE_DELIMITER."hidden=0", "wab_engine", "", "", "name", "include", "",30,"add");
     }
 }
 
-function wab_engine_action_editapp() { eval(scg());
+function wab_engine_action_editapp() { eval(lib_rfs_get_globals());
     $id=$_REQUEST['edapp'];
     $res=lib_mysql_query("select * from `wab_engine` where `id`='$id'");
-    $co=mfo($res); 
+    $co=mysql_fetch_object($res); 
     $wab_engine_name=ucwords(str_replace("_"," ",$co->name));
     echo "<table border=0><tr><td>";
     echo "<a href=\"$RFS_SITE_URL/modules/wab/wab.php?runapp=$id\">"; 
@@ -198,7 +198,7 @@ function wab_engine_action_editapp() { eval(scg());
     echo "</p>";
 }
 
-function wab_engine_action_add_database() { eval(scg());
+function wab_engine_action_add_database() { eval(lib_rfs_get_globals());
     $table=$GLOBALS['value'];    
     $qr="CREATE TABLE IF NOT EXISTS `$table` (
 		  `name` text COLLATE utf8_unicode_ci NOT NULL,
@@ -212,13 +212,13 @@ function wab_engine_action_add_database() { eval(scg());
 		   KEY `id` (`id`)
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ; ";
     lib_mysql_query($qr);
-    $nm=mfo1("select * from `wab_engine` where `id`='".$GLOBALS['parent']."'");
+    $nm=lib_mysql_fetch_one_object("select * from `wab_engine` where `id`='".$GLOBALS['parent']."'");
     $key_field="name";
     $key_value=$nm->name;
     echo "$table<BR>";
     echo "$key_field<BR>";
     echo "$key_value<BR>";
-    sc_updb($table,$key_field,$key_value,0);
+    lib_mysql_update_database($table,$key_field,$key_value,0);
     lib_mysql_query("delete from `wab_engine` where `type`='database' and `parent`='".$GLOBALS['parent']."'");    
     lib_mysql_query("insert into `wab_engine` (`$key_field`,`type`,`value`,`parent`) values ('$key_value','database','$table','".$GLOBALS['parent']."')");    
 }
@@ -234,18 +234,18 @@ function wab_engine_action_show_wab_admin_menu() {
 }
 
 function wab_engine_action_add_function() {
-    $nm=mfo1("select * from `wab_engine` where `id`='".$GLOBALS['parent']."'");
-    $db=mfo1("select * from `wab_engine` where `parent`='".$GLOBALS['parent']."' and type='database'");
+    $nm=lib_mysql_fetch_one_object("select * from `wab_engine` where `id`='".$GLOBALS['parent']."'");
+    $db=lib_mysql_fetch_one_object("select * from `wab_engine` where `parent`='".$GLOBALS['parent']."' and type='database'");
     $key_field="value";
     $key_value=$nm->name;
-    sc_updb($db->value,$key_field,$key_value,0);
+    lib_mysql_update_database($db->value,$key_field,$key_value,0);
 }
 
-function wab_database($id) { eval(scg());
+function wab_database($id) { eval(lib_rfs_get_globals());
     echo "<p>";
     echo "DATABASE (table):<BR>";
-    $db=mfo1("select * from `wab_engine` where `parent`='$id' and type = 'database'");
-    if(sc_tableexists($db->value)) {
+    $db=lib_mysql_fetch_one_object("select * from `wab_engine` where `parent`='$id' and type = 'database'");
+    if(lib_mysql_table_exists($db->value)) {
         echo "$db->type : $db->value<br>";
     }
     else {
@@ -253,8 +253,8 @@ function wab_database($id) { eval(scg());
             echo"<font class=warning>No database defined!</font><br>";
         else
             echo"<font class=warning>Database defined as $db->value, but does not exist!</font><br>";
-        $name=mfo1("select * from `wab_engine` where `id`='$id'");
-        lib_mysql_build_form(  lib_domain_phpself(),
+        $name=lib_mysql_fetch_one_object("select * from `wab_engine` where `id`='$id'");
+        lib_forms_build(  lib_domain_phpself(),
                 "action=add_database".$RFS_SITE_DELIMITER.
 				"type=database".$RFS_SITE_DELIMITER.
 				"name=$name->name".$RFS_SITE_DELIMITER.
@@ -266,30 +266,30 @@ function wab_database($id) { eval(scg());
     }
     echo "</p>";
 }
-function wab_variables($id) { eval(scg());
+function wab_variables($id) { eval(lib_rfs_get_globals());
     echo "<p>";
     echo "VARIABLES:<BR>";
-    $db=mfo1("select * from `wab_engine` where `parent`='$id' and type = 'database'");
-    if(sc_tableexists($db->value)) {
-        sc_db_query("SHOW FULL COLUMNS FROM $db->value" ,1);
+    $db=lib_mysql_fetch_one_object("select * from `wab_engine` where `parent`='$id' and type = 'database'");
+    if(lib_mysql_table_exists($db->value)) {
+        lib_mysql_database_query("SHOW FULL COLUMNS FROM $db->value" ,1);
     }
     else {
     }
     echo "</p>";
 }
 
-function wab_functions($id) { eval(scg());
+function wab_functions($id) { eval(lib_rfs_get_globals());
     echo "<p>";
     echo "FUNCTIONS:<BR>";
-    $db=mfo1("select * from `wab_engine` where `parent`='$id' and type = 'database'");    
-    if(sc_tableexists($db->value)) {    
+    $db=lib_mysql_fetch_one_object("select * from `wab_engine` where `parent`='$id' and type = 'database'");    
+    if(lib_mysql_table_exists($db->value)) {    
         $res=lib_mysql_query("select * from `$db->value` where `parent`='$id' and type = 'function'");
-        while($co=mfo($res)) {
+        while($co=mysql_fetch_object($res)) {
             echo "$co->type : $co->value --- [<a href=wab.php?action=edcode&edapp=".$GLOBALS['edapp']."&_function=$co->value>edit code</a>]<br>";
         }
  // $page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit
-        $name=mfo1("select * from `wab_engine` where `id`='$id'");
-        lib_mysql_build_form(  lib_domain_phpself(),
+        $name=lib_mysql_fetch_one_object("select * from `wab_engine` where `id`='$id'");
+        lib_forms_build(  lib_domain_phpself(),
                 "action=add_function".$RFS_SITE_DELIMITER.
 				"type=function".$RFS_SITE_DELIMITER.
 				"name=$name->name".$RFS_SITE_DELIMITER.
@@ -304,13 +304,13 @@ function wab_engine_actions($id) {
     echo "<p>";
     echo "ACTIONS:<BR>";
     $res=lib_mysql_query("select * from `wab_engine` where `parent`='$id' and type = 'action'");
-    while($co=mfo($res)) {
+    while($co=mysql_fetch_object($res)) {
         echo "$co->type : $co->value --- [code]<br>";
     }
     echo "</p>";
 }
 
-function wab_form($action,$vars,$width,$submittxt) { eval(scg());
+function wab_form($action,$vars,$width,$submittxt) { eval(lib_rfs_get_globals());
     $edapp=$GLOBALS['edapp'];
     $runapp=$GLOBALS['runapp'];
     if(!empty($vars)) {
@@ -327,7 +327,7 @@ function wab_form($action,$vars,$width,$submittxt) { eval(scg());
     }
     $varz="action=".$action;
     if(!empty($vars)) $varz.="$RFS_SITE_DELIMITER".$vars;
-    lib_mysql_build_form( lib_domain_phpself(), $varz, $db, "", "", "", "omit", "", $width, $submittxt);
+    lib_forms_build( lib_domain_phpself(), $varz, $db, "", "", "", "omit", "", $width, $submittxt);
 }
 
 ?>

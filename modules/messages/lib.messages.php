@@ -3,11 +3,11 @@ include_once("include/lib.all.php");
 
 lib_menus_register("Private Messages","$RFS_SITE_URL/modules/messages/messages.php");
 
-function adm_action_lib_messages_messages() { eval(scg());
+function adm_action_lib_messages_messages() { eval(lib_rfs_get_globals());
     lib_domain_gotopage("$RFS_SITE_URL/modules/messages/messages.php");
 }
 
-function get_unread_messages() { eval(scg());
+function get_unread_messages() { eval(lib_rfs_get_globals());
     $q= "select * from `pmsg` where
     (
     `to` = '$data->name' or
@@ -43,7 +43,7 @@ function send_all($from,$subject,$message) {
 
 }
 
-function sc_module_mini_messages_link() { eval(scg());
+function sc_module_mini_messages_link() { eval(lib_rfs_get_globals());
 
 		echo "<h2>Private Messages</h2>";
 		if($_SESSION["logged_in"]!="true") return;
@@ -61,7 +61,7 @@ function sc_module_mini_messages_link() { eval(scg());
        echo "</tr></table>";
 }
 
-function sc_module_mini_messages_indicator_small() { eval(scg());
+function sc_module_mini_messages_indicator_small() { eval(lib_rfs_get_globals());
 	echo "<h2>Private Messages</h2>";
 	if($_SESSION["logged_in"]!="true") return;
     $ur=get_unread_messages();
@@ -96,7 +96,7 @@ function sc_module_mini_messages_indicator_small() { eval(scg());
 
 }
 
-function sc_module_mini_latest_messages($x) { eval(scg());
+function sc_module_mini_latest_messages($x) { eval(lib_rfs_get_globals());
     lib_div("MESSAGES MODULE SECTION");
     echo "<h2>Private Messages</h2>";
 
@@ -119,7 +119,7 @@ function sc_module_mini_latest_messages($x) { eval(scg());
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/messages/messages.php class=\"a_cat\" align=right>More...</a>)</p>";
 }
 
-function sc_module_f_messages_send($to,$from,$title,$message) { eval(scg()); 
+function sc_module_f_messages_send($to,$from,$title,$message) { eval(lib_rfs_get_globals()); 
 /*   "admin",  $usr->name,  "REQUEST TO ACCESS POD: $pod",        "	<a class=pmsglink href=$RFS_SITE_URL/index.php?action=netman_add_pod&useradd=$usr->id&pod=$pod > 		$usr->name is requesting access to pod: $pod 		</a>"         */
 	
 

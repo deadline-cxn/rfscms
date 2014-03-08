@@ -3,7 +3,7 @@ chdir("../../");
 include("include/lib.all.php");
 
 $data=lib_users_get_data($_SESSION['valid_user']);
-$count=sc_mcount($data->name);
+$count=lib_log_count($data->name);
 
 if($debug=="on") $_SESSION['debug_msgs']=true;
 if($debug=="off") $_SESSION['debug_msgs']=false;
@@ -55,7 +55,7 @@ function load_vw($data){
 		
 		for($vi=4;$vi<count($vars);$vi++){
 			$pv=explode(",",$vars[$vi]);
-			$vs=mfo1("select * from videos where id='$pv[2]'");
+			$vs=lib_mysql_fetch_one_object("select * from videos where id='$pv[2]'");
 			$_SESSION['darr'][$pv[0]][$pv[1]]['id']=$vs->id;
 			$_SESSION['darr'][$pv[0]][$pv[1]]['sname']=$vs->sname;
 			$_SESSION['darr'][$pv[0]][$pv[1]]['url']=$vs->url;		
@@ -138,7 +138,7 @@ if($action=="report"){
 	<input type=hidden name=id value=$id>
 	</form>";
 	
-	sc_info($dd,"black","red");
+	lib_forms_info($dd,"black","red");
 	
 	
 	
@@ -147,7 +147,7 @@ if($action=="report_go"){
 
 	// echo date_timestamp_get();
 
-	$video=mfo1("select * from videos where id='$id'");
+	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$email="defectiveseth@gmail.com";
 	$message="The video $video->sname (id:$video->id) has been reported as broken";
 	if(!empty($data->name))
@@ -158,12 +158,12 @@ if($action=="report_go"){
 	$video->sname=str_replace("(BROKEN)","",$video->sname);
 	$video->sname.="(BROKEN)";
 	lib_mysql_query("update videos set sname='$video->sname' where id='$video->id'");
-	sc_info("Thank you for reporting the video $video->sname.","black","red");
+	lib_forms_info("Thank you for reporting the video $video->sname.","black","red");
 }
 
 if($act=="chg") {
 	//echo " id:$id";	echo " sname:$sname";	echo " dx:$dx";	echo " dy:$dy";
-	$vs=mfo1("select * from videos where id='$sname'");
+	$vs=lib_mysql_fetch_one_object("select * from videos where id='$sname'");
 	$_SESSION['darr'][$dx][$dy]['sname']=$vs->sname;
 	$_SESSION['darr'][$dx][$dy]['url']=$vs->url;
 	$_SESSION['darr'][$dx][$dy]['id']=$vs->id;
@@ -183,7 +183,7 @@ if($action=="rmconfirmed"){
 }
 
 if($action=="edgo") {
-	$v=mfo1("select * from videos where id='$id'");
+	$v=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	if(  ($data->access==255) ||
 		($data->id==$v->contributor) ) {
 			
@@ -287,7 +287,7 @@ if($act=="add") {
 	   ECHO "<table border=0 cellspacing=0 cellpadding=0><tr><td>";
 		if($_SESSION["logged_in"]!="true")    {
 			echo "Register to save your custom settings, or to edit embedded code.";
-			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+			lib_rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
 		}
 		else    {
 			
@@ -317,7 +317,7 @@ if(empty($data->donated))
 		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?across=2&down=2>2x2</a>]<br>";
 		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?across=3&down=2>3x2</a>]<br>";
 		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?across=4&down=3>4x3</a>]<br>";
-		lib_mysql_build_form_quick("SHOW_TEXT_across=".$_SESSION['cols'].$RFS_SITE_DELIMITER.
+		lib_forms_build_quick("SHOW_TEXT_across=".$_SESSION['cols'].$RFS_SITE_DELIMITER.
 				"SHOW_TEXT_down=".$_SESSION['rows'].$RFS_SITE_DELIMITER."act=mtxs","Matrix Size");
 		
 		echo "</td><td>";
@@ -328,7 +328,7 @@ if(empty($data->donated))
 		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?w=400&h=300>Medium</a> (400x300)]<br>";
 		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?w=500&h=400>HUGE</a> (500x400)]<br>";
 
-		lib_mysql_build_form_quick("SHOW_TEXT_w=".$_SESSION['wi'].$RFS_SITE_DELIMITER.
+		lib_forms_build_quick("SHOW_TEXT_w=".$_SESSION['wi'].$RFS_SITE_DELIMITER.
 				"SHOW_TEXT_h=".$_SESSION['he'].$RFS_SITE_DELIMITER."act=size","Stream Size");
 
 		echo "</td></tr></table>";
@@ -383,7 +383,7 @@ echo "</td></tr></table>";
 
 				  if($_SESSION['edzors']==1){					  
 
-					sc_optionizer( "$RFS_SITE_URL/modules/video_wall/v.php",
+					lib_forms_optionize( "$RFS_SITE_URL/modules/video_wall/v.php",
 								"act=chg".$RFS_SITE_DELIMITER.
 								"dx=$darx".$RFS_SITE_DELIMITER.
 								"dy=$dary".$RFS_SITE_DELIMITER.
@@ -415,7 +415,7 @@ echo "</td></tr></table>";
 		
 		echo "Submit a new live feed for the wall... enter embed code below<BR> ";
 
-    lib_mysql_build_form(  "$RFS_SITE_URL/modules/video_wall/v.php",
+    lib_forms_build(  "$RFS_SITE_URL/modules/video_wall/v.php",
 				"SHOW_TEXT_10#120#name=".$RFS_SITE_DELIMITER.
 				"SHOW_TEXTAREA_20#120#embed_code=".$RFS_SITE_DELIMITER."act=add"
                 , "", "", "", "", "", "", 20, "Add new stream");
@@ -462,7 +462,7 @@ echo "</td></tr></table>";
 				echo "<td><input type=submit></form></td><td></td></tr>";
 			}
 			if( ($action=="rm") && ($id==$v->id) ) {
-				$v=mfo1("select * from videos where id='$id'");	
+				$v=lib_mysql_fetch_one_object("select * from videos where id='$id'");	
 				echo "<tr><td><font color=red>REMOVE:</font></td>";
 				echo "<td>";
 				echo "<FONT color=red>REMOVE FEED: $v->name Are you sure?</font> ";

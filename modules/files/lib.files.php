@@ -5,7 +5,7 @@ lib_menus_register("Files","$RFS_SITE_URL/modules/files/files.php");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FILES
-function sc_module_mini_files($x) { eval(scg());
+function sc_module_mini_files($x) { eval(lib_rfs_get_globals());
     lib_div("FILES MODULE SECTION");
     echo "<h2>Last $x Files</h2>";
     $result=lib_mysql_query("select * from files where category !='unsorted' order by `time` desc limit 0,$x");
@@ -27,7 +27,7 @@ function sc_module_mini_files($x) { eval(scg());
 }
 
 function sc_update_file($fid) {
-	$file=mfo1("select * from files where id = '$fid'");
+	$file=lib_mysql_fetch_one_object("select * from files where id = '$fid'");
 	if($file->id!=$fid) return;
 	
 	$time=date("Y-m-d H:i:s");
@@ -45,7 +45,7 @@ function sc_update_file($fid) {
 }
 ///////////////////////////////////////////////////////////////////////////////////
 
-function sc_ajax_callback_files_add_tag() { eval(scg());
+function lib_ajax_callback_files_add_tag() { eval(lib_rfs_get_globals());
 
 	// update `files` set `tags`='blowjob' where `id` = '412524'
 	$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
@@ -61,7 +61,7 @@ function sc_ajax_callback_files_add_tag() { eval(scg());
 	
 }
 
-function sc_ajax_callback_files_new_category() { eval(scg());
+function lib_ajax_callback_files_new_category() { eval(lib_rfs_get_globals());
 	if(lib_access_check($rfaapage,$rfaact)) {
 		$q="insert into categories (`name`, `image`, `worksafe` ) values ('$rfaajv', '', 'yes')";
 		lib_mysql_query($q);
@@ -71,7 +71,7 @@ function sc_ajax_callback_files_new_category() { eval(scg());
 	}
 }
 
-function sc_ajax_callback_file_ignore() {eval(scg());
+function lib_ajax_callback_file_ignore() {eval(lib_rfs_get_globals());
 	if(lib_access_check($rfaapage,$rfaact)) {
 		$q="update files set `ignore`='yes' where id='$rfakv'";
 		echo $q;
@@ -80,9 +80,9 @@ function sc_ajax_callback_file_ignore() {eval(scg());
 	}
 }
 
-function sc_ajax_callback_files_move_to_pictures() { eval(scg());
+function lib_ajax_callback_files_move_to_pictures() { eval(lib_rfs_get_globals());
 	if(lib_access_check($rfaapage,$rfaact)) {
-		$f=mfo1("select * from files where id='$rfakv'");
+		$f=lib_mysql_fetch_one_object("select * from files where id='$rfakv'");
 		$oname="$RFS_SITE_PATH/$f->location";
 		$snamex=explode("/",$f->location); $sname=$snamex[count($snamex)-1];
 		$nname="$RFS_SITE_PATH/files/pictures/$sname";
@@ -101,9 +101,9 @@ function sc_ajax_callback_files_move_to_pictures() { eval(scg());
 	}
 }
 
-function sc_ajax_callback_file_move()  { eval(scg());
+function lib_ajax_callback_file_move()  { eval(lib_rfs_get_globals());
 	if(lib_access_check($rfaapage,$rfaact)) {
-		$f=mfo1("select * from files where id='$rfakv'");
+		$f=lib_mysql_fetch_one_object("select * from files where id='$rfakv'");
 		$oname="$RFS_SITE_PATH/$f->location";
 		$nname="$RFS_SITE_PATH/$rfaajv";
 		if(rename($oname,$nname)) {
@@ -120,9 +120,9 @@ function sc_ajax_callback_file_move()  { eval(scg());
 	}
 }
 
-function sc_ajax_callback_rename_file() { eval(scg());
+function lib_ajax_callback_rename_file() { eval(lib_rfs_get_globals());
  	if(lib_access_check($rfaapage,$rfaact)) {
-		$f=mfo1("select * from files where id='$rfakv'");
+		$f=lib_mysql_fetch_one_object("select * from files where id='$rfakv'");
 		$loc=$RFS_SITE_PATH."/".$f->location;
 		$oname=$loc;
 		$nname=str_replace($f->name,$rfaajv,$loc);
@@ -141,7 +141,7 @@ function sc_ajax_callback_rename_file() { eval(scg());
 	exit;
 }
 
-function sc_ajax_callback_delete_file() { eval(scg());
+function lib_ajax_callback_delete_file() { eval(lib_rfs_get_globals());
 	if(lib_access_check($rfaapage,$rfaact)) {
 		sc_lib_file_delete($rfakv,"yes");
 			
@@ -152,10 +152,10 @@ function sc_ajax_callback_delete_file() { eval(scg());
 
 
 
-function sc_ajax_javascript_file() { eval(scg());
+function lib_ajax_javascript_file() { eval(lib_rfs_get_globals());
 echo '
 <script>
-function sc_ajax_javascript_dupefile_delete(name,ajv,table,ikey,kv,field,page,act,callback) {
+function lib_ajax_javascript_dupefile_delete(name,ajv,table,ikey,kv,field,page,act,callback) {
 			var http=new XMLHttpRequest();
 			var url = "'.$RFS_SITE_URL.'/header.php";
 			var params = "action="+callback+
@@ -167,7 +167,7 @@ function sc_ajax_javascript_dupefile_delete(name,ajv,table,ikey,kv,field,page,ac
 			"&rfafield=" +encodeURIComponent(field)+
 			"&rfaapage=" +encodeURIComponent(page)+
 			"&rfaact="   +encodeURIComponent(act);
-			document.getElementById("dfd_"+kv).innerHTML="'.sc_ajax_spinner().'";
+			document.getElementById("dfd_"+kv).innerHTML="'.lib_ajax_spinner().'";
 			http.open("POST", url, true);
 			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			http.setRequestHeader("Content-length", params.length);
@@ -185,13 +185,13 @@ function sc_ajax_javascript_dupefile_delete(name,ajv,table,ikey,kv,field,page,ac
 }
 
 
-function show1file($filedata,$bg) { eval(scg());
+function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 
 	if((($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) ) $fedit=true;
 	if(($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") ) $fworksafe=true;
 
 	// sc_update_file($filedata->id);
-	$filedata=mfo1("select * from files where id='$filedata->id'");
+	$filedata=lib_mysql_fetch_one_object("select * from files where id='$filedata->id'");
 	
 	echo "<div style='clear: both;' id=\"$filedata->id\" >";
 	
@@ -207,7 +207,7 @@ function show1file($filedata,$bg) { eval(scg());
 		$fti="images/icons/filetypes/$filetype.png";
 		
 	$filedata->description=stripslashes($filedata->description);
-	$fd=sc_trunc($filedata->description,180);
+	$fd=lib_string_truncate($filedata->description,180);
 	$dout=str_replace("<","&lt;",$filedata->description);
 	$fd=str_replace("<","&lt;",$fd);
 	
@@ -235,7 +235,7 @@ function show1file($filedata,$bg) { eval(scg());
 	if($fedit || $_SESSION['deletemode']) {
 		if(lib_access_check("files","delete")) {
 			echo "$filedata->location <br>";			
-			sc_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button,nolabel", "files","delete","sc_ajax_callback_delete_file");
+			lib_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button,nolabel", "files","delete","lib_ajax_callback_delete_file");
 		}			
 
 		echo "<div style='display: block; float:left; min-width:250px;' class='sc_file_table_$bg'>";
@@ -263,7 +263,7 @@ function show1file($filedata,$bg) { eval(scg());
 							echo "</div>";
 							echo "<div style='clear:both;'>";
 								if(lib_access_check("files","delete")) {
-									sc_ajax("Delete", "files",   "id", "$dfile->id", "id", 20,"button,nolabel", "files","delete","sc_ajax_callback_delete_file,sc_ajax_javascript_dupefile_delete");
+									lib_ajax("Delete", "files",   "id", "$dfile->id", "id", 20,"button,nolabel", "files","delete","lib_ajax_callback_delete_file,lib_ajax_javascript_dupefile_delete");
 								}
 							echo "</div>";
 						echo "</div>";
@@ -274,11 +274,11 @@ function show1file($filedata,$bg) { eval(scg());
 	}
 	
 		if((lib_access_check("files","edit")) && $fedit) {
-			sc_ajax("Name"	,"files","id","$filedata->id","name",36,"nohide","files","edit","sc_ajax_callback_rename_file");
+			lib_ajax("Name"	,"files","id","$filedata->id","name",36,"nohide","files","edit","lib_ajax_callback_rename_file");
 			echo "<br>URL <a href=\"$RFS_SITE_URL/$filedata->location\" target=\"_blank\">$filedata->name</a> ";
 		}
 		else {
-			$shortname=sc_trunc($filedata->name,24);
+			$shortname=lib_string_truncate($filedata->name,24);
 			if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
 			echo "<a class=\"file_link\" href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\"	 >$shortname</a>";
 		}
@@ -319,12 +319,12 @@ function show1file($filedata,$bg) { eval(scg());
 			if(lib_access_check("files","edit")) {
 				echo "<div style='float: left;'>";
 				
-				sc_ajax("Category","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
-				sc_ajax("New Category","files","id","$filedata->id","category",36,"","files","edit","sc_ajax_callback_files_new_category");
+				lib_ajax("Category","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
+				lib_ajax("New Category","files","id","$filedata->id","category",36,"","files","edit","lib_ajax_callback_files_new_category");
 				
-				sc_ajax("Tags",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","sc_ajax_callback_files_add_tag");				
-				sc_ajax("Move to Pictures", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","sc_ajax_callback_files_move_to_pictures");
-				sc_ajax("Ignore", "files",   "id", "$filedata->id", "id", 20, "button,nolabel", "files","delete","sc_ajax_callback_file_ignore");
+				lib_ajax("Tags",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","lib_ajax_callback_files_add_tag");				
+				lib_ajax("Move to Pictures", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","lib_ajax_callback_files_move_to_pictures");
+				lib_ajax("Ignore", "files",   "id", "$filedata->id", "id", 20, "button,nolabel", "files","delete","lib_ajax_callback_file_ignore");
 				echo "</div>";
 			}
 		}
@@ -360,13 +360,13 @@ function show1file($filedata,$bg) { eval(scg());
 				echo "$fd &nbsp;";
 			}
 			if( (lib_access_check("files","edit")) && $fedit) {
-				sc_ajax("Description"	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
+				lib_ajax("Description"	,"files","name","$filedata->name","description","9,45","textarea","files","edit","");
 
-				sc_ajax("Location",    	"files","id",	   "$filedata->id","location", 76,"nohide","files","edit","sc_ajax_callback_file_move");
+				lib_ajax("Location",    	"files","id",	   "$filedata->id","location", 76,"nohide","files","edit","lib_ajax_callback_file_move");
 
-				sc_ajax("Hidden",    	"files","id",	   "$filedata->id","hidden", 36,"nohide","files","edit","");
-				if(sc_yes($filedata->hidden))
-					sc_info("HIDDEN","WHITE","RED");
+				lib_ajax("Hidden",    	"files","id",	   "$filedata->id","hidden", 36,"nohide","files","edit","");
+				if(lib_rfs_bool_true($filedata->hidden))
+					lib_forms_info("HIDDEN","WHITE","RED");
 
 				$filedata->location=str_replace("/","/<wbr />",$filedata->location);
 				echo "<br>[$filedata->location]";
@@ -508,7 +508,7 @@ function quick_md5_scan($RFS_CMD_LINE) {
 
 
 
-function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
+function orphan_scan($dir,$RFS_CMD_LINE) { eval(lib_rfs_get_globals());
 	if(!$RFS_CMD_LINE) {
 		if(!lib_access_check("files","orphanscan")) {
 			echo "You don't have access to scan orphan files.<br>";
@@ -585,7 +585,7 @@ function orphan_scan($dir,$RFS_CMD_LINE) { eval(scg());
 									lib_mysql_query("UPDATE files SET md5='$tmd5' where id='$fid'");
 
 									echo "Added [$url] size[$filesizebytes] to database \n"; if(!$RFS_CMD_LINE) echo "<br>";
-									if(!$RFS_CMD_LINE) sc_flush_buffers();
+									if(!$RFS_CMD_LINE) lib_rfs_flush_buffers();
 									$dir_count++;
 							}
 						}
@@ -630,7 +630,7 @@ function sc_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
 
 
 function sc_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
-		$f=mfo1("select * from files where id='$id'");
+		$f=lib_mysql_fetch_one_object("select * from files where id='$id'");
 	
 		echo "<tr>";		
 		echo "<td	class='$color'>";
@@ -660,7 +660,7 @@ function sc_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
 		echo "</td>";
 		
 		echo "<td class='$color'>";		
-		sc_ajax("","files","id",$f->id,"category",70,"select,table,categories,name","files","edit","");
+		lib_ajax("","files","id",$f->id,"category",70,"select,table,categories,name","files","edit","");
 		echo "</td>";
 		
 		echo "<td class='$color'>";
@@ -670,11 +670,11 @@ function sc_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
 		echo "</tr>";
 		
 }
-function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(scg());
+function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(lib_rfs_get_globals());
 
 	echo "<h1>Duplicate files</h1>";
 	
-	$x=sc_row_count("file_duplicates");
+	$x=lib_mysql_row_count("file_duplicates");
 	echo "There are $x duplicate files total";
 
 	if(empty($fdlo)) $fdlo="0";
@@ -738,7 +738,7 @@ function sc_show_duplicate_files($RFS_CMD_LINE) {
 			echo "F2: $dupe->md5 $dupe->size $dupe->location \n"; if(!$RFS_CMD_LINE) echo "<br>";
 			echo "\n"; if(!$RFS_CMD_LINE) echo "<br>";
 		}
-		if(!$RFS_CMD_LINE) sc_flush_buffers();
+		if(!$RFS_CMD_LINE) lib_rfs_flush_buffers();
 		$i++;
 	}
 }
@@ -829,7 +829,7 @@ function sc_show_duplicate_files2($RFS_CMD_LINE) {
 }
 
 
-function sc_lib_file_delete($id,$annihilate) { eval(scg());
+function sc_lib_file_delete($id,$annihilate) { eval(lib_rfs_get_globals());
 	$filedata=sc_getfiledata($id);
 	lib_mysql_query("delete from files where id = '$id'");
 	lib_mysql_query("delete from file_duplicates where loc1 = '$filedata->location'");

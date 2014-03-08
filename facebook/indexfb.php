@@ -87,7 +87,7 @@ if($goback==1) $SESSION['goback']=1;
 // include("fb.login.php");
 
 echo "<html><head>";
-rfs_echo( "$RFS_SITE_JS_JQUERY");
+lib_rfs_echo( "$RFS_SITE_JS_JQUERY");
 echo "<title>$RFS_SITE_NAME</title></head>    
 <body style='background-color: #ffffff;'> <center>";
 $text="Defective Minds";$font="TenOClock.ttf";$fontsize=25;$w = 512;$h =85;$ox=0;$oy=0;$inicr = 255;$inicg = 255;$inicb = 0;$inbcr = 15;$inbcg = 15;$inbcb = 0;$forcerender = 1;$forceheight = 1;

@@ -9,10 +9,10 @@ include_once("include/lib.all.php");
 // check for site name definition
 if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
 // housekeeping
-sc_maintenance();
+lib_rfs_maintenance();
 lib_debug_header(0);
 // divert ajax requests
-if(stristr($_REQUEST['action'],"sc_ajax_callback")) {
+if(stristr($_REQUEST['action'],"lib_ajax_callback")) {
 	include("include/lib.all.php");
 	eval("$action();");
 	exit();
@@ -23,21 +23,21 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/t
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) include("$RFS_SITE_PATH/themes/$theme/t.header.php");
 // otherwise use the default header (this file)
 else {
-	rfs_echo($RFS_SITE_DOC_TYPE);
-	rfs_echo($RFS_SITE_HTML_OPEN);
-	rfs_echo($RFS_SITE_HEAD_OPEN);    
+	lib_rfs_echo($RFS_SITE_DOC_TYPE);
+	lib_rfs_echo($RFS_SITE_HTML_OPEN);
+	lib_rfs_echo($RFS_SITE_HEAD_OPEN);    
 	// get keywords from any search engine queries and put them in the seo output
 	$keywords=$_GET['query'];
 	if(empty($keywords)) $keywords=$_GET['q'];
 	$keywords.=$RFS_SITE_SEO_KEYWORDS;	
 	echo "<meta name=\"description\" 	content=\"$keywords\">";
 	echo "<meta name=\"keywords\" 		content=\"$keywords\">";
-	rfs_echo($RFS_SITE_TITLE);
+	lib_rfs_echo($RFS_SITE_TITLE);
 	if(file_exists("$RFS_SITE_PATH/themes/$theme/t.css"))
 		echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
 	echo "<link rel=\"canonical\" href=\"".lib_domain_canonical_url()."\" />";
-	rfs_echo($RFS_SITE_HEAD_CLOSE);	
-	rfs_echo($RFS_SITE_BODY_OPEN);	
+	lib_rfs_echo($RFS_SITE_HEAD_CLOSE);	
+	lib_rfs_echo($RFS_SITE_BODY_OPEN);	
 
 	if(!$RFS_DO_NOT_SHOW_MENU) {
 		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0>";
@@ -55,7 +55,7 @@ else {
 		echo "<td align=right class=sc_top_menu_table_td>";
 			echo "<table border=0 cellspacing=0 cellpadding=0><tr>\n";
 			echo "<td class=sc_top_menu_table_inner class=contenttd>";
-				sc_theme_form();
+				lib_forms_theme_select();
 			echo "</td></tr></table>\n";
 		echo "</td>";
 		echo "<td class=sc_top_menu_table_td>";
@@ -63,13 +63,13 @@ else {
 		echo "</td>";
 		echo "<td class=logged_in_td>";
 		if($_SESSION["logged_in"]!="true")    {
-			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+			lib_rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
 			echo "</td><td class=logged_in_td>";
 		}
 		else    {
 			echo "</td>";
 			echo "<td class=logged_in_td>";
-			rfs_echo($RFS_SITE_LOGGED_IN_CODE);
+			lib_rfs_echo($RFS_SITE_LOGGED_IN_CODE);
 		}
 		echo "</td></tr></table>";
 		echo "</td></tr></table>";
@@ -84,26 +84,26 @@ else {
 //////////////////////////////////////////////
 // Load javascripts
 
-sc_ajax_javascript();
+lib_ajax_javascript();
 sc_javascript();
 
-//rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
-rfs_echo($RFS_SITE_JS_JQUERY);
-rfs_echo($RFS_SITE_JS_COLOR);
-rfs_echo($RFS_SITE_JS_EDITAREA);
+//lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
+lib_rfs_echo($RFS_SITE_JS_JQUERY);
+lib_rfs_echo($RFS_SITE_JS_COLOR);
+lib_rfs_echo($RFS_SITE_JS_EDITAREA);
 
-//if(!stristr(lib_domain_canonical_url(),"/net.php")) rfs_echo($RFS_SITE_JS_MSDROPDOWN);
+//if(!stristr(lib_domain_canonical_url(),"/net.php")) lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN);
 
 //////////////////////////////////////////////
 // google analytics
 sc_google_analytics();
 //////////////////////////////////////////////
 // count the page
-sc_mcount($data->name);
+lib_log_count($data->name);
 //////////////////////////////////////////////
 // system messages
-sc_system_message();
+lib_forms_system_message();
 //////////////////////////////////////////////
 // do action
-sc_do_action();
+lib_rfs_do_action();
 ?>

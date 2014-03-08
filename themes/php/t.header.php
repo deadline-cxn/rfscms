@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
  <? 
- rfs_echo($RFS_SITE_TITLE);
+ lib_rfs_echo($RFS_SITE_TITLE);
  ?>
  
  <style type="text/css" media="all">
@@ -64,10 +64,10 @@ for($i=0;$i<mysql_num_rows($res);$i++) {
     if($data->access >= $link->access) $showlink=1;
     if($link->access == 0) $showlink=1;
 	if($showlink) {
-		rfs_echo("<a href=\"$link->link\" ");		
-			rfs_echo($link->link);			
+		lib_rfs_echo("<a href=\"$link->link\" ");		
+			lib_rfs_echo($link->link);			
 		if(!empty($link->target)) {
-			rfs_echo("target=\"$link->target\" ");
+			lib_rfs_echo("target=\"$link->target\" ");
 		}
 		echo ">";
 		echo $link->name;
@@ -81,12 +81,12 @@ for($i=0;$i<mysql_num_rows($res);$i++) {
 </div>
 <div id="headsearch">
 <? 
- sc_theme_form();
+ lib_forms_theme_select();
 	if($_SESSION['logged_in']) {
-		rfs_echo($RFS_SITE_LOGGED_IN_CODE);
+		lib_rfs_echo($RFS_SITE_LOGGED_IN_CODE);
 	}
 	else {
-		rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+		lib_rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
 	}
  ?>
 </div>

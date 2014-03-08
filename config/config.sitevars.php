@@ -155,12 +155,12 @@ $RFS_SITE_JS_MSDROPDOWN_THEME = "<link rel=\"stylesheet\" type=\"text/css\" href
             if(stristr( $_SERVER['PHP_SELF'],"pics.php")) {
                 $title="Pictures";
                 if(!empty($id)) {
-                $p=mfo1("select * from pictures where id='$id'");
+                $p=lib_mysql_fetch_one_object("select * from pictures where id='$id'");
                 if(!empty($p->sname)){
                     $title=$p->sname;
                 }
                 else {
-                    $c=mfo1("select * from categories where id='$p->category'");
+                    $c=lib_mysql_fetch_one_object("select * from categories where id='$p->category'");
                     if(!empty($c->name)) {
                         $title=$c->name;
                     }

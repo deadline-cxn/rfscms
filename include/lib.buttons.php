@@ -14,8 +14,8 @@ function lib_button_image($link,$name,$img){ lib_button_image_sizeable($link,$na
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_button($link,$name) { echo lib_button_text($link,$name); } 
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_button_text($button_link,$button_name) { eval(scg());
-	if( ($_SESSION['textbuttons']=="true") || (sc_yes($RFS_SITE_TEXT_BUTTONS))) { return "[<a href=\"$button_link\">$button_name</a>] "; }
+function lib_button_text($button_link,$button_name) { eval(lib_rfs_get_globals());
+	if( ($_SESSION['textbuttons']=="true") || (lib_rfs_bool_true($RFS_SITE_TEXT_BUTTONS))) { return "[<a href=\"$button_link\">$button_name</a>] "; }
 	else return "<button id=\"button\" style=\"font-size:x-small; min-width: 100px;\" onclick=\"window.location='$button_link';\" class=\"menubutton\" role=\"button\" aria-disabled=\"false\"> <span class=\"ui-button-text\">$button_name</span></button>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////

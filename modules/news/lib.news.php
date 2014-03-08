@@ -11,19 +11,19 @@ lib_access_add_method("news", "deleteothers");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
-function news_buttons() { eval(scg());
+function news_buttons() { eval(lib_rfs_get_globals());
 	if(lib_access_check("news","submit")) {
 		lib_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
 	}
 }
 
-function adm_action_lib_news_news_submit() { eval(scg());
+function adm_action_lib_news_news_submit() { eval(lib_rfs_get_globals());
     lib_domain_gotopage("$RFS_SITE_URL/modules/news/news.php?showform=yes");
 }
-function adm_action_lib_news_news_edit() { eval(scg());
+function adm_action_lib_news_news_edit() { eval(lib_rfs_get_globals());
     lib_domain_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
 }
-function sc_module_news_list($x) { eval(scg());
+function sc_module_news_list($x) { eval(lib_rfs_get_globals());
     lib_div("NEWS MODULE SECTION");
     echo "<h2>Last $x News Articles</h2>";
     $newslist=sc_getnewslist($newssearch);
@@ -44,7 +44,7 @@ function sc_module_news_list($x) { eval(scg());
         $picf=str_replace($RFS_SITE_URL,"",$picf);
         echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">".lib_images_thumb("$picf",30,0,1	)."</a>\n";
         echo "</td><td valign=top  class=contenttd 90%>";
-        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".sc_trunc("$news->headline",50)."</a>";
+        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".lib_string_truncate("$news->headline",50)."</a>";
         $ntext=str_replace("<p>"," ",$ntext);
         $ntext=str_replace("</p>"," ",$ntext);
         $ntext=str_replace("<","&lt;",$ntext);
@@ -54,7 +54,7 @@ function sc_module_news_list($x) { eval(scg());
     echo "</table>";
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/news/news.php class=\"a_cat\" align=right>More...</a>)</p>";
 }
-function sc_module_news_list_popular($x) { eval(scg());
+function sc_module_news_list_popular($x) { eval(lib_rfs_get_globals());
     lib_div("NEWS MODULE SECTION");
     echo "<h2>Popular News Articles</h2>";
     //search method dictate sort order?
@@ -76,8 +76,8 @@ function sc_module_news_list_popular($x) { eval(scg());
         echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\"><img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30></a>\n";
         echo "</td></tr></table>";
         echo "</td><td valign=top>";
-        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".sc_trunc("$news->headline",50)."</a><br>";
-        $ntext=str_replace("<br>"," ",stripslashes(sc_trunc("$news->message",70)));
+        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".lib_string_truncate("$news->headline",50)."</a><br>";
+        $ntext=str_replace("<br>"," ",stripslashes(lib_string_truncate("$news->message",70)));
         $ntext=str_replace("<img",$news->headline,$ntext);
         $ntext=str_replace("<iframe",$news->headline,$ntext);
         $ntext=str_replace("</body>","<nobody>",$ntext);
@@ -91,7 +91,7 @@ function sc_module_news_list_popular($x) { eval(scg());
 function sc_module_news_top_story() {
     sc_show_top_news();
 }
-function sc_module_news_blog_style($x) { eval(scg());
+function sc_module_news_blog_style($x) { eval(lib_rfs_get_globals());
 	news_buttons();
 	sc_show_top_news();
 	$newslist=sc_getnewslist(""); $ct=count($newslist); if($ct>$x) $ct=$x;
@@ -141,10 +141,10 @@ function sc_get_top_news_id(){
     return $news->id;
 }
 function sc_show_top_news() {
-    $news=mfo1("select * from news where topstory='yes' and published='yes'");    
+    $news=lib_mysql_fetch_one_object("select * from news where topstory='yes' and published='yes'");    
     sc_show_news($news->id);
 }
-function sc_show_news($nid) { eval(scg());
+function sc_show_news($nid) { eval(lib_rfs_get_globals());
 	if(empty($nid)) {
 		
 		news_buttons();
@@ -152,12 +152,12 @@ function sc_show_news($nid) { eval(scg());
 	}
 	$result=lib_mysql_query("select * from news where id='$nid'");
     $news=mysql_fetch_object($result);
-    $userdata=mfo1("select * from users where id='$news->submitter'");
+    $userdata=lib_mysql_fetch_one_object("select * from users where id='$news->submitter'");
 	
 	echo "<div class=\"news_box\">";
 		echo "<div class=\"news_headline_bar\">";
 			echo "<div class=\"news_headline\">$news->headline</div>";
-			echo "<div class=\"news_time\">Posted on ".sc_time($news->time)."</div>";
+			echo "<div class=\"news_time\">Posted on ".lib_string_current_time($news->time)."</div>";
 		echo "</div>";
 		echo "<div class=\"news_article\">";
 		
@@ -189,11 +189,11 @@ function sc_show_news($nid) { eval(scg());
 		
 
     if(!empty($news->wiki)) {
-            $wikipage=mfo1("select * from wiki where `name`='$news->wiki'");
-            echo smiles(wikitext($wikipage->text));
+            $wikipage=lib_mysql_fetch_one_object("select * from wiki where `name`='$news->wiki'");
+            echo lib_string_convert_smiles(wikiimg(wikitext($wikipage->text)));
     }	else {
         $news->message=str_replace("<a h","<a class=news_a h",$news->message);
-        rfs_echo(smiles(stripslashes(wikitext($news->message))));
+        lib_rfs_echo(lib_string_convert_smiles(stripslashes(wikiimg((wikitext($news->message))))));
     }
     $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
 	 sc_socials_content($ourl,$news->headline);		
@@ -220,7 +220,7 @@ function sc_show_news($nid) { eval(scg());
 		echo "</div>";
 	echo "</div>";
 }
-function put_news_image($fname) { eval(scg());
+function put_news_image($fname) { eval(lib_rfs_get_globals());
 	$file=$_FILES[$fname]['name'];
     $f_ext=lib_file_getfiletype($file);
     $uploadFile=$RFS_SITE_PATH."/images/news/$file";
@@ -234,7 +234,7 @@ function put_news_image($fname) { eval(scg());
     }
     return $httppath;
 }
-function updatenews($nid){ 	eval(scg());
+function updatenews($nid){ 	eval(lib_rfs_get_globals());
 	$p=addslashes($GLOBALS['headline']); lib_mysql_query("UPDATE news SET headline ='$p' where id = '$nid'");
 
 
@@ -267,8 +267,8 @@ function updatenews($nid){ 	eval(scg());
 	echo "<p>News article [$nid] has been updated...</p>\n";
 	$loggit="*****> ".$GLOBALS['data']->name." updated news article $nid...";
 }
-function deletenews($nid) { eval(scg());
-    echo "<table border=\"0\" align=center><tr><td class=\"sc_warning\"><center>".smiles(":X")."\n";
+function deletenews($nid) { eval(lib_rfs_get_globals());
+    echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles(":X")."\n";
     echo "<br>WARNING:<br>The news article will be completely removed are you sure?</center>\n";
     echo "</td></tr></table>\n";
     echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
@@ -276,14 +276,14 @@ function deletenews($nid) { eval(scg());
     echo "<input type=\"submit\" name=\"submit\" value=\"Yes\"></form></td>\n";
     echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/news/news.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
 }
-function deletenewsgo($nid){ 	eval(scg());
+function deletenewsgo($nid){ 	eval(lib_rfs_get_globals());
     lib_mysql_query("DELETE FROM news where id = '$nid'");
     echo "<p>News article $nid has been deleted...</p>\n";
     $loggit="*****> ".$GLOBALS['data']->name." deleted news article $nid...";
     lib_log_add_entry($loggit);
 
 }
-function editnews($nid) { eval(scg());
+function editnews($nid) { eval(lib_rfs_get_globals());
 
     $news=mysql_fetch_object(lib_mysql_query("select * from news where id='$nid'"));
     
@@ -364,7 +364,7 @@ echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_
 	if(empty($wikistatus))
 		$wikistatus="Choose a wiki page to use for this news article";
     
-	sc_optionizer("INLINE",
+	lib_forms_optionize("INLINE",
 					"nid=$nid",
 					"wiki",
 					"name",
@@ -454,7 +454,7 @@ echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_
 }
 
 
-function shownews() { eval(scg());
+function shownews() { eval(lib_rfs_get_globals());
 	$month_name=$GLOBALS['month_name'];
 	$day_name=$GLOBALS['day_name'];
 	$data=$GLOBALS['data'];
@@ -518,7 +518,7 @@ function shownews() { eval(scg());
 		/////////////////
 		echo "<td class=contenttd valign=top>";		
 		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a><br>";
-       $ntext=str_replace("<br>"," ",stripslashes(sc_trunc("$news->message",80)));
+       $ntext=str_replace("<br>"," ",stripslashes(lib_string_truncate("$news->message",80)));
        $ntext=str_replace("<p>"," ",$ntext);
        $ntext=str_replace("</p>"," ",$ntext);
 		$ntext=str_replace("<","&lt;",$ntext);

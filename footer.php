@@ -20,8 +20,8 @@ else{
 			echo "<p>&nbsp;</p>";
 			echo "<p>&nbsp;</p>";
 			
-			rfs_echo($RFS_SITE_BODY_CLOSE);
-			rfs_echo($RFS_SITE_HTML_CLOSE);
+			lib_rfs_echo($RFS_SITE_BODY_CLOSE);
+			lib_rfs_echo($RFS_SITE_HTML_CLOSE);
 			return;
 		}
 	}
@@ -50,8 +50,8 @@ else{
 	echo "</div>";
 	
 	// END THE PAGE
-	rfs_echo($RFS_SITE_BODY_CLOSE);
-	rfs_echo($RFS_SITE_HTML_CLOSE);
+	lib_rfs_echo($RFS_SITE_BODY_CLOSE);
+	lib_rfs_echo($RFS_SITE_HTML_CLOSE);
 }
 
 ?>

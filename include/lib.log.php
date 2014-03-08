@@ -12,7 +12,28 @@ function lib_log_kill($what) {
 	die("</body></html>");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_log_count() {
+function lib_log_count($user) {
+	$p=lib_domain_canonical_url();
+	$ip=getenv("REMOTE_ADDR");
+	$r=lib_mysql_fetch_one_object("select * from counters where page = '$p'");
+	if(!empty($r->page)){
+		$r->hits_raw+=1;
+		if($r->last_ip!=$ip){
+			$r->last_ip=$ip;
+			$r->hits_unique+=1;
+		}
+		lib_mysql_query("update counters set user='$user' where page='$r->page'");
+		lib_mysql_query("update counters set hits_raw='$r->hits_raw' where page='$r->page'");
+		lib_mysql_query("update counters set hits_unique='$r->hits_unique' where page='$r->page'");
+		lib_mysql_query("update counters set last_ip='$r->last_ip' where page='$r->page'");
+	}
+	else{
+		$ct=1;
+		$q="INSERT INTO `counters` (`id`, `page`, `user`, `last_ip`, `hits_raw`, `hits_unique`)
+							 VALUES (NULL, '$p', '$user', '$ip', '$ct', '$ct');";
+		lib_mysql_query($q);
+	}	
+	
 	
 	// TODO: Scrub this function
 	$countraw++;
@@ -190,7 +211,7 @@ function lib_log_count() {
 	return $countit;
 }
 /////////////////////////////////////////////////////////////////////////
-function lib_log_add_entry($logtext) { eval(scg());
+function lib_log_add_entry($logtext) { eval(lib_rfs_get_globals());
 	$logfile="$RFS_SITE_PATH/log/log.htm";
 	$fp2=fopen($logfile,"a");
 	if(empty($fp2)) $fp2=fopen($logfile,"w");
@@ -200,8 +221,5 @@ function lib_log_add_entry($logtext) { eval(scg());
 		fclose($fp2);
 	}
 }
-
-
-
 
 ?>

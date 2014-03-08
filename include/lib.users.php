@@ -1,7 +1,15 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function usersonline($name) {
+function lib_users_age($birthDay) { // date in yyyy-mm-dd format
+	$birthday = explode("-", $birthDay); 
+	$age = (date("md", date("U", mktime(0, 0, 0, $birthday[1], $birthday[2], $birthday[0]))) > date("md") ? ((date("Y") - $birthday[0]) - 1) : (date("Y") - $birthday[0]));
+	return $age;
+}
+
+function lib_users_online() {
+	$dt=lib_users_get_data($_SESSION['valid_user']);
+	$name=$dt->name;
 	if(empty($name)) $name="(Guest)";
 	$li="0";
 	$data=$GLOBALS['data'];
@@ -46,13 +54,13 @@ function usersonline($name) {
 	return $user;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function usersloggedin() {
+function lib_users_logged_in() {
 	$result = lib_mysql_query("SELECT DISTINCT ip FROM useronline WHERE loggedin='1'");
-	$user = mysql_num_rows($result);
+	$user   = mysql_num_rows($result);
 	return $user;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function users_logged_details() {
+function lib_users_logged_details() {
 	$result = lib_mysql_query("SELECT DISTINCT ip,page,name FROM useronline");
 	$nusers = mysql_num_rows($result);
 	$user="";
@@ -68,13 +76,12 @@ function users_logged_details() {
 	return $user;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_useravatar($user) { echo sc_getuseravatar($user); }
-function sc_getuseravatar($user) { eval(scg()); $userdata=lib_users_get_data($user);
+function lib_users_avatar_code($user) { eval(lib_rfs_get_globals());
+	$userdata=lib_users_get_data($user);
 	$ret = "<a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$userdata->name\">\n";
 	if(empty($userdata->avatar)) $userdata->avatar="$RFS_SITE_URL/images/icons/noimage.gif";
     $g=lib_file_getfiletype($userdata->avatar);
-    if(($g=="png")||($g=="bmp") ||
-		($g=="gif")||($g=="jpg") )  {
+    if(($g=="png") || ($g=="bmp") || ($g=="gif") || ($g=="jpg")) {
         $ret.= "<img src=\"$userdata->avatar\" ";
         $ret.= "title=\"$userdata->sentence\" ";
         $ret.= "alt=\"$userdata->sentence\" width=100 border=0>";
@@ -83,8 +90,6 @@ function sc_getuseravatar($user) { eval(scg()); $userdata=lib_users_get_data($us
     $ret.= "</a>\n";
     return($ret);
 }
-
-
 /////////////////////////////////////////////////////////////////////////////////////////
 function sc_setuservar($name,$var,$set) {
 	lib_mysql_query_user_db("UPDATE users SET `$var`='$set' where name = '$name'");

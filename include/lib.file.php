@@ -9,7 +9,7 @@ function lib_file_getfiletype($filen){
 	return strtolower( $finfo['extension']	);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$key) { eval(scg());
+function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$key) { eval(lib_rfs_get_globals());
 		echo "<p> Upload file</p>\n";		
 		$fx=$_FILES[$filedata];
 		$uploadFile=$filepath."/".$pre.$fx['name'].$suf;
@@ -118,7 +118,7 @@ function lib_file_multi_rename($folder,$old_pattern,$new_pattern) {
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_file_echo_file($file) { eval(scg()); 
+function lib_file_echo_file($file) { eval(lib_rfs_get_globals()); 
 	if(file_exists($file)) {
 		echo "Filename: $file\n";
 		$f=file_get_contents($file);
@@ -127,7 +127,7 @@ function lib_file_echo_file($file) { eval(scg());
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_file_file_get_readme($file_name) { eval (scg());
+function lib_file_file_get_readme($file_name) { eval (lib_rfs_get_globals());
 	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
 	system("yes| rm -R $RFS_SITE_PATH/tmp/.*");
 	system("cd $RFS_SITE_PATH/tmp");
@@ -187,7 +187,7 @@ function lib_file_file_get_readme($file_name) { eval (scg());
 				if(stristr($file,".diz")) {
 					$db_file=str_replace("$RFS_SITE_PATH/","",$file_name);
 					$x=addslashes($x);
-					$cf=mfo1("select * from files where location='$db_file'");
+					$cf=lib_mysql_fetch_one_object("select * from files where location='$db_file'");
 					if(empty($cf->description)) {
 						lib_mysql_query("update files set description=\"$x\" where location='$db_file'");
 					}
@@ -197,7 +197,7 @@ function lib_file_file_get_readme($file_name) { eval (scg());
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_file_touch_dir($dir) { eval(scg());
+function lib_file_touch_dir($dir) { eval(lib_rfs_get_globals());
 	if(!file_exists($dir)) {
 		system("$RFS_SITE_SUDO_CMD mkdir $dir");
 		system("$RFS_SITE_SUDO_CMD chmod 775 $dir");

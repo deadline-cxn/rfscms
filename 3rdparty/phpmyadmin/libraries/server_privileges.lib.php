@@ -1216,7 +1216,7 @@ function PMA_getHtmlForDisplayLoginInformationFields($mode = 'new')
         . '</div>' . "\n";
 
     $html_output .= '<div class="item" '
-        . 'id="div_element_before_generate_password">' . "\n"
+        . 'id="div_element_before_lib_string_generate_password">' . "\n"
         . '<label for="text_pma_pw2">' . "\n"
         . '    ' . __('Re-type') . ':' . "\n"
         . '</label>' . "\n"

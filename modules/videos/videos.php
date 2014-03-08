@@ -2,17 +2,17 @@
 chdir("../../");
 include("header.php");
 
-function videos_buttons() { eval(scg()); 
+function videos_buttons() { eval(lib_rfs_get_globals()); 
 	lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=random","Random Video");
 	if(lib_access_check("videos","submit"))
 		lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=submitvid","Submit Video");
 }
 
-function videos_pagefinish(){ eval(scg()); include("footer.php"); exit(); }
+function videos_pagefinish(){ eval(lib_rfs_get_globals()); include("footer.php"); exit(); }
 
-function videos_action_modifyvideo() { eval(scg());
+function videos_action_modifyvideo() { eval(lib_rfs_get_globals());
 	if( lib_access_check("videos","edit") ) {
-		$video=mfo1("select * from videos where id='$id'");
+		$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 		echo "<p align=center>";
 		echo "$video->url<br>";	
 		echo "<form enctype=application/x-www-form-URLencoded method=post action=videos.php>";
@@ -42,8 +42,8 @@ function videos_action_modifyvideo() { eval(scg());
 	}
 }
 
-function videos_action_modifygo() { eval(scg());
-	$video=mfo1("select * from videos where id='$id'");
+function videos_action_modifygo() { eval(lib_rfs_get_globals());
+	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
     $categoryz=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$categorey'"));
     $category=$categoryz->id;
@@ -69,7 +69,7 @@ function videos_action_submitvidgo() {
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s"); 
 		$url=addslashes($url);	
-		$c=mfo1("select * from categories where name='$category'");
+		$c=lib_mysql_fetch_one_object("select * from categories where name='$category'");
 		$category=$c->id;
 		
 		echo "	SUBMITTING VIDEO: <br>
@@ -84,7 +84,7 @@ function videos_action_submitvidgo() {
 		lib_mysql_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
 								 VALUES ('$cont',	 	'$sname','$vurl','$time',    '$time','$category',      '0','$sfw');");
 
-		$v=mfo1("select * from videos where `sname`='$sname'");
+		$v=lib_mysql_fetch_one_object("select * from videos where `sname`='$sname'");
 		$id=$v->id;
 		videos_action_modifygo();
 		echo "<BR> $v->id ($v->sname) <BR>";	
@@ -93,7 +93,7 @@ function videos_action_submitvidgo() {
 	
 }
 
-function videos_action_submitvid() { eval(scg());
+function videos_action_submitvid() { eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
 	
 		echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/videos/videos.php\">\n";
@@ -124,17 +124,17 @@ function videos_action_submitvid() { eval(scg());
 	}
 }
 
-function videos_action_removego() { eval(scg());
+function videos_action_removego() { eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","delete")) {
-		$video=mfo1("select * from `videos` where `id`='$id'");		
+		$video=lib_mysql_fetch_one_object("select * from `videos` where `id`='$id'");		
 		lib_mysql_query("delete from `videos` where `id`='$id'");
 		echo "<p>Removed $video->sname from the database...</p>";
 	}
 }
 
-function videos_action_removevideo() { eval(scg());
+function videos_action_removevideo() { eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","delete")) {
-        $video=mfo1("select * from `videos` where `id`='$id'");        
+        $video=lib_mysql_fetch_one_object("select * from `videos` where `id`='$id'");        
         echo "<table border=0>\n";
         echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/videos/videos.php method=post>\n";
         echo "<input type=hidden name=action value=removego>\n";
@@ -146,12 +146,12 @@ function videos_action_removevideo() { eval(scg());
 	}	
 }
 
-function videos_action_view($id) { eval(scg());
-	$video=mfo1("select * from videos where id='$id'");
+function videos_action_view($id) { eval(lib_rfs_get_globals());
+	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
 	echo "<div class=forum_message > <center> ";
 	
-	$category=mfo1("select * from categories where id ='$video->category'");
+	$category=lib_mysql_fetch_one_object("select * from categories where id ='$video->category'");
 	echo "<h1>$category->name videos</h1>";
 	
 	$res2=lib_mysql_query("select * from `videos` where `category`='$category->id' and `hidden`!='yes' order by `sname` asc");
@@ -194,7 +194,7 @@ function videos_action_view($id) { eval(scg());
 	videos_pagefinish();
 }
 
-function videos_action_viewcat($cat) { eval(scg());
+function videos_action_viewcat($cat) { eval(lib_rfs_get_globals());
 	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
 	while($vid=mysql_fetch_object($res2)) {		
 		$ytthumb="";
@@ -236,7 +236,7 @@ function videos_action_viewcat($cat) { eval(scg());
 	echo "<br style='clear: both;'>";
 }
 
-function videos_action_random() { eval(scg());
+function videos_action_random() { eval(lib_rfs_get_globals());
 	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
 	$num=mysql_num_rows($res);	
 	if($num==0) { echo "<p>There are no videos.</p>"; }
@@ -250,7 +250,7 @@ function videos_action_random() { eval(scg());
 	}
 }
 
-function videos_action_view_cats() { eval(scg());
+function videos_action_view_cats() { eval(lib_rfs_get_globals());
 	$numcols=0;
 	echo "<table border=0><tr>";
 	$res=lib_mysql_query("select * from `categories` order by name asc");	
@@ -296,7 +296,7 @@ function videos_action_view_cats() { eval(scg());
 	echo "</table>";
 }
 
-function videos_action_() { eval(scg());
+function videos_action_() { eval(lib_rfs_get_globals());
 /*	if(!empty($id)) 			$res=lib_mysql_query("select * from `videos` where `id`='$id'");
 	if($res) 					$video=mysql_fetch_object($res);
 	if(!empty($video->id))		$category=mysql_fetch_object(lib_mysql_query("select * from `categories` where `id`='$video->category'"));

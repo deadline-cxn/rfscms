@@ -1,12 +1,12 @@
 <?
  
-function sc_ajax_callback_query_list() { eval( scg()) ;
+function lib_ajax_callback_query_list() { eval( lib_rfs_get_globals()) ;
 	if(array_pop(explode("/",getcwd()))=="admin") chdir("..");
 	include_once("include/lib.all.php");
 	if(!lib_access_check("admin","access")) exit();
 	if( empty( $theme ) )               $theme=$RFS_SITE_DEFAULT_THEME;
 	if( !empty( $data->theme ) )        $theme=$data->theme;
-	if( sc_yes( $RFS_SITE_FORCE_THEME ) ) $theme=$RFS_SITE_FORCED_THEME;
+	if( lib_rfs_bool_true( $RFS_SITE_FORCE_THEME ) ) $theme=$RFS_SITE_FORCED_THEME;
 	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
 	
 	adm_db_query( "SELECT name,email,donated FROM users" );

@@ -9,7 +9,7 @@ lib_access_add_method("comics", "editothers");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE COMICS
-function sc_module_mini_comics($x) { eval(scg());
+function sc_module_mini_comics($x) { eval(lib_rfs_get_globals());
     lib_div("COMIC MODULE SECTION");
     echo "<h2>Last $x Comics</h2>";
     $res=lib_mysql_query("select * from comics where `published`='yes' order by time desc limit 1");

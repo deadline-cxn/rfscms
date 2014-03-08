@@ -11,7 +11,7 @@ lib_access_add_method("videos", "deleteothers");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE VIDEOS
-function sc_module_videos($x) { eval(scg());
+function sc_module_videos($x) { eval(lib_rfs_get_globals());
     echo "<h2>Last $x Videos</h2>";
     $res2=lib_mysql_query("select * from `videos` order by time desc limit 0,$x");
 	echo "<table border=0 cellspacing=0 cellpadding=0>";
@@ -20,7 +20,7 @@ function sc_module_videos($x) { eval(scg());
         echo "<tr><td class=contenttd>";
         echo "<a href=\"$RFS_SITE_URL/modules/videos/videos.php?action=view&id=$video->id\">";
         echo "$video->sname</a><br>";
-        echo sc_trunc($video->description,50);        
+        echo lib_string_truncate($video->description,50);        
         echo "</td></tr>";
     }
 	echo "<tr><td class=contenttd></td><td class=contenttd>";

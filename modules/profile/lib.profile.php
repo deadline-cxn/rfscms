@@ -5,7 +5,7 @@ lib_menus_register("My Profile","$RFS_SITE_URL/modules/profile/profile.php");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE profile
-function sc_module_mini_profile($x) { eval(scg());
+function sc_module_mini_profile($x) { eval(lib_rfs_get_globals());
     lib_div("PROFILE MODULE SECTION");
     echo "<h2>Profile</h2>";
     /*
@@ -20,7 +20,7 @@ function sc_module_mini_profile($x) { eval(scg());
         $picf=str_replace($RFS_SITE_URL,"",$picf);
         echo "<a href=\"$RFS_SITE_URL/profile.php?action=view&nid=$profile->id\">".lib_images_thumb("$picf",30,0,1	)."</a>\n";
         echo "</td><td valign=top  class=contenttd 90%>";
-        echo "<a href=\"$RFS_SITE_URL/profile.php?action=view&nid=$profile->id\" class=\"a_cat\">".sc_trunc("$profile->headline",50)."</a>";
+        echo "<a href=\"$RFS_SITE_URL/profile.php?action=view&nid=$profile->id\" class=\"a_cat\">".lib_string_truncate("$profile->headline",50)."</a>";
         $ntext=str_replace("<p>"," ",$ntext);
         $ntext=str_replace("</p>"," ",$ntext);
         $ntext=str_replace("<","&lt;",$ntext);

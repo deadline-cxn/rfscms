@@ -9,7 +9,7 @@ echo "<br><h1>$userdata->name's $RFS_SITE_NAME profile</h1>";
 
 echo "<table border=0><tr>";
 echo "<td width=10 valign=top><center><a href=\"$RFS_SITE_URL/showprofile.php?user=$userdata->name\">\n";
-sc_useravatar($userdata->name);
+lib_users_avatar_code($userdata->name);
 echo "</a></center></td>\n";
 
 echo "<td>\n";
@@ -39,8 +39,8 @@ echo "Downloads: $userdata->files_downloaded<br>\n";
 echo "Links Added: $userdata->linksadded<br>\n";
 echo "Referrals: $userdata->referrals<br>\n";
 
-echo "Member since: ".sc_time($userdata->first_login)."<br>";
-echo "Last seen on: ".sc_time($userdata->last_login)."<br>";
+echo "Member since: ".lib_string_current_time($userdata->first_login)."<br>";
+echo "Last seen on: ".lib_string_current_time($userdata->last_login)."<br>";
 
 echo "Quote: $userdata->sentence<br>";
 

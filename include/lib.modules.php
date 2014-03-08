@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
 function lib_modules_get_array() {
-	eval(scg());
+	eval(lib_rfs_get_globals());
 	$dr="$RFS_SITE_PATH/modules";
 	$modules=array();
     $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
@@ -21,11 +21,11 @@ function lib_modules_get_array() {
 	reset($modules);
 	return $modules;
 }
-function lib_modules_register($x) { eval(scg());
+function lib_modules_register($x) { eval(lib_rfs_get_globals());
 	global $RFS_MODULE;
 	@$RFS_MODULE[$x]=true;
 }
-function lib_modules_installed($x) { eval(scg());
+function lib_modules_installed($x) { eval(lib_rfs_get_globals());
 	global $RFS_MODULE;
 	return $RFS_MODULE[$x];
 }
@@ -37,7 +37,7 @@ function lib_modules_show_registered() {
 		echo "$k <br>";
 	}
 }
-function lib_modules_array() { eval(scg());
+function lib_modules_array() { eval(lib_rfs_get_globals());
 	$dr="$RFS_SITE_PATH/modules";
 	$modules=array();
     $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");

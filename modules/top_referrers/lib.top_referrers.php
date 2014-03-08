@@ -3,7 +3,7 @@ include_once("include/lib.all.php");
 
 ///////////////////////////////////////////////////////////////
 // MODULE TOP REFERRERS
-function sc_module_mini_top_referrers($x) { eval(scg());
+function sc_module_mini_top_referrers($x) { eval(lib_rfs_get_globals());
 
    $result=lib_mysql_query("select * from link_bin where hidden != '1' and `referral`='yes' order by `referrals` desc limit $x");
     $numlinks=mysql_num_rows($result);
@@ -15,7 +15,7 @@ function sc_module_mini_top_referrers($x) { eval(scg());
 		$url=str_replace(":","_rfs_colon_",$url);
        echo "<a class=\"a_cat\" href=\"$site_url/link_out.php?link=$url\" \n";
        echo " target=\"_blank\" title=\"$link->sname (in[$link->referrals] out[$link->clicks])\"\n";
-        echo ">".sc_trunc($link->sname,24)."</a> ";        
+        echo ">".lib_string_truncate($link->sname,24)."</a> ";        
         echo " <font class=sc_black>[$link->referrals] <br>";
     }
 }

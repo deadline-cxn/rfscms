@@ -2,17 +2,17 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_twitter_url($t) { eval(scg());
+function sc_twitter_url($t) { eval(lib_rfs_get_globals());
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 	return preg_replace("/\s\@(\w+)/"," <a href=\"http://www.twitter.com/$2\" target=_blank>@$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_email_url($t) { eval(scg());
+function sc_email_url($t) { eval(lib_rfs_get_globals());
 	return preg_replace( "/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/","<a href=\"mailto:$2@$2.$3\">$2@$2.$3</a>",$t);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_inline_url($t){ eval(scg());
+function sc_inline_url($t){ eval(lib_rfs_get_globals());
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
 	 return preg_replace(	"/\s(http|https|ftp)\:\/\/(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])|([a-zA-Z0-9_\-\.])+\.(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum|uk|me))((:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~])*)\s/",	" <a href=\"$2://$2\" target=_blank>$2://$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ",	$t);
@@ -41,7 +41,7 @@ function sc_donate_button_small() {
 			</form>' ; */
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_donate_button() { eval(scg());
+function sc_donate_button() { eval(lib_rfs_get_globals());
 if(empty($RFS_SITE_PAYPAL_BUTTON1)) return;
 	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=';
 	echo $RFS_SITE_PAYPAL_BUTTON1;
@@ -59,8 +59,8 @@ function sc_donate_button2() {
 			</form>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_socials_content($u,$t) { eval(scg());
-	if(!sc_yes($RFS_SITE_SHOW_SOCIALS)) return;
+function sc_socials_content($u,$t) { eval(lib_rfs_get_globals());
+	if(!lib_rfs_bool_true($RFS_SITE_SHOW_SOCIALS)) return;
 	if(!empty($RFS_SITE_ADDTHIS_ACCT)) {
 		echo '
 		<!-- AddThis Button BEGIN -->
@@ -112,7 +112,7 @@ function sc_social_buttons(){
 	echo "</td></tr></table>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_google_adsense_2(){ eval(scg());
+function sc_google_adsense_2(){ eval(lib_rfs_get_globals());
     global $RFS_SITE_GOOGLE_ADSENSE;
 	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
 		echo ' <script type="text/javascript">
@@ -160,7 +160,7 @@ function sc_google_analytics(){
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_reddit() { eval(scg());
+function sc_reddit() { eval(lib_rfs_get_globals());
 echo '<script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=1"></script>';
     /*
 echo "<script>";

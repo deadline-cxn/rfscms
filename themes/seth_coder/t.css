@@ -830,3 +830,9 @@ input[type="submit"] {
 {
 }
 
+.admin_box
+{
+padding: 5px;
+margin: 5px;
+}
+

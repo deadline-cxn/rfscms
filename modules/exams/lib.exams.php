@@ -19,12 +19,12 @@ $answer_data[4]="D";
 $answer_data[5]="E";
 $answer_data[6]="F";
 
-function adm_action_lib_exams_exam_edit() { eval(scg());
+function adm_action_lib_exams_exam_edit() { eval(lib_rfs_get_globals());
     lib_domain_gotopage("$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit");
 }
 
 function exams_convert_question_id_to_sequence($question_id) {
-	$x=mfo1("select * from `exam_questions` where `id`='$question_id'");
+	$x=lib_mysql_fetch_one_object("select * from `exam_questions` where `id`='$question_id'");
 	$out = array(
 		"exam_id" => $x->exam_id,
 		"exam_sequence" => $x->exam_sequence );	
@@ -43,7 +43,7 @@ function exams_get_last_question_answered($user,$exam_id) {
 }
 
 function exams_get_total_questions($exam_id) {
-	$exam=mfo1("select * from exams where id='$exam_id'");
+	$exam=lib_mysql_fetch_one_object("select * from exams where id='$exam_id'");
 	$nq=$exam->questions;
 	return $nq;
 }
@@ -89,9 +89,9 @@ function exams_get_score($user,$exam_id) {
 
 function exams_wipe_user_exam($user,$exam_id) {
 	lib_mysql_query("delete from exam_users where user='$user' and exam_id='$exam_id'");
-	$exam=mfo1("select * from exams where id='$exam_id'");
+	$exam=lib_mysql_fetch_one_object("select * from exams where id='$exam_id'");
 	for($i=1;$i<($exam->questions+1);$i++)  {
-		$exq=mfo1("select * from exam_questions where `exam_id`='$exam_id' and `exam_sequence`='$i'");
+		$exq=lib_mysql_fetch_one_object("select * from exam_questions where `exam_id`='$exam_id' and `exam_sequence`='$i'");
 		$q= "insert into exam_users (`user`,`exam_id`,`question_id`) values('$user', '$exam_id', '$exq->id') ";
 		// echo $q."<br>";
 		lib_mysql_query($q);
