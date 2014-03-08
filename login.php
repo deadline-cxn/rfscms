@@ -46,8 +46,8 @@ if($action=="logingo") {
 						$_SESSION["valid_user"] = $userid;
 						$_SESSION["logged_in"]  = "true";
                     $data=lib_users_get_data($userid);
-                    sc_setuservar($userid,"last_login",$data->last_activity);
-                    sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));
+                    lib_users_set_var($userid,"last_login",$data->last_activity);
+                    lib_users_set_var($userid,"last_activity",date("Y-m-d H:i:s"));
                     lib_log_add_entry("[LOGIN]: $data->name ($data->email)");
                     if(empty($outpage))
 							$outpage="$RFS_SITE_URL/index.php";
@@ -68,8 +68,8 @@ if($action=="logingo") {
 
 			
             $data=lib_users_get_data($userid);
-            sc_setuservar($userid,"last_login",$data->last_activity);
-            sc_setuservar($userid,"last_activity",date("Y-m-d H:i:s"));				
+            lib_users_set_var($userid,"last_login",$data->last_activity);
+            lib_users_set_var($userid,"last_activity",date("Y-m-d H:i:s"));				
             lib_log_add_entry("[LOGIN]: $data->name ($data->email)");
             if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
 			

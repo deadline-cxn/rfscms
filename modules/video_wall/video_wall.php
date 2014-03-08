@@ -274,7 +274,7 @@ if($act=="add") {
 		//sc_google_plus("$RFS_SITE_URL/modules/video_wall/v.php");
 	echo "</td><td>";
 	if(empty($data->donated))
-		//sc_donate_button_small();
+		//lib_social_paypal_small();
 	echo "</td><td>";
 
 	if($edit==true){

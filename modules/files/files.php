@@ -67,7 +67,7 @@ if($give_file=="avatar"){
                 rename($RFS_SITE_PATH."/images/avatars/".$oldname,$RFS_SITE_PATH."/images/avatars/".$newname);
                 $httppath=$httppath."/".$newname;
                 echo "<p>It was stored as [<a href=\"$httppath\" target=\"_blank\">$httppath</a>]</p>\n";
-                sc_setuservar($data->name,"avatar",$httppath);
+                lib_users_set_var($data->name,"avatar",$httppath);
             } else {
                 $error ="File upload error!";
                 echo "File upload error! [";
@@ -98,7 +98,7 @@ if($_REQUEST['action']=="get_file_go") {
 		$id=$_REQUEST['id'];
 		$filedata=sc_getfiledata($id);
 		if(empty($filedata)) { echo "Error, file does not exist?\n"; exit(); }
-		sc_adddownloads($data->name,1); lib_mysql_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
+		lib_users_add_downloads($data->name,1); lib_mysql_query("UPDATE files SET downloads=downloads+1 where id = '$id'");
 		 if(stristr($filedata->location,":")) {
 			 lib_domain_gotopage("$filedata->location");
 		 }
@@ -653,7 +653,7 @@ function files_action_get_file() { eval(lib_rfs_get_globals());
 					
 					show_source($filedata->location);
 					echo "</td></tr></table>";
-					sc_adddownloads($data->name,1);
+					lib_users_add_downloads($data->name,1);
 					$dl=$filedata->downloads+1;
 					lib_mysql_query("UPDATE files SET downloads='$dl' where id = '$id'");
 					break;

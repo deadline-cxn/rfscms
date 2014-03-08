@@ -2184,6 +2184,10 @@ function adm_action_disk_free() { eval(lib_rfs_get_globals());
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_DEFAULT_ACTION
 function adm_action_() { eval(lib_rfs_get_globals());
+
+
+
+
 	if($db_queries=="list" ) { adm_db_query_list();  exit(); }
 		// lib_ajax($label,$table,$key,$kv,$field,$width,$type)
 		// echo "<table border=0>";
@@ -2255,6 +2259,32 @@ function adm_action_() { eval(lib_rfs_get_globals());
 	lib_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=show","Show banner" );
 
 	echo "</td></tr></table>";
+	
+	
+	
+	
+	/////////// TEST AREA
+	/*
+	
+	echo "<hr>";	
+	lib_social_paypal();
+	lib_social_paypal2();
+	lib_social_share_bar($u,$t);
+	lib_social_share_bar2("",$t);
+	sc_social_buttons();
+	sc_reddit();
+	sc_google_plus_badge();
+	sc_google_plus_badge2();
+	sc_google_plus("http://www.sethcoder.com/");
+	sc_tweet("http://www.sethcoder.com/","#RFSCMS","Great content management system.");	
+	sc_twitter_follow("Sethcoder");	
+	echo "<hr>";
+	
+	
+	*/
+	
+	
+	
 
     adm_menu_built_in();
 
@@ -2263,6 +2293,9 @@ function adm_action_() { eval(lib_rfs_get_globals());
 	finishadminpage();
 }
 function adm_menu_built_in() { eval(lib_rfs_get_globals());
+
+
+
     
         $arr=get_defined_functions();
 		asort($arr['user']);

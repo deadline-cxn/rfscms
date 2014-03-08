@@ -1,12 +1,9 @@
 <?
-/////////////////////////////////////////////////////////////////////////////////////////
-
 function lib_users_age($birthDay) { // date in yyyy-mm-dd format
 	$birthday = explode("-", $birthDay); 
 	$age = (date("md", date("U", mktime(0, 0, 0, $birthday[1], $birthday[2], $birthday[0]))) > date("md") ? ((date("Y") - $birthday[0]) - 1) : (date("Y") - $birthday[0]));
 	return $age;
 }
-
 function lib_users_online() {
 	$dt=lib_users_get_data($_SESSION['valid_user']);
 	$name=$dt->name;
@@ -53,13 +50,11 @@ function lib_users_online() {
 	$user = mysql_num_rows($result);
 	return $user;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_users_logged_in() {
 	$result = lib_mysql_query("SELECT DISTINCT ip FROM useronline WHERE loggedin='1'");
 	$user   = mysql_num_rows($result);
 	return $user;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_users_logged_details() {
 	$result = lib_mysql_query("SELECT DISTINCT ip,page,name FROM useronline");
 	$nusers = mysql_num_rows($result);
@@ -75,7 +70,6 @@ function lib_users_logged_details() {
 	}
 	return $user;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_users_avatar_code($user) { eval(lib_rfs_get_globals());
 	$userdata=lib_users_get_data($user);
 	$ret = "<a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$userdata->name\">\n";
@@ -90,12 +84,10 @@ function lib_users_avatar_code($user) { eval(lib_rfs_get_globals());
     $ret.= "</a>\n";
     return($ret);
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_setuservar($name,$var,$set) {
+function lib_users_set_var($name,$var,$set) {
 	lib_mysql_query_user_db("UPDATE users SET `$var`='$set' where name = '$name'");
 }
-
-function sc_getusername($x){
+function lib_users_get_name($x){
 	$o=$x;
 	if(is_numeric($x)) {
 		$ur=lib_mysql_query_user_db("select * from users where id='$x'");
@@ -104,13 +96,11 @@ function sc_getusername($x){
 	}
     return $o;
 }
-function sc_newuser($name,$pass,$e){
+function lib_users_create($name,$pass,$e){
     $time1=date("Y-m-d H:i:s");
     $result=lib_mysql_query_user_db("INSERT INTO `users` (`name`, `pass`, `email`, `first_login`) VALUES ('$name', '$pass', '$e', '$time1');");
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_is_alias($x) {
+function lib_users_alias($x) {
     $data=lib_users_get_data($_SESSION['valid_user']);
     $ax=explode(",",$data->alias);
     for($j=0;$j<count($ax);$j++) {
@@ -118,7 +108,6 @@ function sc_is_alias($x) {
     }
     return FALSE;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_users_get_data($name){
     if(is_numeric($name)){
 		$result = lib_mysql_query_user_db("select * from `users` where `id` = '$name'");
@@ -149,14 +138,11 @@ function lib_users_get_data($name){
     }
     return 0;
 }
-
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_users_get_databyfield($field,$data){
     $result=lib_mysql_query_user_db("select * from users where `$field` = '$data'");
     return mysql_fetch_object($result);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-function sc_adddownloads($user,$points){
+function lib_users_add_downloads($user,$points){
   $result = lib_mysql_query("select * from users where name = '$user'");
   if(mysql_num_rows($result) >0 ){
     $ud=mysql_fetch_object($result);
@@ -164,5 +150,4 @@ function sc_adddownloads($user,$points){
     lib_mysql_query("UPDATE users SET files_downloaded=$downloads where name = '$user'");
   }
 }
-
 ?>

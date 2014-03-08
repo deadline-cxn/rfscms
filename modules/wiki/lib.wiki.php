@@ -157,9 +157,9 @@ function wikitext($text) { eval(lib_rfs_get_globals());
 	$text=str_replace("^^","&#94;",$text);	    
    
 	
-	$text=sc_twitter_url($text);
-	$text=sc_email_url($text);
-	$text=sc_inline_url($text);
+	$text=lib_string_get_twitter_code($text);
+	$text=lib_string_get_email_code($text);
+	$text=lib_string_get_url_code($text);
 	
     $outtext="";
     $ila=explode("[",$text);

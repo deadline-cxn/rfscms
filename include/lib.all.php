@@ -20,7 +20,7 @@ include_once("lib.users.php");
 include_once("lib.sitevars.php");
 include_once("lib.helpers.php");
 include_once("lib.rfs.php");
-include_once("lib.social_buttons.php");
+include_once("lib.social.php");
 include_once("lib.domain.php");
 include_once("lib.menus.php");
 include_once("lib.themes.php");

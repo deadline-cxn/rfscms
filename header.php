@@ -112,7 +112,7 @@ else {
 		echo "<tr><td align=center>";
 		
 		if(!lib_rfs_bool_true($data->donated)) {
-			sc_donate_button();		
+			lib_social_paypal();		
 			sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 		
 		}

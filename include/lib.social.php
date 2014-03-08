@@ -2,23 +2,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_twitter_url($t) { eval(lib_rfs_get_globals());
-	if(empty($RFSW_LINK_IMAGE))
-		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
-	return preg_replace("/\s\@(\w+)/"," <a href=\"http://www.twitter.com/$2\" target=_blank>@$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_email_url($t) { eval(lib_rfs_get_globals());
-	return preg_replace( "/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/","<a href=\"mailto:$2@$2.$3\">$2@$2.$3</a>",$t);
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_inline_url($t){ eval(lib_rfs_get_globals());
-	if(empty($RFSW_LINK_IMAGE))
-		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
-	 return preg_replace(	"/\s(http|https|ftp)\:\/\/(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])|([a-zA-Z0-9_\-\.])+\.(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum|uk|me))((:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~])*)\s/",	" <a href=\"$2://$2\" target=_blank>$2://$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ",	$t);
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_stumble_upon($url) {
+function lib_social_stumble_upon_badge($url) {
 echo " <!-- Place this tag where you want the su badge to render -->
 		<su:badge layout='2'></su:badge>
 		<!-- Place this snippet wherever appropriate -->
@@ -30,18 +14,7 @@ echo " <!-- Place this tag where you want the su badge to render -->
 		})();
 		</script>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_donate_button_small() {
-	sc_donate_button();
-/*	echo ' <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="CPGYAFC78SMUY">
-			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-			</form>' ; */
-}
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_donate_button() { eval(lib_rfs_get_globals());
+function lib_social_paypal() { eval(lib_rfs_get_globals());
 if(empty($RFS_SITE_PAYPAL_BUTTON1)) return;
 	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=';
 	echo $RFS_SITE_PAYPAL_BUTTON1;
@@ -49,8 +22,8 @@ if(empty($RFS_SITE_PAYPAL_BUTTON1)) return;
 	$vr=$RFS_SITE_URL;
 	echo "<img src='$vr/images/icons/Paypal.png' border='0' height='32' alt='$RFS_SITE_PAYPAL_BUTTON1_MSG'></a>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_donate_button2() {
+function lib_social_paypal2() { eval(lib_rfs_get_globals());
+if(empty($RFS_SITE_PAYPAL_BUTTON2)) return;
 	echo " <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">
 			<input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
 			<input type=\"hidden\" name=\"hosted_button_id\" value=\"$RFS_SITE_PAYPAL_BUTTON2\">
@@ -58,37 +31,63 @@ function sc_donate_button2() {
 			<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">
 			</form>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_socials_content($u,$t) { eval(lib_rfs_get_globals());
-	if(!lib_rfs_bool_true($RFS_SITE_SHOW_SOCIALS)) return;
+
+function sc_module_share_bar() {
+	echo '
+	<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+
+<a class="addthis_button_tweet"></a>
+
+<a class="addthis_button_reddit"></a>
+
+<a class="addthis_button_stumbleupon"></a>
+
+<a class="addthis_button_delicious"></a>
+
+<a class="addthis_button_pinterest_pinit"></a>
+
+<a class="addthis_counter addthis_pill_style"></a>
+
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" 
+src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"></script>
+<!-- AddThis Button END --> ';
+
+	
+}
+function lib_social_share_bar($u,$t) { eval(lib_rfs_get_globals());
+	if(lib_rfs_bool_true($RFS_SITE_NO_SHARING)) return;		
 	if(!empty($RFS_SITE_ADDTHIS_ACCT)) {
-		echo '
-		<!-- AddThis Button BEGIN -->
-		<div class="addthis_toolbox addthis_default_style ">
-		<table border=0><tr><td>
-		<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-		</td><td>
-		<a class="addthis_button_tweet"></a>
-		</td><td>
-		<a class="addthis_button_reddit"></a>
-		</td><td>
-		<a class="addthis_button_stumbleupon"></a>
-		</td><td>
-		<a class="addthis_button_delicious"></a>
-		</td><td>
-		<a class="addthis_button_pinterest_pinit"></a>
-		</td><td>
-		<a class="addthis_counter addthis_pill_style"></a>
-		</td></tr></table>
-		</div>
-		<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-		<script type="text/javascript" 
-		src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"></script>
-		<!-- AddThis Button END --> ';
+echo '
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<table border=0><tr><td>
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+</td><td>
+<a class="addthis_button_tweet"></a>
+</td><td>
+<a class="addthis_button_reddit"></a>
+</td><td>
+<a class="addthis_button_stumbleupon"></a>
+</td><td>
+<a class="addthis_button_delicious"></a>
+</td><td>
+<a class="addthis_button_pinterest_pinit"></a>
+</td><td>
+<a class="addthis_counter addthis_pill_style"></a>
+</td></tr></table>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" 
+src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"></script>
+<!-- AddThis Button END --> ';
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_socials_content2($u,$t) {
+function lib_social_share_bar2($u,$t) {
 	echo "<table border=0 cellspacing=0 width=100%><tr><td width=10%>";
 	echo "</td><td>";
 	sc_tweet($u,"",$t);
@@ -97,35 +96,19 @@ function sc_socials_content2($u,$t) {
 	echo "</td><td>";
 	sc_google_plus($u);
 	echo "</td><td>";
-	sc_stumble_upon($u);
+	lib_social_stumble_upon_badge($u);
 	echo "</td><td width=70%>";
-	echo "</td></tr></table>";	
+	echo "</td></tr></table>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function sc_social_buttons(){
 	echo "<table border=0><tr><td>";
 	sc_facebook_like_little($RFS_SITE_URL);
 	echo "</td><td>";
-    sc_stumble_upon($RFS_SITE_URL);
+    lib_social_stumble_upon_badge($RFS_SITE_URL);
 	echo "</td><td>";
 	sc_google_plus($RFS_SITE_URL);
 	echo "</td></tr></table>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_google_adsense_2(){ eval(lib_rfs_get_globals());
-    global $RFS_SITE_GOOGLE_ADSENSE;
-	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
-		echo ' <script type="text/javascript">
-				<!--	
-				google_ad_client = "'.$RFS_SITE_GOOGLE_ADSENSE.'";
-				google_ad_slot = "2325338978";
-				google_ad_width = 160;
-				google_ad_height = 90; //-->
-				</script>
-				<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>';
-	}
-}
-/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_adsense($x){
 	if(stristr(lib_domain_phpself(),"adm.php")) return;
 	global $RFS_SITE_GOOGLE_ADSENSE;
@@ -142,7 +125,20 @@ function sc_google_adsense($x){
 		
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+function sc_google_adsense_2(){ eval(lib_rfs_get_globals());
+    global $RFS_SITE_GOOGLE_ADSENSE;
+	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
+		echo ' <script type="text/javascript">
+				<!--	
+				google_ad_client = "'.$RFS_SITE_GOOGLE_ADSENSE.'";
+				google_ad_slot = "2325338978";
+				google_ad_width = 160;
+				google_ad_height = 90; //-->
+				</script>
+				<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>';
+	}
+}
+
 function sc_google_analytics(){
 	lib_div("GOOGLE ANALYTICS");
     global $RFS_SITE_GOOGLE_ANALYTICS;
@@ -159,11 +155,11 @@ function sc_google_analytics(){
 			</script>";
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_reddit() { eval(lib_rfs_get_globals());
+
+function sc_reddit() { 
+// eval(lib_rfs_get_globals());
 echo '<script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=1"></script>';
-    /*
-echo "<script>";
+/* echo "<script>";
 echo "(function() {";
 echo "var styled_submit = \"<a style='color: #369; text-decoration: none;' href='http://www.reddit.com/submit?title=' target='_parent'>\"; ";
 echo "var unstyled_submit = \"<a href='http://www.reddit.com/submit?title=' target='http://www.reddit.com/submit?title='> \";";
@@ -175,37 +171,34 @@ echo " write_string += styled_submit + 'submit';
 document.write(write_string);
 })()
 </script>';
-";    $RFS_SITE_ADDTHIS_ACCT		= "ra-50b82f7c63926ef6";
-*/
+";    $RFS_SITE_ADDTHIS_ACCT		= "ra-50b82f7c63926ef6";*/
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_plus_badge(){
-	echo '<!-- Place this code where you want the badge to render. -->
-			<a href="//plus.google.com/111679666163937087116?prsrc=3" rel="publisher" style="text-decoration:none;">
-			<img src="//ssl.gstatic.com/images/icons/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"/>
-			</a>';
+echo '<!-- Place this code where you want the badge to render. -->
+<a href="//plus.google.com/111679666163937087116?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="//ssl.gstatic.com/images/icons/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"/>
+</a>';
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function sc_google_plus_badge2(){
-	echo "	<!-- Place this code where you want the badge to render. -->
-			<a href=\"//plus.google.com/111679666163937087116?prsrc=3\" rel=\"publisher\" style=\"text-decoration:none;\">
-			<img src=\"//ssl.gstatic.com/images/icons/gplus-32.png\" alt=\"Google+\" style=\"border:0;width:32px;height:32px;\"/>
-			</a>";
+echo "	<!-- Place this code where you want the badge to render. -->
+<a href=\"//plus.google.com/111679666163937087116?prsrc=3\" rel=\"publisher\" style=\"text-decoration:none;\">
+<img src=\"//ssl.gstatic.com/images/icons/gplus-32.png\" alt=\"Google+\" style=\"border:0;width:32px;height:32px;\"/>
+</a>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 function sc_google_plus($url){
 echo " <!-- Place this tag where you want the +1 button to render. -->
-		<div class=\"g-plusone\" data-size=\"medium\" href=\"$url\"></div>
-		<!-- Place this tag after the last +1 button tag. -->
-		<script type=\"text/javascript\">
-		  (function() {
-			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-			po.src = 'https://apis.google.com/js/plusone.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-		  })();
-		</script> ";
+<div class=\"g-plusone\" data-size=\"medium\" href=\"$url\"></div>
+<!-- Place this tag after the last +1 button tag. -->
+<script type=\"text/javascript\">
+(function() {
+var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+po.src = 'https://apis.google.com/js/plusone.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script> ";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 function sc_tweet($url,$hash,$text){	
 	$url=urlencode($url);
 	echo "<a href='https://twitter.com/share?text=$text&url=$url'
@@ -224,7 +217,7 @@ function sc_tweet($url,$hash,$text){
 				(document,'script','twitter-wjs');
 				</script>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 function sc_facebook_likebox($url){
 echo "	<div id=\"fb-root\"></div>
 		<script>(function(d, s, id) {
@@ -243,7 +236,7 @@ echo "	<div id=\"fb-root\"></div>
 			data-header=\"false\">
 		</div>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 function sc_facebook_like($url){
 	$url=rawurlencode($url);
 	echo "	<div id=\"fb-root\"></div>
@@ -264,7 +257,7 @@ function sc_facebook_like($url){
 				data-href=\"$url\">
 			</div>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 function sc_facebook_like_little($url){    
 	$url=rawurlencode($url);	
 	echo " <div id=\"fb-root\"></div>
@@ -284,15 +277,15 @@ function sc_facebook_like_little($url){
 				data-colorscheme=\"dark\">
 			</div>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 function sc_facebook_like2(){
 	echo "<iframe src='https://www.facebook.com/plugins/like.php?href=".lib_domain_canonical_url()."'
 			scrolling='no' frameborder='0' style='border:none; height:25px '>";
 	echo "</iframe> ";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function sc_twitter_follow() {	
-	echo "<a href=\"https://twitter.com/sethcoder\"
+
+function sc_twitter_follow($username) {	
+	echo "<a href=\"https://twitter.com/$username\"
 				class=\"twitter-follow-button\"
 				data-show-count=\"true\"
 				data-show-screen-name=\"false\">
@@ -306,10 +299,9 @@ function sc_twitter_follow() {
 					fjs.parentNode.insertBefore(js,fjs);
 					}
 				}
-			(document,\"script\",\"twitter-wjs\");
-			</script>";
+			(document,\"script\",\"twitter-wjs\");  </script>";
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 function sc_facebook_login() { echo sc_facebook_login_r(); }
 function sc_facebook_login_r() {
 	if(!empty($GLOBALS['RFS_SITE_FACEBOOK_APP_ID'])) {
@@ -326,7 +318,7 @@ function sc_facebook_login_r() {
 	}
 	return $r;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 function sc_facebook_comments($page) {
 	$RFS_SITE_FACEBOOK_APP_ID=$GLOBALS['RFS_SITE_FACEBOOK_APP_ID'];
 	if(!empty($RFS_SITE_FACEBOOK_APP_ID)) {

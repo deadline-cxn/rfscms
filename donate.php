@@ -2,10 +2,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-include("rfs/header.php");
-$data=getuserdata($_SESSION['valid_user']);
+include("header.php");
+// $data=getuserdata($_SESSION['valid_user']);
 /*
-
 http://www.sethcoder.com/donate.php?
 transaction_subject=SethCoder&
 txn_type=web_accept&
@@ -77,5 +76,5 @@ if(!empty($mc_gross)){
 else {
 	echo "<p> But... muh monies... </p>";
 }
-include("rfs/footer.php");
+include("footer.php");
 ?>

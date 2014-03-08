@@ -196,7 +196,7 @@ function sc_show_news($nid) { eval(lib_rfs_get_globals());
         lib_rfs_echo(lib_string_convert_smiles(stripslashes(wikiimg((wikitext($news->message))))));
     }
     $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
-	 sc_socials_content($ourl,$news->headline);		
+	 lib_social_share_bar($ourl,$news->headline);		
 	
 	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
 	
