@@ -1,4 +1,5 @@
 #!/bin/bash
+rm /var/www/modules/videos/cache/*.jpg
 tools/cleanthemes.sh
 ver=$(grep 'v' include/version.php | sed 's/[^0-9.]//g')
 va=$(<build.dat);

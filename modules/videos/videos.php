@@ -370,4 +370,16 @@ function videos_action_() {
 	videos_pagefinish();
 }
 
+
+/*
+ 
+
+liveleak: 
+code: encodeURI('<iframe width="640" height="360" src="http://www.liveleak.com/ll_embed?f=1fe3095e0f2a" frameborder="0" allowfullscreen></iframe>'),
+link: "http://www.liveleak.com/view?i=cc6_1394235601"
+image: "http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Mar/7/1fe3095e0f2a_sf_6.jpg",
+ 
+  
+*/
+
 ?>
