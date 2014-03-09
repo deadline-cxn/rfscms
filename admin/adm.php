@@ -254,17 +254,16 @@ function adm_action_arrange() { eval( lib_rfs_get_globals() );
 // ADM ACCESS GROUPS FUNCTIONS
 function adm_action_f_access_group_add() { eval(lib_rfs_get_globals());
 	echo " Adding new access group named [$axnm] <br>";
-	lib_mysql_query(" insert into access (`name`) VALUES ('$axnm'); ");
+	lib_mysql_query(" insert into `access` (`name`) VALUES ('$axnm'); ");
 	adm_action_f_access_group_edit();
 }
 function adm_action_f_access_group_edit_go() { eval(lib_rfs_get_globals());
 	lib_mysql_query("delete from `access` where name='$axnm'");
-	$r=lib_mysql_query("select * from access_methods");
+	$r=lib_mysql_query("select * from `access_methods`");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$am=mysql_fetch_object($r);
 		if($_POST["$am->page"."_$am->action"]=="on") {
-			lib_mysql_query("insert into access (`name`,`page`,`action`) 
-			VALUES('$axnm','$am->page','$am->action')");
+			lib_mysql_query("insert into `access` (`name`,`page`,`action`) VALUES('$axnm','$am->page','$am->action')");
 		}
 	}
 	adm_action_access_groups();
@@ -279,19 +278,16 @@ for(c in document.getElementsByID('g1'))
 	\">";	
 	echo "<div class=\"forum_box\">";
 	
-	
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
-
-
 	
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
 	
-	$r=lib_mysql_query("select * from access_methods order by page,action");
+	$r=lib_mysql_query("select * from `access_methods` order by page,action");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$am=mysql_fetch_object($r);	
 		$checked="";
-		$rw=lib_mysql_fetch_one_object("select * from access where name='$axnm' and page='$am->page' and action='$am->action'");
+		$rw=lib_mysql_fetch_one_object("select * from `access` where name='$axnm' and page='$am->page' and action='$am->action'");
 		if($rw->name==$axnm) { $checked="checked";}
 		echo "<div style=\"float: left; width: 200px;\">";
 		echo "<input id='g1' name=\"$am->page"."_$am->action\" type=checkbox $checked>";
@@ -378,15 +374,7 @@ function adm_action_access_groups() { eval(lib_rfs_get_globals());
 		}
 		
 		
-		lib_forms_optionize(	"$RFS_SITE_URL/admin/adm.php",
-							"action=f_access_group_add_user".$RFS_SITE_DELIMITER.
-							"axnm=$a->name".$RFS_SITE_DELIMITER.
-							"omit=access_groups:like '%$a->name%',name:anonymous",
-							"users",
-							"name",
-							0,
-							"Add a user to this group",
-							1 );
+		lib_forms_optionize("$RFS_SITE_URL/admin/adm.php","action=f_access_group_add_user".$RFS_SITE_DELIMITER."axnm=$a->name".$RFS_SITE_DELIMITER."omit=access_groups:like '%$a->name%',name:anonymous","users","name",0,"Add a user to this group",1 );
 		echo "</p>";
 		echo "</div>";
 	}

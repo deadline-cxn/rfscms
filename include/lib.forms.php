@@ -177,12 +177,12 @@ function lib_forms_optionize($return_page,$hiddenvars,$table,$key,$use_id_method
 		 if(empty($selname)) $selname=$key;
 		 
 		 $hasimage="";
-		 $result = mysql_query("SHOW COLUMNS FROM `$table` LIKE 'image'");
+		 $result = lib_mysql_query("SHOW COLUMNS FROM `$table` LIKE 'image'");
 		 $exists = (mysql_num_rows($result))?TRUE:FALSE;
 		 if($exists) $hasimage= ",image";
 		 
 		 $hasicon="";
-		 $result = mysql_query("SHOW COLUMNS FROM `$table` LIKE 'icon'");
+		 $result = lib_mysql_query("SHOW COLUMNS FROM `$table` LIKE 'icon'");
 		 $exists = (mysql_num_rows($result))?TRUE:FALSE;
 		 if($exists) $hasicon= ",icon";
 		 
@@ -193,7 +193,7 @@ function lib_forms_optionize($return_page,$hiddenvars,$table,$key,$use_id_method
 		if($use_id_method)
 			$scoq.=",id";
 			
-		$scoq.=" from $table $where order by $key asc";			
+		$scoq.=" from `$table` $where order by $key asc";			
 		$r=lib_mysql_query($scoq);
 		
 		// echo "<p> $scoq </p>";
@@ -205,14 +205,11 @@ function lib_forms_optionize($return_page,$hiddenvars,$table,$key,$use_id_method
 		echo "<option value=\"--- None ---\">--- None ---</option>";
 		
 		if($r) {
-			for($i=0;$i<mysql_num_rows($r);$i++){
-				$d=mysql_fetch_object($r);
+			while($d=mysql_fetch_object($r)){				
 				echo "<option ";
-				
 				if(!empty($d->image)) {
 					if(file_exists("$RFS_SITE_PATH/$d->image"))
 						echo "data-image=\"".lib_images_thumb_raw($d->image,16,0,0)."\" ";
-						
 						echo " IMAGE-WHAT=\"$d->image\" ";
 				}
 				else if(!empty($d->icon)) {
@@ -232,9 +229,7 @@ function lib_forms_optionize($return_page,$hiddenvars,$table,$key,$use_id_method
 				if(!empty($d->$key2)) {
 					echo "(".$d->$key2.")";
 				}
-				
 				echo "</option>";
-
 			}
 		}
 		echo "</select>";
