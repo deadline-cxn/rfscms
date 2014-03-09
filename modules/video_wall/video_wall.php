@@ -36,7 +36,7 @@ function save_vw(){
 				
 			}
 		}
-		lib_mysql_query_user_db("update users set videowall = '$vw' where id='$data->id'");
+		lib_mysql_query_user_db("update `users` set videowall = '$vw' where id='$data->id'");
 	}
 }
 

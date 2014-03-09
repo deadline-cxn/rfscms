@@ -59,7 +59,7 @@ if($action=="logingo") {
     }
 	
 
-    $result = lib_mysql_query_user_db("select * from users where name = '$userid' and pass = '".md5($password)."'");
+    $result = lib_mysql_query_user_db("select * from `users` where name = '$userid' and pass = '".md5($password)."'");
     
         if(mysql_num_rows($result) > 0){
 			
@@ -119,7 +119,7 @@ if($action=="join_go") {
 	} else {
 		/////////////////////////////////////////////////////////////////////
 		// CHECK USERID IN DB
-		$result = lib_mysql_query_user_db("select * from users where name = '$userid'");
+		$result = lib_mysql_query_user_db("select * from `users` where name = '$userid'");
 		if(mysql_num_rows($result) > 0 ){
 			echo "<p>Sorry! There is already a user named $userid</p>\n";
 			include("footer.php");
@@ -128,7 +128,7 @@ if($action=="join_go") {
 	}
 	/////////////////////////////////////////////////////////////////////
 	// CHECK EMAIL IN DB
-	$result = lib_mysql_query_user_db("select * from users where email = '$email'");
+	$result = lib_mysql_query_user_db("select * from `users` where email = '$email'");
 	if(mysql_num_rows($result) > 0 ){
 		echo "<p>Sorry! That email is already being used.</p>\n";
 		include("footer.php");
@@ -226,7 +226,7 @@ if($action=="sendpass"){
 			echo "<h1>Sending new password</h1>";
 			$newpass=lib_string_generate_password();
 			$md5pass=md5($newpass);
-			lib_mysql_query("update users set pass='$md5pass' where id='$user->id'");
+			lib_mysql_query("update `users` set pass='$md5pass' where id='$user->id'");
 			$subject="$RFS_SITE_NAME password reset.";
            $message ="Username:$user->name<br>";
            $message.="Password:$newpass<br>\n";

@@ -200,7 +200,7 @@ function detect_math($r, &$out)
             'the security of your OpenID server will depend on the ' .
             'security of the network links involved. If you are only ' .
             'using consumer support, you should still be able to operate ' .
-            'securely when the users are communicating with a ' .
+            'securely when the `users` are communicating with a ' .
             'well-implemented server.'));
         return false;
     } else {

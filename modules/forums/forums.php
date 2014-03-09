@@ -97,7 +97,7 @@ function forums_action_start_thread_go() { eval(lib_rfs_get_globals());
         lib_mysql_query("UPDATE `forum_posts` set `thread_top`   = 'yes' where `id`='$id';");
         lib_mysql_query("DELETE from `forum_posts` where `title` ='__chkdel'");
         $data->forumposts+=1;
-        lib_mysql_query("update users set `forumposts`='$data->forumposts' where `id`='$data->id'");
+        lib_mysql_query("update `users` set `forumposts`='$data->forumposts' where `id`='$data->id'");
         lib_mysql_query("UPDATE `forum_list` set `last_post` = '$id' where `id` = '$forum_which';");
         bumpthread($id);
         lib_log_add_entry("*****> $data->name started a new thread! [$header]");

@@ -52,7 +52,7 @@ if($action=="new message"){
     else
 	echo "To:<select name=to>";
 
-	$res=lib_mysql_query("select * from users order by  `name` asc");
+	$res=lib_mysql_query("select * from `users` order by  `name` asc");
 	$count=mysql_num_rows($res);
 
 	for($i=0;$i<$count;$i++)	{
@@ -85,7 +85,7 @@ if($action=="read"){
 	$urresult=lib_mysql_query("select * from `pmsg` where `id` = '$id'");
 	$msg=mysql_fetch_object($urresult);
 
-	$userdatar=lib_mysql_query("select * from users where `name`='$msg->from'");
+	$userdatar=lib_mysql_query("select * from `users` where `name`='$msg->from'");
 
 	$userdata=mysql_fetch_object($userdatar);
 

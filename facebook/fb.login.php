@@ -156,7 +156,7 @@ if(!$_SESSION['valid_user']) {
             lib_log_add_entry($dbg_info);
 
             // echo "$facebook_id... $facebook_name fetching your account details<br>";
-            $r=lib_mysql_query_user_db("select * from users where `facebook_id` = '$facebook_id'");
+            $r=lib_mysql_query_user_db("select * from `users` where `facebook_id` = '$facebook_id'");
             $user=mysql_fetch_object($r);
 
             //echo "name: $first_name<br>";
@@ -172,23 +172,23 @@ if(!$_SESSION['valid_user']) {
                     echo "WARNING: a1b2c3<br>";
             }
 
-            $r=lib_mysql_query_user_db("select * from users where `facebook_id` = '$facebook_id'");            
+            $r=lib_mysql_query_user_db("select * from `users` where `facebook_id` = '$facebook_id'");            
             $user=@mysql_fetch_object($r);
 			  if(!$user->id) {
                   echo "ERROR 3473. Please report this.<br>\n";
                   exit();
             }
 
-            lib_mysql_query_user_db("update users set facebook_name='$facebook_name'   where `facebook_id`='$facebook_id'");
-            lib_mysql_query_user_db("update users set first_name='$first_name'         where `facebook_id`='$facebook_id'");
-            lib_mysql_query_user_db("update users set last_name='$last_name'           where `facebook_id`='$facebook_id'");
-            lib_mysql_query_user_db("update users set facebook_link='$facebook_link'   where `facebook_id`='$facebook_id'");
-            // lib_mysql_query_user_db("update users set name='$name'                     where `facebook_id`='$facebook_id'");
-            lib_mysql_query_user_db("update users set gender='$gender'                 where `facebook_id`='$facebook_id'");
-            lib_mysql_query_user_db("update users set timezone='$timezone'             where `facebook_id`='$facebook_id'");
-            lib_mysql_query_user_db("update users set locale='$locale'                 where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update `users` set facebook_name='$facebook_name'   where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update `users` set first_name='$first_name'         where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update `users` set last_name='$last_name'           where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update `users` set facebook_link='$facebook_link'   where `facebook_id`='$facebook_id'");
+            // lib_mysql_query_user_db("update `users` set name='$name'                     where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update `users` set gender='$gender'                 where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update `users` set timezone='$timezone'             where `facebook_id`='$facebook_id'");
+            lib_mysql_query_user_db("update `users` set locale='$locale'                 where `facebook_id`='$facebook_id'");
 
-            $r=lib_mysql_query_user_db("select * from users  where `facebook_id`='$facebook_id'");
+            $r=lib_mysql_query_user_db("select * from `users`  where `facebook_id`='$facebook_id'");
             $user=@mysql_fetch_object($r);
             if($user->id) {
                 $_SESSION['valid_user']  = $user->name;
@@ -227,28 +227,28 @@ if(!$_SESSION['valid_user']) {
 }
 
 /*
-$r=lib_mysql_query_user_db("select * from users where `facebook_id`='$facebook_id'");
+$r=lib_mysql_query_user_db("select * from `users` where `facebook_id`='$facebook_id'");
 $user=@mysql_fetch_object($r);
 
 
-$r=lib_mysql_query_user_db("select * from users where `email` = '$email'");
+$r=lib_mysql_query_user_db("select * from `users` where `email` = '$email'");
 if($r) {
             $user=mysql_fetch_object($r);
             if($user->facebook_id=="") { // First time visiting with a facebook id, update database
                 echo "First visit from facebook... Welcome $first_name.<br>";
-                lib_mysql_query_user_db("update users set facebook_id='$facebook_id' where `email`='$email'");
-                lib_mysql_query_user_db("update users set facebook_name='$facebook_name' where `email`='$email'");
-                lib_mysql_query_user_db("update users set first_name='$first_name' where `email`='$email'");
-                lib_mysql_query_user_db("update users set last_name='$last_name' where `email`='$email'");
-                lib_mysql_query_user_db("update users set facebook_link='$facebook_link' where `email`='$email'");
-                lib_mysql_query_user_db("update users set name='$name' where `email`='$email'");
-                lib_mysql_query_user_db("update users set gender='$gender' where `email`='$email'");
-                lib_mysql_query_user_db("update users set timezone='$timezone' where `email`='$email'");
-                lib_mysql_query_user_db("update users set locale='$locale' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set facebook_id='$facebook_id' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set facebook_name='$facebook_name' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set first_name='$first_name' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set last_name='$last_name' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set facebook_link='$facebook_link' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set name='$name' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set gender='$gender' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set timezone='$timezone' where `email`='$email'");
+                lib_mysql_query_user_db("update `users` set locale='$locale' where `email`='$email'");
         }
     }
 
-        $r=lib_mysql_query_user_db("select * from users where `facebook_id`='$facebook_id'");
+        $r=lib_mysql_query_user_db("select * from `users` where `facebook_id`='$facebook_id'");
         $user=@mysql_fetch_object($r);
         if($user->id) {                
             $_SESSION['valid_user']  = $user->id;

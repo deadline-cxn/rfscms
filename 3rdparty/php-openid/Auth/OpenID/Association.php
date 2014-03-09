@@ -31,7 +31,7 @@ require_once 'Auth/OpenID/HMAC.php';
 
 /**
  * This class represents an association between a server and a
- * consumer.  In general, users of this library will never see
+ * consumer.  In general, `users` of this library will never see
  * instances of this object.  The only exception is if you implement a
  * custom {@link Auth_OpenID_OpenIDStore}.
  *

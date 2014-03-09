@@ -21,7 +21,7 @@ if($change_password == "yes"){
         if($pass2==$pass3) {			
 				if(!empty($pass2)) {
 					$pass2=md5($pass2);
-					lib_mysql_query("update users set pass='$pass2' where name = '$data->name'");
+					lib_mysql_query("update `users` set pass='$pass2' where name = '$data->name'");
 					lib_forms_info("Password changed!","WHITE","GREEN");
 					include("footer.php");
 					exit;					
@@ -57,27 +57,27 @@ if($_REQUEST['act']=="update") {
 
 	lib_forms_info("UPDATED PROFILE","WHITE","GREEN");
     
-    if(!empty($name)) lib_mysql_query("UPDATE users SET `real_name`='$name' where `name` = '$data->name'");
+    if(!empty($name)) lib_mysql_query("UPDATE `users` SET `real_name`='$name' where `name` = '$data->name'");
 	
     if(!empty($sentence)) {
         $sentence=addslashes($sentence);
-        $result = lib_mysql_query("UPDATE users SET `sentence`='$sentence' where `name` = '$data->name'");
+        $result = lib_mysql_query("UPDATE `users` SET `sentence`='$sentence' where `name` = '$data->name'");
     }
 	
-    lib_mysql_query("UPDATE users SET `email`='$email' where `name` = '$data->name'");
+    lib_mysql_query("UPDATE `users` SET `email`='$email' where `name` = '$data->name'");
 	$webpage=addslashes($webpage);
     if(!empty($webpage))
-		lib_mysql_query("UPDATE users SET `webpage`='$webpage' where `name` = '$data->name'");
+		lib_mysql_query("UPDATE `users` SET `webpage`='$webpage' where `name` = '$data->name'");
     if(!empty($website_fav))
-		lib_mysql_query("UPDATE users SET `website_fav`='$website_fav' where `name` = '$data->name'");
+		lib_mysql_query("UPDATE `users` SET `website_fav`='$website_fav' where `name` = '$data->name'");
     if(!empty($avatar))
-		lib_mysql_query("UPDATE users SET `avatar`='$avatar' where `name` = '$data->name'");
+		lib_mysql_query("UPDATE `users` SET `avatar`='$avatar' where `name` = '$data->name'");
     if(!empty($country))
-		lib_mysql_query("UPDATE users SET `country`='$country' where `name` = '$data->name'");
+		lib_mysql_query("UPDATE `users` SET `country`='$country' where `name` = '$data->name'");
 		
-    lib_mysql_query("UPDATE users set gender='$gender' where name='$data->name'");
+    lib_mysql_query("UPDATE `users` set gender='$gender' where name='$data->name'");
 	if(!empty($show_contact_info))
-		lib_mysql_query("UPDATE users SET show_contact_info='$show_contact_info' where name = '$data->name'");    
+		lib_mysql_query("UPDATE `users` SET show_contact_info='$show_contact_info' where name = '$data->name'");    
     if((!empty($birth_year))&&(!empty($birth_day))&&(!empty($birth_month)) ) {
         $der  = $birth_year;
         $der .="-";
@@ -89,7 +89,7 @@ if($_REQUEST['act']=="update") {
         if($birth_month<10) $der .= "0";
         $der .= $birth_day;
         $der .= " 01:01:01";
-        lib_mysql_query("UPDATE users SET birthday='$der' where name = '$data->name'");
+        lib_mysql_query("UPDATE `users` SET birthday='$der' where name = '$data->name'");
     }
 }
 $data=lib_users_get_data($data->name);

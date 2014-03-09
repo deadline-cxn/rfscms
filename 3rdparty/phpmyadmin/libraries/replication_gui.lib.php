@@ -174,7 +174,7 @@ function PMA_replication_print_status_table($type, $hidden = false, $title = tru
 }
 
 /**
- * Prints table with slave users connected to this master
+ * Prints table with slave `users` connected to this master
  *
  * @param boolean $hidden - if true, then default style is set to hidden, default value false
  *

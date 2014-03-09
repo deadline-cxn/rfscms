@@ -353,7 +353,7 @@ class PMA_Error extends PMA_Message
      * return short relative path to phpMyAdmin basedir
      *
      * prevent path disclusore in error message,
-     * and make users feel save to submit error reports
+     * and make `users` feel save to submit error reports
      *
      * @param string $dest path to be shorten
      *

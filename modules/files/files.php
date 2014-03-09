@@ -940,7 +940,7 @@ function files_action_f_upload_go() { eval(lib_rfs_get_globals());
 				lib_mysql_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");					
 				$extra_sp=$_FILES['fu_userfile']['size']/10240;
 				$data->files_uploaded=$data->files_uploaded+1;
-				lib_mysql_query("update users set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
+				lib_mysql_query("update `users` set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
 			}
 		}
 		else {

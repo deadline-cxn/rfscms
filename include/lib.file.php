@@ -35,7 +35,7 @@ function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$ke
 				lib_mysql_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");					
 				$extra_sp=$fx['size']/10240;
 				$data->files_uploaded=$data->files_uploaded+1;
-				lib_mysql_query("update users set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
+				lib_mysql_query("update `users` set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
 				} */
 			return $uploadFile;
 		}

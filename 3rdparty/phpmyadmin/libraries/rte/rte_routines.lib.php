@@ -61,7 +61,7 @@ function PMA_RTN_main()
      */
     echo PMA_RTN_getFooterLinks();
     /**
-     * Display a warning for users with PHP's old "mysql" extension.
+     * Display a warning for `users` with PHP's old "mysql" extension.
      */
     if ($GLOBALS['cfg']['Server']['extension'] === 'mysql') {
         trigger_error(

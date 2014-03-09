@@ -233,7 +233,7 @@ class PMA_User_Schema
 
     /**
      * A dashboard is displayed to AutoLayout the position of tables
-     * users can drag n drop the tables and change their positions
+     * `users` can drag n drop the tables and change their positions
      *
      * @return void
      * @access public

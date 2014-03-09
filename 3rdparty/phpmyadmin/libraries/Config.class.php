@@ -1328,7 +1328,7 @@ class PMA_Config
             // warning at all. The user can still set PmaAbsoluteUri manually.
 
         } else {
-            // The URI is specified, however users do often specify this
+            // The URI is specified, however `users` do often specify this
             // wrongly, so we try to fix this.
 
             // Adds a trailing slash et the end of the phpMyAdmin uri if it

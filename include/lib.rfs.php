@@ -98,7 +98,7 @@ function lib_rfs_maintenance() { eval(lib_rfs_get_globals());
 	if(!empty($theme)) {
 		if($_SESSION['logged_in']) {
 			if($theme!=$data->theme) {
-				lib_mysql_query("UPDATE users SET theme='$theme' where name = '$data->name'");
+				lib_mysql_query("UPDATE `users` SET theme='$theme' where name = '$data->name'");
 				$data->theme=$theme;
 			} else {
 				$theme=$data->theme;

@@ -424,7 +424,7 @@ for ($i = 0; $i < $num_fields; $i++) {
     }
 
     // here we put 'NONE' as the default value of drop-down; otherwise
-    // users would have problems if they forget to enter the default
+    // `users` would have problems if they forget to enter the default
     // value (example, for an INT)
     $default_options = array(
         'NONE'              =>  _pgettext('for default', 'None'),

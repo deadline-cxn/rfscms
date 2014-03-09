@@ -10,7 +10,7 @@ define('idpage_pat',
   <meta http-equiv="X-XRDS-Location" content="%s" />
 </head>
 <body>
-  This is the identity page for users of this server.
+  This is the identity page for `users` of this server.
 </body>
 </html>');
 

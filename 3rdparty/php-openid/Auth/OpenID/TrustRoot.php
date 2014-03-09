@@ -192,7 +192,7 @@ class Auth_OpenID_TrustRoot {
      * marked sane.
      *
      * This function should be used when creating OpenID servers to
-     * alert the users of the server when a consumer attempts to get
+     * alert the `users` of the server when a consumer attempts to get
      * the user to accept a suspicious trust root.
      *
      * @static

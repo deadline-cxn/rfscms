@@ -385,7 +385,7 @@ function pictures_action_modifypicture() { eval(lib_rfs_get_globals());
 		echo "<select name=poster>";
 			$poster=lib_users_get_data($picture->poster);
 		echo "<option>$poster->name";
-		$result2=lib_mysql_query_user_db("select * from users order by name asc");
+		$result2=lib_mysql_query_user_db("select * from `users` order by name asc");
 		$numusrs=mysql_num_rows($result2);
 		for($i2=0;$i2<$numusrs;$i2++){
 			$usr=mysql_fetch_object($result2);

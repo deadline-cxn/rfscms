@@ -913,7 +913,7 @@ function PMA_getAdministrationPrivilegeTable($db)
     $administration_privTable = array(
         array('Grant',
             'GRANT',
-            __('Allows adding users and privileges without reloading the privilege tables.')
+            __('Allows adding `users` and privileges without reloading the privilege tables.')
         ),
     );
     if ($db == '*') {
@@ -1261,7 +1261,7 @@ function PMA_getUsernameAndHostnameLength()
 
 /**
  * Returns all the grants for a certain user on a certain host
- * Used in the export privileges for all users section
+ * Used in the export privileges for all `users` section
  *
  * @param string $user User name
  * @param string $host Host name
@@ -2345,7 +2345,7 @@ function PMA_displayTablesInEditPrivs($dbname, $found_rows)
 }
 
 /**
- * Get HTML for display the users overview
+ * Get HTML for display the `users` overview
  * (if less than 50 users, display them immediately)
  *
  * @param array  $result            ran sql query
@@ -2526,7 +2526,7 @@ function PMA_getFieldsetForAddDeleteUser($conditional_class)
         . '</legend>' . "\n";
 
     $html_output .= '<input type="hidden" name="mode" value="2" />' . "\n"
-        . '(' . __('Revoke all active privileges from the users and delete them afterwards.') . ')'
+        . '(' . __('Revoke all active privileges from the `users` and delete them afterwards.') . ')'
         . '<br />' . "\n";
 
     $html_output .= '<input type="checkbox" '
@@ -2614,7 +2614,7 @@ function PMA_getHtmlForDisplayTheInitials($array_initials, $conditional_class)
  */
 function PMA_getDbRightsForUserOverview()
 {
-    // we also want users not in table `user` but in other table
+    // we also want `users` not in table `user` but in other table
     $tables = PMA_DBI_fetch_result('SHOW TABLES FROM `mysql`;');
 
     $tables_to_search_for_users = array(
@@ -2666,7 +2666,7 @@ function PMA_getDbRightsForUserOverview()
 function PMA_deleteUser($queries)
 {
     if (empty($queries)) {
-        $message = PMA_Message::error(__('No users selected for deleting!'));
+        $message = PMA_Message::error(__('No `users` selected for deleting!'));
     } else {
         if ($_REQUEST['mode'] == 3) {
             $queries[] = '# ' . __('Reloading the privileges') . ' …';
@@ -2688,7 +2688,7 @@ function PMA_deleteUser($queries)
             $message = PMA_Message::rawError($drop_user_error);
         } else {
             $message = PMA_Message::success(
-                __('The selected users have been deleted successfully.')
+                __('The selected `users` have been deleted successfully.')
             );
         }
     }
@@ -3201,7 +3201,7 @@ function PMA_getDbSpecificPrivsQueriesForChangeOrCopyUser(
 }
 
 /**
- * Prepares queries for adding users and
+ * Prepares queries for adding `users` and
  * also create database and return query and message
  *
  * @param boolean $_error         whether user create or not

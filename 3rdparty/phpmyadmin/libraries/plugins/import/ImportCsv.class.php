@@ -181,7 +181,7 @@ class ImportCsv extends ImportPlugin
             $param_error = true;
             // The default dialog of MS Excel when generating a CSV produces a
             // semi-colon-separated file with no chance of specifying the
-            // enclosing character. Thus, users who want to import this file
+            // enclosing character. Thus, `users` who want to import this file
             // tend to remove the enclosing character on the Import dialog.
             // I could not find a test case where having no enclosing characters
             // confuses this script.

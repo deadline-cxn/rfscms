@@ -5,7 +5,7 @@
 <body>
 PHP Xplorer is a web based file manager that will let you view the contents of folders that are on the web server.<br>
 Features:<br>
-- MYSQL database keeps track of users and thier top level so you can let people use it to manage thier web pages<br>
+- MYSQL database keeps track of `users` and thier top level so you can let people use it to manage thier web pages<br>
 - Upload<br>
 - Delete<br>
 - Move<br>

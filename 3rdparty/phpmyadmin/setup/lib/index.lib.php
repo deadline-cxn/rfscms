@@ -300,7 +300,7 @@ function perform_config_checks()
     $strBlowfishSecretMsg = __('You didn\'t have blowfish secret set and have enabled cookie authentication, so a key was automatically generated for you. It is used to encrypt cookies; you don\'t need to remember it.');
     $strBZipDumpWarning = __('%sBzip2 compression and decompression%s requires functions (%s) which are unavailable on this system.');
     $strBZipDumpWarning = sprintf($strBZipDumpWarning, '[a@?page=form&amp;formset=Features#tab_Import_export]', '[/a]', '%s');
-    $strDirectoryNotice = __('This value should be double checked to ensure that this directory is neither world accessible nor readable or writable by other users on your server.');
+    $strDirectoryNotice = __('This value should be double checked to ensure that this directory is neither world accessible nor readable or writable by other `users` on your server.');
     $strForceSSLNotice = __('This %soption%s should be enabled if your web server supports it.');
     $strForceSSLNotice = sprintf($strForceSSLNotice, '[a@?page=form&amp;formset=Features#tab_Security]', '[/a]');
     $strGZipDumpWarning = __('%sGZip compression and decompression%s requires functions (%s) which are unavailable on this system.');

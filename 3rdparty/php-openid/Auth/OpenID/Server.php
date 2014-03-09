@@ -38,7 +38,7 @@
  *
  * OpenID Extensions
  * 
- * Do you want to provide other information for your users in addition
+ * Do you want to provide other information for your `users` in addition
  * to authentication?  Version 1.2 of the OpenID protocol allows
  * consumers to add extensions to their requests.  For example, with
  * sites using the Simple Registration

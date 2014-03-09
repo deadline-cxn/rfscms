@@ -717,10 +717,10 @@ abstract class BaseFacebook
 
   /**
    * Returns the access token that should be used for logged out
-   * users when no authorization code is available.
+   * `users` when no authorization code is available.
    *
    * @return string The application access token, useful for gathering
-   *                public information about users and applications.
+   *                public information about `users` and applications.
    */
   protected function getApplicationAccessToken() {
     return $this->appId.'|'.$this->appSecret;

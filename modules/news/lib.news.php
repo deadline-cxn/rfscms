@@ -152,7 +152,7 @@ function sc_show_news($nid) { eval(lib_rfs_get_globals());
 	}
 	$result=lib_mysql_query("select * from news where id='$nid'");
     $news=mysql_fetch_object($result);
-    $userdata=lib_mysql_fetch_one_object("select * from users where id='$news->submitter'");
+    $userdata=lib_mysql_fetch_one_object("select * from `users` where id='$news->submitter'");
 	
 	echo "<div class=\"news_box\">";
 		echo "<div class=\"news_headline_bar\">";

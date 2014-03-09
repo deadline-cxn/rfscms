@@ -21,7 +21,7 @@ if (false === @include_once 'OpenID/RelyingParty.php') {
 }
 
 /**
- * Map of authenticated users to MySQL user/password pairs.
+ * Map of authenticated `users` to MySQL user/password pairs.
  */
 $AUTH_MAP = array(
     'http://launchpad.net/~username' => array(

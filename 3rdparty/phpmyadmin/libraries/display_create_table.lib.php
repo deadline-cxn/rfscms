@@ -16,7 +16,7 @@
  * Addendum, 2006-01-19: ok, I give up. We got some reports about servers
  * where the hostname field in mysql.user is not the same as the one
  * in mysql.db for a user. In this case, SHOW GRANTS does not return
- * the db-specific privileges. And probably, those users are on a shared
+ * the db-specific privileges. And probably, those `users` are on a shared
  * server, so can't set up a control user with rights to the "mysql" db.
  * We cannot reliably detect the db-specific privileges, so no more
  * warnings about the lack of privileges for CREATE TABLE. Tested

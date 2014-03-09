@@ -85,12 +85,12 @@ function lib_users_avatar_code($user) { eval(lib_rfs_get_globals());
     return($ret);
 }
 function lib_users_set_var($name,$var,$set) {
-	lib_mysql_query_user_db("UPDATE users SET `$var`='$set' where name = '$name'");
+	lib_mysql_query_user_db("UPDATE `users` SET `$var`='$set' where name = '$name'");
 }
 function lib_users_get_name($x){
 	$o=$x;
 	if(is_numeric($x)) {
-		$ur=lib_mysql_query_user_db("select * from users where id='$x'");
+		$ur=lib_mysql_query_user_db("select * from `users` where id='$x'");
 		$u=mysql_fetch_object($ur);
 		$o=$u->first_name;
 	}
@@ -139,15 +139,15 @@ function lib_users_get_data($name){
     return 0;
 }
 function lib_users_get_databyfield($field,$data){
-    $result=lib_mysql_query_user_db("select * from users where `$field` = '$data'");
+    $result=lib_mysql_query_user_db("select * from `users` where `$field` = '$data'");
     return mysql_fetch_object($result);
 }
 function lib_users_add_downloads($user,$points){
-  $result = lib_mysql_query("select * from users where name = '$user'");
+  $result = lib_mysql_query("select * from `users` where name = '$user'");
   if(mysql_num_rows($result) >0 ){
     $ud=mysql_fetch_object($result);
     $downloads=intval($ud->downloads)+intval($points);
-    lib_mysql_query("UPDATE users SET files_downloaded=$downloads where name = '$user'");
+    lib_mysql_query("UPDATE `users` SET files_downloaded=$downloads where name = '$user'");
   }
 }
 ?>

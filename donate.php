@@ -55,7 +55,7 @@ if(!empty($mc_gross)){
 			"defectiveseth@gmail.com",
 			"PayPal Donation  $data->name ".$mc_gross,
 			"PayPal Donation");
-			lib_mysql_query("update users set `donated`='yes' where name='$data->name'");
+			lib_mysql_query("update `users` set `donated`='yes' where name='$data->name'");
 			echo "<p> $data->name... Thank you for donating!  ($data->id)</p>";	
             if($item_name="SethCoder") {
                 

@@ -110,7 +110,7 @@ class AuthenticationConfig extends AuthenticationPlugin
                 && $GLOBALS['errno'] != 2003
             ) {
                 // if we display the "Server not responding" error, do not confuse
-                // users by telling them they have a settings problem
+                // `users` by telling them they have a settings problem
                 // (note: it's true that they could have a badly typed host name,
                 // but anyway the current message tells that the server
                 //  rejected the connection, which is not really what happened)

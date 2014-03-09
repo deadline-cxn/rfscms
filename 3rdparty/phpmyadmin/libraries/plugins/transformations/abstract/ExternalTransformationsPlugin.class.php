@@ -83,7 +83,7 @@ abstract class ExternalTransformationsPlugin extends TransformationsPlugin
         //
         // WARNING:
         //
-        // It's up to administrator to allow anything here. Note that users may
+        // It's up to administrator to allow anything here. Note that `users` may
         // specify any parameters, so when programs allow output redirection or
         // any other possibly dangerous operations, you should write wrapper
         // script that will publish only functions you really want.
