@@ -3,21 +3,21 @@ $title="My Bullets";
 chdir("../../");
 include("header.php");
 
-function bullet_buttons() { eval(scg());
+function bullet_buttons() { eval(lib_rfs_get_globals());
 	
 	echo "<hr>";	
-	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullets","My Bullets");
-	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=short_list","Brief List");
-	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=epr_format","Format for EPR");
+	lib_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullets","My Bullets");
+	lib_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=short_list","Brief List");
+	lib_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=epr_format","Format for EPR");
 	
-	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=send_report","Send Bullets to Supervisor");
+	lib_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=send_report","Send Bullets to Supervisor");
 	
-	if(sc_access_check("bullet_log","admin")) {
-		sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_categories","Edit Categories");
+	if(lib_access_check("bullet_log","admin")) {
+		lib_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_categories","Edit Categories");
 	}
 }
 
-function bullet_log_action_send_report_go() {	eval(scg());
+function bullet_log_action_send_report_go() {	eval(lib_rfs_get_globals());
 	echo "<h1>Send My Bullets to Supervisor</h1>";
 	bullet_buttons();
 	echo "<hr>";
@@ -29,7 +29,7 @@ function bullet_log_action_send_report_go() {	eval(scg());
 	$message.="$data->name requested to send you a bullets report.<br>\n";
 	$message.="<hr>\n";
 	$message.="<div style=\"font-face: Times New Roman; font-size: 12px;\">";
-	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name'");
+	$r=lib_mysql_query("select * from `rfsm_bullet_log` where `username`='$data->name'");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$bullet=mysql_fetch_object($r);
 		$message.=" - $bullet->what; $bullet->how; $bullet->impact<br>";
@@ -39,20 +39,20 @@ function bullet_log_action_send_report_go() {	eval(scg());
 	mailgo($email,$message,$subject);
 }
 
-function bullet_log_action_send_report() { eval(scg());
+function bullet_log_action_send_report() { eval(lib_rfs_get_globals());
 	echo "<h1>Send My Bullets to Supervisor</h1>";
 	bullet_buttons();
 	echo "<hr>";
 	
 	echo "<form action=\"$RFS_SITE_URL/modules/bullet_log/bullet_log.php\" method=\"POST\">";
 	echo "Supervisor's Email: <input name=\"email\" value=\"\">";
-	sc_hiddenvar("action","send_report_go");
+	lib_mysql_hidden_var("action","send_report_go");
 	echo "<input type=\"submit\" value=\"Send\">";
 	echo "</form>";
 	
 }
 
-function bullet_log_action_change_category_image() { eval(scg());
+function bullet_log_action_change_category_image() { eval(lib_rfs_get_globals());
 	$page ="$RFS_SITE_URL/include/lib.mysql.php?act=select_image_chdir&";
 	$page.="rtnpage=modules/bullet_log/bullet_log.php&";
 	$page.="rtnact=edit_categories&";
@@ -61,12 +61,12 @@ function bullet_log_action_change_category_image() { eval(scg());
 	$page.="table=rfsm_bullet_category&";
 	$page.="image_field=image&";
 	$page.="spath=$RFS_SITE_PATH";
-	sc_gotopage($page);
+	lib_domain_gotopage($page);
 }
 
-function bullet_log_action_edit_categories() { eval(scg());
+function bullet_log_action_edit_categories() { eval(lib_rfs_get_globals());
 	echo "<h1>Edit Bullet Categories</h1>";
-	$r=sc_query("select * from rfsm_bullet_category");
+	$r=lib_mysql_query("select * from rfsm_bullet_category");
 	$x=mysql_num_rows($r);
 	for($i=0;$i<$x;$i++) {
 		$bcat=mysql_fetch_object($r);
@@ -79,27 +79,27 @@ function bullet_log_action_edit_categories() { eval(scg());
 	
 }
 
-function bullet_log_action_share_go() { eval(scg());
-	$bullet=mfo1("select * from rfsm_bullet_log where id='$bullet'");	
+function bullet_log_action_share_go() { eval(lib_rfs_get_globals());
+	$bullet=lib_mysql_fetch_one_object("select * from rfsm_bullet_log where id='$bullet'");	
 	echo "<h1>Sharing bullet ($bullet->id) $bullet->name</h1>";
 	bullet_buttons();
 	echo "<hr>";
 	echo "Cloning this bullet to user $share_user<br>";
 
-	sc_query("insert into `rfsm_bullet_log` (`name`) values ('$bullet->name');");
+	lib_mysql_query("insert into `rfsm_bullet_log` (`name`) values ('$bullet->name');");
 	$id=mysql_insert_id();
 	echo "NEW BULLET IS $id<br>";
-	sc_query("update `rfsm_bullet_log` set `category` = '$bullet->category' where `id`='$id'");
-	sc_query("update `rfsm_bullet_log` set `what`     = '$bullet->what'     where `id`='$id'");
-	sc_query("update `rfsm_bullet_log` set `when`     = '$bullet->when'     where `id`='$id'");
-	sc_query("update `rfsm_bullet_log` set `how`      = '$bullet->how'      where `id`='$id'");
-	sc_query("update `rfsm_bullet_log` set `impact`   = '$bullet->impact'   where `id`='$id'");
-	sc_query("update `rfsm_bullet_log` set `other`    = '$bullet->other'    where `id`='$id'");
-	sc_query("update `rfsm_bullet_log` set `date`     = '$bullet->date'     where `id`='$id'");	
-	sc_query("update `rfsm_bullet_log` set `username` = '$share_user'       where `id`='$id'");
-	sc_query("update `rfsm_bullet_log` set `shared`   = '$data->name'       where `id`='$id'");
+	lib_mysql_query("update `rfsm_bullet_log` set `category` = '$bullet->category' where `id`='$id'");
+	lib_mysql_query("update `rfsm_bullet_log` set `what`     = '$bullet->what'     where `id`='$id'");
+	lib_mysql_query("update `rfsm_bullet_log` set `when`     = '$bullet->when'     where `id`='$id'");
+	lib_mysql_query("update `rfsm_bullet_log` set `how`      = '$bullet->how'      where `id`='$id'");
+	lib_mysql_query("update `rfsm_bullet_log` set `impact`   = '$bullet->impact'   where `id`='$id'");
+	lib_mysql_query("update `rfsm_bullet_log` set `other`    = '$bullet->other'    where `id`='$id'");
+	lib_mysql_query("update `rfsm_bullet_log` set `date`     = '$bullet->date'     where `id`='$id'");	
+	lib_mysql_query("update `rfsm_bullet_log` set `username` = '$share_user'       where `id`='$id'");
+	lib_mysql_query("update `rfsm_bullet_log` set `shared`   = '$data->name'       where `id`='$id'");
 		
-	$userdata=sc_getuserdata($share_user);
+	$userdata=lib_users_get_data($share_user);
 	echo "$userdata->name : $userdata->email <br>";
 	
 	$subject = "$data->name shared a bullet with you.";
@@ -117,12 +117,12 @@ function bullet_log_action_share_go() { eval(scg());
 	
 }
 
-function bullet_log_action_share_bullet() { eval(scg());
+function bullet_log_action_share_bullet() { eval(lib_rfs_get_globals());
 	echo "<h1>Share Bullet</h1>";
 	bullet_buttons();
 	echo "<hr>";
-	$bullet=mfo1("select * from rfsm_bullet_log where id=$bid");
-	sc_warn("Share bullet: <br> $bullet->name $bullet->what $bullet->how $bullet->impact
+	$bullet=lib_mysql_fetch_one_object("select * from rfsm_bullet_log where id=$bid");
+	lib_forms_warn("Share bullet: <br> $bullet->name $bullet->what $bullet->how $bullet->impact
 							<br>
 							<br>
 				");
@@ -130,7 +130,7 @@ function bullet_log_action_share_bullet() { eval(scg());
 	echo "<form action=\"$RFS_SITE_URL/modules/bullet_log/bullet_log.php\" method=\"POST\">";
 	
 	echo "<select name=\"share_user\"><option>Select recipient for this bullet";
-	$res=sc_query("select * from users order by  `name` asc");
+	$res=lib_mysql_query("select * from `users` order by  `name` asc");
 	$count=mysql_num_rows($res);
 	for($i=0;$i<$count;$i++)	{
 			$userdata=mysql_fetch_object($res);
@@ -138,45 +138,45 @@ function bullet_log_action_share_bullet() { eval(scg());
     }
 	echo "</select><br>";
 	echo "<input type=\"submit\" name=\"submit\" value=\"Share\">";
-	sc_hiddenvar("action","share_go");
-	sc_hiddenvar("bullet","$bullet->id");
+	lib_mysql_hidden_var("action","share_go");
+	lib_mysql_hidden_var("bullet","$bullet->id");
 	echo "</form>";
 	include("footer.php");
 }
 
-function bullet_log_action_add_bullet_go() { eval(scg());
+function bullet_log_action_add_bullet_go() { eval(lib_rfs_get_globals());
 	echo "<h1>Update Bullet</h1>";	
 	
 	$name=addslashes($name);
-	sc_query("update `rfsm_bullet_log` set `name`     = '$name'     where `id`='$bid'");
+	lib_mysql_query("update `rfsm_bullet_log` set `name`     = '$name'     where `id`='$bid'");
 	$what=addslashes($what);
-	sc_query("update `rfsm_bullet_log` set `what`     = '$what'     where `id`='$bid'");
+	lib_mysql_query("update `rfsm_bullet_log` set `what`     = '$what'     where `id`='$bid'");
 	$how=addslashes($how);
-	sc_query("update `rfsm_bullet_log` set `how`      = '$how'      where `id`='$bid'");
+	lib_mysql_query("update `rfsm_bullet_log` set `how`      = '$how'      where `id`='$bid'");
 	$impact=addslashes($impact);
-	sc_query("update `rfsm_bullet_log` set `impact`   = '$impact'   where `id`='$bid'");	
+	lib_mysql_query("update `rfsm_bullet_log` set `impact`   = '$impact'   where `id`='$bid'");	
 	$other=addslashes($other);
-	sc_query("update `rfsm_bullet_log` set `other` 	 = '$other' 	 where `id`='$bid'");
+	lib_mysql_query("update `rfsm_bullet_log` set `other` 	 = '$other' 	 where `id`='$bid'");
 	$date=addslashes($_REQUEST['date']);
-	sc_query("update `rfsm_bullet_log` set `date` 	 = '$date'     where `id`='$bid'");
+	lib_mysql_query("update `rfsm_bullet_log` set `date` 	 = '$date'     where `id`='$bid'");
 	if( (empty($category)) || ($category=="Select Category")) {
 		$category="Job Related";
 	}	
-	sc_query("update `rfsm_bullet_log` set `category` = '$category' where `id`='$bid'");
+	lib_mysql_query("update `rfsm_bullet_log` set `category` = '$category' where `id`='$bid'");
 	echo "Bullet updated.<br>";	
-	sc_gotopage("$RFS_SITE_URL/modules/bullet_log/bullet_log.php");
+	lib_domain_gotopage("$RFS_SITE_URL/modules/bullet_log/bullet_log.php");
 	include("footer.php");
 }
 
-function bullet_log_action_edit_bullet() { eval(scg());
+function bullet_log_action_edit_bullet() { eval(lib_rfs_get_globals());
 	echo "<h1>Edit Bullet</h1>";
 	bullet_buttons();
 	echo "<hr>";
 	echo "<div class=\"forum_box\">";
 	$ncat="Select Category";
-	$bcat=mfo1("select * from `rfsm_bullet_log` where id='$bid'");
+	$bcat=lib_mysql_fetch_one_object("select * from `rfsm_bullet_log` where id='$bid'");
 	if(!empty($bcat->category)) $ncat=$bcat->category;
-	sc_bf( "$RFS_SITE_URL/modules/bullet_log/bullet_log.php",
+	lib_forms_build( "$RFS_SITE_URL/modules/bullet_log/bullet_log.php",
 	       "action=add_bullet_go".$RFS_SITE_DELIMITER.
 			"SHOW_SELECTOR_rfsm_bullet_category#name#category#$ncat".$RFS_SITE_DELIMITER.
 		    "bid=$bid",		   
@@ -189,49 +189,49 @@ function bullet_log_action_edit_bullet() { eval(scg());
 	include("footer.php");	
 }
 
-function bullet_log_action_add_bullet() { eval(scg());
+function bullet_log_action_add_bullet() { eval(lib_rfs_get_globals());
 	echo "<h1>Add New Bullet</h1>";
 	echo $bullet;
-	sc_query("insert into rfsm_bullet_log (`name`,`username`) 
+	lib_mysql_query("insert into rfsm_bullet_log (`name`,`username`) 
 										VALUES('$bullet','$data->name');");
 	global $bid;
 	$bid=mysql_insert_id();
 	bullet_log_action_edit_bullet();
 }
 
-function bullet_log_action_f_delete_bullet_go () { eval(scg());
+function bullet_log_action_f_delete_bullet_go () { eval(lib_rfs_get_globals());
 	echo "<h1>Delete Bullet</h1>";
-	sc_query("delete from rfsm_bullet_log where id='$bid'");
+	lib_mysql_query("delete from rfsm_bullet_log where id='$bid'");
 	echo "Bullet deleted.<br>";
-	sc_gotopage("$RFS_SITE_URL/modules/bullet_log/bullet_log.php");	
+	lib_domain_gotopage("$RFS_SITE_URL/modules/bullet_log/bullet_log.php");	
 	include("footer.php");
 }
  
-function bullet_log_action_delete_bullet() { eval(scg());
+function bullet_log_action_delete_bullet() { eval(lib_rfs_get_globals());
 	echo "<h1>Delete Bullet</h1>";
-	$bullet=mfo1("select * from rfsm_bullet_log where id=$bid");
-	sc_confirmform(	"Are you sure you want to delete this bullet:<br><hr>$bullet->name $bullet->what $bullet->how $bullet->impact $bullet->category ? <br>
+	$bullet=lib_mysql_fetch_one_object("select * from rfsm_bullet_log where id=$bid");
+	lib_forms_confirm(	"Are you sure you want to delete this bullet:<br><hr>$bullet->name $bullet->what $bullet->how $bullet->impact $bullet->category ? <br>
 						<hr>WARNING: This can not be undone.",
 						"$RFS_SITE_URL/modules/bullet_log/bullet_log.php",
 						"action=f_delete_bullet_go".$RFS_SITE_DELIMITER."bid=$bullet->id" );
 	include("footer.php");
 }
 
-function bullet_log_action_edit_bullets() { eval(scg());
+function bullet_log_action_edit_bullets() { eval(lib_rfs_get_globals());
 	echo "<h1>Edit My Bullets</h1>";
 	bullet_buttons();	
 	echo "<hr>";
 	
 	echo "<div class=\"forum_box\">";
 	echo "<h2>Add a New Bullet</h2>";
-	sc_bf( "$RFS_SITE_URL/modules/bullet_log/bullet_log.php",
+	lib_forms_build( "$RFS_SITE_URL/modules/bullet_log/bullet_log.php",
 	       "action=add_bullet".$RFS_SITE_DELIMITER.	       
 	       "SHOW_CLEARFOCUSTEXT_50#50#bullet=Enter bullet name",
 	       "","","","","","",50,"New Bullet" );
 	echo "</div>";		
 
 	echo "<hr>";			   
-	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' order by `when` desc");
+	$r=lib_mysql_query("select * from `rfsm_bullet_log` where `username`='$data->name' order by `when` desc");
 	$x=mysql_num_rows($r);
 	if($x) {
 		for($i=0;$i<$x;$i++) {
@@ -240,11 +240,11 @@ function bullet_log_action_edit_bullets() { eval(scg());
 				echo "<div class=\"forum_box\">";
 					echo "<h2>$bullet->name</h2>";
 					echo "<div class=\"forum_user\">";
-					sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullet&bid=$bullet->id","Edit");
+					lib_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullet&bid=$bullet->id","Edit");
 					echo "<br>";
-					sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=delete_bullet&bid=$bullet->id","Delete");
+					lib_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=delete_bullet&bid=$bullet->id","Delete");
 					echo "<br>";
-					sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=share_bullet&bid=$bullet->id","Share");
+					lib_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=share_bullet&bid=$bullet->id","Share");
 					echo "</div>";
 					echo "<div class=\"forum_message\">";
 					echo "CREATED: $bullet->when<br>";
@@ -279,7 +279,7 @@ function bullet_log_action_edit_bullets() { eval(scg());
 	include("footer.php");
 }
 
-function bullet_log_action_epr_format() { eval(scg());
+function bullet_log_action_epr_format() { eval(lib_rfs_get_globals());
 	echo "<h1>Bullets in EPR Format</h1>";
 	bullet_buttons();
 	echo "<hr>";
@@ -295,7 +295,7 @@ function bullet_log_action_epr_format() { eval(scg());
 	echo "The font used is Times New Roman 12\n";
 	echo "===================================================================================\n";
 	
-	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' 
+	$r=lib_mysql_query("select * from `rfsm_bullet_log` where `username`='$data->name' 
 	and category ='Job Related'
 	order by `when` desc");
 	echo "JOB RELATED:\n";
@@ -305,7 +305,7 @@ function bullet_log_action_epr_format() { eval(scg());
 		echo " - $bullet->what; $bullet->how; $bullet->impact\n";
 	}
 	
-	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' 
+	$r=lib_mysql_query("select * from `rfsm_bullet_log` where `username`='$data->name' 
 	and category ='Volunteer'
 	order by `when` desc");
 	echo "VOLUNTEER:\n";
@@ -315,7 +315,7 @@ function bullet_log_action_epr_format() { eval(scg());
 		echo " - $bullet->what; $bullet->how; $bullet->impact\n";
 	}
 	
-	$r=sc_query("select * from `rfsm_bullet_log` where `username`='$data->name' 
+	$r=lib_mysql_query("select * from `rfsm_bullet_log` where `username`='$data->name' 
 	and category ='Self Improvement'
 	order by `when` desc");
 	echo "SELF IMPROVEMENT:\n";
@@ -333,14 +333,14 @@ function bullet_log_action_epr_format() { eval(scg());
 
 }
 
-function bullet_log_action_short_list() { eval(scg());
+function bullet_log_action_short_list() { eval(lib_rfs_get_globals());
 	echo "<h1>Brief listing</h1>";
 	bullet_buttons();
 	echo "<hr>";
-	sc_module_bullet_log_long(10000); 
+	module_bullet_log_long(10000); 
 }
 
-function bullet_log_action_() { eval(scg());
+function bullet_log_action_() { eval(lib_rfs_get_globals());
 	bullet_log_action_edit_bullets();
 	include("footer.php");
 }
