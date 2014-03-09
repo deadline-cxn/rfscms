@@ -132,8 +132,8 @@ if(($action=="view") || ($action=="ad")) {
     //echo "<table border=0 width=100% ><tr>";
     //echo "<td valign=top class=td_cat>";
 
-    sc_module_news_list(10);
-    // sc_module_popular_news(10);
+    module_news_list(10);
+    // module_popular_news(10);
 
     echo "<p align=right><a href=news.php  class=\"a_cat\" align=right>More news stories...</a></p>";
     //echo "</td></tr></table>";

@@ -45,7 +45,8 @@ function lib_modules_array() { eval(lib_rfs_get_globals());
         if( ($entry == '.') || ($entry == '..') ) { }
         else {
             if(is_dir($dr."/".$entry)) {
-                $module="$dr/$entry/lib.$entry.php";
+				lib_modules_register($entry);
+                $module="$dr/$entry/module.$entry.php";
                 lib_div($module);
                 include($module);
                 array_push($modules,$entry);
@@ -64,8 +65,8 @@ function lib_modules_draw($location) {
 		$n=mysql_num_rows($r);
 		for($i=0;$i<$n;$i++) {
 			$ar=mysql_fetch_object($r);
-			if(function_exists("sc_module_$ar->mini")) {
-				eval("sc_module_$ar->mini($ar->num);");
+			if(function_exists("module_$ar->mini")) {
+				eval("module_$ar->mini($ar->num);");
 				echo "<hr>";
 			}
 		}

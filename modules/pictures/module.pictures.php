@@ -5,7 +5,7 @@ lib_menus_register("Pictures","$RFS_SITE_URL/modules/pictures/pictures.php");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE PICTURES
-function sc_module_mini_pictures($x) { eval(lib_rfs_get_globals());
+function module_pictures($x) { eval(lib_rfs_get_globals());
     lib_div("PICTURES MODULE SECTION");
     echo "<h2>Last $x Pictures</h2>";
     $res2=lib_mysql_query("select * from `pictures` where `hidden`='no' order by time desc limit 0,$x");

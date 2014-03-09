@@ -164,6 +164,19 @@ if($a<925) {
 	}
 }
 
+if($a<932) {
+	lib_access_add_method("forums", "admin");
+	lib_access_add_method("forums", "add");
+	lib_access_add_method("forums", "edit");
+	lib_access_add_method("forums", "delete");
+	lib_access_add_method("forums", "moderate");
+	lib_access_add_method("news", "edit");
+	lib_access_add_method("news", "editothers");
+	lib_access_add_method("news", "submit");
+	lib_access_add_method("news", "delete");
+	lib_access_add_method("news", "deleteothers");
+}
+
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=lib_mysql_fetch_one_object("select * from site_vars where name='database_upgrade'");

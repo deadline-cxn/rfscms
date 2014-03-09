@@ -11,7 +11,7 @@ lib_access_add_method("videos", "deleteothers");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE VIDEOS
-function sc_module_videos($x) { eval(lib_rfs_get_globals());
+function module_videos($x) { eval(lib_rfs_get_globals());
     echo "<h2>Last $x Videos</h2>";
     $res2=lib_mysql_query("select * from `videos` order by time desc limit 0,$x");
 	echo "<table border=0 cellspacing=0 cellpadding=0>";

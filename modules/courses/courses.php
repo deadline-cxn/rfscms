@@ -4,8 +4,8 @@ chdir("../../");
 include("header.php");
 
 function courses_action_() { eval(lib_rfs_get_globals());
-	sc_module_course_admin();
-	sc_module_course_list();
+	module_course_admin();
+	module_course_list();
 }
 
 function courses_action_edit_list() { eval(lib_rfs_get_globals());
@@ -100,7 +100,7 @@ function courses_action_edit() { eval(lib_rfs_get_globals());
 			   "action=add_course".$RFS_SITE_DELIMITER.	       
 			   "SHOW_CLEARFOCUSTEXT_#name=name",
 			   "","","","","","",50,"Add Course" );
-			sc_module_course_list(1);
+			module_course_list(1);
 			exit;
 		}
 		

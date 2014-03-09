@@ -158,11 +158,12 @@ function sc_admin_module( $loc ) { eval( lib_rfs_get_globals() );
 	echo "<select name=module onchange='this.form.submit();'>";
 	echo "<option>Add module to this area";
 	$arr=get_defined_functions();
+	asort($arr['user']);
 	foreach( $arr['user'] as $k=>$v ) {
-		if( stristr( $v,"sc_module_" ) ) {
-			$v=str_replace( "sc_module_","",$v );
+		if( substr($v,0,7)=="module_")  {
+			$v=str_replace("module_","",$v);
 			echo "<option name='$v' value='$v'>";
-			echo ucwords( str_replace( "_"," ",$v ) );
+			echo ucwords(str_replace( "_"," ",$v ) );
 		}
 	}
 	echo "</select>";
@@ -2419,6 +2420,8 @@ function adm_menu_built_in() { eval(lib_rfs_get_globals());
 	
 	echo "<div style='clear: left; '>&nbsp;</div>";	
 	
+	echo "<hr>";
+	lib_modules_show_registered();
 }
 function finishadminpage() {
 	eval( lib_rfs_get_globals() );

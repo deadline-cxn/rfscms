@@ -1,12 +1,11 @@
 <?
 include_once("include/lib.all.php");
 
-lib_modules_register("TODO");
 lib_menus_register("TODO","$RFS_SITE_URL/modules/todo_list/todo_list.php");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE TODO LIST
-function sc_module_todo_list($x) { eval(lib_rfs_get_globals());
+function module_todo_list($x) { eval(lib_rfs_get_globals());
     lib_div("TODO MODULE SECTION");
     echo "<h2>TODO</h2>";
     $result=lib_mysql_query("select * from todo_list limit 0,$x");

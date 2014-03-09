@@ -5,7 +5,7 @@ lib_menus_register("Links","$RFS_SITE_URL/modules/linkbin/linkbin.php");
 
 ///////////////////////////////////////////////////////////////
 // MODULE LINK FRIENDS
-function sc_module_mini_link_friends($x) { eval(lib_rfs_get_globals());
+function module_link_friends($x) { eval(lib_rfs_get_globals());
 	$result=lib_mysql_query("select * from link_bin where friend='yes' order by time limit $x");
 	echo "<h2>Link Friends</h2>";
 	while($link=mysql_fetch_object($result)) {		

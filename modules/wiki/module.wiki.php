@@ -11,7 +11,7 @@ lib_access_add_method("wiki", "deleteothers");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI
-function sc_module_mini_wiki($x) { eval(lib_rfs_get_globals());
+function module_wiki($x) { eval(lib_rfs_get_globals());
     lib_div("WIKI MODULE SECTION");
     echo "<h2>Last $x Wiki Page Updates</h2>";
     echo "<table width=100% border=0><tr>";

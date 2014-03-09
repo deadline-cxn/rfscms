@@ -3,40 +3,27 @@ include_once("include/lib.all.php");
 
 lib_menus_register("Forums","$RFS_SITE_URL/modules/forums/forums.php");
 
-lib_access_add_method("forums", "admin"); 
-lib_access_add_method("forums", "add"); 
-lib_access_add_method("forums", "edit");
-lib_access_add_method("forums", "delete");
-lib_access_add_method("forums", "moderate");
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FORUM
-function sc_module_mini_latest_forum_threads($x) { eval(lib_rfs_get_globals());
+function module_forum_threads($x) { eval(lib_rfs_get_globals());
     lib_div("FORUMS MODULE SECTION");
     echo "<h2>Last $x Threads</h2>";
-    echo "<table border=0 cellspacing=0>";//  width=190>";
-    $result = lib_mysql_query("select * from forum_posts 
-							where `thread_top`='yes' order by bumptime desc limit 0,$x");
+    echo "<table border=0 cellspacing=0>";
+    $result = lib_mysql_query("select * from `forum_posts` where `thread_top`='yes' order by bumptime desc limit 0,$x");
     $numposts=mysql_num_rows($result);    
-	if($numposts) {
-		$gt=1;$i=0;
-		for($i=0;$i<$numposts;$i++) {
+	if($numposts) { $gt=1;
+		while($thread=mysql_fetch_object($result)) {
 				$gt++; if($gt>2) $gt=1;
-				echo "<tr><td class=\"sc_forum_table_$gt\">";
-				$thread=mysql_fetch_object($result);
-				$lastreply=lib_mysql_fetch_one_object("	select * from `forum_posts` where `thread` = '$thread->thread'
-										order by time desc limit 1");
+				echo "<tr><td class=\"sc_forum_table_$gt\">";				
+				$lastreply=lib_mysql_fetch_one_object("	select * from `forum_posts` where `thread` = '$thread->thread' order by time desc limit 1");
 				echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$thread->thread&forum_which=$thread->forum#$lastreply->id\">";
 				echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 >";
 				echo "$thread->title </a>";
 				echo "</td></tr>";
 		}
-		
 	}
-	
 	echo "<tr><td class=contenttd>(<a href=$RFS_SITE_URL/modules/forums/forums.php class=\"a_cat\" align=right>More...</a>)</td></tr>";
     echo "</table>";
-    
 }
 
 
@@ -140,6 +127,5 @@ function adm_action_forum_admin() { eval( lib_rfs_get_globals() );
 
 
 }
-
 
 ?>

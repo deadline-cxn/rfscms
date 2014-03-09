@@ -1,14 +1,6 @@
 <?
 include_once("include/lib.all.php");
-
 lib_menus_register("News","$RFS_SITE_URL/modules/news/news.php");
-
-lib_access_add_method("news", "edit");
-lib_access_add_method("news", "editothers");
-lib_access_add_method("news", "submit");
-lib_access_add_method("news", "delete");
-lib_access_add_method("news", "deleteothers");
-
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
 function news_buttons() { eval(lib_rfs_get_globals());
@@ -23,7 +15,7 @@ function adm_action_lib_news_news_submit() { eval(lib_rfs_get_globals());
 function adm_action_lib_news_news_edit() { eval(lib_rfs_get_globals());
     lib_domain_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
 }
-function sc_module_news_list($x) { eval(lib_rfs_get_globals());
+function module_news_list($x) { eval(lib_rfs_get_globals());
     lib_div("NEWS MODULE SECTION");
     echo "<h2>Last $x News Articles</h2>";
     $newslist=sc_getnewslist($newssearch);
@@ -54,7 +46,7 @@ function sc_module_news_list($x) { eval(lib_rfs_get_globals());
     echo "</table>";
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/news/news.php class=\"a_cat\" align=right>More...</a>)</p>";
 }
-function sc_module_news_list_popular($x) { eval(lib_rfs_get_globals());
+function module_news_list_popular($x) { eval(lib_rfs_get_globals());
     lib_div("NEWS MODULE SECTION");
     echo "<h2>Popular News Articles</h2>";
     //search method dictate sort order?
@@ -88,10 +80,10 @@ function sc_module_news_list_popular($x) { eval(lib_rfs_get_globals());
     }
     echo "</table>";
 }
-function sc_module_news_top_story() {
+function module_news_top_story() {
     sc_show_top_news();
 }
-function sc_module_news_blog_style($x) { eval(lib_rfs_get_globals());
+function module_news_blog_style($x) { eval(lib_rfs_get_globals());
 	news_buttons();
 	sc_show_top_news();
 	$newslist=sc_getnewslist(""); $ct=count($newslist); if($ct>$x) $ct=$x;

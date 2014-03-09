@@ -3,7 +3,7 @@ include_once("include/lib.all.php");
 
 ///////////////////////////////////////////////////////////////
 // MODULE TOP REFERRERS
-function sc_module_mini_top_referrers($x) { eval(lib_rfs_get_globals());
+function module_top_referrers($x) { eval(lib_rfs_get_globals());
 
    $result=lib_mysql_query("select * from link_bin where hidden != '1' and `referral`='yes' order by `referrals` desc limit $x");
     $numlinks=mysql_num_rows($result);

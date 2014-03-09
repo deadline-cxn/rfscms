@@ -5,7 +5,7 @@ lib_menus_register("Files","$RFS_SITE_URL/modules/files/files.php");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FILES
-function sc_module_mini_files($x) { eval(lib_rfs_get_globals());
+function module_files($x) { eval(lib_rfs_get_globals());
     lib_div("FILES MODULE SECTION");
     echo "<h2>Last $x Files</h2>";
     $result=lib_mysql_query("select * from files where category !='unsorted' order by `time` desc limit 0,$x");

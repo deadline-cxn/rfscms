@@ -25,7 +25,7 @@ function adm_action_lib_courses_courses() { eval(lib_rfs_get_globals());
     lib_domain_gotopage("$RFS_SITE_URL/modules/courses/courses.php");
 }
 
-function sc_module_course_list($x) { eval(lib_rfs_get_globals());
+function module_course_list($x) { eval(lib_rfs_get_globals());
     echo "<h2>Courses available</h2><hr>";
 	
     echo "<div class=\"courses_box\">";
@@ -48,7 +48,7 @@ function sc_module_course_list($x) { eval(lib_rfs_get_globals());
     echo "</div>";
 }
 
-function sc_module_course_admin() { eval(lib_rfs_get_globals());
+function module_course_admin() { eval(lib_rfs_get_globals());
 
 	if(lib_access_check("course","edit")) {
 		lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_list","Edit Courses");		

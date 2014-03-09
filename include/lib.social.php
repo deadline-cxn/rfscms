@@ -32,33 +32,23 @@ if(empty($RFS_SITE_PAYPAL_BUTTON2)) return;
 			</form>";
 }
 
-function sc_module_share_bar() {
-	echo '
-	<!-- AddThis Button BEGIN -->
+function module_share_bar() {
+	echo '<!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style ">
-
 <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-
 <a class="addthis_button_tweet"></a>
-
 <a class="addthis_button_reddit"></a>
-
 <a class="addthis_button_stumbleupon"></a>
-
 <a class="addthis_button_delicious"></a>
-
 <a class="addthis_button_pinterest_pinit"></a>
-
 <a class="addthis_counter addthis_pill_style"></a>
-
 </div>
 <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 <script type="text/javascript" 
 src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"></script>
-<!-- AddThis Button END --> ';
-
-	
+<!-- AddThis Button END --> ';	
 }
+
 function lib_social_share_bar($u,$t) { eval(lib_rfs_get_globals());
 	if(lib_rfs_bool_true($RFS_SITE_NO_SHARING)) return;		
 	if(!empty($RFS_SITE_ADDTHIS_ACCT)) {
