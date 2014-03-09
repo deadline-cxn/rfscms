@@ -56,6 +56,8 @@ function videos_action_modifygo() {
 			echo "This isn't your video.";
 		}
 		else {
+			$sname=addslashes($sname);
+			$vurl=addslashes($vurl);
 			lib_mysql_query("update `videos` set `category`='$category' where `id`='$id'");
 			lib_mysql_query("update `videos` set `sname`='$sname' where `id`='$id'");
 			lib_mysql_query("update `videos` set `sfw`='$sfw' where `id`='$id'");
@@ -65,9 +67,49 @@ function videos_action_modifygo() {
 	}
 	videos_action_view();
 }
-function videos_action_submitvidgo() {
+
+function videos_action_submitvid_youtube_go() {
+	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
+		$ytw=file_get_contents($youtube);
+		$ytw=str_replace("meta itemprop=\"videoId\" content=",$RFS_SITE_DELIMITER,$ytw);
+		$ytw=str_replace("meta property=\"og:title\" content=",$RFS_SITE_DELIMITER,$ytw);
+		$ytw=explode($RFS_SITE_DELIMITER,$ytw);
+		$title=explode("\"",$ytw[1]);
+		$youtube_code=explode("\"",$ytw[2]);		
+
+		$sname=$title[1];
+		$ytcode=$youtube_code[1];
+		$vurl="<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
 		
+		$cont=$data->id;
+		$time=date("Y-m-d H:i:s"); 
+		$sname=addslashes($sname);
+		$url=addslashes($url);	
+		$c=lib_mysql_fetch_one_object("select * from `categories` where name='$category'");
+		$category=$c->id;
+		
+		echo "	SUBMITTING VIDEO: <br>
+				contributor $cont <br>
+				sname $sname <br>
+				time $time <br>
+				btime $time <br>
+				category $category<br>
+				sfw $sfw <br>"	 ;
+	 
+		lib_mysql_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
+								 VALUES ('$cont',	 	'$sname','$vurl','$time',    '$time','$category',      '0', '$sfw');");
+
+		$v=lib_mysql_fetch_one_object("select * from videos where `sname`='$sname'");
+		$id=$v->id;
+		videos_action_modifygo();
+		echo "<BR> $v->id ($v->sname) <BR>";
+	}
+}
+
+function videos_action_submitvidgo() {
+	eval(lib_rfs_get_globals());
+	if(lib_access_check("videos","submit")) {
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s"); 
 		$url=addslashes($url);	
@@ -91,29 +133,55 @@ function videos_action_submitvidgo() {
 		videos_action_modifygo();
 		echo "<BR> $v->id ($v->sname) <BR>";	
 	}
-	
-	
 }
 function videos_action_submitvid() { 
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {	
-		echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/videos/videos.php\">\n";
-		echo "<input type=\"hidden\" name=\"action\" value=\"submitvidgo\">\n";		
-		echo "<tr><td>Title</td><td><input size=60 name=\"sname\"></td></tr>\n";		
-		echo "<tr><td>Link</td><td><input size=60 name=\"link\"></td></tr>\n";		
-		echo "<tr><td>Embed Code</td><td><textarea rows=10 cols=60 name=\"vurl\"></textarea></td></tr>\n";		
+		
+		echo "\n\n\n\n";
+		echo "<h1>Submit new video</h1>\n";		
+		echo "<div class='forum_box'>\n";
+		echo "<h1>From Youtube</h1>\n";
+		echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/videos/videos.php\">\n";
+		echo "<table border=0>\n";
+		echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_youtube_go\">\n";
+		echo "<tr><td>Youtube URL</td><td><input size=160 name=\"youtube\"></td></tr>\n";
 		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
-		echo "<option>yes<option>no</select></td></tr>";		
+		echo "<option>yes<option>no</select></td></tr>\n";
+		$res=lib_mysql_query("select * from `categories` order by name asc");
+		echo "<tr><td>Category</td><td><select name=category>";
+		if(!empty($category_in)) echo "<option>$category_in";
+		while($cat=mysql_fetch_object($res)) echo "<option>$cat->name";
+		echo "</select></td></tr>\n";
+		echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Add Youtube Video\"></td></tr>\n";
+		echo "</table>\n";
+		echo "</form>\n";
+		echo "</div>\n";
+		echo "\n\n\n\n";
+		
+		echo "<div class='forum_box'>\n";
+		echo "<h1>From Embedded Code</h1>\n";
+		echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/videos/videos.php\">\n";
+		echo "<table border=0>\n";
+		echo "<input type=\"hidden\" name=\"action\" value=\"submitvidgo\">\n";
+		echo "<tr><td>Title</td><td><input size=160 name=\"sname\"></td></tr>\n";
+		echo "<tr><td>Link</td><td><input size=160 name=\"link\"></td></tr>\n";		
+		echo "<tr><td>Embed Code</td><td><textarea rows=10 cols=80 name=\"vurl\"></textarea></td></tr>\n";
+		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
+		if(!empty($video->sfw)) echo "<option>$video->sfw";
+		echo "<option>yes<option>no</select></td></tr>\n";
 		$res=lib_mysql_query("select * from `categories` order by name asc");
 		echo "<tr><td>Category</td><td><select name=category>";
 		if(!empty($category_in)) echo "<option>$category_in";
 		while($cat=mysql_fetch_object($res)) {
 			echo "<option>$cat->name";
 		}		
-		echo "</select></td></tr>";		
+		echo "</select></td></tr>\n";
 		echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Add Video\"></td></tr>\n";
-		echo "</form></table>\n";        
+		echo "</table>\n";
+		echo "</form>\n";
+		echo "</div>";
 	}
 }
 function videos_action_removego() { 
@@ -302,15 +370,4 @@ function videos_action_() {
 	videos_pagefinish();
 }
 
-/* <iframe width="480" height="302" src="http://www.ustream.tv/embed/17431507?v=3&amp;wmode=direct" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe>
-<br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live streaming video by Ustream</a>
- */
-
-// http://youtu.be/0KSOMA3QBU0
-// http://youtu.be/0KSOMA3QBU0?t=34s
-// http://youtu.be/0KSOMA3QBU0?t=2m34s
-// <iframe width="560" height="315" src="http://www.youtube.com/embed/0KSOMA3QBU0" frameborder="0" allowfullscreen></i4frame>
-// <iframe width="420" height="315" src="http://www.youtube.com/embed/SAnFLgThTgo" frameborder="0" allowfullscreen></iframe>
-// <iframe width="420" height="315" src="http://www.youtube.com/embed/ZaY910CCYu0" frameborder="0" allowfullscreen></iframe>
 ?>
-
