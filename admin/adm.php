@@ -1824,28 +1824,10 @@ function adm_action_f_edit_users_go() {
 	adm_action_user_edit();
 }
 function adm_action_f_edit_users() { eval( lib_rfs_get_globals() );
-
 	$res=lib_mysql_query( "select * from users where `id`='$id'" );
 	$user=mysql_fetch_object( $res );
-
 	echo "<h3>Editing User [$user->name]</h3>";
-	
-	lib_forms_build( "$RFS_SITE_URL/admin/adm.php",
-	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.
-	       "id=$id",
-	       "users",
-	       "select * from users where `id`='$id'",
-	       "",
-	       "id".$RFS_SITE_DELIMITER.
-	       "first_login".$RFS_SITE_DELIMITER.
-	       "last_activity".$RFS_SITE_DELIMITER.
-	       "last_login".$RFS_SITE_DELIMITER.
-	       "logins",
-	       "omit",
-	       "",
-	       60,
-	       "update" );
-		   
+	lib_forms_build( "$RFS_SITE_URL/admin/adm.php","action=f_edit_users_go".$RFS_SITE_DELIMITER."id=$id","users","select * from users where `id`='$id'","","id".$RFS_SITE_DELIMITER,"omit","",60,"update" );
 	include("footer.php");
 	exit();
 }

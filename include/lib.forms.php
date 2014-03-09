@@ -3,7 +3,6 @@ if(array_pop(explode("/",getcwd()))=="include")	chdir("..");
 include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
-/////////////////////////////////////////////////////////////////////////////////////////
 function adm_action_f_rfs_db_element_ed1() { eval(lib_rfs_get_globals());
 	echo "<p> </p>";
 	lib_button("$rtnpage?action=$rtnact","Go back");
@@ -51,7 +50,6 @@ lib_button("$rtnpage?action=f_rfs_db_element_ed1&label=$label&table=$table&id=$i
 lib_button("$rtnpage?action=f_rfs_db_element_del1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Delete");
 echo "$label ";
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
 function lib_forms_join_vars($x){
     if(!is_array($x)) return;
      foreach ($x as $y => $z) {
@@ -60,16 +58,17 @@ function lib_forms_join_vars($x){
         }
     }
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-// Optionizer
-// $return_page		RETURN PAGE or INLINE
-// $hiddenvars		hidden vars to include (INLINE mode ignores this)
-// $table				MySQL table or FOLDER 
-// $key				key of MySQL table or FOLDERMODE
-// $use_id_method		0 or 1: Uses id field of MySQL if 1
-// $default			Default option
-// $on_change_method	0 or 1: Use javascript on_change method if 1
-function lib_forms_optionize($return_page, $hiddenvars, $table, $key, $use_id_method, $default, $on_change_method){ eval(lib_rfs_get_globals());
+function lib_forms_optionize($return_page,$hiddenvars,$table,$key,$use_id_method,$default,$on_change_method) {
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	// Optionizer
+	// $return_page		RETURN PAGE or INLINE
+	// $hiddenvars		hidden vars to include (INLINE mode ignores this)
+	// $table				MySQL table or FOLDER 
+	// $key				key of MySQL table or FOLDERMODE
+	// $use_id_method		0 or 1: Uses id field of MySQL if 1
+	// $default			Default option
+	// $on_change_method	0 or 1: Use javascript on_change method if 1
+	eval(lib_rfs_get_globals());
 	$folder_mode=0;
 	if(	($use_id_method==3) || 
 		($key=="FOLDERMODE")) {
@@ -286,14 +285,15 @@ function lib_forms_optionize_file( $select_name, $file,	$default )  {
 	}	
 	echo "</select>";
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-// $select_name 	= name of select element
-// $folder			= path to folder ie; /var/www/tools
-// $wildcard		= wildcard
-// $include_dirs	= true/false
-// $include_files	= true/false
-// $default 		= default text to put in the select (first option))
 function lib_forms_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$include_files,$default ) {
+		
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	// $select_name 	= name of select element
+	// $folder			= path to folder ie; /var/www/tools
+	// $wildcard		= wildcard
+	// $include_dirs	= true/false
+	// $include_files	= true/false
+	// $default 		= default text to put in the select (first option))	
 	echo "<select name=\"$select_name\">";
 	if(!empty($default))
 		echo "<option>$default";
@@ -326,51 +326,54 @@ function lib_forms_optionize_folder($select_name,$folder,$wildcard,$include_dirs
 	}	
 	echo "</select>";
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-// simple add form based on table
-function lib_forms_build_add($table){ eval(lib_rfs_get_globals());
+function lib_forms_build_add($table){
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	// simple add form based on table
 	lib_forms_build(lib_domain_phpself(),"action=add",$table,"","","name","include","",60,"add");
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-// $hiddenvars = list of 
-// takes 2 vars and will build a form using lib_forms_build
-function lib_forms_build_quick($hiddenvars,$submit){ eval(lib_rfs_get_globals()); 
+function lib_forms_build_quick($hiddenvars,$submit){
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	// $hiddenvars = list of 
+	// takes 2 vars and will build a form using lib_forms_build
+	eval(lib_rfs_get_globals()); 
+
 	lib_forms_build(lib_domain_phpself(),$hiddenvars,"","","","","","",20,$submit);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-// lib_forms_build (build form)
-// $page        	= page that the form will action 
-// $hiddenvars	= list of hiddenvars and/or
-//
-//						DBX_XXX
-//						LABEL_XXX
-//						SHOW_XXX_#ROWS#COLS#<varname>=<defaultvault>
-//
-//						SHOW_FILE_varname	
-// 						SHOW_CODEAREA_varname
-//						SHOW_TEXT_varname
-//						SHOW_CLEARFOCUSTEXT_varname
-//						SHOW_PASSWORD_varname
-//						SHOW_SELECTOR_(TABLE_NAME OR NOTABLE)#(TABLE_FIELD OR IGNORED)#varname#DEFAULT#option1#option2#...
-//						SHOW_TEXTAREA
-// EXAMPLES: 
-// 'SHOW_SELECTOR_colors#name#text_color#$ocolor'
-// 'SHOW_SELECTOR_exam_question_types#type#type#$qt->type'
-// 'SHOW_TEXT_address=1132 Jones Street'
-// 'SHOW_TEXT_subject=$subject'
-// 'SHOW_CODEAREA_300#600#message=$message'
-// 'SHOW_TEXTAREA_300#600#message=$message'
-// 
-// $table		  	= which table to use
-// $query       	= query of fields to include in the form, if empty will use all fields
-// $hidevars    	= list of vars to hide, seperated by $RFS_SITE_DELIMITER
-// $specifiedvars	= specify a var
-// $svarf      	= include or omit (will either include only $specifiedvars, or will omit only $specifiedvars)
-// $tabrefvars 	=
-// $width      	= default width of the form
-// $submit     	= the submit button text
-//
-function lib_forms_build($page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit){ eval(lib_rfs_get_globals());
+function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvars,$svarf,$tabrefvars,$width,$submit) {
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	// lib_forms_build (build form)
+	// $page        	= page that the form will action 
+	// $hiddenvars	= list of hiddenvars and/or
+	//
+	//						DBX_XXX
+	//						LABEL_XXX
+	//						SHOW_XXX_#ROWS#COLS#<varname>=<defaultvault>
+	//
+	//						SHOW_FILE_varname	
+	// 						SHOW_CODEAREA_varname
+	//						SHOW_TEXT_varname
+	//						SHOW_CLEARFOCUSTEXT_varname
+	//						SHOW_PASSWORD_varname
+	//						SHOW_SELECTOR_(TABLE_NAME OR NOTABLE)#(TABLE_FIELD OR IGNORED)#varname#DEFAULT#option1#option2#...
+	//						SHOW_TEXTAREA
+	// EXAMPLES: 
+	// 'SHOW_SELECTOR_colors#name#text_color#$ocolor'
+	// 'SHOW_SELECTOR_exam_question_types#type#type#$qt->type'
+	// 'SHOW_TEXT_address=1132 Jones Street'
+	// 'SHOW_TEXT_subject=$subject'
+	// 'SHOW_CODEAREA_300#600#message=$message'
+	// 'SHOW_TEXTAREA_300#600#message=$message'
+	// 
+	// $table		  	= which table to use
+	// $query       	= query of fields to include in the form, if empty will use all fields
+	// $hidevars    	= list of vars to hide, seperated by $RFS_SITE_DELIMITER
+	// $specifiedvars	= specify a var
+	// $svarf      	= include or omit (will either include only $specifiedvars, or will omit only $specifiedvars)
+	// $tabrefvars 	=
+	// $width      	= default width of the form
+	// $submit     	= the submit button text
+	//
+	eval(lib_rfs_get_globals());
 	$gt=1;
 	$delimiter=$RFS_SITE_DELIMITER;	
     if(!stristr($page,$RFS_SITE_URL)) $page="$RFS_SITE_URL/$page";
@@ -412,7 +415,7 @@ function lib_forms_build($page, $hiddenvars, $table, $query, $hidevars, $specifi
 		}
     }
     if(!empty($table)){
-        $result = lib_mysql_query("SHOW FULL COLUMNS FROM $table");
+        $result = lib_mysql_query("SHOW FULL COLUMNS FROM `$table`");
         while($i = mysql_fetch_assoc($result)){
             $this_codearea=false;
             $name=ucwords(str_replace("_"," ",$i['Field']));
@@ -428,18 +431,12 @@ function lib_forms_build($page, $hiddenvars, $table, $query, $hidevars, $specifi
                 echo "<tr><td class=sc_project_table_$gt align=right>\n";
                 echo $name;
                 echo "</td><td class=sc_project_table_$gt>";
-                
-				//echo "<br>{$i['Comment']}<br>";
-				
                 echo "<select name=\"".$i['Field']."\">";
                 if(!empty($dat->{$i['Field']})){
-                   $q="select * from `$tref_table` where `id`='";
-                   $q.=$dat->{$i['Field']};
-                   $q.="'";
+                   $q="select * from `$tref_table` where `id`='".$dat->{$i['Field']}."'";
                    $tres=lib_mysql_query($q);
                    $obj=mysql_fetch_object($tres);
 				   echo "<option value=$obj->id>$obj->name";
-					//echo "<option>".$dat->$i['Field'];
                }
                 $tres=lib_mysql_query("select * from `$tref_table` order by `name`");
                 for($k=0;$k<mysql_num_rows($tres);$k++){
@@ -594,231 +591,205 @@ function lib_forms_build($page, $hiddenvars, $table, $query, $hidevars, $specifi
 						default:
 							break;
 					}
-
-                        if($hidden==0){
-                            echo"</td></tr>\n";
-                            $gt++; if($gt>2) $gt=1;
-                        }
-                    //}
+					if($hidden==0){
+						echo"</td></tr>\n";
+						$gt++; if($gt>2) $gt=1;
+					}
                 }
             }
         }
     }
-
     $hidvar_a=explode(lib_mysql_delimiter($hiddenvars),$hiddenvars);
-
     for($j=0;$j<count($hidvar_a);$j++) {
-
         $hidvar_b=explode("=",$hidvar_a[$j]);
-        d_echo("[$hidvar_b[0]] [$hidvar_b[1]]");
-				
-		if(stristr($hidvar_b[0],"SHOW_FILE_")) {
-			
+        d_echo("[$hidvar_b[0]] [$hidvar_b[1]]");				
+		if(stristr($hidvar_b[0],"SHOW_FILE_")) {			
 			$field=explode("#",str_replace("SHOW_FILE_","",$hidvar_b[0]));
 			$cols=$width;
 			$rows=6;
 			$taname=$hidvar_b[0];
 			if($field[0]) $taname=$field[0];
-			$rw=explode("#",$hidvar_b[0]);
-			
+			$rw=explode("#",$hidvar_b[0]);			
 			echo "<tr><td class=sc_project_table_$gt align=right>";
 			echo ucwords(str_replace("_"," ",$taname));
 			echo " </td>
 			<td ><input name=\"$taname\" type=\"file\" size=80> </td></tr>\n";
 		}
 		
-		
-		if(stristr($hidvar_b[0],"SHOW_SELECTOR_")) {
-			
+		if(stristr($hidvar_b[0],"SHOW_SELECTOR_")) {			
 			// examples:
 			// SHOW_SELECTOR_colors#name#text_color#$ocolor
 			// SHOW_SELECTOR_exam_question_types#type#type#$qt->type
-			// SHOW_SELECTOR_NOTABLE_
-			
+			// SHOW_SELECTOR_NOTABLE_			
             if($this_codearea==false){
             $field=explode("#",str_replace("SHOW_SELECTOR_","",$hidvar_b[0]));
 			  $default=$field[3];
             $name=$field[2];
             $key=$field[1];
-            $table=$field[0];
-			
+            $table=$field[0];			
 				$keys=explode("&",$key);
 				if(count($keys)>1) {
 					$key=join($RFS_SITE_DELIMITER,$keys);
 				}
-            
-            echo "<tr><td class=\"sc_project_table_$gt\" align=right>";
-			
-				echo ucwords(str_replace("_"," ",$name));
-			
+            echo "<tr><td class=\"sc_project_table_$gt\" align=right>";			
+			echo ucwords(str_replace("_"," ",$name));
             echo "</td><td class=\"sc_project_table_$gt\">";
-			
-			
-				if($table!="NOTABLE") {
-						lib_forms_optionize("INLINE",
-										"SELECTNAME=$name".$RFS_SITE_DELIMITER,
-										$table, $key, 0, $default, 0 );
+			if($table!="NOTABLE") {
+				lib_forms_optionize("INLINE","SELECTNAME=$name".$RFS_SITE_DELIMITER,$table,$key,0,$default,0);
+			}
+			else {
+				echo "<select name =$name>";
+				echo "<option >$default";
+				for($i=4;$i<count($field);$i++) {
+					echo "<option>".$field[$i];
 				}
-				else {					
-					echo "<select name =$name>";
-					echo "<option >$default";
-					for($i=4;$i<count($field);$i++) {
-						echo "<option>".$field[$i];
-					}
-					echo "</select>";					
-					
-				}
-				
-
-            echo "</td></tr>";
+				echo "</select>";					
+			}
+			echo "</td></tr>";
             $gt++; if($gt>2) $gt=1;
-            }
-        }
-		
-		
-        if(stristr($hidvar_b[0],"SHOW_CODEAREA_")) {
-            if($this_codearea==false){
-            $field=explode("#",str_replace("SHOW_CODEAREA_","",$hidvar_b[0]));
-            $name=$field[2];
-            $cols=$field[1];
-            $rows=$field[0];
-            //echo "[".$hidvar_b[0]."][$rows][$cols]";
-            echo "<tr><td class=sc_project_table_$gt align=right>";
-            echo "</td><td class=sc_project_table_$gt>";
-            lib_forms_codearea( "lib_forms_build_codearea",$rows,$cols,$name,$hidvar_b[1]);
-            echo "</td></tr>";
-            $gt++; if($gt>2) $gt=1;
-            }
-        }
-
-		if(stristr($hidvar_b[0],"SHOW_CLEARFOCUSTEXT_")) {
-			$hidvar_b[0]=str_replace("SHOW_CLEARFOCUSTEXT_","SHOW_TEXT_",$hidvar_b[0]);
-			$clearfocus=" onfocus=\"this.value=''; \"";
 		}
+	}
+		
+		
+	if(stristr($hidvar_b[0],"SHOW_CODEAREA_")) {
+		if($this_codearea==false){
+		$field=explode("#",str_replace("SHOW_CODEAREA_","",$hidvar_b[0]));
+		$name=$field[2];
+		$cols=$field[1];
+		$rows=$field[0];
+		//echo "[".$hidvar_b[0]."][$rows][$cols]";
+		echo "<tr><td class=sc_project_table_$gt align=right>";
+		echo "</td><td class=sc_project_table_$gt>";
+		lib_forms_codearea( "lib_forms_build_codearea",$rows,$cols,$name,$hidvar_b[1]);
+		echo "</td></tr>";
+		$gt++; if($gt>2) $gt=1;
+		}
+	}
 
-		if(stristr($hidvar_b[0],"SHOW_TEXT_")){
-			 d_echo("SHOW_TEXT_ found... ".$hidvar_b[0]);
-            $field=explode("#",$hidvar_b[0]);
-            $hidvar_b[0]=str_replace("SHOW_TEXT_","",$hidvar_b[0]);
-            $cols=$width;
-            $rows=6;
-            $taname=$hidvar_b[0];
-            $rw=explode("#",$hidvar_b[0]);
+	if(stristr($hidvar_b[0],"SHOW_CLEARFOCUSTEXT_")) {
+		$hidvar_b[0]=str_replace("SHOW_CLEARFOCUSTEXT_","SHOW_TEXT_",$hidvar_b[0]);
+		$clearfocus=" onfocus=\"this.value=''; \"";
+	}
 
-            if(count($rw)==3){
-                $rows=$rw[0];
-                $cols=$rw[1];
-                $taname=$rw[2];
-            }
-            else if(count($rw)==2){
-                $rows=$rw[0];
-                $taname=$rw[1];
-            }
-            echo "<tr><td class=sc_project_table_$gt align=right>";
-            echo ucwords(str_replace("_"," ",$taname));
-            echo "</td><td class=sc_project_table_$gt>";
+	if(stristr($hidvar_b[0],"SHOW_TEXT_")){
+		 d_echo("SHOW_TEXT_ found... ".$hidvar_b[0]);
+		$field=explode("#",$hidvar_b[0]);
+		$hidvar_b[0]=str_replace("SHOW_TEXT_","",$hidvar_b[0]);
+		$cols=$width;
+		$rows=6;
+		$taname=$hidvar_b[0];
+		$rw=explode("#",$hidvar_b[0]);
 
-				echo " <input ";
-				echo "size=\"$cols\" ";
-				echo "name=\"".$taname."\" ";
-				echo "value=\"".$hidvar_b[1]."\"";
-				echo $clearfocus;
-				echo ">\n";
-            echo "</td></tr>";
-            $gt++; if($gt>2) $gt=1;
-        }
+		if(count($rw)==3){
+			$rows=$rw[0];
+			$cols=$rw[1];
+			$taname=$rw[2];
+		}
+		else if(count($rw)==2){
+			$rows=$rw[0];
+			$taname=$rw[1];
+		}
+		echo "<tr><td class=sc_project_table_$gt align=right>";
+		echo ucwords(str_replace("_"," ",$taname));
+		echo "</td><td class=sc_project_table_$gt>";
 
-        if(stristr($hidvar_b[0],"SHOW_TEXTAREA_")){
-            $field=explode("#",$hidvar_b[0]);
-            $hidvar_b[0]=str_replace("SHOW_TEXTAREA_","",$hidvar_b[0]);
-            $cols=$width;
-            $rows=6;
-            $taname=$hidvar_b[0];
-            $rw=explode("#",$hidvar_b[0]);
-            if(count($rw)==3){
-                $rows=$rw[0];
-                $cols=$rw[1];
-                $taname=$rw[2];
-            }
-            else if(count($rw)==2){
-                $rows=$rw[0];
-                $taname=$rw[1];
-            }
-            // echo "--- $field[1] $hidvar_b[1]<br>";
-            echo "<tr><td class=sc_project_table_$gt align=right>";
-            echo ucwords(str_replace("_"," ",$taname));
-            echo "</td><td class=sc_project_table_$gt>";
-            echo "<textarea rows=$rows cols=$cols name=\"$taname\">";
-            $code=str_replace("</textarea>","&lt;/textarea>",$hidvar_b[1]);
-            echo stripslashes($code);
-            echo "</textarea>";
-            /*
-            echo " <input ";
-            echo "size=$width ";
-            echo "name=\"".$field[1]."\" ";
-            echo "value=\"\"";
-            echo ">\n";
-            */
-            echo "</td></tr>";
-            $gt++; if($gt>2) $gt=1;
-        }
+			echo " <input ";
+			echo "size=\"$cols\" ";
+			echo "name=\"".$taname."\" ";
+			echo "value=\"".$hidvar_b[1]."\"";
+			echo $clearfocus;
+			echo ">\n";
+		echo "</td></tr>";
+		$gt++; if($gt>2) $gt=1;
+	}
 
-		if(stristr($hidvar_b[0],"SHOW_PASSWORD_")){
-            $field=explode("#",$hidvar_b[0]);
-            $hidvar_b[0]=str_replace("SHOW_PASSWORD_","",$hidvar_b[0]);
-            $cols=$width;
-            $rows=6;
-            $taname=$hidvar_b[0];
-            $rw=explode("#",$hidvar_b[0]);
-            //echo "[".$rw[0]."]<br>";
-            //echo "[".$rw[1]."]<br>";
-            //echo "[".$rw[2]."]<br>";
-            //echo "[".count($rw)."]<bn>";
-            if(count($rw)==3){
-                $rows=$rw[0];
-                $cols=$rw[1];
-                $taname=$rw[2];
-            }
-            else if(count($rw)==2){
-                $rows=$rw[0];
-                $taname=$rw[1];
-            }
-            // echo "--- $field[1] $hidvar_b[1]<br>";
-            echo "<tr><td class=sc_project_table_$gt align=right>";
-            echo ucwords(str_replace("_"," ",$taname));
-            echo "</td><td class=sc_project_table_$gt>";
+	if(stristr($hidvar_b[0],"SHOW_TEXTAREA_")){
+		$field=explode("#",$hidvar_b[0]);
+		$hidvar_b[0]=str_replace("SHOW_TEXTAREA_","",$hidvar_b[0]);
+		$cols=$width;
+		$rows=6;
+		$taname=$hidvar_b[0];
+		$rw=explode("#",$hidvar_b[0]);
+		if(count($rw)==3){
+			$rows=$rw[0];
+			$cols=$rw[1];
+			$taname=$rw[2];
+		}
+		else if(count($rw)==2){
+			$rows=$rw[0];
+			$taname=$rw[1];
+		}
+		// echo "--- $field[1] $hidvar_b[1]<br>";
+		echo "<tr><td class=sc_project_table_$gt align=right>";
+		echo ucwords(str_replace("_"," ",$taname));
+		echo "</td><td class=sc_project_table_$gt>";
+		echo "<textarea rows=$rows cols=$cols name=\"$taname\">";
+		$code=str_replace("</textarea>","&lt;/textarea>",$hidvar_b[1]);
+		echo stripslashes($code);
+		echo "</textarea>";
+		/*
+		echo " <input ";
+		echo "size=$width ";
+		echo "name=\"".$field[1]."\" ";
+		echo "value=\"\"";
+		echo ">\n";
+		*/
+		echo "</td></tr>";
+		$gt++; if($gt>2) $gt=1;
+	}
 
-				echo " <input type=password ";
-				echo "size=$cols ";
-				echo "name=\"".$taname."\" ";
-				echo "value=\"".$hidvar_b[1]."\"";
-				echo ">\n";
+	if(stristr($hidvar_b[0],"SHOW_PASSWORD_")){
+		$field=explode("#",$hidvar_b[0]);
+		$hidvar_b[0]=str_replace("SHOW_PASSWORD_","",$hidvar_b[0]);
+		$cols=$width;
+		$rows=6;
+		$taname=$hidvar_b[0];
+		$rw=explode("#",$hidvar_b[0]);
+		//echo "[".$rw[0]."]<br>";
+		//echo "[".$rw[1]."]<br>";
+		//echo "[".$rw[2]."]<br>";
+		//echo "[".count($rw)."]<bn>";
+		if(count($rw)==3){
+			$rows=$rw[0];
+			$cols=$rw[1];
+			$taname=$rw[2];
+		}
+		else if(count($rw)==2){
+			$rows=$rw[0];
+			$taname=$rw[1];
+		}
+		// echo "--- $field[1] $hidvar_b[1]<br>";
+		echo "<tr><td class=sc_project_table_$gt align=right>";
+		echo ucwords(str_replace("_"," ",$taname));
+		echo "</td><td class=sc_project_table_$gt>";
 
-            //echo "<textarea rows=$rows cols=$cols name=\"$taname\">";
-            //$code=str_replace("</textarea>","&lt;/textarea>",$hidvar_b[1]);
-            //echo stripslashes($code);
-            //echo "</textarea>";
-            /*
-            echo " <input ";
-            echo "size=$width ";
-            echo "name=\"".$field[1]."\" ";
-            echo "value=\"\"";
-            echo ">\n";
-            */
-            echo "</td></tr>";
-            $gt++; if($gt>2) $gt=1;
-        }
+		echo " <input type=password ";
+		echo "size=$cols ";
+		echo "name=\"".$taname."\" ";
+		echo "value=\"".$hidvar_b[1]."\"";
+		echo ">\n";
 
+		//echo "<textarea rows=$rows cols=$cols name=\"$taname\">";
+		//$code=str_replace("</textarea>","&lt;/textarea>",$hidvar_b[1]);
+		//echo stripslashes($code);
+		//echo "</textarea>";
+		/*
+		echo " <input ";
+		echo "size=$width ";
+		echo "name=\"".$field[1]."\" ";
+		echo "value=\"\"";
+		echo ">\n";
+		*/
+		echo "</td></tr>";
+		$gt++; if($gt>2) $gt=1;
+		}
     }
 
     if(!empty($submit)){
-	    echo "<tr><td></td><td>";
-        
-	    echo "<input style='font-size:x-small; min-width:100px;' type=submit name=submit value=\"$submit\">";
-        
+	    echo "<tr><td></td><td>";        
+	    echo "<input style='font-size:x-small; min-width:100px;' type=submit name=submit value=\"$submit\">";        
 	    echo "</td></tr>";
     }
-    
     echo "</table>";
 	echo "</form>";
 }
@@ -1359,7 +1330,6 @@ function lib_forms_question($inquest) {
 	echo lib_string_convert_smiles($inquest);
 	echo "</div>";
 }
-
 function lib_forms_system_message() { eval(lib_rfs_get_globals());
 	if($_SESSION['logged_in']){
 		if(empty($data->pass)) {
@@ -1370,7 +1340,6 @@ function lib_forms_system_message() { eval(lib_rfs_get_globals());
 		}
 	}
 }
-
 function lib_forms_info($t,$c,$c2) {
 	echo "<div style=' font-size: 2em; color:$c; background-color:$c2; width:100%;'>$t</div>";
 }
@@ -1395,7 +1364,6 @@ function lib_forms_confirm($message,$page,$hiddenvars){
 	echo "</form>\n";
 	echo "<lib_forms_confirm [END]================================================ />\n";
 }
-
 function lib_forms_theme_select() { eval(lib_rfs_get_globals());
 		if(lib_rfs_bool_true($GLOBALS["RFS_SITE_THEME_DROPDOWN"])) {
 			$data=lib_users_get_data($_SESSION['valid_user']);
@@ -1417,7 +1385,4 @@ function lib_forms_theme_select() { eval(lib_rfs_get_globals());
 			echo "</select>";
 		}
 }
-
-
-
 ?>
