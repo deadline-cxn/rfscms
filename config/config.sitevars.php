@@ -83,9 +83,7 @@ $RFS_THEME_CSS               = "<LINK rel=\"stylesheet\" href=\"\$RFS_SITE_THEME
 $RFS_THEME_MENU_TOP_LOCATION = "top"; 
 $RFS_THEME_MENU_LEFT_LOCATION= "left";
 $RFS_SITE_FOOTER            = "";
-$RFS_SITE_COPYRIGHT         = "<a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">Powered by RFS CMS</a>";
-$RFS_SITE_SINGLETABLEWIDTH  = 940;
-$RFS_SITE_DOUBLETABLEWIDTH  = 435;
+$RFS_SITE_COPYRIGHT         = "<a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">Made with RFSCMS</a>";
 $RFS_SITE_MENU_TOP_LOCATION = "top";
 
 $RFS_SITE_JOIN_FORM_CODE		= "
@@ -93,8 +91,8 @@ $RFS_SITE_JOIN_FORM_CODE		= "
 <table border=0 cellspacing=0 cellpadding=0>
 <form method=post action=\"$RFS_SITE_URL/login.php\">
 <input type=hidden name=action value=join_go>
-<tr><td> User ID </td><td><input type=textbox  name=userid value=\"\$userid\">  </td></tr>
-<tr><td> Email   </td><td><input type=textbox  name=email value=\"\$email\">    </td></tr>
+<tr><td> User ID </td><td><input type=textbox  name=userid value=\"\">  </td></tr>
+<tr><td> Email   </td><td><input type=textbox  name=email value=\"\">    </td></tr>
 <tr><td>         </td><td> </td></tr>
 <tr><td>         </td><td><input type=\"submit\" name=\"Register\" value=\"Register\"></td></tr>
 </form></table>\n";
