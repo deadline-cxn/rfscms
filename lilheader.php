@@ -43,7 +43,7 @@ else {
 		echo "<table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0>";
 		echo "<tr class=sc_top_menu_table_td>";
 		echo "<td class=sc_top_menu_table_td valign=top>";
-		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
+		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table>";
 		echo "<tr class=sc_top_menu_table_td>";
 		//echo "<td class=sc_top_menu_table_td>";
 		// echo "$RFS_SITE_NAME";
@@ -83,17 +83,13 @@ else {
 }
 //////////////////////////////////////////////
 // Load javascripts
-
 lib_ajax_javascript();
 sc_javascript();
-
 //lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
 lib_rfs_echo($RFS_SITE_JS_JQUERY);
 lib_rfs_echo($RFS_SITE_JS_COLOR);
 lib_rfs_echo($RFS_SITE_JS_EDITAREA);
-
 //if(!stristr(lib_domain_canonical_url(),"/net.php")) lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN);
-
 //////////////////////////////////////////////
 // google analytics
 sc_google_analytics();

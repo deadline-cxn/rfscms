@@ -176,6 +176,11 @@ if($a<932) {
 	lib_access_add_method("news", "delete");
 	lib_access_add_method("news", "deleteothers");
 }
+if($a<940) {
+	lib_access_add_method("linkbin","edit");
+	lib_access_add_method("linkbin","add");
+	lib_access_add_method("linkbin","delete");
+}
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);

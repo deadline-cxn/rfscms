@@ -3,6 +3,7 @@ tripwords2.txt
 tripwords.txt
 db_config.h
 .cache
+.htaccess
 .Trash-1000
 .out
 log/*

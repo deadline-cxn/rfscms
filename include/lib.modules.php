@@ -34,8 +34,9 @@ function lib_modules_show_registered() {
 	global $RFS_MODULE;
 	asort($RFS_MODULE);
 	foreach($RFS_MODULE as $k => $v) {
-		echo "$k <br>";
+		echo "[ $k ] ";
 	}
+	echo "<br>";
 }
 function lib_modules_array() { eval(lib_rfs_get_globals());
 	$dr="$RFS_SITE_PATH/modules";

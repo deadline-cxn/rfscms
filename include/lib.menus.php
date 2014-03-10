@@ -38,7 +38,7 @@ function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
 
     $res=lib_mysql_query("select * from `menu_top` order by `sort_order` asc");
     if($menu_location=="left") echo "<table  border=0 cellspacing=0 cellpadding=0 align=center>\n";
-    while($link=mysql_fetch_object($res))    {        
+    while($link=mysql_fetch_object($res))    {
 		$link->link=urldecode($link->link);		
         $showlink=0;
 		if($link->access == 0) $showlink=1;		

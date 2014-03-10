@@ -1,6 +1,7 @@
 <?
 $title="FORUMS";
 chdir("../../");
+$RFS_LITTLE_HEADER=true;
 include("header.php");
 if(empty($action)) $action="forum_list";
 

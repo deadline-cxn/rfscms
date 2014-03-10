@@ -1,12 +1,10 @@
-body
-{
+body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
     background-color: #a09060;
     margin: 0px;
 }
-
 
 .tags {
 	padding: 2px;
@@ -65,13 +63,13 @@ body
 	margin: 2px;
 }
 
-.forum_user{
+.forum_user {
 	float: left;
 	min-height: 150px;
 	padding: 5px;
 }
 
-.forum_message{
+.forum_message {
 	overflow: hidden;
 	min-height: 160px;	
 	padding: 5px;
@@ -82,7 +80,6 @@ body
 .forum_time{
 	overflow: hidden;
 	clear: both;
-	
 }
 
 
@@ -100,19 +97,15 @@ body
 	background-image: url("t.top_image.gif");
 }
 
-.slogan
-{
+.slogan {
     font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
     color: #d4c494;
 	text-shadow: 5px 5px 5px #000;
-
 }
 
-.warning
-{
-
+.warning {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: normal;
   font-style: normal;
@@ -120,8 +113,7 @@ body
   background-color: #880000;
 }
 
-.tabletop
-{
+.tabletop {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: large;
     font-weight: bold;
@@ -143,8 +135,7 @@ body
 	border-bottom-right-radius: 8px;
 }
 
-.rfswiki_link
-{
+.rfswiki_link {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -154,8 +145,7 @@ body
     
 }
 
-.rfswiki_link:link
-{
+.rfswiki_link:link {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -164,8 +154,7 @@ body
     color: #C3B370;  
 }
 
-.rfswiki_link:hover
-{
+.rfswiki_link:hover {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -174,8 +163,7 @@ body
     color: #F5D463;  
 }
 
-.rfs_bulletlist
-{
+.rfs_bulletlist {
     color: #000000;
     background-color: #645530;
     border: 1px;
@@ -187,8 +175,7 @@ body
     background-color: #948550;
     width: 7px;
 }
-.rfs_bulletlist_txt_td
-{
+.rfs_bulletlist_txt_td {
     color: #443404;
     background-color: #948550;
 }
@@ -196,18 +183,20 @@ body
 
 
 .sc_top_menu_table {
-
+	background: linear-gradient(#645510,#a09060);
+	width: 100%;
 }
 
 .sc_top_menu_table_td {
   font-family: Lucidia;  
   font-style: normal;
-  background-color: #544510;
+  background: linear-gradient(#645510,#a09060);
+  
 }
 .sc_top_menu_table_inner {
   font-family: Lucidia;  
   font-style: normal;
-  background-color: #544510;
+  
 }
 
 .sc_top_menu_link {
@@ -217,7 +206,7 @@ body
     font-style: normal;
     text-decoration: none;
     color: #FFFFFF;
-    frbackground-color: #544510;
+    padding-right: 20px;
 }
 
 .sc_top_menu_link:link {
@@ -227,7 +216,6 @@ body
     font-style: normal;
     text-decoration: none;
     color: #FAFAFA;
-    dfbackground-color: #544510;
 }
 
 .sc_top_menu_link:visited {
@@ -237,7 +225,6 @@ body
     font-style: normal;
     text-decoration: none;
     color: #000000;
-    dfbackground-color: #544510;
 }
 
 .sc_top_menu_link:hover {
@@ -246,7 +233,6 @@ body
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
-	fdbackground-color: #544510;
 	color: #b59443;
 }
 
@@ -254,10 +240,12 @@ body
 .news_box {
 	clear: both;
 	margin: 0px;
+	box-shadow: 2px 2px 10px black;
+	border-radius: 15px;
 }
 
 .news_headline_bar {
-	background-color:rgba(0,220,150,0.1);
+	background-color:rgba(200,200,200,0.1);
 	height: 25px;
 	padding: 5px;
 	border-top-left-radius: 15px;
@@ -268,7 +256,7 @@ body
     font-size: large;
     font-weight: bold;
     font-style: italic;
-	color: #DFFFC9;
+	color: #7F5F29;
 	float: left;
 	text-shadow: 2px 2px 2px #000;
 }
@@ -277,7 +265,7 @@ body
 	font-style: italic;
 	padding: 5px 25px;
 	vertical-align: text-bottom;
-	float: left;
+	float: right;
 }
 
 .news_image {
@@ -289,13 +277,13 @@ body
 	border-top: 1px solid #000;
 	clear: both; 
 	padding: 15px;
-	background-color:rgba(0,0,0,0.1);
+	background-color:rgba(100,100,100,0.1);
 }
 
 .news_edit_bar {
 	border-top: 1px solid #000;
 	clear: both;
-	background-color:rgba(0,160,150,0.1);
+	background-color:rgba(0,0,0,0.1);
 	padding: 25px;
 	margin: 0 0 25px 0;
 	border-bottom-left-radius: 15px;
@@ -425,36 +413,35 @@ td
     font-size: 6px;
     font-weight: bold;
     color:   #000000;
-	background-color: #807040;
+	background-color: #a09060;
 }
 .logged_in_box {
 	font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
     color: #000000;
-	background-color: #807040;
+	background-color: #a09060;
 }
 
 .righttd {
 width: 1px;
+background-color: #a09060;
 }
 
 
-.lefttd
-{
+.lefttd {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: bold; 
 	color:   #746530;
 	background-color: #a09060;
 	background-size:200px 1233px;
-	
-	fbackground-repeat:no-repeat;
 	background-image: url("t.lefttdimage.gif");
 	overflow:hidden;
 	width: 200px !important;
 	min-width: 200px;
 	max-width: 200px;
+	border-right: 1px solid #750;
 }
 
 a

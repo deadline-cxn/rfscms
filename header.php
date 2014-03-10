@@ -97,7 +97,7 @@ else {
 		echo "<tr class=sc_top_menu_table_td>";
 		echo "<td class=sc_top_menu_table_td valign=top>";
 		
-		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table_td>";
+		echo "<table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table>";
 		echo "<tr class=sc_top_menu_table_td>";
 		             
 		lib_menus_draw($RFS_THEME_MENU_TOP_LOCATION); 
@@ -140,7 +140,7 @@ lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
 lib_rfs_echo($RFS_SITE_JS_JQUERY);
 lib_rfs_echo($RFS_SITE_JS_COLOR);
 lib_rfs_echo($RFS_SITE_JS_EDITAREA);
-lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN);
+//lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN);
 
 sc_google_analytics();
 lib_forms_system_message();

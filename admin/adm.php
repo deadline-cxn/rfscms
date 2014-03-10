@@ -6,10 +6,8 @@ $title="Administration";
 /////////////////////////////////////////////////////////////////////////////////////////
 include("lib.adm.php");
 chdir( "../" );
-
 if(stristr($_REQUEST['action'],"ajx")) { include("include/lib.all.php"); exit(); }
 else { include( "lilheader.php" ); }
-
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
 if(!lib_access_check("admin","access")) {
@@ -18,7 +16,6 @@ if(!lib_access_check("admin","access")) {
 	include("footer.php");
 	exit();
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM CHECK FOR UPDATES
 function adm_action_update() { eval(lib_rfs_get_globals());
@@ -31,6 +28,125 @@ function adm_action_update() { eval(lib_rfs_get_globals());
 	echo "</pre>";
 	include("footer.php");
 	exit();
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM BAN MANAGEMENT
+
+function adm_action_f_banip() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>Ban IP Address</h1>";
+}
+function adm_action_f_banref() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>Ban Referrer</h1>";
+}
+function adm_action_f_bandomain_go() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>Ban Domain</h1>";
+	echo "Banning domain $domain";
+	lib_domain_ban_domain($domain);
+}
+function adm_action_f_bandomain() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>Ban Domain</h1>";
+	echo "<hr>$domain<hr>";
+	lib_forms_confirm("Are you sure you want to ban this domain?",
+					  "$RFS_SITE_URL/admin/adm.php?action=f_bandomain_go",
+					  "domain=$domain");
+}
+function adm_action_f_unbanip() { 
+	eval(lib_rfs_get_globals());
+	echo "<h1>UnBan IP Address</h1>";
+}
+function adm_action_f_unbanref() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>UnBan Referrer</h1>";
+}
+function adm_action_f_unbandomain() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>UnBan Domain</h1>";
+	echo "UnBanning domain $domain";
+	lib_domain_unban_domain($domain);
+}
+function adm_action_ban_management(){
+	lib_mysql_dump_table("banned","","id","");
+	
+
+/*
+about	
+access	
+access_methods	
+admin_menu	
+ads_skyscrapers	
+anyterm	
+arrangement	
+banned	
+categories	
+colors	
+comics	
+comics_page_templates	
+comics_pages	
+comments	
+contentid	
+counters	
+course_component	
+course_component_type	
+courses	
+courses_component	
+criteria	
+db_queries	
+delp_last_searches	
+file_duplicates	
+files	
+forum_list	
+forum_posts	
+link_bin	
+meme	
+menu_top	
+network_devices	
+news	
+objectives	
+pictures	
+pmsg	
+pod_completion	
+pods	
+projects	
+resource_types	
+rfsauth	
+rfscms_gns3	
+rfsm_bullet_category	
+rfsm_bullet_log	
+rfsm_fitness	
+rfsm_political_game	
+rss_feeds	
+script_group_types	
+script_groups	
+scripts	
+searches	
+site_vars	
+slogans	
+smilies	
+snippets	
+tags	
+todo_list	
+todo_list_status	
+todo_list_task	
+todo_list_type	
+topmenu	
+topology	
+transactions	
+tripcodes	
+tutorial_categories	
+tutorials	
+useronline	
+users	
+videos	
+wab_calc	
+wab_engine	
+wab_showusers	
+wab_tgk	
+wiki	
+ */
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,8 +194,6 @@ function adm_action_registered_menu_items() {
 	lib_menus_options();
 	finishadminpage();
 }
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AUTH FUNCTIONS
 function adm_action_auth_config() { eval(lib_rfs_get_globals());
@@ -250,7 +364,6 @@ function adm_action_arrange() { eval( lib_rfs_get_globals() );
 	include( "footer.php" );
 	exit();
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM ACCESS GROUPS FUNCTIONS
 function adm_action_f_access_group_add() { eval(lib_rfs_get_globals());
@@ -390,17 +503,14 @@ function adm_action_access_groups() { eval(lib_rfs_get_globals());
 function adm_action_phpmyadmin_out() { eval(lib_rfs_get_globals()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORM BUILDER FUNCTIONS
-/*
-function adm_action_form_builder() { eval(lib_rfs_get_globals());
+/*function adm_action_form_builder() { eval(lib_rfs_get_globals());
 	echo"<p>Form Builder</p>";
 	include( "footer.php" );
 	exit();
-}
-*/
+}*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_NEW PAGE FUNCTIONS
-/*
-function adm_action_new_page() { eval(lib_rfs_get_globals());
+/*function adm_action_new_page() { eval(lib_rfs_get_globals());
 	echo"<p>Create a new page.</p>";
 	lib_forms_build_quick( "action=new_page_go".$RFS_SITE_DELIMITER."SHOW_TEXT_name=name.php","Create new page");
 	include( "footer.php" );
@@ -411,8 +521,7 @@ function adm_action_new_page_go() { eval(lib_rfs_get_globals());
 	copy("_template.php",$_GLOBALS['name']);
 	}
 	echo "<p> New file ".$_GLOBALS['name']." created. </p>";
-}
-*/
+}*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_EMAIL
 function adm_action_email() { eval(lib_rfs_get_globals());
@@ -433,7 +542,6 @@ function adm_action_email_go() { eval(lib_rfs_get_globals());
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_DATABASE
 /////////////////////////////////////////////////////////////////////////////////////////
-
 function adm_db_query( $x ) { eval( lib_rfs_get_globals() );
 	$y=urlencode($x);
 	echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_rm_db_query&query=$y\" target=_top>Delete</a>]";	
@@ -497,7 +605,6 @@ function adm_action_database_backup() { eval(lib_rfs_get_globals());
 	echo (lib_mysql_backup_database($RFS_SITE_PATH."/files/.backups/$sn"));
 	finishadminpage();
 }
-	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_EVAL FUNCTIONS
 function eval_callback( $txt ) {
@@ -958,7 +1065,6 @@ function adm_action_f_theme_view_classes() { eval(lib_rfs_get_globals());
 	echo "</pre>";
 	adm_action_theme();
 }
-
 function adm_action_f_theme_add_css_value_go() { eval(lib_rfs_get_globals());
 	echo "<h1> $css </h1>";
 	echo "<h1> $cssvalue</h1>";
@@ -980,7 +1086,6 @@ function adm_action_f_theme_add_css_value() { eval(lib_rfs_get_globals());
 			"SHOW_TEXTAREA_cssvalue".$RFS_SITE_DELIMITER.
 			"action=f_theme_add_css_value_go","Add");
 }
-
 function adm_action_f_theme_css_checker() { eval(lib_rfs_get_globals());
 	$file="$RFS_SITE_PATH/tools/classes.out.txt";
 	
@@ -1008,7 +1113,6 @@ function adm_action_f_theme_css_checker() { eval(lib_rfs_get_globals());
 	}
 	adm_action_theme();
 }
-
 function adm_action_theme() { eval(lib_rfs_get_globals());
 	echo "<h1>Theme Editor</h1>";	
 	lib_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
@@ -1229,8 +1333,6 @@ function adm_action_f_admin_menu_edit_del() { eval( lib_rfs_get_globals() );
 	if( $_SESSION['admed']=="on" ) adm_action_();
 	else adm_action_admin_menu_edit();
 }
-
-
 function adm_action_f_menu_admin_add_link() { eval(lib_rfs_get_globals());
 	echo "<h3>Edit Admin Menu :: Add $lname</h3>";
 	echo $lname."<br>";
@@ -1243,7 +1345,6 @@ function adm_action_f_menu_admin_add_link() { eval(lib_rfs_get_globals());
 	$mcategory="unsorted";
 	adm_action_f_admin_menu_edit_add();
 }
-
 function adm_action_f_admin_menu_edit_add() { eval( lib_rfs_get_globals() );
 	echo "<h3>Edit Admin Menu :: Add $mname</h3>";
 	if(empty($mname))		$mname		= addslashes( $_REQUEST['mname'] );
@@ -1878,8 +1979,7 @@ $uol=lib_users_online(); $uli=lib_users_logged_in();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_RSS EDITOR
-/*
-function adm_action_f_rss_edit_go_edit() {
+/*function adm_action_f_rss_edit_go_edit() {
 	eval( lib_rfs_get_globals() );
 	if( $update=="update" ) lib_mysql_query( "UPDATE rss_feeds SET `feed`='$edfeed' where `id`='$oid'" );
 	if( $delete=="delete" ) lib_mysql_query( "DELETE FROM rss_feeds WHERE id = '$oid' " );
@@ -1915,8 +2015,7 @@ function adm_action_rss_edit() {
 	echo "</form></table>\n";
 	include("footer.php");
 	exit();
-}
-*/
+}*/
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_SMILEY EDITOR
 function adm_action_edit_smilies() {
@@ -2071,7 +2170,6 @@ function adm_action_counters() {
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AWARD EDIT
 // function adm_action_awards_edit() { 	echo "<h3>Award Editor</h3>\n"; 	sc_awards_list(); 	include("footer.php");	exit();}
-
 function adm_action_f_add_award_go() {
 	eval( lib_rfs_get_globals() );
 	echo "<h3>Add award!</h3>\n";
@@ -2096,7 +2194,6 @@ function adm_action_f_edit_award_go() {
 	adm_action_awards_edit();
 	
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_ACTION_EDIT_TAGS
 function adm_action_edit_tags() { eval(lib_rfs_get_globals()); 
@@ -2179,7 +2276,7 @@ function adm_action_() { eval(lib_rfs_get_globals());
 	$data=lib_users_get_data( $_SESSION['valid_user'] );
 	if(!lib_access_check("admin","access")) return;
 	
-	echo "<div width=80%>"; // align=center
+	echo "<div width=80% class='forum_box'>";
 
 	echo "<h1>Administration Panel</h1>";
 	
@@ -2232,8 +2329,6 @@ function adm_action_() { eval(lib_rfs_get_globals());
 	echo "</td></tr></table>";
 	
 	
-	
-	
 	/////////// TEST AREA
 	/*
 	
@@ -2253,11 +2348,11 @@ function adm_action_() { eval(lib_rfs_get_globals());
 	
 	
 	*/
-	
-	
-	
+	echo "<hr>";
+	lib_modules_show_registered();
 
     adm_menu_built_in();
+		
 
 	echo "</div>";
 	
@@ -2419,9 +2514,8 @@ function adm_menu_built_in() { eval(lib_rfs_get_globals());
     }
 	
 	echo "<div style='clear: left; '>&nbsp;</div>";	
-	
-	echo "<hr>";
-	lib_modules_show_registered();
+
+
 }
 function finishadminpage() {
 	eval( lib_rfs_get_globals() );

@@ -45,8 +45,9 @@ function lib_domain_ban_ip($ip){
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_domain_unban_domain($domain){
-    $res=mysql_num_rows(lib_mysql_query("select * from banned where `domain`='$domain'"));
-    if($res==0) lib_mysql_query("delete from `banned` where `domain`='$domain'");
+	lib_mysql_query("delete from `banned` where `domain`='$domain'");
+    // $res=mysql_num_rows(lib_mysql_query("select * from banned where `domain`='$domain'"));
+    // if($res==0) 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_domain_unban_ref($refer){

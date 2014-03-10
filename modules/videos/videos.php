@@ -1,5 +1,6 @@
 <?
 chdir("../../");
+$RFS_LITTLE_HEADER=true;
 include("header.php");
 function videos_buttons() {
 	eval(lib_rfs_get_globals()); 

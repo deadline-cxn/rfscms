@@ -9,7 +9,7 @@ function lib_log_kill($what) {
 	lib_log_add_entry("<font class=sc_admin>".$what."</font>");
 	lib_log_add_entry("<font class=sc_admin>============================[kill end]</font>");
 	echo "<br>Actions Logged...<br>";
-	die("</body></html>");
+	//die("</body></html>");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_log_count($user) {
@@ -76,10 +76,10 @@ function lib_log_count($user) {
 		}
 	}
 
-	$banip="<a href=\"$RFS_SITE_URL/adm.php?action=banip&ip=$countip_ban\">Ban this IP</a>";
-	$banref="<a href=\"$RFS_SITE_URL/adm.php?action=banref&ref=$refer_ban\">Ban this Referral</a>";
+	$banip="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banip&ip=$countip_ban\">Ban this IP</a>";
+	$banref="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banref&ref=$refer_ban\">Ban this Referral</a>";
 	$testweb="<a href=\"http://$countip_ban/\" target=_blank>Test Web Server</a>";
-	$bandomain="<a href=\"$RFS_SITE_URL/adm.php?action=bandomain&domain=$domain_ban\">Ban this Domain</a>";
+	$bandomain="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_bandomain&domain=$domain_ban\">Ban this Domain</a>";
 	$whoisip="<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=arin&target=$countip\">WhoIS IP</a>";
 	$whoisdm="<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=wwwhois&target=$domain_who\">WhoIS Domain</a>";
 
@@ -101,9 +101,9 @@ function lib_log_count($user) {
 		$what.="vREFER|<a href=\"".$refer."\" target=_blank>".$refer_link."</a>|<br>[$banref][$bandomain][$whoisdm]<br>\n ";
 
 	if($banned==1) {
-		$unbanip="<a href=\"$RFS_SITE_URL/adm.php?action=unbanip&ip=$countip_ban\">UnBan this IP</a>";
-		$unbanref="<a href=\"$RFS_SITE_URL/adm.php?action=unbanref&ref=$refer_ban\">UnBan this Referral</a>";
-		$unbandomain="<a href=\"$RFS_SITE_URL/adm.php?action=unbandomain&domain=$domain_ban\">UnBan this Domain</a>";
+		$unbanip="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbanip&ip=$countip_ban\">UnBan this IP</a>";
+		$unbanref="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbanref&ref=$refer_ban\">UnBan this Referral</a>";
+		$unbandomain="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbandomain&domain=$domain_ban\">UnBan this Domain</a>";
 
 		$what="BANNED:<br>\n";
 		$what.="vIPADD|".$countip."| [$unbanip][$whoisip][$testweb]<br>";
@@ -162,51 +162,38 @@ function lib_log_count($user) {
 
 	$url2=explode("/",$refer);
 
-	if($url2['0']=="http:") {
+	// if($url2['0']=="http:") {
+		
 		$url=$url2['0']."//".$url2['2']."/";
 
-		$doone=false;
-
-		if(  ($url!="http://www.defectiveminds.com/") &&
-		     ($url!="http://ickleazure/") &&
-		     ($url!="http://www.sethcoder.com/") &&
-		     ($url!="http://sethcoder.com/") )
-			$doone=true;
-		if( ($url!="http://ickleazure/") && (stristr($refer,"sphider"))  )
-			$doone=true;
-
-		if($doone==true) {
-			lib_log_add_entry($what);
-
-			if($google)        $url="http://www.google.com/";
-			if($yahoo)         $url="http://www.yahoo.com/";
-			if($referrerslist) $url="http://www.referrerslist.com/";
-			if($aol)           $url="http://www.aol.com/";
-
-			$result=lib_mysql_query("select * from `link_bin` where `link` = '$url'");
-			if(mysql_num_rows($result)) {
-				$link=mysql_fetch_object($result);
-				$link->referrals=$link->referrals+1;
-				lib_mysql_query("update `link_bin` set `referrals` = '$link->referrals' where `id` = '$link->id'");
-				$time=date("Y-m-d H:i:s");
-				lib_mysql_query("update `link_bin` set `bumptime` = '$time' where `id` = '$link->id'");
-			} else {
-				$time=date("Y-m-d H:i:s");
-				lib_mysql_query("insert into `link_bin` (`link`, `sname`, `time`, `bumptime`, `referrals`, `clicks`, `referral`, `hidden`, `category`,`reviewed`)
-				         values('$url','".$url2['2']."','$time','$time','1','0','yes','1','!!!TEMP!!!','no')");
-			}
+		lib_log_add_entry($what);
+		
+		if($google)        $url="http://www.google.com/";
+		if($yahoo)         $url="http://www.yahoo.com/";
+		if($referrerslist) $url="http://www.referrerslist.com/";
+		if($aol)           $url="http://www.aol.com/";
+		
+		$result=lib_mysql_query("select * from `link_bin` where `link` = '$url'");
+		if(mysql_num_rows($result)) {
+			$link=mysql_fetch_object($result);
+			$link->referrals=$link->referrals+1;
+			lib_mysql_query("update `link_bin` set `referrals` = '$link->referrals' where `id` = '$link->id'");
+			$time=date("Y-m-d H:i:s");
+			lib_mysql_query("update `link_bin` set `bumptime` = '$time' where `id` = '$link->id'");
+		} else {
+			$time=date("Y-m-d H:i:s");
+			lib_mysql_query("insert into `link_bin` (`link`, `sname`, `time`, `bumptime`, `referrals`, `clicks`, `referral`, `hidden`, `category`,`reviewed`)
+					 values('$url','".$url2['2']."','$time','$time','1','0','yes','1','!!!TEMP!!!','no')");
 		}
-	}
+	
+	//}
 
 	if($url!="http://www.defectiveminds.com/")
 		if(getenv("REMOTE_ADDR")!=$countip) {
-
-			// llaall($countit,$countip,$counttoday,$countdate,$countraw);
 	}
 
 	if(date("d")==$countdate) {
 		$counttoday++;
-		// llaall($countit,$countip,$counttoday,$countdate,$countraw);
 	}
 	return $countit;
 }

@@ -267,8 +267,8 @@ function lib_mysql_database_query_form($page,$action,$query){
     echo "<input type=\"submit\" name=\"submit\" value=\"submit query\">";
     echo "</form>";
 }
-function lib_mysql_dump_table($table,$showform,$key,$search){ eval(lib_rfs_get_globals());
-	
+function lib_mysql_dump_table($table,$showform,$key,$search){
+	eval(lib_rfs_get_globals());	
 	$fields="*";
 	if(stristr($table,",")) { 
 		$tbx=explode(",",$table);
@@ -278,13 +278,11 @@ function lib_mysql_dump_table($table,$showform,$key,$search){ eval(lib_rfs_get_g
 			$fields.=$tbx[$x].",";
 		}
 		$fields=rtrim($fields,",");
-	}
-	
+	}	
     if(stristr($showform, $RFS_SITE_DELIMITER)) {
             $gx=explode($RFS_SITE_DELIMITER,$showform);
             $showform=$gx[0];
     }
-
     $page=$RFS_SITE_URL.lib_domain_phpself();
     $gt=0;
     $res=lib_mysql_query("select $fields from `$table` $search");

@@ -1,7 +1,8 @@
 body{
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: medium;
     font-style: normal;
+	color: #FFF;
 	background-image: url('/themes/default/t.background.jpg');
 	background-repeat:no-repeat;
 	background-attachment:fixed;
@@ -29,11 +30,11 @@ body{
 
 .news_headline_bar {
 	background-color:rgba(0,200,0,0.1);
-	
 	height: 25px;
 	padding: 5px;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	border-bottom: 1px solid #050;
+	tborder-top-left-radius: 15px;
+	rtborder-top-right-radius: 15px;
 }
 .news_headline {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -96,7 +97,7 @@ body{
 
 .slogan {
     font-family: Verdana;
-    font-size: 12px;
+    font-size: medium;
     font-style: italic ;
     color: #00FF00;
 }
@@ -116,30 +117,22 @@ body{
 }
 
 .sc_top_menu_link {
-    font-family: System;
+    font-family: Lucidia;
     font-size: 23px;
     font-weight: bold;
     font-style: normal;
     text-decoration: none;
     color: #00FF00;
+	padding-right: 30px;
 }
 .sc_top_menu_link:link {
-    font-family: System;
-    font-size: 23px;
-    font-weight: bold;
-    font-style: normal;
-    text-decoration: none;
     color: #00FF00;
+	text-shadow: 2px 2px 2px #000;
 
 }
 .sc_top_menu_link:hover {
-    font-family: System;
-    font-size: 23px;
-    font-weight: bold;
-    font-style: normal;
-    text-decoration: none;
-	background-color:  #00ff00;
-	color: #000000;
+	background-color:  #007700;
+	color: #00FF00;
 }
 
 hr {
@@ -181,14 +174,14 @@ h3 {
 
 .font {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
+    font-size: medium;
     font-style: normal;
     color: #FFFFFF;
 }
 
 td {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: small;
+    font-size: medium;
     font-weight: bold;
     color:  #009900;
 }
@@ -209,7 +202,7 @@ td {
     border-color: #000000;
     border-width: 2px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: normal;
+	font-size: medium;
 	font-style: normal;
 	color: #FFFFFF;
 	background-color: #880000;
@@ -217,18 +210,10 @@ td {
 
 .contenttd {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: xx-small;
+    font-size: medium;
     font-weight: bold;
 	padding: 5px;
 	color:   #FFFFFF;	
-	background-color:rgba(0,0,0,0.6);
-}
-
-.midtd{
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: xx-small;
-	font-weight: bold;
-	border: 1px solid #000;
 	background-color:rgba(0,0,0,0.6);
 }
 
@@ -253,12 +238,22 @@ td {
     font-weight: bold;
     color:   #00FF00; 
 	background-color:rgba(0,0,0,0.2);
-	width:1px;
+	min-width: 250px;
+}
+
+.midtd{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: medium;
+	font-weight: bold;
+	border: 1px solid #000;
+	background-color:rgba(0,0,0,0.7);
+	
+	
 }
 
 .righttd {
 	background-color:rgba(0,5,0,0.8);
-	width: 1px;
+	min-width: 250px;
 }
 
 th {
@@ -372,7 +367,7 @@ th {
 	border-top: 1px dashed #070; 
 }
 .sc_file_table_0 {
-
+	background-color: #407c40;
 	color: #000000;
 }
 
@@ -380,8 +375,8 @@ th {
 	background-color:rgba(0,160,0,0.1);
 	border-top: 1px dashed #070; 
 }
-.sc_file_table_1 {
-	
+.sc_file_table_1 {	
+	background-color: #3c6c3c;
  	color: #000000;
 }
 
@@ -405,8 +400,7 @@ a:link {
 
 a:hover {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    gfont-size: xx-small;
-    font-weight: bold;
+	font-weight: bold;
     font-style: italic;
     text-decoration: none;
     color: #000000;
@@ -431,13 +425,13 @@ input, select, textarea {
     fborder-color : #005F00;
 	color: #00F800;
 
-}.forum_table_head
-{
-padding: 5px;
 }
 
-.iframez
-{
+.forum_table_head{
+	padding: 5px;
+}
+
+.iframez {
 }
 
 .imgg

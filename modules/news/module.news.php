@@ -84,7 +84,6 @@ function module_news_top_story() {
     sc_show_top_news();
 }
 function module_news_blog_style($x) { eval(lib_rfs_get_globals());
-	news_buttons();
 	sc_show_top_news();
 	$newslist=sc_getnewslist(""); $ct=count($newslist); if($ct>$x) $ct=$x;
 	echo "Older news...<br>";

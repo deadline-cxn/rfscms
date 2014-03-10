@@ -14,7 +14,7 @@ body{
 	background-color:rgba(0,0,0,0.2);
 	border-radius: 10px;
 	margin: 2px;
-	color: #444;
+	color: #744;
 }
 
 .forum_user{
@@ -44,9 +44,9 @@ body{
 	border-radius:5px;
 }
 
-hr{
+hr {
     border: 1px;
-    border-color: #BBBBBB;
+    border-color: #420;
     border-style: dashed;
 }
 
@@ -54,7 +54,7 @@ hr{
     font-family: Verdana;
     font-size: 12px;
     font-style: italic ;
-    color: #5257FF;
+    color: #725722;
 
 }
 
@@ -78,6 +78,7 @@ hr{
   font-family: Lucidia;
   font-style: normal;
   background-color: #f1dea1;
+  	width: 100%;
 }
 
 .rfswiki_link{
@@ -86,7 +87,7 @@ hr{
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #373777;
+color: #C4AC45;
 }
 
 .rfswiki_link:link {
@@ -151,10 +152,13 @@ hr{
 .news_box {
 	clear: both;
 	margin: 0px;
+	box-shadow: 5px 5px 10px #630;	
+	border-radius: 15px;
+	
 }
 
 .news_headline_bar {
-	background-color:rgba(0,220,150,0.1);
+	background-color:rgba(180,150,150,0.5);
 	height: 25px;
 	padding: 5px;
 	border-top-left-radius: 15px;
@@ -165,7 +169,7 @@ hr{
     font-size: large;
     font-weight: bold;
     font-style: italic;
-	color: #DFFFC9;
+	color: #DF9F60;
 	float: left;
 	text-shadow: 2px 2px 2px #000;
 }
@@ -174,7 +178,7 @@ hr{
 	font-style: italic;
 	padding: 5px 25px;
 	vertical-align: text-bottom;
-	float: left;
+	float: right;
 }
 
 .news_image {
@@ -192,7 +196,7 @@ hr{
 .news_edit_bar {
 	border-top: 1px solid #000;
 	clear: both;
-	background-color:rgba(0,160,150,0.1);
+	background-color:rgba(180,150,150,0.3);
 	padding: 25px;
 	margin: 0 0 25px 0;
 	border-bottom-left-radius: 15px;
@@ -201,24 +205,33 @@ hr{
 
 h1{
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
+    font-size: 22px;
     font-weight: bold;
     font-style: italic;
-    color: #777777;
+    color:   #420;
 }
 
-h3{
-    font-family: Lucidia;//Verdana, Arial, Helvetica, sans-serif;
+h2{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: bold;
     font-style: italic;
-    color: #555555;
+    color:   #420;
+}
+
+
+h3{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    color:   #420;
 }
 
 td{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    color:   #777777;
+    color:   #420;
 }
 
 .downloadtd{
@@ -245,7 +258,7 @@ td{
 .contenttd {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    color:   #777777;
+    color:   #420;
 	
 }
 
@@ -355,6 +368,7 @@ th {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;    
+	padding: 10px;
 }
 
 .toptd{
@@ -370,10 +384,10 @@ th {
     font-size: 10px;
     ffont-weight: bold;
     color:   #777777;
-	width: 1px;
+	width: 250px;
 }
 .righttd {
-	width: 1px;
+	width: 250px;
 }
 
 a:link {
@@ -413,37 +427,7 @@ input, textarea {
 }
 
 
-.fdsahover {
-filter: glow(color=#526D00, strength=#2);
-    bagfckground-color: #00cccc;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    text-decoration: none;
-    text-shadow: black 0px 0px 5px;
-    gfcolor: #000000;
-    fackground: white; 
-    color: white;
-    
-    text-shadow: 3px 3px red, yellow -3px 3px 2px, 3px -3px;
-    
-filter:alpha
-filter:blur
-filter:chroma
-filter:dropshadow
-filter:fliph
-filter:flipv
-filter:glow
-filter:gray
-filter:invert
-filter:mask
-filter:shadow
-filter:wave
-filter:xray
-}
-
-.forum_table_head
-{
+.forum_table_head {
 padding: 5px;
 }
 
