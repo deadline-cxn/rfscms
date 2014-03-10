@@ -1152,10 +1152,7 @@ function adm_action_f_addsitevar() { eval( lib_rfs_get_globals() );
 	$name=strtolower( $name );
 	$name=str_replace( " ","_",$name );
 	$val=addslashes( $_REQUEST['val'] );
-	lib_mysql_query( "insert into `site_vars` 			(`name`, `type`, `value`, `desc`)
-	
-										values ('$name', '$type', '$val', '$desc')" );
-	
+	lib_mysql_query( "insert into `site_vars` (`name`, `type`, `value`, `desc`) values ('$name', '$type', '$val', '$desc')" );
 	adm_action_edit_site_vars();
 }
 function adm_action_f_upsitevar() { eval( lib_rfs_get_globals() );
@@ -1178,17 +1175,12 @@ function adm_action_f_delsitevar() { eval(lib_rfs_get_globals());
 	adm_action_edit_site_vars();
 }
 function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
-
 	echo "<h3>Edit Site Variables</h3>";
-
-	echo "<p>These variables will be loaded into global scope.</p>";
-	
-	echo "<table border=0>";
-	
+	echo "<p>These variables will be loaded into global scope.</p>";	
+	echo "<table border=0>";	
 	echo "<tr><th>Variable</th><th>Type</th><th>Value</th><th></th><th></th></tr>";
-	$res=lib_mysql_query( "select * from site_vars order by name" );
-	for( $i=0; $i<mysql_num_rows( $res ); $i++ ) {
-		$site_var=mysql_fetch_object( $res );
+	$res=lib_mysql_query("select * from site_vars order by name");
+	while($site_var=mysql_fetch_object($res)) {
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
 		echo "<tr><td>";
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
@@ -1196,23 +1188,18 @@ function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
 		$site_var->name=strtoupper(stripslashes(($site_var->name)));
 		echo "\$RFS_SITE_$site_var->name <br>$site_var->desc";
 		echo "</td><td>";
-		echo "<select name=\"type\" onchange=\"form.submit();\">";
-		
+		echo "<select name=\"type\" onchange=\"form.submit();\">";		
 		if(empty($site_var->type)) $site_var->type="text";
-		echo "<option>$site_var->type";
-		
+		echo "<option>$site_var->type";		
 		echo "<option>text";
 		echo "<option>bool";
 		echo "<option>file";
 		echo "<option>theme";
 		echo "<option>number";
 		echo "<option>password";
-		echo "</select>";
-		
-		echo "</td><td>";	
-		
-		$site_var->value=stripslashes( $site_var->value );
-		
+		echo "</select>";		
+		echo "</td><td>";		
+		$site_var->value=stripslashes( $site_var->value );		
 		switch($site_var->type) {
 		case "bool":
 			echo "<select name=val onchange=\"form.submit();\">";			
@@ -1226,7 +1213,6 @@ function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
 			}
 			echo "</select>";
 			break;
-			
 		case "theme":
 			echo "<select name=\"val\" onchange=\"form.submit();\">";
 			$thms=lib_themes_get_array();
@@ -1237,19 +1223,15 @@ function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
 			}
 			echo "</select>";
 			break;
-			
 		case "file":		
 			echo "<input name=val size=40 value=\"$site_var->value\" onblur=\"form.submit();\">";
 			if(!file_exists($site_var->value)) {
 				echo "<font style='color:white; background-color:red;'><br>FILE DOES NOT EXIST";
 			}
-			
 			break;
-		
 		default:		
 			echo "<input name=val size=40 value=\"$site_var->value\" onblur=\"form.submit();\">";
 			break;
-		
 		}
 		echo "</td>";
 		echo "</form>";
@@ -1258,20 +1240,6 @@ function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
 		echo "</td></tr>";
 	}
 	echo "</table>";
-	
-	
-	
-	$rfsvars=file_get_contents("admin/rfsvars_out.txt");
-	
-	$rfsvars_opt=str_replace('$',"<option>",$rfsvars);
-	
-	
-
-	echo "<select name=existing>";
-	echo $rfsvars_opt;
-	echo "</select>";
-	
-	
 	echo "<div class=\"forum_box\">";
 	echo "<table>";
 	echo "<tr><td>";
@@ -1288,20 +1256,13 @@ function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
 		echo "<option>password";
 		echo "</select>";
 	echo "<input name=val size=40 value=\"INITIAL VALUE\">";
-	echo "<br><textarea cols=100 name=desc>DESCRIPTION OF THIS VARIABLE</textarea>";
+	// echo "<br><textarea cols=100 name=desc>DESCRIPTION OF THIS VARIABLE</textarea>";
 	echo "<input type=submit value=\"go\">";
 	echo "</form>";
 	echo "</td><td>";
 	echo "</td></tr>";
 	echo "</table>";
 	echo "</div>";
-	
-	
-	
-	
-	
-	// foreach($GLOBALS as $k => $v)  { if(strtolower(substr($k,0,8))=="rfs_site") echo "[$k]<br>"; }
-	
 	include("footer.php");
 	exit();
 }

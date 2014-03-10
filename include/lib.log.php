@@ -9,17 +9,20 @@ function lib_log_kill($what) {
 	lib_log_add_entry("<font class=sc_admin>".$what."</font>");
 	lib_log_add_entry("<font class=sc_admin>============================[kill end]</font>");
 	echo "<br>Actions Logged...<br>";
-	//die("</body></html>");
+	die("</body></html>");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_log_count($user) {
+	eval(lib_rfs_get_globals()); 
+	$countraw++;
+	$refer=getenv("HTTP_REFERER");
+	$countip=getenv("REMOTE_ADDR");
 	$p=lib_domain_canonical_url();
-	$ip=getenv("REMOTE_ADDR");
 	$r=lib_mysql_fetch_one_object("select * from counters where page = '$p'");
 	if(!empty($r->page)){
 		$r->hits_raw+=1;
-		if($r->last_ip!=$ip){
-			$r->last_ip=$ip;
+		if($r->last_ip!=$countip){
+			$r->last_ip=$countip;
 			$r->hits_unique+=1;
 		}
 		lib_mysql_query("update counters set user='$user' where page='$r->page'");
@@ -27,28 +30,16 @@ function lib_log_count($user) {
 		lib_mysql_query("update counters set hits_unique='$r->hits_unique' where page='$r->page'");
 		lib_mysql_query("update counters set last_ip='$r->last_ip' where page='$r->page'");
 	}
-	else{
+	else {
 		$ct=1;
-		$q="INSERT INTO `counters` (`id`, `page`, `user`, `last_ip`, `hits_raw`, `hits_unique`)
-							 VALUES (NULL, '$p', '$user', '$ip', '$ct', '$ct');";
-		lib_mysql_query($q);
+		lib_mysql_query("INSERT INTO `counters` (`id`, `page`, `user`, `last_ip`, `hits_raw`, `hits_unique`) VALUES (NULL, '$p', '$user', '$countip', '$ct', '$ct');");
 	}	
-	
-	
-	// TODO: Scrub this function
-	$countraw++;
-
-	$refer=getenv("HTTP_REFERER");
-	$countip=getenv("REMOTE_ADDR");
-
 	$refer_ban=str_replace("&","%26",$refer);
 	$refer_ban=str_replace("?","%3F",$refer_ban);
-
 	$countip_ban=$countip;
 	$domain_ban=lib_domain_getdomain($refer_ban);
 	$a=explode("/",$domain_ban);
 	$domain_who=$a[2];
-
 	$refer_link=str_replace("%20"," ",$refer);
 	$refer_link=str_replace("%2F","/",$refer_link);
 	$refer_link=str_replace("%2f","/",$refer_link);
@@ -63,7 +54,6 @@ function lib_log_count($user) {
 	$refer_link=str_replace("%2b","+",$refer_link);
 	$refer_link=str_replace("%26","<br>",$refer_link);
 	$refer_link=str_replace("&","<br>",$refer_link);
-
 	$searched=explode("<br>",$refer_link);
 	$nsear=count($searched);
 	for($i=0; $i<$nsear; $i++) {
@@ -75,19 +65,15 @@ function lib_log_count($user) {
 			         VALUES ('".$searched[$i]."', '$domain_who', '$refer',  '$time')");
 		}
 	}
-
 	$banip="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banip&ip=$countip_ban\">Ban this IP</a>";
 	$banref="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banref&ref=$refer_ban\">Ban this Referral</a>";
 	$testweb="<a href=\"http://$countip_ban/\" target=_blank>Test Web Server</a>";
 	$bandomain="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_bandomain&domain=$domain_ban\">Ban this Domain</a>";
 	$whoisip="<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=arin&target=$countip\">WhoIS IP</a>";
 	$whoisdm="<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=wwwhois&target=$domain_who\">WhoIS Domain</a>";
-
 	$banned=0;
-
 	if(empty($refer_ban)) $refer_ban="duh";
 	if(empty($domain_ban)) $domain_ban="duh";
-
 	if(lib_domain_banned_ref($refer_ban)==true)     $banned=1;
 	if(lib_domain_banned_ip($countip_ban)==true)    $banned=1;
 	if(lib_domain_banned_domain($domain_ban)==true) $banned=1;
@@ -104,7 +90,6 @@ function lib_log_count($user) {
 		$unbanip="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbanip&ip=$countip_ban\">UnBan this IP</a>";
 		$unbanref="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbanref&ref=$refer_ban\">UnBan this Referral</a>";
 		$unbandomain="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbandomain&domain=$domain_ban\">UnBan this Domain</a>";
-
 		$what="BANNED:<br>\n";
 		$what.="vIPADD|".$countip."| [$unbanip][$whoisip][$testweb]<br>";
 		$what.="vAGENT|".getenv('HTTP_USER_AGENT')."|<br>\n";
@@ -118,27 +103,16 @@ function lib_log_count($user) {
 	$countit++;
 	$counttoday++;
 
-	if(stristr($refer,"google")) {
-		$google=1;
-		$banned=0;
-	}
-	if(stristr($refer,"aol"))    {
-		$aol=1;
-		$banned=0;
-	}
+	if(stristr($refer,"google")) { $google=1; $banned=0; }
+	if(stristr($refer,"aol"))    { $aol=1;    $banned=0; }
+	if(stristr(getenv('HTTP_USER_AGENT'),"google")) { $google=1; $banned=0; }
+	if(stristr($refer,"yahoo"))  { $yahoo=1; $banned=0;	}
+	if(stristr($refer,"referrerslist")) { $referrerslist=1; $banned=0; }
 	
-	if(stristr(getenv('HTTP_USER_AGENT'),"google")) {
-		$google=1;
-		$banned=0;
-	}
-	if(stristr($refer,"yahoo"))  {
-		$yahoo=1;
-		$banned=0;
-	}
-	if(stristr($refer,"referrerslist")) {
-		$referrerslist=1;
-		$banned=0;
-	}
+	$do_not_log=false;
+	if(stristr($refer,$RFS_SITE_URL)) $do_not_log=true;
+	if(stristr($countip,"127.0.0.1")) $do_not_log=true;
+	if($do_not_log==false) lib_log_add_entry($what);
 
 	// do not count search engine stuff, but log that it was searching the site
 	// msnbot
@@ -154,51 +128,34 @@ function lib_log_count($user) {
 	// CydralSpider
 	//if(stristr(getenv('HTTP_USER_AGENT'),"CydralSpider")!=FALSE) $what=" --------> CydralSpider Bot!";
 
-	// kill some things
-	//if(stristr($refer,"BCReporter")!=FALSE)        { $refok=false; lib_log_kill($what); }
-	//if(stristr($refer,".gov")) {$refok=false; lib_log_kill($what); }
-	//if(stristr(getenv('REMOTE_HOST'),".gov")) {$refok=false; lib_log_kill($what); }
-	//if(stristr(getenv('REMOTE_HOST'),".mil")) { $GLOBALS['noslow']="yes"; }
-
 	$url2=explode("/",$refer);
-
-	// if($url2['0']=="http:") {
-		
-		$url=$url2['0']."//".$url2['2']."/";
-
-		lib_log_add_entry($what);
-		
-		if($google)        $url="http://www.google.com/";
-		if($yahoo)         $url="http://www.yahoo.com/";
-		if($referrerslist) $url="http://www.referrerslist.com/";
-		if($aol)           $url="http://www.aol.com/";
-		
-		$result=lib_mysql_query("select * from `link_bin` where `link` = '$url'");
-		if(mysql_num_rows($result)) {
-			$link=mysql_fetch_object($result);
-			$link->referrals=$link->referrals+1;
-			lib_mysql_query("update `link_bin` set `referrals` = '$link->referrals' where `id` = '$link->id'");
-			$time=date("Y-m-d H:i:s");
-			lib_mysql_query("update `link_bin` set `bumptime` = '$time' where `id` = '$link->id'");
-		} else {
-			$time=date("Y-m-d H:i:s");
-			lib_mysql_query("insert into `link_bin` (`link`, `sname`, `time`, `bumptime`, `referrals`, `clicks`, `referral`, `hidden`, `category`,`reviewed`)
-					 values('$url','".$url2['2']."','$time','$time','1','0','yes','1','!!!TEMP!!!','no')");
-		}
+	$url=$url2['0']."//".$url2['2']."/";
 	
-	//}
-
-	if($url!="http://www.defectiveminds.com/")
-		if(getenv("REMOTE_ADDR")!=$countip) {
+	if($google)        $url="http://www.google.com/";
+	if($yahoo)         $url="http://www.yahoo.com/";
+	if($referrerslist) $url="http://www.referrerslist.com/";
+	if($aol)           $url="http://www.aol.com/";
+	
+	$result=lib_mysql_query("select * from `link_bin` where `link` = '$url'");
+	if(mysql_num_rows($result)) {
+		$link=mysql_fetch_object($result);
+		$link->referrals=$link->referrals+1;
+		lib_mysql_query("update `link_bin` set `referrals` = '$link->referrals' where `id` = '$link->id'");
+		$time=date("Y-m-d H:i:s");
+		lib_mysql_query("update `link_bin` set `bumptime` = '$time' where `id` = '$link->id'");
+	} 
+	else {
+		$time=date("Y-m-d H:i:s");
+		lib_mysql_query("insert into `link_bin` (`link`, `sname`, `time`, `bumptime`, `referrals`, `clicks`, `referral`, `hidden`, `category`,`reviewed`) values('$url','".$url2['2']."','$time','$time','1','0','yes','1','!!!TEMP!!!','no')");
 	}
-
 	if(date("d")==$countdate) {
 		$counttoday++;
 	}
 	return $countit;
 }
 /////////////////////////////////////////////////////////////////////////
-function lib_log_add_entry($logtext) { eval(lib_rfs_get_globals());
+function lib_log_add_entry($logtext) {
+	eval(lib_rfs_get_globals());
 	$logfile="$RFS_SITE_PATH/log/log.htm";
 	$fp2=fopen($logfile,"a");
 	if(empty($fp2)) $fp2=fopen($logfile,"w");
@@ -208,5 +165,4 @@ function lib_log_add_entry($logtext) { eval(lib_rfs_get_globals());
 		fclose($fp2);
 	}
 }
-
 ?>

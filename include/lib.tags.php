@@ -1,6 +1,7 @@
 <?
 
-function lib_ajax_javascript_tags() { eval(lib_rfs_get_globals());
+function lib_ajax_javascript_tags() { 
+	eval(lib_rfs_get_globals());
 echo '
 <script>
 function rfs_ajax_func_tags(name,ajv,table,ikey,kv,field,page,act,callback) {

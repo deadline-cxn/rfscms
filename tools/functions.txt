@@ -1,0 +1,592 @@
+../admin/adm.php:21:function adm_action_update() { eval(lib_rfs_get_globals());
+../admin/adm.php:35:function adm_action_f_banip() {
+../admin/adm.php:39:function adm_action_f_banref() {
+../admin/adm.php:43:function adm_action_f_bandomain_go() {
+../admin/adm.php:49:function adm_action_f_bandomain() {
+../admin/adm.php:57:function adm_action_f_unbanip() { 
+../admin/adm.php:61:function adm_action_f_unbanref() {
+../admin/adm.php:65:function adm_action_f_unbandomain() {
+../admin/adm.php:71:function adm_action_ban_management(){
+../admin/adm.php:154:function adm_action_addons() { eval(lib_rfs_get_globals());
+../admin/adm.php:193:function adm_action_registered_menu_items() { 
+../admin/adm.php:199:function adm_action_auth_config() { eval(lib_rfs_get_globals());
+../admin/adm.php:225:function sc_admin_module( $loc ) { eval( lib_rfs_get_globals() );
+../admin/adm.php:286:function adm_action_f_arrange_move_up() { eval(lib_rfs_get_globals());
+../admin/adm.php:317:function adm_action_f_arrange_delete_go() { eval(lib_rfs_get_globals());
+../admin/adm.php:321:function adm_action_f_arrange_delete() { eval(lib_rfs_get_globals());
+../admin/adm.php:329:function adm_action_f_module_add() { eval( lib_rfs_get_globals() );
+../admin/adm.php:339:function adm_action_f_module_chg_num() { 	eval( lib_rfs_get_globals() );
+../admin/adm.php:343:function adm_action_arrange() { eval( lib_rfs_get_globals() );
+../admin/adm.php:369:function adm_action_f_access_group_add() { eval(lib_rfs_get_globals());
+../admin/adm.php:374:function adm_action_f_access_group_edit_go() { eval(lib_rfs_get_globals());
+../admin/adm.php:385:function adm_action_f_access_group_edit() { eval(lib_rfs_get_globals()); 
+../admin/adm.php:420:function adm_action_f_access_group_add_user() { eval(lib_rfs_get_globals());
+../admin/adm.php:426:function adm_action_f_access_group_del_user() { eval(lib_rfs_get_globals());
+../admin/adm.php:440:function adm_action_f_access_group_delete() { eval(lib_rfs_get_globals());
+../admin/adm.php:447:function adm_action_f_access_group_delete_go() { eval(lib_rfs_get_globals());
+../admin/adm.php:452:function adm_action_access_groups() { eval(lib_rfs_get_globals());
+../admin/adm.php:503:function adm_action_phpmyadmin_out() { eval(lib_rfs_get_globals()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
+../admin/adm.php:506:/*function adm_action_form_builder() { eval(lib_rfs_get_globals());
+../admin/adm.php:513:/*function adm_action_new_page() { eval(lib_rfs_get_globals());
+../admin/adm.php:519:function adm_action_new_page_go() { eval(lib_rfs_get_globals());
+../admin/adm.php:527:function adm_action_email() { eval(lib_rfs_get_globals());
+../admin/adm.php:537:function adm_action_email_go() { eval(lib_rfs_get_globals());
+../admin/adm.php:545:function adm_db_query( $x ) { eval( lib_rfs_get_globals() );
+../admin/adm.php:550:function adm_action_f_rm_db_query() { eval(lib_rfs_get_globals());
+../admin/adm.php:571:function adm_action_db_query() { eval(lib_rfs_get_globals());
+../admin/adm.php:602:function adm_action_database_backup() { eval(lib_rfs_get_globals());
+../admin/adm.php:610:function eval_callback( $txt ) {
+../admin/adm.php:621:function adm_action_eval_form_go() {
+../admin/adm.php:629:function adm_action_eval_form() {
+../admin/adm.php:640:function adm_action_f_theme_edit_css() { eval(lib_rfs_get_globals());
+../admin/adm.php:738:function adm_action_f_theme_edit_php() { eval(lib_rfs_get_globals());
+../admin/adm.php:800:function adm_action_f_theme_edit_delete_go() { eval(lib_rfs_get_globals());
+../admin/adm.php:808:function adm_action_f_theme_edit_delete() { eval(lib_rfs_get_globals());
+../admin/adm.php:818:function adm_action_f_ajx_theme_edit_save_t_php() { eval(lib_rfs_get_globals());
+../admin/adm.php:832:function adm_action_f_theme_edit_t_php() { eval(lib_rfs_get_globals()); 
+../admin/adm.php:838:		function save_t_php(ta,taval) {
+../admin/adm.php:886:function adm_action_f_ajx_theme_edit_save_t_css() { eval(lib_rfs_get_globals());
+../admin/adm.php:900:function adm_action_f_theme_edit_t_css() { eval(lib_rfs_get_globals()); 
+../admin/adm.php:908:		function save_t_css(ta,taval) {
+../admin/adm.php:948:function adm_action_f_theme_clone_go() { eval(lib_rfs_get_globals());
+../admin/adm.php:966:function adm_action_f_theme_clone() { eval(lib_rfs_get_globals());
+../admin/adm.php:985:function adm_action_f_theme_edit() { eval(lib_rfs_get_globals());
+../admin/adm.php:1060:function adm_action_f_theme_view_classes() { eval(lib_rfs_get_globals());
+../admin/adm.php:1068:function adm_action_f_theme_add_css_value_go() { eval(lib_rfs_get_globals());
+../admin/adm.php:1084:function adm_action_f_theme_add_css_value() { eval(lib_rfs_get_globals());
+../admin/adm.php:1089:function adm_action_f_theme_css_checker() { eval(lib_rfs_get_globals());
+../admin/adm.php:1116:function adm_action_theme() { eval(lib_rfs_get_globals());
+../admin/adm.php:1151:function adm_action_f_addsitevar() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1161:function adm_action_f_upsitevar() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1171:function adm_action_f_delsitevar_go() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1175:function adm_action_f_delsitevar() { eval(lib_rfs_get_globals());
+../admin/adm.php:1180:function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1310:function adm_action_f_admin_menu_change_icon() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1314:function adm_action_f_admin_menu_edit_del_go() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1322:function adm_action_f_admin_menu_edit_del() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1336:function adm_action_f_menu_admin_add_link() { eval(lib_rfs_get_globals());
+../admin/adm.php:1348:function adm_action_f_admin_menu_edit_add() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1367:function adm_action_f_admin_change_category() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1374:function adm_action_f_admin_menu_edit_mod() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1393:function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(lib_rfs_get_globals());
+../admin/adm.php:1462:function adm_action_f_admin_menu_edit_entry() { eval(lib_rfs_get_globals());
+../admin/adm.php:1499:function adm_action_admin_menu_edit() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1639:function adm_action_f_menu_topedit_del_go() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1648:function adm_action_f_menu_topedit_del() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1660:function adm_action_f_menu_top_add_link() { eval(lib_rfs_get_globals());
+../admin/adm.php:1672:function adm_action_f_menu_topedit_add() { eval( lib_rfs_get_globals());
+../admin/adm.php:1687:function adm_action_f_menu_topedit_mod() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1700:function adm_action_menu_topedit() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1797:function adm_action_f_category_change_icon() {
+../admin/adm.php:1803:function adm_action_f_delete_category() {
+../admin/adm.php:1809:function adm_action_f_add_category() {
+../admin/adm.php:1815:function adm_action_f_rename_category() {
+../admin/adm.php:1824:function adm_action_edit_categories() {
+../admin/adm.php:1910:function adm_action_f_edit_users_go() {
+../admin/adm.php:1916:function adm_action_f_edit_users() { eval( lib_rfs_get_globals() );
+../admin/adm.php:1924:function adm_action_f_del_users_go() {
+../admin/adm.php:1934:function adm_action_f_del_users() {
+../admin/adm.php:1945:function adm_action_f_add_user() {
+../admin/adm.php:1952:function adm_action_user_edit() {
+../admin/adm.php:1982:/*function adm_action_f_rss_edit_go_edit() {
+../admin/adm.php:1988:function adm_action_f_rss_edit_go_add() {
+../admin/adm.php:1993:function adm_action_rss_edit() {
+../admin/adm.php:2021:function adm_action_edit_smilies() {
+../admin/adm.php:2112:function adm_action_f_domain_quiet() {
+../admin/adm.php:2116:function adm_action_log_rotate() {
+../admin/adm.php:2134:function adm_action_log_view() {
+../admin/adm.php:2143:function adm_action_counters() {
+../admin/adm.php:2172:// function adm_action_awards_edit() { 	echo "<h3>Award Editor</h3>\n"; 	sc_awards_list(); 	include("footer.php");	exit();}
+../admin/adm.php:2173:function adm_action_f_add_award_go() {
+../admin/adm.php:2184:function adm_action_f_edit_award_go() {
+../admin/adm.php:2199:function adm_action_edit_tags() { eval(lib_rfs_get_globals()); 
+../admin/adm.php:2236:function adm_action_disk_free() { eval(lib_rfs_get_globals());
+../admin/adm.php:2254:function adm_action_() { eval(lib_rfs_get_globals());
+../admin/adm.php:2361:function adm_menu_built_in() { eval(lib_rfs_get_globals());
+../admin/adm.php:2520:function finishadminpage() {
+../admin/lib.adm.php:3:function lib_ajax_callback_query_list() { eval( lib_rfs_get_globals()) ;
+../include/lib.buttons.php:9:function lib_button_image_sizeable($link,$name,$img,$x,$y) {
+../include/lib.buttons.php:13:function lib_button_image($link,$name,$img){ lib_button_image_sizeable($link,$name,$img,"",""); }
+../include/lib.buttons.php:15:function lib_button($link,$name) { echo lib_button_text($link,$name); } 
+../include/lib.buttons.php:17:function lib_button_text($button_link,$button_name) { eval(lib_rfs_get_globals());
+../include/lib.buttons.php:22:function lib_button_width_text($link,$name,$w) { return "<button id='button' style='font-size:x-small; width: $w"."px;' onclick=\"window.open('$link','_top')\">$name</button>"; }
+../include/lib.buttons.php:26:function lib_button_warn($link,$name) { echo "<button id='button' style='background-color: #ff0000; font-size:x-small;' onclick=\"window.open('$link','_top')\">$name</button>"; }
+../include/lib.access.php:7:/* function adm_action_ajax_testpage() { eval(lib_rfs_get_globals());
+../include/lib.access.php:24:function lib_access_add_method($func_page,$act) {
+../include/lib.access.php:31:function lib_access_check($func_page,$act){
+../include/lib.string.php:5:function lib_string_get_twitter_code($t) {
+../include/lib.string.php:13:function lib_string_get_email_code($t) {
+../include/lib.string.php:19:function lib_string_get_url_code($t){
+../include/lib.string.php:25:function lib_string_convert_smiles($text) {
+../include/lib.string.php:46:function lib_string_check_email($field) {
+../include/lib.string.php:51:function lib_string_check_name($field) {
+../include/lib.string.php:56:function lib_string_truncate($str,$max_len) {
+../include/lib.string.php:63:function lib_string_generate_password() {
+../include/lib.string.php:80:function lib_string_current_time($whattime) { // 0000-00-00 00:00:00
+../include/lib.string.php:88:function lib_string_number_to_text($x) { 
+../include/lib.string.php:94:function lib_string_hex_to_rgb($hex) {
+../include/lib.string.php:108:function lib_string_generate_long_uid($y) {
+../include/lib.string.php:113:function lib_string_generate_uid($y) {
+../include/lib.mysql.php:9:function lib_mysql_generate_content_ids() { eval(lib_rfs_get_globals());
+../include/lib.mysql.php:31:function lib_mysql_setvar($table,$var,$set,$name,$sname) {
+../include/lib.mysql.php:34:function lib_mysql_add($table, $field, $type, $default) {
+../include/lib.mysql.php:40:function lib_mysql_data_add($table,$field,$value,$id) {
+../include/lib.mysql.php:49:function lib_mysql_hidden_var($name,$value) { echo lib_mysql_hidden_var_r($name,$value); }
+../include/lib.mysql.php:50:function lib_mysql_hidden_var_r($name,$value) { return "<input type=\"hidden\" name=\"$name\" value=\"$value\">"; }
+../include/lib.mysql.php:51:function lib_mysql_copy_row($table,$id) { lib_mysql_query("CREATE TEMPORARY TABLE `tmp` SELECT * FROM `$table` WHERE `id` = '$id'; ALTER TABLE `tmp` DROP `id`; INSERT INTO `$table` SELECT * FROM `tmp`;"); }
+../include/lib.mysql.php:52:function lib_mysql_row_count($table) { $r=lib_mysql_query("select * from `$table`"); $n=mysql_num_rows($r); return $n; }
+../include/lib.mysql.php:53:function lib_mysql_query_user_db($q){
+../include/lib.mysql.php:57:function lib_mysql_query_other_db($db,$host,$user,$pass,$query){
+../include/lib.mysql.php:63:function lib_mysql_delimiter($t){
+../include/lib.mysql.php:70:function lib_mysql_backup_database($filename) { eval(lib_rfs_get_globals());
+../include/lib.mysql.php:85:function lib_mysql_open_database(){
+../include/lib.mysql.php:91:function lib_mysql_query($query) {	
+../include/lib.mysql.php:98:function lib_mysql_open_database_new() {
+../include/lib.mysql.php:108:function lib_mysql_query_new($query) {
+../include/lib.mysql.php:112:function lib_mysql_describe_table($table){
+../include/lib.mysql.php:120:function lib_mysql_table_exists($table) {
+../include/lib.mysql.php:124:function lib_mysql_new_table($table){
+../include/lib.mysql.php:135:function lib_mysql_scrub($table,$group) {
+../include/lib.mysql.php:149:function lib_mysql_fetch_one_object($query){ $res=lib_mysql_query($query); if($res) return mysql_fetch_object($res); else return $res; }
+../include/lib.mysql.php:150:function lib_mysql_table_to_array($table,$key,$kv,$field){
+../include/lib.mysql.php:158:function lib_mysql_update_database($table,$key_field,$key_value,$md5_password) {
+../include/lib.mysql.php:184:function lib_mysql_update_database_2($table,$key_field,$key_value){
+../include/lib.mysql.php:201:function lib_mysql_database_query($query,$becho){
+../include/lib.mysql.php:260:function lib_mysql_database_query_form($page,$action,$query){
+../include/lib.mysql.php:270:function lib_mysql_dump_table($table,$showform,$key,$search){
+../include/lib.ajax.php:3:function lib_ajax_spinner() { eval(lib_rfs_get_globals()); 
+../include/lib.ajax.php:7:function lib_ajax_callback_image(){ eval(lib_rfs_get_globals());
+../include/lib.ajax.php:21:function lib_ajax_callback_file(){ eval(lib_rfs_get_globals()); exit; }
+../include/lib.ajax.php:22:function lib_ajax_callback_delete() { eval(lib_rfs_get_globals());
+../include/lib.ajax.php:28:function lib_ajax_callback(){ eval(lib_rfs_get_globals());
+../include/lib.ajax.php:41:function lib_ajax_javascript() { eval(lib_rfs_get_globals());
+../include/lib.ajax.php:46:function rfs_ajax_hide(x) { var div = document.getElementById(x); div.style.display = "none"; };
+../include/lib.ajax.php:47:function rfs_ajax_func(name, ajv, table, ikey, kv, field, page, act, callback) {
+../include/lib.ajax.php:76:function rfs_ajax($data,$size,$properties,$access,$callback) {
+../include/lib.ajax.php:94:function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_properties,$rfaapage,$rfaact,$rfacallback ) { eval(lib_rfs_get_globals());
+../include/lib.social.php:5:function lib_social_stumble_upon_badge($url) {
+../include/lib.social.php:17:function lib_social_paypal() { eval(lib_rfs_get_globals());
+../include/lib.social.php:25:function lib_social_paypal2() { eval(lib_rfs_get_globals());
+../include/lib.social.php:35:function module_share_bar() {
+../include/lib.social.php:52:function lib_social_share_bar($u,$t) { eval(lib_rfs_get_globals());
+../include/lib.social.php:80:function lib_social_share_bar2($u,$t) {
+../include/lib.social.php:93:function sc_social_buttons(){
+../include/lib.social.php:102:function sc_google_adsense($x){
+../include/lib.social.php:118:function sc_google_adsense_2(){ eval(lib_rfs_get_globals());
+../include/lib.social.php:132:function sc_google_analytics(){
+../include/lib.social.php:149:function sc_reddit() { 
+../include/lib.social.php:166:function sc_google_plus_badge(){
+../include/lib.social.php:172:function sc_google_plus_badge2(){
+../include/lib.social.php:179:function sc_google_plus($url){
+../include/lib.social.php:192:function sc_tweet($url,$hash,$text){	
+../include/lib.social.php:211:function sc_facebook_likebox($url){
+../include/lib.social.php:230:function sc_facebook_like($url){
+../include/lib.social.php:251:function sc_facebook_like_little($url){    
+../include/lib.social.php:271:function sc_facebook_like2(){
+../include/lib.social.php:277:function sc_twitter_follow($username) {	
+../include/lib.social.php:295:function sc_facebook_login() { echo sc_facebook_login_r(); }
+../include/lib.social.php:296:function sc_facebook_login_r() {
+../include/lib.social.php:312:function sc_facebook_comments($page) {
+../include/lib.social.php:336:function sc_follow_vertical_small() {
+../include/lib.social.php:359:function sc_follow_vertical() {
+../include/lib.social.php:384:function sc_follow_horizontal_small() {
+../include/lib.social.php:408:function sc_follow_horizontal() {
+../include/lib.log.php:5:function lib_log_kill($what) {
+../include/lib.log.php:15:function lib_log_count($user) {
+../include/lib.log.php:201:function lib_log_add_entry($logtext) { eval(lib_rfs_get_globals());
+../include/lib.flash.php:6:function lib_flash_embed_nosize($swf){
+../include/lib.flash.php:21:function lib_flash_embed_color($swf,$bgcolor,$width,$height){
+../include/lib.flash.php:29:function lib_flash_embed_white($swf,$width,$height){
+../include/lib.flash.php:37:function lib_flash_embed($swf,$width,$height){
+../include/lib.flash.php:51:function lib_flash_embed_align($swf,$width,$height,$align){
+../include/lib.flash.php:65:function lib_flash_embed_code($swf,$width,$height){
+../include/lib.debug.php:11:function lib_debug_on()  { if(lib_access_check("debug","view")) $_SESSION['debug_msgs']=true; }
+../include/lib.debug.php:12:function lib_debug_off() { $_SESSION['debug_msgs']=false; }
+../include/lib.debug.php:22:function d_echo($t){
+../include/lib.debug.php:36:function lib_debug_tail_error_log() { global $RFS_SITE_ERROR_LOG;	
+../include/lib.debug.php:55:function lib_debug_header($quiet) { eval(lib_rfs_get_globals()); 
+../include/lib.debug.php:71:function lib_debug_footer($quiet) { eval(lib_rfs_get_globals());
+../include/lib.tags.php:3:function lib_ajax_javascript_tags() { eval(lib_rfs_get_globals());
+../include/lib.tags.php:6:function rfs_ajax_func_tags(name,ajv,table,ikey,kv,field,page,act,callback) {
+../include/lib.tags.php:34:function lib_ajax_callback_tags_new_tag() { eval(lib_rfs_get_globals());
+../include/lib.tags.php:41:function lib_ajax_callback_tags_add_tag() { eval(lib_rfs_get_globals());
+../include/lib.tags.php:65:function lib_tags_add_link($table,$id) {
+../include/lib.tags.php:108:function lib_tags_add_tag($tag) {
+../include/lib.tags.php:114:function lib_tags_show_tags($table,$id) {
+../include/lib.images.php:28:function lib_images_select($npath, $rtnpage, $rtnact, $table, $id, $image_field) { eval(lib_rfs_get_globals());
+../include/lib.images.php:91:function lib_images_html2rgb($color) {
+../include/lib.images.php:98:function lib_images_rgb2html($r, $g=-1, $b=-1){
+../include/lib.images.php:111:function lib_images_thumb($zimg,$w,$h,$s) { eval(lib_rfs_get_globals());
+../include/lib.images.php:115:function lib_images_thumb_raw($zimg,$w,$h,$s) { eval(lib_rfs_get_globals());
+../include/lib.images.php:119:function lib_images_text_s($text,$font,$r,$g,$b){
+../include/lib.images.php:122:function lib_images_text_s_rt($text,$font,$r,$g,$b){
+../include/lib.images.php:125:function lib_images_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight) {
+../include/lib.images.php:128:function lib_images_text_rt( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight) { eval(lib_rfs_get_globals());
+../include/lib.images.php:132:function lib_images_text_small_raw($text,$font) { eval(lib_rfs_get_globals());
+../include/lib.images.php:135:function lib_images_percent_bar($percent){ eval(lib_rfs_get_globals());
+../include/lib.images.php:138:function lib_images_webpage_to_png($webpage) { eval(lib_rfs_get_globals());
+../include/lib.helpers.php:2:function mailgo($email,$message,$subject) {
+../include/lib.helpers.php:11:function mailto($user,$domain) { echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=mailto.php?user=$user&domain=$domain\">"; }
+../include/lib.helpers.php:12:function sc_togglediv_ne($x) {
+../include/lib.helpers.php:19:function sc_togglediv($x) {
+../include/lib.helpers.php:22:function sc_togglediv_start_ne($x,$y,$folded) {
+../include/lib.helpers.php:30:function sc_togglediv_start($x,$y,$folded) {
+../include/lib.helpers.php:33:function sc_togglediv_end_ne() {
+../include/lib.helpers.php:36:function sc_togglediv_end() {
+../include/lib.helpers.php:40:function sc_javascript() { eval(lib_rfs_get_globals());
+../include/lib.helpers.php:44:function showhide(layer_ref) {
+../include/lib.forms.php:6:function adm_action_f_rfs_db_element_ed1() { eval(lib_rfs_get_globals());
+../include/lib.forms.php:20:function adm_action_f_rfs_db_element_ed2() { eval(lib_rfs_get_globals());
+../include/lib.forms.php:24:function adm_action_f_rfs_db_element_del1($rtnpage,$rtnact,$table,$id) {
+../include/lib.forms.php:44:function adm_action_f_rfs_db_element_del2($rtnpage,$rtnact,$table,$id) { eval(lib_rfs_get_globals());
+../include/lib.forms.php:48:function rfs_db_element_edit($label,$rtnpage,$rtnact,$table, $id) { eval(lib_rfs_get_globals());
+../include/lib.forms.php:53:function lib_forms_join_vars($x){
+../include/lib.forms.php:61:function lib_forms_optionize($return_page,$hiddenvars,$table,$key,$use_id_method,$default,$on_change_method) {
+../include/lib.forms.php:271:function lib_forms_optionize_file( $select_name, $file,	$default )  {
+../include/lib.forms.php:283:function lib_forms_optionize_folder($select_name,$folder,$wildcard,$include_dirs,$include_files,$default ) {
+../include/lib.forms.php:324:function lib_forms_build_add($table){
+../include/lib.forms.php:329:function lib_forms_build_quick($hiddenvars,$submit){
+../include/lib.forms.php:337:function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvars,$svarf,$tabrefvars,$width,$submit) {
+../include/lib.forms.php:791:function lib_forms_option_countries() {
+../include/lib.forms.php:990:function lib_forms_css_file($css_file,$returnpage,$returnaction,$hiddenvars) { eval(lib_rfs_get_globals());
+../include/lib.forms.php:1115:function lib_forms_php_file($php_file,$returnpage,$returnaction,$hiddenvars) { eval(lib_rfs_get_globals());
+../include/lib.forms.php:1223:function lib_forms_codearea($id,$rows,$cols,$name,$indata){ eval(lib_rfs_get_globals());
+../include/lib.forms.php:1250:		function my_save(id, content){
+../include/lib.forms.php:1254:		function my_load(id){
+../include/lib.forms.php:1255:			editAreaLoader.setValue(id, "The content is loaded from the load_callback function into EditArea");
+../include/lib.forms.php:1257:		function test_setSelectionRange(id){
+../include/lib.forms.php:1260:		function test_getSelectionRange(id){
+../include/lib.forms.php:1264:		function test_setSelectedText(id){
+../include/lib.forms.php:1268:		function test_getSelectedText(id){
+../include/lib.forms.php:1271:		function editAreaLoaded(id){
+../include/lib.forms.php:1277:		function open_file1(){
+../include/lib.forms.php:1284:		function open_file2(){
+../include/lib.forms.php:1290:		function toogle_editable(id){
+../include/lib.forms.php:1296:	//// function close_file1(){	editAreaLoader.closeFile("example_2", "to\\ Ã© # â¬ to");}
+../include/lib.forms.php:1312:function lib_forms_warn($x) { 	eval(lib_rfs_get_globals()); 
+../include/lib.forms.php:1315:function lib_forms_inform($x) { eval(lib_rfs_get_globals());
+../include/lib.forms.php:1319:function lib_forms_question($inquest) {
+../include/lib.forms.php:1328:function lib_forms_system_message() { eval(lib_rfs_get_globals());
+../include/lib.forms.php:1338:function lib_forms_info($t,$c,$c2) {
+../include/lib.forms.php:1341:function lib_forms_confirm($message,$page,$hiddenvars){
+../include/lib.forms.php:1362:function lib_forms_theme_select() { eval(lib_rfs_get_globals());
+../include/lib.modules.php:6:function lib_modules_get_array() {
+../include/lib.modules.php:24:function lib_modules_register($x) { eval(lib_rfs_get_globals());
+../include/lib.modules.php:28:function lib_modules_installed($x) { eval(lib_rfs_get_globals());
+../include/lib.modules.php:32:function lib_modules_show_registered() {
+../include/lib.modules.php:41:function lib_modules_array() { eval(lib_rfs_get_globals());
+../include/lib.modules.php:62:function lib_modules_draw($location) {
+../include/lib.file.php:7:function lib_file_getfiletype($filen){
+../include/lib.file.php:12:function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$key) { eval(lib_rfs_get_globals());
+../include/lib.file.php:61:function lib_file_sizefile($bytesize) {
+../include/lib.file.php:74:function lib_file_folder_to_array($folder) {
+../include/lib.file.php:94:function lib_file_get_folder_files($folder){
+../include/lib.file.php:106:function lib_file_multi_rename($folder,$old_pattern,$new_pattern) {
+../include/lib.file.php:121:function lib_file_echo_file($file) { eval(lib_rfs_get_globals()); 
+../include/lib.file.php:130:function lib_file_file_get_readme($file_name) { eval (lib_rfs_get_globals());
+../include/lib.file.php:200:function lib_file_touch_dir($dir) { eval(lib_rfs_get_globals());
+../include/lib.users.php:2:function lib_users_age($birthDay) { // date in yyyy-mm-dd format
+../include/lib.users.php:7:function lib_users_online() {
+../include/lib.users.php:53:function lib_users_logged_in() {
+../include/lib.users.php:58:function lib_users_logged_details() {
+../include/lib.users.php:73:function lib_users_avatar_code($user) { eval(lib_rfs_get_globals());
+../include/lib.users.php:87:function lib_users_set_var($name,$var,$set) {
+../include/lib.users.php:90:function lib_users_get_name($x){
+../include/lib.users.php:99:function lib_users_create($name,$pass,$e){
+../include/lib.users.php:103:function lib_users_alias($x) {
+../include/lib.users.php:111:function lib_users_get_data($name){
+../include/lib.users.php:141:function lib_users_get_databyfield($field,$data){
+../include/lib.users.php:145:function lib_users_add_downloads($user,$points){
+../include/lib.themes.php:3:function lib_themes_get_array() {
+../include/lib.themes.php:20:function lib_themes_get_image($x) {
+../include/lib.domain.php:7:function lib_domain_phpself() { eval(lib_rfs_get_globals()); 
+../include/lib.domain.php:12:function lib_domain_canonical_url(){
+../include/lib.domain.php:20:function lib_domain_gotopage($x) {
+../include/lib.domain.php:24:function lib_domain_getdomain($link) {
+../include/lib.domain.php:30:function lib_domain_ban_domain($domain) {
+../include/lib.domain.php:37:function lib_domain_ban_ref($refer){
+../include/lib.domain.php:42:function lib_domain_ban_ip($ip){
+../include/lib.domain.php:47:function lib_domain_unban_domain($domain){
+../include/lib.domain.php:53:function lib_domain_unban_ref($refer){
+../include/lib.domain.php:57:function lib_domain_unban_ip($ip){
+../include/lib.domain.php:61:function lib_domain_banned_domain($domain){
+../include/lib.domain.php:67:function lib_domain_banned_ref($refer){
+../include/lib.domain.php:73:function lib_domain_banned_ip($ip){
+../include/md5.js:2:function md5 (str) {
+../include/md5.js:17:  var rotateLeft = function (lValue, iShiftBits) {
+../include/md5.js:21:  var addUnsigned = function (lX, lY) {
+../include/md5.js:42:  var _F = function (x, y, z) {
+../include/md5.js:45:  var _G = function (x, y, z) {
+../include/md5.js:48:  var _H = function (x, y, z) {
+../include/md5.js:51:  var _I = function (x, y, z) {
+../include/md5.js:55:  var _FF = function (a, b, c, d, x, s, ac) {
+../include/md5.js:60:  var _GG = function (a, b, c, d, x, s, ac) {
+../include/md5.js:65:  var _HH = function (a, b, c, d, x, s, ac) {
+../include/md5.js:70:  var _II = function (a, b, c, d, x, s, ac) {
+../include/md5.js:75:  var convertToWordArray = function (str) {
+../include/md5.js:98:  var wordToHex = function (lValue) {
+../include/lib.div.php:6:function lib_div($t) {	
+../include/lib.menus.php:9:function lib_menus_register($short,$url) { 
+../include/lib.menus.php:13:function lib_menus_options() {
+../include/lib.menus.php:37:function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
+../include/lib.rfs.php:7:function lib_rfs_get_globals() {
+../include/lib.rfs.php:73:function lib_rfs_var($x) {
+../include/lib.rfs.php:77:function lib_rfs_do_action() {
+../include/lib.rfs.php:87:function lib_rfs_maintenance() { eval(lib_rfs_get_globals());
+../include/lib.rfs.php:112:function lib_rfs_flush_buffers(){ 
+../include/lib.rfs.php:118:function lib_rfs_bool_true($x) {
+../include/lib.rfs.php:127:function lib_rfs_echo($t) {	echo lib_rfs_get($t); }
+../include/lib.rfs.php:128:function lib_rfs_get($t) {
+../include/lib.genm.php:12:function lib_genmlog($x){ eval(lib_rfs_get_globals());
+../include/lib.genm.php:20:function lib_genm_imgtype($x){
+../include/lib.genm.php:25:function lib_genm_img_out($x) {
+../include/lib.genm.php:31:function lib_genm_imgload($x){
+../include/lib.genm.php:50:function lib_genm_newimg($w,$h){
+../include/lib.genm.php:61:function lib_genm_scale($x,$s) {
+../include/lib.genm.php:64:function lib_genm_print_rot_outlined($image,$font_size,$ocolor,$color,$font,$text,$start_x,$start_y,$max_width,$rot) {
+../include/lib.genm.php:73:function lib_genm_print_rot($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width,$rot) {
+../include/lib.genm.php:109:function lib_genm_print_outlined($image, $font_size, $ocolor, $color, $font, $text, $start_x, $start_y, $max_width) {
+../include/lib.genm.php:118:function lib_genm_print($image, $font_size, $color, $font, $text, $start_x, $start_y, $max_width) {
+../include/lib.genm.php:156:function lib_genm_imageline( $img,$x,$y,$x2,$y2,$color,$thickness) {
+../include/lib.network.php:7:function echo_updown($x){
+../include/lib.network.php:22:function sc_ping($ip){
+../include/lib.network.php:35:function ping($host, $port, $timeout) {
+../include/lib.network.php:43:function sc_show_galaga_status(){
+../include/lib.network.php:56:function sc_valid_ip($ip_addr){
+../install/install.php:13:function install_mysql_open_database(){
+../install/install.php:21:function install_mysql_query($query) {
+../install/install.php:28:function install_mysql_query_user_db($q){
+../install/install.php:32:function install_mysql_query_other_db($db,$host,$user,$pass,$query){
+../modules/linkbin/linkbin.php:4:function linkbin_finish() { include("footer.php"); }
+../modules/linkbin/linkbin.php:5:function linkbin_showaddform() {
+../modules/linkbin/linkbin.php:21:function linkbin_action_addlink() { 
+../modules/linkbin/linkbin.php:25:function linkbin_action_addlinkgo() { 
+../modules/linkbin/linkbin.php:36:function linkbin_action_modifylinknow() {
+../modules/linkbin/linkbin.php:63:function linkbin_action_addlink2bin() {
+../modules/linkbin/linkbin.php:70:function linkbin_action_editlinkbin() {
+../modules/linkbin/linkbin.php:128:function linkbin_action_() {
+../modules/linkbin/module.linkbin.php:6:function module_link_friends($x) {
+../modules/linkbin/module.linkbin.php:25:function adm_action_f_add_link() {
+../modules/linkbin/module.linkbin.php:36:function adm_action_f_modify_link() {
+../modules/linkbin/module.linkbin.php:73:function adm_action_edit_linkbin() {
+../modules/videos/module.videos.php:14:function module_videos($x) { eval(lib_rfs_get_globals());
+../modules/videos/videos.php:5:function videos_buttons() {
+../modules/videos/videos.php:11:function videos_pagefinish(){
+../modules/videos/videos.php:16:function videos_action_modifyvideo() {
+../modules/videos/videos.php:48:function videos_action_modifygo() { 
+../modules/videos/videos.php:72:function videos_action_submitvid_youtube_go() {
+../modules/videos/videos.php:111:function videos_action_submitvidgo() {
+../modules/videos/videos.php:138:function videos_action_submitvid() { 
+../modules/videos/videos.php:188:function videos_action_removego() { 
+../modules/videos/videos.php:196:function videos_action_removevideo() { 
+../modules/videos/videos.php:210:function videos_action_view($id) {
+../modules/videos/videos.php:259:function videos_action_viewcat($cat) {
+../modules/videos/videos.php:302:function videos_action_random() { 
+../modules/videos/videos.php:316:function videos_action_view_cats() {
+../modules/videos/videos.php:362:function videos_action_() { 
+../modules/profile/profile.php:98:function pro_nav_bar($data) {
+../modules/profile/profile.php:135:function profile_action_() {
+../modules/profile/profile.php:141:function profile_show_form() {
+../modules/profile/module.profile.php:8:function module_profile($x) { eval(lib_rfs_get_globals());
+../modules/wiki/module.wiki.php:14:function module_wiki($x) { eval(lib_rfs_get_globals());
+../modules/wiki/module.wiki.php:32:function wiki_img($text) {
+../modules/wiki/module.wiki.php:44:function wikiimg($text) { eval(lib_rfs_get_globals());    
+../modules/wiki/module.wiki.php:98:function wikicode($text) {
+../modules/wiki/module.wiki.php:139:function wikitext($text) { eval(lib_rfs_get_globals());
+../modules/wiki/rfswiki.php:26:    function rfs_query($query)  {
+../modules/wiki/rfswiki.php:36:function rfs_time($whattime){
+../modules/forums/forums.php:8:function forum_put_buttons($forum_which) { eval(lib_rfs_get_globals());
+../modules/forums/forums.php:29:function bumpthread($id) { $bumptime=date("Y-m-d H:i:s"); lib_mysql_query("update forum_posts set `bumptime`='$bumptime' where id='$id'"); }
+../modules/forums/forums.php:30:function forums_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; forums_action_forum_showposts(); }
+../modules/forums/forums.php:31:function forums_action_forum_admin_off() { $_SESSION['forum_admin']="no";  forums_action_forum_showposts(); }
+../modules/forums/forums.php:42:function forums_action_start_thread() { eval(lib_rfs_get_globals());
+../modules/forums/forums.php:77:function forums_action_start_thread_go() { eval(lib_rfs_get_globals());
+../modules/forums/forums.php:110:function show1message($post) {
+../modules/forums/forums.php:147:function forums_action_get_thread($thread) {
+../modules/forums/forums.php:202:function forums_action_move_thread() { eval(lib_rfs_get_globals());
+../modules/forums/forums.php:314:function forums_action_forum_list() {
+../modules/forums/forums.php:458:function forums_action_forum_showposts() { eval(lib_rfs_get_globals());
+../modules/forums/forums.php:600:function forums_action_() {
+../modules/forums/module.forums.php:8:function module_forum_threads($x) { eval(lib_rfs_get_globals());
+../modules/forums/module.forums.php:33:function adm_action_f_add_forum() { eval( lib_rfs_get_globals() );
+../modules/forums/module.forums.php:38:function adm_action_f_add_forum_folder() { eval( lib_rfs_get_globals() );
+../modules/forums/module.forums.php:42:function adm_action_forum_admin() { eval( lib_rfs_get_globals() );
+../modules/messages/module.messages.php:6:function adm_action_lib_messages_messages() { eval(lib_rfs_get_globals());
+../modules/messages/module.messages.php:10:function get_unread_messages() { eval(lib_rfs_get_globals());
+../modules/messages/module.messages.php:27:function send_message($to,$from,$subject,$message) {
+../modules/messages/module.messages.php:36:function send_all($from,$subject,$message) {
+../modules/messages/module.messages.php:46:function module_messages_link() { eval(lib_rfs_get_globals());
+../modules/messages/module.messages.php:64:function module_messages_indicator_small() { eval(lib_rfs_get_globals());
+../modules/messages/module.messages.php:99:function module_latest_messages($x) { eval(lib_rfs_get_globals());
+../modules/messages/module.messages.php:122:function messages_f_send($to,$from,$title,$message) { eval(lib_rfs_get_globals()); 
+../modules/memes/module.memes.php:8:function module_memes($x) { eval(lib_rfs_get_globals());
+../modules/memes/module.memes.php:23:function sc_show1meme($inmid) { eval(lib_rfs_get_globals());
+../modules/memes/module.memes.php:54:function sc_show1minimeme($inmid) { eval(lib_rfs_get_globals());
+../modules/memes/memes.php:17:function memes_action_new_meme() { eval(lib_rfs_get_globals());
+../modules/memes/memes.php:35:function memes_action_new_meme_go() { eval(lib_rfs_get_globals());
+../modules/memes/memes.php:87:function memes_action_meme_delete() { eval(lib_rfs_get_globals());
+../modules/memes/memes.php:104:function memes_action_meme_delete_go() { eval(lib_rfs_get_globals());
+../modules/memes/memes.php:112:function memes_action_meme_save() { eval(lib_rfs_get_globals());
+../modules/memes/memes.php:119:function memes_action_memegenerate() { eval(lib_rfs_get_globals());
+../modules/memes/memes.php:172:function memes_action_memeedit() { eval(lib_rfs_get_globals()); 
+../modules/memes/memes.php:277:function memes_action_muv() { eval(lib_rfs_get_globals()); 
+../modules/memes/memes.php:292:function memes_action_mdv() { eval(lib_rfs_get_globals());
+../modules/memes/memes.php:308:function memes_action_showmemes(){ eval(lib_rfs_get_globals());
+../modules/memes/memes.php:358:function memes_action_() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:10:function todo_list_action_f_rfs_db_element_del1() { adm_action_f_rfs_db_element_del1(); }
+../modules/todo_list/todo_list.php:11:function todo_list_action_f_rfs_db_element_ed1() { adm_action_f_rfs_db_element_ed1(); }
+../modules/todo_list/todo_list.php:13:function todo_list_action_() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:32:function todo_list_status_icon() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:36:function todo_list_action_open_task_go() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:45:function todo_list_action_open_task() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:62:function todo_list_action_search() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:69:function todo_list_action_edit_task_go() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:74:function todo_list_action_edit_task() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:95:function todo_list_action_view_todo_list($list) { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:217:function todo_list_action_new_todo_list_go() { eval(lib_rfs_get_globals());
+../modules/todo_list/todo_list.php:221:function todo_list_action_new_todo_list() { eval(lib_rfs_get_globals());
+../modules/todo_list/module.todo_list.php:8:function module_todo_list($x) { eval(lib_rfs_get_globals());
+../modules/pictures/module.pictures.php:8:function module_pictures($x) { eval(lib_rfs_get_globals());
+../modules/pictures/module.pictures.php:35:function pics_addorphans($folder,$cat) { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:39:function pictures_show_buttons() { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:74:function pictures_action_showmemes() { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:80:function pictures_action_uploadpic() { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:125:function pictures_action_uploadpicgo(){ eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:161:function pictures_action_removepicture() { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:188:function pictures_action_removego() { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:211:function pictures_action_addorphans(){ eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:225:function pictures_action_sorttemp() { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:347:function pictures_action_modifypicture() { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:411:function pictures_action_random() { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:425:function pictures_action_view($id) { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:553:function pictures_action_viewcat($cizat) { eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:624:function pictures_action_viewcats(){ eval(lib_rfs_get_globals());
+../modules/pictures/pictures.php:679:function pictures_action_() { eval(lib_rfs_get_globals());
+../modules/video_wall/video_wall.php:26:function save_vw(){
+../modules/video_wall/video_wall.php:43:function load_vw($data){
+../modules/news/module.news.php:6:function news_buttons() { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:12:function adm_action_lib_news_news_submit() { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:15:function adm_action_lib_news_news_edit() { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:18:function module_news_list($x) { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:49:function module_news_list_popular($x) { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:83:function module_news_top_story() {
+../modules/news/module.news.php:86:function module_news_blog_style($x) { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:96:function sc_getnewstopstory(){
+../modules/news/module.news.php:101:function sc_getnewsdata($news){
+../modules/news/module.news.php:107:function sc_getnewslist($newssearch) {
+../modules/news/module.news.php:124:function sc_get_news_headline($id){
+../modules/news/module.news.php:129:function sc_get_top_news_id(){
+../modules/news/module.news.php:134:function sc_show_top_news() {
+../modules/news/module.news.php:138:function sc_show_news($nid) { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:214:function put_news_image($fname) { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:228:function updatenews($nid){ 	eval(lib_rfs_get_globals());
+../modules/news/module.news.php:261:function deletenews($nid) { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:270:function deletenewsgo($nid){ 	eval(lib_rfs_get_globals());
+../modules/news/module.news.php:277:function editnews($nid) { eval(lib_rfs_get_globals());
+../modules/news/module.news.php:448:function shownews() { eval(lib_rfs_get_globals());
+../modules/system/module.system.php:3:function module_system_linefeed($x) { for($i=0;$i<$x;$i++) echo "<br>"; }
+../modules/system/module.system.php:4:function module_system_custom($x) { echo $x; }
+../modules/courses/module.courses.php:23:// add an admin function to be visible in the admin menu
+../modules/courses/module.courses.php:24:function adm_action_lib_courses_courses() { eval(lib_rfs_get_globals());
+../modules/courses/module.courses.php:28:function module_course_list($x) { eval(lib_rfs_get_globals());
+../modules/courses/module.courses.php:51:function module_course_admin() { eval(lib_rfs_get_globals());
+../modules/courses/module.courses.php:59:function sc_course_components_list($id) { eval(lib_rfs_get_globals());
+../modules/courses/module.courses.php:70:function lib_ajax_callback_component_add() {
+../modules/courses/courses.php:6:function courses_action_() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:11:function courses_action_edit_list() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:23:function courses_action_add_component_type() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:30:function courses_action_edit_component_types_image() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:36:function courses_action_edit_component_types() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:63:function courses_action_edit_components() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:76:function courses_action_add_course() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:90:function lib_ajax_callback_courses_action_ccl() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:95:function courses_action_edit() { eval(lib_rfs_get_globals());
+../modules/courses/courses.php:120:			function compup(x) {
+../modules/courses/courses.php:148:function courses_action_run() { eval(lib_rfs_get_globals());
+../modules/exams/module.exams.php:22:function adm_action_lib_exams_exam_edit() { eval(lib_rfs_get_globals());
+../modules/exams/module.exams.php:26:function exams_convert_question_id_to_sequence($question_id) {
+../modules/exams/module.exams.php:35:function exams_get_last_question_answered($user,$exam_id) {
+../modules/exams/module.exams.php:45:function exams_get_total_questions($exam_id) {
+../modules/exams/module.exams.php:51:function exams_get_total_questions_answered($user,$exam_id) {
+../modules/exams/module.exams.php:59:function exams_get_completed_prct($user,$exam_id) {
+../modules/exams/module.exams.php:72:function exams_get_prct($user,$exam_id) {
+../modules/exams/module.exams.php:84:function exams_get_score($user,$exam_id) {		
+../modules/exams/module.exams.php:90:function exams_wipe_user_exam($user,$exam_id) {
+../modules/comics/comics.php:43:function renumber_pages($id) {
+../modules/comics/comics.php:54:function template_mini_preview($id) { eval(lib_rfs_get_globals());
+../modules/comics/comics.php:76:function template_full_preview($id) { eval(lib_rfs_get_globals());
+../modules/comics/comics.php:95:function getcomic($title,$volume,$issue) {
+../modules/comics/module.comics.php:12:function module_comics($x) { eval(lib_rfs_get_globals());
+../modules/comics/module.comics.php:33:function sc_comics_mini_preview_link($id,$link){
+../modules/comics/module.comics.php:61:function sc_comics_page_mini_preview($id){
+../modules/comics/module.comics.php:87:function page_full_view($id){
+../modules/rss/module.rss.php:8:function module_rss() { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:57:function no_func($wbna){
+../modules/wab/wab.php:60:        $ec=" function $wbna() { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:61:				echo \"<p class=warning>$wbna() function is undefined!</p>\";
+../modules/wab/wab.php:96:function wab_engine_action_(){ eval(lib_rfs_get_globals());
+../modules/wab/wab.php:133:function wab_engine_action_edcodego() { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:143:function wab_engine_action_edcode() { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:155:            "code=function $_function() {
+../modules/wab/wab.php:164:function wab_engine_action_add() { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:176:function wab_engine_action_add_form() { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:183:function wab_engine_action_editapp() { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:201:function wab_engine_action_add_database() { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:226:function wab_engine_action_hide_wab_admin_menu() {
+../modules/wab/wab.php:231:function wab_engine_action_show_wab_admin_menu() {
+../modules/wab/wab.php:236:function wab_engine_action_add_function() {
+../modules/wab/wab.php:244:function wab_database($id) { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:269:function wab_variables($id) { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:281:function wab_functions($id) { eval(lib_rfs_get_globals());
+../modules/wab/wab.php:303:function wab_engine_actions($id) {
+../modules/wab/wab.php:313:function wab_form($action,$vars,$width,$submittxt) { eval(lib_rfs_get_globals());
+../modules/wab/module.wab.php:6:function adm_action_lib_wab_wab() { eval(lib_rfs_get_globals());
+../modules/top_referrers/module.top_referrers.php:6:function module_top_referrers($x) { eval(lib_rfs_get_globals());
+../modules/top_referrers/linkbin.php:4:function linkbin_showaddform()
+../modules/xplorer/xplorer.php:95:function xp_mysql_install()
+../modules/xplorer/xplorer.php:135:function xp_help()
+../modules/xplorer/xplorer.php:149:function xp_rename($oldname,$newname)
+../modules/xplorer/xplorer.php:163:function xp_newfolder($newfolder)
+../modules/xplorer/xplorer.php:177:function xp_delete($file)
+../modules/xplorer/xplorer.php:192:function get_mp3_info($filename)
+../modules/xplorer/xplorer.php:402:function optionrecursedirs($dir)
+../modules/xplorer/xplorer.php:663:function xp_dirs($path)
+../modules/xplorer/xplorer.php:710:function xplore($path,$xp_thumbs)
+../themes/php/site.css:1044:/* Make sure the underscore in many function names are visible */
+../themes/_templates/theme_templates.php:3:function to($width,$ot)
+../themes/_templates/theme_templates.php:8:function tro($trclass)
+../themes/_templates/theme_templates.php:13:function trc()
+../themes/_templates/theme_templates.php:18:function tco($tdclass)
+../themes/_templates/theme_templates.php:23:function tcc()
+../themes/_templates/theme_templates.php:28:function tcr($tdclass)
+../themes/_templates/theme_templates.php:34:function tc()
+../themes/futaba-blue/recaptcha_ajax.js:4:q=function(a,b){var c=a.split("."),d=l;c[0]in d||!d.execScript||d.execScript("var "+c[0]);for(var e;c.length&&(e=c.shift());)c.length||void 0===b?d=d[e]?d[e]:d[e]={}:d[e]=b},r=function(a,b){function c(){}c.prototype=b.prototype;a.superClass_=b.prototype;a.prototype=new c;a.base=function(a,c,g){return b.prototype[c].apply(a,Array.prototype.slice.call(arguments,2))}};
+../themes/futaba-blue/recaptcha_ajax.js:99:role:"role",rowspan:"rowSpan",type:"type",usemap:"useMap",valign:"vAlign",width:"width"},xb=function(a,b,c){function d(c){c&&b.appendChild(n(c)?a.createTextNode(c):c)}for(var e=2;e<c.length;e++){var g=c[e];!ea(g)||ga(g)&&0<g.nodeType?d(g):Qa(wb(g)?Wa(g):g,d)}},yb=function(a){for(var b;b=a.firstChild;)a.removeChild(b)},zb=function(a){a&&a.parentNode&&a.parentNode.removeChild(a)},wb=function(a){if(a&&"number"==typeof a.length){if(ga(a))return"function"==typeof a.item||"string"==typeof a.item;if(fa(a))return"function"==
+../themes/futaba-blue/recaptcha_ajax.js:124:c.push(g)}b.push(a);c.push(")\n");try{c.push(jc(a.caller,b))}catch(f){c.push("[exception trying to get caller]\n")}}else a?c.push("[...long stack...]"):c.push("[end]");return c.join("")},lc=function(a){if(mc[a])return mc[a];a=String(a);if(!mc[a]){var b=/function ([^\(]+)/.exec(a);mc[a]=b?b[1]:"[Anonymous]"}return mc[a]},mc={};var nc=function(a,b,c,d,e){this.reset(a,b,c,d,e)};nc.prototype.exception_=null;nc.prototype.exceptionText_=null;var oc=0;nc.prototype.reset=function(a,b,c,d,e){"number"==typeof e||oc++;d||ja();this.level_=a;this.msg_=b;delete this.exception_;delete this.exceptionText_};nc.prototype.setLevel=function(a){this.level_=a};var P=function(a){this.name_=a};P.prototype.parent_=null;P.prototype.level_=null;P.prototype.children_=null;P.prototype.handlers_=null;var pc=function(a,b){this.name=a;this.value=b};pc.prototype.toString=function(){return this.name};var qc=new pc("SEVERE",1E3),rc=new pc("WARNING",900),sc=new pc("CONFIG",700),tc=new pc("FINE",500);P.prototype.getParent=function(){return this.parent_};P.prototype.getChildren=function(){this.children_||(this.children_={});return this.children_};
+../themes/futaba-blue/catalog.771.js:1:var $={id:function(a){return document.getElementById(a)},cls:function(a,b){return(b||document).getElementsByClassName(a)},tag:function(a,b){return(b||document).getElementsByTagName(a)},extend:function(a,b){for(var c in b)a[c]=b[c]},on:function(a,b,c){a.addEventListener(b,c,!1)},off:function(a,b,c){a.removeEventListener(b,c,!1)},readCookie:function(a){var b,c,e;e=a+"=";c=document.cookie.split(";");for(a=0;b=c[a];++a){for(;" "==b.charAt(0);)b=b.substring(1,b.length);if(0==b.indexOf(e))return decodeURIComponent(b.substring(e.length,b.length))}return null}};document.documentElement.classList?($.hasClass=function(a,b){return a.classList.contains(b)},$.addClass=function(a,b){a.classList.add(b)},$.removeClass=function(a,b){a.classList.remove(b)}):($.hasClass=function(a,b){return-1!=(" "+a.className+" ").indexOf(" "+b+" ")},$.addClass=function(a,b){a.className=""==a.className?b:a.className+" "+b},$.removeClass=function(a,b){a.className=(" "+a.className+" ").replace(" "+b+" ","")});$.toggleClass=function(a,b){$.hasClass(a,b)?$.removeClass(a,b):$.addClass(a,b)};var get_cookie=$.readCookie;function get_pass(a){var b,c;if(a=get_cookie(a))return a;a="";for(b=0;32>b;b++)c=Math.floor(62*Math.random()),a+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".substring(c,c+1);return"_"+a}
+../themes/futaba-blue/catalog.771.js:2:var UA={init:function(){document.head=document.head||$.tag("head")[0];this.hasContextMenu="HTMLMenuItemElement"in window;var a;try{localStorage.setItem("catalog","catalog"),localStorage.removeItem("catalog"),a=!0}catch(b){a=!1}this.hasWebStorage=a;var c;try{sessionStorage.setItem("catalog","catalog"),sessionStorage.removeItem("catalog"),c=!0}catch(e){c=!1}this.hasSessionStorage=c;this.hasCORS="withCredentials"in new XMLHttpRequest},dispatchEvent:function(a,b){var c=document.createEvent("Event");c.initEvent(a,!1,!1);b&&(c.detail=b);document.dispatchEvent(c)}},FC=function(){function a(){var f,l;l=$.id("boardSelectMobile");for(f=l.options.length-1;0<=f;f--)if(l.options[f].value==m.slug){l.selectedIndex=f;break}$.on(l,"change",function(){var f=this.options[this.selectedIndex].value;window.location="//boards.4chan.org/"+f+("f"==f?"":"/catalog")});$.addClass(document.body,T.toLowerCase().replace(/ /g,"_"))}function b(){var f,l;f=$.id("globalMessage");l=$.id("toggleMsgBtn");"none"==f.style.display?(f.style.display="",l.className="collapseIcon",l.style.opacity="1",localStorage.removeItem("4chan-global-msg")):(f.style.display="none",l.className="expandIcon",l.innerHTML='<span class="mobile">View Important Announcement</span>',l.style.opacity="0.5",localStorage.setItem("4chan-global-msg",f.getAttribute("data-utc")))}function c(f){var l=document.getElementById("globalToggle"),d=document.getElementById("globalMessage");f.preventDefault();$.hasClass(l,"shown")?($.toggleClass(l,"shown"),d.style.display="",l.innerHTML="View Important Announcement"):($.addClass(l,"shown"),d.style.display="block",l.innerHTML="Close Announcement")}function e(){var f=document.forms.post;"block"==f.style.display?(f.style.display="",this.textContent="Start a Thread"):(f.style.display="block",this.textContent="Close Post Form")}function k(){return RegExp("(\\/|\\.|\\*|\\+|\\?|\\(|\\)|\\[|\\]|\\{|\\}|\\\\)","g")}function s(){var f=new Date;f.setTime(f.getTime()+31536E6);document.cookie=ha+"="+this.value+";"+f.toGMTString()+"; path=/; domain=4chan.org";p()}function p(){location.href=location.href}function N(f,l){var d;return function(){var a=arguments,b=this;clearTimeout(d);d=setTimeout(function(){l.apply(b,a)},f)}}function G(){var f,l=$.id("qf-cnt");$.hasClass(C,"active")?(U(),l.style.display="none",$.removeClass(C,"active")):(l.style.display="inline",f=$.id("qf-box"),l.hasAttribute("data-built")||(l.setAttribute("data-built","1"),$.on(f,"keyup",N(250,ia)),$.on(f,"keydown",function(f){"27"==f.keyCode&&G()})),f.focus(),f.value="",$.addClass(C,"active"))}
+../themes/futaba-blue/catalog.771.js:3:function ia(){var f,l;""!=(l=$.id("qf-box").value)?(UA.hasSessionStorage&&(sessionStorage.setItem("4chan-catalog-search",l),sessionStorage.setItem("4chan-catalog-search-board",m.slug)),f=k(),$.id("search-term").textContent=$.id("search-term-bottom").textContent=l,$.id("search-label").style.display=$.id("search-label-bottom").style.display="inline",l=l.replace(f,"\\$1"),L=RegExp(l,"i"),q()):U()}function U(f){var l=$.id("qf-box");$.id("search-label").style.display=$.id("search-label-bottom").style.display="none";f?(l.value="",l.focus()):(UA.hasSessionStorage&&sessionStorage.removeItem("4chan-catalog-search"),L=!1,q())}function Ba(){var f,l;if(UA.hasWebStorage)$.on(u,"mousedown",function(d){f=d.target;if(-1!=f.className.indexOf("thumb"))if(l=f.getAttribute("data-id"),3==d.which)u.setAttribute("contextmenu","ctxmenu-thread"),$.id("ctxmenu-thread").target=l;else{if(1==d.which&&d.altKey)return ja(l),!1;if(1==d.which&&d.shiftKey)return ka(l),!1}else 3==d.which&&u.setAttribute("contextmenu","ctxmenu-main")});if(!w.nobinds)$.on(document,"keyup",V)}function ja(f){0<=t[f]?delete t[f]:t[f]=m.threads[f].r||0;localStorage.setItem("4chan-pin-"+m.slug,JSON.stringify(t));q()}function ka(f){W?(delete J[f],--y):(J[f]=!0,++y);localStorage.setItem("4chan-hide-t-"+m.slug,JSON.stringify(J));$.id("thread-"+f).style.display="none";X("hidden",y);0==y&&Y(!1)}function Y(f){W=f;$.id("filters-clear-hidden").textContent=$.id("filters-clear-hidden-bottom").textContent=f?"Back":"Show";q()}function X(f,l){var d=f+"-label",a=f+"-count";0<l?($.id(a).textContent=$.id(a+"-bottom").textContent=l,$.id(d).style.display=$.id(d+"-bottom").style.display="inline"):$.id(d).style.display=$.id(d+"-bottom").style.display="none"}function Ca(f){window.open("http://sys.4chan.org/"+m.slug+"/imgboard.php?mode=report&no="+f,Date.now(),"toolbar=0,scrollbars=0,location=0,status=1,menubar=0,resizable=1,width=600,height=170")}function Da(f){f=f.target.getAttribute("data-cmd");la[f]($.id("ctxmenu-thread").target)}function V(f){var a=f.target;if("TEXTAREA"!=a.nodeName&&"INPUT"!=a.nodeName&&ma[f.keyCode])ma[f.keyCode]()}function na(f){f.preventDefault();0<y&&("Show"==$.id("filters-clear-hidden").textContent?Y(!0):Y(!1))}function Ea(){t={};localStorage.removeItem("4chan-pin-"+m.slug);q();return!1}function Fa(f){var a=f.target,d;(a=f.target)!=document&&((d=a.getAttribute("data-watch"))?ThreadWatcher.toggle(d,m.slug,m.threads[d].teaser,m.threads[d].lr.id):"backdrop"==a.id?Z($.id("filters"))?Z($.id("theme"))||O():Z($.id("filters-protip"))?aa():oa():"filter-palette"==f.target.id&&P())}function Ga(){var f=$.id("filters-protip");f.style.top=window.pageYOffset+50+"px";$.removeClass(f,"hidden")}function oa(){$.addClass($.id("filters-protip"),"hidden")}function Ha(f){var a=f.target;if("filters-close"==a.id)aa();else if("filters-add"==a.id)$.id("filter-list").appendChild(pa({active:1,pattern:"",boards:"",color:"",hidden:0,top:0,hits:0},Ia()));else if("filters-save"==a.id)Ja(),aa();else if(a.hasAttribute("data-active"))ba(a,"active");else if(a.hasAttribute("data-hide"))ba(a,"hide","top");else if(a.hasAttribute("data-top"))ba(a,"top","hide");else if($.hasClass(a,"filter-color")){var d;f=a.getBoundingClientRect();if(!x){var b,c,e,h,k,m;x=$.id("filter-palette");b=$.id("filter-color-table");e=$.tag("tbody",b)[0];h=n.filterColors.length;if(0<h)for(d=n.filterColors[0].length,c=$.tag("tfoot",b)[0],b=c.children.length-1;0<=b;b--)c.children[b].firstElementChild.setAttribute("colspan",d);for(b=0;b<h;++b){k=document.createElement("tr");for(c=0;c<d;++c)m=document.createElement("td"),m.innerHTML='<span class="button clickbox" style="background:'+n.filterColors[b][c]+'"></span>',$.on(m.firstElementChild,"click",ca),k.appendChild(m);e.appendChild(k)}}$.removeClass(x,"hidden");x.setAttribute("data-target",a.id.split("-")[2]);d=x.firstElementChild;d.style.cssText="top:"+f.top+"px;left:"+(f.left-d.clientWidth-10)+"px;"}else a.hasAttribute("data-target")?(f=$.id("filter-"+a.getAttribute("data-target")),f.parentNode.removeChild(f)):a.hasAttribute("data-up")&&(f=a.parentNode.parentNode,(d=f.previousElementSibling)&&f.parentNode.insertBefore(f,d))}function Ka(){var f,a,d,b,c,e;a=$.id("filters");a.hasAttribute("data-built")||($.on(a,"click",Ha),$.on($.id("filter-palette-close"),"click",P),$.on($.id("filter-palette-clear"),"click",La),$.on($.id("filters-help-open"),"click",Ga),$.on($.id("filters-help-close"),"click",oa),$.on($.id("filter-rgb"),"keyup",Ma),$.on($.id("filter-rgb-ok"),"click",ca),a.setAttribute("data-built","1"));d=localStorage.getItem("catalog-filters");c=0;if(d){b=$.id("filter-list");d=JSON.parse(d);for(f in d)b.appendChild(pa(d[f],c)),++c;qa()}a.style.top=window.pageYOffset+60+"px";$.removeClass(a,"hidden");(e=$.cls("filter-active",a)[0])&&e.focus();Q()}function aa(){var f,a,d;$.id("filters-msg").style.display="none";$.addClass($.id("filters"),"hidden");a=$.id("filter-list");d=$.tag("tr",a);for(f=d.length-1;0<=f;f--)a.removeChild(d[f]);P();Q()}function P(){x&&!$.hasClass(x,"hidden")&&$.addClass(x,"hidden")}function ra(){if(UA.hasWebStorage){H={};var f=localStorage.getItem("catalog-filters");if(f){var f=JSON.parse(f),a,d,b,c,e,h=/^\/(.*)\/(i?)$/,n=/\s*\|+\s*/g,s=/\\\*/g,p=k(),u,t,q,r,v,w,y,z;try{for(d in f)if(a=f[d],a.active&&""!=a.pattern&&(!a.boards||-1!=a.boards.split(" ").indexOf(m.slug))){r=a.pattern;if("#"==r.charAt(0))z="#"==r.charAt(1)?2:1,v=RegExp(r.slice(z).replace(p,"\\$1"));else if(z=0,u=r.match(h))v=RegExp(u[1],u[2]);else if('"'==r.charAt(0)&&'"'==r.charAt(r.length-1))v=RegExp(r.slice(1,-1).replace(p,"\\$1"));else{q=r.replace(n,"|").split(" ");v="";e=q.length;for(c=0;c<e;++c)if(-1!=q[c].indexOf("|")){w=q[c].split("|");y=[];for(b=w.length-1;0<=b;b--)""!=w[b]&&y.push(w[b].replace(p,"\\$1"));t=y.join("|").replace(s,"[^\\s]*");v+="(?=.*\\b("+t+")\\b)"}else t=q[c].replace(p,"\\$1").replace(s,"[^\\s]*"),v+="(?=.*\\b"+t+"\\b)";v=RegExp("^"+v,"i")}H[d]={type:z,pattern:v,boards:a.boards,fid:d,hidden:a.hidden,color:a.color,top:a.top,hits:0}}}catch(x){alert("There was an error processing one of the filters: "+x+" in: "+a.pattern)}}}}function Ja(){var a,b,d,c,g,e;c={};e=$.id("filter-list").children;for(a=0;b=e[a];++a)d={active:$.cls("filter-active",b)[0].checked?1:0,pattern:$.cls("filter-pattern",b)[0].value,boards:$.cls("filter-boards",b)[0].value,hidden:$.cls("filter-hide",b)[0].checked?1:0,top:$.cls("filter-top",b)[0].checked?1:0},b=$.cls("filter-color",b)[0],b.hasAttribute("data-nocolor")||(d.color=b.style.backgroundColor),c[a]=d;c[0]?localStorage.setItem("catalog-filters",JSON.stringify(c)):localStorage.removeItem("catalog-filters");g=$.id("filters-msg");g.innerHTML="Done";g.className="msg-ok";g.style.display="inline";setTimeout(function(){g.style.display="none"},2E3);ra();q();qa()}function Ma(){$.id("filter-rgb-ok").style.backgroundColor=this.value}function pa(a,b){var d,c,g;c=document.createElement("tr");c.id="filter-"+b;d=document.createElement("td");g=document.createElement("span");g.setAttribute("data-up",b);g.className="pointer";g.innerHTML="&uarr;";d.appendChild(g);c.appendChild(d);d=document.createElement("td");g=document.createElement("input");g.type="checkbox";g.checked=!!a.active;g.className="filter-active";d.appendChild(g);c.appendChild(d);d=document.createElement("td");g=document.createElement("input");g.type="text";g.value=a.pattern;g.className="filter-pattern";d.appendChild(g);c.appendChild(d);d=document.createElement("td");g=document.createElement("input");g.type="text";g.value=a.boards;g.className="filter-boards";d.appendChild(g);c.appendChild(d);d=document.createElement("td");g=document.createElement("span");g.id="filter-color-"+b;g.title="Change Color";g.className="button clickbox filter-color";a.color?g.style.background=a.color:(g.setAttribute("data-nocolor","1"),g.innerHTML="&#x2215;");d.appendChild(g);c.appendChild(d);d=document.createElement("td");g=document.createElement("input");g.type="checkbox";g.checked=!!a.hidden;g.className="filter-hide";d.appendChild(g);c.appendChild(d);d=document.createElement("td");g=document.createElement("input");g.type="checkbox";g.checked=!!a.top;g.className="filter-top";d.appendChild(g);c.appendChild(d);d=document.createElement("td");g=document.createElement("span");g.setAttribute("data-target",b);g.className="pointer";g.innerHTML="&times;";d.appendChild(g);c.appendChild(d);d=document.createElement("td");d.id="fhc-"+b;d.className="filter-hits";c.appendChild(d);return c}function ca(a){var b=$.id("filter-color-"+x.getAttribute("data-target"));!0===a?(b.setAttribute("data-nocolor","1"),b.innerHTML="&#x2215;",b.style.background=""):(b.removeAttribute("data-nocolor"),b.innerHTML="",b.style.background=this.style.backgroundColor);P()}
+../themes/futaba-blue/catalog.771.js:4:function La(){ca(!0)}function Ia(){var a,b,d,c=$.id("filter-list").children;if(c.length){for(a=d=0;b=c[a];++a)b=+b.id.slice(7),b>d&&(d=b);return d+1}return 0}function ba(a,b,d){b="data-"+b;"0"==a.getAttribute(b)?(a.setAttribute(b,"1"),$.addClass(a,"active"),a.innerHTML="&#x2714;",d&&(a=$.cls("filter-"+d,a.parentNode.parentNode)[0],a.setAttribute("data-"+d,"0"),$.removeClass(a,"active"),a.innerHTML="")):(a.setAttribute(b,"0"),$.removeClass(a,"active"),a.innerHTML="")}function qa(){var a,b,d=$.id("filter-list").children;for(a=0;b=d[a];++a)$.id("fhc-"+b.id.slice(7)).innerHTML=H[a]?"x"+H[a].hits:""}function Z(a){return $.hasClass(a,"hidden")}function da(){var a,b;UA.hasWebStorage?(sa&&(localStorage.setItem("catalog-init","1"),(b=$.id("first-run"))&&b.parentNode.removeChild(b)),a=$.id("theme"),theme=(theme=localStorage.getItem("catalog-theme"))?JSON.parse(theme):{},$.id("theme-nobinds").checked=!!theme.nobinds,$.id("theme-nospoiler").checked=!!theme.nospoiler,$.id("theme-newtab").checked=!!theme.newtab,$.id("theme-tw").checked=M,theme.css&&($.id("theme-css").value=theme.css),$.on($.id("theme-save"),"click",ta),$.on($.id("theme-close"),"click",O),$.id("theme-msg").style.display="none",a.style.top=window.pageYOffset+60+"px",$.removeClass(a,"hidden"),(b=$.tag("input",a)[0])&&b.focus(),Q()):alert("Your browser doesn't support Local Storage")}function O(){$.off($.id("theme-save"),"click",ta);$.off($.id("theme-close"),"click",O);$.addClass($.id("theme"),"hidden");Q()}function Q(){$.toggleClass($.id("backdrop"),"hidden")}function ua(a,b){if(a.nobinds)w.nobinds!=a.nobinds&&$.off(document,"keyup",V);else if(w.nobinds!=a.nobinds)$.on(document,"keyup",V);b||R.applyCSS(a)}function ta(){var a,b,d,c={};$.id("theme-nobinds").checked&&(c.nobinds=!0);$.id("theme-nospoiler").checked&&(c.nospoiler=!0);$.id("theme-newtab").checked&&(c.newtab=!0);b=$.id("theme-tw").checked;b!=M&&(M=b,d=(d=localStorage.getItem("4chan-settings"))?JSON.parse(d):{},d.threadWatcher=b,localStorage.setItem("4chan-settings",JSON.stringify(d)),b?ThreadWatcher.init():ThreadWatcher.unInit());""!=(b=$.id("theme-css").value)&&(c.css=b);ua(c);localStorage.removeItem("catalog-theme");for(a in c){localStorage.setItem("catalog-theme",JSON.stringify(c));break}w=c;q();O()}function va(a){var b,d,c=!1,g=m.order.date[0];if(d=localStorage.getItem(a)){d=JSON.parse(d);for(b in d)!m.threads[b]&&b<g&&(delete d[b],c=!0);for(b in d)return c&&localStorage.setItem(a,JSON.stringify(d)),d;localStorage.removeItem(a)}return{}}function ea(){var a,b,d;if(UA.hasWebStorage){d={};for(a=wa.length-
+../themes/futaba-blue/catalog.771.js:5:1;0<=a;a--)b=wa[a],d[b]=n[b];localStorage.setItem("catalog-settings",JSON.stringify(d))}}function xa(a,b){var d="";a?($teaserCtrl.selectedIndex=1,d="extended-",n.extended=!0):($teaserCtrl.selectedIndex=0,n.extended=!1);d=n.large?d+"large":d+"small";u.className=d;b||ea()}function ya(a,b){var d=n.extended?"extended-":"";a?(D.selectedIndex=1,d+="large",n.large=!0):(D.selectedIndex=0,d+="small",n.large=!1);u.className=d;b||(ea(),q())}function E(a,b){var d={alt:0,absdate:1,date:2,r:3};void 0!==d[a]?(A.selectedIndex=d[a],n.orderby=a):(A.selectedIndex=0,n.orderby="date");b||(ea(),q())}function Na(){xa("on"==$teaserCtrl.options[$teaserCtrl.selectedIndex].value)}function Oa(){E(A.options[A.selectedIndex].value)}function Pa(){ya("large"==D.options[D.selectedIndex].value)}function q(){var a,b,d,c,g,e,h,k,p,s,q,x,C=0,r="",v=0,D,E,z,A="",K,B,F,I,G;if(0!=m.count){x=m.custom_spoiler?n.imgspoiler+"-"+m.slug+m.custom_spoiler+".png":n.imgspoiler+".png";u.hasChildNodes()&&((a=document.getElementById("th-tip"))&&document.body.removeChild(a),u.textContent="");q="//boards.4chan.org/"+m.slug+"/res/";D=".t.4cdn.org/"+m.slug+"/thumb/";y=0;for(c in H)H[c].hits=0;G=!n.large;E=w.newtab?'target="_blank" ':"";a=0;a:for(;a<m.count;++a){g=m.order[n.orderby][a];e=m.threads[g];k=p=s=!1;e.sub?(z="<b>"+e.sub+"</b>",e.teaser&&(z+=": "+e.teaser)):z=e.teaser;if(W){if(!J[g])continue;++y}else if(!L){if(J[g]){++y;continue}if(0<=t[g])s=p=!0;else for(c in d=e.capcode?(e.trip||"")+"!#"+e.capcode:e.trip,H)if(h=H[c],0==h.type&&h.pattern.test(z)||1==h.type&&h.pattern.test(d)||2==h.type&&h.pattern.test(e.author)){if(h.hidden){++C;h.hits+=1;continue a}k=h;p=!!h.top;h.hits+=1;break}}else if(!L.test(z))continue;v=0===v?1:0;h='<div id="thread-'+g+'" class="thread">';M&&(d=g+"-"+m.slug,h+='<span id="leaf-'+g+'" data-watch="'+g+'" '+(ThreadWatcher.watched[d]?'title="Unwatch" class="unwatchIcon"></span>':'title="Watch" class="watchIcon"></span>'));h+="<a "+E+'href="'+q+g+'"><img alt="" id="thumb-'+g+'" class="thumb';d=k.color?' hl" style="border-color: '+k.color:s?" pinned":"";e.imgurl?e.imgspoiler&&!w.nospoiler?h+=d+'" src="'+x:(F=e.tn_w,I=e.tn_h,G&&(B=n.smallsize,F>B&&(K=B/F,F=B,I*=K),I>B&&(K=B/I,I=B,F*=K)),h+=d+'" width="'+F+'" height="'+I+'" src="//'+v+D+e.imgurl+"s.jpg"):h=e.imgdel?h+(" imgdel"+d+'" src="'+n.imgdel):h+(" nofile"+d+'" src="'+n.nofile);h+='" data-id="'+g+'" /></a>';if(e.sticky||e.closed||e.capcodereps){h+='<div class="threadIcons">';e.sticky&&(h+='<span title="Sticky" class="threadIcon stickyIcon"></span>');e.closed&&(h+='<span title="Closed" class="threadIcon closedIcon"></span>');if(e.capcodereps)for(K=e.capcodereps.split(","),d=0;B=K[d];++d)if(F=Qa[B])h+='<span title="'+F+' Replies" class="threadIcon '+B+'Icon"></span>';h+="</div>"}h+='<div title="(R)eplies / (I)mages'+(p?" / (P)age":"")+'" id="meta-'+g+'" class="meta">';e.r&&(h=e.bumplimit?h+("<i>R: <b>"+e.r+"</b></i>"):h+("R: <b>"+e.r+"</b>"),s&&(s=e.r-t[g],0<s?(h+=" (+"+s+")",t[g]=e.r):h+="(+0)"),e.i&&(h=e.imagelimit?h+(" / <i>I: <b>"+e.i+"</b></i>"):h+(" / I: <b>"+e.i+"</b>")));p&&0<=(page=0|m.order.alt.indexOf(g)/m.pagesize)&&(e.r&&(h+=" / "),h+="P: <b>"+page+"</b>");h+="</div>";z&&(h+='<div class="teaser',k.color&&(h+=' style="color:'+k.color),h+='">'+z+"</div>");p?A+=h+"</div>":r+=h+"</div>"}r=L&&""==r?'<div class="error">Nothing Found</div>':A?A+r+'<div class="clear"></div>':r+'<div class="clear"></div>';for(b in t){localStorage.setItem("4chan-pin-"+m.slug,JSON.stringify(t));break}u.innerHTML=r;X("filtered",C);X("hidden",y)}}function Ra(a){a=a.target;$.hasClass(a,"thumb")&&(clearTimeout(fa),S&&za(),fa=setTimeout(Sa,n.tipdelay,a))}function Ta(a){clearTimeout(fa);S&&za()}function Sa(a){var b,d,c,e;b=Date.now()/1E3;e=a.getBoundingClientRect();c=document.documentElement.offsetWidth;thread=m.threads[a.getAttribute("data-id")];d=thread.sub?'<span class="post-subject">'+thread.sub+"</span>":"Posted";d+=' by <span class="'+(thread.capcode?thread.capcode+"-capcode ":"")+'post-author">'+(thread.author||m.anon);thread.trip&&(d+=' <span class="post-tripcode">'+thread.trip+"</span>");thread.capcode&&(d+=" ## "+thread.capcode.charAt(0).toUpperCase()+
+../themes/futaba-blue/catalog.771.js:6:thread.capcode.slice(1));d+="</span> ";m.flags&&thread.country&&(d+='<div class="flag flag-'+thread.country.toLowerCase()+'"></div> ');d+='<span class="post-ago">'+Aa(b-thread.date)+" ago</span>";!n.extended&&thread.teaser&&(d+='<p class="post-teaser">'+thread.teaser+"</p>");0<thread.r&&(d+='<div class="post-last">Last reply by <span class="'+(thread.lr.capcode?thread.lr.capcode+"-capcode ":"")+'post-author">'+thread.lr.author,thread.lr.trip&&(d+=' <span class="post-tripcode">'+thread.lr.trip+"</span>"),thread.lr.capcode&&(d+=" ## "+thread.lr.capcode.charAt(0).toUpperCase()+thread.lr.capcode.slice(1)),d+='</span> <span class="post-ago">'+Aa(b-thread.lr.date)+" ago</span>");b=document.createElement("div");b.id="post-preview";b.innerHTML=d;document.body.appendChild(b);d=b.style;c-e.right<(0|0.3*c)?(c-=e.left,d.right=c+5+"px"):(c=e.left+e.width,d.left=c+5+"px");d.top=e.top+a.offsetHeight+window.pageYOffset-b.offsetHeight/2-e.height/2+"px";S=!0}function za(){document.body.removeChild($.id("post-preview"));S=!1}function Aa(a,b){var d,c;if(2>a)return"less than a second";if(b&&300>a||60>a)return(0|a)+" seconds";if(3600>a)return d=0|a/60,1<d?d+" minutes":"one minute";if(86400>a)return d=0|a/3600,c=1<d?d+" hours":"one hour",d=0|a/60-60*d,1<d&&(c+=" and "+d+" minutes"),c;d=0|a/86400;c=1<d?d+" days":"one day";d=0|a/3600-24*d;1<d&&(c+=" and "+d+" hours");return c}var R=this,n={orderby:"alt",large:!1,extended:!0,imgdel:"//s.4cdn.org/image/filedeleted-res.gif",imgspoiler:"//s.4cdn.org/image/spoiler",nofile:"//s.4cdn.org/image/nofile.png",smallsize:150,tipdelay:250,filterColors:[["#E0B0FF","#F2F3F4","#7DF9FF","#FFFF00"],["#FBCEB1","#FFBF00","#ADFF2F","#0047AB"],["#00A550","#007FFF","#AF0A0F","#B5BD68"]]},Qa={admin:"Administrator",mod:"Moderator",developer:"Developer",manager:"Manager"},ma={83:function(){$.hasClass(C,"active")?U(!0):G()},82:p,88:function(){"date"==n.orderby?E("alt"):"alt"==n.orderby?E("r"):"r"==n.orderby?E("absdate"):E("date")}},m={},wa=["orderby","large","extended"],w={},ha,T,H={},S=!1,fa=null,t={},J={},y=0,M=!1,L=!1,W=!1,sa=!1,u,C,D,A,x,la;2<=window.devicePixelRatio&&(n.imgdel.replace(".","@2x."),n.nofile.replace(".","@2x."));UA.init();(function(){var a;UA.hasWebStorage&&(a=localStorage.getItem("catalog-theme"))&&(w=JSON.parse(a))})();(function(){var a=$.readCookie("extra_path");a&&/^[a-z0-9]+$/.test(a)&&document.write('<script type="text/javascript" src="https://s.4cdn.org/js/'+a+"."+window.jsVersion+'.js">\x3c/script>')})();initPass();R.init=function(){var a,l,d;buildMobileNav();ua(w,!0);u=$.id("threads");C=$.id("qf-ctrl");$teaserCtrl=$.id("teaser-ctrl");D=$.id("size-ctrl");A=$.id("order-ctrl");$filtersPanel=$.id("filters");$themePanel=$.id("theme");$.on(C,"click",G);$.on($.id("filters-clear-hidden"),"click",na);$.on($.id("filters-clear-hidden-bottom"),"click",na);$.on($.id("qf-clear"),"click",G);$.on($.id("settingsWindowLink"),"click",da);$.on($.id("settingsWindowLinkBot"),"click",da);$.on($.id("settingsWindowLinkMobile"),"click",da);$.on($.id("filters-ctrl"),"click",Ka);$.on($teaserCtrl,"change",Na);$.on(D,"change",Pa);$.on(A,"change",Oa);$.on(u,"mouseover",Ra);$.on(u,"mouseout",Ta);$.on($.id("togglePostFormLink"),"click",e);$.on(document,"click",Fa);$.on(window,"load",checkForBlock);var k;UA.hasWebStorage&&(k=localStorage.getItem("catalog-settings"))&&$.extend(n,JSON.parse(k));Ba();var g,m;if(UA.hasWebStorage&&(a=$.id("globalMessage"))&&a.textContent&&(a.nextElementSibling.style.clear="both",k=document.createElement("span"),k.id="toggleMsgBtn",k.setAttribute("data-cmd","toggleMsg"),k.title="Toggle announcement",m=localStorage.getItem("4chan-global-msg"),g=a.getAttribute("data-utc"),m&&g<=m?(a.style.display="none",k.style.opacity="0.5",k.className="expandIcon"):k.className="collapseIcon",$.on(k,"click",b),a.parentNode.insertBefore(k,a),k=$.id("globalToggle"),0<k.offsetWidth))$.on(k,"click",c);UA.hasContextMenu&&(la={pin:ja,hide:ka,report:Ca},$.id("ctxmenu-main").innerHTML='<menuitem label="Unpin all threads"></menuitem>',$.id("ctxmenu-thread").innerHTML='<menuitem label="Pin/Unpin" data-cmd="pin"></menuitem><menuitem label="Hide/Unhide" data-cmd="hide"></menuitem><menuitem label="Report" data-cmd="report"></menuitem>',$.on($.id("ctxmenu-main"),"click",Ea),$.on($.id("ctxmenu-thread"),"click",Da));UA.hasWebStorage&&(!localStorage.getItem("catalog-init")&&(sa=!0,a=$.id("settingsWindowLink"))&&(k=document.createElement("div"),k.id="first-run",k.textContent="Change your settings",a.parentNode.appendChild(k)),localStorage.getItem("catalog-visited")||localStorage.setItem("catalog-visited","1"),a=localStorage.getItem("4chan-settings"))&&(a=JSON.parse(a),!a.disableAll&&a.threadWatcher&&(M=!0,ThreadWatcher.init()),a.customMenu&&CustomMenu.apply(a.customMenuList));window.passEnabled&&setPassMsg();(l=document.forms.post.flag)&&(d=$.readCookie("4chan_flag"))&&(l=l.querySelector('option[value="'+d+'"]'))&&l.setAttribute("selected","selected");E(n.orderby,!0);ya(n.large,!0);xa(n.extended,!0)};R.loadCatalog=function(b){var c;m=b;a();var d,e,g;d=$.id("styleSelector");e=d.children;for(b=0;g=e[b];++b)g.value==T&&(d.selectedIndex=b);$.on(d,"change",s);ra();UA.hasWebStorage&&(J=va("4chan-hide-t-"+m.slug),t=va("4chan-pin-"+m.slug));UA.hasSessionStorage&&!location.hash&&(c=sessionStorage.getItem("4chan-catalog-search"))?m.slug!=sessionStorage.getItem("4chan-catalog-search-board")&&(sessionStorage.removeItem("4chan-catalog-search"),sessionStorage.removeItem("4chan-catalog-search-board"),c=null):location.hash&&(c=location.hash.match(/#s=(.+)/))&&(c=decodeURIComponent(c[1].replace(/\+/g," ")));c?(G(),$.id("qf-box").value=c,ia()):q()};R.applyCSS=function(a,b,d){var c,e;a||(a=w);void 0!==b&&((e=$.readCookie(b))||(e="nws_style"==b?"Yotsuba New":"Yotsuba B New"),ha=b,T=e,c=document.createElement("link"),c.type="text/css",c.id="base-css",c.rel="stylesheet",c.setAttribute("href","//s.4cdn.org/css/catalog_"+e.toLowerCase().replace(/ /g,"_")+"."+d+".css"),document.head.insertBefore(c,$.id("mobile-css")));(c=$.id("custom-css"))&&document.head.removeChild(c);a.css&&(c=document.createElement("style"),c.type="text/css",c.id="custom-css",c.styleSheet?c.styleSheet.cssText=a.css:c.innerHTML=a.css,document.head.appendChild(c));UA.dispatchEvent("4chanMainInit")}},ThreadWatcher={init:function(){var a,b;this.listNode=null;this.charLimit=45;this.watched={};this.isRefreshing=!1;a=document.createElement("div");a.id="threadWatcher";a.setAttribute("data-trackpos","TW-position");(b=localStorage.getItem("catalog-tw-pos"))?a.style.cssText=b:(a.style.left="10px",a.style.top="75px");a.innerHTML='<div class="drag" id="twHeader">Thread Watcher'+(UA.hasCORS?'<div id="twPrune" class="icon refreshIcon" title="Refresh"></div></div>':"</div>");this.listNode=document.createElement("ul");this.listNode.id="watchList";this.load();this.build();a.appendChild(this.listNode);document.body.appendChild(a);a.addEventListener("mouseup",this.onClick,!1);Draggable.set($.id("twHeader"));window.addEventListener("storage",this.syncStorage,!1);this.canAutoRefresh()&&this.refresh()},unInit:function(){var a;if(a=$.id("threadWatcher"))a.removeEventListener("mouseup",this.onClick,!1),Draggable.unset($.id("twHeader")),window.removeEventListener("storage",this.syncStorage,!1),document.body.removeChild(a)},syncStorage:function(a){var b;a.key&&(b=a.key.split("-"),"4chan"==b[0]&&"watch"==b[1]&&a.newValue!=a.oldValue&&(ThreadWatcher.load(),ThreadWatcher.build()))},load:function(){if(storage=localStorage.getItem("4chan-watch"))this.watched=JSON.parse(storage)},build:function(){var a,b,c;a="";for(c in this.watched)b=c.split("-"),a+='<li id="watch-'+c+'"><span class="pointer" data-cmd="unwatch" data-id="'+b[0]+'" data-board="'+b[1]+'">&times;</span> <a href="'+this.linkToThread(b[0],b[1],this.watched[c][1])+'"',a=-1==this.watched[c][1]?a+' class="deadlink">':this.watched[c][2]?a+(' class="hasNewReplies">('+this.watched[c][2]+") "):a+">",a+="/"+b[1]+"/ - "+this.watched[c][0]+"</a></li>";ThreadWatcher.listNode.innerHTML=a},onClick:function(a){a=a.target;a.hasAttribute("data-id")?ThreadWatcher.toggle(a.getAttribute("data-id"),a.getAttribute("data-board")):"twPrune"!=a.id||ThreadWatcher.isRefreshing||ThreadWatcher.refresh()},toggle:function(a,b,c,e){var k;b=a+"-"+b;k=$.id("leaf-"+a);this.watched[b]?(delete this.watched[b],k&&(k.className="watchIcon",k.title="Watch")):(c=c?c.replace(/<[^>]*?>/g,"").slice(0,this.charLimit):"No."+a,this.watched[b]=[c,e||a,0],k.className="unwatchIcon",k.title="Unwatch");this.save();this.load();this.build()},save:function(){ThreadWatcher.sortByBoard();localStorage.setItem("4chan-watch",JSON.stringify(ThreadWatcher.watched))},sortByBoard:function(){var a,b,c,e,k;b=ThreadWatcher;e={};k=[];for(c in b.watched)k.push(c);k.sort(function(a,b){a=a.split("-")[1];b=b.split("-")[1];return a<b?-1:a>b?1:0});for(a=0;c=k[a];++a)e[c]=b.watched[c];b.watched=e},canAutoRefresh:function(){var a;return(a=localStorage.getItem("4chan-tw-timestamp"))?6E4<=Date.now()-+a:!1},setRefreshTimestamp:function(){localStorage.setItem("4chan-tw-timestamp",Date.now())},refresh:function(){var a,b,c,e,k;if(e=$.id("watchList").children.length)for(c in a=b=0,k=$.id("twPrune"),k.className="icon rotateIcon",ThreadWatcher.isRefreshing=!0,ThreadWatcher.setRefreshTimestamp(),ThreadWatcher.watched)setTimeout(ThreadWatcher.fetch,b,c,++a==e?k:null),b+=200},onRefreshEnd:function(a){a.className="icon refreshIcon";this.isRefreshing=!1;this.save();this.load();this.build()},parseThreadJSON:function(a){var b;try{b=JSON.parse(a).posts}catch(c){console.log(c),b=[]}return b},fetch:function(a,b){var c,e;c=$.id("watch-"+a);if(-1==ThreadWatcher.watched[a][1]){if(delete ThreadWatcher.watched[a],c.parentNode.removeChild(c),b)ThreadWatcher.onRefreshEnd(b)}else c=a.split("-"),e=new XMLHttpRequest,e.onload=function(){var c,e,p,N;if(200==this.status){p=ThreadWatcher.parseThreadJSON(this.responseText);N=ThreadWatcher.watched[a][1];e=0;for(c=p.length-1;1<=c&&!(p[c].no<=N);c--)++e;e>ThreadWatcher.watched[a][2]&&(ThreadWatcher.watched[a][2]=e)}else 404==this.status&&(ThreadWatcher.watched[a][1]=-1);if(b)ThreadWatcher.onRefreshEnd(b)},b&&(e.onerror=e.onload),e.open("GET","//a.4cdn.org/"+c[1]+"/res/"+c[0]+".json"),e.send(null)},linkToThread:function(a,b,c){return"//"+location.host+"/"+b+"/res/"+a+(0<c?"#p"+c:"")}},Draggable={el:null,key:null,scrollX:null,scrollY:null,dx:null,dy:null,right:null,bottom:null,set:function(a){a.addEventListener("mousedown",Draggable.startDrag,!1)},unset:function(a){a.removeEventListener("mousedown",Draggable.startDrag,!1)},startDrag:function(a){var b,c,e;if(!this.parentNode.hasAttribute("data-shiftkey")||a.shiftKey)a.preventDefault(),b=Draggable,c=document.documentElement,b.el=this.parentNode,b.key=b.el.getAttribute("data-trackpos"),e=b.el.getBoundingClientRect(),b.dx=a.clientX-e.left,b.dy=a.clientY-e.top,b.right=c.clientWidth-
+../themes/futaba-blue/catalog.771.js:7:e.width,b.bottom=c.clientHeight-e.height,"fixed"!=getComputedStyle(b.el,null).position?(b.scrollX=window.scrollX||window.pageXOffset,b.scrollY=window.scrollY||window.pageYOffset):b.scrollX=b.scrollY=0,document.addEventListener("mouseup",b.endDrag,!1),document.addEventListener("mousemove",b.onDrag,!1)},endDrag:function(a){document.removeEventListener("mouseup",Draggable.endDrag,!1);document.removeEventListener("mousemove",Draggable.onDrag,!1);Draggable.key&&localStorage.setItem("catalog-tw-pos",Draggable.el.style.cssText);delete Draggable.el},onDrag:function(a){var b,c;b=a.clientX-Draggable.dx+Draggable.scrollX;a=a.clientY-Draggable.dy+Draggable.scrollY;c=Draggable.el.style;1>b?(c.left="0",c.right=""):Draggable.right<b?(c.left="",c.right="0"):(c.left=b/document.documentElement.clientWidth*100+"%",c.right="");1>a?(c.top="0",c.bottom=""):Draggable.bottom<a?(c.bottom="0",c.top=""):(c.top=a/document.documentElement.clientHeight*100+"%",c.bottom="")}};function onCaptchaReady(){var a;if(a=document.getElementById("recaptcha_image"))a.title="Reload",a.addEventListener("click",onCaptchaClick,!1),a=document.getElementsByClassName("recaptcha_image_cell")[0],a.style.cssText="padding: 0 0 3px !important",a=document.getElementById("recaptcha_image"),a.style.cssText="border: 1px solid #aaa !important",a=document.getElementById("recaptcha_response_field"),a.setAttribute("placeholder","Type the text (Required)"),a.removeAttribute("style")}
+../themes/futaba-blue/catalog.771.js:8:function onCaptchaClick(a){Recaptcha.reload("t")}function setPassMsg(){var a;a=document.getElementById("captchaFormPart").children[1];a.innerHTML='<div style="padding: 5px;">You are using a 4chan Pass. [<a href="https://sys.4chan.org/auth?act=logout" onclick="confirmPassLogout(event);" tabindex="-1">Logout</a>]</div>';a.removeAttribute("style")}
+../themes/futaba-blue/catalog.771.js:9:var CustomMenu={reset:function(){var a,b,c,e,k;c=$.cls("boardList");e=$.cls("customBoardList");k=$.cls("show-all-boards");for(a=0;b=k[a];++a)b.removeEventListener("click",CustomMenu.reset,!1);for(a=e.length-1;b=e[a];a--)c[a].style.display=null,b.parentNode.removeChild(b)},apply:function(a){var b,c,e;if(a){e=a.split(/[^0-9a-z]/i);cnt=document.createElement("span");cnt.className="customBoardList";for(a=0;c=e[a];++a)a?cnt.appendChild(document.createTextNode(" / ")):cnt.appendChild(document.createTextNode("[")),b=document.createElement("a"),b.textContent=c,b.href="//boards.4chan.org/"+c+("f"!==c?"/catalog":""),cnt.appendChild(b);cnt.appendChild(document.createTextNode("]"));cnt.appendChild(document.createTextNode(" ["));b=document.createElement("a");b.textContent="\u2026";b.title="Show all";b.className="show-all-boards pointer";cnt.appendChild(b);cnt.appendChild(document.createTextNode("] "));c=cnt.cloneNode(!0);e=$.cls("boardList");for(a=0;b=e[a];++a)b.style.display="none",b.parentNode.insertBefore(a?c:cnt,b);e=$.cls("show-all-boards");for(a=0;b=e[a];++a)b.addEventListener("click",CustomMenu.reset,!1)}}};function buildMobileNav(){var a,b,c,e;e="";if(el=document.getElementById("boardSelectMobile")){a=document.querySelectorAll("#boardNavDesktop .boardList > a");for(b=0;c=a[b];++b)e+='<option value="'+c.textContent+'">/'+c.textContent+"/ - "+c.title+"</option>";el.innerHTML=e}}
+../themes/futaba-blue/catalog.771.js:10:function initPass(){"1"==get_cookie("pass_enabled")||get_cookie("extra_path")?window.passEnabled=!0:window.passEnabled=!1}function initRecaptcha(){window.passEnabled||(document.forms.post.com.addEventListener("focus",loadRecaptcha,!1),document.forms.post.upfile.addEventListener("change",loadRecaptcha,!1))}function loadRecaptcha(){document.getElementById("recaptcha_area")||Recaptcha.create(window.recaptchaKey,"captchaContainer"+window.recaptchaId,{theme:"clean",callback:onCaptchaReady})}
+../themes/futaba-blue/catalog.771.js:11:function initAnalytics(){(function(a,b,c,e,k,s,p){a.GoogleAnalyticsObject=k;a[k]=a[k]||function(){(a[k].q=a[k].q||[]).push(arguments)};a[k].l=1*new Date;s=b.createElement(c);p=b.getElementsByTagName(c)[0];s.async=1;s.src=e;p.parentNode.insertBefore(s,p)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-166538-1","auto");ga("set","anonymizeIp",!0);ga("send","pageview")}
+../themes/futaba-blue/catalog.771.js:12:function initAds(a,b){var c="http",e="static";"https:"==document.location.protocol&&(c+="s",e="engine");var k=document.createElement("script");k.type="text/javascript";k.async=!0;k.src=c+"://"+e+".4chan-ads.org/ados.js";k.onload=function(){ados=ados||{};ados.run=ados.run||[];ados.run.push(function(){ados_add_placement(3536,18130,"azk91603",4).setZone(16258);ados_add_placement(3536,18130,"azk98887",3).setZone(16259);ados_add_placement(3536,18130,"azk53379",4).setZone(16260);ados_setDomain("engine.4chan-ads.org");ados_setKeywords(a+", "+b);ados_setNoTrack();ados_load()})};c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(k,c)}function checkForBlock(){var a,b,c,e;if(!/Mobile|Android|Dolfin|Opera Mobi|PlayStation Vita|Nintendo DS/.test(navigator.userAgent)&&1!=$.readCookie("pass_enabled"))for(e=document.getElementsByClassName("ad-cnt"),a=0;b=e[a];++a)0==b.offsetHeight&&(c=document.createElement("div"),c.className="center",c.innerHTML=blockPlea,b.parentNode.insertBefore(c,b))};
+../themes/futaba-blue/analytics.js:1:(function(){var aa=encodeURIComponent,f=window,ba=setTimeout,n=Math,ea=RegExp;function fa(a,b){return a.name=b}function Pc(a,b){return a.href=b}
+../themes/futaba-blue/analytics.js:2:var p="push",h="hash",ha="slice",Qc="replace",q="data",r="cookie",t="indexOf",m="match",ia="defaultValue",ja="port",u="createElement",id="setAttribute",v="name",da="getTime",x="host",y="length",z="prototype",la="clientWidth",A="split",B="location",ma="hostname",ga="search",jd="target",C="call",E="protocol",na="clientHeight",Ab="href",F="substring",kd="action",G="apply",oa="navigator",Ub="parentNode",H="join",I="toLowerCase";var pa=new function(){var a=[];this.set=function(b){a[b]=!0};this.M=function(){for(var b=[],c=0;c<a[y];c++)a[c]&&(b[n.floor(c/6)]=b[n.floor(c/6)]^1<<c%6);for(c=0;c<b[y];c++)b[c]="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".charAt(b[c]||0);return b[H]("")+"~"}};function J(a){pa.set(a)};function K(a){return"function"==typeof a}function qa(a){return void 0!=a&&-1<(a.constructor+"")[t]("String")}function ra(){return n.round(2147483647*n.random())}function Ca(a){var b=M[u]("img");b.width=1;b.height=1;b.src=a;return b}function L(){}function sa(a){if(aa instanceof Function)return aa(a);J(28);return a}function ka(a){return sa(a)[Qc](/\(/g,"%28")[Qc](/\)/g,"%29")}
+../themes/futaba-blue/analytics.js:3:var ta=function(a,b,c,d){try{a.addEventListener?a.addEventListener(b,c,!!d):a.attachEvent&&a.attachEvent("on"+b,c)}catch(e){J(27)}},ua=function(a,b,c){a.removeEventListener?a.removeEventListener(b,c,!1):a.detachEvent&&a.detachEvent("on"+b,c)};function vc(a,b){if(a){var c=M[u]("script");c.type="text/javascript";c.async=!0;c.src=a;c.id=b;var d=M.getElementsByTagName("script")[0];d[Ub].insertBefore(c,d)}}function eb(){var a=""+M[B][ma];return 0==a[t]("www.")?a[F](4):a}
+../themes/futaba-blue/analytics.js:4:function va(a){var b=M.referrer;if(/^https?:\/\//i.test(b)){if(a)return b;a="//"+M[B][ma];var c=b[t](a);if(5==c||6==c)if(a=b.charAt(c+a[y]),"/"==a||"?"==a||""==a||":"==a)return;return b}}function wa(a,b){if(1==b[y]&&null!=b[0]&&"object"===typeof b[0])return b[0];for(var c={},d=n.min(a[y]+1,b[y]),e=0;e<d;e++)if("object"===typeof b[e]){for(var g in b[e])b[e].hasOwnProperty(g)&&(c[g]=b[e][g]);break}else e<a[y]&&(c[a[e]]=b[e]);return c};var N=function(){this.keys=[];this.w={};this.m={}};N[z].set=function(a,b,c){this.keys[p](a);c?this.m[":"+a]=b:this.w[":"+a]=b};N[z].get=function(a){return this.m.hasOwnProperty(":"+a)?this.m[":"+a]:this.w[":"+a]};N[z].map=function(a){for(var b=0;b<this.keys[y];b++){var c=this.keys[b],d=this.get(c);d&&a(c,d)}};var O=f,M=document,xa=function(a){var b=O._gaUserPrefs;if(b&&b.ioo&&b.ioo()||a&&!0===O["ga-disable-"+a])return!0;try{var c=O.external;if(c&&c._gaUserPrefs&&"oo"==c._gaUserPrefs)return!0}catch(d){}return!1},fb=function(a){ba(a,100)},ya=function(a){var b=[],c=M[r][A](";");a=ea("^\\s*"+a+"=\\s*(.*?)\\s*$");for(var d=0;d<c[y];d++){var e=c[d][m](a);e&&b[p](e[1])}return b},zc=function(a,b,c,d,e,g){e=xa(e)?!1:Aa.test(M[B][ma])||"/"==c&&za.test(d)?!1:!0;if(!e)return!1;b&&1200<b[y]&&(b=b[F](0,1200),J(24));
+../themes/futaba-blue/analytics.js:7:"hidden";var e=M[B],e=oc()+"/analytics_iframe.html#"+aa(e[E]+"//"+e[x]+"/favicon.ico"),g=function(){c.src="";c[Ub]&&c[Ub].removeChild(c)};ta(O,"beforeunload",g);var ca=!1,l=0,k=function(){if(!ca){try{if(9<l||c.contentWindow[B][x]==M[B][x]){ca=!0;g();ua(O,"beforeunload",g);b();return}}catch(a){}l++;ba(k,200)}};ta(c,"load",k);M.body.appendChild(c);c.src=e}else fb(function(){Fa(a,b)})};var Ha=function(){this.t=[]};Ha[z].add=function(a){this.t[p](a)};Ha[z].D=function(a){try{for(var b=0;b<this.t[y];b++){var c=a.get(this.t[b]);c&&K(c)&&c[C](O,a)}}catch(d){}b=a.get(Ia);b!=L&&K(b)&&(a.set(Ia,L,!0),ba(b,10))};function Ja(a){if(100!=a.get(Ka)&&La(P(a,Q))%1E4>=100*R(a,Ka))throw"abort";}function Ma(a){if(xa(P(a,Na)))throw"abort";}function Oa(){var a=M[B][E];if("http:"!=a&&"https:"!=a)throw"abort";}
+../themes/futaba-blue/analytics.js:8:function Pa(a){a.set(Ac,R(a,Ac)+1);var b=[];Qa.map(function(c,d){if(d.p){var e=a.get(c);void 0!=e&&e!=d[ia]&&("boolean"==typeof e&&(e*=1),b[p](d.p+"="+sa(""+e)))}});b[p]("z="+ra());a.set(Ra,b[H]("&"),!0)}function Sa(a){Ga(P(a,Ra),a.get(Ia));a.set(Ia,L,!0)}function Hc(a){var b=O.gaData;b&&(b.expId&&a.set(Nc,b.expId),b.expVar&&a.set(Oc,b.expVar))}function cd(){if(O[oa]&&"preview"==O[oa].loadPurpose)throw"abort";};function Ta(a){var b=R(a,Ua);500<=b&&J(15);var c=P(a,Va);if("transaction"!=c&&"item"!=c){var c=R(a,Wa),d=(new Date)[da](),e=R(a,Xa);0==e&&a.set(Xa,d);e=n.round(2*(d-e)/1E3);0<e&&(c=n.min(c+e,20),a.set(Xa,d));if(0>=c)throw"abort";a.set(Wa,--c)}a.set(Ua,++b)};var Ya=function(){this.data=new N},Qa=new N,Za=[];Ya[z].get=function(a){var b=$a(a),c=this[q].get(a);b&&void 0==c&&(c=K(b[ia])?b[ia]():b[ia]);return b&&b.n?b.n(this,a,c):c};var P=function(a,b){var c=a.get(b);return void 0==c?"":""+c},R=function(a,b){var c=a.get(b);return void 0==c||""===c?0:1*c};Ya[z].set=function(a,b,c){if(a)if("object"==typeof a)for(var d in a)a.hasOwnProperty(d)&&ab(this,d,a[d],c);else ab(this,a,b,c)};
+../themes/futaba-blue/analytics.js:16:void 0,!1),cc=T("allowAnchor",void 0,!0),Ka=T("sampleRate","sf",100),dc=T("siteSpeedSampleRate",void 0,1),ec=T("alwaysSendReferrer",void 0,!1);function Cc(){var a=$;X("create",a,a.create,3);X("getByName",a,a.j,5);X("getAll",a,a.K,6);a=pc[z];X("get",a,a.get,7);X("set",a,a.set,4);X("send",a,a.send,2);a=Ya[z];X("get",a,a.get);X("set",a,a.set);(O.gaplugins=O.gaplugins||{}).Linker=Dc;a=Dc[z];Z.C("linker",Dc);X("decorate",a,a.Q,20);X("autoLink",a,a.S,25);Z.C("displayfeatures",fd)}
+../themes/futaba-blue/analytics.js:17:function X(a,b,c,d){b[a]=function(){try{return d&&J(d),c[G](this,arguments)}catch(b){var g=b&&b[v];if(!(1<=100*n.random()||xa("?"))){var ca=["t=error","_e=exc","_v=j16","sr=1"];a&&ca[p]("_f="+a);g&&ca[p]("_m="+sa(g[F](0,100)));ca[p]("aip=1");ca[p]("z="+ra());Ga(ca[H]("&"))}throw b;}}};function fc(){var a,b,c;if((c=(c=O[oa])?c.plugins:null)&&c[y])for(var d=0;d<c[y]&&!b;d++){var e=c[d];-1<e[v][t]("Shockwave Flash")&&(b=e.description)}if(!b)try{a=new ActiveXObject("ShockwaveFlash.ShockwaveFlash.7"),b=a.GetVariable("$version")}catch(g){}if(!b)try{a=new ActiveXObject("ShockwaveFlash.ShockwaveFlash.6"),b="WIN 6,0,21,0",a.AllowScriptAccess="always",b=a.GetVariable("$version")}catch(ca){}if(!b)try{a=new ActiveXObject("ShockwaveFlash.ShockwaveFlash"),b=a.GetVariable("$version")}catch(l){}b&&
+../themes/futaba-blue/analytics.js:21:a},ic=function(a){return lc(a)[A](".")[y]},kc=function(a){if(!a)return"/";1<a[y]&&a.lastIndexOf("/")==a[y]-1&&(a=a.substr(0,a[y]-1));0!=a[t]("/")&&(a="/"+a);return a},jc=function(a){a=kc(a);return"/"==a?1:a[A]("/")[y]};function Xc(a,b,c){"none"==b&&(b="");var d=[],e=ya(a);a="__utma"==a?6:2;for(var g=0;g<e[y];g++){var ca=(""+e[g])[A](".");ca[y]>=a&&d[p]({hash:ca[0],R:e[g],O:ca})}return 0==d[y]?void 0:1==d[y]?d[0]:Zc(b,d)||Zc(c,d)||Zc(null,d)||d[0]}function Zc(a,b){var c,d;null==a?c=d=1:(c=La(a),d=La(0==a[t](".")?a[F](1):"."+a));for(var e=0;e<b[y];e++)if(b[e][h]==c||b[e][h]==d)return b[e]};var od=ea(/^https?:\/\/([^\/:]+)/),pd=/(.*)([?&#])(?:_ga=[^&]*)(?:&?)(.*)/;function Bc(a){a=a.get(Q);var b=Ic(a,0);return"_ga=1."+sa(b+"."+a)}function Ic(a,b){for(var c=new Date,d=O[oa],e=d.plugins||[],c=[a,d.userAgent,c.getTimezoneOffset(),c.getYear(),c.getDate(),c.getHours(),c.getMinutes()+b],d=0;d<e[y];++d)c[p](e[d].description);return La(c[H]("."))}var Dc=function(a){this.target=a;this.T=!1};
+../themes/futaba-blue/analytics.js:25:Dc[z].S=function(a,b,c){function d(c){try{c=c||O.event;var d;t:{var g=c[jd]||c.srcElement;for(c=100;g&&0<c;){if(g[Ab]&&g.nodeName[m](/^a(?:rea)?$/i)){d=g;break t}g=g[Ub];c--}d={}}("http:"==d[E]||"https:"==d[E])&&sd(a,d[ma]||"")&&d[Ab]&&Pc(d,qd(e,d[Ab],b))}catch(w){J(26)}}var e=this;this.T||(this.T=!0,ta(M,"mousedown",d,!1),ta(M,"touchstart",d,!1),ta(M,"keyup",d,!1));if(c){c=function(c){c=c||O.event;if((c=c[jd]||c.srcElement)&&c[kd]){var b=c[kd][m](od);b&&sd(a,b[1])&&rd(e,c)}};for(var g=0;g<M.forms[y];g++)ta(M.forms[g],
+../themes/futaba-blue/analytics.js:26:"submit",c)}};function sd(a,b){if(b==M[B][ma])return!1;for(var c=0;c<a[y];c++)if(0<=b[t](a[c]))return!0;return!1};var gd=function(a){return a.get(V)&&"t0"!=a.get(V)?"_dc_"+ka(a.get(V)):"_dc"},hd=function(a){if(a.get(ed)){var b=new N,c=function(c){b.set($a(c).p,a.get(c))};c(hb);c(ib);c(Na);c(Q);c(ed);var d=R(a,"forceSSL")||"https:"==M[B][E]?"https:":"http:",d=d+"//stats.g.doubleclick.net/collect?t=dc&aip=1&";b.map(function(a,c){d+=sa(a)+"="+sa(""+c)+"&"});d+="z="+ra();Ca(d);a.set(ed,"",!0)}},fd=function(a,b){J(29);var c=a.b;b=b||{};var d;d=b.cookieName?ka(b.cookieName):gd(c);var e=c.get(Wb);c.set(Wb,function(a){a.get(ed)||
+../themes/futaba-blue/analytics.js:27:(-1!=M[r][t](d+"=1")?a.set(ed,"",!0):zc(d,"1",a.get(Yb),a.get(W),a.get(Na),6E5)?a.set(ed,""+ra(),!0):J(30));return e(a)});var g=c.get(Xb);c.set(Xb,function(a){var c=g(a);hd(a);return c})};function $c(){if(!(1<=ra()%1E4)&&(J(33),O.top!=O)){J(34);try{void 0!=O.top[B][Ab]&&J(35)}catch(a){}}var b=O.gaGlobal=O.gaGlobal||{};return b.hid=b.hid||ra()};var ad,bd=function(a,b,c){if(!ad){var d;d=M[B][h];var e=O[v],g=/^#?gaso=([^&]*)/;if(e=(d=(d=d&&d[m](g)||e&&e[m](g))?d[1]:ya("GASO")[0]||"")&&d[m](/^(?:!([-0-9a-z.]{1,40})!)?([-.\w]{10,1200})$/i))zc("GASO",""+d,c,b,a,0),f._udo||(f._udo=b),f._utcp||(f._utcp=c),a=e[1],vc("https://www.google.com/analytics/web/inpage/pub/inpage.js?"+(a?"prefix="+a+"&":"")+ra(),"_gasojs");ad=!0}};var pc=function(a){function b(a,c){d.b[q].set(a,c)}function c(a,c){b(a,c);d.filters.add(a)}var d=this;this.b=new Ya;this.filters=new Ha;b(V,a[V]);b(Na,a[Na]);b(U,a[U]);b(W,a[W]||eb());b(Yb,a[Yb]);b(Zb,a[Zb]);b($b,a[$b]);b(Wc,a[Wc]);b(bc,a[bc]);b(cc,a[cc]);b(Ka,a[Ka]);b(dc,a[dc]);b(ec,a[ec]);b(ac,a[ac]);b(hb,1);b(ib,"j16");c(Qb,Ma);c(dd,cd);c(Rb,Oa);c(Sb,nc);c(Uc,Yc);c(Tb,Ja);c(Vb,Ta);c(Vc,Hc);c(Wb,Pa);c(Xb,Sa);Jc(this.b,a[Q]);Kc(this.b);this.b.set(jb,$c());bd(this.b.get(Na),this.b.get(W),this.b.get(Yb))},
+../themes/futaba-blue/analytics.js:34:function ud(a){return 0<=a[t](".")||0<=a[t](":")};var Z={F:"/plugins/ua/"};Z.k=new N;Z.f=[];Z.B=function(a,b,c){var d=Z.k.get(a);if(!K(d))return!1;b.plugins_=b.plugins_||new N;b.plugins_.set(a,new d(b,c||{}));return!0};Z.C=function(a,b){Z.k.set(a,b)};Z.D=function(a){var b=Z.J[G](Z,arguments),b=Z.f.concat(b);for(Z.f=[];0<b[y]&&!Z.v(b[0])&&!(b.shift(),0<Z.f[y]););Z.f=Z.f.concat(b)};
+../themes/futaba-blue/analytics.js:37:function tc(a){function b(a){var c=(a[ma]||"")[A](":")[0][I](),b=(a[E]||"")[I](),b=1*a[ja]||("http:"==b?80:"https:"==b?443:"");a=a.pathname||"";0==a[t]("/")||(a="/"+a);return[c,""+b,a]}var c=M[u]("a");Pc(c,M[B][Ab]);var d=(c[E]||"")[I](),e=b(c),g=c[ga]||"",ca=d+"//"+e[0]+(e[1]?":"+e[1]:"");0==a[t]("//")?a=d+a:0==a[t]("/")?a=ca+a:a&&0!=a[t]("?")?0>a[A]("/")[0][t](":")&&(a=ca+e[2][F](0,e[2].lastIndexOf("/"))+"/"+a):a=ca+e[2]+(a||g);Pc(c,a);d=b(c);return{protocol:(c[E]||"")[I](),host:d[0],port:d[1],
+../themes/futaba-blue/analytics.js:38:path:d[2],G:c[ga]||"",url:a||""}};var $=function(a){J(1);Z.D[G](Z,[arguments])};$.h={};$.P=[];$.L=0;$.answer=42;var uc=[Na,W,V];$.create=function(a){var b=wa(uc,[][ha][C](arguments));b[V]||(b[V]="t0");var c=""+b[V];if($.h[c])return $.h[c];b=new pc(b);$.h[c]=b;$.P[p](b);return b};$.j=function(a){return $.h[a]};$.K=function(){return $.P[ha](0)};$.N=function(){var a=O[gb];if(!a||42!=a.answer){$.L=a&&a.l;$.loaded=!0;O[gb]=$;Cc();var b=a&&a.q;"[object Array]"==Object[z].toString[C](Object(b))&&Mc(function(){Z.D[G]($,b)})}};$.N();function La(a){var b=1,c=0,d;if(a)for(b=0,d=a[y]-1;0<=d;d--)c=a.charCodeAt(d),b=(b<<6&268435455)+c+(c<<14),c=b&266338304,b=0!=c?b^c>>21:b;return b};})(window);

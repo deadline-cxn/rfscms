@@ -118,7 +118,8 @@ function lib_file_multi_rename($folder,$old_pattern,$new_pattern) {
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_file_echo_file($file) { eval(lib_rfs_get_globals()); 
+function lib_file_echo_file($file) { 
+	eval(lib_rfs_get_globals()); 
 	if(file_exists($file)) {
 		echo "Filename: $file\n";
 		$f=file_get_contents($file);
@@ -127,7 +128,8 @@ function lib_file_echo_file($file) { eval(lib_rfs_get_globals());
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_file_file_get_readme($file_name) { eval (lib_rfs_get_globals());
+function lib_file_file_get_readme($file_name) { 
+	eval (lib_rfs_get_globals());
 	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
 	system("yes| rm -R $RFS_SITE_PATH/tmp/.*");
 	system("cd $RFS_SITE_PATH/tmp");
@@ -197,7 +199,8 @@ function lib_file_file_get_readme($file_name) { eval (lib_rfs_get_globals());
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_file_touch_dir($dir) { eval(lib_rfs_get_globals());
+function lib_file_touch_dir($dir) { 
+	eval(lib_rfs_get_globals());
 	if(!file_exists($dir)) {
 		system("$RFS_SITE_SUDO_CMD mkdir $dir");
 		system("$RFS_SITE_SUDO_CMD chmod 775 $dir");

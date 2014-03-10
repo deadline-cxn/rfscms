@@ -45,7 +45,7 @@ function videos_action_modifyvideo() {
 		echo "You can't edit videos."; 
 	}
 }
-function videos_action_modifygo() { 
+function videos_action_modifygo() {
 	eval(lib_rfs_get_globals());
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
@@ -66,9 +66,8 @@ function videos_action_modifygo() {
 			lib_mysql_query("update `videos` set `url`='$vurl' where `id`='$id'");
 		}
 	}
-	videos_action_view();
+	videos_action_view($id);
 }
-
 function videos_action_submitvid_youtube_go() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
@@ -90,24 +89,14 @@ function videos_action_submitvid_youtube_go() {
 		$c=lib_mysql_fetch_one_object("select * from `categories` where name='$category'");
 		$category=$c->id;
 		
-		echo "	SUBMITTING VIDEO: <br>
-				contributor $cont <br>
-				sname $sname <br>
-				time $time <br>
-				btime $time <br>
-				category $category<br>
-				sfw $sfw <br>"	 ;
+		// echo "	SUBMITTING VIDEO: <br> contributor $cont <br> sname $sname <br> time $time <br> btime $time <br> category $category<br>				sfw $sfw <br>"	 ;
 	 
 		lib_mysql_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
 								 VALUES ('$cont',	 	'$sname','$vurl','$time',    '$time','$category',      '0', '$sfw');");
-
-		$v=lib_mysql_fetch_one_object("select * from videos where `sname`='$sname'");
-		$id=$v->id;
-		videos_action_modifygo();
-		echo "<BR> $v->id ($v->sname) <BR>";
+		$id=mysql_insert_id();
+		videos_action_view($id);
 	}
 }
-
 function videos_action_submitvidgo() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
@@ -125,14 +114,11 @@ function videos_action_submitvidgo() {
 				btime $time <br>
 				category $category<br>
 				sfw $sfw <br>"	 ;
-	 
-		lib_mysql_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
-								 VALUES ('$cont',	 	'$sname','$vurl','$time',    '$time','$category',      '0', '$sfw');");
-
-		$v=lib_mysql_fetch_one_object("select * from videos where `sname`='$sname'");
-		$id=$v->id;
-		videos_action_modifygo();
-		echo "<BR> $v->id ($v->sname) <BR>";	
+				
+		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
+				  VALUES ('$cont','$sname','$vurl','$time','$time','$category','0','$sfw');");
+		$id=mysql_insert_id();
+		videos_action_view($id);
 	}
 }
 function videos_action_submitvid() { 
@@ -209,14 +195,13 @@ function videos_action_removevideo() {
 }
 function videos_action_view($id) {
 	eval(lib_rfs_get_globals());
+	if(empty($id)) $id=mysql_insert_id();
 	videos_buttons();
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
-	echo "<div class=forum_message > <center> ";
-	
+	echo "<div class=forum_message > <center> ";	
 	$category=lib_mysql_fetch_one_object("select * from categories where id ='$video->category'");
-	echo "<h1>$category->name videos</h1>";
-	
+	echo "<h1>$category->name videos</h1>";	
 	$res2=lib_mysql_query("select * from `videos` where `category`='$category->id' and `hidden`!='yes' order by `sname` asc");
 	$linkprev="";
 	$linknext="";
@@ -248,7 +233,7 @@ function videos_action_view($id) {
     }
 	echo "<br>";	
 	echo $linkprev;
-	if(lib_access_check("videos","edit"))    lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit"); //($data->id==$video->contributor)||($data->access==255)){			 
+	if(lib_access_check("videos","edit"))   lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit");
 	if(lib_access_check("videos","delete")) lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&id=$video->id","Delete");
 	echo $linknext;
 	echo "</div>";	
@@ -303,7 +288,10 @@ function videos_action_random() {
 	eval(lib_rfs_get_globals());
 	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
 	$num=mysql_num_rows($res);	
-	if($num==0) { echo "<p>There are no videos.</p>"; }
+	if($num==0) { 
+		videos_buttons();
+		echo "<p>There are no videos.</p>";
+	}
 	else {
 		$vid=rand(1,$num)-1;
 		mysql_data_seek($res,$vid);
@@ -371,16 +359,11 @@ function videos_action_() {
 	videos_pagefinish();
 }
 
-
 /*
- 
-
 liveleak: 
 code: encodeURI('<iframe width="640" height="360" src="http://www.liveleak.com/ll_embed?f=1fe3095e0f2a" frameborder="0" allowfullscreen></iframe>'),
 link: "http://www.liveleak.com/view?i=cc6_1394235601"
-image: "http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Mar/7/1fe3095e0f2a_sf_6.jpg",
- 
-  
+image: "http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Mar/7/1fe3095e0f2a_sf_6.jpg",  
 */
 
 ?>

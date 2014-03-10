@@ -17,6 +17,7 @@ if(stristr($_REQUEST['action'],"lib_ajax_callback")) {
 	eval("$action();");
 	exit();
 }
+lib_log_count($data->name);
 // inlude theme definition file (if it exists)
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
 // include theme header file (if it exists)

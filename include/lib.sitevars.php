@@ -11,6 +11,12 @@ while($site_var=mysql_fetch_object($res)) {
     $upsitevar=strtoupper($site_var->name);
     $GLOBALS["RFS_SITE_$upsitevar"]=stripslashes($site_var->value);
 }
+function lib_sitevars_assign($x,$y) {
+	
+	lib_mysql_query("insert into `site_vars`
+	");
+	
+}
 // foreach($GLOBALS as $key => $value) {//$value=tostring($value); if(is_string($value)){//if(stristr($key,"RFS_")) // echo "[$key] => [".str_replace("<","&lt;",$value)."]<br>";}}
 if(!isset($RFS_SITE_SUDO_CMD)) $RFS_SITE_SUDO_CMD=" ";
 /////////////////////////////////////////////////////////////////////////////////////////
