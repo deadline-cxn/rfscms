@@ -93,7 +93,7 @@ if($give_file=="avatar"){
 if($_REQUEST['action']=="get_file_go") {
 	chdir("../../");
 	include_once("include/lib.all.php");
-	include("modules/files/lib.files.php");
+	include("modules/files/module.files.php");
 	if($_SESSION["logged_in"]=="true") {
 		$id=$_REQUEST['id'];
 		$filedata=sc_getfiledata($id);
