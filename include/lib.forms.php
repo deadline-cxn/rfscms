@@ -1309,8 +1309,9 @@ function lib_forms_codearea($id,$rows,$cols,$name,$indata){ eval(lib_rfs_get_glo
     echo "</textarea>";
     //echo "<BR><a href=\"http://sourceforge.net/projects/editarea/\" target=_blank>EditArea</a> JavaScript Browser Editor";
 }
-function lib_forms_warn($x) { 	eval(lib_rfs_get_globals()); 
-echo "<div class=warning><br><img src='$RFS_SITE_URL/images/icons/exclamation2.png' border=0 align=left>$x</div>";
+function lib_forms_warn($x) {
+	eval(lib_rfs_get_globals()); 
+	echo "<div class=warning><br><img src='$RFS_SITE_URL/images/icons/exclamation2.png' border=0 align=left>$x</div>";
 }
 function lib_forms_inform($x) { eval(lib_rfs_get_globals());
     echo "<div class=inform>
