@@ -129,8 +129,16 @@ function forums_get_message($post) {
         echo "posted $time by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$poster->name\">$poster->name</a> ";
         if($logged_in=="true") {
             if(($poster->name==$data->name) || (lib_access_check("forums","admin"))) {
-				echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&forum_which=".$post['forum']."&reply=".$post['id']."&thread=".$post['thread']."\">delete</a>] ";
-				echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=edit_reply&forum_which=".$post['forum']."&reply=".$post['id']."&thread=".$post['thread']."\">edit</a>] ";
+				
+				if(lib_rfs_bool_true($post['thread_top'])) {
+					echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&forum_which=".$post['forum']."&reply=".$post['id']."&thread=".$post['thread']."\">delete</a>] ";
+					echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=edit_reply&forum_which=".$post['forum']."&reply=".$post['id']."&thread=".$post['thread']."\">edit</a>] ";
+				}
+				else {
+					echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=delete_reply_s&forum_which=".$post['forum']."&reply=".$post['id']."&thread=".$post['thread']."\">delete</a>] ";
+					echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=edit_reply&forum_which=".$post['forum']."&reply=".$post['id']."&thread=".$post['thread']."\">edit</a>] ";
+				}
+				
             }
         }
 		echo "</div>";
@@ -174,12 +182,12 @@ function forums_action_get_thread($thread) {
 				echo "<input type=hidden name=action value=reply_to_thread>\n";
 				echo "<input type=hidden name=forum_which value=\"$forum_which\">\n";
 				echo "<input type=hidden name=thread value=\"".$thread."\">\n";				
-				echo "Title:<input type=text name=header value=\"re:";				
+				echo "Title:<input type=text name=theader value=\"re:";				
 				echo stripslashes($title);
-				echo "\" size=78>";				
+				echo "\" size=78>";
 				echo "<div class=forum_message>";
 				echo "<textarea name=reply rows=15 style='width: 100%;'></textarea>";
-				echo "</div>";				
+				echo "</div>";
 				echo "<br>Anonymous:";
 				echo "<select id=\"anonymous\" name=anonymous style=\"width:160px; min-width: 160px;\" width=160><option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\">";
 				echo "</form>\n";
@@ -204,13 +212,25 @@ function forums_action_move_thread() {
 function forums_action_delete_post_s() {
 	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
-        echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles("^X")."\n";
+        echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".
+		lib_string_convert_smiles("^X")."\n";
         echo "<br>WARNING:<br>The forum post and ALL replies will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
-        echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
-        echo "<input type=hidden name=action value=delete_post><input type=hidden name=reply value=$reply>\n";
+        echo "<table align=center><tr><td>
+			<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
+        echo "	<input type=hidden name=action value=delete_post>
+				<input type=hidden name=thread value=\"$thread\">
+				<input type=hidden name=forum_which value=\"$forum_which\">
+				
+				<input type=hidden name=reply value=$reply>\n";
         echo "<input type=\"submit\" name=\"submit\" value=\"Delete!\"></form></td>\n";
-        echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/index.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";    
+		
+        echo "<td>
+		<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">
+		<input type=hidden name=action value=get_thread>
+		<input type=hidden name=thread value=\"$thread\">
+		<input type=\"submit\" name=\"no\" value=\"No\"></form>
+		</td></tr></table>\n";    
     }
 }
 function forums_action_delete_post() {
@@ -219,28 +239,37 @@ function forums_action_delete_post() {
        lib_mysql_query("delete from forum_posts where thread='$thread';");
        lib_forms_warn("<h2><font color=red>Post was deleted...</font></h2>");
 		$forum_list="no";
-		forums_action_get_thread($thread,$forum_which);
+		forums_action_forum_showposts();
+		// forums_action_get_thread($thread,$forum_which);
     }
 }
 function forums_action_delete_reply_s() {
 	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
-        echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles(":X")."\n";
+        echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\">
+				<center>".lib_string_convert_smiles("^X")."\n";
         echo "<br>WARNING:<br>The forum reply will be completely removed are you sure?</center>\n";
         echo "</td></tr></table>\n";
-        echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
-        echo "<input type=hidden name=action value=delete_reply><input type=hidden name=reply value=$reply>\n";
-        echo "<input type=\"submit\" name=\"submit\" value=\"Fuck Yeah!\"></form></td>\n";
-        echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/index.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
+        echo "<table align=center><tr><td>
+				<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
+        echo "  <input type=hidden name=action value=delete_reply>
+				<input type=hidden name=thread value=\"$thread\">
+				<input type=hidden name=reply value=\"$reply\">\n";
+        echo "<input type=\"submit\" name=\"submit\" value=\"Yes\"></form></td>\n";
+        echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">
+				<input type=hidden name=action value=get_thread>
+				<input type=hidden name=thread value=\"$thread\">
+				<input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
     }
 }
 function forums_action_delete_reply() {
 	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
-        lib_mysql_query("delete from forum_posts where id='$reply';");
-        echo "<h2><font color=red>Reply was deleted...</font></h2>";
-        $action="get_thread";
+        lib_mysql_query("delete from `forum_posts` where id='$reply';");
+        echo "<h2><font color=red>Reply [$reply] was deleted...</font></h2>";
+        forums_action_get_thread($thread);
     }
+	
 }
 function forums_action_edit_reply() {
 	eval(lib_rfs_get_globals());
@@ -284,11 +313,11 @@ function forums_action_reply_to_thread() {
     if($logged_in=="true")    {
         $user=$data->id; if($anonymous=="yes") $user=999;
         $time=date("Y-m-d H:i:s");
-        $header=addslashes($header);
+        $theader=addslashes($theader);
         $reply=addslashes($reply);
         $query  = "INSERT  INTO  `forum_posts` ";
         $query .= "( `id`, `poster`, `title`, `message`, `thread`, `forum`, `time`, `thread_top` ) ";
-        $query .= "VALUES (  '',  '$user',  '$header',  '$reply',  '$thread',  '$forum_which',  '$time',  'no' );";
+        $query .= "VALUES (  '',  '$user',  '$theader',  '$reply',  '$thread',  '$forum_which',  '$time',  'no' );";
         lib_mysql_query($query);
         $data->forumreplies+=1;
         lib_mysql_query("update `users` set `forumreplies`='$data->forumreplies' where `id`='$data->id'");
@@ -296,7 +325,7 @@ function forums_action_reply_to_thread() {
         $post=mysql_fetch_object($posts); 
         lib_mysql_query("UPDATE `forum_list` set `last_post` = '$post->id' where `id` = '$forum_which';");
         forums_bumpthread($post->thread);
-        lib_log_add_entry("*****> $data->name replied to thread [$header]");
+        lib_log_add_entry("*****> $data->name replied to thread [$theader]");
     }
 	else {
         echo "<p class=sc_site_urlr><a href=$RFS_SITE_URL/login>Login</a> to reply</p>\n";
@@ -334,7 +363,7 @@ function forums_action_forum_list() {
 			</tr>";
 			$result = lib_mysql_query("select * from forum_list where `parent`='$dfold->id' order by priority");
 			while($folder=mysql_fetch_object($result)) {
-				$new=0;
+				
 				$name=stripslashes($folder->name);
 				$comment=stripslashes($folder->comment);
 				$moder=$folder->moderator;
@@ -352,34 +381,24 @@ function forums_action_forum_list() {
 					 }
 				}
 				
+				$new=0;
 				if($dumpforum) {
-					$fork = lib_mysql_query("select * from forum_posts where `forum`= '$folder->id' and `thread_top`='yes'");
-					$posts=0;
-					if($fork) $posts=mysql_num_rows($fork);
-					for($star=0;$star<$posts;$star++) {
-						$fart=mysql_fetch_array($fork);
-						if($fart['time']>=$data->last_login) $new=1;
-						$lip = lib_mysql_query("select * from forum_posts where `thread`=".($fart['thread']));
-						$postst=0;
-						if($lip) $postst=mysql_num_rows($lip);
-						for($stary=0;$stary<$postst;$stary++)  {
-							$farter=mysql_fetch_array($lip);
-							if($farter['time']>=$data->last_login) $new=1;
+					$forum_r=lib_mysql_query("select * from forum_posts where `forum`= '$folder->id' and `thread_top`='yes'");
+					while($timecheck=mysql_fetch_array($forum_r)) {
+						if($timecheck['time']>=$data->last_login) $new=1;
+						$thread_r=lib_mysql_query("select * from forum_posts where `thread`=".($fart['thread']));
+						while($thread_time_check=mysql_fetch_array($thread_r)) {
+							if($thread_time_check['time']>=$data->last_login) $new=1;
 						}
 					}
 					$link="$RFS_SITE_URL/modules/forums/forums.php?forum_which=$folder->id&action=forum_showposts";
-					$gt=$gt+1; if($gt>2) $gt=1; $gx=$gt+2; $gy=$gt+4;
-					
 					$alttxt="No new posts";
 					$folder_filename="folder_big.gif";
 					if($new==1) {
 						$folder_filename="folder_new_big.gif";
 						$alttxt="New posts";
 					}
-					
-					
-					echo"<tr><td width=500>";
-					
+					echo"<tr><td width=500>";					
 					echo "<table><tr><td>";							
 					$folderpic=lib_themes_get_image("images/icons/$folder_filename");
 					echo "<a href=\"$link\" class=\"forumlink\">";
@@ -416,13 +435,11 @@ function forums_action_forum_list() {
 					echo "$posts";
 					echo "</td>";
 					echo "<td>";
-					$ruhroh=lib_mysql_query("select * from `forum_posts` where `forum` = '$folder->id' order by time desc limit 1");
-					
-					if(mysql_num_rows($ruhroh)) {
-						$lastpost=mysql_fetch_object($ruhroh);
+					$last_post_r=lib_mysql_query("select * from `forum_posts` where `forum` = '$folder->id' order by time desc limit 1");					
+					if($lastpost=mysql_fetch_object($last_post_r)) {
 						$link="$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lastpost->id";
 						$link="$RFS_SITE_URL/modules/forums/forums.php?forum_list=no&action=get_thread&thread=$lastpost->thread&forum_which=$lastpost->forum";
-						echo "<a href=\"$link#$lastpost->id\" title=\"$lastpost->title\">$lastpost->title</a><br>";
+						echo "<a href=\"$link\" title=\"$lastpost->title\">$lastpost->title</a><br>";
 						echo lib_string_current_time($lastpost->time);
 						$udata=lib_users_get_data($lastpost->poster);
 						echo " by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$udata->name\">$udata->name</a>";
@@ -544,7 +561,7 @@ function forums_action_forum_showposts() {
 				16);
 				
 				lib_button_image_sizeable(
-				"$RFS_SITE_URL/modules/forums/forums.php?action=delete_thread&thread=".$post['thread'],
+				"$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&thread=".$post['thread'],
 				"Delete",
 				"$RFS_SITE_URL/images/icons/Delete.png",
 				16,
