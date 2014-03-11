@@ -3,9 +3,20 @@ $title="FORUMS";
 chdir("../../");
 $RFS_LITTLE_HEADER=true;
 include("header.php");
-if(empty($action)) $action="forum_list";
+$message=str_replace("<meta","(meta tags are unauthorized)<no ",$message);
+$message=str_replace("<input","(form tags are unauthorized)<no ",$message);
+$message=str_replace("<form","(form tags are unauthorized)<no ",$message);
+$message=str_replace("<textarea","(form tags are unauthorized)<no ",$message);
+$message=str_replace("<select","(form tags are unauthorized)<no ",$message);
 
-function forum_put_buttons($forum_which) { eval(lib_rfs_get_globals());
+if(lib_rfs_bool_true($_SESSION['forum_admin'])) {
+    if(lib_access_check("admin","forums")) {
+		echo "<p> ".lib_string_convert_smiles(":X")." You do not have access to the Forum Administration Panel (FAP)!</p>";
+		$_SESSION['forum_admin']=="no";
+	}
+}
+function forums_buttons($forum_which) { 
+	eval(lib_rfs_get_globals());
 	if($forum_list!="yes") {
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php\">List Forums</a>]";
         echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";
@@ -19,30 +30,14 @@ function forum_put_buttons($forum_which) { eval(lib_rfs_get_globals());
     }
 	echo "<hr>";
 }
-
-$message=str_replace("<meta","(meta tags are unauthorized)<no ",$message);
-$message=str_replace("<input","(form tags are unauthorized)<no ",$message);
-$message=str_replace("<form enctype=application/x-www-form-URLencoded","(form tags are unauthorized)<no ",$message);
-$message=str_replace("<textarea","(form tags are unauthorized)<no ",$message);
-$message=str_replace("<select","(form tags are unauthorized)<no ",$message);
-
-function bumpthread($id) { $bumptime=date("Y-m-d H:i:s"); lib_mysql_query("update forum_posts set `bumptime`='$bumptime' where id='$id'"); }
+function forums_bumpthread($id) { $bumptime=date("Y-m-d H:i:s"); lib_mysql_query("update forum_posts set `bumptime`='$bumptime' where id='$id'"); }
 function forums_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; forums_action_forum_showposts(); }
 function forums_action_forum_admin_off() { $_SESSION['forum_admin']="no";  forums_action_forum_showposts(); }
-
-if(lib_rfs_bool_true($_SESSION['forum_admin'])) {
-    if(lib_access_check("admin","forums")) {
-		echo "<p> ".lib_string_convert_smiles(":X")." You do not have access to the Forum Administration Panel (FAP)!</p>";
-		$_SESSION['forum_admin']=="no";
-	}
-}
-
-$folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));
-
-function forums_action_start_thread() { eval(lib_rfs_get_globals());
+function forums_action_start_thread() {
+	eval(lib_rfs_get_globals());
 	$folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));   
     echo "<h1>$folder->name</h1>";
-	forum_put_buttons($forum_which);
+	forums_buttons($forum_which);
     if($logged_in=="true") {
 	    $folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));	
 		echo "<div class=\"forum_box\">";
@@ -73,8 +68,8 @@ function forums_action_start_thread() { eval(lib_rfs_get_globals());
 	echo "</div>";
 	include("footer.php");
 }
-
-function forums_action_start_thread_go() { eval(lib_rfs_get_globals());
+function forums_action_start_thread_go() {
+	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
 		
         $user=$data->id;
@@ -100,14 +95,13 @@ function forums_action_start_thread_go() { eval(lib_rfs_get_globals());
         $data->forumposts+=1;
         lib_mysql_query("update `users` set `forumposts`='$data->forumposts' where `id`='$data->id'");
         lib_mysql_query("UPDATE `forum_list` set `last_post` = '$id' where `id` = '$forum_which';");
-        bumpthread($id);
+        forums_bumpthread($id);
         lib_log_add_entry("*****> $data->name started a new thread! [$header]");
     }
     else echo "<p class=sc_site_urlr>You must be logged in to post or reply!</p>\n";
     forums_action_get_thread($thread,$forum_which);
 }
-
-function show1message($post) {
+function forums_get_message($post) {
 	eval(lib_rfs_get_globals());
 	$poster=lib_users_get_data($post['poster']);
 	$forum=mysql_fetch_object(lib_mysql_query("select * from forum_list where id=".$post['forum']));
@@ -143,7 +137,6 @@ function show1message($post) {
 		echo "</div>";
     }
 }
-
 function forums_action_get_thread($thread) {
 	eval(lib_rfs_get_globals());
 	$result = lib_mysql_query("select * from `forum_posts` where `thread_top`='yes' and `thread`='$thread' order by time limit 0,30");
@@ -163,15 +156,15 @@ function forums_action_get_thread($thread) {
 	$thread=$post['id'];
    	$folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));
     echo "<h1>$folder->name >> $title</h1>";
-	forum_put_buttons($forum_which);
+	forums_buttons($forum_which);
 	$GLOBALS['forum_list']="no";
 	if($numposts>0) {
 		$views=$post['views']+1;
 		lib_mysql_query("update `forum_posts` set `views` ='$views' where `thread_top`='yes' and `thread`='$thread'");
-		show1message($post,$gx);
+		forums_get_message($post,$gx);
 		$thread_res=lib_mysql_query("select * from `forum_posts` where `forum`='$forum_which' and `thread`='$thread' and `thread_top`='no' order by time limit 0,30");
 		while($post = mysql_fetch_array($thread_res)) {
-				show1message($post);
+				forums_get_message($post);
 			}
 		}
         if($logged_in=="true") {
@@ -198,8 +191,8 @@ function forums_action_get_thread($thread) {
     echo "<br>\n";
 	include("footer.php");
 }
-
-function forums_action_move_thread() { eval(lib_rfs_get_globals());
+function forums_action_move_thread() {
+	eval(lib_rfs_get_globals());
     $tofor=lib_mysql_query("select * from forum_list where name='$move'");
     $toforum=mysql_fetch_object($tofor);
     lib_mysql_query("update forum_posts set forum='$toforum->id' where id='$id'");
@@ -208,8 +201,8 @@ function forums_action_move_thread() { eval(lib_rfs_get_globals());
     echo "<p style='color:white; background-color:green;'>Moved thread $id ($thread->title) to forum $toforum->id ($move)</p>";
     forums_action_get_thread($id,$toforum->id);
 }
-
-if($action=="delete_post_s") {
+function forums_action_delete_post_s() {
+	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
         echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles("^X")."\n";
         echo "<br>WARNING:<br>The forum post and ALL replies will be completely removed are you sure?</center>\n";
@@ -220,8 +213,8 @@ if($action=="delete_post_s") {
         echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/index.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";    
     }
 }
-
-if($action=="delete_post") {
+function forums_action_delete_post() {
+	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
        lib_mysql_query("delete from forum_posts where thread='$thread';");
        lib_forms_warn("<h2><font color=red>Post was deleted...</font></h2>");
@@ -229,8 +222,8 @@ if($action=="delete_post") {
 		forums_action_get_thread($thread,$forum_which);
     }
 }
- 
-if($action=="delete_reply_s") {
+function forums_action_delete_reply_s() {
+	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
         echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles(":X")."\n";
         echo "<br>WARNING:<br>The forum reply will be completely removed are you sure?</center>\n";
@@ -241,16 +234,16 @@ if($action=="delete_reply_s") {
         echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/index.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
     }
 }
-
-if($action=="delete_reply") {
+function forums_action_delete_reply() {
+	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
         lib_mysql_query("delete from forum_posts where id='$reply';");
         echo "<h2><font color=red>Reply was deleted...</font></h2>";
         $action="get_thread";
     }
 }
-
-if($action=="edit_reply") {
+function forums_action_edit_reply() {
+	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
         $posttt=lib_mysql_query("select * from forum_posts where id='$reply';");
         $post=mysql_fetch_object($posttt);
@@ -274,8 +267,8 @@ if($action=="edit_reply") {
 		echo "</div>";
     }
 }
-
-if($action=="edit_reply_go"){
+function forums_action_edit_reply_go(){
+	eval(lib_rfs_get_globals());
     if($logged_in=="true")    {
 		$message=$_POST['message'];
 		$message=addslashes($message);
@@ -286,8 +279,8 @@ if($action=="edit_reply_go"){
 		exit();
     }
 }
-
-if($action=="reply_to_thread"){
+function forums_action_reply_to_thread() {
+	eval(lib_rfs_get_globals());
     if($logged_in=="true")    {
         $user=$data->id; if($anonymous=="yes") $user=999;
         $time=date("Y-m-d H:i:s");
@@ -299,25 +292,22 @@ if($action=="reply_to_thread"){
         lib_mysql_query($query);
         $data->forumreplies+=1;
         lib_mysql_query("update `users` set `forumreplies`='$data->forumreplies' where `id`='$data->id'");
-        
-        $fart=lib_mysql_query("select * from `forum_posts` order by `time` desc limit 1");
-        $lick=mysql_fetch_object($fart); 
-        lib_mysql_query("UPDATE `forum_list` set `last_post` = '$lick->id' where `id` = '$forum_which';");
-        bumpthread($lick->thread);
+        $posts=lib_mysql_query("select * from `forum_posts` order by `time` desc limit 1");
+        $post=mysql_fetch_object($posts); 
+        lib_mysql_query("UPDATE `forum_list` set `last_post` = '$post->id' where `id` = '$forum_which';");
+        forums_bumpthread($post->thread);
         lib_log_add_entry("*****> $data->name replied to thread [$header]");
-    }    else    {
+    }
+	else {
         echo "<p class=sc_site_urlr><a href=$RFS_SITE_URL/login>Login</a> to reply</p>\n";
     }
 	forums_action_get_thread($thread,$forum_which);
 }
-
 function forums_action_forum_list() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Forums</h1>";
     $folder_res = lib_mysql_query("select * from forum_list where `folder`='yes' order by priority");
     while($dfold=mysql_fetch_object($folder_res)) {
-		
-		
 		$seefolder=false;		
 		if(lib_access_check("forums","admin")) {
 			$seefolder=true;
@@ -454,9 +444,8 @@ function forums_action_forum_list() {
     }
 	include("footer.php");
 }
-
-function forums_action_forum_showposts() { eval(lib_rfs_get_globals());
-
+function forums_action_forum_showposts() {
+	eval(lib_rfs_get_globals());
     $res=lib_mysql_query("select * from `forum_list` where `id`='$forum_which'");
     $fold=mysql_fetch_object($res);
     $res=lib_mysql_query("select * from `forum_list` where `id`='$fold->parent'");
@@ -464,7 +453,7 @@ function forums_action_forum_showposts() { eval(lib_rfs_get_globals());
     $folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));   
     echo "<h1>$folder->name</h1>";
 	
-	forum_put_buttons($forum_which);
+	forums_buttons($forum_which);
 
     $result = lib_mysql_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' order by bumptime desc limit 0,30");
     if($result) $numposts=mysql_num_rows($result);
@@ -596,7 +585,6 @@ function forums_action_forum_showposts() { eval(lib_rfs_get_globals());
 	include("footer.php");
     
 }
-
 function forums_action_() {
 	forums_action_forum_list();
 }
