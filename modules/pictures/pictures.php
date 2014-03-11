@@ -322,7 +322,7 @@ function pictures_action_modifypicture() {
 		echo "Category:";
 		echo "</td><td class=contenttd>";
 		$cat=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$picture->category'"));
-		echo "<select name=categorey>";
+		echo "<select name=category>";
 		echo "<option>$cat->name";
 		$result2=lib_mysql_query("select * from categories order by name asc");
 		while($cat=mysql_fetch_object($result2)) echo "<option>$cat->name";
