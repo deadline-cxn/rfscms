@@ -4,9 +4,11 @@ $RFS_LITTLE_HEADER=true;
 include("header.php");
 function videos_buttons() {
 	eval(lib_rfs_get_globals()); 
+	echo "<br>";
 	lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=random","Random Video");
 	if(lib_access_check("videos","submit"))
 		lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=submitvid","Submit Video");
+	echo "<br>";
 }
 function videos_pagefinish(){
 	eval(lib_rfs_get_globals());
@@ -76,21 +78,16 @@ function videos_action_submitvid_youtube_go() {
 		$ytw=str_replace("meta property=\"og:title\" content=",$RFS_SITE_DELIMITER,$ytw);
 		$ytw=explode($RFS_SITE_DELIMITER,$ytw);
 		$title=explode("\"",$ytw[1]);
-		$youtube_code=explode("\"",$ytw[2]);		
-
+		$youtube_code=explode("\"",$ytw[2]);
 		$sname=$title[1];
 		$ytcode=$youtube_code[1];
 		$vurl="<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
-		
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s"); 
 		$sname=addslashes($sname);
 		$url=addslashes($url);	
 		$c=lib_mysql_fetch_one_object("select * from `categories` where name='$category'");
 		$category=$c->id;
-		
-		// echo "	SUBMITTING VIDEO: <br> contributor $cont <br> sname $sname <br> time $time <br> btime $time <br> category $category<br>				sfw $sfw <br>"	 ;
-	 
 		lib_mysql_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
 								 VALUES ('$cont',	 	'$sname','$vurl','$time',    '$time','$category',      '0', '$sfw');");
 		$id=mysql_insert_id();
@@ -178,6 +175,7 @@ function videos_action_removego() {
 		lib_mysql_query("delete from `videos` where `id`='$id'");
 		echo "<p>Removed $video->sname from the database...</p>";
 	}
+	videos_action_();
 }
 function videos_action_removevideo() { 
 	eval(lib_rfs_get_globals());
@@ -246,37 +244,11 @@ function videos_action_viewcat($cat) {
 	videos_buttons();
 	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
 	while($vid=mysql_fetch_object($res2)) {		
-		$ytthumb="";
-		if(stristr($vid->url,"youtube")) {
-			$ytx=explode("\"",$vid->url);
-			for($yti=0;$yti<count($ytx);$yti++) {
-				if(stristr($ytx[$yti],"youtube")) {
-					$ytx2=explode("/",$ytx[$yti]);
-					$ytthumb=$ytx2[count($ytx2)-1];
-				}
-			}
-		}
-		
+
 		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
 		echo "<a href=videos.php?action=view&id=$vid->id>";
 
-	
-		$ytturl="$RFS_SITE_URL/modules/videos/cache/oops.png";
-		if($ytthumb) {
-			$yttlocal="$RFS_SITE_PATH/modules/videos/cache/$ytthumb.jpg";
-			$ytturl="$RFS_SITE_URL/modules/videos/cache/$ytthumb.jpg";
-			if(!file_exists($yttlocal)) {
-				$ch = curl_init("http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg");
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-				$ytt = curl_exec($ch); 
-				curl_close($ch); 
-				file_put_contents("$yttlocal", $ytt);
-			}
-			if(!file_exists($yttlocal)) {
-				$ytturl="$RFS_SITE_URL/modules/videos/cache/oops.png";
-			}		
-	
-		} 
+		$ytturl=videos_get_thumbnail($vid->url);
 		echo "<img src=\"$ytturl\" width=100 class=rfs_thumb><br>";
 		
 		echo "$vid->sname</a>";
@@ -330,6 +302,7 @@ function videos_action_view_cats() {
 					echo "<table border=0>";
 					echo "<tr><td valign=top>";
 					echo "<a href=videos.php?action=view&id=$video->id>";
+					echo "<img src=\"".videos_get_thumbnail($video->url)."\" width=100 class=rfs_thumb><br>";
 					echo "$video->sname</a><br>";
 					echo "</td></tr>";
 					echo "</table>";
@@ -349,12 +322,7 @@ function videos_action_view_cats() {
 }
 function videos_action_() { 
 	eval(lib_rfs_get_globals());
-/*	if(!empty($id)) 			$res=lib_mysql_query("select * from `videos` where `id`='$id'");
-	if($res) 					$video=mysql_fetch_object($res);
-	if(!empty($video->id))		$category=mysql_fetch_object(lib_mysql_query("select * from `categories` where `id`='$video->category'"));
-	if(!empty($cat)) 			$category=mysql_fetch_object(lib_mysql_query("select * from `categories` where `id`='$cat  '"));
-	if(!empty($category->name)) echo "<h1>$category->name ";
-	echo "Videos</h1>"; 	*/
+	echo "Videos</h1>";
 	videos_action_random();
 	videos_pagefinish();
 }
