@@ -186,28 +186,34 @@ function sc_show_news($nid) { eval(lib_rfs_get_globals());
         $news->message=str_replace("<a h","<a class=news_a h",$news->message);
         lib_rfs_echo(lib_string_convert_smiles(stripslashes(wikiimg((wikitext($news->message))))));
     }
-    $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
-	 lib_social_share_bar($ourl,$news->headline);		
 	
 	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
 	
 	if($RFS_SITE_FACEBOOK_NEWS_COMMENTS) 
 		sc_facebook_comments($page);
 	
-		echo "</div>";
+	echo "</div>";
     
-		echo "<div class=\"news_edit_bar\">";
+	echo "<div class=\"news_edit_bar\">";
     $data=$GLOBALS['data'];
-    if(($data->name==$userdata->name)||($data->access==255)) {
-        
+	
+    if( ($data->name==$userdata->name) ||
+		(lib_access_check("news","editothers")) ) {
+
+		echo "<div>";
 		if(!empty($news->wiki)) {
 			echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n";
 			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$nid\" class=news_a>edit (news)</a>] \n";			
 		} else {
 			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$nid\" class=news_a>edit</a>] \n";
 		}
+		
         echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$nid\" class=news_a>remove</a>] \n";
-    }   
+		echo "</div>";
+    }   		
+		echo "<div>";
+		lib_social_share_bar2($page,$news->headline);
+		echo "</div>";
 		echo "</div>";
 	echo "</div>";
 }

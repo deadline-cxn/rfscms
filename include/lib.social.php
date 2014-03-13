@@ -78,17 +78,18 @@ src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"
 	}
 }
 function lib_social_share_bar2($u,$t) {
-	echo "<table border=0 cellspacing=0 width=100%><tr><td width=10%>";
-	echo "</td><td>";
+	echo "<div style='float:left;'>";	
 	sc_tweet($u,"",$t);
-	echo "</td><td>";
+	echo "</div>";
+	echo "<div style='float:left;'>";	
 	sc_facebook_like($u);
-	echo "</td><td>";
+	echo "</div>";
+	echo "<div style='float:left;'>";	
 	sc_google_plus($u);
-	echo "</td><td>";
+	echo "</div>";
+	echo "<div style='float:left;'>";	
 	lib_social_stumble_upon_badge($u);
-	echo "</td><td width=70%>";
-	echo "</td></tr></table>";
+	echo "</div>";
 }
 function sc_social_buttons(){
 	echo "<table border=0><tr><td>";
@@ -191,21 +192,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 
 function sc_tweet($url,$hash,$text){	
 	$url=urlencode($url);
-	echo "<a href='https://twitter.com/share?text=$text&url=$url'
-			class='twitter-share-button'			
-			data-via='sethcoder'
-			data-lang='en'> Tweet </a>";
-	echo "<script>
-		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
-				if(!d.getElementById(id)){
-					js=d.createElement(s);
-					js.id=id;
-					js.src='https://platform.twitter.com/widgets.js';
-					fjs.parentNode.insertBefore(js,fjs);
-					}
-				}
-				(document,'script','twitter-wjs');
-				</script>";
+	echo "<a href='https://twitter.com/share?text=$text&url=$url' class='twitter-share-button' data-lang='en'> Tweet </a>"; // data-via='sethcoder' 
+	echo "<script> !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0]; if(!d.getElementById(id)) { js=d.createElement(s); js.id=id; js.src='https://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js,fjs);	}  } (document,'script','twitter-wjs'); </script>";
 }
 
 function sc_facebook_likebox($url){
