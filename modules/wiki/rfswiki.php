@@ -253,7 +253,7 @@ else {
     }
 }
 echo "<hr>";
-lib_socials_share_bar2(lib_domain_canonical_url(),"$RFS_SITE_NAME Wiki:".$wpage);
+lib_social_share_bar2(lib_domain_canonical_url(),"$RFS_SITE_NAME Wiki:".$wpage);
 echo "<hr>";
 
 if($hide_wiki_menu!="true"){
