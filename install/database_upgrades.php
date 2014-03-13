@@ -182,7 +182,7 @@ if($a<940) {
 	lib_access_add_method("linkbin","delete");
 }
 
-if($a<954) {
+if($a<956) {
 	lib_access_add_method("videos", "submit");
 	lib_access_add_method("videos", "edit");
 	lib_access_add_method("videos", "editothers");
@@ -198,13 +198,11 @@ if($a<954) {
 		else {
 			$url=videos_get_url_from_code($v->embed_code);
 			lib_mysql_query("update videos set `url`='$url' where id='$v->id'");
-			
 		}
 		if(is_numeric($v->category)) {
 			$c=lib_mysql_fetch_one_object("select * from categories where id='$v->category'");
 			lib_mysql_query("update videos set `category`='$c->name' where id='$v->id'");
 		}
-		
 	}
 }
 
