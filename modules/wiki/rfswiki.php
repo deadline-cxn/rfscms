@@ -253,7 +253,9 @@ else {
     }
 }
 echo "<hr>";
-lib_social_share_bar2(lib_domain_canonical_url(),"$RFS_SITE_NAME Wiki:".$wpage);
+$u=lib_domain_canonical_url();
+$p="$RFS_SITE_NAME Wiki:".$name;
+lib_social_share_bar2($u,$p);
 echo "<hr>";
 
 if($hide_wiki_menu!="true"){
