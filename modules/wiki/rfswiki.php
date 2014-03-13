@@ -256,7 +256,8 @@ echo "<hr>";
 $u=lib_domain_canonical_url();
 $p="$RFS_SITE_NAME Wiki:".$name;
 lib_social_share_bar2($u,$p);
-echo "<hr>";
+
+echo "<hr style='clear:both'>";
 
 if($hide_wiki_menu!="true"){
 	$wpage=lib_mysql_fetch_one_object("select * from wiki where name='$name' order by revision desc limit 1");
