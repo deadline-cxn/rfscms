@@ -154,7 +154,7 @@ if($action=="join_go") {
 		/////////////////////////////////////////////////////////////////////
 		// send email to user for confirmation
 
-		$message = "$RFS_SITE_NAME registration.\r\nYour information will not be shared or sold.\r\n<hr>Your new user account is: $userid\r\nYour new password is: $password\r\<hr>n";
+		$message = "$RFS_SITE_NAME registration.\r\nYour information will not be shared or sold.\r\n<hr>Your new user account is: $userid\r\nYour new password is: $password\r\n<hr>";
 		$message.= "Click here to login:";
 		$message.="<a href=\"$RFS_SITE_URL/login.php?userid=$userid&password=".urlencode($password)."&action=logingo&sd=3\">$RFS_SITE_URL</a>\r\n";
 
@@ -198,7 +198,7 @@ if(empty($action))
 /////////////////////////////////////////////////////////////////////
 ////////// LOGIN FORGOT PASSWORD
 if($action=="sendpass"){
-	
+
     if(empty($email)) {
         echo "<h1>You must enter a valid email address.</h2>\n";
         $action="forgot";
