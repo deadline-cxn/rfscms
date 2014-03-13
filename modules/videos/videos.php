@@ -20,39 +20,62 @@ function videos_action_modifyvideo() {
 	if( lib_access_check("videos","edit") ) {
 		$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 		echo "<p align=center>";
-		echo "$video->url<br>";	
+		echo "$video->embed_code<br>";	
 		echo "<form enctype=application/x-www-form-URLencoded method=post action=videos.php>";
+		echo "<table border=0>";		
 		echo "<input type=hidden name=action value=modifygo>";    
 		echo "<input type=hidden name=id value=\"$video->id\">";
-		echo "Short Name<input name=sname value=\"$video->sname\">";
-		echo "Safe For Work<select name=sfw>";
+		echo "<tr><td>";
+		echo "Short Name</td>";
+		echo "<td><input name=sname size=100 value=\"$video->sname\"></td>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td>URL</td>";
+		echo "<td><input name=vurl size=100 value=\"$video->url\"></td>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td>Safe For Work </td>";
+		echo "<td> <select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
-		echo "<option>yes<option>no</select>";
-		echo "Hidden<select name=hidden>";
+		echo "<option>yes<option>no</select></td>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td>Hidden</td>";
+		echo "<td><select name=hidden>";
 		if(!empty($video->hidden)) echo "<option>$video->hidden";
-		echo "<option>no<option>yes</select>";
-		echo "<select name=categorey>";
-		$cat=mysql_fetch_object(lib_mysql_query("select * from `categories` where `id`='$video->category'"));
-		echo "<option>$cat->name";
-		$result2=lib_mysql_query("select * from categories order by name asc");
+		echo "<option>no<option>yes</select></td>";
+		echo "</tr>";
+		echo "<tr>";
+		
+		echo "<td>Category:</td>";
+		echo "<td><select name=category>";
+		echo "<option>$video->category";
+		$result2=lib_mysql_query("select * from `categories` order by `name` asc");
 		while($cat=mysql_fetch_object($result2)) echo "<option>$cat->name";
-		echo "</select>\n";
-		echo "<br>";
-		echo "<textarea rows=10 cols=40 name=vurl>$video->url</textarea>";	
+		echo "</select></td>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td>Embed Code:</td>";
+		echo "<td><textarea rows=10 cols=100 name=vembed_code>$video->embed_code</textarea></td>";
+		echo "</tr>";
+		echo "<tr>";
+		echo "<td>&nbsp;</td><td>";
 		echo "<input type=submit name=go value=go>";
+		echo "</td></tr>";
+		echo "</table>";
 		echo "</form>";
 		echo "</p>";		
 	}
 	else {
 		echo "You can't edit videos."; 
 	}
+	videos_pagefinish();
 }
 function videos_action_modifygo() {
 	eval(lib_rfs_get_globals());
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
-    $categoryz=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$categorey'"));
-    $category=$categoryz->id;
+    // $categoryz=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$categorey'")); $category=$categoryz->id;
 	if(lib_access_check("videos","edit")) {	
 		if((!lib_access_check("videos","editothers"))  &&
 			($data->id!=$video->contributor)) {
@@ -60,12 +83,13 @@ function videos_action_modifygo() {
 		}
 		else {
 			$sname=addslashes($sname);
-			$vurl=addslashes($vurl);
+			$vembed_code=addslashes($vembed_code);
 			lib_mysql_query("update `videos` set `category`='$category' where `id`='$id'");
 			lib_mysql_query("update `videos` set `sname`='$sname' where `id`='$id'");
 			lib_mysql_query("update `videos` set `sfw`='$sfw' where `id`='$id'");
 			lib_mysql_query("update `videos` set `hidden`='$hidden' where `id`='$id'");
-			lib_mysql_query("update `videos` set `url`='$vurl' where `id`='$id'");
+			lib_mysql_query("update `videos` set `url`='$vembed_code' where `id`='$id'");
+			lib_mysql_query("update `videos` set `embed_code`='$vembed_code' where `id`='$id'");
 		}
 	}
 	videos_action_view($id);
@@ -81,15 +105,15 @@ function videos_action_submitvid_youtube_go() {
 		$youtube_code=explode("\"",$ytw[2]);
 		$sname=$title[1];
 		$ytcode=$youtube_code[1];
-		$vurl="<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
+		$vembed_code="<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s"); 
 		$sname=addslashes($sname);
 		$url=addslashes($url);	
-		$c=lib_mysql_fetch_one_object("select * from `categories` where name='$category'");
-		$category=$c->id;
-		lib_mysql_query(" INSERT INTO `videos` (`contributor`, `sname`,   `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
-								 VALUES ('$cont',	 	'$sname','$vurl','$time',    '$time','$category',      '0', '$sfw');");
+		//$c=lib_mysql_fetch_one_object("select * from `categories` where name='$category'");
+		// $category=$c->id;
+		lib_mysql_query(" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
+								 VALUES ('$cont',	 	'$sname','$vembed_code' , `$youtube` ,'$time',    '$time','$category',      '0', '$sfw');");
 		$id=mysql_insert_id();
 		videos_action_view($id);
 	}
@@ -100,20 +124,19 @@ function videos_action_submitvidgo() {
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s"); 
 		$url=addslashes($url);	
-		$c=lib_mysql_fetch_one_object("select * from categories where name='$category'");
-		$category=$c->id;
+		// $c=lib_mysql_fetch_one_object("select * from categories where name='$category'"); $category=$c->id;
 		
 		echo "	SUBMITTING VIDEO: <br>
 				contributor $cont <br>
 				sname $sname <br>
-				url $vurl <br>
+				url $vembed_code <br>
 				time $time <br>
 				btime $time <br>
 				category $category<br>
 				sfw $sfw <br>"	 ;
 				
-		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
-				  VALUES ('$cont','$sname','$vurl','$time','$time','$category','0','$sfw');");
+		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`embed_code`, `url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
+									   VALUES ('$cont','$sname','$vembed_code','$vurl','$time','$time','$category','0','$sfw');");
 		$id=mysql_insert_id();
 		videos_action_view($id);
 	}
@@ -150,8 +173,9 @@ function videos_action_submitvid() {
 		echo "<table border=0>\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"submitvidgo\">\n";
 		echo "<tr><td>Title</td><td><input size=160 name=\"sname\"></td></tr>\n";
-		echo "<tr><td>Link</td><td><input size=160 name=\"link\"></td></tr>\n";		
-		echo "<tr><td>Embed Code</td><td><textarea rows=10 cols=80 name=\"vurl\"></textarea></td></tr>\n";
+		echo "<tr><td>Link</td><td><input size=160 name=\"link\"></td></tr>\n";
+		echo "<tr><td>URL</td><td><input size=160 name=\"vurl\"></td></tr>\n";
+		echo "<tr><td>Embed Code</td><td><textarea rows=10 cols=80 name=\"vembed_code\"></textarea></td></tr>\n";
 		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
 		echo "<option>yes<option>no</select></td></tr>\n";
@@ -197,10 +221,9 @@ function videos_action_view($id) {
 	videos_buttons();
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
-	echo "<div class=forum_message > <center> ";	
-	$category=lib_mysql_fetch_one_object("select * from categories where id ='$video->category'");
-	echo "<h1>$category->name videos</h1>";	
-	$res2=lib_mysql_query("select * from `videos` where `category`='$category->id' and `hidden`!='yes' order by `sname` asc");
+	echo "<div class=forum_message > <center> ";
+	echo "<h1>$video->category videos</h1>";
+	$res2=lib_mysql_query("select * from `videos` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
 	$linkprev="";
 	$linknext="";
 	while($video2=mysql_fetch_object($res2)){		
@@ -223,18 +246,19 @@ function videos_action_view($id) {
 	// echo "SFW: [$video->sfw]<br>";
 	
     if($video->sfw=="yes") {
-		echo "$video->url<br>";
+		echo "$video->embed_code<br>";
 	}
     else {
-		if($viewsfw=="yes") echo "$video->url<br>";
+		if($viewsfw=="yes") echo "$video->embed_code<br>";
 		else echo "<a href=videos.php?action=view&id=$video->id&viewsfw=yes><img src=\"$RFS_SITE_URL/images/icons/NSFW.png\" border=0></a><BR>";
     }
+	echo "<br>";
 	echo "<br>";	
 	echo $linkprev;
 	if(lib_access_check("videos","edit"))   lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit");
 	if(lib_access_check("videos","delete")) lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&id=$video->id","Delete");
 	echo $linknext;
-	echo "</div>";	
+	echo "</div>";
 	videos_action_viewcat($video->category);
 	videos_action_view_cats();
 	videos_pagefinish();
@@ -244,11 +268,9 @@ function videos_action_viewcat($cat) {
 	videos_buttons();
 	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
 	while($vid=mysql_fetch_object($res2)) {		
-
 		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
 		echo "<a href=videos.php?action=view&id=$vid->id>";
-
-		$ytturl=videos_get_thumbnail($vid->url);
+		$ytturl=videos_get_thumbnail($vid->embed_code);
 		echo "<img src=\"$ytturl\" width=100 class=rfs_thumb><br>";
 		
 		echo "$vid->sname</a>";
@@ -279,7 +301,7 @@ function videos_action_view_cats() {
 	echo "<table border=0><tr>";
 	$res=lib_mysql_query("select * from `categories` order by name asc");	
 	while($cat=mysql_fetch_object($res)) {		
-		$res2=lib_mysql_query("select * from `videos` where `category`='$cat->id' and `hidden`!='yes' order by `sname` asc");
+		$res2=lib_mysql_query("select * from `videos` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
 		$numvids=mysql_num_rows($res2);
 		if(!empty($cat->name))
 			if($numvids>0){
@@ -288,7 +310,7 @@ function videos_action_view_cats() {
 				echo "<table border=0 cellspacing=0 cellpadding=0 width=100% ><tr>";
 				echo "<td class=td_cat valign=top width=220>";
 				echo "<h1>
-				<a href=\"$RFS_SITE_URL/modules/videos/videos.php?action=viewcat&cat=$cat->id\">
+				<a href=\"$RFS_SITE_URL/modules/videos/videos.php?action=viewcat&cat=$cat->name\">
 				$cat->name videos ($numvids)
 				</a>
 				</h1><br>";
@@ -298,11 +320,11 @@ function videos_action_view_cats() {
 				for($i=0;$i<$numvids;$i++){
 					$video=mysql_fetch_object($res2);
 					if($video->sfw=="no")
-						$video->url="$RFS_SITE_URL/images/icons/NSFW.gif";
+						$video->embed_code="$RFS_SITE_URL/images/icons/NSFW.gif";
 					echo "<table border=0>";
 					echo "<tr><td valign=top>";
 					echo "<a href=videos.php?action=view&id=$video->id>";
-					echo "<img src=\"".videos_get_thumbnail($video->url)."\" width=100 class=rfs_thumb><br>";
+					echo "<img src=\"".videos_get_thumbnail($video->embed_code)."\" width=100 class=rfs_thumb><br>";
 					echo "$video->sname</a><br>";
 					echo "</td></tr>";
 					echo "</table>";

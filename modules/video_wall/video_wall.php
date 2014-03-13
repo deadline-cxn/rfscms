@@ -58,7 +58,7 @@ function load_vw($data){
 			$vs=lib_mysql_fetch_one_object("select * from videos where id='$pv[2]'");
 			$_SESSION['darr'][$pv[0]][$pv[1]]['id']=$vs->id;
 			$_SESSION['darr'][$pv[0]][$pv[1]]['sname']=$vs->sname;
-			$_SESSION['darr'][$pv[0]][$pv[1]]['url']=$vs->url;		
+			$_SESSION['darr'][$pv[0]][$pv[1]]['embed_code']=$vs->embed_code;		
 		}
 	}
 }
@@ -72,7 +72,7 @@ if( (empty($_SESSION['darr'])) ||
 			$_SESSION['darr'][$darx][$dary]= array();
 			$_SESSION['darr'][$darx][$dary]['id']=$vs->id;
 			$_SESSION['darr'][$darx][$dary]['sname']=$vs->sname;
-			$_SESSION['darr'][$darx][$dary]['url']=$vs->url;
+			$_SESSION['darr'][$darx][$dary]['embed_code']=$vs->embed_code;
 		}
 	}
 	save_vw();
@@ -165,7 +165,7 @@ if($act=="chg") {
 	//echo " id:$id";	echo " sname:$sname";	echo " dx:$dx";	echo " dy:$dy";
 	$vs=lib_mysql_fetch_one_object("select * from videos where id='$sname'");
 	$_SESSION['darr'][$dx][$dy]['sname']=$vs->sname;
-	$_SESSION['darr'][$dx][$dy]['url']=$vs->url;
+	$_SESSION['darr'][$dx][$dy]['embed_code']=$vs->embed_code;
 	$_SESSION['darr'][$dx][$dy]['id']=$vs->id;
 
 	echo "<table border=0 width=100% style=' background-color:black'><tr>
@@ -185,26 +185,25 @@ if($action=="rmconfirmed"){
 if($action=="edgo") {
 	$v=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	if(  ($data->access==255) ||
-		($data->id==$v->contributor) ) {
-			
+		($data->id==$v->contributor) ) {		
 			
 			
 	for($ci=200;$ci<1299;$ci++){
-			$vurl=str_replace("width=\"$ci","width=\"400",$vurl);
-			$vurl=str_replace("height=\"$ci","height=\"300",$vurl);
-			$vurl=str_replace("width='$ci","width='400",$vurl);
-			$vurl=str_replace("height='$ci","height='300",$vurl);
-			$vurl=str_replace("width=$ci","width=400",$vurl);
-			$vurl=str_replace("height=$ci","height=300",$vurl);
-			$vurl=str_replace("width:$ci","width:400",$vurl);
-			$vurl=str_replace("height:$ci","height:300",$vurl);
+			$vembed_code=str_replace("width=\"$ci","width=\"400",$vembed_code);
+			$vembed_code=str_replace("height=\"$ci","height=\"300",$vembed_code);
+			$vembed_code=str_replace("width='$ci","width='400",$vembed_code);
+			$vembed_code=str_replace("height='$ci","height='300",$vembed_code);
+			$vembed_code=str_replace("width=$ci","width=400",$vembed_code);
+			$vembed_code=str_replace("height=$ci","height=300",$vembed_code);
+			$vembed_code=str_replace("width:$ci","width:400",$vembed_code);
+			$vembed_code=str_replace("height:$ci","height:300",$vembed_code);
 
 		}			
 			
 			
-				$vurl=addslashes($vurl);
+				$vembed_code=addslashes($vembed_code);
 				
-		lib_mysql_query("update videos set url='$vurl' where id='$id'");
+		lib_mysql_query("update videos set embed_code='$vembed_code' where id='$id'");
 		lib_mysql_query("update videos set sname='$sname' where id='$id'");
 		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
 		Modified</td></tr></table>";
@@ -238,7 +237,7 @@ if($act=="add") {
 
 		$cont=$data->id; if(!$cont) $cont=999;
 
-	   $r=lib_mysql_query("insert into videos  (`contributor`, `sname`,`url` , `time`, `category`)
+	   $r=lib_mysql_query("insert into videos  (`contributor`, `sname`,`embed_code` , `time`, `category`)
 			     					 VALUES('$cont', '$name','$embed_code', '$time', '87')" );
 	}
 
@@ -297,11 +296,11 @@ if($act=="add") {
 		}
 		echo "</td></tr></table>";
 				
-if(empty($data->donated))
+		/*if(empty($data->donated))
 			echo "If you would like to get this page free
 					  from advertising, you can donate to my
 					paypal and the ads will be removed.
-					Thanks, Seth.<br>";
+					Thanks, Seth.<br>";*/
 					
 		echo "<table border=0 cellspacing=0><tr><td valign=top>";
 
@@ -368,7 +367,7 @@ echo "</td></tr></table>";
 				echo "<td>";
 
 
-					$vid=$_SESSION['darr'][$darx][$dary]['url'];
+					$vid=$_SESSION['darr'][$darx][$dary]['embed_code'];
 
 				$vid=str_replace("w=\"400","w=\"$w",$vid);
 				$vid=str_replace("h=\"300","h=\"$h",$vid);
@@ -458,7 +457,7 @@ echo "</td></tr></table>";
 			
 			if( ($action=="ed") && ($id==$v->id)) {
 				echo "<tr><td valign=top><form action=$RFS_SITE_URL/modules/video_wall/v.php method=post><input name=sname value='$v->sname'></td>";
-				echo "<td><input type=hidden name=action value=edgo><input type=hidden name=id value=$id><textarea cols=50 rows=10 name=vurl>$v->url</textarea></td>";
+				echo "<td><input type=hidden name=action value=edgo><input type=hidden name=id value=$id><textarea cols=50 rows=10 name=vembed_code>$v->embed_code</textarea></td>";
 				echo "<td><input type=submit></form></td><td></td></tr>";
 			}
 			if( ($action=="rm") && ($id==$v->id) ) {

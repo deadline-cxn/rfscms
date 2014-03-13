@@ -182,6 +182,32 @@ if($a<940) {
 	lib_access_add_method("linkbin","delete");
 }
 
+if($a<954) {
+	lib_access_add_method("videos", "submit");
+	lib_access_add_method("videos", "edit");
+	lib_access_add_method("videos", "editothers");
+	lib_access_add_method("videos", "delete");
+	lib_access_add_method("videos", "deleteothers");
+	lib_mysql_add("videos","embed_code","text","not null");
+	$r=lib_mysql_query("select * from videos");
+	while($v=mysql_fetch_object($r)) {
+		if(empty($v->embed_code)) {
+			$v->embed_code=$v->url;
+			lib_mysql_query("update videos set `embed_code`='$v->embed_code' where id='$v->id'");
+		}
+		else {
+			$url=videos_get_url_from_code($v->embed_code);
+			lib_mysql_query("update videos set `url`='$url' where id='$v->id'");
+			
+		}
+		if(is_numeric($v->category)) {
+			$c=lib_mysql_fetch_one_object("select * from categories where id='$v->category'");
+			lib_mysql_query("update videos set `category`='$c->name' where id='$v->id'");
+		}
+		
+	}
+}
+
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=lib_mysql_fetch_one_object("select * from site_vars where name='database_upgrade'");
