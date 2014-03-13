@@ -2,11 +2,23 @@
 function mailgo($email,$message,$subject) {
 	eval(lib_rfs_get_globals());
 	$email=str_replace("'at'","@",$email);
-	$headers  = "MIME-Version: 1.0\r\n";
+	$headers  = "From: $RFS_SITE_ADMIN_EMAIL\r\n";
+	$headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-	$message  = $begin.$message;
-	$message .= "<p>Automated message from <a href=$RFS_SITE_URL>$RFS_SITE_NAME</a> ~ Do not reply!</p>\n";
-	return mail($email,$subject,$message,"From: $RFS_SITE_ADMIN_EMAIL\r\n$headers");
+
+	$message .= "\r\n\r\n<hr>Automated message from <a href=$RFS_SITE_URL>$RFS_SITE_NAME</a>. No need to reply.\r\n";
+
+//todo: add subscribe / unsubscribe
+
+	return mail($email,$subject,$message,$headers);
+
+/*bool mail ( 	string $to ,
+		string $subject ,
+		string $message [,
+		string $additional_headers [,
+		string $additional_parameters ]]
+		)
+*/
 }
 function mailto($user,$domain) { echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=mailto.php?user=$user&domain=$domain\">"; }
 function sc_togglediv_ne($x) {

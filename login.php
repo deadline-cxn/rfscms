@@ -154,22 +154,16 @@ if($action=="join_go") {
 		/////////////////////////////////////////////////////////////////////
 		// send email to user for confirmation
 
-		$message = "$RFS_SITE_NAME registration.\n
-					Your information will not be shared or sold.\n
-					Your new user account is: $userid\n
-					Your new password is: $password\n";
+		$message = "$RFS_SITE_NAME registration.\r\nYour information will not be shared or sold.\r\n<hr>Your new user account is: $userid\r\nYour new password is: $password\r\<hr>n";
 		$message.= "Click here to login:";
-		$message.="<a href=\"$RFS_SITE_URL/login.php?userid=$userid&password=".urlencode($password)."&action=logingo&sd=3\">$RFS_SITE_URL</a>\n";
-		$message=urlencode($message);
-		
+		$message.="<a href=\"$RFS_SITE_URL/login.php?userid=$userid&password=".urlencode($password)."&action=logingo&sd=3\">$RFS_SITE_URL</a>\r\n";
+
 		mailgo($email,$message,"New account setup!");
 
 		/////////////////////////////////////////////////////////////////////
 		// send email to admins
 		$message = "New user named [$userid] $email has joined $RFS_SITE_NAME<br>\n";
-
 		mailgo("$RFS_SITE_ADMIN_EMAIL",$message,"$RFS_SITE_NAME new member: $userid");
-		
 		echo "<p>Check your email for an automated response email and follow the instructions to continue.</p>";
 		echo "<p>Note: Accounts will be purged after 1 week unless confirmed.</p>";
 		echo "<a href=$outpage>Continue</a>";
