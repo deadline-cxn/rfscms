@@ -253,6 +253,8 @@ else {
     }
 }
 echo "<hr>";
+lib_socials_share_bar2(lib_domain_canonical_url(),"$RFS_SITE_NAME Wiki:".$wpage);
+echo "<hr>";
 
 if($hide_wiki_menu!="true"){
 	$wpage=lib_mysql_fetch_one_object("select * from wiki where name='$name' order by revision desc limit 1");
