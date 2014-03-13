@@ -204,6 +204,8 @@ if($a<956) {
 			lib_mysql_query("update videos set `category`='$c->name' where id='$v->id'");
 		}
 	}
+
+	echo "Added interim database changes 955<br>";
 }
 
 if($a < $b) {
@@ -211,7 +213,7 @@ if($a < $b) {
 	$dbu=lib_mysql_fetch_one_object("select * from site_vars where name='database_upgrade'");
 	if(empty($dbu->id)) lib_mysql_query("insert into site_vars (`name`,`value`) values('database_upgrade','$RFS_SITE_DATABASE_UPGRADE');");
 	else lib_mysql_query("update site_vars set `value` = '$RFS_SITE_DATABASE_UPGRADE' where `name`='database_upgrade'");
-	echo "Added interim database changes $RFS_SITE_DATABASE_UPGRADE<br>";
+        echo "Added interim database changes $RFS_SITE_DATABASE_UPGRADE<br>";
 }
 
 

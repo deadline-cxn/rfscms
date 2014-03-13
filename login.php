@@ -9,9 +9,7 @@ if($action=="logout") {
 	include_once("include/lib.all.php");
 	session_destroy();
 	$_SESSION=array();
-	
 	$outpage=$_REQUEST['outpage'];
-	
 	if(empty($outpage)) $outpage=$RFS_SITE_URL;
     echo "<META HTTP-EQUIV=\"refresh\" content=\"5;URL=$outpage\">";
     exit();
@@ -22,6 +20,7 @@ if($action=="logout") {
 if($action=="logingo") {
 	include_once("include/lib.sitevars.php");
 	include_once("include/lib.log.php");
+	include_once("include/lib.forms.php");
 	include_once("include/lib.rfs.php");
 	include_once("include/lib.domain.php");
 	
@@ -79,17 +78,9 @@ if($action=="logingo") {
 				session_start();
 				
 				$_SESSION["valid_user"] = $userid;
-				$_SESSION["logged_in"]  = "true";		
-           
-				//echo "[".$RFS_SITE_SESSION_ID."]<br>";	
-				//echo "[$userid]<br>";	
-				// echo "[$password]<br>";
-				//echo "[".md5($password)."]<br>";
-				// echo $_SESSION["valid_user"]."<br>";
-				// echo $_SESSION["logged_in"]."<br>";
+				$_SESSION["logged_in"]  = "true";
 				echo "Valid login... Please wait, redirecting...";			
 				lib_domain_gotopage($outpage);
-				//  include("footer.php");
             exit();
         }
         else{
@@ -158,18 +149,19 @@ if($action=="join_go") {
     $md5password=md5($password);
 	$result=lib_mysql_query("INSERT INTO `users` (`name`,      `pass`, `gender`, `email`, `first_login`)
 									   VALUES ('$userid', '$md5password', '$gender', '$email', '$time1');");
-	if($result){
+	if($result) {
 
 		/////////////////////////////////////////////////////////////////////
 		// send email to user for confirmation
 
-
-		$message = "$RFS_SITE_NAME registration.<br>Your information will not be shared or sold.<br>";
-		$message.= "Your new user account is: $userid<br>Your new password is: $password<br><br>\n";
+		$message = "$RFS_SITE_NAME registration.\n
+					Your information will not be shared or sold.\n
+					Your new user account is: $userid\n
+					Your new password is: $password\n";
 		$message.= "Click here to login:";
-		$message.="<a href=\"$RFS_SITE_URL/login.php?userid=$userid&password=";
-        $message.=urlencode($password);
-        $message.="&action=logingo&sd=3\">$RFS_SITE_URL</a><br><br>\n";
+		$message.="<a href=\"$RFS_SITE_URL/login.php?userid=$userid&password=".urlencode($password)."&action=logingo&sd=3\">$RFS_SITE_URL</a>\n";
+		$message=urlencode($message);
+		
 		mailgo($email,$message,"New account setup!");
 
 		/////////////////////////////////////////////////////////////////////
