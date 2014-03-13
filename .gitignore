@@ -22,4 +22,5 @@ modules/gns3/*
 modules/political_game/*
 modules/netman_tools/*
 modules/nqt/*
+modules/videos/cache/*.jpg
 
