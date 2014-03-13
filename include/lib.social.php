@@ -192,6 +192,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 
 function sc_tweet($url,$hash,$text){	
 	$url=urlencode($url);
+	$text=urlencode($text);
 	echo "<a href='https://twitter.com/share?text=$text&url=$url' class='twitter-share-button' data-lang='en'> Tweet </a>"; // data-via='sethcoder' 
 	echo "<script> !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0]; if(!d.getElementById(id)) { js=d.createElement(s); js.id=id; js.src='https://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js,fjs);	}  } (document,'script','twitter-wjs'); </script>";
 }
