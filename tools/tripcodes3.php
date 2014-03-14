@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?
 chdir("..");
 include("include/lib.all.php");
