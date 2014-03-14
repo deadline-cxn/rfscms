@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_TRI_getEditorForm",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_sqlAddSlashes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf",tooltip="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison..."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_DBI_fetch_result",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b",tooltip="returns all rows in the resultset in one array"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_generate_common_hidden_inputs",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$url__generating_8lib_8php.html#ad7326a27700edd06dee0217de194756b",tooltip="Generates text with hidden inputs."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_getHiddenFields",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$url__generating_8lib_8php.html#a0db4559ded20b6cc869d37e4d5cc7dad",tooltip="create hidden form fields from array with name =&gt; value"];
+}

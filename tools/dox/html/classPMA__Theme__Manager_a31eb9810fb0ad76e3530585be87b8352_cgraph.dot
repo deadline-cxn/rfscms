@@ -1,0 +1,28 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_Theme_Manager\\init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_Theme_Manager\\setThemesPath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#ae32a7d22b02eea59e9d92a2a245f48d1",tooltip="sets path to folder containing the themes"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_Theme_Manager\\_checkThemeFolder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#a75da0869aabf0acd89803b6e89d9ce96"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_Theme_Manager\\setThemePerServer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#ae1df58479f4381c16e44f5cc83dbb296",tooltip="sets if there are different themes per server"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_Theme_Manager\\loadThemes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#a16107103c4b5a251fec50d4d72b9746a",tooltip="read all themes"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_Theme_Manager\\getThemesPath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#ad2130560a8d77ef076648dec51d0e075"];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_Theme\\load",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme.html#aac1ca9ca2a5d5d3f4a19209d915cb382",tooltip="returns theme object loaded from given folder or false if theme is invalid"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PMA_Theme_Manager\\checkTheme",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#a241a53b5d86d3dc8b91c84f94c407483",tooltip="checks if given theme name is a known theme"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="PMA_Theme_Manager\\getThemeCookie",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#afb991115b0cedc5175ef7423010284fb",tooltip="returns name of theme stored in the cookie"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="PMA_Theme_Manager\\getThemeCookieName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#a3aff8e8c5cd44a2807c819ea95f0f490"];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="PMA_Theme_Manager\\setActiveTheme",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#a2c166246591d74723c90996107fdef80"];
+  Node11 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

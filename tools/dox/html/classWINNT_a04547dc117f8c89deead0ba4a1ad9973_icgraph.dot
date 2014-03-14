@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="WINNT\\_getWMI",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="WINNT\\loadavg",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWINNT.html#a76142e914e1f003f7a80816960e98f9e"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="WINNT\\memory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classWINNT.html#a735380e67176268cb1c8ea01ae79c1a8"];
+}

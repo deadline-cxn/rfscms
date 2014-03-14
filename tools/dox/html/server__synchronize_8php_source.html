@@ -92,7 +92,7 @@
 <a name="l00014"></a>00014 <span class="comment">/**</span>
 <a name="l00015"></a>00015 <span class="comment"> * Does the common work</span>
 <a name="l00016"></a>00016 <span class="comment"> */</span>
-<a name="l00017"></a><a class="code" href="server__synchronize_8php.html#a9b835efbb97695b4ed9faf19a55b1080">00017</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;server_synchronize.js&#39;</span>;
+<a name="l00017"></a><a class="code" href="server__synchronize_8php.html#a9b835efbb97695b4ed9faf19a55b1080">00017</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;server_synchronize.js&#39;</span>;
 <a name="l00018"></a>00018 require_once <span class="stringliteral">&#39;./libraries/server_common.inc.php&#39;</span>;
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 <span class="comment">/**</span>
@@ -120,7 +120,7 @@
 <a name="l00042"></a>00042 <span class="comment">* Save the value of token generated for this page</span>
 <a name="l00043"></a>00043 <span class="comment">*/</span>
 <a name="l00044"></a>00044 <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;token&#39;</span>])) {
-<a name="l00045"></a>00045     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;token&#39;</span>] = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;token&#39;</span>];
+<a name="l00045"></a>00045     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;token&#39;</span>] = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;token&#39;</span>];
 <a name="l00046"></a>00046 }
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 <span class="comment">// variable for code saving</span>
@@ -278,24 +278,24 @@
 <a name="l00200"></a>00200 <span class="comment">            */</span>
 <a name="l00201"></a>00201             <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a> = array(<span class="stringliteral">&#39;Field&#39;</span>, <span class="stringliteral">&#39;Type&#39;</span>, <span class="stringliteral">&#39;Null&#39;</span>, <span class="stringliteral">&#39;Collation&#39;</span>, <span class="stringliteral">&#39;Key&#39;</span>, <span class="stringliteral">&#39;Default&#39;</span>, <span class="stringliteral">&#39;Comment&#39;</span>);
 <a name="l00202"></a>00202 
-<a name="l00203"></a>00203             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; <span class="keyword">sizeof</span>($matching_tables); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {<span class="comment"></span>
+<a name="l00203"></a>00203             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; <span class="keyword">sizeof</span>($matching_tables); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {<span class="comment"></span>
 <a name="l00204"></a>00204 <span class="comment">                /**</span>
 <a name="l00205"></a>00205 <span class="comment">                * Finding out all the differences structure, data and index diff</span>
 <a name="l00206"></a>00206 <span class="comment">                * for all the matching tables only</span>
 <a name="l00207"></a>00207 <span class="comment">                */</span>
 <a name="l00208"></a>00208                 <a class="code" href="server__synchronize_8lib_8php.html#a8826b64d9cdc47a8aa749ec67070481a" title="Finds the difference in source and target matching tables by first comparing source table&#39;s primary k...">PMA_dataDiffInTables</a>($src_db, $trg_db, $src_link, $trg_link,
 <a name="l00209"></a>00209                     $matching_tables, $matching_tables_fields, $update_array,
-<a name="l00210"></a>00210                     $insert_array, $delete_array, $fields_num, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>,
+<a name="l00210"></a>00210                     $insert_array, $delete_array, $fields_num, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>,
 <a name="l00211"></a>00211                     $matching_tables_keys);
 <a name="l00212"></a>00212 
 <a name="l00213"></a>00213                 <a class="code" href="server__synchronize_8lib_8php.html#ae4f9659928f7d653cc83fc5cb20ff6cf" title="PMA_structureDiffInTables() Gets all the column information for source and target table...">PMA_structureDiffInTables</a>($src_db, $trg_db, $src_link, $trg_link,
 <a name="l00214"></a>00214                     $matching_tables, $source_columns, $target_columns,
 <a name="l00215"></a>00215                     $alter_str_array, $add_column_array, $uncommon_columns,
-<a name="l00216"></a>00216                     <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a>, $target_tables_keys, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>);
+<a name="l00216"></a>00216                     <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a>, $target_tables_keys, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>);
 <a name="l00217"></a>00217 
 <a name="l00218"></a>00218                 <a class="code" href="server__synchronize_8lib_8php.html#a16ad704557377da449f6caa8cf2f121a" title="PMA_indexesDiffInTables() compares the source table indexes with target table indexes and keep the in...">PMA_indexesDiffInTables</a>($src_db, $trg_db, $src_link, $trg_link,
 <a name="l00219"></a>00219                     $matching_tables, $source_indexes, $target_indexes,
-<a name="l00220"></a>00220                     $add_indexes_array, $alter_indexes_array, $remove_indexes_array, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>);
+<a name="l00220"></a>00220                     $add_indexes_array, $alter_indexes_array, $remove_indexes_array, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>);
 <a name="l00221"></a>00221             }
 <a name="l00222"></a>00222 
 <a name="l00223"></a>00223             <span class="keywordflow">for</span> ($j = 0; $j &lt; <span class="keyword">sizeof</span>($source_tables_uncommon); $j++) {<span class="comment"></span>
@@ -311,40 +311,40 @@
 <a name="l00233"></a>00233 <span class="comment">            * Storing all arrays in session for use when page is reloaded</span>
 <a name="l00234"></a>00234 <span class="comment">            * for each button press</span>
 <a name="l00235"></a>00235 <span class="comment">            */</span>
-<a name="l00236"></a>00236             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables&#39;</span>] = $matching_tables;
-<a name="l00237"></a>00237             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>] = $update_array;
-<a name="l00238"></a>00238             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>] = $insert_array;
-<a name="l00239"></a>00239             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_db&#39;</span>] = $src_db;
-<a name="l00240"></a>00240             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_db&#39;</span>] =  $trg_db;
-<a name="l00241"></a>00241             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_fields&#39;</span>] = $matching_tables_fields;
-<a name="l00242"></a>00242             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_uncommon_tables&#39;</span>] = $source_tables_uncommon;
-<a name="l00243"></a>00243             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_username&#39;</span>] = $src_username ;
-<a name="l00244"></a>00244             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_username&#39;</span>] = $trg_username;
-<a name="l00245"></a>00245             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_password&#39;</span>] = $src_password;
-<a name="l00246"></a>00246             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_password&#39;</span>] = $trg_password;
-<a name="l00247"></a>00247             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_password&#39;</span>] = $trg_password;
-<a name="l00248"></a>00248             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_server&#39;</span>]   = $src_server;
-<a name="l00249"></a>00249             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_server&#39;</span>]   = $trg_server;
-<a name="l00250"></a>00250             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_type&#39;</span>]     = $src_type;
-<a name="l00251"></a>00251             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_type&#39;</span>]     = $trg_type;
-<a name="l00252"></a>00252             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables_keys&#39;</span>] = $matching_tables_keys;
-<a name="l00253"></a>00253             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>] = $uncommon_tables_fields;
-<a name="l00254"></a>00254             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_row_count&#39;</span>] = <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>;
-<a name="l00255"></a>00255             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_uncommon&#39;</span>] = $target_tables_uncommon;
-<a name="l00256"></a>00256             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables&#39;</span>] = $source_tables_uncommon;
-<a name="l00257"></a>00257             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;delete_array&#39;</span>] = $delete_array;
-<a name="l00258"></a>00258             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_columns&#39;</span>] = $uncommon_columns;
-<a name="l00259"></a>00259             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;source_columns&#39;</span>] = $source_columns;
-<a name="l00260"></a>00260             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;alter_str_array&#39;</span>] = $alter_str_array;
-<a name="l00261"></a>00261             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_keys&#39;</span>] = $target_tables_keys;
-<a name="l00262"></a>00262             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;add_column_array&#39;</span>] = $add_column_array;
-<a name="l00263"></a>00263             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;criteria&#39;</span>] = <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a>;
-<a name="l00264"></a>00264             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables&#39;</span>] = $trg_tables;
-<a name="l00265"></a>00265             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;add_indexes_array&#39;</span>] = $add_indexes_array;
-<a name="l00266"></a>00266             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;alter_indexes_array&#39;</span>] = $alter_indexes_array;
-<a name="l00267"></a>00267             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;remove_indexes_array&#39;</span>] = $remove_indexes_array;
-<a name="l00268"></a>00268             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;source_indexes&#39;</span>] = $source_indexes;
-<a name="l00269"></a>00269             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_indexes&#39;</span>] = $target_indexes;
+<a name="l00236"></a>00236             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables&#39;</span>] = $matching_tables;
+<a name="l00237"></a>00237             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>] = $update_array;
+<a name="l00238"></a>00238             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>] = $insert_array;
+<a name="l00239"></a>00239             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_db&#39;</span>] = $src_db;
+<a name="l00240"></a>00240             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_db&#39;</span>] =  $trg_db;
+<a name="l00241"></a>00241             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_fields&#39;</span>] = $matching_tables_fields;
+<a name="l00242"></a>00242             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_uncommon_tables&#39;</span>] = $source_tables_uncommon;
+<a name="l00243"></a>00243             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_username&#39;</span>] = $src_username ;
+<a name="l00244"></a>00244             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_username&#39;</span>] = $trg_username;
+<a name="l00245"></a>00245             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_password&#39;</span>] = $src_password;
+<a name="l00246"></a>00246             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_password&#39;</span>] = $trg_password;
+<a name="l00247"></a>00247             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_password&#39;</span>] = $trg_password;
+<a name="l00248"></a>00248             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_server&#39;</span>]   = $src_server;
+<a name="l00249"></a>00249             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_server&#39;</span>]   = $trg_server;
+<a name="l00250"></a>00250             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_type&#39;</span>]     = $src_type;
+<a name="l00251"></a>00251             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_type&#39;</span>]     = $trg_type;
+<a name="l00252"></a>00252             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables_keys&#39;</span>] = $matching_tables_keys;
+<a name="l00253"></a>00253             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>] = $uncommon_tables_fields;
+<a name="l00254"></a>00254             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_row_count&#39;</span>] = <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>;
+<a name="l00255"></a>00255             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_uncommon&#39;</span>] = $target_tables_uncommon;
+<a name="l00256"></a>00256             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables&#39;</span>] = $source_tables_uncommon;
+<a name="l00257"></a>00257             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;delete_array&#39;</span>] = $delete_array;
+<a name="l00258"></a>00258             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_columns&#39;</span>] = $uncommon_columns;
+<a name="l00259"></a>00259             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;source_columns&#39;</span>] = $source_columns;
+<a name="l00260"></a>00260             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;alter_str_array&#39;</span>] = $alter_str_array;
+<a name="l00261"></a>00261             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_keys&#39;</span>] = $target_tables_keys;
+<a name="l00262"></a>00262             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;add_column_array&#39;</span>] = $add_column_array;
+<a name="l00263"></a>00263             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;criteria&#39;</span>] = <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a>;
+<a name="l00264"></a>00264             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables&#39;</span>] = $trg_tables;
+<a name="l00265"></a>00265             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;add_indexes_array&#39;</span>] = $add_indexes_array;
+<a name="l00266"></a>00266             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;alter_indexes_array&#39;</span>] = $alter_indexes_array;
+<a name="l00267"></a>00267             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;remove_indexes_array&#39;</span>] = $remove_indexes_array;
+<a name="l00268"></a>00268             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;source_indexes&#39;</span>] = $source_indexes;
+<a name="l00269"></a>00269             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_indexes&#39;</span>] = $target_indexes;
 <a name="l00270"></a>00270 <span class="comment"></span>
 <a name="l00271"></a>00271 <span class="comment">            /**</span>
 <a name="l00272"></a>00272 <span class="comment">            * Displays the sub-heading and icons showing Structure Synchronization</span>
@@ -371,19 +371,19 @@
 <a name="l00293"></a>00293 <span class="comment">            * their difference with the target tables and target tables names.</span>
 <a name="l00294"></a>00294 <span class="comment">            */</span>
 <a name="l00295"></a>00295             <a class="code" href="server__synchronize_8lib_8php.html#abe9a849611ceccd5f14ec472f9e885f7" title="PMA_syncDisplayHeaderCompare() shows the header for source database.">PMA_syncDisplayHeaderCompare</a>($src_db, $trg_db);
-<a name="l00296"></a>00296             <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
+<a name="l00296"></a>00296             <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
 <a name="l00297"></a>00297 <span class="comment"></span>
 <a name="l00298"></a>00298 <span class="comment">            /**</span>
 <a name="l00299"></a>00299 <span class="comment">            * Display the matching tables&#39; names and difference, first</span>
 <a name="l00300"></a>00300 <span class="comment">            */</span>
-<a name="l00301"></a>00301             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; count($matching_tables); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {<span class="comment"></span>
+<a name="l00301"></a>00301             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; count($matching_tables); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {<span class="comment"></span>
 <a name="l00302"></a>00302 <span class="comment">                /**</span>
 <a name="l00303"></a>00303 <span class="comment">                * Calculating the number of updates for each matching table</span>
 <a name="l00304"></a>00304 <span class="comment">                */</span>
-<a name="l00305"></a>00305                 <span class="keywordflow">if</span> (isset($update_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]) &amp;&amp; isset($update_array[$i][0])
+<a name="l00305"></a>00305                 <span class="keywordflow">if</span> (isset($update_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]) &amp;&amp; isset($update_array[$i][0])
 <a name="l00306"></a>00306                         &amp;&amp; !empty($matching_tables_keys[$i][0])
 <a name="l00307"></a>00307                         &amp;&amp; isset($update_array[$i][0][$matching_tables_keys[$i][0]])) {
-<a name="l00308"></a>00308                     $num_of_updates = <span class="keyword">sizeof</span>($update_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00308"></a>00308                     $num_of_updates = <span class="keyword">sizeof</span>($update_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00309"></a>00309                 } <span class="keywordflow">else</span> {
 <a name="l00310"></a>00310                     $num_of_updates = 0;
 <a name="l00311"></a>00311                 }<span class="comment"></span>
@@ -393,7 +393,7 @@
 <a name="l00315"></a>00315                 <span class="keywordflow">if</span> (isset($insert_array[$i]) &amp;&amp; isset($insert_array[$i][0])
 <a name="l00316"></a>00316                         &amp;&amp; !empty($matching_tables_keys[$i])
 <a name="l00317"></a>00317                         &amp;&amp; isset($insert_array[$i][0][$matching_tables_keys[$i][0]])) {
-<a name="l00318"></a>00318                     $num_of_insertions = <span class="keyword">sizeof</span>($insert_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00318"></a>00318                     $num_of_insertions = <span class="keyword">sizeof</span>($insert_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00319"></a>00319                 } <span class="keywordflow">else</span> {
 <a name="l00320"></a>00320                     $num_of_insertions = 0;
 <a name="l00321"></a>00321                 }
@@ -410,23 +410,23 @@
 <a name="l00332"></a>00332                 $num_remove_index = 0;
 <a name="l00333"></a>00333 
 <a name="l00334"></a>00334                 <span class="keywordflow">if</span> (isset($alter_str_array[$i])) {
-<a name="l00335"></a>00335                     $num_alter_cols = <span class="keyword">sizeof</span>($alter_str_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00335"></a>00335                     $num_alter_cols = <span class="keyword">sizeof</span>($alter_str_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00336"></a>00336                 }
 <a name="l00337"></a>00337                 <span class="keywordflow">if</span> (isset($add_column_array[$i])) {
-<a name="l00338"></a>00338                     $num_insert_cols = <span class="keyword">sizeof</span>($add_column_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00338"></a>00338                     $num_insert_cols = <span class="keyword">sizeof</span>($add_column_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00339"></a>00339                 }
 <a name="l00340"></a>00340                 <span class="keywordflow">if</span> (isset($uncommon_columns[$i])) {
-<a name="l00341"></a>00341                     $num_remove_cols = <span class="keyword">sizeof</span>($uncommon_columns[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00341"></a>00341                     $num_remove_cols = <span class="keyword">sizeof</span>($uncommon_columns[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00342"></a>00342                 }
 <a name="l00343"></a>00343                 <span class="keywordflow">if</span> (isset($add_indexes_array[$i])) {
-<a name="l00344"></a>00344                     $num_add_index = <span class="keyword">sizeof</span>($add_indexes_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00344"></a>00344                     $num_add_index = <span class="keyword">sizeof</span>($add_indexes_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00345"></a>00345                 }
 <a name="l00346"></a>00346                 <span class="keywordflow">if</span> (isset($remove_indexes_array[$i])) {
-<a name="l00347"></a>00347                     $num_remove_index = <span class="keyword">sizeof</span>($remove_indexes_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00347"></a>00347                     $num_remove_index = <span class="keyword">sizeof</span>($remove_indexes_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00348"></a>00348                 }
 <a name="l00349"></a>00349                 <span class="keywordflow">if</span> (isset($alter_indexes_array[$i])) {
-<a name="l00350"></a>00350                     $num_add_index += <span class="keyword">sizeof</span>($alter_indexes_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
-<a name="l00351"></a>00351                     $num_remove_index += <span class="keyword">sizeof</span>($alter_indexes_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00350"></a>00350                     $num_add_index += <span class="keyword">sizeof</span>($alter_indexes_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
+<a name="l00351"></a>00351                     $num_remove_index += <span class="keyword">sizeof</span>($alter_indexes_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00352"></a>00352                 }
 <a name="l00353"></a>00353 
 <a name="l00354"></a>00354                 $btn_structure_params = null;
@@ -462,7 +462,7 @@
 <a name="l00384"></a>00384                     }
 <a name="l00385"></a>00385                 }
 <a name="l00386"></a>00386 
-<a name="l00387"></a>00387                 <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
+<a name="l00387"></a>00387                 <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
 <a name="l00388"></a>00388                     <span class="stringliteral">&#39;src_table_name&#39;</span> =&gt; $matching_tables[$i],
 <a name="l00389"></a>00389                     <span class="stringliteral">&#39;dst_table_name&#39;</span> =&gt; $matching_tables[$i],
 <a name="l00390"></a>00390                     <span class="stringliteral">&#39;btn_type&#39;</span> =&gt; <span class="charliteral">&#39;M&#39;</span>,
@@ -484,17 +484,17 @@
 <a name="l00406"></a>00406                 <span class="keywordflow">if</span> (<a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>[$j] &gt; 0) {
 <a name="l00407"></a>00407                     <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<span class="stringliteral">&#39;btn_data&#39;</span>] = array($j, null, <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>[$j], null, null, null);
 <a name="l00408"></a>00408                 }
-<a name="l00409"></a>00409                 <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>;
+<a name="l00409"></a>00409                 <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>;
 <a name="l00410"></a>00410             }
 <a name="l00411"></a>00411             <span class="keywordflow">foreach</span> ($target_tables_uncommon as $tbl_nc_name) {
-<a name="l00412"></a>00412                 <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
+<a name="l00412"></a>00412                 <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
 <a name="l00413"></a>00413                     <span class="stringliteral">&#39;src_table_name&#39;</span> =&gt; <span class="stringliteral">&#39;&#39;</span>,
 <a name="l00414"></a>00414                     <span class="stringliteral">&#39;dst_table_name&#39;</span> =&gt; $tbl_nc_name);
 <a name="l00415"></a>00415             }<span class="comment"></span>
 <a name="l00416"></a>00416 <span class="comment">            /**</span>
 <a name="l00417"></a>00417 <span class="comment">            * Displays the target tables names</span>
 <a name="l00418"></a>00418 <span class="comment">            */</span>
-<a name="l00419"></a>00419             <a class="code" href="server__synchronize_8lib_8php.html#aaa5186d6ff86a8a817460fccfb4fb2f3" title="Prints table row.">PMA_syncDisplayDataCompare</a>(<a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>);
+<a name="l00419"></a>00419             <a class="code" href="server__synchronize_8lib_8php.html#aaa5186d6ff86a8a817460fccfb4fb2f3" title="Prints table row.">PMA_syncDisplayDataCompare</a>(<a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>);
 <a name="l00420"></a>00420             echo <span class="stringliteral">&#39;&lt;/table&gt;</span>
 <a name="l00421"></a>00421 <span class="stringliteral">                &lt;/div&gt;</span>
 <a name="l00422"></a>00422 <span class="stringliteral">                &lt;/fieldset&gt;&#39;</span>;
@@ -542,7 +542,7 @@
 <a name="l00464"></a>00464             echo <span class="stringliteral">&#39;&lt;input type=&quot;button&quot; name=&quot;apply_changes&quot; value=&quot;&#39;</span>
 <a name="l00465"></a>00465                 . __(<span class="stringliteral">&#39;Apply Selected Changes&#39;</span>)
 <a name="l00466"></a>00466                 . <span class="stringliteral">&#39;&quot; onclick =&quot;ApplySelectedChanges(&#39;</span>
-<a name="l00467"></a>00467                 . <span class="stringliteral">&quot;&#39;&quot;</span> . htmlspecialchars(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;token&#39;</span>]) . <span class="stringliteral">&quot;&#39;&quot;</span> . <span class="stringliteral">&#39;)&quot; /&gt;&#39;</span>;
+<a name="l00467"></a>00467                 . <span class="stringliteral">&quot;&#39;&quot;</span> . htmlspecialchars(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;token&#39;</span>]) . <span class="stringliteral">&quot;&#39;&quot;</span> . <span class="stringliteral">&#39;)&quot; /&gt;&#39;</span>;
 <a name="l00468"></a>00468             echo <span class="stringliteral">&#39;&lt;input type=&quot;submit&quot; name=&quot;synchronize_db&quot; value=&quot;&#39;</span>
 <a name="l00469"></a>00469                 . __(<span class="stringliteral">&#39;Synchronize Databases&#39;</span>) . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span> . <span class="stringliteral">&#39;&lt;/fieldset&gt;&#39;</span>;
 <a name="l00470"></a>00470             echo <span class="stringliteral">&#39;&lt;/form&gt;&#39;</span>;
@@ -561,40 +561,40 @@
 <a name="l00483"></a>00483         . __(<span class="stringliteral">&#39;Selected target tables have been synchronized with source tables.&#39;</span>)
 <a name="l00484"></a>00484         . <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;
 <a name="l00485"></a>00485 
-<a name="l00486"></a>00486     $src_db = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_db&#39;</span>];
-<a name="l00487"></a>00487     $trg_db = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_db&#39;</span>];
-<a name="l00488"></a>00488     $update_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>];
-<a name="l00489"></a>00489     $insert_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>];
-<a name="l00490"></a>00490     $src_username = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_username&#39;</span>];
-<a name="l00491"></a>00491     $trg_username = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_username&#39;</span>];
-<a name="l00492"></a>00492     $src_password = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_password&#39;</span>];
-<a name="l00493"></a>00493     $trg_password = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_password&#39;</span>];
-<a name="l00494"></a>00494     $src_server   = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_server&#39;</span>];
-<a name="l00495"></a>00495     $trg_server   = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_server&#39;</span>];
-<a name="l00496"></a>00496     $src_type     = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_type&#39;</span>];
-<a name="l00497"></a>00497     $trg_type     = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_type&#39;</span>];
-<a name="l00498"></a>00498     $uncommon_tables = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables&#39;</span>];
-<a name="l00499"></a>00499     $matching_tables = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables&#39;</span>];
-<a name="l00500"></a>00500     $matching_tables_keys = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables_keys&#39;</span>];
-<a name="l00501"></a>00501     $matching_tables_fields = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_fields&#39;</span>];
-<a name="l00502"></a>00502     $source_tables_uncommon = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_uncommon_tables&#39;</span>];
-<a name="l00503"></a>00503     $uncommon_tables_fields = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>];
-<a name="l00504"></a>00504     $target_tables_uncommon = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_uncommon&#39;</span>];
-<a name="l00505"></a>00505     <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a> = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_row_count&#39;</span>];
-<a name="l00506"></a>00506     $target_tables = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables&#39;</span>];
+<a name="l00486"></a>00486     $src_db = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_db&#39;</span>];
+<a name="l00487"></a>00487     $trg_db = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_db&#39;</span>];
+<a name="l00488"></a>00488     $update_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>];
+<a name="l00489"></a>00489     $insert_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>];
+<a name="l00490"></a>00490     $src_username = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_username&#39;</span>];
+<a name="l00491"></a>00491     $trg_username = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_username&#39;</span>];
+<a name="l00492"></a>00492     $src_password = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_password&#39;</span>];
+<a name="l00493"></a>00493     $trg_password = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_password&#39;</span>];
+<a name="l00494"></a>00494     $src_server   = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_server&#39;</span>];
+<a name="l00495"></a>00495     $trg_server   = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_server&#39;</span>];
+<a name="l00496"></a>00496     $src_type     = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_type&#39;</span>];
+<a name="l00497"></a>00497     $trg_type     = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_type&#39;</span>];
+<a name="l00498"></a>00498     $uncommon_tables = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables&#39;</span>];
+<a name="l00499"></a>00499     $matching_tables = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables&#39;</span>];
+<a name="l00500"></a>00500     $matching_tables_keys = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables_keys&#39;</span>];
+<a name="l00501"></a>00501     $matching_tables_fields = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_fields&#39;</span>];
+<a name="l00502"></a>00502     $source_tables_uncommon = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_uncommon_tables&#39;</span>];
+<a name="l00503"></a>00503     $uncommon_tables_fields = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>];
+<a name="l00504"></a>00504     $target_tables_uncommon = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_uncommon&#39;</span>];
+<a name="l00505"></a>00505     <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a> = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_row_count&#39;</span>];
+<a name="l00506"></a>00506     $target_tables = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables&#39;</span>];
 <a name="l00507"></a>00507 
-<a name="l00508"></a>00508     $delete_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;delete_array&#39;</span>];
-<a name="l00509"></a>00509     $uncommon_columns = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_columns&#39;</span>];
-<a name="l00510"></a>00510     $source_columns = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;source_columns&#39;</span>];
-<a name="l00511"></a>00511     $alter_str_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;alter_str_array&#39;</span>];
-<a name="l00512"></a>00512     <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a> = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;criteria&#39;</span>];
-<a name="l00513"></a>00513     $target_tables_keys = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_keys&#39;</span>];
-<a name="l00514"></a>00514     $add_column_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;add_column_array&#39;</span>];
-<a name="l00515"></a>00515     $add_indexes_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;add_indexes_array&#39;</span>];
-<a name="l00516"></a>00516     $alter_indexes_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;alter_indexes_array&#39;</span>];
-<a name="l00517"></a>00517     $remove_indexes_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;remove_indexes_array&#39;</span>];
-<a name="l00518"></a>00518     $source_indexes = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;source_indexes&#39;</span>];
-<a name="l00519"></a>00519     $target_indexes = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_indexes&#39;</span>];
+<a name="l00508"></a>00508     $delete_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;delete_array&#39;</span>];
+<a name="l00509"></a>00509     $uncommon_columns = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_columns&#39;</span>];
+<a name="l00510"></a>00510     $source_columns = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;source_columns&#39;</span>];
+<a name="l00511"></a>00511     $alter_str_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;alter_str_array&#39;</span>];
+<a name="l00512"></a>00512     <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a> = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;criteria&#39;</span>];
+<a name="l00513"></a>00513     $target_tables_keys = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_keys&#39;</span>];
+<a name="l00514"></a>00514     $add_column_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;add_column_array&#39;</span>];
+<a name="l00515"></a>00515     $add_indexes_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;add_indexes_array&#39;</span>];
+<a name="l00516"></a>00516     $alter_indexes_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;alter_indexes_array&#39;</span>];
+<a name="l00517"></a>00517     $remove_indexes_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;remove_indexes_array&#39;</span>];
+<a name="l00518"></a>00518     $source_indexes = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;source_indexes&#39;</span>];
+<a name="l00519"></a>00519     $target_indexes = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_indexes&#39;</span>];
 <a name="l00520"></a>00520     $uncommon_cols = $uncommon_columns;
 <a name="l00521"></a>00521 <span class="comment"></span>
 <a name="l00522"></a>00522 <span class="comment">    /**</span>
@@ -608,7 +608,7 @@
 <a name="l00530"></a>00530             ${<span class="stringliteral">&quot;{$con}_link&quot;</span>} = null;
 <a name="l00531"></a>00531             <span class="comment">// working on current server, so initialize this for tracking</span>
 <a name="l00532"></a>00532             <span class="comment">// (does not work if user defined current server as a remote one)</span>
-<a name="l00533"></a>00533             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>] = ${<span class="stringliteral">&quot;{$con}_db&quot;</span>};
+<a name="l00533"></a>00533             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>] = ${<span class="stringliteral">&quot;{$con}_db&quot;</span>};
 <a name="l00534"></a>00534         }
 <a name="l00535"></a>00535     } <span class="comment">// end foreach ($cons as $con)</span>
 <a name="l00536"></a>00536 <span class="comment"></span>
@@ -644,8 +644,8 @@
 <a name="l00566"></a>00566 <span class="comment">    /**</span>
 <a name="l00567"></a>00567 <span class="comment">    * Applying the structure difference on selected matching tables</span>
 <a name="l00568"></a>00568 <span class="comment">    */</span>
-<a name="l00569"></a>00569     <span class="keywordflow">for</span> ($q = 0; $q &lt; <span class="keyword">sizeof</span>($matching_table_structure_diff); $q++) {
-<a name="l00570"></a>00570         <span class="keywordflow">if</span> (isset($alter_str_array[$matching_table_structure_diff[$q]])) {
+<a name="l00569"></a>00569     <span class="keywordflow">for</span> (<a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a> = 0; <a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a> &lt; <span class="keyword">sizeof</span>($matching_table_structure_diff); <a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a>++) {
+<a name="l00570"></a>00570         <span class="keywordflow">if</span> (isset($alter_str_array[$matching_table_structure_diff[<a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a>]])) {
 <a name="l00571"></a>00571             <a class="code" href="server__synchronize_8lib_8php.html#a66db5389a177616f363447c1368a2b3f" title="PMA_alterTargetTableStructure() alters structure of the target table using $alter_str_array.">PMA_alterTargetTableStructure</a>($trg_db, $trg_link, $matching_tables,
 <a name="l00572"></a>00572                 $source_columns, $alter_str_array, $matching_tables_fields,
 <a name="l00573"></a>00573                 <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a>, $matching_tables_keys, $target_tables_keys,
@@ -697,13 +697,13 @@
 <a name="l00619"></a>00619 <span class="comment">    * Applying the data difference. First checks if structure diff is applied or not.</span>
 <a name="l00620"></a>00620 <span class="comment">    * If not, then apply structure difference first then apply data difference.</span>
 <a name="l00621"></a>00621 <span class="comment">    */</span>
-<a name="l00622"></a>00622     <span class="keywordflow">for</span> ($p = 0; $p &lt; <span class="keyword">sizeof</span>($matching_table_data_diff); $p++) {
+<a name="l00622"></a>00622     <span class="keywordflow">for</span> (<a class="code" href="rfswiki_8php.html#ab0ed46ece3f8d301125a0f2728d90d7b">$p</a> = 0; <a class="code" href="rfswiki_8php.html#ab0ed46ece3f8d301125a0f2728d90d7b">$p</a> &lt; <span class="keyword">sizeof</span>($matching_table_data_diff); <a class="code" href="rfswiki_8php.html#ab0ed46ece3f8d301125a0f2728d90d7b">$p</a>++) {
 <a name="l00623"></a>00623         <span class="keywordflow">if</span> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;checked&#39;</span>] == <span class="stringliteral">&#39;true&#39;</span>) {
 <a name="l00624"></a>00624             <a class="code" href="server__synchronize_8lib_8php.html#ab2fea1e3443baf7b2fb5bda5754d1ab6" title="Finds the rows which are to be deleted from target table.">PMA_findDeleteRowsFromTargetTables</a>($delete_array, $matching_tables,
-<a name="l00625"></a>00625                 $matching_table_data_diff[$p], $target_tables_keys,
+<a name="l00625"></a>00625                 $matching_table_data_diff[<a class="code" href="rfswiki_8php.html#ab0ed46ece3f8d301125a0f2728d90d7b">$p</a>], $target_tables_keys,
 <a name="l00626"></a>00626                 $matching_tables_keys, $trg_db, $trg_link, $src_db, $src_link);
 <a name="l00627"></a>00627 
-<a name="l00628"></a>00628             <span class="keywordflow">if</span> (isset($delete_array[$matching_table_data_diff[$p]])) {
+<a name="l00628"></a>00628             <span class="keywordflow">if</span> (isset($delete_array[$matching_table_data_diff[<a class="code" href="rfswiki_8php.html#ab0ed46ece3f8d301125a0f2728d90d7b">$p</a>]])) {
 <a name="l00629"></a>00629                 <a class="code" href="server__synchronize_8lib_8php.html#a22cac51b7cb0d7c43230140e448e48b2" title="PMA_deleteFromTargetTable() delete rows from target table.">PMA_deleteFromTargetTable</a>($trg_db, $trg_link, $matching_tables,
 <a name="l00630"></a>00630                     $matching_table_data_diff[$p], $target_tables_keys,
 <a name="l00631"></a>00631                     $delete_array, <span class="keyword">false</span>);
@@ -711,7 +711,7 @@
 <a name="l00633"></a>00633                 unset($delete_array[$matching_table_data_diff[$p]]);
 <a name="l00634"></a>00634             }
 <a name="l00635"></a>00635         }
-<a name="l00636"></a>00636         <span class="keywordflow">if</span> (isset($alter_str_array[$matching_table_data_diff[$p]])) {
+<a name="l00636"></a>00636         <span class="keywordflow">if</span> (isset($alter_str_array[$matching_table_data_diff[<a class="code" href="rfswiki_8php.html#ab0ed46ece3f8d301125a0f2728d90d7b">$p</a>]])) {
 <a name="l00637"></a>00637             <a class="code" href="server__synchronize_8lib_8php.html#a66db5389a177616f363447c1368a2b3f" title="PMA_alterTargetTableStructure() alters structure of the target table using $alter_str_array.">PMA_alterTargetTableStructure</a>($trg_db, $trg_link, $matching_tables,
 <a name="l00638"></a>00638                 $source_columns, $alter_str_array, $matching_tables_fields,
 <a name="l00639"></a>00639                 <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a>, $matching_tables_keys, $target_tables_keys,
@@ -778,14 +778,14 @@
 <a name="l00700"></a>00700 <span class="comment">    /**</span>
 <a name="l00701"></a>00701 <span class="comment">    * Updating the session variables to the latest values of the arrays.</span>
 <a name="l00702"></a>00702 <span class="comment">    */</span>
-<a name="l00703"></a>00703     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;delete_array&#39;</span>] = $delete_array;
-<a name="l00704"></a>00704     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_columns&#39;</span>] = $uncommon_columns;
-<a name="l00705"></a>00705     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;alter_str_array&#39;</span>]  = $alter_str_array;
-<a name="l00706"></a>00706     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;add_column_array&#39;</span>] = $add_column_array;
-<a name="l00707"></a>00707     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;add_indexes_array&#39;</span>] = $add_indexes_array;
-<a name="l00708"></a>00708     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;remove_indexes_array&#39;</span>] = $remove_indexes_array;
-<a name="l00709"></a>00709     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>] = $insert_array;
-<a name="l00710"></a>00710     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>] = $update_array;
+<a name="l00703"></a>00703     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;delete_array&#39;</span>] = $delete_array;
+<a name="l00704"></a>00704     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_columns&#39;</span>] = $uncommon_columns;
+<a name="l00705"></a>00705     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;alter_str_array&#39;</span>]  = $alter_str_array;
+<a name="l00706"></a>00706     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;add_column_array&#39;</span>] = $add_column_array;
+<a name="l00707"></a>00707     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;add_indexes_array&#39;</span>] = $add_indexes_array;
+<a name="l00708"></a>00708     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;remove_indexes_array&#39;</span>] = $remove_indexes_array;
+<a name="l00709"></a>00709     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>] = $insert_array;
+<a name="l00710"></a>00710     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>] = $update_array;
 <a name="l00711"></a>00711 <span class="comment"></span>
 <a name="l00712"></a>00712 <span class="comment">    /**</span>
 <a name="l00713"></a>00713 <span class="comment">    * Applying structure difference to selected non-matching tables</span>
@@ -795,7 +795,7 @@
 <a name="l00717"></a>00717         <a class="code" href="server__synchronize_8lib_8php.html#a59792a6539f1f3a6550ceef0483d83cd" title="PMA_createTargetTables() Create the missing table $uncommon_table in target database.">PMA_createTargetTables</a>($src_db, $trg_db, $src_link, $trg_link,
 <a name="l00718"></a>00718             $uncommon_tables, $uncommon_table_structure_diff[<a class="code" href="sp_8php.html#a50b05cf2e02ef0b67fcad97106dd7634">$s</a>],
 <a name="l00719"></a>00719             $uncommon_tables_fields, <span class="keyword">false</span>);
-<a name="l00720"></a>00720         <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>] = $uncommon_tables_fields;
+<a name="l00720"></a>00720         <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>] = $uncommon_tables_fields;
 <a name="l00721"></a>00721 
 <a name="l00722"></a>00722         unset($uncommon_tables[$uncommon_table_structure_diff[<a class="code" href="sp_8php.html#a50b05cf2e02ef0b67fcad97106dd7634">$s</a>]]);
 <a name="l00723"></a>00723     }<span class="comment"></span>
@@ -804,20 +804,20 @@
 <a name="l00726"></a>00726 <span class="comment">    * (present in Source but absent from Target).</span>
 <a name="l00727"></a>00727 <span class="comment">    * Before data synchronization, structure synchronization is confirmed.</span>
 <a name="l00728"></a>00728 <span class="comment">    */</span>
-<a name="l00729"></a>00729     <span class="keywordflow">for</span> (<a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = 0; <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> &lt; <span class="keyword">sizeof</span>($uncommon_table_data_diff); <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>++) {
-<a name="l00730"></a>00730         <span class="keywordflow">if</span> (!(in_array($uncommon_table_data_diff[<a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>], $uncommon_table_structure_diff))) {
+<a name="l00729"></a>00729     <span class="keywordflow">for</span> (<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = 0; <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> &lt; <span class="keyword">sizeof</span>($uncommon_table_data_diff); <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>++) {
+<a name="l00730"></a>00730         <span class="keywordflow">if</span> (!(in_array($uncommon_table_data_diff[<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>], $uncommon_table_structure_diff))) {
 <a name="l00731"></a>00731             <span class="keywordflow">if</span> (isset($uncommon_tables[$uncommon_table_data_diff[$r]])) {
 <a name="l00732"></a>00732                 <a class="code" href="server__synchronize_8lib_8php.html#a59792a6539f1f3a6550ceef0483d83cd" title="PMA_createTargetTables() Create the missing table $uncommon_table in target database.">PMA_createTargetTables</a>($src_db, $trg_db, $src_link, $trg_link,
 <a name="l00733"></a>00733                     $uncommon_tables, $uncommon_table_data_diff[$r],
 <a name="l00734"></a>00734                     $uncommon_tables_fields, <span class="keyword">false</span>);
-<a name="l00735"></a>00735                 <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>] = $uncommon_tables_fields;
+<a name="l00735"></a>00735                 <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>] = $uncommon_tables_fields;
 <a name="l00736"></a>00736 
 <a name="l00737"></a>00737                 unset($uncommon_tables[$uncommon_table_data_diff[$r]]);
 <a name="l00738"></a>00738             }
 <a name="l00739"></a>00739         }
 <a name="l00740"></a>00740         <a class="code" href="server__synchronize_8lib_8php.html#afe128b4b8a227082f9d7f02bc8fe34d9" title="PMA_populateTargetTables() inserts data into uncommon tables after they have been created...">PMA_populateTargetTables</a>($src_db, $trg_db, $src_link, $trg_link,
 <a name="l00741"></a>00741             $source_tables_uncommon, $uncommon_table_data_diff[$r],
-<a name="l00742"></a>00742             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>], <span class="keyword">false</span>);
+<a name="l00742"></a>00742             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>], <span class="keyword">false</span>);
 <a name="l00743"></a>00743 
 <a name="l00744"></a>00744         unset(<a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>[$uncommon_table_data_diff[$r]]);
 <a name="l00745"></a>00745     }<span class="comment"></span>
@@ -829,7 +829,7 @@
 <a name="l00751"></a>00751         . <a class="code" href="url__generating_8lib_8php.html#ad7326a27700edd06dee0217de194756b" title="Generates text with hidden inputs.">PMA_generate_common_hidden_inputs</a>(<span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;&#39;</span>);
 <a name="l00752"></a>00752 
 <a name="l00753"></a>00753     <a class="code" href="server__synchronize_8lib_8php.html#abe9a849611ceccd5f14ec472f9e885f7" title="PMA_syncDisplayHeaderCompare() shows the header for source database.">PMA_syncDisplayHeaderCompare</a>($src_db, $trg_db);
-<a name="l00754"></a>00754     <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
+<a name="l00754"></a>00754     <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
 <a name="l00755"></a>00755     <span class="keywordflow">for</span> ($i = 0; $i &lt; count($matching_tables); $i++) {
 <a name="l00756"></a>00756         $num_alter_cols  = 0;
 <a name="l00757"></a>00757         $num_insert_cols = 0;
@@ -838,19 +838,19 @@
 <a name="l00760"></a>00760         $num_remove_index = 0;
 <a name="l00761"></a>00761 
 <a name="l00762"></a>00762         <span class="keywordflow">if</span> (isset($alter_str_array[$i])) {
-<a name="l00763"></a>00763             $num_alter_cols = <span class="keyword">sizeof</span>($alter_str_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00763"></a>00763             $num_alter_cols = <span class="keyword">sizeof</span>($alter_str_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00764"></a>00764         }
 <a name="l00765"></a>00765         <span class="keywordflow">if</span> (isset($add_column_array[$i])) {
-<a name="l00766"></a>00766             $num_insert_cols = <span class="keyword">sizeof</span>($add_column_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00766"></a>00766             $num_insert_cols = <span class="keyword">sizeof</span>($add_column_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00767"></a>00767         }
 <a name="l00768"></a>00768         <span class="keywordflow">if</span> (isset($uncommon_columns[$i])) {
-<a name="l00769"></a>00769             $num_remove_cols = <span class="keyword">sizeof</span>($uncommon_columns[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00769"></a>00769             $num_remove_cols = <span class="keyword">sizeof</span>($uncommon_columns[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00770"></a>00770         }
 <a name="l00771"></a>00771         <span class="keywordflow">if</span> (isset($add_indexes_array[$i])) {
-<a name="l00772"></a>00772             $num_add_index = <span class="keyword">sizeof</span>($add_indexes_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00772"></a>00772             $num_add_index = <span class="keyword">sizeof</span>($add_indexes_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00773"></a>00773         }
 <a name="l00774"></a>00774         <span class="keywordflow">if</span> (isset($remove_indexes_array[$i])) {
-<a name="l00775"></a>00775             $num_remove_index = <span class="keyword">sizeof</span>($remove_indexes_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00775"></a>00775             $num_remove_index = <span class="keyword">sizeof</span>($remove_indexes_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00776"></a>00776         }
 <a name="l00777"></a>00777 
 <a name="l00778"></a>00778         $btn_structure_params = null;
@@ -870,7 +870,7 @@
 <a name="l00792"></a>00792                 &amp;&amp; isset($update_array[$i][0][$matching_tables_keys[$i][0]])
 <a name="l00793"></a>00793             ) {
 <a name="l00794"></a>00794                 <span class="keywordflow">if</span> (isset($update_array[$i])) {
-<a name="l00795"></a>00795                     $num_of_updates = <span class="keyword">sizeof</span>($update_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00795"></a>00795                     $num_of_updates = <span class="keyword">sizeof</span>($update_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00796"></a>00796                 } <span class="keywordflow">else</span> {
 <a name="l00797"></a>00797                     $num_of_updates = 0;
 <a name="l00798"></a>00798                 }
@@ -881,7 +881,7 @@
 <a name="l00803"></a>00803                 &amp;&amp; isset($insert_array[$i][0][$matching_tables_keys[$i][0]])
 <a name="l00804"></a>00804             ) {
 <a name="l00805"></a>00805                 <span class="keywordflow">if</span> (isset($insert_array[$i])) {
-<a name="l00806"></a>00806                     $num_of_insertions = <span class="keyword">sizeof</span>($insert_array[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00806"></a>00806                     $num_of_insertions = <span class="keyword">sizeof</span>($insert_array[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00807"></a>00807                 } <span class="keywordflow">else</span> {
 <a name="l00808"></a>00808                     $num_of_insertions = 0;
 <a name="l00809"></a>00809                 }
@@ -901,7 +901,7 @@
 <a name="l00823"></a>00823             unset($update_array[$i]);
 <a name="l00824"></a>00824             unset($insert_array[$i]);
 <a name="l00825"></a>00825         }
-<a name="l00826"></a>00826         <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
+<a name="l00826"></a>00826         <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
 <a name="l00827"></a>00827             <span class="stringliteral">&#39;src_table_name&#39;</span> =&gt; $matching_tables[$i],
 <a name="l00828"></a>00828             <span class="stringliteral">&#39;dst_table_name&#39;</span> =&gt; $matching_tables[$i],
 <a name="l00829"></a>00829             <span class="stringliteral">&#39;btn_type&#39;</span> =&gt; <span class="charliteral">&#39;M&#39;</span>,
@@ -913,8 +913,8 @@
 <a name="l00835"></a>00835 <span class="comment">    * placing updated value of arrays in session</span>
 <a name="l00836"></a>00836 <span class="comment">    *</span>
 <a name="l00837"></a>00837 <span class="comment">    */</span>
-<a name="l00838"></a>00838     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>] = $update_array;
-<a name="l00839"></a>00839     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>] = $insert_array;
+<a name="l00838"></a>00838     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>] = $update_array;
+<a name="l00839"></a>00839     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>] = $insert_array;
 <a name="l00840"></a>00840 
 <a name="l00841"></a>00841     <span class="keywordflow">for</span> ($j = 0; $j &lt; count($source_tables_uncommon); $j++) {
 <a name="l00842"></a>00842         $btn_structure_params = null;
@@ -943,7 +943,7 @@
 <a name="l00865"></a>00865             unset(<a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>[$j]);
 <a name="l00866"></a>00866         }
 <a name="l00867"></a>00867 
-<a name="l00868"></a>00868         <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
+<a name="l00868"></a>00868         <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
 <a name="l00869"></a>00869             <span class="stringliteral">&#39;src_table_name&#39;</span> =&gt; $source_tables_uncommon[$j],
 <a name="l00870"></a>00870             <span class="stringliteral">&#39;dst_table_name&#39;</span> =&gt; $dst_table_name,
 <a name="l00871"></a>00871             <span class="stringliteral">&#39;btn_type&#39;</span> =&gt; <span class="charliteral">&#39;U&#39;</span>,
@@ -955,19 +955,19 @@
 <a name="l00877"></a>00877 <span class="comment">    * placing the latest values of arrays in session</span>
 <a name="l00878"></a>00878 <span class="comment">    */</span>
 <a name="l00879"></a>00879 
-<a name="l00880"></a>00880     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables&#39;</span>] = $uncommon_tables;
-<a name="l00881"></a>00881     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_row_count&#39;</span>] = <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>;
+<a name="l00880"></a>00880     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables&#39;</span>] = $uncommon_tables;
+<a name="l00881"></a>00881     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_row_count&#39;</span>] = <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>;
 <a name="l00882"></a>00882 
 <a name="l00883"></a>00883 <span class="comment"></span>
 <a name="l00884"></a>00884 <span class="comment">    /**</span>
 <a name="l00885"></a>00885 <span class="comment">    * Displaying the target database tables</span>
 <a name="l00886"></a>00886 <span class="comment">    */</span>
 <a name="l00887"></a>00887     <span class="keywordflow">foreach</span> ($target_tables_uncommon as $tbl_nc_name) {
-<a name="l00888"></a>00888         <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
+<a name="l00888"></a>00888         <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
 <a name="l00889"></a>00889             <span class="stringliteral">&#39;src_table_name&#39;</span> =&gt; <span class="stringliteral">&#39;&#39;</span>,
 <a name="l00890"></a>00890             <span class="stringliteral">&#39;dst_table_name&#39;</span> =&gt; $tbl_nc_name);
 <a name="l00891"></a>00891     }
-<a name="l00892"></a>00892     <a class="code" href="server__synchronize_8lib_8php.html#aaa5186d6ff86a8a817460fccfb4fb2f3" title="Prints table row.">PMA_syncDisplayDataCompare</a>(<a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>);
+<a name="l00892"></a>00892     <a class="code" href="server__synchronize_8lib_8php.html#aaa5186d6ff86a8a817460fccfb4fb2f3" title="Prints table row.">PMA_syncDisplayDataCompare</a>(<a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>);
 <a name="l00893"></a>00893     echo <span class="stringliteral">&#39;&lt;/table&gt;</span>
 <a name="l00894"></a>00894 <span class="stringliteral">        &lt;/div&gt;</span>
 <a name="l00895"></a>00895 <span class="stringliteral">        &lt;/fieldset&gt;&#39;</span>;
@@ -1014,7 +1014,7 @@
 <a name="l00936"></a>00936     echo <span class="stringliteral">&#39;&lt;fieldset class=&quot;tblFooters&quot;&gt;&#39;</span>;
 <a name="l00937"></a>00937     echo <span class="stringliteral">&#39;&lt;input type=&quot;button&quot; name=&quot;apply_changes&quot; value=&quot;&#39;</span>
 <a name="l00938"></a>00938         . __(<span class="stringliteral">&#39;Apply Selected Changes&#39;</span>) . <span class="stringliteral">&#39;&quot; onclick =&quot;ApplySelectedChanges(&#39;</span>
-<a name="l00939"></a>00939         . <span class="stringliteral">&quot;&#39;&quot;</span> . htmlspecialchars(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;token&#39;</span>]) . <span class="stringliteral">&quot;&#39;&quot;</span> .<span class="stringliteral">&#39;)&quot; /&gt;&#39;</span>;
+<a name="l00939"></a>00939         . <span class="stringliteral">&quot;&#39;&quot;</span> . htmlspecialchars(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;token&#39;</span>]) . <span class="stringliteral">&quot;&#39;&quot;</span> .<span class="stringliteral">&#39;)&quot; /&gt;&#39;</span>;
 <a name="l00940"></a>00940     echo <span class="stringliteral">&#39;&lt;input type=&quot;submit&quot; name=&quot;synchronize_db&quot; value=&quot;&#39;</span>
 <a name="l00941"></a>00941         . __(<span class="stringliteral">&#39;Synchronize Databases&#39;</span>) . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span>
 <a name="l00942"></a>00942         . <span class="stringliteral">&#39;&lt;/fieldset&gt;&#39;</span>;
@@ -1027,36 +1027,36 @@
 <a name="l00949"></a>00949 
 <a name="l00950"></a>00950 <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;synchronize_db&#39;</span>])) {
 <a name="l00951"></a>00951 
-<a name="l00952"></a>00952     $src_db = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_db&#39;</span>];
-<a name="l00953"></a>00953     $trg_db = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_db&#39;</span>];
-<a name="l00954"></a>00954     $update_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>];
-<a name="l00955"></a>00955     $insert_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>];
-<a name="l00956"></a>00956     $src_username = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_username&#39;</span>];
-<a name="l00957"></a>00957     $trg_username = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_username&#39;</span>];
-<a name="l00958"></a>00958     $src_password = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_password&#39;</span>];
-<a name="l00959"></a>00959     $trg_password = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_password&#39;</span>];
-<a name="l00960"></a>00960     $matching_tables = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables&#39;</span>];
-<a name="l00961"></a>00961     $matching_tables_keys = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables_keys&#39;</span>];
-<a name="l00962"></a>00962     $matching_tables_fields = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;matching_fields&#39;</span>];
-<a name="l00963"></a>00963     $source_tables_uncommon = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_uncommon_tables&#39;</span>];
-<a name="l00964"></a>00964     $uncommon_tables_fields = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>];
-<a name="l00965"></a>00965     $target_tables_uncommon = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_uncommon&#39;</span>];
-<a name="l00966"></a>00966     <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a> = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_row_count&#39;</span>];
-<a name="l00967"></a>00967     $uncommon_tables = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables&#39;</span>];
-<a name="l00968"></a>00968     $target_tables = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables&#39;</span>];
+<a name="l00952"></a>00952     $src_db = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_db&#39;</span>];
+<a name="l00953"></a>00953     $trg_db = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_db&#39;</span>];
+<a name="l00954"></a>00954     $update_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;update_array&#39;</span>];
+<a name="l00955"></a>00955     $insert_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;insert_array&#39;</span>];
+<a name="l00956"></a>00956     $src_username = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_username&#39;</span>];
+<a name="l00957"></a>00957     $trg_username = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_username&#39;</span>];
+<a name="l00958"></a>00958     $src_password = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_password&#39;</span>];
+<a name="l00959"></a>00959     $trg_password = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_password&#39;</span>];
+<a name="l00960"></a>00960     $matching_tables = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables&#39;</span>];
+<a name="l00961"></a>00961     $matching_tables_keys = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_tables_keys&#39;</span>];
+<a name="l00962"></a>00962     $matching_tables_fields = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;matching_fields&#39;</span>];
+<a name="l00963"></a>00963     $source_tables_uncommon = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_uncommon_tables&#39;</span>];
+<a name="l00964"></a>00964     $uncommon_tables_fields = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_fields&#39;</span>];
+<a name="l00965"></a>00965     $target_tables_uncommon = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_uncommon&#39;</span>];
+<a name="l00966"></a>00966     <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a> = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables_row_count&#39;</span>];
+<a name="l00967"></a>00967     $uncommon_tables = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_tables&#39;</span>];
+<a name="l00968"></a>00968     $target_tables = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables&#39;</span>];
 <a name="l00969"></a>00969 
-<a name="l00970"></a>00970     $delete_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;delete_array&#39;</span>];
-<a name="l00971"></a>00971     $uncommon_columns = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_columns&#39;</span>];
-<a name="l00972"></a>00972     $source_columns = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;source_columns&#39;</span>];
-<a name="l00973"></a>00973     $alter_str_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;alter_str_array&#39;</span>];
-<a name="l00974"></a>00974     <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a> = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;criteria&#39;</span>];
-<a name="l00975"></a>00975     $target_tables_keys = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_keys&#39;</span>];
-<a name="l00976"></a>00976     $add_column_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;add_column_array&#39;</span>];
-<a name="l00977"></a>00977     $add_indexes_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;add_indexes_array&#39;</span>];
-<a name="l00978"></a>00978     $alter_indexes_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;alter_indexes_array&#39;</span>];
-<a name="l00979"></a>00979     $remove_indexes_array = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;remove_indexes_array&#39;</span>];
-<a name="l00980"></a>00980     $source_indexes = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;source_indexes&#39;</span>];
-<a name="l00981"></a>00981     $target_indexes = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;target_indexes&#39;</span>];
+<a name="l00970"></a>00970     $delete_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;delete_array&#39;</span>];
+<a name="l00971"></a>00971     $uncommon_columns = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;uncommon_columns&#39;</span>];
+<a name="l00972"></a>00972     $source_columns = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;source_columns&#39;</span>];
+<a name="l00973"></a>00973     $alter_str_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;alter_str_array&#39;</span>];
+<a name="l00974"></a>00974     <a class="code" href="db__qbe_8php.html#a095f2061791cf4be58c4b41a5790dc85">$criteria</a> = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;criteria&#39;</span>];
+<a name="l00975"></a>00975     $target_tables_keys = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_tables_keys&#39;</span>];
+<a name="l00976"></a>00976     $add_column_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;add_column_array&#39;</span>];
+<a name="l00977"></a>00977     $add_indexes_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;add_indexes_array&#39;</span>];
+<a name="l00978"></a>00978     $alter_indexes_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;alter_indexes_array&#39;</span>];
+<a name="l00979"></a>00979     $remove_indexes_array = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;remove_indexes_array&#39;</span>];
+<a name="l00980"></a>00980     $source_indexes = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;source_indexes&#39;</span>];
+<a name="l00981"></a>00981     $target_indexes = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;target_indexes&#39;</span>];
 <a name="l00982"></a>00982     $uncommon_cols = $uncommon_columns;
 <a name="l00983"></a>00983 <span class="comment"></span>
 <a name="l00984"></a>00984 <span class="comment">   /**</span>
@@ -1070,23 +1070,23 @@
 <a name="l00992"></a>00992 <span class="comment">    * and now no difference is there.</span>
 <a name="l00993"></a>00993 <span class="comment">    */</span>
 <a name="l00994"></a>00994     <a class="code" href="server__synchronize_8lib_8php.html#abe9a849611ceccd5f14ec472f9e885f7" title="PMA_syncDisplayHeaderCompare() shows the header for source database.">PMA_syncDisplayHeaderCompare</a>($src_db, $trg_db);
-<a name="l00995"></a>00995     <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
+<a name="l00995"></a>00995     <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
 <a name="l00996"></a>00996     <span class="keywordflow">for</span> ($i = 0; $i &lt; count($matching_tables); $i++) {
-<a name="l00997"></a>00997         <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
+<a name="l00997"></a>00997         <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
 <a name="l00998"></a>00998             <span class="stringliteral">&#39;src_table_name&#39;</span> =&gt; $matching_tables[$i],
 <a name="l00999"></a>00999             <span class="stringliteral">&#39;dst_table_name&#39;</span> =&gt; $matching_tables[$i]);
 <a name="l01000"></a>01000     }
 <a name="l01001"></a>01001     <span class="keywordflow">foreach</span> ($source_tables_uncommon as $tbl_nc_name) {
-<a name="l01002"></a>01002         <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
+<a name="l01002"></a>01002         <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
 <a name="l01003"></a>01003             <span class="stringliteral">&#39;src_table_name&#39;</span> =&gt; <span class="stringliteral">&#39;+ &#39;</span> . $tbl_nc_name,
 <a name="l01004"></a>01004             <span class="stringliteral">&#39;dst_table_name&#39;</span> =&gt; $tbl_nc_name);
 <a name="l01005"></a>01005     }
 <a name="l01006"></a>01006     <span class="keywordflow">foreach</span> ($target_tables_uncommon as $tbl_nc_name) {
-<a name="l01007"></a>01007         <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
+<a name="l01007"></a>01007         <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array(
 <a name="l01008"></a>01008             <span class="stringliteral">&#39;src_table_name&#39;</span> =&gt; <span class="stringliteral">&#39;&#39;</span>,
 <a name="l01009"></a>01009             <span class="stringliteral">&#39;dst_table_name&#39;</span> =&gt; $tbl_nc_name);
 <a name="l01010"></a>01010     }
-<a name="l01011"></a>01011     <a class="code" href="server__synchronize_8lib_8php.html#aaa5186d6ff86a8a817460fccfb4fb2f3" title="Prints table row.">PMA_syncDisplayDataCompare</a>(<a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>);
+<a name="l01011"></a>01011     <a class="code" href="server__synchronize_8lib_8php.html#aaa5186d6ff86a8a817460fccfb4fb2f3" title="Prints table row.">PMA_syncDisplayDataCompare</a>(<a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>);
 <a name="l01012"></a>01012     echo <span class="stringliteral">&#39;&lt;/table&gt;</span>
 <a name="l01013"></a>01013 <span class="stringliteral">        &lt;/div&gt;</span>
 <a name="l01014"></a>01014 <span class="stringliteral">        &lt;/fieldset&gt;&#39;</span>;
@@ -1094,28 +1094,28 @@
 <a name="l01016"></a>01016 <span class="comment">    /**</span>
 <a name="l01017"></a>01017 <span class="comment">    * connecting the source and target servers</span>
 <a name="l01018"></a>01018 <span class="comment">    */</span>
-<a name="l01019"></a>01019     <span class="keywordflow">if</span> (<span class="stringliteral">&#39;cur&#39;</span> != <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_type&#39;</span>]) {
-<a name="l01020"></a>01020         $src_link = <a class="code" href="drizzle_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3" title="connects to the database server">PMA_DBI_connect</a>($src_username, $src_password, $is_controluser = <span class="keyword">false</span>, <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_server&#39;</span>]);
+<a name="l01019"></a>01019     <span class="keywordflow">if</span> (<span class="stringliteral">&#39;cur&#39;</span> != <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_type&#39;</span>]) {
+<a name="l01020"></a>01020         $src_link = <a class="code" href="drizzle_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3" title="connects to the database server">PMA_DBI_connect</a>($src_username, $src_password, $is_controluser = <span class="keyword">false</span>, <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_server&#39;</span>]);
 <a name="l01021"></a>01021         $src_version = <a class="code" href="database__interface_8lib_8php.html#a772f12a953dd2908745bb16a8fa7b63a" title="returns a single value from the given result or query, if the query or the result has more than one r...">PMA_DBI_fetch_value</a>(<span class="stringliteral">&#39;SELECT VERSION()&#39;</span>, 0, 0, $src_link);
 <a name="l01022"></a>01022         $src_is_drizzle = (bool)preg_match(<span class="stringliteral">&#39;/\d{4}\./&#39;</span>, $src_version);
 <a name="l01023"></a>01023     } <span class="keywordflow">else</span> {
-<a name="l01024"></a>01024         $src_link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l01024"></a>01024         $src_link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l01025"></a>01025         $src_version = PMA_MYSQL_STR_VERSION;
 <a name="l01026"></a>01026         $src_is_drizzle = PMA_DRIZZLE;
 <a name="l01027"></a>01027         <span class="comment">// working on current server, so initialize this for tracking</span>
 <a name="l01028"></a>01028         <span class="comment">// (does not work if user defined current server as a remote one)</span>
-<a name="l01029"></a>01029         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>] = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;src_db&#39;</span>];
+<a name="l01029"></a>01029         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>] = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;src_db&#39;</span>];
 <a name="l01030"></a>01030     }
-<a name="l01031"></a>01031     <span class="keywordflow">if</span> (<span class="stringliteral">&#39;cur&#39;</span> != <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_type&#39;</span>]) {
-<a name="l01032"></a>01032         $trg_link = <a class="code" href="drizzle_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3" title="connects to the database server">PMA_DBI_connect</a>($trg_username, $trg_password, $is_controluser = <span class="keyword">false</span>, <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_server&#39;</span>]);
+<a name="l01031"></a>01031     <span class="keywordflow">if</span> (<span class="stringliteral">&#39;cur&#39;</span> != <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_type&#39;</span>]) {
+<a name="l01032"></a>01032         $trg_link = <a class="code" href="drizzle_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3" title="connects to the database server">PMA_DBI_connect</a>($trg_username, $trg_password, $is_controluser = <span class="keyword">false</span>, <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_server&#39;</span>]);
 <a name="l01033"></a>01033         $trg_version = <a class="code" href="database__interface_8lib_8php.html#a772f12a953dd2908745bb16a8fa7b63a" title="returns a single value from the given result or query, if the query or the result has more than one r...">PMA_DBI_fetch_value</a>(<span class="stringliteral">&#39;SELECT VERSION()&#39;</span>, 0, 0, $trg_link);
 <a name="l01034"></a>01034         $trg_is_drizzle = (bool)preg_match(<span class="stringliteral">&#39;/\d{4}\./&#39;</span>, $trg_version);
 <a name="l01035"></a>01035     } <span class="keywordflow">else</span> {
-<a name="l01036"></a>01036         $trg_link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l01036"></a>01036         $trg_link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l01037"></a>01037         $trg_version = PMA_MYSQL_STR_VERSION;
 <a name="l01038"></a>01038         $trg_is_drizzle = PMA_DRIZZLE;
 <a name="l01039"></a>01039         <span class="comment">// working on current server, so initialize this for tracking</span>
-<a name="l01040"></a>01040         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>] = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;trg_db&#39;</span>];
+<a name="l01040"></a>01040         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>] = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;trg_db&#39;</span>];
 <a name="l01041"></a>01041     }
 <a name="l01042"></a>01042 <span class="comment"></span>
 <a name="l01043"></a>01043 <span class="comment">    /**</span>
@@ -1226,7 +1226,7 @@
 <a name="l01148"></a>01148 <span class="comment">/**</span>
 <a name="l01149"></a>01149 <span class="comment">* Displays the sub-page heading</span>
 <a name="l01150"></a>01150 <span class="comment">*/</span>
-<a name="l01151"></a>01151     echo <span class="stringliteral">&#39;&lt;h2&gt;&#39;</span> . (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;MainPageIconic&#39;</span>]
+<a name="l01151"></a>01151     echo <span class="stringliteral">&#39;&lt;h2&gt;&#39;</span> . (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;MainPageIconic&#39;</span>]
 <a name="l01152"></a>01152     ? <a class="code" href="common_8lib_8php.html#a54fdec9763bf305a5082d23a5d7d5957" title="Returns an HTML IMG tag for a particular image from a theme, which may be an actual file or an icon f...">PMA_getImage</a>(<span class="stringliteral">&#39;s_sync.png&#39;</span>)
 <a name="l01153"></a>01153     : <span class="stringliteral">&#39;&#39;</span>)
 <a name="l01154"></a>01154     . __(<span class="stringliteral">&#39;Synchronize&#39;</span>)
@@ -1253,13 +1253,13 @@
 <a name="l01175"></a>01175         $databases_to_hide[] = <span class="stringliteral">&#39;data_dictionary&#39;</span>;
 <a name="l01176"></a>01176     }
 <a name="l01177"></a>01177 
-<a name="l01178"></a>01178     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>] === <span class="keyword">false</span>) {
+<a name="l01178"></a>01178     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>] === <span class="keyword">false</span>) {
 <a name="l01179"></a>01179         $possibly_readonly = <span class="stringliteral">&#39; readonly=&quot;readonly&quot;&#39;</span>;
 <a name="l01180"></a>01180     } <span class="keywordflow">else</span> {
 <a name="l01181"></a>01181         $possibly_readonly = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l01182"></a>01182     }
 <a name="l01183"></a>01183 
-<a name="l01184"></a>01184     <span class="keywordflow">foreach</span> (<a class="code" href="server__synchronize_8php.html#a10bf34ef2c15f1621a5c45a64fbcc304" title="Displays the links.">$cons</a> as <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>) {
+<a name="l01184"></a>01184     <span class="keywordflow">foreach</span> (<a class="code" href="server__synchronize_8php.html#a10bf34ef2c15f1621a5c45a64fbcc304" title="Displays the links.">$cons</a> as <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>) {
 <a name="l01185"></a>01185         <span class="keywordflow">if</span> (<span class="stringliteral">&#39;src&#39;</span> == $type) {
 <a name="l01186"></a>01186             $database_header = __(<span class="stringliteral">&#39;Source database&#39;</span>);
 <a name="l01187"></a>01187         } <span class="keywordflow">else</span> {
@@ -1275,7 +1275,7 @@
 <a name="l01197"></a>01197       &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a> colspan=<span class="stringliteral">&quot;2&quot;</span> style=<span class="stringliteral">&quot;text-align: center&quot;</span>&gt;
 <a name="l01198"></a>01198          &lt;select name=<span class="stringliteral">&quot;&lt;?php echo $type; ?&gt;_type&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;&lt;?php echo $type; ?&gt;_type&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;server_selector&quot;</span>&gt;
 <a name="l01199"></a>01199 &lt;?php
-<a name="l01200"></a>01200         <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]) {
+<a name="l01200"></a>01200         <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]) {
 <a name="l01201"></a>01201             $preselected_option = <span class="stringliteral">&#39;rmt&#39;</span>;
 <a name="l01202"></a>01202             echo <span class="stringliteral">&#39;&lt;option value=&quot;rmt&quot; selected=&quot;selected&quot;&gt;&#39;</span> . __(<span class="stringliteral">&#39;Enter manually&#39;</span>) . <span class="stringliteral">&#39;&lt;/option&gt;&#39;</span>;
 <a name="l01203"></a>01203         } <span class="keywordflow">else</span> {
@@ -1287,8 +1287,8 @@
 <a name="l01209"></a>01209         }
 <a name="l01210"></a>01210         echo <span class="charliteral">&#39;&gt;&#39;</span> .  __(<span class="stringliteral">&#39;Current connection&#39;</span>) . <span class="stringliteral">&#39;&lt;/option&gt;&#39;</span>;
 <a name="l01211"></a>01211 
-<a name="l01212"></a>01212         $loaded_dbi = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>];
-<a name="l01213"></a>01213         <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>] as $key =&gt; $tmp_server) {
+<a name="l01212"></a>01212         $loaded_dbi = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>];
+<a name="l01213"></a>01213         <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>] as $key =&gt; $tmp_server) {
 <a name="l01214"></a>01214             <span class="keywordflow">if</span> (empty($tmp_server[<span class="stringliteral">&#39;host&#39;</span>]) &amp;&amp; empty($tmp_server[<span class="stringliteral">&#39;socket&#39;</span>])) {
 <a name="l01215"></a>01215                 <span class="keywordflow">continue</span>;
 <a name="l01216"></a>01216             }
@@ -1402,7 +1402,7 @@
     <ul>
       <li class="navelem"><a class="el" href="server__synchronize_8php.html">server_synchronize.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

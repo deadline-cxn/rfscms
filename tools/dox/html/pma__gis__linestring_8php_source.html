@@ -265,7 +265,7 @@
 <a name="l00187"></a>00187         <span class="keywordflow">if</span> (<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> == 0) {
 <a name="l00188"></a>00188             <a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> = 4326;
 <a name="l00189"></a>00189         }
-<a name="l00190"></a>00190         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = $this-&gt;<a class="code" href="classPMA__GIS__Geometry.html#ad639545c151c082e1b901b3e37982ed7" title="Returns OpenLayers.Bounds object that correspond to the bounds of GIS data.">getBoundsForOl</a>(<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a>, $scale_data);
+<a name="l00190"></a>00190         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = $this-&gt;<a class="code" href="classPMA__GIS__Geometry.html#ad639545c151c082e1b901b3e37982ed7" title="Returns OpenLayers.Bounds object that correspond to the bounds of GIS data.">getBoundsForOl</a>(<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a>, $scale_data);
 <a name="l00191"></a>00191 
 <a name="l00192"></a>00192         <span class="comment">// Trim to remove leading &#39;LINESTRING(&#39; and trailing &#39;)&#39;</span>
 <a name="l00193"></a>00193         $linesrting = substr($spatial, 11, (strlen($spatial) - 12));
@@ -280,10 +280,10 @@
 <a name="l00202"></a>00202         <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = substr(<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>, 0, strlen(<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>) - 2);
 <a name="l00203"></a>00203         <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> .= <span class="charliteral">&#39;)&#39;</span>;
 <a name="l00204"></a>00204 
-<a name="l00205"></a>00205         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> .= <span class="stringliteral">&#39;vectorLayer.addFeatures(new OpenLayers.Feature.Vector(&#39;</span>
+<a name="l00205"></a>00205         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> .= <span class="stringliteral">&#39;vectorLayer.addFeatures(new OpenLayers.Feature.Vector(&#39;</span>
 <a name="l00206"></a>00206             . <span class="stringliteral">&#39;new OpenLayers.Geometry.LineString(&#39;</span> . <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> . <span class="stringliteral">&#39;), null, &#39;</span>
 <a name="l00207"></a>00207             . json_encode($style_options) . <span class="stringliteral">&#39;));&#39;</span>;
-<a name="l00208"></a>00208         <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00208"></a>00208         <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00209"></a>00209     }
 <a name="l00210"></a>00210 <span class="comment"></span>
 <a name="l00211"></a>00211 <span class="comment">    /**</span>
@@ -303,8 +303,8 @@
 <a name="l00225"></a>00225             $no_of_points = 2;
 <a name="l00226"></a>00226         }
 <a name="l00227"></a>00227         <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <span class="stringliteral">&#39;LINESTRING(&#39;</span>;
-<a name="l00228"></a>00228         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $no_of_points; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00229"></a>00229             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> .= ((isset(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;x&#39;</span>])
+<a name="l00228"></a>00228         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $no_of_points; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00229"></a>00229             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> .= ((isset(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;x&#39;</span>])
 <a name="l00230"></a>00230                 &amp;&amp; trim(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][$i][<span class="charliteral">&#39;x&#39;</span>]) != <span class="stringliteral">&#39;&#39;</span>)
 <a name="l00231"></a>00231                 ? <a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][$i][<span class="charliteral">&#39;x&#39;</span>] : $empty)
 <a name="l00232"></a>00232                 . <span class="charliteral">&#39; &#39;</span> . ((isset(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][$i][<span class="charliteral">&#39;y&#39;</span>])
@@ -329,9 +329,9 @@
 <a name="l00251"></a>00251         <span class="keywordflow">if</span> ($index == -1) {
 <a name="l00252"></a>00252             $index = 0;
 <a name="l00253"></a>00253             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a> = array();
-<a name="l00254"></a>00254             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="classPMA__GIS__Linestring.html#a43a25f025cb738451e202b1c3376fcaa" title="Generate parameters for the GIS data editor from the value of the GIS column.">PMA_GIS_Geometry::generateParams</a>($value);
-<a name="l00255"></a>00255             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;srid&#39;</span>] = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;srid&#39;</span>];
-<a name="l00256"></a>00256             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;wkt&#39;</span>];
+<a name="l00254"></a>00254             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="classPMA__GIS__Linestring.html#a43a25f025cb738451e202b1c3376fcaa" title="Generate parameters for the GIS data editor from the value of the GIS column.">PMA_GIS_Geometry::generateParams</a>($value);
+<a name="l00255"></a>00255             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;srid&#39;</span>] = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;srid&#39;</span>];
+<a name="l00256"></a>00256             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;wkt&#39;</span>];
 <a name="l00257"></a>00257         } <span class="keywordflow">else</span> {
 <a name="l00258"></a>00258             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;gis_type&#39;</span>] = <span class="stringliteral">&#39;LINESTRING&#39;</span>;
 <a name="l00259"></a>00259             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = $value;
@@ -343,9 +343,9 @@
 <a name="l00265"></a>00265 
 <a name="l00266"></a>00266         $no_of_points = count($points_arr);
 <a name="l00267"></a>00267         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][<span class="stringliteral">&#39;no_of_points&#39;</span>] = $no_of_points;
-<a name="l00268"></a>00268         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $no_of_points; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00269"></a>00269             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] = $points_arr[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][0];
-<a name="l00270"></a>00270             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] = $points_arr[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][1];
+<a name="l00268"></a>00268         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $no_of_points; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00269"></a>00269             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] = $points_arr[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][0];
+<a name="l00270"></a>00270             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;LINESTRING&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] = $points_arr[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][1];
 <a name="l00271"></a>00271         }
 <a name="l00272"></a>00272 
 <a name="l00273"></a>00273         <span class="keywordflow">return</span> <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>;
@@ -358,7 +358,7 @@
     <ul>
       <li class="navelem"><a class="el" href="pma__gis__linestring_8php.html">pma_gis_linestring.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

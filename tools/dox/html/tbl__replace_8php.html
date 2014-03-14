@@ -95,7 +95,7 @@ Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__replace_8php.html#a9592a517c33f80fcbbc5aa424c2ad3d4">$func_optional_param</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__replace_8php.html#a68102225057e144c658c35713a51a780">$gis_from_text_functions</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__replace_8php.html#a2a09fcb10ac7cf2d0146092790197e3d">$gis_from_wkb_functions</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($GLOBALS['sql_query']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__replace_8php.html#acf07ee827c758fc864902cdff3cd3469">$GLOBALS</a> ['sql_query'] = implode('; ', $query) . ';'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($GLOBALS['sql_query']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__replace_8php.html#acf07ee827c758fc864902cdff3cd3469">$GLOBALS</a> ['sql_query'] = implode('; ', $query) . ';'</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__replace_8php.html#ae991f9788e56c2fc26fb35049eaf93cb">$GLOBALS</a> ['display_query'] = $GLOBALS['sql_query']</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__replace_8php.html#a47a62b445227a652846355c503cd3cb5">$total_affected_rows</a> = 0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__replace_8php.html#a68f16dfacf509c9ac7c237e1b5173f6b">$last_messages</a> = array()</td></tr>
@@ -117,7 +117,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00594">594</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00587">587</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -134,7 +134,7 @@ Variables</h2></td></tr>
 
 <p>do not import request variable into global scope </p>
 <p>cannot be used as long as it could happen that the $goto file that is included at the end of this script is not updated to work without imported request variables</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000130">Todo:</a></b></dt><dd>uncomment this if all possible included files to rely on import request variables if (! defined('PMA_NO_VARIABLES_IMPORT')) { define('PMA_NO_VARIABLES_IMPORT', true); } </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000120">Todo:</a></b></dt><dd>uncomment this if all possible included files to rely on import request variables if (! defined('PMA_NO_VARIABLES_IMPORT')) { define('PMA_NO_VARIABLES_IMPORT', true); } </dd></dl>
 <p>Gets some core libraries </p>
 
 <p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00029">29</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
@@ -152,7 +152,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00389">389</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00382">382</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -171,8 +171,6 @@ Variables</h2></td></tr>
     <span class="stringliteral">&#39;CURRENT_USER&#39;</span>,
     <span class="stringliteral">&#39;CURDATE&#39;</span>,
     <span class="stringliteral">&#39;CURTIME&#39;</span>,
-    <span class="stringliteral">&#39;CURRENT_DATE&#39;</span>,
-    <span class="stringliteral">&#39;CURRENT_TIME&#39;</span>,
     <span class="stringliteral">&#39;DATABASE&#39;</span>,
     <span class="stringliteral">&#39;LAST_INSERT_ID&#39;</span>,
     <span class="stringliteral">&#39;NOW&#39;</span>,
@@ -185,11 +183,10 @@ Variables</h2></td></tr>
     <span class="stringliteral">&#39;UTC_TIME&#39;</span>,
     <span class="stringliteral">&#39;UTC_TIMESTAMP&#39;</span>,
     <span class="stringliteral">&#39;UUID&#39;</span>,
-    <span class="stringliteral">&#39;UUID_SHORT&#39;</span>,
     <span class="stringliteral">&#39;VERSION&#39;</span>,
 )
 </pre></div>
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00136">136</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00132">132</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -208,7 +205,7 @@ Variables</h2></td></tr>
     <span class="stringliteral">&#39;UNIX_TIMESTAMP&#39;</span>,
 )
 </pre></div>
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00158">158</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00151">151</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -233,7 +230,7 @@ Variables</h2></td></tr>
     <span class="stringliteral">&#39;MPolyFromText&#39;</span>,
 )
 </pre></div>
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00163">163</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00156">156</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -258,7 +255,7 @@ Variables</h2></td></tr>
     <span class="stringliteral">&#39;MPolyFromWKB&#39;</span>,
 )
 </pre></div>
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00174">174</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00167">167</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -282,7 +279,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($GLOBALS['sql_query'])) $GLOBALS['sql_query'] = implode('; ', $query) . ';'</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($GLOBALS['sql_query'])) $GLOBALS['sql_query'] = implode('; ', $query) . ';'</td>
         </tr>
       </table>
 </div>
@@ -290,7 +287,7 @@ Variables</h2></td></tr>
 
 <p>Executes the sql query and get the result, then move back to the calling page. </p>
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00381">381</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00374">374</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -305,7 +302,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00384">384</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00377">377</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -337,7 +334,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00387">387</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00380">380</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -352,7 +349,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00386">386</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00379">379</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -367,7 +364,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00135">135</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00131">131</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -382,7 +379,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00388">388</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00381">381</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -399,7 +396,7 @@ Variables</h2></td></tr>
 
 <p>Load target page. </p>
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00612">612</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00605">605</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -408,7 +405,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['after_insert'])&amp;&amp; 'new_insert'==$_REQUEST['after_insert'])</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['after_insert'])&amp;&amp; 'new_insert'==$_REQUEST['after_insert'])</td>
         </tr>
       </table>
 </div>
@@ -417,7 +414,7 @@ Variables</h2></td></tr>
 <p>If user asked for "and then Insert another new row" we have to remove WHERE clause information so that <a class="el" href="tbl__change_8php.html">tbl_change.php</a> does not go back to the current record. </p>
 <p>Load header. </p>
 
-<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00601">601</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__replace_8php_source.html#l00594">594</a> of file <a class="el" href="tbl__replace_8php_source.html">tbl_replace.php</a>.</p>
 
 </div>
 </div>
@@ -427,7 +424,7 @@ Variables</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="tbl__replace_8php.html">tbl_replace.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:41 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:53 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

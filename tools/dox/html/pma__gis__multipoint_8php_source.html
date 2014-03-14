@@ -267,7 +267,7 @@
 <a name="l00189"></a>00189         <span class="keywordflow">if</span> (<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> == 0) {
 <a name="l00190"></a>00190             <a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> = 4326;
 <a name="l00191"></a>00191         }
-<a name="l00192"></a>00192         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = $this-&gt;<a class="code" href="classPMA__GIS__Geometry.html#ad639545c151c082e1b901b3e37982ed7" title="Returns OpenLayers.Bounds object that correspond to the bounds of GIS data.">getBoundsForOl</a>(<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a>, $scale_data);
+<a name="l00192"></a>00192         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = $this-&gt;<a class="code" href="classPMA__GIS__Geometry.html#ad639545c151c082e1b901b3e37982ed7" title="Returns OpenLayers.Bounds object that correspond to the bounds of GIS data.">getBoundsForOl</a>(<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a>, $scale_data);
 <a name="l00193"></a>00193 
 <a name="l00194"></a>00194         <span class="comment">// Trim to remove leading &#39;MULTIPOINT(&#39; and trailing &#39;)&#39;</span>
 <a name="l00195"></a>00195         $multipoint = substr($spatial, 11, (strlen($spatial) - 12));
@@ -286,10 +286,10 @@
 <a name="l00208"></a>00208         }
 <a name="l00209"></a>00209         <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> .= <span class="charliteral">&#39;)&#39;</span>;
 <a name="l00210"></a>00210 
-<a name="l00211"></a>00211         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> .= <span class="stringliteral">&#39;vectorLayer.addFeatures(new OpenLayers.Feature.Vector(&#39;</span>
+<a name="l00211"></a>00211         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> .= <span class="stringliteral">&#39;vectorLayer.addFeatures(new OpenLayers.Feature.Vector(&#39;</span>
 <a name="l00212"></a>00212             . <span class="stringliteral">&#39;new OpenLayers.Geometry.MultiPoint(&#39;</span> . <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> . <span class="stringliteral">&#39;), null, &#39;</span>
 <a name="l00213"></a>00213             . json_encode($style_options) . <span class="stringliteral">&#39;));&#39;</span>;
-<a name="l00214"></a>00214         <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00214"></a>00214         <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00215"></a>00215     }
 <a name="l00216"></a>00216 <span class="comment"></span>
 <a name="l00217"></a>00217 <span class="comment">    /**</span>
@@ -309,8 +309,8 @@
 <a name="l00231"></a>00231             $no_of_points = 1;
 <a name="l00232"></a>00232         }
 <a name="l00233"></a>00233         <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <span class="stringliteral">&#39;MULTIPOINT(&#39;</span>;
-<a name="l00234"></a>00234         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $no_of_points; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00235"></a>00235             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> .= ((isset(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;x&#39;</span>])
+<a name="l00234"></a>00234         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $no_of_points; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00235"></a>00235             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> .= ((isset(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;x&#39;</span>])
 <a name="l00236"></a>00236                 &amp;&amp; trim(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][$i][<span class="charliteral">&#39;x&#39;</span>]) != <span class="stringliteral">&#39;&#39;</span>)
 <a name="l00237"></a>00237                 ? <a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][$i][<span class="charliteral">&#39;x&#39;</span>] : <span class="stringliteral">&#39;&#39;</span>)
 <a name="l00238"></a>00238                 . <span class="charliteral">&#39; &#39;</span> . ((isset(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][$i][<span class="charliteral">&#39;y&#39;</span>])
@@ -332,8 +332,8 @@
 <a name="l00254"></a><a class="code" href="classPMA__GIS__Multipoint.html#a8fc230dd4e6e747a1b23c01294cdd9bf">00254</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__GIS__Multipoint.html#a8fc230dd4e6e747a1b23c01294cdd9bf" title="Generate the WKT for the data from ESRI shape files.">getShape</a>($row_data)
 <a name="l00255"></a>00255     {
 <a name="l00256"></a>00256         <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <span class="stringliteral">&#39;MULTIPOINT(&#39;</span>;
-<a name="l00257"></a>00257         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $row_data[<span class="stringliteral">&#39;numpoints&#39;</span>]; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00258"></a>00258             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> .= $row_data[<span class="stringliteral">&#39;points&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] . <span class="charliteral">&#39; &#39;</span> . $row_data[<span class="stringliteral">&#39;points&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] . <span class="charliteral">&#39;,&#39;</span>;
+<a name="l00257"></a>00257         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $row_data[<span class="stringliteral">&#39;numpoints&#39;</span>]; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00258"></a>00258             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> .= $row_data[<span class="stringliteral">&#39;points&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] . <span class="charliteral">&#39; &#39;</span> . $row_data[<span class="stringliteral">&#39;points&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] . <span class="charliteral">&#39;,&#39;</span>;
 <a name="l00259"></a>00259         }
 <a name="l00260"></a>00260         <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = substr(<a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a>, 0, strlen(<a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a>) - 1);
 <a name="l00261"></a>00261         <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> .= <span class="charliteral">&#39;)&#39;</span>;
@@ -353,9 +353,9 @@
 <a name="l00275"></a>00275         <span class="keywordflow">if</span> ($index == -1) {
 <a name="l00276"></a>00276             $index = 0;
 <a name="l00277"></a>00277             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a> = array();
-<a name="l00278"></a>00278             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="classPMA__GIS__Multipoint.html#af321b2559815bb5da61e72581724510e" title="Generate parameters for the GIS data editor from the value of the GIS column.">PMA_GIS_Geometry::generateParams</a>($value);
-<a name="l00279"></a>00279             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;srid&#39;</span>] = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;srid&#39;</span>];
-<a name="l00280"></a>00280             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;wkt&#39;</span>];
+<a name="l00278"></a>00278             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="classPMA__GIS__Multipoint.html#af321b2559815bb5da61e72581724510e" title="Generate parameters for the GIS data editor from the value of the GIS column.">PMA_GIS_Geometry::generateParams</a>($value);
+<a name="l00279"></a>00279             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;srid&#39;</span>] = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;srid&#39;</span>];
+<a name="l00280"></a>00280             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;wkt&#39;</span>];
 <a name="l00281"></a>00281         } <span class="keywordflow">else</span> {
 <a name="l00282"></a>00282             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;gis_type&#39;</span>] = <span class="stringliteral">&#39;MULTIPOINT&#39;</span>;
 <a name="l00283"></a>00283             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = $value;
@@ -367,9 +367,9 @@
 <a name="l00289"></a>00289 
 <a name="l00290"></a>00290         $no_of_points = count($points_arr);
 <a name="l00291"></a>00291         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][<span class="stringliteral">&#39;no_of_points&#39;</span>] = $no_of_points;
-<a name="l00292"></a>00292         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $no_of_points; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00293"></a>00293             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] = $points_arr[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][0];
-<a name="l00294"></a>00294             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] = $points_arr[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][1];
+<a name="l00292"></a>00292         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $no_of_points; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00293"></a>00293             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] = $points_arr[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][0];
+<a name="l00294"></a>00294             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;MULTIPOINT&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] = $points_arr[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][1];
 <a name="l00295"></a>00295         }
 <a name="l00296"></a>00296 
 <a name="l00297"></a>00297         <span class="keywordflow">return</span> <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>;
@@ -382,7 +382,7 @@
     <ul>
       <li class="navelem"><a class="el" href="pma__gis__multipoint_8php.html">pma_gis_multipoint.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

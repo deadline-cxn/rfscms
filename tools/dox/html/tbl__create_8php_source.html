@@ -87,7 +87,7 @@
 <a name="l00009"></a>00009 <span class="comment"> */</span>
 <a name="l00010"></a>00010 require_once <span class="stringliteral">&#39;./libraries/common.inc.php&#39;</span>;
 <a name="l00011"></a>00011 
-<a name="l00012"></a><a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30">00012</a> <a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30" title="Get some core libraries.">$action</a> = <span class="stringliteral">&#39;tbl_create.php&#39;</span>;
+<a name="l00012"></a><a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30">00012</a> <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a> = <span class="stringliteral">&#39;tbl_create.php&#39;</span>;
 <a name="l00013"></a>00013 
 <a name="l00014"></a>00014 require_once <span class="stringliteral">&#39;./libraries/header.inc.php&#39;</span>;
 <a name="l00015"></a><a class="code" href="tbl__create_8php.html#a26c001c5d5d900be2bebf55257d9cdfb">00015</a> <a class="code" href="db__structure_8php.html#a26c001c5d5d900be2bebf55257d9cdfb">$titles</a> = <a class="code" href="common_8lib_8php.html#a56392f4d0b6b0f3c91e88857353aba1b" title="Build titles and icons for action links.">PMA_buildActionTitles</a>();
@@ -119,7 +119,7 @@
 <a name="l00041"></a>00041 <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_num_fields&#39;</span>])) {
 <a name="l00042"></a>00042     $regenerate = <span class="keyword">true</span>; <span class="comment">// for libraries/tbl_properties.inc.php</span>
 <a name="l00043"></a>00043     $num_fields = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;orig_num_fields&#39;</span>] + <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;added_fields&#39;</span>];
-<a name="l00044"></a>00044 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;num_fields&#39;</span>]) &amp;&amp; intval(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;num_fields&#39;</span>]) &gt; 0) {
+<a name="l00044"></a>00044 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;num_fields&#39;</span>]) &amp;&amp; intval(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;num_fields&#39;</span>]) &gt; 0) {
 <a name="l00045"></a>00045     $num_fields = (int) <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;num_fields&#39;</span>];
 <a name="l00046"></a>00046 } <span class="keywordflow">else</span> {
 <a name="l00047"></a>00047     $num_fields = 4;
@@ -145,16 +145,16 @@
 <a name="l00067"></a>00067 
 <a name="l00068"></a>00068     <span class="comment">// Transforms the radio button field_key into 3 arrays</span>
 <a name="l00069"></a>00069     $field_cnt = count(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>]);
-<a name="l00070"></a>00070     <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $field_cnt; ++<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) {
-<a name="l00071"></a>00071         <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_key&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>])) {
+<a name="l00070"></a>00070     <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $field_cnt; ++<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) {
+<a name="l00071"></a>00071         <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_key&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>])) {
 <a name="l00072"></a>00072             <span class="keywordflow">if</span> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_key&#39;</span>][$i] == <span class="stringliteral">&#39;primary_&#39;</span> . $i) {
-<a name="l00073"></a>00073                 $field_primary[] = <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>;
+<a name="l00073"></a>00073                 $field_primary[] = <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>;
 <a name="l00074"></a>00074             }
 <a name="l00075"></a>00075             <span class="keywordflow">if</span> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_key&#39;</span>][$i] == <span class="stringliteral">&#39;index_&#39;</span> . $i) {
-<a name="l00076"></a>00076                 $field_index[]   = <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>;
+<a name="l00076"></a>00076                 $field_index[]   = <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>;
 <a name="l00077"></a>00077             }
 <a name="l00078"></a>00078             <span class="keywordflow">if</span> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_key&#39;</span>][$i] == <span class="stringliteral">&#39;unique_&#39;</span> . $i) {
-<a name="l00079"></a>00079                 $field_unique[]  = <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>;
+<a name="l00079"></a>00079                 $field_unique[]  = <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>;
 <a name="l00080"></a>00080             }
 <a name="l00081"></a>00081         } <span class="comment">// end if</span>
 <a name="l00082"></a>00082     } <span class="comment">// end for</span>
@@ -166,7 +166,7 @@
 <a name="l00088"></a>00088             <span class="keywordflow">continue</span>;
 <a name="l00089"></a>00089         }
 <a name="l00090"></a>00090 
-<a name="l00091"></a>00091         <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <a class="code" href="classPMA__Table.html#a1a714b2fa4ce6df3814101e0f646fbc4" title="generates column specification for ALTER or CREATE TABLE syntax">PMA_Table::generateFieldSpec</a>(
+<a name="l00091"></a>00091         $query = <a class="code" href="classPMA__Table.html#a1a714b2fa4ce6df3814101e0f646fbc4" title="generates column specification for ALTER or CREATE TABLE syntax">PMA_Table::generateFieldSpec</a>(
 <a name="l00092"></a>00092             <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$i],
 <a name="l00093"></a>00093             <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_type&#39;</span>][$i],
 <a name="l00094"></a>00094             <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_length&#39;</span>][$i],
@@ -189,17 +189,17 @@
 <a name="l00111"></a>00111             $i
 <a name="l00112"></a>00112         );
 <a name="l00113"></a>00113 
-<a name="l00114"></a>00114         <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> .= <span class="stringliteral">&#39;, &#39;</span>;
-<a name="l00115"></a>00115         <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> .= <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>;
+<a name="l00114"></a>00114         $query .= <span class="stringliteral">&#39;, &#39;</span>;
+<a name="l00115"></a>00115         <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> .= $query;
 <a name="l00116"></a>00116     } <span class="comment">// end for</span>
-<a name="l00117"></a>00117     unset($field_cnt, <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>);
+<a name="l00117"></a>00117     unset($field_cnt, $query);
 <a name="l00118"></a>00118     <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> = preg_replace(<span class="stringliteral">&#39;@, $@&#39;</span>, <span class="stringliteral">&#39;&#39;</span>, <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>);
 <a name="l00119"></a>00119 
 <a name="l00120"></a>00120     <span class="comment">// Builds the primary keys statements</span>
 <a name="l00121"></a>00121     <a class="code" href="tbl__structure_8php.html#a03636756f91ac057ca22cc952587ab61" title="Prepares the table structure display.">$primary</a>     = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00122"></a>00122     $primary_cnt = (isset($field_primary) ? count($field_primary) : 0);
 <a name="l00123"></a>00123     <span class="keywordflow">for</span> ($i = 0; $i &lt; $primary_cnt; $i++) {
-<a name="l00124"></a>00124         $j = $field_primary[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>];
+<a name="l00124"></a>00124         $j = $field_primary[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>];
 <a name="l00125"></a>00125         <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j]) &amp;&amp; strlen(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j])) {
 <a name="l00126"></a>00126             <a class="code" href="tbl__structure_8php.html#a03636756f91ac057ca22cc952587ab61" title="Prepares the table structure display.">$primary</a> .= <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j]) . <span class="stringliteral">&#39;, &#39;</span>;
 <a name="l00127"></a>00127         }
@@ -215,7 +215,7 @@
 <a name="l00137"></a>00137     $index     = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00138"></a>00138     $index_cnt = (isset($field_index) ? count($field_index) : 0);
 <a name="l00139"></a>00139     <span class="keywordflow">for</span> ($i = 0;$i &lt; $index_cnt; $i++) {
-<a name="l00140"></a>00140         $j = $field_index[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>];
+<a name="l00140"></a>00140         $j = $field_index[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>];
 <a name="l00141"></a>00141         <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j]) &amp;&amp; strlen(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j])) {
 <a name="l00142"></a>00142             $index .= <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j]) . <span class="stringliteral">&#39;, &#39;</span>;
 <a name="l00143"></a>00143         }
@@ -231,7 +231,7 @@
 <a name="l00153"></a>00153     $unique     = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00154"></a>00154     $unique_cnt = (isset($field_unique) ? count($field_unique) : 0);
 <a name="l00155"></a>00155     <span class="keywordflow">for</span> ($i = 0; $i &lt; $unique_cnt; $i++) {
-<a name="l00156"></a>00156         $j = $field_unique[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>];
+<a name="l00156"></a>00156         $j = $field_unique[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>];
 <a name="l00157"></a>00157         <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j]) &amp;&amp; strlen(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j])) {
 <a name="l00158"></a>00158            $unique .= <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j]) . <span class="stringliteral">&#39;, &#39;</span>;
 <a name="l00159"></a>00159         }
@@ -247,7 +247,7 @@
 <a name="l00169"></a>00169     $fulltext     = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00170"></a>00170     $fulltext_cnt = (isset($field_fulltext) ? count($field_fulltext) : 0);
 <a name="l00171"></a>00171     <span class="keywordflow">for</span> ($i = 0; $i &lt; $fulltext_cnt; $i++) {
-<a name="l00172"></a>00172         $j = $field_fulltext[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>];
+<a name="l00172"></a>00172         $j = $field_fulltext[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>];
 <a name="l00173"></a>00173         <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j]) &amp;&amp; strlen(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j])) {
 <a name="l00174"></a>00174            $fulltext .= <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;field_name&#39;</span>][$j]) . <span class="stringliteral">&#39;, &#39;</span>;
 <a name="l00175"></a>00175         }
@@ -279,9 +279,9 @@
 <a name="l00201"></a>00201     <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> .= <span class="charliteral">&#39;;&#39;</span>;
 <a name="l00202"></a>00202 
 <a name="l00203"></a>00203     <span class="comment">// Executes the query</span>
-<a name="l00204"></a>00204     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>);
+<a name="l00204"></a>00204     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>);
 <a name="l00205"></a>00205 
-<a name="l00206"></a>00206     <span class="keywordflow">if</span> (<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) {
+<a name="l00206"></a>00206     <span class="keywordflow">if</span> (<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) {
 <a name="l00207"></a>00207 
 <a name="l00208"></a>00208         <span class="comment">// If comments were sent, enable relation stuff</span>
 <a name="l00209"></a>00209         include_once <span class="stringliteral">&#39;./libraries/transformations.lib.php&#39;</span>;
@@ -302,10 +302,10 @@
 <a name="l00224"></a>00224             }
 <a name="l00225"></a>00225         }
 <a name="l00226"></a>00226 
-<a name="l00227"></a>00227         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#a18c1022045762ab6747a98cb4464819e" title="get PMA_Message of type success">PMA_Message::success</a>(__(<span class="stringliteral">&#39;Table %1$s has been created.&#39;</span>));
-<a name="l00228"></a>00228         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;addParam(<a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) . <span class="charliteral">&#39;.&#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>));
+<a name="l00227"></a>00227         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#a18c1022045762ab6747a98cb4464819e" title="get PMA_Message of type success">PMA_Message::success</a>(__(<span class="stringliteral">&#39;Table %1$s has been created.&#39;</span>));
+<a name="l00228"></a>00228         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;addParam(<a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) . <span class="charliteral">&#39;.&#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>));
 <a name="l00229"></a>00229 
-<a name="l00230"></a>00230         <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_ajax_request&#39;</span>] == <span class="keyword">true</span>) {
+<a name="l00230"></a>00230         <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_ajax_request&#39;</span>] == <span class="keyword">true</span>) {
 <a name="l00231"></a>00231 <span class="comment"></span>
 <a name="l00232"></a>00232 <span class="comment">            /**</span>
 <a name="l00233"></a>00233 <span class="comment">             * construct the html for the newly created table&#39;s row to be appended</span>
@@ -453,7 +453,7 @@
     <ul>
       <li class="navelem"><a class="el" href="tbl__create_8php.html">tbl_create.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:34 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

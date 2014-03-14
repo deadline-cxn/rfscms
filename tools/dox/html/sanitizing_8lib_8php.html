@@ -90,7 +90,7 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sanitizing_8lib_8php.html#a450dabd1eb42ff4f78414cc119b735a0">PMA_checkLink</a> ($url)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sanitizing_8lib_8php.html#a110e56f2b6b909d95ac35aa112856b3b">PMA_replaceBBLink</a> ($found)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sanitizing_8lib_8php.html#ac0444f97c4d50f0e109dc0ec5d86b665">PMA_sanitize</a> ($message, $escape=false, $safe=false)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sanitizing_8lib_8php.html#a204f2198e6ff23e5aebde28283b9e7a6">PMA_sanitize_filename</a> ($filename, $replaceDots=false)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sanitizing_8lib_8php.html#adec065f45afbad6ba688573ad0c492a1">PMA_sanitize_filename</a> ($filename)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a450dabd1eb42ff4f78414cc119b735a0"></a><!-- doxytag: member="sanitizing.lib.php::PMA_checkLink" ref="a450dabd1eb42ff4f78414cc119b735a0" args="($url)" -->
@@ -119,6 +119,14 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="sanitizing_8lib_8php_source.html#l00015">15</a> of file <a class="el" href="sanitizing_8lib_8php_source.html">sanitizing.lib.php</a>.</p>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="sanitizing_8lib_8php_a450dabd1eb42ff4f78414cc119b735a0_icgraph.png" border="0" usemap="#sanitizing_8lib_8php_a450dabd1eb42ff4f78414cc119b735a0_icgraph" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a110e56f2b6b909d95ac35aa112856b3b"></a><!-- doxytag: member="sanitizing.lib.php::PMA_replaceBBLink" ref="a110e56f2b6b909d95ac35aa112856b3b" args="($found)" -->
@@ -146,6 +154,14 @@ Functions</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string Replaced string </dd></dl>
 
 <p>Definition at line <a class="el" href="sanitizing_8lib_8php_source.html#l00043">43</a> of file <a class="el" href="sanitizing_8lib_8php_source.html">sanitizing.lib.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="sanitizing_8lib_8php_a110e56f2b6b909d95ac35aa112856b3b_cgraph.png" border="0" usemap="#sanitizing_8lib_8php_a110e56f2b6b909d95ac35aa112856b3b_cgraph" alt=""/></div>
+<!-- MAP 1 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -197,46 +213,52 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="sanitizing_8lib_8php_source.html#l00087">87</a> of file <a class="el" href="sanitizing_8lib_8php_source.html">sanitizing.lib.php</a>.</p>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="sanitizing_8lib_8php_ac0444f97c4d50f0e109dc0ec5d86b665_icgraph.png" border="0" usemap="#sanitizing_8lib_8php_ac0444f97c4d50f0e109dc0ec5d86b665_icgraph" alt=""/></div>
+<!-- MAP 2 -->
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="a204f2198e6ff23e5aebde28283b9e7a6"></a><!-- doxytag: member="sanitizing.lib.php::PMA_sanitize_filename" ref="a204f2198e6ff23e5aebde28283b9e7a6" args="($filename, $replaceDots=false)" -->
+<a class="anchor" id="adec065f45afbad6ba688573ad0c492a1"></a><!-- doxytag: member="sanitizing.lib.php::PMA_sanitize_filename" ref="adec065f45afbad6ba688573ad0c492a1" args="($filename)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="sanitizing_8lib_8php.html#a204f2198e6ff23e5aebde28283b9e7a6">PMA_sanitize_filename</a> </td>
+          <td class="memname"><a class="el" href="sanitizing_8lib_8php.html#adec065f45afbad6ba688573ad0c492a1">PMA_sanitize_filename</a> </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>filename</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>replaceDots</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Sanitize a filename by removing anything besides legit characters. </p>
-<p>Intended usecase: When using a filename in a Content-Disposition header the value should not contain ; or "</p>
-<p>When exporting, avoiding generation of an unexpected double-extension file</p>
+<p>Sanitize a filename by removing anything besides A-Za-z0-9_. </p>
+<ul>
+<li>Intended usecase: When using a filename in a Content-Disposition header the value should not contain ; or "</li>
+</ul>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">string</td><td>The filename </td></tr>
-    <tr><td class="paramname">boolean</td><td>Whether to also replace dots</td></tr>
+    <tr><td class="paramname">string</td><td>The filename</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string the sanitized filename </dd></dl>
 
-<p>Definition at line <a class="el" href="sanitizing_8lib_8php_source.html#l00151">151</a> of file <a class="el" href="sanitizing_8lib_8php_source.html">sanitizing.lib.php</a>.</p>
+<p>Definition at line <a class="el" href="sanitizing_8lib_8php_source.html#l00147">147</a> of file <a class="el" href="sanitizing_8lib_8php_source.html">sanitizing.lib.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="sanitizing_8lib_8php_adec065f45afbad6ba688573ad0c492a1_icgraph.png" border="0" usemap="#sanitizing_8lib_8php_adec065f45afbad6ba688573ad0c492a1_icgraph" alt=""/></div>
+<!-- MAP 3 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -246,7 +268,7 @@ Functions</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="sanitizing_8lib_8php.html">sanitizing.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:40 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:53 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -138,7 +138,7 @@
 <a name="l00060"></a>00060 <span class="comment">// Defaults for parser</span>
 <a name="l00061"></a><a class="code" href="libraries_2import_2sql_8php.html#a047170d6020a882807665812a27e2525">00061</a> <a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a> = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00062"></a><a class="code" href="libraries_2import_2sql_8php.html#a85807c3cbdd45a4d8bf4ca0cf1322b21">00062</a> <a class="code" href="libraries_2import_2sql_8php.html#a85807c3cbdd45a4d8bf4ca0cf1322b21">$start_pos</a> = 0;
-<a name="l00063"></a><a class="code" href="libraries_2import_2sql_8php.html#a83018d9153d17d91fbcf3bc10158d34f">00063</a> <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0;
+<a name="l00063"></a><a class="code" href="libraries_2import_2sql_8php.html#a83018d9153d17d91fbcf3bc10158d34f">00063</a> <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0;
 <a name="l00064"></a><a class="code" href="libraries_2import_2sql_8php.html#aa28657aaa5fcc7509dd883662f8accbe">00064</a> <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>= 0;
 <a name="l00065"></a><a class="code" href="libraries_2import_2sql_8php.html#a4577ec6df1515f36d1018be8b45cd960">00065</a> <a class="code" href="libraries_2import_2sql_8php.html#a4577ec6df1515f36d1018be8b45cd960">$big_value</a> = 2147483647;
 <a name="l00066"></a><a class="code" href="libraries_2import_2sql_8php.html#a60f35d54ce74e660150a3b311364e921">00066</a> <a class="code" href="libraries_2import_2sql_8php.html#a60f35d54ce74e660150a3b311364e921">$delimiter_keyword</a> = <span class="stringliteral">&#39;DELIMITER &#39;</span>; <span class="comment">// include the space because it&#39;s mandatory</span>
@@ -168,23 +168,23 @@
 <a name="l00090"></a>00090 <span class="comment"> *</span>
 <a name="l00091"></a>00091 <span class="comment"> * @global boolean $GLOBALS[&#39;finished&#39;]</span>
 <a name="l00092"></a>00092 <span class="comment"> */</span>
-<a name="l00093"></a><a class="code" href="libraries_2import_2sql_8php.html#a352506789c426770c0826774c8535f8a">00093</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>] = <span class="keyword">false</span>;
+<a name="l00093"></a><a class="code" href="libraries_2import_2sql_8php.html#a352506789c426770c0826774c8535f8a">00093</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>] = <span class="keyword">false</span>;
 <a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="keywordflow">while</span> (!(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>] &amp;&amp; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &gt;= <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>) &amp;&amp; !<a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> &amp;&amp; !$timeout_passed) {
-<a name="l00096"></a>00096     <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="import_8lib_8php.html#adb0307447ce45c347a2ed57d5fd859e9" title="Returns next part of imported file/buffer.">PMA_importGetNextChunk</a>();
-<a name="l00097"></a>00097     <span class="keywordflow">if</span> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> === <span class="keyword">false</span>) {
+<a name="l00095"></a>00095 <span class="keywordflow">while</span> (!(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>] &amp;&amp; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &gt;= <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>) &amp;&amp; !<a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> &amp;&amp; !$timeout_passed) {
+<a name="l00096"></a>00096     <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="import_8lib_8php.html#adb0307447ce45c347a2ed57d5fd859e9" title="Returns next part of imported file/buffer.">PMA_importGetNextChunk</a>();
+<a name="l00097"></a>00097     <span class="keywordflow">if</span> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> === <span class="keyword">false</span>) {
 <a name="l00098"></a>00098         <span class="comment">// subtract data we didn&#39;t handle yet and stop processing</span>
 <a name="l00099"></a>00099         <a class="code" href="import_8php.html#aec4de82415d7f05cb9748d12d3a95a87">$offset</a> -= strlen(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>);
 <a name="l00100"></a>00100         <span class="keywordflow">break</span>;
-<a name="l00101"></a>00101     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> === <span class="keyword">true</span>) {
+<a name="l00101"></a>00101     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> === <span class="keyword">true</span>) {
 <a name="l00102"></a>00102         <span class="comment">// Handle rest of buffer</span>
 <a name="l00103"></a>00103     } <span class="keywordflow">else</span> {
 <a name="l00104"></a>00104         <span class="comment">// Append new data to buffer</span>
-<a name="l00105"></a>00105         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> .= <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>;
+<a name="l00105"></a>00105         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> .= <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>;
 <a name="l00106"></a>00106         <span class="comment">// free memory</span>
-<a name="l00107"></a>00107         unset(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
+<a name="l00107"></a>00107         unset(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
 <a name="l00108"></a>00108         <span class="comment">// Do not parse string when we&#39;re not at the end and don&#39;t have ; inside</span>
-<a name="l00109"></a>00109         <span class="keywordflow">if</span> ((strpos(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>, $sql_delimiter, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) === <span class="keyword">false</span>) &amp;&amp; !<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>]) {
+<a name="l00109"></a>00109         <span class="keywordflow">if</span> ((strpos(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>, $sql_delimiter, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) === <span class="keyword">false</span>) &amp;&amp; !<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>]) {
 <a name="l00110"></a>00110             <span class="keywordflow">continue</span>;
 <a name="l00111"></a>00111         }
 <a name="l00112"></a>00112     }
@@ -192,13 +192,13 @@
 <a name="l00114"></a>00114     <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a> = strlen(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>);
 <a name="l00115"></a>00115 
 <a name="l00116"></a>00116     <span class="comment">// Grab some SQL queries out of it</span>
-<a name="l00117"></a>00117     <span class="keywordflow">while</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>) {
+<a name="l00117"></a>00117     <span class="keywordflow">while</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>) {
 <a name="l00118"></a>00118         $found_delimiter = <span class="keyword">false</span>;
 <a name="l00119"></a>00119         <span class="comment">// Find first interesting character</span>
-<a name="l00120"></a>00120         $old_i = <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>;
+<a name="l00120"></a>00120         $old_i = <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>;
 <a name="l00121"></a>00121         <span class="comment">// this is about 7 times faster that looking for each sequence i</span>
 <a name="l00122"></a>00122         <span class="comment">// one by one with strpos()</span>
-<a name="l00123"></a>00123         <span class="keywordflow">if</span> (preg_match(<span class="stringliteral">&#39;/(\&#39;|&quot;|#|-- |\/\*|`|(?i)(?&lt;![A-Z0-9_])&#39;</span> . <a class="code" href="libraries_2import_2sql_8php.html#a60f35d54ce74e660150a3b311364e921">$delimiter_keyword</a> . <span class="stringliteral">&#39;)/&#39;</span>, <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>, $matches, PREG_OFFSET_CAPTURE, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>)) {
+<a name="l00123"></a>00123         <span class="keywordflow">if</span> (preg_match(<span class="stringliteral">&#39;/(\&#39;|&quot;|#|-- |\/\*|`|(?i)(?&lt;![A-Z0-9_])&#39;</span> . <a class="code" href="libraries_2import_2sql_8php.html#a60f35d54ce74e660150a3b311364e921">$delimiter_keyword</a> . <span class="stringliteral">&#39;)/&#39;</span>, <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>, $matches, PREG_OFFSET_CAPTURE, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>)) {
 <a name="l00124"></a>00124             <span class="comment">// in $matches, index 0 contains the match for the complete</span>
 <a name="l00125"></a>00125             <span class="comment">// expression but we don&#39;t use it</span>
 <a name="l00126"></a>00126             $first_position = $matches[1][1];
@@ -210,7 +210,7 @@
 <a name="l00132"></a>00132 <span class="comment">         *       inside quotes (or even double-quotes)</span>
 <a name="l00133"></a>00133 <span class="comment">         */</span>
 <a name="l00134"></a>00134         <span class="comment">// the cost of doing this one with preg_match() would be too high</span>
-<a name="l00135"></a>00135         $first_sql_delimiter = strpos(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>, $sql_delimiter, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>);
+<a name="l00135"></a>00135         $first_sql_delimiter = strpos(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>, $sql_delimiter, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>);
 <a name="l00136"></a>00136         <span class="keywordflow">if</span> ($first_sql_delimiter === <span class="keyword">false</span>) {
 <a name="l00137"></a>00137             $first_sql_delimiter = <a class="code" href="libraries_2import_2sql_8php.html#a4577ec6df1515f36d1018be8b45cd960">$big_value</a>;
 <a name="l00138"></a>00138         } <span class="keywordflow">else</span> {
@@ -218,13 +218,13 @@
 <a name="l00140"></a>00140         }
 <a name="l00141"></a>00141 
 <a name="l00142"></a>00142         <span class="comment">// set $i to the position of the first quote, comment.start or delimiter found</span>
-<a name="l00143"></a>00143         <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = min($first_position, $first_sql_delimiter);
+<a name="l00143"></a>00143         <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = min($first_position, $first_sql_delimiter);
 <a name="l00144"></a>00144 
-<a name="l00145"></a>00145         <span class="keywordflow">if</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> == <a class="code" href="libraries_2import_2sql_8php.html#a4577ec6df1515f36d1018be8b45cd960">$big_value</a>) {
+<a name="l00145"></a>00145         <span class="keywordflow">if</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> == <a class="code" href="libraries_2import_2sql_8php.html#a4577ec6df1515f36d1018be8b45cd960">$big_value</a>) {
 <a name="l00146"></a>00146             <span class="comment">// none of the above was found in the string</span>
 <a name="l00147"></a>00147 
-<a name="l00148"></a>00148             <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = $old_i;
-<a name="l00149"></a>00149             <span class="keywordflow">if</span> (!<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>]) {
+<a name="l00148"></a>00148             <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = $old_i;
+<a name="l00149"></a>00149             <span class="keywordflow">if</span> (!<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>]) {
 <a name="l00150"></a>00150                 <span class="keywordflow">break</span>;
 <a name="l00151"></a>00151             }
 <a name="l00152"></a>00152             <span class="comment">// at the end there might be some whitespace...</span>
@@ -234,11 +234,11 @@
 <a name="l00156"></a>00156                 <span class="keywordflow">break</span>;
 <a name="l00157"></a>00157             }
 <a name="l00158"></a>00158             <span class="comment">// We hit end of query, go there!</span>
-<a name="l00159"></a>00159             <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = strlen(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>) - 1;
+<a name="l00159"></a>00159             <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = strlen(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>) - 1;
 <a name="l00160"></a>00160         }
 <a name="l00161"></a>00161 
 <a name="l00162"></a>00162         <span class="comment">// Grab current character</span>
-<a name="l00163"></a>00163         <a class="code" href="query_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a> = <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>];
+<a name="l00163"></a>00163         <a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a> = <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>];
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165         <span class="comment">// Quotes</span>
 <a name="l00166"></a>00166         <span class="keywordflow">if</span> (strpos(<span class="charliteral">&#39;\&#39;</span><span class="stringliteral">&quot;`&#39;, $ch) !== false) {</span>
@@ -313,9 +313,9 @@
 <a name="l00235"></a>00235 <span class="stringliteral">            }</span>
 <a name="l00236"></a>00236 <span class="stringliteral">            // Skip the rest</span>
 <a name="l00237"></a>00237 <span class="stringliteral">            $start_of_comment = $i;</span>
-<a name="l00238"></a>00238 <span class="stringliteral">            // do not use PHP_EOL here instead of &quot;</span>\n<span class="stringliteral">&quot;, because the export</span>
+<a name="l00238"></a>00238 <span class="stringliteral">            // do not use PHP_EOL here instead of &quot;</span>\<a class="code" href="rss2html_8php.html#a4abbf37d623a93f7ccc23c5236b5eae7">n</a><span class="stringliteral">&quot;, because the export</span>
 <a name="l00239"></a>00239 <span class="stringliteral">            // file might have been produced on a different system</span>
-<a name="l00240"></a>00240 <span class="stringliteral">            $i = strpos($buffer, $ch == &#39;/&#39; ? &#39;*/&#39; : &quot;</span>\n<span class="stringliteral">&quot;, $i);</span>
+<a name="l00240"></a>00240 <span class="stringliteral">            $i = strpos($buffer, $ch == &#39;/&#39; ? &#39;*/&#39; : &quot;</span>\<a class="code" href="rss2html_8php.html#a4abbf37d623a93f7ccc23c5236b5eae7">n</a><span class="stringliteral">&quot;, $i);</span>
 <a name="l00241"></a>00241 <span class="stringliteral">            // didn&#39;t we hit end of string?</span>
 <a name="l00242"></a>00242 <span class="stringliteral">            if ($i === false) {</span>
 <a name="l00243"></a>00243 <span class="stringliteral">                if ($GLOBALS[&#39;finished&#39;]) {</span>
@@ -347,7 +347,7 @@
 <a name="l00269"></a>00269 <span class="stringliteral">         &amp;&amp; ($i + $length_of_delimiter_keyword &lt; $len)) {</span>
 <a name="l00270"></a>00270 <span class="stringliteral">             // look for EOL on the character immediately after &#39;DELIMITER &#39;</span>
 <a name="l00271"></a>00271 <span class="stringliteral">             // (see previous comment about PHP_EOL)</span>
-<a name="l00272"></a>00272 <span class="stringliteral">           $new_line_pos = strpos($buffer, &quot;</span>\n<span class="stringliteral">&quot;, $i + $length_of_delimiter_keyword);</span>
+<a name="l00272"></a>00272 <span class="stringliteral">           $new_line_pos = strpos($buffer, &quot;</span>\<a class="code" href="rss2html_8php.html#a4abbf37d623a93f7ccc23c5236b5eae7">n</a><span class="stringliteral">&quot;, $i + $length_of_delimiter_keyword);</span>
 <a name="l00273"></a>00273 <span class="stringliteral">           // it might happen that there is no EOL</span>
 <a name="l00274"></a>00274 <span class="stringliteral">           if (false === $new_line_pos) {</span>
 <a name="l00275"></a>00275 <span class="stringliteral">               $new_line_pos = $len;</span>
@@ -403,7 +403,7 @@
     <ul>
       <li class="navelem"><a class="el" href="libraries_2import_2sql_8php.html">sql.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -78,23 +78,21 @@
 <a name="l00003"></a>00003 <span class="comment"></span><span class="comment">// RFSCMS http://www.sethcoder.com/</span><span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00005"></a>00005 <span class="comment"></span>include_once(<span class="stringliteral">&quot;lib.sitevars.php&quot;</span>);
-<a name="l00006"></a>00006 @session_name(str_replace(<span class="stringliteral">&quot; &quot;</span>,<span class="stringliteral">&quot;_&quot;</span>,<a class="code" href="config_8sitevars_8php.html#a292acc855e30e08672a2e9735d29dbcf">$RFS_SITE_SESSION_ID</a>));
-<a name="l00007"></a>00007 @session_cache_expire(99999);
-<a name="l00008"></a>00008 @session_start();
-<a name="l00009"></a>00009 
-<a name="l00010"></a>00010 include_once(<span class="stringliteral">&quot;lib.div.php&quot;</span>);
-<a name="l00011"></a>00011 sc_div(__FILE__);
-<a name="l00012"></a><a class="code" href="session_8php.html#a6de65a132d4ad46300a9e1060f789bda">00012</a> <a class="code" href="session_8php.html#a6de65a132d4ad46300a9e1060f789bda">$logged_in</a>=<a class="code" href="session_8php.html#ad56c24858a88af52e4da3ae2f6a2b3b0">$_SESSION</a>[<span class="stringliteral">&quot;logged_in&quot;</span>];
-<a name="l00013"></a><a class="code" href="session_8php.html#a49a7fe08ae0e1915e920dd8269ae0164">00013</a> <a class="code" href="config_8sitevars_8php.html#a49a7fe08ae0e1915e920dd8269ae0164">$RFS_SITE_SESSION_USER</a> = <a class="code" href="lib_8mysql_8php.html#a4ad35d853d9930b76500ae3fdbb85e80">sc_getusername</a>(<a class="code" href="session_8php.html#ad56c24858a88af52e4da3ae2f6a2b3b0">$_SESSION</a>[<span class="stringliteral">&quot;valid_user&quot;</span>]);
-<a name="l00014"></a><a class="code" href="session_8php.html#ad56c24858a88af52e4da3ae2f6a2b3b0">00014</a> <a class="code" href="session_8php.html#ad56c24858a88af52e4da3ae2f6a2b3b0">$_SESSION</a>[<span class="stringliteral">&#39;admin_show_top&#39;</span>]=$_REQUEST[<span class="stringliteral">&#39;admin_show_top&#39;</span>];
-<a name="l00015"></a>00015 ?&gt;
+<a name="l00006"></a>00006 session_name(str_replace(<span class="stringliteral">&quot; &quot;</span>,<span class="stringliteral">&quot;_&quot;</span>,<a class="code" href="config_8sitevars_8php.html#aed19e8dc3d03ee1f03fddb6f2abf10bf">$RFS_SITE_SESSION_ID</a>));
+<a name="l00007"></a>00007 session_cache_expire(99999);
+<a name="l00008"></a>00008 session_start();
+<a name="l00009"></a>00009 include_once(<span class="stringliteral">&quot;lib.users.php&quot;</span>);
+<a name="l00010"></a>00010 <span class="keywordflow">if</span>(isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&quot;logged_in&quot;</span>])) $logged_in=<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&quot;logged_in&quot;</span>];
+<a name="l00011"></a>00011 <span class="keywordflow">if</span>(isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&quot;valid_user&quot;</span>])) $RFS_SITE_SESSION_USER = <a class="code" href="lib_8users_8php.html#add9732135c24653133e9d47e5c2d1889">lib_users_get_name</a>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&quot;valid_user&quot;</span>]);
+<a name="l00012"></a>00012 <span class="keywordflow">if</span>(isset($_REQUEST[<span class="stringliteral">&#39;admin_show_top&#39;</span>])) <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;admin_show_top&#39;</span>]=$_REQUEST[<span class="stringliteral">&#39;admin_show_top&#39;</span>];
+<a name="l00013"></a>00013 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="session_8php.html">session.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

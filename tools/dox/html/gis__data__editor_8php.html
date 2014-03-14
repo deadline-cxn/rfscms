@@ -85,11 +85,11 @@
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#ae27f3a1639f99377db7e7500f1a9bd45">if</a> (!isset($_REQUEST['get_gis_editor'])&amp;&amp;!isset($_REQUEST['generate']))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a> = array()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['gis_data'], <br class="typebreak"/>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['gis_data'], <br class="typebreak"/>
 'array'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#a8cf7dec74e543164ed8c1adb2b7afcc8">$gis_types</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!isset($gis_data['gis_type']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#a1a6cf7b343a2c77933abb7ee7cfb5264">$geom_type</a> = $gis_data['gis_type']</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!isset($gis_data['gis_type']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#a1a6cf7b343a2c77933abb7ee7cfb5264">$geom_type</a> = $gis_data['gis_type']</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#a3a5ac34e5058626b8b6448a5fe05b2ab">$gis_obj</a> = <a class="el" href="classPMA__GIS__Factory.html#ab2a27d7954ca8e44c85eaad1da3d2ed6">PMA_GIS_Factory::factory</a>($geom_type)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['value']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> = (isset($gis_data['srid']) &amp;&amp; $gis_data['srid'] != '') ? htmlspecialchars($gis_data['srid']) : 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['value']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> = (isset($gis_data['srid']) &amp;&amp; $gis_data['srid'] != '') ? htmlspecialchars($gis_data['srid']) : 0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = $gis_obj-&gt;generateWkt($gis_data, 0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#a40fdfc0befcf57cd2a68ada1fda5bd10">$wkt_with_zero</a> = $gis_obj-&gt;generateWkt($gis_data, 0, '0')</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gis__data__editor_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = &quot;',&quot; . $srid</td></tr>
@@ -153,7 +153,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!isset($gis_data['gis_type'])) $geom_type = $gis_data['gis_type']</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!isset($gis_data['gis_type'])) $geom_type = $gis_data['gis_type']</td>
         </tr>
       </table>
 </div>
@@ -198,7 +198,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['gis_data'], 'array')) $gis_types</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['gis_data'], 'array')) $gis_types</td>
         </tr>
       </table>
 </div>
@@ -252,7 +252,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($_REQUEST['value'])) $srid = (isset($gis_data['srid']) &amp;&amp; $gis_data['srid'] != '') ? htmlspecialchars($gis_data['srid']) : 0</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($_REQUEST['value'])) $srid = (isset($gis_data['srid']) &amp;&amp; $gis_data['srid'] != '') ? htmlspecialchars($gis_data['srid']) : 0</td>
         </tr>
       </table>
 </div>
@@ -327,7 +327,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="lib_8sitevars_8php.html#aa1c1171798f0afc9a867d3c06032e678">foreach</a>($gis_types as $gis_type)</td>
+          <td class="memname"><a class="el" href="search_8php.html#a09b4b6d1a0b5fcafe14aee32edd9b8c9">foreach</a>($gis_types as $gis_type)</td>
         </tr>
       </table>
 </div>
@@ -342,7 +342,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($srid==0) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($srid!=0)</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($srid==0) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($srid!=0)</td>
         </tr>
       </table>
 </div>
@@ -357,7 +357,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['input_name']))</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['input_name']))</td>
         </tr>
       </table>
 </div>
@@ -373,7 +373,7 @@ Variables</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="gis__data__editor_8php.html">gis_data_editor.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:38 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:52 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

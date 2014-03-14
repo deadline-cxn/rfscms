@@ -71,38 +71,21 @@
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000122"></a>Member <a class="el" href="tbl__change_8php.html#aa3c6bbcf1efd9beb2e344627ebb8c0ef">$_url_params</a>  </dt>
+<dt><a class="anchor" id="_todo000112"></a>Member <a class="el" href="tbl__change_8php.html#aa3c6bbcf1efd9beb2e344627ebb8c0ef">$_url_params</a>  </dt>
 <dd>check if we could replace by "db_|tbl_" - please clarify!?  </dd>
-<dt><a class="anchor" id="_todo000130"></a>Member <a class="el" href="tbl__replace_8php.html#aa2df4a8fb9c24852b1e97ff98301141e">$blob_streaming_active</a>  </dt>
+<dt><a class="anchor" id="_todo000120"></a>Member <a class="el" href="tbl__replace_8php.html#aa2df4a8fb9c24852b1e97ff98301141e">$blob_streaming_active</a>  </dt>
 <dd>uncomment this if all possible included files to rely on import request variables if (! defined('PMA_NO_VARIABLES_IMPORT')) { define('PMA_NO_VARIABLES_IMPORT', true); }  </dd>
-<dt><a class="anchor" id="_todo000123"></a>Member <a class="el" href="tbl__change_8php.html#a979b71d6e639bb764757094f33e230b5">$comments_map</a>  </dt>
+<dt><a class="anchor" id="_todo000113"></a>Member <a class="el" href="tbl__change_8php.html#a979b71d6e639bb764757094f33e230b5">$comments_map</a>  </dt>
 <dd>should be done by a Table object  </dd>
-<dt><a class="anchor" id="_todo000125"></a>Member <a class="el" href="tbl__change_8php.html#a69d89028968932544afeb5d9c84daeb9">$show_create_table</a>  </dt>
+<dt><a class="anchor" id="_todo000115"></a>Member <a class="el" href="tbl__change_8php.html#a69d89028968932544afeb5d9c84daeb9">$show_create_table</a>  </dt>
 <dd>should be handled by class Table  </dd>
-<dt><a class="anchor" id="_todo000110"></a>Group <a class="el" href="tbl__info_8inc_8php.html#amgrp23fa725c44892e9a11914aa857afd144">$showtable</a>  </dt>
+<dt><a class="anchor" id="_todo000100"></a>Group <a class="el" href="tbl__info_8inc_8php.html#amgrp23fa725c44892e9a11914aa857afd144">$showtable</a>  </dt>
 <dd><p class="startdd">replace this by <a class="el" href="classPMA__Table.html">PMA_Table</a>  array $GLOBALS['showtable']</p>
 <p class="enddd"></p>
 </dd>
-<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="db__printview_8php.html#a3d332a3c374a53802495dcb045f6133f">$tables</a>  </dt>
+<dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="db__printview_8php.html#a3d332a3c374a53802495dcb045f6133f">$tables</a>  </dt>
 <dd>merge this speedup _optionaly_ into <a class="el" href="database__interface_8lib_8php.html#a666173b932079177ab299983242adc58" title="returns array of all tables in given db or dbs this function expects unquoted names: RIGHT: my_databa...">PMA_DBI_get_tables_full()</a> </dd>
-<dt><a class="anchor" id="_todo000008"></a>Namespace <a class="el" href="namespaceOpenSearchServer.html">OpenSearchServer</a>  </dt>
-<dd><p class="startdd">Some documentation ? </p>
-<p>Add sort params </p>
-<p class="enddd">Some documentation ?  </p>
-</dd>
-<dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="classOSS__API.html#a0d8900b001b9b5743ce967cc19c8cd18">OSS_API</a>  ($ids)</dt>
-<dd>Next release   </dd>
-<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classOSS__API.html#a0d5003abcddf8454257a026df86e4a29">OSS_API</a>  ()</dt>
-<dd>Finish implementation once API is availabe  </dd>
-<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="classOSS__API.html#a50ef64dba9864514e5b35dee5c4d7492">OSS_API</a>  ()</dt>
-<dd>Finish implementation once API is availabe  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classOSS__API.html#abb297353218881ac5153eeeda80b5ebb">OSS_API</a>  ()</dt>
-<dd>Recode this method once API is provided  </dd>
-<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="classOSS__API.html#a698a2d1073244064c93abae0d03d1982">OSS_API</a>  ()</dt>
-<dd>Recode this method once API is provided  </dd>
-<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classOSS__API.html#a4ba522f6f06183786fe2c581cdb540b4">OSS_API</a>  ($file)</dt>
-<dd>Next release   </dd>
-<dt><a class="anchor" id="_todo000011"></a>Namespace <a class="el" href="namespacePhpMyAdmin.html">PhpMyAdmin</a>  </dt>
+<dt><a class="anchor" id="_todo000001"></a>Namespace <a class="el" href="namespacePhpMyAdmin.html">PhpMyAdmin</a>  </dt>
 <dd><p class="startdd">merge this logic with the one in <a class="el" href="tbl__structure_8php.html">tbl_structure.php</a> or move it in a function similar to <a class="el" href="database__interface_8lib_8php.html#af548648f122a6a6bb27b36c75a6328c0" title="returns detailed array with all columns for given table in database, or all tables/databases">PMA_DBI_get_columns_full()</a> but based on SHOW CREATE TABLE because information_schema cannot be trusted in this case (MySQL bug) </p>
 <p>make use of UNION when searching multiple tables </p>
 <p>display executed query, optional?</p>
@@ -195,130 +178,130 @@
 <p>(also validate if js is disabled, after form submission?)</p>
 <p class="enddd"></p>
 </dd>
-<dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="check__user__privileges_8lib_8php.html#a7e5034bdb6b887bec23b89c3f5db71b2">PMA_analyseShowGrant</a>  ()</dt>
+<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="check__user__privileges_8lib_8php.html#a7e5034bdb6b887bec23b89c3f5db71b2">PMA_analyseShowGrant</a>  ()</dt>
 <dd><p class="startdd">fix to get really all privileges, not only explicitly defined for this user from MySQL manual: (<a href="http://dev.mysql.com/doc/refman/5.0/en/show-grants.html">http://dev.mysql.com/doc/refman/5.0/en/show-grants.html</a>) SHOW GRANTS displays only the privileges granted explicitly to the named account. Other privileges might be available to the account, but they are not displayed. For example, if an anonymous account exists, the named account might be able to use its privileges, but SHOW GRANTS will not display them.</p>
 <p>if we find CREATE VIEW but not CREATE, do not offer the create database dialog box </p>
 <p class="enddd">collect $GLOBALS['db_to_create'] into an array, to display a drop-down in the "Create database" dialog  </p>
 </dd>
-<dt><a class="anchor" id="_todo000069"></a>Member <a class="el" href="import_8lib_8php.html#a500f62d64c400e5d660e31fe1fe6c418">PMA_analyzeTable</a>  (&amp;$table)</dt>
+<dt><a class="anchor" id="_todo000059"></a>Member <a class="el" href="import_8lib_8php.html#a500f62d64c400e5d660e31fe1fe6c418">PMA_analyzeTable</a>  (&amp;$table)</dt>
 <dd>Handle the error case more elegantly </dd>
-<dt><a class="anchor" id="_todo000026"></a>Member <a class="el" href="common_8lib_8php.html#a7584e1c813436b937de0d098b7e314c0">PMA_checkParameters</a>  ($params, $die=true, $request=true)</dt>
+<dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="common_8lib_8php.html#a7584e1c813436b937de0d098b7e314c0">PMA_checkParameters</a>  ($params, $die=true, $request=true)</dt>
 <dd>use <a class="el" href="core_8lib_8php.html#aada56be77dbb39d2fd656e8d63ff117d" title="displays the given error message on phpMyAdmin error page in foreign language, ends script execution ...">PMA_fatalError()</a> if $die === true?  </dd>
-<dt><a class="anchor" id="_todo000031"></a>Member <a class="el" href="classPMA__Config.html#a22e58cfb9ec00f5e91201e3f6ff2431c">PMA_Config</a>  ()</dt>
+<dt><a class="anchor" id="_todo000021"></a>Member <a class="el" href="classPMA__Config.html#a22e58cfb9ec00f5e91201e3f6ff2431c">PMA_Config</a>  ()</dt>
 <dd>check validity of $_REQUEST['collation_connection'] </dd>
-<dt><a class="anchor" id="_todo000030"></a>Member <a class="el" href="classPMA__Config.html#aa096afab47dd6c435cb5f5de6a19275a">PMA_Config</a>  ($source=null)</dt>
+<dt><a class="anchor" id="_todo000020"></a>Member <a class="el" href="classPMA__Config.html#aa096afab47dd6c435cb5f5de6a19275a">PMA_Config</a>  ($source=null)</dt>
 <dd>check validity of $_COOKIE['pma_collation_connection']  </dd>
-<dt><a class="anchor" id="_todo000032"></a>Member <a class="el" href="classPMA__Config.html#a120429dc9f1d724b19a3570d194de5fb">PMA_Config</a>  ()</dt>
+<dt><a class="anchor" id="_todo000022"></a>Member <a class="el" href="classPMA__Config.html#a120429dc9f1d724b19a3570d194de5fb">PMA_Config</a>  ()</dt>
 <dd>finish </dd>
-<dt><a class="anchor" id="_todo000035"></a>Member <a class="el" href="database__interface_8lib_8php.html#aa47ecfdc6d46a8eb9853855781e9623d">PMA_DBI_checkDbExtension</a>  ($extension= 'mysql')</dt>
+<dt><a class="anchor" id="_todo000025"></a>Member <a class="el" href="database__interface_8lib_8php.html#aa47ecfdc6d46a8eb9853855781e9623d">PMA_DBI_checkDbExtension</a>  ($extension= 'mysql')</dt>
 <dd>add different messages for alternative extension and complete fail (no alternative extension too)  </dd>
-<dt><a class="anchor" id="_todo000036"></a>Member <a class="el" href="database__interface_8lib_8php.html#a6f4e94ffe2e5c28f0ce9f23c2e65e74a">PMA_DBI_convert_message</a>  ($message)</dt>
+<dt><a class="anchor" id="_todo000026"></a>Member <a class="el" href="database__interface_8lib_8php.html#a6f4e94ffe2e5c28f0ce9f23c2e65e74a">PMA_DBI_convert_message</a>  ($message)</dt>
 <dd>lang not found, try all, what TODO ?  </dd>
-<dt><a class="anchor" id="_todo000040"></a>Member <a class="el" href="database__interface_8lib_8php.html#af548648f122a6a6bb27b36c75a6328c0">PMA_DBI_get_columns_full</a>  ($database=null, $table=null, $column=null, $link=null)</dt>
+<dt><a class="anchor" id="_todo000030"></a>Member <a class="el" href="database__interface_8lib_8php.html#af548648f122a6a6bb27b36c75a6328c0">PMA_DBI_get_columns_full</a>  ($database=null, $table=null, $column=null, $link=null)</dt>
 <dd><p class="startdd">guess CHARACTER_MAXIMUM_LENGTH from COLUMN_TYPE </p>
 <p class="enddd">guess CHARACTER_OCTET_LENGTH from CHARACTER_MAXIMUM_LENGTH  </p>
 </dd>
-<dt><a class="anchor" id="_todo000039"></a>Member <a class="el" href="database__interface_8lib_8php.html#a4b15b983bcb99fa22499c95a4df73c5e">PMA_DBI_get_databases_full</a>  ($database=null, $force_stats=false, $link=null, $sort_by= 'SCHEMA_NAME', $sort_order= 'ASC', $limit_offset=0, $limit_count=false)</dt>
+<dt><a class="anchor" id="_todo000029"></a>Member <a class="el" href="database__interface_8lib_8php.html#a4b15b983bcb99fa22499c95a4df73c5e">PMA_DBI_get_databases_full</a>  ($database=null, $force_stats=false, $link=null, $sort_by= 'SCHEMA_NAME', $sort_order= 'ASC', $limit_offset=0, $limit_count=false)</dt>
 <dd>move into <a class="el" href="classPMA__List__Database.html">PMA_List_Database</a>? </dd>
-<dt><a class="anchor" id="_todo000043"></a>Member <a class="el" href="mysql_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac">PMA_DBI_get_fields_meta</a>  ($result)</dt>
+<dt><a class="anchor" id="_todo000033"></a>Member <a class="el" href="mysql_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac">PMA_DBI_get_fields_meta</a>  ($result)</dt>
 <dd>add missing keys like in mysqli_query (decimals)  </dd>
-<dt><a class="anchor" id="_todo000037"></a>Member <a class="el" href="database__interface_8lib_8php.html#a666173b932079177ab299983242adc58">PMA_DBI_get_tables_full</a>  ($database, $table=false, $tbl_is_group=false, $link=null, $limit_offset=0, $limit_count=false, $sort_by= 'Name', $sort_order= 'ASC')</dt>
+<dt><a class="anchor" id="_todo000027"></a>Member <a class="el" href="database__interface_8lib_8php.html#a666173b932079177ab299983242adc58">PMA_DBI_get_tables_full</a>  ($database, $table=false, $tbl_is_group=false, $link=null, $limit_offset=0, $limit_count=false, $sort_by= 'Name', $sort_order= 'ASC')</dt>
 <dd><p class="startdd">move into <a class="el" href="classPMA__Table.html">PMA_Table</a></p>
 <p class="enddd">difference between 'TEMPORARY' and 'BASE TABLE' but how to detect?  </p>
 </dd>
-<dt><a class="anchor" id="_todo000068"></a>Member <a class="el" href="import_8lib_8php.html#a25d51e2073b55e31f1db9ff5b6bd7323">PMA_detectSize</a>  ($last_cumulative_size, $last_cumulative_type, $curr_type, &amp;$cell)</dt>
+<dt><a class="anchor" id="_todo000058"></a>Member <a class="el" href="import_8lib_8php.html#a25d51e2073b55e31f1db9ff5b6bd7323">PMA_detectSize</a>  ($last_cumulative_size, $last_cumulative_type, $curr_type, &amp;$cell)</dt>
 <dd>Handle the error cases more elegantly </dd>
-<dt><a class="anchor" id="_todo000115"></a>Member <a class="el" href="server__privileges_8php.html#ae99243803431880039b994d06ca4a375">PMA_displayLoginInformationFields</a>  ($mode= 'new')</dt>
+<dt><a class="anchor" id="_todo000105"></a>Member <a class="el" href="server__privileges_8php.html#ae99243803431880039b994d06ca4a375">PMA_displayLoginInformationFields</a>  ($mode= 'new')</dt>
 <dd><p class="startdd">similar code appears twice in this script </p>
 <p class="enddd">similar code appears twice in this script  </p>
 </dd>
-<dt><a class="anchor" id="_todo000052"></a>Member <a class="el" href="display__tbl_8lib_8php.html#ae2492e765f90454848fba297d5c447b5">PMA_displayResultsOperations</a>  ($the_disp_mode, $analyzed_sql)</dt>
+<dt><a class="anchor" id="_todo000042"></a>Member <a class="el" href="display__tbl_8lib_8php.html#ae2492e765f90454848fba297d5c447b5">PMA_displayResultsOperations</a>  ($the_disp_mode, $analyzed_sql)</dt>
 <dd>detect privileges to create a view (but see 2006-01-19 note in <a class="el" href="display__create__table_8lib_8php.html">display_create_table.lib.php</a>, I think we cannot detect db-specific privileges reliably) Note: we don't display a Create view link if we found a PROCEDURE clause  </dd>
-<dt><a class="anchor" id="_todo000050"></a>Member <a class="el" href="display__tbl_8lib_8php.html#ab64d4328beb5bc6b0a62abfa39fb447a">PMA_displayTable</a>  (&amp;$dt_result, &amp;$the_disp_mode, $analyzed_sql)</dt>
+<dt><a class="anchor" id="_todo000040"></a>Member <a class="el" href="display__tbl_8lib_8php.html#ab64d4328beb5bc6b0a62abfa39fb447a">PMA_displayTable</a>  (&amp;$dt_result, &amp;$the_disp_mode, $analyzed_sql)</dt>
 <dd><p class="startdd">move this to a central place </p>
 <p class="enddd">for other future table types  </p>
 </dd>
-<dt><a class="anchor" id="_todo000049"></a>Member <a class="el" href="display__tbl_8lib_8php.html#a7b865266d030433cd3f2729dbd3d61ba">PMA_displayTable_checkConfigParams</a>  ()</dt>
+<dt><a class="anchor" id="_todo000039"></a>Member <a class="el" href="display__tbl_8lib_8php.html#a7b865266d030433cd3f2729dbd3d61ba">PMA_displayTable_checkConfigParams</a>  ()</dt>
 <dd><p class="startdd">make maximum remembered queries configurable </p>
 <p>move/split into SQL class!? </p>
 <p>currently this is called twice unnecessary </p>
 <p class="enddd">ignore LIMIT and ORDER in query!? </p>
 </dd>
-<dt><a class="anchor" id="_todo000048"></a>Member <a class="el" href="display__tbl_8lib_8php.html#a584c8e9b54e86afef57d654e60a836ed">PMA_displayTableBody</a>  (&amp;$dt_result, &amp;$is_display, $map, $analyzed_sql)</dt>
+<dt><a class="anchor" id="_todo000038"></a>Member <a class="el" href="display__tbl_8lib_8php.html#a584c8e9b54e86afef57d654e60a836ed">PMA_displayTableBody</a>  (&amp;$dt_result, &amp;$is_display, $map, $analyzed_sql)</dt>
 <dd>$where_clause could be empty, for example a table with only one field and it's a BLOB; in this case, avoid to display the delete and edit links  </dd>
-<dt><a class="anchor" id="_todo000046"></a>Member <a class="el" href="display__tbl_8lib_8php.html#ad976ef528675a4d65fd57ea37fc51e25">PMA_displayTableNavigation</a>  ($pos_next, $pos_prev, $sql_query, $id_for_direction_dropdown)</dt>
+<dt><a class="anchor" id="_todo000036"></a>Member <a class="el" href="display__tbl_8lib_8php.html#ad976ef528675a4d65fd57ea37fc51e25">PMA_displayTableNavigation</a>  ($pos_next, $pos_prev, $sql_query, $id_for_direction_dropdown)</dt>
 <dd><p class="startdd">move this to a central place </p>
 <p class="enddd">for other future table types  </p>
 </dd>
-<dt><a class="anchor" id="_todo000053"></a>Member <a class="el" href="classPMA__Error__Handler.html#a35332e55375a13fc55059e51ab803e45">PMA_Error_Handler</a>  ($error)</dt>
+<dt><a class="anchor" id="_todo000043"></a>Member <a class="el" href="classPMA__Error__Handler.html#a35332e55375a13fc55059e51ab803e45">PMA_Error_Handler</a>  ($error)</dt>
 <dd>finish!  </dd>
-<dt><a class="anchor" id="_todo000034"></a>Member <a class="el" href="core_8lib_8php.html#aada56be77dbb39d2fd656e8d63ff117d">PMA_fatalError</a>  ($error_message, $message_args=null)</dt>
+<dt><a class="anchor" id="_todo000024"></a>Member <a class="el" href="core_8lib_8php.html#aada56be77dbb39d2fd656e8d63ff117d">PMA_fatalError</a>  ($error_message, $message_args=null)</dt>
 <dd>use detected argument separator (<a class="el" href="classPMA__Config.html">PMA_Config</a>)  </dd>
-<dt><a class="anchor" id="_todo000056"></a>Member <a class="el" href="classPMA__File.html#a12fda3bf1e0cc07bcbe4c0d90424c7ca">PMA_File</a>  ()</dt>
+<dt><a class="anchor" id="_todo000046"></a>Member <a class="el" href="classPMA__File.html#a12fda3bf1e0cc07bcbe4c0d90424c7ca">PMA_File</a>  ()</dt>
 <dd><p class="startdd">move file read part into readChunk() or getChunk() </p>
 <p>add support for compression plugins  protected </p>
 <p class="enddd">get registered plugins for file compression </p>
 </dd>
-<dt><a class="anchor" id="_todo000058"></a>Member <a class="el" href="classPMA__File.html#a04bbe14808d03bbbefa6da4b515ad0d0">PMA_File</a>  ($length)</dt>
+<dt><a class="anchor" id="_todo000048"></a>Member <a class="el" href="classPMA__File.html#a04bbe14808d03bbbefa6da4b515ad0d0">PMA_File</a>  ($length)</dt>
 <dd>this function is unused  </dd>
-<dt><a class="anchor" id="_todo000055"></a>Member <a class="el" href="classPMA__File.html#a6a4b1b602274cf488ec6e93ba20102c5">PMA_File</a>  ()</dt>
+<dt><a class="anchor" id="_todo000045"></a>Member <a class="el" href="classPMA__File.html#a6a4b1b602274cf488ec6e93ba20102c5">PMA_File</a>  ()</dt>
 <dd>move check of $cfg['TempDir'] into <a class="el" href="classPMA__Config.html">PMA_Config</a>?  public  </dd>
-<dt><a class="anchor" id="_todo000059"></a>Member <a class="el" href="classPMA__File.html#acf04a01072476f9f1da8770ac4eed346">PMA_File</a>  ($max_size=null)</dt>
+<dt><a class="anchor" id="_todo000049"></a>Member <a class="el" href="classPMA__File.html#acf04a01072476f9f1da8770ac4eed346">PMA_File</a>  ($max_size=null)</dt>
 <dd><p class="startdd">this function is unused </p>
 <p class="enddd">BOM could be used for charset autodetection  </p>
 </dd>
-<dt><a class="anchor" id="_todo000025"></a>Member <a class="el" href="common_8lib_8php.html#ac8192d573b73ab9677d973c6a70ac1fb">PMA_flipstring</a>  ($string, $Separator="&lt;br /&gt;\n")</dt>
+<dt><a class="anchor" id="_todo000015"></a>Member <a class="el" href="common_8lib_8php.html#ac8192d573b73ab9677d973c6a70ac1fb">PMA_flipstring</a>  ($string, $Separator="&lt;br /&gt;\n")</dt>
 <dd>add a multibyte safe function PMA_STR_split() </dd>
-<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="common_8lib_8php.html#a7318464fb4bfbdb4c33b3257ad533ab6">PMA_formatSql</a>  ($parsed_sql, $unparsed_sql= '')</dt>
+<dt><a class="anchor" id="_todo000013"></a>Member <a class="el" href="common_8lib_8php.html#a7318464fb4bfbdb4c33b3257ad533ab6">PMA_formatSql</a>  ($parsed_sql, $unparsed_sql= '')</dt>
 <dd>move into PMA_Sql  </dd>
-<dt><a class="anchor" id="_todo000028"></a>Member <a class="el" href="common_8lib_8php.html#a5a6eb75fc4c08030f517d1f405268d81">PMA_generate_html_dropdown</a>  ($select_name, $choices, $active_choice, $id)</dt>
+<dt><a class="anchor" id="_todo000018"></a>Member <a class="el" href="common_8lib_8php.html#a5a6eb75fc4c08030f517d1f405268d81">PMA_generate_html_dropdown</a>  ($select_name, $choices, $active_choice, $id)</dt>
 <dd>support titles  </dd>
-<dt><a class="anchor" id="_todo000029"></a>Member <a class="el" href="common_8lib_8php.html#aedbdeb311dc6b447c4cfb2a8051354e4">PMA_generate_slider_effect</a>  ($id, $message)</dt>
+<dt><a class="anchor" id="_todo000019"></a>Member <a class="el" href="common_8lib_8php.html#aedbdeb311dc6b447c4cfb2a8051354e4">PMA_generate_slider_effect</a>  ($id, $message)</dt>
 <dd>find a better solution that uses $.append(), the recommended method maybe by using an additional param, the id of the div to append to  </dd>
-<dt><a class="anchor" id="_todo000067"></a>Member <a class="el" href="import_8lib_8php.html#adb0307447ce45c347a2ed57d5fd859e9">PMA_importGetNextChunk</a>  ($size=32768)</dt>
+<dt><a class="anchor" id="_todo000057"></a>Member <a class="el" href="import_8lib_8php.html#adb0307447ce45c347a2ed57d5fd859e9">PMA_importGetNextChunk</a>  ($size=32768)</dt>
 <dd>BOM could be used for charset autodetection  </dd>
-<dt><a class="anchor" id="_todo000079"></a>Member <a class="el" href="server__synchronize_8lib_8php.html#a27dcf755e8f0df800b73b73ec72994a1">PMA_insertIntoTargetTable</a>  ($matching_table, $src_db, $trg_db, $src_link, $trg_link, $table_fields, &amp;$array_insert, $matching_table_index, $matching_tables_keys, $source_columns, &amp;$add_column_array, $criteria, $target_tables_keys, $uncommon_tables, &amp;$uncommon_tables_fields, $uncommon_cols, &amp;$alter_str_array, &amp;$source_indexes, &amp;$target_indexes, &amp;$add_indexes_array, &amp;$alter_indexes_array, &amp;$delete_array, &amp;$update_array, $display)</dt>
+<dt><a class="anchor" id="_todo000069"></a>Member <a class="el" href="server__synchronize_8lib_8php.html#a27dcf755e8f0df800b73b73ec72994a1">PMA_insertIntoTargetTable</a>  ($matching_table, $src_db, $trg_db, $src_link, $trg_link, $table_fields, &amp;$array_insert, $matching_table_index, $matching_tables_keys, $source_columns, &amp;$add_column_array, $criteria, $target_tables_keys, $uncommon_tables, &amp;$uncommon_tables_fields, $uncommon_cols, &amp;$alter_str_array, &amp;$source_indexes, &amp;$target_indexes, &amp;$add_indexes_array, &amp;$alter_indexes_array, &amp;$delete_array, &amp;$update_array, $display)</dt>
 <dd>this function uses undefined variables and is possibly broken: $matching_tables, $matching_tables_fields, $remove_indexes_array, $matching_table_keys </dd>
-<dt><a class="anchor" id="_todo000033"></a>Member <a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>  (&amp;$var, $type= 'length', $compare=null)</dt>
+<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>  (&amp;$var, $type= 'length', $compare=null)</dt>
 <dd><p class="startdd">create some testsuites </p>
 <p class="enddd">add some more var types like hex, bin, ...?  </p>
 </dd>
-<dt><a class="anchor" id="_todo000073"></a>Member <a class="el" href="classPMA__List__Database.html#ada369e9eaf65e96725ddcd0586922f35">PMA_List_Database</a>  ($like_db_name=null)</dt>
+<dt><a class="anchor" id="_todo000063"></a>Member <a class="el" href="classPMA__List__Database.html#ada369e9eaf65e96725ddcd0586922f35">PMA_List_Database</a>  ($like_db_name=null)</dt>
 <dd>we could also search mysql tables if all fail?  </dd>
-<dt><a class="anchor" id="_todo000074"></a>Member <a class="el" href="classPMA__List__Database.html#a40d67e11c09326f19302fa5fbc2a7934">PMA_List_Database</a>  ($selected= '', $offset, $count)</dt>
+<dt><a class="anchor" id="_todo000064"></a>Member <a class="el" href="classPMA__List__Database.html#a40d67e11c09326f19302fa5fbc2a7934">PMA_List_Database</a>  ($selected= '', $offset, $count)</dt>
 <dd>IE can not handle different text directions in select boxes so, as mostly names will be in english, we set the whole selectbox to LTR and EN </dd>
-<dt><a class="anchor" id="_todo000027"></a>Member <a class="el" href="common_8lib_8php.html#a45888b76abb2a86bd6d82af07f8f2837">PMA_listNavigator</a>  ($count, $pos, $_url_params, $script, $frame, $max_count)</dt>
+<dt><a class="anchor" id="_todo000017"></a>Member <a class="el" href="common_8lib_8php.html#a45888b76abb2a86bd6d82af07f8f2837">PMA_listNavigator</a>  ($count, $pos, $_url_params, $script, $frame, $max_count)</dt>
 <dd>use $pos from $_url_params  </dd>
-<dt><a class="anchor" id="_todo000078"></a>Member <a class="el" href="classPMA__Pdf__Relation__Schema.html#a38d2ab67dfa62392e8de96f0b970ec73">PMA_Pdf_Relation_Schema</a>  ($alltables)</dt>
+<dt><a class="anchor" id="_todo000068"></a>Member <a class="el" href="classPMA__Pdf__Relation__Schema.html#a38d2ab67dfa62392e8de96f0b970ec73">PMA_Pdf_Relation_Schema</a>  ($alltables)</dt>
 <dd>find optimal width for all formats  </dd>
-<dt><a class="anchor" id="_todo000080"></a>Member <a class="el" href="server__synchronize_8lib_8php.html#afe128b4b8a227082f9d7f02bc8fe34d9">PMA_populateTargetTables</a>  ($src_db, $trg_db, $src_link, $trg_link, $uncommon_tables, $table_index, $uncommon_tables_fields, $display)</dt>
+<dt><a class="anchor" id="_todo000070"></a>Member <a class="el" href="server__synchronize_8lib_8php.html#afe128b4b8a227082f9d7f02bc8fe34d9">PMA_populateTargetTables</a>  ($src_db, $trg_db, $src_link, $trg_link, $uncommon_tables, $table_index, $uncommon_tables_fields, $display)</dt>
 <dd>This turns NULL values into '' (empty string)  </dd>
-<dt><a class="anchor" id="_todo000077"></a>Member <a class="el" href="replication_8inc_8php.html#a9d196603d9e2d6d5738f7ec564225964">PMA_replication_synchronize_db</a>  ($db, $src_link, $trg_link, $data=true)</dt>
+<dt><a class="anchor" id="_todo000067"></a>Member <a class="el" href="replication_8inc_8php.html#a9d196603d9e2d6d5738f7ec564225964">PMA_replication_synchronize_db</a>  ($db, $src_link, $trg_link, $data=true)</dt>
 <dd>improve code sharing between the function and synchronization </dd>
-<dt><a class="anchor" id="_todo000044"></a>Member <a class="el" href="display__tbl_8lib_8php.html#a1d6c4bbc5354600cc41634d3dd8066b9">PMA_setDisplayMode</a>  (&amp;$the_disp_mode, &amp;$the_total)</dt>
+<dt><a class="anchor" id="_todo000034"></a>Member <a class="el" href="display__tbl_8lib_8php.html#a1d6c4bbc5354600cc41634d3dd8066b9">PMA_setDisplayMode</a>  (&amp;$the_disp_mode, &amp;$the_total)</dt>
 <dd><p class="startdd">defines edit/delete links depending on show statement </p>
 <p class="enddd">May be problematic with same fields names in two joined table.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000024"></a>Member <a class="el" href="common_8lib_8php.html#ac856542e67ea0192bc0fc7fd1fb21d09">PMA_showMessage</a>  ($message, $sql_query=null, $type= 'notice', $is_view=false)</dt>
+<dt><a class="anchor" id="_todo000014"></a>Member <a class="el" href="common_8lib_8php.html#ac856542e67ea0192bc0fc7fd1fb21d09">PMA_showMessage</a>  ($message, $sql_query=null, $type= 'notice', $is_view=false)</dt>
 <dd>what would be the best to do when someone hits Refresh: use the current LIMITs ?  </dd>
-<dt><a class="anchor" id="_todo000102"></a>Member <a class="el" href="classPMA__Table.html#a1a714b2fa4ce6df3814101e0f646fbc4">PMA_Table</a>  ($name, $type, $length= '', $attribute= '', $collation= '', $null=false, $default_type= 'USER_DEFINED', $default_value= '', $extra= '', $comment= '', &amp;$field_primary, $index)</dt>
+<dt><a class="anchor" id="_todo000092"></a>Member <a class="el" href="classPMA__Table.html#a1a714b2fa4ce6df3814101e0f646fbc4">PMA_Table</a>  ($name, $type, $length= '', $attribute= '', $collation= '', $null=false, $default_type= 'USER_DEFINED', $default_value= '', $extra= '', $comment= '', &amp;$field_primary, $index)</dt>
 <dd><p class="startdd">move into class PMA_Column </p>
 <p class="enddd">on the interface, some js to clear the default value when the default current_timestamp is checked </p>
 </dd>
-<dt><a class="anchor" id="_todo000106"></a>Member <a class="el" href="classPMA__Table.html#a2559c0669244ce9cd80c0b09ed28bf9e">PMA_Table</a>  ($table_name)</dt>
+<dt><a class="anchor" id="_todo000096"></a>Member <a class="el" href="classPMA__Table.html#a2559c0669244ce9cd80c0b09ed28bf9e">PMA_Table</a>  ($table_name)</dt>
 <dd>add check for valid chars in filename on current system/os  </dd>
-<dt><a class="anchor" id="_todo000103"></a>Member <a class="el" href="classPMA__Table.html#a6ffeebe3e840375b64f116b994781193">PMA_Table</a>  ($source_db, $source_table, $target_db, $target_table, $what, $move, $mode)</dt>
+<dt><a class="anchor" id="_todo000093"></a>Member <a class="el" href="classPMA__Table.html#a6ffeebe3e840375b64f116b994781193">PMA_Table</a>  ($source_db, $source_table, $target_db, $target_table, $what, $move, $mode)</dt>
 <dd><p class="startdd">Can't get moving PDFs the right way. The page numbers always get screwed up independently from duplication because the numbers do not seem to be stored on a per-database basis. Would the author of pdf support please have a look at it? </p>
 <p>revise this code when we support cross-db relations </p>
 <p class="enddd">Can't get duplicating PDFs the right way. The page numbers always get screwed up independently from duplication because the numbers do not seem to be stored on a per-database basis. Would the author of pdf support please have a look at it? </p>
 </dd>
-<dt><a class="anchor" id="_todo000107"></a>Member <a class="el" href="classPMA__Table.html#a3ca6ed1ed1646799aa43a7ae9612b739">PMA_Table</a>  ($new_name, $new_db=null, $is_view=false)</dt>
+<dt><a class="anchor" id="_todo000097"></a>Member <a class="el" href="classPMA__Table.html#a3ca6ed1ed1646799aa43a7ae9612b739">PMA_Table</a>  ($new_name, $new_db=null, $is_view=false)</dt>
 <dd><p class="startdd">remove the $is_view parameter (also in callers)</p>
 <p class="enddd">move into extra function PMA_Relation::renameTable($new_name, $old_name, $new_db, $old_db)  </p>
 </dd>
-<dt><a class="anchor" id="_todo000101"></a>Member <a class="el" href="classPMA__Table.html#a5bcf320752029cac160933f74afc8742">PMA_Table</a>  ($db, $table, $info=null, $force_read=false, $disable_error=false)</dt>
+<dt><a class="anchor" id="_todo000091"></a>Member <a class="el" href="classPMA__Table.html#a5bcf320752029cac160933f74afc8742">PMA_Table</a>  ($db, $table, $info=null, $force_read=false, $disable_error=false)</dt>
 <dd>PMA_DBI_get_tables_full needs to be merged somehow into this class or at least better documented </dd>
-<dt><a class="anchor" id="_todo000113"></a>Member <a class="el" href="classPMA__Tracker.html#a0ed18d54f03c8774c52bb5e77af57b13">PMA_Tracker</a>  ($query)</dt>
+<dt><a class="anchor" id="_todo000103"></a>Member <a class="el" href="classPMA__Tracker.html#a0ed18d54f03c8774c52bb5e77af57b13">PMA_Tracker</a>  ($query)</dt>
 <dd><p class="startdd">: using <a class="el" href="classPMA.html">PMA</a> SQL Parser when possible </p>
 <p class="enddd">: support multi-table/view drops</p>
 </dd>
@@ -328,7 +311,7 @@
   <div id="nav-path" class="navpath">
     <ul>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:41 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:53 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

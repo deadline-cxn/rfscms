@@ -93,25 +93,24 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#af7c520088b239c155d14d04d4490d83e">printVariablesTable</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#ad11dde67e2c4bb10ec198e26e7f3287f">printMonitor</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a7e69f133303e6a45a0edffd671ff004e">refreshList</a> ($name, $defaultRate=5, $refreshRates=Array(1, 2, 5, 10, 20, 40, 60, 120, 300, 600))</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a166b27828ca0e3ad2d98b472587abc3c">getDataPointsNumberList</a> ($name, $defaultValue=12, $values=Array(8, 10, 12, 15, 20, 25, 30, 40))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a83b5a15a5ad32060bb1abe5966b579a8">cleanDeprecated</a> (&amp;$server_status)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!defined('PMA_NO_VARIABLES_IMPORT'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a0822d575accb97c95db8638e4b07f0a0">if</a> (isset($_REQUEST['ajax_request'])&amp;&amp;$_REQUEST['ajax_request']==true)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!defined('PMA_NO_VARIABLES_IMPORT'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a0822d575accb97c95db8638e4b07f0a0">if</a> (isset($_REQUEST['ajax_request'])&amp;&amp;$_REQUEST['ajax_request']==true)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a9b835efbb97695b4ed9faf19a55b1080">$GLOBALS</a> ['js_include'][] = 'jquery/jquery-ui-1.8.16.custom.js'</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['flush'])) <br class="typebreak"/>
-<a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($_REQUEST['kill']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#ae46650638d6130e555f8469eb632aadc">$server_status</a> = <a class="el" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b">PMA_DBI_fetch_result</a>('SHOW GLOBAL STATUS', 0, 1)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(PMA_DRIZZLE)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a3efae2cf7f40445ed78a08cfc3b428b6">$server_variables</a> = <a class="el" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b">PMA_DBI_fetch_result</a>('SHOW GLOBAL VARIABLES', 0, 1)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($server_status['Key_blocks_unused'])&amp;&amp;isset($server_variables['key_cache_block_size'])&amp;&amp;isset($server_variables['key_buffer_size'])) <br class="typebreak"/>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['flush'])) <br class="typebreak"/>
+<a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($_REQUEST['kill']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#ae46650638d6130e555f8469eb632aadc">$server_status</a> = <a class="el" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b">PMA_DBI_fetch_result</a>('SHOW GLOBAL STATUS', 0, 1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(PMA_DRIZZLE)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a3efae2cf7f40445ed78a08cfc3b428b6">$server_variables</a> = <a class="el" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b">PMA_DBI_fetch_result</a>('SHOW GLOBAL VARIABLES', 0, 1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($server_status['Key_blocks_unused'])&amp;&amp;isset($server_variables['key_cache_block_size'])&amp;&amp;isset($server_variables['key_buffer_size'])) <br class="typebreak"/>
 <a class="el" href="tbl__indexes_8php.html#ac75fb325bdd1e7480a316cd3029e235d">elseif</a>(isset($server_status['Key_blocks_used'])&amp;&amp;isset($server_variables['key_buffer_size'])) <br class="typebreak"/>
-<a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($server_status['Key_writes'])&amp;&amp;isset($server_status['Key_write_requests'])&amp;&amp;$server_status['Key_write_requests'] &gt;<br class="typebreak"/>
- 0) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($server_status['Key_reads'])&amp;&amp;isset($server_status['Key_read_requests'])&amp;&amp;$server_status['Key_read_requests'] &gt;<br class="typebreak"/>
- 0) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($server_status['Threads_created'])&amp;&amp;isset($server_status['Connections'])&amp;&amp;$server_status['Connections'] &gt; 0)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a4d1aedc7711e0f006fd6eef99195f0a1">$allocations</a></td></tr>
+<a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($server_status['Key_writes'])&amp;&amp;isset($server_status['Key_write_requests'])&amp;&amp;$server_status['Key_write_requests'] &gt;<br class="typebreak"/>
+ 0) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($server_status['Key_reads'])&amp;&amp;isset($server_status['Key_read_requests'])&amp;&amp;$server_status['Key_read_requests'] &gt;<br class="typebreak"/>
+ 0) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($server_status['Threads_created'])&amp;&amp;isset($server_status['Connections'])&amp;&amp;$server_status['Connections'] &gt; 0)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a4d1aedc7711e0f006fd6eef99195f0a1">$allocations</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#acfc569a8bcd830e9d7a2847e652019d1">$sections</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a4ca8be3ff3cf95aa3af546449c1f1bec">$links</a> = array()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a99322ec53a67361f5054cc6bd517429f">$links</a> ['table'][__('Flush(close) all tables')] = $PMA_PHP_SELF . '?flush=TABLES&amp;amp;' . <a class="el" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094">PMA_generate_common_url</a>()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a22d1cc4cb5558c8d1a02e547dcd2e186">$links</a> ['table'][__('Show open tables')]</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($server_master_status) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($server_slave_status)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a898fc9222b76c0304b999bab06d519b6">$links</a> ['repl']['doc'] = 'replication'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($server_master_status) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($server_slave_status)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a898fc9222b76c0304b999bab06d519b6">$links</a> ['repl']['doc'] = 'replication'</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#a413d31b9e761a77fa39bf4ea85405eab">$links</a> ['qcache'][__('Flush query cache')]</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#aa1654d9b76b47b9361d8f745d1b399f1">$links</a> ['qcache']['doc'] = 'query_cache'</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server__status_8php.html#af73985d5218b3f637fce3eb459df5d26">$links</a> ['threads']['doc'] = 'mysql_threads'</td></tr>
@@ -151,42 +150,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l01818">1818</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a166b27828ca0e3ad2d98b472587abc3c"></a><!-- doxytag: member="server_status.php::getDataPointsNumberList" ref="a166b27828ca0e3ad2d98b472587abc3c" args="($name, $defaultValue=12, $values=Array(8, 10, 12, 15, 20, 25, 30, 40))" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="server__status_8php.html#a166b27828ca0e3ad2d98b472587abc3c">getDataPointsNumberList</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>defaultValue</em> = <code>12</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>values</em> = <code>Array(8,&#160;10,&#160;12,&#160;15,&#160;20,&#160;25,&#160;30,&#160;40)</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l01799">1799</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l01795">1795</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -204,7 +168,15 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l01561">1561</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l01553">1553</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="server__status_8php_ad11dde67e2c4bb10ec198e26e7f3287f_cgraph.png" border="0" usemap="#server__status_8php_ad11dde67e2c4bb10ec198e26e7f3287f_cgraph" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -222,7 +194,15 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00936">936</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00928">928</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="server__status_8php_a5a528c5a548663f7b55c3b481c794a02_cgraph.png" border="0" usemap="#server__status_8php_a5a528c5a548663f7b55c3b481c794a02_cgraph" alt=""/></div>
+<!-- MAP 1 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -242,7 +222,15 @@ Variables</h2></td></tr>
 <p>starttime calculation</p>
 <p>Displays the page</p>
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l01043">1043</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l01035">1035</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="server__status_8php_abfe999235a56a874471934cd49e1598d_cgraph.png" border="0" usemap="#server__status_8php_abfe999235a56a874471934cd49e1598d_cgraph" alt=""/></div>
+<!-- MAP 2 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -262,7 +250,15 @@ Variables</h2></td></tr>
 <p>Messages are built using the message name</p>
 <p>define some alerts</p>
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l01306">1306</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l01298">1298</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="server__status_8php_af7c520088b239c155d14d04d4490d83e_cgraph.png" border="0" usemap="#server__status_8php_af7c520088b239c155d14d04d4490d83e_cgraph" alt=""/></div>
+<!-- MAP 3 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -297,7 +293,15 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l01779">1779</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l01771">1771</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="server__status_8php_a7e69f133303e6a45a0edffd671ff004e_icgraph.png" border="0" usemap="#server__status_8php_a7e69f133303e6a45a0edffd671ff004e_icgraph" alt=""/></div>
+<!-- MAP 4 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -322,7 +326,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($server_status['Key_blocks_unused'])&amp;&amp;isset($server_variables['key_cache_block_size'])&amp;&amp;isset($server_variables['key_buffer_size'])) <a class="el" href="tbl__indexes_8php.html#ac75fb325bdd1e7480a316cd3029e235d">elseif</a> (isset($server_status['Key_blocks_used'])&amp;&amp;isset($server_variables['key_buffer_size'])) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($server_status['Key_writes'])&amp;&amp;isset($server_status['Key_write_requests'])&amp;&amp;$server_status['Key_write_requests'] &gt; 0) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($server_status['Key_reads'])&amp;&amp;isset($server_status['Key_read_requests'])&amp;&amp;$server_status['Key_read_requests'] &gt; 0) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($server_status['Threads_created'])&amp;&amp;isset($server_status['Connections'])&amp;&amp;$server_status['Connections'] &gt; 0) $allocations</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($server_status['Key_blocks_unused'])&amp;&amp;isset($server_variables['key_cache_block_size'])&amp;&amp;isset($server_variables['key_buffer_size'])) <a class="el" href="tbl__indexes_8php.html#ac75fb325bdd1e7480a316cd3029e235d">elseif</a> (isset($server_status['Key_blocks_used'])&amp;&amp;isset($server_variables['key_buffer_size'])) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($server_status['Key_writes'])&amp;&amp;isset($server_status['Key_write_requests'])&amp;&amp;$server_status['Key_write_requests'] &gt; 0) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($server_status['Key_reads'])&amp;&amp;isset($server_status['Key_read_requests'])&amp;&amp;$server_status['Key_read_requests'] &gt; 0) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($server_status['Threads_created'])&amp;&amp;isset($server_status['Connections'])&amp;&amp;$server_status['Connections'] &gt; 0) $allocations</td>
         </tr>
       </table>
 </div>
@@ -331,7 +335,7 @@ Variables</h2></td></tr>
 <p>calculate some values </p>
 <p>split variables in sections </p>
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00542">542</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00540">540</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -381,7 +385,7 @@ Variables</h2></td></tr>
 
 <p>define some needfull links/commands </p>
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00615">615</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00613">613</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -396,7 +400,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00618">618</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00616">616</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -413,7 +417,7 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><pre class="fragment"> <span class="stringliteral">&#39;sql.php?sql_query=&#39;</span> . urlencode(<span class="stringliteral">&#39;SHOW OPEN TABLES&#39;</span>) .
         <span class="stringliteral">&#39;&amp;amp;goto=server_status.php&amp;amp;&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>()
 </pre></div>
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00620">620</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00618">618</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -422,13 +426,13 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($server_master_status) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($server_slave_status) $links['repl']['doc'] = 'replication'</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($server_master_status) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($server_slave_status) $links['repl']['doc'] = 'replication'</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00633">633</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00631">631</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -445,7 +449,7 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><pre class="fragment"> <a class="code" href="libraries_2common_8inc_8php.html#ad1902cf35d5833813480ed05793a096b" title="PATH_INFO could be compromised if set, so remove it from PHP_SELF and provide a clean PHP_SELF here...">$PMA_PHP_SELF</a> . <span class="stringliteral">&#39;?flush=&#39;</span> . urlencode(<span class="stringliteral">&#39;QUERY CACHE&#39;</span>) . <span class="stringliteral">&#39;&amp;amp;&#39;</span> .
         <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>()
 </pre></div>
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00636">636</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00634">634</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -460,7 +464,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00638">638</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00636">636</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -604,7 +608,7 @@ Variables</h2></td></tr>
     <span class="stringliteral">&#39;other&#39;</span>         =&gt; __(<span class="stringliteral">&#39;Other&#39;</span>)
 )
 </pre></div>
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00588">588</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00586">586</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -613,7 +617,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($_REQUEST['flush'])) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($_REQUEST['kill'])) $server_status = <a class="el" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b">PMA_DBI_fetch_result</a>('SHOW GLOBAL STATUS', 0, 1)</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($_REQUEST['flush'])) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($_REQUEST['kill'])) $server_status = <a class="el" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b">PMA_DBI_fetch_result</a>('SHOW GLOBAL STATUS', 0, 1)</td>
         </tr>
       </table>
 </div>
@@ -622,7 +626,7 @@ Variables</h2></td></tr>
 <p>flush status variables if requested </p>
 <p>Kills a selected process get status from server </p>
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00473">473</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00471">471</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -631,7 +635,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (PMA_DRIZZLE) $server_variables = <a class="el" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b">PMA_DBI_fetch_result</a>('SHOW GLOBAL VARIABLES', 0, 1)</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (PMA_DRIZZLE) $server_variables = <a class="el" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b">PMA_DBI_fetch_result</a>('SHOW GLOBAL VARIABLES', 0, 1)</td>
         </tr>
       </table>
 </div>
@@ -639,7 +643,7 @@ Variables</h2></td></tr>
 
 <p>for some calculations we require also some server settings </p>
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00485">485</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00483">483</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -663,13 +667,13 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="lib_8sitevars_8php.html#aa1c1171798f0afc9a867d3c06032e678">foreach</a>($sections as $section_id=&gt; $section_name)</td>
+          <td class="memname"><a class="el" href="search_8php.html#a09b4b6d1a0b5fcafe14aee32edd9b8c9">foreach</a>($sections as $section_id=&gt; $section_name)</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="server__status_8php_source.html#l00863">863</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
+<p>Definition at line <a class="el" href="server__status_8php_source.html#l00855">855</a> of file <a class="el" href="server__status_8php_source.html">server_status.php</a>.</p>
 
 </div>
 </div>
@@ -678,7 +682,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!defined('PMA_NO_VARIABLES_IMPORT')) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['ajax_request'])&amp;&amp;$_REQUEST['ajax_request']==true)</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!defined('PMA_NO_VARIABLES_IMPORT')) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['ajax_request'])&amp;&amp;$_REQUEST['ajax_request']==true)</td>
         </tr>
       </table>
 </div>
@@ -695,7 +699,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($GLOBALS['cfg']['MainPageIconic'])</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($GLOBALS['cfg']['MainPageIconic'])</td>
         </tr>
       </table>
 </div>
@@ -714,7 +718,7 @@ Variables</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="server__status_8php.html">server_status.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:40 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:53 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

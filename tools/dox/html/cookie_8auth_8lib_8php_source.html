@@ -113,7 +113,7 @@
 <a name="l00035"></a>00035             die(__(<span class="stringliteral">&#39;Failed to use Blowfish from mcrypt!&#39;</span>));
 <a name="l00036"></a>00036         }
 <a name="l00037"></a>00037         $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-<a name="l00038"></a>00038         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;setCookie(<span class="stringliteral">&#39;pma_mcrypt_iv&#39;</span>, base64_encode($iv));
+<a name="l00038"></a>00038         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;setCookie(<span class="stringliteral">&#39;pma_mcrypt_iv&#39;</span>, base64_encode($iv));
 <a name="l00039"></a>00039     }
 <a name="l00040"></a>00040 <span class="comment"></span>
 <a name="l00041"></a>00041 <span class="comment">    /**</span>
@@ -127,10 +127,10 @@
 <a name="l00049"></a>00049 <span class="comment">     * @access  public</span>
 <a name="l00050"></a>00050 <span class="comment">     *</span>
 <a name="l00051"></a>00051 <span class="comment">     */</span>
-<a name="l00052"></a>00052     <span class="keyword">function</span> <a class="code" href="blowfish_8php.html#a8e312055008054767649ab4dbe99ed90" title="Encryption using blowfish algorithm.">PMA_blowfish_encrypt</a>(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>, $secret)
+<a name="l00052"></a>00052     <span class="keyword">function</span> <a class="code" href="blowfish_8php.html#a8e312055008054767649ab4dbe99ed90" title="Encryption using blowfish algorithm.">PMA_blowfish_encrypt</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>, $secret)
 <a name="l00053"></a>00053     {
 <a name="l00054"></a>00054         global $iv;
-<a name="l00055"></a>00055         <span class="keywordflow">return</span> base64_encode(mcrypt_encrypt(MCRYPT_BLOWFISH, $secret, <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>, MCRYPT_MODE_CBC, $iv));
+<a name="l00055"></a>00055         <span class="keywordflow">return</span> base64_encode(mcrypt_encrypt(MCRYPT_BLOWFISH, $secret, <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>, MCRYPT_MODE_CBC, $iv));
 <a name="l00056"></a>00056     }
 <a name="l00057"></a>00057 <span class="comment"></span>
 <a name="l00058"></a>00058 <span class="comment">    /**</span>
@@ -162,15 +162,15 @@
 <a name="l00084"></a>00084 <span class="comment"> */</span>
 <a name="l00085"></a>00085 <span class="keyword">function</span> PMA_get_blowfish_secret()
 <a name="l00086"></a>00086 {
-<a name="l00087"></a>00087     <span class="keywordflow">if</span> (empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;blowfish_secret&#39;</span>])) {
-<a name="l00088"></a>00088         <span class="keywordflow">if</span> (empty(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;auto_blowfish_secret&#39;</span>])) {
+<a name="l00087"></a>00087     <span class="keywordflow">if</span> (empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;blowfish_secret&#39;</span>])) {
+<a name="l00088"></a>00088         <span class="keywordflow">if</span> (empty(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;auto_blowfish_secret&#39;</span>])) {
 <a name="l00089"></a>00089             <span class="comment">// this returns 23 characters</span>
-<a name="l00090"></a>00090             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;auto_blowfish_secret&#39;</span>] = uniqid(<span class="stringliteral">&#39;&#39;</span>, <span class="keyword">true</span>);
+<a name="l00090"></a>00090             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;auto_blowfish_secret&#39;</span>] = uniqid(<span class="stringliteral">&#39;&#39;</span>, <span class="keyword">true</span>);
 <a name="l00091"></a>00091         }
-<a name="l00092"></a>00092         <span class="keywordflow">return</span> <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;auto_blowfish_secret&#39;</span>];
+<a name="l00092"></a>00092         <span class="keywordflow">return</span> <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;auto_blowfish_secret&#39;</span>];
 <a name="l00093"></a>00093     } <span class="keywordflow">else</span> {
 <a name="l00094"></a>00094         <span class="comment">// apply md5() to work around too long secrets (returns 32 characters)</span>
-<a name="l00095"></a>00095         <span class="keywordflow">return</span> md5(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;blowfish_secret&#39;</span>]);
+<a name="l00095"></a>00095         <span class="keywordflow">return</span> md5(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;blowfish_secret&#39;</span>]);
 <a name="l00096"></a>00096     }
 <a name="l00097"></a>00097 }
 <a name="l00098"></a>00098 <span class="comment"></span>
@@ -189,15 +189,15 @@
 <a name="l00111"></a>00111 
 <a name="l00112"></a>00112     <span class="comment">/* Perform logout to custom URL */</span>
 <a name="l00113"></a>00113     <span class="keywordflow">if</span> (! empty(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;old_usr&#39;</span>])
-<a name="l00114"></a>00114      &amp;&amp; ! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;LogoutURL&#39;</span>])) {
-<a name="l00115"></a>00115         <a class="code" href="core_8lib_8php.html#aec01a2e642427f2c036b45e59630b6b0" title="Send HTTP header, taking IIS limits into account (600 seems ok)">PMA_sendHeaderLocation</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;LogoutURL&#39;</span>]);
+<a name="l00114"></a>00114      &amp;&amp; ! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;LogoutURL&#39;</span>])) {
+<a name="l00115"></a>00115         <a class="code" href="core_8lib_8php.html#aec01a2e642427f2c036b45e59630b6b0" title="Send HTTP header, taking IIS limits into account (600 seems ok)">PMA_sendHeaderLocation</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;LogoutURL&#39;</span>]);
 <a name="l00116"></a>00116         <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>;
 <a name="l00117"></a>00117     }
 <a name="l00118"></a>00118 
 <a name="l00119"></a>00119     <span class="comment">/* No recall if blowfish secret is not configured as it would produce garbage */</span>
-<a name="l00120"></a>00120     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieRecall&#39;</span>] &amp;&amp; !empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;blowfish_secret&#39;</span>])) {
-<a name="l00121"></a>00121         $default_user   = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_USER&#39;</span>];
-<a name="l00122"></a>00122         $default_server = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;pma_auth_server&#39;</span>];
+<a name="l00120"></a>00120     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieRecall&#39;</span>] &amp;&amp; !empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;blowfish_secret&#39;</span>])) {
+<a name="l00121"></a>00121         $default_user   = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_USER&#39;</span>];
+<a name="l00122"></a>00122         $default_server = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;pma_auth_server&#39;</span>];
 <a name="l00123"></a>00123         $autocomplete   = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00124"></a>00124     } <span class="keywordflow">else</span> {
 <a name="l00125"></a>00125         $default_user   = <span class="stringliteral">&#39;&#39;</span>;
@@ -206,7 +206,7 @@
 <a name="l00128"></a>00128         $autocomplete   = <span class="stringliteral">&#39; autocomplete=&quot;off&quot;&#39;</span>;
 <a name="l00129"></a>00129     }
 <a name="l00130"></a>00130 
-<a name="l00131"></a>00131     $cell_align = (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;text_dir&#39;</span>] == <span class="stringliteral">&#39;ltr&#39;</span>) ? <span class="stringliteral">&#39;left&#39;</span> : <span class="stringliteral">&#39;right&#39;</span>;
+<a name="l00131"></a>00131     $cell_align = (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;text_dir&#39;</span>] == <span class="stringliteral">&#39;ltr&#39;</span>) ? <span class="stringliteral">&#39;left&#39;</span> : <span class="stringliteral">&#39;right&#39;</span>;
 <a name="l00132"></a>00132 
 <a name="l00133"></a>00133     <span class="comment">// Defines the charset to be used</span>
 <a name="l00134"></a>00134     header(<span class="stringliteral">&#39;Content-Type: text/html; charset=utf-8&#39;</span>);
@@ -237,11 +237,11 @@
 <a name="l00159"></a>00159 
 <a name="l00160"></a>00160 &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;container&quot;</span>&gt;
 <a name="l00161"></a>00161 &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a85f522b5d557b63fe501c729a79560df">a</a> href=<span class="stringliteral">&quot;&lt;?php echo PMA_linkURL(&#39;http://www.phpmyadmin.net/&#39;); ?&gt;&quot;</span> target=<span class="stringliteral">&quot;_blank&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;logo&quot;</span>&gt;&lt;?php
-<a name="l00162"></a>00162     $logo_image = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;pmaThemeImage&#39;</span>] . <span class="stringliteral">&#39;logo_right.png&#39;</span>;
+<a name="l00162"></a>00162     $logo_image = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;pmaThemeImage&#39;</span>] . <span class="stringliteral">&#39;logo_right.png&#39;</span>;
 <a name="l00163"></a>00163     <span class="keywordflow">if</span> (@file_exists($logo_image)) {
 <a name="l00164"></a>00164         echo <span class="stringliteral">&#39;&lt;img src=&quot;&#39;</span> . $logo_image . <span class="stringliteral">&#39;&quot; id=&quot;imLogo&quot; name=&quot;imLogo&quot; alt=&quot;phpMyAdmin&quot; border=&quot;0&quot; /&gt;&#39;</span>;
 <a name="l00165"></a>00165     } <span class="keywordflow">else</span> {
-<a name="l00166"></a>00166         echo <span class="stringliteral">&#39;&lt;img name=&quot;imLogo&quot; id=&quot;imLogo&quot; src=&quot;&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;pmaThemeImage&#39;</span>] . <span class="stringliteral">&#39;pma_logo.png&#39;</span> . <span class="stringliteral">&#39;&quot; &#39;</span>
+<a name="l00166"></a>00166         echo <span class="stringliteral">&#39;&lt;img name=&quot;imLogo&quot; id=&quot;imLogo&quot; src=&quot;&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;pmaThemeImage&#39;</span>] . <span class="stringliteral">&#39;pma_logo.png&#39;</span> . <span class="stringliteral">&#39;&quot; &#39;</span>
 <a name="l00167"></a>00167            . <span class="stringliteral">&#39;border=&quot;0&quot; width=&quot;88&quot; height=&quot;31&quot; alt=&quot;phpMyAdmin&quot; /&gt;&#39;</span>;
 <a name="l00168"></a>00168     }
 <a name="l00169"></a>00169     ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a85f522b5d557b63fe501c729a79560df">a</a>&gt;
@@ -259,7 +259,7 @@
 <a name="l00181"></a>00181     }
 <a name="l00182"></a>00182 
 <a name="l00183"></a>00183     <span class="comment">// Displays the languages form</span>
-<a name="l00184"></a>00184     <span class="keywordflow">if</span> (empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Lang&#39;</span>])) {
+<a name="l00184"></a>00184     <span class="keywordflow">if</span> (empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Lang&#39;</span>])) {
 <a name="l00185"></a>00185         include_once <span class="stringliteral">&#39;./libraries/display_select_lang.lib.php&#39;</span>;
 <a name="l00186"></a>00186         <span class="comment">// use fieldset, don&#39;t show doc link</span>
 <a name="l00187"></a>00187         <a class="code" href="display__select__lang_8lib_8php.html#ab02554959349abf67be7cf7dd843692f" title="Displays for for language selection.">PMA_select_language</a>(<span class="keyword">true</span>, <span class="keyword">false</span>);
@@ -275,7 +275,7 @@
 <a name="l00197"></a>00197     echo __(<span class="stringliteral">&#39;Log in&#39;</span>);
 <a name="l00198"></a>00198     echo <span class="stringliteral">&#39;&lt;a href=&quot;./Documentation.html&quot; target=&quot;documentation&quot; &#39;</span> .
 <a name="l00199"></a>00199         <span class="stringliteral">&#39;title=&quot;&#39;</span> . __(<span class="stringliteral">&#39;phpMyAdmin documentation&#39;</span>) . <span class="stringliteral">&#39;&quot;&gt; &#39;</span>;
-<a name="l00200"></a>00200     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ReplaceHelpImg&#39;</span>]) {
+<a name="l00200"></a>00200     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ReplaceHelpImg&#39;</span>]) {
 <a name="l00201"></a>00201         echo <a class="code" href="common_8lib_8php.html#a54fdec9763bf305a5082d23a5d7d5957" title="Returns an HTML IMG tag for a particular image from a theme, which may be an actual file or an icon f...">PMA_getImage</a>(<span class="stringliteral">&#39;b_help.png&#39;</span>, __(<span class="stringliteral">&#39;phpMyAdmin documentation&#39;</span>));
 <a name="l00202"></a>00202     } <span class="keywordflow">else</span> {
 <a name="l00203"></a>00203         echo <span class="stringliteral">&#39;(*)&#39;</span>;
@@ -284,7 +284,7 @@
 <a name="l00206"></a>00206 ?&gt;
 <a name="l00207"></a>00207 &lt;/legend&gt;
 <a name="l00208"></a>00208 
-<a name="l00209"></a>00209 &lt;?php <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]) { ?&gt;
+<a name="l00209"></a>00209 &lt;?php <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]) { ?&gt;
 <a name="l00210"></a>00210         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;item&quot;</span>&gt;
 <a name="l00211"></a>00211             &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;input_servername&quot;</span> title=<span class="stringliteral">&quot;&lt;?php echo __(&#39;You can enter hostname/IP address and port separated by space.&#39;); ?&gt;&quot;</span>&gt;&lt;?php echo __(<span class="stringliteral">&#39;Server:&#39;</span>); ?&gt;&lt;/label&gt;
 <a name="l00212"></a>00212             &lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;pma_servername&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;input_servername&quot;</span> value=<span class="stringliteral">&quot;&lt;?php echo htmlspecialchars($default_server); ?&gt;&quot;</span> <a class="code" href="pmahomme_2css_2theme__right_8css_8php.html#ae20d3ca2acbfbfe24798ca800435f9f1">size</a>=<span class="stringliteral">&quot;24&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;textfield&quot;</span> title=<span class="stringliteral">&quot;&lt;?php echo __(&#39;You can enter hostname/IP address and port separated by space.&#39;); ?&gt;&quot;</span> /&gt;
@@ -299,13 +299,13 @@
 <a name="l00221"></a>00221             &lt;input type=<span class="stringliteral">&quot;password&quot;</span> name=<span class="stringliteral">&quot;pma_password&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;input_password&quot;</span> value=<span class="stringliteral">&quot;&quot;</span> <a class="code" href="pmahomme_2css_2theme__right_8css_8php.html#ae20d3ca2acbfbfe24798ca800435f9f1">size</a>=<span class="stringliteral">&quot;24&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;textfield&quot;</span> /&gt;
 <a name="l00222"></a>00222         &lt;/div&gt;
 <a name="l00223"></a>00223     &lt;?php
-<a name="l00224"></a>00224     <span class="keywordflow">if</span> (count(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>]) &gt; 1) {
+<a name="l00224"></a>00224     <span class="keywordflow">if</span> (count(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>]) &gt; 1) {
 <a name="l00225"></a>00225         ?&gt;
 <a name="l00226"></a>00226         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;item&quot;</span>&gt;
 <a name="l00227"></a>00227             &lt;label <span class="keywordflow">for</span>=<span class="stringliteral">&quot;select_server&quot;</span>&gt;&lt;?php echo __(<span class="stringliteral">&#39;Server Choice&#39;</span>); ?&gt;:&lt;/label&gt;
 <a name="l00228"></a>00228             &lt;select name=<span class="stringliteral">&quot;server&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;select_server&quot;</span>
 <a name="l00229"></a>00229         &lt;?php
-<a name="l00230"></a>00230         <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]) {
+<a name="l00230"></a>00230         <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]) {
 <a name="l00231"></a>00231             echo <span class="stringliteral">&#39; onchange=&quot;document.forms[\&#39;login_form\&#39;].elements[\&#39;pma_servername\&#39;].value = \&#39;\&#39;&quot; &#39;</span>;
 <a name="l00232"></a>00232         }
 <a name="l00233"></a>00233         echo <span class="charliteral">&#39;&gt;&#39;</span>;
@@ -315,7 +315,7 @@
 <a name="l00237"></a>00237 
 <a name="l00238"></a>00238         echo <span class="stringliteral">&#39;&lt;/select&gt;&lt;/div&gt;&#39;</span>;
 <a name="l00239"></a>00239     } <span class="keywordflow">else</span> {
-<a name="l00240"></a>00240         echo <span class="stringliteral">&#39;    &lt;input type=&quot;hidden&quot; name=&quot;server&quot; value=&quot;&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>] . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span>;
+<a name="l00240"></a>00240         echo <span class="stringliteral">&#39;    &lt;input type=&quot;hidden&quot; name=&quot;server&quot; value=&quot;&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>] . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span>;
 <a name="l00241"></a>00241     } <span class="comment">// end if (server choice)</span>
 <a name="l00242"></a>00242     ?&gt;
 <a name="l00243"></a>00243     &lt;/fieldset&gt;
@@ -323,14 +323,14 @@
 <a name="l00245"></a>00245         &lt;input value=<span class="stringliteral">&quot;&lt;?php echo __(&#39;Go&#39;); ?&gt;&quot;</span> type=<span class="stringliteral">&quot;submit&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;input_go&quot;</span> /&gt;
 <a name="l00246"></a>00246     &lt;?php
 <a name="l00247"></a>00247     <a class="code" href="tbl__properties_8inc_8php.html#a2f9b3544e8335df6ce6a4e1c0aaa731a" title="Class for partition management.">$_form_params</a> = array();
-<a name="l00248"></a>00248     <span class="keywordflow">if</span> (! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;target&#39;</span>])) {
-<a name="l00249"></a>00249         $_form_params[<span class="stringliteral">&#39;target&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;target&#39;</span>];
+<a name="l00248"></a>00248     <span class="keywordflow">if</span> (! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;target&#39;</span>])) {
+<a name="l00249"></a>00249         $_form_params[<span class="stringliteral">&#39;target&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;target&#39;</span>];
 <a name="l00250"></a>00250     }
-<a name="l00251"></a>00251     <span class="keywordflow">if</span> (! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>])) {
-<a name="l00252"></a>00252         $_form_params[<span class="stringliteral">&#39;db&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
+<a name="l00251"></a>00251     <span class="keywordflow">if</span> (! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>])) {
+<a name="l00252"></a>00252         $_form_params[<span class="stringliteral">&#39;db&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
 <a name="l00253"></a>00253     }
-<a name="l00254"></a>00254     <span class="keywordflow">if</span> (! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>])) {
-<a name="l00255"></a>00255         $_form_params[<span class="stringliteral">&#39;table&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>];
+<a name="l00254"></a>00254     <span class="keywordflow">if</span> (! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>])) {
+<a name="l00255"></a>00255         $_form_params[<span class="stringliteral">&#39;table&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>];
 <a name="l00256"></a>00256     }
 <a name="l00257"></a>00257     <span class="comment">// do not generate a &quot;server&quot; hidden field as we want the &quot;server&quot;</span>
 <a name="l00258"></a>00258     <span class="comment">// drop-down to have priority</span>
@@ -350,9 +350,9 @@
 <a name="l00272"></a>00272     <span class="keywordflow">if</span> (empty($_COOKIE)) {
 <a name="l00273"></a>00273         trigger_error(__(<span class="stringliteral">&#39;Cookies must be enabled past this point.&#39;</span>), E_USER_NOTICE);
 <a name="l00274"></a>00274     }
-<a name="l00275"></a>00275     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;error_handler&#39;</span>]-&gt;hasDisplayErrors()) {
+<a name="l00275"></a>00275     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;error_handler&#39;</span>]-&gt;hasDisplayErrors()) {
 <a name="l00276"></a>00276         echo <span class="stringliteral">&#39;&lt;div&gt;&#39;</span>;
-<a name="l00277"></a>00277         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;error_handler&#39;</span>]-&gt;dispErrors();
+<a name="l00277"></a>00277         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;error_handler&#39;</span>]-&gt;dispErrors();
 <a name="l00278"></a>00278         echo <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;
 <a name="l00279"></a>00279     }
 <a name="l00280"></a>00280     ?&gt;
@@ -398,10 +398,10 @@
 <a name="l00320"></a>00320 <span class="comment">    /**</span>
 <a name="l00321"></a>00321 <span class="comment">     * @global $GLOBALS[&#39;pma_auth_server&#39;] the user provided server to connect to</span>
 <a name="l00322"></a>00322 <span class="comment">     */</span>
-<a name="l00323"></a>00323     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;pma_auth_server&#39;</span>] = <span class="stringliteral">&#39;&#39;</span>;
+<a name="l00323"></a>00323     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;pma_auth_server&#39;</span>] = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00324"></a>00324 
-<a name="l00325"></a>00325     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_USER&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_PW&#39;</span>] = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00326"></a>00326     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;from_cookie&#39;</span>] = <span class="keyword">false</span>;
+<a name="l00325"></a>00325     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_USER&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_PW&#39;</span>] = <span class="stringliteral">&#39;&#39;</span>;
+<a name="l00326"></a>00326     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;from_cookie&#39;</span>] = <span class="keyword">false</span>;
 <a name="l00327"></a>00327 
 <a name="l00328"></a>00328     <span class="comment">// BEGIN Swekey Integration</span>
 <a name="l00329"></a>00329     <span class="keywordflow">if</span> (! <a class="code" href="swekey_8auth_8lib_8php.html#ab101b3e3295803fcf559d80fa5a3dfb1" title="Checks Swekey authentication.">Swekey_auth_check</a>()) {
@@ -410,10 +410,10 @@
 <a name="l00332"></a>00332     <span class="comment">// END Swekey Integration</span>
 <a name="l00333"></a>00333 
 <a name="l00334"></a>00334     <span class="keywordflow">if</span> (defined(<span class="stringliteral">&#39;PMA_CLEAR_COOKIES&#39;</span>)) {
-<a name="l00335"></a>00335         <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>] as $key =&gt; $val) {
-<a name="l00336"></a>00336             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . $key);
-<a name="l00337"></a>00337             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaServer-&#39;</span> . $key);
-<a name="l00338"></a>00338             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaUser-&#39;</span> . $key);
+<a name="l00335"></a>00335         <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>] as $key =&gt; $val) {
+<a name="l00336"></a>00336             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . $key);
+<a name="l00337"></a>00337             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaServer-&#39;</span> . $key);
+<a name="l00338"></a>00338             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaUser-&#39;</span> . $key);
 <a name="l00339"></a>00339         }
 <a name="l00340"></a>00340         <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00341"></a>00341     }
@@ -429,16 +429,16 @@
 <a name="l00351"></a>00351 
 <a name="l00352"></a>00352         session_destroy();
 <a name="l00353"></a>00353         <span class="comment">// -&gt; delete password cookie(s)</span>
-<a name="l00354"></a>00354         <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieDeleteAll&#39;</span>]) {
-<a name="l00355"></a>00355             <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>] as $key =&gt; $val) {
-<a name="l00356"></a>00356                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . $key);
+<a name="l00354"></a>00354         <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieDeleteAll&#39;</span>]) {
+<a name="l00355"></a>00355             <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>] as $key =&gt; $val) {
+<a name="l00356"></a>00356                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . $key);
 <a name="l00357"></a>00357                 <span class="keywordflow">if</span> (isset($_COOKIE[<span class="stringliteral">&#39;pmaPass-&#39;</span> . $key])) {
 <a name="l00358"></a>00358                     unset($_COOKIE[<span class="stringliteral">&#39;pmaPass-&#39;</span> . $key]);
 <a name="l00359"></a>00359                 }
 <a name="l00360"></a>00360             }
 <a name="l00361"></a>00361         } <span class="keywordflow">else</span> {
-<a name="l00362"></a>00362             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>]);
-<a name="l00363"></a>00363             <span class="keywordflow">if</span> (isset($_COOKIE[<span class="stringliteral">&#39;pmaPass-&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>]])) {
+<a name="l00362"></a>00362             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>]);
+<a name="l00363"></a>00363             <span class="keywordflow">if</span> (isset($_COOKIE[<span class="stringliteral">&#39;pmaPass-&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>]])) {
 <a name="l00364"></a>00364                 unset($_COOKIE[<span class="stringliteral">&#39;pmaPass-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]]);
 <a name="l00365"></a>00365             }
 <a name="l00366"></a>00366         }
@@ -446,10 +446,10 @@
 <a name="l00368"></a>00368 
 <a name="l00369"></a>00369     <span class="keywordflow">if</span> (! empty(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_username&#39;</span>])) {
 <a name="l00370"></a>00370         <span class="comment">// The user just logged in</span>
-<a name="l00371"></a>00371         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_USER&#39;</span>] = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_username&#39;</span>];
-<a name="l00372"></a>00372         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_PW&#39;</span>]   = empty(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_password&#39;</span>]) ? <span class="stringliteral">&#39;&#39;</span> : <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_password&#39;</span>];
-<a name="l00373"></a>00373         <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>] &amp;&amp; isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_servername&#39;</span>])) {
-<a name="l00374"></a>00374             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;pma_auth_server&#39;</span>] = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_servername&#39;</span>];
+<a name="l00371"></a>00371         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_USER&#39;</span>] = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_username&#39;</span>];
+<a name="l00372"></a>00372         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PHP_AUTH_PW&#39;</span>]   = empty(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_password&#39;</span>]) ? <span class="stringliteral">&#39;&#39;</span> : <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_password&#39;</span>];
+<a name="l00373"></a>00373         <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>] &amp;&amp; isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_servername&#39;</span>])) {
+<a name="l00374"></a>00374             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;pma_auth_server&#39;</span>] = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pma_servername&#39;</span>];
 <a name="l00375"></a>00375         }
 <a name="l00376"></a>00376         <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l00377"></a>00377     }
@@ -458,8 +458,8 @@
 <a name="l00380"></a>00380     <span class="comment">// and $GLOBALS[&#39;PHP_AUTH_PW&#39;] variables from cookies</span>
 <a name="l00381"></a>00381 
 <a name="l00382"></a>00382     <span class="comment">// servername</span>
-<a name="l00383"></a>00383     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]
-<a name="l00384"></a>00384      &amp;&amp; ! empty($_COOKIE[<span class="stringliteral">&#39;pmaServer-&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>]])) {
+<a name="l00383"></a>00383     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]
+<a name="l00384"></a>00384      &amp;&amp; ! empty($_COOKIE[<span class="stringliteral">&#39;pmaServer-&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>]])) {
 <a name="l00385"></a>00385         $GLOBALS[<span class="stringliteral">&#39;pma_auth_server&#39;</span>] = $_COOKIE[<span class="stringliteral">&#39;pmaServer-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]];
 <a name="l00386"></a>00386     }
 <a name="l00387"></a>00387 
@@ -473,12 +473,12 @@
 <a name="l00395"></a>00395         PMA_get_blowfish_secret());
 <a name="l00396"></a>00396 
 <a name="l00397"></a>00397     <span class="comment">// user was never logged in since session start</span>
-<a name="l00398"></a>00398     <span class="keywordflow">if</span> (empty(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;last_access_time&#39;</span>])) {
+<a name="l00398"></a>00398     <span class="keywordflow">if</span> (empty(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;last_access_time&#39;</span>])) {
 <a name="l00399"></a>00399         <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00400"></a>00400     }
 <a name="l00401"></a>00401 
 <a name="l00402"></a>00402     <span class="comment">// User inactive too long</span>
-<a name="l00403"></a>00403     <span class="keywordflow">if</span> (<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;last_access_time&#39;</span>] &lt; time() - $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieValidity&#39;</span>]) {
+<a name="l00403"></a>00403     <span class="keywordflow">if</span> (<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;last_access_time&#39;</span>] &lt; time() - $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieValidity&#39;</span>]) {
 <a name="l00404"></a>00404         <a class="code" href="common_8lib_8php.html#a5d0d4700fdba5e47e8ab2597ced4ece3" title="Removes cached information from the session.">PMA_cacheUnset</a>(<span class="stringliteral">&#39;is_create_db_priv&#39;</span>, <span class="keyword">true</span>);
 <a name="l00405"></a>00405         <a class="code" href="common_8lib_8php.html#a5d0d4700fdba5e47e8ab2597ced4ece3" title="Removes cached information from the session.">PMA_cacheUnset</a>(<span class="stringliteral">&#39;is_process_priv&#39;</span>, <span class="keyword">true</span>);
 <a name="l00406"></a>00406         <a class="code" href="common_8lib_8php.html#a5d0d4700fdba5e47e8ab2597ced4ece3" title="Removes cached information from the session.">PMA_cacheUnset</a>(<span class="stringliteral">&#39;is_reload_priv&#39;</span>, <span class="keyword">true</span>);
@@ -562,7 +562,7 @@
 <a name="l00484"></a>00484     unset($GLOBALS[<span class="stringliteral">&#39;PHP_AUTH_PW&#39;</span>]);
 <a name="l00485"></a>00485     unset($_SERVER[<span class="stringliteral">&#39;PHP_AUTH_PW&#39;</span>]);
 <a name="l00486"></a>00486 
-<a name="l00487"></a>00487     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;last_access_time&#39;</span>] = time();
+<a name="l00487"></a>00487     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;last_access_time&#39;</span>] = time();
 <a name="l00488"></a>00488 
 <a name="l00489"></a>00489     <span class="comment">// Name and password cookies need to be refreshed each time</span>
 <a name="l00490"></a>00490     <span class="comment">// Duration = one month for username</span>
@@ -571,118 +571,112 @@
 <a name="l00493"></a>00493             PMA_get_blowfish_secret()));
 <a name="l00494"></a>00494 
 <a name="l00495"></a>00495     <span class="comment">// Duration = as configured</span>
-<a name="l00496"></a>00496     $GLOBALS[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;setCookie(
-<a name="l00497"></a>00497         <span class="stringliteral">&#39;pmaPass-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>],
-<a name="l00498"></a>00498         <a class="code" href="blowfish_8php.html#a8e312055008054767649ab4dbe99ed90" title="Encryption using blowfish algorithm.">PMA_blowfish_encrypt</a>(
-<a name="l00499"></a>00499             ! empty($cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;password&#39;</span>]) 
-<a name="l00500"></a>00500                 ? $cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;password&#39;</span>] 
-<a name="l00501"></a>00501                 : <span class="stringliteral">&quot;\xff(blank)&quot;</span>,
-<a name="l00502"></a>00502             PMA_get_blowfish_secret()
-<a name="l00503"></a>00503         ),
-<a name="l00504"></a>00504         null,
-<a name="l00505"></a>00505         $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieStore&#39;</span>]
-<a name="l00506"></a>00506     );
-<a name="l00507"></a>00507 
-<a name="l00508"></a>00508     <span class="comment">// Set server cookies if required (once per session) and, in this case, force</span>
-<a name="l00509"></a>00509     <span class="comment">// reload to ensure the client accepts cookies</span>
-<a name="l00510"></a>00510     <span class="keywordflow">if</span> (! $GLOBALS[<span class="stringliteral">&#39;from_cookie&#39;</span>]) {
-<a name="l00511"></a>00511         <span class="keywordflow">if</span> ($GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]) {
-<a name="l00512"></a>00512             <span class="keywordflow">if</span> (! empty($GLOBALS[<span class="stringliteral">&#39;pma_auth_server&#39;</span>])) {
-<a name="l00513"></a>00513                 <span class="comment">// Duration = one month for servername</span>
-<a name="l00514"></a>00514                 $GLOBALS[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;setCookie(<span class="stringliteral">&#39;pmaServer-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>], $cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;host&#39;</span>]);
-<a name="l00515"></a>00515             } <span class="keywordflow">else</span> {
-<a name="l00516"></a>00516                 <span class="comment">// Delete servername cookie</span>
-<a name="l00517"></a>00517                 $GLOBALS[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaServer-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]);
-<a name="l00518"></a>00518             }
-<a name="l00519"></a>00519         }
-<a name="l00520"></a>00520 
-<a name="l00521"></a>00521         <span class="comment">// URL where to go:</span>
-<a name="l00522"></a>00522         $redirect_url = $cfg[<span class="stringliteral">&#39;PmaAbsoluteUri&#39;</span>] . <span class="stringliteral">&#39;index.php&#39;</span>;
-<a name="l00523"></a>00523 
-<a name="l00524"></a>00524         <span class="comment">// any parameters to pass?</span>
-<a name="l00525"></a>00525         <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a> = array();
-<a name="l00526"></a>00526         <span class="keywordflow">if</span> (strlen($GLOBALS[<span class="stringliteral">&#39;db&#39;</span>])) {
-<a name="l00527"></a>00527             <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>[<span class="stringliteral">&#39;db&#39;</span>] = $GLOBALS[<span class="stringliteral">&#39;db&#39;</span>];
-<a name="l00528"></a>00528         }
-<a name="l00529"></a>00529         <span class="keywordflow">if</span> (strlen($GLOBALS[<span class="stringliteral">&#39;table&#39;</span>])) {
-<a name="l00530"></a>00530             <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>[<span class="stringliteral">&#39;table&#39;</span>] = $GLOBALS[<span class="stringliteral">&#39;table&#39;</span>];
-<a name="l00531"></a>00531         }
-<a name="l00532"></a>00532         <span class="comment">// any target to pass?</span>
-<a name="l00533"></a>00533         <span class="keywordflow">if</span> (! empty($GLOBALS[<span class="stringliteral">&#39;target&#39;</span>]) &amp;&amp; $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>] != <span class="stringliteral">&#39;index.php&#39;</span>) {
-<a name="l00534"></a>00534             <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>[<span class="stringliteral">&#39;target&#39;</span>] = $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>];
-<a name="l00535"></a>00535         }
-<a name="l00536"></a>00536 <span class="comment"></span>
-<a name="l00537"></a>00537 <span class="comment">        /**</span>
-<a name="l00538"></a>00538 <span class="comment">         * whether we come from a fresh cookie login</span>
-<a name="l00539"></a>00539 <span class="comment">         */</span>
-<a name="l00540"></a>00540         define(<span class="stringliteral">&#39;PMA_COMING_FROM_COOKIE_LOGIN&#39;</span>, <span class="keyword">true</span>);
-<a name="l00541"></a>00541 <span class="comment"></span>
-<a name="l00542"></a>00542 <span class="comment">        /**</span>
-<a name="l00543"></a>00543 <span class="comment">         * Clear user cache.</span>
-<a name="l00544"></a>00544 <span class="comment">         */</span>
-<a name="l00545"></a>00545         <a class="code" href="common_8lib_8php.html#a928010d7a00b1ddf9a9e367387ef01a0" title="Clears cache content which needs to be refreshed on user change.">PMA_clearUserCache</a>();
-<a name="l00546"></a>00546 
-<a name="l00547"></a>00547         <a class="code" href="core_8lib_8php.html#aec01a2e642427f2c036b45e59630b6b0" title="Send HTTP header, taking IIS limits into account (600 seems ok)">PMA_sendHeaderLocation</a>($redirect_url . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>, <span class="charliteral">&#39;&amp;&#39;</span>));
-<a name="l00548"></a>00548         <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>();
-<a name="l00549"></a>00549     } <span class="comment">// end if</span>
-<a name="l00550"></a>00550 
-<a name="l00551"></a>00551     <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00552"></a>00552 } <span class="comment">// end of the &#39;PMA_auth_set_user()&#39; function</span>
-<a name="l00553"></a>00553 
-<a name="l00554"></a>00554 <span class="comment"></span>
-<a name="l00555"></a>00555 <span class="comment">/**</span>
-<a name="l00556"></a>00556 <span class="comment"> * User is not allowed to login to MySQL -&gt; authentication failed</span>
+<a name="l00496"></a>00496     $GLOBALS[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;setCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>],
+<a name="l00497"></a>00497         <a class="code" href="blowfish_8php.html#a8e312055008054767649ab4dbe99ed90" title="Encryption using blowfish algorithm.">PMA_blowfish_encrypt</a>(!empty($cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;password&#39;</span>]) ? $cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;password&#39;</span>] : <span class="stringliteral">&quot;\xff(blank)&quot;</span>,
+<a name="l00498"></a>00498             PMA_get_blowfish_secret()),
+<a name="l00499"></a>00499         null,
+<a name="l00500"></a>00500         $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieStore&#39;</span>]);
+<a name="l00501"></a>00501 
+<a name="l00502"></a>00502     <span class="comment">// Set server cookies if required (once per session) and, in this case, force</span>
+<a name="l00503"></a>00503     <span class="comment">// reload to ensure the client accepts cookies</span>
+<a name="l00504"></a>00504     <span class="keywordflow">if</span> (! $GLOBALS[<span class="stringliteral">&#39;from_cookie&#39;</span>]) {
+<a name="l00505"></a>00505         <span class="keywordflow">if</span> ($GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowArbitraryServer&#39;</span>]) {
+<a name="l00506"></a>00506             <span class="keywordflow">if</span> (! empty($GLOBALS[<span class="stringliteral">&#39;pma_auth_server&#39;</span>])) {
+<a name="l00507"></a>00507                 <span class="comment">// Duration = one month for servername</span>
+<a name="l00508"></a>00508                 $GLOBALS[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;setCookie(<span class="stringliteral">&#39;pmaServer-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>], $cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;host&#39;</span>]);
+<a name="l00509"></a>00509             } <span class="keywordflow">else</span> {
+<a name="l00510"></a>00510                 <span class="comment">// Delete servername cookie</span>
+<a name="l00511"></a>00511                 $GLOBALS[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaServer-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]);
+<a name="l00512"></a>00512             }
+<a name="l00513"></a>00513         }
+<a name="l00514"></a>00514 
+<a name="l00515"></a>00515         <span class="comment">// URL where to go:</span>
+<a name="l00516"></a>00516         $redirect_url = $cfg[<span class="stringliteral">&#39;PmaAbsoluteUri&#39;</span>] . <span class="stringliteral">&#39;index.php&#39;</span>;
+<a name="l00517"></a>00517 
+<a name="l00518"></a>00518         <span class="comment">// any parameters to pass?</span>
+<a name="l00519"></a>00519         <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a> = array();
+<a name="l00520"></a>00520         <span class="keywordflow">if</span> (strlen($GLOBALS[<span class="stringliteral">&#39;db&#39;</span>])) {
+<a name="l00521"></a>00521             <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>[<span class="stringliteral">&#39;db&#39;</span>] = $GLOBALS[<span class="stringliteral">&#39;db&#39;</span>];
+<a name="l00522"></a>00522         }
+<a name="l00523"></a>00523         <span class="keywordflow">if</span> (strlen($GLOBALS[<span class="stringliteral">&#39;table&#39;</span>])) {
+<a name="l00524"></a>00524             <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>[<span class="stringliteral">&#39;table&#39;</span>] = $GLOBALS[<span class="stringliteral">&#39;table&#39;</span>];
+<a name="l00525"></a>00525         }
+<a name="l00526"></a>00526         <span class="comment">// any target to pass?</span>
+<a name="l00527"></a>00527         <span class="keywordflow">if</span> (! empty($GLOBALS[<span class="stringliteral">&#39;target&#39;</span>]) &amp;&amp; $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>] != <span class="stringliteral">&#39;index.php&#39;</span>) {
+<a name="l00528"></a>00528             <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>[<span class="stringliteral">&#39;target&#39;</span>] = $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>];
+<a name="l00529"></a>00529         }
+<a name="l00530"></a>00530 <span class="comment"></span>
+<a name="l00531"></a>00531 <span class="comment">        /**</span>
+<a name="l00532"></a>00532 <span class="comment">         * whether we come from a fresh cookie login</span>
+<a name="l00533"></a>00533 <span class="comment">         */</span>
+<a name="l00534"></a>00534         define(<span class="stringliteral">&#39;PMA_COMING_FROM_COOKIE_LOGIN&#39;</span>, <span class="keyword">true</span>);
+<a name="l00535"></a>00535 <span class="comment"></span>
+<a name="l00536"></a>00536 <span class="comment">        /**</span>
+<a name="l00537"></a>00537 <span class="comment">         * Clear user cache.</span>
+<a name="l00538"></a>00538 <span class="comment">         */</span>
+<a name="l00539"></a>00539         <a class="code" href="common_8lib_8php.html#a928010d7a00b1ddf9a9e367387ef01a0" title="Clears cache content which needs to be refreshed on user change.">PMA_clearUserCache</a>();
+<a name="l00540"></a>00540 
+<a name="l00541"></a>00541         <a class="code" href="core_8lib_8php.html#aec01a2e642427f2c036b45e59630b6b0" title="Send HTTP header, taking IIS limits into account (600 seems ok)">PMA_sendHeaderLocation</a>($redirect_url . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>, <span class="charliteral">&#39;&amp;&#39;</span>));
+<a name="l00542"></a>00542         <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>();
+<a name="l00543"></a>00543     } <span class="comment">// end if</span>
+<a name="l00544"></a>00544 
+<a name="l00545"></a>00545     <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00546"></a>00546 } <span class="comment">// end of the &#39;PMA_auth_set_user()&#39; function</span>
+<a name="l00547"></a>00547 
+<a name="l00548"></a>00548 <span class="comment"></span>
+<a name="l00549"></a>00549 <span class="comment">/**</span>
+<a name="l00550"></a>00550 <span class="comment"> * User is not allowed to login to MySQL -&gt; authentication failed</span>
+<a name="l00551"></a>00551 <span class="comment"> *</span>
+<a name="l00552"></a>00552 <span class="comment"> * prepares error message and switches to PMA_auth() which display the error</span>
+<a name="l00553"></a>00553 <span class="comment"> * and the login form</span>
+<a name="l00554"></a>00554 <span class="comment"> *</span>
+<a name="l00555"></a>00555 <span class="comment"> * this function MUST exit/quit the application,</span>
+<a name="l00556"></a>00556 <span class="comment"> * currently doen by call to PMA_auth()</span>
 <a name="l00557"></a>00557 <span class="comment"> *</span>
-<a name="l00558"></a>00558 <span class="comment"> * prepares error message and switches to PMA_auth() which display the error</span>
-<a name="l00559"></a>00559 <span class="comment"> * and the login form</span>
-<a name="l00560"></a>00560 <span class="comment"> *</span>
-<a name="l00561"></a>00561 <span class="comment"> * this function MUST exit/quit the application,</span>
-<a name="l00562"></a>00562 <span class="comment"> * currently doen by call to PMA_auth()</span>
-<a name="l00563"></a>00563 <span class="comment"> *</span>
-<a name="l00564"></a>00564 <span class="comment"> * @access  public</span>
-<a name="l00565"></a>00565 <span class="comment"> */</span>
-<a name="l00566"></a>00566 <span class="keyword">function</span> <a class="code" href="config_8auth_8lib_8php.html#a29189416351efab06c47b2b9bf24e082" title="User is not allowed to login to MySQL -&gt; authentication failed.">PMA_auth_fails</a>()
-<a name="l00567"></a>00567 {
-<a name="l00568"></a>00568     global $conn_error;
-<a name="l00569"></a>00569 
-<a name="l00570"></a>00570     <span class="comment">// Deletes password cookie and displays the login form</span>
-<a name="l00571"></a>00571     $GLOBALS[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]);
-<a name="l00572"></a>00572 
-<a name="l00573"></a>00573     <span class="keywordflow">if</span> (! empty($GLOBALS[<span class="stringliteral">&#39;login_without_password_is_forbidden&#39;</span>])) {
-<a name="l00574"></a>00574         $conn_error = __(<span class="stringliteral">&#39;Login without a password is forbidden by configuration (see AllowNoPassword)&#39;</span>);
-<a name="l00575"></a>00575     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (! empty($GLOBALS[<span class="stringliteral">&#39;allowDeny_forbidden&#39;</span>])) {
-<a name="l00576"></a>00576         $conn_error = __(<span class="stringliteral">&#39;Access denied&#39;</span>);
-<a name="l00577"></a>00577     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (! empty($GLOBALS[<span class="stringliteral">&#39;no_activity&#39;</span>])) {
-<a name="l00578"></a>00578         $conn_error = sprintf(__(<span class="stringliteral">&#39;No activity within %s seconds; please log in again&#39;</span>), $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieValidity&#39;</span>]);
-<a name="l00579"></a>00579         <span class="comment">// Remember where we got timeout to return on same place</span>
-<a name="l00580"></a>00580         <span class="keywordflow">if</span> (<a class="code" href="core_8lib_8php.html#af47a7345938ec406f740a61f7d1b182a" title="trys to find the value for the given environment vriable name">PMA_getenv</a>(<span class="stringliteral">&#39;SCRIPT_NAME&#39;</span>)) {
-<a name="l00581"></a>00581             $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>] = basename(<a class="code" href="core_8lib_8php.html#af47a7345938ec406f740a61f7d1b182a" title="trys to find the value for the given environment vriable name">PMA_getenv</a>(<span class="stringliteral">&#39;SCRIPT_NAME&#39;</span>));
-<a name="l00582"></a>00582             <span class="comment">// avoid &quot;missing parameter: field&quot; on re-entry</span>
-<a name="l00583"></a>00583             <span class="keywordflow">if</span> (<span class="stringliteral">&#39;tbl_alter.php&#39;</span> == $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>]) {
-<a name="l00584"></a>00584                 $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>] = <span class="stringliteral">&#39;tbl_structure.php&#39;</span>;
-<a name="l00585"></a>00585             }
-<a name="l00586"></a>00586         }
-<a name="l00587"></a>00587     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79" title="returns last error message or false if no errors occured">PMA_DBI_getError</a>()) {
-<a name="l00588"></a>00588         $conn_error = <span class="charliteral">&#39;#&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;errno&#39;</span>] . <span class="charliteral">&#39; &#39;</span> . __(<span class="stringliteral">&#39;Cannot log in to the MySQL server&#39;</span>);
-<a name="l00589"></a>00589     } <span class="keywordflow">else</span> {
-<a name="l00590"></a>00590         $conn_error = __(<span class="stringliteral">&#39;Cannot log in to the MySQL server&#39;</span>);
-<a name="l00591"></a>00591     }
-<a name="l00592"></a>00592 
-<a name="l00593"></a>00593     <span class="comment">// needed for PHP-CGI (not need for FastCGI or mod-php)</span>
-<a name="l00594"></a>00594     header(<span class="stringliteral">&#39;Cache-Control: no-store, no-cache, must-revalidate&#39;</span>);
-<a name="l00595"></a>00595     header(<span class="stringliteral">&#39;Pragma: no-cache&#39;</span>);
-<a name="l00596"></a>00596 
-<a name="l00597"></a>00597     <a class="code" href="config_8auth_8lib_8php.html#a7b36f9e978b1a9bc56724c5484a2d8b9" title="Displays authentication form.">PMA_auth</a>();
-<a name="l00598"></a>00598 } <span class="comment">// end of the &#39;PMA_auth_fails()&#39; function</span>
-<a name="l00599"></a>00599 
-<a name="l00600"></a>00600 ?&gt;
+<a name="l00558"></a>00558 <span class="comment"> * @access  public</span>
+<a name="l00559"></a>00559 <span class="comment"> */</span>
+<a name="l00560"></a>00560 <span class="keyword">function</span> <a class="code" href="config_8auth_8lib_8php.html#a29189416351efab06c47b2b9bf24e082" title="User is not allowed to login to MySQL -&gt; authentication failed.">PMA_auth_fails</a>()
+<a name="l00561"></a>00561 {
+<a name="l00562"></a>00562     global $conn_error;
+<a name="l00563"></a>00563 
+<a name="l00564"></a>00564     <span class="comment">// Deletes password cookie and displays the login form</span>
+<a name="l00565"></a>00565     $GLOBALS[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pmaPass-&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]);
+<a name="l00566"></a>00566 
+<a name="l00567"></a>00567     <span class="keywordflow">if</span> (! empty($GLOBALS[<span class="stringliteral">&#39;login_without_password_is_forbidden&#39;</span>])) {
+<a name="l00568"></a>00568         $conn_error = __(<span class="stringliteral">&#39;Login without a password is forbidden by configuration (see AllowNoPassword)&#39;</span>);
+<a name="l00569"></a>00569     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (! empty($GLOBALS[<span class="stringliteral">&#39;allowDeny_forbidden&#39;</span>])) {
+<a name="l00570"></a>00570         $conn_error = __(<span class="stringliteral">&#39;Access denied&#39;</span>);
+<a name="l00571"></a>00571     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (! empty($GLOBALS[<span class="stringliteral">&#39;no_activity&#39;</span>])) {
+<a name="l00572"></a>00572         $conn_error = sprintf(__(<span class="stringliteral">&#39;No activity within %s seconds; please log in again&#39;</span>), $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;LoginCookieValidity&#39;</span>]);
+<a name="l00573"></a>00573         <span class="comment">// Remember where we got timeout to return on same place</span>
+<a name="l00574"></a>00574         <span class="keywordflow">if</span> (<a class="code" href="core_8lib_8php.html#af47a7345938ec406f740a61f7d1b182a" title="trys to find the value for the given environment vriable name">PMA_getenv</a>(<span class="stringliteral">&#39;SCRIPT_NAME&#39;</span>)) {
+<a name="l00575"></a>00575             $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>] = basename(<a class="code" href="core_8lib_8php.html#af47a7345938ec406f740a61f7d1b182a" title="trys to find the value for the given environment vriable name">PMA_getenv</a>(<span class="stringliteral">&#39;SCRIPT_NAME&#39;</span>));
+<a name="l00576"></a>00576             <span class="comment">// avoid &quot;missing parameter: field&quot; on re-entry</span>
+<a name="l00577"></a>00577             <span class="keywordflow">if</span> (<span class="stringliteral">&#39;tbl_alter.php&#39;</span> == $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>]) {
+<a name="l00578"></a>00578                 $GLOBALS[<span class="stringliteral">&#39;target&#39;</span>] = <span class="stringliteral">&#39;tbl_structure.php&#39;</span>;
+<a name="l00579"></a>00579             }
+<a name="l00580"></a>00580         }
+<a name="l00581"></a>00581     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79" title="returns last error message or false if no errors occured">PMA_DBI_getError</a>()) {
+<a name="l00582"></a>00582         $conn_error = <span class="charliteral">&#39;#&#39;</span> . $GLOBALS[<span class="stringliteral">&#39;errno&#39;</span>] . <span class="charliteral">&#39; &#39;</span> . __(<span class="stringliteral">&#39;Cannot log in to the MySQL server&#39;</span>);
+<a name="l00583"></a>00583     } <span class="keywordflow">else</span> {
+<a name="l00584"></a>00584         $conn_error = __(<span class="stringliteral">&#39;Cannot log in to the MySQL server&#39;</span>);
+<a name="l00585"></a>00585     }
+<a name="l00586"></a>00586 
+<a name="l00587"></a>00587     <span class="comment">// needed for PHP-CGI (not need for FastCGI or mod-php)</span>
+<a name="l00588"></a>00588     header(<span class="stringliteral">&#39;Cache-Control: no-store, no-cache, must-revalidate&#39;</span>);
+<a name="l00589"></a>00589     header(<span class="stringliteral">&#39;Pragma: no-cache&#39;</span>);
+<a name="l00590"></a>00590 
+<a name="l00591"></a>00591     <a class="code" href="config_8auth_8lib_8php.html#a7b36f9e978b1a9bc56724c5484a2d8b9" title="Displays authentication form.">PMA_auth</a>();
+<a name="l00592"></a>00592 } <span class="comment">// end of the &#39;PMA_auth_fails()&#39; function</span>
+<a name="l00593"></a>00593 
+<a name="l00594"></a>00594 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="cookie_8auth_8lib_8php.html">cookie.auth.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:27 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

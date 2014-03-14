@@ -1,9 +1,9 @@
 var lib_8flash_8php =
 [
-    [ "al_flash", "lib_8flash_8php.html#ad234d029030d07ebdb96376c6952bc8d", null ],
-    [ "flash", "lib_8flash_8php.html#a50ffdea08d68fc09dac7ce72543af639", null ],
-    [ "flash_color", "lib_8flash_8php.html#a6c4506a2abda520cdc27e1c964806743", null ],
-    [ "flash_white", "lib_8flash_8php.html#a77f7c05e83b516bf5a5b4ad87f9d9f30", null ],
-    [ "flashnosize", "lib_8flash_8php.html#a5d8e50eb66c90b22a00bc921d35e3e73", null ],
-    [ "sc_getflashcode", "lib_8flash_8php.html#a7e4cf691271d5323b534737d11e93cd8", null ]
+    [ "lib_flash_embed", "lib_8flash_8php.html#a6a80a939513d07fa6c3a811284140d81", null ],
+    [ "lib_flash_embed_align", "lib_8flash_8php.html#a25ada4825ed4b2ec7d0cd02cd6069dcf", null ],
+    [ "lib_flash_embed_code", "lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74", null ],
+    [ "lib_flash_embed_color", "lib_8flash_8php.html#a3f28f17c4f12aa8e86f4797c0718bc3a", null ],
+    [ "lib_flash_embed_nosize", "lib_8flash_8php.html#ad2790dcfa7af6c884083f86c5135fd6d", null ],
+    [ "lib_flash_embed_white", "lib_8flash_8php.html#a8331d71120600fc52d32cd2d8fdc160d", null ]
 ];

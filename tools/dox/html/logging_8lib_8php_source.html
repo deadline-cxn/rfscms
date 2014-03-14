@@ -89,10 +89,10 @@
 <a name="l00011"></a>00011 <span class="comment">/**</span>
 <a name="l00012"></a>00012 <span class="comment"> * Logs user information to webserver logs.</span>
 <a name="l00013"></a>00013 <span class="comment"> */</span>
-<a name="l00014"></a><a class="code" href="logging_8lib_8php.html#ae52f87051b63a60cd832fa8bca9e95c5">00014</a> <span class="keyword">function</span> <a class="code" href="logging_8lib_8php.html#ae52f87051b63a60cd832fa8bca9e95c5" title="Logs user information to webserver logs.">PMA_log_user</a>(<a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $status = <span class="stringliteral">&#39;ok&#39;</span>)
+<a name="l00014"></a><a class="code" href="logging_8lib_8php.html#ae52f87051b63a60cd832fa8bca9e95c5">00014</a> <span class="keyword">function</span> <a class="code" href="logging_8lib_8php.html#ae52f87051b63a60cd832fa8bca9e95c5" title="Logs user information to webserver logs.">PMA_log_user</a>(<a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $status = <span class="stringliteral">&#39;ok&#39;</span>)
 <a name="l00015"></a>00015 {
 <a name="l00016"></a>00016     <span class="keywordflow">if</span> (function_exists(<span class="stringliteral">&#39;apache_note&#39;</span>)) {
-<a name="l00017"></a>00017         apache_note(<span class="stringliteral">&#39;userID&#39;</span>, <a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>);
+<a name="l00017"></a>00017         apache_note(<span class="stringliteral">&#39;userID&#39;</span>, <a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>);
 <a name="l00018"></a>00018         apache_note(<span class="stringliteral">&#39;userStatus&#39;</span>, $status);
 <a name="l00019"></a>00019     }
 <a name="l00020"></a>00020 }
@@ -104,7 +104,7 @@
     <ul>
       <li class="navelem"><a class="el" href="logging_8lib_8php.html">logging.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:30 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

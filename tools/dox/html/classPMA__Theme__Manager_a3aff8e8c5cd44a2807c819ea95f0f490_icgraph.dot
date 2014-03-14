@@ -1,0 +1,17 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_Theme_Manager\\getThemeCookieName",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_Theme_Manager\\getThemeCookie",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#afb991115b0cedc5175ef7423010284fb",tooltip="returns name of theme stored in the cookie"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_Theme_Manager\\init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#a31eb9810fb0ad76e3530585be87b8352"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_Theme_Manager\\__construct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#a0c563739507c38130ccde1bc4dd10944"];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_Theme_Manager\\checkConfig",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#a77cb745189dd065e9acd58e25527d4f1"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_Theme_Manager\\setThemeCookie",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Theme__Manager.html#aa360cddcb8266aa6ddffa5576b63fe5c",tooltip="save theme in cookie"];
+}

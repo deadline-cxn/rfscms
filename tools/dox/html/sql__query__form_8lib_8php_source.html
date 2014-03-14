@@ -115,7 +115,7 @@
 <a name="l00037"></a>00037 <span class="comment"> *                                          false if not inside querywindow</span>
 <a name="l00038"></a>00038 <span class="comment"> * @param string          $delimiter</span>
 <a name="l00039"></a>00039 <span class="comment"> */</span>
-<a name="l00040"></a><a class="code" href="sql__query__form_8lib_8php.html#ad1f1165db8b6302766041d3d9cdda39c">00040</a> <span class="keyword">function</span> <a class="code" href="sql__query__form_8lib_8php.html#ad1f1165db8b6302766041d3d9cdda39c" title="prints the sql query boxes">PMA_sqlQueryForm</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="keyword">true</span>, $display_tab = <span class="keyword">false</span>, $delimiter = <span class="charliteral">&#39;;&#39;</span>)
+<a name="l00040"></a><a class="code" href="sql__query__form_8lib_8php.html#ad1f1165db8b6302766041d3d9cdda39c">00040</a> <span class="keyword">function</span> <a class="code" href="sql__query__form_8lib_8php.html#ad1f1165db8b6302766041d3d9cdda39c" title="prints the sql query boxes">PMA_sqlQueryForm</a>($query = <span class="keyword">true</span>, $display_tab = <span class="keyword">false</span>, $delimiter = <span class="charliteral">&#39;;&#39;</span>)
 <a name="l00041"></a>00041 {
 <a name="l00042"></a>00042     <span class="comment">// check tab to display if inside querywindow</span>
 <a name="l00043"></a>00043     <span class="keywordflow">if</span> (! $display_tab) {
@@ -126,12 +126,12 @@
 <a name="l00048"></a>00048     }
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050     <span class="comment">// query to show</span>
-<a name="l00051"></a>00051     <span class="keywordflow">if</span> (<span class="keyword">true</span> === <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>) {
-<a name="l00052"></a>00052         <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>];
+<a name="l00051"></a>00051     <span class="keywordflow">if</span> (<span class="keyword">true</span> === $query) {
+<a name="l00052"></a>00052         $query = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>];
 <a name="l00053"></a>00053     }
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055     <span class="comment">// set enctype to multipart for file uploads</span>
-<a name="l00056"></a>00056     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_upload&#39;</span>]) {
+<a name="l00056"></a>00056     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_upload&#39;</span>]) {
 <a name="l00057"></a>00057         $enctype = <span class="stringliteral">&#39; enctype=&quot;multipart/form-data&quot;&#39;</span>;
 <a name="l00058"></a>00058     } <span class="keywordflow">else</span> {
 <a name="l00059"></a>00059         $enctype = <span class="stringliteral">&#39;&#39;</span>;
@@ -139,20 +139,20 @@
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062     <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>  = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00063"></a>00063     <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00064"></a>00064     <span class="keywordflow">if</span> (! strlen(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>])) {
+<a name="l00064"></a>00064     <span class="keywordflow">if</span> (! strlen(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>])) {
 <a name="l00065"></a>00065         <span class="comment">// prepare for server related</span>
-<a name="l00066"></a>00066         <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a>   = empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>]) ?
-<a name="l00067"></a>00067                     <span class="stringliteral">&#39;server_sql.php&#39;</span> : <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>];
-<a name="l00068"></a>00068     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (! strlen(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>])) {
+<a name="l00066"></a>00066         <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a>   = empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>]) ?
+<a name="l00067"></a>00067                     <span class="stringliteral">&#39;server_sql.php&#39;</span> : <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>];
+<a name="l00068"></a>00068     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (! strlen(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>])) {
 <a name="l00069"></a>00069         <span class="comment">// prepare for db related</span>
-<a name="l00070"></a>00070         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
-<a name="l00071"></a>00071         <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a>   = empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>]) ?
-<a name="l00072"></a>00072                     <span class="stringliteral">&#39;db_sql.php&#39;</span> : <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>];
+<a name="l00070"></a>00070         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
+<a name="l00071"></a>00071         <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a>   = empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>]) ?
+<a name="l00072"></a>00072                     <span class="stringliteral">&#39;db_sql.php&#39;</span> : <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>];
 <a name="l00073"></a>00073     } <span class="keywordflow">else</span> {
-<a name="l00074"></a>00074         <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>  = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>];
-<a name="l00075"></a>00075         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
-<a name="l00076"></a>00076         <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a>   = empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>]) ?
-<a name="l00077"></a>00077                     <span class="stringliteral">&#39;tbl_sql.php&#39;</span> : <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>];
+<a name="l00074"></a>00074         <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>  = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>];
+<a name="l00075"></a>00075         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
+<a name="l00076"></a>00076         <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a>   = empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>]) ?
+<a name="l00077"></a>00077                     <span class="stringliteral">&#39;tbl_sql.php&#39;</span> : <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;goto&#39;</span>];
 <a name="l00078"></a>00078     }
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080 
@@ -168,7 +168,7 @@
 <a name="l00090"></a>00090         &lt;?php
 <a name="l00091"></a>00091     } <span class="keywordflow">else</span> {
 <a name="l00092"></a>00092         echo <span class="stringliteral">&#39;&lt;form method=&quot;post&quot; action=&quot;import.php&quot; &#39;</span> . $enctype;
-<a name="l00093"></a>00093         <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>]) {
+<a name="l00093"></a>00093         <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>]) {
 <a name="l00094"></a>00094             echo <span class="stringliteral">&#39; class=&quot;ajax&quot;&#39;</span>;
 <a name="l00095"></a>00095         }
 <a name="l00096"></a>00096         echo <span class="stringliteral">&#39; id=&quot;sqlqueryform&quot; name=&quot;sqlform&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
@@ -190,21 +190,21 @@
 <a name="l00112"></a>00112         .<span class="stringliteral">&#39;&lt;input type=&quot;hidden&quot; name=&quot;message_to_show&quot; value=&quot;&#39;</span>
 <a name="l00113"></a>00113         . __(<span class="stringliteral">&#39;Your SQL query has been executed successfully&#39;</span>) . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>
 <a name="l00114"></a>00114         .<span class="stringliteral">&#39;&lt;input type=&quot;hidden&quot; name=&quot;prev_sql_query&quot; value=&quot;&#39;</span>
-<a name="l00115"></a>00115         . htmlspecialchars(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>) . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00115"></a>00115         . htmlspecialchars($query) . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00116"></a>00116 
 <a name="l00117"></a>00117     <span class="comment">// display querybox</span>
 <a name="l00118"></a>00118     <span class="keywordflow">if</span> ($display_tab === <span class="stringliteral">&#39;full&#39;</span> || $display_tab === <span class="stringliteral">&#39;sql&#39;</span>) {
-<a name="l00119"></a>00119         <a class="code" href="sql__query__form_8lib_8php.html#af3b549c125d7beec296f1ee1283bb681" title="prints querybox fieldset">PMA_sqlQueryFormInsert</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, $is_querywindow, $delimiter);
+<a name="l00119"></a>00119         <a class="code" href="sql__query__form_8lib_8php.html#af3b549c125d7beec296f1ee1283bb681" title="prints querybox fieldset">PMA_sqlQueryFormInsert</a>($query, $is_querywindow, $delimiter);
 <a name="l00120"></a>00120     }
 <a name="l00121"></a>00121 
 <a name="l00122"></a>00122     <span class="comment">// display uploads</span>
-<a name="l00123"></a>00123     <span class="keywordflow">if</span> ($display_tab === <span class="stringliteral">&#39;files&#39;</span> &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_upload&#39;</span>]) {
+<a name="l00123"></a>00123     <span class="keywordflow">if</span> ($display_tab === <span class="stringliteral">&#39;files&#39;</span> &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_upload&#39;</span>]) {
 <a name="l00124"></a>00124         <a class="code" href="sql__query__form_8lib_8php.html#ab66af2fbf36184d027b75cf35ae49a20" title="prints bookmark fieldset">PMA_sqlQueryFormUpload</a>();
 <a name="l00125"></a>00125     }
 <a name="l00126"></a>00126 
 <a name="l00127"></a>00127     <span class="comment">// Bookmark Support</span>
 <a name="l00128"></a>00128     <span class="keywordflow">if</span> ($display_tab === <span class="stringliteral">&#39;full&#39;</span> || $display_tab === <span class="stringliteral">&#39;history&#39;</span>) {
-<a name="l00129"></a>00129         <span class="keywordflow">if</span> (! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Bookmark&#39;</span>])) {
+<a name="l00129"></a>00129         <span class="keywordflow">if</span> (! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Bookmark&#39;</span>])) {
 <a name="l00130"></a>00130             <a class="code" href="sql__query__form_8lib_8php.html#a0354aed36253f1d29d510223e966ebc5" title="prints bookmark fieldset">PMA_sqlQueryFormBookmark</a>();
 <a name="l00131"></a>00131         }
 <a name="l00132"></a>00132     }
@@ -239,11 +239,11 @@
 <a name="l00161"></a>00161 <span class="comment"> * @param boolean     $is_querywindow if inside querywindow or not</span>
 <a name="l00162"></a>00162 <span class="comment"> * @param string      $delimiter      default delimiter to use</span>
 <a name="l00163"></a>00163 <span class="comment"> */</span>
-<a name="l00164"></a><a class="code" href="sql__query__form_8lib_8php.html#af3b549c125d7beec296f1ee1283bb681">00164</a> <span class="keyword">function</span> <a class="code" href="sql__query__form_8lib_8php.html#af3b549c125d7beec296f1ee1283bb681" title="prints querybox fieldset">PMA_sqlQueryFormInsert</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="stringliteral">&#39;&#39;</span>, $is_querywindow = <span class="keyword">false</span>, $delimiter = <span class="charliteral">&#39;;&#39;</span>)
+<a name="l00164"></a><a class="code" href="sql__query__form_8lib_8php.html#af3b549c125d7beec296f1ee1283bb681">00164</a> <span class="keyword">function</span> <a class="code" href="sql__query__form_8lib_8php.html#af3b549c125d7beec296f1ee1283bb681" title="prints querybox fieldset">PMA_sqlQueryFormInsert</a>($query = <span class="stringliteral">&#39;&#39;</span>, $is_querywindow = <span class="keyword">false</span>, $delimiter = <span class="charliteral">&#39;;&#39;</span>)
 <a name="l00165"></a>00165 {
 <a name="l00166"></a>00166 
 <a name="l00167"></a>00167     <span class="comment">// enable auto select text in textarea</span>
-<a name="l00168"></a>00168     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaAutoSelect&#39;</span>]) {
+<a name="l00168"></a>00168     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaAutoSelect&#39;</span>]) {
 <a name="l00169"></a>00169         $auto_sel = <span class="stringliteral">&#39; onclick=&quot;selectContent(this, sql_box_locked, true)&quot;&#39;</span>;
 <a name="l00170"></a>00170     } <span class="keywordflow">else</span> {
 <a name="l00171"></a>00171         $auto_sel = <span class="stringliteral">&#39;&#39;</span>;
@@ -253,25 +253,25 @@
 <a name="l00175"></a>00175     <span class="keywordflow">if</span> ($is_querywindow) {
 <a name="l00176"></a>00176         $locking = <span class="stringliteral">&#39; onkeypress=&quot;document.sqlform.elements[\&#39;LockFromUpdate\&#39;].&#39;</span>
 <a name="l00177"></a>00177             .<span class="stringliteral">&#39;checked = true;&quot;&#39;</span>;
-<a name="l00178"></a>00178         $height = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaRows&#39;</span>] * 1.25;
+<a name="l00178"></a>00178         $height = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaRows&#39;</span>] * 1.25;
 <a name="l00179"></a>00179     } <span class="keywordflow">else</span> {
 <a name="l00180"></a>00180         $locking = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00181"></a>00181         $height = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaRows&#39;</span>] * 2;
+<a name="l00181"></a>00181         $height = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaRows&#39;</span>] * 2;
 <a name="l00182"></a>00182     }
 <a name="l00183"></a>00183 
 <a name="l00184"></a>00184     <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>          = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00185"></a>00185     <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>             = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00186"></a>00186     $fields_list    = array();
-<a name="l00187"></a>00187     <span class="keywordflow">if</span> (! strlen(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>])) {
+<a name="l00187"></a>00187     <span class="keywordflow">if</span> (! strlen(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>])) {
 <a name="l00188"></a>00188         <span class="comment">// prepare for server related</span>
 <a name="l00189"></a>00189         $legend = sprintf(__(<span class="stringliteral">&#39;Run SQL query/queries on server %s&#39;</span>),
 <a name="l00190"></a>00190             <span class="stringliteral">&#39;&amp;quot;&#39;</span> . htmlspecialchars(
-<a name="l00191"></a>00191                 ! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>][<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>]][<span class="stringliteral">&#39;verbose&#39;</span>]) ? $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>][$GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]][<span class="stringliteral">&#39;verbose&#39;</span>] : $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>][$GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]][<span class="stringliteral">&#39;host&#39;</span>]) . <span class="stringliteral">&#39;&amp;quot;&#39;</span>);
-<a name="l00192"></a>00192     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (! strlen(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>])) {
+<a name="l00191"></a>00191                 ! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>][<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>]][<span class="stringliteral">&#39;verbose&#39;</span>]) ? $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>][$GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]][<span class="stringliteral">&#39;verbose&#39;</span>] : $GLOBALS[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Servers&#39;</span>][$GLOBALS[<span class="stringliteral">&#39;server&#39;</span>]][<span class="stringliteral">&#39;host&#39;</span>]) . <span class="stringliteral">&#39;&amp;quot;&#39;</span>);
+<a name="l00192"></a>00192     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (! strlen(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>])) {
 <a name="l00193"></a>00193         <span class="comment">// prepare for db related</span>
-<a name="l00194"></a>00194         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
+<a name="l00194"></a>00194         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
 <a name="l00195"></a>00195         <span class="comment">// if you want navigation:</span>
-<a name="l00196"></a>00196         $tmp_db_link = <span class="stringliteral">&#39;&lt;a href=&quot;&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultTabDatabase&#39;</span>]
+<a name="l00196"></a>00196         $tmp_db_link = <span class="stringliteral">&#39;&lt;a href=&quot;&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultTabDatabase&#39;</span>]
 <a name="l00197"></a>00197             . <span class="charliteral">&#39;?&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) . <span class="charliteral">&#39;&quot;&#39;</span>;
 <a name="l00198"></a>00198         <span class="keywordflow">if</span> ($is_querywindow) {
 <a name="l00199"></a>00199             $tmp_db_link .= <span class="stringliteral">&#39; target=&quot;_self&quot;&#39;</span>
@@ -282,18 +282,18 @@
 <a name="l00204"></a>00204         <span class="comment">// else use</span>
 <a name="l00205"></a>00205         <span class="comment">// $tmp_db_link = htmlspecialchars($db);</span>
 <a name="l00206"></a>00206         $legend = sprintf(__(<span class="stringliteral">&#39;Run SQL query/queries on database %s&#39;</span>), $tmp_db_link);
-<a name="l00207"></a>00207         <span class="keywordflow">if</span> (empty(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>)) {
-<a name="l00208"></a>00208             <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <a class="code" href="common_8lib_8php.html#aa17f041c5093367b4c4d03b09070e69e" title="Formats user string, expanding @, accepting strftime format string.">PMA_expandUserString</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultQueryDatabase&#39;</span>], <span class="stringliteral">&#39;PMA_backquote&#39;</span>);
+<a name="l00207"></a>00207         <span class="keywordflow">if</span> (empty($query)) {
+<a name="l00208"></a>00208             $query = <a class="code" href="common_8lib_8php.html#aa17f041c5093367b4c4d03b09070e69e" title="Formats user string, expanding @, accepting strftime format string.">PMA_expandUserString</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultQueryDatabase&#39;</span>], <span class="stringliteral">&#39;PMA_backquote&#39;</span>);
 <a name="l00209"></a>00209         }
 <a name="l00210"></a>00210     } <span class="keywordflow">else</span> {
-<a name="l00211"></a>00211         <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>  = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>];
-<a name="l00212"></a>00212         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
+<a name="l00211"></a>00211         <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>  = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>];
+<a name="l00212"></a>00212         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>     = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
 <a name="l00213"></a>00213         <span class="comment">// Get the list and number of fields</span>
 <a name="l00214"></a>00214         <span class="comment">// we do a try_query here, because we could be in the query window,</span>
 <a name="l00215"></a>00215         <span class="comment">// trying to synchonize and the table has not yet been created</span>
-<a name="l00216"></a>00216         $fields_list = <a class="code" href="database__interface_8lib_8php.html#a0f34de2c56a55fc2862bf26c489fc5aa" title="Returns descriptions of columns in given table (all or given by $column)">PMA_DBI_get_columns</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>], null, <span class="keyword">true</span>);
+<a name="l00216"></a>00216         $fields_list = <a class="code" href="database__interface_8lib_8php.html#a0f34de2c56a55fc2862bf26c489fc5aa" title="Returns descriptions of columns in given table (all or given by $column)">PMA_DBI_get_columns</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>], null, <span class="keyword">true</span>);
 <a name="l00217"></a>00217 
-<a name="l00218"></a>00218         $tmp_db_link = <span class="stringliteral">&#39;&lt;a href=&quot;&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultTabDatabase&#39;</span>]
+<a name="l00218"></a>00218         $tmp_db_link = <span class="stringliteral">&#39;&lt;a href=&quot;&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultTabDatabase&#39;</span>]
 <a name="l00219"></a>00219             . <span class="charliteral">&#39;?&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) . <span class="charliteral">&#39;&quot;&#39;</span>;
 <a name="l00220"></a>00220         <span class="keywordflow">if</span> ($is_querywindow) {
 <a name="l00221"></a>00221             $tmp_db_link .= <span class="stringliteral">&#39; target=&quot;_self&quot;&#39;</span>
@@ -304,8 +304,8 @@
 <a name="l00226"></a>00226         <span class="comment">// else use</span>
 <a name="l00227"></a>00227         <span class="comment">// $tmp_db_link = htmlspecialchars($db);</span>
 <a name="l00228"></a>00228         $legend = sprintf(__(<span class="stringliteral">&#39;Run SQL query/queries on database %s&#39;</span>), $tmp_db_link);
-<a name="l00229"></a>00229         <span class="keywordflow">if</span> (empty(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>)) {
-<a name="l00230"></a>00230             <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <a class="code" href="common_8lib_8php.html#aa17f041c5093367b4c4d03b09070e69e" title="Formats user string, expanding @, accepting strftime format string.">PMA_expandUserString</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultQueryTable&#39;</span>], <span class="stringliteral">&#39;PMA_backquote&#39;</span>);
+<a name="l00229"></a>00229         <span class="keywordflow">if</span> (empty($query)) {
+<a name="l00230"></a>00230             $query = <a class="code" href="common_8lib_8php.html#aa17f041c5093367b4c4d03b09070e69e" title="Formats user string, expanding @, accepting strftime format string.">PMA_expandUserString</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultQueryTable&#39;</span>], <span class="stringliteral">&#39;PMA_backquote&#39;</span>);
 <a name="l00231"></a>00231         }
 <a name="l00232"></a>00232     }
 <a name="l00233"></a>00233     $legend .= <span class="stringliteral">&#39;: &#39;</span> . <a class="code" href="common_8lib_8php.html#a5b2c38942cb8fe55e02ba17d0bef9f15" title="Displays a link to the official MySQL documentation.">PMA_showMySQLDocu</a>(<span class="stringliteral">&#39;SQL-Syntax&#39;</span>, <span class="stringliteral">&#39;SELECT&#39;</span>);
@@ -323,10 +323,10 @@
 <a name="l00245"></a>00245     echo <span class="stringliteral">&#39;&lt;div id=&quot;queryfieldscontainer&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00246"></a>00246     echo <span class="stringliteral">&#39;&lt;div id=&quot;&#39;</span> . $sqlquerycontainer_id . <span class="stringliteral">&#39;&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>
 <a name="l00247"></a>00247         .<span class="stringliteral">&#39;&lt;textarea tabindex=&quot;100&quot; name=&quot;sql_query&quot; id=&quot;sqlquery&quot;&#39;</span>
-<a name="l00248"></a>00248         .<span class="stringliteral">&#39;  cols=&quot;&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaCols&#39;</span>] . <span class="charliteral">&#39;&quot;&#39;</span>
+<a name="l00248"></a>00248         .<span class="stringliteral">&#39;  cols=&quot;&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaCols&#39;</span>] . <span class="charliteral">&#39;&quot;&#39;</span>
 <a name="l00249"></a>00249         .<span class="stringliteral">&#39;  rows=&quot;&#39;</span> . $height . <span class="charliteral">&#39;&quot;&#39;</span>
-<a name="l00250"></a>00250         .<span class="stringliteral">&#39;  dir=&quot;&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;text_dir&#39;</span>] . <span class="charliteral">&#39;&quot;&#39;</span>
-<a name="l00251"></a>00251         .$auto_sel . $locking . <span class="charliteral">&#39;&gt;&#39;</span> . htmlspecialchars(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>) . <span class="stringliteral">&#39;&lt;/textarea&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00250"></a>00250         .<span class="stringliteral">&#39;  dir=&quot;&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;text_dir&#39;</span>] . <span class="charliteral">&#39;&quot;&#39;</span>
+<a name="l00251"></a>00251         .$auto_sel . $locking . <span class="charliteral">&#39;&gt;&#39;</span> . htmlspecialchars($query) . <span class="stringliteral">&#39;&lt;/textarea&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00252"></a>00252     <span class="comment">// Add buttons to generate query easily for select all,single select,insert,update and delete</span>
 <a name="l00253"></a>00253     <span class="keywordflow">if</span> (count($fields_list)) {
 <a name="l00254"></a>00254         echo <span class="stringliteral">&#39;&lt;input type=&quot;button&quot; value=&quot;SELECT *&quot; id=&quot;selectall&quot; class=&quot;sqlbutton&quot; /&gt;&#39;</span>;
@@ -342,7 +342,7 @@
 <a name="l00264"></a>00264         echo <span class="stringliteral">&#39;&lt;div id=&quot;tablefieldscontainer&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>
 <a name="l00265"></a>00265             .<span class="stringliteral">&#39;&lt;label&gt;&#39;</span> . __(<span class="stringliteral">&#39;Columns&#39;</span>) . <span class="stringliteral">&#39;&lt;/label&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>
 <a name="l00266"></a>00266             .<span class="stringliteral">&#39;&lt;select id=&quot;tablefields&quot; name=&quot;dummy&quot; &#39;</span>
-<a name="l00267"></a>00267             .<span class="stringliteral">&#39;size=&quot;&#39;</span> . (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaRows&#39;</span>] - 2) . <span class="stringliteral">&#39;&quot; &#39;</span>
+<a name="l00267"></a>00267             .<span class="stringliteral">&#39;size=&quot;&#39;</span> . (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextareaRows&#39;</span>] - 2) . <span class="stringliteral">&#39;&quot; &#39;</span>
 <a name="l00268"></a>00268             .<span class="stringliteral">&#39;multiple=&quot;multiple&quot; ondblclick=&quot;insertValueQuery()&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00269"></a>00269         <span class="keywordflow">foreach</span> ($fields_list as $field) {
 <a name="l00270"></a>00270             echo <span class="stringliteral">&#39;&lt;option value=&quot;&#39;</span>
@@ -354,7 +354,7 @@
 <a name="l00276"></a>00276         }
 <a name="l00277"></a>00277         echo <span class="stringliteral">&#39;&lt;/select&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>
 <a name="l00278"></a>00278             .<span class="stringliteral">&#39;&lt;div id=&quot;tablefieldinsertbuttoncontainer&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
-<a name="l00279"></a>00279         <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;PropertiesIconic&#39;</span>]) {
+<a name="l00279"></a>00279         <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;PropertiesIconic&#39;</span>]) {
 <a name="l00280"></a>00280             echo <span class="stringliteral">&#39;&lt;input type=&quot;button&quot; name=&quot;insert&quot; value=&quot;&amp;lt;&amp;lt;&quot;&#39;</span>
 <a name="l00281"></a>00281                 .<span class="stringliteral">&#39; onclick=&quot;insertValueQuery()&quot;&#39;</span>
 <a name="l00282"></a>00282                 .<span class="stringliteral">&#39; title=&quot;&#39;</span> . __(<span class="stringliteral">&#39;Insert&#39;</span>) . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
@@ -370,7 +370,7 @@
 <a name="l00292"></a>00292     echo <span class="stringliteral">&#39;&lt;div class=&quot;clearfloat&quot;&gt;&lt;/div&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00293"></a>00293     echo <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00294"></a>00294 
-<a name="l00295"></a>00295     <span class="keywordflow">if</span> (! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Bookmark&#39;</span>])) {
+<a name="l00295"></a>00295     <span class="keywordflow">if</span> (! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Bookmark&#39;</span>])) {
 <a name="l00296"></a>00296         ?&gt;
 <a name="l00297"></a>00297         &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;bookmarkoptions&quot;</span>&gt;
 <a name="l00298"></a>00298         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;formelement&quot;</span>&gt;
@@ -425,7 +425,7 @@
 <a name="l00347"></a>00347     <span class="keywordflow">if</span> (! $is_querywindow) {
 <a name="l00348"></a>00348         echo <span class="stringliteral">&#39;&lt;input type=&quot;checkbox&quot; name=&quot;retain_query_box&quot; value=&quot;1&quot; &#39;</span>
 <a name="l00349"></a>00349             . <span class="stringliteral">&#39;id=&quot;retain_query_box&quot; tabindex=&quot;133&quot; &#39;</span>
-<a name="l00350"></a>00350             . (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;RetainQueryBox&#39;</span>] === <span class="keyword">false</span> ? <span class="stringliteral">&#39;&#39;</span> : <span class="stringliteral">&#39; checked=&quot;checked&quot;&#39;</span>)
+<a name="l00350"></a>00350             . (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;RetainQueryBox&#39;</span>] === <span class="keyword">false</span> ? <span class="stringliteral">&#39;&#39;</span> : <span class="stringliteral">&#39; checked=&quot;checked&quot;&#39;</span>)
 <a name="l00351"></a>00351             . <span class="stringliteral">&#39; /&gt;&#39;</span>
 <a name="l00352"></a>00352             . <span class="stringliteral">&#39;&lt;label for=&quot;retain_query_box&quot;&gt;&#39;</span> . __(<span class="stringliteral">&#39;Retain query box&#39;</span>)
 <a name="l00353"></a>00353             . <span class="stringliteral">&#39;&lt;/label&gt;&#39;</span>;
@@ -444,7 +444,7 @@
 <a name="l00366"></a>00366 <span class="comment"> */</span>
 <a name="l00367"></a><a class="code" href="sql__query__form_8lib_8php.html#a0354aed36253f1d29d510223e966ebc5">00367</a> <span class="keyword">function</span> <a class="code" href="sql__query__form_8lib_8php.html#a0354aed36253f1d29d510223e966ebc5" title="prints bookmark fieldset">PMA_sqlQueryFormBookmark</a>()
 <a name="l00368"></a>00368 {
-<a name="l00369"></a>00369     $bookmark_list = <a class="code" href="bookmark_8lib_8php.html#a28bf0dfac1fd0617239eef76e7ff1550" title="Gets the list of bookmarks defined for the current database.">PMA_Bookmark_getList</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]);
+<a name="l00369"></a>00369     $bookmark_list = <a class="code" href="bookmark_8lib_8php.html#a28bf0dfac1fd0617239eef76e7ff1550" title="Gets the list of bookmarks defined for the current database.">PMA_Bookmark_getList</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]);
 <a name="l00370"></a>00370     <span class="keywordflow">if</span> (! $bookmark_list || count($bookmark_list) &lt; 1) {
 <a name="l00371"></a>00371         <span class="keywordflow">return</span>;
 <a name="l00372"></a>00372     }
@@ -464,7 +464,7 @@
 <a name="l00386"></a>00386     echo <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00387"></a>00387     echo <span class="stringliteral">&#39;&lt;div class=&quot;formelement&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00388"></a>00388     echo __(<span class="stringliteral">&#39;Variable&#39;</span>);
-<a name="l00389"></a>00389     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ReplaceHelpImg&#39;</span>]) {
+<a name="l00389"></a>00389     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ReplaceHelpImg&#39;</span>]) {
 <a name="l00390"></a>00390         echo <span class="stringliteral">&#39; &lt;a href=&quot;./Documentation.html#faqbookmark&quot;&#39;</span>
 <a name="l00391"></a>00391             .<span class="stringliteral">&#39; target=&quot;documentation&quot;&gt;&#39;</span>
 <a name="l00392"></a>00392             . <a class="code" href="common_8lib_8php.html#a54fdec9763bf305a5082d23a5d7d5957" title="Returns an HTML IMG tag for a particular image from a theme, which may be an actual file or an icon f...">PMA_getImage</a>(<span class="stringliteral">&#39;b_help.png&#39;</span>, __(<span class="stringliteral">&#39;Documentation&#39;</span>)) . <span class="stringliteral">&#39;&lt;/a&gt;&#39;</span>;
@@ -505,12 +505,12 @@
 <a name="l00427"></a>00427 <span class="comment"> */</span>
 <a name="l00428"></a><a class="code" href="sql__query__form_8lib_8php.html#ab66af2fbf36184d027b75cf35ae49a20">00428</a> <span class="keyword">function</span> <a class="code" href="sql__query__form_8lib_8php.html#ab66af2fbf36184d027b75cf35ae49a20" title="prints bookmark fieldset">PMA_sqlQueryFormUpload</a>()
 <a name="l00429"></a>00429 {
-<a name="l00430"></a>00430     <a class="code" href="newsfeedIndexing_8php.html#ab24faf4aa647cdcee494fc48524ad4ff">$errors</a> = array ();
+<a name="l00430"></a>00430     <a class="code" href="rte__main_8inc_8php.html#ab24faf4aa647cdcee494fc48524ad4ff" title="Keep a list of errors that occured while processing an &#39;Add&#39; or &#39;Edit&#39; operation.">$errors</a> = array ();
 <a name="l00431"></a>00431 
 <a name="l00432"></a>00432     $matcher = <span class="stringliteral">&#39;@\.sql(\.(&#39;</span> . <a class="code" href="file__listing_8php.html#a2e1cca547fe94667c8cc806ccc1937b7" title="Get currently supported decompressions.">PMA_supportedDecompressions</a>() . <span class="stringliteral">&#39;))?$@&#39;</span>; <span class="comment">// we allow only SQL here</span>
 <a name="l00433"></a>00433 
-<a name="l00434"></a>00434     <span class="keywordflow">if</span> (!empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UploadDir&#39;</span>])) {
-<a name="l00435"></a>00435         $files = <a class="code" href="file__listing_8php.html#a673913f8a396f72f01952d7e1a295758" title="Returns options of filtered file names.">PMA_getFileSelectOptions</a>(<a class="code" href="common_8lib_8php.html#a716bdc8bd710a47b56967ec5a365b7d5" title="replaces u in given path with current user name">PMA_userDir</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UploadDir&#39;</span>]), $matcher, (isset($timeout_passed) &amp;&amp; $timeout_passed &amp;&amp; isset($local_import_file)) ? $local_import_file : <span class="stringliteral">&#39;&#39;</span>);
+<a name="l00434"></a>00434     <span class="keywordflow">if</span> (!empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UploadDir&#39;</span>])) {
+<a name="l00435"></a>00435         $files = <a class="code" href="file__listing_8php.html#a673913f8a396f72f01952d7e1a295758" title="Returns options of filtered file names.">PMA_getFileSelectOptions</a>(<a class="code" href="common_8lib_8php.html#a716bdc8bd710a47b56967ec5a365b7d5" title="replaces u in given path with current user name">PMA_userDir</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UploadDir&#39;</span>]), $matcher, (isset($timeout_passed) &amp;&amp; $timeout_passed &amp;&amp; isset($local_import_file)) ? $local_import_file : <span class="stringliteral">&#39;&#39;</span>);
 <a name="l00436"></a>00436     } <span class="keywordflow">else</span> {
 <a name="l00437"></a>00437         $files = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00438"></a>00438     }
@@ -521,14 +521,14 @@
 <a name="l00443"></a>00443     echo __(<span class="stringliteral">&#39;Browse your computer:&#39;</span>) . <span class="stringliteral">&#39;&lt;/legend&gt;&#39;</span>;
 <a name="l00444"></a>00444     echo <span class="stringliteral">&#39;&lt;div class=&quot;formelement&quot;&gt;&#39;</span>;
 <a name="l00445"></a>00445     echo <span class="stringliteral">&#39;&lt;input type=&quot;file&quot; name=&quot;sql_file&quot; class=&quot;textfield&quot; /&gt; &#39;</span>;
-<a name="l00446"></a>00446     echo <a class="code" href="common_8lib_8php.html#a49d1b93c41dc6f92573b3e5ce19f42b8" title="Displays the maximum size for an upload.">PMA_displayMaximumUploadSize</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;max_upload_size&#39;</span>]);
+<a name="l00446"></a>00446     echo <a class="code" href="common_8lib_8php.html#a49d1b93c41dc6f92573b3e5ce19f42b8" title="Displays the maximum size for an upload.">PMA_displayMaximumUploadSize</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;max_upload_size&#39;</span>]);
 <a name="l00447"></a>00447     <span class="comment">// some browsers should respect this :)</span>
-<a name="l00448"></a>00448     echo <a class="code" href="common_8lib_8php.html#a59d743aad898fadd0a906654b96fe38c" title="Generates a hidden field which should indicate to the browser the maximum size for upload...">PMA_generateHiddenMaxFileSize</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;max_upload_size&#39;</span>]) . <span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00448"></a>00448     echo <a class="code" href="common_8lib_8php.html#a59d743aad898fadd0a906654b96fe38c" title="Generates a hidden field which should indicate to the browser the maximum size for upload...">PMA_generateHiddenMaxFileSize</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;max_upload_size&#39;</span>]) . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00449"></a>00449     echo <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;
 <a name="l00450"></a>00450 
 <a name="l00451"></a>00451     <span class="keywordflow">if</span> ($files === <span class="keyword">false</span>) {
-<a name="l00452"></a>00452         <a class="code" href="newsfeedIndexing_8php.html#ab24faf4aa647cdcee494fc48524ad4ff">$errors</a>[] = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>( __(<span class="stringliteral">&#39;The directory you set for upload work cannot be reached&#39;</span>));
-<a name="l00453"></a>00453     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (!empty($files)) {
+<a name="l00452"></a>00452         <a class="code" href="rte__main_8inc_8php.html#ab24faf4aa647cdcee494fc48524ad4ff" title="Keep a list of errors that occured while processing an &#39;Add&#39; or &#39;Edit&#39; operation.">$errors</a>[] = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>( __(<span class="stringliteral">&#39;The directory you set for upload work cannot be reached&#39;</span>));
+<a name="l00453"></a>00453     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (!empty($files)) {
 <a name="l00454"></a>00454         echo <span class="stringliteral">&#39;&lt;div class=&quot;formelement&quot;&gt;&#39;</span>;
 <a name="l00455"></a>00455         echo <span class="stringliteral">&#39;&lt;strong&gt;&#39;</span> . __(<span class="stringliteral">&#39;web server upload directory&#39;</span>) .<span class="stringliteral">&#39;:&lt;/strong&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00456"></a>00456         echo <span class="stringliteral">&#39;&lt;select size=&quot;1&quot; name=&quot;sql_localfile&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
@@ -551,7 +551,7 @@
 <a name="l00473"></a>00473     echo <span class="stringliteral">&#39;&lt;div class=&quot;clearfloat&quot;&gt;&lt;/div&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00474"></a>00474     echo <span class="stringliteral">&#39;&lt;/fieldset&gt;&#39;</span>;
 <a name="l00475"></a>00475 
-<a name="l00476"></a>00476     <span class="keywordflow">foreach</span> (<a class="code" href="newsfeedIndexing_8php.html#ab24faf4aa647cdcee494fc48524ad4ff">$errors</a> as <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a>) {
+<a name="l00476"></a>00476     <span class="keywordflow">foreach</span> (<a class="code" href="rte__main_8inc_8php.html#ab24faf4aa647cdcee494fc48524ad4ff" title="Keep a list of errors that occured while processing an &#39;Add&#39; or &#39;Edit&#39; operation.">$errors</a> as <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a>) {
 <a name="l00477"></a>00477         $error-&gt;display();
 <a name="l00478"></a>00478     }
 <a name="l00479"></a>00479 }
@@ -562,7 +562,7 @@
     <ul>
       <li class="navelem"><a class="el" href="sql__query__form_8lib_8php.html">sql_query_form.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

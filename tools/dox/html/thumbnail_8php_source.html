@@ -80,14 +80,14 @@
 <a name="l00005"></a><a class="code" href="thumbnail_8php.html#a12109f4e1a6283d7069775524877810d">00005</a> <span class="comment"></span><a class="code" href="button_8php.html#a12109f4e1a6283d7069775524877810d">$RFS_GEN_IMAGE</a>=<span class="keyword">true</span>;
 <a name="l00006"></a>00006 <span class="keywordflow">if</span>(array_pop(explode(<span class="stringliteral">&quot;/&quot;</span>,getcwd()))==<span class="stringliteral">&quot;include&quot;</span>) chdir(<span class="stringliteral">&quot;..&quot;</span>);
 <a name="l00007"></a>00007 include_once(<span class="stringliteral">&quot;include/lib.genm.php&quot;</span>);
-<a name="l00008"></a><a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">00008</a> <a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>=str_replace(<a class="code" href="config_8sitevars_8php.html#a367320ed2c4ef3c0525529de84a79b4a">$RFS_SITE_URL</a>.<span class="stringliteral">&quot;/&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>);
+<a name="l00008"></a><a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">00008</a> <a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>=str_replace(<a class="code" href="config_8sitevars_8php.html#ac3d3378b57bd437398e3c2ef9fc1989a">$RFS_SITE_URL</a>.<span class="stringliteral">&quot;/&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>);
 <a name="l00009"></a>00009 <a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>=str_replace(<a class="code" href="config_8sitevars_8php.html#a0304f1c6ce0928c6dda1a31ca21a58ae">$RFS_SITE_PATH</a>.<span class="stringliteral">&quot;/&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>);
 <a name="l00010"></a><a class="code" href="thumbnail_8php.html#a8dbfd6149875dfa452769eb3dade31b5">00010</a> <a class="code" href="thumbnail_8php.html#a8dbfd6149875dfa452769eb3dade31b5">$imgfile</a>=array_pop(explode(<span class="stringliteral">&quot;/&quot;</span>,<a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>));
-<a name="l00011"></a>00011 <span class="keywordflow">if</span>(empty(<a class="code" href="v_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>)) { <span class="keywordflow">if</span>(empty(<a class="code" href="v_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>)) <a class="code" href="v_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>=96; <span class="keywordflow">else</span> $scale=1; }
-<a name="l00012"></a>00012 <span class="keywordflow">if</span>(empty(<a class="code" href="v_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>)) <a class="code" href="v_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>=96;
+<a name="l00011"></a>00011 <span class="keywordflow">if</span>(empty(<a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>)) { <span class="keywordflow">if</span>(empty(<a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>)) <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>=96; <span class="keywordflow">else</span> $scale=1; }
+<a name="l00012"></a>00012 <span class="keywordflow">if</span>(empty(<a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>)) <a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>=96;
 <a name="l00013"></a>00013 <span class="comment">//$cfile=&quot;$RFS_SITE_PATH/files/pictures/cache/$imgfile.$w.$h.$scale.png&quot;;</span>
 <a name="l00014"></a>00014 <span class="comment">//if(file_exists($cfile)) {     // header(&#39;Content-Type: image/png&#39;);  </span>
-<a name="l00015"></a>00015   <span class="comment">//  include($cfile);    exit(); }</span>
+<a name="l00015"></a>00015 <span class="comment">//  include($cfile);    exit(); }</span>
 <a name="l00016"></a>00016 <span class="keywordflow">if</span>(!stristr(<a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>,<a class="code" href="config_8sitevars_8php.html#a0304f1c6ce0928c6dda1a31ca21a58ae">$RFS_SITE_PATH</a>)) <a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>=<a class="code" href="config_8sitevars_8php.html#a0304f1c6ce0928c6dda1a31ca21a58ae">$RFS_SITE_PATH</a>.<span class="stringliteral">&quot;/&quot;</span>.<a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>;
 <a name="l00017"></a><a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">00017</a> <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>=<a class="code" href="thumbnail_8php.html#a56a9a0da0c26b3d3029cea47a6b9292f">$img</a>;
 <a name="l00018"></a><a class="code" href="thumbnail_8php.html#aa85a3f5dc695152e5162e2c251750245">00018</a> <a class="code" href="thumbnail_8php.html#aa85a3f5dc695152e5162e2c251750245">$image_info</a> = getimagesize(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
@@ -96,14 +96,14 @@
 <a name="l00021"></a>00021 <span class="keywordflow">if</span>(<a class="code" href="thumbnail_8php.html#a939d6733d998cce893403d2f59f40317">$image_type</a> == IMAGETYPE_GIF )  $image = imagecreatefromgif(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
 <a name="l00022"></a>00022 <span class="keywordflow">if</span>(<a class="code" href="thumbnail_8php.html#a939d6733d998cce893403d2f59f40317">$image_type</a> == IMAGETYPE_PNG )  $image = imagecreatefrompng(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
 <a name="l00023"></a>00023 <span class="keywordflow">if</span>($scale!=0) {
-<a name="l00024"></a>00024     $scale=(<a class="code" href="v_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>/ImageSX($image))*100;
-<a name="l00025"></a>00025     <a class="code" href="v_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a> = ImageSX($image) * $scale/100;
-<a name="l00026"></a>00026     <a class="code" href="v_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> = ImageSY($image) * $scale/100;
+<a name="l00024"></a>00024     $scale=(<a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>/ImageSX($image))*100;
+<a name="l00025"></a>00025     <a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a> = ImageSX($image) * $scale/100;
+<a name="l00026"></a>00026     <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> = ImageSY($image) * $scale/100;
 <a name="l00027"></a>00027 }
-<a name="l00028"></a><a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">00028</a> <a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">$new_image</a> = imagecreatetruecolor(<a class="code" href="v_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>, <a class="code" href="v_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>);
+<a name="l00028"></a><a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">00028</a> <a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">$new_image</a> = imagecreatetruecolor(<a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>, <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>);
 <a name="l00029"></a>00029 imagealphablending(<a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">$new_image</a>, <span class="keyword">false</span>);
 <a name="l00030"></a>00030 imagesavealpha(<a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">$new_image</a>, <span class="keyword">true</span>);
-<a name="l00031"></a>00031 imagecopyresampled(<a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">$new_image</a>, $image, 0, 0, 0, 0, <a class="code" href="v_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>, <a class="code" href="v_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>, ImageSX($image), ImageSY($image));
+<a name="l00031"></a>00031 imagecopyresampled(<a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">$new_image</a>, $image, 0, 0, 0, 0, <a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>, <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>, ImageSX($image), ImageSY($image));
 <a name="l00032"></a>00032 <span class="comment">// imagepng($new_image,$cfile);</span>
 <a name="l00033"></a>00033 header(<span class="stringliteral">&#39;Content-Type: image/png&#39;</span>);
 <a name="l00034"></a>00034 imagepng(<a class="code" href="thumbnail_8php.html#ae2ab07b86512840f8eab0e0a2706c3a5">$new_image</a>);
@@ -114,7 +114,7 @@
     <ul>
       <li class="navelem"><a class="el" href="thumbnail_8php.html">thumbnail.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

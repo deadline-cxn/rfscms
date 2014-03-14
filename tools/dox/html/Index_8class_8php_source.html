@@ -271,10 +271,10 @@
 <a name="l00193"></a>00193             <span class="comment">// coming from form</span>
 <a name="l00194"></a>00194             <span class="comment">// $columns[names][]</span>
 <a name="l00195"></a>00195             <span class="comment">// $columns[sub_parts][]</span>
-<a name="l00196"></a>00196             <span class="keywordflow">foreach</span> (<a class="code" href="tbl__operations_8php.html#a19d2a3d21fe02053311fde465e6ae2e9" title="Get columns names.">$columns</a>[<span class="stringliteral">&#39;names&#39;</span>] as $key =&gt; <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>) {
+<a name="l00196"></a>00196             <span class="keywordflow">foreach</span> (<a class="code" href="tbl__operations_8php.html#a19d2a3d21fe02053311fde465e6ae2e9" title="Get columns names.">$columns</a>[<span class="stringliteral">&#39;names&#39;</span>] as $key =&gt; <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>) {
 <a name="l00197"></a>00197                 <a class="code" href="db__export_8php.html#ab977fb93c6e2150901ff231f025a8daa">$sub_part</a> = isset(<a class="code" href="tbl__operations_8php.html#a19d2a3d21fe02053311fde465e6ae2e9" title="Get columns names.">$columns</a>[<span class="stringliteral">&#39;sub_parts&#39;</span>][$key]) ? <a class="code" href="tbl__operations_8php.html#a19d2a3d21fe02053311fde465e6ae2e9" title="Get columns names.">$columns</a>[<span class="stringliteral">&#39;sub_parts&#39;</span>][$key] : <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00198"></a>00198                 <a class="code" href="classPMA__Index.html#ac42d8f92c69637ff42b5416739960942">$_columns</a>[] = array(
-<a name="l00199"></a>00199                     <span class="stringliteral">&#39;Column_name&#39;</span>   =&gt; <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>,
+<a name="l00199"></a>00199                     <span class="stringliteral">&#39;Column_name&#39;</span>   =&gt; <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>,
 <a name="l00200"></a>00200                     <span class="stringliteral">&#39;Sub_part&#39;</span>      =&gt; <a class="code" href="db__export_8php.html#ab977fb93c6e2150901ff231f025a8daa">$sub_part</a>,
 <a name="l00201"></a>00201                 );
 <a name="l00202"></a>00202             }
@@ -333,11 +333,11 @@
 <a name="l00255"></a>00255         }
 <a name="l00256"></a>00256         <span class="keywordflow">if</span> (<span class="stringliteral">&#39;PRIMARY&#39;</span> == $this-&gt;_name) {
 <a name="l00257"></a>00257             $this-&gt;_choice = <span class="stringliteral">&#39;PRIMARY&#39;</span>;
-<a name="l00258"></a>00258         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<span class="stringliteral">&#39;FULLTEXT&#39;</span> == $this-&gt;_type) {
+<a name="l00258"></a>00258         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<span class="stringliteral">&#39;FULLTEXT&#39;</span> == $this-&gt;_type) {
 <a name="l00259"></a>00259             $this-&gt;_choice = <span class="stringliteral">&#39;FULLTEXT&#39;</span>;
-<a name="l00260"></a>00260         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<span class="stringliteral">&#39;SPATIAL&#39;</span> == $this-&gt;_type) {
+<a name="l00260"></a>00260         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<span class="stringliteral">&#39;SPATIAL&#39;</span> == $this-&gt;_type) {
 <a name="l00261"></a>00261             $this-&gt;_choice = <span class="stringliteral">&#39;SPATIAL&#39;</span>;
-<a name="l00262"></a>00262         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<span class="charliteral">&#39;0&#39;</span> == $this-&gt;_non_unique) {
+<a name="l00262"></a>00262         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<span class="charliteral">&#39;0&#39;</span> == $this-&gt;_non_unique) {
 <a name="l00263"></a>00263             $this-&gt;_choice = <span class="stringliteral">&#39;UNIQUE&#39;</span>;
 <a name="l00264"></a>00264         } <span class="keywordflow">else</span> {
 <a name="l00265"></a>00265             $this-&gt;_choice = <span class="stringliteral">&#39;INDEX&#39;</span>;
@@ -423,19 +423,19 @@
 <a name="l00345"></a><a class="code" href="classPMA__Index.html#aa6eafbe073d034ab90297b2c2d97cb8e">00345</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__Index.html#aa6eafbe073d034ab90297b2c2d97cb8e">isPacked</a>($as_text = <span class="keyword">false</span>)
 <a name="l00346"></a>00346     {
 <a name="l00347"></a>00347         <span class="keywordflow">if</span> ($as_text) {
-<a name="l00348"></a>00348             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = array(
+<a name="l00348"></a>00348             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = array(
 <a name="l00349"></a>00349                 <span class="charliteral">&#39;0&#39;</span> =&gt; __(<span class="stringliteral">&#39;No&#39;</span>),
 <a name="l00350"></a>00350                 <span class="charliteral">&#39;1&#39;</span> =&gt; __(<span class="stringliteral">&#39;Yes&#39;</span>),
 <a name="l00351"></a>00351             );
 <a name="l00352"></a>00352         } <span class="keywordflow">else</span> {
-<a name="l00353"></a>00353             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = array(
+<a name="l00353"></a>00353             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = array(
 <a name="l00354"></a>00354                 <span class="charliteral">&#39;0&#39;</span> =&gt; <span class="keyword">false</span>,
 <a name="l00355"></a>00355                 <span class="charliteral">&#39;1&#39;</span> =&gt; <span class="keyword">true</span>,
 <a name="l00356"></a>00356             );
 <a name="l00357"></a>00357         }
 <a name="l00358"></a>00358 
 <a name="l00359"></a>00359         <span class="keywordflow">if</span> (null === $this-&gt;_packed) {
-<a name="l00360"></a>00360             <span class="keywordflow">return</span> <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>[0];
+<a name="l00360"></a>00360             <span class="keywordflow">return</span> <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>[0];
 <a name="l00361"></a>00361         }
 <a name="l00362"></a>00362 
 <a name="l00363"></a>00363         <span class="keywordflow">return</span> $this-&gt;_packed;
@@ -449,18 +449,18 @@
 <a name="l00371"></a><a class="code" href="classPMA__Index.html#a148eec4be3fa633957cc2dcf1962e61a">00371</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__Index.html#a148eec4be3fa633957cc2dcf1962e61a">isUnique</a>($as_text = <span class="keyword">false</span>)
 <a name="l00372"></a>00372     {
 <a name="l00373"></a>00373         <span class="keywordflow">if</span> ($as_text) {
-<a name="l00374"></a>00374             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = array(
+<a name="l00374"></a>00374             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = array(
 <a name="l00375"></a>00375                 <span class="charliteral">&#39;0&#39;</span> =&gt; __(<span class="stringliteral">&#39;Yes&#39;</span>),
 <a name="l00376"></a>00376                 <span class="charliteral">&#39;1&#39;</span> =&gt; __(<span class="stringliteral">&#39;No&#39;</span>),
 <a name="l00377"></a>00377             );
 <a name="l00378"></a>00378         } <span class="keywordflow">else</span> {
-<a name="l00379"></a>00379             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = array(
+<a name="l00379"></a>00379             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = array(
 <a name="l00380"></a>00380                 <span class="charliteral">&#39;0&#39;</span> =&gt; <span class="keyword">true</span>,
 <a name="l00381"></a>00381                 <span class="charliteral">&#39;1&#39;</span> =&gt; <span class="keyword">false</span>,
 <a name="l00382"></a>00382             );
 <a name="l00383"></a>00383         }
 <a name="l00384"></a>00384 
-<a name="l00385"></a>00385         <span class="keywordflow">return</span> <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>[$this-&gt;_non_unique];
+<a name="l00385"></a>00385         <span class="keywordflow">return</span> <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>[$this-&gt;_non_unique];
 <a name="l00386"></a>00386     }
 <a name="l00387"></a>00387 
 <a name="l00388"></a><a class="code" href="classPMA__Index.html#a7618dbcdcedb248d1129689e1ac1c60e">00388</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__Index.html#a7618dbcdcedb248d1129689e1ac1c60e">getName</a>()
@@ -468,9 +468,9 @@
 <a name="l00390"></a>00390         <span class="keywordflow">return</span> $this-&gt;_name;
 <a name="l00391"></a>00391     }
 <a name="l00392"></a>00392 
-<a name="l00393"></a><a class="code" href="classPMA__Index.html#ad2b19262af9de7a66857fbbe654ab94f">00393</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__Index.html#ad2b19262af9de7a66857fbbe654ab94f">setName</a>(<a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>)
+<a name="l00393"></a><a class="code" href="classPMA__Index.html#ad2b19262af9de7a66857fbbe654ab94f">00393</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__Index.html#ad2b19262af9de7a66857fbbe654ab94f">setName</a>(<a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>)
 <a name="l00394"></a>00394     {
-<a name="l00395"></a>00395         $this-&gt;_name = (string) <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>;
+<a name="l00395"></a>00395         $this-&gt;_name = (string) <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>;
 <a name="l00396"></a>00396     }
 <a name="l00397"></a>00397 
 <a name="l00398"></a><a class="code" href="classPMA__Index.html#ab2fd89d5e0c43c9027f294f540da016d">00398</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__Index.html#ab2fd89d5e0c43c9027f294f540da016d">getColumns</a>()
@@ -497,56 +497,56 @@
 <a name="l00419"></a>00419         $no_indexes .= <a class="code" href="original_2css_2theme__right_8css_8php.html#a49f1ecfac39a4049144343717eb82bc5">PMA_Message::notice</a>(__(<span class="stringliteral">&#39;No index defined!&#39;</span>))-&gt;getDisplay();
 <a name="l00420"></a>00420         $no_indexes .= <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;
 <a name="l00421"></a>00421 
-<a name="l00422"></a>00422         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>  = <span class="stringliteral">&#39;&lt;fieldset&gt;&#39;</span>;
-<a name="l00423"></a>00423         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;legend id=&quot;index_header&quot;&gt;&#39;</span> . __(<span class="stringliteral">&#39;Indexes&#39;</span>);
-<a name="l00424"></a>00424         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <a class="code" href="common_8lib_8php.html#a5b2c38942cb8fe55e02ba17d0bef9f15" title="Displays a link to the official MySQL documentation.">PMA_showMySQLDocu</a>(<span class="stringliteral">&#39;optimization&#39;</span>, <span class="stringliteral">&#39;optimizing-database-structure&#39;</span>);
-<a name="l00425"></a>00425         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/legend&gt;&#39;</span>;
-<a name="l00426"></a>00426         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= $no_indexes;
+<a name="l00422"></a>00422         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>  = <span class="stringliteral">&#39;&lt;fieldset&gt;&#39;</span>;
+<a name="l00423"></a>00423         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;legend id=&quot;index_header&quot;&gt;&#39;</span> . __(<span class="stringliteral">&#39;Indexes&#39;</span>);
+<a name="l00424"></a>00424         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <a class="code" href="common_8lib_8php.html#a5b2c38942cb8fe55e02ba17d0bef9f15" title="Displays a link to the official MySQL documentation.">PMA_showMySQLDocu</a>(<span class="stringliteral">&#39;optimization&#39;</span>, <span class="stringliteral">&#39;optimizing-database-structure&#39;</span>);
+<a name="l00425"></a>00425         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/legend&gt;&#39;</span>;
+<a name="l00426"></a>00426         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= $no_indexes;
 <a name="l00427"></a>00427         <span class="keywordflow">if</span> (count($indexes) &lt; 1) {
-<a name="l00428"></a>00428             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/fieldset&gt;&#39;</span>;
-<a name="l00429"></a>00429             <span class="keywordflow">return</span> <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>;
+<a name="l00428"></a>00428             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/fieldset&gt;&#39;</span>;
+<a name="l00429"></a>00429             <span class="keywordflow">return</span> <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>;
 <a name="l00430"></a>00430         }
 <a name="l00431"></a>00431         <span class="keywordflow">if</span> (! $print_mode) {
-<a name="l00432"></a>00432             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <a class="code" href="classPMA__Index.html#a1847d139af9eb1afbac836d726f4452b" title="Function to check over array of indexes and look for common problems.">PMA_Index::findDuplicates</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, $schema);
+<a name="l00432"></a>00432             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <a class="code" href="classPMA__Index.html#a1847d139af9eb1afbac836d726f4452b" title="Function to check over array of indexes and look for common problems.">PMA_Index::findDuplicates</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, $schema);
 <a name="l00433"></a>00433         }
-<a name="l00434"></a>00434         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;table id=&quot;table_index&quot;&gt;&#39;</span>;
-<a name="l00435"></a>00435         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;thead&gt;&#39;</span>;
-<a name="l00436"></a>00436         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;tr&gt;&#39;</span>;
+<a name="l00434"></a>00434         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;table id=&quot;table_index&quot;&gt;&#39;</span>;
+<a name="l00435"></a>00435         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;thead&gt;&#39;</span>;
+<a name="l00436"></a>00436         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;tr&gt;&#39;</span>;
 <a name="l00437"></a>00437         <span class="keywordflow">if</span> (! $print_mode) {
-<a name="l00438"></a>00438             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th colspan=&quot;2&quot;&gt;&#39;</span> . __(<span class="stringliteral">&#39;Action&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00438"></a>00438             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th colspan=&quot;2&quot;&gt;&#39;</span> . __(<span class="stringliteral">&#39;Action&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
 <a name="l00439"></a>00439         }
-<a name="l00440"></a>00440         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Keyname&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00441"></a>00441         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Type&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00442"></a>00442         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Unique&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00443"></a>00443         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Packed&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00444"></a>00444         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Column&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00445"></a>00445         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Cardinality&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00446"></a>00446         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Collation&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00447"></a>00447         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Null&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00448"></a>00448         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Comment&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00449"></a>00449         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/tr&gt;&#39;</span>;
-<a name="l00450"></a>00450         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/thead&gt;&#39;</span>;
-<a name="l00451"></a>00451         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;tbody&gt;&#39;</span>;
+<a name="l00440"></a>00440         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Keyname&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00441"></a>00441         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Type&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00442"></a>00442         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Unique&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00443"></a>00443         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Packed&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00444"></a>00444         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Column&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00445"></a>00445         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Cardinality&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00446"></a>00446         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Collation&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00447"></a>00447         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Null&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00448"></a>00448         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th&gt;&#39;</span> . __(<span class="stringliteral">&#39;Comment&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00449"></a>00449         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/tr&gt;&#39;</span>;
+<a name="l00450"></a>00450         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/thead&gt;&#39;</span>;
+<a name="l00451"></a>00451         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;tbody&gt;&#39;</span>;
 <a name="l00452"></a>00452 
 <a name="l00453"></a>00453         <a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> = <span class="keyword">true</span>;
 <a name="l00454"></a>00454         <span class="keywordflow">foreach</span> ($indexes as $index) {
 <a name="l00455"></a>00455             $row_span = <span class="stringliteral">&#39; rowspan=&quot;&#39;</span> . $index-&gt;getColumnCount() . <span class="stringliteral">&#39;&quot; &#39;</span>;
 <a name="l00456"></a>00456 
-<a name="l00457"></a>00457             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;tr class=&quot;noclick &#39;</span> . (<a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> ? <span class="stringliteral">&#39;odd&#39;</span> : <span class="stringliteral">&#39;even&#39;</span>) . <span class="stringliteral">&#39;&quot;&gt;&#39;</span>;
+<a name="l00457"></a>00457             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;tr class=&quot;noclick &#39;</span> . (<a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> ? <span class="stringliteral">&#39;odd&#39;</span> : <span class="stringliteral">&#39;even&#39;</span>) . <span class="stringliteral">&#39;&quot;&gt;&#39;</span>;
 <a name="l00458"></a>00458 
 <a name="l00459"></a>00459             <span class="keywordflow">if</span> (! $print_mode) {
-<a name="l00460"></a>00460                 $this_params = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;url_params&#39;</span>];
+<a name="l00460"></a>00460                 $this_params = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;url_params&#39;</span>];
 <a name="l00461"></a>00461                 $this_params[<span class="stringliteral">&#39;index&#39;</span>] = $index-&gt;getName();
-<a name="l00462"></a>00462                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td class=&quot;edit_index &#39;</span>;
-<a name="l00463"></a>00463                 <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>]) {
-<a name="l00464"></a>00464                     <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;ajax&quot; &#39;</span>;
+<a name="l00462"></a>00462                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td class=&quot;edit_index &#39;</span>;
+<a name="l00463"></a>00463                 <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>]) {
+<a name="l00464"></a>00464                     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;ajax&quot; &#39;</span>;
 <a name="l00465"></a>00465                 }
-<a name="l00466"></a>00466                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&quot; &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span>
+<a name="l00466"></a>00466                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&quot; &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span>
 <a name="l00467"></a>00467                    . <span class="stringliteral">&#39;    &lt;a href=&quot;tbl_indexes.php&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>($this_params)
 <a name="l00468"></a>00468                    . <span class="stringliteral">&#39;&quot;&gt;&#39;</span> . <a class="code" href="common_8lib_8php.html#a73905c5a8a80014a8d299d0c74176316" title="Returns an HTML IMG tag for a particular icon from a theme, which may be an actual file or an icon fr...">PMA_getIcon</a>(<span class="stringliteral">&#39;b_edit.png&#39;</span>, __(<span class="stringliteral">&#39;Edit&#39;</span>)) . <span class="stringliteral">&#39;&lt;/a&gt;&#39;</span>
 <a name="l00469"></a>00469                    . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00470"></a>00470 
-<a name="l00471"></a>00471                 $this_params = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;url_params&#39;</span>];
+<a name="l00471"></a>00471                 $this_params = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;url_params&#39;</span>];
 <a name="l00472"></a>00472                 <span class="keywordflow">if</span> ($index-&gt;getName() == <span class="stringliteral">&#39;PRIMARY&#39;</span>) {
 <a name="l00473"></a>00473                     $this_params[<span class="stringliteral">&#39;sql_query&#39;</span>] = <span class="stringliteral">&#39;ALTER TABLE &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>) . <span class="stringliteral">&#39; DROP PRIMARY KEY&#39;</span>;
 <a name="l00474"></a>00474                     $this_params[<span class="stringliteral">&#39;message_to_show&#39;</span>] = __(<span class="stringliteral">&#39;The primary key has been dropped&#39;</span>);
@@ -557,65 +557,65 @@
 <a name="l00479"></a>00479                     $js_msg      = <a class="code" href="js__escape_8lib_8php.html#adefa5e0c287e2534fb2d5a518cebc968" title="Format a string so it can be a string inside JavaScript code inside an eventhandler (onclick...">PMA_jsFormat</a>(<span class="stringliteral">&#39;ALTER TABLE &#39;</span> . <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a> . <span class="stringliteral">&#39; DROP INDEX &#39;</span> . $index-&gt;getName());
 <a name="l00480"></a>00480                 }
 <a name="l00481"></a>00481 
-<a name="l00482"></a>00482                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span>;
-<a name="l00483"></a>00483                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;input type=&quot;hidden&quot; class=&quot;drop_primary_key_index_msg&quot; value=&quot;&#39;</span> . $js_msg . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span>;
-<a name="l00484"></a>00484                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;    &lt;a &#39;</span>;
-<a name="l00485"></a>00485                 <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>]) {
-<a name="l00486"></a>00486                     <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;class=&quot;drop_primary_key_index_anchor&quot; &#39;</span>;
+<a name="l00482"></a>00482                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span>;
+<a name="l00483"></a>00483                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;input type=&quot;hidden&quot; class=&quot;drop_primary_key_index_msg&quot; value=&quot;&#39;</span> . $js_msg . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span>;
+<a name="l00484"></a>00484                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;    &lt;a &#39;</span>;
+<a name="l00485"></a>00485                 <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>]) {
+<a name="l00486"></a>00486                     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;class=&quot;drop_primary_key_index_anchor&quot; &#39;</span>;
 <a name="l00487"></a>00487                 }
-<a name="l00488"></a>00488                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39; href=&quot;sql.php&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>($this_params)
+<a name="l00488"></a>00488                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39; href=&quot;sql.php&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>($this_params)
 <a name="l00489"></a>00489                    . <span class="stringliteral">&#39;&quot; &gt;&#39;</span>
 <a name="l00490"></a>00490                    . <a class="code" href="common_8lib_8php.html#a73905c5a8a80014a8d299d0c74176316" title="Returns an HTML IMG tag for a particular icon from a theme, which may be an actual file or an icon fr...">PMA_getIcon</a>(<span class="stringliteral">&#39;b_drop.png&#39;</span>, __(<span class="stringliteral">&#39;Drop&#39;</span>))  . <span class="stringliteral">&#39;&lt;/a&gt;&#39;</span>
 <a name="l00491"></a>00491                    . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00492"></a>00492             }
 <a name="l00493"></a>00493 
-<a name="l00494"></a>00494             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span> . htmlspecialchars($index-&gt;getName()) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
-<a name="l00495"></a>00495             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span> . htmlspecialchars($index-&gt;getType()) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
-<a name="l00496"></a>00496             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span> . $index-&gt;isUnique(<span class="keyword">true</span>) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
-<a name="l00497"></a>00497             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span> . $index-&gt;isPacked(<span class="keyword">true</span>) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
+<a name="l00494"></a>00494             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;th &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span> . htmlspecialchars($index-&gt;getName()) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span>;
+<a name="l00495"></a>00495             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span> . htmlspecialchars($index-&gt;getType()) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
+<a name="l00496"></a>00496             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span> . $index-&gt;isUnique(<span class="keyword">true</span>) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
+<a name="l00497"></a>00497             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span> . $index-&gt;isPacked(<span class="keyword">true</span>) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
 <a name="l00498"></a>00498 
 <a name="l00499"></a>00499             <span class="keywordflow">foreach</span> ($index-&gt;getColumns() as $column) {
 <a name="l00500"></a>00500                 <span class="keywordflow">if</span> ($column-&gt;getSeqInIndex() &gt; 1) {
-<a name="l00501"></a>00501                     <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;tr class=&quot;noclick &#39;</span> . (<a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> ? <span class="stringliteral">&#39;odd&#39;</span> : <span class="stringliteral">&#39;even&#39;</span>) . <span class="stringliteral">&#39;&quot;&gt;&#39;</span>;
+<a name="l00501"></a>00501                     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;tr class=&quot;noclick &#39;</span> . (<a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> ? <span class="stringliteral">&#39;odd&#39;</span> : <span class="stringliteral">&#39;even&#39;</span>) . <span class="stringliteral">&#39;&quot;&gt;&#39;</span>;
 <a name="l00502"></a>00502                 }
-<a name="l00503"></a>00503                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . htmlspecialchars($column-&gt;getName());
+<a name="l00503"></a>00503                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . htmlspecialchars($column-&gt;getName());
 <a name="l00504"></a>00504                 <span class="keywordflow">if</span> ($column-&gt;getSubPart()) {
-<a name="l00505"></a>00505                     <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39; (&#39;</span> . $column-&gt;getSubPart() . <span class="charliteral">&#39;)&#39;</span>;
+<a name="l00505"></a>00505                     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39; (&#39;</span> . $column-&gt;getSubPart() . <span class="charliteral">&#39;)&#39;</span>;
 <a name="l00506"></a>00506                 }
-<a name="l00507"></a>00507                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
-<a name="l00508"></a>00508                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . htmlspecialchars($column-&gt;getCardinality()) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
-<a name="l00509"></a>00509                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . htmlspecialchars($column-&gt;getCollation()) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
-<a name="l00510"></a>00510                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . htmlspecialchars($column-&gt;getNull(<span class="keyword">true</span>)) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
+<a name="l00507"></a>00507                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
+<a name="l00508"></a>00508                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . htmlspecialchars($column-&gt;getCardinality()) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
+<a name="l00509"></a>00509                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . htmlspecialchars($column-&gt;getCollation()) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
+<a name="l00510"></a>00510                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td&gt;&#39;</span> . htmlspecialchars($column-&gt;getNull(<span class="keyword">true</span>)) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
 <a name="l00511"></a>00511 
 <a name="l00512"></a>00512                 <span class="keywordflow">if</span> ($column-&gt;getSeqInIndex() == 1) {
-<a name="l00513"></a>00513                     <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span>
+<a name="l00513"></a>00513                     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;td &#39;</span> . $row_span . <span class="charliteral">&#39;&gt;&#39;</span>
 <a name="l00514"></a>00514                         . htmlspecialchars($index-&gt;getComments()) . <span class="stringliteral">&#39;&lt;/td&gt;&#39;</span>;
 <a name="l00515"></a>00515                 }
-<a name="l00516"></a>00516                 <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/tr&gt;&#39;</span>;
+<a name="l00516"></a>00516                 <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/tr&gt;&#39;</span>;
 <a name="l00517"></a>00517             } <span class="comment">// end foreach $index[&#39;Sequences&#39;]</span>
 <a name="l00518"></a>00518 
 <a name="l00519"></a>00519             <a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> = ! <a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a>;
 <a name="l00520"></a>00520         } <span class="comment">// end while</span>
-<a name="l00521"></a>00521         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/tbody&gt;&#39;</span>;
-<a name="l00522"></a>00522         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/table&gt;&#39;</span>;
-<a name="l00523"></a>00523         <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/fieldset&gt;&#39;</span>;
+<a name="l00521"></a>00521         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/tbody&gt;&#39;</span>;
+<a name="l00522"></a>00522         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/table&gt;&#39;</span>;
+<a name="l00523"></a>00523         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> .= <span class="stringliteral">&#39;&lt;/fieldset&gt;&#39;</span>;
 <a name="l00524"></a>00524 
-<a name="l00525"></a>00525         <span class="keywordflow">return</span> <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>;
+<a name="l00525"></a>00525         <span class="keywordflow">return</span> <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>;
 <a name="l00526"></a>00526     }
 <a name="l00527"></a>00527 
 <a name="l00528"></a><a class="code" href="classPMA__Index.html#a15c9c9c2cbd973174129a734c1789291">00528</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__Index.html#a15c9c9c2cbd973174129a734c1789291">getCompareData</a>()
 <a name="l00529"></a>00529     {
-<a name="l00530"></a>00530         <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = array(
+<a name="l00530"></a>00530         <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = array(
 <a name="l00531"></a>00531             <span class="comment">// &#39;Non_unique&#39;    =&gt; $this-&gt;_non_unique,</span>
 <a name="l00532"></a>00532             <span class="stringliteral">&#39;Packed&#39;</span>        =&gt; $this-&gt;_packed,
 <a name="l00533"></a>00533             <span class="stringliteral">&#39;Index_type&#39;</span>    =&gt; $this-&gt;_type,
 <a name="l00534"></a>00534         );
 <a name="l00535"></a>00535 
 <a name="l00536"></a>00536         <span class="keywordflow">foreach</span> ($this-&gt;_columns as $column) {
-<a name="l00537"></a>00537             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;columns&#39;</span>][] = $column-&gt;getCompareData();
+<a name="l00537"></a>00537             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;columns&#39;</span>][] = $column-&gt;getCompareData();
 <a name="l00538"></a>00538         }
 <a name="l00539"></a>00539 
-<a name="l00540"></a>00540         <span class="keywordflow">return</span> <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>;
+<a name="l00540"></a>00540         <span class="keywordflow">return</span> <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>;
 <a name="l00541"></a>00541     }
 <a name="l00542"></a>00542 <span class="comment"></span>
 <a name="l00543"></a>00543 <span class="comment">    /**</span>
@@ -648,10 +648,10 @@
 <a name="l00570"></a>00570                 <span class="comment">// did not find any difference</span>
 <a name="l00571"></a>00571                 <span class="comment">// so it makes no sense to have this two equal indexes</span>
 <a name="l00572"></a>00572 
-<a name="l00573"></a>00573                 <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="original_2css_2theme__right_8css_8php.html#a49f1ecfac39a4049144343717eb82bc5">PMA_Message::notice</a>(__(<span class="stringliteral">&#39;The indexes %1$s and %2$s seem to be equal and one of them could possibly be removed.&#39;</span>));
-<a name="l00574"></a>00574                 <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;addParam($each_index-&gt;getName());
-<a name="l00575"></a>00575                 <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;addParam($while_index-&gt;getName());
-<a name="l00576"></a>00576                 $output .= <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;getDisplay();
+<a name="l00573"></a>00573                 <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="original_2css_2theme__right_8css_8php.html#a49f1ecfac39a4049144343717eb82bc5">PMA_Message::notice</a>(__(<span class="stringliteral">&#39;The indexes %1$s and %2$s seem to be equal and one of them could possibly be removed.&#39;</span>));
+<a name="l00574"></a>00574                 <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;addParam($each_index-&gt;getName());
+<a name="l00575"></a>00575                 <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;addParam($while_index-&gt;getName());
+<a name="l00576"></a>00576                 $output .= <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;getDisplay();
 <a name="l00577"></a>00577 
 <a name="l00578"></a>00578                 <span class="comment">// there is no need to check any further indexes if we have already</span>
 <a name="l00579"></a>00579                 <span class="comment">// found that this one has a duplicate</span>
@@ -786,7 +786,7 @@
     <ul>
       <li class="navelem"><a class="el" href="Index_8class_8php.html">Index.class.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

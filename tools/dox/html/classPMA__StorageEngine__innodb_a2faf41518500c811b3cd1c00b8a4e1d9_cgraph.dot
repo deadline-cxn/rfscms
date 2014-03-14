@@ -1,0 +1,21 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_StorageEngine_innodb\\getPageBufferpool",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_DBI_fetch_result",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b",tooltip="returns all rows in the resultset in one array"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_formatNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#abeaeabaf95ad63e5163642ff03ec6879",tooltip="Formats $value to the given length and appends SI prefixes with a $length of 0 no truncation occurs..."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_pow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#aaade54960e4ce59a18b04f1cfd724b77",tooltip="Exponential expression / raise number into power."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_detect_pow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a028dd5a1e5c9d32af39c3af1bde8b068",tooltip="Detects which function to use for PMA_pow."];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_localizeNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#ab4019f8f649e81f8d6525969fdba212e",tooltip="Changes thousands and decimal separators to locale specific values."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_formatByteDown",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a90de48fb0bb54fca6db6a407aa2ab8cf",tooltip="Formats $value to byte view."];
+  Node7 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_List_Database\\getDefault",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_List_Database\\getHtmlListGrouped",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__List__Database.html#a7bdea9aa5ef0e7c9033893aab4f1e6bd",tooltip="returns html code for list with dbs"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_List_Database\\getHtmlSelectGrouped",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__List__Database.html#a40d67e11c09326f19302fa5fbc2a7934",tooltip="returns html code for select form element with dbs"];
+}

@@ -88,197 +88,130 @@
 <a name="l00010"></a>00010 <span class="comment"> */</span>
 <a name="l00011"></a>00011 <span class="comment"></span>
 <a name="l00012"></a>00012 <span class="comment">/**</span>
-<a name="l00013"></a>00013 <span class="comment"> * Wrap the PHP_OS constant</span>
-<a name="l00014"></a>00014 <span class="comment"> *</span>
-<a name="l00015"></a>00015 <span class="comment"> * @return string</span>
-<a name="l00016"></a>00016 <span class="comment"> */</span>
-<a name="l00017"></a><a class="code" href="sysinfo_8lib_8php.html#a931200822da695a4bfeda5ad7ff32209">00017</a> <span class="keyword">function</span> <a class="code" href="sysinfo_8lib_8php.html#a931200822da695a4bfeda5ad7ff32209" title="Wrap the PHP_OS constant.">PMA_getSysInfoOs</a>()
-<a name="l00018"></a>00018 {
-<a name="l00019"></a>00019     $php_os = PHP_OS;
+<a name="l00013"></a>00013 <span class="comment"> * @return array</span>
+<a name="l00014"></a>00014 <span class="comment"> */</span>
+<a name="l00015"></a><a class="code" href="sysinfo_8lib_8php.html#a6f6ab81f674f236dd52ef66ef822b9c4">00015</a> <span class="keyword">function</span> <a class="code" href="sysinfo_8lib_8php.html#a6f6ab81f674f236dd52ef66ef822b9c4">getSysInfo</a>()
+<a name="l00016"></a>00016 {
+<a name="l00017"></a>00017     $supported = array(<span class="stringliteral">&#39;Linux&#39;</span>, <span class="stringliteral">&#39;WINNT&#39;</span>);
+<a name="l00018"></a>00018 
+<a name="l00019"></a>00019     $sysinfo = array();
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021     <span class="comment">// look for common UNIX-like systems</span>
-<a name="l00022"></a>00022     $unix_like = array(<span class="stringliteral">&#39;FreeBSD&#39;</span>);
-<a name="l00023"></a>00023     <span class="keywordflow">if</span> (in_array($php_os, $unix_like)) {
-<a name="l00024"></a>00024         $php_os = <span class="stringliteral">&#39;Linux&#39;</span>;
-<a name="l00025"></a>00025     }
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027     <span class="keywordflow">return</span> ucfirst($php_os);
-<a name="l00028"></a>00028 }
-<a name="l00029"></a>00029 <span class="comment"></span>
-<a name="l00030"></a>00030 <span class="comment">/**</span>
-<a name="l00031"></a>00031 <span class="comment"> * @return array</span>
-<a name="l00032"></a>00032 <span class="comment"> */</span>
-<a name="l00033"></a><a class="code" href="sysinfo_8lib_8php.html#a75a806fef392e040841d69f0f19cc7f7">00033</a> <span class="keyword">function</span> <a class="code" href="sysinfo_8lib_8php.html#a75a806fef392e040841d69f0f19cc7f7">PMA_getSysInfo</a>()
-<a name="l00034"></a>00034 {
-<a name="l00035"></a>00035     $php_os = <a class="code" href="sysinfo_8lib_8php.html#a931200822da695a4bfeda5ad7ff32209" title="Wrap the PHP_OS constant.">PMA_getSysInfoOs</a>();
-<a name="l00036"></a>00036     $supported = array(<span class="stringliteral">&#39;Linux&#39;</span>, <span class="stringliteral">&#39;WINNT&#39;</span>, <span class="stringliteral">&#39;SunOS&#39;</span>);
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038     $sysinfo = array();
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040     <span class="keywordflow">if</span> (in_array($php_os, $supported)) {
-<a name="l00041"></a>00041         <span class="keywordflow">return</span> eval(<span class="stringliteral">&quot;return new PMA_sysinfo&quot;</span>.$php_os.<span class="stringliteral">&quot;();&quot;</span>);
-<a name="l00042"></a>00042     }
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044     <span class="keywordflow">return</span> <span class="keyword">new</span> PMA_Sysinfo_Default;
-<a name="l00045"></a>00045 }
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 
-<a name="l00048"></a><a class="code" href="classPMA__sysinfoWinnt.html">00048</a> <span class="keyword">class </span><a class="code" href="classPMA__sysinfoWinnt.html">PMA_sysinfoWinnt</a>
-<a name="l00049"></a>00049 {
-<a name="l00050"></a><a class="code" href="classPMA__sysinfoWinnt.html#aad1e8d363e05ffb54d7d1cf8afeba093">00050</a>     <span class="keyword">private</span> <a class="code" href="classPMA__sysinfoWinnt.html#aad1e8d363e05ffb54d7d1cf8afeba093">$_wmi</a>;
+<a name="l00021"></a>00021     <span class="keywordflow">if</span> (in_array(PHP_OS, $supported)) {
+<a name="l00022"></a>00022         <span class="keywordflow">return</span> eval(<span class="stringliteral">&quot;return new &quot;</span>.PHP_OS.<span class="stringliteral">&quot;();&quot;</span>);
+<a name="l00023"></a>00023     }
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025     <span class="keywordflow">return</span> $sysinfo;
+<a name="l00026"></a>00026 }
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 
+<a name="l00029"></a><a class="code" href="classWINNT.html">00029</a> <span class="keyword">class </span><a class="code" href="classWINNT.html">WINNT</a>
+<a name="l00030"></a>00030 {
+<a name="l00031"></a><a class="code" href="classWINNT.html#ac13baaf10ffd8376267f0c5996da3f1d">00031</a>     <span class="keyword">private</span> <a class="code" href="classWINNT.html#ac13baaf10ffd8376267f0c5996da3f1d">$_wmi</a>;
+<a name="l00032"></a>00032 
+<a name="l00033"></a><a class="code" href="classWINNT.html#adac98b99361a5da54944abe76b61e793">00033</a>     <span class="keyword">public</span> <a class="code" href="classWINNT.html#adac98b99361a5da54944abe76b61e793">$os</a> = <span class="stringliteral">&#39;WINNT&#39;</span>;
+<a name="l00034"></a>00034 
+<a name="l00035"></a><a class="code" href="classWINNT.html#a1cf6cee1fded366c1427371c38ed5209">00035</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classWINNT.html#a1cf6cee1fded366c1427371c38ed5209">__construct</a>() {
+<a name="l00036"></a>00036         <span class="comment">// initialize the wmi object</span>
+<a name="l00037"></a>00037         $objLocator = <span class="keyword">new</span> COM(<span class="stringliteral">&#39;WbemScripting.SWbemLocator&#39;</span>);
+<a name="l00038"></a>00038         $this-&gt;_wmi = $objLocator-&gt;ConnectServer();
+<a name="l00039"></a>00039     }
+<a name="l00040"></a>00040 
+<a name="l00041"></a><a class="code" href="classWINNT.html#a76142e914e1f003f7a80816960e98f9e">00041</a>     <span class="keyword">function</span> <a class="code" href="classWINNT.html#a76142e914e1f003f7a80816960e98f9e">loadavg</a>() {
+<a name="l00042"></a>00042         $loadavg = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00043"></a>00043         $sum = 0;
+<a name="l00044"></a>00044         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = $this-&gt;<a class="code" href="classWINNT.html#a04547dc117f8c89deead0ba4a1ad9973">_getWMI</a>(<span class="stringliteral">&#39;Win32_Processor&#39;</span>, array(<span class="stringliteral">&#39;LoadPercentage&#39;</span>));
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046         <span class="keywordflow">foreach</span> (<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> as $load) {
+<a name="l00047"></a>00047             $value = $load[<span class="stringliteral">&#39;LoadPercentage&#39;</span>];
+<a name="l00048"></a>00048             $loadavg .= $value.<span class="charliteral">&#39; &#39;</span>;
+<a name="l00049"></a>00049             $sum += $value;
+<a name="l00050"></a>00050         }
 <a name="l00051"></a>00051 
-<a name="l00052"></a><a class="code" href="classPMA__sysinfoWinnt.html#afde9d63998e562d18e684ae214c6fea0">00052</a>     <span class="keyword">public</span> <a class="code" href="classPMA__sysinfoWinnt.html#afde9d63998e562d18e684ae214c6fea0">$os</a> = <span class="stringliteral">&#39;WINNT&#39;</span>;
-<a name="l00053"></a>00053 
-<a name="l00054"></a><a class="code" href="classPMA__sysinfoWinnt.html#a12a4cb185b7fccb9f482d7c2ec0158e1">00054</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoWinnt.html#a12a4cb185b7fccb9f482d7c2ec0158e1">__construct</a>() {
-<a name="l00055"></a>00055         <span class="comment">// initialize the wmi object</span>
-<a name="l00056"></a>00056         $objLocator = <span class="keyword">new</span> COM(<span class="stringliteral">&#39;WbemScripting.SWbemLocator&#39;</span>);
-<a name="l00057"></a>00057         $this-&gt;_wmi = $objLocator-&gt;ConnectServer();
-<a name="l00058"></a>00058     }
-<a name="l00059"></a>00059 
-<a name="l00060"></a><a class="code" href="classPMA__sysinfoWinnt.html#acb6c0033da658a28d5c1b5e5208246a1">00060</a>     <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoWinnt.html#acb6c0033da658a28d5c1b5e5208246a1">loadavg</a>() {
-<a name="l00061"></a>00061         $loadavg = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00062"></a>00062         $sum = 0;
-<a name="l00063"></a>00063         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = $this-&gt;<a class="code" href="classPMA__sysinfoWinnt.html#aca0e2906e71cb8dde7b40ca7354f049d">_getWMI</a>(<span class="stringliteral">&#39;Win32_Processor&#39;</span>, array(<span class="stringliteral">&#39;LoadPercentage&#39;</span>));
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065         <span class="keywordflow">foreach</span> (<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> as $load) {
-<a name="l00066"></a>00066             $value = $load[<span class="stringliteral">&#39;LoadPercentage&#39;</span>];
-<a name="l00067"></a>00067             $loadavg .= $value.<span class="charliteral">&#39; &#39;</span>;
-<a name="l00068"></a>00068             $sum += $value;
-<a name="l00069"></a>00069         }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071         <span class="keywordflow">return</span> array(<span class="stringliteral">&#39;loadavg&#39;</span> =&gt; $sum / count(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>));
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="classPMA__sysinfoWinnt.html#aca0e2906e71cb8dde7b40ca7354f049d">00074</a>     <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoWinnt.html#aca0e2906e71cb8dde7b40ca7354f049d">_getWMI</a>($strClass, $strValue = array()) {
-<a name="l00075"></a>00075         $arrData = array();
-<a name="l00076"></a>00076         $value = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078         $objWEBM = $this-&gt;_wmi-&gt;Get($strClass);
-<a name="l00079"></a>00079         $arrProp = $objWEBM-&gt;Properties_;
-<a name="l00080"></a>00080         $arrWEBMCol = $objWEBM-&gt;Instances_();
-<a name="l00081"></a>00081         <span class="keywordflow">foreach</span> ($arrWEBMCol as $objItem) {
-<a name="l00082"></a>00082             <span class="keywordflow">if</span> (is_array($arrProp)) {
-<a name="l00083"></a>00083                 reset($arrProp);
-<a name="l00084"></a>00084             }
-<a name="l00085"></a>00085             $arrInstance = array();
-<a name="l00086"></a>00086             <span class="keywordflow">foreach</span> ($arrProp as $propItem) {
-<a name="l00087"></a>00087                 <span class="keywordflow">if</span> ( empty($strValue)) {
-<a name="l00088"></a>00088                     eval(<span class="stringliteral">&quot;\$value = \$objItem-&gt;&quot;</span>.$propItem-&gt;Name.<span class="stringliteral">&quot;;&quot;</span>);
-<a name="l00089"></a>00089                     $arrInstance[$propItem-&gt;Name] = trim($value);
-<a name="l00090"></a>00090                 } <span class="keywordflow">else</span> {
-<a name="l00091"></a>00091                     <span class="keywordflow">if</span> (in_array($propItem-&gt;Name, $strValue)) {
-<a name="l00092"></a>00092                         eval(<span class="stringliteral">&quot;\$value = \$objItem-&gt;&quot;</span>.$propItem-&gt;Name.<span class="stringliteral">&quot;;&quot;</span>);
-<a name="l00093"></a>00093                         $arrInstance[$propItem-&gt;Name] = trim($value);
-<a name="l00094"></a>00094                     }
-<a name="l00095"></a>00095                 }
-<a name="l00096"></a>00096             }
-<a name="l00097"></a>00097             $arrData[] = $arrInstance;
-<a name="l00098"></a>00098         }
-<a name="l00099"></a>00099         <span class="keywordflow">return</span> $arrData;
-<a name="l00100"></a>00100     }
-<a name="l00101"></a>00101 
+<a name="l00052"></a>00052         <span class="keywordflow">return</span> array(<span class="stringliteral">&#39;loadavg&#39;</span> =&gt; $sum / count(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>));
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054 
+<a name="l00055"></a><a class="code" href="classWINNT.html#a04547dc117f8c89deead0ba4a1ad9973">00055</a>     <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="classWINNT.html#a04547dc117f8c89deead0ba4a1ad9973">_getWMI</a>($strClass, $strValue = array()) {
+<a name="l00056"></a>00056         $arrData = array();
+<a name="l00057"></a>00057         $value = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059         $objWEBM = $this-&gt;_wmi-&gt;Get($strClass);
+<a name="l00060"></a>00060         $arrProp = $objWEBM-&gt;Properties_;
+<a name="l00061"></a>00061         $arrWEBMCol = $objWEBM-&gt;Instances_();
+<a name="l00062"></a>00062         <span class="keywordflow">foreach</span> ($arrWEBMCol as $objItem) {
+<a name="l00063"></a>00063             <span class="keywordflow">if</span> (is_array($arrProp)) {
+<a name="l00064"></a>00064                 reset($arrProp);
+<a name="l00065"></a>00065             }
+<a name="l00066"></a>00066             $arrInstance = array();
+<a name="l00067"></a>00067             <span class="keywordflow">foreach</span> ($arrProp as $propItem) {
+<a name="l00068"></a>00068                 <span class="keywordflow">if</span> ( empty($strValue)) {
+<a name="l00069"></a>00069                     eval(<span class="stringliteral">&quot;\$value = \$objItem-&gt;&quot;</span>.$propItem-&gt;Name.<span class="stringliteral">&quot;;&quot;</span>);
+<a name="l00070"></a>00070                     $arrInstance[$propItem-&gt;Name] = trim($value);
+<a name="l00071"></a>00071                 } <span class="keywordflow">else</span> {
+<a name="l00072"></a>00072                     <span class="keywordflow">if</span> (in_array($propItem-&gt;Name, $strValue)) {
+<a name="l00073"></a>00073                         eval(<span class="stringliteral">&quot;\$value = \$objItem-&gt;&quot;</span>.$propItem-&gt;Name.<span class="stringliteral">&quot;;&quot;</span>);
+<a name="l00074"></a>00074                         $arrInstance[$propItem-&gt;Name] = trim($value);
+<a name="l00075"></a>00075                     }
+<a name="l00076"></a>00076                 }
+<a name="l00077"></a>00077             }
+<a name="l00078"></a>00078             $arrData[] = $arrInstance;
+<a name="l00079"></a>00079         }
+<a name="l00080"></a>00080         <span class="keywordflow">return</span> $arrData;
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00084"></a><a class="code" href="classWINNT.html#a735380e67176268cb1c8ea01ae79c1a8">00084</a>     <span class="keyword">function</span> <a class="code" href="classWINNT.html#a735380e67176268cb1c8ea01ae79c1a8">memory</a>() {
+<a name="l00085"></a>00085         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = $this-&gt;<a class="code" href="classWINNT.html#a04547dc117f8c89deead0ba4a1ad9973">_getWMI</a>(<span class="stringliteral">&quot;Win32_OperatingSystem&quot;</span>, array(<span class="stringliteral">&#39;TotalVisibleMemorySize&#39;</span>, <span class="stringliteral">&#39;FreePhysicalMemory&#39;</span>));
+<a name="l00086"></a>00086         $mem = Array();
+<a name="l00087"></a>00087         $mem[<span class="stringliteral">&#39;MemTotal&#39;</span>] = <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>[0][<span class="stringliteral">&#39;TotalVisibleMemorySize&#39;</span>];
+<a name="l00088"></a>00088         $mem[<span class="stringliteral">&#39;MemFree&#39;</span>] = <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>[0][<span class="stringliteral">&#39;FreePhysicalMemory&#39;</span>];
+<a name="l00089"></a>00089         $mem[<span class="stringliteral">&#39;MemUsed&#39;</span>] = $mem[<span class="stringliteral">&#39;MemTotal&#39;</span>] - $mem[<span class="stringliteral">&#39;MemFree&#39;</span>];
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = $this-&gt;<a class="code" href="classWINNT.html#a04547dc117f8c89deead0ba4a1ad9973">_getWMI</a>(<span class="stringliteral">&#39;Win32_PageFileUsage&#39;</span>);
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093         $mem[<span class="stringliteral">&#39;SwapTotal&#39;</span>] = 0;
+<a name="l00094"></a>00094         $mem[<span class="stringliteral">&#39;SwapUsed&#39;</span>] = 0;
+<a name="l00095"></a>00095         $mem[<span class="stringliteral">&#39;SwapPeak&#39;</span>] = 0;
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097         <span class="keywordflow">foreach</span> (<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> as $swapdevice) {
+<a name="l00098"></a>00098             $mem[<span class="stringliteral">&#39;SwapTotal&#39;</span>] += $swapdevice[<span class="stringliteral">&#39;AllocatedBaseSize&#39;</span>] * 1024;
+<a name="l00099"></a>00099             $mem[<span class="stringliteral">&#39;SwapUsed&#39;</span>] += $swapdevice[<span class="stringliteral">&#39;CurrentUsage&#39;</span>] * 1024;
+<a name="l00100"></a>00100             $mem[<span class="stringliteral">&#39;SwapPeak&#39;</span>] += $swapdevice[<span class="stringliteral">&#39;PeakUsage&#39;</span>] * 1024;
+<a name="l00101"></a>00101         }
 <a name="l00102"></a>00102 
-<a name="l00103"></a><a class="code" href="classPMA__sysinfoWinnt.html#aa0544854a78288aa1c672717811cc136">00103</a>     <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoWinnt.html#aa0544854a78288aa1c672717811cc136">memory</a>() {
-<a name="l00104"></a>00104         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = $this-&gt;<a class="code" href="classPMA__sysinfoWinnt.html#aca0e2906e71cb8dde7b40ca7354f049d">_getWMI</a>(<span class="stringliteral">&quot;Win32_OperatingSystem&quot;</span>, array(<span class="stringliteral">&#39;TotalVisibleMemorySize&#39;</span>, <span class="stringliteral">&#39;FreePhysicalMemory&#39;</span>));
-<a name="l00105"></a>00105         $mem = Array();
-<a name="l00106"></a>00106         $mem[<span class="stringliteral">&#39;MemTotal&#39;</span>] = <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>[0][<span class="stringliteral">&#39;TotalVisibleMemorySize&#39;</span>];
-<a name="l00107"></a>00107         $mem[<span class="stringliteral">&#39;MemFree&#39;</span>] = <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>[0][<span class="stringliteral">&#39;FreePhysicalMemory&#39;</span>];
-<a name="l00108"></a>00108         $mem[<span class="stringliteral">&#39;MemUsed&#39;</span>] = $mem[<span class="stringliteral">&#39;MemTotal&#39;</span>] - $mem[<span class="stringliteral">&#39;MemFree&#39;</span>];
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = $this-&gt;<a class="code" href="classPMA__sysinfoWinnt.html#aca0e2906e71cb8dde7b40ca7354f049d">_getWMI</a>(<span class="stringliteral">&#39;Win32_PageFileUsage&#39;</span>);
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112         $mem[<span class="stringliteral">&#39;SwapTotal&#39;</span>] = 0;
-<a name="l00113"></a>00113         $mem[<span class="stringliteral">&#39;SwapUsed&#39;</span>] = 0;
-<a name="l00114"></a>00114         $mem[<span class="stringliteral">&#39;SwapPeak&#39;</span>] = 0;
-<a name="l00115"></a>00115 
-<a name="l00116"></a>00116         <span class="keywordflow">foreach</span> (<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> as $swapdevice) {
-<a name="l00117"></a>00117             $mem[<span class="stringliteral">&#39;SwapTotal&#39;</span>] += $swapdevice[<span class="stringliteral">&#39;AllocatedBaseSize&#39;</span>] * 1024;
-<a name="l00118"></a>00118             $mem[<span class="stringliteral">&#39;SwapUsed&#39;</span>] += $swapdevice[<span class="stringliteral">&#39;CurrentUsage&#39;</span>] * 1024;
-<a name="l00119"></a>00119             $mem[<span class="stringliteral">&#39;SwapPeak&#39;</span>] += $swapdevice[<span class="stringliteral">&#39;PeakUsage&#39;</span>] * 1024;
-<a name="l00120"></a>00120         }
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122         <span class="keywordflow">return</span> $mem;
-<a name="l00123"></a>00123     }
-<a name="l00124"></a>00124 }
-<a name="l00125"></a>00125 
-<a name="l00126"></a><a class="code" href="classPMA__sysinfoLinux.html">00126</a> <span class="keyword">class </span><a class="code" href="classPMA__sysinfoLinux.html">PMA_sysinfoLinux</a>
-<a name="l00127"></a>00127 {
-<a name="l00128"></a><a class="code" href="classPMA__sysinfoLinux.html#a7548bf673cdf7b5442391843700b402e">00128</a>     <span class="keyword">public</span> <a class="code" href="classPMA__sysinfoLinux.html#a7548bf673cdf7b5442391843700b402e">$os</a> = <span class="stringliteral">&#39;Linux&#39;</span>;
-<a name="l00129"></a>00129 
-<a name="l00130"></a><a class="code" href="classPMA__sysinfoLinux.html#af2fb3f88472d78aad7456cda4079b444">00130</a>     <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoLinux.html#af2fb3f88472d78aad7456cda4079b444">loadavg</a>() {
-<a name="l00131"></a>00131         $buf = file_get_contents(<span class="stringliteral">&#39;/proc/stat&#39;</span>);
-<a name="l00132"></a>00132         $nums=preg_split(<span class="stringliteral">&quot;/\s+/&quot;</span>, substr($buf, 0, strpos($buf, <span class="stringliteral">&quot;\n&quot;</span>)));
-<a name="l00133"></a>00133         <span class="keywordflow">return</span> Array(<span class="stringliteral">&#39;busy&#39;</span> =&gt; $nums[1]+$nums[2]+$nums[3], <span class="stringliteral">&#39;idle&#39;</span> =&gt; intval($nums[4]));
-<a name="l00134"></a>00134     }
-<a name="l00135"></a>00135 
-<a name="l00136"></a><a class="code" href="classPMA__sysinfoLinux.html#a70853f265999654c7fbecd3cc1d4bb38">00136</a>     <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoLinux.html#a70853f265999654c7fbecd3cc1d4bb38">memory</a>() {
-<a name="l00137"></a>00137         preg_match_all(<span class="stringliteral">&#39;/^(MemTotal|MemFree|Cached|Buffers|SwapCached|SwapTotal|SwapFree):\s+(.*)\s*kB/im&#39;</span>, file_get_contents(<span class="stringliteral">&#39;/proc/meminfo&#39;</span>), $matches);
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139         $mem = array_combine( $matches[1], $matches[2] );
-<a name="l00140"></a>00140         $mem[<span class="stringliteral">&#39;MemUsed&#39;</span>] = $mem[<span class="stringliteral">&#39;MemTotal&#39;</span>] - $mem[<span class="stringliteral">&#39;MemFree&#39;</span>] - $mem[<span class="stringliteral">&#39;Cached&#39;</span>] - $mem[<span class="stringliteral">&#39;Buffers&#39;</span>];
-<a name="l00141"></a>00141         $mem[<span class="stringliteral">&#39;SwapUsed&#39;</span>] = $mem[<span class="stringliteral">&#39;SwapTotal&#39;</span>] - $mem[<span class="stringliteral">&#39;SwapFree&#39;</span>] - $mem[<span class="stringliteral">&#39;SwapCached&#39;</span>];
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143         <span class="keywordflow">foreach</span> ($mem as $idx=&gt;$value)
-<a name="l00144"></a>00144             $mem[$idx] = intval($value);
-<a name="l00145"></a>00145 
-<a name="l00146"></a>00146         <span class="keywordflow">return</span> $mem;
-<a name="l00147"></a>00147     }
-<a name="l00148"></a>00148 }
-<a name="l00149"></a>00149 
-<a name="l00150"></a><a class="code" href="classPMA__sysinfoSunos.html">00150</a> <span class="keyword">class </span><a class="code" href="classPMA__sysinfoSunos.html">PMA_sysinfoSunos</a>
-<a name="l00151"></a>00151 {
-<a name="l00152"></a><a class="code" href="classPMA__sysinfoSunos.html#afe49dcde8153bb741ac91083ff67bf3c">00152</a>     <span class="keyword">public</span> <a class="code" href="classPMA__sysinfoSunos.html#afe49dcde8153bb741ac91083ff67bf3c">$os</a> = <span class="stringliteral">&#39;SunOS&#39;</span>;
-<a name="l00153"></a>00153 
-<a name="l00154"></a><a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">00154</a>     <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>($key)
-<a name="l00155"></a>00155     {
-<a name="l00156"></a>00156         <span class="keywordflow">if</span> (<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a> = shell_exec(<span class="stringliteral">&#39;kstat -p d &#39;</span>.$key)) {
-<a name="l00157"></a>00157             list($key, $value) = preg_split(<span class="stringliteral">&quot;/\t/&quot;</span>, trim(<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>), 2);
-<a name="l00158"></a>00158             <span class="keywordflow">return</span> $value;
-<a name="l00159"></a>00159         } <span class="keywordflow">else</span> {
-<a name="l00160"></a>00160             <span class="keywordflow">return</span> <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00161"></a>00161         }
-<a name="l00162"></a>00162     }
-<a name="l00163"></a>00163 
-<a name="l00164"></a><a class="code" href="classPMA__sysinfoSunos.html#a52c3c328bd52ca0ee6aecaf21a91edfd">00164</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoSunos.html#a52c3c328bd52ca0ee6aecaf21a91edfd">loadavg</a>() {
-<a name="l00165"></a>00165         $load1 = $this-&gt;<a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>(<span class="stringliteral">&#39;unix:0:system_misc:avenrun_1min&#39;</span>);
-<a name="l00166"></a>00166 
-<a name="l00167"></a>00167         <span class="keywordflow">return</span> array(<span class="stringliteral">&#39;loadavg&#39;</span> =&gt; $load1);
-<a name="l00168"></a>00168     }
-<a name="l00169"></a>00169 
-<a name="l00170"></a><a class="code" href="classPMA__sysinfoSunos.html#ae1f197bc7ae2c42b95a5eeede48c72e1">00170</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoSunos.html#ae1f197bc7ae2c42b95a5eeede48c72e1">memory</a>() {
-<a name="l00171"></a>00171         preg_match_all(<span class="stringliteral">&#39;/^(MemTotal|MemFree|Cached|Buffers|SwapCached|SwapTotal|SwapFree):\s+(.*)\s*kB/im&#39;</span>, file_get_contents(<span class="stringliteral">&#39;/proc/meminfo&#39;</span>), $matches);
-<a name="l00172"></a>00172 
-<a name="l00173"></a>00173         $pagesize = $this-&gt;<a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>(<span class="stringliteral">&#39;unix:0:seg_cache:slab_size&#39;</span>);
-<a name="l00174"></a>00174         $mem[<span class="stringliteral">&#39;MemTotal&#39;</span>] = $this-&gt;<a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>(<span class="stringliteral">&#39;unix:0:system_pages:pagestotal&#39;</span>) * $pagesize;
-<a name="l00175"></a>00175         $mem[<span class="stringliteral">&#39;MemUsed&#39;</span>] = $this-&gt;<a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>(<span class="stringliteral">&#39;unix:0:system_pages:pageslocked&#39;</span>) * $pagesize;
-<a name="l00176"></a>00176         $mem[<span class="stringliteral">&#39;MemFree&#39;</span>] = $this-&gt;<a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>(<span class="stringliteral">&#39;unix:0:system_pages:pagesfree&#39;</span>) * $pagesize;
-<a name="l00177"></a>00177         $mem[<span class="stringliteral">&#39;SwapTotal&#39;</span>] = $this-&gt;<a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>(<span class="stringliteral">&#39;unix:0:vminfo:swap_avail&#39;</span>) / 1024;
-<a name="l00178"></a>00178         $mem[<span class="stringliteral">&#39;SwapUsed&#39;</span>] = $this-&gt;<a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>(<span class="stringliteral">&#39;unix:0:vminfo:swap_alloc&#39;</span>) / 1024;
-<a name="l00179"></a>00179         $mem[<span class="stringliteral">&#39;SwapFree&#39;</span>] = $this-&gt;<a class="code" href="classPMA__sysinfoSunos.html#a68bcc6a0854ebb64f5f6c7123729c351">_kstat</a>(<span class="stringliteral">&#39;unix:0:vminfo:swap_free&#39;</span>) / 1024;
-<a name="l00180"></a>00180 
-<a name="l00181"></a>00181         <span class="keywordflow">return</span> $mem;
-<a name="l00182"></a>00182     }
-<a name="l00183"></a>00183 }
-<a name="l00184"></a>00184 
-<a name="l00185"></a><a class="code" href="classPMA__sysinfoDefault.html">00185</a> <span class="keyword">class </span><a class="code" href="classPMA__sysinfoDefault.html">PMA_sysinfoDefault</a>
-<a name="l00186"></a>00186 {
-<a name="l00187"></a><a class="code" href="classPMA__sysinfoDefault.html#abf337d4adf7975ce6c2ff4698d884b4c">00187</a>     <span class="keyword">public</span> <a class="code" href="classPMA__sysinfoDefault.html#abf337d4adf7975ce6c2ff4698d884b4c">$os</a> = PHP_OS;
-<a name="l00188"></a>00188 
-<a name="l00189"></a><a class="code" href="classPMA__sysinfoDefault.html#a0af76376debd65c29b562c7fe19d2a23">00189</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoDefault.html#a0af76376debd65c29b562c7fe19d2a23">loadavg</a>() {
-<a name="l00190"></a>00190         <span class="keywordflow">return</span> array(<span class="stringliteral">&#39;loadavg&#39;</span> =&gt; 0);
-<a name="l00191"></a>00191     }
-<a name="l00192"></a>00192 
-<a name="l00193"></a><a class="code" href="classPMA__sysinfoDefault.html#adf50ce74674e967b133b12915586f5d4">00193</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA__sysinfoDefault.html#adf50ce74674e967b133b12915586f5d4">memory</a>() {
-<a name="l00194"></a>00194         <span class="keywordflow">return</span> array();
-<a name="l00195"></a>00195     }
-<a name="l00196"></a>00196 }
+<a name="l00103"></a>00103         <span class="keywordflow">return</span> $mem;
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105 }
+<a name="l00106"></a>00106 
+<a name="l00107"></a><a class="code" href="classLinux.html">00107</a> <span class="keyword">class </span><a class="code" href="classLinux.html">Linux</a>
+<a name="l00108"></a>00108 {
+<a name="l00109"></a><a class="code" href="classLinux.html#a6b7930bc5081ccbfcafcee101f2a6785">00109</a>     <span class="keyword">public</span> <a class="code" href="classLinux.html#a6b7930bc5081ccbfcafcee101f2a6785">$os</a> = <span class="stringliteral">&#39;Linux&#39;</span>;
+<a name="l00110"></a>00110 
+<a name="l00111"></a><a class="code" href="classLinux.html#ab68148601380e9b15f65ed7d40b151f1">00111</a>     <span class="keyword">function</span> <a class="code" href="classLinux.html#ab68148601380e9b15f65ed7d40b151f1">loadavg</a>() {
+<a name="l00112"></a>00112         $buf = file_get_contents(<span class="stringliteral">&#39;/proc/stat&#39;</span>);
+<a name="l00113"></a>00113         $nums=preg_split(<span class="stringliteral">&quot;/\s+/&quot;</span>, substr($buf, 0, strpos($buf, <span class="stringliteral">&quot;\n&quot;</span>)));
+<a name="l00114"></a>00114         <span class="keywordflow">return</span> Array(<span class="stringliteral">&#39;busy&#39;</span> =&gt; $nums[1]+$nums[2]+$nums[3], <span class="stringliteral">&#39;idle&#39;</span> =&gt; intval($nums[4]));
+<a name="l00115"></a>00115     }
+<a name="l00116"></a>00116 
+<a name="l00117"></a><a class="code" href="classLinux.html#a082401c52b0190b957684a95924dfa0e">00117</a>     <span class="keyword">function</span> <a class="code" href="classLinux.html#a082401c52b0190b957684a95924dfa0e">memory</a>() {
+<a name="l00118"></a>00118         preg_match_all(<span class="stringliteral">&#39;/^(MemTotal|MemFree|Cached|Buffers|SwapCached|SwapTotal|SwapFree):\s+(.*)\s*kB/im&#39;</span>, file_get_contents(<span class="stringliteral">&#39;/proc/meminfo&#39;</span>), $matches);
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120         $mem = array_combine( $matches[1], $matches[2] );
+<a name="l00121"></a>00121         $mem[<span class="stringliteral">&#39;MemUsed&#39;</span>] = $mem[<span class="stringliteral">&#39;MemTotal&#39;</span>] - $mem[<span class="stringliteral">&#39;MemFree&#39;</span>] - $mem[<span class="stringliteral">&#39;Cached&#39;</span>] - $mem[<span class="stringliteral">&#39;Buffers&#39;</span>];
+<a name="l00122"></a>00122         $mem[<span class="stringliteral">&#39;SwapUsed&#39;</span>] = $mem[<span class="stringliteral">&#39;SwapTotal&#39;</span>] - $mem[<span class="stringliteral">&#39;SwapFree&#39;</span>] - $mem[<span class="stringliteral">&#39;SwapCached&#39;</span>];
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124         <span class="keywordflow">foreach</span> ($mem as $idx=&gt;$value)
+<a name="l00125"></a>00125             $mem[$idx] = intval($value);
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127         <span class="keywordflow">return</span> $mem;
+<a name="l00128"></a>00128     }
+<a name="l00129"></a>00129 }
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="sysinfo_8lib_8php.html">sysinfo.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

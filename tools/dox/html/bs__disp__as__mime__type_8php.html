@@ -90,9 +90,9 @@ Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a1d66ca539ab008f6c8d418845c32ed47">$reference</a> = $_REQUEST['reference']</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a5925e6d4d37ddd3373d52c21ab42c6a5">$c_type</a> = preg_replace('/[^A-Za-z0-9/_-]/', '_', $_REQUEST['c_type'])</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a0722441477f957078ee2437054556cbc">$filename</a> = <a class="el" href="blobstreaming_8lib_8php.html#adf77e91432ef80995189ec75d944e2f6">PMA_BS_getURL</a>($reference)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(empty($filename))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a1f8db6178cb1f25fb5e50962e8519a64">$hdrs</a> = get_headers($filename, 1)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($hdrs===false)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a7ce9ad0eee62c750b2b1f0c278bfcfb5">$fHnd</a> = fopen($filename, &quot;rb&quot;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($fHnd===false)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#ac1c6ba2c6381afcd61db3427760d5af6">$f_size</a> = $hdrs['Content-Length']</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(empty($filename))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a1f8db6178cb1f25fb5e50962e8519a64">$hdrs</a> = get_headers($filename, 1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($hdrs===false)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a7ce9ad0eee62c750b2b1f0c278bfcfb5">$fHnd</a> = fopen($filename, &quot;rb&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($fHnd===false)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#ac1c6ba2c6381afcd61db3427760d5af6">$f_size</a> = $hdrs['Content-Length']</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a5de51f0c80b3bb3b39a57b23f6b9ea9f">$pos</a> = 0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#a57b284fe00866494b33afa80ba729bed">$content</a> = &quot;&quot;</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bs__disp__as__mime__type_8php.html#af6e9d2b17ffec0d965d881825361f001">while</a> (!feof($fHnd))</td></tr>
@@ -133,7 +133,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($fHnd===false) $f_size = $hdrs['Content-Length']</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($fHnd===false) $f_size = $hdrs['Content-Length']</td>
         </tr>
       </table>
 </div>
@@ -148,7 +148,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($hdrs===false) $fHnd = fopen($filename, &quot;rb&quot;)</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($hdrs===false) $fHnd = fopen($filename, &quot;rb&quot;)</td>
         </tr>
       </table>
 </div>
@@ -178,7 +178,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (empty($filename)) $hdrs = get_headers($filename, 1)</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (empty($filename)) $hdrs = get_headers($filename, 1)</td>
         </tr>
       </table>
 </div>
@@ -239,7 +239,7 @@ Variables</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="bs__disp__as__mime__type_8php.html">bs_disp_as_mime_type.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:37 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:52 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

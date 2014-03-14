@@ -88,10 +88,10 @@
 <a name="l00013"></a>00013 
 <a name="l00014"></a>00014 
 <a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="keywordflow">if</span>(<a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>==<span class="stringliteral">&quot;../&quot;</span>) <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00016"></a>00016 <span class="keywordflow">if</span>(<a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>==<span class="stringliteral">&quot;../&quot;</span>) <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>=<span class="stringliteral">&quot;&quot;</span>;
 <a name="l00017"></a>00017 
-<a name="l00018"></a><a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">00018</a> <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = str_replace(<span class="stringliteral">&quot;//&quot;</span>,<span class="stringliteral">&quot;/&quot;</span>,<a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>);
-<a name="l00019"></a>00019 <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = str_replace(<span class="stringliteral">&quot;..&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>);
+<a name="l00018"></a><a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">00018</a> <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = str_replace(<span class="stringliteral">&quot;//&quot;</span>,<span class="stringliteral">&quot;/&quot;</span>,<a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>);
+<a name="l00019"></a>00019 <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = str_replace(<span class="stringliteral">&quot;..&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>);
 <a name="l00020"></a>00020 
 <a name="l00021"></a><a class="code" href="xplorer_8php.html#af13651139e2f0edb7b770c2be72ef8bd">00021</a> <a class="code" href="xplorer_8php.html#af13651139e2f0edb7b770c2be72ef8bd">$xp_dir</a>  = <span class="stringliteral">&quot;$xp_local_path/$newpath&quot;</span>;
 <a name="l00022"></a>00022 <a class="code" href="xplorer_8php.html#af13651139e2f0edb7b770c2be72ef8bd">$xp_dir</a> = str_replace(<span class="stringliteral">&quot;//&quot;</span>,<span class="stringliteral">&quot;/&quot;</span>,<a class="code" href="xplorer_8php.html#af13651139e2f0edb7b770c2be72ef8bd">$xp_dir</a>);
@@ -99,7 +99,7 @@
 <a name="l00024"></a><a class="code" href="xplorer_8php.html#a6c893f1f3d13b49d2c910c6fd1a21c37">00024</a> <a class="code" href="xplorer_8php.html#a6c893f1f3d13b49d2c910c6fd1a21c37">$editedtext</a> = stripslashes( $_REQUEST[<span class="stringliteral">&#39;editedtext&#39;</span>]);
 <a name="l00025"></a>00025 
 <a name="l00026"></a>00026  <span class="comment">// remove comments to enable shell commands</span>
-<a name="l00027"></a><a class="code" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">00027</a> <span class="keywordflow">if</span>(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;access==255)
+<a name="l00027"></a><a class="code" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">00027</a> <span class="keywordflow">if</span>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;access==255)
 <a name="l00028"></a>00028 {
 <a name="l00029"></a>00029     <span class="keywordflow">if</span>($exec==<span class="stringliteral">&quot;yes&quot;</span>)
 <a name="l00030"></a>00030     {
@@ -169,7 +169,7 @@
 <a name="l00094"></a>00094 
 <a name="l00095"></a><a class="code" href="xplorer_8php.html#ae374d19818f83a11a36cee0f5b931039">00095</a> <span class="keyword">function</span> <a class="code" href="xplorer_8php.html#ae374d19818f83a11a36cee0f5b931039">xp_mysql_install</a>()
 <a name="l00096"></a>00096 {
-<a name="l00097"></a>00097     <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;newpath&#39;</span>];
+<a name="l00097"></a>00097     <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;newpath&#39;</span>];
 <a name="l00098"></a>00098     <span class="comment">//echo &quot;&lt;html&gt;\n&quot;;</span>
 <a name="l00099"></a>00099     <span class="comment">//echo &quot;&lt;head&gt;\n&quot;;</span>
 <a name="l00100"></a>00100     <span class="comment">//echo &quot;&lt;head&gt;&lt;title&gt;Xplorer Installer&lt;/title&gt;\n&quot;;</span>
@@ -463,7 +463,7 @@
 <a name="l00388"></a>00388 <span class="comment"></span>
 <a name="l00389"></a>00389 <span class="comment">if($HTTP_SESSION_VARS[&quot;logged_in&quot;]!=&quot;true&quot;)</span>
 <a name="l00390"></a>00390 <span class="comment">{</span>
-<a name="l00391"></a>00391 <span class="comment">    //$skull=smiles(&quot;%X&quot;);</span>
+<a name="l00391"></a>00391 <span class="comment">    //$skull=lib_string_convert_smiles(&quot;%X&quot;);</span>
 <a name="l00392"></a>00392 <span class="comment">    echo&quot;&lt;table align=center&gt;&lt;tr&gt;&lt;td class=dm_warning&gt;&lt;center&gt;$skull ATTENTION!&lt;br&gt;You must be logged in to use xplorer! &quot;;</span>
 <a name="l00393"></a>00393 <span class="comment">    echo &quot;What are you waiting for? &lt;a href=join.php style=\&quot;color: black\&quot;&gt;JOIN&lt;/a&gt; NOW! &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;\n&quot;;</span>
 <a name="l00394"></a>00394 <span class="comment">    include(&quot;footer.php&quot;);</span>
@@ -526,9 +526,9 @@
 <a name="l00451"></a>00451 <span class="keywordflow">if</span>(<a class="code" href="xplorer_8php.html#a19609d2db95e10f75e2ac71b47a95367">$give_file</a>==<span class="stringliteral">&quot;yes&quot;</span>)
 <a name="l00452"></a>00452 {
 <a name="l00453"></a>00453 
-<a name="l00454"></a>00454         <a class="code" href="files_8php.html#a9abcc3045d8d06c6cf03e80d60640f46">$httppath</a>=<a class="code" href="xplorer_8cfg_8php.html#a26fb0b79e31bd46b793c7db8c1f691e8">$xp_url</a>.$local_give;
-<a name="l00455"></a>00455         <a class="code" href="files_8php.html#a9abcc3045d8d06c6cf03e80d60640f46">$httppath</a>=str_replace(<span class="stringliteral">&quot;/home/dminds1/public_html/&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<a class="code" href="files_8php.html#a9abcc3045d8d06c6cf03e80d60640f46">$httppath</a>);
-<a name="l00456"></a>00456         <a class="code" href="files_8php.html#a9abcc3045d8d06c6cf03e80d60640f46">$httppath</a>=str_replace(<span class="stringliteral">&quot;http://www.defectiveminds.com/xplorer/&quot;</span>,<span class="stringliteral">&quot;http://www.defectiveminds.com/&quot;</span>,<a class="code" href="files_8php.html#a9abcc3045d8d06c6cf03e80d60640f46">$httppath</a>);
+<a name="l00454"></a>00454         $httppath=<a class="code" href="xplorer_8cfg_8php.html#a26fb0b79e31bd46b793c7db8c1f691e8">$xp_url</a>.$local_give;
+<a name="l00455"></a>00455         $httppath=str_replace(<span class="stringliteral">&quot;/home/dminds1/public_html/&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$httppath);
+<a name="l00456"></a>00456         $httppath=str_replace(<span class="stringliteral">&quot;http://www.defectiveminds.com/xplorer/&quot;</span>,<span class="stringliteral">&quot;http://www.defectiveminds.com/&quot;</span>,$httppath);
 <a name="l00457"></a>00457 
 <a name="l00458"></a>00458             echo <span class="stringliteral">&quot;&lt;p&gt; Uploading files... &lt;/p&gt;\n&quot;</span>;
 <a name="l00459"></a>00459             $uploadFile=<a class="code" href="xplorer_8php.html#aa3908643a623aa38be8c5a03ec91fc6a">$local_give</a>.$_FILES[<span class="stringliteral">&#39;userfile&#39;</span>][<span class="stringliteral">&#39;name&#39;</span>];
@@ -538,7 +538,7 @@
 <a name="l00463"></a>00463                 system(<span class="stringliteral">&quot;chmod 755 $uploadFile&quot;</span>);
 <a name="l00464"></a>00464                 $error=<span class="stringliteral">&quot;File is valid, and was successfully uploaded. &quot;</span>;
 <a name="l00465"></a>00465                 echo <span class="stringliteral">&quot;&lt;P&gt;You sent: &quot;</span>.$_FILES[<span class="stringliteral">&#39;userfile&#39;</span>][<span class="stringliteral">&#39;name&#39;</span>].<span class="stringliteral">&quot;, a &quot;</span>.$_FILES[<span class="stringliteral">&#39;userfile&#39;</span>][<span class="stringliteral">&#39;size&#39;</span>].<span class="stringliteral">&quot; byte file with a mime type of&quot;</span>.$_FILES[<span class="stringliteral">&#39;userfile&#39;</span>][<span class="stringliteral">&#39;type&#39;</span>].<span class="stringliteral">&quot;&lt;/p&gt;\n&quot;</span>;
-<a name="l00466"></a>00466         <a class="code" href="files_8php.html#a9abcc3045d8d06c6cf03e80d60640f46">$httppath</a>=<a class="code" href="files_8php.html#a9abcc3045d8d06c6cf03e80d60640f46">$httppath</a>.$_FILES[<span class="stringliteral">&#39;userfile&#39;</span>][<span class="stringliteral">&#39;name&#39;</span>];
+<a name="l00466"></a>00466         $httppath=$httppath.$_FILES[<span class="stringliteral">&#39;userfile&#39;</span>][<span class="stringliteral">&#39;name&#39;</span>];
 <a name="l00467"></a>00467                 echo <span class="stringliteral">&quot;&lt;p&gt;It was stored as [&lt;a href=\&quot;$httppath\&quot;&gt;$httppath&lt;/a&gt;]&lt;/p&gt;\n&quot;</span>;
 <a name="l00468"></a>00468             }
 <a name="l00469"></a>00469             <span class="keywordflow">else</span>
@@ -594,9 +594,9 @@
 <a name="l00519"></a>00519         
 <a name="l00520"></a>00520         <span class="comment">//echo $pwd;</span>
 <a name="l00521"></a>00521     }
-<a name="l00522"></a>00522     <span class="keywordflow">if</span>(function_exists(<span class="stringliteral">&#39;show_codearea&#39;</span>))
+<a name="l00522"></a>00522     <span class="keywordflow">if</span>(function_exists(<span class="stringliteral">&#39;lib_forms_codearea&#39;</span>))
 <a name="l00523"></a>00523     {
-<a name="l00524"></a>00524         <a class="code" href="lib_8mysql_8php.html#ae686bdd1404b4493983304568b5a9bbb">show_codearea</a>(<span class="stringliteral">&quot;adm_code&quot;</span>,40,120,<span class="stringliteral">&quot;editedtext&quot;</span>,$pwd);
+<a name="l00524"></a>00524         <a class="code" href="lib_8forms_8php.html#a8ab3ffeb1442a7d6d268e2c1710cd498">lib_forms_codearea</a>(<span class="stringliteral">&quot;adm_code&quot;</span>,40,120,<span class="stringliteral">&quot;editedtext&quot;</span>,$pwd);
 <a name="l00525"></a>00525     }
 <a name="l00526"></a>00526     <span class="keywordflow">else</span>
 <a name="l00527"></a>00527     {
@@ -690,7 +690,7 @@
 <a name="l00615"></a>00615 
 <a name="l00616"></a>00616 <span class="keywordflow">if</span>(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>==<span class="stringliteral">&quot;makenewfolder&quot;</span>)
 <a name="l00617"></a>00617 {
-<a name="l00618"></a>00618     $newfolder=<a class="code" href="xplorer_8cfg_8php.html#a06dadfcc33164032d29449ffb0a677ed">$xp_local_path</a>.<span class="stringliteral">&quot;/&quot;</span>.<a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>.$newfolder;
+<a name="l00618"></a>00618     $newfolder=<a class="code" href="xplorer_8cfg_8php.html#a06dadfcc33164032d29449ffb0a677ed">$xp_local_path</a>.<span class="stringliteral">&quot;/&quot;</span>.<a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>.$newfolder;
 <a name="l00619"></a>00619     $newfolder=str_replace(<span class="stringliteral">&quot;//&quot;</span>,<span class="stringliteral">&quot;/&quot;</span>,$newfolder);
 <a name="l00620"></a>00620     <a class="code" href="xplorer_8php.html#a11f957557d55eac3ddddf3763855313f">xp_newfolder</a>($newfolder);
 <a name="l00621"></a>00621 }
@@ -737,7 +737,7 @@
 <a name="l00662"></a>00662 
 <a name="l00663"></a><a class="code" href="xplorer_8php.html#a9aca9a56660db3036226ba57f388a365">00663</a> <span class="keyword">function</span> <a class="code" href="xplorer_8php.html#a9aca9a56660db3036226ba57f388a365">xp_dirs</a>($path)
 <a name="l00664"></a>00664 {
-<a name="l00665"></a>00665     <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;newpath&#39;</span>];
+<a name="l00665"></a>00665     <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;newpath&#39;</span>];
 <a name="l00666"></a>00666     <a class="code" href="xplorer_8cfg_8php.html#a26fb0b79e31bd46b793c7db8c1f691e8">$xp_url</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;xp_url&#39;</span>];
 <a name="l00667"></a>00667     <a class="code" href="xplorer_8cfg_8php.html#a548a2f9240d4c5125206e6de275b509b">$xp_images_url</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;xp_images_url&#39;</span>];
 <a name="l00668"></a>00668     $xp_dir_count=0;
@@ -765,13 +765,13 @@
 <a name="l00690"></a>00690                 {
 <a name="l00691"></a>00691                    <a class="code" href="xplorer_8php.html#af13651139e2f0edb7b770c2be72ef8bd">$xp_dir</a> = explode(<span class="stringliteral">&quot;/&quot;</span>,$relpath,40);
 <a name="l00692"></a>00692                    $j = count(<a class="code" href="xplorer_8php.html#af13651139e2f0edb7b770c2be72ef8bd">$xp_dir</a>)-2;
-<a name="l00693"></a>00693                    <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = <span class="stringliteral">&quot;..&quot;</span>;
+<a name="l00693"></a>00693                    <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = <span class="stringliteral">&quot;..&quot;</span>;
 <a name="l00694"></a>00694                    <span class="keywordflow">for</span>($i=1;$i&lt;$j;$i++)
 <a name="l00695"></a>00695                    {
-<a name="l00696"></a>00696                       <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = <span class="stringliteral">&quot;$newpath/&quot;</span>;
-<a name="l00697"></a>00697                       <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = <span class="stringliteral">&quot;$newpath$xp_dir[$i]&quot;</span>;
+<a name="l00696"></a>00696                       <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = <span class="stringliteral">&quot;$newpath/&quot;</span>;
+<a name="l00697"></a>00697                       <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a> = <span class="stringliteral">&quot;$newpath$xp_dir[$i]&quot;</span>;
 <a name="l00698"></a>00698                    }
-<a name="l00699"></a>00699                    $relpath=<a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>;
+<a name="l00699"></a>00699                    $relpath=<a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>;
 <a name="l00700"></a>00700                   echo <span class="stringliteral">&quot;&lt;table cellpadding=0 cellspacing=0&gt;&lt;tr&gt;&lt;td class=xptd_c&gt;&lt;a href=\&quot;$xp_url/xplorer.php?newpath=$relpath/\&quot;&gt;&lt;img src=$xp_images_url/upfolder.gif border=0&gt;&lt;/a&gt;&lt;/td&gt;&lt;td class=xptd_c&gt;&lt;a href=\&quot;$xp_url/xplorer.php?newpath=$relpath/\&quot; style=\&quot;color: black\&quot;&gt;$file&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;\n&quot;</span>;
 <a name="l00701"></a>00701                }
 <a name="l00702"></a>00702                <span class="keywordflow">else</span>
@@ -784,7 +784,7 @@
 <a name="l00709"></a>00709 
 <a name="l00710"></a><a class="code" href="xplorer_8php.html#a9da2c69de2db00dcac7f167308d35d00">00710</a> <span class="keyword">function</span> <a class="code" href="xplorer_8php.html#a9da2c69de2db00dcac7f167308d35d00">xplore</a>($path,$xp_thumbs)
 <a name="l00711"></a>00711 {
-<a name="l00712"></a>00712     <a class="code" href="files_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;newpath&#39;</span>];
+<a name="l00712"></a>00712     <a class="code" href="xplorer_8php.html#adc6432ab1a58f3abee44ebc7bed36cbe">$newpath</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;newpath&#39;</span>];
 <a name="l00713"></a>00713     
 <a name="l00714"></a>00714     <a class="code" href="xplorer_8cfg_8php.html#afacd168769387d4f2225757385609a6f">$xp_width</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;xp_width&#39;</span>];
 <a name="l00715"></a>00715 
@@ -1260,7 +1260,7 @@
 <a name="l01185"></a>01185     echo <span class="stringliteral">&quot;&lt;table width=$xp_width align=left bgcolor=#FFFFBB cellpadding=0 cellspacing=0 border=1 bordercolor=#000000&gt;&lt;tr&gt;&lt;td class=xptd_b style=\&quot;color: black\&quot;&gt;XPlorer by Seth Parson ~ Visit &lt;a href=\&quot;http://www.sethcoder.com/\&quot;&gt;&lt;font color=#0000FF&gt;SethCoder.com&lt;/font&gt;&lt;/a&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
 <a name="l01186"></a>01186 }
 <a name="l01187"></a>01187 
-<a name="l01188"></a>01188 <span class="keywordflow">if</span>(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;access==255)
+<a name="l01188"></a>01188 <span class="keywordflow">if</span>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;access==255)
 <a name="l01189"></a>01189 {
 <a name="l01190"></a>01190 
 <a name="l01191"></a>01191     <a class="code" href="xplorer_8php.html#a9da2c69de2db00dcac7f167308d35d00">xplore</a>(<a class="code" href="xplorer_8php.html#af13651139e2f0edb7b770c2be72ef8bd">$xp_dir</a>,$xp_thumbs);
@@ -1269,7 +1269,7 @@
 <a name="l01194"></a>01194 }
 <a name="l01195"></a>01195 <span class="keywordflow">else</span>
 <a name="l01196"></a>01196 {
-<a name="l01197"></a>01197     $skull=<a class="code" href="lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd">smiles</a>(<span class="stringliteral">&quot;^X&quot;</span>);
+<a name="l01197"></a>01197     $skull=<a class="code" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707">lib_string_convert_smiles</a>(<span class="stringliteral">&quot;^X&quot;</span>);
 <a name="l01198"></a>01198     echo<span class="stringliteral">&quot;&lt;table align=center&gt;&lt;tr&gt;&lt;td class=warning&gt;&lt;center&gt;$skull ATTENTION!&lt;br&gt;You are not authorized to use xplorer!&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;\n&quot;</span>;
 <a name="l01199"></a>01199 }
 <a name="l01200"></a>01200 
@@ -1282,7 +1282,7 @@
     <ul>
       <li class="navelem"><a class="el" href="xplorer_8php.html">xplorer.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

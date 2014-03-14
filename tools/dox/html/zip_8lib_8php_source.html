@@ -187,9 +187,9 @@
 <a name="l00109"></a>00109 <span class="comment">     *</span>
 <a name="l00110"></a>00110 <span class="comment">     * @return nothing</span>
 <a name="l00111"></a>00111 <span class="comment">     */</span>
-<a name="l00112"></a><a class="code" href="classzipfile.html#a4ff06dfa5183af701751eff46a2903af">00112</a>     <span class="keyword">function</span> <a class="code" href="classzipfile.html#a4ff06dfa5183af701751eff46a2903af" title="Adds &quot;file&quot; to archive.">addFile</a>(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>, <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>, $time = 0)
+<a name="l00112"></a><a class="code" href="classzipfile.html#a4ff06dfa5183af701751eff46a2903af">00112</a>     <span class="keyword">function</span> <a class="code" href="classzipfile.html#a4ff06dfa5183af701751eff46a2903af" title="Adds &quot;file&quot; to archive.">addFile</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>, <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>, $time = 0)
 <a name="l00113"></a>00113     {
-<a name="l00114"></a>00114         <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>     = str_replace(<span class="charliteral">&#39;\\&#39;</span>, <span class="charliteral">&#39;/&#39;</span>, <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>);
+<a name="l00114"></a>00114         <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>     = str_replace(<span class="charliteral">&#39;\\&#39;</span>, <span class="charliteral">&#39;/&#39;</span>, <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>);
 <a name="l00115"></a>00115 
 <a name="l00116"></a>00116         $dtime    = substr(<span class="stringliteral">&quot;00000000&quot;</span> . dechex($this-&gt;<a class="code" href="classzipfile.html#a88c73cdece15efba21c5f1bbb5f87913" title="Converts an Unix timestamp to a four byte DOS date and time format (date in high two bytes...">unix2DosTime</a>($time)), -8);
 <a name="l00117"></a>00117         $hexdtime = <span class="charliteral">&#39;\x&#39;</span> . $dtime[6] . $dtime[7]
@@ -205,17 +205,17 @@
 <a name="l00127"></a>00127         $fr   .= $hexdtime;             <span class="comment">// last mod time and date</span>
 <a name="l00128"></a>00128 
 <a name="l00129"></a>00129         <span class="comment">// &quot;local file header&quot; segment</span>
-<a name="l00130"></a>00130         $unc_len = strlen(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
-<a name="l00131"></a>00131         $crc     = crc32(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
-<a name="l00132"></a>00132         $zdata   = gzcompress(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
+<a name="l00130"></a>00130         $unc_len = strlen(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
+<a name="l00131"></a>00131         $crc     = crc32(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
+<a name="l00132"></a>00132         $zdata   = gzcompress(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
 <a name="l00133"></a>00133         $zdata   = substr(substr($zdata, 0, strlen($zdata) - 4), 2); <span class="comment">// fix crc bug</span>
 <a name="l00134"></a>00134         $c_len   = strlen($zdata);
 <a name="l00135"></a>00135         $fr      .= pack(<span class="charliteral">&#39;V&#39;</span>, $crc);             <span class="comment">// crc32</span>
 <a name="l00136"></a>00136         $fr      .= pack(<span class="charliteral">&#39;V&#39;</span>, $c_len);           <span class="comment">// compressed filesize</span>
 <a name="l00137"></a>00137         $fr      .= pack(<span class="charliteral">&#39;V&#39;</span>, $unc_len);         <span class="comment">// uncompressed filesize</span>
-<a name="l00138"></a>00138         $fr      .= pack(<span class="charliteral">&#39;v&#39;</span>, strlen(<a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>));    <span class="comment">// length of filename</span>
+<a name="l00138"></a>00138         $fr      .= pack(<span class="charliteral">&#39;v&#39;</span>, strlen(<a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>));    <span class="comment">// length of filename</span>
 <a name="l00139"></a>00139         $fr      .= pack(<span class="charliteral">&#39;v&#39;</span>, 0);                <span class="comment">// extra field length</span>
-<a name="l00140"></a>00140         $fr      .= <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>;
+<a name="l00140"></a>00140         $fr      .= <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>;
 <a name="l00141"></a>00141 
 <a name="l00142"></a>00142         <span class="comment">// &quot;file data&quot; segment</span>
 <a name="l00143"></a>00143         $fr .= $zdata;
@@ -237,7 +237,7 @@
 <a name="l00159"></a>00159         $cdrec .= pack(<span class="charliteral">&#39;V&#39;</span>, $crc);           <span class="comment">// crc32</span>
 <a name="l00160"></a>00160         $cdrec .= pack(<span class="charliteral">&#39;V&#39;</span>, $c_len);         <span class="comment">// compressed filesize</span>
 <a name="l00161"></a>00161         $cdrec .= pack(<span class="charliteral">&#39;V&#39;</span>, $unc_len);       <span class="comment">// uncompressed filesize</span>
-<a name="l00162"></a>00162         $cdrec .= pack(<span class="charliteral">&#39;v&#39;</span>, strlen(<a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>)); <span class="comment">// length of filename</span>
+<a name="l00162"></a>00162         $cdrec .= pack(<span class="charliteral">&#39;v&#39;</span>, strlen(<a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>)); <span class="comment">// length of filename</span>
 <a name="l00163"></a>00163         $cdrec .= pack(<span class="charliteral">&#39;v&#39;</span>, 0);             <span class="comment">// extra field length</span>
 <a name="l00164"></a>00164         $cdrec .= pack(<span class="charliteral">&#39;v&#39;</span>, 0);             <span class="comment">// file comment length</span>
 <a name="l00165"></a>00165         $cdrec .= pack(<span class="charliteral">&#39;v&#39;</span>, 0);             <span class="comment">// disk number start</span>
@@ -247,7 +247,7 @@
 <a name="l00169"></a>00169         $cdrec .= pack(<span class="charliteral">&#39;V&#39;</span>, $this -&gt; old_offset); <span class="comment">// relative offset of local header</span>
 <a name="l00170"></a>00170         $this -&gt; old_offset += strlen($fr);
 <a name="l00171"></a>00171 
-<a name="l00172"></a>00172         $cdrec .= <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>;
+<a name="l00172"></a>00172         $cdrec .= <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>;
 <a name="l00173"></a>00173 
 <a name="l00174"></a>00174         <span class="comment">// optional extra field, file comment goes here</span>
 <a name="l00175"></a>00175         <span class="comment">// save to central directory</span>
@@ -277,8 +277,8 @@
 <a name="l00199"></a>00199             echo $header;
 <a name="l00200"></a>00200             <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;                                   <span class="comment">// Return empty string</span>
 <a name="l00201"></a>00201         } <span class="keywordflow">else</span> {                        <span class="comment">// Return entire ZIP archive as string</span>
-<a name="l00202"></a>00202             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = implode(<span class="stringliteral">&#39;&#39;</span>, $this -&gt; datasec);
-<a name="l00203"></a>00203             <span class="keywordflow">return</span> <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> . $header;
+<a name="l00202"></a>00202             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = implode(<span class="stringliteral">&#39;&#39;</span>, $this -&gt; datasec);
+<a name="l00203"></a>00203             <span class="keywordflow">return</span> <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> . $header;
 <a name="l00204"></a>00204         }
 <a name="l00205"></a>00205     } <span class="comment">// end of the &#39;file()&#39; method</span>
 <a name="l00206"></a>00206 
@@ -290,7 +290,7 @@
     <ul>
       <li class="navelem"><a class="el" href="zip_8lib_8php.html">zip.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:37 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:52 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

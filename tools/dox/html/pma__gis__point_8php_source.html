@@ -257,20 +257,20 @@
 <a name="l00179"></a>00179         <span class="keywordflow">if</span> (<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> == 0) {
 <a name="l00180"></a>00180             <a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> = 4326;
 <a name="l00181"></a>00181         }
-<a name="l00182"></a>00182         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = $this-&gt;<a class="code" href="classPMA__GIS__Geometry.html#ad639545c151c082e1b901b3e37982ed7" title="Returns OpenLayers.Bounds object that correspond to the bounds of GIS data.">getBoundsForOl</a>(<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a>, $scale_data);
+<a name="l00182"></a>00182         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = $this-&gt;<a class="code" href="classPMA__GIS__Geometry.html#ad639545c151c082e1b901b3e37982ed7" title="Returns OpenLayers.Bounds object that correspond to the bounds of GIS data.">getBoundsForOl</a>(<a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a>, $scale_data);
 <a name="l00183"></a>00183 
 <a name="l00184"></a>00184         <span class="comment">// Trim to remove leading &#39;POINT(&#39; and trailing &#39;)&#39;</span>
 <a name="l00185"></a>00185         $point = substr($spatial, 6, (strlen($spatial) - 7));
 <a name="l00186"></a>00186         $points_arr = $this-&gt;<a class="code" href="classPMA__GIS__Geometry.html#a5033e347b1a9d6479b25de6af865fc8c" title="Extracts points, scales and returns them as an array.">extractPoints</a>($point, null);
 <a name="l00187"></a>00187 
 <a name="l00188"></a>00188         <span class="keywordflow">if</span> ($points_arr[0][0] != <span class="stringliteral">&#39;&#39;</span> &amp;&amp; $points_arr[0][1] != <span class="stringliteral">&#39;&#39;</span>) {
-<a name="l00189"></a>00189             <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> .= <span class="stringliteral">&#39;vectorLayer.addFeatures(new OpenLayers.Feature.Vector((&#39;</span>
+<a name="l00189"></a>00189             <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> .= <span class="stringliteral">&#39;vectorLayer.addFeatures(new OpenLayers.Feature.Vector((&#39;</span>
 <a name="l00190"></a>00190                 . <span class="stringliteral">&#39;new OpenLayers.Geometry.Point(&#39;</span> . $points_arr[0][0] . <span class="stringliteral">&#39;, &#39;</span>
 <a name="l00191"></a>00191                 . $points_arr[0][1] . <span class="stringliteral">&#39;).transform(new OpenLayers.Projection(&quot;EPSG:&#39;</span>
 <a name="l00192"></a>00192                 . <a class="code" href="gis__data__editor_8php.html#ad37f2b79627e32d517a0e689309e328b">$srid</a> . <span class="stringliteral">&#39;&quot;), map.getProjectionObject())), null, &#39;</span>
 <a name="l00193"></a>00193                 . json_encode($style_options) . <span class="stringliteral">&#39;));&#39;</span>;
 <a name="l00194"></a>00194         }
-<a name="l00195"></a>00195         <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00195"></a>00195         <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00196"></a>00196     }
 <a name="l00197"></a>00197 <span class="comment"></span>
 <a name="l00198"></a>00198 <span class="comment">    /**</span>
@@ -317,9 +317,9 @@
 <a name="l00239"></a>00239         <span class="keywordflow">if</span> ($index == -1) {
 <a name="l00240"></a>00240             $index = 0;
 <a name="l00241"></a>00241             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a> = array();
-<a name="l00242"></a>00242             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="classPMA__GIS__Point.html#a4bf9af59df63205698582f783fb659f9" title="Generate parameters for the GIS data editor from the value of the GIS column.">PMA_GIS_Geometry::generateParams</a>($value);
-<a name="l00243"></a>00243             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;srid&#39;</span>] = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;srid&#39;</span>];
-<a name="l00244"></a>00244             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;wkt&#39;</span>];
+<a name="l00242"></a>00242             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="classPMA__GIS__Point.html#a4bf9af59df63205698582f783fb659f9" title="Generate parameters for the GIS data editor from the value of the GIS column.">PMA_GIS_Geometry::generateParams</a>($value);
+<a name="l00243"></a>00243             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;srid&#39;</span>] = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;srid&#39;</span>];
+<a name="l00244"></a>00244             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;wkt&#39;</span>];
 <a name="l00245"></a>00245         } <span class="keywordflow">else</span> {
 <a name="l00246"></a>00246             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;gis_type&#39;</span>] = <span class="stringliteral">&#39;POINT&#39;</span>;
 <a name="l00247"></a>00247             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = $value;
@@ -342,7 +342,7 @@
     <ul>
       <li class="navelem"><a class="el" href="pma__gis__point_8php.html">pma_gis_point.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

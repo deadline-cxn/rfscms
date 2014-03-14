@@ -1,0 +1,9 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_foreignDropdown",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_getForeignFields_Values",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$tbl__select_8lib_8php.html#ae7f5731d913fedd05b08fae1e999bcf5",tooltip="Creates the HTML content for: 1) Browsing foreign data for a field."];
+}

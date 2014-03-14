@@ -77,19 +77,19 @@
 </div><!--header-->
 <div class="contents">
 <a href="ShapeFile_8lib_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
-<a name="l00002"></a><a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">00002</a>   <span class="keyword">function</span> <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>, <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>) {
-<a name="l00003"></a>00003     <span class="keywordflow">if</span> (!<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>) <span class="keywordflow">return</span> <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>;
-<a name="l00004"></a>00004     $tmp = unpack(<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>, <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
+<a name="l00002"></a><a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">00002</a>   <span class="keyword">function</span> <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>, <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>) {
+<a name="l00003"></a>00003     <span class="keywordflow">if</span> (!<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>) <span class="keywordflow">return</span> <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>;
+<a name="l00004"></a>00004     $tmp = unpack(<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>, <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
 <a name="l00005"></a>00005     <span class="keywordflow">return</span> current($tmp);
 <a name="l00006"></a>00006   }
 <a name="l00007"></a>00007 
 <a name="l00008"></a><a class="code" href="ShapeFile_8lib_8php.html#a01f53812967968dc474e8cf9ede4a47f">00008</a>   <span class="keyword">function</span> <a class="code" href="ShapeFile_8lib_8php.html#a01f53812967968dc474e8cf9ede4a47f">swap</a>($binValue) {
-<a name="l00009"></a>00009     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = $binValue{strlen($binValue) - 1};
-<a name="l00010"></a>00010     <span class="keywordflow">for</span>(<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = strlen($binValue) - 2; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &gt;= 0 ; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>--) {
-<a name="l00011"></a>00011       <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> .= $binValue{<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>};
+<a name="l00009"></a>00009     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = $binValue{strlen($binValue) - 1};
+<a name="l00010"></a>00010     <span class="keywordflow">for</span>(<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = strlen($binValue) - 2; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &gt;= 0 ; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>--) {
+<a name="l00011"></a>00011       <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> .= $binValue{<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>};
 <a name="l00012"></a>00012     }
 <a name="l00013"></a>00013 
-<a name="l00014"></a>00014     <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00014"></a>00014     <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00015"></a>00015   }
 <a name="l00016"></a>00016 
 <a name="l00017"></a><a class="code" href="ShapeFile_8lib_8php.html#a831639e46601808c6b4fa74067668691">00017</a>   <span class="keyword">function</span> <a class="code" href="ShapeFile_8lib_8php.html#a831639e46601808c6b4fa74067668691">packDouble</a>($value, <a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> = <span class="stringliteral">&#39;LE&#39;</span>) {
@@ -99,16 +99,16 @@
 <a name="l00021"></a>00021     <span class="comment">//We test if the conversion of an integer (1) is done as LE or BE by default</span>
 <a name="l00022"></a>00022     <span class="keywordflow">switch</span> (pack (<span class="charliteral">&#39;L&#39;</span>, 1)) {
 <a name="l00023"></a>00023       <span class="keywordflow">case</span> pack (<span class="charliteral">&#39;V&#39;</span>, 1): <span class="comment">//Little Endian</span>
-<a name="l00024"></a>00024         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;LE&#39;</span>) ? $bin : <a class="code" href="ShapeFile_8lib_8php.html#a01f53812967968dc474e8cf9ede4a47f">swap</a>($bin);
+<a name="l00024"></a>00024         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;LE&#39;</span>) ? $bin : <a class="code" href="ShapeFile_8lib_8php.html#a01f53812967968dc474e8cf9ede4a47f">swap</a>($bin);
 <a name="l00025"></a>00025       <span class="keywordflow">break</span>;
 <a name="l00026"></a>00026       <span class="keywordflow">case</span> pack (<span class="charliteral">&#39;N&#39;</span>, 1): <span class="comment">//Big Endian</span>
-<a name="l00027"></a>00027         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;BE&#39;</span>) ? $bin : <a class="code" href="ShapeFile_8lib_8php.html#a01f53812967968dc474e8cf9ede4a47f">swap</a>($bin);
+<a name="l00027"></a>00027         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;BE&#39;</span>) ? $bin : <a class="code" href="ShapeFile_8lib_8php.html#a01f53812967968dc474e8cf9ede4a47f">swap</a>($bin);
 <a name="l00028"></a>00028       <span class="keywordflow">break</span>;
 <a name="l00029"></a>00029       <span class="keywordflow">default</span>: <span class="comment">//Some other thing, we just return false</span>
-<a name="l00030"></a>00030         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = FALSE;
+<a name="l00030"></a>00030         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = FALSE;
 <a name="l00031"></a>00031     }
 <a name="l00032"></a>00032 
-<a name="l00033"></a>00033     <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00033"></a>00033     <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00034"></a>00034   }
 <a name="l00035"></a>00035 
 <a name="l00036"></a><a class="code" href="classShapeFile.html">00036</a>   <span class="keyword">class </span><a class="code" href="classShapeFile.html">ShapeFile</a> {
@@ -177,8 +177,8 @@
 <a name="l00099"></a><a class="code" href="classShapeFile.html#ac1ecb8dada55a5ff212165011f987a30">00099</a>     <span class="keyword">function</span> <a class="code" href="classShapeFile.html#ac1ecb8dada55a5ff212165011f987a30">deleteRecord</a>($index) {
 <a name="l00100"></a>00100       <span class="keywordflow">if</span> (isset($this-&gt;records[$index])) {
 <a name="l00101"></a>00101         $this-&gt;fileLength -= ($this-&gt;records[$index]-&gt;getContentLength() + 4);
-<a name="l00102"></a>00102         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = $index; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; (count($this-&gt;records) - 1); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00103"></a>00103           $this-&gt;records[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $this-&gt;records[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1];
+<a name="l00102"></a>00102         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = $index; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; (count($this-&gt;records) - 1); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00103"></a>00103           $this-&gt;records[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $this-&gt;records[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1];
 <a name="l00104"></a>00104         }
 <a name="l00105"></a>00105         unset($this-&gt;records[count($this-&gt;records) - 1]);
 <a name="l00106"></a>00106         $this-&gt;<a class="code" href="classShapeFile.html#aee67d31c25e3e391b873cabcdf70185d">_deleteRecordFromDBF</a>($index);
@@ -192,34 +192,34 @@
 <a name="l00114"></a><a class="code" href="classShapeFile.html#a8c6514fff67dbcb1baf5198bb76cb8f5">00114</a>     <span class="keyword">function</span> <a class="code" href="classShapeFile.html#a8c6514fff67dbcb1baf5198bb76cb8f5">setDBFHeader</a>($header) {
 <a name="l00115"></a>00115       $this-&gt;DBFHeader = $header;
 <a name="l00116"></a>00116 
-<a name="l00117"></a>00117       <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; count($this-&gt;records); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00118"></a>00118         $this-&gt;records[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;updateDBFInfo($header);
+<a name="l00117"></a>00117       <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; count($this-&gt;records); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00118"></a>00118         $this-&gt;records[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;updateDBFInfo($header);
 <a name="l00119"></a>00119       }
 <a name="l00120"></a>00120     }
 <a name="l00121"></a>00121 
 <a name="l00122"></a><a class="code" href="classShapeFile.html#ad494a930ce89f8d9b4a422ad10e24884">00122</a>     <span class="keyword">function</span> <a class="code" href="classShapeFile.html#ad494a930ce89f8d9b4a422ad10e24884">getIndexFromDBFData</a>($field, $value) {
-<a name="l00123"></a>00123       <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = -1;
-<a name="l00124"></a>00124       <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; (count($this-&gt;records) - 1); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00125"></a>00125         <span class="keywordflow">if</span> (isset($this-&gt;records[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;DBFData[$field]) &amp;&amp; (strtoupper($this-&gt;records[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;DBFData[$field]) == strtoupper($value))) {
-<a name="l00126"></a>00126           <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>;
+<a name="l00123"></a>00123       <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = -1;
+<a name="l00124"></a>00124       <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; (count($this-&gt;records) - 1); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00125"></a>00125         <span class="keywordflow">if</span> (isset($this-&gt;records[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;DBFData[$field]) &amp;&amp; (strtoupper($this-&gt;records[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;DBFData[$field]) == strtoupper($value))) {
+<a name="l00126"></a>00126           <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>;
 <a name="l00127"></a>00127         }
 <a name="l00128"></a>00128       }
 <a name="l00129"></a>00129 
-<a name="l00130"></a>00130       <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00130"></a>00130       <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00131"></a>00131     }
 <a name="l00132"></a>00132 
 <a name="l00133"></a><a class="code" href="classShapeFile.html#a290ac5b36bea655e8409a0914c9e5ea2">00133</a>     <span class="keyword">function</span> <a class="code" href="classShapeFile.html#a290ac5b36bea655e8409a0914c9e5ea2">_loadDBFHeader</a>() {
 <a name="l00134"></a>00134       <a class="code" href="classShapeFile.html#a2103df5a9c67c0185134149afb71b3ff">$DBFFile</a> = fopen(str_replace(<span class="stringliteral">&#39;.*&#39;</span>, <span class="stringliteral">&#39;.dbf&#39;</span>, $this-&gt;FileName), <span class="charliteral">&#39;r&#39;</span>);
 <a name="l00135"></a>00135 
-<a name="l00136"></a>00136       <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = array();
+<a name="l00136"></a>00136       <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = array();
 <a name="l00137"></a>00137       $buff32 = array();
-<a name="l00138"></a>00138       <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 1;
+<a name="l00138"></a>00138       <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 1;
 <a name="l00139"></a>00139       $inHeader = <span class="keyword">true</span>;
 <a name="l00140"></a>00140 
 <a name="l00141"></a>00141       <span class="keywordflow">while</span> ($inHeader) {
 <a name="l00142"></a>00142         <span class="keywordflow">if</span> (!feof(<a class="code" href="classShapeFile.html#a2103df5a9c67c0185134149afb71b3ff">$DBFFile</a>)) {
 <a name="l00143"></a>00143           $buff32 = fread(<a class="code" href="classShapeFile.html#a2103df5a9c67c0185134149afb71b3ff">$DBFFile</a>, 32);
-<a name="l00144"></a>00144           <span class="keywordflow">if</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &gt; 1) {
+<a name="l00144"></a>00144           <span class="keywordflow">if</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &gt; 1) {
 <a name="l00145"></a>00145             <span class="keywordflow">if</span> (substr($buff32, 0, 1) == chr(13)) {
 <a name="l00146"></a>00146               $inHeader = <span class="keyword">false</span>;
 <a name="l00147"></a>00147             } <span class="keywordflow">else</span> {
@@ -231,17 +231,17 @@
 <a name="l00153"></a>00153               $fieldLen = ord(substr($buff32, 16, 1));
 <a name="l00154"></a>00154               $fieldDec = ord(substr($buff32, 17, 1));
 <a name="l00155"></a>00155 
-<a name="l00156"></a>00156               array_push(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, array($fieldName, $fieldType, $fieldLen, $fieldDec));
+<a name="l00156"></a>00156               array_push(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, array($fieldName, $fieldType, $fieldLen, $fieldDec));
 <a name="l00157"></a>00157             }
 <a name="l00158"></a>00158           }
-<a name="l00159"></a>00159           <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++;
+<a name="l00159"></a>00159           <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++;
 <a name="l00160"></a>00160         } <span class="keywordflow">else</span> {
 <a name="l00161"></a>00161           $inHeader = <span class="keyword">false</span>;
 <a name="l00162"></a>00162         }
 <a name="l00163"></a>00163       }
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165       fclose(<a class="code" href="classShapeFile.html#a2103df5a9c67c0185134149afb71b3ff">$DBFFile</a>);
-<a name="l00166"></a>00166       <span class="keywordflow">return</span>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00166"></a>00166       <span class="keywordflow">return</span>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00167"></a>00167     }
 <a name="l00168"></a>00168 
 <a name="l00169"></a><a class="code" href="classShapeFile.html#aee67d31c25e3e391b873cabcdf70185d">00169</a>     <span class="keyword">function</span> <a class="code" href="classShapeFile.html#aee67d31c25e3e391b873cabcdf70185d">_deleteRecordFromDBF</a>($index) {
@@ -486,17 +486,17 @@
 <a name="l00408"></a>00408     }
 <a name="l00409"></a>00409 
 <a name="l00410"></a><a class="code" href="classShapeRecord.html#ac8f6b95b05c0988b55d1844942eae036">00410</a>     <span class="keyword">function</span> <a class="code" href="classShapeRecord.html#ac8f6b95b05c0988b55d1844942eae036">_loadPoint</a>() {
-<a name="l00411"></a>00411       <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = array();
+<a name="l00411"></a>00411       <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = array();
 <a name="l00412"></a>00412 
-<a name="l00413"></a>00413       <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&quot;x&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;d&quot;</span>, fread($this-&gt;SHPFile, 8));
-<a name="l00414"></a>00414       <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&quot;y&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;d&quot;</span>, fread($this-&gt;SHPFile, 8));
+<a name="l00413"></a>00413       <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&quot;x&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;d&quot;</span>, fread($this-&gt;SHPFile, 8));
+<a name="l00414"></a>00414       <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&quot;y&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;d&quot;</span>, fread($this-&gt;SHPFile, 8));
 <a name="l00415"></a>00415 
-<a name="l00416"></a>00416       <span class="keywordflow">return</span> <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>;
+<a name="l00416"></a>00416       <span class="keywordflow">return</span> <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>;
 <a name="l00417"></a>00417     }
 <a name="l00418"></a>00418 
-<a name="l00419"></a><a class="code" href="classShapeRecord.html#a356811f01ba5b7c2fa7777248b63303e">00419</a>     <span class="keyword">function</span> <a class="code" href="classShapeRecord.html#a356811f01ba5b7c2fa7777248b63303e">_savePoint</a>(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>) {
-<a name="l00420"></a>00420       fwrite($this-&gt;SHPFile, <a class="code" href="ShapeFile_8lib_8php.html#a831639e46601808c6b4fa74067668691">packDouble</a>(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&quot;x&quot;</span>]));
-<a name="l00421"></a>00421       fwrite($this-&gt;SHPFile, <a class="code" href="ShapeFile_8lib_8php.html#a831639e46601808c6b4fa74067668691">packDouble</a>(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&quot;y&quot;</span>]));
+<a name="l00419"></a><a class="code" href="classShapeRecord.html#a356811f01ba5b7c2fa7777248b63303e">00419</a>     <span class="keyword">function</span> <a class="code" href="classShapeRecord.html#a356811f01ba5b7c2fa7777248b63303e">_savePoint</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>) {
+<a name="l00420"></a>00420       fwrite($this-&gt;SHPFile, <a class="code" href="ShapeFile_8lib_8php.html#a831639e46601808c6b4fa74067668691">packDouble</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&quot;x&quot;</span>]));
+<a name="l00421"></a>00421       fwrite($this-&gt;SHPFile, <a class="code" href="ShapeFile_8lib_8php.html#a831639e46601808c6b4fa74067668691">packDouble</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&quot;y&quot;</span>]));
 <a name="l00422"></a>00422     }
 <a name="l00423"></a>00423 
 <a name="l00424"></a><a class="code" href="classShapeRecord.html#a1568cecc92d430339769ca829aee77a5">00424</a>     <span class="keyword">function</span> <a class="code" href="classShapeRecord.html#a1568cecc92d430339769ca829aee77a5">_loadNullRecord</a>() {
@@ -524,7 +524,7 @@
 <a name="l00446"></a>00446 
 <a name="l00447"></a>00447       $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, fread($this-&gt;SHPFile, 4));
 <a name="l00448"></a>00448 
-<a name="l00449"></a>00449       <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt;= $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>]; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
+<a name="l00449"></a>00449       <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt;= $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>]; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
 <a name="l00450"></a>00450         $this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][] = $this-&gt;<a class="code" href="classShapeRecord.html#ac8f6b95b05c0988b55d1844942eae036">_loadPoint</a>();
 <a name="l00451"></a>00451       }
 <a name="l00452"></a>00452     }
@@ -534,8 +534,8 @@
 <a name="l00456"></a>00456 
 <a name="l00457"></a>00457       fwrite($this-&gt;SHPFile, pack(<span class="stringliteral">&quot;V&quot;</span>, $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>]));
 <a name="l00458"></a>00458 
-<a name="l00459"></a>00459       <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt;= $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>]; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00460"></a>00460         $this-&gt;<a class="code" href="classShapeRecord.html#a356811f01ba5b7c2fa7777248b63303e">_savePoint</a>($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00459"></a>00459       <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt;= $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>]; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00460"></a>00460         $this-&gt;<a class="code" href="classShapeRecord.html#a356811f01ba5b7c2fa7777248b63303e">_savePoint</a>($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00461"></a>00461       }
 <a name="l00462"></a>00462     }
 <a name="l00463"></a>00463 
@@ -549,8 +549,8 @@
 <a name="l00471"></a>00471       $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>]  = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, fread($this-&gt;SHPFile, 4));
 <a name="l00472"></a>00472       $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, fread($this-&gt;SHPFile, 4));
 <a name="l00473"></a>00473 
-<a name="l00474"></a>00474       <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>]; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00475"></a>00475         $this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, fread($this-&gt;SHPFile, 4));
+<a name="l00474"></a>00474       <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>]; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00475"></a>00475         $this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, fread($this-&gt;SHPFile, 4));
 <a name="l00476"></a>00476       }
 <a name="l00477"></a>00477 
 <a name="l00478"></a>00478       $firstIndex = ftell($this-&gt;SHPFile);
@@ -575,8 +575,8 @@
 <a name="l00497"></a>00497 
 <a name="l00498"></a>00498       fwrite($this-&gt;SHPFile, pack(<span class="stringliteral">&quot;VV&quot;</span>, $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>], $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>]));
 <a name="l00499"></a>00499 
-<a name="l00500"></a>00500       <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>]; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00501"></a>00501         fwrite($this-&gt;SHPFile, pack(<span class="stringliteral">&quot;V&quot;</span>, count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>])));
+<a name="l00500"></a>00500       <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>]; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00501"></a>00501         fwrite($this-&gt;SHPFile, pack(<span class="stringliteral">&quot;V&quot;</span>, count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>])));
 <a name="l00502"></a>00502       }
 <a name="l00503"></a>00503 
 <a name="l00504"></a>00504       reset($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>]);
@@ -648,8 +648,8 @@
 <a name="l00570"></a>00570         <span class="keywordflow">case</span> 5:
 <a name="l00571"></a>00571           <span class="comment">//Deletes the point from the selected part, if exists</span>
 <a name="l00572"></a>00572           <span class="keywordflow">if</span> (isset($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex]) &amp;&amp; isset($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>][$pointIndex])) {
-<a name="l00573"></a>00573             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = $pointIndex; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; (count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>]) - 1); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00574"></a>00574               $this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1];
+<a name="l00573"></a>00573             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = $pointIndex; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; (count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>]) - 1); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00574"></a>00574               $this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1];
 <a name="l00575"></a>00575             }
 <a name="l00576"></a>00576             unset($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>][count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][$partIndex][<span class="stringliteral">&quot;points&quot;</span>]) - 1]);
 <a name="l00577"></a>00577 
@@ -660,8 +660,8 @@
 <a name="l00582"></a>00582         <span class="keywordflow">case</span> 8:
 <a name="l00583"></a>00583           <span class="comment">//Deletes the point, if exists</span>
 <a name="l00584"></a>00584           <span class="keywordflow">if</span> (isset($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][$pointIndex])) {
-<a name="l00585"></a>00585             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = $pointIndex; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; (count($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>]) - 1); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00586"></a>00586               $this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1];
+<a name="l00585"></a>00585             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = $pointIndex; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; (count($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>]) - 1); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00586"></a>00586               $this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1];
 <a name="l00587"></a>00587             }
 <a name="l00588"></a>00588             unset($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][count($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>]) - 1]);
 <a name="l00589"></a>00589 
@@ -677,27 +677,27 @@
 <a name="l00599"></a><a class="code" href="classShapeRecord.html#a5f4865f74b6cba84c635637b8acc1c03">00599</a>     <span class="keyword">function</span> <a class="code" href="classShapeRecord.html#a5f4865f74b6cba84c635637b8acc1c03">getContentLength</a>() {
 <a name="l00600"></a>00600       <span class="keywordflow">switch</span> ($this-&gt;shapeType) {
 <a name="l00601"></a>00601         <span class="keywordflow">case</span> 0:
-<a name="l00602"></a>00602           <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = 0;
+<a name="l00602"></a>00602           <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = 0;
 <a name="l00603"></a>00603         <span class="keywordflow">break</span>;
 <a name="l00604"></a>00604         <span class="keywordflow">case</span> 1:
-<a name="l00605"></a>00605           <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = 10;
+<a name="l00605"></a>00605           <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = 10;
 <a name="l00606"></a>00606         <span class="keywordflow">break</span>;
 <a name="l00607"></a>00607         <span class="keywordflow">case</span> 3:
 <a name="l00608"></a>00608         <span class="keywordflow">case</span> 5:
-<a name="l00609"></a>00609           <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = 22 + 2*count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>]);
-<a name="l00610"></a>00610           <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>]); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00611"></a>00611             <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> += 8*count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="stringliteral">&quot;points&quot;</span>]);
+<a name="l00609"></a>00609           <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = 22 + 2*count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>]);
+<a name="l00610"></a>00610           <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>]); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00611"></a>00611             <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> += 8*count($this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="stringliteral">&quot;points&quot;</span>]);
 <a name="l00612"></a>00612           }
 <a name="l00613"></a>00613         <span class="keywordflow">break</span>;
 <a name="l00614"></a>00614         <span class="keywordflow">case</span> 8:
-<a name="l00615"></a>00615           <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = 20 + 8*count($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>]);
+<a name="l00615"></a>00615           <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = 20 + 8*count($this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>]);
 <a name="l00616"></a>00616         <span class="keywordflow">break</span>;
 <a name="l00617"></a>00617         <span class="keywordflow">default</span>:
-<a name="l00618"></a>00618           <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">false</span>;
+<a name="l00618"></a>00618           <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">false</span>;
 <a name="l00619"></a>00619           $this-&gt;<a class="code" href="classShapeRecord.html#a09c8440f473a2d02fd3d0d8004cfc7e7">setError</a>(sprintf(<span class="stringliteral">&quot;The Shape Type &#39;%s&#39; is not supported.&quot;</span>, $this-&gt;shapeType));
 <a name="l00620"></a>00620         <span class="keywordflow">break</span>;
 <a name="l00621"></a>00621       }
-<a name="l00622"></a>00622       <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00622"></a>00622       <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00623"></a>00623     }
 <a name="l00624"></a>00624 
 <a name="l00625"></a><a class="code" href="classShapeRecord.html#abd9bf23adfdcf6e5d07a175144ce19f7">00625</a>     <span class="keyword">function</span> <a class="code" href="classShapeRecord.html#abd9bf23adfdcf6e5d07a175144ce19f7">_loadDBFData</a>() {
@@ -731,7 +731,7 @@
     <ul>
       <li class="navelem"><a class="el" href="ShapeFile_8lib_8php.html">ShapeFile.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

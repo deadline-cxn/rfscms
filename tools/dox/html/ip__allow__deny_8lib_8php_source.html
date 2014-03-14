@@ -106,8 +106,8 @@
 <a name="l00028"></a>00028     }
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030     <span class="comment">/* Do we trust this IP as a proxy? If yes we will use it&#39;s header. */</span>
-<a name="l00031"></a>00031     <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TrustedProxies&#39;</span>][$direct_ip])) {
-<a name="l00032"></a>00032         $trusted_header_value = <a class="code" href="core_8lib_8php.html#af47a7345938ec406f740a61f7d1b182a" title="trys to find the value for the given environment vriable name">PMA_getenv</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TrustedProxies&#39;</span>][$direct_ip]);
+<a name="l00031"></a>00031     <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TrustedProxies&#39;</span>][$direct_ip])) {
+<a name="l00032"></a>00032         $trusted_header_value = <a class="code" href="core_8lib_8php.html#af47a7345938ec406f740a61f7d1b182a" title="trys to find the value for the given environment vriable name">PMA_getenv</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TrustedProxies&#39;</span>][$direct_ip]);
 <a name="l00033"></a>00033         $matches = array();
 <a name="l00034"></a>00034         <span class="comment">// the $ checks that the header contains only one IP address, ?: makes sure the () don&#39;t capture</span>
 <a name="l00035"></a>00035         $is_ip = preg_match(<span class="stringliteral">&#39;|^(?:[0-9]{1,3}\.){3,3}[0-9]{1,3}$|&#39;</span>, $trusted_header_value, $matches);
@@ -145,7 +145,7 @@
 <a name="l00067"></a>00067 <span class="comment"> */</span>
 <a name="l00068"></a><a class="code" href="ip__allow__deny_8lib_8php.html#a2e0e700cabd4027ba8bf8e1ff6c5de72">00068</a> <span class="keyword">function</span> <a class="code" href="ip__allow__deny_8lib_8php.html#a2e0e700cabd4027ba8bf8e1ff6c5de72" title="Based on IP Pattern Matcher Originally by J.Adams &lt;jna@retina.net&gt; Found on &lt;http://www.php.net/manual/en/function.ip2long.php&gt; Modified for phpMyAdmin.">PMA_ipMaskTest</a>($testRange, $ipToTest)
 <a name="l00069"></a>00069 {
-<a name="l00070"></a>00070    <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">true</span>;
+<a name="l00070"></a>00070    <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">true</span>;
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072    <span class="keywordflow">if</span> (preg_match(<span class="stringliteral">&#39;|([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/([0-9]+)|&#39;</span>, $testRange, $regs)) {
 <a name="l00073"></a>00073        <span class="comment">// performs a mask match</span>
@@ -154,9 +154,9 @@
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077        $maskl  = 0;
 <a name="l00078"></a>00078 
-<a name="l00079"></a>00079        <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; 31; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00080"></a>00080            <span class="keywordflow">if</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $regs[5] - 1) {
-<a name="l00081"></a>00081                $maskl = $maskl + <a class="code" href="common_8lib_8php.html#aaade54960e4ce59a18b04f1cfd724b77" title="Exponential expression / raise number into power.">PMA_pow</a>(2, (30 - <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>));
+<a name="l00079"></a>00079        <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; 31; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00080"></a>00080            <span class="keywordflow">if</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $regs[5] - 1) {
+<a name="l00081"></a>00081                $maskl = $maskl + <a class="code" href="common_8lib_8php.html#aaade54960e4ce59a18b04f1cfd724b77" title="Exponential expression / raise number into power.">PMA_pow</a>(2, (30 - <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>));
 <a name="l00082"></a>00082            } <span class="comment">// end if</span>
 <a name="l00083"></a>00083        } <span class="comment">// end for</span>
 <a name="l00084"></a>00084 
@@ -171,21 +171,21 @@
 <a name="l00093"></a>00093        $ipocts   = explode(<span class="charliteral">&#39;.&#39;</span>, $ipToTest);
 <a name="l00094"></a>00094 
 <a name="l00095"></a>00095        <span class="comment">// perform a range match</span>
-<a name="l00096"></a>00096        <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; 4; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00097"></a>00097             <span class="keywordflow">if</span> (preg_match(<span class="stringliteral">&#39;|\[([0-9]+)\-([0-9]+)\]|&#39;</span>, $maskocts[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>], $regs)) {
+<a name="l00096"></a>00096        <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; 4; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00097"></a>00097             <span class="keywordflow">if</span> (preg_match(<span class="stringliteral">&#39;|\[([0-9]+)\-([0-9]+)\]|&#39;</span>, $maskocts[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>], $regs)) {
 <a name="l00098"></a>00098                 <span class="keywordflow">if</span> (($ipocts[$i] &gt; $regs[2])
 <a name="l00099"></a>00099                     || ($ipocts[$i] &lt; $regs[1])) {
-<a name="l00100"></a>00100                     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">false</span>;
+<a name="l00100"></a>00100                     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">false</span>;
 <a name="l00101"></a>00101                 } <span class="comment">// end if</span>
 <a name="l00102"></a>00102             } <span class="keywordflow">else</span> {
 <a name="l00103"></a>00103                 <span class="keywordflow">if</span> ($maskocts[$i] &lt;&gt; $ipocts[$i]) {
-<a name="l00104"></a>00104                     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">false</span>;
+<a name="l00104"></a>00104                     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">false</span>;
 <a name="l00105"></a>00105                 } <span class="comment">// end if</span>
 <a name="l00106"></a>00106             } <span class="comment">// end if/else</span>
 <a name="l00107"></a>00107        } <span class="comment">//end for</span>
 <a name="l00108"></a>00108    } <span class="comment">//end if/else</span>
 <a name="l00109"></a>00109 
-<a name="l00110"></a>00110    <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00110"></a>00110    <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00111"></a>00111 } <span class="comment">// end of the &quot;PMA_IPMaskTest()&quot; function</span>
 <a name="l00112"></a>00112 
 <a name="l00113"></a>00113 <span class="comment"></span>
@@ -200,7 +200,7 @@
 <a name="l00122"></a>00122 <span class="comment"> *</span>
 <a name="l00123"></a>00123 <span class="comment"> * @see     PMA_getIp()</span>
 <a name="l00124"></a>00124 <span class="comment"> */</span>
-<a name="l00125"></a><a class="code" href="ip__allow__deny_8lib_8php.html#a992ae3203025e4ed5f0d66355032dff6">00125</a> <span class="keyword">function</span> <a class="code" href="ip__allow__deny_8lib_8php.html#a992ae3203025e4ed5f0d66355032dff6" title="Runs through IP Allow/Deny rules the use of it below for more information.">PMA_allowDeny</a>(<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>)
+<a name="l00125"></a><a class="code" href="ip__allow__deny_8lib_8php.html#a992ae3203025e4ed5f0d66355032dff6">00125</a> <span class="keyword">function</span> <a class="code" href="ip__allow__deny_8lib_8php.html#a992ae3203025e4ed5f0d66355032dff6" title="Runs through IP Allow/Deny rules the use of it below for more information.">PMA_allowDeny</a>(<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>)
 <a name="l00126"></a>00126 {
 <a name="l00127"></a>00127     global <a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>;
 <a name="l00128"></a>00128 
@@ -234,7 +234,7 @@
 <a name="l00156"></a>00156         $rule_data = explode(<span class="charliteral">&#39; &#39;</span>, $rule);
 <a name="l00157"></a>00157 
 <a name="l00158"></a>00158         <span class="comment">// check for rule type</span>
-<a name="l00159"></a>00159         <span class="keywordflow">if</span> ($rule_data[0] != <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>) {
+<a name="l00159"></a>00159         <span class="keywordflow">if</span> ($rule_data[0] != <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>) {
 <a name="l00160"></a>00160             <span class="keywordflow">continue</span>;
 <a name="l00161"></a>00161         }
 <a name="l00162"></a>00162 
@@ -274,7 +274,7 @@
     <ul>
       <li class="navelem"><a class="el" href="ip__allow__deny_8lib_8php.html">ip_allow_deny.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

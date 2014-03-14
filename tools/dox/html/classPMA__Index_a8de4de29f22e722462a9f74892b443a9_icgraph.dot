@@ -1,0 +1,28 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_Index\\_loadIndexes",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_Index\\singleton",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Index.html#ace7270bd09eb3f05a8385da70c3da97b"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_Index\\getFromTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Index.html#ad8b7ce6fee21c5ac8e915642e6ee466b",tooltip="returns an array with all indexes from the given table"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Table_Stats\\__construct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTable__Stats.html#a9434b856824f1e3edd57ef9ffe4e83bb",tooltip="The &quot;Table_Stats&quot; constructor."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_displayTableHeaders",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$display__tbl_8lib_8php.html#aae4044b44dccb4059685ea603dc52e9e",tooltip="Displays the headers of the results table."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_Index\\getView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Index.html#a0e8e4c5b27a81347e8b81c74fd8a091c",tooltip="Show index data."];
+  Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_Index\\findDuplicates",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Index.html#a1847d139af9eb1afbac836d726f4452b",tooltip="Function to check over array of indexes and look for common problems."];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="get_all_keys",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pmd__common_8php.html#a56d6eefe0d8c9933d346c1e75f618970",tooltip="returns all indizes"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="get_pk_or_unique_keys",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pmd__common_8php.html#ac425795e101a8f7400f7ef6388bdfacc"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="PMA_Index\\getPrimary",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Index.html#a663855441eb87c5110ef0506fa0f65f6",tooltip="return primary if set, false otherwise"];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="PMA_Index\\generateIndexSelector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Index.html#a5b0d533c8a697f4652be0dad75da9ec8"];
+}

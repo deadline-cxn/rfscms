@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="RSS_Channel",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="RSS_Retrieve",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsslib_8php.html#a1b8a3bb2a5581e745ad50b72395cf1b3"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="RSS_Display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rsslib_8php.html#ae97fb9e0b802f20cba955b50b87d48d1"];
+}

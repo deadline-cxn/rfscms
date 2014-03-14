@@ -73,22 +73,19 @@
 <div class="title">version.php</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="version_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a><a class="code" href="version_8php.html#a9cdec9fe3ad5a07ac6aa1f1be15288ae">00001</a> &lt;? <a class="code" href="version_8php.html#a9cdec9fe3ad5a07ac6aa1f1be15288ae">$RFS_VERSION</a>=<span class="stringliteral">&quot;v3.1.6&quot;</span>;
+<a href="version_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a><a class="code" href="version_8php.html#a9cdec9fe3ad5a07ac6aa1f1be15288ae">00001</a> &lt;? <a class="code" href="version_8php.html#a9cdec9fe3ad5a07ac6aa1f1be15288ae">$RFS_VERSION</a>=<span class="stringliteral">&quot;v3.2.1 beta&quot;</span>;
 <a name="l00002"></a><a class="code" href="version_8php.html#a6c3916d4db25e8bfde2fb622808dc61f">00002</a> <a class="code" href="version_8php.html#a6c3916d4db25e8bfde2fb622808dc61f">$RFS_BUILD</a>=<span class="stringliteral">&quot;001&quot;</span>;
-<a name="l00003"></a><a class="code" href="version_8php.html#aa1bfbd27060176201b271918dff57e8f">00003</a> <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>=fopen(<span class="stringliteral">&quot;build.dat&quot;</span>,<span class="stringliteral">&quot;r&quot;</span>);
-<a name="l00004"></a>00004 <span class="keywordflow">if</span>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) {
-<a name="l00005"></a>00005 <a class="code" href="version_8php.html#a6c3916d4db25e8bfde2fb622808dc61f">$RFS_BUILD</a>=fgets(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,256);
-<a name="l00006"></a>00006 fclose(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
-<a name="l00007"></a>00007 }
-<a name="l00008"></a><a class="code" href="version_8php.html#a33782488cba5f857cf63da8cd97d2790">00008</a> <a class="code" href="version_8php.html#a33782488cba5f857cf63da8cd97d2790">$RFS_FULL_VERSION</a>=<a class="code" href="version_8php.html#a9cdec9fe3ad5a07ac6aa1f1be15288ae">$RFS_VERSION</a>.<span class="stringliteral">&quot; BUILD &quot;</span>.<a class="code" href="version_8php.html#a6c3916d4db25e8bfde2fb622808dc61f">$RFS_BUILD</a>;
-<a name="l00009"></a>00009 ?&gt;
+<a name="l00003"></a><a class="code" href="version_8php.html#aa1bfbd27060176201b271918dff57e8f">00003</a> <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>=@fopen(<span class="stringliteral">&quot;build.dat&quot;</span>,<span class="stringliteral">&quot;r&quot;</span>);
+<a name="l00004"></a>00004 <span class="keywordflow">if</span>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) { <a class="code" href="version_8php.html#a6c3916d4db25e8bfde2fb622808dc61f">$RFS_BUILD</a>=fgets(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,256); fclose(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>); }
+<a name="l00005"></a><a class="code" href="version_8php.html#a33782488cba5f857cf63da8cd97d2790">00005</a> <a class="code" href="version_8php.html#a33782488cba5f857cf63da8cd97d2790">$RFS_FULL_VERSION</a>=<a class="code" href="version_8php.html#a9cdec9fe3ad5a07ac6aa1f1be15288ae">$RFS_VERSION</a>.<span class="stringliteral">&quot; BUILD &quot;</span>.<a class="code" href="version_8php.html#a6c3916d4db25e8bfde2fb622808dc61f">$RFS_BUILD</a>;
+<a name="l00006"></a>00006 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="version_8php.html">version.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

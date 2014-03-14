@@ -360,9 +360,9 @@
 <a name="l00282"></a>00282             $no_of_lines = 1;
 <a name="l00283"></a>00283         }
 <a name="l00284"></a>00284         <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <span class="stringliteral">&#39;POLYGON(&#39;</span>;
-<a name="l00285"></a>00285         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $no_of_lines; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00286"></a>00286             $no_of_points = isset(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="stringliteral">&#39;no_of_points&#39;</span>])
-<a name="l00287"></a>00287                 ? <a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="stringliteral">&#39;no_of_points&#39;</span>] : 4;
+<a name="l00285"></a>00285         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $no_of_lines; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00286"></a>00286             $no_of_points = isset(<a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="stringliteral">&#39;no_of_points&#39;</span>])
+<a name="l00287"></a>00287                 ? <a class="code" href="gis__data__editor_8php.html#ad9ddfbdef270cc8120bcc1b5d5b638e3">$gis_data</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="stringliteral">&#39;no_of_points&#39;</span>] : 4;
 <a name="l00288"></a>00288             <span class="keywordflow">if</span> ($no_of_points &lt; 4) {
 <a name="l00289"></a>00289                 $no_of_points = 4;
 <a name="l00290"></a>00290             }
@@ -408,10 +408,10 @@
 <a name="l00330"></a>00330         <span class="comment">//      2  /__</span>
 <a name="l00331"></a>00331         <span class="comment">//         i=0</span>
 <a name="l00332"></a>00332         $area = 0;
-<a name="l00333"></a>00333         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $no_of_points; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00334"></a>00334             $j = (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1) % $no_of_points;
-<a name="l00335"></a>00335             $area += $ring[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] * $ring[$j][<span class="charliteral">&#39;y&#39;</span>];
-<a name="l00336"></a>00336             $area -= $ring[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] * $ring[$j][<span class="charliteral">&#39;x&#39;</span>];
+<a name="l00333"></a>00333         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $no_of_points; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00334"></a>00334             $j = (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1) % $no_of_points;
+<a name="l00335"></a>00335             $area += $ring[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] * $ring[$j][<span class="charliteral">&#39;y&#39;</span>];
+<a name="l00336"></a>00336             $area -= $ring[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] * $ring[$j][<span class="charliteral">&#39;x&#39;</span>];
 <a name="l00337"></a>00337         }
 <a name="l00338"></a>00338         $area /= 2.0;
 <a name="l00339"></a>00339 
@@ -459,8 +459,8 @@
 <a name="l00381"></a>00381 
 <a name="l00382"></a>00382         <span class="comment">// Use ray casting algorithm</span>
 <a name="l00383"></a>00383         $p1 = $polygon[0];
-<a name="l00384"></a>00384         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 1; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt;= $no_of_points; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00385"></a>00385             $p2 = $polygon[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> % $no_of_points];
+<a name="l00384"></a>00384         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 1; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt;= $no_of_points; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00385"></a>00385             $p2 = $polygon[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> % $no_of_points];
 <a name="l00386"></a>00386             <span class="keywordflow">if</span> ($point[<span class="charliteral">&#39;y&#39;</span>] &gt; min(array($p1[<span class="charliteral">&#39;y&#39;</span>], $p2[<span class="charliteral">&#39;y&#39;</span>]))) {
 <a name="l00387"></a>00387                 <span class="keywordflow">if</span> ($point[<span class="charliteral">&#39;y&#39;</span>] &lt;= max(array($p1[<span class="charliteral">&#39;y&#39;</span>], $p2[<span class="charliteral">&#39;y&#39;</span>]))) {
 <a name="l00388"></a>00388                     <span class="keywordflow">if</span> ($point[<span class="charliteral">&#39;x&#39;</span>] &lt;= max(array($p1[<span class="charliteral">&#39;x&#39;</span>], $p2[<span class="charliteral">&#39;x&#39;</span>]))) {
@@ -496,12 +496,12 @@
 <a name="l00418"></a><a class="code" href="classPMA__GIS__Polygon.html#abe1d156ff83b00197885be332a4663f9">00418</a>     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">function</span> <a class="code" href="classPMA__GIS__Polygon.html#abe1d156ff83b00197885be332a4663f9" title="Returns a point that is guaranteed to be on the surface of the ring.">getPointOnSurface</a>($ring)
 <a name="l00419"></a>00419     {
 <a name="l00420"></a>00420         <span class="comment">// Find two consecutive distinct points.</span>
-<a name="l00421"></a>00421         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; count($ring) - 1; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00422"></a>00422             <span class="keywordflow">if</span> ($ring[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] != $ring[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1][<span class="charliteral">&#39;y&#39;</span>]) {
-<a name="l00423"></a>00423                 $x0 = $ring[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;x&#39;</span>];
-<a name="l00424"></a>00424                 $x1 = $ring[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1][<span class="charliteral">&#39;x&#39;</span>];
-<a name="l00425"></a>00425                 $y0 = $ring[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;y&#39;</span>];
-<a name="l00426"></a>00426                 $y1 = $ring[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1][<span class="charliteral">&#39;y&#39;</span>];
+<a name="l00421"></a>00421         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; count($ring) - 1; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00422"></a>00422             <span class="keywordflow">if</span> ($ring[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] != $ring[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1][<span class="charliteral">&#39;y&#39;</span>]) {
+<a name="l00423"></a>00423                 $x0 = $ring[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;x&#39;</span>];
+<a name="l00424"></a>00424                 $x1 = $ring[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1][<span class="charliteral">&#39;x&#39;</span>];
+<a name="l00425"></a>00425                 $y0 = $ring[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;y&#39;</span>];
+<a name="l00426"></a>00426                 $y1 = $ring[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1][<span class="charliteral">&#39;y&#39;</span>];
 <a name="l00427"></a>00427                 <span class="keywordflow">break</span>;
 <a name="l00428"></a>00428             }
 <a name="l00429"></a>00429         }
@@ -532,7 +532,7 @@
 <a name="l00454"></a>00454             <span class="comment">// unless epcilon chosen is too large</span>
 <a name="l00455"></a>00455             <span class="keywordflow">if</span> (<a class="code" href="classPMA__GIS__Polygon.html#a728084a7e8cd0fde1b7b3f6b5e6c72a2" title="Determines whether a given point is inside a given polygon.">PMA_GIS_Polygon::isPointInsidePolygon</a>($pointA, $ring)) {
 <a name="l00456"></a>00456                 <span class="keywordflow">return</span> $pointA;
-<a name="l00457"></a>00457             } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="classPMA__GIS__Polygon.html#a728084a7e8cd0fde1b7b3f6b5e6c72a2" title="Determines whether a given point is inside a given polygon.">PMA_GIS_Polygon::isPointInsidePolygon</a>($pointB, $ring)) {
+<a name="l00457"></a>00457             } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="classPMA__GIS__Polygon.html#a728084a7e8cd0fde1b7b3f6b5e6c72a2" title="Determines whether a given point is inside a given polygon.">PMA_GIS_Polygon::isPointInsidePolygon</a>($pointB, $ring)) {
 <a name="l00458"></a>00458                 <span class="keywordflow">return</span> $pointB;
 <a name="l00459"></a>00459             } <span class="keywordflow">else</span> {
 <a name="l00460"></a>00460                 <span class="comment">//If both are outside the polygon reduce the epsilon and</span>
@@ -558,9 +558,9 @@
 <a name="l00480"></a>00480         <span class="keywordflow">if</span> ($index == -1) {
 <a name="l00481"></a>00481             $index = 0;
 <a name="l00482"></a>00482             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a> = array();
-<a name="l00483"></a>00483             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="classPMA__GIS__Polygon.html#ae20f0fb608f1912d6a45605268060ac3" title="Generate parameters for the GIS data editor from the value of the GIS column.">PMA_GIS_Geometry::generateParams</a>($value);
-<a name="l00484"></a>00484             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;srid&#39;</span>] = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;srid&#39;</span>];
-<a name="l00485"></a>00485             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;wkt&#39;</span>];
+<a name="l00483"></a>00483             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="classPMA__GIS__Polygon.html#ae20f0fb608f1912d6a45605268060ac3" title="Generate parameters for the GIS data editor from the value of the GIS column.">PMA_GIS_Geometry::generateParams</a>($value);
+<a name="l00484"></a>00484             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;srid&#39;</span>] = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;srid&#39;</span>];
+<a name="l00485"></a>00485             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;wkt&#39;</span>];
 <a name="l00486"></a>00486         } <span class="keywordflow">else</span> {
 <a name="l00487"></a>00487             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;gis_type&#39;</span>] = <span class="stringliteral">&#39;POLYGON&#39;</span>;
 <a name="l00488"></a>00488             <a class="code" href="gis__data__editor_8php.html#a72a613f0270cfeb11d04641cb2365c37">$wkt</a> = $value;
@@ -577,9 +577,9 @@
 <a name="l00499"></a>00499             $points_arr = $this-&gt;<a class="code" href="classPMA__GIS__Geometry.html#a5033e347b1a9d6479b25de6af865fc8c" title="Extracts points, scales and returns them as an array.">extractPoints</a>($linering, null);
 <a name="l00500"></a>00500             $no_of_points = count($points_arr);
 <a name="l00501"></a>00501             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][$j][<span class="stringliteral">&#39;no_of_points&#39;</span>] = $no_of_points;
-<a name="l00502"></a>00502             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $no_of_points; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00503"></a>00503                 <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][$j][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] = $points_arr[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][0];
-<a name="l00504"></a>00504                 <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][$j][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] = $points_arr[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][1];
+<a name="l00502"></a>00502             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $no_of_points; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00503"></a>00503                 <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][$j][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;x&#39;</span>] = $points_arr[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][0];
+<a name="l00504"></a>00504                 <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$index][<span class="stringliteral">&#39;POLYGON&#39;</span>][$j][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<span class="charliteral">&#39;y&#39;</span>] = $points_arr[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][1];
 <a name="l00505"></a>00505             }
 <a name="l00506"></a>00506             $j++;
 <a name="l00507"></a>00507         }
@@ -593,7 +593,7 @@
     <ul>
       <li class="navelem"><a class="el" href="pma__gis__polygon_8php.html">pma_gis_polygon.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -289,8 +289,8 @@
 <a name="l00211"></a>00211 
 <a name="l00212"></a>00212         $this-&gt;_tableName = <a class="code" href="classTable__Stats.html#a1bf817b6069b40f95d0d400394137140" title="Defines properties.">$tableName</a>;
 <a name="l00213"></a>00213         <a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a> = <span class="stringliteral">&#39;DESCRIBE &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="classTable__Stats.html#a1bf817b6069b40f95d0d400394137140" title="Defines properties.">$tableName</a>);
-<a name="l00214"></a>00214         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
-<a name="l00215"></a>00215         <span class="keywordflow">if</span> (!<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> || !<a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00214"></a>00214         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
+<a name="l00215"></a>00215         <span class="keywordflow">if</span> (!<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> || !<a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00216"></a>00216             $visio-&gt;dieSchema(
 <a name="l00217"></a>00217                 $pageNumber,
 <a name="l00218"></a>00218                 <span class="stringliteral">&quot;VISIO&quot;</span>,
@@ -314,7 +314,7 @@
 <a name="l00236"></a>00236             }
 <a name="l00237"></a>00237             $this-&gt;fields = array_keys($all_columns);
 <a name="l00238"></a>00238         } <span class="keywordflow">else</span> {
-<a name="l00239"></a>00239             <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00239"></a>00239             <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00240"></a>00240                 $this-&gt;fields[] = <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[0];
 <a name="l00241"></a>00241             }
 <a name="l00242"></a>00242         }
@@ -326,21 +326,21 @@
 <a name="l00248"></a>00248 
 <a name="l00249"></a>00249         <span class="comment">// setWidth must me after setHeight, because title</span>
 <a name="l00250"></a>00250         <span class="comment">// can include table height which changes table width</span>
-<a name="l00251"></a>00251         $this-&gt;<a class="code" href="classTable__Stats.html#aef7661a63796bf9e135d3032591b7300" title="Sets the width of the table.">_setWidthTable</a>(<a class="code" href="indexfb_8php.html#a9d63b61d7d442048fe453731932c6aed">$font</a>, $fontSize);
+<a name="l00251"></a>00251         $this-&gt;<a class="code" href="classTable__Stats.html#aef7661a63796bf9e135d3032591b7300" title="Sets the width of the table.">_setWidthTable</a>($font, $fontSize);
 <a name="l00252"></a>00252         <span class="keywordflow">if</span> ($same_wide_width &lt; $this-&gt;<a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a8eba97439dc06bd5160020dd878c1070">width</a>) {
 <a name="l00253"></a>00253             $same_wide_width = $this-&gt;<a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a8eba97439dc06bd5160020dd878c1070">width</a>;
 <a name="l00254"></a>00254         }
 <a name="l00255"></a>00255 
 <a name="l00256"></a>00256         <span class="comment">// x and y</span>
 <a name="l00257"></a>00257         <a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a> = <span class="stringliteral">&#39;SELECT x, y FROM &#39;</span>
-<a name="l00258"></a>00258          . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfgRelation&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]) . <span class="charliteral">&#39;.&#39;</span>
+<a name="l00258"></a>00258          . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfgRelation&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]) . <span class="charliteral">&#39;.&#39;</span>
 <a name="l00259"></a>00259          . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>($cfgRelation[<span class="stringliteral">&#39;table_coords&#39;</span>])
 <a name="l00260"></a>00260          . <span class="stringliteral">&#39; WHERE db_name = \&#39;&#39;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>($db) . <span class="charliteral">&#39;\&#39;&#39;</span>
 <a name="l00261"></a>00261          . <span class="stringliteral">&#39; AND   table_name = \&#39;&#39;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="classTable__Stats.html#a1bf817b6069b40f95d0d400394137140" title="Defines properties.">$tableName</a>) . <span class="charliteral">&#39;\&#39;&#39;</span>
 <a name="l00262"></a>00262          . <span class="stringliteral">&#39; AND   pdf_page_number = &#39;</span> . $pageNumber;
-<a name="l00263"></a>00263         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="relation_8lib_8php.html#ab6d57b38824545d660dcfcd4c864a177" title="Executes a query as controluser if possible, otherwise as normal user.">PMA_query_as_controluser</a>(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>, <span class="keyword">false</span>, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
+<a name="l00263"></a>00263         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="relation_8lib_8php.html#ab6d57b38824545d660dcfcd4c864a177" title="Executes a query as controluser if possible, otherwise as normal user.">PMA_query_as_controluser</a>(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>, <span class="keyword">false</span>, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
 <a name="l00264"></a>00264 
-<a name="l00265"></a>00265         <span class="keywordflow">if</span> (!<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> || !<a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00265"></a>00265         <span class="keywordflow">if</span> (!<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> || !<a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00266"></a>00266             $visio-&gt;dieSchema(
 <a name="l00267"></a>00267                 $pageNumber,
 <a name="l00268"></a>00268                 <span class="stringliteral">&quot;VISIO&quot;</span>,
@@ -350,15 +350,15 @@
 <a name="l00272"></a>00272                 )
 <a name="l00273"></a>00273             );
 <a name="l00274"></a>00274         }
-<a name="l00275"></a>00275         list($this-&gt;x, $this-&gt;y) = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00275"></a>00275         list($this-&gt;x, $this-&gt;y) = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00276"></a>00276         $this-&gt;x = (double) $this-&gt;x;
 <a name="l00277"></a>00277         $this-&gt;y = (double) $this-&gt;y;
 <a name="l00278"></a>00278         <span class="comment">// displayfield</span>
 <a name="l00279"></a>00279         $this-&gt;displayfield = <a class="code" href="relation_8lib_8php.html#ac4b9248f6ad1179a0f86d70f2ad99362" title="Gets the display field of a table.">PMA_getDisplayField</a>($db, <a class="code" href="classTable__Stats.html#a1bf817b6069b40f95d0d400394137140" title="Defines properties.">$tableName</a>);
 <a name="l00280"></a>00280         <span class="comment">// index</span>
-<a name="l00281"></a>00281         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<span class="stringliteral">&#39;SHOW INDEX FROM &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="classTable__Stats.html#a1bf817b6069b40f95d0d400394137140" title="Defines properties.">$tableName</a>) . <span class="charliteral">&#39;;&#39;</span>, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
-<a name="l00282"></a>00282         <span class="keywordflow">if</span> (<a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) &gt; 0) {
-<a name="l00283"></a>00283             <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00281"></a>00281         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<span class="stringliteral">&#39;SHOW INDEX FROM &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="classTable__Stats.html#a1bf817b6069b40f95d0d400394137140" title="Defines properties.">$tableName</a>) . <span class="charliteral">&#39;;&#39;</span>, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
+<a name="l00282"></a>00282         <span class="keywordflow">if</span> (<a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) &gt; 0) {
+<a name="l00283"></a>00283             <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00284"></a>00284                 <span class="keywordflow">if</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<span class="stringliteral">&#39;Key_name&#39;</span>] == <span class="stringliteral">&#39;PRIMARY&#39;</span>) {
 <a name="l00285"></a>00285                     $this-&gt;primary[] = <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<span class="stringliteral">&#39;Column_name&#39;</span>];
 <a name="l00286"></a>00286                 }
@@ -391,7 +391,7 @@
 <a name="l00313"></a>00313 <span class="comment">     * @return void</span>
 <a name="l00314"></a>00314 <span class="comment">     * @see PMA_VISIO</span>
 <a name="l00315"></a>00315 <span class="comment">     */</span>
-<a name="l00316"></a><a class="code" href="classTable__Stats.html#aef7661a63796bf9e135d3032591b7300">00316</a>     <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="classTable__Stats.html#aef7661a63796bf9e135d3032591b7300" title="Sets the width of the table.">_setWidthTable</a>(<a class="code" href="indexfb_8php.html#a9d63b61d7d442048fe453731932c6aed">$font</a>,$fontSize)
+<a name="l00316"></a><a class="code" href="classTable__Stats.html#aef7661a63796bf9e135d3032591b7300">00316</a>     <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="classTable__Stats.html#aef7661a63796bf9e135d3032591b7300" title="Sets the width of the table.">_setWidthTable</a>($font,$fontSize)
 <a name="l00317"></a>00317     {
 <a name="l00318"></a>00318         global $visio;
 <a name="l00319"></a>00319     }
@@ -495,12 +495,12 @@
 <a name="l00417"></a>00417             $this-&gt;srcDir  = -1;
 <a name="l00418"></a>00418             $this-&gt;xDest   = $dest_pos[0];
 <a name="l00419"></a>00419             $this-&gt;destDir = -1;
-<a name="l00420"></a>00420         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> ($d == $d2) {
+<a name="l00420"></a>00420         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> ($d == $d2) {
 <a name="l00421"></a>00421             $this-&gt;xSrc    = $src_pos[1];
 <a name="l00422"></a>00422             $this-&gt;srcDir  = 1;
 <a name="l00423"></a>00423             $this-&gt;xDest   = $dest_pos[0];
 <a name="l00424"></a>00424             $this-&gt;destDir = -1;
-<a name="l00425"></a>00425         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> ($d == $d3) {
+<a name="l00425"></a>00425         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> ($d == $d3) {
 <a name="l00426"></a>00426             $this-&gt;xSrc    = $src_pos[0];
 <a name="l00427"></a>00427             $this-&gt;srcDir  = -1;
 <a name="l00428"></a>00428             $this-&gt;xDest   = $dest_pos[1];
@@ -727,7 +727,7 @@
     <ul>
       <li class="navelem"><a class="el" href="Visio__Relation__Schema_8class_8php.html">Visio_Relation_Schema.class.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:36 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

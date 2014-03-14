@@ -120,7 +120,7 @@
 <a name="l00042"></a>00042     <span class="keywordflow">return</span>;
 <a name="l00043"></a>00043 }
 <a name="l00044"></a>00044 
-<a name="l00045"></a><a class="code" href="import_2ods_8php.html#a3ddf49ce1fe338656ea30d3bc14e3992">00045</a> <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0;
+<a name="l00045"></a><a class="code" href="import_2ods_8php.html#a3ddf49ce1fe338656ea30d3bc14e3992">00045</a> <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0;
 <a name="l00046"></a><a class="code" href="import_2ods_8php.html#aa28657aaa5fcc7509dd883662f8accbe">00046</a> <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a> = 0;
 <a name="l00047"></a><a class="code" href="import_2ods_8php.html#af1862006a19e84e552f66189adc792ae">00047</a> <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00048"></a>00048 <span class="comment"></span>
@@ -128,22 +128,22 @@
 <a name="l00050"></a>00050 <span class="comment"> * Read in the file via PMA_importGetNextChunk so that</span>
 <a name="l00051"></a>00051 <span class="comment"> * it can process compressed files</span>
 <a name="l00052"></a>00052 <span class="comment"> */</span>
-<a name="l00053"></a>00053 <span class="keywordflow">while</span> (! (<a class="code" href="import_8php.html#aa4c455b2d15392479c15f091e8e8b706">$finished</a> &amp;&amp; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &gt;= <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>) &amp;&amp; ! <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> &amp;&amp; ! $timeout_passed) {
-<a name="l00054"></a>00054     <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="import_8lib_8php.html#adb0307447ce45c347a2ed57d5fd859e9" title="Returns next part of imported file/buffer.">PMA_importGetNextChunk</a>();
-<a name="l00055"></a>00055     <span class="keywordflow">if</span> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> === <span class="keyword">false</span>) {
+<a name="l00053"></a>00053 <span class="keywordflow">while</span> (! (<a class="code" href="import_8php.html#aa4c455b2d15392479c15f091e8e8b706">$finished</a> &amp;&amp; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &gt;= <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>) &amp;&amp; ! <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> &amp;&amp; ! $timeout_passed) {
+<a name="l00054"></a>00054     <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="import_8lib_8php.html#adb0307447ce45c347a2ed57d5fd859e9" title="Returns next part of imported file/buffer.">PMA_importGetNextChunk</a>();
+<a name="l00055"></a>00055     <span class="keywordflow">if</span> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> === <span class="keyword">false</span>) {
 <a name="l00056"></a>00056         <span class="comment">/* subtract data we didn&#39;t handle yet and stop processing */</span>
 <a name="l00057"></a>00057         <a class="code" href="import_8php.html#aec4de82415d7f05cb9748d12d3a95a87">$offset</a> -= strlen(<a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>);
 <a name="l00058"></a>00058         <span class="keywordflow">break</span>;
-<a name="l00059"></a>00059     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> === <span class="keyword">true</span>) {
+<a name="l00059"></a>00059     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> === <span class="keyword">true</span>) {
 <a name="l00060"></a>00060         <span class="comment">/* Handle rest of buffer */</span>
 <a name="l00061"></a>00061     } <span class="keywordflow">else</span> {
 <a name="l00062"></a>00062         <span class="comment">/* Append new data to buffer */</span>
-<a name="l00063"></a>00063         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> .= <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>;
-<a name="l00064"></a>00064         unset(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
+<a name="l00063"></a>00063         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> .= <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>;
+<a name="l00064"></a>00064         unset(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
 <a name="l00065"></a>00065     }
 <a name="l00066"></a>00066 }
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068 unset(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
+<a name="l00068"></a>00068 unset(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
 <a name="l00069"></a>00069 <span class="comment"></span>
 <a name="l00070"></a>00070 <span class="comment">/**</span>
 <a name="l00071"></a>00071 <span class="comment"> * Disable loading of external XML entities.</span>
@@ -163,7 +163,7 @@
 <a name="l00085"></a>00085 
 <a name="l00086"></a>00086 <span class="keywordflow">if</span> (<a class="code" href="import_2ods_8php.html#aa108d9d91e700ac530401dd363b0723b" title="Load the XML string.">$xml</a> === <span class="keyword">false</span>) {
 <a name="l00087"></a>00087     $sheets = array();
-<a name="l00088"></a>00088     <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;The XML file specified was either malformed or incomplete. Please correct the issue and try again.&#39;</span>));
+<a name="l00088"></a>00088     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;The XML file specified was either malformed or incomplete. Please correct the issue and try again.&#39;</span>));
 <a name="l00089"></a>00089     <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <span class="keyword">true</span>;
 <a name="l00090"></a>00090 } <span class="keywordflow">else</span> {
 <a name="l00091"></a>00091     $sheets = <a class="code" href="import_2ods_8php.html#aa108d9d91e700ac530401dd363b0723b" title="Load the XML string.">$xml</a>-&gt;children(<span class="stringliteral">&#39;office&#39;</span>, <span class="keyword">true</span>)-&gt;{<span class="stringliteral">&#39;body&#39;</span>}-&gt;{<span class="stringliteral">&#39;spreadsheet&#39;</span>}-&gt;children(<span class="stringliteral">&#39;table&#39;</span>, <span class="keyword">true</span>);
@@ -179,7 +179,7 @@
 <a name="l00101"></a>00101 
 <a name="l00102"></a><a class="code" href="import_2ods_8php.html#aa02505a926a149e2e598d651bf90a502">00102</a> <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a> = array();
 <a name="l00103"></a><a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">00103</a> <a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a> = array();
-<a name="l00104"></a><a class="code" href="import_2ods_8php.html#ace2ec39e7df3899fa8df9640ec274b03">00104</a> <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
+<a name="l00104"></a><a class="code" href="import_2ods_8php.html#ace2ec39e7df3899fa8df9640ec274b03">00104</a> <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
 <a name="l00105"></a>00105 
 <a name="l00106"></a>00106 <span class="comment">/* Iterate over tables */</span>
 <a name="l00107"></a>00107 <span class="keywordflow">foreach</span> ($sheets as $sheet) {
@@ -187,14 +187,14 @@
 <a name="l00109"></a>00109 
 <a name="l00110"></a>00110     <span class="comment">/* Iterate over rows */</span>
 <a name="l00111"></a>00111     <span class="keywordflow">foreach</span> ($sheet as <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>) {
-<a name="l00112"></a>00112         <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> = $row-&gt;getName();
-<a name="l00113"></a>00113         <span class="keywordflow">if</span> (! strcmp(<span class="stringliteral">&#39;table-row&#39;</span>, <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>)) {
+<a name="l00112"></a>00112         <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> = $row-&gt;getName();
+<a name="l00113"></a>00113         <span class="keywordflow">if</span> (! strcmp(<span class="stringliteral">&#39;table-row&#39;</span>, <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>)) {
 <a name="l00114"></a>00114             <span class="comment">/* Iterate over columns */</span>
 <a name="l00115"></a>00115             <span class="keywordflow">foreach</span> ($row as $cell) {
-<a name="l00116"></a>00116                 <a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a> = $cell-&gt;children(<span class="stringliteral">&#39;text&#39;</span>, <span class="keyword">true</span>);
+<a name="l00116"></a>00116                 $text = $cell-&gt;children(<span class="stringliteral">&#39;text&#39;</span>, <span class="keyword">true</span>);
 <a name="l00117"></a>00117                 $cell_attrs = $cell-&gt;attributes(<span class="stringliteral">&#39;office&#39;</span>, <span class="keyword">true</span>);
 <a name="l00118"></a>00118 
-<a name="l00119"></a>00119                 <span class="keywordflow">if</span> (count(<a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a>) != 0) {
+<a name="l00119"></a>00119                 <span class="keywordflow">if</span> (count($text) != 0) {
 <a name="l00120"></a>00120                     $attr = $cell-&gt;attributes(<span class="stringliteral">&#39;table&#39;</span>, <span class="keyword">true</span>);
 <a name="l00121"></a>00121                     $num_repeat = (int) $attr[<span class="stringliteral">&#39;number-columns-repeated&#39;</span>];
 <a name="l00122"></a>00122                     $num_iterations = $num_repeat ? $num_repeat : 1;
@@ -203,10 +203,10 @@
 <a name="l00125"></a>00125                         <span class="keywordflow">if</span> (! $col_names_in_first_row) {
 <a name="l00126"></a>00126                             <span class="keywordflow">if</span> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;ods_recognize_percentages&#39;</span>] &amp;&amp; !strcmp(<span class="stringliteral">&#39;percentage&#39;</span>, $cell_attrs[<span class="stringliteral">&#39;value-type&#39;</span>])) {
 <a name="l00127"></a>00127                                 <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a>[] = (double)$cell_attrs[<span class="stringliteral">&#39;value&#39;</span>];
-<a name="l00128"></a>00128                             } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;ods_recognize_currency&#39;</span>] &amp;&amp; !strcmp(<span class="stringliteral">&#39;currency&#39;</span>, $cell_attrs[<span class="stringliteral">&#39;value-type&#39;</span>])) {
+<a name="l00128"></a>00128                             } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;ods_recognize_currency&#39;</span>] &amp;&amp; !strcmp(<span class="stringliteral">&#39;currency&#39;</span>, $cell_attrs[<span class="stringliteral">&#39;value-type&#39;</span>])) {
 <a name="l00129"></a>00129                                 <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a>[] = (double)$cell_attrs[<span class="stringliteral">&#39;value&#39;</span>];
 <a name="l00130"></a>00130                             } <span class="keywordflow">else</span> {
-<a name="l00131"></a>00131                                 <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a>[] = (string)<a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a>;
+<a name="l00131"></a>00131                                 <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a>[] = (string)$text;
 <a name="l00132"></a>00132                             }
 <a name="l00133"></a>00133                         } <span class="keywordflow">else</span> {
 <a name="l00134"></a>00134                             <span class="keywordflow">if</span> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;ods_recognize_percentages&#39;</span>] &amp;&amp; !strcmp(<span class="stringliteral">&#39;percentage&#39;</span>, $cell_attrs[<span class="stringliteral">&#39;value-type&#39;</span>])) {
@@ -214,7 +214,7 @@
 <a name="l00136"></a>00136                             } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;ods_recognize_currency&#39;</span>] &amp;&amp; !strcmp(<span class="stringliteral">&#39;currency&#39;</span>, $cell_attrs[<span class="stringliteral">&#39;value-type&#39;</span>])) {
 <a name="l00137"></a>00137                                 <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>[] = (double)$cell_attrs[<span class="stringliteral">&#39;value&#39;</span>];
 <a name="l00138"></a>00138                             } <span class="keywordflow">else</span> {
-<a name="l00139"></a>00139                                 <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>[] = (string)<a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a>;
+<a name="l00139"></a>00139                                 <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>[] = (string)$text;
 <a name="l00140"></a>00140                             }
 <a name="l00141"></a>00141                         }
 <a name="l00142"></a>00142 
@@ -228,12 +228,12 @@
 <a name="l00150"></a>00150 
 <a name="l00151"></a>00151                         <span class="keywordflow">if</span> ($num_null) {
 <a name="l00152"></a>00152                             <span class="keywordflow">if</span> (! $col_names_in_first_row) {
-<a name="l00153"></a>00153                                 <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $num_null; ++<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) {
+<a name="l00153"></a>00153                                 <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $num_null; ++<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) {
 <a name="l00154"></a>00154                                     <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a>[] = <span class="stringliteral">&#39;NULL&#39;</span>;
 <a name="l00155"></a>00155                                     ++<a class="code" href="import_2csv_8php.html#ad8053a986c9f617150fe8cd5f66b2001">$col_count</a>;
 <a name="l00156"></a>00156                                 }
 <a name="l00157"></a>00157                             } <span class="keywordflow">else</span> {
-<a name="l00158"></a>00158                                 <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $num_null; ++<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) {
+<a name="l00158"></a>00158                                 <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $num_null; ++<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) {
 <a name="l00159"></a>00159                                     <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>[] = <a class="code" href="import_8lib_8php.html#ad90ec539d8ae6414ff2656db0ea9e6fb" title="Returns the &quot;Excel&quot; column name (i.e.">PMA_getColumnAlphaName</a>(<a class="code" href="import_2csv_8php.html#ad8053a986c9f617150fe8cd5f66b2001">$col_count</a> + 1);
 <a name="l00160"></a>00160                                     ++<a class="code" href="import_2csv_8php.html#ad8053a986c9f617150fe8cd5f66b2001">$col_count</a>;
 <a name="l00161"></a>00161                                 }
@@ -291,15 +291,15 @@
 <a name="l00213"></a>00213 <span class="comment">     */</span>
 <a name="l00214"></a>00214 
 <a name="l00215"></a>00215     <span class="comment">/* Fill out column names */</span>
-<a name="l00216"></a>00216     <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = count(<a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; <a class="code" href="import_2csv_8php.html#aafdb5086b2f5cbceb995e158c5e900ff">$max_cols</a>; ++<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) {
-<a name="l00217"></a>00217         <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>[] = <a class="code" href="import_8lib_8php.html#ad90ec539d8ae6414ff2656db0ea9e6fb" title="Returns the &quot;Excel&quot; column name (i.e.">PMA_getColumnAlphaName</a>(<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1);
+<a name="l00216"></a>00216     <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = count(<a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; <a class="code" href="import_2csv_8php.html#aafdb5086b2f5cbceb995e158c5e900ff">$max_cols</a>; ++<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) {
+<a name="l00217"></a>00217         <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>[] = <a class="code" href="import_8lib_8php.html#ad90ec539d8ae6414ff2656db0ea9e6fb" title="Returns the &quot;Excel&quot; column name (i.e.">PMA_getColumnAlphaName</a>(<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1);
 <a name="l00218"></a>00218     }
 <a name="l00219"></a>00219 
 <a name="l00220"></a>00220     <span class="comment">/* Fill out all rows */</span>
 <a name="l00221"></a>00221     $num_rows = count(<a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a>);
-<a name="l00222"></a>00222     <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $num_rows; ++<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) {
-<a name="l00223"></a>00223         <span class="keywordflow">for</span> ($j = count(<a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]); $j &lt; <a class="code" href="import_2csv_8php.html#aafdb5086b2f5cbceb995e158c5e900ff">$max_cols</a>; ++$j) {
-<a name="l00224"></a>00224             <a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][] = <span class="stringliteral">&#39;NULL&#39;</span>;
+<a name="l00222"></a>00222     <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $num_rows; ++<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) {
+<a name="l00223"></a>00223         <span class="keywordflow">for</span> ($j = count(<a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]); $j &lt; <a class="code" href="import_2csv_8php.html#aafdb5086b2f5cbceb995e158c5e900ff">$max_cols</a>; ++$j) {
+<a name="l00224"></a>00224             <a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][] = <span class="stringliteral">&#39;NULL&#39;</span>;
 <a name="l00225"></a>00225         }
 <a name="l00226"></a>00226     }
 <a name="l00227"></a>00227 
@@ -308,7 +308,7 @@
 <a name="l00230"></a>00230     <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[] = array((<span class="keywordtype">string</span>)$tbl_attr[<span class="stringliteral">&#39;name&#39;</span>]);
 <a name="l00231"></a>00231 
 <a name="l00232"></a>00232     <span class="comment">/* Store the current sheet in the accumulator */</span>
-<a name="l00233"></a>00233     <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array((<span class="keywordtype">string</span>)$tbl_attr[<span class="stringliteral">&#39;name&#39;</span>], <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>, <a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a>);
+<a name="l00233"></a>00233     <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = array((<span class="keywordtype">string</span>)$tbl_attr[<span class="stringliteral">&#39;name&#39;</span>], <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>, <a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a>);
 <a name="l00234"></a>00234     <a class="code" href="import_2ods_8php.html#a57afda67e3fc491583fa665502072d66">$tempRows</a> = array();
 <a name="l00235"></a>00235     <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a> = array();
 <a name="l00236"></a>00236     $max_cols = 0;
@@ -324,27 +324,27 @@
 <a name="l00246"></a>00246 <span class="comment"> * Bring accumulated rows into the corresponding table</span>
 <a name="l00247"></a>00247 <span class="comment"> */</span>
 <a name="l00248"></a><a class="code" href="import_2ods_8php.html#ae5b863a1a446b79cac71098792f232d9">00248</a> <a class="code" href="import_2ods_8php.html#ae5b863a1a446b79cac71098792f232d9" title="Bring accumulated rows into the corresponding table.">$num_tbls</a> = count(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>);
-<a name="l00249"></a>00249 <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; <a class="code" href="import_2ods_8php.html#ae5b863a1a446b79cac71098792f232d9" title="Bring accumulated rows into the corresponding table.">$num_tbls</a>; ++<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) {
-<a name="l00250"></a>00250     <span class="keywordflow">for</span> ($j = 0; $j &lt; count(<a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>); ++$j) {
-<a name="l00251"></a>00251         <span class="keywordflow">if</span> (! strcmp(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<a class="code" href="import_8lib_8php.html#a1f6f7abc8af14e6ddc52f1332819a200">TBL_NAME</a>], <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[$j][TBL_NAME])) {
-<a name="l00252"></a>00252             <span class="keywordflow">if</span> (! isset(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<a class="code" href="import_8lib_8php.html#a408f6c523f335aba91fa0357abeb0269">COL_NAMES</a>])) {
-<a name="l00253"></a>00253                 <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][] = <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[$j][<a class="code" href="import_8lib_8php.html#a408f6c523f335aba91fa0357abeb0269">COL_NAMES</a>];
+<a name="l00249"></a>00249 <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; <a class="code" href="import_2ods_8php.html#ae5b863a1a446b79cac71098792f232d9" title="Bring accumulated rows into the corresponding table.">$num_tbls</a>; ++<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) {
+<a name="l00250"></a>00250     <span class="keywordflow">for</span> ($j = 0; $j &lt; count(<a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>); ++$j) {
+<a name="l00251"></a>00251         <span class="keywordflow">if</span> (! strcmp(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<a class="code" href="import_8lib_8php.html#a1f6f7abc8af14e6ddc52f1332819a200">TBL_NAME</a>], <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[$j][TBL_NAME])) {
+<a name="l00252"></a>00252             <span class="keywordflow">if</span> (! isset(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<a class="code" href="import_8lib_8php.html#a408f6c523f335aba91fa0357abeb0269">COL_NAMES</a>])) {
+<a name="l00253"></a>00253                 <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][] = <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[$j][<a class="code" href="import_8lib_8php.html#a408f6c523f335aba91fa0357abeb0269">COL_NAMES</a>];
 <a name="l00254"></a>00254             }
 <a name="l00255"></a>00255 
-<a name="l00256"></a>00256             <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>][<a class="code" href="import_8lib_8php.html#ab316a8365df38296348921f109879648">ROWS</a>] = <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[$j][<a class="code" href="import_8lib_8php.html#ab316a8365df38296348921f109879648">ROWS</a>];
+<a name="l00256"></a>00256             <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>][<a class="code" href="import_8lib_8php.html#ab316a8365df38296348921f109879648">ROWS</a>] = <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[$j][<a class="code" href="import_8lib_8php.html#ab316a8365df38296348921f109879648">ROWS</a>];
 <a name="l00257"></a>00257         }
 <a name="l00258"></a>00258     }
 <a name="l00259"></a>00259 }
 <a name="l00260"></a>00260 
 <a name="l00261"></a>00261 <span class="comment">/* No longer needed */</span>
-<a name="l00262"></a>00262 unset(<a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>);
+<a name="l00262"></a>00262 unset(<a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>);
 <a name="l00263"></a>00263 
 <a name="l00264"></a>00264 <span class="comment">/* Obtain the best-fit MySQL types for each column */</span>
 <a name="l00265"></a><a class="code" href="import_2ods_8php.html#ab4c3338e3214d5ee58607590b3217f65">00265</a> <a class="code" href="import_2ods_8php.html#ab4c3338e3214d5ee58607590b3217f65">$analyses</a> = array();
 <a name="l00266"></a>00266 
 <a name="l00267"></a>00267 <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a> = count(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>);
-<a name="l00268"></a>00268 <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>; ++<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) {
-<a name="l00269"></a>00269     <a class="code" href="import_2ods_8php.html#ab4c3338e3214d5ee58607590b3217f65">$analyses</a>[] = <a class="code" href="import_8lib_8php.html#a500f62d64c400e5d660e31fe1fe6c418" title="Determines if the column types are int, decimal, or string.">PMA_analyzeTable</a>(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00268"></a>00268 <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; <a class="code" href="import_2csv_8php.html#aa28657aaa5fcc7509dd883662f8accbe">$len</a>; ++<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) {
+<a name="l00269"></a>00269     <a class="code" href="import_2ods_8php.html#ab4c3338e3214d5ee58607590b3217f65">$analyses</a>[] = <a class="code" href="import_8lib_8php.html#a500f62d64c400e5d660e31fe1fe6c418" title="Determines if the column types are int, decimal, or string.">PMA_analyzeTable</a>(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00270"></a>00270 }
 <a name="l00271"></a>00271 <span class="comment"></span>
 <a name="l00272"></a>00272 <span class="comment">/**</span>
@@ -388,7 +388,7 @@
     <ul>
       <li class="navelem"><a class="el" href="import_2ods_8php.html">ods.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

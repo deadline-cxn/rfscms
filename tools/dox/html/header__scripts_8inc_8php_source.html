@@ -93,17 +93,17 @@
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="comment">// Cross-framing protection</span>
-<a name="l00018"></a>00018 <span class="keywordflow">if</span> ( <span class="keyword">false</span> === <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowThirdPartyFraming&#39;</span>]) {
+<a name="l00018"></a>00018 <span class="keywordflow">if</span> ( <span class="keyword">false</span> === <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowThirdPartyFraming&#39;</span>]) {
 <a name="l00019"></a>00019     echo <a class="code" href="core_8lib_8php.html#a5ac1c23509a59e5f5049bb6380a61b71" title="Returns HTML code to include javascript file.">PMA_includeJS</a>(<span class="stringliteral">&#39;cross_framing_protection.js&#39;</span>);
 <a name="l00020"></a>00020 }
 <a name="l00021"></a>00021 <span class="comment">// generate title (unless we already have $page_title, from cookie auth)</span>
 <a name="l00022"></a>00022 <span class="keywordflow">if</span> (! isset(<a class="code" href="themes_8php.html#ace7d5ca2414fbd4f411985155fe2f643">$page_title</a>)) {
-<a name="l00023"></a>00023     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>] &gt; 0) {
+<a name="l00023"></a>00023     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>] &gt; 0) {
 <a name="l00024"></a>00024         <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a> = <a class="code" href="common_8lib_8php.html#aa17f041c5093367b4c4d03b09070e69e" title="Formats user string, expanding @, accepting strftime format string.">PMA_expandUserString</a>(
-<a name="l00025"></a>00025             ! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>]) ? <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TitleTable&#39;</span>] :
-<a name="l00026"></a>00026             (! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]) ? <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TitleDatabase&#39;</span>] :
-<a name="l00027"></a>00027             (! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;host&#39;</span>]) ? <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TitleServer&#39;</span>] :
-<a name="l00028"></a>00028             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TitleDefault&#39;</span>]))
+<a name="l00025"></a>00025             ! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>]) ? <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TitleTable&#39;</span>] :
+<a name="l00026"></a>00026             (! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]) ? <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TitleDatabase&#39;</span>] :
+<a name="l00027"></a>00027             (! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;host&#39;</span>]) ? <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TitleServer&#39;</span>] :
+<a name="l00028"></a>00028             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TitleDefault&#39;</span>]))
 <a name="l00029"></a>00029         );
 <a name="l00030"></a>00030     }
 <a name="l00031"></a>00031 } <span class="keywordflow">else</span> {
@@ -112,25 +112,25 @@
 <a name="l00034"></a>00034 <span class="comment">// here, the function does not exist with this configuration: $cfg[&#39;ServerDefault&#39;] = 0;</span>
 <a name="l00035"></a>00035 <a class="code" href="db__links_8inc_8php.html#a951856c8e2beadb8a4914f1dd904b619" title="If coming from a Show MySQL link on the home page, put something in $sub_part.">$is_superuser</a>    = function_exists(<span class="stringliteral">&#39;PMA_isSuperuser&#39;</span>) &amp;&amp; <a class="code" href="database__interface_8lib_8php.html#a8625f640d7f62aa247791803ac9ab54b" title="returns true (int &gt; 0) if current user is superuser otherwise 0">PMA_isSuperuser</a>();
 <a name="l00036"></a>00036 
-<a name="l00037"></a><a class="code" href="header__scripts_8inc_8php.html#a9b835efbb97695b4ed9faf19a55b1080">00037</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;functions.js&#39;</span>;
-<a name="l00038"></a>00038 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jquery/jquery.qtip-1.0.0-rc3.js&#39;</span>;
-<a name="l00039"></a><a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">00039</a> <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a> = array(<span class="stringliteral">&#39;lang&#39;</span> =&gt; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>]);
-<a name="l00040"></a>00040 <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>])) {
-<a name="l00041"></a>00041     <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;db&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
+<a name="l00037"></a><a class="code" href="header__scripts_8inc_8php.html#a9b835efbb97695b4ed9faf19a55b1080">00037</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;functions.js&#39;</span>;
+<a name="l00038"></a>00038 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jquery/jquery.qtip-1.0.0-rc3.js&#39;</span>;
+<a name="l00039"></a><a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">00039</a> <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a> = array(<span class="stringliteral">&#39;lang&#39;</span> =&gt; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>]);
+<a name="l00040"></a>00040 <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>])) {
+<a name="l00041"></a>00041     <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;db&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>];
 <a name="l00042"></a>00042 }
-<a name="l00043"></a>00043 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;messages.php&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>);
+<a name="l00043"></a>00043 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;messages.php&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>);
 <a name="l00044"></a>00044 <span class="comment">// Append the theme id to this url to invalidate the cache on a theme change</span>
-<a name="l00045"></a>00045 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;get_image.js.php?theme=&#39;</span> . urlencode(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme&#39;</span>]-&gt;getId());
+<a name="l00045"></a>00045 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;get_image.js.php?theme=&#39;</span> . urlencode(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme&#39;</span>]-&gt;getId());
 <a name="l00046"></a>00046 <span class="comment"></span>
 <a name="l00047"></a>00047 <span class="comment">/**</span>
-<a name="l00048"></a>00048 <span class="comment"> * Here we add a timestamp when loading the file, so that users who</span>
+<a name="l00048"></a>00048 <span class="comment"> * Here we add a timestamp when loading the file, so that `users` who</span>
 <a name="l00049"></a>00049 <span class="comment"> * upgrade phpMyAdmin are not stuck with older .js files in their</span>
 <a name="l00050"></a>00050 <span class="comment"> * browser cache. This produces an HTTP 304 request for each file.</span>
 <a name="l00051"></a>00051 <span class="comment"> */</span>
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053 <span class="comment">// avoid loading twice a js file</span>
-<a name="l00054"></a><a class="code" href="header__scripts_8inc_8php.html#a873d023699cc0082955b42f2ddc4f563">00054</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>] = array_unique(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>]);
-<a name="l00055"></a><a class="code" href="header__scripts_8inc_8php.html#acd4e7e6bd70f21fea12425f1e541a5f5">00055</a> <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>] as $js_script_file) {
+<a name="l00054"></a><a class="code" href="header__scripts_8inc_8php.html#a873d023699cc0082955b42f2ddc4f563">00054</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>] = array_unique(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>]);
+<a name="l00055"></a><a class="code" href="header__scripts_8inc_8php.html#acd4e7e6bd70f21fea12425f1e541a5f5">00055</a> <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>] as $js_script_file) {
 <a name="l00056"></a>00056     echo <a class="code" href="core_8lib_8php.html#a5ac1c23509a59e5f5049bb6380a61b71" title="Returns HTML code to include javascript file.">PMA_includeJS</a>($js_script_file);
 <a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 <span class="comment">// Below javascript Updates the title of the frameset if possible</span>
@@ -142,11 +142,11 @@
 <a name="l00064"></a>00064     parent.document.title = <span class="stringliteral">&#39;&lt;?php echo (isset($title) ? PMA_sanitize(PMA_escapeJsString(htmlspecialchars($title))) : &#39;</span><span class="stringliteral">&#39;); ?&gt;&#39;</span>;
 <a name="l00065"></a>00065 }
 <a name="l00066"></a>00066 &lt;?php
-<a name="l00067"></a>00067 <span class="keywordflow">if</span> (count(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_script&#39;</span>]) &gt; 0) {
-<a name="l00068"></a>00068     echo implode(<span class="stringliteral">&quot;\n&quot;</span>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_script&#39;</span>]).<span class="stringliteral">&quot;\n&quot;</span>;
+<a name="l00067"></a>00067 <span class="keywordflow">if</span> (count(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_script&#39;</span>]) &gt; 0) {
+<a name="l00068"></a>00068     echo implode(<span class="stringliteral">&quot;\n&quot;</span>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_script&#39;</span>]).<span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00069"></a>00069 }
 <a name="l00070"></a>00070 
-<a name="l00071"></a>00071 <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_events&#39;</span>] as $js_event) {
+<a name="l00071"></a>00071 <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_events&#39;</span>] as $js_event) {
 <a name="l00072"></a>00072     echo <span class="stringliteral">&quot;$(window.parent).bind(&#39;&quot;</span> . $js_event[<span class="stringliteral">&#39;event&#39;</span>] . <span class="stringliteral">&quot;&#39;, &quot;</span>
 <a name="l00073"></a>00073         . $js_event[<span class="stringliteral">&#39;function&#39;</span>] . <span class="stringliteral">&quot;);\n&quot;</span>;
 <a name="l00074"></a>00074 }
@@ -164,7 +164,7 @@
     <ul>
       <li class="navelem"><a class="el" href="header__scripts_8inc_8php.html">header_scripts.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

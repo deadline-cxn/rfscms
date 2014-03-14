@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="205,112,352,141"/>
+<area shape="rect" id="node17" href="$profile_8php.html#a15514766aa0d72a008180d403ba0b807" title="profile_show_form" alt="" coords="215,165,343,195"/>
+<area shape="rect" id="node5" href="$forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="401,112,572,141"/>
+<area shape="rect" id="node7" href="$forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="623,5,823,35"/>
+<area shape="rect" id="node9" href="$forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551" title="forums_action_move_thread" alt="" coords="629,59,816,88"/>
+<area shape="rect" id="node11" href="$forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce" title="forums_action_delete_reply" alt="" coords="632,112,813,141"/>
+<area shape="rect" id="node13" href="$forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9" title="forums_action_edit_reply_go" alt="" coords="629,165,816,195"/>
+<area shape="rect" id="node15" href="$forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="623,219,823,248"/>
+<area shape="rect" id="node19" href="$profile_8php.html#a756d99173bf8393ca1a37c868c4f9a45" title="profile_action_" alt="" coords="433,165,540,195"/>
+</map>

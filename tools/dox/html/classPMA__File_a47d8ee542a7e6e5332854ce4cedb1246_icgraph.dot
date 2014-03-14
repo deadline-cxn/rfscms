@@ -1,0 +1,18 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_File\\getCompression",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_File\\open",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__File.html#a72a7f3cd923403424f9b4f64deed6051"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_File\\getHandle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__File.html#a677571742f3fdf9296b34d1d217446a5"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_File\\getNextChunk",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__File.html#acf04a01072476f9f1da8770ac4eed346",tooltip="http://bugs.php.net/bug.php?id=29532 bzip reads a maximum of 8192 bytes on windows systems..."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_File\\advanceFilePointer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__File.html#a04bbe14808d03bbbefa6da4b515ad0d0",tooltip="advances the file pointer in the file handle by $length bytes/chars"];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_File\\eof",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__File.html#acfeeab3e36259d144f9b822e0cd22716"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

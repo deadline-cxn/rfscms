@@ -1,0 +1,18 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_Message\\sanitize",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_Message\\setMessage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#acf5a636f44f86ce1449bb53316ea6612",tooltip="set raw message (overrides string)"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_Error\\__construct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a15c7f78b17b9e8f597b4fdd566747130",tooltip="Constructor."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_Message\\setString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a1b87bf87c215f87f2f3f14a32a45a874",tooltip="set string (does not take effect if raw message is set)"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_Message\\__construct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a4cf41ca43317c183b980fe3ea946f38d",tooltip="Constructor."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_Message\\setParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#ad49450697c9725f1306d37bd6bfd526e",tooltip="set all params at once, usually used in conjunction with string"];
+  Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

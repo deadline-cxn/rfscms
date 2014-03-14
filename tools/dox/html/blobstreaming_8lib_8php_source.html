@@ -90,7 +90,7 @@
 <a name="l00012"></a><a class="code" href="blobstreaming_8lib_8php.html#a00d96bd6ccb9d88c559774919ba5fac3">00012</a> <span class="keyword">function</span> <a class="code" href="blobstreaming_8lib_8php.html#a00d96bd6ccb9d88c559774919ba5fac3" title="Initializes PBMS database.">initPBMSDatabase</a>()
 <a name="l00013"></a>00013 {
 <a name="l00014"></a>00014     <span class="comment">// If no other choice then try this.</span>
-<a name="l00015"></a>00015     <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="stringliteral">&quot;create database IF NOT EXISTS pbms;&quot;</span>;
+<a name="l00015"></a>00015     $query = <span class="stringliteral">&quot;create database IF NOT EXISTS pbms;&quot;</span>;
 <a name="l00016"></a>00016     <span class="comment">/*</span>
 <a name="l00017"></a>00017 <span class="comment">     * The user may not have privileges to create the &#39;pbms&#39; database</span>
 <a name="l00018"></a>00018 <span class="comment">     * so if it doesn&#39;t exist then we perform a select on a pbms system</span>
@@ -115,12 +115,12 @@
 <a name="l00037"></a>00037 
 <a name="l00038"></a>00038         <span class="keywordflow">if</span> ($target != <span class="stringliteral">&quot;&quot;</span>) {
 <a name="l00039"></a>00039             <span class="comment">// If it exists this table will not contain much</span>
-<a name="l00040"></a>00040             <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="stringliteral">&quot;select * from $target.pbms_metadata_header&quot;</span>;
+<a name="l00040"></a>00040             $query = <span class="stringliteral">&quot;select * from $target.pbms_metadata_header&quot;</span>;
 <a name="l00041"></a>00041         }
 <a name="l00042"></a>00042     }
 <a name="l00043"></a>00043 
-<a name="l00044"></a>00044     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>);
-<a name="l00045"></a>00045     <span class="keywordflow">if</span> (! <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) {
+<a name="l00044"></a>00044     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query);
+<a name="l00045"></a>00045     <span class="keywordflow">if</span> (! <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) {
 <a name="l00046"></a>00046         <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00047"></a>00047     }
 <a name="l00048"></a>00048     <span class="keywordflow">return</span> <span class="keyword">true</span>;
@@ -139,7 +139,7 @@
 <a name="l00061"></a>00061     }
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063     <span class="comment">// load PMA configuration</span>
-<a name="l00064"></a>00064     $PMA_Config = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>];
+<a name="l00064"></a>00064     $PMA_Config = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>];
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066     <span class="comment">// return if unable to load PMA configuration</span>
 <a name="l00067"></a>00067     <span class="keywordflow">if</span> (empty($PMA_Config)) {
@@ -158,7 +158,7 @@
 <a name="l00080"></a>00080 <span class="comment">     *  parameters merged with the default ones</span>
 <a name="l00081"></a>00081 <span class="comment">     *</span>
 <a name="l00082"></a>00082 <span class="comment">     */</span>
-<a name="l00083"></a>00083     $serverCfg = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>];
+<a name="l00083"></a>00083     $serverCfg = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>];
 <a name="l00084"></a>00084 
 <a name="l00085"></a>00085     <span class="comment">// return if unable to retrieve current server configuration</span>
 <a name="l00086"></a>00086     <span class="keywordflow">if</span> (! $serverCfg) {
@@ -317,21 +317,21 @@
 <a name="l00239"></a><a class="code" href="blobstreaming_8lib_8php.html#a1c1ad70ae2918605181787b39442ad12">00239</a> <span class="keyword">function</span> <a class="code" href="blobstreaming_8lib_8php.html#a1c1ad70ae2918605181787b39442ad12" title="returns a list of BLOBStreaming variables used by MySQL">PMA_BS_GetVariables</a>()
 <a name="l00240"></a>00240 {
 <a name="l00241"></a>00241     <span class="comment">// load PMA configuration</span>
-<a name="l00242"></a>00242     $PMA_Config = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>];
+<a name="l00242"></a>00242     $PMA_Config = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>];
 <a name="l00243"></a>00243 
 <a name="l00244"></a>00244     <span class="comment">// return if unable to load PMA configuration</span>
 <a name="l00245"></a>00245     <span class="keywordflow">if</span> (empty($PMA_Config)) {
 <a name="l00246"></a>00246         <span class="keywordflow">return</span> null;
 <a name="l00247"></a>00247     }
 <a name="l00248"></a>00248     <span class="comment">// run query to retrieve BS variables</span>
-<a name="l00249"></a>00249     <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="stringliteral">&quot;SHOW VARIABLES LIKE &#39;%pbms%&#39;&quot;</span>;
-<a name="l00250"></a>00250     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>);
+<a name="l00249"></a>00249     $query = <span class="stringliteral">&quot;SHOW VARIABLES LIKE &#39;%pbms%&#39;&quot;</span>;
+<a name="l00250"></a>00250     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query);
 <a name="l00251"></a>00251 
 <a name="l00252"></a>00252     $BS_Variables = array();
 <a name="l00253"></a>00253 
 <a name="l00254"></a>00254     <span class="comment">// while there are records to retrieve</span>
-<a name="l00255"></a>00255     <span class="keywordflow">while</span> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = @<a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
-<a name="l00256"></a>00256         $BS_Variables[<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;Variable_name&#39;</span>]] = $data[<span class="stringliteral">&#39;Value&#39;</span>];
+<a name="l00255"></a>00255     <span class="keywordflow">while</span> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = @<a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00256"></a>00256         $BS_Variables[<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;Variable_name&#39;</span>]] = $data[<span class="stringliteral">&#39;Value&#39;</span>];
 <a name="l00257"></a>00257     }
 <a name="l00258"></a>00258     <span class="comment">// return BS variables</span>
 <a name="l00259"></a>00259     <span class="keywordflow">return</span> $BS_Variables;
@@ -360,7 +360,7 @@
 <a name="l00282"></a>00282 <span class="comment"> */</span>
 <a name="l00283"></a><a class="code" href="blobstreaming_8lib_8php.html#a3d8545d55406624bab0917251b4d0105">00283</a> <span class="keyword">function</span> <a class="code" href="blobstreaming_8lib_8php.html#a3d8545d55406624bab0917251b4d0105" title="Tries to connect to PBMS server.">PMA_do_connect</a>($db_name, $quiet)
 <a name="l00284"></a>00284 {
-<a name="l00285"></a>00285     $PMA_Config = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>];
+<a name="l00285"></a>00285     $PMA_Config = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>];
 <a name="l00286"></a>00286 
 <a name="l00287"></a>00287     <span class="comment">// return if unable to load PMA configuration</span>
 <a name="l00288"></a>00288     <span class="keywordflow">if</span> (empty($PMA_Config)) {
@@ -542,12 +542,12 @@
 <a name="l00464"></a>00464     // $query = &quot;SELECT count(*)  FROM information_schema.TABLES T,
 <a name="l00465"></a>00465     <span class="comment">// pbms.pbms_enabled E where T.table_schema = &quot;. PMA_backquote($db_name) . &quot;</span>
 <a name="l00466"></a>00466     <span class="comment">// and T.table_name = &quot;. PMA_backquote($tbl_name) . &quot; and T.engine = E.name&quot;;</span>
-<a name="l00467"></a>00467     <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="stringliteral">&quot;SELECT count(*)  FROM pbms.pbms_enabled E where E.name = &#39;&quot;</span>
+<a name="l00467"></a>00467     $query = <span class="stringliteral">&quot;SELECT count(*)  FROM pbms.pbms_enabled E where E.name = &#39;&quot;</span>
 <a name="l00468"></a>00468         . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="tbl__info_8inc_8php.html#a3d0958343c6227a78b57d92e7590fb4e">$tbl_type</a>) . <span class="stringliteral">&quot;&#39;&quot;</span>;
-<a name="l00469"></a>00469     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query);
+<a name="l00469"></a>00469     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query);
 <a name="l00470"></a>00470 
-<a name="l00471"></a>00471     <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00472"></a>00472     <span class="keywordflow">if</span> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[0] == 1) {
+<a name="l00471"></a>00471     <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00472"></a>00472     <span class="keywordflow">if</span> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[0] == 1) {
 <a name="l00473"></a>00473         <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l00474"></a>00474     }
 <a name="l00475"></a>00475 
@@ -598,19 +598,19 @@
 <a name="l00520"></a>00520     $query = <span class="stringliteral">&quot;SELECT Repository_id, Repo_blob_offset FROM pbms_reference&quot;</span>
 <a name="l00521"></a>00521         . <span class="stringliteral">&quot; WHERE Blob_url=&#39;&quot;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>($blobReference) . <span class="stringliteral">&quot;&#39;&quot;</span>;
 <a name="l00522"></a>00522     <span class="comment">//error_log(&quot; PMA_BS_SetContentType: $query\n&quot;, 3, &quot;/tmp/mylog&quot;);</span>
-<a name="l00523"></a>00523     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query);
+<a name="l00523"></a>00523     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query);
 <a name="l00524"></a>00524     <span class="comment">//error_log(&quot; $query\n&quot;, 3, &quot;/tmp/mylog&quot;);</span>
 <a name="l00525"></a>00525 
 <a name="l00526"></a>00526     <span class="comment">// if record exists</span>
-<a name="l00527"></a>00527     <span class="keywordflow">if</span> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
-<a name="l00528"></a>00528         $where = <span class="stringliteral">&quot;WHERE Repository_id=&quot;</span> . <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;Repository_id&#39;</span>]
-<a name="l00529"></a>00529            . <span class="stringliteral">&quot; AND Repo_blob_offset=&quot;</span> . <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;Repo_blob_offset&#39;</span>] ;
+<a name="l00527"></a>00527     <span class="keywordflow">if</span> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00528"></a>00528         $where = <span class="stringliteral">&quot;WHERE Repository_id=&quot;</span> . <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;Repository_id&#39;</span>]
+<a name="l00529"></a>00529            . <span class="stringliteral">&quot; AND Repo_blob_offset=&quot;</span> . <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;Repo_blob_offset&#39;</span>] ;
 <a name="l00530"></a>00530         $query = <span class="stringliteral">&quot;SELECT name from  pbms_metadata $where&quot;</span>;
-<a name="l00531"></a>00531         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query);
+<a name="l00531"></a>00531         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query);
 <a name="l00532"></a>00532 
-<a name="l00533"></a>00533         <span class="keywordflow">if</span> (<a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) == 0) {
-<a name="l00534"></a>00534             $query = <span class="stringliteral">&quot;INSERT into pbms_metadata Values( &quot;</span>. <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;Repository_id&#39;</span>]
-<a name="l00535"></a>00535                 . <span class="stringliteral">&quot;, &quot;</span> . <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&#39;Repo_blob_offset&#39;</span>]  . <span class="stringliteral">&quot;, &#39;Content_type&#39;, &#39;&quot;</span>
+<a name="l00533"></a>00533         <span class="keywordflow">if</span> (<a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) == 0) {
+<a name="l00534"></a>00534             $query = <span class="stringliteral">&quot;INSERT into pbms_metadata Values( &quot;</span>. <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;Repository_id&#39;</span>]
+<a name="l00535"></a>00535                 . <span class="stringliteral">&quot;, &quot;</span> . <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&#39;Repo_blob_offset&#39;</span>]  . <span class="stringliteral">&quot;, &#39;Content_type&#39;, &#39;&quot;</span>
 <a name="l00536"></a>00536                 . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>($contentType)  . <span class="stringliteral">&quot;&#39;)&quot;</span>;
 <a name="l00537"></a>00537         } <span class="keywordflow">else</span> {
 <a name="l00538"></a>00538             $query = <span class="stringliteral">&quot;UPDATE pbms_metadata SET name = &#39;Content_type&#39;, Value = &#39;&quot;</span>
@@ -642,7 +642,7 @@
 <a name="l00564"></a><a class="code" href="blobstreaming_8lib_8php.html#adf77e91432ef80995189ec75d944e2f6">00564</a> <span class="keyword">function</span> <a class="code" href="blobstreaming_8lib_8php.html#adf77e91432ef80995189ec75d944e2f6">PMA_BS_getURL</a>(<a class="code" href="bs__disp__as__mime__type_8php.html#a1d66ca539ab008f6c8d418845c32ed47">$reference</a>)
 <a name="l00565"></a>00565 {
 <a name="l00566"></a>00566     <span class="comment">// load PMA configuration</span>
-<a name="l00567"></a>00567     $PMA_Config = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>];
+<a name="l00567"></a>00567     $PMA_Config = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>];
 <a name="l00568"></a>00568     <span class="keywordflow">if</span> (empty($PMA_Config)) {
 <a name="l00569"></a>00569         <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00570"></a>00570     }
@@ -664,7 +664,7 @@
     <ul>
       <li class="navelem"><a class="el" href="blobstreaming_8lib_8php.html">blobstreaming.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:27 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:48 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

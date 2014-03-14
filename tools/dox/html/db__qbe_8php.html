@@ -93,7 +93,7 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ac752ebe2d31fa88bf538e8753b64bdfb">$cfgRelation</a> = <a class="el" href="relation_8lib_8php.html#ad4dd08fb9ba9908cd15afb5ac92a2656">PMA_getRelationsParam</a>()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ad4abba7a9f5b0226f111c19a84eac55e">$message_to_display</a> = false</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['submit_sql'])&amp;&amp;!empty($sql_query))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a607dc4c511fb3cde3766fd9baf6bf75d">$sub_part</a> = '_qbe'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['submit_sql'])&amp;&amp;!empty($sql_query))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a607dc4c511fb3cde3766fd9baf6bf75d">$sub_part</a> = '_qbe'</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a9f97d7db14905bd6ce32b003b416769c">$url_query</a> = '&amp;amp;goto=db_qbe.php'</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a> ['goto'] = 'db_qbe.php'</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a02e7fb83f98730b72846b8e6330e2509">$col_cnt</a> = <a class="el" href="core_8lib_8php.html#a98bdbf90fdf39169e08ec6a88f5b98b2">PMA_ifSetOr</a>($_REQUEST['col_cnt'], 3, 'numeric')</td></tr>
@@ -111,32 +111,32 @@ Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a781f67f3d06af8cdfe9ff9c3d67cefd2">$form_column_width</a> = 12</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a> = max($col_cnt + $add_col, 0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = max($rows + $add_row, 0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['TableList'], <br class="typebreak"/>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['TableList'], <br class="typebreak"/>
 'array'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#aabe547b1fd6afd6b9dcc32a93624d02a">$tbl_result</a> = <a class="el" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089">PMA_DBI_query</a>('SHOW TABLES FROM ' . <a class="el" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec">PMA_backquote</a>($db) . ';', null, <a class="el" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993">PMA_DBI_QUERY_STORE</a>)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a368e919bd291af7d0c70d545fca3bfbc">$tbl_result_cnt</a> = <a class="el" href="mysqli_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803">PMA_DBI_num_rows</a>($tbl_result)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ab36e659f67e4720552ac951478cab743">$realwidth</a> = $form_column_width . 'ex'</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($tab_designer['link'])) <br class="typebreak"/>
-<a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($tab['fragment']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#adff60d790853b6ca6f1665185d0f7a50">if</a> (isset($tab_designer['link']))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($tab_designer['link'])) <br class="typebreak"/>
+<a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($tab['fragment']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#adff60d790853b6ca6f1665185d0f7a50">if</a> (isset($tab_designer['link']))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a7359f3ea32073ea20d3176243cb5f86d">$z</a> = 0</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a45e38d96ec0968f4b734c8a08aa075e3">for</a> ($x=0;$x&lt; $col;$x++) = stripslashes($slog['slogan'])</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a>($x=0;$x&lt; $col;$x++)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ae27770d41ec951a1009f76d39501dab2">$w</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a136a886673c6e3057cb8b53fddd0c103">for</a> ($x=0;$x&lt; $col;$x++)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a>($x=0;$x&lt; $col;$x++)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ae27770d41ec951a1009f76d39501dab2">$w</a> = 0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> = true</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a72c33ade6147a1f8d0cd500aef7393c1">$url_params</a> ['db'] = $db</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ab805fdc6d64364fbf24207e46a5efeff">$url_params</a> ['col_cnt'] = $z</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ab9accc7596e52b9e6f34e8fc98280703">$url_params</a> ['rows'] = $w</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> = ''</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a5ae63f77061f7c51f8b1aa19bd660a8c">$numTableListOptions</a> = 0</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a5edd16056463db800da74b18b794c6df">foreach</a> ($tbl_names as $key=&gt; $val)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a781e04b7aa2072ddaa3db84712f9b8e3">foreach</a> ($tbl_names as $key=&gt; $val) = $site.$add</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a4f3ed31d3707eafb49038969a4d0604e">$last_select</a> = 0</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!isset($qry_select)) <a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a>($x=0;$x<br class="typebreak"/>
-&lt; $col;$x++) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($qry_select)) <br class="typebreak"/>
-<a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($Field)&amp;&amp;count($Field) &gt;<br class="typebreak"/>
- 0) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(empty($qry_from)&amp;&amp;isset($tab_all)) <br class="typebreak"/>
-<a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($qry_from))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ad7ecf569a6026bdb426430b6804d6017">$qry_where</a> = ''</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!isset($qry_select)) <a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a>($x=0;$x<br class="typebreak"/>
+&lt; $col;$x++) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($qry_select)) <br class="typebreak"/>
+<a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($Field)&amp;&amp;count($Field) &gt;<br class="typebreak"/>
+ 0) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(empty($qry_from)&amp;&amp;isset($tab_all)) <br class="typebreak"/>
+<a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($qry_from))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#ad7ecf569a6026bdb426430b6804d6017">$qry_where</a> = ''</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a49a0b29da0569fee754d37f83603b4bb">$criteria_cnt</a> = 0</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a>($x=0;$x&lt; $col;$x++) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($criteria_cnt &gt;<br class="typebreak"/>
- 1) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!isset($curAndOrRow)) <br class="typebreak"/>
-<a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a>($y=0;$y&lt;=$row;$y++) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($qry_where)&amp;&amp;$qry_where!= '()')&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a7ab16ddd9f40034c8aa0149d82b5ffd5">$last_orderby</a> = 0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a>($x=0;$x&lt; $col;$x++) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($criteria_cnt &gt;<br class="typebreak"/>
+ 1) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!isset($curAndOrRow)) <br class="typebreak"/>
+<a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a>($y=0;$y&lt;=$row;$y++) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($qry_where)&amp;&amp;$qry_where!= '()')&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="db__qbe_8php.html#a7ab16ddd9f40034c8aa0149d82b5ffd5">$last_orderby</a> = 0</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a191d545488fb9167b3c2a3c07d6fe877"></a><!-- doxytag: member="db_qbe.php::showColumnSelectCell" ref="a191d545488fb9167b3c2a3c07d6fe877" args="($columns, $column_number, $selected= '')" -->
@@ -421,7 +421,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> ($x=0;$x&lt; $col;$x++) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($criteria_cnt &gt; 1) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!isset($curAndOrRow)) <a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> ($y=0;$y&lt;=$row;$y++) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($qry_where)&amp;&amp;$qry_where!= '()') $last_orderby = 0</td>
+          <td class="memname"><a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a> ($x=0;$x&lt; $col;$x++) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($criteria_cnt &gt; 1) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!isset($curAndOrRow)) <a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a> ($y=0;$y&lt;=$row;$y++) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($qry_where)&amp;&amp;$qry_where!= '()') $last_orderby = 0</td>
         </tr>
       </table>
 </div>
@@ -531,7 +531,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!isset($qry_select)) <a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> ($x=0;$x&lt; $col;$x++) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($qry_select)) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($Field)&amp;&amp;count($Field) &gt; 0) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (empty($qry_from)&amp;&amp;isset($tab_all)) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($qry_from)) $qry_where = ''</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!isset($qry_select)) <a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a> ($x=0;$x&lt; $col;$x++) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($qry_select)) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($Field)&amp;&amp;count($Field) &gt; 0) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (empty($qry_from)&amp;&amp;isset($tab_all)) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!empty($qry_from)) $qry_where = ''</td>
         </tr>
       </table>
 </div>
@@ -591,7 +591,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($_REQUEST['submit_sql'])&amp;&amp;!empty($sql_query)) $sub_part = '_qbe'</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($_REQUEST['submit_sql'])&amp;&amp;!empty($sql_query)) $sub_part = '_qbe'</td>
         </tr>
       </table>
 </div>
@@ -606,7 +606,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['TableList'], 'array')) $tbl_result = <a class="el" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089">PMA_DBI_query</a>('SHOW TABLES FROM ' . <a class="el" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec">PMA_backquote</a>($db) . ';', null, <a class="el" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993">PMA_DBI_QUERY_STORE</a>)</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['TableList'], 'array')) $tbl_result = <a class="el" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089">PMA_DBI_query</a>('SHOW TABLES FROM ' . <a class="el" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec">PMA_backquote</a>($db) . ';', null, <a class="el" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993">PMA_DBI_QUERY_STORE</a>)</td>
         </tr>
       </table>
 </div>
@@ -713,7 +713,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> ($x=0;$x&lt; $col;$x++) $w = 0</td>
+          <td class="memname"><a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a> ($x=0;$x&lt; $col;$x++) $w = 0</td>
         </tr>
       </table>
 </div>
@@ -738,12 +738,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a45e38d96ec0968f4b734c8a08aa075e3"></a><!-- doxytag: member="db_qbe.php::for" ref="a45e38d96ec0968f4b734c8a08aa075e3" args="($x=0;$x&lt; $col;$x++)" -->
+<a class="anchor" id="a136a886673c6e3057cb8b53fddd0c103"></a><!-- doxytag: member="db_qbe.php::for" ref="a136a886673c6e3057cb8b53fddd0c103" args="($x=0;$x&lt; $col;$x++)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> = stripslashes($slog['slogan'])</td>
+          <td class="memname"><a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a>($y=0;$y&lt;=$row;$y++)</td>
         </tr>
       </table>
 </div>
@@ -753,12 +753,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5edd16056463db800da74b18b794c6df"></a><!-- doxytag: member="db_qbe.php::foreach" ref="a5edd16056463db800da74b18b794c6df" args="($tbl_names as $key=&gt; $val)" -->
+<a class="anchor" id="a781e04b7aa2072ddaa3db84712f9b8e3"></a><!-- doxytag: member="db_qbe.php::foreach" ref="a781e04b7aa2072ddaa3db84712f9b8e3" args="($tbl_names as $key=&gt; $val)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="lib_8sitevars_8php.html#aa1c1171798f0afc9a867d3c06032e678">foreach</a>($tbl_names as $key=&gt; $val)</td>
+          <td class="memname"><a class="el" href="search_8php.html#a09b4b6d1a0b5fcafe14aee32edd9b8c9">foreach</a> = $site.$add</td>
         </tr>
       </table>
 </div>
@@ -773,7 +773,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!isset($qry_orderby)) <a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> ($x=0;$x&lt; $col;$x++) <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($qry_orderby))</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!isset($qry_orderby)) <a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a> ($x=0;$x&lt; $col;$x++) <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($qry_orderby))</td>
         </tr>
       </table>
 </div>
@@ -789,7 +789,7 @@ Variables</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="db__qbe_8php.html">db_qbe.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:37 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:52 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

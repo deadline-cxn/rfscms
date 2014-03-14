@@ -1,0 +1,19 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1043,211,1173,240"/>
+<area shape="rect" id="node5" href="$videos_8php.html#a992c066f6f4995125193c8b90f3eeebd" title="videos_buttons" alt="" coords="429,133,539,163"/>
+<area shape="rect" id="node8" href="$lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789" title="lib_button" alt="" coords="669,31,747,60"/>
+<area shape="rect" id="node15" href="$lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="645,443,771,472"/>
+<area shape="rect" id="node20" href="$lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="841,496,972,525"/>
+<area shape="rect" id="node26" href="$lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="849,443,964,472"/>
+<area shape="rect" id="node31" href="$lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="393,493,575,523"/>
+<area shape="rect" id="node38" href="$videos_8php.html#abda8f4c2c82c04a859b2a9b3eaac7157" title="videos_action_viewcat" alt="" coords="189,288,344,317"/>
+<area shape="rect" id="node46" href="$videos_8php.html#ad4883204f997a82a95ca1d3c94030c6f" title="videos_action_view_cats" alt="" coords="624,339,792,368"/>
+<area shape="rect" id="node50" href="$videos_8php.html#a86bcd28017efc225b7999d65dd1af5a3" title="videos_pagefinish" alt="" coords="204,83,329,112"/>
+<area shape="rect" id="node10" href="$lib_8buttons_8php.html#acb5b7a1897563c3ec9d2d03149862d00" title="lib_button_text" alt="" coords="853,31,960,60"/>
+<area shape="rect" id="node13" href="$lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="1049,31,1167,60"/>
+<area shape="rect" id="node17" href="$lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="840,389,973,419"/>
+<area shape="rect" id="node22" href="$lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1024,496,1192,525"/>
+<area shape="rect" id="node24" href="$lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1243,496,1416,525"/>
+<area shape="rect" id="node29" href="$lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1023,443,1193,472"/>
+<area shape="rect" id="node43" href="$module_8videos_8php.html#ab6c109c09c1e023cb3e921a86597153e" title="videos_get_thumbnail" alt="" coords="411,237,557,267"/>
+</map>

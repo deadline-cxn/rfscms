@@ -125,21 +125,21 @@
 <a name="l00047"></a>00047         }
 <a name="l00048"></a>00048     }
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050     <span class="keywordflow">if</span> (! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>])
-<a name="l00051"></a>00051         &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>] != <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ServerDefault&#39;</span>]
+<a name="l00050"></a>00050     <span class="keywordflow">if</span> (! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>])
+<a name="l00051"></a>00051         &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>] != <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ServerDefault&#39;</span>]
 <a name="l00052"></a>00052     ) {
-<a name="l00053"></a>00053         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;server&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>];
+<a name="l00053"></a>00053         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;server&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>];
 <a name="l00054"></a>00054     }
-<a name="l00055"></a>00055     <span class="keywordflow">if</span> (empty($_COOKIE[<span class="stringliteral">&#39;pma_lang&#39;</span>]) &amp;&amp; ! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>])) {
-<a name="l00056"></a>00056         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;lang&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>];
+<a name="l00055"></a>00055     <span class="keywordflow">if</span> (empty($_COOKIE[<span class="stringliteral">&#39;pma_lang&#39;</span>]) &amp;&amp; ! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>])) {
+<a name="l00056"></a>00056         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;lang&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>];
 <a name="l00057"></a>00057     }
 <a name="l00058"></a>00058     <span class="keywordflow">if</span> (empty($_COOKIE[<span class="stringliteral">&#39;pma_collation_connection&#39;</span>])
-<a name="l00059"></a>00059         &amp;&amp; ! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>])
+<a name="l00059"></a>00059         &amp;&amp; ! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>])
 <a name="l00060"></a>00060     ) {
-<a name="l00061"></a>00061         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>];
+<a name="l00061"></a>00061         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>];
 <a name="l00062"></a>00062     }
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064     <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;token&#39;</span>] = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>];
+<a name="l00064"></a>00064     <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;token&#39;</span>] = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>];
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066     <span class="keywordflow">if</span> (! is_array($skip)) {
 <a name="l00067"></a>00067         <span class="keywordflow">if</span> (isset(<a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[$skip])) {
@@ -190,18 +190,18 @@
 <a name="l00112"></a>00112 {
 <a name="l00113"></a>00113     <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00114"></a>00114 
-<a name="l00115"></a>00115     <span class="keywordflow">foreach</span> (<a class="code" href="enum__editor_8php.html#affc45c6ace2eeb3f300b054dbf9592b6">$values</a> as <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> =&gt; $value) {
+<a name="l00115"></a>00115     <span class="keywordflow">foreach</span> (<a class="code" href="enum__editor_8php.html#affc45c6ace2eeb3f300b054dbf9592b6">$values</a> as <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> =&gt; $value) {
 <a name="l00116"></a>00116         <span class="keywordflow">if</span> (! empty($pre)) {
-<a name="l00117"></a>00117             <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = $pre. <span class="charliteral">&#39;[&#39;</span> . <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> . <span class="charliteral">&#39;]&#39;</span>;
+<a name="l00117"></a>00117             <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = $pre. <span class="charliteral">&#39;[&#39;</span> . <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> . <span class="charliteral">&#39;]&#39;</span>;
 <a name="l00118"></a>00118         }
 <a name="l00119"></a>00119 
 <a name="l00120"></a>00120         <span class="keywordflow">if</span> (is_array($value)) {
-<a name="l00121"></a>00121             <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> .= <a class="code" href="url__generating_8lib_8php.html#a0db4559ded20b6cc869d37e4d5cc7dad" title="create hidden form fields from array with name =&gt; value">PMA_getHiddenFields</a>($value, <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>);
+<a name="l00121"></a>00121             <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> .= <a class="code" href="url__generating_8lib_8php.html#a0db4559ded20b6cc869d37e4d5cc7dad" title="create hidden form fields from array with name =&gt; value">PMA_getHiddenFields</a>($value, <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>);
 <a name="l00122"></a>00122         } <span class="keywordflow">else</span> {
 <a name="l00123"></a>00123             <span class="comment">// do not generate an ending &quot;\n&quot; because</span>
 <a name="l00124"></a>00124             <span class="comment">// PMA_generate_common_hidden_inputs() is sometimes called</span>
 <a name="l00125"></a>00125             <span class="comment">// from a JS document.write()</span>
-<a name="l00126"></a>00126             <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> .= <span class="stringliteral">&#39;&lt;input type=&quot;hidden&quot; name=&quot;&#39;</span> . htmlspecialchars(<a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>)
+<a name="l00126"></a>00126             <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> .= <span class="stringliteral">&#39;&lt;input type=&quot;hidden&quot; name=&quot;&#39;</span> . htmlspecialchars(<a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>)
 <a name="l00127"></a>00127                 . <span class="stringliteral">&#39;&quot; value=&quot;&#39;</span> . htmlspecialchars($value) . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span>;
 <a name="l00128"></a>00128         }
 <a name="l00129"></a>00129     }
@@ -298,38 +298,38 @@
 <a name="l00220"></a>00220 
 <a name="l00221"></a>00221     <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a> = <a class="code" href="url__generating_8lib_8php.html#a4ba0b6653c22a19615683ab743c1b4e1" title="Returns url separator.">PMA_get_arg_separator</a>();
 <a name="l00222"></a>00222 
-<a name="l00223"></a>00223     <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>])
-<a name="l00224"></a>00224         &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>] != <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ServerDefault&#39;</span>]
+<a name="l00223"></a>00223     <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>])
+<a name="l00224"></a>00224         &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>] != <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ServerDefault&#39;</span>]
 <a name="l00225"></a>00225         <span class="comment">// avoid overwriting when creating navi panel links to servers</span>
 <a name="l00226"></a>00226         &amp;&amp; ! isset(<a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;server&#39;</span>])
 <a name="l00227"></a>00227     ) {
-<a name="l00228"></a>00228         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;server&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>];
+<a name="l00228"></a>00228         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;server&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;server&#39;</span>];
 <a name="l00229"></a>00229     }
 <a name="l00230"></a>00230 
-<a name="l00231"></a>00231     <span class="keywordflow">if</span> (empty($_COOKIE[<span class="stringliteral">&#39;pma_lang&#39;</span>]) &amp;&amp; ! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>])) {
-<a name="l00232"></a>00232         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;lang&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>];
+<a name="l00231"></a>00231     <span class="keywordflow">if</span> (empty($_COOKIE[<span class="stringliteral">&#39;pma_lang&#39;</span>]) &amp;&amp; ! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>])) {
+<a name="l00232"></a>00232         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;lang&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>];
 <a name="l00233"></a>00233     }
 <a name="l00234"></a>00234     <span class="keywordflow">if</span> (empty($_COOKIE[<span class="stringliteral">&#39;pma_collation_connection&#39;</span>])
-<a name="l00235"></a>00235         &amp;&amp; ! empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>])
+<a name="l00235"></a>00235         &amp;&amp; ! empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>])
 <a name="l00236"></a>00236     ) {
-<a name="l00237"></a>00237         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>];
+<a name="l00237"></a>00237         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>];
 <a name="l00238"></a>00238     }
 <a name="l00239"></a>00239 
-<a name="l00240"></a>00240     <span class="keywordflow">if</span> (isset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>])) {
-<a name="l00241"></a>00241         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;token&#39;</span>] = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>];
+<a name="l00240"></a>00240     <span class="keywordflow">if</span> (isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>])) {
+<a name="l00241"></a>00241         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;token&#39;</span>] = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>];
 <a name="l00242"></a>00242     }
 <a name="l00243"></a>00243 
 <a name="l00244"></a>00244     <span class="keywordflow">if</span> (empty(<a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>)) {
 <a name="l00245"></a>00245         <span class="keywordflow">return</span> <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00246"></a>00246     }
 <a name="l00247"></a>00247 
-<a name="l00248"></a>00248     <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = $questionmark . http_build_query(<a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>, null, <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a>);
+<a name="l00248"></a>00248     $query = $questionmark . http_build_query(<a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>, null, <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a>);
 <a name="l00249"></a>00249 
 <a name="l00250"></a>00250     <span class="keywordflow">if</span> ($encode === <span class="stringliteral">&#39;html&#39;</span>) {
-<a name="l00251"></a>00251         <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = htmlspecialchars(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>);
+<a name="l00251"></a>00251         $query = htmlspecialchars($query);
 <a name="l00252"></a>00252     }
 <a name="l00253"></a>00253 
-<a name="l00254"></a>00254     <span class="keywordflow">return</span> <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>;
+<a name="l00254"></a>00254     <span class="keywordflow">return</span> $query;
 <a name="l00255"></a>00255 }
 <a name="l00256"></a>00256 <span class="comment"></span>
 <a name="l00257"></a>00257 <span class="comment">/**</span>
@@ -351,36 +351,35 @@
 <a name="l00273"></a>00273     <span class="keywordflow">if</span> (null === <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a>) {
 <a name="l00274"></a>00274         <span class="comment">// use seperators defined by php, but prefer &#39;;&#39;</span>
 <a name="l00275"></a>00275         <span class="comment">// as recommended by W3C</span>
-<a name="l00276"></a>00276         <span class="comment">// (see http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.2.2)</span>
-<a name="l00277"></a>00277         $php_arg_separator_input = ini_get(<span class="stringliteral">&#39;arg_separator.input&#39;</span>);
-<a name="l00278"></a>00278         <span class="keywordflow">if</span> (strpos($php_arg_separator_input, <span class="charliteral">&#39;;&#39;</span>) !== <span class="keyword">false</span>) {
-<a name="l00279"></a>00279             <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a> = <span class="charliteral">&#39;;&#39;</span>;
-<a name="l00280"></a>00280         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (strlen($php_arg_separator_input) &gt; 0) {
-<a name="l00281"></a>00281             <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a> = $php_arg_separator_input{0};
-<a name="l00282"></a>00282         } <span class="keywordflow">else</span> {
-<a name="l00283"></a>00283             <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a> = <span class="charliteral">&#39;&amp;&#39;</span>;
-<a name="l00284"></a>00284         }
-<a name="l00285"></a>00285     }
-<a name="l00286"></a>00286 
-<a name="l00287"></a>00287     <span class="keywordflow">switch</span> ($encode) {
-<a name="l00288"></a>00288     <span class="keywordflow">case</span> <span class="stringliteral">&#39;html&#39;</span>:
-<a name="l00289"></a>00289         <span class="keywordflow">return</span> htmlentities(<a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a>);
-<a name="l00290"></a>00290         <span class="keywordflow">break</span>;
-<a name="l00291"></a>00291     <span class="keywordflow">case</span> <span class="stringliteral">&#39;text&#39;</span> :
-<a name="l00292"></a>00292     <span class="keywordflow">case</span> <span class="stringliteral">&#39;none&#39;</span> :
-<a name="l00293"></a>00293     <span class="keywordflow">default</span> :
-<a name="l00294"></a>00294         <span class="keywordflow">return</span> <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a>;
-<a name="l00295"></a>00295     }
-<a name="l00296"></a>00296 }
-<a name="l00297"></a>00297 
-<a name="l00298"></a>00298 ?&gt;
+<a name="l00276"></a>00276         $php_arg_separator_input = ini_get(<span class="stringliteral">&#39;arg_separator.input&#39;</span>);
+<a name="l00277"></a>00277         <span class="keywordflow">if</span> (strpos($php_arg_separator_input, <span class="charliteral">&#39;;&#39;</span>) !== <span class="keyword">false</span>) {
+<a name="l00278"></a>00278             <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a> = <span class="charliteral">&#39;;&#39;</span>;
+<a name="l00279"></a>00279         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (strlen($php_arg_separator_input) &gt; 0) {
+<a name="l00280"></a>00280             <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a> = $php_arg_separator_input{0};
+<a name="l00281"></a>00281         } <span class="keywordflow">else</span> {
+<a name="l00282"></a>00282             <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a> = <span class="charliteral">&#39;&amp;&#39;</span>;
+<a name="l00283"></a>00283         }
+<a name="l00284"></a>00284     }
+<a name="l00285"></a>00285 
+<a name="l00286"></a>00286     <span class="keywordflow">switch</span> ($encode) {
+<a name="l00287"></a>00287     <span class="keywordflow">case</span> <span class="stringliteral">&#39;html&#39;</span>:
+<a name="l00288"></a>00288         <span class="keywordflow">return</span> htmlentities(<a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a>);
+<a name="l00289"></a>00289         <span class="keywordflow">break</span>;
+<a name="l00290"></a>00290     <span class="keywordflow">case</span> <span class="stringliteral">&#39;text&#39;</span> :
+<a name="l00291"></a>00291     <span class="keywordflow">case</span> <span class="stringliteral">&#39;none&#39;</span> :
+<a name="l00292"></a>00292     <span class="keywordflow">default</span> :
+<a name="l00293"></a>00293         <span class="keywordflow">return</span> <a class="code" href="index_8inc_8php.html#acb4e8e50eaf0132d1e70b8776b4ad5cc">$separator</a>;
+<a name="l00294"></a>00294     }
+<a name="l00295"></a>00295 }
+<a name="l00296"></a>00296 
+<a name="l00297"></a>00297 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="url__generating_8lib_8php.html">url_generating.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:36 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

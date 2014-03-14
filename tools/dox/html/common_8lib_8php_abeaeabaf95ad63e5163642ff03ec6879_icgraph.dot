@@ -1,0 +1,44 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_formatNumber",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_formatByteDown",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a90de48fb0bb54fca6db6a407aa2ab8cf",tooltip="Formats $value to byte view."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_displayMaximumUploadSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a49d1b93c41dc6f92573b3e5ce19f42b8",tooltip="Displays the maximum size for an upload."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_browseUploadFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#abcae729bf61a67408160e6566d2001be",tooltip="Display the form used to browse anywhere on the local server for a file to import."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_sqlQueryFormUpload",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sql__query__form_8lib_8php.html#ab66af2fbf36184d027b75cf35ae49a20",tooltip="prints bookmark fieldset"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_sqlQueryForm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sql__query__form_8lib_8php.html#ad1f1165db8b6302766041d3d9cdda39c",tooltip="prints the sql query boxes"];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_handle_non_printable_contents",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$display__tbl_8lib_8php.html#adc2b985ffe56063359ca5c9b996518f9",tooltip="Verifies what to do with non-printable contents (binary or BLOB) in Browse mode."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PMA_displayTableBody",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$display__tbl_8lib_8php.html#a584c8e9b54e86afef57d654e60a836ed",tooltip="Displays the body of the results table."];
+  Node7 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="PMA_displayTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$display__tbl_8lib_8php.html#ab64d4328beb5bc6b0a62abfa39fb447a",tooltip="Displays a table of results returned by a SQL query."];
+  Node2 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="PMA_StorageEngine_innodb\\getPageBufferpool",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__StorageEngine__innodb.html#a2faf41518500c811b3cd1c00b8a4e1d9",tooltip="returns html tables with stats over inno db buffer pool"];
+  Node2 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="PMA_StorageEngine_pbxt\\resolveTypeSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__StorageEngine__pbxt.html#a880f9e26794dfc44785a8b62a7b4d9e6",tooltip="returns the pbxt engine specific handling for PMA_ENGINE_DETAILS_TYPE_SIZE variables."];
+  Node2 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="printServerTraffic",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__status_8php.html#abfe999235a56a874471934cd49e1598d"];
+  Node2 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="formatVariable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__variables_8php.html#ae2ad6ee1a619946bb2fb29a868dac074"];
+  Node2 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="PMA_StorageEngine\\resolveTypeSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__StorageEngine.html#adba50236941705f7e0a52168529fb698",tooltip="returns the engine specific handling for PMA_ENGINE_DETAILS_TYPE_SIZE type variables."];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="PMA_StorageEngine\\getHtmlVariables",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__StorageEngine.html#ab45bd9762bbe818b1f175da26b443966",tooltip="returns as HTML table of the engine&#39;s server variables"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="printQueryStatistics",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__status_8php.html#a5a528c5a548663f7b55c3b481c794a02"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="printVariablesTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__status_8php.html#af7c520088b239c155d14d04d4490d83e"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

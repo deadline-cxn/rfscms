@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_cacheExists",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_analyseShowGrant",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$check__user__privileges_8lib_8php.html#a7e5034bdb6b887bec23b89c3f5db71b2",tooltip="sets privilege information extracted from SHOW GRANTS result"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_profilingSupported",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a435d3361c16efc65577a9e9c1e3cdc6d",tooltip="Verifies if current MySQL server supports profiling."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_profilingCheckbox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a35561ba2e39610d89df541dfd1cd0b1b",tooltip="Displays a form with the Profiling checkbox."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_isSuperuser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a8625f640d7f62aa247791803ac9ab54b",tooltip="returns true (int &gt; 0) if current user is superuser otherwise 0"];
+}

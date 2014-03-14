@@ -94,7 +94,7 @@
 <a name="l00016"></a>00016 <span class="comment">/**</span>
 <a name="l00017"></a>00017 <span class="comment">  * sets default plugin for handling the import process</span>
 <a name="l00018"></a>00018 <span class="comment">  */</span>
-<a name="l00019"></a><a class="code" href="display__import__ajax_8lib_8php.html#a0cd85c1f37a1dfa2067b3dd764bf6dce">00019</a> <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<a class="code" href="display__import__ajax_8lib_8php.html#ade50026ed4e8f5785a00babf86788980" title="constant for differenciating array in $_SESSION variable">$SESSION_KEY</a>][<span class="stringliteral">&quot;handler&quot;</span>] = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00019"></a><a class="code" href="display__import__ajax_8lib_8php.html#a0cd85c1f37a1dfa2067b3dd764bf6dce">00019</a> <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<a class="code" href="display__import__ajax_8lib_8php.html#ade50026ed4e8f5785a00babf86788980" title="constant for differenciating array in $_SESSION variable">$SESSION_KEY</a>][<span class="stringliteral">&quot;handler&quot;</span>] = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00020"></a>00020 <span class="comment"></span>
 <a name="l00021"></a>00021 <span class="comment">/**</span>
 <a name="l00022"></a>00022 <span class="comment">  * unique ID for each upload</span>
@@ -115,7 +115,7 @@
 <a name="l00037"></a>00037     $check = <span class="stringliteral">&quot;PMA_import_&quot;</span> . $plugin . <span class="stringliteral">&quot;Check&quot;</span>;
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039     <span class="keywordflow">if</span> ($check()) {
-<a name="l00040"></a>00040         <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<a class="code" href="display__import__ajax_8lib_8php.html#ade50026ed4e8f5785a00babf86788980" title="constant for differenciating array in $_SESSION variable">$SESSION_KEY</a>][<span class="stringliteral">&quot;handler&quot;</span>] = $plugin;
+<a name="l00040"></a>00040         <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<a class="code" href="display__import__ajax_8lib_8php.html#ade50026ed4e8f5785a00babf86788980" title="constant for differenciating array in $_SESSION variable">$SESSION_KEY</a>][<span class="stringliteral">&quot;handler&quot;</span>] = $plugin;
 <a name="l00041"></a>00041         include_once <span class="stringliteral">&quot;import/upload/&quot;</span> . $plugin . <span class="stringliteral">&quot;.php&quot;</span>;
 <a name="l00042"></a>00042         <span class="keywordflow">break</span>;
 <a name="l00043"></a>00043     }
@@ -173,7 +173,7 @@
     <ul>
       <li class="navelem"><a class="el" href="display__import__ajax_8lib_8php.html">display_import_ajax.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:28 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

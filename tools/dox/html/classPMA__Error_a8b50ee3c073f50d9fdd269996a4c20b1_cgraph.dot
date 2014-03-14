@@ -1,0 +1,46 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_Error\\display",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_Error\\getLevel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a2ba5600c131478162cdb7be8401e4bc6",tooltip="returns level of error"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_Message\\getNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a918f3e3a5db16eb9e412d62ee7bc5d0b",tooltip="returns PMA_Message::$_number"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_Error\\isUserError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a6679264f0c24a097a08ed11b52e34ca0",tooltip="whether this error is a user error"];
+  Node4 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_Error\\getType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#acee741b6a4eacfeca9d65ee2202f78be",tooltip="returns type of error"];
+  Node5 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_Error\\getFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a4201f3b0d3b5e306c307f703c8a00690",tooltip="returns PMA_Error::$_file"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_Error\\getLine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#ae007bdfda4cd752a05ac0e8d1664ca84",tooltip="returns PMA_Error::$_line"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PMA_Message\\getMessage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#adadba6b61ece9b12e5947c447ed021d0",tooltip="returns compiled message"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="PMA_Message\\getString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a9b36165053e47d3f7f18d2f6bbfc4c94",tooltip="returns PMA_Message::$_string"];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="PMA_Message\\getParams",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a1698f85c17b8a4fc9563d4048f5eb705",tooltip="return all parameters"];
+  Node8 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="PMA_Message\\format",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a1c2f49166dc6b960ffcf2245f719efe8",tooltip="wrapper for sprintf()"];
+  Node8 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="PMA_Message\\decodeBB",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a960f1e23184765eb1a919479dd66914e",tooltip="decode $message, taking into account our special codes for formatting"];
+  Node12 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="PMA_sanitize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sanitizing_8lib_8php.html#ac0444f97c4d50f0e109dc0ec5d86b665",tooltip="Sanitizes $message, taking into account our special codes for formatting."];
+  Node8 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="PMA_Message\\getAddedMessages",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a39393d6b2c150792b0f24b29a7fcff1b",tooltip="return all added messages"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="PMA_Error\\displayBacktrace",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a43e497165b573688b84ce803e42dd51e",tooltip="Display HTML backtrace."];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="PMA_Error\\getBacktrace",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a34aff9067df24b1f5ff85171621dc491",tooltip="returns PMA_Error::$_backtrace"];
+  Node15 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="PMA_Error\\relPath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a772a7752d93cec8385e0f13af46d376a",tooltip="return short relative path to phpMyAdmin basedir"];
+  Node15 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="PMA_Error\\displayArg",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a0cb7e291f8e7f63adb4d76e2843072ba",tooltip="Display a single function argument if $function is one of include/require the $arg is converted te re..."];
+  Node18 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="PMA_Message\\isDisplayed",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#ad67c18bb7e6391f288dcd595742b30d5",tooltip="sets and returns whether the message was displayed or not"];
+}

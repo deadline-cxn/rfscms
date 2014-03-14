@@ -1,0 +1,13 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TCPDF\\getInternalPageNumberAliases",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TCPDF\\_escape",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a9d85fe0d8460a71cb28cc679faf57ecf",tooltip="Add &quot;\&quot; before &quot;\&quot;, &quot;(&quot; and &quot;)&quot;."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TCPDF\\UTF8ToLatin1",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a60c04a399d19927e7a3ee249694aaa62",tooltip="Converts UTF-8 strings to Latin1 when using the standard 14 core fonts."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TCPDF\\utf8StrRev",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a49060c1c6d0b49446e2cc1dd39f5734e",tooltip="Reverse the RLT substrings using the Bidirectional Algorithm (http://unicode.org/reports/tr9/)."];
+}

@@ -101,8 +101,8 @@
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024 <span class="comment">// add a javascript file for jQuery functions to handle Ajax actions</span>
 <a name="l00025"></a>00025 <span class="comment">// also add jQueryUI</span>
-<a name="l00026"></a><a class="code" href="db__operations_8php.html#a9b835efbb97695b4ed9faf19a55b1080">00026</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jquery/jquery-ui-1.8.16.custom.js&#39;</span>;
-<a name="l00027"></a>00027 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;db_operations.js&#39;</span>;
+<a name="l00026"></a><a class="code" href="db__operations_8php.html#a9b835efbb97695b4ed9faf19a55b1080">00026</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jquery/jquery-ui-1.8.16.custom.js&#39;</span>;
+<a name="l00027"></a>00027 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;db_operations.js&#39;</span>;
 <a name="l00028"></a>00028 <span class="comment"></span>
 <a name="l00029"></a>00029 <span class="comment">/**</span>
 <a name="l00030"></a>00030 <span class="comment"> * Rename/move or copy database</span>
@@ -116,7 +116,7 @@
 <a name="l00038"></a>00038     }
 <a name="l00039"></a>00039 
 <a name="l00040"></a>00040     <span class="keywordflow">if</span> (! isset(<a class="code" href="xplorer_8php.html#a1cbbccda23fb924c6c2e9e4225e01efa">$newname</a>) || ! strlen(<a class="code" href="xplorer_8php.html#a1cbbccda23fb924c6c2e9e4225e01efa">$newname</a>)) {
-<a name="l00041"></a>00041         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;The database name is empty!&#39;</span>));
+<a name="l00041"></a>00041         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;The database name is empty!&#39;</span>));
 <a name="l00042"></a>00042     } <span class="keywordflow">else</span> {
 <a name="l00043"></a>00043         <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> = <span class="stringliteral">&#39;&#39;</span>; <span class="comment">// in case target db exists</span>
 <a name="l00044"></a>00044         $_error = <span class="keyword">false</span>;
@@ -145,7 +145,7 @@
 <a name="l00067"></a>00067 
 <a name="l00068"></a>00068             <span class="comment">// rebuild the database list because PMA_Table::moveCopy</span>
 <a name="l00069"></a>00069             <span class="comment">// checks in this list if the target db exists</span>
-<a name="l00070"></a>00070             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;pma&#39;</span>]-&gt;databases-&gt;build();
+<a name="l00070"></a>00070             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;pma&#39;</span>]-&gt;databases-&gt;build();
 <a name="l00071"></a>00071         }
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073         <span class="comment">// here I don&#39;t use DELIMITER because it&#39;s not part of the</span>
@@ -160,7 +160,7 @@
 <a name="l00082"></a>00082                 <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>);
 <a name="l00083"></a>00083                 $tmp_query = <a class="code" href="database__interface_8lib_8php.html#a6c0f9fb5171128a50f3fdb22c9faf4f6" title="returns the definition of a specific PROCEDURE, FUNCTION, EVENT or VIEW">PMA_DBI_get_definition</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <span class="stringliteral">&#39;PROCEDURE&#39;</span>, $procedure_name);
 <a name="l00084"></a>00084                 <span class="comment">// collect for later display</span>
-<a name="l00085"></a>00085                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $tmp_query;
+<a name="l00085"></a>00085                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $tmp_query;
 <a name="l00086"></a>00086                 <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="xplorer_8php.html#a1cbbccda23fb924c6c2e9e4225e01efa">$newname</a>);
 <a name="l00087"></a>00087                 <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($tmp_query);
 <a name="l00088"></a>00088             }
@@ -172,7 +172,7 @@
 <a name="l00094"></a>00094                 <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>);
 <a name="l00095"></a>00095                 $tmp_query = <a class="code" href="database__interface_8lib_8php.html#a6c0f9fb5171128a50f3fdb22c9faf4f6" title="returns the definition of a specific PROCEDURE, FUNCTION, EVENT or VIEW">PMA_DBI_get_definition</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <span class="stringliteral">&#39;FUNCTION&#39;</span>, $function_name);
 <a name="l00096"></a>00096                 <span class="comment">// collect for later display</span>
-<a name="l00097"></a>00097                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $tmp_query;
+<a name="l00097"></a>00097                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $tmp_query;
 <a name="l00098"></a>00098                 <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="xplorer_8php.html#a1cbbccda23fb924c6c2e9e4225e01efa">$newname</a>);
 <a name="l00099"></a>00099                 <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($tmp_query);
 <a name="l00100"></a>00100             }
@@ -181,7 +181,7 @@
 <a name="l00103"></a>00103         <span class="comment">// go back to current db, just in case</span>
 <a name="l00104"></a>00104         <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>);
 <a name="l00105"></a>00105 
-<a name="l00106"></a>00106         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>] = array();
+<a name="l00106"></a>00106         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>] = array();
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108         $tables_full = <a class="code" href="database__interface_8lib_8php.html#a666173b932079177ab299983242adc58" title="returns array of all tables in given db or dbs this function expects unquoted names: RIGHT: my_databa...">PMA_DBI_get_tables_full</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>);
 <a name="l00109"></a>00109         $views = array();
@@ -197,7 +197,7 @@
 <a name="l00119"></a>00119             }
 <a name="l00120"></a>00120             <span class="comment">// keep the constraint we just dropped</span>
 <a name="l00121"></a>00121             <span class="keywordflow">if</span> (! empty($sql_constraints)) {
-<a name="l00122"></a>00122                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>][] = $sql_constraints;
+<a name="l00122"></a>00122                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>][] = $sql_constraints;
 <a name="l00123"></a>00123             }
 <a name="l00124"></a>00124         }
 <a name="l00125"></a>00125         unset($sql_constraints, $sql_drop_foreign_keys, $sql_structure);
@@ -212,7 +212,7 @@
 <a name="l00134"></a>00134                 $sql_view_standin = PMA_getTableDefStandIn(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, $each_table, <span class="stringliteral">&quot;\n&quot;</span>);
 <a name="l00135"></a>00135                 <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="xplorer_8php.html#a1cbbccda23fb924c6c2e9e4225e01efa">$newname</a>);
 <a name="l00136"></a>00136                 <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($sql_view_standin);
-<a name="l00137"></a>00137                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $sql_view_standin;
+<a name="l00137"></a>00137                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $sql_view_standin;
 <a name="l00138"></a>00138             }
 <a name="l00139"></a>00139         }
 <a name="l00140"></a>00140 
@@ -258,16 +258,16 @@
 <a name="l00180"></a>00180                     <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="xplorer_8php.html#a1cbbccda23fb924c6c2e9e4225e01efa">$newname</a>);
 <a name="l00181"></a>00181                     <span class="keywordflow">foreach</span> ($triggers as $trigger) {
 <a name="l00182"></a>00182                         <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($trigger[<span class="stringliteral">&#39;create&#39;</span>]);
-<a name="l00183"></a>00183                         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $trigger[<span class="stringliteral">&#39;create&#39;</span>] . <span class="charliteral">&#39;;&#39;</span>;
+<a name="l00183"></a>00183                         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $trigger[<span class="stringliteral">&#39;create&#39;</span>] . <span class="charliteral">&#39;;&#39;</span>;
 <a name="l00184"></a>00184                     }
 <a name="l00185"></a>00185                     unset($trigger);
 <a name="l00186"></a>00186                 }
 <a name="l00187"></a>00187                 unset($triggers);
 <a name="l00188"></a>00188 
 <a name="l00189"></a>00189                 <span class="comment">// this does not apply to a rename operation</span>
-<a name="l00190"></a>00190                 <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;add_constraints&#39;</span>]) &amp;&amp; !empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query&#39;</span>])) {
-<a name="l00191"></a>00191                     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>][] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query&#39;</span>];
-<a name="l00192"></a>00192                     unset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query&#39;</span>]);
+<a name="l00190"></a>00190                 <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;add_constraints&#39;</span>]) &amp;&amp; !empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query&#39;</span>])) {
+<a name="l00191"></a>00191                     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>][] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query&#39;</span>];
+<a name="l00192"></a>00192                     unset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query&#39;</span>]);
 <a name="l00193"></a>00193                 }
 <a name="l00194"></a>00194             }
 <a name="l00195"></a>00195             <span class="comment">// $sql_query is filled by PMA_Table::moveCopy()</span>
@@ -279,10 +279,10 @@
 <a name="l00201"></a>00201         <span class="keywordflow">if</span> (! $_error) {
 <a name="l00202"></a>00202             <span class="comment">// temporarily force to add DROP IF EXIST to CREATE VIEW query,</span>
 <a name="l00203"></a>00203             <span class="comment">// to remove stand-in VIEW that was created earlier</span>
-<a name="l00204"></a>00204             <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>])) {
-<a name="l00205"></a>00205                 $temp_drop_if_exists = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>];
+<a name="l00204"></a>00204             <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>])) {
+<a name="l00205"></a>00205                 $temp_drop_if_exists = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>];
 <a name="l00206"></a>00206             }
-<a name="l00207"></a>00207             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>] = <span class="stringliteral">&#39;true&#39;</span>;
+<a name="l00207"></a>00207             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>] = <span class="stringliteral">&#39;true&#39;</span>;
 <a name="l00208"></a>00208 
 <a name="l00209"></a>00209             <span class="keywordflow">foreach</span> ($views as <a class="code" href="view__create_8php.html#a2c2fb2ab30570b3e5562cd69d2d58ef4">$view</a>) {
 <a name="l00210"></a>00210                 <span class="keywordflow">if</span> (! <a class="code" href="classPMA__Table.html#a6ffeebe3e840375b64f116b994781193" title="Copies or renames table.">PMA_Table::moveCopy</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, $view, <a class="code" href="xplorer_8php.html#a1cbbccda23fb924c6c2e9e4225e01efa">$newname</a>, $view, <span class="stringliteral">&#39;structure&#39;</span>, $move, <span class="stringliteral">&#39;db_copy&#39;</span>)) {
@@ -290,25 +290,25 @@
 <a name="l00212"></a>00212                     <span class="keywordflow">break</span>;
 <a name="l00213"></a>00213                 }
 <a name="l00214"></a>00214             }
-<a name="l00215"></a>00215             unset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>]);
+<a name="l00215"></a>00215             unset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>]);
 <a name="l00216"></a>00216             <span class="keywordflow">if</span> (isset($temp_drop_if_exists)) {
 <a name="l00217"></a>00217                 <span class="comment">// restore previous value</span>
-<a name="l00218"></a>00218                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>] = $temp_drop_if_exists;
+<a name="l00218"></a>00218                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;drop_if_exists&#39;</span>] = $temp_drop_if_exists;
 <a name="l00219"></a>00219                 unset($temp_drop_if_exists);
 <a name="l00220"></a>00220             }
 <a name="l00221"></a>00221         }
 <a name="l00222"></a>00222         unset(<a class="code" href="view__create_8php.html#a2c2fb2ab30570b3e5562cd69d2d58ef4">$view</a>, $views);
 <a name="l00223"></a>00223 
 <a name="l00224"></a>00224         <span class="comment">// now that all tables exist, create all the accumulated constraints</span>
-<a name="l00225"></a>00225         <span class="keywordflow">if</span> (! $_error &amp;&amp; count(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>]) &gt; 0) {
+<a name="l00225"></a>00225         <span class="keywordflow">if</span> (! $_error &amp;&amp; count(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>]) &gt; 0) {
 <a name="l00226"></a>00226             <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="xplorer_8php.html#a1cbbccda23fb924c6c2e9e4225e01efa">$newname</a>);
-<a name="l00227"></a>00227             <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>] as $one_query) {
+<a name="l00227"></a>00227             <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>] as $one_query) {
 <a name="l00228"></a>00228                 <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($one_query);
 <a name="l00229"></a>00229             <span class="comment">// and prepare to display them</span>
-<a name="l00230"></a>00230                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $one_query;
+<a name="l00230"></a>00230                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_query&#39;</span>] .= <span class="stringliteral">&quot;\n&quot;</span> . $one_query;
 <a name="l00231"></a>00231             }
 <a name="l00232"></a>00232 
-<a name="l00233"></a>00233             unset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>], $one_query);
+<a name="l00233"></a>00233             unset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sql_constraints_query_full_db&#39;</span>], $one_query);
 <a name="l00234"></a>00234         }
 <a name="l00235"></a>00235 
 <a name="l00236"></a>00236         <span class="keywordflow">if</span> (!PMA_DRIZZLE &amp;&amp; PMA_MYSQL_INT_VERSION &gt;= 50100) {
@@ -355,11 +355,11 @@
 <a name="l00277"></a>00277 <span class="stringliteral">            $sql_query .= &quot;\n&quot; . $local_query;</span>
 <a name="l00278"></a>00278 <span class="stringliteral">            PMA_DBI_query($local_query);</span>
 <a name="l00279"></a>00279 <span class="stringliteral"></span>
-<a name="l00280"></a>00280 <span class="stringliteral">            $message = PMA_Message::success(__(&#39;</span>Database %s has been renamed <a class="code" href="theme__templates_8php.html#ad7d236509e9e00310b3a6e37a7dac8a4">to</a> %s<span class="stringliteral">&#39;));</span>
+<a name="l00280"></a>00280 <span class="stringliteral">            $message = PMA_Message::success(__(&#39;</span>Database %s has been renamed to %s<span class="stringliteral">&#39;));</span>
 <a name="l00281"></a>00281 <span class="stringliteral">            $message-&gt;addParam($db);</span>
 <a name="l00282"></a>00282 <span class="stringliteral">            $message-&gt;addParam($newname);</span>
 <a name="l00283"></a>00283 <span class="stringliteral">        } elseif (! $_error) {</span>
-<a name="l00284"></a>00284 <span class="stringliteral">            $message = PMA_Message::success(__(&#39;</span>Database %s has been copied <a class="code" href="theme__templates_8php.html#ad7d236509e9e00310b3a6e37a7dac8a4">to</a> %s<span class="stringliteral">&#39;));</span>
+<a name="l00284"></a>00284 <span class="stringliteral">            $message = PMA_Message::success(__(&#39;</span>Database %s has been copied to %s<span class="stringliteral">&#39;));</span>
 <a name="l00285"></a>00285 <span class="stringliteral">            $message-&gt;addParam($db);</span>
 <a name="l00286"></a>00286 <span class="stringliteral">            $message-&gt;addParam($newname);</span>
 <a name="l00287"></a>00287 <span class="stringliteral">        }</span>
@@ -487,7 +487,7 @@
 <a name="l00409"></a>00409 <span class="stringliteral">    if ($cfg[&#39;</span>PropertiesIconic<span class="stringliteral">&#39;]) {</span>
 <a name="l00410"></a>00410 <span class="stringliteral">        echo PMA_getImage(&#39;</span>b_edit.png<span class="stringliteral">&#39;);</span>
 <a name="l00411"></a>00411 <span class="stringliteral">    }</span>
-<a name="l00412"></a>00412 <span class="stringliteral">    echo __(&#39;</span>Rename database <a class="code" href="theme__templates_8php.html#ad7d236509e9e00310b3a6e37a7dac8a4">to</a><span class="stringliteral">&#39;) . &#39;</span>:<span class="stringliteral">&#39;;</span>
+<a name="l00412"></a>00412 <span class="stringliteral">    echo __(&#39;</span>Rename database to<span class="stringliteral">&#39;) . &#39;</span>:<span class="stringliteral">&#39;;</span>
 <a name="l00413"></a>00413 <span class="stringliteral">    ?&gt;</span>
 <a name="l00414"></a>00414 <span class="stringliteral">        &lt;/legend&gt;</span>
 <a name="l00415"></a>00415 <span class="stringliteral">        &lt;input id=&quot;new_db_name&quot; type=&quot;text&quot; name=&quot;newname&quot; size=&quot;30&quot; class=&quot;textfield&quot; value=&quot;&quot; /&gt;</span>
@@ -501,9 +501,9 @@
 <a name="l00423"></a>00423 <span class="stringliteral">} // end if</span>
 <a name="l00424"></a>00424 <span class="stringliteral"></span>
 <a name="l00425"></a>00425 <span class="stringliteral">// Drop link if allowed</span>
-<a name="l00426"></a>00426 <span class="stringliteral">// Don&#39;</span>t even <span class="keywordflow">try</span> <a class="code" href="theme__templates_8php.html#ad7d236509e9e00310b3a6e37a7dac8a4">to</a> drop information_schema. You won<span class="stringliteral">&#39;t be able to. Believe me. You won&#39;</span>t.
+<a name="l00426"></a>00426 <span class="stringliteral">// Don&#39;</span>t even <span class="keywordflow">try</span> to drop information_schema. You won<span class="stringliteral">&#39;t be able to. Believe me. You won&#39;</span>t.
 <a name="l00427"></a>00427 <span class="comment">// Don&#39;t allow to easily drop mysql database, RFE #1327514.</span>
-<a name="l00428"></a>00428 if ((<a class="code" href="db__links_8inc_8php.html#a951856c8e2beadb8a4914f1dd904b619" title="If coming from a Show MySQL link on the home page, put something in $sub_part.">$is_superuser</a> || <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowUserDropDatabase&#39;</span>])
+<a name="l00428"></a>00428 if ((<a class="code" href="db__links_8inc_8php.html#a951856c8e2beadb8a4914f1dd904b619" title="If coming from a Show MySQL link on the home page, put something in $sub_part.">$is_superuser</a> || <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AllowUserDropDatabase&#39;</span>])
 <a name="l00429"></a>00429         &amp;&amp; !<a class="code" href="db__common_8inc_8php.html#a0bac368c66f1d23243e55cd116c99f75">$db_is_information_schema</a>
 <a name="l00430"></a>00430         &amp;&amp; (PMA_DRIZZLE || <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a> != <span class="stringliteral">&#39;mysql&#39;</span>)) {
 <a name="l00431"></a>00431 ?&gt;
@@ -518,7 +518,7 @@
 <a name="l00440"></a>00440 
 <a name="l00441"></a>00441 &lt;ul&gt;
 <a name="l00442"></a>00442 &lt;?php
-<a name="l00443"></a>00443     $this_sql_query = <span class="stringliteral">&#39;DROP DATABASE &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]);
+<a name="l00443"></a>00443     $this_sql_query = <span class="stringliteral">&#39;DROP DATABASE &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]);
 <a name="l00444"></a>00444     <a class="code" href="server__binlog_8php.html#ae3575021073f8d6e4586cf7f04bea6a9" title="Displays the page.">$this_url_params</a> = array(
 <a name="l00445"></a>00445             <span class="stringliteral">&#39;sql_query&#39;</span> =&gt; $this_sql_query,
 <a name="l00446"></a>00446             <span class="stringliteral">&#39;back&#39;</span> =&gt; <span class="stringliteral">&#39;db_operations.php&#39;</span>,
@@ -529,7 +529,7 @@
 <a name="l00451"></a>00451             <span class="stringliteral">&#39;db&#39;</span> =&gt; null,
 <a name="l00452"></a>00452         );
 <a name="l00453"></a>00453     ?&gt;
-<a name="l00454"></a>00454         &lt;li&gt;&lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a85f522b5d557b63fe501c729a79560df">a</a> href=<span class="stringliteral">&quot;sql.php&lt;?php echo PMA_generate_common_url($this_url_params); ?&gt;&quot;</span> &lt;?php echo (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>] ? <span class="stringliteral">&#39;id=&quot;drop_db_anchor&quot;&#39;</span> : <span class="stringliteral">&#39;&#39;</span>); ?&gt;&gt;
+<a name="l00454"></a>00454         &lt;li&gt;&lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a85f522b5d557b63fe501c729a79560df">a</a> href=<span class="stringliteral">&quot;sql.php&lt;?php echo PMA_generate_common_url($this_url_params); ?&gt;&quot;</span> &lt;?php echo (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>] ? <span class="stringliteral">&#39;id=&quot;drop_db_anchor&quot;&#39;</span> : <span class="stringliteral">&#39;&#39;</span>); ?&gt;&gt;
 <a name="l00455"></a>00455             &lt;?php echo __(<span class="stringliteral">&#39;Drop the database (DROP)&#39;</span>); ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a85f522b5d557b63fe501c729a79560df">a</a>&gt;
 <a name="l00456"></a>00456         &lt;?php echo <a class="code" href="common_8lib_8php.html#a5b2c38942cb8fe55e02ba17d0bef9f15" title="Displays a link to the official MySQL documentation.">PMA_showMySQLDocu</a>(<span class="stringliteral">&#39;SQL-Syntax&#39;</span>, <span class="stringliteral">&#39;DROP_DATABASE&#39;</span>); ?&gt;
 <a name="l00457"></a>00457     &lt;/li&gt;
@@ -543,7 +543,7 @@
 <a name="l00465"></a>00465 <span class="comment">     */</span>
 <a name="l00466"></a>00466     ?&gt;
 <a name="l00467"></a>00467         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;operations_half_width clearfloat&quot;</span>&gt;
-<a name="l00468"></a>00468         &lt;form <span class="keywordtype">id</span>=<span class="stringliteral">&quot;copy_db_form&quot;</span> &lt;?php echo (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>] ? <span class="stringliteral">&#39; class=&quot;ajax&quot; &#39;</span> : <span class="stringliteral">&#39;&#39;</span>); ?&gt;method=<span class="stringliteral">&quot;post&quot;</span> action=<span class="stringliteral">&quot;db_operations.php&quot;</span>
+<a name="l00468"></a>00468         &lt;form <span class="keywordtype">id</span>=<span class="stringliteral">&quot;copy_db_form&quot;</span> &lt;?php echo (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>] ? <span class="stringliteral">&#39; class=&quot;ajax&quot; &#39;</span> : <span class="stringliteral">&#39;&#39;</span>); ?&gt;method=<span class="stringliteral">&quot;post&quot;</span> action=<span class="stringliteral">&quot;db_operations.php&quot;</span>
 <a name="l00469"></a>00469         onsubmit=<span class="stringliteral">&quot;return emptyFormElements(this, &#39;newname&#39;)&quot;</span>&gt;
 <a name="l00470"></a>00470     &lt;?php
 <a name="l00471"></a>00471     <span class="keywordflow">if</span> (isset(<a class="code" href="db__operations_8php.html#a14d54a18d206591909fcda10a3c83e62" title="Check if comments were updated (must be done before displaying the menu tabs)">$db_collation</a>)) {
@@ -613,7 +613,7 @@
 <a name="l00535"></a>00535 <span class="comment">     * Change database charset</span>
 <a name="l00536"></a>00536 <span class="comment">     */</span>
 <a name="l00537"></a>00537     echo <span class="stringliteral">&#39;&lt;div class=&quot;operations_half_width&quot;&gt;&lt;form id=&quot;change_db_charset_form&quot; &#39;</span>;
-<a name="l00538"></a>00538     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>]) {
+<a name="l00538"></a>00538     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>]) {
 <a name="l00539"></a>00539         echo <span class="stringliteral">&#39; class=&quot;ajax&quot; &#39;</span>;
 <a name="l00540"></a>00540     }
 <a name="l00541"></a>00541     echo <span class="stringliteral">&#39;method=&quot;post&quot; action=&quot;./db_operations.php&quot;&gt;&#39;</span>
@@ -636,15 +636,15 @@
 <a name="l00558"></a>00558 
 <a name="l00559"></a>00559     <span class="keywordflow">if</span> (<a class="code" href="db__printview_8php.html#af7c640e92d3a844d8e40c2c39d25c229">$num_tables</a> &gt; 0
 <a name="l00560"></a>00560       &amp;&amp; ! <a class="code" href="browse__foreigners_8php.html#ac752ebe2d31fa88bf538e8753b64bdfb" title="Displays the frame.">$cfgRelation</a>[<span class="stringliteral">&#39;allworks&#39;</span>] &amp;&amp; <a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>[<span class="stringliteral">&#39;PmaNoRelation_DisableWarning&#39;</span>] == <span class="keyword">false</span>) {
-<a name="l00561"></a>00561         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#ae349e34602657ee46e56d435e93fa2db" title="get PMA_Message of type notice">PMA_Message::notice</a>(__(<span class="stringliteral">&#39;The phpMyAdmin configuration storage has been deactivated. To find out why click %shere%s.&#39;</span>));
-<a name="l00562"></a>00562         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;addParam(<span class="stringliteral">&#39;&lt;a href=&quot;&#39;</span> . <a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>[<span class="stringliteral">&#39;PmaAbsoluteUri&#39;</span>] . <span class="stringliteral">&#39;chk_rel.php?&#39;</span> . <a class="code" href="db__export_8php.html#a9f97d7db14905bd6ce32b003b416769c">$url_query</a> . <span class="stringliteral">&#39;&quot;&gt;&#39;</span>, <span class="keyword">false</span>);
-<a name="l00563"></a>00563         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;addParam(<span class="stringliteral">&#39;&lt;/a&gt;&#39;</span>, <span class="keyword">false</span>);
+<a name="l00561"></a>00561         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#ae349e34602657ee46e56d435e93fa2db" title="get PMA_Message of type notice">PMA_Message::notice</a>(__(<span class="stringliteral">&#39;The phpMyAdmin configuration storage has been deactivated. To find out why click %shere%s.&#39;</span>));
+<a name="l00562"></a>00562         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;addParam(<span class="stringliteral">&#39;&lt;a href=&quot;&#39;</span> . <a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>[<span class="stringliteral">&#39;PmaAbsoluteUri&#39;</span>] . <span class="stringliteral">&#39;chk_rel.php?&#39;</span> . <a class="code" href="db__export_8php.html#a9f97d7db14905bd6ce32b003b416769c">$url_query</a> . <span class="stringliteral">&#39;&quot;&gt;&#39;</span>, <span class="keyword">false</span>);
+<a name="l00563"></a>00563         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;addParam(<span class="stringliteral">&#39;&lt;/a&gt;&#39;</span>, <span class="keyword">false</span>);
 <a name="l00564"></a>00564         <span class="comment">/* Show error if user has configured something, notice elsewhere */</span>
-<a name="l00565"></a>00565         <span class="keywordflow">if</span> (!empty(<a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>[<span class="stringliteral">&#39;Servers&#39;</span>][<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>][<span class="stringliteral">&#39;pmadb&#39;</span>])) {
-<a name="l00566"></a>00566             <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;isError(<span class="keyword">true</span>);
+<a name="l00565"></a>00565         <span class="keywordflow">if</span> (!empty(<a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>[<span class="stringliteral">&#39;Servers&#39;</span>][$server][<span class="stringliteral">&#39;pmadb&#39;</span>])) {
+<a name="l00566"></a>00566             <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;isError(<span class="keyword">true</span>);
 <a name="l00567"></a>00567         }
 <a name="l00568"></a>00568         echo <span class="stringliteral">&#39;&lt;div class=&quot;operations_full_width&quot;&gt;&#39;</span>;
-<a name="l00569"></a>00569         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;display();
+<a name="l00569"></a>00569         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;display();
 <a name="l00570"></a>00570         echo <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;
 <a name="l00571"></a>00571     } <span class="comment">// end if</span>
 <a name="l00572"></a>00572 } <span class="comment">// end if (!$is_information_schema)</span>
@@ -659,7 +659,7 @@
 <a name="l00581"></a>00581 
 <a name="l00582"></a>00582     $test_query = <span class="stringliteral">&#39;</span>
 <a name="l00583"></a>00583 <span class="stringliteral">         SELECT *</span>
-<a name="l00584"></a>00584 <span class="stringliteral">           FROM &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfgRelation&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]) . <span class="charliteral">&#39;.&#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="browse__foreigners_8php.html#ac752ebe2d31fa88bf538e8753b64bdfb" title="Displays the frame.">$cfgRelation</a>[<span class="stringliteral">&#39;pdf_pages&#39;</span>]) . <span class="stringliteral">&#39;</span>
+<a name="l00584"></a>00584 <span class="stringliteral">           FROM &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfgRelation&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]) . <span class="charliteral">&#39;.&#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="browse__foreigners_8php.html#ac752ebe2d31fa88bf538e8753b64bdfb" title="Displays the frame.">$cfgRelation</a>[<span class="stringliteral">&#39;pdf_pages&#39;</span>]) . <span class="stringliteral">&#39;</span>
 <a name="l00585"></a>00585 <span class="stringliteral">          WHERE db_name = \&#39;&#39;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) . <span class="charliteral">&#39;\&#39;&#39;</span>;
 <a name="l00586"></a>00586     $test_rs    = <a class="code" href="relation_8lib_8php.html#ab6d57b38824545d660dcfcd4c864a177" title="Executes a query as controluser if possible, otherwise as normal user.">PMA_query_as_controluser</a>($test_query, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
 <a name="l00587"></a>00587 
@@ -684,7 +684,7 @@
     <ul>
       <li class="navelem"><a class="el" href="db__operations_8php.html">db_operations.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:28 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

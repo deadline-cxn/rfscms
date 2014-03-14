@@ -1,0 +1,28 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$courses_8php.html#a679acf3b6f8e7392ebb7d7b7ebb4c1c6" title="courses_action_edit_component_types" alt="" coords="163,5,411,35"/>
+<area shape="rect" id="node7" href="$courses_8php.html#a892050f549b39093d7a0d85c3d817d24" title="courses_action_edit" alt="" coords="217,59,356,88"/>
+<area shape="rect" id="node9" href="$lib_8forms_8php.html#a39bfa82d1907054ec134cdbc5467225e" title="adm_action_f_rfs_db_element_ed1" alt="" coords="175,112,399,141"/>
+<area shape="rect" id="node13" href="$lib_8forms_8php.html#ab30f213cfee643627400b28194a871f6" title="lib_forms_build_add" alt="" coords="219,165,355,195"/>
+<area shape="rect" id="node15" href="$lib_8forms_8php.html#ac2671fccdf5dce882bd861365b11d319" title="lib_forms_build_quick" alt="" coords="213,219,360,248"/>
+<area shape="rect" id="node17" href="$module_8forums_8php.html#aebc49a28621d1a21df14e630d54d8878" title="adm_action_forum_admin" alt="" coords="201,272,372,301"/>
+<area shape="rect" id="node23" href="$module_8linkbin_8php.html#ac44251b5ae4effd5d00a073768e8d0af" title="adm_action_edit_linkbin" alt="" coords="207,325,367,355"/>
+<area shape="rect" id="node29" href="$pictures_8php.html#a491aacd5d23b2a697f8023d62edb9924" title="pictures_action_uploadpic" alt="" coords="201,379,372,408"/>
+<area shape="rect" id="node31" href="$todo__list_8php.html#a51f3194bac537fe5bb5d386e7ffd253a" title="todo_list_action_open_task" alt="" coords="197,432,376,461"/>
+<area shape="rect" id="node33" href="$todo__list_8php.html#a4481d4de4895a5a3ddd62fff71000dcf" title="todo_list_action_edit_task" alt="" coords="200,485,373,515"/>
+<area shape="rect" id="node35" href="$todo__list_8php.html#ac6f4393794465b0c9d9ead1b14f8e283" title="todo_list_action_new_todo_list" alt="" coords="187,539,387,568"/>
+<area shape="rect" id="node37" href="$wab_8php.html#acdfb73a4001eeb541592f6ab46353be8" title="wab_engine_action_" alt="" coords="217,592,356,621"/>
+<area shape="rect" id="node41" href="$wab_8php.html#a3fc0ad1f8faed2e8354555b12caea18b" title="wab_engine_action_edcode" alt="" coords="196,645,377,675"/>
+<area shape="rect" id="node43" href="$wab_8php.html#a54f174c0d1a9c9b6c105156643e4af71" title="wab_engine_action_add_form" alt="" coords="189,699,384,728"/>
+<area shape="rect" id="node45" href="$wab_8php.html#a1ded8498f34e6332fcd2d800147e4170" title="wab_database" alt="" coords="233,752,340,781"/>
+<area shape="rect" id="node51" href="$wab_8php.html#aac89fe0b8ac48c93cda21ca4df88ea71" title="wab_functions" alt="" coords="233,805,340,835"/>
+<area shape="rect" id="node54" href="$wab_8php.html#add23c51b32e647dde2cad885537f8234" title="wab_form" alt="" coords="248,859,325,888"/>
+<area shape="rect" id="node5" href="$courses_8php.html#ad024e3eab78c18cf1b420737f7417300" title="courses_action_add_component_type" alt="" coords="463,5,703,35"/>
+<area shape="rect" id="node11" href="$todo__list_8php.html#a0a5edc1108c1f50c188132e7c9bf8b02" title="todo_list_action_f_rfs_db_element_ed1" alt="" coords="459,112,707,141"/>
+<area shape="rect" id="node19" href="$module_8forums_8php.html#adaaea1a032db30c071e15a772aa384de" title="adm_action_f_add_forum" alt="" coords="499,219,667,248"/>
+<area shape="rect" id="node21" href="$module_8forums_8php.html#af1a307bd4f3e11794a9b2515f3059778" title="adm_action_f_add_forum_folder" alt="" coords="480,272,685,301"/>
+<area shape="rect" id="node25" href="$module_8linkbin_8php.html#a7bf3cc8e0bc8a11272e0f4079bd5d812" title="adm_action_f_add_link" alt="" coords="505,325,660,355"/>
+<area shape="rect" id="node27" href="$module_8linkbin_8php.html#ae06e8b329dcdf45d65fea0a458544d43" title="adm_action_f_modify_link" alt="" coords="496,379,669,408"/>
+<area shape="rect" id="node39" href="$wab_8php.html#a237ac38103b768cd85fa6beec3e5d350" title="wab_engine_action_add" alt="" coords="503,592,663,621"/>
+<area shape="rect" id="node47" href="$wab_8php.html#a59829ca896f8174b8a326d90f07d20f9" title="wab_engine_action_editapp" alt="" coords="492,779,673,808"/>
+<area shape="rect" id="node49" href="$wab_8php.html#a163edfca11288d6f8aef4db2e9202d6c" title="wab_engine_action_edcodego" alt="" coords="756,779,951,808"/>
+</map>

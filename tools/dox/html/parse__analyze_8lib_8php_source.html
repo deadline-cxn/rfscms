@@ -89,7 +89,7 @@
 <a name="l00011"></a>00011 <span class="comment">/**</span>
 <a name="l00012"></a>00012 <span class="comment"> *</span>
 <a name="l00013"></a>00013 <span class="comment"> */</span>
-<a name="l00014"></a><a class="code" href="parse__analyze_8lib_8php.html#a3acd00bc89b461654ae1c9e8176b23c8">00014</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;unparsed_sql&#39;</span>] = <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>;
+<a name="l00014"></a><a class="code" href="parse__analyze_8lib_8php.html#a3acd00bc89b461654ae1c9e8176b23c8">00014</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;unparsed_sql&#39;</span>] = <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>;
 <a name="l00015"></a><a class="code" href="parse__analyze_8lib_8php.html#a6fc3c384670f8f0b4c6d5dd01cf92ecd">00015</a> <a class="code" href="parse__analyze_8lib_8php.html#a6fc3c384670f8f0b4c6d5dd01cf92ecd">$parsed_sql</a> = PMA_SQP_parse(<a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>);
 <a name="l00016"></a><a class="code" href="parse__analyze_8lib_8php.html#a824c9acbe2515006ceb0ebd880983104">00016</a> <a class="code" href="parse__analyze_8lib_8php.html#a824c9acbe2515006ceb0ebd880983104">$analyzed_sql</a> = PMA_SQP_analyze(<a class="code" href="parse__analyze_8lib_8php.html#a6fc3c384670f8f0b4c6d5dd01cf92ecd">$parsed_sql</a>);
 <a name="l00017"></a>00017 
@@ -130,7 +130,7 @@
 <a name="l00052"></a>00052         <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a> = $prev_db;
 <a name="l00053"></a>00053     }
 <a name="l00054"></a>00054     <span class="comment">// Nijel: don&#39;t change reload, if we already decided to reload in import</span>
-<a name="l00055"></a>00055     <span class="keywordflow">if</span> (empty($reload) &amp;&amp; empty(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_ajax_request&#39;</span>])) {
+<a name="l00055"></a>00055     <span class="keywordflow">if</span> (empty($reload) &amp;&amp; empty(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_ajax_request&#39;</span>])) {
 <a name="l00056"></a>00056         $reload  = (<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a> == $prev_db) ? 0 : 1;
 <a name="l00057"></a>00057     }
 <a name="l00058"></a>00058 }
@@ -141,7 +141,7 @@
     <ul>
       <li class="navelem"><a class="el" href="parse__analyze_8lib_8php.html">parse_analyze.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -1,0 +1,20 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="gettext_reader\\get_translation_string",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="gettext_reader\\translate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgettext__reader.html#a9ed4a4a68fcfa7a15b4bfd5382b97884",tooltip="Translates a string."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="gettext_reader\\pgettext",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgettext__reader.html#aa83399cb9f852744ec4e18b595300045"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="gettext_reader\\get_plural_forms",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgettext__reader.html#a6d4d42aeb8e669c82bdd029aacd5afb0",tooltip="Get possible plural forms from MO header."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gettext_reader\\select_string",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgettext__reader.html#a7b56a1911c46de99e13677ac10c8d11f",tooltip="Detects which plural form to take."];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="gettext_reader\\ngettext",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgettext__reader.html#a68ca60ca885de611b4c33975f79c539c",tooltip="Plural version of gettext."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="gettext_reader\\npgettext",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgettext__reader.html#a066d74e3d58be5e86c2516280df9f965"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -410,49 +410,49 @@
 <a name="l00332"></a>00332         }
 <a name="l00333"></a>00333 
 <a name="l00334"></a>00334         $keyPos = $keyXor = 0;
-<a name="l00335"></a>00335         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0, $iMax = count($this-&gt;p); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $iMax; ++<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) {
+<a name="l00335"></a>00335         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0, $iMax = count($this-&gt;p); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $iMax; ++<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) {
 <a name="l00336"></a>00336             <span class="keywordflow">for</span> ($t = 0; $t &lt; 4; $t++) {
 <a name="l00337"></a>00337                 $keyXor = ($keyXor &lt;&lt; 8) | (($key[$keyPos]) &amp; 0x0ff);
 <a name="l00338"></a>00338                 <span class="keywordflow">if</span> (++$keyPos == $keyLen) {
 <a name="l00339"></a>00339                     $keyPos = 0;
 <a name="l00340"></a>00340                 }
 <a name="l00341"></a>00341             }
-<a name="l00342"></a>00342             $this-&gt;p[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $this-&gt;p[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] ^ $keyXor;
+<a name="l00342"></a>00342             $this-&gt;p[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $this-&gt;p[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] ^ $keyXor;
 <a name="l00343"></a>00343         }
 <a name="l00344"></a>00344 
 <a name="l00345"></a>00345         $encZero = array(<span class="charliteral">&#39;L&#39;</span> =&gt; 0, <span class="charliteral">&#39;R&#39;</span> =&gt; 0);
-<a name="l00346"></a>00346         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1 &lt; $iMax; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> += 2) {
+<a name="l00346"></a>00346         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1 &lt; $iMax; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> += 2) {
 <a name="l00347"></a>00347           $encZero = $this-&gt;<a class="code" href="classHorde__Cipher__blowfish.html#ab82ff9b627ba2942903be094c4102734" title="Encrypt left and right halves of a block of data.">_encryptBlock</a>($encZero[<span class="charliteral">&#39;L&#39;</span>], $encZero[<span class="charliteral">&#39;R&#39;</span>]);
-<a name="l00348"></a>00348           $this-&gt;p[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
-<a name="l00349"></a>00349           $this-&gt;p[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
+<a name="l00348"></a>00348           $this-&gt;p[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
+<a name="l00349"></a>00349           $this-&gt;p[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
 <a name="l00350"></a>00350         }
 <a name="l00351"></a>00351 
 <a name="l00352"></a>00352         $iMax = count($this-&gt;s1);
-<a name="l00353"></a>00353         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $iMax; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> += 2) {
+<a name="l00353"></a>00353         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $iMax; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> += 2) {
 <a name="l00354"></a>00354           $encZero = $this-&gt;<a class="code" href="classHorde__Cipher__blowfish.html#ab82ff9b627ba2942903be094c4102734" title="Encrypt left and right halves of a block of data.">_encryptBlock</a>($encZero[<span class="charliteral">&#39;L&#39;</span>], $encZero[<span class="charliteral">&#39;R&#39;</span>]);
-<a name="l00355"></a>00355           $this-&gt;s1[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
-<a name="l00356"></a>00356           $this-&gt;s1[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
+<a name="l00355"></a>00355           $this-&gt;s1[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
+<a name="l00356"></a>00356           $this-&gt;s1[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
 <a name="l00357"></a>00357         }
 <a name="l00358"></a>00358 
 <a name="l00359"></a>00359         $iMax = count($this-&gt;s2);
-<a name="l00360"></a>00360         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $iMax; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> += 2) {
+<a name="l00360"></a>00360         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $iMax; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> += 2) {
 <a name="l00361"></a>00361           $encZero = $this-&gt;<a class="code" href="classHorde__Cipher__blowfish.html#ab82ff9b627ba2942903be094c4102734" title="Encrypt left and right halves of a block of data.">_encryptBlock</a>($encZero[<span class="charliteral">&#39;L&#39;</span>], $encZero[<span class="charliteral">&#39;R&#39;</span>]);
-<a name="l00362"></a>00362           $this-&gt;s2[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
-<a name="l00363"></a>00363           $this-&gt;s2[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
+<a name="l00362"></a>00362           $this-&gt;s2[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
+<a name="l00363"></a>00363           $this-&gt;s2[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
 <a name="l00364"></a>00364         }
 <a name="l00365"></a>00365 
 <a name="l00366"></a>00366         $iMax = count($this-&gt;s3);
-<a name="l00367"></a>00367         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $iMax; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> += 2) {
+<a name="l00367"></a>00367         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $iMax; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> += 2) {
 <a name="l00368"></a>00368           $encZero = $this-&gt;<a class="code" href="classHorde__Cipher__blowfish.html#ab82ff9b627ba2942903be094c4102734" title="Encrypt left and right halves of a block of data.">_encryptBlock</a>($encZero[<span class="charliteral">&#39;L&#39;</span>], $encZero[<span class="charliteral">&#39;R&#39;</span>]);
-<a name="l00369"></a>00369           $this-&gt;s3[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
-<a name="l00370"></a>00370           $this-&gt;s3[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
+<a name="l00369"></a>00369           $this-&gt;s3[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
+<a name="l00370"></a>00370           $this-&gt;s3[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
 <a name="l00371"></a>00371         }
 <a name="l00372"></a>00372 
 <a name="l00373"></a>00373         $iMax = count($this-&gt;s4);
-<a name="l00374"></a>00374         <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $iMax; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> += 2) {
+<a name="l00374"></a>00374         <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $iMax; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> += 2) {
 <a name="l00375"></a>00375           $encZero = $this-&gt;<a class="code" href="classHorde__Cipher__blowfish.html#ab82ff9b627ba2942903be094c4102734" title="Encrypt left and right halves of a block of data.">_encryptBlock</a>($encZero[<span class="charliteral">&#39;L&#39;</span>], $encZero[<span class="charliteral">&#39;R&#39;</span>]);
-<a name="l00376"></a>00376           $this-&gt;s4[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
-<a name="l00377"></a>00377           $this-&gt;s4[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
+<a name="l00376"></a>00376           $this-&gt;s4[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $encZero[<span class="charliteral">&#39;L&#39;</span>];
+<a name="l00377"></a>00377           $this-&gt;s4[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> + 1] = $encZero[<span class="charliteral">&#39;R&#39;</span>];
 <a name="l00378"></a>00378         }
 <a name="l00379"></a>00379     }
 <a name="l00380"></a>00380 <span class="comment"></span>
@@ -570,18 +570,18 @@
 <a name="l00492"></a>00492 <span class="comment"> * @access  public</span>
 <a name="l00493"></a>00493 <span class="comment"> *</span>
 <a name="l00494"></a>00494 <span class="comment"> */</span>
-<a name="l00495"></a><a class="code" href="blowfish_8php.html#a8e312055008054767649ab4dbe99ed90">00495</a> <span class="keyword">function</span> <a class="code" href="blowfish_8php.html#a8e312055008054767649ab4dbe99ed90" title="Encryption using blowfish algorithm.">PMA_blowfish_encrypt</a>(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>, $secret)
+<a name="l00495"></a><a class="code" href="blowfish_8php.html#a8e312055008054767649ab4dbe99ed90">00495</a> <span class="keyword">function</span> <a class="code" href="blowfish_8php.html#a8e312055008054767649ab4dbe99ed90" title="Encryption using blowfish algorithm.">PMA_blowfish_encrypt</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>, $secret)
 <a name="l00496"></a>00496 {
 <a name="l00497"></a>00497     $pma_cipher = <span class="keyword">new</span> <a class="code" href="classHorde__Cipher__blowfish.html">Horde_Cipher_blowfish</a>;
 <a name="l00498"></a>00498     $encrypt = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00499"></a>00499 
-<a name="l00500"></a>00500     $mod = strlen(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>) % 8;
+<a name="l00500"></a>00500     $mod = strlen(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>) % 8;
 <a name="l00501"></a>00501 
 <a name="l00502"></a>00502     <span class="keywordflow">if</span> ($mod &gt; 0) {
-<a name="l00503"></a>00503         <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> .= str_repeat(<span class="stringliteral">&quot;\0&quot;</span>, 8 - $mod);
+<a name="l00503"></a>00503         <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> .= str_repeat(<span class="stringliteral">&quot;\0&quot;</span>, 8 - $mod);
 <a name="l00504"></a>00504     }
 <a name="l00505"></a>00505 
-<a name="l00506"></a>00506     <span class="keywordflow">foreach</span> (str_split(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>, 8) as $chunk) {
+<a name="l00506"></a>00506     <span class="keywordflow">foreach</span> (str_split(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>, 8) as $chunk) {
 <a name="l00507"></a>00507         $encrypt .= $pma_cipher-&gt;encryptBlock($chunk, $secret);
 <a name="l00508"></a>00508     }
 <a name="l00509"></a>00509     <span class="keywordflow">return</span> base64_encode($encrypt);
@@ -602,9 +602,9 @@
 <a name="l00524"></a>00524 {
 <a name="l00525"></a>00525     $pma_cipher = <span class="keyword">new</span> <a class="code" href="classHorde__Cipher__blowfish.html">Horde_Cipher_blowfish</a>;
 <a name="l00526"></a>00526     $decrypt = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00527"></a>00527     <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = base64_decode($encdata);
+<a name="l00527"></a>00527     <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = base64_decode($encdata);
 <a name="l00528"></a>00528 
-<a name="l00529"></a>00529     <span class="keywordflow">foreach</span> (str_split(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>, 8) as $chunk) {
+<a name="l00529"></a>00529     <span class="keywordflow">foreach</span> (str_split(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>, 8) as $chunk) {
 <a name="l00530"></a>00530         $decrypt .= $pma_cipher-&gt;decryptBlock($chunk, $secret);
 <a name="l00531"></a>00531     }
 <a name="l00532"></a>00532     <span class="keywordflow">return</span> trim($decrypt);
@@ -617,7 +617,7 @@
     <ul>
       <li class="navelem"><a class="el" href="blowfish_8php.html">blowfish.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:27 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:48 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

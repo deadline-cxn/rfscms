@@ -1,7 +1,6 @@
 var server__status_8php =
 [
     [ "cleanDeprecated", "server__status_8php.html#a83b5a15a5ad32060bb1abe5966b579a8", null ],
-    [ "getDataPointsNumberList", "server__status_8php.html#a166b27828ca0e3ad2d98b472587abc3c", null ],
     [ "printMonitor", "server__status_8php.html#ad11dde67e2c4bb10ec198e26e7f3287f", null ],
     [ "printQueryStatistics", "server__status_8php.html#a5a528c5a548663f7b55c3b481c794a02", null ],
     [ "printServerTraffic", "server__status_8php.html#abfe999235a56a874471934cd49e1598d", null ],

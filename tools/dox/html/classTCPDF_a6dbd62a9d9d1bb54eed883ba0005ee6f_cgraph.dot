@@ -1,0 +1,33 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TCPDF\\addTTFfont",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TCPDF\\Error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a27ecf2a6c86b4b7976ebfaf5912b0f91",tooltip="This method is automatically called in case of fatal error; it simply outputs the message and halts t..."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TCPDF\\_destroy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#ae91c72441bff1164a3ab9d237a4e1faa",tooltip="Unset all class variables except the following critical variables: internal_encoding, state, bufferlen, buffer and diskcache."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TCPDF\\empty_string",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a681e9cc13fa324d8e538a5873f3990c2",tooltip="Determine whether a string is empty."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TCPDF\\_getfontpath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a859c9ff83c417b518afa83c0da7a62b1",tooltip="Return fonts path."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TCPDF\\_getULONG",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a22fdab26c7eeb4e1946af5050e4b52d3",tooltip="Get ULONG from string (Big Endian 32-bit unsigned integer)."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TCPDF\\_getUSHORT",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a7811fe029ec582174ed310d7563a876f",tooltip="Get USHORT from string (Big Endian 16-bit unsigned integer)."];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TCPDF\\_getFWORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a4908bc80a583107b7c8b3f768277e568",tooltip="Get FWORD from string (Big Endian 16-bit signed integer)."];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="TCPDF\\_getSHORT",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#aa9c624edd1ea5063cb13468139e12d91",tooltip="Get SHORT from string (Big Endian 16-bit signed integer)."];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="TCPDF\\_getUFWORD",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a39b4ff7e526b30437ff704526801809c",tooltip="Get UFWORD from string (Big Endian 16-bit unsigned integer)."];
+  Node10 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="TCPDF\\_getFIXED",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a0bf637e15b9d3f0e3f090e826fed9224",tooltip="Get FIXED from string (32-bit signed fixed-point number (16.16)."];
+  Node11 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="TCPDF\\_getBYTE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#aa5f2d012801e75c7f416ac12c6e5ffa9",tooltip="Get BYTE from string (8-bit unsigned integer)."];
+}

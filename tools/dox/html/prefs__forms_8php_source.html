@@ -109,7 +109,7 @@
 <a name="l00031"></a><a class="code" href="prefs__forms_8php.html#a118a0de8f01f5c265457bbc915df0105">00031</a> <a class="code" href="prefs__forms_8php.html#a118a0de8f01f5c265457bbc915df0105">$form_display</a> = <span class="keyword">new</span> <a class="code" href="classFormDisplay.html" title="Core libraries.">FormDisplay</a>();
 <a name="l00032"></a>00032 <span class="keywordflow">foreach</span> (<a class="code" href="setup_8forms_8php.html#a8dcd469e6c336555e43c3003b0a0da54">$forms</a>[$form_param] as $form_name =&gt; $form) {
 <a name="l00033"></a>00033     <span class="comment">// skip Developer form if no setting is available</span>
-<a name="l00034"></a>00034     <span class="keywordflow">if</span> ($form_name == <span class="stringliteral">&#39;Developer&#39;</span> &amp;&amp; !<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UserprefsDeveloperTab&#39;</span>]) {
+<a name="l00034"></a>00034     <span class="keywordflow">if</span> ($form_name == <span class="stringliteral">&#39;Developer&#39;</span> &amp;&amp; !<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UserprefsDeveloperTab&#39;</span>]) {
 <a name="l00035"></a>00035         <span class="keywordflow">continue</span>;
 <a name="l00036"></a>00036     }
 <a name="l00037"></a>00037     <a class="code" href="prefs__forms_8php.html#a118a0de8f01f5c265457bbc915df0105">$form_display</a>-&gt;registerForm($form_name, $form, 1);
@@ -129,21 +129,21 @@
 <a name="l00051"></a>00051 <span class="keywordflow">if</span> (<a class="code" href="prefs__forms_8php.html#a118a0de8f01f5c265457bbc915df0105">$form_display</a>-&gt;process(<span class="keyword">false</span>) &amp;&amp; !<a class="code" href="prefs__forms_8php.html#a118a0de8f01f5c265457bbc915df0105">$form_display</a>-&gt;hasErrors()) {
 <a name="l00052"></a>00052     <span class="comment">// save settings</span>
 <a name="l00053"></a>00053     $old_settings = <a class="code" href="user__preferences_8lib_8php.html#ab1f255ccfeec708bae280a2a392c2a76" title="Loads user preferences.">PMA_load_userprefs</a>();
-<a name="l00054"></a>00054     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="user__preferences_8lib_8php.html#a612367b15875675745672a4b50e4a1a2" title="Saves user preferences.">PMA_save_userprefs</a>(<a class="code" href="classConfigFile.html#a764353fcb126bed951fe51293be6463e" title="Returns class instance.">ConfigFile::getInstance</a>()-&gt;getConfigArray());
-<a name="l00055"></a>00055     <span class="keywordflow">if</span> (<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> === <span class="keyword">true</span>) {
+<a name="l00054"></a>00054     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="user__preferences_8lib_8php.html#a612367b15875675745672a4b50e4a1a2" title="Saves user preferences.">PMA_save_userprefs</a>(<a class="code" href="classConfigFile.html#a764353fcb126bed951fe51293be6463e" title="Returns class instance.">ConfigFile::getInstance</a>()-&gt;getConfigArray());
+<a name="l00055"></a>00055     <span class="keywordflow">if</span> (<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> === <span class="keyword">true</span>) {
 <a name="l00056"></a>00056         <span class="comment">// reload config</span>
-<a name="l00057"></a>00057         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;loadUserPreferences();
+<a name="l00057"></a>00057         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;loadUserPreferences();
 <a name="l00058"></a>00058         $hash = ltrim(filter_input(INPUT_POST, <span class="stringliteral">&#39;tab_hash&#39;</span>), <span class="charliteral">&#39;#&#39;</span>);
 <a name="l00059"></a>00059         <a class="code" href="user__preferences_8lib_8php.html#a4bccdbd1cfb8f10dfaa41ee6aec56738" title="Redirects after saving new user preferences.">PMA_userprefs_redirect</a>(<a class="code" href="setup_8forms_8php.html#a8dcd469e6c336555e43c3003b0a0da54">$forms</a>, $old_settings, <span class="stringliteral">&#39;prefs_forms.php&#39;</span>, array(
 <a name="l00060"></a>00060             <span class="stringliteral">&#39;form&#39;</span> =&gt; $form_param), $hash);
 <a name="l00061"></a>00061         <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>;
 <a name="l00062"></a>00062     } <span class="keywordflow">else</span> {
-<a name="l00063"></a>00063         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00063"></a>00063         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00064"></a>00064     }
 <a name="l00065"></a>00065 }
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067 <span class="comment">// display forms</span>
-<a name="l00068"></a><a class="code" href="prefs__forms_8php.html#a9cacbfe03d80698a62f0bc140e3f1c32">00068</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;config.js&#39;</span>;
+<a name="l00068"></a><a class="code" href="prefs__forms_8php.html#a9cacbfe03d80698a62f0bc140e3f1c32">00068</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;config.js&#39;</span>;
 <a name="l00069"></a>00069 require <span class="stringliteral">&#39;./libraries/header.inc.php&#39;</span>;
 <a name="l00070"></a>00070 require <span class="stringliteral">&#39;./libraries/user_preferences.inc.php&#39;</span>;
 <a name="l00071"></a>00071 <span class="keywordflow">if</span> (<a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a>) {
@@ -171,7 +171,7 @@
     <ul>
       <li class="navelem"><a class="el" href="prefs__forms_8php.html">prefs_forms.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

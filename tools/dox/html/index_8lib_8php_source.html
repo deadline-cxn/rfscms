@@ -96,11 +96,11 @@
 <a name="l00018"></a>00018 <span class="comment"> */</span>
 <a name="l00019"></a><a class="code" href="index_8lib_8php.html#a031a718b0669e0d7fa840942840d9bb7">00019</a> <span class="keyword">function</span> <a class="code" href="index_8lib_8php.html#a031a718b0669e0d7fa840942840d9bb7" title="Initializes message list.">messages_begin</a>()
 <a name="l00020"></a>00020 {
-<a name="l00021"></a>00021     <span class="keywordflow">if</span> (! isset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>]) || !is_array(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>])) {
-<a name="l00022"></a>00022         <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>] = array(<span class="stringliteral">&#39;error&#39;</span> =&gt; array(), <span class="stringliteral">&#39;notice&#39;</span> =&gt; array());
+<a name="l00021"></a>00021     <span class="keywordflow">if</span> (! isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>]) || !is_array(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>])) {
+<a name="l00022"></a>00022         <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>] = array(<span class="stringliteral">&#39;error&#39;</span> =&gt; array(), <span class="stringliteral">&#39;notice&#39;</span> =&gt; array());
 <a name="l00023"></a>00023     } <span class="keywordflow">else</span> {
 <a name="l00024"></a>00024         <span class="comment">// reset message states</span>
-<a name="l00025"></a>00025         <span class="keywordflow">foreach</span> (<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>] as &amp;$messages) {
+<a name="l00025"></a>00025         <span class="keywordflow">foreach</span> (<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>] as &amp;$messages) {
 <a name="l00026"></a>00026             <span class="keywordflow">foreach</span> ($messages as &amp;$msg) {
 <a name="l00027"></a>00027                 $msg[<span class="stringliteral">&#39;fresh&#39;</span>] = <span class="keyword">false</span>;
 <a name="l00028"></a>00028                 $msg[<span class="stringliteral">&#39;active&#39;</span>] = <span class="keyword">false</span>;
@@ -117,14 +117,14 @@
 <a name="l00039"></a>00039 <span class="comment"> * @param string $title language string id (in $str array)</span>
 <a name="l00040"></a>00040 <span class="comment"> * @param string $message message text</span>
 <a name="l00041"></a>00041 <span class="comment"> */</span>
-<a name="l00042"></a><a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01">00042</a> <span class="keyword">function</span> <a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01" title="Adds a new message to message list.">messages_set</a>(<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>, <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>, <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a>, <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>)
+<a name="l00042"></a><a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01">00042</a> <span class="keyword">function</span> <a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01" title="Adds a new message to message list.">messages_set</a>(<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>, <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>, <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a>, <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>)
 <a name="l00043"></a>00043 {
-<a name="l00044"></a>00044     $fresh = ! isset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>][<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>]);
-<a name="l00045"></a>00045     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>][<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>] = array(
+<a name="l00044"></a>00044     $fresh = ! isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>][<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>]);
+<a name="l00045"></a>00045     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>][<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>] = array(
 <a name="l00046"></a>00046         <span class="stringliteral">&#39;fresh&#39;</span> =&gt; $fresh,
 <a name="l00047"></a>00047         <span class="stringliteral">&#39;active&#39;</span> =&gt; <span class="keyword">true</span>,
 <a name="l00048"></a>00048         <span class="stringliteral">&#39;title&#39;</span> =&gt; <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a>,
-<a name="l00049"></a>00049         <span class="stringliteral">&#39;message&#39;</span> =&gt; <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>);
+<a name="l00049"></a>00049         <span class="stringliteral">&#39;message&#39;</span> =&gt; <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>);
 <a name="l00050"></a>00050 }
 <a name="l00051"></a>00051 <span class="comment"></span>
 <a name="l00052"></a>00052 <span class="comment">/**</span>
@@ -132,7 +132,7 @@
 <a name="l00054"></a>00054 <span class="comment"> */</span>
 <a name="l00055"></a><a class="code" href="index_8lib_8php.html#abec3a4ea3dd1131a51bee98191729038">00055</a> <span class="keyword">function</span> <a class="code" href="index_8lib_8php.html#abec3a4ea3dd1131a51bee98191729038" title="Cleans up message list.">messages_end</a>()
 <a name="l00056"></a>00056 {
-<a name="l00057"></a>00057     <span class="keywordflow">foreach</span> (<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>] as &amp;$messages) {
+<a name="l00057"></a>00057     <span class="keywordflow">foreach</span> (<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>] as &amp;$messages) {
 <a name="l00058"></a>00058         $remove_ids = array();
 <a name="l00059"></a>00059         <span class="keywordflow">foreach</span> ($messages as <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> =&gt; &amp;$msg) {
 <a name="l00060"></a>00060             <span class="keywordflow">if</span> ($msg[<span class="stringliteral">&#39;active&#39;</span>] == <span class="keyword">false</span>) {
@@ -151,10 +151,10 @@
 <a name="l00073"></a><a class="code" href="index_8lib_8php.html#a0cd61bb54b23911fd29239fc4ccbd263">00073</a> <span class="keyword">function</span> <a class="code" href="index_8lib_8php.html#a0cd61bb54b23911fd29239fc4ccbd263" title="Prints message list, must be called after messages_end()">messages_show_html</a>()
 <a name="l00074"></a>00074 {
 <a name="l00075"></a>00075     $old_ids = array();
-<a name="l00076"></a>00076     <span class="keywordflow">foreach</span> (<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>] as <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> =&gt; $messages) {
+<a name="l00076"></a>00076     <span class="keywordflow">foreach</span> (<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;messages&#39;</span>] as <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> =&gt; $messages) {
 <a name="l00077"></a>00077         <span class="keywordflow">foreach</span> ($messages as <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> =&gt; $msg) {
-<a name="l00078"></a>00078             echo <span class="stringliteral">&#39;&lt;div class=&quot;&#39;</span> . <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> . <span class="stringliteral">&#39;&quot; id=&quot;&#39;</span> . <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> . <span class="stringliteral">&#39;&quot;&gt;&#39;</span> . <span class="stringliteral">&#39;&lt;h4&gt;&#39;</span> . $msg[<span class="stringliteral">&#39;title&#39;</span>] . <span class="stringliteral">&#39;&lt;/h4&gt;&#39;</span> . $msg[<span class="stringliteral">&#39;message&#39;</span>] . <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;
-<a name="l00079"></a>00079             <span class="keywordflow">if</span> (!$msg[<span class="stringliteral">&#39;fresh&#39;</span>] &amp;&amp; <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> != <span class="stringliteral">&#39;error&#39;</span>) {
+<a name="l00078"></a>00078             echo <span class="stringliteral">&#39;&lt;div class=&quot;&#39;</span> . <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> . <span class="stringliteral">&#39;&quot; id=&quot;&#39;</span> . <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> . <span class="stringliteral">&#39;&quot;&gt;&#39;</span> . <span class="stringliteral">&#39;&lt;h4&gt;&#39;</span> . $msg[<span class="stringliteral">&#39;title&#39;</span>] . <span class="stringliteral">&#39;&lt;/h4&gt;&#39;</span> . $msg[<span class="stringliteral">&#39;message&#39;</span>] . <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;
+<a name="l00079"></a>00079             <span class="keywordflow">if</span> (!$msg[<span class="stringliteral">&#39;fresh&#39;</span>] &amp;&amp; <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> != <span class="stringliteral">&#39;error&#39;</span>) {
 <a name="l00080"></a>00080                 $old_ids[] = <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>;
 <a name="l00081"></a>00081             }
 <a name="l00082"></a>00082         }
@@ -179,19 +179,19 @@
 <a name="l00101"></a>00101     <span class="comment">// from a working server</span>
 <a name="l00102"></a>00102     $connection_timeout = 3;
 <a name="l00103"></a>00103 
-<a name="l00104"></a>00104     <a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a> = <span class="stringliteral">&#39;http://phpmyadmin.net/home_page/version.php&#39;</span>;
+<a name="l00104"></a>00104     <a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a> = <span class="stringliteral">&#39;http://phpmyadmin.net/home_page/version.php&#39;</span>;
 <a name="l00105"></a>00105     $context = stream_context_create(array(
 <a name="l00106"></a>00106         <span class="stringliteral">&#39;http&#39;</span> =&gt; array(
 <a name="l00107"></a>00107             <span class="stringliteral">&#39;timeout&#39;</span> =&gt; $connection_timeout)));
-<a name="l00108"></a>00108     <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = @file_get_contents(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, null, $context);
-<a name="l00109"></a>00109     <span class="keywordflow">if</span> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> === <span class="keyword">false</span>) {
+<a name="l00108"></a>00108     <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = @file_get_contents(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, null, $context);
+<a name="l00109"></a>00109     <span class="keywordflow">if</span> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> === <span class="keyword">false</span>) {
 <a name="l00110"></a>00110         <span class="keywordflow">if</span> (function_exists(<span class="stringliteral">&#39;curl_init&#39;</span>)) {
-<a name="l00111"></a>00111             <a class="code" href="query_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a> = curl_init(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
-<a name="l00112"></a>00112             curl_setopt(<a class="code" href="query_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_HEADER, <span class="keyword">false</span>);
-<a name="l00113"></a>00113             curl_setopt(<a class="code" href="query_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);
-<a name="l00114"></a>00114             curl_setopt(<a class="code" href="query_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_TIMEOUT, $connection_timeout);
-<a name="l00115"></a>00115             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = curl_exec(<a class="code" href="query_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>);
-<a name="l00116"></a>00116             curl_close(<a class="code" href="query_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>);
+<a name="l00111"></a>00111             <a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a> = curl_init(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
+<a name="l00112"></a>00112             curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_HEADER, <span class="keyword">false</span>);
+<a name="l00113"></a>00113             curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);
+<a name="l00114"></a>00114             curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_TIMEOUT, $connection_timeout);
+<a name="l00115"></a>00115             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = curl_exec(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>);
+<a name="l00116"></a>00116             curl_close(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>);
 <a name="l00117"></a>00117         } <span class="keywordflow">else</span> {
 <a name="l00118"></a>00118             <a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01" title="Adds a new message to message list.">messages_set</a>(
 <a name="l00119"></a>00119                 <span class="stringliteral">&#39;error&#39;</span>,
@@ -202,7 +202,7 @@
 <a name="l00124"></a>00124         }
 <a name="l00125"></a>00125     }
 <a name="l00126"></a>00126 
-<a name="l00127"></a>00127     <span class="keywordflow">if</span> (empty(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>)) {
+<a name="l00127"></a>00127     <span class="keywordflow">if</span> (empty(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>)) {
 <a name="l00128"></a>00128         <a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01" title="Adds a new message to message list.">messages_set</a>(
 <a name="l00129"></a>00129             <span class="stringliteral">&#39;error&#39;</span>,
 <a name="l00130"></a>00130             $message_id,
@@ -212,7 +212,7 @@
 <a name="l00134"></a>00134     }
 <a name="l00135"></a>00135 
 <a name="l00136"></a>00136     <span class="comment">/* Format: version\ndate\n(download\n)* */</span>
-<a name="l00137"></a>00137     $data_list = explode(<span class="stringliteral">&quot;\n&quot;</span>, <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
+<a name="l00137"></a>00137     $data_list = explode(<span class="stringliteral">&quot;\n&quot;</span>, <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
 <a name="l00138"></a>00138 
 <a name="l00139"></a>00139     <span class="keywordflow">if</span> (count($data_list) &gt; 1) {
 <a name="l00140"></a>00140         $version = $data_list[0];
@@ -231,7 +231,7 @@
 <a name="l00153"></a>00153         <span class="keywordflow">return</span>;
 <a name="l00154"></a>00154     }
 <a name="l00155"></a>00155 
-<a name="l00156"></a>00156     $version_local = <a class="code" href="index_8lib_8php.html#a0502fd6454e3be90611144b56c7f1c9c" title="Calculates numerical equivalent of phpMyAdmin version string.">version_to_int</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;<span class="keyword">get</span>(<span class="stringliteral">&#39;PMA_VERSION&#39;</span>));
+<a name="l00156"></a>00156     $version_local = <a class="code" href="index_8lib_8php.html#a0502fd6454e3be90611144b56c7f1c9c" title="Calculates numerical equivalent of phpMyAdmin version string.">version_to_int</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;<span class="keyword">get</span>(<span class="stringliteral">&#39;PMA_VERSION&#39;</span>));
 <a name="l00157"></a>00157     <span class="keywordflow">if</span> ($version_local === <span class="keyword">false</span>) {
 <a name="l00158"></a>00158         <a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01" title="Adds a new message to message list.">messages_set</a>(
 <a name="l00159"></a>00159             <span class="stringliteral">&#39;error&#39;</span>,
@@ -354,7 +354,7 @@
 <a name="l00276"></a>00276     $strBlowfishSecretMsg = __(<span class="stringliteral">&#39;You didn\&#39;t have blowfish secret set and have enabled cookie authentication, so a key was automatically generated for you. It is used to encrypt cookies; you don\&#39;t need to remember it.&#39;</span>);
 <a name="l00277"></a>00277     $strBZipDumpWarning = __(<span class="stringliteral">&#39;%sBzip2 compression and decompression%s requires functions (%s) which are unavailable on this system.&#39;</span>);
 <a name="l00278"></a>00278     $strBZipDumpWarning = sprintf($strBZipDumpWarning, <span class="stringliteral">&#39;[a@?page=form&amp;amp;formset=Features#tab_Import_export]&#39;</span>, <span class="stringliteral">&#39;[/a]&#39;</span>, <span class="stringliteral">&#39;%s&#39;</span>);
-<a name="l00279"></a>00279     $strDirectoryNotice = __(<span class="stringliteral">&#39;This value should be double checked to ensure that this directory is neither world accessible nor readable or writable by other users on your server.&#39;</span>);
+<a name="l00279"></a>00279     $strDirectoryNotice = __(<span class="stringliteral">&#39;This value should be double checked to ensure that this directory is neither world accessible nor readable or writable by other `users` on your server.&#39;</span>);
 <a name="l00280"></a>00280     $strForceSSLNotice = __(<span class="stringliteral">&#39;This %soption%s should be enabled if your web server supports it.&#39;</span>);
 <a name="l00281"></a>00281     $strForceSSLNotice = sprintf($strForceSSLNotice, <span class="stringliteral">&#39;[a@?page=form&amp;amp;formset=Features#tab_Security]&#39;</span>, <span class="stringliteral">&#39;[/a]&#39;</span>);
 <a name="l00282"></a>00282     $strGZipDumpWarning = __(<span class="stringliteral">&#39;%sGZip compression and decompression%s requires functions (%s) which are unavailable on this system.&#39;</span>);
@@ -374,10 +374,10 @@
 <a name="l00296"></a>00296     $strZipDumpImportWarning = __(<span class="stringliteral">&#39;%sZip decompression%s requires functions (%s) which are unavailable on this system.&#39;</span>);
 <a name="l00297"></a>00297     $strZipDumpImportWarning = sprintf($strZipDumpImportWarning, <span class="stringliteral">&#39;[a@?page=form&amp;amp;formset=Features#tab_Import_export]&#39;</span>, <span class="stringliteral">&#39;[/a]&#39;</span>, <span class="stringliteral">&#39;%s&#39;</span>);
 <a name="l00298"></a>00298 
-<a name="l00299"></a>00299     <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 1, $server_cnt = <a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServerCount(); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt;= $server_cnt; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
+<a name="l00299"></a>00299     <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 1, $server_cnt = <a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServerCount(); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt;= $server_cnt; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
 <a name="l00300"></a>00300         $cookie_auth_server = (<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getValue(<span class="stringliteral">&quot;Servers/$i/auth_type&quot;</span>) == <span class="stringliteral">&#39;cookie&#39;</span>);
 <a name="l00301"></a>00301         $cookie_auth_used |= $cookie_auth_server;
-<a name="l00302"></a>00302         $server_name = <a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServerName(<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>);
+<a name="l00302"></a>00302         $server_name = <a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServerName(<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>);
 <a name="l00303"></a>00303         <span class="keywordflow">if</span> ($server_name == <span class="stringliteral">&#39;localhost&#39;</span>) {
 <a name="l00304"></a>00304             $server_name .=  <span class="stringliteral">&quot; [$i]&quot;</span>;
 <a name="l00305"></a>00305         }
@@ -427,8 +427,8 @@
 <a name="l00349"></a>00349                 <span class="stringliteral">&#39;notice&#39;</span>,
 <a name="l00350"></a>00350                 <span class="stringliteral">&quot;Servers/$i/auth_type&quot;</span>,
 <a name="l00351"></a>00351                 <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a>,
-<a name="l00352"></a>00352                 <a class="code" href="config__functions_8lib_8php.html#ae8ad142244b34b6ca9cacb76cd5a65ed" title="Returns sanitized language string, taking into account our special codes for formatting.">PMA_lang</a>($strServerAuthConfigMsg, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>) . <span class="charliteral">&#39; &#39;</span> .
-<a name="l00353"></a>00353                     <a class="code" href="config__functions_8lib_8php.html#ae8ad142244b34b6ca9cacb76cd5a65ed" title="Returns sanitized language string, taking into account our special codes for formatting.">PMA_lang</a>($strSecurityInfoMsg, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>));
+<a name="l00352"></a>00352                 <a class="code" href="config__functions_8lib_8php.html#ae8ad142244b34b6ca9cacb76cd5a65ed" title="Returns sanitized language string, taking into account our special codes for formatting.">PMA_lang</a>($strServerAuthConfigMsg, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>) . <span class="charliteral">&#39; &#39;</span> .
+<a name="l00353"></a>00353                     <a class="code" href="config__functions_8lib_8php.html#ae8ad142244b34b6ca9cacb76cd5a65ed" title="Returns sanitized language string, taking into account our special codes for formatting.">PMA_lang</a>($strSecurityInfoMsg, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>));
 <a name="l00354"></a>00354         }
 <a name="l00355"></a>00355 
 <a name="l00356"></a>00356         <span class="comment">//</span>
@@ -444,7 +444,7 @@
 <a name="l00366"></a>00366                 <span class="stringliteral">&quot;Servers/$i/AllowNoPassword&quot;</span>,
 <a name="l00367"></a>00367                 <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a>,
 <a name="l00368"></a>00368                 __(<span class="stringliteral">&#39;You allow for connecting to the server without a password.&#39;</span>) . <span class="charliteral">&#39; &#39;</span> .
-<a name="l00369"></a>00369                     <a class="code" href="config__functions_8lib_8php.html#ae8ad142244b34b6ca9cacb76cd5a65ed" title="Returns sanitized language string, taking into account our special codes for formatting.">PMA_lang</a>($strSecurityInfoMsg, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>));
+<a name="l00369"></a>00369                     <a class="code" href="config__functions_8lib_8php.html#ae8ad142244b34b6ca9cacb76cd5a65ed" title="Returns sanitized language string, taking into account our special codes for formatting.">PMA_lang</a>($strSecurityInfoMsg, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>));
 <a name="l00370"></a>00370         }
 <a name="l00371"></a>00371     }
 <a name="l00372"></a>00372 
@@ -636,7 +636,7 @@
     <ul>
       <li class="navelem"><a class="el" href="index_8lib_8php.html">index.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

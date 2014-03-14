@@ -99,12 +99,12 @@
 <a name="l00021"></a>00021 <span class="comment">/* Was data posted? */</span>
 <a name="l00022"></a>00022 <span class="keywordflow">if</span> (isset($_POST[<span class="stringliteral">&#39;user&#39;</span>])) {
 <a name="l00023"></a>00023     <span class="comment">/* Store there credentials */</span>
-<a name="l00024"></a>00024     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_user&#39;</span>] = $_POST[<span class="stringliteral">&#39;user&#39;</span>];
-<a name="l00025"></a>00025     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_password&#39;</span>] = $_POST[<span class="stringliteral">&#39;password&#39;</span>];
-<a name="l00026"></a>00026     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_host&#39;</span>] = $_POST[<span class="stringliteral">&#39;host&#39;</span>];
-<a name="l00027"></a>00027     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_port&#39;</span>] = $_POST[<span class="stringliteral">&#39;port&#39;</span>];
+<a name="l00024"></a>00024     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_user&#39;</span>] = $_POST[<span class="stringliteral">&#39;user&#39;</span>];
+<a name="l00025"></a>00025     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_password&#39;</span>] = $_POST[<span class="stringliteral">&#39;password&#39;</span>];
+<a name="l00026"></a>00026     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_host&#39;</span>] = $_POST[<span class="stringliteral">&#39;host&#39;</span>];
+<a name="l00027"></a>00027     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_port&#39;</span>] = $_POST[<span class="stringliteral">&#39;port&#39;</span>];
 <a name="l00028"></a>00028     <span class="comment">/* Update another field of server configuration */</span>
-<a name="l00029"></a>00029     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_cfgupdate&#39;</span>] = array(<span class="stringliteral">&#39;verbose&#39;</span> =&gt; <span class="stringliteral">&#39;Signon test&#39;</span>);
+<a name="l00029"></a>00029     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_cfgupdate&#39;</span>] = array(<span class="stringliteral">&#39;verbose&#39;</span> =&gt; <span class="stringliteral">&#39;Signon test&#39;</span>);
 <a name="l00030"></a>00030     <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> = session_id();
 <a name="l00031"></a>00031     <span class="comment">/* Close that session */</span>
 <a name="l00032"></a>00032     session_write_close();
@@ -115,38 +115,39 @@
 <a name="l00037"></a>00037     header(<span class="stringliteral">&#39;Content-Type: text/html; charset=utf-8&#39;</span>);
 <a name="l00038"></a>00038     echo <span class="stringliteral">&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00039"></a>00039     ?&gt;
-<a name="l00040"></a>00040 &lt;!DOCTYPE html&gt;
-<a name="l00041"></a>00041 &lt;html xmlns=<span class="stringliteral">&quot;http://www.w3.org/1999/xhtml&quot;</span> xml:lang=<span class="stringliteral">&quot;en&quot;</span> lang=<span class="stringliteral">&quot;en&quot;</span> dir=<span class="stringliteral">&quot;ltr&quot;</span>&gt;
-<a name="l00042"></a>00042 &lt;head&gt;
-<a name="l00043"></a>00043     &lt;link rel=<span class="stringliteral">&quot;icon&quot;</span> href=<span class="stringliteral">&quot;../favicon.ico&quot;</span> <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;image/x-icon&quot;</span> /&gt;
-<a name="l00044"></a>00044     &lt;link rel=<span class="stringliteral">&quot;shortcut icon&quot;</span> href=<span class="stringliteral">&quot;../favicon.ico&quot;</span> <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;image/x-icon&quot;</span> /&gt;
-<a name="l00045"></a>00045     &lt;title&gt;phpMyAdmin single signon example&lt;/title&gt;
-<a name="l00046"></a>00046 &lt;/head&gt;
-<a name="l00047"></a>00047 &lt;body&gt;
-<a name="l00048"></a>00048 &lt;?php
-<a name="l00049"></a>00049 <span class="keywordflow">if</span> (isset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_error_message&#39;</span>])) {
-<a name="l00050"></a>00050     echo <span class="stringliteral">&#39;&lt;p class=&quot;error&quot;&gt;&#39;</span> . <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_error_message&#39;</span>] . <span class="stringliteral">&#39;&lt;/p&gt;&#39;</span>;
-<a name="l00051"></a>00051 }
-<a name="l00052"></a>00052 ?&gt;
-<a name="l00053"></a>00053 &lt;form action=<span class="stringliteral">&quot;signon.php&quot;</span> method=<span class="stringliteral">&quot;post&quot;</span>&gt;
-<a name="l00054"></a>00054 Username: &lt;input <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;user&quot;</span> /&gt;&lt;br /&gt;
-<a name="l00055"></a>00055 Password: &lt;input type=<span class="stringliteral">&quot;password&quot;</span> name=<span class="stringliteral">&quot;password&quot;</span> /&gt;&lt;br /&gt;
-<a name="l00056"></a>00056 Host: (will use the one from config.inc.php by <span class="keywordflow">default</span>) &lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;host&quot;</span> /&gt;&lt;br /&gt;
-<a name="l00057"></a>00057 Port: (will use the one from config.inc.php by <span class="keywordflow">default</span>) &lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;port&quot;</span> /&gt;&lt;br /&gt;
-<a name="l00058"></a>00058 &lt;input type=<span class="stringliteral">&quot;submit&quot;</span> /&gt;
-<a name="l00059"></a>00059 &lt;/form&gt;
-<a name="l00060"></a>00060 &lt;/body&gt;
-<a name="l00061"></a>00061 &lt;/html&gt;
-<a name="l00062"></a>00062 &lt;?php
-<a name="l00063"></a>00063 }
-<a name="l00064"></a>00064 ?&gt;
+<a name="l00040"></a>00040 &lt;!DOCTYPE html PUBLIC <span class="stringliteral">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span>
+<a name="l00041"></a>00041     <span class="stringliteral">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>&gt;
+<a name="l00042"></a>00042 &lt;html xmlns=<span class="stringliteral">&quot;http://www.w3.org/1999/xhtml&quot;</span> xml:lang=<span class="stringliteral">&quot;en&quot;</span> lang=<span class="stringliteral">&quot;en&quot;</span> dir=<span class="stringliteral">&quot;ltr&quot;</span>&gt;
+<a name="l00043"></a>00043 &lt;head&gt;
+<a name="l00044"></a>00044     &lt;link rel=<span class="stringliteral">&quot;icon&quot;</span> href=<span class="stringliteral">&quot;../favicon.ico&quot;</span> <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;image/x-icon&quot;</span> /&gt;
+<a name="l00045"></a>00045     &lt;link rel=<span class="stringliteral">&quot;shortcut icon&quot;</span> href=<span class="stringliteral">&quot;../favicon.ico&quot;</span> <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;image/x-icon&quot;</span> /&gt;
+<a name="l00046"></a>00046     &lt;title&gt;phpMyAdmin single signon example&lt;/title&gt;
+<a name="l00047"></a>00047 &lt;/head&gt;
+<a name="l00048"></a>00048 &lt;body&gt;
+<a name="l00049"></a>00049 &lt;?php
+<a name="l00050"></a>00050 <span class="keywordflow">if</span> (isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_error_message&#39;</span>])) {
+<a name="l00051"></a>00051     echo <span class="stringliteral">&#39;&lt;p class=&quot;error&quot;&gt;&#39;</span> . <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_single_signon_error_message&#39;</span>] . <span class="stringliteral">&#39;&lt;/p&gt;&#39;</span>;
+<a name="l00052"></a>00052 }
+<a name="l00053"></a>00053 ?&gt;
+<a name="l00054"></a>00054 &lt;form action=<span class="stringliteral">&quot;signon.php&quot;</span> method=<span class="stringliteral">&quot;post&quot;</span>&gt;
+<a name="l00055"></a>00055 Username: &lt;input <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;user&quot;</span> /&gt;&lt;br /&gt;
+<a name="l00056"></a>00056 Password: &lt;input type=<span class="stringliteral">&quot;password&quot;</span> name=<span class="stringliteral">&quot;password&quot;</span> /&gt;&lt;br /&gt;
+<a name="l00057"></a>00057 Host: (will use the one from config.inc.php by <span class="keywordflow">default</span>) &lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;host&quot;</span> /&gt;&lt;br /&gt;
+<a name="l00058"></a>00058 Port: (will use the one from config.inc.php by <span class="keywordflow">default</span>) &lt;input type=<span class="stringliteral">&quot;text&quot;</span> name=<span class="stringliteral">&quot;port&quot;</span> /&gt;&lt;br /&gt;
+<a name="l00059"></a>00059 &lt;input type=<span class="stringliteral">&quot;submit&quot;</span> /&gt;
+<a name="l00060"></a>00060 &lt;/form&gt;
+<a name="l00061"></a>00061 &lt;/body&gt;
+<a name="l00062"></a>00062 &lt;/html&gt;
+<a name="l00063"></a>00063 &lt;?php
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="signon_8php.html">signon.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

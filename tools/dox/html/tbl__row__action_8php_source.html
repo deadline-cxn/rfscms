@@ -112,11 +112,11 @@
 <a name="l00034"></a>00034 <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_mult&#39;</span>])) {
 <a name="l00035"></a>00035     $submit_mult = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_mult&#39;</span>];
 <a name="l00036"></a>00036 <span class="comment">// workaround for IE problem:</span>
-<a name="l00037"></a>00037 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_mult_delete_x&#39;</span>])) {
+<a name="l00037"></a>00037 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_mult_delete_x&#39;</span>])) {
 <a name="l00038"></a>00038     $submit_mult = <span class="stringliteral">&#39;row_delete&#39;</span>;
-<a name="l00039"></a>00039 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_mult_change_x&#39;</span>])) {
+<a name="l00039"></a>00039 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_mult_change_x&#39;</span>])) {
 <a name="l00040"></a>00040     $submit_mult = <span class="stringliteral">&#39;row_edit&#39;</span>;
-<a name="l00041"></a>00041 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_mult_export_x&#39;</span>])) {
+<a name="l00041"></a>00041 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;submit_mult_export_x&#39;</span>])) {
 <a name="l00042"></a>00042     $submit_mult = <span class="stringliteral">&#39;row_export&#39;</span>;
 <a name="l00043"></a>00043 }
 <a name="l00044"></a>00044 
@@ -182,8 +182,8 @@
 <a name="l00104"></a>00104 
 <a name="l00105"></a>00105         <span class="keywordflow">case</span> <span class="stringliteral">&#39;row_delete&#39;</span>:
 <a name="l00106"></a>00106         <span class="keywordflow">default</span>:
-<a name="l00107"></a>00107             <a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30" title="Get some core libraries.">$action</a> = <span class="stringliteral">&#39;tbl_row_action.php&#39;</span>;
-<a name="l00108"></a>00108             <a class="code" href="db__create_8php.html#a83e98b25d56666051a069a2d2b5d371b" title="Defines the url to return to in case of error in a sql statement.">$err_url</a> = <span class="stringliteral">&#39;tbl_row_action.php&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;url_params&#39;</span>]);
+<a name="l00107"></a>00107             <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a> = <span class="stringliteral">&#39;tbl_row_action.php&#39;</span>;
+<a name="l00108"></a>00108             <a class="code" href="db__create_8php.html#a83e98b25d56666051a069a2d2b5d371b" title="Defines the url to return to in case of error in a sql statement.">$err_url</a> = <span class="stringliteral">&#39;tbl_row_action.php&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;url_params&#39;</span>]);
 <a name="l00109"></a>00109             <span class="keywordflow">if</span> (! isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;mult_btn&#39;</span>])) {
 <a name="l00110"></a>00110                 $original_sql_query = <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>;
 <a name="l00111"></a>00111                 <span class="keywordflow">if</span> (! empty(<a class="code" href="db__export_8php.html#a9f97d7db14905bd6ce32b003b416769c">$url_query</a>)) {
@@ -191,7 +191,7 @@
 <a name="l00113"></a>00113                 }
 <a name="l00114"></a>00114             }
 <a name="l00115"></a>00115             include <span class="stringliteral">&#39;./libraries/mult_submits.inc.php&#39;</span>;
-<a name="l00116"></a>00116             <a class="code" href="db__structure_8php.html#a7456a2a86083cf908c8a435b70417f35">$_url_params</a> = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;url_params&#39;</span>];
+<a name="l00116"></a>00116             <a class="code" href="db__structure_8php.html#a7456a2a86083cf908c8a435b70417f35">$_url_params</a> = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;url_params&#39;</span>];
 <a name="l00117"></a>00117             <a class="code" href="db__structure_8php.html#a7456a2a86083cf908c8a435b70417f35">$_url_params</a>[<span class="stringliteral">&#39;goto&#39;</span>] = <span class="stringliteral">&#39;tbl_sql.php&#39;</span>;
 <a name="l00118"></a>00118             <a class="code" href="db__export_8php.html#a9f97d7db14905bd6ce32b003b416769c">$url_query</a> = <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="db__structure_8php.html#a7456a2a86083cf908c8a435b70417f35">$_url_params</a>);
 <a name="l00119"></a>00119 
@@ -234,7 +234,7 @@
     <ul>
       <li class="navelem"><a class="el" href="tbl__row__action_8php.html">tbl_row_action.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:34 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

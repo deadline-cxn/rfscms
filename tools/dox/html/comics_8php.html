@@ -87,9 +87,9 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="comics_8php.html#a66b7ee2739fe81c83d073391e395edeb">getcomic</a> ($title, $volume, $issue)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="comics_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="el" href="install_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(&quot;select * from comics where `published`='yes' order by time desc&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="comics_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="el" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(&quot;select * from comics where `published`='yes' order by time desc&quot;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="comics_8php.html#aaf044d7b76e42daeea81b04e4e52b3f2">$numc</a> = mysql_num_rows($res)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a>($i=0;$i&lt;$numc;$i++)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="comics_8php.html#a1c65f6bbca37919a8ba23d40e36eb7cd">if</a> ($data-&gt;access==255)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="video__wall_8php.html#a376839359383f6c767c35b4af1de941f">for</a>($i=0;$i&lt;$numc;$i++)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="comics_8php.html#a1c65f6bbca37919a8ba23d40e36eb7cd">if</a> ($data-&gt;access==255)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a66b7ee2739fe81c83d073391e395edeb"></a><!-- doxytag: member="comics.php::getcomic" ref="a66b7ee2739fe81c83d073391e395edeb" args="($title, $volume, $issue)" -->
@@ -123,7 +123,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="comics_8php_source.html#l00118">118</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
+<p>Definition at line <a class="el" href="comics_8php_source.html#l00095">95</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -151,7 +151,7 @@ Here is the call graph for this function:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="comics_8php_source.html#l00044">44</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
+<p>Definition at line <a class="el" href="comics_8php_source.html#l00043">43</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -179,7 +179,7 @@ Here is the call graph for this function:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="comics_8php_source.html#l00090">90</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
+<p>Definition at line <a class="el" href="comics_8php_source.html#l00076">76</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -207,7 +207,7 @@ Here is the call graph for this function:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="comics_8php_source.html#l00062">62</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
+<p>Definition at line <a class="el" href="comics_8php_source.html#l00054">54</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -232,7 +232,7 @@ Here is the call graph for this function:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="comics_8php_source.html#l00815">815</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
+<p>Definition at line <a class="el" href="comics_8php_source.html#l00750">750</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
 
 </div>
 </div>
@@ -241,13 +241,13 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$res = <a class="el" href="install_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(&quot;select * from comics where `published`='yes' order by time desc&quot;)</td>
+          <td class="memname">$res = <a class="el" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(&quot;select * from comics where `published`='yes' order by time desc&quot;)</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="comics_8php_source.html#l00814">814</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
+<p>Definition at line <a class="el" href="comics_8php_source.html#l00749">749</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
 
 </div>
 </div>
@@ -256,13 +256,13 @@ Here is the call graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> ($i=0;$i&lt;$numc;$i++) <a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>($data-&gt;access==255)</td>
+          <td class="memname"><a class="el" href="video__wall_8php.html#a376839359383f6c767c35b4af1de941f">for</a> ($i=0;$i&lt;$numc;$i++) <a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>($data-&gt;access==255)</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="comics_8php_source.html#l00829">829</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
+<p>Definition at line <a class="el" href="comics_8php_source.html#l00762">762</a> of file <a class="el" href="comics_8php_source.html">comics.php</a>.</p>
 
 </div>
 </div>
@@ -272,7 +272,7 @@ Here is the call graph for this function:</div>
     <ul>
       <li class="navelem"><a class="el" href="comics_8php.html">comics.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

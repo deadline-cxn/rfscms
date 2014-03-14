@@ -88,14 +88,16 @@ Namespaces</h2></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#ae2a75082dda14ac713673cf3929b12d5">if</a> (!defined('PMA_NO_VARIABLES_IMPORT'))</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_REQUEST['ajax_request'])&amp;&amp;isset($_REQUEST['pos'])&amp;&amp;isset($_REQUEST['session_max_rows']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#a9b835efbb97695b4ed9faf19a55b1080">$GLOBALS</a> ['js_include'][] = 'tbl_chart.js'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#a343c5dd0a781c9e5ec23a9c5b687e30b">$GLOBALS</a> ['js_include'][] = 'tbl_chart.js'</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="el" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274">PMA_DBI_try_query</a>($sql_query)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="server__binlog_8php.html#a210cd8c1314ce0899a71efb68bfac2e9">while</a>($row=<a class="el" href="mysqli_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37">PMA_DBI_fetch_assoc</a>($result))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#a48864657c0cac3dfc7ce738bdf20170e">$chartSettings</a> = array()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['chartSettings'], <br class="typebreak"/>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['chartSettings'], <br class="typebreak"/>
 'array'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#acea80df4156a51be0e6a4ff0c8aa9643">$url_params</a> ['db'] = $GLOBALS['db']</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#a906e6218d960131a60029f088d8acb6f">$url_params</a> ['reload'] = 1</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#af20635b6c08e03bfee9e3fc036fa80f3">$keys</a> = array_keys($data[0])</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#a2c90629611fababdc83641b9b3d016d2">$yaxis</a> = -1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#a2395dd9a731ed70d2a79ab17b34e04fd">$sanitized_data</a> = array()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tbl__chart_8php.html#acf0350d51c098c17d380cb67697ce982">foreach</a> ($data as $data_row_number=&gt; $data_row)</td></tr>
 </table>
 <hr/><h2>Variable Documentation</h2>
 <a class="anchor" id="a48864657c0cac3dfc7ce738bdf20170e"></a><!-- doxytag: member="tbl_chart.php::$chartSettings" ref="a48864657c0cac3dfc7ce738bdf20170e" args="" -->
@@ -109,22 +111,22 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00103">103</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00064">64</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9b835efbb97695b4ed9faf19a55b1080"></a><!-- doxytag: member="tbl_chart.php::$GLOBALS" ref="a9b835efbb97695b4ed9faf19a55b1080" args="['js_include'][]" -->
+<a class="anchor" id="a343c5dd0a781c9e5ec23a9c5b687e30b"></a><!-- doxytag: member="tbl_chart.php::$GLOBALS" ref="a343c5dd0a781c9e5ec23a9c5b687e30b" args="['js_include'][]" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$GLOBALS['js_include'][] = 'tbl_chart.js'</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (PMA_USR_BROWSER_AGENT== 'IE'&amp;&amp;PMA_USR_BROWSER_VER&lt; 9) $GLOBALS['js_include'][] = 'tbl_chart.js'</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00059">59</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00022">22</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
 
 </div>
 </div>
@@ -141,7 +143,7 @@ Variables</h2></td></tr>
 
 <p>Displays the page. </p>
 
-<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00144">144</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00105">105</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
 
 </div>
 </div>
@@ -158,7 +160,22 @@ Variables</h2></td></tr>
 
 <p>Runs common work. </p>
 
-<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00097">97</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00058">58</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2395dd9a731ed70d2a79ab17b34e04fd"></a><!-- doxytag: member="tbl_chart.php::$sanitized_data" ref="a2395dd9a731ed70d2a79ab17b34e04fd" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$sanitized_data = array()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00150">150</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
 
 </div>
 </div>
@@ -167,13 +184,13 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['chartSettings'], 'array')) $url_params['db'] = $GLOBALS['db']</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (<a class="el" href="core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700">PMA_isValid</a>($_REQUEST['chartSettings'], 'array')) $url_params['db'] = $GLOBALS['db']</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00108">108</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00069">69</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
 
 </div>
 </div>
@@ -188,7 +205,7 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00109">109</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00070">70</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
 
 </div>
 </div>
@@ -203,7 +220,22 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00145">145</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00106">106</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acf0350d51c098c17d380cb67697ce982"></a><!-- doxytag: member="tbl_chart.php::foreach" ref="acf0350d51c098c17d380cb67697ce982" args="($data as $data_row_number=&gt; $data_row)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="search_8php.html#a09b4b6d1a0b5fcafe14aee32edd9b8c9">foreach</a>($data as $data_row_number=&gt; $data_row)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="tbl__chart_8php_source.html#l00151">151</a> of file <a class="el" href="tbl__chart_8php_source.html">tbl_chart.php</a>.</p>
 
 </div>
 </div>
@@ -212,7 +244,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(count($keys) &gt; 1)</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(count($keys) &gt; 1)</td>
         </tr>
       </table>
 </div>
@@ -230,7 +262,7 @@ Variables</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="tbl__chart_8php.html">tbl_chart.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:41 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:53 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

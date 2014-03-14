@@ -175,39 +175,39 @@
 <a name="l00097"></a>00097 <span class="comment"> */</span>
 <a name="l00098"></a><a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">00098</a> <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a> = array();
 <a name="l00099"></a>00099 
-<a name="l00100"></a>00100 <span class="keywordflow">foreach</span> (<a class="code" href="replication_8inc_8php.html#a1030ecf30614db49cfaffabf77126fcf" title="replication types">$replication_types</a> as <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>) {
+<a name="l00100"></a>00100 <span class="keywordflow">foreach</span> (<a class="code" href="replication_8inc_8php.html#a1030ecf30614db49cfaffabf77126fcf" title="replication types">$replication_types</a> as <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>) {
 <a name="l00101"></a>00101     <span class="keywordflow">if</span> (count(${<span class="stringliteral">&quot;server_{$type}_replication&quot;</span>}) &gt; 0) {
 <a name="l00102"></a>00102         ${<span class="stringliteral">&quot;server_{$type}_status&quot;</span>} = <span class="keyword">true</span>;
-<a name="l00103"></a>00103         <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;status&#39;</span>] = <span class="keyword">true</span>;
+<a name="l00103"></a>00103         <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;status&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00104"></a>00104     } <span class="keywordflow">else</span> {
 <a name="l00105"></a>00105         ${<span class="stringliteral">&quot;server_{$type}_status&quot;</span>} = <span class="keyword">false</span>;
-<a name="l00106"></a>00106         <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;status&#39;</span>] = <span class="keyword">false</span>;
+<a name="l00106"></a>00106         <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;status&#39;</span>] = <span class="keyword">false</span>;
 <a name="l00107"></a>00107     }
 <a name="l00108"></a>00108     <span class="keywordflow">if</span> (${<span class="stringliteral">&quot;server_{$type}_status&quot;</span>}) {
 <a name="l00109"></a>00109         <span class="keywordflow">if</span> ($type == <span class="stringliteral">&quot;master&quot;</span>) {
 <a name="l00110"></a>00110             ${<span class="stringliteral">&quot;server_{$type}_Do_DB&quot;</span>} = explode(<span class="stringliteral">&quot;,&quot;</span>, <a class="code" href="replication_8inc_8php.html#afaff5fc07e17e590ec64a3da76265f1b" title="get master replication from server">$server_master_replication</a>[0][<span class="stringliteral">&quot;Binlog_Do_DB&quot;</span>]);
-<a name="l00111"></a>00111             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Do_DB&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Do_DB&quot;</span>};
+<a name="l00111"></a>00111             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Do_DB&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Do_DB&quot;</span>};
 <a name="l00112"></a>00112 
 <a name="l00113"></a>00113             ${<span class="stringliteral">&quot;server_{$type}_Ignore_DB&quot;</span>} = explode(<span class="stringliteral">&quot;,&quot;</span>, <a class="code" href="replication_8inc_8php.html#afaff5fc07e17e590ec64a3da76265f1b" title="get master replication from server">$server_master_replication</a>[0][<span class="stringliteral">&quot;Binlog_Ignore_DB&quot;</span>]);
-<a name="l00114"></a>00114             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Ignore_DB&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Ignore_DB&quot;</span>};
-<a name="l00115"></a>00115         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> ($type == <span class="stringliteral">&quot;slave&quot;</span>) {
+<a name="l00114"></a>00114             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Ignore_DB&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Ignore_DB&quot;</span>};
+<a name="l00115"></a>00115         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> ($type == <span class="stringliteral">&quot;slave&quot;</span>) {
 <a name="l00116"></a>00116             ${<span class="stringliteral">&quot;server_{$type}_Do_DB&quot;</span>} = explode(<span class="stringliteral">&quot;,&quot;</span>, <a class="code" href="replication_8inc_8php.html#a89863582b7f5cac5adb6a7acfe2d454b" title="get slave replication from server">$server_slave_replication</a>[0][<span class="stringliteral">&quot;Replicate_Do_DB&quot;</span>]);
-<a name="l00117"></a>00117             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Do_DB&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Do_DB&quot;</span>};
+<a name="l00117"></a>00117             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Do_DB&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Do_DB&quot;</span>};
 <a name="l00118"></a>00118 
 <a name="l00119"></a>00119             ${<span class="stringliteral">&quot;server_{$type}_Ignore_DB&quot;</span>} = explode(<span class="stringliteral">&quot;,&quot;</span>, <a class="code" href="replication_8inc_8php.html#a89863582b7f5cac5adb6a7acfe2d454b" title="get slave replication from server">$server_slave_replication</a>[0][<span class="stringliteral">&quot;Replicate_Ignore_DB&quot;</span>]);
-<a name="l00120"></a>00120             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Ignore_DB&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Ignore_DB&quot;</span>};
+<a name="l00120"></a>00120             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Ignore_DB&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Ignore_DB&quot;</span>};
 <a name="l00121"></a>00121 
 <a name="l00122"></a>00122             ${<span class="stringliteral">&quot;server_{$type}_Do_Table&quot;</span>} = explode(<span class="stringliteral">&quot;,&quot;</span>, <a class="code" href="replication_8inc_8php.html#a89863582b7f5cac5adb6a7acfe2d454b" title="get slave replication from server">$server_slave_replication</a>[0][<span class="stringliteral">&quot;Replicate_Do_Table&quot;</span>]);
-<a name="l00123"></a>00123             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Do_Table&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Do_Table&quot;</span>};
+<a name="l00123"></a>00123             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Do_Table&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Do_Table&quot;</span>};
 <a name="l00124"></a>00124 
 <a name="l00125"></a>00125             ${<span class="stringliteral">&quot;server_{$type}_Ignore_Table&quot;</span>} = explode(<span class="stringliteral">&quot;,&quot;</span>, <a class="code" href="replication_8inc_8php.html#a89863582b7f5cac5adb6a7acfe2d454b" title="get slave replication from server">$server_slave_replication</a>[0][<span class="stringliteral">&quot;Replicate_Ignore_Table&quot;</span>]);
-<a name="l00126"></a>00126             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Ignore_Table&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Ignore_Table&quot;</span>};
+<a name="l00126"></a>00126             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Ignore_Table&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Ignore_Table&quot;</span>};
 <a name="l00127"></a>00127 
 <a name="l00128"></a>00128             ${<span class="stringliteral">&quot;server_{$type}_Wild_Do_Table&quot;</span>} = explode(<span class="stringliteral">&quot;,&quot;</span>, <a class="code" href="replication_8inc_8php.html#a89863582b7f5cac5adb6a7acfe2d454b" title="get slave replication from server">$server_slave_replication</a>[0][<span class="stringliteral">&quot;Replicate_Wild_Do_Table&quot;</span>]);
-<a name="l00129"></a>00129             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Wild_Do_Table&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Wild_Do_Table&quot;</span>};
+<a name="l00129"></a>00129             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Wild_Do_Table&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Wild_Do_Table&quot;</span>};
 <a name="l00130"></a>00130 
 <a name="l00131"></a>00131             ${<span class="stringliteral">&quot;server_{$type}_Wild_Ignore_Table&quot;</span>} = explode(<span class="stringliteral">&quot;,&quot;</span>, <a class="code" href="replication_8inc_8php.html#a89863582b7f5cac5adb6a7acfe2d454b" title="get slave replication from server">$server_slave_replication</a>[0][<span class="stringliteral">&quot;Replicate_Wild_Ignore_Table&quot;</span>]);
-<a name="l00132"></a>00132             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Wild_Ignore_Table&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Wild_Ignore_Table&quot;</span>};
+<a name="l00132"></a>00132             <a class="code" href="replication_8inc_8php.html#ac6cdc0fe88a357d430e29c7b35046110">$replication_info</a>[<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>][<span class="stringliteral">&#39;Wild_Ignore_Table&#39;</span>] = ${<span class="stringliteral">&quot;server_{$type}_Wild_Ignore_Table&quot;</span>};
 <a name="l00133"></a>00133         }
 <a name="l00134"></a>00134     }
 <a name="l00135"></a>00135 }
@@ -234,19 +234,19 @@
 <a name="l00156"></a>00156 <span class="comment"> *</span>
 <a name="l00157"></a>00157 <span class="comment"> * @return mixed output of PMA_DBI_try_query</span>
 <a name="l00158"></a>00158 <span class="comment"> */</span>
-<a name="l00159"></a><a class="code" href="replication_8inc_8php.html#ab6d6043762c06ebed4f8da8c94d86562">00159</a> <span class="keyword">function</span> <a class="code" href="replication_8inc_8php.html#ab6d6043762c06ebed4f8da8c94d86562">PMA_replication_slave_control</a>(<a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30" title="Get some core libraries.">$action</a>, $control = null, $link = null)
+<a name="l00159"></a><a class="code" href="replication_8inc_8php.html#ab6d6043762c06ebed4f8da8c94d86562">00159</a> <span class="keyword">function</span> <a class="code" href="replication_8inc_8php.html#ab6d6043762c06ebed4f8da8c94d86562">PMA_replication_slave_control</a>(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>, $control = null, $link = null)
 <a name="l00160"></a>00160 {
-<a name="l00161"></a>00161     <a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30" title="Get some core libraries.">$action</a> = strtoupper(<a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30" title="Get some core libraries.">$action</a>);
+<a name="l00161"></a>00161     <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a> = strtoupper(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>);
 <a name="l00162"></a>00162     $control = strtoupper($control);
 <a name="l00163"></a>00163 
-<a name="l00164"></a>00164     <span class="keywordflow">if</span> (<a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30" title="Get some core libraries.">$action</a> != <span class="stringliteral">&quot;START&quot;</span> &amp;&amp; <a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30" title="Get some core libraries.">$action</a> != <span class="stringliteral">&quot;STOP&quot;</span>) {
+<a name="l00164"></a>00164     <span class="keywordflow">if</span> (<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a> != <span class="stringliteral">&quot;START&quot;</span> &amp;&amp; <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a> != <span class="stringliteral">&quot;STOP&quot;</span>) {
 <a name="l00165"></a>00165         <span class="keywordflow">return</span> -1;
 <a name="l00166"></a>00166     }
 <a name="l00167"></a>00167     <span class="keywordflow">if</span> ($control != <span class="stringliteral">&quot;SQL_THREAD&quot;</span> &amp;&amp; $control != <span class="stringliteral">&quot;IO_THREAD&quot;</span> &amp;&amp; $control != null) {
 <a name="l00168"></a>00168         <span class="keywordflow">return</span> -1;
 <a name="l00169"></a>00169     }
 <a name="l00170"></a>00170 
-<a name="l00171"></a>00171     <span class="keywordflow">return</span> <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<a class="code" href="tbl__create_8php.html#aa698a3e72116e8e778be0e95d908ee30" title="Get some core libraries.">$action</a> . <span class="stringliteral">&quot; SLAVE &quot;</span> . $control . <span class="stringliteral">&quot;;&quot;</span>, $link);
+<a name="l00171"></a>00171     <span class="keywordflow">return</span> <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a> . <span class="stringliteral">&quot; SLAVE &quot;</span> . $control . <span class="stringliteral">&quot;;&quot;</span>, $link);
 <a name="l00172"></a>00172 }<span class="comment"></span>
 <a name="l00173"></a>00173 <span class="comment">/**</span>
 <a name="l00174"></a>00174 <span class="comment"> * @param string $user     replication user on master</span>
@@ -260,16 +260,16 @@
 <a name="l00182"></a>00182 <span class="comment"> *</span>
 <a name="l00183"></a>00183 <span class="comment"> * @return output of CHANGE MASTER mysql command</span>
 <a name="l00184"></a>00184 <span class="comment"> */</span>
-<a name="l00185"></a><a class="code" href="replication_8inc_8php.html#a0f303959e893d178b9ae46ebdeea765d">00185</a> <span class="keyword">function</span> <a class="code" href="replication_8inc_8php.html#a0f303959e893d178b9ae46ebdeea765d">PMA_replication_slave_change_master</a>(<a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $password, $host, $port, <a class="code" href="bs__disp__as__mime__type_8php.html#a5de51f0c80b3bb3b39a57b23f6b9ea9f">$pos</a>, $stop = <span class="keyword">true</span>, <a class="code" href="query_8php.html#a50a00e7de77365e00b117e73aa82fb9b">$start</a> = <span class="keyword">true</span>, $link = null)
+<a name="l00185"></a><a class="code" href="replication_8inc_8php.html#a0f303959e893d178b9ae46ebdeea765d">00185</a> <span class="keyword">function</span> <a class="code" href="replication_8inc_8php.html#a0f303959e893d178b9ae46ebdeea765d">PMA_replication_slave_change_master</a>(<a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $password, $host, $port, <a class="code" href="bs__disp__as__mime__type_8php.html#a5de51f0c80b3bb3b39a57b23f6b9ea9f">$pos</a>, $stop = <span class="keyword">true</span>, $start = <span class="keyword">true</span>, $link = null)
 <a name="l00186"></a>00186 {
 <a name="l00187"></a>00187     <span class="keywordflow">if</span> ($stop) {
 <a name="l00188"></a>00188         <a class="code" href="replication_8inc_8php.html#ab6d6043762c06ebed4f8da8c94d86562">PMA_replication_slave_control</a>(<span class="stringliteral">&quot;STOP&quot;</span>, null, $link);
 <a name="l00189"></a>00189     }
 <a name="l00190"></a>00190 
-<a name="l00191"></a>00191     <a class="code" href="getclasses_8php.html#a48cb304902320d173a4eaa41543327b9">$out</a> = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<span class="stringliteral">&#39;CHANGE MASTER TO &#39;</span> .
+<a name="l00191"></a>00191     $out = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<span class="stringliteral">&#39;CHANGE MASTER TO &#39;</span> .
 <a name="l00192"></a>00192         <span class="stringliteral">&#39;MASTER_HOST=\&#39;&#39;</span> . $host . <span class="charliteral">&#39;\&#39;</span>,<span class="stringliteral">&#39; .</span>
 <a name="l00193"></a>00193 <span class="stringliteral">        &#39;</span>MASTER_PORT=<span class="stringliteral">&#39; . ($port * 1) . &#39;</span>,<span class="stringliteral">&#39; .</span>
-<a name="l00194"></a>00194 <span class="stringliteral">        &#39;</span>MASTER_USER=\<span class="stringliteral">&#39;&#39;</span> . <a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a> . <span class="charliteral">&#39;\&#39;</span>,<span class="stringliteral">&#39; .</span>
+<a name="l00194"></a>00194 <span class="stringliteral">        &#39;</span>MASTER_USER=\<span class="stringliteral">&#39;&#39;</span> . <a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a> . <span class="charliteral">&#39;\&#39;</span>,<span class="stringliteral">&#39; .</span>
 <a name="l00195"></a>00195 <span class="stringliteral">        &#39;</span>MASTER_PASSWORD=\<span class="stringliteral">&#39;&#39;</span> . $password . <span class="charliteral">&#39;\&#39;</span>,<span class="stringliteral">&#39; .</span>
 <a name="l00196"></a>00196 <span class="stringliteral">        &#39;</span>MASTER_LOG_FILE=\<span class="stringliteral">&#39;&#39;</span> . <a class="code" href="bs__disp__as__mime__type_8php.html#a5de51f0c80b3bb3b39a57b23f6b9ea9f">$pos</a>[<span class="stringliteral">&quot;File&quot;</span>] . <span class="charliteral">&#39;\&#39;</span>,<span class="stringliteral">&#39; .</span>
 <a name="l00197"></a>00197 <span class="stringliteral">        &#39;</span>MASTER_LOG_POS=<span class="stringliteral">&#39; . $pos[&quot;Position&quot;] . &#39;</span>;<span class="stringliteral">&#39;, $link);</span>
@@ -301,7 +301,7 @@
 <a name="l00223"></a>00223 
 <a name="l00224"></a>00224     // 5th parameter set to true means that it&#39;s an auxiliary connection
 <a name="l00225"></a>00225     <span class="comment">// and we must not go back to login page if it fails</span>
-<a name="l00226"></a>00226     <span class="keywordflow">return</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3" title="connects to the database server">PMA_DBI_connect</a>(<a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $password, <span class="keyword">false</span>, <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>, <span class="keyword">true</span>);
+<a name="l00226"></a>00226     <span class="keywordflow">return</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3" title="connects to the database server">PMA_DBI_connect</a>(<a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $password, <span class="keyword">false</span>, $server, <span class="keyword">true</span>);
 <a name="l00227"></a>00227 }<span class="comment"></span>
 <a name="l00228"></a>00228 <span class="comment">/**</span>
 <a name="l00229"></a>00229 <span class="comment"> * @param mixed $link mysql link</span>
@@ -310,12 +310,12 @@
 <a name="l00232"></a>00232 <span class="comment"> */</span>
 <a name="l00233"></a><a class="code" href="replication_8inc_8php.html#a796f0d92d256577572563a40baf65150">00233</a> <span class="keyword">function</span> <a class="code" href="replication_8inc_8php.html#a796f0d92d256577572563a40baf65150">PMA_replication_slave_bin_log_master</a>($link = null)
 <a name="l00234"></a>00234 {
-<a name="l00235"></a>00235     <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<span class="stringliteral">&#39;SHOW MASTER STATUS&#39;</span>, null, null, $link);
+<a name="l00235"></a>00235     <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<span class="stringliteral">&#39;SHOW MASTER STATUS&#39;</span>, null, null, $link);
 <a name="l00236"></a>00236     $output = array();
 <a name="l00237"></a>00237 
-<a name="l00238"></a>00238     <span class="keywordflow">if</span> (! empty(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>)) {
-<a name="l00239"></a>00239         $output[<span class="stringliteral">&quot;File&quot;</span>] = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[0][<span class="stringliteral">&quot;File&quot;</span>];
-<a name="l00240"></a>00240         $output[<span class="stringliteral">&quot;Position&quot;</span>] = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[0][<span class="stringliteral">&quot;Position&quot;</span>];
+<a name="l00238"></a>00238     <span class="keywordflow">if</span> (! empty(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>)) {
+<a name="l00239"></a>00239         $output[<span class="stringliteral">&quot;File&quot;</span>] = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[0][<span class="stringliteral">&quot;File&quot;</span>];
+<a name="l00240"></a>00240         $output[<span class="stringliteral">&quot;Position&quot;</span>] = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[0][<span class="stringliteral">&quot;Position&quot;</span>];
 <a name="l00241"></a>00241     }
 <a name="l00242"></a>00242     <span class="keywordflow">return</span> $output;
 <a name="l00243"></a>00243 }
@@ -330,16 +330,16 @@
 <a name="l00252"></a>00252 
 <a name="l00253"></a><a class="code" href="replication_8inc_8php.html#a1cf2dc832340ebe981fd5bcb492b1b76">00253</a> <span class="keyword">function</span> <a class="code" href="replication_8inc_8php.html#a1cf2dc832340ebe981fd5bcb492b1b76" title="Get list of replicated databases on master server.">PMA_replication_master_replicated_dbs</a>($link = null)
 <a name="l00254"></a>00254 {
-<a name="l00255"></a>00255     <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<span class="stringliteral">&#39;SHOW MASTER STATUS&#39;</span>, null, null, $link); <span class="comment">// let&#39;s find out, which databases are replicated</span>
+<a name="l00255"></a>00255     <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<span class="stringliteral">&#39;SHOW MASTER STATUS&#39;</span>, null, null, $link); <span class="comment">// let&#39;s find out, which databases are replicated</span>
 <a name="l00256"></a>00256 
 <a name="l00257"></a>00257     $do_db     = array();
 <a name="l00258"></a>00258     $ignore_db = array();
 <a name="l00259"></a>00259 
-<a name="l00260"></a>00260     <span class="keywordflow">if</span> (! empty(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[0][<span class="stringliteral">&#39;Binlog_Do_DB&#39;</span>])) {
-<a name="l00261"></a>00261         $do_db     = explode(<span class="charliteral">&#39;,&#39;</span>, <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[0][<span class="stringliteral">&#39;Binlog_Do_DB&#39;</span>]);
+<a name="l00260"></a>00260     <span class="keywordflow">if</span> (! empty(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[0][<span class="stringliteral">&#39;Binlog_Do_DB&#39;</span>])) {
+<a name="l00261"></a>00261         $do_db     = explode(<span class="charliteral">&#39;,&#39;</span>, <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[0][<span class="stringliteral">&#39;Binlog_Do_DB&#39;</span>]);
 <a name="l00262"></a>00262     }
-<a name="l00263"></a>00263     <span class="keywordflow">if</span> (! empty(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[0][<span class="stringliteral">&#39;Binlog_Ignore_DB&#39;</span>])) {
-<a name="l00264"></a>00264         $ignore_db = explode(<span class="charliteral">&#39;,&#39;</span>, <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[0][<span class="stringliteral">&#39;Binlog_Ignore_DB&#39;</span>]);
+<a name="l00263"></a>00263     <span class="keywordflow">if</span> (! empty(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[0][<span class="stringliteral">&#39;Binlog_Ignore_DB&#39;</span>])) {
+<a name="l00264"></a>00264         $ignore_db = explode(<span class="charliteral">&#39;,&#39;</span>, <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[0][<span class="stringliteral">&#39;Binlog_Ignore_DB&#39;</span>]);
 <a name="l00265"></a>00265     }
 <a name="l00266"></a>00266 
 <a name="l00267"></a>00267     $tmp_alldbs = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<span class="stringliteral">&#39;SHOW DATABASES;&#39;</span>, $link);
@@ -372,7 +372,7 @@
 <a name="l00294"></a>00294 <span class="comment"> * @param bool   $data     if true, then data will be copied as well</span>
 <a name="l00295"></a>00295 <span class="comment"> */</span>
 <a name="l00296"></a>00296 
-<a name="l00297"></a><a class="code" href="replication_8inc_8php.html#a9d196603d9e2d6d5738f7ec564225964">00297</a> <span class="keyword">function</span> <a class="code" href="replication_8inc_8php.html#a9d196603d9e2d6d5738f7ec564225964" title="This function provides synchronization of structure and data between two mysql servers.">PMA_replication_synchronize_db</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, $src_link, $trg_link, <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <span class="keyword">true</span>)
+<a name="l00297"></a><a class="code" href="replication_8inc_8php.html#a9d196603d9e2d6d5738f7ec564225964">00297</a> <span class="keyword">function</span> <a class="code" href="replication_8inc_8php.html#a9d196603d9e2d6d5738f7ec564225964" title="This function provides synchronization of structure and data between two mysql servers.">PMA_replication_synchronize_db</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, $src_link, $trg_link, <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <span class="keyword">true</span>)
 <a name="l00298"></a>00298 {
 <a name="l00299"></a>00299     $src_db = $trg_db = <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>;
 <a name="l00300"></a>00300 
@@ -417,9 +417,9 @@
 <a name="l00339"></a>00339     $uncommon_tables_fields = array();
 <a name="l00340"></a>00340     $matching_tables_num = <span class="keyword">sizeof</span>($matching_tables);
 <a name="l00341"></a>00341 
-<a name="l00342"></a>00342     <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; <span class="keyword">sizeof</span>($matching_tables); <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
+<a name="l00342"></a>00342     <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; <span class="keyword">sizeof</span>($matching_tables); <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
 <a name="l00343"></a>00343         <a class="code" href="server__synchronize_8lib_8php.html#a8826b64d9cdc47a8aa749ec67070481a" title="Finds the difference in source and target matching tables by first comparing source table&#39;s primary k...">PMA_dataDiffInTables</a>($src_db, $trg_db, $src_link, $trg_link, $matching_tables, $matching_tables_fields, $update_array, $insert_array,
-<a name="l00344"></a>00344             $delete_array, $fields_num, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>, $matching_tables_keys);
+<a name="l00344"></a>00344             $delete_array, $fields_num, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>, $matching_tables_keys);
 <a name="l00345"></a>00345     }
 <a name="l00346"></a>00346     <span class="keywordflow">for</span> ($j = 0; $j &lt; <span class="keyword">sizeof</span>($source_tables_uncommon); $j++) {
 <a name="l00347"></a>00347         <a class="code" href="server__synchronize_8lib_8php.html#acf6e8422f5f0d3beccbcc2c31f1c372f" title="PMA_dataDiffInUncommonTables() finds the data difference in $source_tables_uncommon.">PMA_dataDiffInUncommonTables</a>($source_tables_uncommon, $src_db, $src_link, $j, <a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>);
@@ -453,11 +453,11 @@
 <a name="l00375"></a>00375 <span class="comment">    /**</span>
 <a name="l00376"></a>00376 <span class="comment">     * Generating Create Table query for all the non-matching tables present in Source but not in Target and populating tables.</span>
 <a name="l00377"></a>00377 <span class="comment">     */</span>
-<a name="l00378"></a>00378     <span class="keywordflow">for</span> ($q = 0; $q &lt; <span class="keyword">sizeof</span>($source_tables_uncommon); $q++) {
-<a name="l00379"></a>00379         <span class="keywordflow">if</span> (isset($source_tables_uncommon[$q])) {
+<a name="l00378"></a>00378     <span class="keywordflow">for</span> (<a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a> = 0; <a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a> &lt; <span class="keyword">sizeof</span>($source_tables_uncommon); <a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a>++) {
+<a name="l00379"></a>00379         <span class="keywordflow">if</span> (isset($source_tables_uncommon[<a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a>])) {
 <a name="l00380"></a>00380             <a class="code" href="server__synchronize_8lib_8php.html#a59792a6539f1f3a6550ceef0483d83cd" title="PMA_createTargetTables() Create the missing table $uncommon_table in target database.">PMA_createTargetTables</a>($src_db, $trg_db, $src_link, $trg_link, $source_tables_uncommon, $q, $uncommon_tables_fields, <span class="keyword">false</span>);
 <a name="l00381"></a>00381         }
-<a name="l00382"></a>00382         <span class="keywordflow">if</span> (isset(<a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>[$q]) &amp;&amp; <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>) {
+<a name="l00382"></a>00382         <span class="keywordflow">if</span> (isset(<a class="code" href="db__structure_8php.html#a1818072310723452a3a47f0581ba21db">$row_count</a>[$q]) &amp;&amp; <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>) {
 <a name="l00383"></a>00383             <a class="code" href="server__synchronize_8lib_8php.html#afe128b4b8a227082f9d7f02bc8fe34d9" title="PMA_populateTargetTables() inserts data into uncommon tables after they have been created...">PMA_populateTargetTables</a>($src_db, $trg_db, $src_link, $trg_link, $source_tables_uncommon, $q, $uncommon_tables_fields, <span class="keyword">false</span>);
 <a name="l00384"></a>00384         }
 <a name="l00385"></a>00385     }
@@ -469,7 +469,7 @@
     <ul>
       <li class="navelem"><a class="el" href="replication_8inc_8php.html">replication.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

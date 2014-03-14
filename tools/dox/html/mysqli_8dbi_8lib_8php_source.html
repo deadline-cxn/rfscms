@@ -140,7 +140,7 @@
 <a name="l00062"></a>00062 <span class="comment"> * @param   bool    $persistent</span>
 <a name="l00063"></a>00063 <span class="comment"> * @return  bool</span>
 <a name="l00064"></a>00064 <span class="comment"> */</span>
-<a name="l00065"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a7a73ff21fc61c37002c3171c943c0e87">00065</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#ab937d703861aa18e6fddd6bd434c0bd3" title="MySQL client API.">PMA_DBI_real_connect</a>($link, $host, <a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $password, $dbname, $server_port, $server_socket, $client_flags = null, $persistent = <span class="keyword">false</span>)
+<a name="l00065"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a7a73ff21fc61c37002c3171c943c0e87">00065</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#ab937d703861aa18e6fddd6bd434c0bd3" title="MySQL client API.">PMA_DBI_real_connect</a>($link, $host, <a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $password, $dbname, $server_port, $server_socket, $client_flags = null, $persistent = <span class="keyword">false</span>)
 <a name="l00066"></a>00066 {
 <a name="l00067"></a>00067     global <a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>;
 <a name="l00068"></a>00068 
@@ -154,7 +154,7 @@
 <a name="l00076"></a>00076         <span class="keywordflow">return</span> @mysqli_real_connect(
 <a name="l00077"></a>00077             $link,
 <a name="l00078"></a>00078             $host,
-<a name="l00079"></a>00079             <a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
+<a name="l00079"></a>00079             <a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
 <a name="l00080"></a>00080             $password,
 <a name="l00081"></a>00081             $dbname,
 <a name="l00082"></a>00082             $server_port,
@@ -164,7 +164,7 @@
 <a name="l00086"></a>00086         <span class="keywordflow">return</span> @mysqli_real_connect(
 <a name="l00087"></a>00087             $link,
 <a name="l00088"></a>00088             $host,
-<a name="l00089"></a>00089             <a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
+<a name="l00089"></a>00089             <a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
 <a name="l00090"></a>00090             $password,
 <a name="l00091"></a>00091             $dbname,
 <a name="l00092"></a>00092             $server_port,
@@ -184,20 +184,20 @@
 <a name="l00106"></a>00106 <span class="comment"> * @param   bool    $auxiliary_connection (when true, don&#39;t go back to login if connection fails)</span>
 <a name="l00107"></a>00107 <span class="comment"> * @return  mixed   false on error or a mysqli object on success</span>
 <a name="l00108"></a>00108 <span class="comment"> */</span>
-<a name="l00109"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3">00109</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3" title="connects to the database server">PMA_DBI_connect</a>(<a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $password, $is_controluser = <span class="keyword">false</span>, <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a> = null, $auxiliary_connection = <span class="keyword">false</span>)
+<a name="l00109"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3">00109</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a741e14fe7c5140e6bc11bbecb57336f3" title="connects to the database server">PMA_DBI_connect</a>(<a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, $password, $is_controluser = <span class="keyword">false</span>, $server = null, $auxiliary_connection = <span class="keyword">false</span>)
 <a name="l00110"></a>00110 {
 <a name="l00111"></a>00111     global <a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>;
 <a name="l00112"></a>00112 
-<a name="l00113"></a>00113     <span class="keywordflow">if</span> (<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>) {
-<a name="l00114"></a>00114         $server_port   = (empty(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>[<span class="stringliteral">&#39;port&#39;</span>]))
+<a name="l00113"></a>00113     <span class="keywordflow">if</span> ($server) {
+<a name="l00114"></a>00114         $server_port   = (empty($server[<span class="stringliteral">&#39;port&#39;</span>]))
 <a name="l00115"></a>00115             ? <span class="keyword">false</span>
-<a name="l00116"></a>00116             : (<span class="keywordtype">int</span>)<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>[<span class="stringliteral">&#39;port&#39;</span>];
-<a name="l00117"></a>00117         $server_socket = (empty(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>[<span class="stringliteral">&#39;socket&#39;</span>]))
+<a name="l00116"></a>00116             : (<span class="keywordtype">int</span>)$server[<span class="stringliteral">&#39;port&#39;</span>];
+<a name="l00117"></a>00117         $server_socket = (empty($server[<span class="stringliteral">&#39;socket&#39;</span>]))
 <a name="l00118"></a>00118             ? <span class="stringliteral">&#39;&#39;</span>
-<a name="l00119"></a>00119             : <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>[<span class="stringliteral">&#39;socket&#39;</span>];
-<a name="l00120"></a>00120         <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>[<span class="stringliteral">&#39;host&#39;</span>] = (empty(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>[<span class="stringliteral">&#39;host&#39;</span>]))
+<a name="l00119"></a>00119             : $server[<span class="stringliteral">&#39;socket&#39;</span>];
+<a name="l00120"></a>00120         $server[<span class="stringliteral">&#39;host&#39;</span>] = (empty($server[<span class="stringliteral">&#39;host&#39;</span>]))
 <a name="l00121"></a>00121             ? <span class="stringliteral">&#39;localhost&#39;</span>
-<a name="l00122"></a>00122             : <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>[<span class="stringliteral">&#39;host&#39;</span>];
+<a name="l00122"></a>00122             : $server[<span class="stringliteral">&#39;host&#39;</span>];
 <a name="l00123"></a>00123     } <span class="keywordflow">else</span> {
 <a name="l00124"></a>00124         $server_port   = (empty($cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;port&#39;</span>]))
 <a name="l00125"></a>00125             ? <span class="keyword">false</span>
@@ -225,11 +225,11 @@
 <a name="l00147"></a>00147         $client_flags |= MYSQLI_CLIENT_SSL;
 <a name="l00148"></a>00148     }
 <a name="l00149"></a>00149 
-<a name="l00150"></a>00150     <span class="keywordflow">if</span> (!<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>) {
+<a name="l00150"></a>00150     <span class="keywordflow">if</span> (!$server) {
 <a name="l00151"></a>00151         $return_value = @<a class="code" href="drizzle_8dbi_8lib_8php.html#ab937d703861aa18e6fddd6bd434c0bd3" title="MySQL client API.">PMA_DBI_real_connect</a>(
 <a name="l00152"></a>00152             $link,
 <a name="l00153"></a>00153             $cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;host&#39;</span>],
-<a name="l00154"></a>00154             <a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
+<a name="l00154"></a>00154             <a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
 <a name="l00155"></a>00155             $password,
 <a name="l00156"></a>00156             <span class="keyword">false</span>,
 <a name="l00157"></a>00157             $server_port,
@@ -241,7 +241,7 @@
 <a name="l00163"></a>00163             $return_value = @<a class="code" href="drizzle_8dbi_8lib_8php.html#ab937d703861aa18e6fddd6bd434c0bd3" title="MySQL client API.">PMA_DBI_real_connect</a>(
 <a name="l00164"></a>00164                 $link,
 <a name="l00165"></a>00165                 $cfg[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;host&#39;</span>],
-<a name="l00166"></a>00166                 <a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
+<a name="l00166"></a>00166                 <a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
 <a name="l00167"></a>00167                 <span class="stringliteral">&#39;&#39;</span>,
 <a name="l00168"></a>00168                 <span class="keyword">false</span>,
 <a name="l00169"></a>00169                 $server_port,
@@ -252,8 +252,8 @@
 <a name="l00174"></a>00174     } <span class="keywordflow">else</span> {
 <a name="l00175"></a>00175         $return_value = @<a class="code" href="drizzle_8dbi_8lib_8php.html#ab937d703861aa18e6fddd6bd434c0bd3" title="MySQL client API.">PMA_DBI_real_connect</a>(
 <a name="l00176"></a>00176             $link,
-<a name="l00177"></a>00177             <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>[<span class="stringliteral">&#39;host&#39;</span>],
-<a name="l00178"></a>00178             <a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
+<a name="l00177"></a>00177             $server[<span class="stringliteral">&#39;host&#39;</span>],
+<a name="l00178"></a>00178             <a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,
 <a name="l00179"></a>00179             $password,
 <a name="l00180"></a>00180             <span class="keyword">false</span>,
 <a name="l00181"></a>00181             $server_port,
@@ -273,7 +273,7 @@
 <a name="l00195"></a>00195         <span class="comment">// server, for example in the Synchronize feature, so do not</span>
 <a name="l00196"></a>00196         <span class="comment">// go back to main login if it fails</span>
 <a name="l00197"></a>00197         <span class="keywordflow">if</span> (! $auxiliary_connection) {
-<a name="l00198"></a>00198             <a class="code" href="logging_8lib_8php.html#ae52f87051b63a60cd832fa8bca9e95c5" title="Logs user information to webserver logs.">PMA_log_user</a>(<a class="code" href="example_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, <span class="stringliteral">&#39;mysql-denied&#39;</span>);
+<a name="l00198"></a>00198             <a class="code" href="logging_8lib_8php.html#ae52f87051b63a60cd832fa8bca9e95c5" title="Logs user information to webserver logs.">PMA_log_user</a>(<a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>, <span class="stringliteral">&#39;mysql-denied&#39;</span>);
 <a name="l00199"></a>00199             <a class="code" href="config_8auth_8lib_8php.html#a29189416351efab06c47b2b9bf24e082" title="User is not allowed to login to MySQL -&gt; authentication failed.">PMA_auth_fails</a>();
 <a name="l00200"></a>00200         } <span class="keywordflow">else</span> {
 <a name="l00201"></a>00201             <span class="keywordflow">return</span> <span class="keyword">false</span>;
@@ -295,8 +295,8 @@
 <a name="l00217"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a">00217</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>($dbname, $link = null)
 <a name="l00218"></a>00218 {
 <a name="l00219"></a>00219     <span class="keywordflow">if</span> (empty($link)) {
-<a name="l00220"></a>00220         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00221"></a>00221             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00220"></a>00220         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00221"></a>00221             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00222"></a>00222         } <span class="keywordflow">else</span> {
 <a name="l00223"></a>00223             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00224"></a>00224         }
@@ -312,17 +312,17 @@
 <a name="l00234"></a>00234 <span class="comment"> * @param   int     $options</span>
 <a name="l00235"></a>00235 <span class="comment"> * @return  mysqli_result|bool</span>
 <a name="l00236"></a>00236 <span class="comment"> */</span>
-<a name="l00237"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a08ba0b503ffbca6710452ba365580035">00237</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a08ba0b503ffbca6710452ba365580035" title="runs a query and returns the result">PMA_DBI_real_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, $link, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>)
+<a name="l00237"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a08ba0b503ffbca6710452ba365580035">00237</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a08ba0b503ffbca6710452ba365580035" title="runs a query and returns the result">PMA_DBI_real_query</a>($query, $link, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>)
 <a name="l00238"></a>00238 {
 <a name="l00239"></a>00239     <span class="keywordflow">if</span> (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> == (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> | <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>)) {
 <a name="l00240"></a>00240         $method = MYSQLI_STORE_RESULT;
-<a name="l00241"></a>00241     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> == (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> | <a class="code" href="database__interface_8lib_8php.html#adb95171b9d89470d933f6d59c4c9f000" title="Do not read whole query.">PMA_DBI_QUERY_UNBUFFERED</a>)) {
+<a name="l00241"></a>00241     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> == (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> | <a class="code" href="database__interface_8lib_8php.html#adb95171b9d89470d933f6d59c4c9f000" title="Do not read whole query.">PMA_DBI_QUERY_UNBUFFERED</a>)) {
 <a name="l00242"></a>00242         $method = MYSQLI_USE_RESULT;
 <a name="l00243"></a>00243     } <span class="keywordflow">else</span> {
 <a name="l00244"></a>00244         $method = 0;
 <a name="l00245"></a>00245     }
 <a name="l00246"></a>00246 
-<a name="l00247"></a>00247     <span class="keywordflow">return</span> mysqli_query($link, <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, $method);
+<a name="l00247"></a>00247     <span class="keywordflow">return</span> mysqli_query($link, $query, $method);
 <a name="l00248"></a>00248 }
 <a name="l00249"></a>00249 <span class="comment"></span>
 <a name="l00250"></a>00250 <span class="comment">/**</span>
@@ -331,9 +331,9 @@
 <a name="l00253"></a>00253 <span class="comment"> * @param   mysqli_result  $result</span>
 <a name="l00254"></a>00254 <span class="comment"> * @return  array</span>
 <a name="l00255"></a>00255 <span class="comment"> */</span>
-<a name="l00256"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a82910e461b1997b01dc49d76b7608e93">00256</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a82910e461b1997b01dc49d76b7608e93" title="returns array of rows with associative and numeric keys from $result">PMA_DBI_fetch_array</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
+<a name="l00256"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a82910e461b1997b01dc49d76b7608e93">00256</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a82910e461b1997b01dc49d76b7608e93" title="returns array of rows with associative and numeric keys from $result">PMA_DBI_fetch_array</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
 <a name="l00257"></a>00257 {
-<a name="l00258"></a>00258     <span class="keywordflow">return</span> mysqli_fetch_array(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, MYSQLI_BOTH);
+<a name="l00258"></a>00258     <span class="keywordflow">return</span> mysqli_fetch_array(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, MYSQLI_BOTH);
 <a name="l00259"></a>00259 }
 <a name="l00260"></a>00260 <span class="comment"></span>
 <a name="l00261"></a>00261 <span class="comment">/**</span>
@@ -342,9 +342,9 @@
 <a name="l00264"></a>00264 <span class="comment"> * @param   mysqli_result  $result</span>
 <a name="l00265"></a>00265 <span class="comment"> * @return  array</span>
 <a name="l00266"></a>00266 <span class="comment"> */</span>
-<a name="l00267"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37">00267</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
+<a name="l00267"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37">00267</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
 <a name="l00268"></a>00268 {
-<a name="l00269"></a>00269     <span class="keywordflow">return</span> mysqli_fetch_array(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, MYSQLI_ASSOC);
+<a name="l00269"></a>00269     <span class="keywordflow">return</span> mysqli_fetch_array(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, MYSQLI_ASSOC);
 <a name="l00270"></a>00270 }
 <a name="l00271"></a>00271 <span class="comment"></span>
 <a name="l00272"></a>00272 <span class="comment">/**</span>
@@ -353,9 +353,9 @@
 <a name="l00275"></a>00275 <span class="comment"> * @param   mysqli_result  $result</span>
 <a name="l00276"></a>00276 <span class="comment"> * @return  array</span>
 <a name="l00277"></a>00277 <span class="comment"> */</span>
-<a name="l00278"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31">00278</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
+<a name="l00278"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31">00278</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
 <a name="l00279"></a>00279 {
-<a name="l00280"></a>00280     <span class="keywordflow">return</span> mysqli_fetch_array(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, MYSQLI_NUM);
+<a name="l00280"></a>00280     <span class="keywordflow">return</span> mysqli_fetch_array(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, MYSQLI_NUM);
 <a name="l00281"></a>00281 }
 <a name="l00282"></a>00282 <span class="comment"></span>
 <a name="l00283"></a>00283 <span class="comment">/**</span>
@@ -365,9 +365,9 @@
 <a name="l00287"></a>00287 <span class="comment"> * @param   $offset</span>
 <a name="l00288"></a>00288 <span class="comment"> * @return  bool  true on success, false on failure</span>
 <a name="l00289"></a>00289 <span class="comment"> */</span>
-<a name="l00290"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#aac7efdc35cbbd9715c3f43784a8a0c97">00290</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#aac7efdc35cbbd9715c3f43784a8a0c97" title="Adjusts the result pointer to an arbitrary row in the result.">PMA_DBI_data_seek</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="import_8php.html#aec4de82415d7f05cb9748d12d3a95a87">$offset</a>)
+<a name="l00290"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#aac7efdc35cbbd9715c3f43784a8a0c97">00290</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#aac7efdc35cbbd9715c3f43784a8a0c97" title="Adjusts the result pointer to an arbitrary row in the result.">PMA_DBI_data_seek</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="import_8php.html#aec4de82415d7f05cb9748d12d3a95a87">$offset</a>)
 <a name="l00291"></a>00291 {
-<a name="l00292"></a>00292     <span class="keywordflow">return</span> mysqli_data_seek(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="import_8php.html#aec4de82415d7f05cb9748d12d3a95a87">$offset</a>);
+<a name="l00292"></a>00292     <span class="keywordflow">return</span> mysqli_data_seek(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="import_8php.html#aec4de82415d7f05cb9748d12d3a95a87">$offset</a>);
 <a name="l00293"></a>00293 }
 <a name="l00294"></a>00294 <span class="comment"></span>
 <a name="l00295"></a>00295 <span class="comment">/**</span>
@@ -375,10 +375,10 @@
 <a name="l00297"></a>00297 <span class="comment"> *</span>
 <a name="l00298"></a>00298 <span class="comment"> * @param  mysqli_result  $result</span>
 <a name="l00299"></a>00299 <span class="comment"> */</span>
-<a name="l00300"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a">00300</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a" title="Frees memory associated with the result.">PMA_DBI_free_result</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
+<a name="l00300"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a">00300</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a" title="Frees memory associated with the result.">PMA_DBI_free_result</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
 <a name="l00301"></a>00301 {
-<a name="l00302"></a>00302     <span class="keywordflow">if</span> (<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> instanceof mysqli_result) {
-<a name="l00303"></a>00303         mysqli_free_result(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00302"></a>00302     <span class="keywordflow">if</span> (<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> instanceof mysqli_result) {
+<a name="l00303"></a>00303         mysqli_free_result(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00304"></a>00304     }
 <a name="l00305"></a>00305 }
 <a name="l00306"></a>00306 <span class="comment"></span>
@@ -391,8 +391,8 @@
 <a name="l00313"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a2eb76642ce94c0c56a14d8d4968abee6">00313</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a20038240f2bfdd6060acdfc2fd38362f" title="Check if there are any more query results from a multi query.">PMA_DBI_more_results</a>($link = null)
 <a name="l00314"></a>00314 {
 <a name="l00315"></a>00315     <span class="keywordflow">if</span> (empty($link)) {
-<a name="l00316"></a>00316         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00317"></a>00317             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00316"></a>00316         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00317"></a>00317             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00318"></a>00318         } <span class="keywordflow">else</span> {
 <a name="l00319"></a>00319             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00320"></a>00320         }
@@ -409,8 +409,8 @@
 <a name="l00331"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#aa04ea10b04aeff7b4053e5d2cffda729">00331</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#aca338a9a83e414a5d6ef22722aebb3fc" title="Prepare next result from multi_query.">PMA_DBI_next_result</a>($link = null)
 <a name="l00332"></a>00332 {
 <a name="l00333"></a>00333     <span class="keywordflow">if</span> (empty($link)) {
-<a name="l00334"></a>00334         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00335"></a>00335             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00334"></a>00334         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00335"></a>00335             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00336"></a>00336         } <span class="keywordflow">else</span> {
 <a name="l00337"></a>00337             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00338"></a>00338         }
@@ -427,8 +427,8 @@
 <a name="l00349"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#af7e9ac16e0c7709b3380db8c91e8b75d">00349</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#af7e9ac16e0c7709b3380db8c91e8b75d" title="Returns a string representing the type of connection used.">PMA_DBI_get_host_info</a>($link = null)
 <a name="l00350"></a>00350 {
 <a name="l00351"></a>00351     <span class="keywordflow">if</span> (null === $link) {
-<a name="l00352"></a>00352         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00353"></a>00353             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00352"></a>00352         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00353"></a>00353             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00354"></a>00354         } <span class="keywordflow">else</span> {
 <a name="l00355"></a>00355             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00356"></a>00356         }
@@ -445,8 +445,8 @@
 <a name="l00367"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a101a0a7ac8d7b3f5dba97314b5002638">00367</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a101a0a7ac8d7b3f5dba97314b5002638" title="Returns the version of the Drizzle protocol used.">PMA_DBI_get_proto_info</a>($link = null)
 <a name="l00368"></a>00368 {
 <a name="l00369"></a>00369     <span class="keywordflow">if</span> (null === $link) {
-<a name="l00370"></a>00370         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00371"></a>00371             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00370"></a>00370         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00371"></a>00371             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00372"></a>00372         } <span class="keywordflow">else</span> {
 <a name="l00373"></a>00373             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00374"></a>00374         }
@@ -472,15 +472,15 @@
 <a name="l00394"></a>00394 <span class="comment"> */</span>
 <a name="l00395"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79">00395</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79" title="returns last error message or false if no errors occured">PMA_DBI_getError</a>($link = null)
 <a name="l00396"></a>00396 {
-<a name="l00397"></a>00397     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;errno&#39;</span>] = 0;
+<a name="l00397"></a>00397     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;errno&#39;</span>] = 0;
 <a name="l00398"></a>00398 
 <a name="l00399"></a>00399     <span class="comment">/* Treat false same as null because of controllink */</span>
 <a name="l00400"></a>00400     <span class="keywordflow">if</span> ($link === <span class="keyword">false</span>) {
 <a name="l00401"></a>00401         $link = null;
 <a name="l00402"></a>00402     }
 <a name="l00403"></a>00403 
-<a name="l00404"></a>00404     <span class="keywordflow">if</span> (null === $link &amp;&amp; isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00405"></a>00405         $link =&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00404"></a>00404     <span class="keywordflow">if</span> (null === $link &amp;&amp; isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00405"></a>00405         $link =&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00406"></a>00406         <span class="comment">// Do not stop now. We still can get the error code</span>
 <a name="l00407"></a>00407         <span class="comment">// with mysqli_connect_errno()</span>
 <a name="l00408"></a>00408 <span class="comment">//    } else {</span>
@@ -499,7 +499,7 @@
 <a name="l00421"></a>00421     }
 <a name="l00422"></a>00422 
 <a name="l00423"></a>00423     <span class="comment">// keep the error number for further check after the call to PMA_DBI_getError()</span>
-<a name="l00424"></a>00424     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;errno&#39;</span>] = $error_number;
+<a name="l00424"></a>00424     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;errno&#39;</span>] = $error_number;
 <a name="l00425"></a>00425 
 <a name="l00426"></a>00426     <span class="keywordflow">return</span> <a class="code" href="database__interface_8lib_8php.html#a53d2263f39303e561d76439d28f4a1be" title="Formats database error message in a friendly way.">PMA_DBI_formatError</a>($error_number, $error_message);
 <a name="l00427"></a>00427 }
@@ -510,11 +510,11 @@
 <a name="l00432"></a>00432 <span class="comment"> * @param   mysqli_result  $result</span>
 <a name="l00433"></a>00433 <span class="comment"> * @return  string|int</span>
 <a name="l00434"></a>00434 <span class="comment"> */</span>
-<a name="l00435"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803">00435</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
+<a name="l00435"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803">00435</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#ad3805f1da9fe87cc10e96acf0710d803" title="returns the number of rows returned by last query">PMA_DBI_num_rows</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
 <a name="l00436"></a>00436 {
 <a name="l00437"></a>00437     <span class="comment">// see the note for PMA_DBI_try_query();</span>
-<a name="l00438"></a>00438     <span class="keywordflow">if</span> (!is_bool(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
-<a name="l00439"></a>00439         <span class="keywordflow">return</span> @mysqli_num_rows(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00438"></a>00438     <span class="keywordflow">if</span> (!is_bool(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00439"></a>00439         <span class="keywordflow">return</span> @mysqli_num_rows(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00440"></a>00440     } <span class="keywordflow">else</span> {
 <a name="l00441"></a>00441         <span class="keywordflow">return</span> 0;
 <a name="l00442"></a>00442     }
@@ -529,8 +529,8 @@
 <a name="l00451"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a1eab66403b934fed9dd9fa681bfa9bb0">00451</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a1eab66403b934fed9dd9fa681bfa9bb0" title="returns last inserted auto_increment id for given $link or $GLOBALS[&#39;userlink&#39;]">PMA_DBI_insert_id</a>($link = null)
 <a name="l00452"></a>00452 {
 <a name="l00453"></a>00453     <span class="keywordflow">if</span> (empty($link)) {
-<a name="l00454"></a>00454         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00455"></a>00455             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00454"></a>00454         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00455"></a>00455             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00456"></a>00456         } <span class="keywordflow">else</span> {
 <a name="l00457"></a>00457             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00458"></a>00458         }
@@ -554,14 +554,14 @@
 <a name="l00476"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a861ab5849e4d7f8dab6daaac0071bc15">00476</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a861ab5849e4d7f8dab6daaac0071bc15" title="returns the number of rows affected by last query">PMA_DBI_affected_rows</a>($link = null, $get_from_cache = <span class="keyword">true</span>)
 <a name="l00477"></a>00477 {
 <a name="l00478"></a>00478     <span class="keywordflow">if</span> (empty($link)) {
-<a name="l00479"></a>00479         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00480"></a>00480             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00479"></a>00479         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00480"></a>00480             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00481"></a>00481         } <span class="keywordflow">else</span> {
 <a name="l00482"></a>00482             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00483"></a>00483         }
 <a name="l00484"></a>00484     }
 <a name="l00485"></a>00485     <span class="keywordflow">if</span> ($get_from_cache) {
-<a name="l00486"></a>00486         <span class="keywordflow">return</span> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cached_affected_rows&#39;</span>];
+<a name="l00486"></a>00486         <span class="keywordflow">return</span> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cached_affected_rows&#39;</span>];
 <a name="l00487"></a>00487     } <span class="keywordflow">else</span> {
 <a name="l00488"></a>00488         <span class="keywordflow">return</span> mysqli_affected_rows($link);
 <a name="l00489"></a>00489     }
@@ -573,7 +573,7 @@
 <a name="l00495"></a>00495 <span class="comment"> * @param   mysqli_result  $result</span>
 <a name="l00496"></a>00496 <span class="comment"> * @return  array  meta info for fields in $result</span>
 <a name="l00497"></a>00497 <span class="comment"> */</span>
-<a name="l00498"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac">00498</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac" title="returns metainfo for fields in $result">PMA_DBI_get_fields_meta</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
+<a name="l00498"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac">00498</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac" title="returns metainfo for fields in $result">PMA_DBI_get_fields_meta</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
 <a name="l00499"></a>00499 {
 <a name="l00500"></a>00500     <span class="comment">// Build an associative array for a type look up</span>
 <a name="l00501"></a>00501     $typeAr = array();
@@ -611,7 +611,7 @@
 <a name="l00533"></a>00533     $typeAr[MYSQLI_TYPE_GEOMETRY]    = <span class="stringliteral">&#39;geometry&#39;</span>;
 <a name="l00534"></a>00534     $typeAr[MYSQLI_TYPE_BIT]         = <span class="stringliteral">&#39;bit&#39;</span>;
 <a name="l00535"></a>00535 
-<a name="l00536"></a>00536     <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> = mysqli_fetch_fields(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00536"></a>00536     <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> = mysqli_fetch_fields(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00537"></a>00537 
 <a name="l00538"></a>00538     <span class="comment">// this happens sometimes (seen under MySQL 4.0.25)</span>
 <a name="l00539"></a>00539     <span class="keywordflow">if</span> (!is_array(<a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>)) {
@@ -622,7 +622,7 @@
 <a name="l00544"></a>00544         <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>[$k]-&gt;_type = $field-&gt;type;
 <a name="l00545"></a>00545         <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>[$k]-&gt;type = $typeAr[$field-&gt;type];
 <a name="l00546"></a>00546         <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>[$k]-&gt;_flags = $field-&gt;flags;
-<a name="l00547"></a>00547         <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>[$k]-&gt;flags = <a class="code" href="drizzle_8dbi_8lib_8php.html#a182b2c5eafadd7a9aa5649b680251e8b" title="returns concatenated string of human readable field flags">PMA_DBI_field_flags</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, $k);
+<a name="l00547"></a>00547         <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>[$k]-&gt;flags = <a class="code" href="drizzle_8dbi_8lib_8php.html#a182b2c5eafadd7a9aa5649b680251e8b" title="returns concatenated string of human readable field flags">PMA_DBI_field_flags</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, $k);
 <a name="l00548"></a>00548 
 <a name="l00549"></a>00549         <span class="comment">// Enhance the field objects for mysql-extension compatibilty</span>
 <a name="l00550"></a>00550         <span class="comment">//$flags = explode(&#39; &#39;, $fields[$k]-&gt;flags);</span>
@@ -653,9 +653,9 @@
 <a name="l00575"></a>00575 <span class="comment"> * @param   mysqli_result  $result</span>
 <a name="l00576"></a>00576 <span class="comment"> * @return  int  field count</span>
 <a name="l00577"></a>00577 <span class="comment"> */</span>
-<a name="l00578"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a1fdd817905fb477d64e66db0d6c5c6b1">00578</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a1fdd817905fb477d64e66db0d6c5c6b1" title="return number of fields in given $result">PMA_DBI_num_fields</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
+<a name="l00578"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a1fdd817905fb477d64e66db0d6c5c6b1">00578</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a1fdd817905fb477d64e66db0d6c5c6b1" title="return number of fields in given $result">PMA_DBI_num_fields</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)
 <a name="l00579"></a>00579 {
-<a name="l00580"></a>00580     <span class="keywordflow">return</span> mysqli_num_fields(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00580"></a>00580     <span class="keywordflow">return</span> mysqli_num_fields(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00581"></a>00581 }
 <a name="l00582"></a>00582 <span class="comment"></span>
 <a name="l00583"></a>00583 <span class="comment">/**</span>
@@ -665,9 +665,9 @@
 <a name="l00587"></a>00587 <span class="comment"> * @param   int            $i       field</span>
 <a name="l00588"></a>00588 <span class="comment"> * @return  int  length of field</span>
 <a name="l00589"></a>00589 <span class="comment"> */</span>
-<a name="l00590"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a9e5248eb7a81c3f91e5b3782998e36ba">00590</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a9e5248eb7a81c3f91e5b3782998e36ba" title="returns the length of the given field $i in $result">PMA_DBI_field_len</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>)
+<a name="l00590"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a9e5248eb7a81c3f91e5b3782998e36ba">00590</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a9e5248eb7a81c3f91e5b3782998e36ba" title="returns the length of the given field $i in $result">PMA_DBI_field_len</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>)
 <a name="l00591"></a>00591 {
-<a name="l00592"></a>00592     <span class="keywordflow">return</span> mysqli_fetch_field_direct(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>)-&gt;length;
+<a name="l00592"></a>00592     <span class="keywordflow">return</span> mysqli_fetch_field_direct(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>)-&gt;length;
 <a name="l00593"></a>00593 }
 <a name="l00594"></a>00594 <span class="comment"></span>
 <a name="l00595"></a>00595 <span class="comment">/**</span>
@@ -677,9 +677,9 @@
 <a name="l00599"></a>00599 <span class="comment"> * @param   int            $i       field</span>
 <a name="l00600"></a>00600 <span class="comment"> * @return  string  name of $i. field in $result</span>
 <a name="l00601"></a>00601 <span class="comment"> */</span>
-<a name="l00602"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a8b065b7a63e92d4887422ecefc9bff67">00602</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a8b065b7a63e92d4887422ecefc9bff67" title="returns name of $i.">PMA_DBI_field_name</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>)
+<a name="l00602"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a8b065b7a63e92d4887422ecefc9bff67">00602</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a8b065b7a63e92d4887422ecefc9bff67" title="returns name of $i.">PMA_DBI_field_name</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>)
 <a name="l00603"></a>00603 {
-<a name="l00604"></a>00604     <span class="keywordflow">return</span> mysqli_fetch_field_direct(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>)-&gt;name;
+<a name="l00604"></a>00604     <span class="keywordflow">return</span> mysqli_fetch_field_direct(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>)-&gt;name;
 <a name="l00605"></a>00605 }
 <a name="l00606"></a>00606 <span class="comment"></span>
 <a name="l00607"></a>00607 <span class="comment">/**</span>
@@ -689,36 +689,36 @@
 <a name="l00611"></a>00611 <span class="comment"> * @param   int            $i       field</span>
 <a name="l00612"></a>00612 <span class="comment"> * @return  string  field flags</span>
 <a name="l00613"></a>00613 <span class="comment"> */</span>
-<a name="l00614"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a182b2c5eafadd7a9aa5649b680251e8b">00614</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a182b2c5eafadd7a9aa5649b680251e8b" title="returns concatenated string of human readable field flags">PMA_DBI_field_flags</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>)
+<a name="l00614"></a><a class="code" href="mysqli_8dbi_8lib_8php.html#a182b2c5eafadd7a9aa5649b680251e8b">00614</a> <span class="keyword">function</span> <a class="code" href="drizzle_8dbi_8lib_8php.html#a182b2c5eafadd7a9aa5649b680251e8b" title="returns concatenated string of human readable field flags">PMA_DBI_field_flags</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>)
 <a name="l00615"></a>00615 {
 <a name="l00616"></a>00616     <span class="comment">// This is missing from PHP 5.2.5, see http://bugs.php.net/bug.php?id=44846</span>
 <a name="l00617"></a>00617     <span class="keywordflow">if</span> (! defined(<span class="stringliteral">&#39;MYSQLI_ENUM_FLAG&#39;</span>)) {
 <a name="l00618"></a>00618         define(<span class="stringliteral">&#39;MYSQLI_ENUM_FLAG&#39;</span>, 256); <span class="comment">// see MySQL source include/mysql_com.h</span>
 <a name="l00619"></a>00619     }
-<a name="l00620"></a>00620     <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> = mysqli_fetch_field_direct(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>);
-<a name="l00621"></a>00621     <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> = <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>-&gt;type;
-<a name="l00622"></a>00622     $charsetnr = <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>-&gt;charsetnr;
-<a name="l00623"></a>00623     <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> = <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>-&gt;flags;
+<a name="l00620"></a>00620     $f = mysqli_fetch_field_direct(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>);
+<a name="l00621"></a>00621     <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> = $f-&gt;type;
+<a name="l00622"></a>00622     $charsetnr = $f-&gt;charsetnr;
+<a name="l00623"></a>00623     $f = $f-&gt;flags;
 <a name="l00624"></a>00624     $flags = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00625"></a>00625     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_UNIQUE_KEY_FLAG) {
+<a name="l00625"></a>00625     <span class="keywordflow">if</span> ($f &amp; MYSQLI_UNIQUE_KEY_FLAG) {
 <a name="l00626"></a>00626         $flags .= <span class="stringliteral">&#39;unique &#39;</span>;
 <a name="l00627"></a>00627     }
-<a name="l00628"></a>00628     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_NUM_FLAG) {
+<a name="l00628"></a>00628     <span class="keywordflow">if</span> ($f &amp; MYSQLI_NUM_FLAG) {
 <a name="l00629"></a>00629         $flags .= <span class="stringliteral">&#39;num &#39;</span>;
 <a name="l00630"></a>00630     }
-<a name="l00631"></a>00631     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_PART_KEY_FLAG) {
+<a name="l00631"></a>00631     <span class="keywordflow">if</span> ($f &amp; MYSQLI_PART_KEY_FLAG) {
 <a name="l00632"></a>00632         $flags .= <span class="stringliteral">&#39;part_key &#39;</span>;
 <a name="l00633"></a>00633     }
-<a name="l00634"></a>00634     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_SET_FLAG) {
+<a name="l00634"></a>00634     <span class="keywordflow">if</span> ($f &amp; MYSQLI_SET_FLAG) {
 <a name="l00635"></a>00635         $flags .= <span class="stringliteral">&#39;set &#39;</span>;
 <a name="l00636"></a>00636     }
-<a name="l00637"></a>00637     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_TIMESTAMP_FLAG) {
+<a name="l00637"></a>00637     <span class="keywordflow">if</span> ($f &amp; MYSQLI_TIMESTAMP_FLAG) {
 <a name="l00638"></a>00638         $flags .= <span class="stringliteral">&#39;timestamp &#39;</span>;
 <a name="l00639"></a>00639     }
-<a name="l00640"></a>00640     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_AUTO_INCREMENT_FLAG) {
+<a name="l00640"></a>00640     <span class="keywordflow">if</span> ($f &amp; MYSQLI_AUTO_INCREMENT_FLAG) {
 <a name="l00641"></a>00641         $flags .= <span class="stringliteral">&#39;auto_increment &#39;</span>;
 <a name="l00642"></a>00642     }
-<a name="l00643"></a>00643     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_ENUM_FLAG) {
+<a name="l00643"></a>00643     <span class="keywordflow">if</span> ($f &amp; MYSQLI_ENUM_FLAG) {
 <a name="l00644"></a>00644         $flags .= <span class="stringliteral">&#39;enum &#39;</span>;
 <a name="l00645"></a>00645     }
 <a name="l00646"></a>00646     <span class="comment">// See http://dev.mysql.com/doc/refman/6.0/en/c-api-datatypes.html:</span>
@@ -727,28 +727,28 @@
 <a name="l00649"></a>00649     <span class="comment">// structure. Watch out: some types like DATE returns 63 in charsetnr</span>
 <a name="l00650"></a>00650     <span class="comment">// so we have to check also the type.</span>
 <a name="l00651"></a>00651     <span class="comment">// Unfortunately there is no equivalent in the mysql extension.</span>
-<a name="l00652"></a>00652     <span class="keywordflow">if</span> ((<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_TINY_BLOB || <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_BLOB || <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_MEDIUM_BLOB || <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_LONG_BLOB || <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_VAR_STRING || <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_STRING) &amp;&amp; 63 == $charsetnr) {
+<a name="l00652"></a>00652     <span class="keywordflow">if</span> ((<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_TINY_BLOB || <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_BLOB || <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_MEDIUM_BLOB || <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_LONG_BLOB || <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_VAR_STRING || <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> == MYSQLI_TYPE_STRING) &amp;&amp; 63 == $charsetnr) {
 <a name="l00653"></a>00653         $flags .= <span class="stringliteral">&#39;binary &#39;</span>;
 <a name="l00654"></a>00654     }
-<a name="l00655"></a>00655     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_ZEROFILL_FLAG) {
+<a name="l00655"></a>00655     <span class="keywordflow">if</span> ($f &amp; MYSQLI_ZEROFILL_FLAG) {
 <a name="l00656"></a>00656         $flags .= <span class="stringliteral">&#39;zerofill &#39;</span>;
 <a name="l00657"></a>00657     }
-<a name="l00658"></a>00658     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_UNSIGNED_FLAG) {
+<a name="l00658"></a>00658     <span class="keywordflow">if</span> ($f &amp; MYSQLI_UNSIGNED_FLAG) {
 <a name="l00659"></a>00659         $flags .= <span class="stringliteral">&#39;unsigned &#39;</span>;
 <a name="l00660"></a>00660     }
-<a name="l00661"></a>00661     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_BLOB_FLAG) {
+<a name="l00661"></a>00661     <span class="keywordflow">if</span> ($f &amp; MYSQLI_BLOB_FLAG) {
 <a name="l00662"></a>00662         $flags .= <span class="stringliteral">&#39;blob &#39;</span>;
 <a name="l00663"></a>00663     }
-<a name="l00664"></a>00664     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_MULTIPLE_KEY_FLAG) {
+<a name="l00664"></a>00664     <span class="keywordflow">if</span> ($f &amp; MYSQLI_MULTIPLE_KEY_FLAG) {
 <a name="l00665"></a>00665         $flags .= <span class="stringliteral">&#39;multiple_key &#39;</span>;
 <a name="l00666"></a>00666     }
-<a name="l00667"></a>00667     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_UNIQUE_KEY_FLAG) {
+<a name="l00667"></a>00667     <span class="keywordflow">if</span> ($f &amp; MYSQLI_UNIQUE_KEY_FLAG) {
 <a name="l00668"></a>00668         $flags .= <span class="stringliteral">&#39;unique_key &#39;</span>;
 <a name="l00669"></a>00669     }
-<a name="l00670"></a>00670     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_PRI_KEY_FLAG) {
+<a name="l00670"></a>00670     <span class="keywordflow">if</span> ($f &amp; MYSQLI_PRI_KEY_FLAG) {
 <a name="l00671"></a>00671         $flags .= <span class="stringliteral">&#39;primary_key &#39;</span>;
 <a name="l00672"></a>00672     }
-<a name="l00673"></a>00673     <span class="keywordflow">if</span> (<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> &amp; MYSQLI_NOT_NULL_FLAG) {
+<a name="l00673"></a>00673     <span class="keywordflow">if</span> ($f &amp; MYSQLI_NOT_NULL_FLAG) {
 <a name="l00674"></a>00674         $flags .= <span class="stringliteral">&#39;not_null &#39;</span>;
 <a name="l00675"></a>00675     }
 <a name="l00676"></a>00676     <span class="keywordflow">return</span> trim($flags);
@@ -761,7 +761,7 @@
     <ul>
       <li class="navelem"><a class="el" href="mysqli_8dbi_8lib_8php.html">mysqli.dbi.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:30 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

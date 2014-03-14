@@ -92,17 +92,17 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#a7705f5ab5f867ebceb7367550d5ba227">PMA_exportIsActive</a> ($what, $val)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!defined('<a class="el" href="libraries_2common_8inc_8php.html#ad6841f085fef1a0cafcdf64651d0e152">PHPMYADMIN</a>'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#aec731b01e8ec05b80580f5130be8a0b7">$cfgRelation</a> = <a class="el" href="relation_8lib_8php.html#ad4dd08fb9ba9908cd15afb5ac92a2656">PMA_getRelationsParam</a>()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!defined('<a class="el" href="libraries_2common_8inc_8php.html#ad6841f085fef1a0cafcdf64651d0e152">PHPMYADMIN</a>'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#aec731b01e8ec05b80580f5130be8a0b7">$cfgRelation</a> = <a class="el" href="relation_8lib_8php.html#ad4dd08fb9ba9908cd15afb5ac92a2656">PMA_getRelationsParam</a>()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#ad364a43f160460965a75e346f3f46924">$export_list</a> = <a class="el" href="plugin__interface_8lib_8php.html#ae96f05a7f3520040636fc453ccd38695">PMA_getPlugins</a>('./libraries/export/', array('export_type' =&gt; $export_type, 'single_table' =&gt; isset($single_table)))</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_GET['export_method']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#a5fc6796a3794779648a787303859d0ec">elseif</a> (!isset($cfg['Export']['method']))</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($export_type== 'server') <br class="typebreak"/>
-<a class="el" href="videos_8php.html#a0544c3fe466e421738dae463968b70ba">else</a> <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($export_type== <br class="typebreak"/>
-'database') <a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($multi_values)) <br class="typebreak"/>
-<a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(strlen($table)&amp;&amp;!isset($num_tables)&amp;&amp;!<a class="el" href="classPMA__Table.html#aa508a35c45dbf9c43999e10c7cf29e38">PMA_Table::isMerge</a>($db, <br class="typebreak"/>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($_GET['export_method']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#a5fc6796a3794779648a787303859d0ec">elseif</a> (!isset($cfg['Export']['method']))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($export_type== 'server') <br class="typebreak"/>
+else <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($export_type== <br class="typebreak"/>
+'database') <a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!empty($multi_values)) <br class="typebreak"/>
+<a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(strlen($table)&amp;&amp;!isset($num_tables)&amp;&amp;!<a class="el" href="classPMA__Table.html#aa508a35c45dbf9c43999e10c7cf29e38">PMA_Table::isMerge</a>($db, <br class="typebreak"/>
 $table))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#adcbb798849510d8790e3bbe26fbb530d">if</a> (isset($cfg['SaveDir'])&amp;&amp;!empty($cfg['SaveDir']))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#ac75852aae94b46848119a6d7c922cf2e">$trans</a> = new <a class="el" href="classPMA__Message.html">PMA_Message</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($export_type== 'database'||$export_type== <br class="typebreak"/>
-'table')&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = new <a class="el" href="classPMA__Message.html">PMA_Message</a>(__('This value is interpreted using %1$sstrftime%2$s, so you can use time formatting strings. Additionally the following transformations will happen: %3$s. Other text will be kept as is. See the %4$sFAQ%5$s <a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> details.'))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>($export_type== 'database'||$export_type== <br class="typebreak"/>
+'table')&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = new <a class="el" href="classPMA__Message.html">PMA_Message</a>(__('This value is interpreted using %1$sstrftime%2$s, so you can use time formatting strings. Additionally the following transformations will happen: %3$s. Other text will be kept as is. See the %4$sFAQ%5$s <a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a> details.'))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#ad7e14c08b2692b1292df637014e63517">$is_gzip</a> = ($cfg['GZipDump'] &amp;&amp; @function_exists('gzencode'))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="display__export_8lib_8php.html#aed9e587ded90753a8a706bc95882caf6">$is_bzip2</a> = ($cfg['BZipDump'] &amp;&amp; @function_exists('bzcompress'))</td></tr>
 </table>
@@ -161,7 +161,7 @@ $table))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!defined('<a class="el" href="libraries_2common_8inc_8php.html#ad6841f085fef1a0cafcdf64651d0e152">PHPMYADMIN</a>')) $cfgRelation = <a class="el" href="relation_8lib_8php.html#ad4dd08fb9ba9908cd15afb5ac92a2656">PMA_getRelationsParam</a>()</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!defined('<a class="el" href="libraries_2common_8inc_8php.html#ad6841f085fef1a0cafcdf64651d0e152">PHPMYADMIN</a>')) $cfgRelation = <a class="el" href="relation_8lib_8php.html#ad4dd08fb9ba9908cd15afb5ac92a2656">PMA_getRelationsParam</a>()</td>
         </tr>
       </table>
 </div>
@@ -221,7 +221,7 @@ $table))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($export_type== 'database'||$export_type== 'table') $message = new <a class="el" href="classPMA__Message.html">PMA_Message</a>(__('This value is interpreted using %1$sstrftime%2$s, so you can use time formatting strings. Additionally the following transformations will happen: %3$s. Other text will be kept as is. See the %4$sFAQ%5$s <a class="el" href="videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4">for</a> details.'))</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> ($export_type== 'database'||$export_type== 'table') $message = new <a class="el" href="classPMA__Message.html">PMA_Message</a>(__('This value is interpreted using %1$sstrftime%2$s, so you can use time formatting strings. Additionally the following transformations will happen: %3$s. Other text will be kept as is. See the %4$sFAQ%5$s <a class="el" href="tbl__zoom__select_8php.html#a9a2000d9e9ae68bac144baaf1fcab3d3">for</a> details.'))</td>
         </tr>
       </table>
 </div>
@@ -251,7 +251,7 @@ $table))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($_GET['sql_query'])) <a class="el" href="tbl__indexes_8php.html#ac75fb325bdd1e7480a316cd3029e235d">elseif</a>(!empty($sql_query))</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (isset($_GET['sql_query'])) <a class="el" href="tbl__indexes_8php.html#ac75fb325bdd1e7480a316cd3029e235d">elseif</a>(!empty($sql_query))</td>
         </tr>
       </table>
 </div>
@@ -266,7 +266,7 @@ $table))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($cfg['SaveDir'])&amp;&amp;!empty($cfg['SaveDir']))</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(isset($cfg['SaveDir'])&amp;&amp;!empty($cfg['SaveDir']))</td>
         </tr>
       </table>
 </div>
@@ -282,7 +282,7 @@ $table))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
     <ul>
       <li class="navelem"><a class="el" href="display__export_8lib_8php.html">display_export.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:38 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:52 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

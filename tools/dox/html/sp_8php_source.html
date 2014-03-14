@@ -74,96 +74,43 @@
 </div><!--header-->
 <div class="contents">
 <a href="sp_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?
-<a name="l00002"></a>00002 
-<a name="l00003"></a>00003 
-<a name="l00004"></a>00004 
-<a name="l00005"></a><a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">00005</a> <a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>=$_REQUEST[<span class="stringliteral">&#39;what&#39;</span>];
-<a name="l00006"></a>00006 
-<a name="l00007"></a>00007 <a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>=str_replace(<span class="stringliteral">&quot;http://www.defectiveminds.com&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>);
-<a name="l00008"></a>00008 
-<a name="l00009"></a><a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">00009</a> <a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>=$_REQUEST[<span class="charliteral">&#39;m&#39;</span>];
-<a name="l00010"></a>00010 
-<a name="l00011"></a><a class="code" href="sp_8php.html#a50b05cf2e02ef0b67fcad97106dd7634">00011</a> <a class="code" href="sp_8php.html#a50b05cf2e02ef0b67fcad97106dd7634">$s</a>=$_REQUEST[<span class="charliteral">&#39;s&#39;</span>];
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013 <a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>=<a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>.<span class="stringliteral">&quot;?m=$m&amp;s=$s&quot;</span>;
+<a name="l00002"></a><a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">00002</a> <a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>=$_REQUEST[<span class="stringliteral">&#39;what&#39;</span>];
+<a name="l00003"></a>00003 <a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>=str_replace(<span class="stringliteral">&quot;http://www.defectiveminds.com&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,<a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>);
+<a name="l00004"></a><a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">00004</a> <a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>=$_REQUEST[<span class="charliteral">&#39;m&#39;</span>];
+<a name="l00005"></a><a class="code" href="sp_8php.html#a50b05cf2e02ef0b67fcad97106dd7634">00005</a> <a class="code" href="sp_8php.html#a50b05cf2e02ef0b67fcad97106dd7634">$s</a>=$_REQUEST[<span class="charliteral">&#39;s&#39;</span>];
+<a name="l00006"></a>00006 <a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>=<a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>.<span class="stringliteral">&quot;?m=$m&amp;s=$s&quot;</span>;
+<a name="l00007"></a>00007 
+<a name="l00008"></a><a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">00008</a> <a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a> = curl_init (<span class="stringliteral">&quot;$what&quot;</span>);
+<a name="l00009"></a>00009 curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_HEADER, 0);
+<a name="l00010"></a>00010 curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_RETURNTRANSFER, 1); 
+<a name="l00011"></a>00011 curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_BINARYTRANSFER,1); 
+<a name="l00012"></a><a class="code" href="sp_8php.html#ac4cca2bd2aedb4df2f308ffef7819da7">00012</a> <a class="code" href="sp_8php.html#ac4cca2bd2aedb4df2f308ffef7819da7">$rawdata</a>=curl_exec (<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>); 
+<a name="l00013"></a>00013 curl_close (<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>); 
 <a name="l00014"></a>00014 
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017 
-<a name="l00018"></a>00018 
-<a name="l00019"></a><a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">00019</a> <a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a> = curl_init (<span class="stringliteral">&quot;$what&quot;</span>); 
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_HEADER, 0); 
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_RETURNTRANSFER, 1); 
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025 curl_setopt(<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>, CURLOPT_BINARYTRANSFER,1); 
-<a name="l00026"></a>00026 
-<a name="l00027"></a><a class="code" href="sp_8php.html#ac4cca2bd2aedb4df2f308ffef7819da7">00027</a> <a class="code" href="sp_8php.html#ac4cca2bd2aedb4df2f308ffef7819da7">$rawdata</a>=curl_exec (<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>); 
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029 curl_close (<a class="code" href="sp_8php.html#a696b903bbc5c02914bdd402e91826eca">$ch</a>); 
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032 
-<a name="l00033"></a><a class="code" href="sp_8php.html#afb0dedfea7232b6f156fc819534bef15">00033</a> <a class="code" href="sp_8php.html#afb0dedfea7232b6f156fc819534bef15">$crap</a>=explode(<span class="stringliteral">&quot;.&quot;</span>,<a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>);
-<a name="l00034"></a>00034 
-<a name="l00035"></a><a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">00035</a> <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=count(<a class="code" href="sp_8php.html#afb0dedfea7232b6f156fc819534bef15">$crap</a>);
-<a name="l00036"></a>00036 
-<a name="l00037"></a><a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">00037</a> <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>=<a class="code" href="sp_8php.html#afb0dedfea7232b6f156fc819534bef15">$crap</a>[<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>-1];
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 
-<a name="l00041"></a><a class="code" href="sp_8php.html#a1d2c1369c63343a169bc25d1a0475482">00041</a> <a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a> = fopen(<span class="stringliteral">&quot;counter.txt&quot;</span>,<span class="stringliteral">&quot;r&quot;</span>);
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="keywordflow">if</span>(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>) { <a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>=fgets(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>,255); fclose(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>); }
-<a name="l00044"></a>00044 
-<a name="l00045"></a><a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">00045</a> <a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>=<a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>+1;
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a> = fopen(<span class="stringliteral">&quot;counter.txt&quot;</span>,<span class="stringliteral">&quot;w&quot;</span>);
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="keywordflow">if</span>(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>) { fputs(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>,<a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>); fclose(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>); }
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 
-<a name="l00055"></a><a class="code" href="sp_8php.html#ac395d04ff3c1e394563c4dab28fc675c">00055</a> <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>=<span class="stringliteral">&quot;hi$c.jpg&quot;</span>;
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="keywordflow">if</span>(<a class="code" href="sp_8php.html#ac4cca2bd2aedb4df2f308ffef7819da7">$rawdata</a>) {
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 <a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a> = fopen( <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="charliteral">&#39;w&#39;</span>); 
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061 fwrite(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>, <a class="code" href="sp_8php.html#ac4cca2bd2aedb4df2f308ffef7819da7">$rawdata</a>); 
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063 fclose(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>); 
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 header(<span class="stringliteral">&quot;Location: $file&quot;</span>);
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 ?&gt;
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 
+<a name="l00015"></a><a class="code" href="sp_8php.html#afb0dedfea7232b6f156fc819534bef15">00015</a> <a class="code" href="sp_8php.html#afb0dedfea7232b6f156fc819534bef15">$crap</a>=explode(<span class="stringliteral">&quot;.&quot;</span>,<a class="code" href="sp_8php.html#ad6a83103ee7d536e47feabe3429d0dbf">$what</a>);
+<a name="l00016"></a><a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">00016</a> <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=count(<a class="code" href="sp_8php.html#afb0dedfea7232b6f156fc819534bef15">$crap</a>);
+<a name="l00017"></a><a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">00017</a> <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>=<a class="code" href="sp_8php.html#afb0dedfea7232b6f156fc819534bef15">$crap</a>[<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>-1];
+<a name="l00018"></a><a class="code" href="sp_8php.html#a1d2c1369c63343a169bc25d1a0475482">00018</a> <a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a> = fopen(<span class="stringliteral">&quot;counter.txt&quot;</span>,<span class="stringliteral">&quot;r&quot;</span>);
+<a name="l00019"></a>00019 <span class="keywordflow">if</span>(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>) { <a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>=fgets(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>,255); fclose(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>); }
+<a name="l00020"></a><a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">00020</a> <a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>=<a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>+1;
+<a name="l00021"></a>00021 <a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a> = fopen(<span class="stringliteral">&quot;counter.txt&quot;</span>,<span class="stringliteral">&quot;w&quot;</span>);
+<a name="l00022"></a>00022 <span class="keywordflow">if</span>(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>) { fputs(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>,<a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>); fclose(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>); }
+<a name="l00023"></a>00023 
+<a name="l00024"></a><a class="code" href="sp_8php.html#ac395d04ff3c1e394563c4dab28fc675c">00024</a> <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>=<span class="stringliteral">&quot;hi$c.jpg&quot;</span>;
+<a name="l00025"></a>00025 <span class="keywordflow">if</span>(<a class="code" href="sp_8php.html#ac4cca2bd2aedb4df2f308ffef7819da7">$rawdata</a>) {
+<a name="l00026"></a>00026 <a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a> = fopen( <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="charliteral">&#39;w&#39;</span>); 
+<a name="l00027"></a>00027 fwrite(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>, <a class="code" href="sp_8php.html#ac4cca2bd2aedb4df2f308ffef7819da7">$rawdata</a>); 
+<a name="l00028"></a>00028 fclose(<a class="code" href="backup-packages_8php.html#a1d2c1369c63343a169bc25d1a0475482">$fp</a>); 
+<a name="l00029"></a>00029 header(<span class="stringliteral">&quot;Location: $file&quot;</span>);
+<a name="l00030"></a>00030 }
+<a name="l00031"></a>00031 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="sp_8php.html">sp.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

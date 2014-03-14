@@ -76,202 +76,168 @@
 <a href="linkbin_2linkbin_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?
 <a name="l00002"></a>00002 chdir(<span class="stringliteral">&quot;../../&quot;</span>);
 <a name="l00003"></a>00003 include(<span class="stringliteral">&quot;header.php&quot;</span>);
-<a name="l00004"></a>00004 
+<a name="l00004"></a><a class="code" href="linkbin_2linkbin_8php.html#a92763d1309e0e92b86507401d8397ec3">00004</a> <span class="keyword">function</span> <a class="code" href="linkbin_2linkbin_8php.html#a92763d1309e0e92b86507401d8397ec3">linkbin_finish</a>() { include(<span class="stringliteral">&quot;footer.php&quot;</span>); }
 <a name="l00005"></a><a class="code" href="linkbin_2linkbin_8php.html#ac9c5f2d22ca61747cdbd9842eef76237">00005</a> <span class="keyword">function</span> <a class="code" href="linkbin_2linkbin_8php.html#ac9c5f2d22ca61747cdbd9842eef76237">linkbin_showaddform</a>() {
 <a name="l00006"></a>00006     echo <span class="stringliteral">&quot;&lt;h2&gt;For consistency please put all link short names in all lower case unless it is necessary, thanks management&lt;/h2&gt;\n&quot;</span>;
 <a name="l00007"></a>00007     echo <span class="stringliteral">&quot;&lt;table border=0&gt;\n&quot;</span>;
-<a name="l00008"></a>00008     echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded</span>
-<a name="l00009"></a>00009 <span class="stringliteral">    action=\&quot;&quot;</span>.
-<a name="l00010"></a>00010     <a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;RFS_SITE_URL&#39;</span>].<span class="stringliteral">&quot;/modules/linkbin/linkbin.php\&quot; method=\&quot;post\&quot;&gt;\n&quot;</span>;
-<a name="l00011"></a>00011     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;Link URL:       &lt;/td&gt;&lt;td&gt;&lt;input name=linkurl value=\&quot;http://\&quot; size=80&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00012"></a>00012     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;Link Short Name:&lt;/td&gt;&lt;td&gt;&lt;input name=short_name size=40&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00013"></a>00013     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;Description:    &lt;/td&gt;&lt;td&gt;&lt;textarea name=description rows=10 cols=70&gt;&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00014"></a>00014     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;Category:&lt;/td&gt;&lt;td&gt;&lt;select name=category&gt;\n&quot;</span>;
-<a name="l00015"></a>00015     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;select * from link_bin_categories&quot;</span>);
-<a name="l00016"></a>00016     <a class="code" href="files_8php.html#a75fc289e2dfa4d8c56e6511eaa3893d8">$numcats</a>=mysql_num_rows(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00017"></a>00017     <span class="keywordflow">for</span>($i=0;$i&lt;<a class="code" href="files_8php.html#a75fc289e2dfa4d8c56e6511eaa3893d8">$numcats</a>;$i++)
-<a name="l00018"></a>00018     {
-<a name="l00019"></a>00019         $cat=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00020"></a>00020         echo <span class="stringliteral">&quot;&lt;option&gt;$cat-&gt;name\n&quot;</span>;
-<a name="l00021"></a>00021     }
-<a name="l00022"></a>00022     echo <span class="stringliteral">&quot;&lt;/select&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;&amp;nbsp;          &lt;/td&gt;&lt;td&gt;&lt;input type=submit name=submit value=\&quot;add\&quot;&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00026"></a>00026     echo <span class="stringliteral">&quot;&lt;input type=hidden name=action value=addlinkgo&gt;\n&quot;</span>;
-<a name="l00027"></a>00027     echo <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span>;
-<a name="l00028"></a>00028     echo <span class="stringliteral">&quot;&lt;/table&gt;\n&quot;</span>;
-<a name="l00029"></a>00029 }
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="keywordflow">if</span>(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>==<span class="stringliteral">&quot;addlink&quot;</span>) {
-<a name="l00032"></a>00032     <a class="code" href="linkbin_2linkbin_8php.html#ac9c5f2d22ca61747cdbd9842eef76237">linkbin_showaddform</a>();
-<a name="l00033"></a>00033 }
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 <span class="keywordflow">if</span>(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>==<span class="stringliteral">&quot;addlinkgo&quot;</span>) {
-<a name="l00036"></a>00036     $description=addslashes($description);
-<a name="l00037"></a>00037     $short_name=addslashes($short_name);
-<a name="l00038"></a>00038     $time=date(<span class="stringliteral">&quot;Y-m-d H:i:s&quot;</span>);
-<a name="l00039"></a>00039     <span class="keywordflow">if</span>(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;id==0) <a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;id=999;
-<a name="l00040"></a>00040     <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;insert into `link_bin` values(&#39;&#39;,&#39;$linkurl&#39;,&#39;$data-&gt;id&#39;,&#39;$time&#39;,&#39;$short_name&#39;,&#39;0&#39;,&#39;0&#39;,&#39;$description&#39;,&#39;0&#39;,&#39;3&#39;,&#39;&#39;)&quot;</span>);
-<a name="l00041"></a>00041     addsp(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name,10);
-<a name="l00042"></a>00042     addlinks(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name,1);
-<a name="l00043"></a>00043     echo <span class="stringliteral">&quot;&lt;p&gt;Link [$short_name][$linkurl] added to linkbin...&lt;/p&gt;\n&quot;</span>;
-<a name="l00044"></a>00044     <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=<span class="stringliteral">&quot;editlinkbin&quot;</span>;
-<a name="l00045"></a>00045 }
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keywordflow">if</span>(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>==<span class="stringliteral">&quot;modifylinknow&quot;</span>) {
-<a name="l00048"></a>00048     <span class="keywordflow">if</span>($deletelink==<span class="stringliteral">&quot;delete&quot;</span>)
-<a name="l00049"></a>00049     {
-<a name="l00050"></a>00050         echo <span class="stringliteral">&quot;&lt;p&gt;&lt;h1&gt;Deleting Link!&lt;/h1&gt;&lt;/p&gt;\n&quot;</span>;
-<a name="l00051"></a>00051         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;DELETE FROM link_bin where `id` = &#39;$linkid&#39; limit 1&quot;</span>, $mysql);
-<a name="l00052"></a>00052         <span class="comment">//sc_log(&quot;*****&gt; $data-&gt;name deleted a link from the linkbin $short_name $link&quot;);</span>
-<a name="l00053"></a>00053         <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=<span class="stringliteral">&quot;editlinkbin&quot;</span>;
-<a name="l00054"></a>00054     }
-<a name="l00055"></a>00055     <span class="keywordflow">if</span>($renamelink==<span class="stringliteral">&quot;modify&quot;</span>)
-<a name="l00056"></a>00056     {
-<a name="l00057"></a>00057         echo <span class="stringliteral">&quot;&lt;p&gt;&lt;h1&gt;Modifying Link!&lt;/h1&gt;&lt;/p&gt;\n&quot;</span>;
-<a name="l00058"></a>00058         $short_name=addslashes($short_name);
-<a name="l00059"></a>00059         $linkurl=addslashes($linkurl);
-<a name="l00060"></a>00060         $description=addslashes($description);
-<a name="l00061"></a>00061         $category=addslashes($category);
-<a name="l00062"></a>00062         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update link_bin set `sname` = &#39;$short_name&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
-<a name="l00063"></a>00063         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update link_bin set `link` = &#39;$linkurl&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
-<a name="l00064"></a>00064         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update link_bin set `description` = &#39;$description&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
-<a name="l00065"></a>00065         $hide=0; <span class="keywordflow">if</span>($hidden==<span class="stringliteral">&quot;yes&quot;</span>) { $hide=1; } <span class="keywordflow">if</span>($hidden==<span class="stringliteral">&quot;no&quot;</span>)  { $hide=0; }
-<a name="l00066"></a>00066         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update link_bin set `hidden` = &#39;$hide&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
-<a name="l00067"></a>00067         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update link_bin set `referrals` = &#39;$referrals&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
-<a name="l00068"></a>00068         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update link_bin set `clicks` = &#39;$clicks&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
-<a name="l00069"></a>00069         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update link_bin set `category` = &#39;$category&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
-<a name="l00070"></a>00070         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update link_bin set `rating` = &#39;$rating&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
-<a name="l00071"></a>00071         <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=<span class="stringliteral">&quot;editlinkbin&quot;</span>;
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 }
-<a name="l00075"></a>00075 <span class="keywordflow">if</span>(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>==<span class="stringliteral">&quot;addlink2bin&quot;</span>) {
-<a name="l00076"></a>00076     echo <span class="stringliteral">&quot;&lt;h1&gt;Dump a Link in the Bin!&lt;/h1&gt;\n&quot;</span>;
-<a name="l00077"></a>00077     $time=date(<span class="stringliteral">&quot;Y-m-d H:i:s&quot;</span>);
-<a name="l00078"></a>00078     <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;INSERT INTO link_bin VALUES (&#39;&#39;, &#39;$linkurl&#39;, &#39;&quot;</span>.<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;id.<span class="stringliteral">&quot;&#39;, &#39;&quot;</span>.$time.<span class="stringliteral">&quot;&#39;, &#39;&quot;</span>.$_REQUEST[<span class="stringliteral">&#39;linksn&#39;</span>].<span class="stringliteral">&quot;&#39;, &#39;&#39;, &#39;&#39; ,&#39;&#39;,&#39;3&#39;);&quot;</span>);
-<a name="l00079"></a>00079     <a class="code" href="lib_8log_8php.html#a85306751b884541d0eff4186e78730fa">sc_log</a>(<span class="stringliteral">&quot;*****&gt; $data-&gt;name added a link to the linkbin [&quot;</span>.$_REQUEST[<span class="stringliteral">&#39;linksn&#39;</span>].<span class="stringliteral">&quot;]&quot;</span>);
-<a name="l00080"></a>00080     <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=<span class="stringliteral">&quot;linkbin&quot;</span>;
-<a name="l00081"></a>00081 }
-<a name="l00082"></a>00082 <span class="keywordflow">if</span>(<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>==<span class="stringliteral">&quot;editlinkbin&quot;</span>) {
-<a name="l00083"></a>00083     echo <span class="stringliteral">&quot;&lt;p&gt;&lt;h1&gt;Link Bin Edirator&lt;/h1&gt;&lt;/p&gt;\n&quot;</span>;
-<a name="l00084"></a>00084     <span class="comment">// list all the links here with edit or delete buttons...</span>
-<a name="l00085"></a>00085     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;select * from link_bin order by time desc&quot;</span>);
-<a name="l00086"></a>00086     <a class="code" href="linkbin_2linkbin_8php.html#a8486e1e6b61a90d22385596e5783b4d3">$numlinks</a>=mysql_num_rows(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00087"></a>00087     echo <span class="stringliteral">&quot;&lt;table width=100% border=0 cellspacing=0 cellpadding=0 align=center&gt;\n&quot;</span>;
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089     <a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=2;
-<a name="l00090"></a>00090     <span class="keywordflow">for</span>($i=0;$i&lt;<a class="code" href="linkbin_2linkbin_8php.html#a8486e1e6b61a90d22385596e5783b4d3">$numlinks</a>;$i++) {
-<a name="l00091"></a>00091             <a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++;<span class="keywordflow">if</span>(<a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;3)<a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=2;
-<a name="l00092"></a>00092             echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td bgcolor=$forum_color[$gt]&gt;\n&quot;</span>;
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094             $link=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00095"></a>00095             <a class="code" href="showprofile_8php.html#af70e594e86a310311c717b13e6ecac00">$userdata</a>=<a class="code" href="lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923">sc_getuserdata</a>($link-&gt;poster);
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097             echo <span class="stringliteral">&quot;&lt;table border=0 cellspacing=0 cellpadding=0 width=100% bgcolor=$forum_color[$gt]&gt;\n&quot;</span>;
-<a name="l00098"></a>00098             echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=linkbin.php method=\&quot;post\&quot;&gt;\n&quot;</span>;
-<a name="l00099"></a>00099             echo <span class="stringliteral">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;action\&quot; value=\&quot;modifylinknow\&quot;&gt;\n&quot;</span>;
-<a name="l00100"></a>00100             echo <span class="stringliteral">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;linkid\&quot; value=\&quot;$link-&gt;id\&quot;&gt;\n&quot;</span>;
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102             echo <span class="stringliteral">&quot;&lt;tr bgcolor=$forum_color[$gt]&gt;\n&quot;</span>;
-<a name="l00103"></a>00103             echo <span class="stringliteral">&quot;&lt;td bgcolor=$forum_color[$gt] width=130&gt;&lt;input type=text name=short_name value=\&quot;$link-&gt;sname\&quot; size=18&gt;&lt;/td&gt;&quot;</span>;
-<a name="l00104"></a>00104             echo <span class="stringliteral">&quot;&lt;td width=250&gt;&lt;input type=text name=linkurl value=\&quot;$link-&gt;link\&quot; size=40&gt; &lt;/td&gt;\n&quot;</span>;
-<a name="l00105"></a>00105             echo <span class="stringliteral">&quot;&lt;td width=300&gt;(submitted by $userdata-&gt;name on &quot;</span>.sc_time($link-&gt;time).<span class="stringliteral">&quot;)&lt;/td&gt;\n&quot;</span>;
-<a name="l00106"></a>00106             echo <span class="stringliteral">&quot;&lt;td&gt;Rating:&lt;/td&gt;\n&quot;</span>;
-<a name="l00107"></a>00107             echo <span class="stringliteral">&quot;&lt;td bgcolor=$forum_color[$gt] width=100 align=center&gt;&lt;input type=submit name=renamelink value=modify&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00108"></a>00108             echo <span class="stringliteral">&quot;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00109"></a>00109             echo <span class="stringliteral">&quot;&lt;tr&gt;\n&quot;</span>;
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111             echo <span class="stringliteral">&quot;&lt;td&gt;\n&quot;</span>;
-<a name="l00112"></a>00112                 echo <span class="stringliteral">&quot;&lt;select name=category&gt;\n&quot;</span>;
-<a name="l00113"></a>00113                 echo <span class="stringliteral">&quot;&lt;option&gt;$link-&gt;category\n&quot;</span>;
-<a name="l00114"></a>00114                 
-<a name="l00115"></a>00115                 $result2=<a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;select * from categories order by name asc&quot;</span>);
-<a name="l00116"></a>00116                 <a class="code" href="files_8php.html#a75fc289e2dfa4d8c56e6511eaa3893d8">$numcats</a>=mysql_num_rows($result2);
-<a name="l00117"></a>00117                 <span class="keywordflow">for</span>($i2=0;$i2&lt;<a class="code" href="files_8php.html#a75fc289e2dfa4d8c56e6511eaa3893d8">$numcats</a>;$i2++) {
-<a name="l00118"></a>00118                     $cat=mysql_fetch_object($result2);
-<a name="l00119"></a>00119                     echo <span class="stringliteral">&quot;&lt;option&gt;$cat-&gt;name\n&quot;</span>;
-<a name="l00120"></a>00120                 }
-<a name="l00121"></a>00121                 
-<a name="l00122"></a>00122                 echo <span class="stringliteral">&quot;&lt;/select&gt;\n&quot;</span>;
-<a name="l00123"></a>00123                 echo <span class="stringliteral">&quot;&lt;/td&gt;\n&quot;</span>;
-<a name="l00124"></a>00124 
-<a name="l00125"></a>00125             echo <span class="stringliteral">&quot;&lt;td&gt;&lt;input type=text name=description value=\&quot;$link-&gt;description\&quot; size=40&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00126"></a>00126             echo <span class="stringliteral">&quot;&lt;td&gt;&lt;table border=0&gt;&lt;tr&gt;\n&quot;</span>;
-<a name="l00127"></a>00127             echo <span class="stringliteral">&quot;&lt;td&gt;referrals&lt;/td&gt;&lt;td&gt;&lt;input type=text size=3 name=referrals value=\&quot;$link-&gt;referrals\&quot;&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00128"></a>00128             echo <span class="stringliteral">&quot;&lt;td&gt;clicks&lt;/td&gt;&lt;td&gt;&lt;input type=text size=3 name=clicks value=\&quot;$link-&gt;clicks\&quot;&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00129"></a>00129             <span class="keywordflow">if</span>($link-&gt;hidden==0) echo <span class="stringliteral">&quot;&lt;td&gt;hidden&lt;/td&gt;&lt;td&gt;&lt;select name=hidden&gt;&lt;option&gt;no&lt;option&gt;yes&lt;/td&gt;\n&quot;</span>;
-<a name="l00130"></a>00130             <span class="keywordflow">if</span>($link-&gt;hidden==1) echo <span class="stringliteral">&quot;&lt;td&gt;hidden&lt;/td&gt;&lt;td&gt;&lt;select name=hidden&gt;&lt;option&gt;yes&lt;option&gt;no&lt;/td&gt;\n&quot;</span>;
-<a name="l00131"></a>00131             echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00132"></a>00132             echo <span class="stringliteral">&quot;&lt;td&gt;&lt;select name=rating&gt;&lt;option&gt;$link-&gt;rating\n&quot;</span>;
-<a name="l00133"></a>00133             <span class="keywordflow">for</span>($j=1;$j&lt;6;$j++) echo <span class="stringliteral">&quot;&lt;option&gt;$j\n&quot;</span>;
-<a name="l00134"></a>00134             echo <span class="stringliteral">&quot;&lt;/select&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00135"></a>00135             echo <span class="stringliteral">&quot;&lt;td align=center&gt;&lt;input type=submit name=deletelink value=delete&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137             echo <span class="stringliteral">&quot;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00138"></a>00138             echo <span class="stringliteral">&quot;&lt;tr bgcolor=$forum_color[1]&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00139"></a>00139             echo <span class="stringliteral">&quot;&lt;/table&gt;\n&quot;</span>;
-<a name="l00140"></a>00140             echo <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span>;
-<a name="l00141"></a>00141             echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00142"></a>00142     }
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td&gt;\n&quot;</span>;
-<a name="l00145"></a>00145     echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;\n&quot;</span>;
-<a name="l00146"></a>00146     <span class="comment">// add a new link here...</span>
-<a name="l00147"></a>00147     <a class="code" href="linkbin_2linkbin_8php.html#ac9c5f2d22ca61747cdbd9842eef76237">linkbin_showaddform</a>();
-<a name="l00148"></a>00148 }
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 
-<a name="l00152"></a><a class="code" href="linkbin_2linkbin_8php.html#aafb60aeb751ee475deeddb1ff06600f1">00152</a> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;select * from link_bin order by time desc&quot;</span>);
-<a name="l00153"></a><a class="code" href="linkbin_2linkbin_8php.html#a8486e1e6b61a90d22385596e5783b4d3">00153</a> $numlinks=mysql_num_rows(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00154"></a>00154 echo <span class="stringliteral">&quot;&lt;table width=100% cellspacing=0 cellpadding=0 border=0&gt;\n&quot;</span>;
-<a name="l00155"></a><a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">00155</a> <a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=0;
-<a name="l00156"></a><a class="code" href="linkbin_2linkbin_8php.html#ad395abd86cdc84c30ae4f53cb55bdd0e">00156</a> <span class="keywordflow">for</span>($u=0;$u&lt;<a class="code" href="linkbin_2linkbin_8php.html#a8486e1e6b61a90d22385596e5783b4d3">$numlinks</a>;$u++) {
-<a name="l00157"></a>00157     <a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++; <span class="keywordflow">if</span>(<a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;1) <a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=0;
-<a name="l00158"></a>00158     $link=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00159"></a>00159     <a class="code" href="showprofile_8php.html#af70e594e86a310311c717b13e6ecac00">$userdata</a>=<a class="code" href="lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923">sc_getuserdata</a>($link-&gt;poster);
-<a name="l00160"></a>00160     list($lmonth,$lday,$lyear,$ltime,$lampm) = explode(<span class="stringliteral">&quot; &quot;</span>,<a class="code" href="lib_8rfs_8php.html#afbb1b36be3cc698e2954eeee58a3c944">sc_time</a>($link-&gt;time));
-<a name="l00161"></a>00161     <span class="keywordflow">if</span>($lmonth!=$lastmonth) {
-<a name="l00162"></a>00162         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td&gt;&lt;h1&gt;$lmonth $lyear&lt;/h1&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00163"></a>00163         $lastmonth=$lmonth;
-<a name="l00164"></a>00164     }
-<a name="l00165"></a>00165     <span class="keywordflow">if</span>(empty($link-&gt;description)) $link-&gt;description=<span class="stringliteral">&quot;&lt;i&gt;No description&lt;/i&gt;&quot;</span>;
-<a name="l00166"></a>00166     echo <span class="stringliteral">&quot;&lt;tr class=sc_project_table_$gt&gt;&quot;</span>;
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168     $link-&gt;sname=str_replace(<span class="stringliteral">&quot;www.&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$link-&gt;sname);
-<a name="l00169"></a>00169     $link-&gt;sname=str_replace(<span class="stringliteral">&quot;.com&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$link-&gt;sname);
-<a name="l00170"></a>00170     $link-&gt;sname=str_replace(<span class="stringliteral">&quot;.net&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$link-&gt;sname);
-<a name="l00171"></a>00171     $link-&gt;sname=str_replace(<span class="stringliteral">&quot;.org&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$link-&gt;sname);
-<a name="l00172"></a>00172     
-<a name="l00173"></a>00173     $link-&gt;link = str_replace(<span class="stringliteral">&quot;:&quot;</span>,<span class="stringliteral">&quot;_rfs_colon_&quot;</span>,  $link-&gt;link);
-<a name="l00174"></a>00174     $link-&gt;link=urlencode($link-&gt;link);
-<a name="l00175"></a>00175 
-<a name="l00176"></a>00176     echo <span class="stringliteral">&quot;&lt;td&gt;&lt;a href=\&quot;&quot;</span>.$GLOBALS[<span class="stringliteral">&#39;RFS_SITE_URL&#39;</span>].<span class="stringliteral">&quot;/link_out.php?link=$link-&gt;link\&quot; target=\&quot;_blank\&quot;&gt;$link-&gt;sname&lt;/a&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00177"></a>00177     
-<a name="l00178"></a>00178     echo <span class="stringliteral">&quot;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00179"></a>00179 
-<a name="l00180"></a>00180    <span class="comment">// echo &quot;&lt;tr bgcolor=$forum_color[$gt]&gt;&lt;td&gt;&lt;/td&gt;\n&quot;;</span>
-<a name="l00181"></a>00181    <span class="comment">// echo &quot;&lt;td&gt;$link-&gt;description&lt;/td&gt;\n&quot;;</span>
-<a name="l00182"></a>00182    <span class="comment">// echo &quot;&lt;td&gt;refs: $link-&gt;referrals clicks:$link-&gt;clicks&lt;/td&gt; &lt;td&gt;\n&quot;;</span>
-<a name="l00183"></a>00183    <span class="comment">//       // insert rating vote here</span>
-<a name="l00184"></a>00184    <span class="comment">// echo &quot;&lt;/td&gt;&lt;/tr&gt;\n&quot;;</span>
-<a name="l00185"></a>00185     <span class="comment">//echo &quot;&lt;tr&gt;&lt;td&gt;\n&quot;;</span>
-<a name="l00186"></a>00186  <span class="comment">//   echo &quot;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;;</span>
-<a name="l00187"></a>00187 }
-<a name="l00188"></a>00188 echo <span class="stringliteral">&quot;&lt;/table&gt;\n&quot;</span>;
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190 include(<span class="stringliteral">&quot;footer.php&quot;</span>);
-<a name="l00191"></a>00191 ?&gt;
-<a name="l00192"></a>00192 
+<a name="l00008"></a>00008     echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=\&quot;&quot;</span>.$GLOBALS[<span class="stringliteral">&#39;RFS_SITE_URL&#39;</span>].<span class="stringliteral">&quot;/modules/linkbin/linkbin.php\&quot; method=\&quot;post\&quot;&gt;\n&quot;</span>;
+<a name="l00009"></a>00009     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;Link URL:       &lt;/td&gt;&lt;td&gt;&lt;input name=linkurl value=\&quot;http://\&quot; size=80&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00010"></a>00010     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;Link Short Name:&lt;/td&gt;&lt;td&gt;&lt;input name=short_name size=40&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00011"></a>00011     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;Description:    &lt;/td&gt;&lt;td&gt;&lt;textarea name=description rows=10 cols=70&gt;&lt;/textarea&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00012"></a>00012     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;Category:&lt;/td&gt;&lt;td&gt;&lt;select name=category&gt;\n&quot;</span>;
+<a name="l00013"></a>00013     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from link_bin_categories&quot;</span>);
+<a name="l00014"></a>00014     <span class="keywordflow">while</span> ($cat=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) echo <span class="stringliteral">&quot;&lt;option&gt;$cat-&gt;name\n&quot;</span>;
+<a name="l00015"></a>00015     echo <span class="stringliteral">&quot;&lt;/select&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00016"></a>00016     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=right&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;input type=submit name=submit value=\&quot;add\&quot;&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00017"></a>00017     echo <span class="stringliteral">&quot;&lt;input type=hidden name=action value=addlinkgo&gt;\n&quot;</span>;
+<a name="l00018"></a>00018     echo <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span>;
+<a name="l00019"></a>00019     echo <span class="stringliteral">&quot;&lt;/table&gt;\n&quot;</span>;
+<a name="l00020"></a>00020 }
+<a name="l00021"></a><a class="code" href="linkbin_2linkbin_8php.html#a42305e3f92cfeb72760d0b2fa4dfcf81">00021</a> <span class="keyword">function</span> <a class="code" href="linkbin_2linkbin_8php.html#a42305e3f92cfeb72760d0b2fa4dfcf81">linkbin_action_addlink</a>() { 
+<a name="l00022"></a>00022     <a class="code" href="linkbin_2linkbin_8php.html#ac9c5f2d22ca61747cdbd9842eef76237">linkbin_showaddform</a>();
+<a name="l00023"></a>00023     <a class="code" href="linkbin_2linkbin_8php.html#a92763d1309e0e92b86507401d8397ec3">linkbin_finish</a>();
+<a name="l00024"></a>00024 }
+<a name="l00025"></a><a class="code" href="linkbin_2linkbin_8php.html#a0a77a676212dc9becb8192e46c989417">00025</a> <span class="keyword">function</span> <a class="code" href="linkbin_2linkbin_8php.html#a0a77a676212dc9becb8192e46c989417">linkbin_action_addlinkgo</a>() { 
+<a name="l00026"></a>00026     $description=addslashes($description);
+<a name="l00027"></a>00027     $short_name=addslashes($short_name);
+<a name="l00028"></a>00028     $time=date(<span class="stringliteral">&quot;Y-m-d H:i:s&quot;</span>);
+<a name="l00029"></a>00029     <span class="keywordflow">if</span>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;id==0) <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;id=999;
+<a name="l00030"></a>00030     <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;insert into `link_bin` values(&#39;&#39;,&#39;$linkurl&#39;,&#39;$data-&gt;id&#39;,&#39;$time&#39;,&#39;$short_name&#39;,&#39;0&#39;,&#39;0&#39;,&#39;$description&#39;,&#39;0&#39;,&#39;3&#39;,&#39;&#39;)&quot;</span>);
+<a name="l00031"></a>00031     addsp(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name,10);
+<a name="l00032"></a>00032     addlinks(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name,1);
+<a name="l00033"></a>00033     echo <span class="stringliteral">&quot;&lt;p&gt;Link [$short_name][$linkurl] added to linkbin...&lt;/p&gt;\n&quot;</span>;
+<a name="l00034"></a>00034     <a class="code" href="linkbin_2linkbin_8php.html#aa90029ccdabfec98a841a694f0568284">linkbin_action_editlinkbin</a>();
+<a name="l00035"></a>00035 }
+<a name="l00036"></a><a class="code" href="linkbin_2linkbin_8php.html#af6987ab2758cc58b51ce41b5da379fc4">00036</a> <span class="keyword">function</span> <a class="code" href="linkbin_2linkbin_8php.html#af6987ab2758cc58b51ce41b5da379fc4">linkbin_action_modifylinknow</a>() {
+<a name="l00037"></a>00037     <span class="keywordflow">if</span>($deletelink==<span class="stringliteral">&quot;delete&quot;</span>) {
+<a name="l00038"></a>00038         echo <span class="stringliteral">&quot;&lt;p&gt;&lt;h1&gt;Deleting Link!&lt;/h1&gt;&lt;/p&gt;\n&quot;</span>;
+<a name="l00039"></a>00039         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;DELETE FROM link_bin where `id` = &#39;$linkid&#39; limit 1&quot;</span>, $mysql);
+<a name="l00040"></a>00040         <span class="comment">//lib_log_add_entry(&quot;*****&gt; $data-&gt;name deleted a link from the linkbin $short_name $link&quot;);</span>
+<a name="l00041"></a>00041         <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=<span class="stringliteral">&quot;editlinkbin&quot;</span>;
+<a name="l00042"></a>00042     }
+<a name="l00043"></a>00043     <span class="keywordflow">if</span>($renamelink==<span class="stringliteral">&quot;modify&quot;</span>)
+<a name="l00044"></a>00044     {
+<a name="l00045"></a>00045         echo <span class="stringliteral">&quot;&lt;p&gt;&lt;h1&gt;Modifying Link!&lt;/h1&gt;&lt;/p&gt;\n&quot;</span>;
+<a name="l00046"></a>00046         $short_name=addslashes($short_name);
+<a name="l00047"></a>00047         $linkurl=addslashes($linkurl);
+<a name="l00048"></a>00048         $description=addslashes($description);
+<a name="l00049"></a>00049         $category=addslashes($category);
+<a name="l00050"></a>00050         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update link_bin set `sname` = &#39;$short_name&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
+<a name="l00051"></a>00051         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update link_bin set `link` = &#39;$linkurl&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
+<a name="l00052"></a>00052         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update link_bin set `description` = &#39;$description&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
+<a name="l00053"></a>00053         $hide=0; <span class="keywordflow">if</span>($hidden==<span class="stringliteral">&quot;yes&quot;</span>) { $hide=1; } <span class="keywordflow">if</span>($hidden==<span class="stringliteral">&quot;no&quot;</span>)  { $hide=0; }
+<a name="l00054"></a>00054         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update link_bin set `hidden` = &#39;$hide&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
+<a name="l00055"></a>00055         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update link_bin set `referrals` = &#39;$referrals&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
+<a name="l00056"></a>00056         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update link_bin set `clicks` = &#39;$clicks&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
+<a name="l00057"></a>00057         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update link_bin set `category` = &#39;$category&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
+<a name="l00058"></a>00058         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update link_bin set `rating` = &#39;$rating&#39; where `id` = &#39;$linkid&#39;&quot;</span>);
+<a name="l00059"></a>00059         <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=<span class="stringliteral">&quot;editlinkbin&quot;</span>;
+<a name="l00060"></a>00060     }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 }
+<a name="l00063"></a><a class="code" href="linkbin_2linkbin_8php.html#a9559a758dd16d2c3e5870d5fdd04e409">00063</a> <span class="keyword">function</span> <a class="code" href="linkbin_2linkbin_8php.html#a9559a758dd16d2c3e5870d5fdd04e409">linkbin_action_addlink2bin</a>() {
+<a name="l00064"></a>00064     echo <span class="stringliteral">&quot;&lt;h1&gt;Dump a Link in the Bin!&lt;/h1&gt;\n&quot;</span>;
+<a name="l00065"></a>00065     $time=date(<span class="stringliteral">&quot;Y-m-d H:i:s&quot;</span>);
+<a name="l00066"></a>00066     <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;INSERT INTO link_bin VALUES (&#39;&#39;, &#39;$linkurl&#39;, &#39;&quot;</span>.<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;id.<span class="stringliteral">&quot;&#39;, &#39;&quot;</span>.$time.<span class="stringliteral">&quot;&#39;, &#39;&quot;</span>.$_REQUEST[<span class="stringliteral">&#39;linksn&#39;</span>].<span class="stringliteral">&quot;&#39;, &#39;&#39;, &#39;&#39; ,&#39;&#39;,&#39;3&#39;);&quot;</span>);
+<a name="l00067"></a>00067     <a class="code" href="lib_8log_8php.html#a32ae1cfe8fbc148f91d705ef1237aac2">lib_log_add_entry</a>(<span class="stringliteral">&quot;*****&gt; $data-&gt;name added a link to the linkbin [&quot;</span>.$_REQUEST[<span class="stringliteral">&#39;linksn&#39;</span>].<span class="stringliteral">&quot;]&quot;</span>);
+<a name="l00068"></a>00068     <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=<span class="stringliteral">&quot;linkbin&quot;</span>;
+<a name="l00069"></a>00069 }
+<a name="l00070"></a><a class="code" href="linkbin_2linkbin_8php.html#aa90029ccdabfec98a841a694f0568284">00070</a> <span class="keyword">function</span> <a class="code" href="linkbin_2linkbin_8php.html#aa90029ccdabfec98a841a694f0568284">linkbin_action_editlinkbin</a>() {
+<a name="l00071"></a>00071     echo <span class="stringliteral">&quot;&lt;p&gt;&lt;h1&gt;Link Bin Edirator&lt;/h1&gt;&lt;/p&gt;\n&quot;</span>;
+<a name="l00072"></a>00072     <span class="comment">// list all the links here with edit or delete buttons...</span>
+<a name="l00073"></a>00073     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from link_bin order by time desc&quot;</span>);
+<a name="l00074"></a>00074     
+<a name="l00075"></a>00075     echo <span class="stringliteral">&quot;&lt;table width=100% border=0 cellspacing=0 cellpadding=0 align=center&gt;\n&quot;</span>;
+<a name="l00076"></a>00076     <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=2;
+<a name="l00077"></a>00077     <span class="keywordflow">while</span>($link=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00078"></a>00078             <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++;<span class="keywordflow">if</span>(<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;3)<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=2;
+<a name="l00079"></a>00079             echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td bgcolor=$forum_color[$gt]&gt;\n&quot;</span>;            
+<a name="l00080"></a>00080             <a class="code" href="showprofile_8php.html#af70e594e86a310311c717b13e6ecac00">$userdata</a>=<a class="code" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22">lib_users_get_data</a>($link-&gt;poster);
+<a name="l00081"></a>00081             echo <span class="stringliteral">&quot;&lt;table border=0 cellspacing=0 cellpadding=0 width=100% bgcolor=$forum_color[$gt]&gt;\n&quot;</span>;
+<a name="l00082"></a>00082             echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=linkbin.php method=\&quot;post\&quot;&gt;\n&quot;</span>;
+<a name="l00083"></a>00083             echo <span class="stringliteral">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;action\&quot; value=\&quot;modifylinknow\&quot;&gt;\n&quot;</span>;
+<a name="l00084"></a>00084             echo <span class="stringliteral">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;linkid\&quot; value=\&quot;$link-&gt;id\&quot;&gt;\n&quot;</span>;
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086             echo <span class="stringliteral">&quot;&lt;tr bgcolor=$forum_color[$gt]&gt;\n&quot;</span>;
+<a name="l00087"></a>00087             echo <span class="stringliteral">&quot;&lt;td bgcolor=$forum_color[$gt] width=130&gt;&lt;input type=text name=short_name value=\&quot;$link-&gt;sname\&quot; size=18&gt;&lt;/td&gt;&quot;</span>;
+<a name="l00088"></a>00088             echo <span class="stringliteral">&quot;&lt;td width=250&gt;&lt;input type=text name=linkurl value=\&quot;$link-&gt;link\&quot; size=40&gt; &lt;/td&gt;\n&quot;</span>;
+<a name="l00089"></a>00089             echo <span class="stringliteral">&quot;&lt;td width=300&gt;(submitted by $userdata-&gt;name on &quot;</span>.lib_string_current_time($link-&gt;time).<span class="stringliteral">&quot;)&lt;/td&gt;\n&quot;</span>;
+<a name="l00090"></a>00090             echo <span class="stringliteral">&quot;&lt;td&gt;Rating:&lt;/td&gt;\n&quot;</span>;
+<a name="l00091"></a>00091             echo <span class="stringliteral">&quot;&lt;td bgcolor=$forum_color[$gt] width=100 align=center&gt;&lt;input type=submit name=renamelink value=modify&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00092"></a>00092             echo <span class="stringliteral">&quot;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00093"></a>00093             echo <span class="stringliteral">&quot;&lt;tr&gt;\n&quot;</span>;
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095             echo <span class="stringliteral">&quot;&lt;td&gt;\n&quot;</span>;
+<a name="l00096"></a>00096                 echo <span class="stringliteral">&quot;&lt;select name=category&gt;\n&quot;</span>;
+<a name="l00097"></a>00097                 echo <span class="stringliteral">&quot;&lt;option&gt;$link-&gt;category\n&quot;</span>;
+<a name="l00098"></a>00098                 
+<a name="l00099"></a>00099                 $result2=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from categories order by name asc&quot;</span>);
+<a name="l00100"></a>00100                 <span class="keywordflow">while</span>($cat=mysql_fetch_object($result2)) echo <span class="stringliteral">&quot;&lt;option&gt;$cat-&gt;name\n&quot;</span>;
+<a name="l00101"></a>00101                 echo <span class="stringliteral">&quot;&lt;/select&gt;\n&quot;</span>;
+<a name="l00102"></a>00102                 echo <span class="stringliteral">&quot;&lt;/td&gt;\n&quot;</span>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104             echo <span class="stringliteral">&quot;&lt;td&gt;&lt;input type=text name=description value=\&quot;$link-&gt;description\&quot; size=40&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00105"></a>00105             echo <span class="stringliteral">&quot;&lt;td&gt;&lt;table border=0&gt;&lt;tr&gt;\n&quot;</span>;
+<a name="l00106"></a>00106             echo <span class="stringliteral">&quot;&lt;td&gt;referrals&lt;/td&gt;&lt;td&gt;&lt;input type=text size=3 name=referrals value=\&quot;$link-&gt;referrals\&quot;&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00107"></a>00107             echo <span class="stringliteral">&quot;&lt;td&gt;clicks&lt;/td&gt;&lt;td&gt;&lt;input type=text size=3 name=clicks value=\&quot;$link-&gt;clicks\&quot;&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00108"></a>00108             <span class="keywordflow">if</span>($link-&gt;hidden==0) echo <span class="stringliteral">&quot;&lt;td&gt;hidden&lt;/td&gt;&lt;td&gt;&lt;select name=hidden&gt;&lt;option&gt;no&lt;option&gt;yes&lt;/td&gt;\n&quot;</span>;
+<a name="l00109"></a>00109             <span class="keywordflow">if</span>($link-&gt;hidden==1) echo <span class="stringliteral">&quot;&lt;td&gt;hidden&lt;/td&gt;&lt;td&gt;&lt;select name=hidden&gt;&lt;option&gt;yes&lt;option&gt;no&lt;/td&gt;\n&quot;</span>;
+<a name="l00110"></a>00110             echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00111"></a>00111             echo <span class="stringliteral">&quot;&lt;td&gt;&lt;select name=rating&gt;&lt;option&gt;$link-&gt;rating\n&quot;</span>;
+<a name="l00112"></a>00112             <span class="keywordflow">for</span>($j=1;$j&lt;6;$j++) echo <span class="stringliteral">&quot;&lt;option&gt;$j\n&quot;</span>;
+<a name="l00113"></a>00113             echo <span class="stringliteral">&quot;&lt;/select&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00114"></a>00114             echo <span class="stringliteral">&quot;&lt;td align=center&gt;&lt;input type=submit name=deletelink value=delete&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116             echo <span class="stringliteral">&quot;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00117"></a>00117             echo <span class="stringliteral">&quot;&lt;tr bgcolor=$forum_color[1]&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00118"></a>00118             echo <span class="stringliteral">&quot;&lt;/table&gt;\n&quot;</span>;
+<a name="l00119"></a>00119             echo <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span>;
+<a name="l00120"></a>00120             echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00121"></a>00121     }
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td&gt;\n&quot;</span>;
+<a name="l00124"></a>00124     echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;\n&quot;</span>;
+<a name="l00125"></a>00125     <span class="comment">// add a new link here...</span>
+<a name="l00126"></a>00126     <a class="code" href="linkbin_2linkbin_8php.html#ac9c5f2d22ca61747cdbd9842eef76237">linkbin_showaddform</a>();
+<a name="l00127"></a>00127 }
+<a name="l00128"></a><a class="code" href="linkbin_2linkbin_8php.html#a06b47a0ce97c03a0d99c7e7a3b71da58">00128</a> <span class="keyword">function</span> <a class="code" href="linkbin_2linkbin_8php.html#a06b47a0ce97c03a0d99c7e7a3b71da58">linkbin_action_</a>() {
+<a name="l00129"></a>00129     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from link_bin order by time desc&quot;</span>);
+<a name="l00130"></a>00130     echo <span class="stringliteral">&quot;&lt;table width=100% cellspacing=0 cellpadding=0 border=0&gt;\n&quot;</span>;
+<a name="l00131"></a>00131     <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=0;
+<a name="l00132"></a>00132     <span class="keywordflow">while</span>($link=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00133"></a>00133         <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++; <span class="keywordflow">if</span>(<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;1) <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=0;
+<a name="l00134"></a>00134         <a class="code" href="showprofile_8php.html#af70e594e86a310311c717b13e6ecac00">$userdata</a>=<a class="code" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22">lib_users_get_data</a>($link-&gt;poster);
+<a name="l00135"></a>00135         list($lmonth,$lday,$lyear,$ltime,$lampm) = explode(<span class="stringliteral">&quot; &quot;</span>,<a class="code" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364">lib_string_current_time</a>($link-&gt;time));
+<a name="l00136"></a>00136         <span class="keywordflow">if</span>($lmonth!=$lastmonth) {
+<a name="l00137"></a>00137             echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td&gt;&lt;h1&gt;$lmonth $lyear&lt;/h1&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00138"></a>00138             $lastmonth=$lmonth;
+<a name="l00139"></a>00139         }
+<a name="l00140"></a>00140         <span class="keywordflow">if</span>(empty($link-&gt;description)) $link-&gt;description=<span class="stringliteral">&quot;&lt;i&gt;No description&lt;/i&gt;&quot;</span>;
+<a name="l00141"></a>00141         echo <span class="stringliteral">&quot;&lt;tr class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143         $link-&gt;sname=str_replace(<span class="stringliteral">&quot;www.&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$link-&gt;sname);
+<a name="l00144"></a>00144         $link-&gt;sname=str_replace(<span class="stringliteral">&quot;.com&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$link-&gt;sname);
+<a name="l00145"></a>00145         $link-&gt;sname=str_replace(<span class="stringliteral">&quot;.net&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$link-&gt;sname);
+<a name="l00146"></a>00146         $link-&gt;sname=str_replace(<span class="stringliteral">&quot;.org&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$link-&gt;sname);
+<a name="l00147"></a>00147         
+<a name="l00148"></a>00148         $link-&gt;link = str_replace(<span class="stringliteral">&quot;:&quot;</span>,<span class="stringliteral">&quot;_rfs_colon_&quot;</span>,  $link-&gt;link);
+<a name="l00149"></a>00149         $link-&gt;link=urlencode($link-&gt;link);
+<a name="l00150"></a>00150         echo <span class="stringliteral">&quot;&lt;td&gt;&lt;a href=\&quot;&quot;</span>.$GLOBALS[<span class="stringliteral">&#39;RFS_SITE_URL&#39;</span>].<span class="stringliteral">&quot;/link_out.php?link=$link-&gt;link\&quot; target=\&quot;_blank\&quot;&gt;$link-&gt;sname&lt;/a&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00151"></a>00151         echo <span class="stringliteral">&quot;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00152"></a>00152     }
+<a name="l00153"></a>00153     echo <span class="stringliteral">&quot;&lt;/table&gt;\n&quot;</span>;
+<a name="l00154"></a>00154     <a class="code" href="linkbin_2linkbin_8php.html#a92763d1309e0e92b86507401d8397ec3">linkbin_finish</a>();
+<a name="l00155"></a>00155 }
+<a name="l00156"></a>00156 
+<a name="l00157"></a>00157 ?&gt;
+<a name="l00158"></a>00158 
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="linkbin_2linkbin_8php.html">linkbin.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

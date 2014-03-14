@@ -1,0 +1,29 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_sqlQueryFormInsert",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_generate_common_url",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094",tooltip="Generates text with URL parameters."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_isValid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700",tooltip="checks given $var against $type or $compare"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_get_arg_separator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$url__generating_8lib_8php.html#a4ba0b6653c22a19615683ab743c1b4e1",tooltip="Returns url separator."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_expandUserString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#aa17f041c5093367b4c4d03b09070e69e",tooltip="Formats user string, expanding @, accepting strftime format string."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_getenv",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$core_8lib_8php.html#af47a7345938ec406f740a61f7d1b182a",tooltip="trys to find the value for the given environment vriable name"];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_DBI_get_columns",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a0f34de2c56a55fc2862bf26c489fc5aa",tooltip="Returns descriptions of columns in given table (all or given by $column)"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PMA_showMySQLDocu",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a5b2c38942cb8fe55e02ba17d0bef9f15",tooltip="Displays a link to the official MySQL documentation."];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="PMA_linkURL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$core_8lib_8php.html#a9bbc563e958307413cd9a83f70ff2590",tooltip="Returns link to (possibly) external site using defined redirector."];
+  Node9 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="PMA_getImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a54fdec9763bf305a5082d23a5d7d5957",tooltip="Returns an HTML IMG tag for a particular image from a theme, which may be an actual file or an icon f..."];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="PMA_sprites",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$original_2sprites_8lib_8php.html#adb1d24853efb54486657e2e22bd9755e"];
+}

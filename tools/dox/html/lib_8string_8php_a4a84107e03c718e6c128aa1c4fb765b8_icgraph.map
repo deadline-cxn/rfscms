@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="227,199,293,228"/>
+<area shape="rect" id="node5" href="$forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="341,143,488,172"/>
+<area shape="rect" id="node19" href="$lib_8menus_8php.html#af333764aa3173a18722bc9e468b0149e" title="lib_menus_options" alt="" coords="349,199,480,228"/>
+<area shape="rect" id="node21" href="$module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257" title="sc_show_news" alt="" coords="359,259,471,288"/>
+<area shape="rect" id="node7" href="$forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="537,116,708,145"/>
+<area shape="rect" id="node9" href="$forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="759,5,959,35"/>
+<area shape="rect" id="node11" href="$forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551" title="forums_action_move_thread" alt="" coords="765,59,952,88"/>
+<area shape="rect" id="node13" href="$forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce" title="forums_action_delete_reply" alt="" coords="768,112,949,141"/>
+<area shape="rect" id="node15" href="$forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9" title="forums_action_edit_reply_go" alt="" coords="765,165,952,195"/>
+<area shape="rect" id="node17" href="$forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="759,219,959,248"/>
+<area shape="rect" id="node23" href="$module_8news_8php.html#a8be7be5f89c1a6434b080695f7361478" title="module_news_blog_style" alt="" coords="775,272,943,301"/>
+<area shape="rect" id="node25" href="$module_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1" title="sc_show_top_news" alt="" coords="555,311,691,340"/>
+<area shape="rect" id="node27" href="$module_8news_8php.html#a965caa6a205118bc46830ab6c28f657f" title="module_news_top_story" alt="" coords="777,325,940,355"/>
+</map>

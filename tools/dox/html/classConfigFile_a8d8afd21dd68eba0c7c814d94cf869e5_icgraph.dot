@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ConfigFile\\getDefault",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ConfigFile\\set",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classConfigFile.html#acb542faf5bf361093c13a93a75ae7e85",tooltip="Sets config value."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ConfigFile\\getValue",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classConfigFile.html#a5a99e5fa0bd8040282624c174290ce64",tooltip="Returns config value, if it&#39;s not set uses the default one; returns $default if the path isn&#39;t set an..."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ConfigFile\\getServerDSN",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classConfigFile.html#aa88d109a438b9d98294a225fb95ab1b3",tooltip="Returns DSN of given server."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ConfigFile\\getConfigArray",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classConfigFile.html#acc47b349d02cce28e9a6a37e5529e51a",tooltip="Returns configuration array (flat format)"];
+}

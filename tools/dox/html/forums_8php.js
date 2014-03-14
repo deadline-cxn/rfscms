@@ -1,11 +1,25 @@
 var forums_8php =
 [
-    [ "bumpthread", "forums_8php.html#a7fcc2c4c04f4668e133f27920d0b565d", null ],
-    [ "forum_put_buttons", "forums_8php.html#a03685c91865d18b5c1733b663517f4e3", null ],
-    [ "get_thread", "forums_8php.html#ac8164a4e69fcfd5fd6f74e279c7a7c65", null ],
-    [ "show1message", "forums_8php.html#a0a15652acdbe6cd9e66f10c7e1bc00e5", null ],
+    [ "forums_action_", "forums_8php.html#a81e08637aedb9db0c1d3d7b819b3abc9", null ],
+    [ "forums_action_delete_post", "forums_8php.html#aeea53f4d544a0bf1564a0426c81d6b94", null ],
+    [ "forums_action_delete_post_s", "forums_8php.html#a3295282c8b15e6078d2f970dc436ce3a", null ],
+    [ "forums_action_delete_reply", "forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce", null ],
+    [ "forums_action_delete_reply_s", "forums_8php.html#a989a4cb9c05986e3111cf88c3dfbd395", null ],
+    [ "forums_action_edit_reply", "forums_8php.html#ae862a4a8db4eb1ea139ce130103da1f9", null ],
+    [ "forums_action_edit_reply_go", "forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9", null ],
+    [ "forums_action_forum_admin_off", "forums_8php.html#a2e36605aa977c66f0d751f7dc7767e67", null ],
+    [ "forums_action_forum_admin_on", "forums_8php.html#aaee7644238e7c3fa70d5addf4cff02b0", null ],
+    [ "forums_action_forum_list", "forums_8php.html#ae929c2c8155000c8179e5fd0fe7984f8", null ],
+    [ "forums_action_forum_showposts", "forums_8php.html#a66957d183225f049baf657fb5be6f10a", null ],
+    [ "forums_action_get_thread", "forums_8php.html#adf5c1f56475c06fd39e098d3367438f9", null ],
+    [ "forums_action_move_thread", "forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551", null ],
+    [ "forums_action_reply_to_thread", "forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb", null ],
+    [ "forums_action_start_thread", "forums_8php.html#a96d6bfb47320f2268aa8c65ceb83bdac", null ],
+    [ "forums_action_start_thread_go", "forums_8php.html#aa8ada007e79d0b120803aa9e2c809648", null ],
+    [ "forums_bumpthread", "forums_8php.html#a010f1b47d072e0127366fe8f141d7456", null ],
+    [ "forums_buttons", "forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807", null ],
+    [ "forums_get_message", "forums_8php.html#aa93eeced10eacc6b647c1b4e78364464", null ],
     [ "$message", "forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293", null ],
-    [ "$thispage", "forums_8php.html#acb345f4415f930d198654f84233d785a", null ],
-    [ "$title", "forums_8php.html#ada57e7bb7c152edad18fe2f166188691", null ],
-    [ "if", "forums_8php.html#ab3ac4c136bc1a5cf8111230c1f99cfb1", null ]
+    [ "$RFS_LITTLE_HEADER", "forums_8php.html#a082d0817db86737571268a66f2e75c2e", null ],
+    [ "$title", "forums_8php.html#ada57e7bb7c152edad18fe2f166188691", null ]
 ];

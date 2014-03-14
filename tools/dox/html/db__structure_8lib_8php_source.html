@@ -120,13 +120,13 @@
 <a name="l00042"></a>00042         .<span class="stringliteral">&#39;    &lt;th&gt;&#39;</span> . <a class="code" href="db__structure_8lib_8php.html#ac7826f8e39d526cdfc8825690d9568e3" title="Creates a clickable column header for table information.">PMA_SortableTableHeader</a>(__(<span class="stringliteral">&#39;Rows&#39;</span>), <span class="stringliteral">&#39;records&#39;</span>, <span class="stringliteral">&#39;DESC&#39;</span>)
 <a name="l00043"></a>00043         .PMA_showHint(<a class="code" href="sanitizing_8lib_8php.html#ac0444f97c4d50f0e109dc0ec5d86b665" title="Sanitizes $message, taking into account our special codes for formatting.">PMA_sanitize</a>(__(<span class="stringliteral">&#39;May be approximate. See [a@./Documentation.html#faq3_11@Documentation]FAQ 3.11[/a]&#39;</span>))) . <span class="stringliteral">&quot;\n&quot;</span>
 <a name="l00044"></a>00044         .<span class="stringliteral">&#39;    &lt;/th&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
-<a name="l00045"></a>00045     <span class="keywordflow">if</span> (!(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;PropertiesNumColumns&#39;</span>] &gt; 1)) {
+<a name="l00045"></a>00045     <span class="keywordflow">if</span> (!(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;PropertiesNumColumns&#39;</span>] &gt; 1)) {
 <a name="l00046"></a>00046         echo <span class="stringliteral">&#39;    &lt;th&gt;&#39;</span> . <a class="code" href="db__structure_8lib_8php.html#ac7826f8e39d526cdfc8825690d9568e3" title="Creates a clickable column header for table information.">PMA_SortableTableHeader</a>(__(<span class="stringliteral">&#39;Type&#39;</span>), <span class="stringliteral">&#39;type&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00047"></a>00047         $cnt++;
 <a name="l00048"></a>00048         echo <span class="stringliteral">&#39;    &lt;th&gt;&#39;</span> . <a class="code" href="db__structure_8lib_8php.html#ac7826f8e39d526cdfc8825690d9568e3" title="Creates a clickable column header for table information.">PMA_SortableTableHeader</a>(__(<span class="stringliteral">&#39;Collation&#39;</span>), <span class="stringliteral">&#39;collation&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00049"></a>00049         $cnt++;
 <a name="l00050"></a>00050     }
-<a name="l00051"></a>00051     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_show_stats&#39;</span>]) {
+<a name="l00051"></a>00051     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_show_stats&#39;</span>]) {
 <a name="l00052"></a>00052         <span class="comment">// larger values are more interesting so default sort order is DESC</span>
 <a name="l00053"></a>00053         echo <span class="stringliteral">&#39;    &lt;th&gt;&#39;</span> . <a class="code" href="db__structure_8lib_8php.html#ac7826f8e39d526cdfc8825690d9568e3" title="Creates a clickable column header for table information.">PMA_SortableTableHeader</a>(__(<span class="stringliteral">&#39;Size&#39;</span>), <span class="stringliteral">&#39;size&#39;</span>, <span class="stringliteral">&#39;DESC&#39;</span>) . <span class="stringliteral">&#39;&lt;/th&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>
 <a name="l00054"></a>00054         <span class="comment">// larger values are more interesting so default sort order is DESC</span>
@@ -136,7 +136,7 @@
 <a name="l00058"></a>00058     echo <span class="stringliteral">&#39;&lt;/tr&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00059"></a>00059     echo <span class="stringliteral">&#39;&lt;/thead&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00060"></a>00060     echo <span class="stringliteral">&#39;&lt;tbody&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
-<a name="l00061"></a>00061     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;colspan_for_structure&#39;</span>] = $cnt + $action_colspan + 3;
+<a name="l00061"></a>00061     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;colspan_for_structure&#39;</span>] = $cnt + $action_colspan + 3;
 <a name="l00062"></a>00062 } <span class="comment">// end function PMA_TableHeader()</span>
 <a name="l00063"></a>00063 
 <a name="l00064"></a>00064 <span class="comment"></span>
@@ -194,11 +194,11 @@
 <a name="l00116"></a>00116         <span class="stringliteral">&#39;db&#39;</span> =&gt; <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;db&#39;</span>],
 <a name="l00117"></a>00117     );
 <a name="l00118"></a>00118 
-<a name="l00119"></a>00119     <a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a> = <span class="stringliteral">&#39;db_structure.php&#39;</span>.PMA_generate_common_url(<a class="code" href="db__structure_8php.html#a7456a2a86083cf908c8a435b70417f35">$_url_params</a>);
+<a name="l00119"></a>00119     <a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a> = <span class="stringliteral">&#39;db_structure.php&#39;</span>.PMA_generate_common_url(<a class="code" href="db__structure_8php.html#a7456a2a86083cf908c8a435b70417f35">$_url_params</a>);
 <a name="l00120"></a>00120     <span class="comment">// We set the position back to 0 every time they sort.</span>
-<a name="l00121"></a>00121     <a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a> .= <span class="stringliteral">&quot;&amp;amp;pos=0&amp;amp;sort=$sort&amp;amp;sort_order=$future_sort_order&quot;</span>;
+<a name="l00121"></a>00121     <a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a> .= <span class="stringliteral">&quot;&amp;amp;pos=0&amp;amp;sort=$sort&amp;amp;sort_order=$future_sort_order&quot;</span>;
 <a name="l00122"></a>00122 
-<a name="l00123"></a>00123     <span class="keywordflow">return</span> <a class="code" href="common_8lib_8php.html#a59beb470df32fdd938f89fab0f1dc7a8" title="Displays a link, or a button if the link&#39;s URL is too large, to accommodate some browsers&#39; limitation...">PMA_linkOrButton</a>(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a> . $order_img, $order_link_params);
+<a name="l00123"></a>00123     <span class="keywordflow">return</span> <a class="code" href="common_8lib_8php.html#a59beb470df32fdd938f89fab0f1dc7a8" title="Displays a link, or a button if the link&#39;s URL is too large, to accommodate some browsers&#39; limitation...">PMA_linkOrButton</a>(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a> . $order_img, $order_link_params);
 <a name="l00124"></a>00124 } <span class="comment">// end function PMA_SortableTableHeader()</span>
 <a name="l00125"></a>00125 ?&gt;
 </pre></div></div><!-- contents -->
@@ -207,7 +207,7 @@
     <ul>
       <li class="navelem"><a class="el" href="db__structure_8lib_8php.html">db_structure.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:28 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

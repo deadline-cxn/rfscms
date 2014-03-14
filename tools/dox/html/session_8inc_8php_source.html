@@ -94,7 +94,7 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="keywordflow">if</span> (!@function_exists(<span class="stringliteral">&#39;session_name&#39;</span>)) {
 <a name="l00018"></a>00018     <a class="code" href="core_8lib_8php.html#a27df85e8ab20ca0f54dd31bddcc092ab" title="Warn or fail on missing extension.">PMA_warnMissingExtension</a>(<span class="stringliteral">&#39;session&#39;</span>, <span class="keyword">true</span>);
-<a name="l00019"></a>00019 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (ini_get(<span class="stringliteral">&#39;session.auto_start&#39;</span>) == <span class="keyword">true</span> &amp;&amp; session_name() != <span class="stringliteral">&#39;phpMyAdmin&#39;</span>) {
+<a name="l00019"></a>00019 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (ini_get(<span class="stringliteral">&#39;session.auto_start&#39;</span>) == <span class="keyword">true</span> &amp;&amp; session_name() != <span class="stringliteral">&#39;phpMyAdmin&#39;</span>) {
 <a name="l00020"></a>00020     <span class="comment">// Do not delete the existing session, it might be used by other</span>
 <a name="l00021"></a>00021     <span class="comment">// applications; instead just close it.</span>
 <a name="l00022"></a>00022     session_write_close();
@@ -105,14 +105,14 @@
 <a name="l00027"></a>00027 <span class="comment">//ini_set(&#39;session.auto_start&#39;, 0);</span>
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029 <span class="comment">// session cookie settings</span>
-<a name="l00030"></a>00030 session_set_cookie_params(0, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;getCookiePath(),
-<a name="l00031"></a>00031     <span class="stringliteral">&#39;&#39;</span>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;isHttps(), <span class="keyword">true</span>);
+<a name="l00030"></a>00030 session_set_cookie_params(0, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;getCookiePath(),
+<a name="l00031"></a>00031     <span class="stringliteral">&#39;&#39;</span>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;isHttps(), <span class="keyword">true</span>);
 <a name="l00032"></a>00032 
 <a name="l00033"></a>00033 <span class="comment">// cookies are safer (use @ini_set() in case this function is disabled)</span>
 <a name="l00034"></a>00034 @ini_set(<span class="stringliteral">&#39;session.use_cookies&#39;</span>, <span class="keyword">true</span>);
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036 <span class="comment">// optionally set session_save_path</span>
-<a name="l00037"></a><a class="code" href="session_8inc_8php.html#a0a4baf0b22973c07685c3981f0d17fc4">00037</a> <a class="code" href="session_8inc_8php.html#a0a4baf0b22973c07685c3981f0d17fc4">$path</a> = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;get(<span class="stringliteral">&#39;SessionSavePath&#39;</span>);
+<a name="l00037"></a><a class="code" href="session_8inc_8php.html#a0a4baf0b22973c07685c3981f0d17fc4">00037</a> <a class="code" href="session_8inc_8php.html#a0a4baf0b22973c07685c3981f0d17fc4">$path</a> = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;get(<span class="stringliteral">&#39;SessionSavePath&#39;</span>);
 <a name="l00038"></a>00038 <span class="keywordflow">if</span> (!empty(<a class="code" href="session_8inc_8php.html#a0a4baf0b22973c07685c3981f0d17fc4">$path</a>)) {
 <a name="l00039"></a>00039     session_save_path(<a class="code" href="session_8inc_8php.html#a0a4baf0b22973c07685c3981f0d17fc4">$path</a>);
 <a name="l00040"></a>00040 }
@@ -152,9 +152,9 @@
 <a name="l00074"></a>00074 <span class="keywordflow">if</span> (! isset($_COOKIE[<a class="code" href="openid_8php.html#a3954c426faf2b8249bd3167b3a26cb67">$session_name</a>])) {
 <a name="l00075"></a>00075     <span class="comment">// on first start of session we check for errors</span>
 <a name="l00076"></a>00076     <span class="comment">// f.e. session dir cannot be accessed - session file not created</span>
-<a name="l00077"></a>00077     $orig_error_count = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;error_handler&#39;</span>]-&gt;countErrors();
-<a name="l00078"></a>00078     <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = session_start();
-<a name="l00079"></a>00079     <span class="keywordflow">if</span> (<a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> !== <span class="keyword">true</span> || $orig_error_count != <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;error_handler&#39;</span>]-&gt;countErrors()) {
+<a name="l00077"></a>00077     $orig_error_count = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;error_handler&#39;</span>]-&gt;countErrors();
+<a name="l00078"></a>00078     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = session_start();
+<a name="l00079"></a>00079     <span class="keywordflow">if</span> (<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> !== <span class="keyword">true</span> || $orig_error_count != <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;error_handler&#39;</span>]-&gt;countErrors()) {
 <a name="l00080"></a>00080         setcookie($session_name, <span class="stringliteral">&#39;&#39;</span>, 1);
 <a name="l00081"></a>00081         <span class="comment">/*</span>
 <a name="l00082"></a>00082 <span class="comment">         * Session initialization is done before selecting language, so we</span>
@@ -171,8 +171,8 @@
 <a name="l00093"></a>00093 <span class="comment"> * Token which is used for authenticating access queries.</span>
 <a name="l00094"></a>00094 <span class="comment"> * (we use &quot;space PMA_token space&quot; to prevent overwriting)</span>
 <a name="l00095"></a>00095 <span class="comment"> */</span>
-<a name="l00096"></a>00096 <span class="keywordflow">if</span> (! isset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>])) {
-<a name="l00097"></a>00097     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>] = md5(uniqid(rand(), <span class="keyword">true</span>));
+<a name="l00096"></a>00096 <span class="keywordflow">if</span> (! isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>])) {
+<a name="l00097"></a>00097     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>] = md5(uniqid(rand(), <span class="keyword">true</span>));
 <a name="l00098"></a>00098 }
 <a name="l00099"></a>00099 <span class="comment"></span>
 <a name="l00100"></a>00100 <span class="comment">/**</span>
@@ -185,7 +185,7 @@
 <a name="l00107"></a>00107 {
 <a name="l00108"></a>00108     <span class="comment">// prevent session fixation and XSS</span>
 <a name="l00109"></a>00109     session_regenerate_id(<span class="keyword">true</span>);
-<a name="l00110"></a>00110     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>] = md5(uniqid(rand(), <span class="keyword">true</span>));
+<a name="l00110"></a>00110     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39; PMA_token &#39;</span>] = md5(uniqid(rand(), <span class="keyword">true</span>));
 <a name="l00111"></a>00111 }
 <a name="l00112"></a>00112 ?&gt;
 </pre></div></div><!-- contents -->
@@ -194,7 +194,7 @@
     <ul>
       <li class="navelem"><a class="el" href="session_8inc_8php.html">session.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

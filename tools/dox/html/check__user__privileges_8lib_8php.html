@@ -91,7 +91,7 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="check__user__privileges_8lib_8php.html#a7e5034bdb6b887bec23b89c3f5db71b2">PMA_analyseShowGrant</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!defined('<a class="el" href="libraries_2common_8inc_8php.html#ad6841f085fef1a0cafcdf64651d0e152">PHPMYADMIN</a>'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="check__user__privileges_8lib_8php.html#a09b3b9021f022b8e104dcb0b887b82fe">$GLOBALS</a> ['is_superuser'] = <a class="el" href="database__interface_8lib_8php.html#a8625f640d7f62aa247791803ac9ab54b">PMA_isSuperuser</a>()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a>(!defined('<a class="el" href="libraries_2common_8inc_8php.html#ad6841f085fef1a0cafcdf64651d0e152">PHPMYADMIN</a>'))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="check__user__privileges_8lib_8php.html#a09b3b9021f022b8e104dcb0b887b82fe">$GLOBALS</a> ['is_superuser'] = <a class="el" href="database__interface_8lib_8php.html#a8625f640d7f62aa247791803ac9ab54b">PMA_isSuperuser</a>()</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a7e5034bdb6b887bec23b89c3f5db71b2"></a><!-- doxytag: member="check_user_privileges.lib.php::PMA_analyseShowGrant" ref="a7e5034bdb6b887bec23b89c3f5db71b2" args="()" -->
@@ -111,12 +111,20 @@ Variables</h2></td></tr>
 <p>sets privilege information extracted from SHOW GRANTS result </p>
 <p>Detection for some CREATE privilege.</p>
 <p>Since MySQL 4.1.2, we can easily detect current user's grants using $userlink (no control user needed) and we don't have to try any other method for detection</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>fix to get really all privileges, not only explicitly defined for this user from MySQL manual: (<a href="http://dev.mysql.com/doc/refman/5.0/en/show-grants.html">http://dev.mysql.com/doc/refman/5.0/en/show-grants.html</a>) SHOW GRANTS displays only the privileges granted explicitly to the named account. Other privileges might be available to the account, but they are not displayed. For example, if an anonymous account exists, the named account might be able to use its privileges, but SHOW GRANTS will not display them.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>if we find CREATE VIEW but not CREATE, do not offer the create database dialog box </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>fix to get really all privileges, not only explicitly defined for this user from MySQL manual: (<a href="http://dev.mysql.com/doc/refman/5.0/en/show-grants.html">http://dev.mysql.com/doc/refman/5.0/en/show-grants.html</a>) SHOW GRANTS displays only the privileges granted explicitly to the named account. Other privileges might be available to the account, but they are not displayed. For example, if an anonymous account exists, the named account might be able to use its privileges, but SHOW GRANTS will not display them.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>if we find CREATE VIEW but not CREATE, do not offer the create database dialog box </dd></dl>
 <p>Do not handle the underscore wildcard (this case must be rare anyway)</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>collect $GLOBALS['db_to_create'] into an array, to display a drop-down in the "Create database" dialog </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>collect $GLOBALS['db_to_create'] into an array, to display a drop-down in the "Create database" dialog </dd></dl>
 
 <p>Definition at line <a class="el" href="check__user__privileges_8lib_8php_source.html#l00034">34</a> of file <a class="el" href="check__user__privileges_8lib_8php_source.html">check_user_privileges.lib.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="check__user__privileges_8lib_8php_a7e5034bdb6b887bec23b89c3f5db71b2_cgraph.png" border="0" usemap="#check__user__privileges_8lib_8php_a7e5034bdb6b887bec23b89c3f5db71b2_cgraph" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -126,7 +134,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!defined('<a class="el" href="libraries_2common_8inc_8php.html#ad6841f085fef1a0cafcdf64651d0e152">PHPMYADMIN</a>')) $GLOBALS['is_superuser'] = <a class="el" href="database__interface_8lib_8php.html#a8625f640d7f62aa247791803ac9ab54b">PMA_isSuperuser</a>()</td>
+          <td class="memname"><a class="el" href="pink_2t_8footer_8php.html#a52731bdf555bb7ee23aaf5d2a261c53b">if</a> (!defined('<a class="el" href="libraries_2common_8inc_8php.html#ad6841f085fef1a0cafcdf64651d0e152">PHPMYADMIN</a>')) $GLOBALS['is_superuser'] = <a class="el" href="database__interface_8lib_8php.html#a8625f640d7f62aa247791803ac9ab54b">PMA_isSuperuser</a>()</td>
         </tr>
       </table>
 </div>
@@ -142,7 +150,7 @@ Variables</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="check__user__privileges_8lib_8php.html">check_user_privileges.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:37 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:52 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

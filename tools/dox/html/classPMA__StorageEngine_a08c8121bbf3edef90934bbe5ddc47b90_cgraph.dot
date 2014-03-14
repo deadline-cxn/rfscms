@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_StorageEngine\\getHtmlSelect",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_StorageEngine\\getStorageEngines",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__StorageEngine.html#a56877cb49ba40b971bb3256771aa3571",tooltip="returns array of storage engines"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_DBI_fetch_result",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b",tooltip="returns all rows in the resultset in one array"];
+}

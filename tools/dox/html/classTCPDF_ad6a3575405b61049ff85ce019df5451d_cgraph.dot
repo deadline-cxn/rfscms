@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TCPDF\\setPageOrientation",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TCPDF\\setPageBoxes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a09a578a5ed1c9a57a4fa8322272ff7b0",tooltip="Set page boundaries."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TCPDF\\swapPageBoxCoordinates",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a36a26d0b6e2ae2d356a5567105f7db41",tooltip="Swap X and Y coordinates of page boxes (change page boxes orientation)."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TCPDF\\empty_string",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a681e9cc13fa324d8e538a5873f3990c2",tooltip="Determine whether a string is empty."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TCPDF\\SetAutoPageBreak",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a4430365ea0b9015b4aefedad1ba77ea9",tooltip="Enables or disables the automatic page breaking mode."];
+}

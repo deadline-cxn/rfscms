@@ -1,0 +1,27 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_lang",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_lang_name",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$config__functions_8lib_8php.html#abb92ee2d7974f0a9e51659617aac21f2",tooltip="Returns translated field name/description or comment."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="FormDisplay\\_displayFieldInput",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFormDisplay.html#a1b96d0630084b158c5d3b4f40c0647d8",tooltip="Prepares data for input field display and outputs HTML code."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="FormDisplay\\display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFormDisplay.html#a51ce2f78d5b03fbff31e861fbb342d54",tooltip="Outputs HTML for forms."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="process_formset",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$form__processing_8lib_8php.html#a5e8f18d9567ad7721a7d713dffea63a1",tooltip="Processes forms registered in $form_display, handles error correction."];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="FormDisplay\\displayErrors",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFormDisplay.html#a7cfecaae91d764e0a687be864eae88b1",tooltip="Displays errors."];
+  Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="FormDisplay\\save",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFormDisplay.html#a6d03cc4422c2504c2176e8051ead81a4",tooltip="Validates and saves form data to session."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="FormDisplay\\process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFormDisplay.html#af457851b83c2d65037dceef0b3306f85",tooltip="Processes forms, returns true on successful save."];
+  Node8 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="perform_config_checks",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$index_8lib_8php.html#a73e3f93b46a41df74e70a37b0d68db83",tooltip="Performs various compatibility, security and consistency checks on current config."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

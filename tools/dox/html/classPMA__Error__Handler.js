@@ -7,7 +7,6 @@ var classPMA__Error__Handler =
     [ "_dispPageEnd", "classPMA__Error__Handler.html#a85601778a7b0057eac93bd72e2d94b19", null ],
     [ "_dispPageStart", "classPMA__Error__Handler.html#a5af38f286d5ca073eee3d125e30cd249", null ],
     [ "_logError", "classPMA__Error__Handler.html#a35332e55375a13fc55059e51ab803e45", null ],
-    [ "addError", "classPMA__Error__Handler.html#a50d581a5e754382375987b426f52cdcb", null ],
     [ "countDisplayErrors", "classPMA__Error__Handler.html#a12da824aed942c5fc690a00138b45ced", null ],
     [ "countErrors", "classPMA__Error__Handler.html#ae5a4963a00b807fd64772d6d9eb2d49a", null ],
     [ "countUserErrors", "classPMA__Error__Handler.html#a523c522c36fef9c3328e108e3470b6b2", null ],

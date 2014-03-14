@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1144,319,1275,348"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#adffd69318ec4bea7ea63875c74d19047" title="lib_mysql_row_count" alt="" coords="517,5,661,35"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="951,113,1065,143"/>
+<area shape="rect" id="node16" href="$module_8files_8php.html#a78d07e8663a68e4e5a1c6e91c24054cf" title="sc_show_one_scanned_duplicate" alt="" coords="252,109,468,139"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1125,173,1293,203"/>
+<area shape="rect" id="node13" href="$lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1124,113,1295,143"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1344,173,1517,203"/>
+<area shape="rect" id="node18" href="$lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="711,109,892,139"/>
+<area shape="rect" id="node21" href="$lib_8ajax_8php.html#aa520d66149cf7a9c02ec818db60a9e3e" title="lib_ajax" alt="" coords="556,188,623,217"/>
+<area shape="rect" id="node24" href="$lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="739,213,864,243"/>
+<area shape="rect" id="node35" href="$lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="743,267,860,296"/>
+<area shape="rect" id="node26" href="$lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="941,255,1075,284"/>
+<area shape="rect" id="node29" href="$lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="943,176,1073,205"/>
+</map>

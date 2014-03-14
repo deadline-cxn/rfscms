@@ -54,7 +54,7 @@ var common_8lib_8php =
     [ "PMA_localizeNumber", "common_8lib_8php.html#ab4019f8f649e81f8d6525969fdba212e", null ],
     [ "PMA_mysqlDie", "common_8lib_8php.html#a4b5abc57e204c6266283131d03f66395", null ],
     [ "PMA_pageselector", "common_8lib_8php.html#a6219ffebb2ae0980a8db4c5fd72f12ce", null ],
-    [ "PMA_parseEnumSetValues", "common_8lib_8php.html#a8be129672ddf2e1776aa3f18293e36a8", null ],
+    [ "PMA_parseEnumSetValues", "common_8lib_8php.html#afed0b1c0ffd8373a8031683b7184380b", null ],
     [ "PMA_pow", "common_8lib_8php.html#aaade54960e4ce59a18b04f1cfd724b77", null ],
     [ "PMA_printable_bit_value", "common_8lib_8php.html#ab8e797ab037f8c1d0eaa87c885bff719", null ],
     [ "PMA_printButton", "common_8lib_8php.html#acd6bfac036448ea38fae154b950578a9", null ],

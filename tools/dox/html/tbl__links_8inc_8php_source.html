@@ -200,17 +200,17 @@
 <a name="l00122"></a>00122 echo <a class="code" href="common_8lib_8php.html#a7315d552f98b5fd4e370b61d0d029893" title="returns html-code for a tab navigation">PMA_generate_html_tabs</a>(<a class="code" href="db__links_8inc_8php.html#a9650ef898243b078767d3918486c61d4" title="Displays tab links.">$tabs</a>, <a class="code" href="db__qbe_8php.html#a5bc4c60a2c2f6347a2f8c4e5847ebbfe">$url_params</a>);
 <a name="l00123"></a>00123 unset(<a class="code" href="db__links_8inc_8php.html#a9650ef898243b078767d3918486c61d4" title="Displays tab links.">$tabs</a>);
 <a name="l00124"></a>00124 
-<a name="l00125"></a>00125 <span class="keywordflow">if</span> (<a class="code" href="classPMA__Tracker.html#ae5dd143f48e845ae4346da01dfef5d4a" title="Gets the on/off value of the Tracker module, starts initialization.">PMA_Tracker::isActive</a>() and <a class="code" href="classPMA__Tracker.html#ae2ebe65277485ecd1794a871b587f986" title="Gets the tracking status of a table, is it active or deactive ?">PMA_Tracker::isTracked</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&quot;db&quot;</span>], <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&quot;table&quot;</span>])) {
-<a name="l00126"></a>00126     $msg = <a class="code" href="classPMA__Message.html#ae349e34602657ee46e56d435e93fa2db" title="get PMA_Message of type notice">PMA_Message::notice</a>(<span class="stringliteral">&#39;&lt;a href=&quot;tbl_tracking.php?&#39;</span>.<a class="code" href="db__export_8php.html#a9f97d7db14905bd6ce32b003b416769c">$url_query</a>.<span class="stringliteral">&#39;&quot;&gt;&#39;</span>.sprintf(__(<span class="stringliteral">&#39;Tracking of %s.%s is activated.&#39;</span>), htmlspecialchars(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&quot;db&quot;</span>]), htmlspecialchars(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&quot;table&quot;</span>])).<span class="stringliteral">&#39;&lt;/a&gt;&#39;</span>);
+<a name="l00125"></a>00125 <span class="keywordflow">if</span> (<a class="code" href="classPMA__Tracker.html#ae5dd143f48e845ae4346da01dfef5d4a" title="Gets the on/off value of the Tracker module, starts initialization.">PMA_Tracker::isActive</a>() and <a class="code" href="classPMA__Tracker.html#ae2ebe65277485ecd1794a871b587f986" title="Gets the tracking status of a table, is it active or deactive ?">PMA_Tracker::isTracked</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&quot;db&quot;</span>], <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&quot;table&quot;</span>])) {
+<a name="l00126"></a>00126     $msg = <a class="code" href="classPMA__Message.html#ae349e34602657ee46e56d435e93fa2db" title="get PMA_Message of type notice">PMA_Message::notice</a>(<span class="stringliteral">&#39;&lt;a href=&quot;tbl_tracking.php?&#39;</span>.<a class="code" href="db__export_8php.html#a9f97d7db14905bd6ce32b003b416769c">$url_query</a>.<span class="stringliteral">&#39;&quot;&gt;&#39;</span>.sprintf(__(<span class="stringliteral">&#39;Tracking of %s.%s is activated.&#39;</span>), htmlspecialchars(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&quot;db&quot;</span>]), htmlspecialchars(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&quot;table&quot;</span>])).<span class="stringliteral">&#39;&lt;/a&gt;&#39;</span>);
 <a name="l00127"></a>00127     $msg-&gt;display();
 <a name="l00128"></a>00128 }
 <a name="l00129"></a>00129 <span class="comment"></span>
 <a name="l00130"></a>00130 <span class="comment">/**</span>
 <a name="l00131"></a>00131 <span class="comment"> * Displays a message</span>
 <a name="l00132"></a>00132 <span class="comment"> */</span>
-<a name="l00133"></a>00133 <span class="keywordflow">if</span> (!empty(<a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>)) {
-<a name="l00134"></a>00134     <a class="code" href="common_8lib_8php.html#ac856542e67ea0192bc0fc7fd1fb21d09" title="displays the message and the query usually the message is the result of the query executed...">PMA_showMessage</a>(<a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>);
-<a name="l00135"></a>00135     unset(<a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>);
+<a name="l00133"></a>00133 <span class="keywordflow">if</span> (!empty(<a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>)) {
+<a name="l00134"></a>00134     <a class="code" href="common_8lib_8php.html#ac856542e67ea0192bc0fc7fd1fb21d09" title="displays the message and the query usually the message is the result of the query executed...">PMA_showMessage</a>(<a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>);
+<a name="l00135"></a>00135     unset(<a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>);
 <a name="l00136"></a>00136 }
 <a name="l00137"></a>00137 
 <a name="l00138"></a>00138 ?&gt;
@@ -220,7 +220,7 @@
     <ul>
       <li class="navelem"><a class="el" href="tbl__links_8inc_8php.html">tbl_links.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:34 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

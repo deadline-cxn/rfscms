@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_DrizzleResult\\_readColumns",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_DrizzleResult\\getColumns",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__DrizzleResult.html#a2b0a903434f5a150104754dd4c52db73",tooltip="Returns columns in current result."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_DrizzleResult\\fetchRow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__DrizzleResult.html#a7b84a16e94f9ef7f55dd63208a9295db",tooltip="Fetches next for from this result set."];
+}

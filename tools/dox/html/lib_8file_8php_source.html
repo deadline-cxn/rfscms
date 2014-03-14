@@ -77,173 +77,220 @@
 <a name="l00002"></a>00002 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00003"></a>00003 <span class="comment"></span><span class="comment">// RFSCMS http://www.sethcoder.com/</span><span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00005"></a>00005 <span class="comment"></span>sc_div(__FILE__);<span class="comment"></span>
+<a name="l00005"></a>00005 <span class="comment"></span>lib_div(__FILE__);<span class="comment"></span>
 <a name="l00006"></a>00006 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00007"></a><a class="code" href="lib_8file_8php.html#a0145e555488271a734d8f0ba81a1b283">00007</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a0145e555488271a734d8f0ba81a1b283">sc_getfiletype</a>($filen){
+<a name="l00007"></a><a class="code" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987">00007</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987">lib_file_getfiletype</a>($filen){
 <a name="l00008"></a>00008     $finfo=pathinfo($filen);
 <a name="l00009"></a>00009     <span class="keywordflow">return</span> strtolower( $finfo[<span class="stringliteral">&#39;extension&#39;</span>]  );
 <a name="l00010"></a>00010 }<span class="comment"></span>
 <a name="l00011"></a>00011 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00012"></a><a class="code" href="lib_8file_8php.html#a5f59a1a511c17b65625d08cabfbd1ee8">00012</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a5f59a1a511c17b65625d08cabfbd1ee8">sc_sizefile</a>($bytesize) {
-<a name="l00013"></a>00013     $size = $bytesize.<span class="stringliteral">&quot; bytes&quot;</span>;
-<a name="l00014"></a>00014     
-<a name="l00015"></a>00015     <span class="keywordflow">if</span>($bytesize&gt;1024)              $size = (round($bytesize/1024,2)).<span class="stringliteral">&quot; kB&quot;</span>;                <span class="comment">// kilobyte 2^10</span>
-<a name="l00016"></a>00016     <span class="keywordflow">if</span>($bytesize&gt;1048576)           $size = (round($bytesize/1048576,2)).<span class="stringliteral">&quot; MB&quot;</span>;         <span class="comment">// megabyte 2^20</span>
-<a name="l00017"></a>00017     <span class="keywordflow">if</span>($bytesize&gt;1073741824)        $size = (round($bytesize/1073741824,2)).<span class="stringliteral">&quot; GB&quot;</span>;      <span class="comment">// gigabyte 2^30</span>
-<a name="l00018"></a>00018      <span class="keywordflow">if</span>($bytesize&gt;1099511627776)    $size = (round($bytesize/1099511627776,2)).<span class="stringliteral">&quot; TB&quot;</span>;   <span class="comment">// terabyte 2^40</span>
-<a name="l00019"></a>00019      <span class="comment">// PB petabyte 2^50</span>
-<a name="l00020"></a>00020      <span class="comment">// EB exabyte 2^60</span>
-<a name="l00021"></a>00021      <span class="comment">// ZB zettabyte 2^70</span>
-<a name="l00022"></a>00022      <span class="comment">// YB yottabyte 2^80</span>
-<a name="l00023"></a>00023     <span class="keywordflow">return</span> $size;
-<a name="l00024"></a>00024 }<span class="comment"></span>
-<a name="l00025"></a>00025 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00026"></a><a class="code" href="lib_8file_8php.html#a0053aea7ffd89c9c3564b2a7904b3fbf">00026</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a0053aea7ffd89c9c3564b2a7904b3fbf">sc_folder_to_array</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>) {
-<a name="l00027"></a>00027     $dirfiles = array();
-<a name="l00028"></a>00028     $handle=opendir(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>);
-<a name="l00029"></a>00029     <span class="keywordflow">if</span>(!$handle) <span class="keywordflow">return</span> 0;
-<a name="l00030"></a>00030     <span class="keywordflow">while</span> (<span class="keyword">false</span>!==(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> = readdir($handle)))
-<a name="l00031"></a>00031         array_push($dirfiles,<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
-<a name="l00032"></a>00032     closedir($handle);
-<a name="l00033"></a>00033     reset($dirfiles);
-<a name="l00034"></a>00034     asort($dirfiles);
-<a name="l00035"></a>00035     <span class="keywordflow">return</span> $dirfiles;
-<a name="l00036"></a>00036 }<span class="comment"></span>
-<a name="l00037"></a>00037 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00038"></a><a class="code" href="lib_8file_8php.html#a244d5f4340328b68343e8790f5f33970">00038</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a244d5f4340328b68343e8790f5f33970">sc_get_folder_files</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>){
-<a name="l00039"></a>00039     $dirfiles = array();
-<a name="l00040"></a>00040     $handle=opendir(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>);
-<a name="l00041"></a>00041     <span class="keywordflow">if</span>(!$handle) <span class="keywordflow">return</span> 0;
-<a name="l00042"></a>00042     <span class="keywordflow">while</span> (<span class="keyword">false</span>!==(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> = readdir($handle)))
-<a name="l00043"></a>00043         array_push($dirfiles,<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
-<a name="l00044"></a>00044     closedir($handle);
-<a name="l00045"></a>00045     reset($dirfiles);
-<a name="l00046"></a>00046     asort($dirfiles);
-<a name="l00047"></a>00047     <span class="keywordflow">return</span> $dirfiles;
-<a name="l00048"></a>00048 }<span class="comment"></span>
-<a name="l00049"></a>00049 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00050"></a><a class="code" href="lib_8file_8php.html#a1b88913037a254b0dd5b1c9efb9c0270">00050</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a1b88913037a254b0dd5b1c9efb9c0270">sc_multi_rename</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>,$old_pattern,$new_pattern) {
-<a name="l00051"></a>00051     $dirfiles=<a class="code" href="lib_8file_8php.html#a244d5f4340328b68343e8790f5f33970">sc_get_folder_files</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>);
-<a name="l00052"></a>00052     <span class="keywordflow">while</span>(list ($key, <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) = each ($dirfiles)) {
-<a name="l00053"></a>00053         <span class="keywordflow">if</span>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;.&quot;</span>) {
-<a name="l00054"></a>00054             <span class="keywordflow">if</span>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;..&quot;</span>) {
-<a name="l00055"></a>00055                 <span class="keywordflow">if</span>(is_dir(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>)){ }
-<a name="l00056"></a>00056                 <span class="keywordflow">else</span> {
-<a name="l00057"></a>00057                     $nfile=str_replace($old_pattern,$new_pattern,<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
-<a name="l00058"></a>00058                         <span class="comment">// echo getcwd().&quot; OLD[$folder/$file] NEW[$folder/$nfile]&lt;BR&gt;&quot;;</span>
-<a name="l00059"></a>00059                         system(<span class="stringliteral">&quot;mv $folder/$file $folder/$nfile&quot;</span>);
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061                 }
-<a name="l00062"></a>00062             }
-<a name="l00063"></a>00063         }
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065 }<span class="comment"></span>
-<a name="l00066"></a>00066 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00067"></a>00067 <span class="comment"></span><span class="comment">// Echo file</span>
-<a name="l00068"></a><a class="code" href="lib_8file_8php.html#a1c92fad3e671a363140cbff60e84cf2c">00068</a> <span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a1c92fad3e671a363140cbff60e84cf2c">sc_echo_file</a>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) { eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>()); 
-<a name="l00069"></a>00069     <span class="keywordflow">if</span>(file_exists(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>)) {
-<a name="l00070"></a>00070         echo <span class="stringliteral">&quot;Filename: $file\n&quot;</span>;
-<a name="l00071"></a>00071         <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>=file_get_contents(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
-<a name="l00072"></a>00072         <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>=str_replace(<span class="stringliteral">&quot;&lt;&quot;</span>,<span class="stringliteral">&quot;&amp;lt;&quot;</span>,<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>);
-<a name="l00073"></a>00073         <span class="keywordflow">return</span> <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>;
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075 }<span class="comment"></span>
-<a name="l00076"></a>00076 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00077"></a><a class="code" href="lib_8file_8php.html#a51f42d8ead49964c536832b6bf95313b">00077</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a51f42d8ead49964c536832b6bf95313b">sc_file_get_readme</a>($file_name) { eval (<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>());
-<a name="l00078"></a>00078     
-<a name="l00079"></a>00079     system(<span class="stringliteral">&quot;yes| rm -R $RFS_SITE_PATH/tmp/*&quot;</span>);  
-<a name="l00080"></a>00080     system(<span class="stringliteral">&quot;yes| rm -R $RFS_SITE_PATH/tmp/.*&quot;</span>);
-<a name="l00081"></a>00081     
-<a name="l00082"></a>00082     system(<span class="stringliteral">&quot;cd $RFS_SITE_PATH/tmp&quot;</span>);
-<a name="l00083"></a>00083     
-<a name="l00084"></a>00084     exec(<span class="stringliteral">&quot;yes| 7z e -o/var/www/tmp &#39;$file_name&#39;&quot;</span>);
-<a name="l00085"></a>00085     
-<a name="l00086"></a>00086     system(<span class="stringliteral">&quot;renlow $RFS_SITE_PATH/tmp&quot;</span>);
-<a name="l00087"></a>00087     $dirfiles=<a class="code" href="lib_8file_8php.html#a244d5f4340328b68343e8790f5f33970">sc_get_folder_files</a>(<span class="stringliteral">&quot;$RFS_SITE_PATH/tmp&quot;</span>);
-<a name="l00088"></a>00088     
-<a name="l00089"></a>00089     <span class="keywordflow">while</span>(list ($key, <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) = each ($dirfiles)) {
-<a name="l00090"></a>00090         
-<a name="l00091"></a>00091         <span class="comment">// TODO: Add customizable filetype results</span>
-<a name="l00092"></a>00092         
-<a name="l00093"></a>00093         <span class="keywordflow">if</span>(substr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,0,1)!=<span class="stringliteral">&quot;.&quot;</span>) {
-<a name="l00094"></a>00094             <span class="keywordflow">if</span>(stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.ico&quot;</span>)) {
-<a name="l00095"></a>00095                 echo system(<span class="stringliteral">&quot;icontopbm -x $RFS_SITE_URL/tmp/$file&quot;</span>);
-<a name="l00096"></a>00096                 echo <span class="stringliteral">&quot;$file&lt;br&gt;&quot;</span>;
-<a name="l00097"></a>00097                 echo <span class="stringliteral">&quot;&lt;img src=\&quot;$RFS_SITE_URL/tmp/$file\&quot;&gt;&lt;hr&gt;&quot;</span>;
-<a name="l00098"></a>00098                 
-<a name="l00099"></a>00099             }
-<a name="l00100"></a>00100         }
-<a name="l00101"></a>00101             
-<a name="l00102"></a>00102         <span class="keywordflow">if</span>(substr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,0,1)!=<span class="stringliteral">&quot;.&quot;</span>) {
-<a name="l00103"></a>00103             <span class="keywordflow">if</span>((stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.png&quot;</span>)) ||
-<a name="l00104"></a>00104                 (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.jpg&quot;</span>)) ||
-<a name="l00105"></a>00105                 (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.bmp&quot;</span>)) ||
-<a name="l00106"></a>00106                 
-<a name="l00107"></a>00107                 (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.jpeg&quot;</span>)) ||
-<a name="l00108"></a>00108                 (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.gif&quot;</span>)) )  { 
-<a name="l00109"></a>00109                     echo <span class="stringliteral">&quot;$file&lt;br&gt;&quot;</span>;
-<a name="l00110"></a>00110                     echo <span class="stringliteral">&quot;&lt;img src=\&quot;$RFS_SITE_URL/tmp/$file\&quot;&gt;&lt;hr&gt;&quot;</span>;
-<a name="l00111"></a>00111                 }
-<a name="l00112"></a>00112         }
-<a name="l00113"></a>00113     }
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115     reset($dirfiles);
-<a name="l00116"></a>00116     <span class="keywordflow">while</span>(list ($key, <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) = each ($dirfiles)) {
-<a name="l00117"></a>00117         <span class="keywordflow">if</span>(substr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,0,1)!=<span class="stringliteral">&quot;.&quot;</span>) {
-<a name="l00118"></a>00118             <span class="keywordflow">if</span>((    (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;read&quot;</span>)) ||
-<a name="l00119"></a>00119                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.nfo&quot;</span>)) ||
-<a name="l00120"></a>00120                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;version&quot;</span>)) ||
-<a name="l00121"></a>00121                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.diz&quot;</span>)) ||
-<a name="l00122"></a>00122                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.doc&quot;</span>)) ||
-<a name="l00123"></a>00123                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.txt&quot;</span>)) ||
-<a name="l00124"></a>00124                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.msg&quot;</span>)) ||                  
-<a name="l00125"></a>00125                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.cat&quot;</span>)) ||
-<a name="l00126"></a>00126                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.dat&quot;</span>)) ||
-<a name="l00127"></a>00127                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.h&quot;</span>)) ||
-<a name="l00128"></a>00128                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.hpp&quot;</span>)) ||
-<a name="l00129"></a>00129                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.ttf&quot;</span>)) ||
-<a name="l00130"></a>00130                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;index&quot;</span>))  
-<a name="l00131"></a>00131                 
-<a name="l00132"></a>00132                     )  &amp;&amp;
-<a name="l00133"></a>00133                     
-<a name="l00134"></a>00134                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.com&quot;</span>)) &amp;&amp;
-<a name="l00135"></a>00135                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.exe&quot;</span>)) &amp;&amp;
-<a name="l00136"></a>00136                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.chm&quot;</span>)) &amp;&amp;
-<a name="l00137"></a>00137                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.class&quot;</span>))
-<a name="l00138"></a>00138                 ) {
-<a name="l00139"></a>00139                 $x=<a class="code" href="lib_8file_8php.html#a1c92fad3e671a363140cbff60e84cf2c">sc_echo_file</a>(<span class="stringliteral">&quot;$RFS_SITE_PATH/tmp/$file&quot;</span>);
-<a name="l00140"></a>00140                 echo $x;
-<a name="l00141"></a>00141                 echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
-<a name="l00142"></a>00142                 
-<a name="l00143"></a>00143                 <span class="keywordflow">if</span>(stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.diz&quot;</span>)) {
-<a name="l00144"></a>00144                     $db_file=str_replace(<span class="stringliteral">&quot;$RFS_SITE_PATH/&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$file_name);
-<a name="l00145"></a>00145                     $x=addslashes($x);
-<a name="l00146"></a>00146                     $cf=<a class="code" href="lib_8mysql_8php.html#ad42d2c11477299cecf3dd06b259a316e">mfo1</a>(<span class="stringliteral">&quot;select * from files where location=&#39;$db_file&#39;&quot;</span>);
-<a name="l00147"></a>00147                     <span class="keywordflow">if</span>(empty($cf-&gt;description)) {
-<a name="l00148"></a>00148                         <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;update files set description=\&quot;$x\&quot; where location=&#39;$db_file&#39;&quot;</span>);
-<a name="l00149"></a>00149                     }
-<a name="l00150"></a>00150                 }               
-<a name="l00151"></a>00151             }
-<a name="l00152"></a>00152         }
-<a name="l00153"></a>00153     }
-<a name="l00154"></a>00154 }<span class="comment"></span>
-<a name="l00155"></a>00155 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00156"></a><a class="code" href="lib_8file_8php.html#a2d4c2d8462bbd30543490af84f6fe689">00156</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a2d4c2d8462bbd30543490af84f6fe689">sc_touch_dir</a>($dir) {
-<a name="l00157"></a>00157     echo <span class="stringliteral">&quot; making $dir &lt;br&gt;&quot;</span>;
-<a name="l00158"></a>00158     <span class="keywordflow">if</span>(!file_exists($dir)) {
-<a name="l00159"></a>00159         echo <span class="stringliteral">&quot; making $dir &lt;br&gt;&quot;</span>;
-<a name="l00160"></a>00160         mkdir($dir,0775);       
-<a name="l00161"></a>00161     }
-<a name="l00162"></a>00162 }
-<a name="l00163"></a>00163 
-<a name="l00164"></a>00164 ?&gt;
+<a name="l00012"></a><a class="code" href="lib_8file_8php.html#ac144f5347aa538539774e22065a53ab5">00012</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#ac144f5347aa538539774e22065a53ab5">lib_file_process_upload</a>($filedata,$chmod,$filepath,$pre,$suf,$table,$key) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00013"></a>00013         echo <span class="stringliteral">&quot;&lt;p&gt; Upload file&lt;/p&gt;\n&quot;</span>;       
+<a name="l00014"></a>00014         $fx=$_FILES[$filedata];
+<a name="l00015"></a>00015         $uploadFile=$filepath.<span class="stringliteral">&quot;/&quot;</span>.$pre.$fx[<span class="stringliteral">&#39;name&#39;</span>].$suf;
+<a name="l00016"></a>00016         $uploadFile =str_replace(<span class="stringliteral">&quot;//&quot;</span>,<span class="stringliteral">&quot;/&quot;</span>,$uploadFile);
+<a name="l00017"></a>00017         <span class="keywordflow">if</span>(!stristr($uploadFile,<a class="code" href="config_8sitevars_8php.html#a0304f1c6ce0928c6dda1a31ca21a58ae">$RFS_SITE_PATH</a>)) $uploadFile=<a class="code" href="config_8sitevars_8php.html#a0304f1c6ce0928c6dda1a31ca21a58ae">$RFS_SITE_PATH</a>.$uploadFile;        
+<a name="l00018"></a>00018         <span class="keywordflow">if</span>(move_uploaded_file($fx[<span class="stringliteral">&#39;tmp_name&#39;</span>], $uploadFile)) {
+<a name="l00019"></a>00019             system(<span class="stringliteral">&quot;chmod $chmod $uploadFile&quot;</span>);         
+<a name="l00020"></a>00020             $error=<span class="stringliteral">&quot;File is valid, and was successfully uploaded. &quot;</span>;
+<a name="l00021"></a>00021             echo <span class="stringliteral">&quot;&lt;P&gt;You sent: &quot;</span>.$fx[<span class="stringliteral">&#39;name&#39;</span>].<span class="stringliteral">&quot;, a &quot;</span>.$fx[<span class="stringliteral">&#39;size&#39;</span>].<span class="stringliteral">&quot; byte file with a mime type of &quot;</span>;
+<a name="l00022"></a>00022             echo $fx[<span class="stringliteral">&#39;type&#39;</span>].<span class="stringliteral">&quot;&lt;/p&gt;\n&quot;</span>;
+<a name="l00023"></a>00023             echo <span class="stringliteral">&quot;&lt;p&gt;It was stored as [$httppath&quot;</span>.<span class="stringliteral">&quot;/&quot;</span>.$fx[<span class="stringliteral">&#39;name&#39;</span>].<span class="stringliteral">&quot;]&lt;/p&gt;\n&quot;</span>;
+<a name="l00024"></a>00024         <span class="comment">/* if($fu_hidden==&quot;no&quot;) {</span>
+<a name="l00025"></a>00025 <span class="comment">                $httppath=$httppath.&quot;/&quot;.$fx[&#39;name&#39;];                    </span>
+<a name="l00026"></a>00026 <span class="comment">                $finfo=pathinfo($uploadFile);</span>
+<a name="l00027"></a>00027 <span class="comment">                $filetype=strtolower($finfo[&#39;extension&#39;]);</span>
+<a name="l00028"></a>00028 <span class="comment">                // if(empty($fu_name)) $fu_name=$fx[&#39;name&#39;];                // $fu_name=addslashes($fu_name);               // $time1=date(&quot;Y-m-d H:i:s&quot;);              lib_mysql_query(&quot;INSERT INTO `files`    (`name`,        `submitter`,        `time`, `worksafe`,     `hidden`,       `category`,      `filetype`)                                            VALUES  (&#39;$fu_name&#39;,    &#39;$data-&gt;name&#39;, &#39;$time1&#39;, &#39;$fu_sfw&#39;, &#39;$fu_hidden&#39;,&#39;$fu_category&#39;, &#39;$filetype&#39;);&quot;);$id=mysql_insert_id();echo &quot;DATABASE ID[$id]&lt;br&gt;&quot;;</span>
+<a name="l00029"></a>00029 <span class="comment">                echo &quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/files/files.php?action=get_file&amp;id=$id\&quot;&gt;View file information&lt;/a&gt;&lt;br&gt;&quot;;</span>
+<a name="l00030"></a>00030 <span class="comment">                $httppath=str_replace(&quot;$RFS_SITE_URL/&quot;,&quot;&quot;,$httppath);</span>
+<a name="l00031"></a>00031 <span class="comment">                lib_mysql_query(&quot;UPDATE files SET location  =&#39;$httppath&#39;        where id=&#39;$id&#39;&quot;);                               </span>
+<a name="l00032"></a>00032 <span class="comment">                $fu_desc=addslashes($fu_desc);</span>
+<a name="l00033"></a>00033 <span class="comment">                lib_mysql_query(&quot;UPDATE files SET description   =&#39;$fu_desc&#39;     where id=&#39;$id&#39;&quot;);   </span>
+<a name="l00034"></a>00034 <span class="comment">                $filesizebytes=$fx[&#39;size&#39;];</span>
+<a name="l00035"></a>00035 <span class="comment">                lib_mysql_query(&quot;UPDATE files SET size          =&#39;$filesizebytes&#39;   where id=&#39;$id&#39;&quot;);                   </span>
+<a name="l00036"></a>00036 <span class="comment">                $extra_sp=$fx[&#39;size&#39;]/10240;</span>
+<a name="l00037"></a>00037 <span class="comment">                $data-&gt;files_uploaded=$data-&gt;files_uploaded+1;</span>
+<a name="l00038"></a>00038 <span class="comment">                lib_mysql_query(&quot;update `users` set `files_uploaded`=&#39;$data-&gt;files_uploaded&#39; where `name`=&#39;$data-&gt;name&#39;&quot;);</span>
+<a name="l00039"></a>00039 <span class="comment">                } */</span>
+<a name="l00040"></a>00040             <span class="keywordflow">return</span> $uploadFile;
+<a name="l00041"></a>00041         }
+<a name="l00042"></a>00042         <span class="keywordflow">else</span> {
+<a name="l00043"></a>00043             <span class="comment">//UPLOAD_ERR_OK        //Value: 0; There is no error, the file uploaded with success.</span>
+<a name="l00044"></a>00044             <span class="comment">//UPLOAD_ERR_INI_SIZE  //Value: 1; The uploaded file exceeds the upload_max_filesize directive in php.ini.</span>
+<a name="l00045"></a>00045             <span class="comment">//UPLOAD_ERR_FORM_SIZE //Value: 2; The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.</span>
+<a name="l00046"></a>00046             <span class="comment">//UPLOAD_ERR_PARTIAL   //Value: 3; The uploaded file was only partially uploaded.</span>
+<a name="l00047"></a>00047             <span class="comment">//UPLOAD_ERR_NO_FILE</span>
+<a name="l00048"></a>00048             $error =<span class="stringliteral">&quot;File upload error!&quot;</span>;
+<a name="l00049"></a>00049             echo <span class="stringliteral">&quot;File upload error! &quot;</span>;
+<a name="l00050"></a>00050             echo <span class="stringliteral">&quot;[&quot;</span>.$fx[<span class="stringliteral">&#39;name&#39;</span>].<span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00051"></a>00051             echo <span class="stringliteral">&quot;[&quot;</span>.$fx[<span class="stringliteral">&#39;error&#39;</span>].<span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00052"></a>00052             echo <span class="stringliteral">&quot;[&quot;</span>.$fx[<span class="stringliteral">&#39;tmp_name&#39;</span>].<span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00053"></a>00053             echo <span class="stringliteral">&quot;[&quot;</span>.$uploadFile.<span class="stringliteral">&quot;]\n&quot;</span>;
+<a name="l00054"></a>00054         }
+<a name="l00055"></a>00055         <span class="keywordflow">if</span>(!$error) {
+<a name="l00056"></a>00056             $error .= <span class="stringliteral">&quot;No files have been selected for upload&quot;</span>;
+<a name="l00057"></a>00057         }       
+<a name="l00058"></a>00058     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00059"></a>00059 }<span class="comment"></span>
+<a name="l00060"></a>00060 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00061"></a><a class="code" href="lib_8file_8php.html#af8530c0491b53ccad0fc6b856038f456">00061</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#af8530c0491b53ccad0fc6b856038f456">lib_file_sizefile</a>($bytesize) {
+<a name="l00062"></a>00062     $size = $bytesize.<span class="stringliteral">&quot; bytes&quot;</span>; 
+<a name="l00063"></a>00063     <span class="keywordflow">if</span>($bytesize&gt;1024)              $size = (round($bytesize/1024,2)).<span class="stringliteral">&quot;kB&quot;</span>;                 <span class="comment">// kilobyte 2^10</span>
+<a name="l00064"></a>00064     <span class="keywordflow">if</span>($bytesize&gt;1048576)           $size = (round($bytesize/1048576,2)).<span class="stringliteral">&quot;MB&quot;</span>;          <span class="comment">// megabyte 2^20</span>
+<a name="l00065"></a>00065     <span class="keywordflow">if</span>($bytesize&gt;1073741824)        $size = (round($bytesize/1073741824,2)).<span class="stringliteral">&quot;GB&quot;</span>;       <span class="comment">// gigabyte 2^30</span>
+<a name="l00066"></a>00066      <span class="keywordflow">if</span>($bytesize&gt;1099511627776)    $size = (round($bytesize/1099511627776,2)).<span class="stringliteral">&quot;TB&quot;</span>;    <span class="comment">// terabyte 2^40</span>
+<a name="l00067"></a>00067      <span class="comment">// PB petabyte 2^50</span>
+<a name="l00068"></a>00068      <span class="comment">// EB exabyte 2^60</span>
+<a name="l00069"></a>00069      <span class="comment">// ZB zettabyte 2^70</span>
+<a name="l00070"></a>00070      <span class="comment">// YB yottabyte 2^80</span>
+<a name="l00071"></a>00071     <span class="keywordflow">return</span> $size;
+<a name="l00072"></a>00072 }<span class="comment"></span>
+<a name="l00073"></a>00073 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00074"></a><a class="code" href="lib_8file_8php.html#a871e6b67d062989ce288217d9646b632">00074</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a871e6b67d062989ce288217d9646b632">lib_file_folder_to_array</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>) {
+<a name="l00075"></a>00075     $dirfiles = array();
+<a name="l00076"></a>00076     $handle=opendir(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>);
+<a name="l00077"></a>00077     <span class="keywordflow">if</span>(!$handle) <span class="keywordflow">return</span> 0;
+<a name="l00078"></a>00078     <span class="keywordflow">while</span> (<span class="keyword">false</span>!==(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> = readdir($handle))) {
+<a name="l00079"></a>00079     
+<a name="l00080"></a>00080         <span class="keywordflow">if</span>( 
+<a name="l00081"></a>00081         (<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;.&quot;</span>) &amp;&amp; 
+<a name="l00082"></a>00082         (<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;..&quot;</span>) &amp;&amp; 
+<a name="l00083"></a>00083         (!empty(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>)) )
+<a name="l00084"></a>00084         
+<a name="l00085"></a>00085         array_push($dirfiles,<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
+<a name="l00086"></a>00086         
+<a name="l00087"></a>00087     }
+<a name="l00088"></a>00088     closedir($handle);
+<a name="l00089"></a>00089     reset($dirfiles);
+<a name="l00090"></a>00090     asort($dirfiles);
+<a name="l00091"></a>00091     <span class="keywordflow">return</span> $dirfiles;
+<a name="l00092"></a>00092 }<span class="comment"></span>
+<a name="l00093"></a>00093 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00094"></a><a class="code" href="lib_8file_8php.html#a01f252bb3637dea8afda98f285eb85c0">00094</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a01f252bb3637dea8afda98f285eb85c0">lib_file_get_folder_files</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>){
+<a name="l00095"></a>00095     $dirfiles = array();
+<a name="l00096"></a>00096     $handle=opendir(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>);
+<a name="l00097"></a>00097     <span class="keywordflow">if</span>(!$handle) <span class="keywordflow">return</span> 0;
+<a name="l00098"></a>00098     <span class="keywordflow">while</span> (<span class="keyword">false</span>!==(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> = readdir($handle)))
+<a name="l00099"></a>00099         array_push($dirfiles,<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
+<a name="l00100"></a>00100     closedir($handle);
+<a name="l00101"></a>00101     reset($dirfiles);
+<a name="l00102"></a>00102     asort($dirfiles);
+<a name="l00103"></a>00103     <span class="keywordflow">return</span> $dirfiles;
+<a name="l00104"></a>00104 }<span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00106"></a><a class="code" href="lib_8file_8php.html#a7ef3d403aba59b69787e8abeb7808a17">00106</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a7ef3d403aba59b69787e8abeb7808a17">lib_file_multi_rename</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>,$old_pattern,$new_pattern) {
+<a name="l00107"></a>00107     $dirfiles=<a class="code" href="lib_8file_8php.html#a01f252bb3637dea8afda98f285eb85c0">lib_file_get_folder_files</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>);
+<a name="l00108"></a>00108     <span class="keywordflow">while</span>(list ($key, <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) = each ($dirfiles)) {
+<a name="l00109"></a>00109         <span class="keywordflow">if</span>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;.&quot;</span>) {
+<a name="l00110"></a>00110             <span class="keywordflow">if</span>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;..&quot;</span>) {
+<a name="l00111"></a>00111                 <span class="keywordflow">if</span>(is_dir(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>)){ }
+<a name="l00112"></a>00112                 <span class="keywordflow">else</span> {
+<a name="l00113"></a>00113                     $nfile=str_replace($old_pattern,$new_pattern,<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
+<a name="l00114"></a>00114                     system(<span class="stringliteral">&quot;mv $folder/$file $folder/$nfile&quot;</span>);
+<a name="l00115"></a>00115                 }
+<a name="l00116"></a>00116             }
+<a name="l00117"></a>00117         }
+<a name="l00118"></a>00118     }
+<a name="l00119"></a>00119 }<span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00121"></a><a class="code" href="lib_8file_8php.html#a7822dae97527ec14a29f634462a860ab">00121</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a7822dae97527ec14a29f634462a860ab">lib_file_echo_file</a>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) { 
+<a name="l00122"></a>00122     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>()); 
+<a name="l00123"></a>00123     <span class="keywordflow">if</span>(file_exists(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>)) {
+<a name="l00124"></a>00124         echo <span class="stringliteral">&quot;Filename: $file\n&quot;</span>;
+<a name="l00125"></a>00125         $f=file_get_contents(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
+<a name="l00126"></a>00126         $f=str_replace(<span class="stringliteral">&quot;&lt;&quot;</span>,<span class="stringliteral">&quot;&amp;lt;&quot;</span>,$f);
+<a name="l00127"></a>00127         <span class="keywordflow">return</span> $f;
+<a name="l00128"></a>00128     }
+<a name="l00129"></a>00129 }<span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00131"></a><a class="code" href="lib_8file_8php.html#a53a3865480e3519816b157b31d24bd41">00131</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a53a3865480e3519816b157b31d24bd41">lib_file_file_get_readme</a>($file_name) { 
+<a name="l00132"></a>00132     eval (<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00133"></a>00133     system(<span class="stringliteral">&quot;yes| rm -R $RFS_SITE_PATH/tmp/*&quot;</span>);  
+<a name="l00134"></a>00134     system(<span class="stringliteral">&quot;yes| rm -R $RFS_SITE_PATH/tmp/.*&quot;</span>);
+<a name="l00135"></a>00135     system(<span class="stringliteral">&quot;cd $RFS_SITE_PATH/tmp&quot;</span>);
+<a name="l00136"></a>00136     exec(<span class="stringliteral">&quot;yes| 7z e -o/var/www/tmp &#39;$file_name&#39;&quot;</span>);
+<a name="l00137"></a>00137     system(<span class="stringliteral">&quot;renlow $RFS_SITE_PATH/tmp&quot;</span>);
+<a name="l00138"></a>00138     $dirfiles=<a class="code" href="lib_8file_8php.html#a01f252bb3637dea8afda98f285eb85c0">lib_file_get_folder_files</a>(<span class="stringliteral">&quot;$RFS_SITE_PATH/tmp&quot;</span>);
+<a name="l00139"></a>00139     <span class="keywordflow">while</span>(list ($key, <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) = each ($dirfiles)) {
+<a name="l00140"></a>00140         <span class="comment">// TODO: Add customizable filetype results</span>
+<a name="l00141"></a>00141         <span class="keywordflow">if</span>(substr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,0,1)!=<span class="stringliteral">&quot;.&quot;</span>) {
+<a name="l00142"></a>00142             <span class="keywordflow">if</span>(stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.ico&quot;</span>)) {
+<a name="l00143"></a>00143                 echo system(<span class="stringliteral">&quot;icontopbm -x $RFS_SITE_URL/tmp/$file&quot;</span>);
+<a name="l00144"></a>00144                 echo <span class="stringliteral">&quot;$file&lt;br&gt;&quot;</span>;
+<a name="l00145"></a>00145                 echo <span class="stringliteral">&quot;&lt;img src=\&quot;$RFS_SITE_URL/tmp/$file\&quot;&gt;&lt;hr&gt;&quot;</span>;
+<a name="l00146"></a>00146             }
+<a name="l00147"></a>00147         }
+<a name="l00148"></a>00148         <span class="keywordflow">if</span>(substr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,0,1)!=<span class="stringliteral">&quot;.&quot;</span>) {
+<a name="l00149"></a>00149             <span class="keywordflow">if</span>((stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.png&quot;</span>)) ||
+<a name="l00150"></a>00150                 (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.jpg&quot;</span>)) ||
+<a name="l00151"></a>00151                 (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.bmp&quot;</span>)) ||
+<a name="l00152"></a>00152                 (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.jpeg&quot;</span>)) ||
+<a name="l00153"></a>00153                 (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.gif&quot;</span>)) )  { 
+<a name="l00154"></a>00154                 echo <span class="stringliteral">&quot;$file&lt;br&gt;&quot;</span>;
+<a name="l00155"></a>00155                 echo <span class="stringliteral">&quot;&lt;img src=\&quot;$RFS_SITE_URL/tmp/$file\&quot;&gt;&lt;hr&gt;&quot;</span>;
+<a name="l00156"></a>00156             }
+<a name="l00157"></a>00157         }
+<a name="l00158"></a>00158     }
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160     reset($dirfiles);
+<a name="l00161"></a>00161     <span class="keywordflow">while</span>(list ($key, <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) = each ($dirfiles)) {
+<a name="l00162"></a>00162         <span class="keywordflow">if</span>(substr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,0,1)!=<span class="stringliteral">&quot;.&quot;</span>) {
+<a name="l00163"></a>00163             <span class="keywordflow">if</span>((    (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;read&quot;</span>)) ||
+<a name="l00164"></a>00164                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.nfo&quot;</span>)) ||
+<a name="l00165"></a>00165                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;version&quot;</span>)) ||
+<a name="l00166"></a>00166                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.diz&quot;</span>)) ||
+<a name="l00167"></a>00167                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.doc&quot;</span>)) ||
+<a name="l00168"></a>00168                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.txt&quot;</span>)) ||
+<a name="l00169"></a>00169                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.msg&quot;</span>)) ||                  
+<a name="l00170"></a>00170                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.cat&quot;</span>)) ||
+<a name="l00171"></a>00171                     
+<a name="l00172"></a>00172                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.h&quot;</span>)) ||
+<a name="l00173"></a>00173                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.hpp&quot;</span>)) ||
+<a name="l00174"></a>00174                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.ttf&quot;</span>)) ||
+<a name="l00175"></a>00175                     (stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;index&quot;</span>))  
+<a name="l00176"></a>00176                 
+<a name="l00177"></a>00177                     )  &amp;&amp;
+<a name="l00178"></a>00178                     
+<a name="l00179"></a>00179                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.com&quot;</span>)) &amp;&amp;
+<a name="l00180"></a>00180                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.dll&quot;</span>)) &amp;&amp;                 
+<a name="l00181"></a>00181                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.exe&quot;</span>)) &amp;&amp;
+<a name="l00182"></a>00182                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.chm&quot;</span>)) &amp;&amp;
+<a name="l00183"></a>00183                     (!stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.class&quot;</span>))
+<a name="l00184"></a>00184                 ) {
+<a name="l00185"></a>00185                 $x=<a class="code" href="lib_8file_8php.html#a7822dae97527ec14a29f634462a860ab">lib_file_echo_file</a>(<span class="stringliteral">&quot;$RFS_SITE_PATH/tmp/$file&quot;</span>);
+<a name="l00186"></a>00186                 echo $x;
+<a name="l00187"></a>00187                 echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
+<a name="l00188"></a>00188                 
+<a name="l00189"></a>00189                 <span class="keywordflow">if</span>(stristr(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>,<span class="stringliteral">&quot;.diz&quot;</span>)) {
+<a name="l00190"></a>00190                     $db_file=str_replace(<span class="stringliteral">&quot;$RFS_SITE_PATH/&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$file_name);
+<a name="l00191"></a>00191                     $x=addslashes($x);
+<a name="l00192"></a>00192                     $cf=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from files where location=&#39;$db_file&#39;&quot;</span>);
+<a name="l00193"></a>00193                     <span class="keywordflow">if</span>(empty($cf-&gt;description)) {
+<a name="l00194"></a>00194                         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update files set description=\&quot;$x\&quot; where location=&#39;$db_file&#39;&quot;</span>);
+<a name="l00195"></a>00195                     }
+<a name="l00196"></a>00196                 }               
+<a name="l00197"></a>00197             }
+<a name="l00198"></a>00198         }
+<a name="l00199"></a>00199     }
+<a name="l00200"></a>00200 }<span class="comment"></span>
+<a name="l00201"></a>00201 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00202"></a><a class="code" href="lib_8file_8php.html#a32d940ff059c92338106d0ffae508999">00202</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a32d940ff059c92338106d0ffae508999">lib_file_touch_dir</a>($dir) { 
+<a name="l00203"></a>00203     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00204"></a>00204     <span class="keywordflow">if</span>(!file_exists($dir)) {
+<a name="l00205"></a>00205         system(<span class="stringliteral">&quot;$RFS_SITE_SUDO_CMD mkdir $dir&quot;</span>);
+<a name="l00206"></a>00206         system(<span class="stringliteral">&quot;$RFS_SITE_SUDO_CMD chmod 775 $dir&quot;</span>);
+<a name="l00207"></a>00207         system(<span class="stringliteral">&quot;$RFS_SITE_SUDO_CMD chown www-data:www-data $dir&quot;</span>);
+<a name="l00208"></a>00208     }
+<a name="l00209"></a>00209 }<span class="comment"></span>
+<a name="l00210"></a>00210 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00211"></a>00211 <span class="comment"></span>?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="lib_8file_8php.html">lib.file.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

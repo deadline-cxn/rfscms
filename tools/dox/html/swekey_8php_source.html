@@ -156,13 +156,13 @@
 <a name="l00078"></a>00078 <span class="comment"> *  @param  server              The protocol and hostname to use</span>
 <a name="l00079"></a>00079 <span class="comment"> *  @access public</span>
 <a name="l00080"></a>00080 <span class="comment"> */</span>
-<a name="l00081"></a><a class="code" href="swekey_8php.html#aa8d5f9a0301af3d0087789c115659d5f">00081</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#aa8d5f9a0301af3d0087789c115659d5f" title="Change the address of the Check server.">Swekey_SetCheckServer</a>(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>)
+<a name="l00081"></a><a class="code" href="swekey_8php.html#aa8d5f9a0301af3d0087789c115659d5f">00081</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#aa8d5f9a0301af3d0087789c115659d5f" title="Change the address of the Check server.">Swekey_SetCheckServer</a>($server)
 <a name="l00082"></a>00082 {
 <a name="l00083"></a>00083     global <a class="code" href="swekey_8php.html#a54568d25faef6b9583c18961e8f9cc50" title="Servers addresses Use the Swekey_SetXxxServer($server) functions to set them.">$gSwekeyCheckServer</a>;
-<a name="l00084"></a>00084     <span class="keywordflow">if</span> (empty(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>))
+<a name="l00084"></a>00084     <span class="keywordflow">if</span> (empty($server))
 <a name="l00085"></a>00085         $gSwekeyCheckServer = <a class="code" href="swekey_8php.html#ac9073af1ec5bb690ff1cd07e8072d363" title="Default values for configuration.">SWEKEY_DEFAULT_CHECK_SERVER</a>;
 <a name="l00086"></a>00086     <span class="keywordflow">else</span>
-<a name="l00087"></a>00087         $gSwekeyCheckServer = <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>;
+<a name="l00087"></a>00087         $gSwekeyCheckServer = $server;
 <a name="l00088"></a>00088 }
 <a name="l00089"></a>00089 <span class="comment"></span>
 <a name="l00090"></a>00090 <span class="comment">/**</span>
@@ -172,13 +172,13 @@
 <a name="l00094"></a>00094 <span class="comment"> *  @param  server              The protocol and hostname to use</span>
 <a name="l00095"></a>00095 <span class="comment"> *  @access public</span>
 <a name="l00096"></a>00096 <span class="comment"> */</span>
-<a name="l00097"></a><a class="code" href="swekey_8php.html#a2358f5a517f40675bbc351af7f6da08c">00097</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#a2358f5a517f40675bbc351af7f6da08c" title="Change the address of the Random Token Generator server.">Swekey_SetRndTokenServer</a>(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>)
+<a name="l00097"></a><a class="code" href="swekey_8php.html#a2358f5a517f40675bbc351af7f6da08c">00097</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#a2358f5a517f40675bbc351af7f6da08c" title="Change the address of the Random Token Generator server.">Swekey_SetRndTokenServer</a>($server)
 <a name="l00098"></a>00098 {
 <a name="l00099"></a>00099     global <a class="code" href="swekey_8php.html#a8d0e6a2cca130592a315719357e0c348">$gSwekeyRndTokenServer</a>;
-<a name="l00100"></a>00100     <span class="keywordflow">if</span> (empty(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>))
+<a name="l00100"></a>00100     <span class="keywordflow">if</span> (empty($server))
 <a name="l00101"></a>00101         $gSwekeyRndTokenServer = <a class="code" href="swekey_8php.html#a6570ca8c0bf23de3f7e1fd9b53b652bf">SWEKEY_DEFAULT_RND_SERVER</a>;
 <a name="l00102"></a>00102     <span class="keywordflow">else</span>
-<a name="l00103"></a>00103         $gSwekeyRndTokenServer = <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>;
+<a name="l00103"></a>00103         $gSwekeyRndTokenServer = $server;
 <a name="l00104"></a>00104 }
 <a name="l00105"></a>00105 <span class="comment"></span>
 <a name="l00106"></a>00106 <span class="comment">/**</span>
@@ -188,13 +188,13 @@
 <a name="l00110"></a>00110 <span class="comment"> *  @param  server              The protocol and hostname to use</span>
 <a name="l00111"></a>00111 <span class="comment"> *  @access public</span>
 <a name="l00112"></a>00112 <span class="comment"> */</span>
-<a name="l00113"></a><a class="code" href="swekey_8php.html#a9a609d051b45b593fba9a1b2a8b82a64">00113</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#a9a609d051b45b593fba9a1b2a8b82a64" title="Change the address of the Satus server.">Swekey_SetStatusServer</a>(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>)
+<a name="l00113"></a><a class="code" href="swekey_8php.html#a9a609d051b45b593fba9a1b2a8b82a64">00113</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#a9a609d051b45b593fba9a1b2a8b82a64" title="Change the address of the Satus server.">Swekey_SetStatusServer</a>($server)
 <a name="l00114"></a>00114 {
 <a name="l00115"></a>00115     global <a class="code" href="swekey_8php.html#a4b2d60f908333b859ac81201440d7f56">$gSwekeyStatusServer</a>;
-<a name="l00116"></a>00116     <span class="keywordflow">if</span> (empty(<a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>))
+<a name="l00116"></a>00116     <span class="keywordflow">if</span> (empty($server))
 <a name="l00117"></a>00117         $gSwekeyStatusServer = <a class="code" href="swekey_8php.html#a1b337f554f67588b70fb53c194b291f6">SWEKEY_DEFAULT_STATUS_SERVER</a>;
 <a name="l00118"></a>00118     <span class="keywordflow">else</span>
-<a name="l00119"></a>00119         $gSwekeyStatusServer = <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>;
+<a name="l00119"></a>00119         $gSwekeyStatusServer = $server;
 <a name="l00120"></a>00120 }
 <a name="l00121"></a>00121 <span class="comment"></span>
 <a name="l00122"></a>00122 <span class="comment">/**</span>
@@ -257,7 +257,7 @@
 <a name="l00179"></a>00179 <span class="comment"> *  @return                     The body of the response or &quot;&quot; in case of error</span>
 <a name="l00180"></a>00180 <span class="comment"> *  @access private</span>
 <a name="l00181"></a>00181 <span class="comment"> */</span>
-<a name="l00182"></a><a class="code" href="swekey_8php.html#a4864b92459c3d13c9ff3f5eaee768b45">00182</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#a4864b92459c3d13c9ff3f5eaee768b45" title="Send a synchronous request to the server.">Swekey_HttpGet</a>(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, &amp;$response_code)
+<a name="l00182"></a><a class="code" href="swekey_8php.html#a4864b92459c3d13c9ff3f5eaee768b45">00182</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#a4864b92459c3d13c9ff3f5eaee768b45" title="Send a synchronous request to the server.">Swekey_HttpGet</a>(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, &amp;$response_code)
 <a name="l00183"></a>00183 {
 <a name="l00184"></a>00184     global <a class="code" href="swekey_8php.html#aaa4112a0424eb41d60163c482b4667d4" title="The last error of an operation is alway put in this global var.">$gSwekeyLastError</a>;
 <a name="l00185"></a>00185     $gSwekeyLastError = 0;
@@ -266,8 +266,8 @@
 <a name="l00188"></a>00188 
 <a name="l00189"></a>00189      <span class="comment">// use curl if available</span>
 <a name="l00190"></a>00190     <span class="keywordflow">if</span> (function_exists(<span class="stringliteral">&#39;curl_init&#39;</span>)) {
-<a name="l00191"></a>00191         $sess = curl_init(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
-<a name="l00192"></a>00192         <span class="keywordflow">if</span> (substr(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, 0, 8) == <span class="stringliteral">&quot;https://&quot;</span>) {
+<a name="l00191"></a>00191         $sess = curl_init(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
+<a name="l00192"></a>00192         <span class="keywordflow">if</span> (substr(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, 0, 8) == <span class="stringliteral">&quot;https://&quot;</span>) {
 <a name="l00193"></a>00193             global <a class="code" href="swekey_8php.html#a5d093052e966c07027390d9fbbcae627">$gSwekeyCA</a>;
 <a name="l00194"></a>00194 
 <a name="l00195"></a>00195             <span class="keywordflow">if</span> (! empty($gSwekeyCA)) {
@@ -292,14 +292,14 @@
 <a name="l00214"></a>00214         }
 <a name="l00215"></a>00215 
 <a name="l00216"></a>00216         curl_setopt($sess, CURLOPT_RETURNTRANSFER, <span class="charliteral">&#39;1&#39;</span>);
-<a name="l00217"></a>00217         <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>=curl_exec($sess);
+<a name="l00217"></a>00217         <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>=curl_exec($sess);
 <a name="l00218"></a>00218         $response_code = curl_getinfo($sess, CURLINFO_HTTP_CODE);
 <a name="l00219"></a>00219         $curlerr = curl_error($sess);
 <a name="l00220"></a>00220         curl_close($sess);
 <a name="l00221"></a>00221 
 <a name="l00222"></a>00222         <span class="keywordflow">if</span> ($response_code == 200) {
-<a name="l00223"></a>00223             $gSwekeyLastResult = <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
-<a name="l00224"></a>00224             <span class="keywordflow">return</span> <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00223"></a>00223             $gSwekeyLastResult = <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00224"></a>00224             <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
 <a name="l00225"></a>00225         }
 <a name="l00226"></a>00226 
 <a name="l00227"></a>00227         <span class="keywordflow">if</span> (! empty($response_code)) {
@@ -318,21 +318,21 @@
 <a name="l00240"></a>00240     <span class="keywordflow">if</span> (class_exists(<span class="stringliteral">&#39;HttpRequest&#39;</span>)) {
 <a name="l00241"></a>00241         <span class="comment">// retry if one of the server is down</span>
 <a name="l00242"></a>00242         <span class="keywordflow">for</span> ($num=1; $num &lt;= 3; $num++ ) {
-<a name="l00243"></a>00243             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = <span class="keyword">new</span> HttpRequest(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
+<a name="l00243"></a>00243             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = <span class="keyword">new</span> HttpRequest(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
 <a name="l00244"></a>00244             <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> = array(<span class="stringliteral">&#39;timeout&#39;</span> =&gt; <span class="charliteral">&#39;3&#39;</span>);
 <a name="l00245"></a>00245 
-<a name="l00246"></a>00246             <span class="keywordflow">if</span> (substr(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, 0, 6) == <span class="stringliteral">&quot;https:&quot;</span>) {
+<a name="l00246"></a>00246             <span class="keywordflow">if</span> (substr(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, 0, 6) == <span class="stringliteral">&quot;https:&quot;</span>) {
 <a name="l00247"></a>00247                 $sslOptions = array();
 <a name="l00248"></a>00248                 $sslOptions[<span class="stringliteral">&#39;verifypeer&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00249"></a>00249                 $sslOptions[<span class="stringliteral">&#39;verifyhost&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00250"></a>00250 
 <a name="l00251"></a>00251                 $capath = __FILE__;
-<a name="l00252"></a>00252                 <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = strrchr($capath, <span class="charliteral">&#39;/&#39;</span>);
+<a name="l00252"></a>00252                 <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = strrchr($capath, <span class="charliteral">&#39;/&#39;</span>);
 <a name="l00253"></a>00253                 <span class="comment">// windows</span>
-<a name="l00254"></a>00254                 <span class="keywordflow">if</span> (empty(<a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>)) {
-<a name="l00255"></a>00255                     <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = strrchr($capath, <span class="charliteral">&#39;\\&#39;</span>);
+<a name="l00254"></a>00254                 <span class="keywordflow">if</span> (empty(<a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>)) {
+<a name="l00255"></a>00255                     <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = strrchr($capath, <span class="charliteral">&#39;\\&#39;</span>);
 <a name="l00256"></a>00256                 }
-<a name="l00257"></a>00257                 $capath = substr($capath, 0, strlen($capath) - strlen(<a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>) + 1).<span class="stringliteral">&#39;musbe-ca.crt&#39;</span>;
+<a name="l00257"></a>00257                 $capath = substr($capath, 0, strlen($capath) - strlen(<a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>) + 1).<span class="stringliteral">&#39;musbe-ca.crt&#39;</span>;
 <a name="l00258"></a>00258 
 <a name="l00259"></a>00259                 <span class="keywordflow">if</span> (! empty($gSwekeyCA)) {
 <a name="l00260"></a>00260                     $sslOptions[<span class="stringliteral">&#39;cainfo&#39;</span>] = <a class="code" href="swekey_8php.html#a5d093052e966c07027390d9fbbcae627">$gSwekeyCA</a>;
@@ -341,24 +341,24 @@
 <a name="l00263"></a>00263                 <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[<span class="stringliteral">&#39;ssl&#39;</span>] = $sslOptions;
 <a name="l00264"></a>00264             }
 <a name="l00265"></a>00265 
-<a name="l00266"></a>00266             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>-&gt;setOptions(<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>);
+<a name="l00266"></a>00266             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>-&gt;setOptions(<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>);
 <a name="l00267"></a>00267 
 <a name="l00268"></a>00268  <span class="comment">//           try</span>
 <a name="l00269"></a>00269             {
-<a name="l00270"></a>00270                $reply = <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>-&gt;send();
-<a name="l00271"></a>00271                <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $reply-&gt;getBody();
-<a name="l00272"></a>00272                $info = <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>-&gt;getResponseInfo();
+<a name="l00270"></a>00270                $reply = <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>-&gt;send();
+<a name="l00271"></a>00271                <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $reply-&gt;getBody();
+<a name="l00272"></a>00272                $info = <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>-&gt;getResponseInfo();
 <a name="l00273"></a>00273                $response_code = $info[<span class="stringliteral">&#39;response_code&#39;</span>];
 <a name="l00274"></a>00274                <span class="keywordflow">if</span> ($response_code != 200)
 <a name="l00275"></a>00275                {
 <a name="l00276"></a>00276                     $gSwekeyLastError = $response_code;
-<a name="l00277"></a>00277                     error_log(<span class="stringliteral">&quot;SWEKEY_ERROR:Error &quot;</span>.$gSwekeyLastError.<span class="stringliteral">&quot; getting &quot;</span>.<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
+<a name="l00277"></a>00277                     error_log(<span class="stringliteral">&quot;SWEKEY_ERROR:Error &quot;</span>.$gSwekeyLastError.<span class="stringliteral">&quot; getting &quot;</span>.<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
 <a name="l00278"></a>00278                     <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00279"></a>00279                }
 <a name="l00280"></a>00280 
 <a name="l00281"></a>00281 
-<a name="l00282"></a>00282                $gSwekeyLastResult = <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
-<a name="l00283"></a>00283                <span class="keywordflow">return</span> <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00282"></a>00282                $gSwekeyLastResult = <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00283"></a>00283                <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
 <a name="l00284"></a>00284             }
 <a name="l00285"></a>00285  <span class="comment">//           catch (HttpException $e)</span>
 <a name="l00286"></a>00286  <span class="comment">//           {</span>
@@ -368,20 +368,20 @@
 <a name="l00290"></a>00290 
 <a name="l00291"></a>00291         $response_code = 408; <span class="comment">// Request Timeout</span>
 <a name="l00292"></a>00292         $gSwekeyLastError = $response_code;
-<a name="l00293"></a>00293         error_log(<span class="stringliteral">&quot;SWEKEY_ERROR:Error &quot;</span>.$gSwekeyLastError.<span class="stringliteral">&quot; getting &quot;</span>.<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
+<a name="l00293"></a>00293         error_log(<span class="stringliteral">&quot;SWEKEY_ERROR:Error &quot;</span>.$gSwekeyLastError.<span class="stringliteral">&quot; getting &quot;</span>.<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
 <a name="l00294"></a>00294         <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00295"></a>00295     }
 <a name="l00296"></a>00296 
 <a name="l00297"></a>00297        global $http_response_header;
-<a name="l00298"></a>00298     <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = @file_get_contents(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
+<a name="l00298"></a>00298     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = @file_get_contents(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
 <a name="l00299"></a>00299     $response_code = substr($http_response_header[0], 9, 3); <span class="comment">//HTTP/1.0</span>
 <a name="l00300"></a>00300     <span class="keywordflow">if</span> ($response_code == 200) {
-<a name="l00301"></a>00301        $gSwekeyLastResult = <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
-<a name="l00302"></a>00302        <span class="keywordflow">return</span> <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00301"></a>00301        $gSwekeyLastResult = <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00302"></a>00302        <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
 <a name="l00303"></a>00303     }
 <a name="l00304"></a>00304 
 <a name="l00305"></a>00305     $gSwekeyLastError = $response_code;
-<a name="l00306"></a>00306     error_log(<span class="stringliteral">&quot;SWEKEY_ERROR:Error &quot;</span>.$response_code.<span class="stringliteral">&quot; getting &quot;</span>.<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
+<a name="l00306"></a>00306     error_log(<span class="stringliteral">&quot;SWEKEY_ERROR:Error &quot;</span>.$response_code.<span class="stringliteral">&quot; getting &quot;</span>.<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
 <a name="l00307"></a>00307     <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00308"></a>00308 }
 <a name="l00309"></a>00309 <span class="comment"></span>
@@ -421,30 +421,30 @@
 <a name="l00343"></a>00343 {
 <a name="l00344"></a>00344     global <a class="code" href="swekey_8php.html#a731ea218a172e8d2e86271490ff22f4b">$gSwekeyTokenCacheEnabled</a>;
 <a name="l00345"></a>00345 
-<a name="l00346"></a>00346     <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00346"></a>00346     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00347"></a>00347     $cachefile = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00348"></a>00348 
 <a name="l00349"></a>00349     <span class="comment">// We check if we have a valid RT is the session</span>
-<a name="l00350"></a>00350     <span class="keywordflow">if</span> (isset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token-date&#39;</span>])) {
-<a name="l00351"></a>00351         <span class="keywordflow">if</span> (time() - <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token-date&#39;</span>] &lt; 30) {
-<a name="l00352"></a>00352              <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token&#39;</span>];
+<a name="l00350"></a>00350     <span class="keywordflow">if</span> (isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token-date&#39;</span>])) {
+<a name="l00351"></a>00351         <span class="keywordflow">if</span> (time() - <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token-date&#39;</span>] &lt; 30) {
+<a name="l00352"></a>00352              <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token&#39;</span>];
 <a name="l00353"></a>00353         }
 <a name="l00354"></a>00354     }
 <a name="l00355"></a>00355 
 <a name="l00356"></a>00356     <span class="comment">// If not we try to get it from a temp file (PHP &gt;= 5.2.1 only)</span>
-<a name="l00357"></a>00357     <span class="keywordflow">if</span> (strlen(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>) != 32 &amp;&amp; $gSwekeyTokenCacheEnabled) {
+<a name="l00357"></a>00357     <span class="keywordflow">if</span> (strlen(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>) != 32 &amp;&amp; $gSwekeyTokenCacheEnabled) {
 <a name="l00358"></a>00358         <span class="keywordflow">if</span> (function_exists(<span class="stringliteral">&#39;sys_get_temp_dir&#39;</span>)) {
 <a name="l00359"></a>00359             $tempdir = sys_get_temp_dir();
 <a name="l00360"></a>00360             $cachefile = $tempdir.<span class="stringliteral">&quot;/swekey-rnd-token-&quot;</span>.get_current_user();
 <a name="l00361"></a>00361             $modif = filemtime($cachefile);
 <a name="l00362"></a>00362             <span class="keywordflow">if</span> ($modif != <span class="keyword">false</span>) {
 <a name="l00363"></a>00363                 <span class="keywordflow">if</span> (time() - $modif &lt; 30) {
-<a name="l00364"></a>00364                     <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = @file_get_contents($cachefile);
-<a name="l00365"></a>00365                     <span class="keywordflow">if</span> (strlen(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>) != 32) {
-<a name="l00366"></a>00366                          <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00364"></a>00364                     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = @file_get_contents($cachefile);
+<a name="l00365"></a>00365                     <span class="keywordflow">if</span> (strlen(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>) != 32) {
+<a name="l00366"></a>00366                          <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00367"></a>00367                     } <span class="keywordflow">else</span> {
-<a name="l00368"></a>00368                          <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token&#39;</span>] = <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
-<a name="l00369"></a>00369                          <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token-date&#39;</span>] = $modif;
+<a name="l00368"></a>00368                          <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token&#39;</span>] = <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00369"></a>00369                          <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token-date&#39;</span>] = $modif;
 <a name="l00370"></a>00370                     }
 <a name="l00371"></a>00371                 }
 <a name="l00372"></a>00372             }
@@ -452,22 +452,22 @@
 <a name="l00374"></a>00374     }
 <a name="l00375"></a>00375 
 <a name="l00376"></a>00376     <span class="comment">// If we don&#39;t have a valid RT here we have to get it from the server</span>
-<a name="l00377"></a>00377     <span class="keywordflow">if</span> (strlen(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>) != 32) {
-<a name="l00378"></a>00378         <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = substr(<a class="code" href="swekey_8php.html#a7600e11794432095e3e3bc854283d44d" title="Get a Half Random Token from a Token Server The RT is a 64 vhars hexadecimal value Use this value if ...">Swekey_GetHalfRndToken</a>(), 0, 32);
-<a name="l00379"></a>00379         <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token&#39;</span>] = <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
-<a name="l00380"></a>00380         <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token-date&#39;</span>] = time();
+<a name="l00377"></a>00377     <span class="keywordflow">if</span> (strlen(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>) != 32) {
+<a name="l00378"></a>00378         <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = substr(<a class="code" href="swekey_8php.html#a7600e11794432095e3e3bc854283d44d" title="Get a Half Random Token from a Token Server The RT is a 64 vhars hexadecimal value Use this value if ...">Swekey_GetHalfRndToken</a>(), 0, 32);
+<a name="l00379"></a>00379         <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token&#39;</span>] = <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00380"></a>00380         <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;rnd-token-date&#39;</span>] = time();
 <a name="l00381"></a>00381         <span class="keywordflow">if</span> (! empty($cachefile)) {
 <a name="l00382"></a>00382             <span class="comment">// we unlink the file so no possible tempfile race attack</span>
 <a name="l00383"></a>00383             unlink($cachefile);
-<a name="l00384"></a>00384             <a class="code" href="dejavusans_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> = fopen($cachefile, <span class="stringliteral">&quot;x&quot;</span>);
-<a name="l00385"></a>00385             <span class="keywordflow">if</span> (<a class="code" href="dejavusans_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> != <span class="keyword">false</span>) {
-<a name="l00386"></a>00386                 @fwrite(<a class="code" href="dejavusans_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>, <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
-<a name="l00387"></a>00387                 @fclose(<a class="code" href="dejavusans_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
+<a name="l00384"></a>00384             <a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> = fopen($cachefile, <span class="stringliteral">&quot;x&quot;</span>);
+<a name="l00385"></a>00385             <span class="keywordflow">if</span> (<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> != <span class="keyword">false</span>) {
+<a name="l00386"></a>00386                 @fwrite(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>, <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
+<a name="l00387"></a>00387                 @fclose(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
 <a name="l00388"></a>00388             }
 <a name="l00389"></a>00389         }
 <a name="l00390"></a>00390     }
 <a name="l00391"></a>00391 
-<a name="l00392"></a>00392    <span class="keywordflow">return</span> <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>.<span class="stringliteral">&quot;00000000000000000000000000000000&quot;</span>;
+<a name="l00392"></a>00392    <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>.<span class="stringliteral">&quot;00000000000000000000000000000000&quot;</span>;
 <a name="l00393"></a>00393 }
 <a name="l00394"></a>00394 <span class="comment"></span>
 <a name="l00395"></a>00395 <span class="comment">/**</span>
@@ -480,9 +480,9 @@
 <a name="l00402"></a>00402 <span class="comment"> */</span>
 <a name="l00403"></a><a class="code" href="swekey_8php.html#a5f239047b3a4db302679173534ab7ad0">00403</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#a5f239047b3a4db302679173534ab7ad0" title="Get a Random Token The RT is a 64 vhars hexadecimal value This function generates a unique random tok...">Swekey_GetFastRndToken</a>()
 <a name="l00404"></a>00404 {
-<a name="l00405"></a>00405     <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="swekey_8php.html#a465baae283eb3493faf7a09daa450d3d" title="Get a Half Random Token The RT is a 64 vhars hexadecimal value This function get a new random token a...">Swekey_GetFastHalfRndToken</a>();
-<a name="l00406"></a>00406     <span class="keywordflow">if</span> (strlen(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>) == 64)
-<a name="l00407"></a>00407         <span class="keywordflow">return</span> substr(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>, 0, 32).strtoupper(md5(<span class="stringliteral">&quot;Musbe Authentication Key&quot;</span> + mt_rand() + date(DATE_ATOM)));
+<a name="l00405"></a>00405     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="swekey_8php.html#a465baae283eb3493faf7a09daa450d3d" title="Get a Half Random Token The RT is a 64 vhars hexadecimal value This function get a new random token a...">Swekey_GetFastHalfRndToken</a>();
+<a name="l00406"></a>00406     <span class="keywordflow">if</span> (strlen(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>) == 64)
+<a name="l00407"></a>00407         <span class="keywordflow">return</span> substr(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>, 0, 32).strtoupper(md5(<span class="stringliteral">&quot;Musbe Authentication Key&quot;</span> + mt_rand() + date(DATE_ATOM)));
 <a name="l00408"></a>00408 
 <a name="l00409"></a>00409     <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00410"></a>00410 }
@@ -500,8 +500,8 @@
 <a name="l00422"></a><a class="code" href="swekey_8php.html#a794ab53bd154385f63f5f0930699be74">00422</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#a794ab53bd154385f63f5f0930699be74" title="Checks that an OTP generated by a Swekey is valid.">Swekey_CheckOtp</a>(<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>, $rt, $otp)
 <a name="l00423"></a>00423 {
 <a name="l00424"></a>00424     global <a class="code" href="swekey_8php.html#a54568d25faef6b9583c18961e8f9cc50" title="Servers addresses Use the Swekey_SetXxxServer($server) functions to set them.">$gSwekeyCheckServer</a>;
-<a name="l00425"></a>00425     <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="swekey_8php.html#a4864b92459c3d13c9ff3f5eaee768b45" title="Send a synchronous request to the server.">Swekey_HttpGet</a>($gSwekeyCheckServer.<span class="stringliteral">&#39;/CHECK-OTP/&#39;</span>.<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>.<span class="charliteral">&#39;/&#39;</span>.$rt.<span class="charliteral">&#39;/&#39;</span>.$otp, $response_code);
-<a name="l00426"></a>00426     <span class="keywordflow">return</span> $response_code == 200 &amp;&amp; <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> == <span class="stringliteral">&quot;OK&quot;</span>;
+<a name="l00425"></a>00425     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="swekey_8php.html#a4864b92459c3d13c9ff3f5eaee768b45" title="Send a synchronous request to the server.">Swekey_HttpGet</a>($gSwekeyCheckServer.<span class="stringliteral">&#39;/CHECK-OTP/&#39;</span>.<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>.<span class="charliteral">&#39;/&#39;</span>.$rt.<span class="charliteral">&#39;/&#39;</span>.$otp, $response_code);
+<a name="l00426"></a>00426     <span class="keywordflow">return</span> $response_code == 200 &amp;&amp; <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> == <span class="stringliteral">&quot;OK&quot;</span>;
 <a name="l00427"></a>00427 }
 <a name="l00428"></a>00428 <span class="comment"></span>
 <a name="l00429"></a>00429 <span class="comment">/**</span>
@@ -563,9 +563,9 @@
 <a name="l00485"></a><a class="code" href="swekey_8php.html#ab907b0a2030e3f4f1ffc9e26001b22f7">00485</a> <span class="keyword">function</span> <a class="code" href="swekey_8php.html#ab907b0a2030e3f4f1ffc9e26001b22f7" title="If your web site requires a key to login you should check that the key is still valid (has not been l...">Swekey_GetStatus</a>(<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>)
 <a name="l00486"></a>00486 {
 <a name="l00487"></a>00487     global <a class="code" href="swekey_8php.html#a4b2d60f908333b859ac81201440d7f56">$gSwekeyStatusServer</a>;
-<a name="l00488"></a>00488     <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="swekey_8php.html#a4864b92459c3d13c9ff3f5eaee768b45" title="Send a synchronous request to the server.">Swekey_HttpGet</a>($gSwekeyStatusServer.<span class="stringliteral">&#39;/GET-STATUS/&#39;</span>.<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>, $response_code);
+<a name="l00488"></a>00488     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="swekey_8php.html#a4864b92459c3d13c9ff3f5eaee768b45" title="Send a synchronous request to the server.">Swekey_HttpGet</a>($gSwekeyStatusServer.<span class="stringliteral">&#39;/GET-STATUS/&#39;</span>.<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>, $response_code);
 <a name="l00489"></a>00489     <span class="keywordflow">if</span> ($response_code == 200)
-<a name="l00490"></a>00490         <span class="keywordflow">return</span> intval(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
+<a name="l00490"></a>00490         <span class="keywordflow">return</span> intval(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
 <a name="l00491"></a>00491 
 <a name="l00492"></a>00492     <span class="keywordflow">return</span> <a class="code" href="swekey_8php.html#a21047b72c8c68b07b28720cfc2e3e569">SWEKEY_STATUS_UNKOWN</a>;
 <a name="l00493"></a>00493 }
@@ -577,7 +577,7 @@
     <ul>
       <li class="navelem"><a class="el" href="swekey_8php.html">swekey.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

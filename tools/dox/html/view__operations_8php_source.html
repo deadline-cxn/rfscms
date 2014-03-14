@@ -88,7 +88,7 @@
 <a name="l00010"></a>00010 <span class="comment"> */</span>
 <a name="l00011"></a>00011 require_once <span class="stringliteral">&#39;./libraries/common.inc.php&#39;</span>;
 <a name="l00012"></a>00012 
-<a name="l00013"></a><a class="code" href="view__operations_8php.html#ac13a122eea922b37830b60791a6ad311">00013</a> <a class="code" href="tbl__operations_8php.html#ac13a122eea922b37830b60791a6ad311">$pma_table</a> = <span class="keyword">new</span> <a class="code" href="classPMA__Table.html">PMA_Table</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>], <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]);
+<a name="l00013"></a><a class="code" href="view__operations_8php.html#ac13a122eea922b37830b60791a6ad311">00013</a> <a class="code" href="tbl__operations_8php.html#ac13a122eea922b37830b60791a6ad311">$pma_table</a> = <span class="keyword">new</span> <a class="code" href="classPMA__Table.html">PMA_Table</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>], <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]);
 <a name="l00014"></a>00014 <span class="comment"></span>
 <a name="l00015"></a>00015 <span class="comment">/**</span>
 <a name="l00016"></a>00016 <span class="comment"> * Runs common work</span>
@@ -114,13 +114,13 @@
 <a name="l00036"></a>00036     <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;new_name&#39;</span>])) {
 <a name="l00037"></a>00037         <span class="keywordflow">if</span> (<a class="code" href="tbl__operations_8php.html#ac13a122eea922b37830b60791a6ad311">$pma_table</a>-&gt;rename(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;new_name&#39;</span>], null, $is_view = <span class="keyword">true</span>)) {
 <a name="l00038"></a>00038             $_message .= <a class="code" href="tbl__operations_8php.html#ac13a122eea922b37830b60791a6ad311">$pma_table</a>-&gt;getLastMessage();
-<a name="l00039"></a>00039             <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">true</span>;
-<a name="l00040"></a>00040             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>] = <a class="code" href="tbl__operations_8php.html#ac13a122eea922b37830b60791a6ad311">$pma_table</a>-&gt;getName();
+<a name="l00039"></a>00039             <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">true</span>;
+<a name="l00040"></a>00040             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>] = <a class="code" href="tbl__operations_8php.html#ac13a122eea922b37830b60791a6ad311">$pma_table</a>-&gt;getName();
 <a name="l00041"></a>00041             <a class="code" href="tbl__operations_8php.html#a2dd47224a288af4c20fdefd6876decdb">$reread_info</a> = <span class="keyword">true</span>;
 <a name="l00042"></a>00042             $reload = <span class="keyword">true</span>;
 <a name="l00043"></a>00043         } <span class="keywordflow">else</span> {
 <a name="l00044"></a>00044             $_message .= <a class="code" href="tbl__operations_8php.html#ac13a122eea922b37830b60791a6ad311">$pma_table</a>-&gt;getLastError();
-<a name="l00045"></a>00045             <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">false</span>;
+<a name="l00045"></a>00045             <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <span class="keyword">false</span>;
 <a name="l00046"></a>00046         }
 <a name="l00047"></a>00047     }
 <a name="l00048"></a>00048 }
@@ -130,14 +130,14 @@
 <a name="l00052"></a>00052 <span class="comment"> */</span>
 <a name="l00053"></a>00053 require_once <span class="stringliteral">&#39;./libraries/tbl_links.inc.php&#39;</span>;
 <a name="l00054"></a>00054 
-<a name="l00055"></a>00055 <span class="keywordflow">if</span> (isset(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00055"></a>00055 <span class="keywordflow">if</span> (isset(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00056"></a>00056     <span class="comment">// set to success by default, because result set could be empty</span>
 <a name="l00057"></a>00057     <span class="comment">// (for example, a table rename)</span>
 <a name="l00058"></a>00058     $_type = <span class="stringliteral">&#39;success&#39;</span>;
 <a name="l00059"></a>00059     <span class="keywordflow">if</span> (empty($_message)) {
-<a name="l00060"></a>00060         $_message = <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> ? __(<span class="stringliteral">&#39;Your SQL query has been executed successfully&#39;</span>) : __(<span class="stringliteral">&#39;Error&#39;</span>);
+<a name="l00060"></a>00060         $_message = <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> ? __(<span class="stringliteral">&#39;Your SQL query has been executed successfully&#39;</span>) : __(<span class="stringliteral">&#39;Error&#39;</span>);
 <a name="l00061"></a>00061         <span class="comment">// $result should exist, regardless of $_message</span>
-<a name="l00062"></a>00062         $_type = <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> ? <span class="stringliteral">&#39;success&#39;</span> : <span class="stringliteral">&#39;error&#39;</span>;
+<a name="l00062"></a>00062         $_type = <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> ? <span class="stringliteral">&#39;success&#39;</span> : <span class="stringliteral">&#39;error&#39;</span>;
 <a name="l00063"></a>00063     }
 <a name="l00064"></a>00064     <span class="keywordflow">if</span> (! empty(<a class="code" href="tbl__replace_8php.html#a7e5ba3bd8299325476ffaf7c2d7d6866">$warning_messages</a>)) {
 <a name="l00065"></a>00065         $_message = <span class="keyword">new</span> <a class="code" href="classPMA__Message.html">PMA_Message</a>;
@@ -159,7 +159,7 @@
 <a name="l00081"></a>00081 &lt;!-- Table operations --&gt;
 <a name="l00082"></a>00082 &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;operations_half_width&quot;</span>&gt;
 <a name="l00083"></a>00083 &lt;form method=<span class="stringliteral">&quot;post&quot;</span> action=<span class="stringliteral">&quot;view_operations.php&quot;</span>&gt;
-<a name="l00084"></a>00084 &lt;?php echo <a class="code" href="url__generating_8lib_8php.html#ad7326a27700edd06dee0217de194756b" title="Generates text with hidden inputs.">PMA_generate_common_hidden_inputs</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>], <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>]); ?&gt;
+<a name="l00084"></a>00084 &lt;?php echo <a class="code" href="url__generating_8lib_8php.html#ad7326a27700edd06dee0217de194756b" title="Generates text with hidden inputs.">PMA_generate_common_hidden_inputs</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>], <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>]); ?&gt;
 <a name="l00085"></a>00085 &lt;input <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;reload&quot;</span> value=<span class="stringliteral">&quot;1&quot;</span> /&gt;
 <a name="l00086"></a>00086 &lt;fieldset&gt;
 <a name="l00087"></a>00087     &lt;legend&gt;&lt;?php echo __(<span class="stringliteral">&#39;Operations&#39;</span>); ?&gt;&lt;/legend&gt;
@@ -191,7 +191,7 @@
     <ul>
       <li class="navelem"><a class="el" href="view__operations_8php.html">view_operations.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:36 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

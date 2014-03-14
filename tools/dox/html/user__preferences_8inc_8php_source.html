@@ -112,7 +112,7 @@
 <a name="l00034"></a>00034     )
 <a name="l00035"></a>00035 ) . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00036"></a>00036 echo <span class="stringliteral">&#39;&lt;li&gt;&amp;nbsp; &amp;nbsp;&lt;/li&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
-<a name="l00037"></a><a class="code" href="user__preferences_8inc_8php.html#a22472cc604c048dc10162d86c234316e">00037</a> <a class="code" href="user__preferences_8inc_8php.html#a22472cc604c048dc10162d86c234316e">$script_name</a> = basename(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_PHP_SELF&#39;</span>]);
+<a name="l00037"></a><a class="code" href="user__preferences_8inc_8php.html#a22472cc604c048dc10162d86c234316e">00037</a> <a class="code" href="user__preferences_8inc_8php.html#a22472cc604c048dc10162d86c234316e">$script_name</a> = basename(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_PHP_SELF&#39;</span>]);
 <a name="l00038"></a><a class="code" href="user__preferences_8inc_8php.html#aaaeb12a17a8a3885f92a39a833ff9425">00038</a> <span class="keywordflow">foreach</span> (array_keys(<a class="code" href="setup_8forms_8php.html#a8dcd469e6c336555e43c3003b0a0da54">$forms</a>) as $formset) {
 <a name="l00039"></a>00039     <a class="code" href="docsql_8php.html#aa9d9497a56b9edbe1cafc34dbf44c21b" title="We need relations enabled and we work only on database.">$tab</a> = array(
 <a name="l00040"></a>00040         <span class="stringliteral">&#39;link&#39;</span> =&gt; <span class="stringliteral">&#39;prefs_forms.php&#39;</span>,
@@ -125,8 +125,8 @@
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 <span class="comment">// show &quot;configuration saved&quot; message and reload navigation frame if needed</span>
 <a name="l00049"></a>00049 <span class="keywordflow">if</span> (!empty($_GET[<span class="stringliteral">&#39;saved&#39;</span>])) {
-<a name="l00050"></a>00050     <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#aceb56e3340472adda3e810a11a79b11a" title="get PMA_Message of type success with custom content">PMA_Message::rawSuccess</a>(__(<span class="stringliteral">&#39;Configuration has been saved&#39;</span>));
-<a name="l00051"></a>00051     <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;display();
+<a name="l00050"></a>00050     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#aceb56e3340472adda3e810a11a79b11a" title="get PMA_Message of type success with custom content">PMA_Message::rawSuccess</a>(__(<span class="stringliteral">&#39;Configuration has been saved&#39;</span>));
+<a name="l00051"></a>00051     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;display();
 <a name="l00052"></a>00052 }
 <a name="l00053"></a>00053 
 <a name="l00054"></a>00054 <span class="comment">/* debug code</span>
@@ -156,7 +156,7 @@
     <ul>
       <li class="navelem"><a class="el" href="user__preferences_8inc_8php.html">user_preferences.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:36 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

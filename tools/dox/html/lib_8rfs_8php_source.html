@@ -77,536 +77,187 @@
 <a name="l00002"></a>00002 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
 <a name="l00003"></a>00003 <span class="comment"></span><span class="comment">// RFSCMS http://www.sethcoder.com/</span><span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00005"></a>00005 <span class="comment"></span><span class="comment">// sc_div(__FILE__);</span><span class="comment"></span>
-<a name="l00006"></a>00006 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00007"></a>00007 <span class="comment"></span>srand((<span class="keywordtype">double</span>) microtime() * 1000000);  <span class="comment">// randomize timer</span>
-<a name="l00008"></a>00008 setlocale(LC_MONETARY, $RFS_SITE_LOCALE);<span class="comment"></span>
-<a name="l00009"></a>00009 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00010"></a><a class="code" href="lib_8rfs_8php.html#a0d0525a46866112b607d7f37b58aabdb">00010</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a0d0525a46866112b607d7f37b58aabdb">sc_do_action</a>() {<span class="comment"></span>
-<a name="l00011"></a>00011 <span class="comment">    /////////////////////////////////////////////// Automatic action function</span>
-<a name="l00012"></a>00012 <span class="comment"></span>    <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=$_REQUEST[<span class="stringliteral">&#39;action&#39;</span>];
-<a name="l00013"></a>00013     $px=explode(<span class="stringliteral">&quot;/&quot;</span>,$_SERVER[<span class="stringliteral">&#39;PHP_SELF&#39;</span>]);
-<a name="l00014"></a>00014     $_thisfunk=str_replace(<span class="stringliteral">&quot; &quot;</span>,<span class="stringliteral">&quot;_&quot;</span>,str_replace(<span class="stringliteral">&quot;.php&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$px[count($px)-1]).<span class="stringliteral">&quot;_action_$action&quot;</span>);
-<a name="l00015"></a>00015     eval(<span class="stringliteral">&quot;if(function_exists(\&quot;$_thisfunk\&quot;) == true) $_thisfunk(); else if(\$_SESSION[\&quot;debug_msgs\&quot;]==true) sc_info(\&quot;DEBUG &gt;&gt; WARNING: MISSING $_thisfunk(); \&quot;,\&quot;WHITE\&quot;,\&quot;BLUE\&quot;);&quot;</span>);
-<a name="l00016"></a>00016 }<span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00018"></a><a class="code" href="lib_8rfs_8php.html#ad3a0a9cc9a2a2c552ef6ebecafffd0d3">00018</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#ad3a0a9cc9a2a2c552ef6ebecafffd0d3">sc_maintenance</a>() { eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>());
-<a name="l00019"></a>00019     global <a class="code" href="v_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>;
-<a name="l00020"></a>00020     sc_div(<span class="stringliteral">&quot;sc_maintenance start&quot;</span>);
-<a name="l00021"></a>00021     <span class="comment">// sc_multi_rename(&quot;$RFS_SITE_PATH/themes/$theme&quot;,$theme,&quot;t&quot;);</span>
-<a name="l00022"></a>00022     <span class="comment">// sc_count();</span>
-<a name="l00023"></a>00023     <a class="code" href="lib_8modules_8php.html#a997f128bf26da2977290671a7b3030b9">sc_get_modules</a>();
-<a name="l00024"></a>00024     <a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>=<a class="code" href="lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923">sc_getuserdata</a>(<a class="code" href="session_8php.html#ad56c24858a88af52e4da3ae2f6a2b3b0">$_SESSION</a>[<span class="stringliteral">&#39;valid_user&#39;</span>]);
-<a name="l00025"></a>00025     <span class="keywordflow">if</span>($mc_gross&gt;0) <a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;donated=<span class="stringliteral">&quot;yes&quot;</span>;
-<a name="l00026"></a>00026     <span class="keywordflow">if</span>(empty($theme))                   $theme=<a class="code" href="config_8sitevars_8php.html#ae4a3bb11eb4124d7bf971d8258cdd4aa">$RFS_SITE_DEFAULT_THEME</a>;
-<a name="l00027"></a>00027     <span class="keywordflow">if</span>(!empty(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme))            $theme=<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme;
-<a name="l00028"></a>00028     <span class="keywordflow">if</span>(<a class="code" href="lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546">sc_yes</a>(<a class="code" href="config_8sitevars_8php.html#abb0051c332d18b8256a4bfd7db2fbe61">$RFS_SITE_FORCE_THEME</a>))   $theme=<a class="code" href="config_8sitevars_8php.html#ace98164e78bce9598b5dc24ee4389f93">$RFS_SITE_FORCED_THEME</a>;
-<a name="l00029"></a>00029     <span class="keywordflow">if</span>(!empty($_GET[<span class="stringliteral">&#39;theme&#39;</span>])) {
-<a name="l00030"></a>00030         $theme=$_GET[<span class="stringliteral">&#39;theme&#39;</span>];
-<a name="l00031"></a>00031         <a class="code" href="lib_8mysql_8php.html#a83ec6864f10ff12de65ac8d933aaa21c">sc_setuservar</a>(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;id,<span class="stringliteral">&quot;theme&quot;</span>,$theme);
-<a name="l00032"></a>00032     }
-<a name="l00033"></a>00033     <span class="keywordflow">if</span>(!empty($theme)) {
-<a name="l00034"></a>00034         <span class="keywordflow">if</span>($theme!=<span class="stringliteral">&quot;$data-&gt;theme&quot;</span>) {
-<a name="l00035"></a>00035             <span class="keywordflow">if</span>(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>) {
-<a name="l00036"></a>00036                 <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;UPDATE users SET theme=&#39;$theme&#39; where name = &#39;$data-&gt;name&#39;&quot;</span>);
-<a name="l00037"></a>00037                 <a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme=<a class="code" href="v_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>;
-<a name="l00038"></a>00038             }
-<a name="l00039"></a>00039         } <span class="keywordflow">else</span> {
-<a name="l00040"></a>00040             $theme=<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme;
-<a name="l00041"></a>00041         }
-<a name="l00042"></a>00042     }
-<a name="l00043"></a>00043     sc_div(<span class="stringliteral">&quot;sc_maintenance end [$theme]&quot;</span>);
-<a name="l00044"></a>00044 }<span class="comment"></span>
-<a name="l00045"></a>00045 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00046"></a><a class="code" href="lib_8rfs_8php.html#aa8cc5d5d1daaf3d80162755c52959d9b">00046</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#aa8cc5d5d1daaf3d80162755c52959d9b">sc_info</a>($t,<a class="code" href="sp_8php.html#a26c2f6c0ee7cb69a545305a8949c045c">$c</a>,$c2) {   echo <span class="stringliteral">&quot;&lt;div style=&#39; font-size: 2em; color:$c; background-color:$c2; width:100%;&#39;&gt;$t&lt;/div&gt;&quot;</span>; }<span class="comment"></span>
-<a name="l00047"></a>00047 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00048"></a><a class="code" href="lib_8rfs_8php.html#a86029fdef113a501b71947311d728f19">00048</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a86029fdef113a501b71947311d728f19">sc_num2txt</a>($x) { 
-<a name="l00049"></a>00049     $txt=$x.<span class="stringliteral">&quot; &quot;</span>; <span class="keywordflow">if</span>($x==0) $txt=<span class="stringliteral">&quot; 0 &quot;</span>; <span class="keywordflow">if</span>($x&gt;0) {   $txt=<span class="stringliteral">&quot;%2B&quot;</span>.$x.<span class="stringliteral">&quot; &quot;</span>; }
-<a name="l00050"></a>00050     <span class="keywordflow">if</span>($x&gt;1000) { $t=round($x/1000,1); $txt=<span class="stringliteral">&quot;%2B&quot;</span>.$t.<span class="stringliteral">&quot;k &quot;</span>; }
-<a name="l00051"></a>00051     <span class="keywordflow">if</span>($x&gt;1000000) { $t=round($x/1000000,1); $txt=<span class="stringliteral">&quot;%2B&quot;</span>.$t.<span class="stringliteral">&quot;m &quot;</span>; }
-<a name="l00052"></a>00052     <span class="keywordflow">return</span> $txt;
-<a name="l00053"></a>00053 }<span class="comment"></span>
-<a name="l00054"></a>00054 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00055"></a><a class="code" href="lib_8rfs_8php.html#a74ebd868590c78caf2e787f0100858ad">00055</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a74ebd868590c78caf2e787f0100858ad">sc_flush_buffers</a>(){ 
-<a name="l00056"></a>00056     ob_end_flush(); 
-<a name="l00057"></a>00057     ob_flush(); 
-<a name="l00058"></a>00058     flush(); 
-<a name="l00059"></a>00059     ob_start(); 
-<a name="l00060"></a>00060 } <span class="comment"></span>
-<a name="l00061"></a>00061 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00062"></a>00062 <span class="comment"></span><span class="comment">// Make globals available to functions -- &gt;&gt; eval(scg());</span>
-<a name="l00063"></a><a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">00063</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>() {
-<a name="l00064"></a>00064     <a class="code" href="getclasses_8php.html#a48cb304902320d173a4eaa41543327b9">$out</a>=<span class="stringliteral">&quot;&quot;</span>;
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066     <span class="keywordflow">foreach</span>(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a> as $k =&gt; $v) {
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068        $nmc=$k[0];
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070        <span class="keywordflow">if</span>(is_numeric($nmc)) $k=<span class="stringliteral">&quot;__&quot;</span>.$k;
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072     <span class="keywordflow">if</span>(!is_numeric($nmc))
-<a name="l00073"></a>00073         <span class="keywordflow">if</span>( ($k != <span class="stringliteral">&#39;GLOBALS&#39;</span>) &amp;&amp;
-<a name="l00074"></a>00074             ($k != <span class="stringliteral">&#39;_ENV&#39;</span>) &amp;&amp;
-<a name="l00075"></a>00075             ($k != <span class="stringliteral">&#39;HTTP_ENV_VARS&#39;</span>) &amp;&amp;
-<a name="l00076"></a>00076             ($k != <span class="stringliteral">&#39;DOCUMENT_ROOT&#39;</span>) &amp;&amp;
-<a name="l00077"></a>00077            ($k != <span class="stringliteral">&#39;GATEWAY_INTERFACE&#39;</span>) &amp;&amp;
-<a name="l00078"></a>00078             ($k != <span class="stringliteral">&#39;HTTP_ACCEPT&#39;</span>) &amp;&amp;
-<a name="l00079"></a>00079             ($k != <span class="stringliteral">&#39;HTTP_ACCEPT_CHARSET&#39;</span>) &amp;&amp;
-<a name="l00080"></a>00080             ($k != <span class="stringliteral">&#39;HTTP_ACCEPT_ENCODING&#39;</span>) &amp;&amp;
-<a name="l00081"></a>00081             ($k != <span class="stringliteral">&#39;HTTP_ACCEPT_LANGUAGE&#39;</span>) &amp;&amp;
-<a name="l00082"></a>00082             ($k != <span class="stringliteral">&#39;PHPRC&#39;</span>) &amp;&amp;
-<a name="l00083"></a>00083             ($k != <span class="stringliteral">&#39;HTTP_CACHE_CONTROL&#39;</span>) &amp;&amp;
-<a name="l00084"></a>00084             ($k != <span class="stringliteral">&#39;HTTP_CONNECTION&#39;</span>) &amp;&amp;
-<a name="l00085"></a>00085             ($k != <span class="stringliteral">&#39;HTTP_COOKIE&#39;</span>) &amp;&amp;
-<a name="l00086"></a>00086             ($k != <span class="stringliteral">&#39;HTTP_HOST&#39;</span>) &amp;&amp;
-<a name="l00087"></a>00087             ($k != <span class="stringliteral">&#39;HTTP_REFERER&#39;</span>) &amp;&amp;
-<a name="l00088"></a>00088             ($k != <span class="stringliteral">&#39;HTTP_USER_AGENT&#39;</span>) &amp;&amp;
-<a name="l00089"></a>00089             ($k != <span class="stringliteral">&#39;PATH&#39;</span>) &amp;&amp;
-<a name="l00090"></a>00090             ($k != <span class="stringliteral">&#39;QUERY_STRING&#39;</span>) &amp;&amp;
-<a name="l00091"></a>00091             ($k != <span class="stringliteral">&#39;REDIRECT_STATUS&#39;</span>) &amp;&amp;
-<a name="l00092"></a>00092             ($k != <span class="stringliteral">&#39;REMOTE_ADDR&#39;</span>) &amp;&amp;
-<a name="l00093"></a>00093             ($k != <span class="stringliteral">&#39;REMOTE_PORT&#39;</span>) &amp;&amp;
-<a name="l00094"></a>00094             ($k != <span class="stringliteral">&#39;REQUEST_METHOD&#39;</span>) &amp;&amp;
-<a name="l00095"></a>00095             ($k != <span class="stringliteral">&#39;REQUEST_URI&#39;</span>) &amp;&amp;
-<a name="l00096"></a>00096             ($k != <span class="stringliteral">&#39;SCRIPT_FILENAME&#39;</span>) &amp;&amp;
-<a name="l00097"></a>00097             ($k != <span class="stringliteral">&#39;SCRIPT_NAME&#39;</span>) &amp;&amp;
-<a name="l00098"></a>00098             ($k != <span class="stringliteral">&#39;SERVER_ADDR&#39;</span>) &amp;&amp;
-<a name="l00099"></a>00099             ($k != <span class="stringliteral">&#39;SERVER_ADMIN&#39;</span>) &amp;&amp;
-<a name="l00100"></a>00100             ($k != <span class="stringliteral">&#39;SERVER_NAME&#39;</span>) &amp;&amp;
-<a name="l00101"></a>00101             ($k != <span class="stringliteral">&#39;SERVER_PORT&#39;</span>) &amp;&amp;
-<a name="l00102"></a>00102             ($k != <span class="stringliteral">&#39;SERVER_PROTOCOL&#39;</span>) &amp;&amp;
-<a name="l00103"></a>00103             ($k != <span class="stringliteral">&#39;SERVER_SIGNATURE&#39;</span>) &amp;&amp;
-<a name="l00104"></a>00104             ($k != <span class="stringliteral">&#39;SERVER_SOFTWARE&#39;</span>) &amp;&amp;
-<a name="l00105"></a>00105             ($k != <span class="stringliteral">&#39;UNIQUE_ID&#39;</span>) &amp;&amp;
-<a name="l00106"></a>00106             ($k != <span class="stringliteral">&#39;__utma&#39;</span>) &amp;&amp;
-<a name="l00107"></a>00107             ($k != <span class="stringliteral">&#39;__utmz&#39;</span>) &amp;&amp;
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109             ($k != <span class="stringliteral">&#39;__utmb&#39;</span>) &amp;&amp;
-<a name="l00110"></a>00110             ($k != <span class="stringliteral">&#39;__utmc&#39;</span>) &amp;&amp;
-<a name="l00111"></a>00111             ($k != <span class="stringliteral">&#39;__atuvc&#39;</span>) &amp;&amp;
-<a name="l00112"></a>00112             ($k != <span class="stringliteral">&#39;PHP_SELF&#39;</span>) &amp;&amp;
-<a name="l00113"></a>00113             ($k != <span class="stringliteral">&#39;REQUEST_TIME&#39;</span>) &amp;&amp;
-<a name="l00114"></a>00114             ($k != <span class="stringliteral">&#39;_POST&#39;</span>) &amp;&amp;
-<a name="l00115"></a>00115             ($k != <span class="stringliteral">&#39;HTTP_POST_VARS&#39;</span>) &amp;&amp;
-<a name="l00116"></a>00116             ($k != <span class="stringliteral">&#39;_GET&#39;</span>) &amp;&amp;
-<a name="l00117"></a>00117             ($k != <span class="stringliteral">&#39;HTTP_GET_VARS&#39;</span>) &amp;&amp;
-<a name="l00118"></a>00118             ($k != <span class="stringliteral">&#39;_COOKIE&#39;</span>) &amp;&amp;
-<a name="l00119"></a>00119             ($k != <span class="stringliteral">&#39;HTTP_COOKIE_VARS&#39;</span>) &amp;&amp;
-<a name="l00120"></a>00120             ($k != <span class="stringliteral">&#39;_SERVER&#39;</span>) &amp;&amp;
-<a name="l00121"></a>00121             ($k != <span class="stringliteral">&#39;HTTP_SERVER_VARS&#39;</span>) &amp;&amp;
-<a name="l00122"></a>00122             ($k != <span class="stringliteral">&#39;_FILES&#39;</span>) &amp;&amp;
-<a name="l00123"></a>00123             ($k != <span class="stringliteral">&#39;HTTP_POST_FILES&#39;</span>) &amp;&amp;
-<a name="l00124"></a>00124             ($k != <span class="stringliteral">&#39;_REQUEST&#39;</span>) &amp;&amp;
-<a name="l00125"></a>00125            (!function_exists($k)) ) {
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127                $k=str_replace(<span class="stringliteral">&quot;\$&quot;</span>,<span class="stringliteral">&quot;_&quot;</span>,$k);
-<a name="l00128"></a>00128 
-<a name="l00129"></a>00129             <a class="code" href="getclasses_8php.html#a48cb304902320d173a4eaa41543327b9">$out</a>.=<span class="stringliteral">&quot;\$$k=\$GLOBALS[&#39;$k&#39;];\n&quot;</span>;
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131         }
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133     }
-<a name="l00134"></a>00134     <span class="comment">// d_echo($out);</span>
-<a name="l00135"></a>00135     <span class="keywordflow">return</span> <a class="code" href="getclasses_8php.html#a48cb304902320d173a4eaa41543327b9">$out</a>;
-<a name="l00136"></a>00136 }<span class="comment"></span>
-<a name="l00137"></a>00137 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00138"></a><a class="code" href="lib_8rfs_8php.html#a38dd50b48c0ac72a5de5da003dc4739a">00138</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a38dd50b48c0ac72a5de5da003dc4739a">sc_red</a>()   {   <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;font style=&#39;color:white; background-color:red;&#39;&gt;&quot;</span>; }<span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00140"></a><a class="code" href="lib_8rfs_8php.html#a1d92c5d9325889cc6f263252600266d0">00140</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a1d92c5d9325889cc6f263252600266d0">sc_green</a>() {   <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;font style=&#39;color:white; background-color:green;&#39;&gt;&quot;</span>; }<span class="comment"></span>
-<a name="l00141"></a>00141 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00142"></a><a class="code" href="lib_8rfs_8php.html#aa46ac7b11684fe7680c447741934f469">00142</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#aa46ac7b11684fe7680c447741934f469">sc_blue</a>()  {   <span class="keywordflow">return</span> <span class="stringliteral">&quot;&lt;font style=&#39;color:white; background-color:blue;&#39;&gt;&quot;</span>; }<span class="comment"></span>
-<a name="l00143"></a>00143 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00144"></a><a class="code" href="lib_8rfs_8php.html#a38180a0e9327a2de17395ecbbc389d5a">00144</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a38180a0e9327a2de17395ecbbc389d5a">sc_flush</a> () {  echo(str_repeat(<span class="charliteral">&#39; &#39;</span>,256));      <span class="keywordflow">if</span> (ob_get_length()) {      @ob_flush();        @flush();       @ob_end_flush();    }   @ob_start();}<span class="comment"></span>
-<a name="l00145"></a>00145 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00146"></a><a class="code" href="lib_8rfs_8php.html#a253f1d0920d464309dd47147be42fedf">00146</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a253f1d0920d464309dd47147be42fedf">sc_warn</a>($x) {  eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>());    echo <span class="stringliteral">&quot;&lt;div class=warning&gt;&lt;br&gt;&lt;img src=&#39;$RFS_SITE_URL/images/icons/exclamation2.png&#39; border=0&gt;&lt;br&gt;&lt;br&gt;$x&lt;br&gt;&amp;nbsp;&lt;/div&gt;&quot;</span>; }<span class="comment"></span>
-<a name="l00147"></a>00147 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00148"></a><a class="code" href="lib_8rfs_8php.html#a8812363a29ed96e4593cfbfee483c850">00148</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a8812363a29ed96e4593cfbfee483c850">sc_inform</a>($x) { eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>());
-<a name="l00149"></a>00149     echo <span class="stringliteral">&quot;&lt;div class=inform&gt;</span>
-<a name="l00150"></a>00150 <span class="stringliteral">    &lt;img src=&#39;$RFS_SITE_URL/images/icons/Warning.png&#39; width=\&quot;12\&quot; border=\&quot;0\&quot;&gt;</span>
-<a name="l00151"></a>00151 <span class="stringliteral">    $x&lt;br&gt; &lt;/div&gt;&quot;</span>; }<span class="comment"></span>
-<a name="l00152"></a>00152 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00153"></a><a class="code" href="lib_8rfs_8php.html#ad462cd70a0b4384f67611d5608d5439f">00153</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#ad462cd70a0b4384f67611d5608d5439f">sc_question</a>($x) { eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>()); $x=str_replace(<span class="stringliteral">&quot;&lt;a &quot;</span>,<span class="stringliteral">&quot;&lt;a class=ainform &quot;</span>,$x);   $x=str_replace(<span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>, <span class="stringliteral">&quot;&lt;hr class=questionhr&gt; &quot;</span>,$x);    echo <a class="code" href="lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd">smiles</a>(<span class="stringliteral">&quot;&lt;center&gt;&lt;div class=question align=left&gt;&lt;img src=&#39;$RFS_SITE_URL/images/icons/3dquestion.png&#39; align=right border=0&gt;$x&lt;/div&gt;&quot;</span>);}<span class="comment"></span>
-<a name="l00154"></a>00154 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00155"></a><a class="code" href="lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546">00155</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546">sc_yes</a>($x) {
-<a name="l00156"></a>00156     $x=strtolower($x);
-<a name="l00157"></a>00157     <span class="keywordflow">if</span>( (stristr($x,<span class="stringliteral">&quot;true&quot;</span>)) || (stristr($x,<span class="stringliteral">&quot;yes&quot;</span>)) || (stristr($x,<span class="stringliteral">&quot;on&quot;</span>)) || (stristr($x,<span class="stringliteral">&quot;1&quot;</span>)) )
-<a name="l00158"></a>00158         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00159"></a>00159     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00160"></a>00160 }<span class="comment"></span>
-<a name="l00161"></a>00161 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00162"></a><a class="code" href="lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd">00162</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd">smiles</a>($text) {
-<a name="l00163"></a>00163     $query = <span class="stringliteral">&quot;select * from smilies&quot;</span>;
-<a name="l00164"></a>00164     $smiley_result = <a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>($query);
-<a name="l00165"></a>00165     $num_smilies=mysql_num_rows($smiley_result);
-<a name="l00166"></a>00166     <span class="keywordflow">if</span>($num_smilies&gt;0) {
-<a name="l00167"></a>00167         <span class="keywordflow">for</span>($i=0; $i&lt;$num_smilies; $i++) {
-<a name="l00168"></a>00168             $der = mysql_fetch_array($smiley_result);
-<a name="l00169"></a>00169             $from=$der[<span class="stringliteral">&#39;sfrom&#39;</span>];
-<a name="l00170"></a>00170             $to=$der[<span class="stringliteral">&#39;sto&#39;</span>];
-<a name="l00171"></a>00171             $text=str_replace($from,$to,$text);
+<a name="l00005"></a>00005 <span class="comment"></span>srand((<span class="keywordtype">double</span>) microtime() * 1000000);  <span class="comment">// randomize timer</span>
+<a name="l00006"></a><a class="code" href="lib_8rfs_8php.html#a5ec2f6ae711680adb9f6ff4b7f132b12">00006</a> <span class="keywordflow">if</span>(isset(<a class="code" href="lib_8rfs_8php.html#a5ec2f6ae711680adb9f6ff4b7f132b12">$RFS_SITE_LOCALE</a>)) setlocale(LC_MONETARY, <a class="code" href="lib_8rfs_8php.html#a5ec2f6ae711680adb9f6ff4b7f132b12">$RFS_SITE_LOCALE</a>);
+<a name="l00007"></a><a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">00007</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>() {
+<a name="l00008"></a>00008     $out=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00009"></a>00009     <span class="keywordflow">foreach</span>(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a> as $k =&gt; $v) {     
+<a name="l00010"></a>00010         <span class="keywordflow">if</span>(!stristr($k,<span class="stringliteral">&quot;-&quot;</span>)) {
+<a name="l00011"></a>00011         $nmc=$k[0];
+<a name="l00012"></a>00012         <span class="keywordflow">if</span>(is_numeric($nmc)) $k=<span class="stringliteral">&quot;__&quot;</span>.$k;
+<a name="l00013"></a>00013         <span class="keywordflow">if</span>(!is_numeric($nmc))
+<a name="l00014"></a>00014             <span class="keywordflow">if</span>( ($k != <span class="stringliteral">&#39;GLOBALS&#39;</span>) &amp;&amp;
+<a name="l00015"></a>00015                 ($k != <span class="stringliteral">&#39;_ENV&#39;</span>) &amp;&amp;
+<a name="l00016"></a>00016                 ($k != <span class="stringliteral">&#39;HTTP_ENV_VARS&#39;</span>) &amp;&amp;
+<a name="l00017"></a>00017                 ($k != <span class="stringliteral">&#39;DOCUMENT_ROOT&#39;</span>) &amp;&amp;
+<a name="l00018"></a>00018                 ($k != <span class="stringliteral">&#39;GATEWAY_INTERFACE&#39;</span>) &amp;&amp;
+<a name="l00019"></a>00019                 ($k != <span class="stringliteral">&#39;HTTP_ACCEPT&#39;</span>) &amp;&amp;
+<a name="l00020"></a>00020                 ($k != <span class="stringliteral">&#39;HTTP_ACCEPT_CHARSET&#39;</span>) &amp;&amp;
+<a name="l00021"></a>00021                 ($k != <span class="stringliteral">&#39;HTTP_ACCEPT_ENCODING&#39;</span>) &amp;&amp;
+<a name="l00022"></a>00022                 ($k != <span class="stringliteral">&#39;HTTP_ACCEPT_LANGUAGE&#39;</span>) &amp;&amp;
+<a name="l00023"></a>00023                 ($k != <span class="stringliteral">&#39;PHPRC&#39;</span>) &amp;&amp;
+<a name="l00024"></a>00024                 ($k != <span class="stringliteral">&#39;HTTP_CACHE_CONTROL&#39;</span>) &amp;&amp;
+<a name="l00025"></a>00025                 ($k != <span class="stringliteral">&#39;HTTP_CONNECTION&#39;</span>) &amp;&amp;
+<a name="l00026"></a>00026                 ($k != <span class="stringliteral">&#39;HTTP_COOKIE&#39;</span>) &amp;&amp;
+<a name="l00027"></a>00027                 ($k != <span class="stringliteral">&#39;HTTP_HOST&#39;</span>) &amp;&amp;
+<a name="l00028"></a>00028                 ($k != <span class="stringliteral">&#39;HTTP_REFERER&#39;</span>) &amp;&amp;
+<a name="l00029"></a>00029                 ($k != <span class="stringliteral">&#39;HTTP_USER_AGENT&#39;</span>) &amp;&amp;
+<a name="l00030"></a>00030                 ($k != <span class="stringliteral">&#39;PATH&#39;</span>) &amp;&amp;
+<a name="l00031"></a>00031                 ($k != <span class="stringliteral">&#39;QUERY_STRING&#39;</span>) &amp;&amp;
+<a name="l00032"></a>00032                 ($k != <span class="stringliteral">&#39;REDIRECT_STATUS&#39;</span>) &amp;&amp;
+<a name="l00033"></a>00033                 ($k != <span class="stringliteral">&#39;REMOTE_ADDR&#39;</span>) &amp;&amp;
+<a name="l00034"></a>00034                 ($k != <span class="stringliteral">&#39;REMOTE_PORT&#39;</span>) &amp;&amp;
+<a name="l00035"></a>00035                 ($k != <span class="stringliteral">&#39;REQUEST_METHOD&#39;</span>) &amp;&amp;
+<a name="l00036"></a>00036                 ($k != <span class="stringliteral">&#39;REQUEST_URI&#39;</span>) &amp;&amp;
+<a name="l00037"></a>00037                 ($k != <span class="stringliteral">&#39;SCRIPT_FILENAME&#39;</span>) &amp;&amp;
+<a name="l00038"></a>00038                 ($k != <span class="stringliteral">&#39;SCRIPT_NAME&#39;</span>) &amp;&amp;
+<a name="l00039"></a>00039                 ($k != <span class="stringliteral">&#39;SERVER_ADDR&#39;</span>) &amp;&amp;
+<a name="l00040"></a>00040                 ($k != <span class="stringliteral">&#39;SERVER_ADMIN&#39;</span>) &amp;&amp;
+<a name="l00041"></a>00041                 ($k != <span class="stringliteral">&#39;SERVER_NAME&#39;</span>) &amp;&amp;
+<a name="l00042"></a>00042                 ($k != <span class="stringliteral">&#39;SERVER_PORT&#39;</span>) &amp;&amp;
+<a name="l00043"></a>00043                 ($k != <span class="stringliteral">&#39;SERVER_PROTOCOL&#39;</span>) &amp;&amp;
+<a name="l00044"></a>00044                 ($k != <span class="stringliteral">&#39;SERVER_SIGNATURE&#39;</span>) &amp;&amp;
+<a name="l00045"></a>00045                 ($k != <span class="stringliteral">&#39;SERVER_SOFTWARE&#39;</span>) &amp;&amp;
+<a name="l00046"></a>00046                 ($k != <span class="stringliteral">&#39;UNIQUE_ID&#39;</span>) &amp;&amp;
+<a name="l00047"></a>00047                 ($k != <span class="stringliteral">&#39;__utma&#39;</span>) &amp;&amp;
+<a name="l00048"></a>00048                 ($k != <span class="stringliteral">&#39;__utmz&#39;</span>) &amp;&amp;
+<a name="l00049"></a>00049                 ($k != <span class="stringliteral">&#39;__utmb&#39;</span>) &amp;&amp;
+<a name="l00050"></a>00050                 ($k != <span class="stringliteral">&#39;__utmc&#39;</span>) &amp;&amp;
+<a name="l00051"></a>00051                 ($k != <span class="stringliteral">&#39;__atuvc&#39;</span>) &amp;&amp;
+<a name="l00052"></a>00052                 ($k != <span class="stringliteral">&#39;PHP_SELF&#39;</span>) &amp;&amp;
+<a name="l00053"></a>00053                 ($k != <span class="stringliteral">&#39;REQUEST_TIME&#39;</span>) &amp;&amp;
+<a name="l00054"></a>00054                 ($k != <span class="stringliteral">&#39;_POST&#39;</span>) &amp;&amp;
+<a name="l00055"></a>00055                 ($k != <span class="stringliteral">&#39;HTTP_POST_VARS&#39;</span>) &amp;&amp;
+<a name="l00056"></a>00056                 ($k != <span class="stringliteral">&#39;_GET&#39;</span>) &amp;&amp;
+<a name="l00057"></a>00057                 ($k != <span class="stringliteral">&#39;HTTP_GET_VARS&#39;</span>) &amp;&amp;
+<a name="l00058"></a>00058                 ($k != <span class="stringliteral">&#39;_COOKIE&#39;</span>) &amp;&amp;
+<a name="l00059"></a>00059                 ($k != <span class="stringliteral">&#39;HTTP_COOKIE_VARS&#39;</span>) &amp;&amp;
+<a name="l00060"></a>00060                 ($k != <span class="stringliteral">&#39;_SERVER&#39;</span>) &amp;&amp;
+<a name="l00061"></a>00061                 ($k != <span class="stringliteral">&#39;HTTP_SERVER_VARS&#39;</span>) &amp;&amp;
+<a name="l00062"></a>00062                 ($k != <span class="stringliteral">&#39;_FILES&#39;</span>) &amp;&amp;
+<a name="l00063"></a>00063                 ($k != <span class="stringliteral">&#39;HTTP_POST_FILES&#39;</span>) &amp;&amp;
+<a name="l00064"></a>00064                 ($k != <span class="stringliteral">&#39;_REQUEST&#39;</span>) &amp;&amp;
+<a name="l00065"></a>00065                (!function_exists($k)) ) {
+<a name="l00066"></a>00066                    $k=str_replace(<span class="stringliteral">&quot;\$&quot;</span>,<span class="stringliteral">&quot;_&quot;</span>,$k);
+<a name="l00067"></a>00067                 $out.=<span class="stringliteral">&quot;\$$k=\$GLOBALS[&#39;$k&#39;];\n&quot;</span>;
+<a name="l00068"></a>00068             }
+<a name="l00069"></a>00069         }
+<a name="l00070"></a>00070     }
+<a name="l00071"></a>00071     <span class="keywordflow">return</span> $out;
+<a name="l00072"></a>00072 }
+<a name="l00073"></a><a class="code" href="lib_8rfs_8php.html#af09b6a792021f6f1d7df74d53f771bef">00073</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#af09b6a792021f6f1d7df74d53f771bef">lib_rfs_var</a>($x) {
+<a name="l00074"></a>00074     <a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[$x]=$_REQUEST[$x];
+<a name="l00075"></a>00075     echo <span class="stringliteral">&quot;\$$x=[&quot;</span>.$GLOBALS[$x].<span class="stringliteral">&quot;]&lt;br&gt;&quot;</span>;
+<a name="l00076"></a>00076 }
+<a name="l00077"></a><a class="code" href="lib_8rfs_8php.html#a3d4d0a6b07045e162291cda3308ea50f">00077</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a3d4d0a6b07045e162291cda3308ea50f">lib_rfs_do_action</a>() {<span class="comment"></span>
+<a name="l00078"></a>00078 <span class="comment">    /////////////////////////////////////////////// Automatic action function</span>
+<a name="l00079"></a>00079 <span class="comment"></span>    <a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>=$_REQUEST[<span class="stringliteral">&#39;action&#39;</span>];
+<a name="l00080"></a>00080     $px=explode(<span class="stringliteral">&quot;/&quot;</span>,$_SERVER[<span class="stringliteral">&#39;PHP_SELF&#39;</span>]);
+<a name="l00081"></a>00081     $_thisfunk=str_replace(<span class="stringliteral">&quot; &quot;</span>,<span class="stringliteral">&quot;_&quot;</span>,str_replace(<span class="stringliteral">&quot;.php&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$px[count($px)-1]).<span class="stringliteral">&quot;_action_$action&quot;</span>);
+<a name="l00082"></a>00082     eval(<span class="stringliteral">&quot;</span>
+<a name="l00083"></a>00083 <span class="stringliteral">    if(function_exists(\&quot;$_thisfunk\&quot;) == true) @$_thisfunk();</span>
+<a name="l00084"></a>00084 <span class="stringliteral">        else if(\$_SESSION[\&quot;debug_msgs\&quot;]==true)</span>
+<a name="l00085"></a>00085 <span class="stringliteral">            lib_forms_info(\&quot;DEBUG &gt;&gt; WARNING: MISSING $_thisfunk(); \&quot;,\&quot;WHITE\&quot;,\&quot;BLUE\&quot;);&quot;</span>);
+<a name="l00086"></a>00086 }
+<a name="l00087"></a><a class="code" href="lib_8rfs_8php.html#a71112e942222a0a3b551eefd47f423b5">00087</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a71112e942222a0a3b551eefd47f423b5">lib_rfs_maintenance</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00088"></a>00088     global <a class="code" href="video__wall_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>;
+<a name="l00089"></a>00089     lib_div(<span class="stringliteral">&quot;lib_rfs_maintenance start&quot;</span>);
+<a name="l00090"></a>00090     <a class="code" href="lib_8modules_8php.html#a86ff688e300b9bac5678466c27285a64">lib_modules_array</a>();
+<a name="l00091"></a>00091     <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>=<a class="code" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22">lib_users_get_data</a>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;valid_user&#39;</span>]);
+<a name="l00092"></a>00092     <span class="keywordflow">if</span>($mc_gross&gt;0) <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;donated=<span class="stringliteral">&quot;yes&quot;</span>;
+<a name="l00093"></a>00093     <span class="keywordflow">if</span>(!empty($_REQUEST[<span class="stringliteral">&#39;theme&#39;</span>])) $theme=$_REQUEST[<span class="stringliteral">&#39;theme&#39;</span>];
+<a name="l00094"></a>00094     <span class="keywordflow">if</span>(empty($theme)) $theme=<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;theme&#39;</span>];
+<a name="l00095"></a>00095     <span class="keywordflow">else</span> <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;theme&#39;</span>]=<a class="code" href="video__wall_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>;
+<a name="l00096"></a>00096     <span class="keywordflow">if</span>(empty($theme))                   $theme=<a class="code" href="config_8sitevars_8php.html#ae4a3bb11eb4124d7bf971d8258cdd4aa">$RFS_SITE_DEFAULT_THEME</a>;
+<a name="l00097"></a>00097     <span class="keywordflow">if</span>(<a class="code" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">lib_rfs_bool_true</a>(<a class="code" href="config_8sitevars_8php.html#abb0051c332d18b8256a4bfd7db2fbe61">$RFS_SITE_FORCE_THEME</a>))   $theme=<a class="code" href="config_8sitevars_8php.html#ace98164e78bce9598b5dc24ee4389f93">$RFS_SITE_FORCED_THEME</a>;
+<a name="l00098"></a>00098     <span class="keywordflow">if</span>(!empty($theme)) {
+<a name="l00099"></a>00099         <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;logged_in&#39;</span>]) {
+<a name="l00100"></a>00100             <span class="keywordflow">if</span>($theme!=<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme) {
+<a name="l00101"></a>00101                 <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;UPDATE `users` SET theme=&#39;$theme&#39; where name = &#39;$data-&gt;name&#39;&quot;</span>);
+<a name="l00102"></a>00102                 <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme=<a class="code" href="video__wall_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>;
+<a name="l00103"></a>00103             } <span class="keywordflow">else</span> {
+<a name="l00104"></a>00104                 $theme=<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme;
+<a name="l00105"></a>00105             }
+<a name="l00106"></a>00106         }
+<a name="l00107"></a>00107     }
+<a name="l00108"></a>00108     <a class="code" href="lib_8mysql_8php.html#abda8651435f7171a5de3107e54dc06bd">lib_mysql_scrub</a>(<span class="stringliteral">&quot;tags&quot;</span>,<span class="stringliteral">&quot;tag&quot;</span>);
+<a name="l00109"></a>00109     include(<span class="stringliteral">&quot;$RFS_SITE_PATH/install/database_upgrades.php&quot;</span>);
+<a name="l00110"></a>00110     lib_div(<span class="stringliteral">&quot;lib_rfs_maintenance end [$theme]&quot;</span>);
+<a name="l00111"></a>00111 }
+<a name="l00112"></a><a class="code" href="lib_8rfs_8php.html#aeb2a5a886a306525de7f24a1cada1d9e">00112</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#aeb2a5a886a306525de7f24a1cada1d9e">lib_rfs_flush_buffers</a>(){ 
+<a name="l00113"></a>00113     ob_end_flush(); 
+<a name="l00114"></a>00114     ob_flush(); 
+<a name="l00115"></a>00115     flush(); 
+<a name="l00116"></a>00116     ob_start(); 
+<a name="l00117"></a>00117 } 
+<a name="l00118"></a><a class="code" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">00118</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">lib_rfs_bool_true</a>($x) {
+<a name="l00119"></a>00119     $x=strtolower($x);
+<a name="l00120"></a>00120     <span class="keywordflow">if</span>( (stristr($x,<span class="stringliteral">&quot;true&quot;</span>)) ||
+<a name="l00121"></a>00121         (stristr($x,<span class="stringliteral">&quot;yes&quot;</span>)) ||
+<a name="l00122"></a>00122         (stristr($x,<span class="stringliteral">&quot;on&quot;</span>)) ||
+<a name="l00123"></a>00123         (stristr($x,<span class="stringliteral">&quot;1&quot;</span>)) )
+<a name="l00124"></a>00124             <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00125"></a>00125     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00126"></a>00126 }
+<a name="l00127"></a><a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">00127</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>($t) { echo <a class="code" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e">lib_rfs_get</a>($t); }
+<a name="l00128"></a><a class="code" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e">00128</a> <span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e">lib_rfs_get</a>($t) {
+<a name="l00129"></a>00129     <span class="keywordflow">foreach</span>(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;RFS_TAGS&#39;</span>] as $key =&gt; $value) {       
+<a name="l00130"></a>00130         <span class="comment">//$x=explode(&quot;RFS_FTAG&quot;,$t);</span>
+<a name="l00131"></a>00131         <span class="comment">// echo(&quot;0&quot;.$result[0].&quot;1&quot;.$result[1].&quot;2&quot;.$result[2].&quot;&lt;br&gt;&quot;);</span>
+<a name="l00132"></a>00132         <span class="comment">//$z=explode(&quot; &quot;,$x[1]);</span>
+<a name="l00133"></a>00133         <span class="comment">//if(stristr($value,$z[1])) {</span>
+<a name="l00134"></a>00134             <span class="comment">//$y=&quot;$key($z[2]);&quot;;</span>
+<a name="l00135"></a>00135             <span class="comment">// echo &quot;FOUND... DO:  [$y]&quot;;           </span>
+<a name="l00136"></a>00136             <span class="comment">// echo &quot;... RESULT[&quot;.eval($y).&quot;]&quot;;</span>
+<a name="l00137"></a>00137         <span class="comment">//}</span>
+<a name="l00138"></a>00138         <span class="keywordflow">if</span>(stristr($t,$value)) {            
+<a name="l00139"></a>00139             <span class="keywordflow">switch</span>($value) {
+<a name="l00140"></a>00140                 <span class="keywordflow">case</span> <span class="stringliteral">&quot;&lt;!--RTAG_BUTTON&quot;</span>:
+<a name="l00141"></a>00141                     $zx=explode(<span class="stringliteral">&quot;&lt;!--RTAG_BUTTON&quot;</span>,$t);
+<a name="l00142"></a>00142                     $yx=explode(<span class="stringliteral">&quot;--&gt;&quot;</span>,$zx[1]);
+<a name="l00143"></a>00143                     $xx=eplode(<span class="stringliteral">&quot;,&quot;</span>,$yx[0]);
+<a name="l00144"></a>00144                     $t=$zx[0];
+<a name="l00145"></a>00145                     <span class="keywordflow">break</span>;
+<a name="l00146"></a>00146                 
+<a name="l00147"></a>00147                 <span class="keywordflow">case</span> <span class="stringliteral">&quot;RFS_TAG_CANONICAL&quot;</span>:
+<a name="l00148"></a>00148                     $t=str_replace(<span class="stringliteral">&quot;$key&quot;</span>,<a class="code" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e">lib_domain_canonical_url</a>(),$t);
+<a name="l00149"></a>00149                     <span class="keywordflow">break</span>;
+<a name="l00150"></a>00150                     
+<a name="l00151"></a>00151                 <span class="keywordflow">case</span> <span class="stringliteral">&quot;RFS_TAG_PHP_SELF&quot;</span>: 
+<a name="l00152"></a>00152                     $t=str_replace(<span class="stringliteral">&quot;$key&quot;</span>,<a class="code" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12">lib_domain_phpself</a>(),$t);
+<a name="l00153"></a>00153                     <span class="keywordflow">break</span>;
+<a name="l00154"></a>00154                     
+<a name="l00155"></a>00155                 <span class="keywordflow">case</span> <span class="stringliteral">&quot;RFS_TAG_FUNCTION&quot;</span>:
+<a name="l00156"></a>00156                     $t=str_replace(<span class="stringliteral">&quot;$key&quot;</span>,<span class="stringliteral">&quot;RUNNING:($key)($value)&quot;</span>,$t);             
+<a name="l00157"></a>00157                     <span class="keywordflow">break</span>;
+<a name="l00158"></a>00158                     
+<a name="l00159"></a>00159                 <span class="keywordflow">default</span>:
+<a name="l00160"></a>00160                     <span class="keywordflow">if</span>(function_exists($key)) {
+<a name="l00161"></a>00161                         $t=str_replace($value,call_user_func($key),$t);
+<a name="l00162"></a>00162                     }
+<a name="l00163"></a>00163                     <span class="keywordflow">else</span>
+<a name="l00164"></a>00164                         $t=str_replace(<span class="stringliteral">&quot;$value&quot;</span>,<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[$key],$t);
+<a name="l00165"></a>00165                     <span class="keywordflow">break</span>;
+<a name="l00166"></a>00166             }
+<a name="l00167"></a>00167         }
+<a name="l00168"></a>00168     }
+<a name="l00169"></a>00169     <span class="keywordflow">foreach</span>(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a> as $key =&gt; $value) { 
+<a name="l00170"></a>00170         <span class="keywordflow">if</span>(is_string($value)) {
+<a name="l00171"></a>00171             $t=str_replace(<span class="stringliteral">&quot;\$$key&quot;</span>,$value,$t);
 <a name="l00172"></a>00172         }
 <a name="l00173"></a>00173     }
-<a name="l00174"></a>00174     <span class="comment">// built in stuff</span>
-<a name="l00175"></a>00175     <a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;data&#39;</span>];
-<a name="l00176"></a>00176     $text=str_replace(<span class="stringliteral">&quot;[site_name]&quot;</span> ,<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;site_name&#39;</span>],$text);
-<a name="l00177"></a>00177     $text=str_replace(<span class="stringliteral">&quot;[usr]&quot;</span> ,<span class="stringliteral">&quot;Users Online :&quot;</span>.<a class="code" href="lib_8mysql_8php.html#a3f89d375ed707c0c0097abb0f9361a14">usersonline</a>(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name),$text);
-<a name="l00178"></a>00178     $text=str_replace(<span class="stringliteral">&quot;[usrs]&quot;</span>,<span class="stringliteral">&quot;Users Logged In :&quot;</span>.<a class="code" href="lib_8mysql_8php.html#a8bae936e7314964bd4118712e5451e66">usersloggedin</a>(),$text);
-<a name="l00179"></a>00179     $text=str_replace(<span class="stringliteral">&quot;[users_logged_details]&quot;</span>,<a class="code" href="lib_8mysql_8php.html#a3a11d6e3eabf6b1ee7bbcf163eea861b">users_logged_details</a>(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name),$text);
-<a name="l00180"></a>00180     $text=str_replace(<span class="stringliteral">&quot;-{&quot;</span>,<span class="stringliteral">&quot;[&quot;</span>,$text);
-<a name="l00181"></a>00181     $text=str_replace(<span class="stringliteral">&quot;}-&quot;</span>,<span class="stringliteral">&quot;]&quot;</span>,$text);
-<a name="l00182"></a>00182     <span class="keywordflow">return</span> <a class="code" href="lib_8rfs_8php.html#a4ceb7fb93465e14bb01a81ba0ec7feac">rfs_get</a>($text);
-<a name="l00183"></a>00183 }<span class="comment"></span>
-<a name="l00184"></a>00184 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00185"></a><a class="code" href="lib_8rfs_8php.html#afb6b656bf7c2d97ef28e2055ee73ac3a">00185</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#afb6b656bf7c2d97ef28e2055ee73ac3a">rfs_echo</a>($t) { 
-<a name="l00186"></a>00186     echo <a class="code" href="lib_8rfs_8php.html#a4ceb7fb93465e14bb01a81ba0ec7feac">rfs_get</a>($t);
-<a name="l00187"></a>00187 }<span class="comment"></span>
-<a name="l00188"></a>00188 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00189"></a><a class="code" href="lib_8rfs_8php.html#a4ceb7fb93465e14bb01a81ba0ec7feac">00189</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a4ceb7fb93465e14bb01a81ba0ec7feac">rfs_get</a>($t) {
-<a name="l00190"></a>00190     <span class="keywordflow">foreach</span>(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a> as $key =&gt; $value) {
-<a name="l00191"></a>00191         <span class="keywordflow">if</span>(is_string($value)) {
-<a name="l00192"></a>00192             $t=str_replace(<span class="stringliteral">&quot;\$$key&quot;</span>,$value,$t);
-<a name="l00193"></a>00193         }
-<a name="l00194"></a>00194     }
-<a name="l00195"></a>00195     <span class="keywordflow">foreach</span>(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;RFS_TAGS&#39;</span>] as $key =&gt; $value) {
-<a name="l00196"></a>00196         <span class="keywordflow">if</span>(stristr($t,$value)) {
-<a name="l00197"></a>00197             <span class="keywordflow">switch</span>($key) {
-<a name="l00198"></a>00198             <span class="keywordflow">case</span> <span class="stringliteral">&quot;RFS_SITE_THEME_FORM_CODE&quot;</span>:
-<a name="l00199"></a>00199                 $t= <a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;RFS_SITE_THEME_FORM_CODE&#39;</span>];
-<a name="l00200"></a>00200                 <span class="keywordflow">break</span>;
-<a name="l00201"></a>00201             <span class="keywordflow">case</span> <span class="stringliteral">&quot;RFS_PHP_SELF&quot;</span>:
-<a name="l00202"></a>00202                 <span class="comment">//echo &quot;123.what&quot;;</span>
-<a name="l00203"></a>00203                 $t= <a class="code" href="lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665">sc_phpself</a>();
-<a name="l00204"></a>00204                 <span class="keywordflow">break</span>;
-<a name="l00205"></a>00205             <span class="keywordflow">case</span> <span class="stringliteral">&quot;RFS_SITE_FUNCTION&quot;</span>:
-<a name="l00206"></a>00206                 $t= <span class="stringliteral">&quot;RUNNING: ($key)($value)&quot;</span>;
-<a name="l00207"></a>00207                 <span class="keywordflow">break</span>;
-<a name="l00208"></a>00208             <span class="keywordflow">default</span>:
-<a name="l00209"></a>00209                 <span class="keywordflow">break</span>;
-<a name="l00210"></a>00210             }
-<a name="l00211"></a>00211         }
-<a name="l00212"></a>00212     }
-<a name="l00213"></a>00213     <span class="keywordflow">return</span> $t;
-<a name="l00214"></a>00214 }<span class="comment"></span>
-<a name="l00215"></a>00215 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00216"></a><a class="code" href="lib_8rfs_8php.html#a7290076bf073cc261c83c6b72470c14c">00216</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a7290076bf073cc261c83c6b72470c14c">sc_theme_form</a>() { eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>());
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218     <span class="keywordflow">if</span>(<a class="code" href="lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546">sc_yes</a>(<a class="code" href="session_8php.html#ad56c24858a88af52e4da3ae2f6a2b3b0">$_SESSION</a>[<span class="stringliteral">&quot;logged_in&quot;</span>])) {
-<a name="l00219"></a>00219         <span class="keywordflow">if</span>(<a class="code" href="lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546">sc_yes</a>(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&quot;RFS_SITE_THEME_DROPDOWN&quot;</span>])) {
-<a name="l00220"></a>00220             <a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>=<a class="code" href="lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923">sc_getuserdata</a>(<a class="code" href="session_8php.html#ad56c24858a88af52e4da3ae2f6a2b3b0">$_SESSION</a>[<span class="stringliteral">&#39;valid_user&#39;</span>]);
-<a name="l00221"></a>00221             $loc=<a class="code" href="lib_8mysql_8php.html#afb319d4e22b068ed605d5e7592b65678">sc_canonical_url</a>();
-<a name="l00222"></a>00222             $loc=str_replace(<span class="stringliteral">&quot;&amp;theme=$theme&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$loc);
-<a name="l00223"></a>00223             $loc=str_replace(<span class="stringliteral">&quot;?theme=$theme&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$loc);
-<a name="l00224"></a>00224             $sep=<span class="stringliteral">&quot;?&quot;</span>;
-<a name="l00225"></a>00225             <span class="keywordflow">if</span>(stristr($loc,<span class="stringliteral">&quot;?&quot;</span>)) $sep=<span class="stringliteral">&quot;&amp;&quot;</span>;
-<a name="l00226"></a>00226             echo <span class="stringliteral">&quot;&lt;select name=theme onchange=&#39;document.location=\&quot;$loc$sep\&quot;+\&quot;theme=\&quot;+this.value&#39;&gt;&lt;option&gt;Theme\n&quot;</span>;
-<a name="l00227"></a>00227             $thms=<a class="code" href="lib_8rfs_8php.html#a0d1d884ddac61fcb47cd073833664bea">sc_get_themes</a>();
-<a name="l00228"></a>00228             <span class="keywordflow">while</span>(list($key,$thm)=each($thms)){
-<a name="l00229"></a>00229                 echo <span class="stringliteral">&quot;&lt;option&quot;</span>;
-<a name="l00230"></a>00230                 <span class="keywordflow">if</span>($thm==<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme) echo <span class="stringliteral">&quot; selected=selected&quot;</span>;
-<a name="l00231"></a>00231                 echo <span class="stringliteral">&quot;&gt;&quot;</span>.$thm;
-<a name="l00232"></a>00232             }
-<a name="l00233"></a>00233             echo <span class="stringliteral">&quot;&lt;/select&gt;&quot;</span>;
-<a name="l00234"></a>00234         }
-<a name="l00235"></a>00235 
-<a name="l00236"></a>00236     }
-<a name="l00237"></a>00237 }<span class="comment"></span>
-<a name="l00238"></a>00238 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00239"></a><a class="code" href="lib_8rfs_8php.html#a0d1d884ddac61fcb47cd073833664bea">00239</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a0d1d884ddac61fcb47cd073833664bea">sc_get_themes</a>() {
-<a name="l00240"></a>00240     $dr=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;RFS_SITE_PATH&#39;</span>].<span class="stringliteral">&quot;/themes/&quot;</span>;
-<a name="l00241"></a>00241     $themes=array();
-<a name="l00242"></a>00242     $d = opendir($dr) or die(<span class="stringliteral">&quot;Wrong path: $dr&quot;</span>);
-<a name="l00243"></a>00243     <span class="keywordflow">while</span>(<span class="keyword">false</span>!==($entry = readdir($d))) {
-<a name="l00244"></a>00244         <span class="keywordflow">if</span>(($entry != <span class="charliteral">&#39;.&#39;</span>) &amp;&amp; ($entry != <span class="stringliteral">&#39;..&#39;</span>) &amp;&amp; (!is_dir($dir.$entry)) ) {
-<a name="l00245"></a>00245             <span class="keywordflow">if</span>($entry!=<span class="stringliteral">&quot;_templates&quot;</span>)
-<a name="l00246"></a>00246                 <span class="keywordflow">if</span>(!strstr($entry,<span class="stringliteral">&quot;.&quot;</span>))
-<a name="l00247"></a>00247                     array_push($themes,$entry);
-<a name="l00248"></a>00248         }
-<a name="l00249"></a>00249     }
-<a name="l00250"></a>00250     closedir($d);
-<a name="l00251"></a>00251     natcasesort($themes);
-<a name="l00252"></a>00252     reset($themes);
-<a name="l00253"></a>00253     <span class="keywordflow">return</span> $themes;
-<a name="l00254"></a>00254 }<span class="comment"></span>
-<a name="l00255"></a>00255 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00256"></a><a class="code" href="lib_8rfs_8php.html#aa4d37782f98f3404de123dae142e38cb">00256</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#aa4d37782f98f3404de123dae142e38cb">sc_get_theme_image</a>($x) {
-<a name="l00257"></a>00257     <span class="keywordflow">if</span>(file_exists(<span class="stringliteral">&quot;$RFS_SITE_PATH/themes/$theme/$x&quot;</span>))
-<a name="l00258"></a>00258         $rx=<span class="stringliteral">&quot;$RFS_SITE_URL/themes/$theme/$x&quot;</span>;
-<a name="l00259"></a>00259     <span class="keywordflow">else</span> $rx=<span class="stringliteral">&quot;$RFS_SITE_URL/$x&quot;</span>;
-<a name="l00260"></a>00260     <span class="keywordflow">return</span> $rx;
-<a name="l00261"></a>00261 }<span class="comment"></span>
-<a name="l00262"></a>00262 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00263"></a><a class="code" href="lib_8rfs_8php.html#aeb7503fd3c083d60e8a5c9ffa4388453">00263</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#aeb7503fd3c083d60e8a5c9ffa4388453">mailto</a>(<a class="code" href="showprofile_8php.html#a598ca4e71b15a1313ec95f0df1027ca5">$user</a>,$domain) {
-<a name="l00264"></a>00264     echo <span class="stringliteral">&quot;&lt;META HTTP-EQUIV=\&quot;refresh\&quot; content=\&quot;0;URL=mailto.php?user=$user&amp;domain=$domain\&quot;&gt;&quot;</span>;
-<a name="l00265"></a>00265 }<span class="comment"></span>
-<a name="l00266"></a>00266 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00267"></a><a class="code" href="lib_8rfs_8php.html#afbb1b36be3cc698e2954eeee58a3c944">00267</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#afbb1b36be3cc698e2954eeee58a3c944">sc_time</a>($whattime) { <span class="comment">// 0000-00-00 00:00:00</span>
-<a name="l00268"></a>00268     $dtq=explode(<span class="stringliteral">&quot; &quot;</span>,$whattime);
-<a name="l00269"></a>00269     $date=explode(<span class="stringliteral">&quot;-&quot;</span>,$dtq[0]);
-<a name="l00270"></a>00270     $time=explode(<span class="stringliteral">&quot;:&quot;</span>,$dtq[1]);
-<a name="l00271"></a>00271     $t=mktime( intval($time[0]),intval($time[1]),intval($time[2]),
-<a name="l00272"></a>00272                intval($date[1]),intval($date[2]), intval($date[0]) );  <span class="comment">// h,s,m,mnth,d,y</span>
-<a name="l00273"></a>00273     <span class="keywordflow">return</span> date(<span class="stringliteral">&quot;M d, Y @ h:i:s a&quot;</span>,$t);
-<a name="l00274"></a>00274 }<span class="comment"></span>
-<a name="l00275"></a>00275 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00276"></a><a class="code" href="lib_8rfs_8php.html#ab397a8f7bd42dbbed63e446b0901450a">00276</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#ab397a8f7bd42dbbed63e446b0901450a">mailgo</a>(<a class="code" href="profile_8php.html#ad634f418b20382e2802f80532d76d3cd">$email</a>,<a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>,$subject) {
-<a name="l00277"></a>00277     eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>());
-<a name="l00278"></a>00278     <a class="code" href="profile_8php.html#ad634f418b20382e2802f80532d76d3cd">$email</a>=str_replace(<span class="stringliteral">&quot;&#39;at&#39;&quot;</span>,<span class="stringliteral">&quot;@&quot;</span>,<a class="code" href="profile_8php.html#ad634f418b20382e2802f80532d76d3cd">$email</a>);
-<a name="l00279"></a>00279     $headers  = <span class="stringliteral">&quot;MIME-Version: 1.0\r\n&quot;</span>;
-<a name="l00280"></a>00280     $headers .= <span class="stringliteral">&quot;Content-type: text/html; charset=iso-8859-1\r\n&quot;</span>;
-<a name="l00281"></a>00281     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>  = $begin.$message;
-<a name="l00282"></a>00282     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> .= <span class="stringliteral">&quot;&lt;p&gt;Automated message from &lt;a href=$RFS_SITE_URL&gt;$RFS_SITE_NAME&lt;/a&gt; ~ Do not reply!&lt;/p&gt;\n&quot;</span>;
-<a name="l00283"></a>00283     <span class="keywordflow">return</span> mail(
-<a name="l00284"></a>00284     <a class="code" href="profile_8php.html#ad634f418b20382e2802f80532d76d3cd">$email</a>,
-<a name="l00285"></a>00285     $subject ,
-<a name="l00286"></a>00286     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>,
-<a name="l00287"></a>00287 
-<a name="l00288"></a>00288     <span class="stringliteral">&quot;From: $RFS_SITE_ADMIN_EMAIL\r\n$headers&quot;</span>);
-<a name="l00289"></a>00289 }<span class="comment"></span>
-<a name="l00290"></a>00290 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00291"></a><a class="code" href="lib_8rfs_8php.html#ab8218402ec3c2876af35f699b72cf16e">00291</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#ab8218402ec3c2876af35f699b72cf16e">generate_password</a>() {
-<a name="l00292"></a>00292     $i=0;
-<a name="l00293"></a>00293     $password=<span class="stringliteral">&quot;&quot;</span>;
-<a name="l00294"></a>00294     srand((<span class="keywordtype">double</span>) microtime() * 1000000);
-<a name="l00295"></a>00295     <span class="keywordflow">while</span>($i&lt;8) {
-<a name="l00296"></a>00296         $password .= chr(rand(33,122)+1);
-<a name="l00297"></a>00297         $i=$i+1;
-<a name="l00298"></a>00298     }
-<a name="l00299"></a>00299     $password=str_replace(<span class="stringliteral">&quot;&#39;&quot;</span>,<span class="stringliteral">&quot;1&quot;</span>,$password);
-<a name="l00300"></a>00300     $password=str_replace(<span class="stringliteral">&quot;`&quot;</span>,<span class="stringliteral">&quot;2&quot;</span>,$password);
-<a name="l00301"></a>00301     $password=str_replace(<span class="stringliteral">&quot;\\&quot;</span>,<span class="stringliteral">&quot;3&quot;</span>,$password);
-<a name="l00302"></a>00302     $password=str_replace(<span class="stringliteral">&quot;\&quot;&quot;</span>,<span class="stringliteral">&quot;4&quot;</span>,$password);
-<a name="l00303"></a>00303     $password=str_replace(<span class="stringliteral">&quot;&amp;&quot;</span>,<span class="stringliteral">&quot;5&quot;</span>,$password);
-<a name="l00304"></a>00304     $password=str_replace(<span class="stringliteral">&quot;&lt;&quot;</span>,<span class="stringliteral">&quot;6&quot;</span>,$password);
-<a name="l00305"></a>00305     $password=str_replace(<span class="stringliteral">&quot;&gt;&quot;</span>,<span class="stringliteral">&quot;7&quot;</span>,$password);
-<a name="l00306"></a>00306     <span class="keywordflow">return</span> $password;
-<a name="l00307"></a>00307 }<span class="comment"></span>
-<a name="l00308"></a>00308 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00309"></a><a class="code" href="lib_8rfs_8php.html#ae490d42ecbbd6a4185053c32e0c23aec">00309</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#ae490d42ecbbd6a4185053c32e0c23aec">sc_is_valid_email</a>($field) {
-<a name="l00310"></a>00310     $pattern =<span class="stringliteral">&quot;/^([a-zA-Z0-9])+([\.a-zA-Z0-9_-])*@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-]+)+/&quot;</span>;
-<a name="l00311"></a>00311     <span class="keywordflow">if</span>(preg_match($pattern, $field)) <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00312"></a>00312     <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00313"></a>00313 }<span class="comment"></span>
-<a name="l00314"></a>00314 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00315"></a><a class="code" href="lib_8rfs_8php.html#a1f7ff152f1a411dfcdeb1cf9b942a6fa">00315</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a1f7ff152f1a411dfcdeb1cf9b942a6fa">sc_is_valid_name</a>($field) {
-<a name="l00316"></a>00316     $pattern =<span class="stringliteral">&quot;/^([a-zA-Z0-9])+/&quot;</span>;
-<a name="l00317"></a>00317     <span class="keywordflow">if</span>(preg_match($pattern, $field)) <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00318"></a>00318     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00319"></a>00319 }<span class="comment"></span>
-<a name="l00320"></a>00320 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00321"></a><a class="code" href="lib_8rfs_8php.html#a8330e85909235744cba84bb0f825797a">00321</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a8330e85909235744cba84bb0f825797a">sc_trunc</a>($str,$max_len) {
-<a name="l00322"></a>00322     <span class="keywordflow">if</span>(strlen($str) &gt; $max_len ) {
-<a name="l00323"></a>00323         $str = substr(trim($str),0,$max_len);
-<a name="l00324"></a>00324         $str = $str.<span class="stringliteral">&#39;...&#39;</span>;
-<a name="l00325"></a>00325     }
-<a name="l00326"></a>00326     <span class="keywordflow">return</span> $str;
-<a name="l00327"></a>00327 }<span class="comment"></span>
-<a name="l00328"></a>00328 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
-<a name="l00329"></a><a class="code" href="lib_8rfs_8php.html#a72c20405f3de0d024b757524a33f5f42">00329</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8rfs_8php.html#a72c20405f3de0d024b757524a33f5f42">sc_countries</a>() {
-<a name="l00330"></a>00330     echo <span class="stringliteral">&quot;&lt;option&gt;United States</span>
-<a name="l00331"></a>00331 <span class="stringliteral">&lt;option&gt;Afghanistan</span>
-<a name="l00332"></a>00332 <span class="stringliteral">&lt;option&gt;Albania</span>
-<a name="l00333"></a>00333 <span class="stringliteral">&lt;option&gt;Algeria</span>
-<a name="l00334"></a>00334 <span class="stringliteral">&lt;option&gt;Andorra</span>
-<a name="l00335"></a>00335 <span class="stringliteral">&lt;option&gt;Angola</span>
-<a name="l00336"></a>00336 <span class="stringliteral">&lt;option&gt;Antigua and Barbuda</span>
-<a name="l00337"></a>00337 <span class="stringliteral">&lt;option&gt;Argentina</span>
-<a name="l00338"></a>00338 <span class="stringliteral">&lt;option&gt;Armenia</span>
-<a name="l00339"></a>00339 <span class="stringliteral">&lt;option&gt;Australia</span>
-<a name="l00340"></a>00340 <span class="stringliteral">&lt;option&gt;Austria</span>
-<a name="l00341"></a>00341 <span class="stringliteral">&lt;option&gt;Azerbaijan</span>
-<a name="l00342"></a>00342 <span class="stringliteral">&lt;option&gt;Bahamas</span>
-<a name="l00343"></a>00343 <span class="stringliteral">&lt;option&gt;Bahrain</span>
-<a name="l00344"></a>00344 <span class="stringliteral">&lt;option&gt;Bangladesh</span>
-<a name="l00345"></a>00345 <span class="stringliteral">&lt;option&gt;Barbados</span>
-<a name="l00346"></a>00346 <span class="stringliteral">&lt;option&gt;Belarus</span>
-<a name="l00347"></a>00347 <span class="stringliteral">&lt;option&gt;Belgium</span>
-<a name="l00348"></a>00348 <span class="stringliteral">&lt;option&gt;Belize</span>
-<a name="l00349"></a>00349 <span class="stringliteral">&lt;option&gt;Benin</span>
-<a name="l00350"></a>00350 <span class="stringliteral">&lt;option&gt;Bhutan</span>
-<a name="l00351"></a>00351 <span class="stringliteral">&lt;option&gt;Bolivia</span>
-<a name="l00352"></a>00352 <span class="stringliteral">&lt;option&gt;Bosnia and Herzgovina</span>
-<a name="l00353"></a>00353 <span class="stringliteral">&lt;option&gt;Botswana</span>
-<a name="l00354"></a>00354 <span class="stringliteral">&lt;option&gt;Brazil</span>
-<a name="l00355"></a>00355 <span class="stringliteral">&lt;option&gt;Brunei</span>
-<a name="l00356"></a>00356 <span class="stringliteral">&lt;option&gt;Bulgaria</span>
-<a name="l00357"></a>00357 <span class="stringliteral">&lt;option&gt;Burkina Faso</span>
-<a name="l00358"></a>00358 <span class="stringliteral">&lt;option&gt;Burundi</span>
-<a name="l00359"></a>00359 <span class="stringliteral">&lt;option&gt;Cambodia</span>
-<a name="l00360"></a>00360 <span class="stringliteral">&lt;option&gt;Cameroon</span>
-<a name="l00361"></a>00361 <span class="stringliteral">&lt;option&gt;Canada</span>
-<a name="l00362"></a>00362 <span class="stringliteral">&lt;option&gt;Cape Verde</span>
-<a name="l00363"></a>00363 <span class="stringliteral">&lt;option&gt;Central African Republic</span>
-<a name="l00364"></a>00364 <span class="stringliteral">&lt;option&gt;Chad</span>
-<a name="l00365"></a>00365 <span class="stringliteral">&lt;option&gt;Chile</span>
-<a name="l00366"></a>00366 <span class="stringliteral">&lt;option&gt;China</span>
-<a name="l00367"></a>00367 <span class="stringliteral">&lt;option&gt;Columbia</span>
-<a name="l00368"></a>00368 <span class="stringliteral">&lt;option&gt;Comoros</span>
-<a name="l00369"></a>00369 <span class="stringliteral">&lt;option&gt;Congo (Brazzaville)</span>
-<a name="l00370"></a>00370 <span class="stringliteral">&lt;option&gt;Congo, Democratic Republic</span>
-<a name="l00371"></a>00371 <span class="stringliteral">&lt;option&gt;Costa Rica</span>
-<a name="l00372"></a>00372 <span class="stringliteral">&lt;option&gt;Croatia</span>
-<a name="l00373"></a>00373 <span class="stringliteral">&lt;option&gt;Cuba</span>
-<a name="l00374"></a>00374 <span class="stringliteral">&lt;option&gt;Cyprus</span>
-<a name="l00375"></a>00375 <span class="stringliteral">&lt;option&gt;Czech Republic</span>
-<a name="l00376"></a>00376 <span class="stringliteral">&lt;option&gt;Cote d&#39;lvoire</span>
-<a name="l00377"></a>00377 <span class="stringliteral">&lt;option&gt;Denmark</span>
-<a name="l00378"></a>00378 <span class="stringliteral">&lt;option&gt;Djibouti</span>
-<a name="l00379"></a>00379 <span class="stringliteral">&lt;option&gt;Dominica</span>
-<a name="l00380"></a>00380 <span class="stringliteral">&lt;option&gt;Dominican Republic</span>
-<a name="l00381"></a>00381 <span class="stringliteral">&lt;option&gt;East Timor (Timor Timur)</span>
-<a name="l00382"></a>00382 <span class="stringliteral">&lt;option&gt;Ecuador</span>
-<a name="l00383"></a>00383 <span class="stringliteral">&lt;option&gt;Egypt</span>
-<a name="l00384"></a>00384 <span class="stringliteral">&lt;option&gt;El Salvador</span>
-<a name="l00385"></a>00385 <span class="stringliteral">&lt;option&gt;Equatorial Guinea</span>
-<a name="l00386"></a>00386 <span class="stringliteral">&lt;option&gt;Eritrea</span>
-<a name="l00387"></a>00387 <span class="stringliteral">&lt;option&gt;Ethiopia</span>
-<a name="l00388"></a>00388 <span class="stringliteral">&lt;option&gt;Fiji</span>
-<a name="l00389"></a>00389 <span class="stringliteral">&lt;option&gt;Finland</span>
-<a name="l00390"></a>00390 <span class="stringliteral">&lt;option&gt;France</span>
-<a name="l00391"></a>00391 <span class="stringliteral">&lt;option&gt;Gabon</span>
-<a name="l00392"></a>00392 <span class="stringliteral">&lt;option&gt;Gambia</span>
-<a name="l00393"></a>00393 <span class="stringliteral">&lt;option&gt;Georgia</span>
-<a name="l00394"></a>00394 <span class="stringliteral">&lt;option&gt;Germany</span>
-<a name="l00395"></a>00395 <span class="stringliteral">&lt;option&gt;Ghana</span>
-<a name="l00396"></a>00396 <span class="stringliteral">&lt;option&gt;Greece</span>
-<a name="l00397"></a>00397 <span class="stringliteral">&lt;option&gt;Grenada</span>
-<a name="l00398"></a>00398 <span class="stringliteral">&lt;option&gt;Guatemala</span>
-<a name="l00399"></a>00399 <span class="stringliteral">&lt;option&gt;Guinea</span>
-<a name="l00400"></a>00400 <span class="stringliteral">&lt;option&gt;Guinea-Bissau</span>
-<a name="l00401"></a>00401 <span class="stringliteral">&lt;option&gt;Guyana</span>
-<a name="l00402"></a>00402 <span class="stringliteral">&lt;option&gt;Haiti</span>
-<a name="l00403"></a>00403 <span class="stringliteral">&lt;option&gt;Honduras</span>
-<a name="l00404"></a>00404 <span class="stringliteral">&lt;option&gt;Hungary</span>
-<a name="l00405"></a>00405 <span class="stringliteral">&lt;option&gt;Iceland</span>
-<a name="l00406"></a>00406 <span class="stringliteral">&lt;option&gt;India</span>
-<a name="l00407"></a>00407 <span class="stringliteral">&lt;option&gt;Indonesia</span>
-<a name="l00408"></a>00408 <span class="stringliteral">&lt;option&gt;Iran</span>
-<a name="l00409"></a>00409 <span class="stringliteral">&lt;option&gt;Iraq</span>
-<a name="l00410"></a>00410 <span class="stringliteral">&lt;option&gt;Ireland</span>
-<a name="l00411"></a>00411 <span class="stringliteral">&lt;option&gt;Israel</span>
-<a name="l00412"></a>00412 <span class="stringliteral">&lt;option&gt;Italy</span>
-<a name="l00413"></a>00413 <span class="stringliteral">&lt;option&gt;Jamaica</span>
-<a name="l00414"></a>00414 <span class="stringliteral">&lt;option&gt;Japan</span>
-<a name="l00415"></a>00415 <span class="stringliteral">&lt;option&gt;Jordan</span>
-<a name="l00416"></a>00416 <span class="stringliteral">&lt;option&gt;Kazakhstan</span>
-<a name="l00417"></a>00417 <span class="stringliteral">&lt;option&gt;Kenya</span>
-<a name="l00418"></a>00418 <span class="stringliteral">&lt;option&gt;Kiribati</span>
-<a name="l00419"></a>00419 <span class="stringliteral">&lt;option&gt;Korea, Evil</span>
-<a name="l00420"></a>00420 <span class="stringliteral">&lt;option&gt;Korea, South</span>
-<a name="l00421"></a>00421 <span class="stringliteral">&lt;option&gt;Kuwait</span>
-<a name="l00422"></a>00422 <span class="stringliteral">&lt;option&gt;Kyrgyzstan</span>
-<a name="l00423"></a>00423 <span class="stringliteral">&lt;option&gt;Laos</span>
-<a name="l00424"></a>00424 <span class="stringliteral">&lt;option&gt;Latvia</span>
-<a name="l00425"></a>00425 <span class="stringliteral">&lt;option&gt;Lebanon</span>
-<a name="l00426"></a>00426 <span class="stringliteral">&lt;option&gt;Lesotho</span>
-<a name="l00427"></a>00427 <span class="stringliteral">&lt;option&gt;Liberia</span>
-<a name="l00428"></a>00428 <span class="stringliteral">&lt;option&gt;Libya</span>
-<a name="l00429"></a>00429 <span class="stringliteral">&lt;option&gt;Liechtenstein</span>
-<a name="l00430"></a>00430 <span class="stringliteral">&lt;option&gt;Lithuania</span>
-<a name="l00431"></a>00431 <span class="stringliteral">&lt;option&gt;Luxembourg</span>
-<a name="l00432"></a>00432 <span class="stringliteral">&lt;option&gt;Macedonia, Former Yugoslav Republic</span>
-<a name="l00433"></a>00433 <span class="stringliteral">&lt;option&gt;Madagasgar</span>
-<a name="l00434"></a>00434 <span class="stringliteral">&lt;option&gt;Malawi</span>
-<a name="l00435"></a>00435 <span class="stringliteral">&lt;option&gt;Malaysia</span>
-<a name="l00436"></a>00436 <span class="stringliteral">&lt;option&gt;Maldives</span>
-<a name="l00437"></a>00437 <span class="stringliteral">&lt;option&gt;Mali</span>
-<a name="l00438"></a>00438 <span class="stringliteral">&lt;option&gt;Malta</span>
-<a name="l00439"></a>00439 <span class="stringliteral">&lt;option&gt;Marshall Islands</span>
-<a name="l00440"></a>00440 <span class="stringliteral">&lt;option&gt;Mauritania</span>
-<a name="l00441"></a>00441 <span class="stringliteral">&lt;option&gt;Mauritius</span>
-<a name="l00442"></a>00442 <span class="stringliteral">&lt;option&gt;Mexico</span>
-<a name="l00443"></a>00443 <span class="stringliteral">&lt;option&gt;Micronesia, Federated States of</span>
-<a name="l00444"></a>00444 <span class="stringliteral">&lt;option&gt;Moldova</span>
-<a name="l00445"></a>00445 <span class="stringliteral">&lt;option&gt;Monaco</span>
-<a name="l00446"></a>00446 <span class="stringliteral">&lt;option&gt;Mongolia</span>
-<a name="l00447"></a>00447 <span class="stringliteral">&lt;option&gt;Morocco</span>
-<a name="l00448"></a>00448 <span class="stringliteral">&lt;option&gt;Mozambique</span>
-<a name="l00449"></a>00449 <span class="stringliteral">&lt;option&gt;Myanmar</span>
-<a name="l00450"></a>00450 <span class="stringliteral">&lt;option&gt;Nambia</span>
-<a name="l00451"></a>00451 <span class="stringliteral">&lt;option&gt;Nauru</span>
-<a name="l00452"></a>00452 <span class="stringliteral">&lt;option&gt;Nepal</span>
-<a name="l00453"></a>00453 <span class="stringliteral">&lt;option&gt;Netherlands</span>
-<a name="l00454"></a>00454 <span class="stringliteral">&lt;option&gt;New Zealand</span>
-<a name="l00455"></a>00455 <span class="stringliteral">&lt;option&gt;Nicaragua</span>
-<a name="l00456"></a>00456 <span class="stringliteral">&lt;option&gt;Niger</span>
-<a name="l00457"></a>00457 <span class="stringliteral">&lt;option&gt;Nigeria</span>
-<a name="l00458"></a>00458 <span class="stringliteral">&lt;option&gt;Norway</span>
-<a name="l00459"></a>00459 <span class="stringliteral">&lt;option&gt;Oman</span>
-<a name="l00460"></a>00460 <span class="stringliteral">&lt;option&gt;Pakistan</span>
-<a name="l00461"></a>00461 <span class="stringliteral">&lt;option&gt;Palau</span>
-<a name="l00462"></a>00462 <span class="stringliteral">&lt;option&gt;Panama</span>
-<a name="l00463"></a>00463 <span class="stringliteral">&lt;option&gt;Papua New Guinea</span>
-<a name="l00464"></a>00464 <span class="stringliteral">&lt;option&gt;Paraguay</span>
-<a name="l00465"></a>00465 <span class="stringliteral">&lt;option&gt;Peru</span>
-<a name="l00466"></a>00466 <span class="stringliteral">&lt;option&gt;Phillipines</span>
-<a name="l00467"></a>00467 <span class="stringliteral">&lt;option&gt;Poland</span>
-<a name="l00468"></a>00468 <span class="stringliteral">&lt;option&gt;Portugal</span>
-<a name="l00469"></a>00469 <span class="stringliteral">&lt;option&gt;Qatar</span>
-<a name="l00470"></a>00470 <span class="stringliteral">&lt;option&gt;Romania</span>
-<a name="l00471"></a>00471 <span class="stringliteral">&lt;option&gt;Russia</span>
-<a name="l00472"></a>00472 <span class="stringliteral">&lt;option&gt;Rwanda</span>
-<a name="l00473"></a>00473 <span class="stringliteral">&lt;option&gt;Saint Kitts and Nevis</span>
-<a name="l00474"></a>00474 <span class="stringliteral">&lt;option&gt;Saint Lucia</span>
-<a name="l00475"></a>00475 <span class="stringliteral">&lt;option&gt;Saint Vincent and The Grenadines</span>
-<a name="l00476"></a>00476 <span class="stringliteral">&lt;option&gt;Samoa</span>
-<a name="l00477"></a>00477 <span class="stringliteral">&lt;option&gt;San Marino</span>
-<a name="l00478"></a>00478 <span class="stringliteral">&lt;option&gt;Sao Tome and Principe</span>
-<a name="l00479"></a>00479 <span class="stringliteral">&lt;option&gt;Saudia Arabia</span>
-<a name="l00480"></a>00480 <span class="stringliteral">&lt;option&gt;Senegal</span>
-<a name="l00481"></a>00481 <span class="stringliteral">&lt;option&gt;Serbia and Montenegro</span>
-<a name="l00482"></a>00482 <span class="stringliteral">&lt;option&gt;Seychelles</span>
-<a name="l00483"></a>00483 <span class="stringliteral">&lt;option&gt;Sierra Leone</span>
-<a name="l00484"></a>00484 <span class="stringliteral">&lt;option&gt;Singapore</span>
-<a name="l00485"></a>00485 <span class="stringliteral">&lt;option&gt;Slovakia</span>
-<a name="l00486"></a>00486 <span class="stringliteral">&lt;option&gt;Slovenia</span>
-<a name="l00487"></a>00487 <span class="stringliteral">&lt;option&gt;Solomon Islands</span>
-<a name="l00488"></a>00488 <span class="stringliteral">&lt;option&gt;Somalia</span>
-<a name="l00489"></a>00489 <span class="stringliteral">&lt;option&gt;South Africa</span>
-<a name="l00490"></a>00490 <span class="stringliteral">&lt;option&gt;Spain</span>
-<a name="l00491"></a>00491 <span class="stringliteral">&lt;option&gt;Sri Lanka</span>
-<a name="l00492"></a>00492 <span class="stringliteral">&lt;option&gt;Sudan</span>
-<a name="l00493"></a>00493 <span class="stringliteral">&lt;option&gt;Suriname</span>
-<a name="l00494"></a>00494 <span class="stringliteral">&lt;option&gt;Swaziland</span>
-<a name="l00495"></a>00495 <span class="stringliteral">&lt;option&gt;Sweden</span>
-<a name="l00496"></a>00496 <span class="stringliteral">&lt;option&gt;Switzerland</span>
-<a name="l00497"></a>00497 <span class="stringliteral">&lt;option&gt;Syria</span>
-<a name="l00498"></a>00498 <span class="stringliteral">&lt;option&gt;Taiwan</span>
-<a name="l00499"></a>00499 <span class="stringliteral">&lt;option&gt;Tajikistan</span>
-<a name="l00500"></a>00500 <span class="stringliteral">&lt;option&gt;Tanzania</span>
-<a name="l00501"></a>00501 <span class="stringliteral">&lt;option&gt;Thailand</span>
-<a name="l00502"></a>00502 <span class="stringliteral">&lt;option&gt;Togo</span>
-<a name="l00503"></a>00503 <span class="stringliteral">&lt;option&gt;Tonga</span>
-<a name="l00504"></a>00504 <span class="stringliteral">&lt;option&gt;Trinidad and Tobago</span>
-<a name="l00505"></a>00505 <span class="stringliteral">&lt;option&gt;Tunisia</span>
-<a name="l00506"></a>00506 <span class="stringliteral">&lt;option&gt;Turkey</span>
-<a name="l00507"></a>00507 <span class="stringliteral">&lt;option&gt;Turkmenistan</span>
-<a name="l00508"></a>00508 <span class="stringliteral">&lt;option&gt;Tuvalu</span>
-<a name="l00509"></a>00509 <span class="stringliteral">&lt;option&gt;Uganda</span>
-<a name="l00510"></a>00510 <span class="stringliteral">&lt;option&gt;Ukraine</span>
-<a name="l00511"></a>00511 <span class="stringliteral">&lt;option&gt;United Arab Emirates</span>
-<a name="l00512"></a>00512 <span class="stringliteral">&lt;option&gt;United Kingdom</span>
-<a name="l00513"></a>00513 <span class="stringliteral">&lt;option&gt;United States</span>
-<a name="l00514"></a>00514 <span class="stringliteral">&lt;option&gt;Uruguay</span>
-<a name="l00515"></a>00515 <span class="stringliteral">&lt;option&gt;Uzbekistan</span>
-<a name="l00516"></a>00516 <span class="stringliteral">&lt;option&gt;Vanuatu</span>
-<a name="l00517"></a>00517 <span class="stringliteral">&lt;option&gt;Vatican City</span>
-<a name="l00518"></a>00518 <span class="stringliteral">&lt;option&gt;Venezuela</span>
-<a name="l00519"></a>00519 <span class="stringliteral">&lt;option&gt;Vietnam</span>
-<a name="l00520"></a>00520 <span class="stringliteral">&lt;option&gt;Western Sahara</span>
-<a name="l00521"></a>00521 <span class="stringliteral">&lt;option&gt;Yemen</span>
-<a name="l00522"></a>00522 <span class="stringliteral">&lt;option&gt;Zambia</span>
-<a name="l00523"></a>00523 <span class="stringliteral">&lt;option&gt;Zimbabwe&quot;</span>;
-<a name="l00524"></a>00524 }
-<a name="l00525"></a>00525 
-<a name="l00526"></a>00526 <span class="comment">// this file can not have trailing spaces</span>
-<a name="l00527"></a>00527 ?&gt;
+<a name="l00174"></a>00174     <span class="keywordflow">return</span> $t;
+<a name="l00175"></a>00175 }<span class="comment"></span>
+<a name="l00176"></a>00176 <span class="comment">/////////////////////////////////////////////////////////////////////////</span>
+<a name="l00177"></a>00177 <span class="comment"></span><span class="comment">// this file can not have trailing spaces</span>
+<a name="l00178"></a>00178 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="lib_8rfs_8php.html">lib.rfs.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

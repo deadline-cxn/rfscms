@@ -95,9 +95,9 @@
 <a name="l00017"></a>00017 <span class="comment"> * @return  the sorted array</span>
 <a name="l00018"></a>00018 <span class="comment"> * @access  private</span>
 <a name="l00019"></a>00019 <span class="comment"> */</span>
-<a name="l00020"></a><a class="code" href="display__select__lang_8lib_8php.html#aafe67c84e739535d04b13ffcab1eab1a">00020</a> <span class="keyword">function</span> <a class="code" href="display__select__lang_8lib_8php.html#aafe67c84e739535d04b13ffcab1eab1a" title="Sorts available languages by their true english names.">PMA_language_cmp</a>(&amp;$a, &amp;$b)
+<a name="l00020"></a><a class="code" href="display__select__lang_8lib_8php.html#aafe67c84e739535d04b13ffcab1eab1a">00020</a> <span class="keyword">function</span> <a class="code" href="display__select__lang_8lib_8php.html#aafe67c84e739535d04b13ffcab1eab1a" title="Sorts available languages by their true english names.">PMA_language_cmp</a>(&amp;<a class="code" href="database__upgrades_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a>, &amp;<a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>)
 <a name="l00021"></a>00021 {
-<a name="l00022"></a>00022     <span class="keywordflow">return</span> (strcmp($a[1], $b[1]));
+<a name="l00022"></a>00022     <span class="keywordflow">return</span> (strcmp(<a class="code" href="database__upgrades_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a>[1], <a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>[1]));
 <a name="l00023"></a>00023 } <span class="comment">// end of the &#39;PMA_language_cmp()&#39; function</span>
 <a name="l00024"></a>00024 <span class="comment"></span>
 <a name="l00025"></a>00025 <span class="comment">/**</span>
@@ -113,8 +113,8 @@
 <a name="l00035"></a>00035 &lt;form method=<span class="stringliteral">&quot;post&quot;</span> action=<span class="stringliteral">&quot;index.php&quot;</span> target=<span class="stringliteral">&quot;_parent&quot;</span>&gt;
 <a name="l00036"></a>00036     &lt;?php
 <a name="l00037"></a>00037     <a class="code" href="tbl__properties_8inc_8php.html#a2f9b3544e8335df6ce6a4e1c0aaa731a" title="Class for partition management.">$_form_params</a> = array(
-<a name="l00038"></a>00038         <span class="stringliteral">&#39;db&#39;</span> =&gt; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>],
-<a name="l00039"></a>00039         <span class="stringliteral">&#39;table&#39;</span> =&gt; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>],
+<a name="l00038"></a>00038         <span class="stringliteral">&#39;db&#39;</span> =&gt; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>],
+<a name="l00039"></a>00039         <span class="stringliteral">&#39;table&#39;</span> =&gt; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>],
 <a name="l00040"></a>00040     );
 <a name="l00041"></a>00041     echo <a class="code" href="url__generating_8lib_8php.html#ad7326a27700edd06dee0217de194756b" title="Generates text with hidden inputs.">PMA_generate_common_hidden_inputs</a>($_form_params);
 <a name="l00042"></a>00042 
@@ -136,8 +136,8 @@
 <a name="l00058"></a>00058     &lt;select name=<span class="stringliteral">&quot;lang&quot;</span> <span class="keyword">class</span>=<span class="stringliteral">&quot;autosubmit&quot;</span> xml:lang=<span class="stringliteral">&quot;en&quot;</span> dir=<span class="stringliteral">&quot;ltr&quot;</span>&gt;
 <a name="l00059"></a>00059     &lt;?php
 <a name="l00060"></a>00060 
-<a name="l00061"></a>00061     uasort(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;available_languages&#39;</span>], <span class="stringliteral">&#39;PMA_language_cmp&#39;</span>);
-<a name="l00062"></a>00062     <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;available_languages&#39;</span>] as <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> =&gt; $tmplang) {
+<a name="l00061"></a>00061     uasort(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;available_languages&#39;</span>], <span class="stringliteral">&#39;PMA_language_cmp&#39;</span>);
+<a name="l00062"></a>00062     <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;available_languages&#39;</span>] as <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> =&gt; $tmplang) {
 <a name="l00063"></a>00063         $lang_name = <a class="code" href="select__lang_8lib_8php.html#abe498a160ace027ec0d2dc1f05bb8f91" title="Returns language name.">PMA_langName</a>($tmplang);
 <a name="l00064"></a>00064 
 <a name="l00065"></a>00065         <span class="comment">//Is current one active?</span>
@@ -185,7 +185,7 @@
     <ul>
       <li class="navelem"><a class="el" href="display__select__lang_8lib_8php.html">display_select_lang.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:28 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

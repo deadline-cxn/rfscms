@@ -1,0 +1,23 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="get_pk_or_unique_keys",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="get_all_keys",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$pmd__common_8php.html#a56d6eefe0d8c9933d346c1e75f618970",tooltip="returns all indizes"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_Index\\getFromTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Index.html#ad8b7ce6fee21c5ac8e915642e6ee466b",tooltip="returns an array with all indexes from the given table"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_Index\\_loadIndexes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Index.html#a8de4de29f22e722462a9f74892b443a9",tooltip="Load index data for table."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_DBI_get_table_indexes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#ad024afebf46c43570280d649c48954ba",tooltip="Returns indexes of a table."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_DBI_get_table_indexes_sql",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a08524b087dc87a07e0d838fdec49c77d",tooltip="Returns SQL for fetching information on table indexes (SHOW INDEXES)"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_sqlAddSlashes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf",tooltip="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison..."];
+  Node6 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PMA_backquote",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec",tooltip="Adds backquotes on both sides of a database, table or field name."];
+  Node5 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="PMA_DBI_fetch_result",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b",tooltip="returns all rows in the resultset in one array"];
+}

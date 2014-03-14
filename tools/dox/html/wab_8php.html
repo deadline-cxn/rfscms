@@ -100,14 +100,14 @@ Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#a3b694060d76299cce0d85b1a7337ba61">$wab_version</a> = &quot;v1.9&quot;</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#ae8685a6a58bae33f21773d6dd220cff5">$wab_engine</a> = <a class="el" href="lib_8mysql_8php.html#ad42d2c11477299cecf3dd06b259a316e">mfo1</a>(&quot;select * from `wab_engine` where `id`='$runapp'&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#ae8685a6a58bae33f21773d6dd220cff5">$wab_engine</a> = <a class="el" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(&quot;select * from `wab_engine` where `id`='$runapp'&quot;)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#a3b20e6d7616e9bbe92cf4e1f6c0e18b0">$wab_database</a> = $wab_engine-&gt;value</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>(empty($<a class="el" href="wab_8php.html#a1ded8498f34e6332fcd2d800147e4170">wab_database</a>))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a> [&quot;runapp&quot;] = $wab_engine-&gt;id</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = ucwords(str_replace(&quot;_&quot;,&quot; &quot;,$wab_engine-&gt;name))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#a100e2e23c167615e01910e2b186bd894">$lnk</a> = &quot;$RFS_SITE_URL/modules/wab/wab.php?runapp=1&quot;</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a> ($data-&gt;access==255)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="el" href="install_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(&quot;select * from `$<a class="el" href="wab_8php.html#a1ded8498f34e6332fcd2d800147e4170">wab_database</a>` where `type`='function' and `parent`='$wab_engine-&gt;id'&quot;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">while($wab_engine_function=<a class="el" href="lib_8mysql_8php.html#a85e467d821d8c197471a5344e590c7d1">mfo</a>($res))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#aff366c789a890092f4395b244ca48c51">$wbna</a> = &quot;_action_&quot;</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="el" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(&quot;select * from `$<a class="el" href="wab_8php.html#a1ded8498f34e6332fcd2d800147e4170">wab_database</a>` where `type`='function' and `parent`='$wab_engine-&gt;id'&quot;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">while($wab_engine_function=mysql_fetch_object($res))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#aff366c789a890092f4395b244ca48c51">$wbna</a> = &quot;_action_&quot;</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wab_8php.html#aed48db0afd54df5ba270f0ea8cd7832f">$found_action</a> = 0</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
@@ -673,7 +673,7 @@ Here is the caller graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$res = <a class="el" href="install_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(&quot;select * from `$<a class="el" href="wab_8php.html#a1ded8498f34e6332fcd2d800147e4170">wab_database</a>` where `type`='function' and `parent`='$wab_engine-&gt;id'&quot;)</td>
+          <td class="memname">$res = <a class="el" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(&quot;select * from `$<a class="el" href="wab_8php.html#a1ded8498f34e6332fcd2d800147e4170">wab_database</a>` where `type`='function' and `parent`='$wab_engine-&gt;id'&quot;)</td>
         </tr>
       </table>
 </div>
@@ -703,7 +703,7 @@ Here is the caller graph for this function:</div>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$wab_engine = <a class="el" href="lib_8mysql_8php.html#ad42d2c11477299cecf3dd06b259a316e">mfo1</a>(&quot;select * from `wab_engine` where `id`='$runapp'&quot;)</td>
+          <td class="memname">$wab_engine = <a class="el" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(&quot;select * from `wab_engine` where `id`='$runapp'&quot;)</td>
         </tr>
       </table>
 </div>
@@ -764,7 +764,7 @@ Here is the caller graph for this function:</div>
     <ul>
       <li class="navelem"><a class="el" href="wab_8php.html">wab.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:34 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:33 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -94,25 +94,25 @@
 <a name="l00016"></a>00016 require_once <span class="stringliteral">&#39;./libraries/relation.lib.php&#39;</span>;
 <a name="l00017"></a>00017 require_once <span class="stringliteral">&#39;./libraries/tbl_info.inc.php&#39;</span>;
 <a name="l00018"></a>00018 
-<a name="l00019"></a><a class="code" href="tbl__zoom__select_8php.html#a9b835efbb97695b4ed9faf19a55b1080">00019</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;makegrid.js&#39;</span>;
-<a name="l00020"></a>00020 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;sql.js&#39;</span>;
-<a name="l00021"></a>00021 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;functions.js&#39;</span>;
-<a name="l00022"></a>00022 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;date.js&#39;</span>;
+<a name="l00019"></a><a class="code" href="tbl__zoom__select_8php.html#a9b835efbb97695b4ed9faf19a55b1080">00019</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;makegrid.js&#39;</span>;
+<a name="l00020"></a>00020 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;sql.js&#39;</span>;
+<a name="l00021"></a>00021 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;functions.js&#39;</span>;
+<a name="l00022"></a>00022 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;date.js&#39;</span>;
 <a name="l00023"></a>00023 <span class="comment">/* &lt; IE 9 doesn&#39;t support canvas natively */</span>
 <a name="l00024"></a>00024 <span class="keywordflow">if</span> (PMA_USR_BROWSER_AGENT == <span class="stringliteral">&#39;IE&#39;</span> &amp;&amp; PMA_USR_BROWSER_VER &lt; 9) {
-<a name="l00025"></a>00025     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;canvg/flashcanvas.js&#39;</span>;
+<a name="l00025"></a>00025     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;canvg/flashcanvas.js&#39;</span>;
 <a name="l00026"></a>00026 }
 <a name="l00027"></a>00027 
-<a name="l00028"></a>00028 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/jquery.jqplot.js&#39;</span>;
-<a name="l00029"></a>00029 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.canvasTextRenderer.js&#39;</span>;
-<a name="l00030"></a>00030 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.canvasAxisLabelRenderer.js&#39;</span>;
-<a name="l00031"></a>00031 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.dateAxisRenderer.js&#39;</span>;
-<a name="l00032"></a>00032 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.highlighter.js&#39;</span>;
-<a name="l00033"></a>00033 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.cursor.js&#39;</span>;
-<a name="l00034"></a>00034 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;canvg/canvg.js&#39;</span>;
-<a name="l00035"></a>00035 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jquery/jquery-ui-1.8.16.custom.js&#39;</span>;
-<a name="l00036"></a>00036 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jquery/timepicker.js&#39;</span>;
-<a name="l00037"></a>00037 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;tbl_zoom_plot_jqplot.js&#39;</span>;
+<a name="l00028"></a>00028 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/jquery.jqplot.js&#39;</span>;
+<a name="l00029"></a>00029 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.canvasTextRenderer.js&#39;</span>;
+<a name="l00030"></a>00030 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.canvasAxisLabelRenderer.js&#39;</span>;
+<a name="l00031"></a>00031 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.dateAxisRenderer.js&#39;</span>;
+<a name="l00032"></a>00032 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.highlighter.js&#39;</span>;
+<a name="l00033"></a>00033 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jqplot/plugins/jqplot.cursor.js&#39;</span>;
+<a name="l00034"></a>00034 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;canvg/canvg.js&#39;</span>;
+<a name="l00035"></a>00035 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jquery/jquery-ui-1.8.16.custom.js&#39;</span>;
+<a name="l00036"></a>00036 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;jquery/timepicker.js&#39;</span>;
+<a name="l00037"></a>00037 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;tbl_zoom_plot_jqplot.js&#39;</span>;
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 <span class="comment"></span>
 <a name="l00040"></a>00040 <span class="comment">/**</span>
@@ -124,16 +124,16 @@
 <a name="l00046"></a>00046     $extra_data = array();
 <a name="l00047"></a>00047     $row_info_query = <span class="stringliteral">&#39;SELECT * FROM `&#39;</span> . <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;db&#39;</span>] . <span class="stringliteral">&#39;`.`&#39;</span>
 <a name="l00048"></a>00048         . <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;table&#39;</span>] . <span class="stringliteral">&#39;` WHERE &#39;</span> .  <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;where_clause&#39;</span>];
-<a name="l00049"></a>00049     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($row_info_query . <span class="stringliteral">&quot;;&quot;</span>, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
-<a name="l00050"></a>00050     $fields_meta = <a class="code" href="drizzle_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac" title="returns metainfo for fields in $result">PMA_DBI_get_fields_meta</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00051"></a>00051     <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00049"></a>00049     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($row_info_query . <span class="stringliteral">&quot;;&quot;</span>, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
+<a name="l00050"></a>00050     $fields_meta = <a class="code" href="drizzle_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac" title="returns metainfo for fields in $result">PMA_DBI_get_fields_meta</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00051"></a>00051     <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00052"></a>00052         <span class="comment">// for bit fields we need to convert them to printable form</span>
-<a name="l00053"></a>00053         <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0;
+<a name="l00053"></a>00053         <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0;
 <a name="l00054"></a>00054         <span class="keywordflow">foreach</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> as <a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a> =&gt; $val) {
-<a name="l00055"></a>00055             <span class="keywordflow">if</span> ($fields_meta[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;<a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a> == <span class="stringliteral">&#39;bit&#39;</span>) {
-<a name="l00056"></a>00056                 <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a>] = <a class="code" href="common_8lib_8php.html#ab8e797ab037f8c1d0eaa87c885bff719" title="Converts a bit value to printable format; in MySQL a BIT field can be from 1 to 64 bits so we need th...">PMA_printable_bit_value</a>($val, $fields_meta[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;length);
+<a name="l00055"></a>00055             <span class="keywordflow">if</span> ($fields_meta[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;<a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a> == <span class="stringliteral">&#39;bit&#39;</span>) {
+<a name="l00056"></a>00056                 <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a>] = <a class="code" href="common_8lib_8php.html#ab8e797ab037f8c1d0eaa87c885bff719" title="Converts a bit value to printable format; in MySQL a BIT field can be from 1 to 64 bits so we need th...">PMA_printable_bit_value</a>($val, $fields_meta[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;length);
 <a name="l00057"></a>00057             }
-<a name="l00058"></a>00058             <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++;
+<a name="l00058"></a>00058             <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++;
 <a name="l00059"></a>00059         }
 <a name="l00060"></a>00060         $extra_data[<span class="stringliteral">&#39;row_info&#39;</span>] = <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>;
 <a name="l00061"></a>00061     }
@@ -160,7 +160,7 @@
 <a name="l00082"></a>00082 require_once <span class="stringliteral">&#39;./libraries/tbl_links.inc.php&#39;</span>;
 <a name="l00083"></a>00083 
 <a name="l00084"></a>00084 <span class="keywordflow">if</span> (! isset(<a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a>)) {
-<a name="l00085"></a>00085     <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a> = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultTabTable&#39;</span>];
+<a name="l00085"></a>00085     <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a> = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DefaultTabTable&#39;</span>];
 <a name="l00086"></a>00086 }
 <a name="l00087"></a>00087 <span class="comment">// Defines the url to return to in case of error in the next sql statement</span>
 <a name="l00088"></a><a class="code" href="tbl__zoom__select_8php.html#a4e5617abb5520e247d33a303b8c62729">00088</a> <a class="code" href="db__create_8php.html#a83e98b25d56666051a069a2d2b5d371b" title="Defines the url to return to in case of error in a sql statement.">$err_url</a>   = <a class="code" href="db__sql_8php.html#a4037a8ff7343cce7ab4dadfd490ad3ee">$goto</a> . <span class="charliteral">&#39;?&#39;</span> . <a class="code" href="url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters.">PMA_generate_common_url</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>);
@@ -193,12 +193,12 @@
 <a name="l00115"></a>00115 <span class="comment"> */</span>
 <a name="l00116"></a><a class="code" href="tbl__zoom__select_8php.html#af1ec34fe8618e5aa8abc69d926242571">00116</a> <span class="keywordflow">if</span> (isset($inputs) &amp;&amp; ($inputs[0] != <span class="stringliteral">&#39;pma_null&#39;</span> || $inputs[1] != <span class="stringliteral">&#39;pma_null&#39;</span>)) {
 <a name="l00117"></a>00117     <a class="code" href="tbl__zoom__select_8php.html#acf5d6dd3ee125abb9a2523b30bc47d02">$flag</a> = 2;
-<a name="l00118"></a>00118     <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0 ; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; 4 ; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00119"></a>00119         <span class="keywordflow">if</span> ($inputs[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] != <span class="stringliteral">&#39;pma_null&#39;</span>) {
-<a name="l00120"></a>00120             $key = array_search($inputs[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>], $fields_list);
-<a name="l00121"></a>00121             <a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $fields_type[$key];
-<a name="l00122"></a>00122             $tbl_fields_collation[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $fields_collation[$key];
-<a name="l00123"></a>00123             $tbl_fields_null[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $fields_null[$key];
+<a name="l00118"></a>00118     <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0 ; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; 4 ; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00119"></a>00119         <span class="keywordflow">if</span> ($inputs[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] != <span class="stringliteral">&#39;pma_null&#39;</span>) {
+<a name="l00120"></a>00120             $key = array_search($inputs[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>], $fields_list);
+<a name="l00121"></a>00121             <a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $fields_type[$key];
+<a name="l00122"></a>00122             $tbl_fields_collation[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $fields_collation[$key];
+<a name="l00123"></a>00123             $tbl_fields_null[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $fields_null[$key];
 <a name="l00124"></a>00124         }
 <a name="l00125"></a>00125     }
 <a name="l00126"></a>00126 }
@@ -209,7 +209,7 @@
 <a name="l00131"></a>00131 
 <a name="l00132"></a>00132 ?&gt;
 <a name="l00133"></a>00133 &lt;form method=<span class="stringliteral">&quot;post&quot;</span> action=<span class="stringliteral">&quot;tbl_zoom_select.php&quot;</span> name=<span class="stringliteral">&quot;insertForm&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;zoom_search_form&quot;</span>
-<a name="l00134"></a>00134     &lt;?php echo (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>] ? <span class="stringliteral">&#39; class=&quot;ajax&quot;&#39;</span> : <span class="stringliteral">&#39;&#39;</span>); ?&gt;&gt;
+<a name="l00134"></a>00134     &lt;?php echo (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>] ? <span class="stringliteral">&#39; class=&quot;ajax&quot;&#39;</span> : <span class="stringliteral">&#39;&#39;</span>); ?&gt;&gt;
 <a name="l00135"></a>00135 &lt;?php echo <a class="code" href="url__generating_8lib_8php.html#ad7326a27700edd06dee0217de194756b" title="Generates text with hidden inputs.">PMA_generate_common_hidden_inputs</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>); ?&gt;
 <a name="l00136"></a>00136 &lt;input <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;goto&quot;</span> value=<span class="stringliteral">&quot;&lt;?php echo $goto; ?&gt;&quot;</span> /&gt;
 <a name="l00137"></a>00137 &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;back&quot;</span> value=<span class="stringliteral">&quot;tbl_zoom_select.php&quot;</span> /&gt;
@@ -224,8 +224,8 @@
 <a name="l00146"></a>00146 &lt;?php
 <a name="l00147"></a><a class="code" href="tbl__zoom__select_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">00147</a>     <a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> = <span class="keyword">true</span>;
 <a name="l00148"></a>00148 
-<a name="l00149"></a>00149 <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; 4; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00150"></a>00150     <span class="keywordflow">if</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> == 2) {
+<a name="l00149"></a>00149 <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; 4; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00150"></a>00150     <span class="keywordflow">if</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> == 2) {
 <a name="l00151"></a>00151         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td&gt;&quot;</span>;
 <a name="l00152"></a>00152         echo __(<span class="stringliteral">&quot;Additional search criteria&quot;</span>);
 <a name="l00153"></a>00153         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&quot;</span>;
@@ -236,7 +236,7 @@
 <a name="l00158"></a>00158         &lt;option value=<span class="stringliteral">&quot;&lt;?php echo &#39;pma_null&#39;; ?&gt;&quot;</span>&gt;&lt;?php echo __(<span class="stringliteral">&#39;None&#39;</span>);  ?&gt;&lt;/option&gt;
 <a name="l00159"></a>00159     &lt;?php
 <a name="l00160"></a>00160     <span class="keywordflow">for</span> ($j = 0 ; $j &lt; <a class="code" href="tbl__change_8php.html#a580526107852923681984db1a74a921c">$fields_cnt</a> ; $j++) {
-<a name="l00161"></a>00161         <span class="keywordflow">if</span> (isset($inputs[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]) &amp;&amp; $inputs[$i] == htmlspecialchars($fields_list[$j])) {?&gt;
+<a name="l00161"></a>00161         <span class="keywordflow">if</span> (isset($inputs[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]) &amp;&amp; $inputs[$i] == htmlspecialchars($fields_list[$j])) {?&gt;
 <a name="l00162"></a>00162             &lt;option value=<span class="stringliteral">&quot;&lt;?php echo htmlspecialchars($fields_list[$j]);?&gt;&quot;</span> selected=<span class="stringliteral">&quot;selected&quot;</span>&gt;
 <a name="l00163"></a>00163                 &lt;?php echo htmlspecialchars($fields_list[$j]);?&gt;&lt;/option&gt;
 <a name="l00164"></a>00164         &lt;?php
@@ -247,15 +247,15 @@
 <a name="l00169"></a>00169         }
 <a name="l00170"></a>00170     } ?&gt;
 <a name="l00171"></a>00171         &lt;/select&gt;&lt;/th&gt;
-<a name="l00172"></a>00172         &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;&lt;?php <span class="keywordflow">if</span> (isset(<a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>])) echo <a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]; ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
-<a name="l00173"></a>00173         &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;&lt;?php <span class="keywordflow">if</span> (isset($tbl_fields_collation[$i])) echo $tbl_fields_collation[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]; ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
+<a name="l00172"></a>00172         &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;&lt;?php <span class="keywordflow">if</span> (isset(<a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>])) echo <a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]; ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
+<a name="l00173"></a>00173         &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;&lt;?php <span class="keywordflow">if</span> (isset($tbl_fields_collation[$i])) echo $tbl_fields_collation[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]; ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
 <a name="l00174"></a>00174         &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
 <a name="l00175"></a>00175     &lt;?php
 <a name="l00176"></a>00176     <span class="keywordflow">if</span> (isset($inputs) &amp;&amp; $inputs[$i] != <span class="stringliteral">&#39;pma_null&#39;</span>) { ?&gt;
 <a name="l00177"></a>00177         &lt;select name=<span class="stringliteral">&quot;zoomFunc[]&quot;</span>&gt;
 <a name="l00178"></a>00178         &lt;?php
 <a name="l00179"></a>00179         <span class="keywordflow">if</span> (strncasecmp($tbl_fields_type[$i], <span class="stringliteral">&#39;enum&#39;</span>, 4) == 0) {
-<a name="l00180"></a>00180             <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;EnumOperators&#39;</span>] as $fc) {
+<a name="l00180"></a>00180             <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;EnumOperators&#39;</span>] as $fc) {
 <a name="l00181"></a>00181                 <span class="keywordflow">if</span> (isset($zoomFunc[$i]) &amp;&amp; $zoomFunc[$i] == htmlspecialchars($fc)) {
 <a name="l00182"></a>00182                     echo <span class="stringliteral">&quot;\n&quot;</span> . <span class="stringliteral">&#39;                        &#39;</span>
 <a name="l00183"></a>00183                     . <span class="stringliteral">&#39;&lt;option value=&quot;&#39;</span> . htmlspecialchars($fc) . <span class="stringliteral">&#39;&quot; selected=&quot;selected&quot;&gt;&#39;</span>
@@ -266,8 +266,8 @@
 <a name="l00188"></a>00188                     . htmlspecialchars($fc) . <span class="stringliteral">&#39;&lt;/option&gt;&#39;</span>;
 <a name="l00189"></a>00189                 }
 <a name="l00190"></a>00190             }
-<a name="l00191"></a>00191         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (preg_match(<span class="stringliteral">&#39;@char|blob|text|set@i&#39;</span>, $tbl_fields_type[$i])) {
-<a name="l00192"></a>00192             <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextOperators&#39;</span>] as $fc) {
+<a name="l00191"></a>00191         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (preg_match(<span class="stringliteral">&#39;@char|blob|text|set@i&#39;</span>, $tbl_fields_type[$i])) {
+<a name="l00192"></a>00192             <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;TextOperators&#39;</span>] as $fc) {
 <a name="l00193"></a>00193                 <span class="keywordflow">if</span> (isset($zoomFunc[$i]) &amp;&amp; $zoomFunc[$i] == $fc) {
 <a name="l00194"></a>00194                     echo <span class="stringliteral">&quot;\n&quot;</span> . <span class="stringliteral">&#39;                        &#39;</span>
 <a name="l00195"></a>00195                     . <span class="stringliteral">&#39;&lt;option value=&quot;&#39;</span> . htmlspecialchars($fc) . <span class="stringliteral">&#39;&quot; selected=&quot;selected&quot;&gt;&#39;</span>
@@ -279,7 +279,7 @@
 <a name="l00201"></a>00201                 }
 <a name="l00202"></a>00202             }
 <a name="l00203"></a>00203         } <span class="keywordflow">else</span> {
-<a name="l00204"></a>00204             <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NumOperators&#39;</span>] as $fc) {
+<a name="l00204"></a>00204             <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NumOperators&#39;</span>] as $fc) {
 <a name="l00205"></a>00205                 <span class="keywordflow">if</span> (isset($zoomFunc[$i]) &amp;&amp; $zoomFunc[$i] == $fc) {
 <a name="l00206"></a>00206                     echo <span class="stringliteral">&quot;\n&quot;</span> . <span class="stringliteral">&#39;                        &#39;</span>
 <a name="l00207"></a>00207                     . <span class="stringliteral">&#39;&lt;option value=&quot;&#39;</span> .  htmlspecialchars($fc) . <span class="stringliteral">&#39;&quot; selected=&quot;selected&quot;&gt;&#39;</span>
@@ -293,7 +293,7 @@
 <a name="l00215"></a>00215         } <span class="comment">// end if... else...</span>
 <a name="l00216"></a>00216 
 <a name="l00217"></a>00217         <span class="keywordflow">if</span> ($tbl_fields_null[$i]) {
-<a name="l00218"></a>00218             <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NullOperators&#39;</span>] as $fc) {
+<a name="l00218"></a>00218             <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NullOperators&#39;</span>] as $fc) {
 <a name="l00219"></a>00219                 <span class="keywordflow">if</span> (isset($zoomFunc[$i]) &amp;&amp; $zoomFunc[$i] == $fc) {
 <a name="l00220"></a>00220                     echo <span class="stringliteral">&quot;\n&quot;</span> . <span class="stringliteral">&#39;                        &#39;</span>
 <a name="l00221"></a>00221                     . <span class="stringliteral">&#39;&lt;option value=&quot;&#39;</span> .  htmlspecialchars($fc) . <span class="stringliteral">&#39;&quot; selected=&quot;selected&quot;&gt;&#39;</span>
@@ -310,18 +310,18 @@
 <a name="l00232"></a>00232         &lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
 <a name="l00233"></a>00233         &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
 <a name="l00234"></a>00234         &lt;?php
-<a name="l00235"></a>00235         $field = $inputs[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>];
+<a name="l00235"></a>00235         $field = $inputs[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>];
 <a name="l00236"></a>00236 
 <a name="l00237"></a>00237         <a class="code" href="browse__foreigners_8php.html#abe1308495da4d98b6fa276b812237b8e">$foreignData</a> = <a class="code" href="relation_8lib_8php.html#a3d88adc7fba312fe26b3ef82225a5fdd" title="Gets foreign keys in preparation for a drop-down selector.">PMA_getForeignData</a>(<a class="code" href="browse__foreigners_8php.html#aebcbc7e00142ad61a2017201a6802493">$foreigners</a>, $field, <span class="keyword">false</span>, <span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;&#39;</span>);
 <a name="l00238"></a>00238         <span class="keywordflow">if</span> (isset(<a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>)) {
 <a name="l00239"></a>00239             echo <a class="code" href="tbl__select_8lib_8php.html#ae7f5731d913fedd05b08fae1e999bcf5" title="Creates the HTML content for: 1) Browsing foreign data for a field.">PMA_getForeignFields_Values</a>(
 <a name="l00240"></a>00240                 <a class="code" href="browse__foreigners_8php.html#aebcbc7e00142ad61a2017201a6802493">$foreigners</a>, <a class="code" href="browse__foreigners_8php.html#abe1308495da4d98b6fa276b812237b8e">$foreignData</a>, $field, $tbl_fields_type, $i, <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>,
-<a name="l00241"></a>00241                 <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, <a class="code" href="db__structure_8php.html#a26c001c5d5d900be2bebf55257d9cdfb">$titles</a>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ForeignKeyMaxLimit&#39;</span>], <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>
+<a name="l00241"></a>00241                 <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, <a class="code" href="db__structure_8php.html#a26c001c5d5d900be2bebf55257d9cdfb">$titles</a>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ForeignKeyMaxLimit&#39;</span>], <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>
 <a name="l00242"></a>00242             );
 <a name="l00243"></a>00243         } <span class="keywordflow">else</span> {
 <a name="l00244"></a>00244             echo <a class="code" href="tbl__select_8lib_8php.html#ae7f5731d913fedd05b08fae1e999bcf5" title="Creates the HTML content for: 1) Browsing foreign data for a field.">PMA_getForeignFields_Values</a>(
 <a name="l00245"></a>00245                 <a class="code" href="browse__foreigners_8php.html#aebcbc7e00142ad61a2017201a6802493">$foreigners</a>, <a class="code" href="browse__foreigners_8php.html#abe1308495da4d98b6fa276b812237b8e">$foreignData</a>, $field, $tbl_fields_type, $i, <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>,
-<a name="l00246"></a>00246                 <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, <a class="code" href="db__structure_8php.html#a26c001c5d5d900be2bebf55257d9cdfb">$titles</a>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ForeignKeyMaxLimit&#39;</span>], <span class="stringliteral">&#39;&#39;</span>
+<a name="l00246"></a>00246                 <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, <a class="code" href="db__structure_8php.html#a26c001c5d5d900be2bebf55257d9cdfb">$titles</a>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ForeignKeyMaxLimit&#39;</span>], <span class="stringliteral">&#39;&#39;</span>
 <a name="l00247"></a>00247             );
 <a name="l00248"></a>00248         }
 <a name="l00249"></a>00249     } <span class="keywordflow">else</span> { ?&gt;
@@ -385,7 +385,7 @@
 <a name="l00307"></a>00307 <span class="keywordflow">if</span> (! empty($maxPlotLimit)) {
 <a name="l00308"></a>00308     echo htmlspecialchars($maxPlotLimit);
 <a name="l00309"></a>00309 } <span class="keywordflow">else</span> {
-<a name="l00310"></a>00310     echo <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;maxRowPlotLimit&#39;</span>];
+<a name="l00310"></a>00310     echo <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;maxRowPlotLimit&#39;</span>];
 <a name="l00311"></a>00311 }
 <a name="l00312"></a>00312 echo <span class="stringliteral">&#39;&quot; /&gt;&lt;/td&gt;&lt;/tr&gt;&#39;</span>;
 <a name="l00313"></a>00313 ?&gt;
@@ -411,23 +411,23 @@
 <a name="l00333"></a>00333     <span class="comment">/*</span>
 <a name="l00334"></a>00334 <span class="comment">     * Query generation part</span>
 <a name="l00335"></a>00335 <span class="comment">     */</span>
-<a name="l00336"></a>00336     <a class="code" href="db__qbe_8php.html#ae27770d41ec951a1009f76d39501dab2">$w</a> = <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = array();
+<a name="l00336"></a>00336     <a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a> = <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = array();
 <a name="l00337"></a>00337     <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> = <span class="stringliteral">&#39;SELECT *&#39;</span>;
 <a name="l00338"></a>00338 
 <a name="l00339"></a>00339     <span class="comment">//Add the table</span>
 <a name="l00340"></a>00340     <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> .= <span class="stringliteral">&#39; FROM &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>);
-<a name="l00341"></a>00341     <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; 4; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00342"></a>00342         <span class="keywordflow">if</span> ($inputs[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] == <span class="stringliteral">&#39;pma_null&#39;</span>) {
+<a name="l00341"></a>00341     <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; 4; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00342"></a>00342         <span class="keywordflow">if</span> ($inputs[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] == <span class="stringliteral">&#39;pma_null&#39;</span>) {
 <a name="l00343"></a>00343             <span class="keywordflow">continue</span>;
 <a name="l00344"></a>00344         }
 <a name="l00345"></a>00345         $tmp = array();
 <a name="l00346"></a>00346         <span class="comment">// The where clause</span>
 <a name="l00347"></a>00347         $charsets = array();
-<a name="l00348"></a>00348         $cnt_func = count($zoomFunc[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
-<a name="l00349"></a>00349         $func_type = $zoomFunc[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>];
+<a name="l00348"></a>00348         $cnt_func = count($zoomFunc[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
+<a name="l00349"></a>00349         $func_type = $zoomFunc[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>];
 <a name="l00350"></a>00350         list($charsets[$i]) = explode(<span class="charliteral">&#39;_&#39;</span>, $collations[$i]);
-<a name="l00351"></a>00351         $unaryFlag = (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UnaryOperators&#39;</span>][$func_type])
-<a name="l00352"></a>00352                       &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UnaryOperators&#39;</span>][$func_type] == 1)
+<a name="l00351"></a>00351         $unaryFlag = (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UnaryOperators&#39;</span>][$func_type])
+<a name="l00352"></a>00352                       &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;UnaryOperators&#39;</span>][$func_type] == 1)
 <a name="l00353"></a>00353                       ? <span class="keyword">true</span>
 <a name="l00354"></a>00354                       : <span class="keyword">false</span>;
 <a name="l00355"></a>00355         $whereClause = PMA_tbl_search_getWhereClause(
@@ -435,45 +435,45 @@
 <a name="l00357"></a>00357             $collations[$i], $func_type, $unaryFlag
 <a name="l00358"></a>00358         );
 <a name="l00359"></a>00359         <span class="keywordflow">if</span> ($whereClause) {
-<a name="l00360"></a>00360             <a class="code" href="db__qbe_8php.html#ae27770d41ec951a1009f76d39501dab2">$w</a>[] = $whereClause;
+<a name="l00360"></a>00360             <a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>[] = $whereClause;
 <a name="l00361"></a>00361         }
 <a name="l00362"></a>00362     } <span class="comment">// end for</span>
-<a name="l00363"></a>00363     <span class="keywordflow">if</span> (<a class="code" href="db__qbe_8php.html#ae27770d41ec951a1009f76d39501dab2">$w</a>) {
-<a name="l00364"></a>00364         <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> .= <span class="stringliteral">&#39; WHERE &#39;</span> . implode(<span class="stringliteral">&#39; AND &#39;</span>, <a class="code" href="db__qbe_8php.html#ae27770d41ec951a1009f76d39501dab2">$w</a>);
+<a name="l00363"></a>00363     <span class="keywordflow">if</span> (<a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>) {
+<a name="l00364"></a>00364         <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> .= <span class="stringliteral">&#39; WHERE &#39;</span> . implode(<span class="stringliteral">&#39; AND &#39;</span>, <a class="code" href="video__wall_8php.html#a7baa3e54d17390d4a3dbc0ee84e4c155">$w</a>);
 <a name="l00365"></a>00365     }
 <a name="l00366"></a>00366     <a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> .= <span class="stringliteral">&#39; LIMIT &#39;</span> . $maxPlotLimit;
 <a name="l00367"></a>00367 
 <a name="l00368"></a>00368     <span class="comment">/*</span>
 <a name="l00369"></a>00369 <span class="comment">     * Query execution part</span>
 <a name="l00370"></a>00370 <span class="comment">     */</span>
-<a name="l00371"></a>00371     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> . <span class="stringliteral">&quot;;&quot;</span>, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
-<a name="l00372"></a>00372     $fields_meta = <a class="code" href="drizzle_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac" title="returns metainfo for fields in $result">PMA_DBI_get_fields_meta</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00373"></a>00373     <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00371"></a>00371     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a> . <span class="stringliteral">&quot;;&quot;</span>, null, <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>);
+<a name="l00372"></a>00372     $fields_meta = <a class="code" href="drizzle_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac" title="returns metainfo for fields in $result">PMA_DBI_get_fields_meta</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00373"></a>00373     <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00374"></a>00374         <span class="comment">//Need a row with indexes as 0,1,2 for the PMA_getUniqueCondition hence using a temporary array</span>
 <a name="l00375"></a>00375         $tmpRow = array();
 <a name="l00376"></a>00376         <span class="keywordflow">foreach</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> as $val) {
 <a name="l00377"></a>00377             $tmpRow[] = $val;
 <a name="l00378"></a>00378         }
 <a name="l00379"></a>00379         <span class="comment">//Get unique conditon on each row (will be needed for row update)</span>
-<a name="l00380"></a>00380         $uniqueCondition = <a class="code" href="common_8lib_8php.html#a8ee43ac6fdd31f561ca640b2c20d05a1" title="Function to generate unique condition for specified row.">PMA_getUniqueCondition</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, $fields_cnt, $fields_meta, $tmpRow, <span class="keyword">true</span>);
+<a name="l00380"></a>00380         $uniqueCondition = <a class="code" href="common_8lib_8php.html#a8ee43ac6fdd31f561ca640b2c20d05a1" title="Function to generate unique condition for specified row.">PMA_getUniqueCondition</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, $fields_cnt, $fields_meta, $tmpRow, <span class="keyword">true</span>);
 <a name="l00381"></a>00381 
 <a name="l00382"></a>00382         <span class="comment">//Append it to row array as where_clause</span>
 <a name="l00383"></a>00383         <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<span class="stringliteral">&#39;where_clause&#39;</span>] = $uniqueCondition[0];
 <a name="l00384"></a>00384         <span class="keywordflow">if</span> ($dataLabel == $inputs[0] || $dataLabel == $inputs[1]) {
-<a name="l00385"></a>00385             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[] = array(
+<a name="l00385"></a>00385             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[] = array(
 <a name="l00386"></a>00386                 $inputs[0]     =&gt; <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$inputs[0]],
 <a name="l00387"></a>00387                 $inputs[1]     =&gt; <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$inputs[1]],
 <a name="l00388"></a>00388                 <span class="stringliteral">&#39;where_clause&#39;</span> =&gt; $uniqueCondition[0]
 <a name="l00389"></a>00389             );
-<a name="l00390"></a>00390         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> ($dataLabel) {
-<a name="l00391"></a>00391             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[] = array(
+<a name="l00390"></a>00390         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> ($dataLabel) {
+<a name="l00391"></a>00391             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[] = array(
 <a name="l00392"></a>00392                 $inputs[0]     =&gt; <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$inputs[0]],
 <a name="l00393"></a>00393                 $inputs[1]     =&gt; <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$inputs[1]],
 <a name="l00394"></a>00394                 $dataLabel     =&gt; <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$dataLabel],
 <a name="l00395"></a>00395                 <span class="stringliteral">&#39;where_clause&#39;</span> =&gt; $uniqueCondition[0]
 <a name="l00396"></a>00396             );
 <a name="l00397"></a>00397         } <span class="keywordflow">else</span> {
-<a name="l00398"></a>00398             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[] = array(
+<a name="l00398"></a>00398             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[] = array(
 <a name="l00399"></a>00399                 $inputs[0]     =&gt; <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$inputs[0]],
 <a name="l00400"></a>00400                 $inputs[1]     =&gt; <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$inputs[1]],
 <a name="l00401"></a>00401                 $dataLabel     =&gt; <span class="stringliteral">&#39;&#39;</span>,
@@ -486,7 +486,7 @@
 <a name="l00408"></a>00408 <span class="comment">     */</span>
 <a name="l00409"></a>00409     ?&gt;
 <a name="l00410"></a>00410     &lt;form method=<span class="stringliteral">&quot;post&quot;</span> action=<span class="stringliteral">&quot;tbl_zoom_select.php&quot;</span> name=<span class="stringliteral">&quot;displayResultForm&quot;</span> <span class="keywordtype">id</span>=<span class="stringliteral">&quot;zoom_display_form&quot;</span>
-<a name="l00411"></a>00411         &lt;?php echo (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>] ? <span class="stringliteral">&#39; class=&quot;ajax&quot;&#39;</span> : <span class="stringliteral">&#39;&#39;</span>); ?&gt;&gt;
+<a name="l00411"></a>00411         &lt;?php echo (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;AjaxEnable&#39;</span>] ? <span class="stringliteral">&#39; class=&quot;ajax&quot;&#39;</span> : <span class="stringliteral">&#39;&#39;</span>); ?&gt;&gt;
 <a name="l00412"></a>00412     &lt;?php echo <a class="code" href="url__generating_8lib_8php.html#ad7326a27700edd06dee0217de194756b" title="Generates text with hidden inputs.">PMA_generate_common_hidden_inputs</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>); ?&gt;
 <a name="l00413"></a>00413     &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;goto&quot;</span> value=<span class="stringliteral">&quot;&lt;?php echo $goto; ?&gt;&quot;</span> /&gt;
 <a name="l00414"></a>00414     &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;back&quot;</span> value=<span class="stringliteral">&quot;tbl_zoom_select.php&quot;</span> /&gt;
@@ -496,13 +496,13 @@
 <a name="l00418"></a>00418       &lt;center&gt;
 <a name="l00419"></a>00419     &lt;?php
 <a name="l00420"></a>00420     <span class="comment">//JSON encode the data(query result)</span>
-<a name="l00421"></a>00421     <span class="keywordflow">if</span> (isset($zoom_submit) &amp;&amp; ! empty(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>)) {
+<a name="l00421"></a>00421     <span class="keywordflow">if</span> (isset($zoom_submit) &amp;&amp; ! empty(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>)) {
 <a name="l00422"></a>00422         ?&gt;
 <a name="l00423"></a>00423         &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;resizer&quot;</span>&gt;
 <a name="l00424"></a>00424           &lt;center&gt;&lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a85f522b5d557b63fe501c729a79560df">a</a> href=<span class="stringliteral">&quot;#&quot;</span> onclick=<span class="stringliteral">&quot;displayHelp();&quot;</span>&gt;&lt;?php echo __(<span class="stringliteral">&#39;How to use&#39;</span>); ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a85f522b5d557b63fe501c729a79560df">a</a>&gt;&lt;/center&gt;
 <a name="l00425"></a>00425           &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;querydata&quot;</span> style=<span class="stringliteral">&quot;display:none&quot;</span>&gt;
 <a name="l00426"></a>00426         &lt;?php
-<a name="l00427"></a>00427         echo json_encode(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>);
+<a name="l00427"></a>00427         echo json_encode(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>);
 <a name="l00428"></a>00428         ?&gt;
 <a name="l00429"></a>00429           &lt;/div&gt;
 <a name="l00430"></a>00430           &lt;div <span class="keywordtype">id</span>=<span class="stringliteral">&quot;querychart&quot;</span>&gt;&lt;/div&gt;
@@ -524,23 +524,23 @@
 <a name="l00446"></a>00446           &lt;tbody&gt;
 <a name="l00447"></a>00447     &lt;?php
 <a name="l00448"></a>00448     <a class="code" href="db__qbe_8php.html#aa97fee01a612c36c64d62b32a99d5b5d">$odd_row</a> = <span class="keyword">true</span>;
-<a name="l00449"></a>00449     <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 4; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $fields_cnt + 4; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00450"></a>00450         <a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $fields_type[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> - 4];
-<a name="l00451"></a>00451         $fieldpopup = $fields_list[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> - 4];
+<a name="l00449"></a>00449     <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 4; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $fields_cnt + 4; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00450"></a>00450         <a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $fields_type[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> - 4];
+<a name="l00451"></a>00451         $fieldpopup = $fields_list[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> - 4];
 <a name="l00452"></a>00452         <a class="code" href="browse__foreigners_8php.html#abe1308495da4d98b6fa276b812237b8e">$foreignData</a> = <a class="code" href="relation_8lib_8php.html#a3d88adc7fba312fe26b3ef82225a5fdd" title="Gets foreign keys in preparation for a drop-down selector.">PMA_getForeignData</a>(<a class="code" href="browse__foreigners_8php.html#aebcbc7e00142ad61a2017201a6802493">$foreigners</a>, $fieldpopup, <span class="keyword">false</span>, <span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;&#39;</span>);
 <a name="l00453"></a>00453         ?&gt;
 <a name="l00454"></a>00454             &lt;tr <span class="keyword">class</span>=<span class="stringliteral">&quot;noclick &lt;?php echo $odd_row ? &#39;odd&#39; : &#39;even&#39;; $odd_row = ! $odd_row; ?&gt;&quot;</span>&gt;
-<a name="l00455"></a>00455               &lt;th&gt;&lt;?php echo htmlspecialchars($fields_list[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> - 4]); ?&gt;&lt;/th&gt;
-<a name="l00456"></a>00456               &lt;th&gt;&lt;?php echo ($fields_null[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> - 4] == <span class="stringliteral">&#39;YES&#39;</span>)
+<a name="l00455"></a>00455               &lt;th&gt;&lt;?php echo htmlspecialchars($fields_list[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> - 4]); ?&gt;&lt;/th&gt;
+<a name="l00456"></a>00456               &lt;th&gt;&lt;?php echo ($fields_null[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> - 4] == <span class="stringliteral">&#39;YES&#39;</span>)
 <a name="l00457"></a>00457                   ? <span class="stringliteral">&#39;&lt;input type=&quot;checkbox&quot; class=&quot;checkbox_null&quot; name=&quot;fields_null[ &#39;</span>
-<a name="l00458"></a>00458                       . <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> . <span class="stringliteral">&#39; ]&quot; id=&quot;fields_null_id_&#39;</span> . <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span>
+<a name="l00458"></a>00458                       . <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> . <span class="stringliteral">&#39; ]&quot; id=&quot;fields_null_id_&#39;</span> . <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> . <span class="stringliteral">&#39;&quot; /&gt;&#39;</span>
 <a name="l00459"></a>00459                   : <span class="stringliteral">&#39;&#39;</span>; ?&gt;
 <a name="l00460"></a>00460               &lt;/th&gt;
 <a name="l00461"></a>00461               &lt;th&gt; &lt;?php
 <a name="l00462"></a>00462               echo <a class="code" href="tbl__select_8lib_8php.html#ae7f5731d913fedd05b08fae1e999bcf5" title="Creates the HTML content for: 1) Browsing foreign data for a field.">PMA_getForeignFields_Values</a>(
 <a name="l00463"></a>00463                   <a class="code" href="browse__foreigners_8php.html#aebcbc7e00142ad61a2017201a6802493">$foreigners</a>, <a class="code" href="browse__foreigners_8php.html#abe1308495da4d98b6fa276b812237b8e">$foreignData</a>, $fieldpopup, <a class="code" href="tbl__zoom__select_8php.html#ac0cdb82e009da9bfd49373d1f6306e1c">$tbl_fields_type</a>,
-<a name="l00464"></a>00464                   <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>, <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, <a class="code" href="db__structure_8php.html#a26c001c5d5d900be2bebf55257d9cdfb">$titles</a>,
-<a name="l00465"></a>00465                   <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ForeignKeyMaxLimit&#39;</span>], <span class="stringliteral">&#39;&#39;</span>, <span class="keyword">false</span>, <span class="keyword">true</span>
+<a name="l00464"></a>00464                   <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>, <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, <a class="code" href="db__structure_8php.html#a26c001c5d5d900be2bebf55257d9cdfb">$titles</a>,
+<a name="l00465"></a>00465                   <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ForeignKeyMaxLimit&#39;</span>], <span class="stringliteral">&#39;&#39;</span>, <span class="keyword">false</span>, <span class="keyword">true</span>
 <a name="l00466"></a>00466               ); ?&gt;
 <a name="l00467"></a>00467               &lt;/th&gt;
 <a name="l00468"></a>00468             &lt;/tr&gt;
@@ -562,7 +562,7 @@
     <ul>
       <li class="navelem"><a class="el" href="tbl__zoom__select_8php.html">tbl_zoom_select.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:34 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

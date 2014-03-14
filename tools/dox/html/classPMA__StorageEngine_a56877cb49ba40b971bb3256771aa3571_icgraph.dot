@@ -1,0 +1,15 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_StorageEngine\\getStorageEngines",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_StorageEngine\\getHtmlSelect",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__StorageEngine.html#a08c8121bbf3edef90934bbe5ddc47b90",tooltip="returns HTML code for storage engine select box"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_StorageEngine\\isValid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__StorageEngine.html#a5b5ea60151153c8f94beb00dd96637ce",tooltip="return true if given engine name is supported/valid, otherwise false"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_User_Schema\\showCreatePageDialog",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__User__Schema.html#a72933f341a43de191ce7873d4409a30f",tooltip="shows/displays the HTML FORM to create the page"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_StorageEngine\\__construct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__StorageEngine.html#a25e76e5d16ff3d6289afc115b60f4edb",tooltip="Constructor."];
+}

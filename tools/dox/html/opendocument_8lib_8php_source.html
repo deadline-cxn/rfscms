@@ -92,7 +92,7 @@
 <a name="l00014"></a>00014 <span class="comment"> */</span>
 <a name="l00015"></a>00015 require_once <span class="stringliteral">&#39;./libraries/zip.lib.php&#39;</span>;
 <a name="l00016"></a>00016 
-<a name="l00017"></a><a class="code" href="opendocument_8lib_8php.html#a9519db0e593692893883f43094fdcdff">00017</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;OpenDocumentNS&#39;</span>] = <span class="stringliteral">&#39;xmlns:office=&quot;urn:oasis:names:tc:opendocument:xmlns:office:1.0&quot; &#39;</span>
+<a name="l00017"></a><a class="code" href="opendocument_8lib_8php.html#a9519db0e593692893883f43094fdcdff">00017</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;OpenDocumentNS&#39;</span>] = <span class="stringliteral">&#39;xmlns:office=&quot;urn:oasis:names:tc:opendocument:xmlns:office:1.0&quot; &#39;</span>
 <a name="l00018"></a>00018                 . <span class="stringliteral">&#39;xmlns:text=&quot;urn:oasis:names:tc:opendocument:xmlns:text:1.0&quot; &#39;</span>
 <a name="l00019"></a>00019                 . <span class="stringliteral">&#39;xmlns:table=&quot;urn:oasis:names:tc:opendocument:xmlns:table:1.0&quot; &#39;</span>
 <a name="l00020"></a>00020                 . <span class="stringliteral">&#39;xmlns:style=&quot;urn:oasis:names:tc:opendocument:xmlns:style:1.0&quot; &#39;</span>
@@ -108,11 +108,11 @@
 <a name="l00030"></a>00030 <span class="comment"> *</span>
 <a name="l00031"></a>00031 <span class="comment"> * @access  public</span>
 <a name="l00032"></a>00032 <span class="comment"> */</span>
-<a name="l00033"></a><a class="code" href="opendocument_8lib_8php.html#afe86699a6b62ca3bbd157e7a83bbee82">00033</a> <span class="keyword">function</span> <a class="code" href="opendocument_8lib_8php.html#afe86699a6b62ca3bbd157e7a83bbee82" title="Minimalistic creator of OASIS OpenDocument.">PMA_createOpenDocument</a>($mime, <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>)
+<a name="l00033"></a><a class="code" href="opendocument_8lib_8php.html#afe86699a6b62ca3bbd157e7a83bbee82">00033</a> <span class="keyword">function</span> <a class="code" href="opendocument_8lib_8php.html#afe86699a6b62ca3bbd157e7a83bbee82" title="Minimalistic creator of OASIS OpenDocument.">PMA_createOpenDocument</a>($mime, <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>)
 <a name="l00034"></a>00034 {
 <a name="l00035"></a>00035     $zipfile = <span class="keyword">new</span> <a class="code" href="classzipfile.html">zipfile</a>();
 <a name="l00036"></a>00036     $zipfile -&gt; addFile($mime, <span class="stringliteral">&#39;mimetype&#39;</span>);
-<a name="l00037"></a>00037     $zipfile -&gt; addFile(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>, <span class="stringliteral">&#39;content.xml&#39;</span>);
+<a name="l00037"></a>00037     $zipfile -&gt; addFile(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>, <span class="stringliteral">&#39;content.xml&#39;</span>);
 <a name="l00038"></a>00038     $zipfile -&gt; addFile(<span class="stringliteral">&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&#39;</span>. <span class="charliteral">&#39;&gt;&#39;</span>
 <a name="l00039"></a>00039         . <span class="stringliteral">&#39;&lt;office:document-meta &#39;</span>
 <a name="l00040"></a>00040             . <span class="stringliteral">&#39;xmlns:office=&quot;urn:oasis:names:tc:opendocument:xmlns:office:1.0&quot; &#39;</span>
@@ -126,7 +126,7 @@
 <a name="l00048"></a>00048         . <span class="stringliteral">&#39;&lt;/office:document-meta&gt;&#39;</span>,
 <a name="l00049"></a>00049         <span class="stringliteral">&#39;meta.xml&#39;</span>);
 <a name="l00050"></a>00050     $zipfile -&gt; addFile(<span class="stringliteral">&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&#39;</span> . <span class="charliteral">&#39;&gt;&#39;</span>
-<a name="l00051"></a>00051         . <span class="stringliteral">&#39;&lt;office:document-styles &#39;</span>. <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;OpenDocumentNS&#39;</span>] . <span class="stringliteral">&#39;office:version=&quot;1.0&quot;&gt;&#39;</span>
+<a name="l00051"></a>00051         . <span class="stringliteral">&#39;&lt;office:document-styles &#39;</span>. <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;OpenDocumentNS&#39;</span>] . <span class="stringliteral">&#39;office:version=&quot;1.0&quot;&gt;&#39;</span>
 <a name="l00052"></a>00052             . <span class="stringliteral">&#39;&lt;office:font-face-decls&gt;&#39;</span>
 <a name="l00053"></a>00053                 . <span class="stringliteral">&#39;&lt;style:font-face style:name=&quot;Arial Unicode MS&quot; svg:font-family=&quot;\&#39;Arial Unicode MS\&#39;&quot; style:font-pitch=&quot;variable&quot;/&gt;&#39;</span>
 <a name="l00054"></a>00054                 . <span class="stringliteral">&#39;&lt;style:font-face style:name=&quot;DejaVu Sans1&quot; svg:font-family=&quot;\&#39;DejaVu Sans\&#39;&quot; style:font-pitch=&quot;variable&quot;/&gt;&#39;</span>
@@ -186,7 +186,7 @@
     <ul>
       <li class="navelem"><a class="el" href="opendocument_8lib_8php.html">opendocument.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

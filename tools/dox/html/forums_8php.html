@@ -81,34 +81,498 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a03685c91865d18b5c1733b663517f4e3">forum_put_buttons</a> ($forum_which)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a7fcc2c4c04f4668e133f27920d0b565d">bumpthread</a> ($id)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>($action==&quot;forum_admin_on&quot;) <br class="typebreak"/>
-if($action==&quot;forum_admin_off&quot;) <br class="typebreak"/>
-if($_SESSION['forum_admin']==&quot;yes&quot;) <br class="typebreak"/>
-if($action==&quot;start_thread&quot;) if($action==&quot;start_thread_go&quot;)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a0a15652acdbe6cd9e66f10c7e1bc00e5">show1message</a> ($post, $gx)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#ac8164a4e69fcfd5fd6f74e279c7a7c65">get_thread</a> ($thread, $forum_which)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>(<a class="el" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">lib_rfs_bool_true</a>($_SESSION['forum_admin']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807">forums_buttons</a> ($forum_which)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a010f1b47d072e0127366fe8f141d7456">forums_bumpthread</a> ($id)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#aaee7644238e7c3fa70d5addf4cff02b0">forums_action_forum_admin_on</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a2e36605aa977c66f0d751f7dc7767e67">forums_action_forum_admin_off</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a96d6bfb47320f2268aa8c65ceb83bdac">forums_action_start_thread</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#aa8ada007e79d0b120803aa9e2c809648">forums_action_start_thread_go</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464">forums_get_message</a> ($post)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9">forums_action_get_thread</a> ($thread)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551">forums_action_move_thread</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a3295282c8b15e6078d2f970dc436ce3a">forums_action_delete_post_s</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#aeea53f4d544a0bf1564a0426c81d6b94">forums_action_delete_post</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a989a4cb9c05986e3111cf88c3dfbd395">forums_action_delete_reply_s</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce">forums_action_delete_reply</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#ae862a4a8db4eb1ea139ce130103da1f9">forums_action_edit_reply</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9">forums_action_edit_reply_go</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb">forums_action_reply_to_thread</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#ae929c2c8155000c8179e5fd0fe7984f8">forums_action_forum_list</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a66957d183225f049baf657fb5be6f10a">forums_action_forum_showposts</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a81e08637aedb9db0c1d3d7b819b3abc9">forums_action_</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a> = &quot;FORUMS&quot;</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#acb345f4415f930d198654f84233d785a">$thispage</a> = $_SERVER['PHP_SELF']</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#a082d0817db86737571268a66f2e75c2e">$RFS_LITTLE_HEADER</a> = true</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = str_replace(&quot;&lt;meta&quot;,&quot;(meta tags are unauthorized)&lt;no &quot;,$message)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>($action==&quot;move_thread&quot;) if($action==&quot;delete_post_s&quot;) <br class="typebreak"/>
-if($action==&quot;delete_post&quot;) if($action==&quot;delete_reply_s&quot;) <br class="typebreak"/>
-if($action==&quot;delete_reply&quot;) if($action==&quot;edit_reply&quot;) <br class="typebreak"/>
-if($action==&quot;edit_reply_go&quot;) <br class="typebreak"/>
-if($action==&quot;reply_to_thread&quot;) <br class="typebreak"/>
-if($action==&quot;get_thread&quot;) if($action==&quot;create_forum&quot;) <br class="typebreak"/>
-if($action==&quot;rename_forum&quot;) if($action==&quot;modify_forum&quot;) <br class="typebreak"/>
-if($forum_list==&quot;yes&quot;)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="forums_8php.html#ab3ac4c136bc1a5cf8111230c1f99cfb1">if</a> ($forum_showposts==&quot;yes&quot;)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a7fcc2c4c04f4668e133f27920d0b565d"></a><!-- doxytag: member="forums.php::bumpthread" ref="a7fcc2c4c04f4668e133f27920d0b565d" args="($id)" -->
+<a class="anchor" id="a81e08637aedb9db0c1d3d7b819b3abc9"></a><!-- doxytag: member="forums.php::forums_action_" ref="a81e08637aedb9db0c1d3d7b819b3abc9" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="forums_8php.html#a7fcc2c4c04f4668e133f27920d0b565d">bumpthread</a> </td>
+          <td class="memname"><a class="el" href="forums_8php.html#a81e08637aedb9db0c1d3d7b819b3abc9">forums_action_</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00605">605</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a81e08637aedb9db0c1d3d7b819b3abc9_cgraph.png" border="0" usemap="#forums_8php_a81e08637aedb9db0c1d3d7b819b3abc9_cgraph" alt=""/></div>
+<map name="forums_8php_a81e08637aedb9db0c1d3d7b819b3abc9_cgraph" id="forums_8php_a81e08637aedb9db0c1d3d7b819b3abc9_cgraph">
+<area shape="rect" id="node3" href="forums_8php.html#ae929c2c8155000c8179e5fd0fe7984f8" title="forums_action_forum_list" alt="" coords="165,126,333,155"/><area shape="rect" id="node5" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="787,21,917,50"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="593,99,708,129"/><area shape="rect" id="node15" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="396,49,521,78"/><area shape="rect" id="node20" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="585,153,716,182"/><area shape="rect" id="node24" href="lib_8themes_8php.html#a9d296032f7c1e351d7ffa8bb47557bac" title="lib_themes_get_image" alt="" coords="383,203,535,233"/><area shape="rect" id="node27" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="383,257,535,286"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="768,153,936,182"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="767,99,937,129"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="987,153,1160,182"/><area shape="rect" id="node17" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="584,46,717,75"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aeea53f4d544a0bf1564a0426c81d6b94"></a><!-- doxytag: member="forums.php::forums_action_delete_post" ref="aeea53f4d544a0bf1564a0426c81d6b94" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#aeea53f4d544a0bf1564a0426c81d6b94">forums_action_delete_post</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00236">236</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_aeea53f4d544a0bf1564a0426c81d6b94_cgraph.png" border="0" usemap="#forums_8php_aeea53f4d544a0bf1564a0426c81d6b94_cgraph" alt=""/></div>
+<map name="forums_8php_aeea53f4d544a0bf1564a0426c81d6b94_cgraph" id="forums_8php_aeea53f4d544a0bf1564a0426c81d6b94_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1099,95,1229,124"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="905,393,1020,423"/><area shape="rect" id="node13" href="lib_8forms_8php.html#a28847af0b09a9d3157d7854442125a23" title="lib_forms_warn" alt="" coords="729,43,839,72"/><area shape="rect" id="node16" href="forums_8php.html#a66957d183225f049baf657fb5be6f10a" title="forums_action_forum_showposts" alt="" coords="233,225,447,255"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1080,315,1248,344"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1079,393,1249,423"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1299,315,1472,344"/><area shape="rect" id="node20" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="528,145,640,175"/><area shape="rect" id="node23" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="721,249,847,279"/><area shape="rect" id="node28" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="897,301,1028,331"/><area shape="rect" id="node33" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="508,199,660,228"/><area shape="rect" id="node36" href="lib_8buttons_8php.html#a1d9732d30dcf85752f02efae7ef08381" title="lib_button_image_sizeable" alt="" coords="497,353,671,383"/><area shape="rect" id="node25" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="896,223,1029,252"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3295282c8b15e6078d2f970dc436ce3a"></a><!-- doxytag: member="forums.php::forums_action_delete_post_s" ref="a3295282c8b15e6078d2f970dc436ce3a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#a3295282c8b15e6078d2f970dc436ce3a">forums_action_delete_post_s</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00212">212</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a3295282c8b15e6078d2f970dc436ce3a_cgraph.png" border="0" usemap="#forums_8php_a3295282c8b15e6078d2f970dc436ce3a_cgraph" alt=""/></div>
+<map name="forums_8php_a3295282c8b15e6078d2f970dc436ce3a_cgraph" id="forums_8php_a3295282c8b15e6078d2f970dc436ce3a_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="915,104,1045,133"/><area shape="rect" id="node5" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="247,132,415,161"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="704,210,819,240"/><area shape="rect" id="node15" href="lib_8users_8php.html#ad1f6779cc4e5bd8c614f3379bae4bb17" title="lib_users_online" alt="" coords="489,105,604,134"/><area shape="rect" id="node24" href="lib_8users_8php.html#a6f1b106a84298a9caa86864937528348" title="lib_users_logged_in" alt="" coords="479,262,615,292"/><area shape="rect" id="node27" href="lib_8users_8php.html#ac4db6ecc75c60d11e6f442ff566a01bd" title="lib_users_logged_details" alt="" coords="465,158,628,188"/><area shape="rect" id="node30" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e" title="lib_rfs_get" alt="" coords="505,52,588,81"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="896,157,1064,186"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="895,210,1065,240"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1115,157,1288,186"/><area shape="rect" id="node17" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="696,157,827,186"/><area shape="rect" id="node20" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="695,104,828,133"/><area shape="rect" id="node32" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e" title="lib_domain_canonical_url" alt="" coords="679,50,844,80"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2a25a5d312840679729a85a6ee0d80ce"></a><!-- doxytag: member="forums.php::forums_action_delete_reply" ref="a2a25a5d312840679729a85a6ee0d80ce" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce">forums_action_delete_reply</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00265">265</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a2a25a5d312840679729a85a6ee0d80ce_cgraph.png" border="0" usemap="#forums_8php_a2a25a5d312840679729a85a6ee0d80ce_cgraph" alt=""/></div>
+<map name="forums_8php_a2a25a5d312840679729a85a6ee0d80ce_cgraph" id="forums_8php_a2a25a5d312840679729a85a6ee0d80ce_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1568,903,1699,932"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="1357,221,1472,251"/><area shape="rect" id="node13" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="236,513,407,543"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1549,367,1717,396"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1548,221,1719,251"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1768,367,1941,396"/><area shape="rect" id="node17" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="457,277,639,307"/><area shape="rect" id="node20" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="924,1035,1036,1064"/><area shape="rect" id="node32" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="475,513,621,543"/><area shape="rect" id="node23" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="1137,563,1263,592"/><area shape="rect" id="node25" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="1348,405,1481,435"/><area shape="rect" id="node28" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="1349,459,1480,488"/><area shape="rect" id="node38" href="lib_8users_8php.html#a9c800a89cc853ea81bba02c8e383c5b2" title="lib_users_avatar_code" alt="" coords="1124,851,1276,880"/><area shape="rect" id="node46" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="896,248,1064,277"/><area shape="rect" id="node65" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="732,744,799,773"/><area shape="rect" id="node77" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="1141,509,1259,539"/><area shape="rect" id="node83" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="689,461,841,491"/><area shape="rect" id="node42" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987" title="lib_file_getfiletype" alt="" coords="1352,797,1477,827"/><area shape="rect" id="node44" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74" title="lib_flash_embed_code" alt="" coords="1340,851,1489,880"/><area shape="rect" id="node49" href="lib_8users_8php.html#ad1f6779cc4e5bd8c614f3379bae4bb17" title="lib_users_online" alt="" coords="1143,405,1257,435"/><area shape="rect" id="node54" href="lib_8users_8php.html#a6f1b106a84298a9caa86864937528348" title="lib_users_logged_in" alt="" coords="1132,195,1268,224"/><area shape="rect" id="node57" href="lib_8users_8php.html#ac4db6ecc75c60d11e6f442ff566a01bd" title="lib_users_logged_details" alt="" coords="1119,248,1281,277"/><area shape="rect" id="node60" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e" title="lib_rfs_get" alt="" coords="1159,352,1241,381"/><area shape="rect" id="node62" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e" title="lib_domain_canonical_url" alt="" coords="1332,352,1497,381"/><area shape="rect" id="node68" href="lib_8string_8php.html#aa5ce68a57f018fd70c016653250f6b7f" title="lib_string_get_twitter_code" alt="" coords="892,771,1068,800"/><area shape="rect" id="node70" href="lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="895,824,1065,853"/><area shape="rect" id="node72" href="lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="903,877,1057,907"/><area shape="rect" id="node74" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="948,512,1012,541"/><area shape="rect" id="node79" href="lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="905,931,1055,960"/><area shape="rect" id="node81" href="lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="908,717,1052,747"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a989a4cb9c05986e3111cf88c3dfbd395"></a><!-- doxytag: member="forums.php::forums_action_delete_reply_s" ref="a989a4cb9c05986e3111cf88c3dfbd395" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#a989a4cb9c05986e3111cf88c3dfbd395">forums_action_delete_reply_s</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00246">246</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a989a4cb9c05986e3111cf88c3dfbd395_cgraph.png" border="0" usemap="#forums_8php_a989a4cb9c05986e3111cf88c3dfbd395_cgraph" alt=""/></div>
+<map name="forums_8php_a989a4cb9c05986e3111cf88c3dfbd395_cgraph" id="forums_8php_a989a4cb9c05986e3111cf88c3dfbd395_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="248,5,379,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae862a4a8db4eb1ea139ce130103da1f9"></a><!-- doxytag: member="forums.php::forums_action_edit_reply" ref="ae862a4a8db4eb1ea139ce130103da1f9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#ae862a4a8db4eb1ea139ce130103da1f9">forums_action_edit_reply</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00274">274</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_ae862a4a8db4eb1ea139ce130103da1f9_cgraph.png" border="0" usemap="#forums_8php_ae862a4a8db4eb1ea139ce130103da1f9_cgraph" alt=""/></div>
+<map name="forums_8php_ae862a4a8db4eb1ea139ce130103da1f9_cgraph" id="forums_8php_ae862a4a8db4eb1ea139ce130103da1f9_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="221,5,352,35"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="229,59,344,88"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="403,32,571,61"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="401,85,572,115"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="621,32,795,61"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aec29ea6e894609f44c1f9c3e2f048df9"></a><!-- doxytag: member="forums.php::forums_action_edit_reply_go" ref="aec29ea6e894609f44c1f9c3e2f048df9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9">forums_action_edit_reply_go</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00299">299</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_aec29ea6e894609f44c1f9c3e2f048df9_cgraph.png" border="0" usemap="#forums_8php_aec29ea6e894609f44c1f9c3e2f048df9_cgraph" alt=""/></div>
+<map name="forums_8php_aec29ea6e894609f44c1f9c3e2f048df9_cgraph" id="forums_8php_aec29ea6e894609f44c1f9c3e2f048df9_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1576,903,1707,932"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="1365,221,1480,251"/><area shape="rect" id="node13" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="244,513,415,543"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1557,367,1725,396"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1556,221,1727,251"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1776,367,1949,396"/><area shape="rect" id="node17" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="465,277,647,307"/><area shape="rect" id="node20" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="932,1035,1044,1064"/><area shape="rect" id="node32" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="483,513,629,543"/><area shape="rect" id="node23" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="1145,563,1271,592"/><area shape="rect" id="node25" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="1356,405,1489,435"/><area shape="rect" id="node28" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="1357,459,1488,488"/><area shape="rect" id="node38" href="lib_8users_8php.html#a9c800a89cc853ea81bba02c8e383c5b2" title="lib_users_avatar_code" alt="" coords="1132,851,1284,880"/><area shape="rect" id="node46" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="904,248,1072,277"/><area shape="rect" id="node65" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="740,744,807,773"/><area shape="rect" id="node77" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="1149,509,1267,539"/><area shape="rect" id="node83" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="697,461,849,491"/><area shape="rect" id="node42" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987" title="lib_file_getfiletype" alt="" coords="1360,797,1485,827"/><area shape="rect" id="node44" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74" title="lib_flash_embed_code" alt="" coords="1348,851,1497,880"/><area shape="rect" id="node49" href="lib_8users_8php.html#ad1f6779cc4e5bd8c614f3379bae4bb17" title="lib_users_online" alt="" coords="1151,405,1265,435"/><area shape="rect" id="node54" href="lib_8users_8php.html#a6f1b106a84298a9caa86864937528348" title="lib_users_logged_in" alt="" coords="1140,195,1276,224"/><area shape="rect" id="node57" href="lib_8users_8php.html#ac4db6ecc75c60d11e6f442ff566a01bd" title="lib_users_logged_details" alt="" coords="1127,248,1289,277"/><area shape="rect" id="node60" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e" title="lib_rfs_get" alt="" coords="1167,352,1249,381"/><area shape="rect" id="node62" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e" title="lib_domain_canonical_url" alt="" coords="1340,352,1505,381"/><area shape="rect" id="node68" href="lib_8string_8php.html#aa5ce68a57f018fd70c016653250f6b7f" title="lib_string_get_twitter_code" alt="" coords="900,771,1076,800"/><area shape="rect" id="node70" href="lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="903,824,1073,853"/><area shape="rect" id="node72" href="lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="911,877,1065,907"/><area shape="rect" id="node74" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="956,512,1020,541"/><area shape="rect" id="node79" href="lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="913,931,1063,960"/><area shape="rect" id="node81" href="lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="916,717,1060,747"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2e36605aa977c66f0d751f7dc7767e67"></a><!-- doxytag: member="forums.php::forums_action_forum_admin_off" ref="a2e36605aa977c66f0d751f7dc7767e67" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#a2e36605aa977c66f0d751f7dc7767e67">forums_action_forum_admin_off</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00035">35</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a2e36605aa977c66f0d751f7dc7767e67_cgraph.png" border="0" usemap="#forums_8php_a2e36605aa977c66f0d751f7dc7767e67_cgraph" alt=""/></div>
+<map name="forums_8php_a2e36605aa977c66f0d751f7dc7767e67_cgraph" id="forums_8php_a2e36605aa977c66f0d751f7dc7767e67_cgraph">
+<area shape="rect" id="node3" href="forums_8php.html#a66957d183225f049baf657fb5be6f10a" title="forums_action_forum_showposts" alt="" coords="263,159,476,189"/><area shape="rect" id="node5" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1128,54,1259,83"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="935,159,1049,189"/><area shape="rect" id="node15" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="557,57,669,86"/><area shape="rect" id="node18" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="751,107,876,137"/><area shape="rect" id="node23" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="927,213,1057,242"/><area shape="rect" id="node28" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="537,262,689,291"/><area shape="rect" id="node31" href="lib_8buttons_8php.html#a1d9732d30dcf85752f02efae7ef08381" title="lib_button_image_sizeable" alt="" coords="527,315,700,345"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1109,213,1277,242"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1108,159,1279,189"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1328,213,1501,242"/><area shape="rect" id="node20" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="925,106,1059,135"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aaee7644238e7c3fa70d5addf4cff02b0"></a><!-- doxytag: member="forums.php::forums_action_forum_admin_on" ref="aaee7644238e7c3fa70d5addf4cff02b0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#aaee7644238e7c3fa70d5addf4cff02b0">forums_action_forum_admin_on</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00034">34</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_aaee7644238e7c3fa70d5addf4cff02b0_cgraph.png" border="0" usemap="#forums_8php_aaee7644238e7c3fa70d5addf4cff02b0_cgraph" alt=""/></div>
+<map name="forums_8php_aaee7644238e7c3fa70d5addf4cff02b0_cgraph" id="forums_8php_aaee7644238e7c3fa70d5addf4cff02b0_cgraph">
+<area shape="rect" id="node3" href="forums_8php.html#a66957d183225f049baf657fb5be6f10a" title="forums_action_forum_showposts" alt="" coords="263,159,476,189"/><area shape="rect" id="node5" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1128,54,1259,83"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="935,159,1049,189"/><area shape="rect" id="node15" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="557,57,669,86"/><area shape="rect" id="node18" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="751,107,876,137"/><area shape="rect" id="node23" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="927,213,1057,242"/><area shape="rect" id="node28" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="537,262,689,291"/><area shape="rect" id="node31" href="lib_8buttons_8php.html#a1d9732d30dcf85752f02efae7ef08381" title="lib_button_image_sizeable" alt="" coords="527,315,700,345"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1109,213,1277,242"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1108,159,1279,189"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1328,213,1501,242"/><area shape="rect" id="node20" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="925,106,1059,135"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae929c2c8155000c8179e5fd0fe7984f8"></a><!-- doxytag: member="forums.php::forums_action_forum_list" ref="ae929c2c8155000c8179e5fd0fe7984f8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#ae929c2c8155000c8179e5fd0fe7984f8">forums_action_forum_list</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00335">335</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_ae929c2c8155000c8179e5fd0fe7984f8_cgraph.png" border="0" usemap="#forums_8php_ae929c2c8155000c8179e5fd0fe7984f8_cgraph" alt=""/></div>
+<map name="forums_8php_ae929c2c8155000c8179e5fd0fe7984f8_cgraph" id="forums_8php_ae929c2c8155000c8179e5fd0fe7984f8_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="627,21,757,50"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="433,99,548,129"/><area shape="rect" id="node13" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="236,49,361,78"/><area shape="rect" id="node18" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="425,153,556,182"/><area shape="rect" id="node22" href="lib_8themes_8php.html#a9d296032f7c1e351d7ffa8bb47557bac" title="lib_themes_get_image" alt="" coords="223,203,375,233"/><area shape="rect" id="node25" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="223,257,375,286"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="608,153,776,182"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="607,99,777,129"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="827,153,1000,182"/><area shape="rect" id="node15" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="424,46,557,75"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_ae929c2c8155000c8179e5fd0fe7984f8_icgraph.png" border="0" usemap="#forums_8php_ae929c2c8155000c8179e5fd0fe7984f8_icgraph" alt=""/></div>
+<map name="forums_8php_ae929c2c8155000c8179e5fd0fe7984f8_icgraph" id="forums_8php_ae929c2c8155000c8179e5fd0fe7984f8_icgraph">
+<area shape="rect" id="node3" href="forums_8php.html#a81e08637aedb9db0c1d3d7b819b3abc9" title="forums_action_" alt="" coords="223,5,332,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a66957d183225f049baf657fb5be6f10a"></a><!-- doxytag: member="forums.php::forums_action_forum_showposts" ref="a66957d183225f049baf657fb5be6f10a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#a66957d183225f049baf657fb5be6f10a">forums_action_forum_showposts</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00464">464</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a66957d183225f049baf657fb5be6f10a_cgraph.png" border="0" usemap="#forums_8php_a66957d183225f049baf657fb5be6f10a_cgraph" alt=""/></div>
+<map name="forums_8php_a66957d183225f049baf657fb5be6f10a_cgraph" id="forums_8php_a66957d183225f049baf657fb5be6f10a_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="872,54,1003,83"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="679,159,793,189"/><area shape="rect" id="node13" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="301,57,413,86"/><area shape="rect" id="node16" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="495,107,620,137"/><area shape="rect" id="node21" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="671,213,801,242"/><area shape="rect" id="node26" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="281,262,433,291"/><area shape="rect" id="node29" href="lib_8buttons_8php.html#a1d9732d30dcf85752f02efae7ef08381" title="lib_button_image_sizeable" alt="" coords="271,315,444,345"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="853,213,1021,242"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="852,159,1023,189"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1072,213,1245,242"/><area shape="rect" id="node18" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="669,106,803,135"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a66957d183225f049baf657fb5be6f10a_icgraph.png" border="0" usemap="#forums_8php_a66957d183225f049baf657fb5be6f10a_icgraph" alt=""/></div>
+<map name="forums_8php_a66957d183225f049baf657fb5be6f10a_icgraph" id="forums_8php_a66957d183225f049baf657fb5be6f10a_icgraph">
+<area shape="rect" id="node3" href="forums_8php.html#aaee7644238e7c3fa70d5addf4cff02b0" title="forums_action_forum_admin_on" alt="" coords="271,5,476,35"/><area shape="rect" id="node5" href="forums_8php.html#a2e36605aa977c66f0d751f7dc7767e67" title="forums_action_forum_admin_off" alt="" coords="269,59,477,88"/><area shape="rect" id="node7" href="forums_8php.html#aeea53f4d544a0bf1564a0426c81d6b94" title="forums_action_delete_post" alt="" coords="284,112,463,141"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="adf5c1f56475c06fd39e098d3367438f9"></a><!-- doxytag: member="forums.php::forums_action_get_thread" ref="adf5c1f56475c06fd39e098d3367438f9" args="($thread)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9">forums_action_get_thread</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00148">148</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_adf5c1f56475c06fd39e098d3367438f9_cgraph.png" border="0" usemap="#forums_8php_adf5c1f56475c06fd39e098d3367438f9_cgraph" alt=""/></div>
+<map name="forums_8php_adf5c1f56475c06fd39e098d3367438f9_cgraph" id="forums_8php_adf5c1f56475c06fd39e098d3367438f9_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1339,171,1469,200"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="1128,797,1243,827"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="228,1005,409,1035"/><area shape="rect" id="node16" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="695,147,807,176"/><area shape="rect" id="node28" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="245,668,392,697"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1320,639,1488,668"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1319,797,1489,827"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1539,639,1712,668"/><area shape="rect" id="node19" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="908,533,1033,563"/><area shape="rect" id="node21" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="1119,613,1252,643"/><area shape="rect" id="node24" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="1120,533,1251,563"/><area shape="rect" id="node34" href="lib_8users_8php.html#a9c800a89cc853ea81bba02c8e383c5b2" title="lib_users_avatar_code" alt="" coords="895,197,1047,227"/><area shape="rect" id="node42" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="667,824,835,853"/><area shape="rect" id="node61" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="503,536,569,565"/><area shape="rect" id="node73" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="912,587,1029,616"/><area shape="rect" id="node79" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="460,720,612,749"/><area shape="rect" id="node38" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987" title="lib_file_getfiletype" alt="" coords="1123,144,1248,173"/><area shape="rect" id="node40" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74" title="lib_flash_embed_code" alt="" coords="1111,197,1260,227"/><area shape="rect" id="node45" href="lib_8users_8php.html#ad1f6779cc4e5bd8c614f3379bae4bb17" title="lib_users_online" alt="" coords="913,640,1028,669"/><area shape="rect" id="node50" href="lib_8users_8php.html#a6f1b106a84298a9caa86864937528348" title="lib_users_logged_in" alt="" coords="903,851,1039,880"/><area shape="rect" id="node53" href="lib_8users_8php.html#ac4db6ecc75c60d11e6f442ff566a01bd" title="lib_users_logged_details" alt="" coords="889,797,1052,827"/><area shape="rect" id="node56" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e" title="lib_rfs_get" alt="" coords="929,693,1012,723"/><area shape="rect" id="node58" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e" title="lib_domain_canonical_url" alt="" coords="1103,693,1268,723"/><area shape="rect" id="node64" href="lib_8string_8php.html#aa5ce68a57f018fd70c016653250f6b7f" title="lib_string_get_twitter_code" alt="" coords="663,563,839,592"/><area shape="rect" id="node66" href="lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="665,616,836,645"/><area shape="rect" id="node68" href="lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="673,403,828,432"/><area shape="rect" id="node70" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="719,669,783,699"/><area shape="rect" id="node75" href="lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="676,456,825,485"/><area shape="rect" id="node77" href="lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="679,509,823,539"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_adf5c1f56475c06fd39e098d3367438f9_icgraph.png" border="0" usemap="#forums_8php_adf5c1f56475c06fd39e098d3367438f9_icgraph" alt=""/></div>
+<map name="forums_8php_adf5c1f56475c06fd39e098d3367438f9_icgraph" id="forums_8php_adf5c1f56475c06fd39e098d3367438f9_icgraph">
+<area shape="rect" id="node3" href="forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="228,5,428,35"/><area shape="rect" id="node5" href="forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551" title="forums_action_move_thread" alt="" coords="235,59,421,88"/><area shape="rect" id="node7" href="forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce" title="forums_action_delete_reply" alt="" coords="237,112,419,141"/><area shape="rect" id="node9" href="forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9" title="forums_action_edit_reply_go" alt="" coords="235,165,421,195"/><area shape="rect" id="node11" href="forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="228,219,428,248"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a5daa316c12c9bcf99c4204e8b339c551"></a><!-- doxytag: member="forums.php::forums_action_move_thread" ref="a5daa316c12c9bcf99c4204e8b339c551" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551">forums_action_move_thread</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00202">202</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a5daa316c12c9bcf99c4204e8b339c551_cgraph.png" border="0" usemap="#forums_8php_a5daa316c12c9bcf99c4204e8b339c551_cgraph" alt=""/></div>
+<map name="forums_8php_a5daa316c12c9bcf99c4204e8b339c551_cgraph" id="forums_8php_a5daa316c12c9bcf99c4204e8b339c551_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1573,143,1704,172"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="1363,955,1477,984"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="463,1184,644,1213"/><area shape="rect" id="node16" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="241,927,412,956"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1555,796,1723,825"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1553,955,1724,984"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1773,796,1947,825"/><area shape="rect" id="node21" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="929,197,1041,227"/><area shape="rect" id="node33" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="480,747,627,776"/><area shape="rect" id="node24" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="1143,611,1268,640"/><area shape="rect" id="node26" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="1353,768,1487,797"/><area shape="rect" id="node29" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="1355,715,1485,744"/><area shape="rect" id="node39" href="lib_8users_8php.html#a9c800a89cc853ea81bba02c8e383c5b2" title="lib_users_avatar_code" alt="" coords="1129,248,1281,277"/><area shape="rect" id="node47" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="901,875,1069,904"/><area shape="rect" id="node66" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="737,536,804,565"/><area shape="rect" id="node78" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="1147,664,1264,693"/><area shape="rect" id="node84" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="695,720,847,749"/><area shape="rect" id="node43" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987" title="lib_file_getfiletype" alt="" coords="1357,195,1483,224"/><area shape="rect" id="node45" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74" title="lib_flash_embed_code" alt="" coords="1345,248,1495,277"/><area shape="rect" id="node50" href="lib_8users_8php.html#ad1f6779cc4e5bd8c614f3379bae4bb17" title="lib_users_online" alt="" coords="1148,768,1263,797"/><area shape="rect" id="node55" href="lib_8users_8php.html#a6f1b106a84298a9caa86864937528348" title="lib_users_logged_in" alt="" coords="1137,875,1273,904"/><area shape="rect" id="node58" href="lib_8users_8php.html#ac4db6ecc75c60d11e6f442ff566a01bd" title="lib_users_logged_details" alt="" coords="1124,928,1287,957"/><area shape="rect" id="node61" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e" title="lib_rfs_get" alt="" coords="1164,821,1247,851"/><area shape="rect" id="node63" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e" title="lib_domain_canonical_url" alt="" coords="1337,821,1503,851"/><area shape="rect" id="node69" href="lib_8string_8php.html#aa5ce68a57f018fd70c016653250f6b7f" title="lib_string_get_twitter_code" alt="" coords="897,456,1073,485"/><area shape="rect" id="node71" href="lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="900,509,1071,539"/><area shape="rect" id="node73" href="lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="908,563,1063,592"/><area shape="rect" id="node75" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="953,669,1017,699"/><area shape="rect" id="node80" href="lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="911,616,1060,645"/><area shape="rect" id="node82" href="lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="913,403,1057,432"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab32eb279f361a115e580e3cedffdc6bb"></a><!-- doxytag: member="forums.php::forums_action_reply_to_thread" ref="ab32eb279f361a115e580e3cedffdc6bb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb">forums_action_reply_to_thread</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00311">311</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_ab32eb279f361a115e580e3cedffdc6bb_cgraph.png" border="0" usemap="#forums_8php_ab32eb279f361a115e580e3cedffdc6bb_cgraph" alt=""/></div>
+<map name="forums_8php_ab32eb279f361a115e580e3cedffdc6bb_cgraph" id="forums_8php_ab32eb279f361a115e580e3cedffdc6bb_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1579,170,1709,200"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="1368,874,1483,904"/><area shape="rect" id="node13" href="forums_8php.html#a010f1b47d072e0127366fe8f141d7456" title="forums_bumpthread" alt="" coords="272,1133,408,1162"/><area shape="rect" id="node16" href="lib_8log_8php.html#a32ae1cfe8fbc148f91d705ef1237aac2" title="lib_log_add_entry" alt="" coords="487,44,609,73"/><area shape="rect" id="node19" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="255,721,425,750"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1560,689,1728,718"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1559,874,1729,904"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1779,689,1952,718"/><area shape="rect" id="node23" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="671,1029,852,1058"/><area shape="rect" id="node26" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="935,146,1047,176"/><area shape="rect" id="node38" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="475,721,621,750"/><area shape="rect" id="node29" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="1148,557,1273,586"/><area shape="rect" id="node31" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="1359,637,1492,666"/><area shape="rect" id="node34" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="1360,557,1491,586"/><area shape="rect" id="node44" href="lib_8users_8php.html#a9c800a89cc853ea81bba02c8e383c5b2" title="lib_users_avatar_code" alt="" coords="1135,249,1287,278"/><area shape="rect" id="node52" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="907,824,1075,853"/><area shape="rect" id="node71" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="728,536,795,565"/><area shape="rect" id="node83" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="1152,610,1269,640"/><area shape="rect" id="node89" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="685,824,837,853"/><area shape="rect" id="node48" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987" title="lib_file_getfiletype" alt="" coords="1363,352,1488,381"/><area shape="rect" id="node50" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74" title="lib_flash_embed_code" alt="" coords="1351,298,1500,328"/><area shape="rect" id="node55" href="lib_8users_8php.html#ad1f6779cc4e5bd8c614f3379bae4bb17" title="lib_users_online" alt="" coords="1153,664,1268,693"/><area shape="rect" id="node60" href="lib_8users_8php.html#a6f1b106a84298a9caa86864937528348" title="lib_users_logged_in" alt="" coords="1143,874,1279,904"/><area shape="rect" id="node63" href="lib_8users_8php.html#ac4db6ecc75c60d11e6f442ff566a01bd" title="lib_users_logged_details" alt="" coords="1129,770,1292,800"/><area shape="rect" id="node66" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e" title="lib_rfs_get" alt="" coords="1169,717,1252,746"/><area shape="rect" id="node68" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e" title="lib_domain_canonical_url" alt="" coords="1343,717,1508,746"/><area shape="rect" id="node74" href="lib_8string_8php.html#aa5ce68a57f018fd70c016653250f6b7f" title="lib_string_get_twitter_code" alt="" coords="903,456,1079,485"/><area shape="rect" id="node76" href="lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="905,509,1076,538"/><area shape="rect" id="node78" href="lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="913,562,1068,592"/><area shape="rect" id="node80" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="959,669,1023,698"/><area shape="rect" id="node85" href="lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="916,616,1065,645"/><area shape="rect" id="node87" href="lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="919,402,1063,432"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a96d6bfb47320f2268aa8c65ceb83bdac"></a><!-- doxytag: member="forums.php::forums_action_start_thread" ref="a96d6bfb47320f2268aa8c65ceb83bdac" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#a96d6bfb47320f2268aa8c65ceb83bdac">forums_action_start_thread</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00036">36</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a96d6bfb47320f2268aa8c65ceb83bdac_cgraph.png" border="0" usemap="#forums_8php_a96d6bfb47320f2268aa8c65ceb83bdac_cgraph" alt=""/></div>
+<map name="forums_8php_a96d6bfb47320f2268aa8c65ceb83bdac_cgraph" id="forums_8php_a96d6bfb47320f2268aa8c65ceb83bdac_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="773,5,904,35"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="580,164,695,193"/><area shape="rect" id="node13" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="235,45,347,75"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="755,111,923,140"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="753,164,924,193"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="973,111,1147,140"/><area shape="rect" id="node16" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="396,84,521,113"/><area shape="rect" id="node18" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="571,57,704,87"/><area shape="rect" id="node21" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="572,111,703,140"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa8ada007e79d0b120803aa9e2c809648"></a><!-- doxytag: member="forums.php::forums_action_start_thread_go" ref="aa8ada007e79d0b120803aa9e2c809648" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#aa8ada007e79d0b120803aa9e2c809648">forums_action_start_thread_go</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00071">71</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_aa8ada007e79d0b120803aa9e2c809648_cgraph.png" border="0" usemap="#forums_8php_aa8ada007e79d0b120803aa9e2c809648_cgraph" alt=""/></div>
+<map name="forums_8php_aa8ada007e79d0b120803aa9e2c809648_cgraph" id="forums_8php_aa8ada007e79d0b120803aa9e2c809648_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1581,170,1712,200"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="1371,874,1485,904"/><area shape="rect" id="node13" href="forums_8php.html#a010f1b47d072e0127366fe8f141d7456" title="forums_bumpthread" alt="" coords="275,1133,411,1162"/><area shape="rect" id="node16" href="lib_8log_8php.html#a32ae1cfe8fbc148f91d705ef1237aac2" title="lib_log_add_entry" alt="" coords="489,44,612,73"/><area shape="rect" id="node19" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="257,721,428,750"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1563,689,1731,718"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1561,874,1732,904"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1781,689,1955,718"/><area shape="rect" id="node23" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="673,1029,855,1058"/><area shape="rect" id="node26" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807" title="forums_buttons" alt="" coords="937,146,1049,176"/><area shape="rect" id="node38" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="477,721,624,750"/><area shape="rect" id="node29" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="1151,557,1276,586"/><area shape="rect" id="node31" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="1361,637,1495,666"/><area shape="rect" id="node34" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="1363,557,1493,586"/><area shape="rect" id="node44" href="lib_8users_8php.html#a9c800a89cc853ea81bba02c8e383c5b2" title="lib_users_avatar_code" alt="" coords="1137,249,1289,278"/><area shape="rect" id="node52" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="909,824,1077,853"/><area shape="rect" id="node71" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="731,536,797,565"/><area shape="rect" id="node83" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="1155,610,1272,640"/><area shape="rect" id="node89" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="688,824,840,853"/><area shape="rect" id="node48" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987" title="lib_file_getfiletype" alt="" coords="1365,352,1491,381"/><area shape="rect" id="node50" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74" title="lib_flash_embed_code" alt="" coords="1353,298,1503,328"/><area shape="rect" id="node55" href="lib_8users_8php.html#ad1f6779cc4e5bd8c614f3379bae4bb17" title="lib_users_online" alt="" coords="1156,664,1271,693"/><area shape="rect" id="node60" href="lib_8users_8php.html#a6f1b106a84298a9caa86864937528348" title="lib_users_logged_in" alt="" coords="1145,874,1281,904"/><area shape="rect" id="node63" href="lib_8users_8php.html#ac4db6ecc75c60d11e6f442ff566a01bd" title="lib_users_logged_details" alt="" coords="1132,770,1295,800"/><area shape="rect" id="node66" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e" title="lib_rfs_get" alt="" coords="1172,717,1255,746"/><area shape="rect" id="node68" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e" title="lib_domain_canonical_url" alt="" coords="1345,717,1511,746"/><area shape="rect" id="node74" href="lib_8string_8php.html#aa5ce68a57f018fd70c016653250f6b7f" title="lib_string_get_twitter_code" alt="" coords="905,456,1081,485"/><area shape="rect" id="node76" href="lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="908,509,1079,538"/><area shape="rect" id="node78" href="lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="916,562,1071,592"/><area shape="rect" id="node80" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="961,669,1025,698"/><area shape="rect" id="node85" href="lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="919,616,1068,645"/><area shape="rect" id="node87" href="lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="921,402,1065,432"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a010f1b47d072e0127366fe8f141d7456"></a><!-- doxytag: member="forums.php::forums_bumpthread" ref="a010f1b47d072e0127366fe8f141d7456" args="($id)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#a010f1b47d072e0127366fe8f141d7456">forums_bumpthread</a> </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
@@ -123,20 +587,29 @@ if($forum_list==&quot;yes&quot;)&#160;</td><td class="memItemRight" valign="bott
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="forums_8php_a7fcc2c4c04f4668e133f27920d0b565d_cgraph.png" border="0" usemap="#forums_8php_a7fcc2c4c04f4668e133f27920d0b565d_cgraph" alt=""/></div>
-<map name="forums_8php_a7fcc2c4c04f4668e133f27920d0b565d_cgraph" id="forums_8php_a7fcc2c4c04f4668e133f27920d0b565d_cgraph">
-<area shape="rect" id="node3" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="144,32,219,61"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="267,5,395,35"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="309,59,352,88"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="444,5,575,35"/></map>
+<div class="center"><img src="forums_8php_a010f1b47d072e0127366fe8f141d7456_cgraph.png" border="0" usemap="#forums_8php_a010f1b47d072e0127366fe8f141d7456_cgraph" alt=""/></div>
+<map name="forums_8php_a010f1b47d072e0127366fe8f141d7456_cgraph" id="forums_8php_a010f1b47d072e0127366fe8f141d7456_cgraph">
+<area shape="rect" id="node3" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="193,32,308,61"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="360,5,528,35"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="359,59,529,88"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="579,5,752,35"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_a010f1b47d072e0127366fe8f141d7456_icgraph.png" border="0" usemap="#forums_8php_a010f1b47d072e0127366fe8f141d7456_icgraph" alt=""/></div>
+<map name="forums_8php_a010f1b47d072e0127366fe8f141d7456_icgraph" id="forums_8php_a010f1b47d072e0127366fe8f141d7456_icgraph">
+<area shape="rect" id="node3" href="forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="193,5,393,35"/><area shape="rect" id="node5" href="forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="193,59,393,88"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a03685c91865d18b5c1733b663517f4e3"></a><!-- doxytag: member="forums.php::forum_put_buttons" ref="a03685c91865d18b5c1733b663517f4e3" args="($forum_which)" -->
+<a class="anchor" id="a45a2eac2a3a7fce17cf40eebc3185807"></a><!-- doxytag: member="forums.php::forums_buttons" ref="a45a2eac2a3a7fce17cf40eebc3185807" args="($forum_which)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="forums_8php.html#a03685c91865d18b5c1733b663517f4e3">forum_put_buttons</a> </td>
+          <td class="memname"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a> (<a class="el" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">lib_rfs_bool_true</a>($_SESSION['forum_admin'])) <a class="el" href="forums_8php.html#a45a2eac2a3a7fce17cf40eebc3185807">forums_buttons</a> </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>forum_which</em></td><td>)</td>
@@ -146,99 +619,60 @@ Here is the call graph for this function:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="forums_8php_source.html#l00006">6</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00018">18</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="forums_8php_a03685c91865d18b5c1733b663517f4e3_cgraph.png" border="0" usemap="#forums_8php_a03685c91865d18b5c1733b663517f4e3_cgraph" alt=""/></div>
-<map name="forums_8php_a03685c91865d18b5c1733b663517f4e3_cgraph" id="forums_8php_a03685c91865d18b5c1733b663517f4e3_cgraph">
-<area shape="rect" id="node3" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="184,5,227,35"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ac8164a4e69fcfd5fd6f74e279c7a7c65"></a><!-- doxytag: member="forums.php::get_thread" ref="ac8164a4e69fcfd5fd6f74e279c7a7c65" args="($thread, $forum_which)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="forums_8php.html#ac8164a4e69fcfd5fd6f74e279c7a7c65">get_thread</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>thread</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>forum_which</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="forums_8php_source.html#l00179">179</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="forums_8php_ac8164a4e69fcfd5fd6f74e279c7a7c65_cgraph.png" border="0" usemap="#forums_8php_ac8164a4e69fcfd5fd6f74e279c7a7c65_cgraph" alt=""/></div>
-<map name="forums_8php_ac8164a4e69fcfd5fd6f74e279c7a7c65_cgraph" id="forums_8php_ac8164a4e69fcfd5fd6f74e279c7a7c65_cgraph">
-<area shape="rect" id="node3" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="851,67,893,97"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="664,410,739,439"/><area shape="rect" id="node13" href="forums_8php.html#a0a15652acdbe6cd9e66f10c7e1bc00e5" title="show1message" alt="" coords="137,174,249,203"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="808,303,936,333"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="851,410,893,439"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="985,303,1116,333"/><area shape="rect" id="node16" href="lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923" title="sc_getuserdata" alt="" coords="647,251,756,281"/><area shape="rect" id="node20" href="lib_8mysql_8php.html#ab43f9376fcf831592e4af8d77aaafcb8" title="sc_useravatar" alt="" coords="299,147,403,177"/><area shape="rect" id="node30" href="lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd" title="smiles" alt="" coords="321,331,380,361"/><area shape="rect" id="node48" href="lib_8rfs_8php.html#afbb1b36be3cc698e2954eeee58a3c944" title="sc_time" alt="" coords="317,94,384,123"/><area shape="rect" id="node22" href="lib_8mysql_8php.html#a98041b6609bb91e2d8c3f60c7a868ac8" title="sc_getuseravatar" alt="" coords="461,147,584,177"/><area shape="rect" id="node26" href="lib_8file_8php.html#a0145e555488271a734d8f0ba81a1b283" title="sc_getfiletype" alt="" coords="651,198,752,227"/><area shape="rect" id="node28" href="lib_8flash_8php.html#a7e4cf691271d5323b534737d11e93cd8" title="sc_getflashcode" alt="" coords="643,145,760,174"/><area shape="rect" id="node33" href="lib_8mysql_8php.html#a3f89d375ed707c0c0097abb0f9361a14" title="usersonline" alt="" coords="479,305,567,334"/><area shape="rect" id="node39" href="lib_8mysql_8php.html#a8bae936e7314964bd4118712e5451e66" title="usersloggedin" alt="" coords="472,462,573,491"/><area shape="rect" id="node42" href="lib_8mysql_8php.html#a3a11d6e3eabf6b1ee7bbcf163eea861b" title="users_logged_details" alt="" coords="451,358,595,387"/><area shape="rect" id="node45" href="lib_8rfs_8php.html#a4ceb7fb93465e14bb01a81ba0ec7feac" title="rfs_get" alt="" coords="492,251,553,281"/><area shape="rect" id="node35" href="lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="sc_phpself" alt="" coords="659,305,744,334"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a0a15652acdbe6cd9e66f10c7e1bc00e5"></a><!-- doxytag: member="forums.php::show1message" ref="a0a15652acdbe6cd9e66f10c7e1bc00e5" args="($post, $gx)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a> ($action==&quot;forum_admin_on&quot;) if ($action==&quot;forum_admin_off&quot;) if ($_SESSION['forum_admin']==&quot;yes&quot;) if ($action==&quot;start_thread&quot;) if ($action==&quot;start_thread_go&quot;) show1message </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>post</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>gx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="forums_8php_source.html#l00119">119</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="forums_8php_a0a15652acdbe6cd9e66f10c7e1bc00e5_cgraph.png" border="0" usemap="#forums_8php_a0a15652acdbe6cd9e66f10c7e1bc00e5_cgraph" alt=""/></div>
-<map name="forums_8php_a0a15652acdbe6cd9e66f10c7e1bc00e5_cgraph" id="forums_8php_a0a15652acdbe6cd9e66f10c7e1bc00e5_cgraph">
-<area shape="rect" id="node3" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="720,134,763,163"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923" title="sc_getuserdata" alt="" coords="516,186,625,215"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="533,318,608,347"/><area shape="rect" id="node16" href="lib_8mysql_8php.html#ab43f9376fcf831592e4af8d77aaafcb8" title="sc_useravatar" alt="" coords="168,82,272,111"/><area shape="rect" id="node26" href="lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd" title="smiles" alt="" coords="191,266,249,295"/><area shape="rect" id="node44" href="lib_8rfs_8php.html#afbb1b36be3cc698e2954eeee58a3c944" title="sc_time" alt="" coords="187,500,253,530"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="677,226,805,255"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="855,226,985,255"/><area shape="rect" id="node14" href="lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="720,318,763,347"/><area shape="rect" id="node18" href="lib_8mysql_8php.html#a98041b6609bb91e2d8c3f60c7a868ac8" title="sc_getuseravatar" alt="" coords="331,82,453,111"/><area shape="rect" id="node22" href="lib_8file_8php.html#a0145e555488271a734d8f0ba81a1b283" title="sc_getfiletype" alt="" coords="520,28,621,58"/><area shape="rect" id="node24" href="lib_8flash_8php.html#a7e4cf691271d5323b534737d11e93cd8" title="sc_getflashcode" alt="" coords="512,82,629,111"/><area shape="rect" id="node29" href="lib_8mysql_8php.html#a3f89d375ed707c0c0097abb0f9361a14" title="usersonline" alt="" coords="348,239,436,268"/><area shape="rect" id="node35" href="lib_8mysql_8php.html#a8bae936e7314964bd4118712e5451e66" title="usersloggedin" alt="" coords="341,343,443,372"/><area shape="rect" id="node38" href="lib_8mysql_8php.html#a3a11d6e3eabf6b1ee7bbcf163eea861b" title="users_logged_details" alt="" coords="320,396,464,426"/><area shape="rect" id="node41" href="lib_8rfs_8php.html#a4ceb7fb93465e14bb01a81ba0ec7feac" title="rfs_get" alt="" coords="361,186,423,215"/><area shape="rect" id="node31" href="lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="sc_phpself" alt="" coords="528,239,613,268"/></map>
+<div class="center"><img src="forums_8php_a45a2eac2a3a7fce17cf40eebc3185807_cgraph.png" border="0" usemap="#forums_8php_a45a2eac2a3a7fce17cf40eebc3185807_cgraph" alt=""/></div>
+<map name="forums_8php_a45a2eac2a3a7fce17cf40eebc3185807_cgraph" id="forums_8php_a45a2eac2a3a7fce17cf40eebc3185807_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="544,5,675,35"/><area shape="rect" id="node5" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="167,57,292,87"/><area shape="rect" id="node7" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="341,31,475,60"/><area shape="rect" id="node10" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="343,84,473,113"/><area shape="rect" id="node16" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="351,137,465,167"/><area shape="rect" id="node12" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="525,84,693,113"/><area shape="rect" id="node14" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="744,84,917,113"/><area shape="rect" id="node19" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="524,137,695,167"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="forums_8php_a0a15652acdbe6cd9e66f10c7e1bc00e5_icgraph.png" border="0" usemap="#forums_8php_a0a15652acdbe6cd9e66f10c7e1bc00e5_icgraph" alt=""/></div>
-<map name="forums_8php_a0a15652acdbe6cd9e66f10c7e1bc00e5_icgraph" id="forums_8php_a0a15652acdbe6cd9e66f10c7e1bc00e5_icgraph">
-<area shape="rect" id="node3" href="forums_8php.html#ac8164a4e69fcfd5fd6f74e279c7a7c65" title="get_thread" alt="" coords="168,5,251,35"/></map>
+<div class="center"><img src="forums_8php_a45a2eac2a3a7fce17cf40eebc3185807_icgraph.png" border="0" usemap="#forums_8php_a45a2eac2a3a7fce17cf40eebc3185807_icgraph" alt=""/></div>
+<map name="forums_8php_a45a2eac2a3a7fce17cf40eebc3185807_icgraph" id="forums_8php_a45a2eac2a3a7fce17cf40eebc3185807_icgraph">
+<area shape="rect" id="node3" href="forums_8php.html#a96d6bfb47320f2268aa8c65ceb83bdac" title="forums_action_start_thread" alt="" coords="184,85,363,115"/><area shape="rect" id="node5" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="188,139,359,168"/><area shape="rect" id="node17" href="forums_8php.html#a66957d183225f049baf657fb5be6f10a" title="forums_action_forum_showposts" alt="" coords="167,299,380,328"/><area shape="rect" id="node7" href="forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="433,5,633,35"/><area shape="rect" id="node9" href="forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551" title="forums_action_move_thread" alt="" coords="440,59,627,88"/><area shape="rect" id="node11" href="forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce" title="forums_action_delete_reply" alt="" coords="443,112,624,141"/><area shape="rect" id="node13" href="forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9" title="forums_action_edit_reply_go" alt="" coords="440,165,627,195"/><area shape="rect" id="node15" href="forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="433,219,633,248"/><area shape="rect" id="node19" href="forums_8php.html#aaee7644238e7c3fa70d5addf4cff02b0" title="forums_action_forum_admin_on" alt="" coords="431,272,636,301"/><area shape="rect" id="node21" href="forums_8php.html#a2e36605aa977c66f0d751f7dc7767e67" title="forums_action_forum_admin_off" alt="" coords="429,325,637,355"/><area shape="rect" id="node23" href="forums_8php.html#aeea53f4d544a0bf1564a0426c81d6b94" title="forums_action_delete_post" alt="" coords="444,379,623,408"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa93eeced10eacc6b647c1b4e78364464"></a><!-- doxytag: member="forums.php::forums_get_message" ref="aa93eeced10eacc6b647c1b4e78364464" args="($post)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464">forums_get_message</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>post</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00104">104</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_aa93eeced10eacc6b647c1b4e78364464_cgraph.png" border="0" usemap="#forums_8php_aa93eeced10eacc6b647c1b4e78364464_cgraph" alt=""/></div>
+<map name="forums_8php_aa93eeced10eacc6b647c1b4e78364464_cgraph" id="forums_8php_aa93eeced10eacc6b647c1b4e78364464_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1080,391,1211,420"/><area shape="rect" id="node5" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="861,299,992,328"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="869,139,984,168"/><area shape="rect" id="node16" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="649,299,775,328"/><area shape="rect" id="node23" href="lib_8users_8php.html#a9c800a89cc853ea81bba02c8e383c5b2" title="lib_users_avatar_code" alt="" coords="636,403,788,432"/><area shape="rect" id="node31" href="lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="408,166,576,195"/><area shape="rect" id="node50" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="244,584,311,614"/><area shape="rect" id="node62" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="653,875,771,904"/><area shape="rect" id="node68" href="lib_8string_8php.html#a6e5daadd53506461064265db8de7a364" title="lib_string_current_time" alt="" coords="201,926,353,955"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1061,260,1229,290"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1280,260,1453,290"/><area shape="rect" id="node14" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1060,139,1231,168"/><area shape="rect" id="node18" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="860,246,993,275"/><area shape="rect" id="node27" href="lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987" title="lib_file_getfiletype" alt="" coords="864,403,989,432"/><area shape="rect" id="node29" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74" title="lib_flash_embed_code" alt="" coords="852,456,1001,486"/><area shape="rect" id="node34" href="lib_8users_8php.html#ad1f6779cc4e5bd8c614f3379bae4bb17" title="lib_users_online" alt="" coords="655,246,769,275"/><area shape="rect" id="node39" href="lib_8users_8php.html#a6f1b106a84298a9caa86864937528348" title="lib_users_logged_in" alt="" coords="644,139,780,168"/><area shape="rect" id="node42" href="lib_8users_8php.html#ac4db6ecc75c60d11e6f442ff566a01bd" title="lib_users_logged_details" alt="" coords="631,35,793,64"/><area shape="rect" id="node45" href="lib_8rfs_8php.html#a3c27c4c0907d6ee485abef71c5b17b3e" title="lib_rfs_get" alt="" coords="671,192,753,222"/><area shape="rect" id="node47" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e" title="lib_domain_canonical_url" alt="" coords="844,192,1009,222"/><area shape="rect" id="node53" href="lib_8string_8php.html#aa5ce68a57f018fd70c016653250f6b7f" title="lib_string_get_twitter_code" alt="" coords="404,558,580,587"/><area shape="rect" id="node55" href="lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="407,611,577,640"/><area shape="rect" id="node57" href="lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="415,664,569,694"/><area shape="rect" id="node59" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="460,454,524,483"/><area shape="rect" id="node64" href="lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="417,718,567,747"/><area shape="rect" id="node66" href="lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="420,771,564,800"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="forums_8php_aa93eeced10eacc6b647c1b4e78364464_icgraph.png" border="0" usemap="#forums_8php_aa93eeced10eacc6b647c1b4e78364464_icgraph" alt=""/></div>
+<map name="forums_8php_aa93eeced10eacc6b647c1b4e78364464_icgraph" id="forums_8php_aa93eeced10eacc6b647c1b4e78364464_icgraph">
+<area shape="rect" id="node3" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="201,112,372,141"/><area shape="rect" id="node5" href="forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="423,5,623,35"/><area shape="rect" id="node7" href="forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551" title="forums_action_move_thread" alt="" coords="429,59,616,88"/><area shape="rect" id="node9" href="forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce" title="forums_action_delete_reply" alt="" coords="432,112,613,141"/><area shape="rect" id="node11" href="forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9" title="forums_action_edit_reply_go" alt="" coords="429,165,616,195"/><area shape="rect" id="node13" href="forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="423,219,623,248"/></map>
 </div>
 </p>
 
@@ -256,22 +690,22 @@ Here is the caller graph for this function:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="forums_8php_source.html#l00027">27</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00006">6</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acb345f4415f930d198654f84233d785a"></a><!-- doxytag: member="forums.php::$thispage" ref="acb345f4415f930d198654f84233d785a" args="" -->
+<a class="anchor" id="a082d0817db86737571268a66f2e75c2e"></a><!-- doxytag: member="forums.php::$RFS_LITTLE_HEADER" ref="a082d0817db86737571268a66f2e75c2e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$thispage = $_SERVER['PHP_SELF']</td>
+          <td class="memname">$RFS_LITTLE_HEADER = true</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="forums_8php_source.html#l00005">5</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
+<p>Definition at line <a class="el" href="forums_8php_source.html#l00004">4</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
 
 </div>
 </div>
@@ -290,28 +724,13 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="ab3ac4c136bc1a5cf8111230c1f99cfb1"></a><!-- doxytag: member="forums.php::if" ref="ab3ac4c136bc1a5cf8111230c1f99cfb1" args="($forum_showposts==&quot;yes&quot;)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a> ($action==&quot;move_thread&quot;) if ($action==&quot;delete_post_s&quot;) if ($action==&quot;delete_post&quot;) if ($action==&quot;delete_reply_s&quot;) if ($action==&quot;delete_reply&quot;) if ($action==&quot;edit_reply&quot;) if ($action==&quot;edit_reply_go&quot;) if ($action==&quot;reply_to_thread&quot;) if ($action==&quot;get_thread&quot;) if ($action==&quot;create_forum&quot;) if ($action==&quot;rename_forum&quot;) if ($action==&quot;modify_forum&quot;) if ($forum_list==&quot;yes&quot;) if($forum_showposts==&quot;yes&quot;)</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="forums_8php_source.html#l00566">566</a> of file <a class="el" href="forums_8php_source.html">forums.php</a>.</p>
-
-</div>
-</div>
 </div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="forums_8php.html">forums.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

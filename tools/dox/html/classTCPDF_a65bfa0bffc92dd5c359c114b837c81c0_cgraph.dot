@@ -1,0 +1,44 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TCPDF\\_putpages",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TCPDF\\getAllInternalPageNumberAliases",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#af8fbad549f0384a7f76fa6db13193075",tooltip="Return an array containing all internal page aliases."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TCPDF\\getInternalPageNumberAliases",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#adaef81b9b034e5d10c56b3f2fea83175",tooltip="Return an array containing variations for the basic page number alias."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TCPDF\\_escape",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a9d85fe0d8460a71cb28cc679faf57ecf",tooltip="Add &quot;\&quot; before &quot;\&quot;, &quot;(&quot; and &quot;)&quot;."];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TCPDF\\UTF8ToLatin1",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a60c04a399d19927e7a3ee249694aaa62",tooltip="Converts UTF-8 strings to Latin1 when using the standard 14 core fonts."];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="TCPDF\\utf8StrRev",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a49060c1c6d0b49446e2cc1dd39f5734e",tooltip="Reverse the RLT substrings using the Bidirectional Algorithm (http://unicode.org/reports/tr9/)."];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="TCPDF\\formatPageNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a0ab6ba21b10fcfba6422950b88d6ff8d",tooltip="Format the page numbers."];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="TCPDF\\UTF8ToUTF16BE",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a1b521359e6e473dc61ad966a90a7839e",tooltip="Converts UTF-8 strings to UTF16-BE."];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="TCPDF\\GetNumChars",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#ac9dc6318fd217971aff282532ab91e43",tooltip="Returns the numbero of characters in a string."];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="TCPDF\\isUnicodeFont",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a81c8257af5d6d6e40f1bb77d6b507b97",tooltip="Return true if the current font is unicode type."];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="TCPDF\\UTF8StringToArray",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a35a90a2cd5b8ab143d978128a21de09e",tooltip="Converts UTF-8 strings to codepoints array."];
+  Node1 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="TCPDF\\getPageBuffer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a4d67b0a8681222f71fa9f9f6e65e0c56",tooltip="Get page buffer content."];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="TCPDF\\replacePageNumAliases",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a9d433df65b8aa61b64375c95803f33dd",tooltip="Replace page number aliases with number."];
+  Node1 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="TCPDF\\replaceRightShiftPageNumAliases",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#af3ca25bafc44372ca6d7fd7951dcad46",tooltip="Replace right shift page number aliases with spaces to correct right alignment."];
+  Node14 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="TCPDF\\_newobj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a4d9df541d8b8347b55b5d048566c769d",tooltip="Begin a new object and return the object number."];
+  Node1 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="TCPDF\\_getannotsrefs",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a42cfd0a9e84edfcaa1e46d3d7283ef73",tooltip="Get references to page annotations."];
+  Node1 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="TCPDF\\_out",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#ac57877b76c37aef3195ad45731715b9e",tooltip="Output a string to the document."];
+  Node1 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="TCPDF\\_getrawstream",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a7c7c1beebd83fa777197a842f2ca73eb",tooltip="get raw output stream."];
+  Node1 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="TCPDF\\_getobj",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a1ef3c591556f7668c8a62b81e98da8a1",tooltip="Return the starting object string for the selected object ID."];
+}

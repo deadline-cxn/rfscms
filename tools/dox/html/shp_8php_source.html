@@ -111,7 +111,7 @@
 <a name="l00033"></a>00033     set_include_path(get_include_path() . PATH_SEPARATOR . getcwd() . <span class="stringliteral">&#39;/libraries/bfShapeFiles/&#39;</span>);
 <a name="l00034"></a>00034     include_once <span class="stringliteral">&#39;./libraries/bfShapeFiles/ShapeFile.lib.php&#39;</span>;
 <a name="l00035"></a>00035 
-<a name="l00036"></a>00036     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>] = <span class="keyword">false</span>;
+<a name="l00036"></a>00036     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>] = <span class="keyword">false</span>;
 <a name="l00037"></a>00037     <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00038"></a>00038     $eof = <span class="keyword">false</span>;
 <a name="l00039"></a>00039 
@@ -122,15 +122,15 @@
 <a name="l00044"></a>00044         global <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>, $eof;
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046         <span class="keywordflow">if</span> (strlen($buffer) &lt; $length) {
-<a name="l00047"></a>00047             <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>]) {
+<a name="l00047"></a>00047             <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;finished&#39;</span>]) {
 <a name="l00048"></a>00048                 $eof = <span class="keyword">true</span>;
 <a name="l00049"></a>00049             } <span class="keywordflow">else</span> {
 <a name="l00050"></a>00050                 $buffer .= <a class="code" href="import_8lib_8php.html#adb0307447ce45c347a2ed57d5fd859e9" title="Returns next part of imported file/buffer.">PMA_importGetNextChunk</a>();
 <a name="l00051"></a>00051             }
 <a name="l00052"></a>00052         }
-<a name="l00053"></a>00053         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = substr($buffer, 0, $length);
+<a name="l00053"></a>00053         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = substr($buffer, 0, $length);
 <a name="l00054"></a>00054         $buffer = substr($buffer, $length);
-<a name="l00055"></a>00055         <span class="keywordflow">return</span> <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00055"></a>00055         <span class="keywordflow">return</span> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00056"></a>00056     }
 <a name="l00057"></a>00057 <span class="comment"></span>
 <a name="l00058"></a>00058 <span class="comment">    /**</span>
@@ -245,12 +245,12 @@
 <a name="l00167"></a>00167 
 <a name="l00168"></a>00168         <span class="keyword">function</span> <a class="code" href="classShapeRecord.html#ac8f6b95b05c0988b55d1844942eae036">_loadPoint</a>()
 <a name="l00169"></a>00169         {
-<a name="l00170"></a>00170             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = array();
+<a name="l00170"></a>00170             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = array();
 <a name="l00171"></a>00171 
-<a name="l00172"></a>00172             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&quot;x&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;d&quot;</span>, readFromBuffer(8));
-<a name="l00173"></a>00173             <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<span class="stringliteral">&quot;y&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;d&quot;</span>, readFromBuffer(8));
+<a name="l00172"></a>00172             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&quot;x&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;d&quot;</span>, readFromBuffer(8));
+<a name="l00173"></a>00173             <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<span class="stringliteral">&quot;y&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;d&quot;</span>, readFromBuffer(8));
 <a name="l00174"></a>00174 
-<a name="l00175"></a>00175             <span class="keywordflow">return</span> <a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>;
+<a name="l00175"></a>00175             <span class="keywordflow">return</span> <a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>;
 <a name="l00176"></a>00176         }
 <a name="l00177"></a>00177 
 <a name="l00178"></a>00178         <span class="keyword">function</span> <a class="code" href="classShapeRecord.html#a07163222b3a8bffc8357a6cf64a01f18">_loadMultiPointRecord</a>()
@@ -263,7 +263,7 @@
 <a name="l00185"></a>00185 
 <a name="l00186"></a>00186             $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, readFromBuffer(4));
 <a name="l00187"></a>00187 
-<a name="l00188"></a>00188             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt;= $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>]; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
+<a name="l00188"></a>00188             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt;= $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>]; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
 <a name="l00189"></a>00189                 $this-&gt;SHPData[<span class="stringliteral">&quot;points&quot;</span>][] = $this-&gt;<a class="code" href="classShapeRecord.html#ac8f6b95b05c0988b55d1844942eae036">_loadPoint</a>();
 <a name="l00190"></a>00190             }
 <a name="l00191"></a>00191         }
@@ -279,8 +279,8 @@
 <a name="l00201"></a>00201             $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>]  = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, readFromBuffer(4));
 <a name="l00202"></a>00202             $this-&gt;SHPData[<span class="stringliteral">&quot;numpoints&quot;</span>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, readFromBuffer(4));
 <a name="l00203"></a>00203 
-<a name="l00204"></a>00204             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>]; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00205"></a>00205                 $this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, readFromBuffer(4));
+<a name="l00204"></a>00204             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $this-&gt;SHPData[<span class="stringliteral">&quot;numparts&quot;</span>]; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00205"></a>00205                 $this-&gt;SHPData[<span class="stringliteral">&quot;parts&quot;</span>][<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = <a class="code" href="ShapeFile_8lib_8php.html#abce7a6dabd45bb7f373cf389c7c981b0">loadData</a>(<span class="stringliteral">&quot;V&quot;</span>, readFromBuffer(4));
 <a name="l00206"></a>00206             }
 <a name="l00207"></a>00207 
 <a name="l00208"></a>00208             $readPoints = 0;
@@ -307,7 +307,7 @@
 <a name="l00229"></a>00229     <span class="comment">// get the correct content to the buffer from .shp file.</span>
 <a name="l00230"></a>00230     <span class="keywordflow">if</span> (<a class="code" href="export_8php.html#a99cfcd818d46c54bb56d6100a25f8442" title="init and variable checking">$compression</a> == <span class="stringliteral">&#39;application/zip&#39;</span> &amp;&amp; <a class="code" href="zip__extension_8lib_8php.html#ac6e4614dca1e9eb1f317c52bda5b15ba" title="Returns the number of files in the zip archive.">PMA_getNoOfFilesInZip</a>($import_file) &gt; 1) {
 <a name="l00231"></a>00231         $zip_content =  <a class="code" href="zip__extension_8lib_8php.html#acbf0adcf5ce4c88a74872edfc89ef1b2" title="Gets zip file contents.">PMA_getZipContents</a>($import_file, <span class="stringliteral">&#39;/^.*\.shp$/i&#39;</span>);
-<a name="l00232"></a>00232         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;import_text&#39;</span>] = $zip_content[<span class="stringliteral">&#39;data&#39;</span>];
+<a name="l00232"></a>00232         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;import_text&#39;</span>] = $zip_content[<span class="stringliteral">&#39;data&#39;</span>];
 <a name="l00233"></a>00233     }
 <a name="l00234"></a>00234 
 <a name="l00235"></a>00235     $temp_dbf_file = <span class="keyword">false</span>;
@@ -340,7 +340,7 @@
 <a name="l00262"></a>00262         }
 <a name="l00263"></a>00263         <span class="comment">// If file is in UploadDir, use .dbf file in the same UploadDir</span>
 <a name="l00264"></a>00264         <span class="comment">// to load extra data.</span>
-<a name="l00265"></a>00265         <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (! empty($local_import_file)
+<a name="l00265"></a>00265         <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (! empty($local_import_file)
 <a name="l00266"></a>00266             &amp;&amp; ! empty(<a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>[<span class="stringliteral">&#39;UploadDir&#39;</span>])
 <a name="l00267"></a>00267             &amp;&amp; <a class="code" href="export_8php.html#a99cfcd818d46c54bb56d6100a25f8442" title="init and variable checking">$compression</a> == <span class="stringliteral">&#39;none&#39;</span>
 <a name="l00268"></a>00268         ) {
@@ -355,8 +355,8 @@
 <a name="l00277"></a>00277     $shp-&gt;loadFromFile(<span class="stringliteral">&#39;&#39;</span>);
 <a name="l00278"></a>00278     <span class="keywordflow">if</span> ($shp-&gt;lastError != <span class="stringliteral">&quot;&quot;</span>) {
 <a name="l00279"></a>00279         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <span class="keyword">true</span>;
-<a name="l00280"></a>00280         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;There was an error importing the ESRI shape file: &quot;%s&quot;.&#39;</span>));
-<a name="l00281"></a>00281         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;addParam($shp-&gt;lastError);
+<a name="l00280"></a>00280         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;There was an error importing the ESRI shape file: &quot;%s&quot;.&#39;</span>));
+<a name="l00281"></a>00281         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;addParam($shp-&gt;lastError);
 <a name="l00282"></a>00282         <span class="keywordflow">return</span>;
 <a name="l00283"></a>00283     }
 <a name="l00284"></a>00284 
@@ -411,10 +411,10 @@
 <a name="l00333"></a>00333     <span class="keywordflow">default</span>:
 <a name="l00334"></a>00334         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <span class="keyword">true</span>;
 <a name="l00335"></a>00335         <span class="keywordflow">if</span> (! isset($esri_types[$shp-&gt;shapeType])) {
-<a name="l00336"></a>00336             <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;You tried to import an invalid file or the imported file contains invalid data&#39;</span>));
+<a name="l00336"></a>00336             <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;You tried to import an invalid file or the imported file contains invalid data&#39;</span>));
 <a name="l00337"></a>00337         } <span class="keywordflow">else</span> {
-<a name="l00338"></a>00338             <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;MySQL Spatial Extension does not support ESRI type &quot;%s&quot;.&#39;</span>));
-<a name="l00339"></a>00339             <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>-&gt;addParam(<a class="code" href="edit__area__compressor_8php.html#a8f9ac7863b0957c51a73b9c16e46d5e2">$param</a>);
+<a name="l00338"></a>00338             <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;MySQL Spatial Extension does not support ESRI type &quot;%s&quot;.&#39;</span>));
+<a name="l00339"></a>00339             <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>-&gt;addParam($param);
 <a name="l00340"></a>00340         }
 <a name="l00341"></a>00341         <span class="keywordflow">return</span>;
 <a name="l00342"></a>00342     }
@@ -423,7 +423,7 @@
 <a name="l00345"></a>00345     <span class="comment">// If .dbf file is loaded, the number of extra data columns</span>
 <a name="l00346"></a>00346     $num_data_cols = isset($shp-&gt;DBFHeader) ? count($shp-&gt;DBFHeader) : 0;
 <a name="l00347"></a>00347 
-<a name="l00348"></a>00348     <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
+<a name="l00348"></a>00348     <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a> = array();
 <a name="l00349"></a>00349     <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a> = array();
 <a name="l00350"></a>00350     <span class="keywordflow">if</span> ($num_rows != 0) {
 <a name="l00351"></a>00351         <span class="keywordflow">foreach</span> ($shp-&gt;records as $record) {
@@ -445,13 +445,13 @@
 <a name="l00367"></a>00367                     <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a>[] = $cell;
 <a name="l00368"></a>00368                 }
 <a name="l00369"></a>00369             }
-<a name="l00370"></a>00370             <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a>;
+<a name="l00370"></a>00370             <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>[] = <a class="code" href="import_2csv_8php.html#aa02505a926a149e2e598d651bf90a502">$tempRow</a>;
 <a name="l00371"></a>00371         }
 <a name="l00372"></a>00372     }
 <a name="l00373"></a>00373 
-<a name="l00374"></a>00374     <span class="keywordflow">if</span> (count(<a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>) == 0) {
+<a name="l00374"></a>00374     <span class="keywordflow">if</span> (count(<a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>) == 0) {
 <a name="l00375"></a>00375         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <span class="keyword">true</span>;
-<a name="l00376"></a>00376         <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;The imported file does not contain any data&#39;</span>));
+<a name="l00376"></a>00376         <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#ac1eedc27bd176676149c300379b98661" title="get PMA_Message of type error">PMA_Message::error</a>(__(<span class="stringliteral">&#39;The imported file does not contain any data&#39;</span>));
 <a name="l00377"></a>00377         <span class="keywordflow">return</span>;
 <a name="l00378"></a>00378     }
 <a name="l00379"></a>00379 
@@ -464,12 +464,12 @@
 <a name="l00386"></a>00386 
 <a name="l00387"></a>00387     <span class="comment">// Set table name based on the number of tables</span>
 <a name="l00388"></a>00388     <span class="keywordflow">if</span> (strlen(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>)) {
-<a name="l00389"></a>00389         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<span class="stringliteral">&#39;SHOW TABLES&#39;</span>);
-<a name="l00390"></a>00390         $table_name = <span class="stringliteral">&#39;TABLE &#39;</span>.(count(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) + 1);
+<a name="l00389"></a>00389         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<span class="stringliteral">&#39;SHOW TABLES&#39;</span>);
+<a name="l00390"></a>00390         $table_name = <span class="stringliteral">&#39;TABLE &#39;</span>.(count(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) + 1);
 <a name="l00391"></a>00391     } <span class="keywordflow">else</span> {
 <a name="l00392"></a>00392         $table_name = <span class="stringliteral">&#39;TBL_NAME&#39;</span>;
 <a name="l00393"></a>00393     }
-<a name="l00394"></a>00394     <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a> = array(array($table_name, <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>, <a class="code" href="query_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>));
+<a name="l00394"></a>00394     <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a> = array(array($table_name, <a class="code" href="import_2csv_8php.html#ac3b84a9d3eb73ec12a4ce219eb2171c9">$col_names</a>, <a class="code" href="db__qbe_8php.html#ace2ec39e7df3899fa8df9640ec274b03">$rows</a>));
 <a name="l00395"></a>00395 
 <a name="l00396"></a>00396     <span class="comment">// Use data from shape file to chose best-fit MySQL types for each column</span>
 <a name="l00397"></a>00397     <a class="code" href="import_2ods_8php.html#ab4c3338e3214d5ee58607590b3217f65">$analyses</a> = array();
@@ -508,7 +508,7 @@
     <ul>
       <li class="navelem"><a class="el" href="shp_8php.html">shp.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

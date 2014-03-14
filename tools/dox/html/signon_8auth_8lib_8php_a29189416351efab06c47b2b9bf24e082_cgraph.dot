@@ -1,0 +1,27 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_auth_fails",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_DBI_getError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79",tooltip="returns last error message or false if no errors occured"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_DBI_formatError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a53d2263f39303e561d76439d28f4a1be",tooltip="Formats database error message in a friendly way."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_DBI_convert_message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a6f4e94ffe2e5c28f0ce9f23c2e65e74a",tooltip="converts charset of a mysql message, usually coming from mysql_error(), into PMA charset, usally UTF-8 uses language to charset mapping from mysql/share/errmsg.txt and charset names to ISO charset from information_schema.CHARACTER_SETS"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_DBI_fetch_value",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$database__interface_8lib_8php.html#a772f12a953dd2908745bb16a8fa7b63a",tooltip="returns a single value from the given result or query, if the query or the result has more than one r..."];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_aix_iconv_wrapper",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$iconv__wrapper_8lib_8php.html#ae2a03599cbea1b2d682a18a39f87ba11",tooltip="Wrapper around IBM AIX iconv(), whose character set naming differs from the GNU version of iconv()..."];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_generate_common_url",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094",tooltip="Generates text with URL parameters."];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PMA_isValid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700",tooltip="checks given $var against $type or $compare"];
+  Node7 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="PMA_get_arg_separator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$url__generating_8lib_8php.html#a4ba0b6653c22a19615683ab743c1b4e1",tooltip="Returns url separator."];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="PMA_sanitize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sanitizing_8lib_8php.html#ac0444f97c4d50f0e109dc0ec5d86b665",tooltip="Sanitizes $message, taking into account our special codes for formatting."];
+  Node1 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="PMA_auth",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$config_8auth_8lib_8php.html#a7b36f9e978b1a9bc56724c5484a2d8b9",tooltip="Displays authentication form."];
+}

@@ -120,28 +120,28 @@
 <a name="l00042"></a>00042         var $tablewidths;
 <a name="l00043"></a>00043         var $headerset;
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045         <span class="keyword">function</span> <a class="code" href="classTCPDF.html#a9e8e4b4d75485b8f1e3aa2133a811e50" title="Add page if needed.">checkPageBreak</a>(<a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> = 0, $y = <span class="stringliteral">&#39;&#39;</span>, $addpage = <span class="keyword">true</span>)
+<a name="l00045"></a>00045         <span class="keyword">function</span> <a class="code" href="classTCPDF.html#a9e8e4b4d75485b8f1e3aa2133a811e50" title="Add page if needed.">checkPageBreak</a>(<a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> = 0, $y = <span class="stringliteral">&#39;&#39;</span>, $addpage = <span class="keyword">true</span>)
 <a name="l00046"></a>00046         {
 <a name="l00047"></a>00047             <span class="keywordflow">if</span> ($this-&gt;<a class="code" href="classTCPDF.html#a681e9cc13fa324d8e538a5873f3990c2" title="Determine whether a string is empty.">empty_string</a>($y)) {
 <a name="l00048"></a>00048                 $y = $this-&gt;y;
 <a name="l00049"></a>00049             }
 <a name="l00050"></a>00050             $current_page = $this-&gt;page;
-<a name="l00051"></a>00051             <span class="keywordflow">if</span> ((($y + <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>) &gt; $this-&gt;PageBreakTrigger) AND (! $this-&gt;InFooter) AND ($this-&gt;<a class="code" href="classTCPDF.html#aa24046de2993933f62d60a2936a22970" title="Whenever a page break condition is met, the method is called, and the break is issued or not dependin...">AcceptPageBreak</a>())) {
+<a name="l00051"></a>00051             <span class="keywordflow">if</span> ((($y + <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>) &gt; $this-&gt;PageBreakTrigger) AND (! $this-&gt;InFooter) AND ($this-&gt;<a class="code" href="classTCPDF.html#aa24046de2993933f62d60a2936a22970" title="Whenever a page break condition is met, the method is called, and the break is issued or not dependin...">AcceptPageBreak</a>())) {
 <a name="l00052"></a>00052                 <span class="keywordflow">if</span> ($addpage) {
 <a name="l00053"></a>00053                     <span class="comment">//Automatic page break</span>
-<a name="l00054"></a>00054                     <a class="code" href="images_2index_8php.html#af3a16c5f0dd7a74cf9acf6a49fff73a7">$x</a> = $this-&gt;x;
+<a name="l00054"></a>00054                     <a class="code" href="not__included_2wtf_2images_2index_8php.html#af3a16c5f0dd7a74cf9acf6a49fff73a7">$x</a> = $this-&gt;x;
 <a name="l00055"></a>00055                     $this-&gt;<a class="code" href="classTCPDF.html#a5171e20b366b74523709d84c349c1ced" title="Adds a new page to the document.">AddPage</a>($this-&gt;CurOrientation);
 <a name="l00056"></a>00056                     $this-&gt;y = $this-&gt;dataY;
 <a name="l00057"></a>00057                     $oldpage = $this-&gt;page - 1;
 <a name="l00058"></a>00058                     <span class="keywordflow">if</span> ($this-&gt;rtl) {
 <a name="l00059"></a>00059                         <span class="keywordflow">if</span> ($this-&gt;pagedim[$this-&gt;page][<span class="stringliteral">&#39;orm&#39;</span>] != $this-&gt;pagedim[$oldpage][<span class="stringliteral">&#39;orm&#39;</span>]) {
-<a name="l00060"></a>00060                             $this-&gt;x = <a class="code" href="images_2index_8php.html#af3a16c5f0dd7a74cf9acf6a49fff73a7">$x</a> - ($this-&gt;pagedim[$this-&gt;page][<span class="stringliteral">&#39;orm&#39;</span>] - $this-&gt;pagedim[$oldpage][<span class="stringliteral">&#39;orm&#39;</span>]);
+<a name="l00060"></a>00060                             $this-&gt;x = <a class="code" href="not__included_2wtf_2images_2index_8php.html#af3a16c5f0dd7a74cf9acf6a49fff73a7">$x</a> - ($this-&gt;pagedim[$this-&gt;page][<span class="stringliteral">&#39;orm&#39;</span>] - $this-&gt;pagedim[$oldpage][<span class="stringliteral">&#39;orm&#39;</span>]);
 <a name="l00061"></a>00061                         } <span class="keywordflow">else</span> {
 <a name="l00062"></a>00062                             $this-&gt;x = <a class="code" href="classTCPDF.html#af63a9b95cacf42745e338057ce03c734" title="Current horizontal position in user unit for cell positioning.">$x</a>;
 <a name="l00063"></a>00063                         }
 <a name="l00064"></a>00064                     } <span class="keywordflow">else</span> {
 <a name="l00065"></a>00065                         <span class="keywordflow">if</span> ($this-&gt;pagedim[$this-&gt;page][<span class="stringliteral">&#39;olm&#39;</span>] != $this-&gt;pagedim[$oldpage][<span class="stringliteral">&#39;olm&#39;</span>]) {
-<a name="l00066"></a>00066                             $this-&gt;x = <a class="code" href="images_2index_8php.html#af3a16c5f0dd7a74cf9acf6a49fff73a7">$x</a> + ($this-&gt;pagedim[$this-&gt;page][<span class="stringliteral">&#39;olm&#39;</span>] - $this-&gt;pagedim[$oldpage][<span class="stringliteral">&#39;olm&#39;</span>]);
+<a name="l00066"></a>00066                             $this-&gt;x = <a class="code" href="not__included_2wtf_2images_2index_8php.html#af3a16c5f0dd7a74cf9acf6a49fff73a7">$x</a> + ($this-&gt;pagedim[$this-&gt;page][<span class="stringliteral">&#39;olm&#39;</span>] - $this-&gt;pagedim[$oldpage][<span class="stringliteral">&#39;olm&#39;</span>]);
 <a name="l00067"></a>00067                         } <span class="keywordflow">else</span> {
 <a name="l00068"></a>00068                             $this-&gt;x = <a class="code" href="classTCPDF.html#af63a9b95cacf42745e338057ce03c734" title="Current horizontal position in user unit for cell positioning.">$x</a>;
 <a name="l00069"></a>00069                         }
@@ -205,7 +205,7 @@
 <a name="l00127"></a>00127         {
 <a name="l00128"></a>00128             <span class="comment">// some things to set and &#39;remember&#39;</span>
 <a name="l00129"></a>00129             $l = $this-&gt;lMargin;
-<a name="l00130"></a>00130             $startheight = <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> = $this-&gt;dataY;
+<a name="l00130"></a>00130             $startheight = <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> = $this-&gt;dataY;
 <a name="l00131"></a>00131             $startpage = $currpage = $this-&gt;page;
 <a name="l00132"></a>00132 
 <a name="l00133"></a>00133             <span class="comment">// calculate the whole width</span>
@@ -219,14 +219,14 @@
 <a name="l00141"></a>00141             $tmpheight = array();
 <a name="l00142"></a>00142             $maxpage = $this-&gt;page;
 <a name="l00143"></a>00143 
-<a name="l00144"></a>00144             <span class="keywordflow">while</span> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>($this-&gt;results)) {
+<a name="l00144"></a>00144             <span class="keywordflow">while</span> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>($this-&gt;results)) {
 <a name="l00145"></a>00145                 $this-&gt;page = $currpage;
 <a name="l00146"></a>00146                 <span class="comment">// write the horizontal borders</span>
-<a name="l00147"></a>00147                 $this-&gt;<a class="code" href="classTCPDF.html#a89c0fac95da962719ba92b057df9c201" title="Draws a line between two points.">Line</a>($l, <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>, $fullwidth+$l, <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>);
+<a name="l00147"></a>00147                 $this-&gt;<a class="code" href="classTCPDF.html#a89c0fac95da962719ba92b057df9c201" title="Draws a line between two points.">Line</a>($l, <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>, $fullwidth+$l, <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>);
 <a name="l00148"></a>00148                 <span class="comment">// write the content and remember the height of the highest col</span>
-<a name="l00149"></a>00149                 <span class="keywordflow">foreach</span> (<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a> as <a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a> =&gt; $txt) {
+<a name="l00149"></a>00149                 <span class="keywordflow">foreach</span> (<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a> as <a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a> =&gt; $txt) {
 <a name="l00150"></a>00150                     $this-&gt;page = $currpage;
-<a name="l00151"></a>00151                     $this-&gt;<a class="code" href="classTCPDF.html#a00ec13928f57b17c21040acc881fe482" title="Defines the abscissa and ordinate of the current position.">SetXY</a>($l, <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>);
+<a name="l00151"></a>00151                     $this-&gt;<a class="code" href="classTCPDF.html#a00ec13928f57b17c21040acc881fe482" title="Defines the abscissa and ordinate of the current position.">SetXY</a>($l, <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>);
 <a name="l00152"></a>00152                     <span class="keywordflow">if</span> ($this-&gt;tablewidths[<a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a>] &gt; 0) {
 <a name="l00153"></a>00153                         $this-&gt;<a class="code" href="classTCPDF.html#aa81d4b585de305c054760ec983ed3ece" title="This method allows printing text with line breaks.">MultiCell</a>($this-&gt;tablewidths[<a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a>], $lineheight, $txt, 0, $this-&gt;colAlign[$col]);
 <a name="l00154"></a>00154                         $l += $this-&gt;tablewidths[<a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a>];
@@ -241,28 +241,28 @@
 <a name="l00163"></a>00163                     <span class="keywordflow">if</span> ($this-&gt;page &gt; $maxpage) {
 <a name="l00164"></a>00164                         $maxpage = $this-&gt;page;
 <a name="l00165"></a>00165                     }
-<a name="l00166"></a>00166                     unset(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a>]);
+<a name="l00166"></a>00166                     unset(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<a class="code" href="db__qbe_8php.html#afca5b7d4c9144178253e99d0ada7d519">$col</a>]);
 <a name="l00167"></a>00167                 }
 <a name="l00168"></a>00168 
 <a name="l00169"></a>00169                 <span class="comment">// get the height we were in the last used page</span>
-<a name="l00170"></a>00170                 <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> = $tmpheight[<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>.<span class="charliteral">&#39;-&#39;</span>.$maxpage];
+<a name="l00170"></a>00170                 <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> = $tmpheight[<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>.<span class="charliteral">&#39;-&#39;</span>.$maxpage];
 <a name="l00171"></a>00171                 <span class="comment">// set the &quot;pointer&quot; to the left margin</span>
 <a name="l00172"></a>00172                 $l = $this-&gt;lMargin;
 <a name="l00173"></a>00173                 <span class="comment">// set the $currpage to the last page</span>
 <a name="l00174"></a>00174                 $currpage = $maxpage;
-<a name="l00175"></a>00175                 unset(<a class="code" href="db__tracking_8php.html#a9dcb4592164d8858c2691d816044593b">$data</a>[<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>]);
+<a name="l00175"></a>00175                 unset(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>[<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>]);
 <a name="l00176"></a>00176                 <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>++;
 <a name="l00177"></a>00177             }
 <a name="l00178"></a>00178             <span class="comment">// draw the borders</span>
 <a name="l00179"></a>00179             <span class="comment">// we start adding a horizontal line on the last page</span>
 <a name="l00180"></a>00180             $this-&gt;page = $maxpage;
-<a name="l00181"></a>00181             $this-&gt;<a class="code" href="classTCPDF.html#a89c0fac95da962719ba92b057df9c201" title="Draws a line between two points.">Line</a>($l, <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>, $fullwidth+$l, <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>);
+<a name="l00181"></a>00181             $this-&gt;<a class="code" href="classTCPDF.html#a89c0fac95da962719ba92b057df9c201" title="Draws a line between two points.">Line</a>($l, <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>, $fullwidth+$l, <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a>);
 <a name="l00182"></a>00182             <span class="comment">// now we start at the top of the document and walk down</span>
-<a name="l00183"></a>00183             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = $startpage; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt;= $maxpage; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00184"></a>00184                 $this-&gt;page = <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>;
+<a name="l00183"></a>00183             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = $startpage; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt;= $maxpage; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00184"></a>00184                 $this-&gt;page = <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>;
 <a name="l00185"></a>00185                 $l = $this-&gt;lMargin;
-<a name="l00186"></a>00186                 $t = (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> == $startpage) ? $startheight : $this-&gt;tMargin;
-<a name="l00187"></a>00187                 $lh = (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> == $maxpage) ? <a class="code" href="indexfb_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> : $this-&gt;h-$this-&gt;bMargin;
+<a name="l00186"></a>00186                 $t = (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> == $startpage) ? $startheight : $this-&gt;tMargin;
+<a name="l00187"></a>00187                 $lh = (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> == $maxpage) ? <a class="code" href="video__wall_8php.html#ab00da9d5d8bd5b6b944793e093860aff">$h</a> : $this-&gt;h-$this-&gt;bMargin;
 <a name="l00188"></a>00188                 $this-&gt;<a class="code" href="classTCPDF.html#a89c0fac95da962719ba92b057df9c201" title="Draws a line between two points.">Line</a>($l, $t, $l, $lh);
 <a name="l00189"></a>00189                 <span class="keywordflow">foreach</span> ($this-&gt;tablewidths as $width) {
 <a name="l00190"></a>00190                     $l += $width;
@@ -285,7 +285,7 @@
 <a name="l00207"></a>00207             $this-&gt;tMargin = $topMargin;
 <a name="l00208"></a>00208         }
 <a name="l00209"></a>00209 
-<a name="l00210"></a>00210         <span class="keyword">function</span> mysql_report(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>)
+<a name="l00210"></a>00210         <span class="keyword">function</span> mysql_report($query)
 <a name="l00211"></a>00211         {
 <a name="l00212"></a>00212             unset($this-&gt;tablewidths);
 <a name="l00213"></a>00213             unset($this-&gt;colTitles);
@@ -297,7 +297,7 @@
 <a name="l00219"></a>00219 <span class="comment">            /**</span>
 <a name="l00220"></a>00220 <span class="comment">             * Pass 1 for column widths</span>
 <a name="l00221"></a>00221 <span class="comment">             */</span>
-<a name="l00222"></a>00222             $this-&gt;results = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, null, <a class="code" href="database__interface_8lib_8php.html#adb95171b9d89470d933f6d59c4c9f000" title="Do not read whole query.">PMA_DBI_QUERY_UNBUFFERED</a>);
+<a name="l00222"></a>00222             $this-&gt;results = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query, null, <a class="code" href="database__interface_8lib_8php.html#adb95171b9d89470d933f6d59c4c9f000" title="Do not read whole query.">PMA_DBI_QUERY_UNBUFFERED</a>);
 <a name="l00223"></a>00223             $this-&gt;numFields  = <a class="code" href="drizzle_8dbi_8lib_8php.html#a1fdd817905fb477d64e66db0d6c5c6b1" title="return number of fields in given $result">PMA_DBI_num_fields</a>($this-&gt;results);
 <a name="l00224"></a>00224             $this-&gt;fields = <a class="code" href="drizzle_8dbi_8lib_8php.html#a54ef3323b9b387a6f555ba0a02d51fac" title="returns metainfo for fields in $result">PMA_DBI_get_fields_meta</a>($this-&gt;results);
 <a name="l00225"></a>00225 
@@ -309,22 +309,22 @@
 <a name="l00231"></a>00231             <span class="comment">// loop through results header and set initial col widths/ titles/ alignment</span>
 <a name="l00232"></a>00232             <span class="comment">// if a col title is less than the starting col width, reduce that column size</span>
 <a name="l00233"></a>00233             $colFits = array();
-<a name="l00234"></a>00234             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $this-&gt;numFields; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00235"></a>00235                 $stringWidth = $this-&gt;getstringwidth($this-&gt;fields[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;name) + 6 ;
+<a name="l00234"></a>00234             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $this-&gt;numFields; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00235"></a>00235                 $stringWidth = $this-&gt;getstringwidth($this-&gt;fields[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;name) + 6 ;
 <a name="l00236"></a>00236                 <span class="comment">// save the real title&#39;s width</span>
-<a name="l00237"></a>00237                 $titleWidth[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $stringWidth;
+<a name="l00237"></a>00237                 $titleWidth[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $stringWidth;
 <a name="l00238"></a>00238                 $totalTitleWidth += $stringWidth;
 <a name="l00239"></a>00239 
 <a name="l00240"></a>00240                 <span class="comment">// set any column titles less than the start width to the column title width</span>
 <a name="l00241"></a>00241                 <span class="keywordflow">if</span> ($stringWidth &lt; $this-&gt;sColWidth) {
-<a name="l00242"></a>00242                     $colFits[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $stringWidth ;
+<a name="l00242"></a>00242                     $colFits[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $stringWidth ;
 <a name="l00243"></a>00243                 }
-<a name="l00244"></a>00244                 $this-&gt;colTitles[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $this-&gt;fields[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;name;
-<a name="l00245"></a>00245                 $this-&gt;display_column[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = <span class="keyword">true</span>;
+<a name="l00244"></a>00244                 $this-&gt;colTitles[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $this-&gt;fields[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;name;
+<a name="l00245"></a>00245                 $this-&gt;display_column[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = <span class="keyword">true</span>;
 <a name="l00246"></a>00246 
-<a name="l00247"></a>00247                 <span class="keywordflow">switch</span> ($this-&gt;fields[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;<a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>) {
+<a name="l00247"></a>00247                 <span class="keywordflow">switch</span> ($this-&gt;fields[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;<a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>) {
 <a name="l00248"></a>00248                 <span class="keywordflow">case</span> <span class="stringliteral">&#39;int&#39;</span>:
-<a name="l00249"></a>00249                     $this-&gt;colAlign[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = <span class="charliteral">&#39;R&#39;</span>;
+<a name="l00249"></a>00249                     $this-&gt;colAlign[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = <span class="charliteral">&#39;R&#39;</span>;
 <a name="l00250"></a>00250                     <span class="keywordflow">break</span>;
 <a name="l00251"></a>00251                 <span class="keywordflow">case</span> <span class="stringliteral">&#39;blob&#39;</span>:
 <a name="l00252"></a>00252                 <span class="keywordflow">case</span> <span class="stringliteral">&#39;tinyblob&#39;</span>:
@@ -334,14 +334,14 @@
 <a name="l00256"></a>00256 <span class="comment">                     * @todo do not deactivate completely the display</span>
 <a name="l00257"></a>00257 <span class="comment">                     * but show the field&#39;s name and [BLOB]</span>
 <a name="l00258"></a>00258 <span class="comment">                     */</span>
-<a name="l00259"></a>00259                     <span class="keywordflow">if</span> (stristr($this-&gt;fields[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]-&gt;flags, <span class="stringliteral">&#39;BINARY&#39;</span>)) {
-<a name="l00260"></a>00260                         $this-&gt;display_column[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = <span class="keyword">false</span>;
-<a name="l00261"></a>00261                         unset($this-&gt;colTitles[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>]);
+<a name="l00259"></a>00259                     <span class="keywordflow">if</span> (stristr($this-&gt;fields[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]-&gt;flags, <span class="stringliteral">&#39;BINARY&#39;</span>)) {
+<a name="l00260"></a>00260                         $this-&gt;display_column[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = <span class="keyword">false</span>;
+<a name="l00261"></a>00261                         unset($this-&gt;colTitles[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>]);
 <a name="l00262"></a>00262                     }
-<a name="l00263"></a>00263                     $this-&gt;colAlign[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = <span class="charliteral">&#39;L&#39;</span>;
+<a name="l00263"></a>00263                     $this-&gt;colAlign[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = <span class="charliteral">&#39;L&#39;</span>;
 <a name="l00264"></a>00264                     <span class="keywordflow">break</span>;
 <a name="l00265"></a>00265                 <span class="keywordflow">default</span>:
-<a name="l00266"></a>00266                     $this-&gt;colAlign[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = <span class="charliteral">&#39;L&#39;</span>;
+<a name="l00266"></a>00266                     $this-&gt;colAlign[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = <span class="charliteral">&#39;L&#39;</span>;
 <a name="l00267"></a>00267                 }
 <a name="l00268"></a>00268             }
 <a name="l00269"></a>00269 
@@ -395,12 +395,12 @@
 <a name="l00317"></a>00317                 $surplusToAdd = 0;
 <a name="l00318"></a>00318             }
 <a name="l00319"></a>00319 
-<a name="l00320"></a>00320             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>=0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; $this-&gt;numFields; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
-<a name="l00321"></a>00321                 <span class="keywordflow">if</span> (!in_array(<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>, array_keys($colFits))) {
-<a name="l00322"></a>00322                     $this-&gt;tablewidths[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = $this-&gt;sColWidth + $surplusToAdd;
+<a name="l00320"></a>00320             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>=0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; $this-&gt;numFields; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
+<a name="l00321"></a>00321                 <span class="keywordflow">if</span> (!in_array(<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>, array_keys($colFits))) {
+<a name="l00322"></a>00322                     $this-&gt;tablewidths[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = $this-&gt;sColWidth + $surplusToAdd;
 <a name="l00323"></a>00323                 }
-<a name="l00324"></a>00324                 <span class="keywordflow">if</span> ($this-&gt;display_column[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] == <span class="keyword">false</span>) {
-<a name="l00325"></a>00325                     $this-&gt;tablewidths[<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>] = 0;
+<a name="l00324"></a>00324                 <span class="keywordflow">if</span> ($this-&gt;display_column[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] == <span class="keyword">false</span>) {
+<a name="l00325"></a>00325                     $this-&gt;tablewidths[<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>] = 0;
 <a name="l00326"></a>00326                 }
 <a name="l00327"></a>00327             }
 <a name="l00328"></a>00328 
@@ -410,7 +410,7 @@
 <a name="l00332"></a>00332 
 <a name="l00333"></a>00333             <span class="comment">// Pass 2</span>
 <a name="l00334"></a>00334 
-<a name="l00335"></a>00335             $this-&gt;results = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, null, <a class="code" href="database__interface_8lib_8php.html#adb95171b9d89470d933f6d59c4c9f000" title="Do not read whole query.">PMA_DBI_QUERY_UNBUFFERED</a>);
+<a name="l00335"></a>00335             $this-&gt;results = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query, null, <a class="code" href="database__interface_8lib_8php.html#adb95171b9d89470d933f6d59c4c9f000" title="Do not read whole query.">PMA_DBI_QUERY_UNBUFFERED</a>);
 <a name="l00336"></a>00336             $this-&gt;setY($this-&gt;tMargin);
 <a name="l00337"></a>00337             $this-&gt;<a class="code" href="classTCPDF.html#a5171e20b366b74523709d84c349c1ced" title="Adds a new page to the document.">AddPage</a>();
 <a name="l00338"></a>00338             $this-&gt;<a class="code" href="classTCPDF.html#a5b5d57a2e74820e41c69737b2d4b6c9e" title="Sets the font used to print character strings.">SetFont</a>(<a class="code" href="PDF_8class_8php.html#a1364a4a7932235527c51f68ee12036e0" title="TCPDF wrapper class.">PMA_PDF_FONT</a>, <span class="stringliteral">&#39;&#39;</span>, 9);
@@ -536,7 +536,7 @@
     <ul>
       <li class="navelem"><a class="el" href="pdf_8php.html">pdf.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

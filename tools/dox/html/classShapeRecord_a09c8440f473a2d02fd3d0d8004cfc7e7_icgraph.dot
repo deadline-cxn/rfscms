@@ -1,0 +1,23 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ShapeRecord\\setError",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ShapeRecord\\loadFromFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShapeRecord.html#a8aa28606bbc765c5a4cb059c5c97a9aa"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ShapeRecord\\saveToFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShapeRecord.html#addb85d948811b5e31ba3add64d8cc887"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ShapeRecord\\addPoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShapeRecord.html#ab1f7a082ff8cb4ee1e8d5c4db1d1fd8c"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ShapeRecord\\deletePoint",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShapeRecord.html#ac2184012de677d04219f19736d6988ad"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ShapeRecord\\getContentLength",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShapeRecord.html#a5f4865f74b6cba84c635637b8acc1c03"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="ShapeRecord\\_saveHeaders",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShapeRecord.html#a423ce21efccf00b99601110b10cfe28a"];
+  Node7 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ShapeRecord\\_saveDBFData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classShapeRecord.html#a705ae34c932fe6337805da52755ae066"];
+  Node8 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

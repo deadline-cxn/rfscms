@@ -105,11 +105,11 @@
 <a name="l00027"></a>00027 <span class="keywordflow">if</span> (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;edit&#39;</span> &amp;&amp; <a class="code" href="servers_8inc_8php.html#a8dc76bff3d439c81c1afaaee3603aa8d">$server_exists</a>) {
 <a name="l00028"></a>00028     <a class="code" href="themes_8php.html#ace7d5ca2414fbd4f411985155fe2f643">$page_title</a> = __(<span class="stringliteral">&#39;Edit server&#39;</span>)
 <a name="l00029"></a>00029         . <span class="charliteral">&#39; &#39;</span> . <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> . <span class="stringliteral">&#39; &lt;small&gt;(&#39;</span> . htmlspecialchars(<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServerDSN(<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>)) . <span class="stringliteral">&#39;)&lt;/small&gt;&#39;</span>;
-<a name="l00030"></a>00030 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;remove&#39;</span> &amp;&amp; <a class="code" href="servers_8inc_8php.html#a8dc76bff3d439c81c1afaaee3603aa8d">$server_exists</a>) {
+<a name="l00030"></a>00030 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;remove&#39;</span> &amp;&amp; <a class="code" href="servers_8inc_8php.html#a8dc76bff3d439c81c1afaaee3603aa8d">$server_exists</a>) {
 <a name="l00031"></a>00031     <a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;removeServer(<a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a>);
 <a name="l00032"></a>00032     header(<span class="stringliteral">&#39;Location: index.php&#39;</span>);
 <a name="l00033"></a>00033     <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>;
-<a name="l00034"></a>00034 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;revert&#39;</span> &amp;&amp; <a class="code" href="servers_8inc_8php.html#a8dc76bff3d439c81c1afaaee3603aa8d">$server_exists</a>) {
+<a name="l00034"></a>00034 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="form_8inc_8php.html#a3aaf40baac36e278c7d7c9139df1750c">$mode</a> == <span class="stringliteral">&#39;revert&#39;</span> &amp;&amp; <a class="code" href="servers_8inc_8php.html#a8dc76bff3d439c81c1afaaee3603aa8d">$server_exists</a>) {
 <a name="l00035"></a>00035     <span class="comment">// handled by process_formset()</span>
 <a name="l00036"></a>00036 } <span class="keywordflow">else</span> {
 <a name="l00037"></a>00037     <a class="code" href="themes_8php.html#ace7d5ca2414fbd4f411985155fe2f643">$page_title</a> = __(<span class="stringliteral">&#39;Add a new server&#39;</span>);
@@ -130,7 +130,7 @@
     <ul>
       <li class="navelem"><a class="el" href="servers_8inc_8php.html">servers.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

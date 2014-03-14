@@ -1,0 +1,21 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_Error\\__construct",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_Message\\setNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a4075fef27eb54d8f2a17bbcae3844932",tooltip="set message type number"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_Message\\setMessage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#acf5a636f44f86ce1449bb53316ea6612",tooltip="set raw message (overrides string)"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_Message\\sanitize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a971da833394ba273c6506108d696183a",tooltip="Sanitizes $message."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_Error\\setFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a688aab9ea468696d818e78e12bf45b0d",tooltip="sets PMA_Error::$_file"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_Error\\relPath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a772a7752d93cec8385e0f13af46d376a",tooltip="return short relative path to phpMyAdmin basedir"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_Error\\setLine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#ac9811e801e7e41e43e2348763e3e8b53",tooltip="sets PMA_Error::$_line"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PMA_Error\\setBacktrace",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#ad7bbe864fec396ddf5cec2db13287c6d",tooltip="sets PMA_Error::$_backtrace"];
+}

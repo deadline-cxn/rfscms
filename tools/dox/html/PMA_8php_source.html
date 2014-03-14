@@ -126,9 +126,9 @@
 <a name="l00048"></a>00048 <span class="comment">     * @param string $param</span>
 <a name="l00049"></a>00049 <span class="comment">     * @return mixed</span>
 <a name="l00050"></a>00050 <span class="comment">     */</span>
-<a name="l00051"></a><a class="code" href="classPMA.html#acd1427dff31b384df0cc66dd93d918c9">00051</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA.html#acd1427dff31b384df0cc66dd93d918c9" title="magic access to protected/inaccessible members/properties">__get</a>(<a class="code" href="edit__area__compressor_8php.html#a8f9ac7863b0957c51a73b9c16e46d5e2">$param</a>)
+<a name="l00051"></a><a class="code" href="classPMA.html#acd1427dff31b384df0cc66dd93d918c9">00051</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA.html#acd1427dff31b384df0cc66dd93d918c9" title="magic access to protected/inaccessible members/properties">__get</a>($param)
 <a name="l00052"></a>00052     {
-<a name="l00053"></a>00053         <span class="keywordflow">switch</span> (<a class="code" href="edit__area__compressor_8php.html#a8f9ac7863b0957c51a73b9c16e46d5e2">$param</a>) {
+<a name="l00053"></a>00053         <span class="keywordflow">switch</span> ($param) {
 <a name="l00054"></a>00054             <span class="keywordflow">case</span> <span class="stringliteral">&#39;databases&#39;</span> :
 <a name="l00055"></a>00055                 <span class="keywordflow">return</span> $this-&gt;<a class="code" href="classPMA.html#a92db4d191375b97a31171614f6761799" title="Accessor to PMA::$databases.">getDatabaseList</a>();
 <a name="l00056"></a>00056                 <span class="keywordflow">break</span>;
@@ -151,9 +151,9 @@
 <a name="l00073"></a>00073 <span class="comment">     * @param string $param</span>
 <a name="l00074"></a>00074 <span class="comment">     * @param mixed  $value</span>
 <a name="l00075"></a>00075 <span class="comment">     */</span>
-<a name="l00076"></a><a class="code" href="classPMA.html#aa162b83f8ed9edfadfda0890178cdb30">00076</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA.html#aa162b83f8ed9edfadfda0890178cdb30" title="magic access to protected/inaccessible members/properties">__set</a>(<a class="code" href="edit__area__compressor_8php.html#a8f9ac7863b0957c51a73b9c16e46d5e2">$param</a>, $value)
+<a name="l00076"></a><a class="code" href="classPMA.html#aa162b83f8ed9edfadfda0890178cdb30">00076</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classPMA.html#aa162b83f8ed9edfadfda0890178cdb30" title="magic access to protected/inaccessible members/properties">__set</a>($param, $value)
 <a name="l00077"></a>00077     {
-<a name="l00078"></a>00078         <span class="keywordflow">switch</span> (<a class="code" href="edit__area__compressor_8php.html#a8f9ac7863b0957c51a73b9c16e46d5e2">$param</a>) {
+<a name="l00078"></a>00078         <span class="keywordflow">switch</span> ($param) {
 <a name="l00079"></a>00079             <span class="keywordflow">case</span> <span class="stringliteral">&#39;userlink&#39;</span> :
 <a name="l00080"></a>00080                 $this-&gt;userlink = $value;
 <a name="l00081"></a>00081                 <span class="keywordflow">break</span>;
@@ -184,7 +184,7 @@
     <ul>
       <li class="navelem"><a class="el" href="PMA_8php.html">PMA.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

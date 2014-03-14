@@ -132,15 +132,15 @@
 <a name="l00054"></a>00054 <span class="comment">//</span>
 <a name="l00055"></a><a class="code" href="index_8inc_8php.html#a3a14d8bce7e2ca8aeacd904641db64ce">00055</a> <a class="code" href="index_8inc_8php.html#a3a14d8bce7e2ca8aeacd904641db64ce">$is_https</a> = !empty($_SERVER[<span class="stringliteral">&#39;HTTPS&#39;</span>]) &amp;&amp; strtolower($_SERVER[<span class="stringliteral">&#39;HTTPS&#39;</span>]) == <span class="stringliteral">&#39;on&#39;</span>;
 <a name="l00056"></a>00056 <span class="keywordflow">if</span> (!<a class="code" href="index_8inc_8php.html#a3a14d8bce7e2ca8aeacd904641db64ce">$is_https</a>) {
-<a name="l00057"></a>00057     <a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a> = __(<span class="stringliteral">&#39;You are not using a secure connection; all data (including potentially sensitive information, like passwords) is transferred unencrypted!&#39;</span>);
+<a name="l00057"></a>00057     $text = __(<span class="stringliteral">&#39;You are not using a secure connection; all data (including potentially sensitive information, like passwords) is transferred unencrypted!&#39;</span>);
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059     <span class="keywordflow">if</span> (!empty($_SERVER[<span class="stringliteral">&#39;REQUEST_URI&#39;</span>]) &amp;&amp; !empty($_SERVER[<span class="stringliteral">&#39;HTTP_HOST&#39;</span>])) {
 <a name="l00060"></a>00060         $link = <span class="stringliteral">&#39;https://&#39;</span> . htmlspecialchars($_SERVER[<span class="stringliteral">&#39;HTTP_HOST&#39;</span>] . $_SERVER[<span class="stringliteral">&#39;REQUEST_URI&#39;</span>]);
 <a name="l00061"></a>00061         $strInsecureConnectionMsg2 = __(<span class="stringliteral">&#39;If your server is also configured to accept HTTPS requests follow [a@%s]this link[/a] to use a secure connection.&#39;</span>);
 <a name="l00062"></a>00062         $strInsecureConnectionMsg2 = sprintf($strInsecureConnectionMsg2, $link);
-<a name="l00063"></a>00063         <a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a> .= <span class="charliteral">&#39; &#39;</span> . <a class="code" href="config__functions_8lib_8php.html#ae8ad142244b34b6ca9cacb76cd5a65ed" title="Returns sanitized language string, taking into account our special codes for formatting.">PMA_lang</a>($strInsecureConnectionMsg2);
+<a name="l00063"></a>00063         $text .= <span class="charliteral">&#39; &#39;</span> . <a class="code" href="config__functions_8lib_8php.html#ae8ad142244b34b6ca9cacb76cd5a65ed" title="Returns sanitized language string, taking into account our special codes for formatting.">PMA_lang</a>($strInsecureConnectionMsg2);
 <a name="l00064"></a>00064     }
-<a name="l00065"></a>00065     <a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01" title="Adds a new message to message list.">messages_set</a>(<span class="stringliteral">&#39;notice&#39;</span>, <span class="stringliteral">&#39;no_https&#39;</span>, __(<span class="stringliteral">&#39;Insecure connection&#39;</span>), <a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a>);
+<a name="l00065"></a>00065     <a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01" title="Adds a new message to message list.">messages_set</a>(<span class="stringliteral">&#39;notice&#39;</span>, <span class="stringliteral">&#39;no_https&#39;</span>, __(<span class="stringliteral">&#39;Insecure connection&#39;</span>), $text);
 <a name="l00066"></a>00066 }
 <a name="l00067"></a>00067 ?&gt;
 <a name="l00068"></a>00068 
@@ -156,7 +156,7 @@
 <a name="l00078"></a>00078     <span class="keywordflow">foreach</span> (<a class="code" href="index_8inc_8php.html#a5c58c295d30f37a6ac871f815eb09735">$all_languages</a> as $each_lang_key =&gt; $each_lang) {
 <a name="l00079"></a>00079         $lang_name = <a class="code" href="select__lang_8lib_8php.html#abe498a160ace027ec0d2dc1f05bb8f91" title="Returns language name.">PMA_langName</a>($each_lang);
 <a name="l00080"></a>00080         <span class="comment">//Is current one active?</span>
-<a name="l00081"></a>00081         $selected = (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>] == $each_lang_key) ? <span class="stringliteral">&#39; selected=&quot;selected&quot;&#39;</span> : <span class="stringliteral">&#39;&#39;</span>;
+<a name="l00081"></a>00081         $selected = (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>] == $each_lang_key) ? <span class="stringliteral">&#39; selected=&quot;selected&quot;&#39;</span> : <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00082"></a>00082         echo <span class="stringliteral">&#39;&lt;option value=&quot;&#39;</span> . $each_lang_key . <span class="charliteral">&#39;&quot;&#39;</span> . $selected . <span class="charliteral">&#39;&gt;&#39;</span> . $lang_name
 <a name="l00083"></a>00083             . <span class="stringliteral">&#39;&lt;/option&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00084"></a>00084     }
@@ -166,7 +166,7 @@
 <a name="l00088"></a>00088 
 <a name="l00089"></a>00089 &lt;?php
 <a name="l00090"></a>00090 <span class="comment">// Check for done action info and set notice message if present</span>
-<a name="l00091"></a>00091 <span class="keywordflow">switch</span> (<a class="code" href="3rdparty_2phpmyadmin_2setup_2index_8php.html#ace508da4a9b3650cf531050fbe13c9aa">$action_done</a>) {
+<a name="l00091"></a>00091 <span class="keywordflow">switch</span> (<a class="code" href="not__included_2wtf_2__phpmyadmin_2setup_2index_8php.html#ace508da4a9b3650cf531050fbe13c9aa">$action_done</a>) {
 <a name="l00092"></a>00092     <span class="keywordflow">case</span> <span class="stringliteral">&#39;config_saved&#39;</span>:
 <a name="l00093"></a>00093         <span class="comment">/* Use uniqid to display this message every time configuration is saved */</span>
 <a name="l00094"></a>00094         <a class="code" href="index_8lib_8php.html#acd6c2e9171fad9c40ad4b26aba760c01" title="Adds a new message to message list.">messages_set</a>(<span class="stringliteral">&#39;notice&#39;</span>, uniqid(<span class="stringliteral">&#39;config_saved&#39;</span>), __(<span class="stringliteral">&#39;Configuration saved.&#39;</span>),
@@ -206,7 +206,7 @@
 <a name="l00128"></a>00128     &lt;th&gt;&lt;?php echo __(<span class="stringliteral">&#39;Authentication type&#39;</span>) ?&gt;&lt;/th&gt;
 <a name="l00129"></a>00129     &lt;th colspan=<span class="stringliteral">&quot;2&quot;</span>&gt;DSN&lt;/th&gt;
 <a name="l00130"></a>00130 &lt;/tr&gt;
-<a name="l00131"></a>00131 &lt;?php <span class="keywordflow">foreach</span> (<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServers() as <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> =&gt; <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>): ?&gt;
+<a name="l00131"></a>00131 &lt;?php <span class="keywordflow">foreach</span> (<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServers() as <a class="code" href="servers_8inc_8php.html#ae97941710d863131c700f069b109991e">$id</a> =&gt; $server): ?&gt;
 <a name="l00132"></a>00132 &lt;tr&gt;
 <a name="l00133"></a>00133     &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;&lt;?php echo $id ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
 <a name="l00134"></a>00134     &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;&lt;?php echo htmlspecialchars(<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServerName($id)) ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
@@ -219,7 +219,7 @@
 <a name="l00141"></a>00141         &lt;/small&gt;
 <a name="l00142"></a>00142     &lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
 <a name="l00143"></a>00143 &lt;/tr&gt;
-<a name="l00144"></a>00144 &lt;?php <a class="code" href="OSS__list_8php.html#a672d9707ef91db026c210f98cc601123">endforeach</a>; ?&gt;
+<a name="l00144"></a>00144 &lt;?php endforeach; ?&gt;
 <a name="l00145"></a>00145 &lt;/table&gt;
 <a name="l00146"></a>00146 &lt;?php <span class="keywordflow">else</span>: ?&gt;
 <a name="l00147"></a>00147 &lt;table <a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a8eba97439dc06bd5160020dd878c1070">width</a>=<span class="stringliteral">&quot;100%&quot;</span>&gt;
@@ -229,7 +229,7 @@
 <a name="l00151"></a>00151     &lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a>&gt;
 <a name="l00152"></a>00152 &lt;/tr&gt;
 <a name="l00153"></a>00153 &lt;/table&gt;
-<a name="l00154"></a><a class="code" href="index_8inc_8php.html#a8e01dcc96c43199448ee66f7c2ae8ea6">00154</a> &lt;?php <a class="code" href="OSS__list_8php.html#a82cd33ca97ff99f2fcc5e9c81d65251b">endif</a>; ?&gt;
+<a name="l00154"></a><a class="code" href="index_8inc_8php.html#a8e01dcc96c43199448ee66f7c2ae8ea6">00154</a> &lt;?php endif; ?&gt;
 <a name="l00155"></a>00155 &lt;table width=<span class="stringliteral">&quot;100%&quot;</span>&gt;
 <a name="l00156"></a>00156 &lt;tr&gt;
 <a name="l00157"></a>00157     &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a2cb7bbff99e906a4fef499891dc9e6f5">td</a> <span class="keyword">class</span>=<span class="stringliteral">&quot;lastrow&quot;</span> style=<span class="stringliteral">&quot;text-align: left&quot;</span>&gt;
@@ -279,7 +279,7 @@
 <a name="l00201"></a>00201     }
 <a name="l00202"></a>00202     $opts[<span class="stringliteral">&#39;values_disabled&#39;</span>][] = <span class="charliteral">&#39;-&#39;</span>;
 <a name="l00203"></a>00203 
-<a name="l00204"></a>00204     <span class="keywordflow">foreach</span> (<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServers() as $id =&gt; <a class="code" href="query_8php.html#ad135cc8a47e55f0829949cf62214170f">$server</a>) {
+<a name="l00204"></a>00204     <span class="keywordflow">foreach</span> (<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServers() as $id =&gt; $server) {
 <a name="l00205"></a>00205         $opts[<span class="stringliteral">&#39;values&#39;</span>][(string)$id] = <a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getServerName($id) . <span class="stringliteral">&quot; [$id]&quot;</span>;
 <a name="l00206"></a>00206     }
 <a name="l00207"></a>00207 } <span class="keywordflow">else</span> {
@@ -295,7 +295,7 @@
 <a name="l00217"></a>00217         <span class="stringliteral">&#39;unix&#39;</span> =&gt; <span class="stringliteral">&#39;UNIX / Linux (\n)&#39;</span>,
 <a name="l00218"></a>00218         <span class="stringliteral">&#39;win&#39;</span> =&gt; <span class="stringliteral">&#39;Windows (\r\n)&#39;</span>),
 <a name="l00219"></a>00219     <span class="stringliteral">&#39;values_escaped&#39;</span> =&gt; <span class="keyword">true</span>);
-<a name="l00220"></a>00220 $eol = <a class="code" href="core_8lib_8php.html#a98bdbf90fdf39169e08ec6a88f5b98b2" title="checks given $var and returns it if valid, or $default of not valid given $var is also checked for ty...">PMA_ifSetOr</a>(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;eol&#39;</span>], (PMA_IS_WINDOWS ? <span class="stringliteral">&#39;win&#39;</span> : <span class="stringliteral">&#39;unix&#39;</span>));
+<a name="l00220"></a>00220 $eol = <a class="code" href="core_8lib_8php.html#a98bdbf90fdf39169e08ec6a88f5b98b2" title="checks given $var and returns it if valid, or $default of not valid given $var is also checked for ty...">PMA_ifSetOr</a>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;eol&#39;</span>], (PMA_IS_WINDOWS ? <span class="stringliteral">&#39;win&#39;</span> : <span class="stringliteral">&#39;unix&#39;</span>));
 <a name="l00221"></a>00221 <a class="code" href="FormDisplay_8tpl_8php.html#acf80ec5f28fe434203e541ca402eb440" title="Displays input field.">display_input</a>(<span class="stringliteral">&#39;eol&#39;</span>, __(<span class="stringliteral">&#39;End of line&#39;</span>), <span class="stringliteral">&#39;&#39;</span>, <span class="stringliteral">&#39;select&#39;</span>,
 <a name="l00222"></a>00222     $eol, <span class="keyword">true</span>, $opts);
 <a name="l00223"></a>00223 ?&gt;
@@ -326,7 +326,7 @@
     <ul>
       <li class="navelem"><a class="el" href="index_8inc_8php.html">index.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

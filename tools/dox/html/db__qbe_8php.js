@@ -36,7 +36,7 @@ var db__qbe_8php =
     [ "$url_query", "db__qbe_8php.html#a9f97d7db14905bd6ce32b003b416769c", null ],
     [ "$w", "db__qbe_8php.html#ae27770d41ec951a1009f76d39501dab2", null ],
     [ "$z", "db__qbe_8php.html#a7359f3ea32073ea20d3176243cb5f86d", null ],
-    [ "for", "db__qbe_8php.html#a45e38d96ec0968f4b734c8a08aa075e3", null ],
-    [ "foreach", "db__qbe_8php.html#a5edd16056463db800da74b18b794c6df", null ],
+    [ "for", "db__qbe_8php.html#a136a886673c6e3057cb8b53fddd0c103", null ],
+    [ "foreach", "db__qbe_8php.html#a781e04b7aa2072ddaa3db84712f9b8e3", null ],
     [ "if", "db__qbe_8php.html#adff60d790853b6ca6f1665185d0f7a50", null ]
 ];

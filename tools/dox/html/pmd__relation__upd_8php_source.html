@@ -121,7 +121,7 @@
 <a name="l00043"></a>00043     <span class="comment">// internal relations</span>
 <a name="l00044"></a>00044     <a class="code" href="relation_8lib_8php.html#ab6d57b38824545d660dcfcd4c864a177" title="Executes a query as controluser if possible, otherwise as normal user.">PMA_query_as_controluser</a>(
 <a name="l00045"></a>00045         <span class="stringliteral">&#39;DELETE FROM &#39;</span>
-<a name="l00046"></a>00046         . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfgRelation&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]) . <span class="charliteral">&#39;.&#39;</span>
+<a name="l00046"></a>00046         . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfgRelation&#39;</span>][<span class="stringliteral">&#39;db&#39;</span>]) . <span class="charliteral">&#39;.&#39;</span>
 <a name="l00047"></a>00047         . <a class="code" href="config_8sample_8inc_8php.html#a5ac38f46d4564a4e13a55c9143828d61">$cfg</a>[<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;relation&#39;</span>].<span class="stringliteral">&#39; WHERE &#39;</span>
 <a name="l00048"></a>00048         . <span class="stringliteral">&#39;master_db = \&#39;&#39;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>($DB2) . <span class="charliteral">&#39;\&#39;&#39;</span>
 <a name="l00049"></a>00049         . <span class="stringliteral">&#39; AND master_table = \&#39;&#39;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>($T2) . <span class="charliteral">&#39;\&#39;&#39;</span>
@@ -135,12 +135,12 @@
 <a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 <a class="code" href="pmd__relation__upd_8php.html#a75178059a42dc96e0cb27116a7512676">PMD_return_upd</a>(1, __(<span class="stringliteral">&#39;Relation deleted&#39;</span>));
 <a name="l00059"></a>00059 
-<a name="l00060"></a><a class="code" href="pmd__relation__upd_8php.html#a75178059a42dc96e0cb27116a7512676">00060</a> <span class="keyword">function</span> <a class="code" href="pmd__relation__upd_8php.html#a75178059a42dc96e0cb27116a7512676">PMD_return_upd</a>($b, $ret)
+<a name="l00060"></a><a class="code" href="pmd__relation__upd_8php.html#a75178059a42dc96e0cb27116a7512676">00060</a> <span class="keyword">function</span> <a class="code" href="pmd__relation__upd_8php.html#a75178059a42dc96e0cb27116a7512676">PMD_return_upd</a>(<a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>, $ret)
 <a name="l00061"></a>00061 {
 <a name="l00062"></a>00062     global $K;
 <a name="l00063"></a>00063     header(<span class="stringliteral">&quot;Content-Type: text/xml; charset=utf-8&quot;</span>);
 <a name="l00064"></a>00064     header(<span class="stringliteral">&quot;Cache-Control: no-cache&quot;</span>);
-<a name="l00065"></a>00065     die(<span class="stringliteral">&#39;&lt;root act=&quot;relation_upd&quot; return=&quot;&#39;</span>.$ret.<span class="stringliteral">&#39;&quot; b=&quot;&#39;</span>.$b.<span class="stringliteral">&#39;&quot; K=&quot;&#39;</span>.$K.<span class="stringliteral">&#39;&quot;&gt;&lt;/root&gt;&#39;</span>);
+<a name="l00065"></a>00065     die(<span class="stringliteral">&#39;&lt;root act=&quot;relation_upd&quot; return=&quot;&#39;</span>.$ret.<span class="stringliteral">&#39;&quot; b=&quot;&#39;</span>.<a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>.<span class="stringliteral">&#39;&quot; K=&quot;&#39;</span>.$K.<span class="stringliteral">&#39;&quot;&gt;&lt;/root&gt;&#39;</span>);
 <a name="l00066"></a>00066 }
 <a name="l00067"></a>00067 ?&gt;
 </pre></div></div><!-- contents -->
@@ -149,7 +149,7 @@
     <ul>
       <li class="navelem"><a class="el" href="pmd__relation__upd_8php.html">pmd_relation_upd.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

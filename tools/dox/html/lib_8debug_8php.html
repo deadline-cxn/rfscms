@@ -80,20 +80,21 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#ab3a52c6c9a162d767d9c3b8c191fa347">sc_debug_on</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#ae2ae588ee72a2de1261f8e9cc5091385">sc_debug_off</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#a9b55f447faf2e1928eb5c9ce9b9a864d">d_echo</a> ($t)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#a8ce4fb6fa9dbdaabed735a22e25dfdd3">sc_tail_error_log</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#a52f6fc6e9e74c3b19b20003108f0ddda">sc_debugheader</a> ($quiet)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#ae3406df45c865d3ab59772fb6d1de411">sc_debugfooter</a> ($quiet)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>(isset($_REQUEST['debug']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#a6d02574499ad428ca2fd1fa04f54bfe2">lib_debug_on</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#a0983e858c6ee8548a9700a3e29cf5b1d">lib_debug_off</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>($_REQUEST['clear_error_log']==&quot;true&quot;) <br class="typebreak"/>
+if($_REQUEST['debug_view_error_log']==1)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7">d_echo</a> ($t)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#af8d584abd4a441934eb7d9fbd158369c">lib_debug_tail_error_log</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#abb01aefda2080a61741f5c4e4930b199">lib_debug_header</a> ($quiet)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8debug_8php.html#a5e417b96dd43be2c87f7bc0f6bfb11aa">lib_debug_footer</a> ($quiet)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a9b55f447faf2e1928eb5c9ce9b9a864d"></a><!-- doxytag: member="lib.debug.php::d_echo" ref="a9b55f447faf2e1928eb5c9ce9b9a864d" args="($t)" -->
+<a class="anchor" id="a724b8757fd23253e49a92069cfb59fa7"></a><!-- doxytag: member="lib.debug.php::d_echo" ref="a724b8757fd23253e49a92069cfb59fa7" args="($t)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="lib_8debug_8php.html#a9b55f447faf2e1928eb5c9ce9b9a864d">d_echo</a> </td>
+          <td class="memname"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a> ($_REQUEST['clear_error_log']==&quot;true&quot;) if ($_REQUEST['debug_view_error_log']==1) <a class="el" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7">d_echo</a> </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
@@ -103,142 +104,151 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00022">22</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lib_8debug_8php_a724b8757fd23253e49a92069cfb59fa7_cgraph.png" border="0" usemap="#lib_8debug_8php_a724b8757fd23253e49a92069cfb59fa7_cgraph" alt=""/></div>
+<map name="lib_8debug_8php_a724b8757fd23253e49a92069cfb59fa7_cgraph" id="lib_8debug_8php_a724b8757fd23253e49a92069cfb59fa7_cgraph">
+<area shape="rect" id="node3" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="119,59,244,88"/><area shape="rect" id="node20" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="123,112,240,141"/><area shape="rect" id="node5" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="293,5,427,35"/><area shape="rect" id="node9" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="295,59,425,88"/><area shape="rect" id="node15" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="303,112,417,141"/><area shape="rect" id="node7" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="496,5,627,35"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="477,59,645,88"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="696,59,869,88"/><area shape="rect" id="node18" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="476,112,647,141"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lib_8debug_8php_a724b8757fd23253e49a92069cfb59fa7_icgraph.png" border="0" usemap="#lib_8debug_8php_a724b8757fd23253e49a92069cfb59fa7_icgraph" alt=""/></div>
+<map name="lib_8debug_8php_a724b8757fd23253e49a92069cfb59fa7_icgraph" id="lib_8debug_8php_a724b8757fd23253e49a92069cfb59fa7_icgraph">
+<area shape="rect" id="node3" href="lib_8debug_8php.html#abb01aefda2080a61741f5c4e4930b199" title="lib_debug_header" alt="" coords="117,379,240,408"/><area shape="rect" id="node5" href="lib_8debug_8php.html#a5e417b96dd43be2c87f7bc0f6bfb11aa" title="lib_debug_footer" alt="" coords="120,432,237,461"/><area shape="rect" id="node7" href="lib_8forms_8php.html#a1490fdf9f61cae1f1ffebc9f3aaad0eb" title="lib_forms_build" alt="" coords="124,485,233,515"/><area shape="rect" id="node62" href="lib_8mysql_8php.html#a000d2ff6d24b34a97ce1e069e1f98bbb" title="lib_mysql_update_database" alt="" coords="321,912,503,941"/><area shape="rect" id="node76" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="145,1123,212,1152"/><area shape="rect" id="node9" href="courses_8php.html#a679acf3b6f8e7392ebb7d7b7ebb4c1c6" title="courses_action_edit_component_types" alt="" coords="288,219,536,248"/><area shape="rect" id="node13" href="courses_8php.html#a892050f549b39093d7a0d85c3d817d24" title="courses_action_edit" alt="" coords="343,272,481,301"/><area shape="rect" id="node15" href="lib_8forms_8php.html#a39bfa82d1907054ec134cdbc5467225e" title="adm_action_f_rfs_db_element_ed1" alt="" coords="300,325,524,355"/><area shape="rect" id="node19" href="lib_8forms_8php.html#ab30f213cfee643627400b28194a871f6" title="lib_forms_build_add" alt="" coords="344,379,480,408"/><area shape="rect" id="node21" href="lib_8forms_8php.html#ac2671fccdf5dce882bd861365b11d319" title="lib_forms_build_quick" alt="" coords="339,432,485,461"/><area shape="rect" id="node23" href="module_8forums_8php.html#aebc49a28621d1a21df14e630d54d8878" title="adm_action_forum_admin" alt="" coords="327,485,497,515"/><area shape="rect" id="node29" href="module_8linkbin_8php.html#ac44251b5ae4effd5d00a073768e8d0af" title="adm_action_edit_linkbin" alt="" coords="332,539,492,568"/><area shape="rect" id="node35" href="pictures_8php.html#a491aacd5d23b2a697f8023d62edb9924" title="pictures_action_uploadpic" alt="" coords="327,592,497,621"/><area shape="rect" id="node37" href="todo__list_8php.html#a51f3194bac537fe5bb5d386e7ffd253a" title="todo_list_action_open_task" alt="" coords="323,645,501,675"/><area shape="rect" id="node39" href="todo__list_8php.html#a4481d4de4895a5a3ddd62fff71000dcf" title="todo_list_action_edit_task" alt="" coords="325,699,499,728"/><area shape="rect" id="node41" href="todo__list_8php.html#ac6f4393794465b0c9d9ead1b14f8e283" title="todo_list_action_new_todo_list" alt="" coords="312,752,512,781"/><area shape="rect" id="node43" href="wab_8php.html#acdfb73a4001eeb541592f6ab46353be8" title="wab_engine_action_" alt="" coords="343,805,481,835"/><area shape="rect" id="node47" href="wab_8php.html#a3fc0ad1f8faed2e8354555b12caea18b" title="wab_engine_action_edcode" alt="" coords="321,859,503,888"/><area shape="rect" id="node49" href="wab_8php.html#a54f174c0d1a9c9b6c105156643e4af71" title="wab_engine_action_add_form" alt="" coords="315,5,509,35"/><area shape="rect" id="node51" href="wab_8php.html#a1ded8498f34e6332fcd2d800147e4170" title="wab_database" alt="" coords="359,59,465,88"/><area shape="rect" id="node57" href="wab_8php.html#aac89fe0b8ac48c93cda21ca4df88ea71" title="wab_functions" alt="" coords="359,112,465,141"/><area shape="rect" id="node60" href="wab_8php.html#add23c51b32e647dde2cad885537f8234" title="wab_form" alt="" coords="373,165,451,195"/><area shape="rect" id="node11" href="courses_8php.html#ad024e3eab78c18cf1b420737f7417300" title="courses_action_add_component_type" alt="" coords="588,219,828,248"/><area shape="rect" id="node17" href="todo__list_8php.html#a0a5edc1108c1f50c188132e7c9bf8b02" title="todo_list_action_f_rfs_db_element_ed1" alt="" coords="584,325,832,355"/><area shape="rect" id="node25" href="module_8forums_8php.html#adaaea1a032db30c071e15a772aa384de" title="adm_action_f_add_forum" alt="" coords="624,432,792,461"/><area shape="rect" id="node27" href="module_8forums_8php.html#af1a307bd4f3e11794a9b2515f3059778" title="adm_action_f_add_forum_folder" alt="" coords="605,485,811,515"/><area shape="rect" id="node31" href="module_8linkbin_8php.html#a7bf3cc8e0bc8a11272e0f4079bd5d812" title="adm_action_f_add_link" alt="" coords="631,539,785,568"/><area shape="rect" id="node33" href="module_8linkbin_8php.html#ae06e8b329dcdf45d65fea0a458544d43" title="adm_action_f_modify_link" alt="" coords="621,592,795,621"/><area shape="rect" id="node45" href="wab_8php.html#a237ac38103b768cd85fa6beec3e5d350" title="wab_engine_action_add" alt="" coords="628,725,788,755"/><area shape="rect" id="node53" href="wab_8php.html#a59829ca896f8174b8a326d90f07d20f9" title="wab_engine_action_editapp" alt="" coords="617,112,799,141"/><area shape="rect" id="node55" href="wab_8php.html#a163edfca11288d6f8aef4db2e9202d6c" title="wab_engine_action_edcodego" alt="" coords="884,511,1079,540"/><area shape="rect" id="node64" href="lib_8forms_8php.html#adb290cd0fcfadb0261212b5834aa0bda" title="adm_action_f_rfs_db_element_ed2" alt="" coords="596,779,820,808"/><area shape="rect" id="node66" href="todo__list_8php.html#a45aed4f666f040c12625d59c8afc7bb6" title="todo_list_action_open_task_go" alt="" coords="608,832,808,861"/><area shape="rect" id="node68" href="todo__list_8php.html#a91d4bc5697695be820e818a6c89d3a61" title="todo_list_action_edit_task_go" alt="" coords="611,885,805,915"/><area shape="rect" id="node72" href="wab_8php.html#afb11994a8bfd2f8cf27028d4896387a7" title="wab_engine_action_add_database" alt="" coords="597,939,819,968"/><area shape="rect" id="node74" href="wab_8php.html#afd61f6a1cc8fae8de19535386ac304c8" title="wab_engine_action_add_function" alt="" coords="601,992,815,1021"/><area shape="rect" id="node78" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="339,1096,485,1125"/><area shape="rect" id="node92" href="lib_8menus_8php.html#af333764aa3173a18722bc9e468b0149e" title="lib_menus_options" alt="" coords="347,1149,477,1179"/><area shape="rect" id="node94" href="module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257" title="sc_show_news" alt="" coords="356,1229,468,1259"/><area shape="rect" id="node80" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="623,1096,793,1125"/><area shape="rect" id="node82" href="forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="881,1123,1081,1152"/><area shape="rect" id="node84" href="forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551" title="forums_action_move_thread" alt="" coords="888,1176,1075,1205"/><area shape="rect" id="node86" href="forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce" title="forums_action_delete_reply" alt="" coords="891,963,1072,992"/><area shape="rect" id="node88" href="forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9" title="forums_action_edit_reply_go" alt="" coords="888,1016,1075,1045"/><area shape="rect" id="node90" href="forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="881,1069,1081,1099"/><area shape="rect" id="node96" href="module_8news_8php.html#a8be7be5f89c1a6434b080695f7361478" title="module_news_blog_style" alt="" coords="897,1283,1065,1312"/><area shape="rect" id="node98" href="module_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1" title="sc_show_top_news" alt="" coords="640,1229,776,1259"/><area shape="rect" id="node100" href="module_8news_8php.html#a965caa6a205118bc46830ab6c28f657f" title="module_news_top_story" alt="" coords="900,1229,1063,1259"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a5e417b96dd43be2c87f7bc0f6bfb11aa"></a><!-- doxytag: member="lib.debug.php::lib_debug_footer" ref="a5e417b96dd43be2c87f7bc0f6bfb11aa" args="($quiet)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="lib_8debug_8php.html#a5e417b96dd43be2c87f7bc0f6bfb11aa">lib_debug_footer</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>quiet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00071">71</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lib_8debug_8php_a5e417b96dd43be2c87f7bc0f6bfb11aa_cgraph.png" border="0" usemap="#lib_8debug_8php_a5e417b96dd43be2c87f7bc0f6bfb11aa_cgraph" alt=""/></div>
+<map name="lib_8debug_8php_a5e417b96dd43be2c87f7bc0f6bfb11aa_cgraph" id="lib_8debug_8php_a5e417b96dd43be2c87f7bc0f6bfb11aa_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="661,5,792,35"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="468,137,583,167"/><area shape="rect" id="node13" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="171,59,235,88"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="643,84,811,113"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="641,137,812,167"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="861,84,1035,113"/><area shape="rect" id="node15" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="284,32,409,61"/><area shape="rect" id="node24" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="288,85,405,115"/><area shape="rect" id="node17" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="459,31,592,60"/><area shape="rect" id="node20" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="460,84,591,113"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="abb01aefda2080a61741f5c4e4930b199"></a><!-- doxytag: member="lib.debug.php::lib_debug_header" ref="abb01aefda2080a61741f5c4e4930b199" args="($quiet)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="lib_8debug_8php.html#abb01aefda2080a61741f5c4e4930b199">lib_debug_header</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>quiet</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00055">55</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lib_8debug_8php_abb01aefda2080a61741f5c4e4930b199_cgraph.png" border="0" usemap="#lib_8debug_8php_abb01aefda2080a61741f5c4e4930b199_cgraph" alt=""/></div>
+<map name="lib_8debug_8php_abb01aefda2080a61741f5c4e4930b199_cgraph" id="lib_8debug_8php_abb01aefda2080a61741f5c4e4930b199_cgraph">
+<area shape="rect" id="node3" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="763,5,893,35"/><area shape="rect" id="node5" href="lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="224,57,288,87"/><area shape="rect" id="node25" href="lib_8debug_8php.html#af8d584abd4a441934eb7d9fbd158369c" title="lib_debug_tail_error_log" alt="" coords="177,111,335,140"/><area shape="rect" id="node7" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="385,57,511,87"/><area shape="rect" id="node23" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="389,111,507,140"/><area shape="rect" id="node9" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="560,31,693,60"/><area shape="rect" id="node12" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="561,84,692,113"/><area shape="rect" id="node18" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="569,137,684,167"/><area shape="rect" id="node14" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="744,84,912,113"/><area shape="rect" id="node16" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="963,84,1136,113"/><area shape="rect" id="node21" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="743,137,913,167"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a0983e858c6ee8548a9700a3e29cf5b1d"></a><!-- doxytag: member="lib.debug.php::lib_debug_off" ref="a0983e858c6ee8548a9700a3e29cf5b1d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="lib_8debug_8php.html#a0983e858c6ee8548a9700a3e29cf5b1d">lib_debug_off</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
 <p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00012">12</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
 
+</div>
+</div>
+<a class="anchor" id="a6d02574499ad428ca2fd1fa04f54bfe2"></a><!-- doxytag: member="lib.debug.php::lib_debug_on" ref="a6d02574499ad428ca2fd1fa04f54bfe2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a> (isset($_REQUEST['debug'])) <a class="el" href="lib_8debug_8php.html#a6d02574499ad428ca2fd1fa04f54bfe2">lib_debug_on</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00011">11</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="lib_8debug_8php_a9b55f447faf2e1928eb5c9ce9b9a864d_cgraph.png" border="0" usemap="#lib_8debug_8php_a9b55f447faf2e1928eb5c9ce9b9a864d_cgraph" alt=""/></div>
-<map name="lib_8debug_8php_a9b55f447faf2e1928eb5c9ce9b9a864d_cgraph" id="lib_8debug_8php_a9b55f447faf2e1928eb5c9ce9b9a864d_cgraph">
-<area shape="rect" id="node3" href="lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="sc_yes" alt="" coords="117,5,181,35"/></map>
+<div class="center"><img src="lib_8debug_8php_a6d02574499ad428ca2fd1fa04f54bfe2_cgraph.png" border="0" usemap="#lib_8debug_8php_a6d02574499ad428ca2fd1fa04f54bfe2_cgraph" alt=""/></div>
+<map name="lib_8debug_8php_a6d02574499ad428ca2fd1fa04f54bfe2_cgraph" id="lib_8debug_8php_a6d02574499ad428ca2fd1fa04f54bfe2_cgraph">
+<area shape="rect" id="node3" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="153,59,279,88"/><area shape="rect" id="node5" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="328,5,461,35"/><area shape="rect" id="node9" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="329,59,460,88"/><area shape="rect" id="node15" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="337,112,452,141"/><area shape="rect" id="node7" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="531,5,661,35"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="512,59,680,88"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="731,59,904,88"/><area shape="rect" id="node18" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="511,112,681,141"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="af8d584abd4a441934eb7d9fbd158369c"></a><!-- doxytag: member="lib.debug.php::lib_debug_tail_error_log" ref="af8d584abd4a441934eb7d9fbd158369c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="lib_8debug_8php.html#af8d584abd4a441934eb7d9fbd158369c">lib_debug_tail_error_log</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00036">36</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="lib_8debug_8php_a9b55f447faf2e1928eb5c9ce9b9a864d_icgraph.png" border="0" usemap="#lib_8debug_8php_a9b55f447faf2e1928eb5c9ce9b9a864d_icgraph" alt=""/></div>
-<map name="lib_8debug_8php_a9b55f447faf2e1928eb5c9ce9b9a864d_icgraph" id="lib_8debug_8php_a9b55f447faf2e1928eb5c9ce9b9a864d_icgraph">
-<area shape="rect" id="node3" href="adm_8php.html#a71c4dffd55fffb72fcaa30ac14bb7008" title="adm_action_f_admin_menu_edit_entry_data" alt="" coords="117,364,395,393"/><area shape="rect" id="node19" href="lib_8debug_8php.html#a52f6fc6e9e74c3b19b20003108f0ddda" title="sc_debugheader" alt="" coords="197,787,315,816"/><area shape="rect" id="node21" href="lib_8debug_8php.html#ae3406df45c865d3ab59772fb6d1de411" title="sc_debugfooter" alt="" coords="201,840,311,869"/><area shape="rect" id="node23" href="lib_8menus_8php.html#a5fb3e342cf97a437be82114afe33075f" title="sc_menu_draw" alt="" coords="201,893,311,923"/><area shape="rect" id="node25" href="lib_8mysql_8php.html#a859cf356f7e78d2c2a45011f30e3ce91" title="sc_updb" alt="" coords="508,896,577,925"/><area shape="rect" id="node39" href="lib_8mysql_8php.html#ab2a2e03dfc31eb5074a990325393609d" title="sc_bf" alt="" coords="229,629,283,659"/><area shape="rect" id="node94" href="lib_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="223,1053,289,1083"/><area shape="rect" id="node5" href="adm_8php.html#a924952c6aa96e4c2950a173b574c9fec" title="adm_action_admin_menu_edit" alt="" coords="444,152,641,181"/><area shape="rect" id="node7" href="adm_8php.html#a18b3f400bb2e8cd263c40de1429c5e0f" title="adm_action_f_admin_menu_edit_del_go" alt="" coords="692,112,945,141"/><area shape="rect" id="node9" href="adm_8php.html#a8ca9c7209f4167ca0fda4e5f55eadb8c" title="adm_action_f_admin_menu_edit_del" alt="" coords="703,165,935,195"/><area shape="rect" id="node11" href="adm_8php.html#a835f395c55cf333c6f118fc48d58ddd0" title="adm_action_f_admin_menu_edit_add" alt="" coords="700,219,937,248"/><area shape="rect" id="node13" href="adm_8php.html#aa8c44c3b6ceb55a1fb8f74167f680fb1" title="adm_action_f_admin_change_category" alt="" coords="695,5,943,35"/><area shape="rect" id="node15" href="adm_8php.html#a3b4a1832441c738d337ba60256318e4b" title="adm_action_f_admin_menu_edit_mod" alt="" coords="699,59,939,88"/><area shape="rect" id="node17" href="adm_8php.html#a421a8aa7b84f9d5e67881e59f157f75f" title="adm_action_f_admin_menu_edit_entry" alt="" coords="696,272,941,301"/><area shape="rect" id="node27" href="adm_8php.html#afd09da1c2fb40e866df9869f28e8dfb6" title="adm_action_f_modify_forum" alt="" coords="725,1001,912,1031"/><area shape="rect" id="node29" href="adm_8php.html#aaacf1c4d21f907b2c19ab04502cfcd05" title="adm_action_f_edit_users_go" alt="" coords="725,737,912,767"/><area shape="rect" id="node31" href="wab_8php.html#a163edfca11288d6f8aef4db2e9202d6c" title="wab_engine_action_edcodego" alt="" coords="996,584,1191,613"/><area shape="rect" id="node33" href="wab_8php.html#a237ac38103b768cd85fa6beec3e5d350" title="wab_engine_action_add" alt="" coords="739,791,899,820"/><area shape="rect" id="node35" href="wab_8php.html#afb11994a8bfd2f8cf27028d4896387a7" title="wab_engine_action_add_database" alt="" coords="708,895,929,924"/><area shape="rect" id="node37" href="wab_8php.html#afd61f6a1cc8fae8de19535386ac304c8" title="wab_engine_action_add_function" alt="" coords="712,948,925,977"/><area shape="rect" id="node41" href="adm_8php.html#ae4bd3b1ad635c8ea320779269fae0240" title="adm_action_eval_form" alt="" coords="467,629,619,659"/><area shape="rect" id="node43" href="adm_8php.html#aca1d3f205bdc859bf0b2e3d19cc4967b" title="adm_action_f_theme_clone" alt="" coords="452,683,633,712"/><area shape="rect" id="node45" href="adm_8php.html#a28d52b7190b9adb31b38aabf1ce63abb" title="adm_action_f_edit_forum" alt="" coords="735,1055,903,1084"/><area shape="rect" id="node49" href="adm_8php.html#aebc49a28621d1a21df14e630d54d8878" title="adm_action_forum_admin" alt="" coords="457,949,628,979"/><area shape="rect" id="node54" href="adm_8php.html#a3f080bc5ed21800a5f17a8cc8722d675" title="adm_action_f_edit_users" alt="" coords="460,1003,625,1032"/><area shape="rect" id="node56" href="adm_8php.html#ae61c9a0b2524c9e3f584d50a6504fb71" title="adm_action_user_edit" alt="" coords="468,736,617,765"/><area shape="rect" id="node63" href="adm_8php.html#ac44251b5ae4effd5d00a073768e8d0af" title="adm_action_edit_linkbin" alt="" coords="463,416,623,445"/><area shape="rect" id="node69" href="lib_8mysql_8php.html#a9324214cbed25fcb67c05adc6651a6f5" title="sc_bfa" alt="" coords="512,312,573,341"/><area shape="rect" id="node71" href="lib_8mysql_8php.html#a80abbdad3e2473fa9a676869019a152f" title="sc_bqf" alt="" coords="512,576,573,605"/><area shape="rect" id="node77" href="wab_8php.html#acdfb73a4001eeb541592f6ab46353be8" title="wab_engine_action_" alt="" coords="473,843,612,872"/><area shape="rect" id="node80" href="wab_8php.html#a3fc0ad1f8faed2e8354555b12caea18b" title="wab_engine_action_edcode" alt="" coords="452,469,633,499"/><area shape="rect" id="node82" href="wab_8php.html#a54f174c0d1a9c9b6c105156643e4af71" title="wab_engine_action_add_form" alt="" coords="445,523,640,552"/><area shape="rect" id="node84" href="wab_8php.html#a1ded8498f34e6332fcd2d800147e4170" title="wab_database" alt="" coords="489,205,596,235"/><area shape="rect" id="node89" href="wab_8php.html#aac89fe0b8ac48c93cda21ca4df88ea71" title="wab_functions" alt="" coords="489,259,596,288"/><area shape="rect" id="node92" href="wab_8php.html#add23c51b32e647dde2cad885537f8234" title="wab_form" alt="" coords="504,789,581,819"/><area shape="rect" id="node47" href="adm_8php.html#adaaea1a032db30c071e15a772aa384de" title="adm_action_f_add_forum" alt="" coords="1009,1055,1177,1084"/><area shape="rect" id="node59" href="adm_8php.html#a6f2f72ad11309918eebcbbdc9c92bfa0" title="adm_action_f_del_users_go" alt="" coords="727,684,911,713"/><area shape="rect" id="node61" href="adm_8php.html#a81986b0289c7ac7584512e6555a64831" title="adm_action_f_add_user" alt="" coords="739,631,899,660"/><area shape="rect" id="node65" href="adm_8php.html#a7bf3cc8e0bc8a11272e0f4079bd5d812" title="adm_action_f_add_link" alt="" coords="741,404,896,433"/><area shape="rect" id="node67" href="adm_8php.html#ae06e8b329dcdf45d65fea0a458544d43" title="adm_action_f_modify_link" alt="" coords="732,457,905,487"/><area shape="rect" id="node73" href="adm_8php.html#afbb0f2660d6ec234d8ae91bd19bfd9ce" title="adm_action_new_page" alt="" coords="741,523,896,552"/><area shape="rect" id="node75" href="adm_8php.html#a9a6c8b42b47f89178b987586cf1733f5" title="adm_action_email" alt="" coords="756,576,881,605"/><area shape="rect" id="node86" href="wab_8php.html#a59829ca896f8174b8a326d90f07d20f9" title="wab_engine_action_editapp" alt="" coords="728,325,909,355"/><area shape="rect" id="node96" href="lib_8news_8php.html#a5b4884cdbbda02398946139fe82b991d" title="sc_show_news" alt="" coords="487,1108,599,1137"/><area shape="rect" id="node98" href="lib_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1" title="sc_show_top_news" alt="" coords="751,1108,887,1137"/><area shape="rect" id="node100" href="lib_8news_8php.html#a3eadb01f165caca65018c27fd6c7e39b" title="sc_module_news_top_story" alt="" coords="1001,1108,1185,1137"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="ae2ae588ee72a2de1261f8e9cc5091385"></a><!-- doxytag: member="lib.debug.php::sc_debug_off" ref="ae2ae588ee72a2de1261f8e9cc5091385" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="lib_8debug_8php.html#ae2ae588ee72a2de1261f8e9cc5091385">sc_debug_off</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00010">10</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab3a52c6c9a162d767d9c3b8c191fa347"></a><!-- doxytag: member="lib.debug.php::sc_debug_on" ref="ab3a52c6c9a162d767d9c3b8c191fa347" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="lib_8debug_8php.html#ab3a52c6c9a162d767d9c3b8c191fa347">sc_debug_on</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00009">9</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae3406df45c865d3ab59772fb6d1de411"></a><!-- doxytag: member="lib.debug.php::sc_debugfooter" ref="ae3406df45c865d3ab59772fb6d1de411" args="($quiet)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="lib_8debug_8php.html#ae3406df45c865d3ab59772fb6d1de411">sc_debugfooter</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>quiet</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00056">56</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="lib_8debug_8php_ae3406df45c865d3ab59772fb6d1de411_cgraph.png" border="0" usemap="#lib_8debug_8php_ae3406df45c865d3ab59772fb6d1de411_cgraph" alt=""/></div>
-<map name="lib_8debug_8php_ae3406df45c865d3ab59772fb6d1de411_cgraph" id="lib_8debug_8php_ae3406df45c865d3ab59772fb6d1de411_cgraph">
-<area shape="rect" id="node3" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="165,59,240,88"/><area shape="rect" id="node11" href="lib_8debug_8php.html#a9b55f447faf2e1928eb5c9ce9b9a864d" title="d_echo" alt="" coords="171,112,235,141"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="288,5,416,35"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="331,59,373,88"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="465,5,596,35"/><area shape="rect" id="node13" href="lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="sc_yes" alt="" coords="320,112,384,141"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a52f6fc6e9e74c3b19b20003108f0ddda"></a><!-- doxytag: member="lib.debug.php::sc_debugheader" ref="a52f6fc6e9e74c3b19b20003108f0ddda" args="($quiet)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="lib_8debug_8php.html#a52f6fc6e9e74c3b19b20003108f0ddda">sc_debugheader</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>quiet</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00041">41</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="lib_8debug_8php_a52f6fc6e9e74c3b19b20003108f0ddda_cgraph.png" border="0" usemap="#lib_8debug_8php_a52f6fc6e9e74c3b19b20003108f0ddda_cgraph" alt=""/></div>
-<map name="lib_8debug_8php_a52f6fc6e9e74c3b19b20003108f0ddda_cgraph" id="lib_8debug_8php_a52f6fc6e9e74c3b19b20003108f0ddda_cgraph">
-<area shape="rect" id="node3" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="208,5,251,35"/><area shape="rect" id="node5" href="lib_8debug_8php.html#a9b55f447faf2e1928eb5c9ce9b9a864d" title="d_echo" alt="" coords="197,59,261,88"/><area shape="rect" id="node9" href="lib_8debug_8php.html#a8ce4fb6fa9dbdaabed735a22e25dfdd3" title="sc_tail_error_log" alt="" coords="171,112,288,141"/><area shape="rect" id="node7" href="lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="sc_yes" alt="" coords="336,59,400,88"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a8ce4fb6fa9dbdaabed735a22e25dfdd3"></a><!-- doxytag: member="lib.debug.php::sc_tail_error_log" ref="a8ce4fb6fa9dbdaabed735a22e25dfdd3" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="lib_8debug_8php.html#a8ce4fb6fa9dbdaabed735a22e25dfdd3">sc_tail_error_log</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="lib_8debug_8php_source.html#l00025">25</a> of file <a class="el" href="lib_8debug_8php_source.html">lib.debug.php</a>.</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="lib_8debug_8php_a8ce4fb6fa9dbdaabed735a22e25dfdd3_icgraph.png" border="0" usemap="#lib_8debug_8php_a8ce4fb6fa9dbdaabed735a22e25dfdd3_icgraph" alt=""/></div>
-<map name="lib_8debug_8php_a8ce4fb6fa9dbdaabed735a22e25dfdd3_icgraph" id="lib_8debug_8php_a8ce4fb6fa9dbdaabed735a22e25dfdd3_icgraph">
-<area shape="rect" id="node3" href="lib_8debug_8php.html#a52f6fc6e9e74c3b19b20003108f0ddda" title="sc_debugheader" alt="" coords="171,5,288,35"/></map>
+<div class="center"><img src="lib_8debug_8php_af8d584abd4a441934eb7d9fbd158369c_icgraph.png" border="0" usemap="#lib_8debug_8php_af8d584abd4a441934eb7d9fbd158369c_icgraph" alt=""/></div>
+<map name="lib_8debug_8php_af8d584abd4a441934eb7d9fbd158369c_icgraph" id="lib_8debug_8php_af8d584abd4a441934eb7d9fbd158369c_icgraph">
+<area shape="rect" id="node3" href="lib_8debug_8php.html#abb01aefda2080a61741f5c4e4930b199" title="lib_debug_header" alt="" coords="213,5,336,35"/></map>
 </div>
 </p>
 
@@ -250,7 +260,7 @@ Here is the caller graph for this function:</div>
     <ul>
       <li class="navelem"><a class="el" href="lib_8debug_8php.html">lib.debug.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:31 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

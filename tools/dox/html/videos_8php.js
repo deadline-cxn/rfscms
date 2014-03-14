@@ -1,12 +1,18 @@
 var videos_8php =
 [
-    [ "video_pagefinish", "videos_8php.html#aa21b46c935d7e95d5ba9c5ad4a19a3b5", null ],
-    [ "$numcats", "videos_8php.html#a75fc289e2dfa4d8c56e6511eaa3893d8", null ],
-    [ "$numcols", "videos_8php.html#a0f8f5c33c1b3925c87d14e45b4774983", null ],
-    [ "$res", "videos_8php.html#a49a8a4009b02e49717caa88b128affc5", null ],
-    [ "$vc", "videos_8php.html#a84777e777a19a430dfd96ae64f220136", null ],
-    [ "$video", "videos_8php.html#af9a80827c3f37aaa84dc0aebec3b22b3", null ],
-    [ "else", "videos_8php.html#a0544c3fe466e421738dae463968b70ba", null ],
-    [ "for", "videos_8php.html#a7910fc1d65c1b5ca8f475a2caae893c4", null ],
-    [ "if", "videos_8php.html#a510c5871f1a36baa46aaf76324915593", null ]
+    [ "videos_action_", "videos_8php.html#ab2365aa929b2c8a4c4d6e7218f692912", null ],
+    [ "videos_action_modifygo", "videos_8php.html#af1feca1edd47054ba12a13ec68617900", null ],
+    [ "videos_action_modifyvideo", "videos_8php.html#a8b130d53310317c74917a1845fd6b2e4", null ],
+    [ "videos_action_random", "videos_8php.html#a87c25cf3c451e1f8139fb22aac781856", null ],
+    [ "videos_action_removego", "videos_8php.html#afbca33fe0f0a31cacc4e51c6ed20ff89", null ],
+    [ "videos_action_removevideo", "videos_8php.html#a43579369c942945cb445eb31e3314f23", null ],
+    [ "videos_action_submitvid", "videos_8php.html#aaee1f7f5ba8457a507e4b92b260ec669", null ],
+    [ "videos_action_submitvid_youtube_go", "videos_8php.html#a057ea4c4da625f91451d6ff6c9721f89", null ],
+    [ "videos_action_submitvidgo", "videos_8php.html#a5c63558285fa962475486ca9ef58ccf9", null ],
+    [ "videos_action_view", "videos_8php.html#aa959ca0b67bee8e2ef25aec91ced4ca1", null ],
+    [ "videos_action_view_cats", "videos_8php.html#ad4883204f997a82a95ca1d3c94030c6f", null ],
+    [ "videos_action_viewcat", "videos_8php.html#abda8f4c2c82c04a859b2a9b3eaac7157", null ],
+    [ "videos_buttons", "videos_8php.html#a992c066f6f4995125193c8b90f3eeebd", null ],
+    [ "videos_pagefinish", "videos_8php.html#a86bcd28017efc225b7999d65dd1af5a3", null ],
+    [ "$RFS_LITTLE_HEADER", "videos_8php.html#a082d0817db86737571268a66f2e75c2e", null ]
 ];

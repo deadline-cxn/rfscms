@@ -101,14 +101,14 @@
 <a name="l00023"></a>00023 <span class="comment">/**</span>
 <a name="l00024"></a>00024 <span class="comment"> * limits for table list</span>
 <a name="l00025"></a>00025 <span class="comment"> */</span>
-<a name="l00026"></a>00026 <span class="keywordflow">if</span> (! isset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset&#39;</span>]) || <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset_db&#39;</span>] != <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) {
-<a name="l00027"></a>00027     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset&#39;</span>] = 0;
-<a name="l00028"></a>00028     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset_db&#39;</span>] = <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>;
+<a name="l00026"></a>00026 <span class="keywordflow">if</span> (! isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset&#39;</span>]) || <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset_db&#39;</span>] != <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) {
+<a name="l00027"></a>00027     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset&#39;</span>] = 0;
+<a name="l00028"></a>00028     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset_db&#39;</span>] = <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>;
 <a name="l00029"></a>00029 }
 <a name="l00030"></a>00030 <span class="keywordflow">if</span> (isset(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pos&#39;</span>])) {
-<a name="l00031"></a>00031     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset&#39;</span>] = (int) <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pos&#39;</span>];
+<a name="l00031"></a>00031     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset&#39;</span>] = (int) <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;pos&#39;</span>];
 <a name="l00032"></a>00032 }
-<a name="l00033"></a><a class="code" href="db__info_8inc_8php.html#ae366fb6c60468feda59229703b184b76">00033</a> <a class="code" href="bs__disp__as__mime__type_8php.html#a5de51f0c80b3bb3b39a57b23f6b9ea9f">$pos</a> = <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset&#39;</span>];
+<a name="l00033"></a><a class="code" href="db__info_8inc_8php.html#ae366fb6c60468feda59229703b184b76">00033</a> <a class="code" href="bs__disp__as__mime__type_8php.html#a5de51f0c80b3bb3b39a57b23f6b9ea9f">$pos</a> = <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;tmp_user_values&#39;</span>][<span class="stringliteral">&#39;table_limit_offset&#39;</span>];
 <a name="l00034"></a>00034 <span class="comment"></span>
 <a name="l00035"></a>00035 <span class="comment">/**</span>
 <a name="l00036"></a>00036 <span class="comment"> * fills given tooltip arrays</span>
@@ -139,8 +139,8 @@
 <a name="l00061"></a>00061         <a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>[<span class="stringliteral">&#39;Comment&#39;</span>] .= <span class="charliteral">&#39; &#39;</span>;
 <a name="l00062"></a>00062     }
 <a name="l00063"></a>00063 
-<a name="l00064"></a>00064     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ShowTooltipAliasTB&#39;</span>]
-<a name="l00065"></a>00065      &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ShowTooltipAliasTB&#39;</span>] !== <span class="stringliteral">&#39;nested&#39;</span>) {
+<a name="l00064"></a>00064     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ShowTooltipAliasTB&#39;</span>]
+<a name="l00065"></a>00065      &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;ShowTooltipAliasTB&#39;</span>] !== <span class="stringliteral">&#39;nested&#39;</span>) {
 <a name="l00066"></a>00066         $tooltip_truename[<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>[<span class="stringliteral">&#39;Name&#39;</span>]] = $table[<span class="stringliteral">&#39;Comment&#39;</span>];
 <a name="l00067"></a>00067         $tooltip_aliasname[$table[<span class="stringliteral">&#39;Name&#39;</span>]] = $table[<span class="stringliteral">&#39;Name&#39;</span>];
 <a name="l00068"></a>00068     } <span class="keywordflow">else</span> {
@@ -338,7 +338,7 @@
 <a name="l00260"></a>00260 <span class="comment"> * Displays top menu links</span>
 <a name="l00261"></a>00261 <span class="comment"> * If in an Ajax request, we do not need to show this</span>
 <a name="l00262"></a>00262 <span class="comment"> */</span>
-<a name="l00263"></a>00263 <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_ajax_request&#39;</span>] != <span class="keyword">true</span>) {
+<a name="l00263"></a>00263 <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_ajax_request&#39;</span>] != <span class="keyword">true</span>) {
 <a name="l00264"></a>00264     include <span class="stringliteral">&#39;./libraries/db_links.inc.php&#39;</span>;
 <a name="l00265"></a>00265 }
 <a name="l00266"></a>00266 ?&gt;
@@ -348,7 +348,7 @@
     <ul>
       <li class="navelem"><a class="el" href="db__info_8inc_8php.html">db_info.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:28 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

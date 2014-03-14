@@ -1,0 +1,11 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_getD",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_detectSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$import_8lib_8php.html#a25d51e2073b55e31f1db9ff5b6bd7323",tooltip="Obtains the size of the given cell."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_analyzeTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$import_8lib_8php.html#a500f62d64c400e5d660e31fe1fe6c418",tooltip="Determines if the column types are int, decimal, or string."];
+}

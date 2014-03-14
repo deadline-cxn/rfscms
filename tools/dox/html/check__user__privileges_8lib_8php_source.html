@@ -90,7 +90,7 @@
 <a name="l00012"></a>00012 <span class="comment">/**</span>
 <a name="l00013"></a>00013 <span class="comment"> *</span>
 <a name="l00014"></a>00014 <span class="comment"> */</span>
-<a name="l00015"></a><a class="code" href="check__user__privileges_8lib_8php.html#a09b3b9021f022b8e104dcb0b887b82fe">00015</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_superuser&#39;</span>]       = <a class="code" href="database__interface_8lib_8php.html#a8625f640d7f62aa247791803ac9ab54b" title="returns true (int &gt; 0) if current user is superuser otherwise 0">PMA_isSuperuser</a>();
+<a name="l00015"></a><a class="code" href="check__user__privileges_8lib_8php.html#a09b3b9021f022b8e104dcb0b887b82fe">00015</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_superuser&#39;</span>]       = <a class="code" href="database__interface_8lib_8php.html#a8625f640d7f62aa247791803ac9ab54b" title="returns true (int &gt; 0) if current user is superuser otherwise 0">PMA_isSuperuser</a>();
 <a name="l00016"></a>00016 <span class="comment"></span>
 <a name="l00017"></a>00017 <span class="comment">/**</span>
 <a name="l00018"></a>00018 <span class="comment"> * sets privilege information extracted from SHOW GRANTS result</span>
@@ -112,21 +112,21 @@
 <a name="l00034"></a><a class="code" href="check__user__privileges_8lib_8php.html#a7e5034bdb6b887bec23b89c3f5db71b2">00034</a> <span class="keyword">function</span> <a class="code" href="check__user__privileges_8lib_8php.html#a7e5034bdb6b887bec23b89c3f5db71b2" title="sets privilege information extracted from SHOW GRANTS result">PMA_analyseShowGrant</a>()
 <a name="l00035"></a>00035 {
 <a name="l00036"></a>00036     <span class="keywordflow">if</span> (<a class="code" href="common_8lib_8php.html#a0eb81c6588d51dd4ae1901c0f744e17c" title="Verifies if something is cached in the session.">PMA_cacheExists</a>(<span class="stringliteral">&#39;is_create_db_priv&#39;</span>, <span class="keyword">true</span>)) {
-<a name="l00037"></a>00037         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>]  = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;is_create_db_priv&#39;</span>, <span class="keyword">true</span>);
-<a name="l00038"></a>00038         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_process_priv&#39;</span>]    = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;is_process_priv&#39;</span>, <span class="keyword">true</span>);
-<a name="l00039"></a>00039         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>]     = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;is_reload_priv&#39;</span>, <span class="keyword">true</span>);
-<a name="l00040"></a>00040         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]       = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;db_to_create&#39;</span>, <span class="keyword">true</span>);
-<a name="l00041"></a>00041         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>]
+<a name="l00037"></a>00037         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>]  = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;is_create_db_priv&#39;</span>, <span class="keyword">true</span>);
+<a name="l00038"></a>00038         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_process_priv&#39;</span>]    = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;is_process_priv&#39;</span>, <span class="keyword">true</span>);
+<a name="l00039"></a>00039         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>]     = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;is_reload_priv&#39;</span>, <span class="keyword">true</span>);
+<a name="l00040"></a>00040         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]       = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;db_to_create&#39;</span>, <span class="keyword">true</span>);
+<a name="l00041"></a>00041         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>]
 <a name="l00042"></a>00042             = <a class="code" href="common_8lib_8php.html#a28b14adfbbd7d246da55512f63bde226" title="Gets cached information from the session.">PMA_cacheGet</a>(<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>, <span class="keyword">true</span>);
 <a name="l00043"></a>00043         <span class="keywordflow">return</span>;
 <a name="l00044"></a>00044     }
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046     <span class="comment">// defaults</span>
-<a name="l00047"></a>00047     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>]  = <span class="keyword">false</span>;
-<a name="l00048"></a>00048     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_process_priv&#39;</span>]    = <span class="keyword">true</span>;
-<a name="l00049"></a>00049     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>]     = <span class="keyword">false</span>;
-<a name="l00050"></a>00050     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]       = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00051"></a>00051     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>] = array();
+<a name="l00047"></a>00047     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>]  = <span class="keyword">false</span>;
+<a name="l00048"></a>00048     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_process_priv&#39;</span>]    = <span class="keyword">true</span>;
+<a name="l00049"></a>00049     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>]     = <span class="keyword">false</span>;
+<a name="l00050"></a>00050     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]       = <span class="stringliteral">&#39;&#39;</span>;
+<a name="l00051"></a>00051     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>] = array();
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053     $rs_usr = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<span class="stringliteral">&#39;SHOW GRANTS&#39;</span>);
 <a name="l00054"></a>00054 
@@ -147,7 +147,7 @@
 <a name="l00069"></a>00069 
 <a name="l00070"></a>00070         $show_grants_str    = substr(<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[0], 6, (strpos(<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[0], <span class="stringliteral">&#39; ON &#39;</span>) - 6));
 <a name="l00071"></a>00071         <span class="keywordflow">if</span> ($show_grants_str == <span class="stringliteral">&#39;RELOAD&#39;</span>) {
-<a name="l00072"></a>00072             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>] = <span class="keyword">true</span>;
+<a name="l00072"></a>00072             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00073"></a>00073         }
 <a name="l00074"></a>00074 <span class="comment"></span>
 <a name="l00075"></a>00075 <span class="comment">        /**</span>
@@ -160,20 +160,20 @@
 <a name="l00082"></a>00082          || strpos($show_grants_str, <span class="stringliteral">&#39;CREATE,&#39;</span>) !== <span class="keyword">false</span>) {
 <a name="l00083"></a>00083             <span class="keywordflow">if</span> ($show_grants_dbname == <span class="charliteral">&#39;*&#39;</span>) {
 <a name="l00084"></a>00084                 <span class="comment">// a global CREATE privilege</span>
-<a name="l00085"></a>00085                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>] = <span class="keyword">true</span>;
-<a name="l00086"></a>00086                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>] = <span class="keyword">true</span>;
-<a name="l00087"></a>00087                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]   = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00088"></a>00088                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>][] = <span class="charliteral">&#39;*&#39;</span>;
+<a name="l00085"></a>00085                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>] = <span class="keyword">true</span>;
+<a name="l00086"></a>00086                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>] = <span class="keyword">true</span>;
+<a name="l00087"></a>00087                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]   = <span class="stringliteral">&#39;&#39;</span>;
+<a name="l00088"></a>00088                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>][] = <span class="charliteral">&#39;*&#39;</span>;
 <a name="l00089"></a>00089                 <span class="comment">// @todo we should not break here, cause GRANT ALL *.*</span>
 <a name="l00090"></a>00090                 <span class="comment">// could be revoked by a later rule like GRANT SELECT ON db.*</span>
 <a name="l00091"></a>00091                 <span class="keywordflow">break</span>;
 <a name="l00092"></a>00092             } <span class="keywordflow">else</span> {
 <a name="l00093"></a>00093                 <span class="comment">// this array may contain wildcards</span>
-<a name="l00094"></a>00094                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>][] = $show_grants_dbname;
+<a name="l00094"></a>00094                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>][] = $show_grants_dbname;
 <a name="l00095"></a>00095 
 <a name="l00096"></a>00096                 $dbname_to_test = <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>($show_grants_dbname);
 <a name="l00097"></a>00097 
-<a name="l00098"></a>00098                 <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>]) {
+<a name="l00098"></a>00098                 <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>]) {
 <a name="l00099"></a>00099                     <span class="comment">// no need for any more tests if we already know this</span>
 <a name="l00100"></a>00100                     <span class="keywordflow">continue</span>;
 <a name="l00101"></a>00101                 }
@@ -184,15 +184,15 @@
 <a name="l00106"></a>00106                  || (! <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<span class="stringliteral">&#39;USE &#39;</span> .  preg_replace(<span class="charliteral">&#39;/&#39;</span> . $re1 . <span class="stringliteral">&#39;(%|_)/&#39;</span>, <span class="stringliteral">&#39;\\1\\3&#39;</span>, $dbname_to_test))
 <a name="l00107"></a>00107                   &amp;&amp; substr(<a class="code" href="drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79" title="returns last error message or false if no errors occured">PMA_DBI_getError</a>(), 1, 4) != 1044)
 <a name="l00108"></a>00108                 ) {
-<a name="l00109"></a>00109                     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;SuggestDBName&#39;</span>]) {<span class="comment"></span>
+<a name="l00109"></a>00109                     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;SuggestDBName&#39;</span>]) {<span class="comment"></span>
 <a name="l00110"></a>00110 <span class="comment">                        /**</span>
 <a name="l00111"></a>00111 <span class="comment">                         * Do not handle the underscore wildcard </span>
 <a name="l00112"></a>00112 <span class="comment">                         * (this case must be rare anyway)</span>
 <a name="l00113"></a>00113 <span class="comment">                         */</span>
-<a name="l00114"></a>00114                         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>] = preg_replace(<span class="charliteral">&#39;/&#39;</span> . $re0 . <span class="stringliteral">&#39;%/&#39;</span>,     <span class="stringliteral">&#39;\\1...&#39;</span>, $show_grants_dbname);
-<a name="l00115"></a>00115                         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>] = preg_replace(<span class="charliteral">&#39;/&#39;</span> . $re1 . <span class="stringliteral">&#39;(%|_)/&#39;</span>, <span class="stringliteral">&#39;\\1\\3&#39;</span>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]);
+<a name="l00114"></a>00114                         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>] = preg_replace(<span class="charliteral">&#39;/&#39;</span> . $re0 . <span class="stringliteral">&#39;%/&#39;</span>,     <span class="stringliteral">&#39;\\1...&#39;</span>, $show_grants_dbname);
+<a name="l00115"></a>00115                         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>] = preg_replace(<span class="charliteral">&#39;/&#39;</span> . $re1 . <span class="stringliteral">&#39;(%|_)/&#39;</span>, <span class="stringliteral">&#39;\\1\\3&#39;</span>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]);
 <a name="l00116"></a>00116                     }
-<a name="l00117"></a>00117                     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>] = <span class="keyword">true</span>;
+<a name="l00117"></a>00117                     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00118"></a>00118 <span class="comment"></span>
 <a name="l00119"></a>00119 <span class="comment">                    /**</span>
 <a name="l00120"></a>00120 <span class="comment">                     * @todo collect $GLOBALS[&#39;db_to_create&#39;] into an array, to display a</span>
@@ -208,22 +208,22 @@
 <a name="l00130"></a>00130     <a class="code" href="drizzle_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a" title="Frees memory associated with the result.">PMA_DBI_free_result</a>($rs_usr);
 <a name="l00131"></a>00131 
 <a name="l00132"></a>00132     <span class="comment">// must also PMA_cacheUnset() them in libraries/auth/cookie.auth.lib.php</span>
-<a name="l00133"></a>00133     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_create_db_priv&#39;</span>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>], <span class="keyword">true</span>);
-<a name="l00134"></a>00134     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_process_priv&#39;</span>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_process_priv&#39;</span>], <span class="keyword">true</span>);
-<a name="l00135"></a>00135     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_reload_priv&#39;</span>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>], <span class="keyword">true</span>);
-<a name="l00136"></a>00136     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;db_to_create&#39;</span>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>], <span class="keyword">true</span>);
-<a name="l00137"></a>00137     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>, <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>], <span class="keyword">true</span>);
+<a name="l00133"></a>00133     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_create_db_priv&#39;</span>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>], <span class="keyword">true</span>);
+<a name="l00134"></a>00134     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_process_priv&#39;</span>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_process_priv&#39;</span>], <span class="keyword">true</span>);
+<a name="l00135"></a>00135     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_reload_priv&#39;</span>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>], <span class="keyword">true</span>);
+<a name="l00136"></a>00136     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;db_to_create&#39;</span>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>], <span class="keyword">true</span>);
+<a name="l00137"></a>00137     <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>, <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>], <span class="keyword">true</span>);
 <a name="l00138"></a>00138 } <span class="comment">// end function</span>
 <a name="l00139"></a>00139 
 <a name="l00140"></a>00140 <span class="keywordflow">if</span> (!PMA_DRIZZLE) {
 <a name="l00141"></a>00141     <a class="code" href="check__user__privileges_8lib_8php.html#a7e5034bdb6b887bec23b89c3f5db71b2" title="sets privilege information extracted from SHOW GRANTS result">PMA_analyseShowGrant</a>();
 <a name="l00142"></a>00142 } <span class="keywordflow">else</span> {
 <a name="l00143"></a>00143     <span class="comment">// todo: for simple_user_policy only database with user&#39;s login can be created (unless logged in as root)</span>
-<a name="l00144"></a>00144     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>] = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_superuser&#39;</span>];
-<a name="l00145"></a>00145     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_process_priv&#39;</span>]   = <span class="keyword">false</span>;
-<a name="l00146"></a>00146     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>]    = <span class="keyword">false</span>;
-<a name="l00147"></a>00147     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]      = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00148"></a>00148     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>] = array(<span class="charliteral">&#39;*&#39;</span>);
+<a name="l00144"></a>00144     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_create_db_priv&#39;</span>] = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_superuser&#39;</span>];
+<a name="l00145"></a>00145     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_process_priv&#39;</span>]   = <span class="keyword">false</span>;
+<a name="l00146"></a>00146     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;is_reload_priv&#39;</span>]    = <span class="keyword">false</span>;
+<a name="l00147"></a>00147     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db_to_create&#39;</span>]      = <span class="stringliteral">&#39;&#39;</span>;
+<a name="l00148"></a>00148     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;dbs_where_create_table_allowed&#39;</span>] = array(<span class="charliteral">&#39;*&#39;</span>);
 <a name="l00149"></a>00149 }
 <a name="l00150"></a>00150 
 <a name="l00151"></a>00151 ?&gt;
@@ -233,7 +233,7 @@
     <ul>
       <li class="navelem"><a class="el" href="check__user__privileges_8lib_8php.html">check_user_privileges.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:27 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:48 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

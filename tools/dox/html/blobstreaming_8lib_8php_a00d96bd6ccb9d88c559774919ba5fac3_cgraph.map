@@ -1,0 +1,50 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array" alt="" coords="1447,1329,1601,1359"/>
+<area shape="rect" id="node5" href="$database__interface_8lib_8php.html#ab3a7f643170e9d96461975b2f2786555" title="Checks whether given schema is a system schema: information_schema (MySQL and Drizzle) or data_dictio..." alt="" coords="187,1136,357,1165"/>
+<area shape="rect" id="node7" href="$database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query" alt="" coords="212,748,332,777"/>
+<area shape="rect" id="node9" href="$database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result" alt="" coords="407,748,548,777"/>
+<area shape="rect" id="node88" href="$common_8lib_8php.html#a4b5abc57e204c6266283131d03f66395" title="Displays a MySQL error message in the right frame." alt="" coords="421,161,533,191"/>
+<area shape="rect" id="node90" href="$drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79" title="returns last error message or false if no errors occured" alt="" coords="620,317,753,347"/>
+<area shape="rect" id="node11" href="$drizzle_8dbi_8lib_8php.html#a08ba0b503ffbca6710452ba365580035" title="runs a query and returns the result" alt="" coords="613,916,760,945"/>
+<area shape="rect" id="node13" href="$drizzle_8dbi_8lib_8php.html#a861ab5849e4d7f8dab6daaac0071bc15" title="returns the number of rows affected by last query" alt="" coords="601,969,772,999"/>
+<area shape="rect" id="node15" href="$classPMA__Error.html#a772a7752d93cec8385e0f13af46d376a" title="return short relative path to phpMyAdmin basedir" alt="" coords="621,581,752,611"/>
+<area shape="rect" id="node17" href="$classPMA__Tracker.html#ae5dd143f48e845ae4346da01dfef5d4a" title="Gets the on/off value of the Tracker module, starts initialization." alt="" coords="611,528,763,557"/>
+<area shape="rect" id="node39" href="$classPMA__Tracker.html#a45bbf8cbb24c0cc3e379a0abf0ecee10" title="Analyzes a given SQL statement and saves tracking data." alt="" coords="597,863,776,892"/>
+<area shape="rect" id="node19" href="$relation_8lib_8php.html#ad4dd08fb9ba9908cd15afb5ac92a2656" title="PMA_getRelationsParam" alt="" coords="861,528,1029,557"/>
+<area shape="rect" id="node35" href="$classPMA__Tracker.html#a16fc618785cb34b7b36b2fb833600d33" title="Initializes settings." alt="" coords="884,581,1007,611"/>
+<area shape="rect" id="node21" href="$relation_8lib_8php.html#aa1b2e6f08d1925e8d0962d508797be28" title="Defines the relation parameters for the current user just a copy of the functions used for relations ..." alt="" coords="1147,531,1323,560"/>
+<area shape="rect" id="node23" href="$relation_8lib_8php.html#ada1ffd8f6d6d53e802e2e83d7044a944" title="prints out diagnostic info for pma relation feature" alt="" coords="1116,477,1353,507"/>
+<area shape="rect" id="node25" href="$relation_8lib_8php.html#ab84232d07cff893a8a0fc7fed961d1fc" title="prints out one diagnostic message for a configuration parameter" alt="" coords="1403,531,1645,560"/>
+<area shape="rect" id="node27" href="$relation_8lib_8php.html#ae1e3802955752a85b4488038675cdaa9" title="prints out one diagnostic message for a feature" alt="" coords="1411,477,1637,507"/>
+<area shape="rect" id="node29" href="$common_8lib_8php.html#a05d65951adf23dc8f245dbca3a1af7ef" title="Displays a link to the phpMyAdmin documentation." alt="" coords="1464,424,1584,453"/>
+<area shape="rect" id="node31" href="$common_8lib_8php.html#a54fdec9763bf305a5082d23a5d7d5957" title="Returns an HTML IMG tag for a particular image from a theme, which may be an actual file or an icon f..." alt="" coords="1753,265,1865,295"/>
+<area shape="rect" id="node33" href="$original_2sprites_8lib_8php.html#adb1d24853efb54486657e2e22bd9755e" title="PMA_sprites" alt="" coords="1975,265,2071,295"/>
+<area shape="rect" id="node37" href="$common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name." alt="" coords="1751,735,1868,764"/>
+<area shape="rect" id="node41" href="$classPMA__Tracker.html#a0ed18d54f03c8774c52bb5e77af57b13" title="Parses a query." alt="" coords="859,1304,1032,1333"/>
+<area shape="rect" id="node45" href="$classPMA__Tracker.html#a315294423a060736a4c5a35ec099943e" title="Gets the newest version of a tracking job (in other words: gets the HEAD version)." alt="" coords="1440,1484,1608,1513"/>
+<area shape="rect" id="node47" href="$common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison..." alt="" coords="1737,1176,1881,1205"/>
+<area shape="rect" id="node57" href="$classPMA__Tracker.html#a42ffa6e4d6005801f830d64cb43160b5" title="Creates tracking version of a table / view (in other words: create a job to track future changes on t..." alt="" coords="852,1017,1039,1047"/>
+<area shape="rect" id="node68" href="$classPMA__Tracker.html#a09cf326169bfdd91ab8ac6a11b08df09" title="Returns the comment line for the log." alt="" coords="1133,888,1336,917"/>
+<area shape="rect" id="node79" href="$classPMA__Tracker.html#a3aacc0c0e3b67d82419856773f536166" title="Creates tracking version of a database (in other words: create a job to track future changes on the d..." alt="" coords="824,836,1067,865"/>
+<area shape="rect" id="node43" href="$classPMA__Tracker.html#a4638f7bb0092dfe0823e710523ff7151" title="Parses the name of a table from a SQL statement substring." alt="" coords="1140,1304,1329,1333"/>
+<area shape="rect" id="node49" href="$classPMA__Tracker.html#a1ceeb83cd800f8273fb050439f8278da" title="Transforms tracking set for Drizzle, which has no SET type." alt="" coords="1695,1457,1924,1487"/>
+<area shape="rect" id="node51" href="$drizzle_8dbi_8lib_8php.html#a82910e461b1997b01dc49d76b7608e93" title="returns array of rows with associative and numeric keys from $result" alt="" coords="1733,1511,1885,1540"/>
+<area shape="rect" id="node53" href="$relation_8lib_8php.html#ab6d57b38824545d660dcfcd4c864a177" title="Executes a query as controluser if possible, otherwise as normal user." alt="" coords="1719,1019,1900,1048"/>
+<area shape="rect" id="node59" href="$database__interface_8lib_8php.html#a0f34de2c56a55fc2862bf26c489fc5aa" title="Returns descriptions of columns in given table (all or given by $column)" alt="" coords="1153,992,1316,1021"/>
+<area shape="rect" id="node61" href="$database__interface_8lib_8php.html#ad024afebf46c43570280d649c48954ba" title="Returns indexes of a table." alt="" coords="1139,1149,1331,1179"/>
+<area shape="rect" id="node73" href="$classPMA__Tracker.html#a6aa4146352a53d1a8a02a7d082744cfa" title="Deactivates tracking of a table." alt="" coords="1127,1096,1343,1125"/>
+<area shape="rect" id="node63" href="$database__interface_8lib_8php.html#a08524b087dc87a07e0d838fdec49c77d" title="Returns SQL for fetching information on table indexes (SHOW INDEXES)" alt="" coords="1416,1099,1632,1128"/>
+<area shape="rect" id="node75" href="$classPMA__Tracker.html#a57f1995e1ee7ebf2f43536bff5a3f650" title="Changes tracking of a table." alt="" coords="1421,1045,1627,1075"/>
+<area shape="rect" id="node100" href="$url__generating_8lib_8php.html#ad5c0cfef7cb600a158a1ef5fa321a094" title="Generates text with URL parameters." alt="" coords="1141,213,1328,243"/>
+<area shape="rect" id="node106" href="$common_8lib_8php.html#a7318464fb4bfbdb4c33b3257ad533ab6" title="format sql strings" alt="" coords="629,109,744,139"/>
+<area shape="rect" id="node108" href="$common_8lib_8php.html#a5b2c38942cb8fe55e02ba17d0bef9f15" title="Displays a link to the official MySQL documentation." alt="" coords="605,213,768,243"/>
+<area shape="rect" id="node115" href="$common_8lib_8php.html#a73905c5a8a80014a8d299d0c74176316" title="Returns an HTML IMG tag for a particular icon from a theme, which may be an actual file or an icon fr..." alt="" coords="895,69,996,99"/>
+<area shape="rect" id="node118" href="$common_8lib_8php.html#a8e357ad2d42095d9078580361cb77a96" title="function that generates a json output for an ajax request and ends script execution" alt="" coords="616,5,757,35"/>
+<area shape="rect" id="node92" href="$database__interface_8lib_8php.html#a53d2263f39303e561d76439d28f4a1be" title="Formats database error message in a friendly way." alt="" coords="869,317,1021,347"/>
+<area shape="rect" id="node94" href="$database__interface_8lib_8php.html#a6f4e94ffe2e5c28f0ce9f23c2e65e74a" title="converts charset of a mysql message, usually coming from mysql_error(), into PMA charset, usally UTF&#45;8 uses language to charset mapping from mysql/share/errmsg.txt and charset names to ISO charset from information_schema.CHARACTER_SETS" alt="" coords="1140,317,1329,347"/>
+<area shape="rect" id="node96" href="$database__interface_8lib_8php.html#a772f12a953dd2908745bb16a8fa7b63a" title="returns a single value from the given result or query, if the query or the result has more than one r..." alt="" coords="1447,371,1601,400"/>
+<area shape="rect" id="node98" href="$iconv__wrapper_8lib_8php.html#ae2a03599cbea1b2d682a18a39f87ba11" title="Wrapper around IBM AIX iconv(), whose character set naming differs from the GNU version of iconv()..." alt="" coords="1441,317,1607,347"/>
+<area shape="rect" id="node102" href="$core_8lib_8php.html#a1b8fd01cdfbdfaac35e692fcdaaad700" title="checks given $var against $type or $compare" alt="" coords="1476,160,1572,189"/>
+<area shape="rect" id="node104" href="$url__generating_8lib_8php.html#a4ba0b6653c22a19615683ab743c1b4e1" title="Returns url separator." alt="" coords="1443,213,1605,243"/>
+<area shape="rect" id="node110" href="$core_8lib_8php.html#a9bbc563e958307413cd9a83f70ff2590" title="Returns link to (possibly) external site using defined redirector." alt="" coords="893,213,997,243"/>
+</map>

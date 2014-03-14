@@ -1,0 +1,19 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_localisedDate",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_fillTooltip",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db__info_8inc_8php.html#a5de94792d4f0526a00762d3d975f5a7d",tooltip="fills given tooltip arrays"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_PDF\\Footer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__PDF.html#a4e445e31fe96417390cf0c0c30a79e52",tooltip="This function must be named &quot;Footer&quot; to work with the TCPDF library."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_Pdf_Relation_Schema\\dataDictionaryDoc",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Pdf__Relation__Schema.html#a38d2ab67dfa62392e8de96f0b970ec73"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_Pdf_Relation_Schema\\__construct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Pdf__Relation__Schema.html#a5b2a26f3a186d05138ba4fe54d1e161e",tooltip="The &quot;PMA_Pdf_Relation_Schema&quot; constructor."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="printServerTraffic",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$server__status_8php.html#abfe999235a56a874471934cd49e1598d"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_transformation_text_plain__dateformat",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$text__plain____dateformat_8inc_8php.html#a91a4df9bb055ed58aab5e63f2141f508"];
+}

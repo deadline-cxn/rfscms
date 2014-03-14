@@ -1,6 +1,6 @@
 var lib_8log_8php =
 [
-    [ "sc_count", "lib_8log_8php.html#a9f4daf37992969926221d5c1f5e8f180", null ],
-    [ "sc_kill", "lib_8log_8php.html#ab64176170f6440db761530df5b29ed4b", null ],
-    [ "sc_log", "lib_8log_8php.html#a85306751b884541d0eff4186e78730fa", null ]
+    [ "lib_log_add_entry", "lib_8log_8php.html#a32ae1cfe8fbc148f91d705ef1237aac2", null ],
+    [ "lib_log_count", "lib_8log_8php.html#aebc4f123292f89e4b21d4018fe65a4b3", null ],
+    [ "lib_log_kill", "lib_8log_8php.html#a1a0872e3313bab2b378ebde2ca21dcab", null ]
 ];

@@ -124,7 +124,7 @@
 <a name="l00046"></a>00046  &amp;&amp; in_array(<a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;querydisplay_tab&#39;</span>], <a class="code" href="querywindow_8php.html#ab07c0ebe0dced6370c783a5099ee1f06" title="load bookmark support">$querydisplay_tabs</a>)) {
 <a name="l00047"></a>00047     $querydisplay_tab = <a class="code" href="libraries_2common_8inc_8php.html#a1697cbb709132a827a24cf16714b73ab" title="avoid problems in phpmyadmin.css.php in some cases  string $js_frame">$_REQUEST</a>[<span class="stringliteral">&#39;querydisplay_tab&#39;</span>];
 <a name="l00048"></a>00048 } <span class="keywordflow">else</span> {
-<a name="l00049"></a>00049     $querydisplay_tab = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;QueryWindowDefTab&#39;</span>];
+<a name="l00049"></a>00049     $querydisplay_tab = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;QueryWindowDefTab&#39;</span>];
 <a name="l00050"></a>00050 }
 <a name="l00051"></a>00051 <span class="comment"></span>
 <a name="l00052"></a>00052 <span class="comment">/**</span>
@@ -154,7 +154,7 @@
 <a name="l00076"></a>00076     <a class="code" href="db__links_8inc_8php.html#a9650ef898243b078767d3918486c61d4" title="Displays tab links.">$tabs</a>[<span class="stringliteral">&#39;history&#39;</span>][<span class="stringliteral">&#39;attr&#39;</span>]   = <span class="stringliteral">&#39;onclick=&quot;PMA_querywindowCommit(\&#39;history\&#39;);return false;&quot;&#39;</span>;
 <a name="l00077"></a>00077     <a class="code" href="db__links_8inc_8php.html#a9650ef898243b078767d3918486c61d4" title="Displays tab links.">$tabs</a>[<span class="stringliteral">&#39;history&#39;</span>][<span class="stringliteral">&#39;active&#39;</span>] = (bool) ($querydisplay_tab == <span class="stringliteral">&#39;history&#39;</span>);
 <a name="l00078"></a>00078 
-<a name="l00079"></a>00079     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;QueryWindowDefTab&#39;</span>] == <span class="stringliteral">&#39;full&#39;</span>) {
+<a name="l00079"></a>00079     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;QueryWindowDefTab&#39;</span>] == <span class="stringliteral">&#39;full&#39;</span>) {
 <a name="l00080"></a>00080         <a class="code" href="db__links_8inc_8php.html#a9650ef898243b078767d3918486c61d4" title="Displays tab links.">$tabs</a>[<span class="stringliteral">&#39;all&#39;</span>][<span class="stringliteral">&#39;text&#39;</span>]   = __(<span class="stringliteral">&#39;All&#39;</span>);
 <a name="l00081"></a>00081         <a class="code" href="db__links_8inc_8php.html#a9650ef898243b078767d3918486c61d4" title="Displays tab links.">$tabs</a>[<span class="stringliteral">&#39;all&#39;</span>][<span class="stringliteral">&#39;fragment&#39;</span>]   = <span class="charliteral">&#39;#&#39;</span>;
 <a name="l00082"></a>00082         <a class="code" href="db__links_8inc_8php.html#a9650ef898243b078767d3918486c61d4" title="Displays tab links.">$tabs</a>[<span class="stringliteral">&#39;all&#39;</span>][<span class="stringliteral">&#39;attr&#39;</span>]   = <span class="stringliteral">&#39;onclick=&quot;PMA_querywindowCommit(\&#39;full\&#39;);return false;&quot;&#39;</span>;
@@ -174,7 +174,7 @@
 <a name="l00096"></a>00096     <span class="comment">// works only full if $db and $table is also stored/grabbed from $_COOKIE</span>
 <a name="l00097"></a>00097     <span class="keywordflow">if</span> (strlen(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>)) {
 <a name="l00098"></a>00098         include <span class="stringliteral">&#39;./tbl_sql.php&#39;</span>;
-<a name="l00099"></a>00099     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (strlen(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>)) {
+<a name="l00099"></a>00099     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (strlen(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>)) {
 <a name="l00100"></a>00100         include <span class="stringliteral">&#39;./db_sql.php&#39;</span>;
 <a name="l00101"></a>00101     } <span class="keywordflow">else</span> {
 <a name="l00102"></a>00102         include <span class="stringliteral">&#39;./server_sql.php&#39;</span>;
@@ -240,13 +240,13 @@
 <a name="l00162"></a>00162 
 <a name="l00163"></a>00163 <span class="comment">// Hidden forms and query frame interaction stuff</span>
 <a name="l00164"></a>00164 
-<a name="l00165"></a><a class="code" href="querywindow_8php.html#ab5231edc6015b85b3f7434efd4ddead7">00165</a> <a class="code" href="querywindow_8php.html#ab5231edc6015b85b3f7434efd4ddead7">$_sql_history</a> = <a class="code" href="relation_8lib_8php.html#aff6a6d2e6942d0e2be0160514be13482" title="Gets a SQL history entry.">PMA_getHistory</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;user&#39;</span>]);
+<a name="l00165"></a><a class="code" href="querywindow_8php.html#ab5231edc6015b85b3f7434efd4ddead7">00165</a> <a class="code" href="querywindow_8php.html#ab5231edc6015b85b3f7434efd4ddead7">$_sql_history</a> = <a class="code" href="relation_8lib_8php.html#aff6a6d2e6942d0e2be0160514be13482" title="Gets a SQL history entry.">PMA_getHistory</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;user&#39;</span>]);
 <a name="l00166"></a>00166 <span class="keywordflow">if</span> (! empty(<a class="code" href="querywindow_8php.html#ab5231edc6015b85b3f7434efd4ddead7">$_sql_history</a>)
 <a name="l00167"></a>00167  &amp;&amp; ($querydisplay_tab == <span class="stringliteral">&#39;history&#39;</span> || $querydisplay_tab == <span class="stringliteral">&#39;full&#39;</span>)) {
 <a name="l00168"></a>00168     <a class="code" href="docsql_8php.html#aa9d9497a56b9edbe1cafc34dbf44c21b" title="We need relations enabled and we work only on database.">$tab</a> = $querydisplay_tab != <span class="stringliteral">&#39;full&#39;</span> ? <span class="stringliteral">&#39;sql&#39;</span> : <span class="stringliteral">&#39;full&#39;</span>;
 <a name="l00169"></a>00169     echo __(<span class="stringliteral">&#39;SQL history&#39;</span>) . <span class="stringliteral">&#39;:&lt;br /&gt;&#39;</span>
 <a name="l00170"></a>00170         . <span class="stringliteral">&#39;&lt;ul&gt;&#39;</span>;
-<a name="l00171"></a>00171     <span class="keywordflow">foreach</span> (<a class="code" href="querywindow_8php.html#ab5231edc6015b85b3f7434efd4ddead7">$_sql_history</a> as <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>) {
+<a name="l00171"></a>00171     <span class="keywordflow">foreach</span> (<a class="code" href="querywindow_8php.html#ab5231edc6015b85b3f7434efd4ddead7">$_sql_history</a> as $query) {
 <a name="l00172"></a>00172         echo <span class="stringliteral">&#39;&lt;li&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00173"></a>00173 
 <a name="l00174"></a>00174         <span class="comment">// edit link</span>
@@ -304,7 +304,7 @@
     <ul>
       <li class="navelem"><a class="el" href="querywindow_8php.html">querywindow.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

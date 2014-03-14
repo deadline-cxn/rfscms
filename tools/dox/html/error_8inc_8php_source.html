@@ -88,60 +88,58 @@
 <a name="l00010"></a>00010     <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>;
 <a name="l00011"></a>00011 }
 <a name="l00012"></a>00012 
-<a name="l00013"></a><a class="code" href="error_8inc_8php.html#aa85ba82b178b825a9aa9038c0096e9ec">00013</a> <span class="keywordflow">if</span> (!defined(<span class="stringliteral">&#39;TESTSUITE&#39;</span>)) {
-<a name="l00014"></a>00014     header(<span class="stringliteral">&#39;Content-Type: text/html; charset=utf-8&#39;</span>);
-<a name="l00015"></a>00015 }
-<a name="l00016"></a>00016 ?&gt;
-<a name="l00017"></a>00017 &lt;!DOCTYPE html&gt;
-<a name="l00018"></a>00018 &lt;html xmlns=<span class="stringliteral">&quot;http://www.w3.org/1999/xhtml&quot;</span> xml:lang=<span class="stringliteral">&quot;&lt;?php echo $lang; ?&gt;&quot;</span> dir=<span class="stringliteral">&quot;&lt;?php echo $dir; ?&gt;&quot;</span>&gt;
-<a name="l00019"></a>00019 &lt;head&gt;
-<a name="l00020"></a>00020     &lt;link rel=<span class="stringliteral">&quot;icon&quot;</span> href=<span class="stringliteral">&quot;./favicon.ico&quot;</span> <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;image/x-icon&quot;</span> /&gt;
-<a name="l00021"></a>00021     &lt;link rel=<span class="stringliteral">&quot;shortcut icon&quot;</span> href=<span class="stringliteral">&quot;./favicon.ico&quot;</span> <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;image/x-icon&quot;</span> /&gt;
-<a name="l00022"></a>00022     &lt;title&gt;phpMyAdmin&lt;/title&gt;
-<a name="l00023"></a>00023     &lt;meta http-equiv=<span class="stringliteral">&quot;Content-Type&quot;</span> content=<span class="stringliteral">&quot;text/html; charset=utf-8&quot;</span> /&gt;
-<a name="l00024"></a>00024     &lt;style <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;text/css&quot;</span>&gt;
-<a name="l00025"></a>00025     &lt;!--
-<a name="l00026"></a>00026     html {
-<a name="l00027"></a>00027         <a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a617e63465d49ca090d265e7030dd1296">padding</a>: 0;
-<a name="l00028"></a>00028         <a class="code" href="original_2css_2theme__right_8css_8php.html#a7bb4d5a0eaa2422c38cf54d9cc299652">margin</a>: 0;
-<a name="l00029"></a>00029     }
-<a name="l00030"></a>00030     body  {
-<a name="l00031"></a>00031         font-family: sans-serif;
-<a name="l00032"></a>00032         font-<a class="code" href="pmahomme_2css_2theme__right_8css_8php.html#ae20d3ca2acbfbfe24798ca800435f9f1">size</a>: small;
-<a name="l00033"></a>00033         <a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #000000;
-<a name="l00034"></a>00034         <a class="code" href="original_2css_2theme__right_8css_8php.html#af682548c12e334dc2e8fc88d1cd77b19">background</a>-<a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #F5F5F5;
-<a name="l00035"></a>00035         <a class="code" href="original_2css_2theme__right_8css_8php.html#a7bb4d5a0eaa2422c38cf54d9cc299652">margin</a>: 1em;
-<a name="l00036"></a>00036     }
-<a name="l00037"></a>00037     <a class="code" href="original_2css_2theme__right_8css_8php.html#a304cd561b05d45e8a6c4f1ff995b553f" title="login form">h1</a> {
-<a name="l00038"></a>00038         <a class="code" href="original_2css_2theme__right_8css_8php.html#a7bb4d5a0eaa2422c38cf54d9cc299652">margin</a>: 0;
-<a name="l00039"></a>00039         <a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a617e63465d49ca090d265e7030dd1296">padding</a>: 0.3em;
-<a name="l00040"></a>00040         font-<a class="code" href="pmahomme_2css_2theme__right_8css_8php.html#ae20d3ca2acbfbfe24798ca800435f9f1">size</a>: 1.4em;
-<a name="l00041"></a>00041         font-<a class="code" href="pmahomme_2css_2theme__right_8css_8php.html#a9b9780cce21a0de7f2a4efdab697bc39">weight</a>: bold;
-<a name="l00042"></a>00042         <a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #ffffff;
-<a name="l00043"></a>00043         <a class="code" href="original_2css_2theme__right_8css_8php.html#af682548c12e334dc2e8fc88d1cd77b19">background</a>-<a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #ff0000;
-<a name="l00044"></a>00044     }
-<a name="l00045"></a>00045     p {
-<a name="l00046"></a>00046         <a class="code" href="original_2css_2theme__right_8css_8php.html#a7bb4d5a0eaa2422c38cf54d9cc299652">margin</a>: 0;
-<a name="l00047"></a>00047         <a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a617e63465d49ca090d265e7030dd1296">padding</a>: 0.5em;
-<a name="l00048"></a>00048         border: 0.1em solid red;
-<a name="l00049"></a>00049         <a class="code" href="original_2css_2theme__right_8css_8php.html#af682548c12e334dc2e8fc88d1cd77b19">background</a>-<a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #ffeeee;
-<a name="l00050"></a>00050     }
-<a name="l00051"></a>00051     <span class="comment">//--&gt;</span>
-<a name="l00052"></a>00052     &lt;/style&gt;
-<a name="l00053"></a>00053 &lt;/head&gt;
-<a name="l00054"></a>00054 &lt;body&gt;
-<a name="l00055"></a>00055 &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a304cd561b05d45e8a6c4f1ff995b553f" title="login form">h1</a>&gt;phpMyAdmin - &lt;?php echo $error_header; ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a304cd561b05d45e8a6c4f1ff995b553f" title="login form">h1</a>&gt;
-<a name="l00056"></a>00056 &lt;p&gt;&lt;?php echo <a class="code" href="sanitizing_8lib_8php.html#ac0444f97c4d50f0e109dc0ec5d86b665" title="Sanitizes $message, taking into account our special codes for formatting.">PMA_sanitize</a>($error_message); ?&gt;&lt;/p&gt;
-<a name="l00057"></a>00057 &lt;/body&gt;
-<a name="l00058"></a>00058 &lt;/html&gt;
-<a name="l00059"></a>00059 
+<a name="l00013"></a>00013 header(<span class="stringliteral">&#39;Content-Type: text/html; charset=utf-8&#39;</span>);
+<a name="l00014"></a>00014 ?&gt;
+<a name="l00015"></a>00015 &lt;!DOCTYPE html PUBLIC <span class="stringliteral">&quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;</span> <span class="stringliteral">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;</span>&gt;
+<a name="l00016"></a>00016 &lt;html xmlns=<span class="stringliteral">&quot;http://www.w3.org/1999/xhtml&quot;</span> xml:lang=<span class="stringliteral">&quot;&lt;?php echo $lang; ?&gt;&quot;</span> dir=<span class="stringliteral">&quot;&lt;?php echo $dir; ?&gt;&quot;</span>&gt;
+<a name="l00017"></a>00017 &lt;head&gt;
+<a name="l00018"></a>00018     &lt;link rel=<span class="stringliteral">&quot;icon&quot;</span> href=<span class="stringliteral">&quot;./favicon.ico&quot;</span> <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;image/x-icon&quot;</span> /&gt;
+<a name="l00019"></a>00019     &lt;link rel=<span class="stringliteral">&quot;shortcut icon&quot;</span> href=<span class="stringliteral">&quot;./favicon.ico&quot;</span> <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;image/x-icon&quot;</span> /&gt;
+<a name="l00020"></a>00020     &lt;title&gt;phpMyAdmin&lt;/title&gt;
+<a name="l00021"></a>00021     &lt;meta http-equiv=<span class="stringliteral">&quot;Content-Type&quot;</span> content=<span class="stringliteral">&quot;text/html; charset=utf-8&quot;</span> /&gt;
+<a name="l00022"></a>00022     &lt;style <a class="code" href="original_2css_2theme__right_8css_8php.html#ae1d92a0cf6d4204d310bc3b8ef7ec56a">type</a>=<span class="stringliteral">&quot;text/css&quot;</span>&gt;
+<a name="l00023"></a>00023     &lt;!--
+<a name="l00024"></a>00024     html {
+<a name="l00025"></a>00025         <a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a617e63465d49ca090d265e7030dd1296">padding</a>: 0;
+<a name="l00026"></a>00026         <a class="code" href="original_2css_2theme__right_8css_8php.html#a7bb4d5a0eaa2422c38cf54d9cc299652">margin</a>: 0;
+<a name="l00027"></a>00027     }
+<a name="l00028"></a>00028     body  {
+<a name="l00029"></a>00029         font-family: sans-serif;
+<a name="l00030"></a>00030         font-<a class="code" href="pmahomme_2css_2theme__right_8css_8php.html#ae20d3ca2acbfbfe24798ca800435f9f1">size</a>: small;
+<a name="l00031"></a>00031         <a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #000000;
+<a name="l00032"></a>00032         <a class="code" href="original_2css_2theme__right_8css_8php.html#af682548c12e334dc2e8fc88d1cd77b19">background</a>-<a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #F5F5F5;
+<a name="l00033"></a>00033         <a class="code" href="original_2css_2theme__right_8css_8php.html#a7bb4d5a0eaa2422c38cf54d9cc299652">margin</a>: 1em;
+<a name="l00034"></a>00034     }
+<a name="l00035"></a>00035     <a class="code" href="original_2css_2theme__right_8css_8php.html#a304cd561b05d45e8a6c4f1ff995b553f" title="login form">h1</a> {
+<a name="l00036"></a>00036         <a class="code" href="original_2css_2theme__right_8css_8php.html#a7bb4d5a0eaa2422c38cf54d9cc299652">margin</a>: 0;
+<a name="l00037"></a>00037         <a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a617e63465d49ca090d265e7030dd1296">padding</a>: 0.3em;
+<a name="l00038"></a>00038         font-<a class="code" href="pmahomme_2css_2theme__right_8css_8php.html#ae20d3ca2acbfbfe24798ca800435f9f1">size</a>: 1.4em;
+<a name="l00039"></a>00039         font-<a class="code" href="pmahomme_2css_2theme__right_8css_8php.html#a9b9780cce21a0de7f2a4efdab697bc39">weight</a>: bold;
+<a name="l00040"></a>00040         <a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #ffffff;
+<a name="l00041"></a>00041         <a class="code" href="original_2css_2theme__right_8css_8php.html#af682548c12e334dc2e8fc88d1cd77b19">background</a>-<a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #ff0000;
+<a name="l00042"></a>00042     }
+<a name="l00043"></a>00043     p {
+<a name="l00044"></a>00044         <a class="code" href="original_2css_2theme__right_8css_8php.html#a7bb4d5a0eaa2422c38cf54d9cc299652">margin</a>: 0;
+<a name="l00045"></a>00045         <a class="code" href="pmahomme_2css_2theme__left_8css_8php.html#a617e63465d49ca090d265e7030dd1296">padding</a>: 0.5em;
+<a name="l00046"></a>00046         border: 0.1em solid red;
+<a name="l00047"></a>00047         <a class="code" href="original_2css_2theme__right_8css_8php.html#af682548c12e334dc2e8fc88d1cd77b19">background</a>-<a class="code" href="original_2css_2theme__left_8css_8php.html#ac04e2a463631b69c8f70784275a056d6">color</a>: #ffeeee;
+<a name="l00048"></a>00048     }
+<a name="l00049"></a>00049     <span class="comment">//--&gt;</span>
+<a name="l00050"></a>00050     &lt;/style&gt;
+<a name="l00051"></a>00051 &lt;/head&gt;
+<a name="l00052"></a>00052 &lt;body&gt;
+<a name="l00053"></a>00053 &lt;<a class="code" href="original_2css_2theme__right_8css_8php.html#a304cd561b05d45e8a6c4f1ff995b553f" title="login form">h1</a>&gt;phpMyAdmin - &lt;?php echo $error_header; ?&gt;&lt;/<a class="code" href="original_2css_2theme__right_8css_8php.html#a304cd561b05d45e8a6c4f1ff995b553f" title="login form">h1</a>&gt;
+<a name="l00054"></a>00054 &lt;p&gt;&lt;?php echo <a class="code" href="sanitizing_8lib_8php.html#ac0444f97c4d50f0e109dc0ec5d86b665" title="Sanitizes $message, taking into account our special codes for formatting.">PMA_sanitize</a>($error_message); ?&gt;&lt;/p&gt;
+<a name="l00055"></a>00055 &lt;/body&gt;
+<a name="l00056"></a>00056 &lt;/html&gt;
+<a name="l00057"></a>00057 
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="error_8inc_8php.html">error.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:28 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

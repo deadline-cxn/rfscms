@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1149,93,1280,123"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="956,320,1071,349"/>
+<area shape="rect" id="node13" href="$lib_8log_8php.html#a32ae1cfe8fbc148f91d705ef1237aac2" title="lib_log_add_entry" alt="" coords="419,43,541,72"/>
+<area shape="rect" id="node16" href="$module_8linkbin_8php.html#ac44251b5ae4effd5d00a073768e8d0af" title="adm_action_edit_linkbin" alt="" coords="209,247,369,276"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="1131,400,1299,429"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="1129,320,1300,349"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1349,400,1523,429"/>
+<area shape="rect" id="node19" href="$lib_8forms_8php.html#a1490fdf9f61cae1f1ffebc9f3aaad0eb" title="lib_forms_build" alt="" coords="425,297,535,327"/>
+<area shape="rect" id="node29" href="$lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="948,427,1079,456"/>
+<area shape="rect" id="node33" href="$lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="776,453,893,483"/>
+<area shape="rect" id="node22" href="$lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="624,401,688,431"/>
+<area shape="rect" id="node35" href="$lib_8mysql_8php.html#a8d862410c3ba241bb1a0cc132c8df84d" title="lib_mysql_delimiter" alt="" coords="589,297,723,327"/>
+<area shape="rect" id="node24" href="$lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="772,400,897,429"/>
+<area shape="rect" id="node26" href="$lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="947,373,1080,403"/>
+</map>

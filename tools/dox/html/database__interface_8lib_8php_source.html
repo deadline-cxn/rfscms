@@ -125,7 +125,7 @@
 <a name="l00047"></a>00047 <span class="comment">/**</span>
 <a name="l00048"></a>00048 <span class="comment"> * check for requested extension</span>
 <a name="l00049"></a>00049 <span class="comment"> */</span>
-<a name="l00050"></a><a class="code" href="database__interface_8lib_8php.html#a2596e53119596d037d14b5cd835a8882">00050</a> <span class="keywordflow">if</span> (! <a class="code" href="database__interface_8lib_8php.html#aa47ecfdc6d46a8eb9853855781e9623d" title="Checks whether database extension is loaded.">PMA_DBI_checkDbExtension</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>])) {
+<a name="l00050"></a><a class="code" href="database__interface_8lib_8php.html#a2596e53119596d037d14b5cd835a8882">00050</a> <span class="keywordflow">if</span> (! <a class="code" href="database__interface_8lib_8php.html#aa47ecfdc6d46a8eb9853855781e9623d" title="Checks whether database extension is loaded.">PMA_DBI_checkDbExtension</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>])) {
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052     <span class="comment">// if it fails try alternative extension ...</span>
 <a name="l00053"></a>00053     <span class="comment">// and display an error ...</span>
@@ -135,12 +135,12 @@
 <a name="l00057"></a>00057 <span class="comment">     * and complete fail (no alternative extension too)</span>
 <a name="l00058"></a>00058 <span class="comment">     */</span>
 <a name="l00059"></a>00059     <a class="code" href="core_8lib_8php.html#a27df85e8ab20ca0f54dd31bddcc092ab" title="Warn or fail on missing extension.">PMA_warnMissingExtension</a>(
-<a name="l00060"></a>00060         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>],
+<a name="l00060"></a>00060         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>],
 <a name="l00061"></a>00061         <span class="keyword">false</span>,
 <a name="l00062"></a>00062         <a class="code" href="common_8lib_8php.html#a05d65951adf23dc8f245dbca3a1af7ef" title="Displays a link to the phpMyAdmin documentation.">PMA_showDocu</a>(<span class="stringliteral">&#39;faqmysql&#39;</span>)
 <a name="l00063"></a>00063     );
 <a name="l00064"></a>00064 
-<a name="l00065"></a>00065     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>] === <span class="stringliteral">&#39;mysql&#39;</span>) {
+<a name="l00065"></a>00065     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>] === <span class="stringliteral">&#39;mysql&#39;</span>) {
 <a name="l00066"></a>00066         $alternativ_extension = <span class="stringliteral">&#39;mysqli&#39;</span>;
 <a name="l00067"></a>00067     } <span class="keywordflow">else</span> {
 <a name="l00068"></a>00068         $alternativ_extension = <span class="stringliteral">&#39;mysql&#39;</span>;
@@ -149,13 +149,13 @@
 <a name="l00071"></a>00071     <span class="keywordflow">if</span> (! <a class="code" href="database__interface_8lib_8php.html#aa47ecfdc6d46a8eb9853855781e9623d" title="Checks whether database extension is loaded.">PMA_DBI_checkDbExtension</a>($alternativ_extension)) {
 <a name="l00072"></a>00072         <span class="comment">// if alternative fails too ...</span>
 <a name="l00073"></a>00073         <a class="code" href="core_8lib_8php.html#a27df85e8ab20ca0f54dd31bddcc092ab" title="Warn or fail on missing extension.">PMA_warnMissingExtension</a>(
-<a name="l00074"></a>00074             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>],
+<a name="l00074"></a>00074             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>],
 <a name="l00075"></a>00075             <span class="keyword">true</span>,
 <a name="l00076"></a>00076             <a class="code" href="common_8lib_8php.html#a05d65951adf23dc8f245dbca3a1af7ef" title="Displays a link to the phpMyAdmin documentation.">PMA_showDocu</a>(<span class="stringliteral">&#39;faqmysql&#39;</span>)
 <a name="l00077"></a>00077         );
 <a name="l00078"></a>00078     }
 <a name="l00079"></a>00079 
-<a name="l00080"></a>00080     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>] = $alternativ_extension;
+<a name="l00080"></a>00080     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>] = $alternativ_extension;
 <a name="l00081"></a>00081     unset($alternativ_extension);
 <a name="l00082"></a>00082 }
 <a name="l00083"></a>00083 <span class="comment"></span>
@@ -163,7 +163,7 @@
 <a name="l00085"></a>00085 <span class="comment"> * Including The DBI Plugin</span>
 <a name="l00086"></a>00086 <span class="comment"> */</span>
 <a name="l00087"></a>00087 require_once <span class="stringliteral">&#39;./libraries/dbi/&#39;</span>
-<a name="l00088"></a>00088     . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>] . <span class="stringliteral">&#39;.dbi.lib.php&#39;</span>;
+<a name="l00088"></a>00088     . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;extension&#39;</span>] . <span class="stringliteral">&#39;.dbi.lib.php&#39;</span>;
 <a name="l00089"></a>00089 <span class="comment"></span>
 <a name="l00090"></a>00090 <span class="comment">/**</span>
 <a name="l00091"></a>00091 <span class="comment"> * runs a query</span>
@@ -175,11 +175,11 @@
 <a name="l00097"></a>00097 <span class="comment"> *</span>
 <a name="l00098"></a>00098 <span class="comment"> * @return mixed</span>
 <a name="l00099"></a>00099 <span class="comment"> */</span>
-<a name="l00100"></a><a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089">00100</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, $link = null, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> = 0, $cache_affected_rows = <span class="keyword">true</span>)
+<a name="l00100"></a><a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089">00100</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>($query, $link = null, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> = 0, $cache_affected_rows = <span class="keyword">true</span>)
 <a name="l00101"></a>00101 {
-<a name="l00102"></a>00102     <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, $link, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>, $cache_affected_rows)
-<a name="l00103"></a>00103         or <a class="code" href="common_8lib_8php.html#a4b5abc57e204c6266283131d03f66395" title="Displays a MySQL error message in the right frame.">PMA_mysqlDie</a>(<a class="code" href="drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79" title="returns last error message or false if no errors occured">PMA_DBI_getError</a>($link), <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>);
-<a name="l00104"></a>00104     <span class="keywordflow">return</span> <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00102"></a>00102     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>($query, $link, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>, $cache_affected_rows)
+<a name="l00103"></a>00103         or <a class="code" href="common_8lib_8php.html#a4b5abc57e204c6266283131d03f66395" title="Displays a MySQL error message in the right frame.">PMA_mysqlDie</a>(<a class="code" href="drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79" title="returns last error message or false if no errors occured">PMA_DBI_getError</a>($link), $query);
+<a name="l00104"></a>00104     <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
 <a name="l00105"></a>00105 }
 <a name="l00106"></a>00106 <span class="comment"></span>
 <a name="l00107"></a>00107 <span class="comment">/**</span>
@@ -192,41 +192,41 @@
 <a name="l00114"></a>00114 <span class="comment"> *</span>
 <a name="l00115"></a>00115 <span class="comment"> * @return mixed</span>
 <a name="l00116"></a>00116 <span class="comment"> */</span>
-<a name="l00117"></a><a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274">00117</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, $link = null, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> = 0, $cache_affected_rows = <span class="keyword">true</span>)
+<a name="l00117"></a><a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274">00117</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>($query, $link = null, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a> = 0, $cache_affected_rows = <span class="keyword">true</span>)
 <a name="l00118"></a>00118 {
 <a name="l00119"></a>00119     <span class="keywordflow">if</span> (empty($link)) {
-<a name="l00120"></a>00120         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l00121"></a>00121             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l00120"></a>00120         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l00121"></a>00121             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l00122"></a>00122         } <span class="keywordflow">else</span> {
 <a name="l00123"></a>00123             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00124"></a>00124         }
 <a name="l00125"></a>00125     }
 <a name="l00126"></a>00126 
-<a name="l00127"></a>00127     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DBG&#39;</span>][<span class="stringliteral">&#39;sql&#39;</span>]) {
+<a name="l00127"></a>00127     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DBG&#39;</span>][<span class="stringliteral">&#39;sql&#39;</span>]) {
 <a name="l00128"></a>00128         $time = microtime(<span class="keyword">true</span>);
 <a name="l00129"></a>00129     }
 <a name="l00130"></a>00130 
-<a name="l00131"></a>00131     <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a08ba0b503ffbca6710452ba365580035" title="runs a query and returns the result">PMA_DBI_real_query</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, $link, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>);
+<a name="l00131"></a>00131     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a08ba0b503ffbca6710452ba365580035" title="runs a query and returns the result">PMA_DBI_real_query</a>($query, $link, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>);
 <a name="l00132"></a>00132 
 <a name="l00133"></a>00133     <span class="keywordflow">if</span> ($cache_affected_rows) {
-<a name="l00134"></a>00134         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cached_affected_rows&#39;</span>] = <a class="code" href="drizzle_8dbi_8lib_8php.html#a861ab5849e4d7f8dab6daaac0071bc15" title="returns the number of rows affected by last query">PMA_DBI_affected_rows</a>($link, $get_from_cache = <span class="keyword">false</span>);
+<a name="l00134"></a>00134         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cached_affected_rows&#39;</span>] = <a class="code" href="drizzle_8dbi_8lib_8php.html#a861ab5849e4d7f8dab6daaac0071bc15" title="returns the number of rows affected by last query">PMA_DBI_affected_rows</a>($link, $get_from_cache = <span class="keyword">false</span>);
 <a name="l00135"></a>00135     }
 <a name="l00136"></a>00136 
-<a name="l00137"></a>00137     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DBG&#39;</span>][<span class="stringliteral">&#39;sql&#39;</span>]) {
+<a name="l00137"></a>00137     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;DBG&#39;</span>][<span class="stringliteral">&#39;sql&#39;</span>]) {
 <a name="l00138"></a>00138         $time = microtime(<span class="keyword">true</span>) - $time;
 <a name="l00139"></a>00139 
-<a name="l00140"></a>00140         $hash = md5(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>);
+<a name="l00140"></a>00140         $hash = md5($query);
 <a name="l00141"></a>00141 
-<a name="l00142"></a>00142         <span class="keywordflow">if</span> (isset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash])) {
-<a name="l00143"></a>00143             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;count&#39;</span>]++;
+<a name="l00142"></a>00142         <span class="keywordflow">if</span> (isset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash])) {
+<a name="l00143"></a>00143             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;count&#39;</span>]++;
 <a name="l00144"></a>00144         } <span class="keywordflow">else</span> {
-<a name="l00145"></a>00145             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash] = array();
-<a name="l00146"></a>00146             <span class="keywordflow">if</span> (<a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> == <span class="keyword">false</span>) {
-<a name="l00147"></a>00147                 <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;error&#39;</span>] = <span class="stringliteral">&#39;&lt;b style=&quot;color:red&quot;&gt;&#39;</span>.mysqli_error($link).<span class="stringliteral">&#39;&lt;/b&gt;&#39;</span>;
+<a name="l00145"></a>00145             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash] = array();
+<a name="l00146"></a>00146             <span class="keywordflow">if</span> (<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> == <span class="keyword">false</span>) {
+<a name="l00147"></a>00147                 <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;error&#39;</span>] = <span class="stringliteral">&#39;&lt;b style=&quot;color:red&quot;&gt;&#39;</span>.mysqli_error($link).<span class="stringliteral">&#39;&lt;/b&gt;&#39;</span>;
 <a name="l00148"></a>00148             }
-<a name="l00149"></a>00149             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;count&#39;</span>] = 1;
-<a name="l00150"></a>00150             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;query&#39;</span>] = <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>;
-<a name="l00151"></a>00151             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;time&#39;</span>] = $time;
+<a name="l00149"></a>00149             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;count&#39;</span>] = 1;
+<a name="l00150"></a>00150             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;query&#39;</span>] = $query;
+<a name="l00151"></a>00151             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;time&#39;</span>] = $time;
 <a name="l00152"></a>00152         }
 <a name="l00153"></a>00153 
 <a name="l00154"></a>00154         $trace = array();
@@ -242,13 +242,13 @@
 <a name="l00164"></a>00164                 . <span class="charliteral">&#39;)&#39;</span>
 <a name="l00165"></a>00165                 ;
 <a name="l00166"></a>00166         }
-<a name="l00167"></a>00167         <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;trace&#39;</span>][] = $trace;
+<a name="l00167"></a>00167         <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;debug&#39;</span>][<span class="stringliteral">&#39;queries&#39;</span>][$hash][<span class="stringliteral">&#39;trace&#39;</span>][] = $trace;
 <a name="l00168"></a>00168     }
-<a name="l00169"></a>00169     <span class="keywordflow">if</span> (<a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> != <span class="keyword">false</span> &amp;&amp; <a class="code" href="classPMA__Tracker.html#ae5dd143f48e845ae4346da01dfef5d4a" title="Gets the on/off value of the Tracker module, starts initialization.">PMA_Tracker::isActive</a>() == true ) {
-<a name="l00170"></a>00170         <a class="code" href="classPMA__Tracker.html#a45bbf8cbb24c0cc3e379a0abf0ecee10" title="Analyzes a given SQL statement and saves tracking data.">PMA_Tracker::handleQuery</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>);
+<a name="l00169"></a>00169     <span class="keywordflow">if</span> (<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> != <span class="keyword">false</span> &amp;&amp; <a class="code" href="classPMA__Tracker.html#ae5dd143f48e845ae4346da01dfef5d4a" title="Gets the on/off value of the Tracker module, starts initialization.">PMA_Tracker::isActive</a>() == true ) {
+<a name="l00170"></a>00170         <a class="code" href="classPMA__Tracker.html#a45bbf8cbb24c0cc3e379a0abf0ecee10" title="Analyzes a given SQL statement and saves tracking data.">PMA_Tracker::handleQuery</a>($query);
 <a name="l00171"></a>00171     }
 <a name="l00172"></a>00172 
-<a name="l00173"></a>00173     <span class="keywordflow">return</span> <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>;
+<a name="l00173"></a>00173     <span class="keywordflow">return</span> <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>;
 <a name="l00174"></a>00174 }
 <a name="l00175"></a>00175 <span class="comment"></span>
 <a name="l00176"></a>00176 <span class="comment">/**</span>
@@ -261,7 +261,7 @@
 <a name="l00183"></a>00183 <span class="comment"> *</span>
 <a name="l00184"></a>00184 <span class="comment"> * @return  string  $message</span>
 <a name="l00185"></a>00185 <span class="comment"> */</span>
-<a name="l00186"></a><a class="code" href="database__interface_8lib_8php.html#a6f4e94ffe2e5c28f0ce9f23c2e65e74a">00186</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#a6f4e94ffe2e5c28f0ce9f23c2e65e74a" title="converts charset of a mysql message, usually coming from mysql_error(), into PMA charset, usally UTF-8 uses language to charset mapping from mysql/share/errmsg.txt and charset names to ISO charset from information_schema.CHARACTER_SETS">PMA_DBI_convert_message</a>(<a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>)
+<a name="l00186"></a><a class="code" href="database__interface_8lib_8php.html#a6f4e94ffe2e5c28f0ce9f23c2e65e74a">00186</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#a6f4e94ffe2e5c28f0ce9f23c2e65e74a" title="converts charset of a mysql message, usually coming from mysql_error(), into PMA charset, usally UTF-8 uses language to charset mapping from mysql/share/errmsg.txt and charset names to ISO charset from information_schema.CHARACTER_SETS">PMA_DBI_convert_message</a>(<a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>)
 <a name="l00187"></a>00187 {
 <a name="l00188"></a>00188     <span class="comment">// latin always last!</span>
 <a name="l00189"></a>00189     $encodings = array(
@@ -305,30 +305,30 @@
 <a name="l00227"></a>00227                 &amp;&amp; (@strcasecmp(ICONV_VERSION, <span class="stringliteral">&#39;unknown&#39;</span>) == 0)
 <a name="l00228"></a>00228             ) {
 <a name="l00229"></a>00229                 include_once <span class="stringliteral">&#39;./libraries/iconv_wrapper.lib.php&#39;</span>;
-<a name="l00230"></a>00230                 <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="iconv__wrapper_8lib_8php.html#ae2a03599cbea1b2d682a18a39f87ba11" title="Wrapper around IBM AIX iconv(), whose character set naming differs from the GNU version of iconv()...">PMA_aix_iconv_wrapper</a>(
+<a name="l00230"></a>00230                 <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="iconv__wrapper_8lib_8php.html#ae2a03599cbea1b2d682a18a39f87ba11" title="Wrapper around IBM AIX iconv(), whose character set naming differs from the GNU version of iconv()...">PMA_aix_iconv_wrapper</a>(
 <a name="l00231"></a>00231                     $encodings[$server_language],
-<a name="l00232"></a>00232                     <span class="stringliteral">&#39;utf-8&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;IconvExtraParams&#39;</span>],
-<a name="l00233"></a>00233                     <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>
+<a name="l00232"></a>00232                     <span class="stringliteral">&#39;utf-8&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;IconvExtraParams&#39;</span>],
+<a name="l00233"></a>00233                     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>
 <a name="l00234"></a>00234                 );
 <a name="l00235"></a>00235             } <span class="keywordflow">else</span> {
-<a name="l00236"></a>00236                 <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = iconv(
+<a name="l00236"></a>00236                 <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = iconv(
 <a name="l00237"></a>00237                     $encodings[$server_language],
-<a name="l00238"></a>00238                     <span class="stringliteral">&#39;utf-8&#39;</span> . <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;IconvExtraParams&#39;</span>],
-<a name="l00239"></a>00239                     <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>
+<a name="l00238"></a>00238                     <span class="stringliteral">&#39;utf-8&#39;</span> . <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;IconvExtraParams&#39;</span>],
+<a name="l00239"></a>00239                     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>
 <a name="l00240"></a>00240                 );
 <a name="l00241"></a>00241             }
-<a name="l00242"></a>00242         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (function_exists(<span class="stringliteral">&#39;recode_string&#39;</span>)) {
-<a name="l00243"></a>00243             <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = recode_string(
+<a name="l00242"></a>00242         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (function_exists(<span class="stringliteral">&#39;recode_string&#39;</span>)) {
+<a name="l00243"></a>00243             <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = recode_string(
 <a name="l00244"></a>00244                 $encodings[$server_language] . <span class="stringliteral">&#39;..&#39;</span>  . <span class="stringliteral">&#39;utf-8&#39;</span>,
-<a name="l00245"></a>00245                 <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>
+<a name="l00245"></a>00245                 <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>
 <a name="l00246"></a>00246             );
-<a name="l00247"></a>00247         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (function_exists(<span class="stringliteral">&#39;libiconv&#39;</span>)) {
-<a name="l00248"></a>00248             <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = libiconv($encodings[$server_language], <span class="stringliteral">&#39;utf-8&#39;</span>, <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>);
-<a name="l00249"></a>00249         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (function_exists(<span class="stringliteral">&#39;mb_convert_encoding&#39;</span>)) {
+<a name="l00247"></a>00247         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (function_exists(<span class="stringliteral">&#39;libiconv&#39;</span>)) {
+<a name="l00248"></a>00248             <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = libiconv($encodings[$server_language], <span class="stringliteral">&#39;utf-8&#39;</span>, <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>);
+<a name="l00249"></a>00249         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (function_exists(<span class="stringliteral">&#39;mb_convert_encoding&#39;</span>)) {
 <a name="l00250"></a>00250             <span class="comment">// do not try unsupported charsets</span>
 <a name="l00251"></a>00251             <span class="keywordflow">if</span> (! in_array($server_language, array(<span class="stringliteral">&#39;ukrainian&#39;</span>, <span class="stringliteral">&#39;greek&#39;</span>, <span class="stringliteral">&#39;serbian&#39;</span>))) {
-<a name="l00252"></a>00252                 <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = mb_convert_encoding(
-<a name="l00253"></a>00253                     <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>,
+<a name="l00252"></a>00252                 <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = mb_convert_encoding(
+<a name="l00253"></a>00253                     <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>,
 <a name="l00254"></a>00254                     <span class="stringliteral">&#39;utf-8&#39;</span>,
 <a name="l00255"></a>00255                     $encodings[$server_language]
 <a name="l00256"></a>00256                 );
@@ -340,7 +340,7 @@
 <a name="l00262"></a>00262 <span class="comment">         */</span>
 <a name="l00263"></a>00263     }
 <a name="l00264"></a>00264 
-<a name="l00265"></a>00265     <span class="keywordflow">return</span> <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a>;
+<a name="l00265"></a>00265     <span class="keywordflow">return</span> <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>;
 <a name="l00266"></a>00266 }
 <a name="l00267"></a>00267 <span class="comment"></span>
 <a name="l00268"></a>00268 <span class="comment">/**</span>
@@ -373,20 +373,20 @@
 <a name="l00295"></a>00295 <span class="comment"> *</span>
 <a name="l00296"></a>00296 <span class="comment"> * @access  private</span>
 <a name="l00297"></a>00297 <span class="comment"> */</span>
-<a name="l00298"></a><a class="code" href="database__interface_8lib_8php.html#ad2ddb3b6ab0a9031517f62027b1c5f9f">00298</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#ad2ddb3b6ab0a9031517f62027b1c5f9f" title="usort comparison callback">PMA_usort_comparison_callback</a>($a, $b)
+<a name="l00298"></a><a class="code" href="database__interface_8lib_8php.html#ad2ddb3b6ab0a9031517f62027b1c5f9f">00298</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#ad2ddb3b6ab0a9031517f62027b1c5f9f" title="usort comparison callback">PMA_usort_comparison_callback</a>(<a class="code" href="database__upgrades_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a>, <a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>)
 <a name="l00299"></a>00299 {
-<a name="l00300"></a>00300     <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NaturalOrder&#39;</span>]) {
+<a name="l00300"></a>00300     <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NaturalOrder&#39;</span>]) {
 <a name="l00301"></a>00301         $sorter = <span class="stringliteral">&#39;strnatcasecmp&#39;</span>;
 <a name="l00302"></a>00302     } <span class="keywordflow">else</span> {
 <a name="l00303"></a>00303         $sorter = <span class="stringliteral">&#39;strcasecmp&#39;</span>;
 <a name="l00304"></a>00304     }
 <a name="l00305"></a>00305     <span class="comment">/* No sorting when key is not present */</span>
-<a name="l00306"></a>00306     <span class="keywordflow">if</span> (! isset($a[<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]]) || ! isset($b[$GLOBALS[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]])) {
+<a name="l00306"></a>00306     <span class="keywordflow">if</span> (! isset(<a class="code" href="database__upgrades_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a>[<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]]) || ! isset(<a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>[$GLOBALS[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]])) {
 <a name="l00307"></a>00307         <span class="keywordflow">return</span> 0;
 <a name="l00308"></a>00308     }
 <a name="l00309"></a>00309     <span class="comment">// produces f.e.:</span>
 <a name="l00310"></a>00310     <span class="comment">// return -1 * strnatcasecmp($a[&quot;SCHEMA_TABLES&quot;], $b[&quot;SCHEMA_TABLES&quot;])</span>
-<a name="l00311"></a>00311     <span class="keywordflow">return</span> ($GLOBALS[<span class="stringliteral">&#39;callback_sort_order&#39;</span>] == <span class="stringliteral">&#39;ASC&#39;</span> ? 1 : -1) * $sorter($a[$GLOBALS[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]], $b[$GLOBALS[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]]);
+<a name="l00311"></a>00311     <span class="keywordflow">return</span> ($GLOBALS[<span class="stringliteral">&#39;callback_sort_order&#39;</span>] == <span class="stringliteral">&#39;ASC&#39;</span> ? 1 : -1) * $sorter(<a class="code" href="database__upgrades_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a>[$GLOBALS[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]], <a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>[$GLOBALS[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]]);
 <a name="l00312"></a>00312 } <span class="comment">// end of the &#39;PMA_usort_comparison_callback()&#39; function</span>
 <a name="l00313"></a>00313 <span class="comment"></span>
 <a name="l00314"></a>00314 <span class="comment">/**</span>
@@ -422,7 +422,7 @@
 <a name="l00344"></a>00344      $limit_offset = 0, $limit_count = <span class="keyword">false</span>, $sort_by = <span class="stringliteral">&#39;Name&#39;</span>, $sort_order = <span class="stringliteral">&#39;ASC&#39;</span>)
 <a name="l00345"></a>00345 {
 <a name="l00346"></a>00346     <span class="keywordflow">if</span> (<span class="keyword">true</span> === $limit_count) {
-<a name="l00347"></a>00347         $limit_count = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;MaxTableList&#39;</span>];
+<a name="l00347"></a>00347         $limit_count = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;MaxTableList&#39;</span>];
 <a name="l00348"></a>00348     }
 <a name="l00349"></a>00349     <span class="comment">// prepare and check parameters</span>
 <a name="l00350"></a>00350     <span class="keywordflow">if</span> (! is_array($database)) {
@@ -433,13 +433,13 @@
 <a name="l00355"></a>00355 
 <a name="l00356"></a>00356     <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a> = array();
 <a name="l00357"></a>00357 
-<a name="l00358"></a>00358     <span class="keywordflow">if</span> (! <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {
+<a name="l00358"></a>00358     <span class="keywordflow">if</span> (! <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {
 <a name="l00359"></a>00359         <span class="comment">// get table information from information_schema</span>
 <a name="l00360"></a>00360         <span class="keywordflow">if</span> (<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>) {
 <a name="l00361"></a>00361             <span class="keywordflow">if</span> (<span class="keyword">true</span> === $tbl_is_group) {
 <a name="l00362"></a>00362                 $sql_where_table = <span class="stringliteral">&#39;AND t.`TABLE_NAME` LIKE \&#39;&#39;</span>
 <a name="l00363"></a>00363                   . <a class="code" href="common_8lib_8php.html#a0eb68fc9b932fee53281ee4933bf242d" title="Add slashes before &quot;_&quot; and &quot;%&quot; characters for using them in MySQL database, table and field names...">PMA_escape_mysql_wildcards</a>(<a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>)) . <span class="stringliteral">&#39;%\&#39;&#39;</span>;
-<a name="l00364"></a>00364             } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<span class="stringliteral">&#39;comment&#39;</span> === $tbl_is_group) {
+<a name="l00364"></a>00364             } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<span class="stringliteral">&#39;comment&#39;</span> === $tbl_is_group) {
 <a name="l00365"></a>00365                 $sql_where_table = <span class="stringliteral">&#39;AND t.`TABLE_COMMENT` LIKE \&#39;&#39;</span>
 <a name="l00366"></a>00366                   . <a class="code" href="common_8lib_8php.html#a0eb68fc9b932fee53281ee4933bf242d" title="Add slashes before &quot;_&quot; and &quot;%&quot; characters for using them in MySQL database, table and field names...">PMA_escape_mysql_wildcards</a>(<a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>)) . <span class="stringliteral">&#39;%\&#39;&#39;</span>;
 <a name="l00367"></a>00367             } <span class="keywordflow">else</span> {
@@ -585,7 +585,7 @@
 <a name="l00507"></a>00507 
 <a name="l00508"></a>00508             <span class="comment">// Sort naturally if the config allows it and we&#39;re sorting</span>
 <a name="l00509"></a>00509             <span class="comment">// the Name column.</span>
-<a name="l00510"></a>00510             <span class="keywordflow">if</span> ($sort_by == <span class="stringliteral">&#39;Name&#39;</span> &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NaturalOrder&#39;</span>]) {
+<a name="l00510"></a>00510             <span class="keywordflow">if</span> ($sort_by == <span class="stringliteral">&#39;Name&#39;</span> &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NaturalOrder&#39;</span>]) {
 <a name="l00511"></a>00511                 uksort($each_tables, <span class="stringliteral">&#39;strnatcasecmp&#39;</span>);
 <a name="l00512"></a>00512 
 <a name="l00513"></a>00513                 <span class="keywordflow">if</span> ($sort_order == <span class="stringliteral">&#39;DESC&#39;</span>) {
@@ -635,7 +635,7 @@
 <a name="l00557"></a>00557                     <span class="comment">// pma BC, same parts of PMA still uses &#39;Type&#39;</span>
 <a name="l00558"></a>00558                     $each_tables[$table_name][<span class="stringliteral">&#39;Type&#39;</span>]
 <a name="l00559"></a>00559                         =&amp; $each_tables[$table_name][<span class="stringliteral">&#39;Engine&#39;</span>];
-<a name="l00560"></a>00560                 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (! isset($each_tables[$table_name][<span class="stringliteral">&#39;Engine&#39;</span>])
+<a name="l00560"></a>00560                 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (! isset($each_tables[$table_name][<span class="stringliteral">&#39;Engine&#39;</span>])
 <a name="l00561"></a>00561                         &amp;&amp; isset($each_tables[$table_name][<span class="stringliteral">&#39;Type&#39;</span>])) {
 <a name="l00562"></a>00562                     <span class="comment">// old MySQL reports Type, newer MySQL reports Engine</span>
 <a name="l00563"></a>00563                     $each_tables[$table_name][<span class="stringliteral">&#39;Engine&#39;</span>]
@@ -700,7 +700,7 @@
 <a name="l00622"></a>00622     <span class="keywordflow">if</span> (! is_array($database)) {
 <a name="l00623"></a>00623         <span class="keywordflow">if</span> (isset(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[$database])) {
 <a name="l00624"></a>00624             <span class="keywordflow">return</span> <a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[$database];
-<a name="l00625"></a>00625         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (isset(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[strtolower($database)])) {
+<a name="l00625"></a>00625         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (isset(<a class="code" href="db__datadict_8php.html#a3d332a3c374a53802495dcb045f6133f" title="Defines the url to return to in case of error in a sql statement.">$tables</a>[strtolower($database)])) {
 <a name="l00626"></a>00626             <span class="comment">// on windows with lower_case_table_names = 1</span>
 <a name="l00627"></a>00627             <span class="comment">// MySQL returns</span>
 <a name="l00628"></a>00628             <span class="comment">// with SHOW DATABASES or information_schema.SCHEMATA: `Test`</span>
@@ -746,7 +746,7 @@
 <a name="l00668"></a>00668     $sort_order = strtoupper($sort_order);
 <a name="l00669"></a>00669 
 <a name="l00670"></a>00670     <span class="keywordflow">if</span> (<span class="keyword">true</span> === $limit_count) {
-<a name="l00671"></a>00671         $limit_count = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;MaxDbList&#39;</span>];
+<a name="l00671"></a>00671         $limit_count = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;MaxDbList&#39;</span>];
 <a name="l00672"></a>00672     }
 <a name="l00673"></a>00673 
 <a name="l00674"></a>00674     <span class="comment">// initialize to avoid errors when there are no databases</span>
@@ -754,13 +754,13 @@
 <a name="l00676"></a>00676 
 <a name="l00677"></a>00677     $apply_limit_and_order_manual = <span class="keyword">true</span>;
 <a name="l00678"></a>00678 
-<a name="l00679"></a>00679     <span class="keywordflow">if</span> (! <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {<span class="comment"></span>
+<a name="l00679"></a>00679     <span class="keywordflow">if</span> (! <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {<span class="comment"></span>
 <a name="l00680"></a>00680 <span class="comment">        /**</span>
 <a name="l00681"></a>00681 <span class="comment">         * if $GLOBALS[&#39;cfg&#39;][&#39;NaturalOrder&#39;] is enabled, we cannot use LIMIT</span>
 <a name="l00682"></a>00682 <span class="comment">         * cause MySQL does not support natural ordering, we have to do it afterward</span>
 <a name="l00683"></a>00683 <span class="comment">         */</span>
 <a name="l00684"></a>00684         $limit = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00685"></a>00685         <span class="keywordflow">if</span> (!<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NaturalOrder&#39;</span>]) {
+<a name="l00685"></a>00685         <span class="keywordflow">if</span> (!<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;NaturalOrder&#39;</span>]) {
 <a name="l00686"></a>00686             <span class="keywordflow">if</span> ($limit_count) {
 <a name="l00687"></a>00687                 $limit = <span class="stringliteral">&#39; LIMIT &#39;</span> . $limit_count . <span class="stringliteral">&#39; OFFSET &#39;</span> . $limit_offset;
 <a name="l00688"></a>00688             }
@@ -838,22 +838,22 @@
 <a name="l00760"></a>00760         $databases = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>, <span class="stringliteral">&#39;SCHEMA_NAME&#39;</span>, null, $link);
 <a name="l00761"></a>00761 
 <a name="l00762"></a>00762         $mysql_error = <a class="code" href="drizzle_8dbi_8lib_8php.html#a704868d694079bc38c1947d370b8bf79" title="returns last error message or false if no errors occured">PMA_DBI_getError</a>($link);
-<a name="l00763"></a>00763         <span class="keywordflow">if</span> (! count($databases) &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;errno&#39;</span>]) {
+<a name="l00763"></a>00763         <span class="keywordflow">if</span> (! count($databases) &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;errno&#39;</span>]) {
 <a name="l00764"></a>00764             <a class="code" href="common_8lib_8php.html#a4b5abc57e204c6266283131d03f66395" title="Displays a MySQL error message in the right frame.">PMA_mysqlDie</a>($mysql_error, <a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>);
 <a name="l00765"></a>00765         }
 <a name="l00766"></a>00766 
 <a name="l00767"></a>00767         <span class="comment">// display only databases also in official database list</span>
 <a name="l00768"></a>00768         <span class="comment">// f.e. to apply hide_db and only_db</span>
-<a name="l00769"></a>00769         <a class="code" href="3rdparty_2phpmyadmin_2index_8php.html#a2fbf8e16bc461ef326f77ebe0b37585e" title="pass variables to child pages">$drops</a> = array_diff(array_keys($databases), (array) <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;pma&#39;</span>]-&gt;databases);
-<a name="l00770"></a>00770         <span class="keywordflow">if</span> (count(<a class="code" href="3rdparty_2phpmyadmin_2index_8php.html#a2fbf8e16bc461ef326f77ebe0b37585e" title="pass variables to child pages">$drops</a>)) {
-<a name="l00771"></a>00771             <span class="keywordflow">foreach</span> (<a class="code" href="3rdparty_2phpmyadmin_2index_8php.html#a2fbf8e16bc461ef326f77ebe0b37585e" title="pass variables to child pages">$drops</a> as $drop) {
+<a name="l00769"></a>00769         <a class="code" href="not__included_2wtf_2__phpmyadmin_2index_8php.html#a2fbf8e16bc461ef326f77ebe0b37585e" title="pass variables to child pages">$drops</a> = array_diff(array_keys($databases), (array) <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;pma&#39;</span>]-&gt;databases);
+<a name="l00770"></a>00770         <span class="keywordflow">if</span> (count(<a class="code" href="not__included_2wtf_2__phpmyadmin_2index_8php.html#a2fbf8e16bc461ef326f77ebe0b37585e" title="pass variables to child pages">$drops</a>)) {
+<a name="l00771"></a>00771             <span class="keywordflow">foreach</span> (<a class="code" href="not__included_2wtf_2__phpmyadmin_2index_8php.html#a2fbf8e16bc461ef326f77ebe0b37585e" title="pass variables to child pages">$drops</a> as $drop) {
 <a name="l00772"></a>00772                 unset($databases[$drop]);
 <a name="l00773"></a>00773             }
 <a name="l00774"></a>00774             unset($drop);
 <a name="l00775"></a>00775         }
-<a name="l00776"></a>00776         unset($sql_where_schema, <a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>, <a class="code" href="3rdparty_2phpmyadmin_2index_8php.html#a2fbf8e16bc461ef326f77ebe0b37585e" title="pass variables to child pages">$drops</a>);
+<a name="l00776"></a>00776         unset($sql_where_schema, <a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>, <a class="code" href="not__included_2wtf_2__phpmyadmin_2index_8php.html#a2fbf8e16bc461ef326f77ebe0b37585e" title="pass variables to child pages">$drops</a>);
 <a name="l00777"></a>00777     } <span class="keywordflow">else</span> {
-<a name="l00778"></a>00778         <span class="keywordflow">foreach</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;pma&#39;</span>]-&gt;databases as $database_name) {
+<a name="l00778"></a>00778         <span class="keywordflow">foreach</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;pma&#39;</span>]-&gt;databases as $database_name) {
 <a name="l00779"></a>00779             <span class="comment">// MySQL forward compatibility</span>
 <a name="l00780"></a>00780             <span class="comment">// so pma could use this array as if every server is of version &gt;5.0</span>
 <a name="l00781"></a>00781             $databases[$database_name][<span class="stringliteral">&#39;SCHEMA_NAME&#39;</span>]      = $database_name;
@@ -873,8 +873,8 @@
 <a name="l00795"></a>00795                 $databases[$database_name][<span class="stringliteral">&#39;SCHEMA_LENGTH&#39;</span>]          = 0;
 <a name="l00796"></a>00796                 $databases[$database_name][<span class="stringliteral">&#39;SCHEMA_DATA_FREE&#39;</span>]       = 0;
 <a name="l00797"></a>00797 
-<a name="l00798"></a>00798                 <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<span class="stringliteral">&#39;SHOW TABLE STATUS FROM &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>($database_name) . <span class="charliteral">&#39;;&#39;</span>);
-<a name="l00799"></a>00799                 <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>)) {
+<a name="l00798"></a>00798                 <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<span class="stringliteral">&#39;SHOW TABLE STATUS FROM &#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>($database_name) . <span class="charliteral">&#39;;&#39;</span>);
+<a name="l00799"></a>00799                 <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#ab13d236340b5e44aa9ebfe3a22a62f37" title="returns array of rows with associative keys from $result">PMA_DBI_fetch_assoc</a>(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>)) {
 <a name="l00800"></a>00800                     $databases[$database_name][<span class="stringliteral">&#39;SCHEMA_TABLES&#39;</span>]++;
 <a name="l00801"></a>00801                     $databases[$database_name][<span class="stringliteral">&#39;SCHEMA_TABLE_ROWS&#39;</span>]
 <a name="l00802"></a>00802                         += <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<span class="stringliteral">&#39;Rows&#39;</span>];
@@ -894,8 +894,8 @@
 <a name="l00816"></a>00816                     $databases[$database_name][<span class="stringliteral">&#39;SCHEMA_LENGTH&#39;</span>]
 <a name="l00817"></a>00817                         += <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<span class="stringliteral">&#39;Data_length&#39;</span>] + <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[<span class="stringliteral">&#39;Index_length&#39;</span>];
 <a name="l00818"></a>00818                 }
-<a name="l00819"></a>00819                 <a class="code" href="drizzle_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a" title="Frees memory associated with the result.">PMA_DBI_free_result</a>(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
-<a name="l00820"></a>00820                 unset(<a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
+<a name="l00819"></a>00819                 <a class="code" href="drizzle_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a" title="Frees memory associated with the result.">PMA_DBI_free_result</a>(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
+<a name="l00820"></a>00820                 unset(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
 <a name="l00821"></a>00821             }
 <a name="l00822"></a>00822         }
 <a name="l00823"></a>00823     }
@@ -906,10 +906,10 @@
 <a name="l00828"></a>00828 <span class="comment">     * (caused by older MySQL &lt; 5 or $GLOBALS[&#39;cfg&#39;][&#39;NaturalOrder&#39;])</span>
 <a name="l00829"></a>00829 <span class="comment">     */</span>
 <a name="l00830"></a>00830     <span class="keywordflow">if</span> ($apply_limit_and_order_manual) {
-<a name="l00831"></a>00831         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_order&#39;</span>] = $sort_order;
-<a name="l00832"></a>00832         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_by&#39;</span>] = $sort_by;
+<a name="l00831"></a>00831         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_order&#39;</span>] = $sort_order;
+<a name="l00832"></a>00832         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_by&#39;</span>] = $sort_by;
 <a name="l00833"></a>00833         usort($databases, <span class="stringliteral">&#39;PMA_usort_comparison_callback&#39;</span>);
-<a name="l00834"></a>00834         unset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_order&#39;</span>], <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]);
+<a name="l00834"></a>00834         unset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_order&#39;</span>], <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;callback_sort_by&#39;</span>]);
 <a name="l00835"></a>00835 <span class="comment"></span>
 <a name="l00836"></a>00836 <span class="comment">        /**</span>
 <a name="l00837"></a>00837 <span class="comment">         * now apply limit</span>
@@ -938,7 +938,7 @@
 <a name="l00860"></a>00860 {
 <a name="l00861"></a>00861     <a class="code" href="tbl__operations_8php.html#a19d2a3d21fe02053311fde465e6ae2e9" title="Get columns names.">$columns</a> = array();
 <a name="l00862"></a>00862 
-<a name="l00863"></a>00863     <span class="keywordflow">if</span> (! <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {
+<a name="l00863"></a>00863     <span class="keywordflow">if</span> (! <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {
 <a name="l00864"></a>00864         $sql_wheres = array();
 <a name="l00865"></a>00865         $array_keys = array();
 <a name="l00866"></a>00866 
@@ -1176,7 +1176,7 @@
 <a name="l01098"></a>01098 <span class="stringliteral">        // fix Key column, it&#39;</span>s much simpler in PHP than in SQL
 <a name="l01099"></a>01099         $has_pk = <span class="keyword">false</span>;
 <a name="l01100"></a>01100         $has_pk_candidates = <span class="keyword">false</span>;
-<a name="l01101"></a>01101         <span class="keywordflow">foreach</span> (<a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> as <a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>) {
+<a name="l01101"></a>01101         <span class="keywordflow">foreach</span> (<a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a> as $f) {
 <a name="l01102"></a>01102             <span class="keywordflow">if</span> ($f[<span class="stringliteral">&#39;Key&#39;</span>] == <span class="stringliteral">&#39;PRI&#39;</span>) {
 <a name="l01103"></a>01103                 $has_pk = <span class="keyword">true</span>;
 <a name="l01104"></a>01104                 <span class="keywordflow">break</span>;
@@ -1197,7 +1197,7 @@
 <a name="l01119"></a>01119             $fs = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>, <span class="stringliteral">&#39;index_name&#39;</span>, null, $link);
 <a name="l01120"></a>01120             $fs = $fs ? array_shift($fs) : array();
 <a name="l01121"></a>01121             <span class="keywordflow">foreach</span> ($fs as $f) {
-<a name="l01122"></a>01122                 <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>[<a class="code" href="getclasses_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a>][<span class="stringliteral">&#39;Key&#39;</span>] = <span class="stringliteral">&#39;PRI&#39;</span>;
+<a name="l01122"></a>01122                 <a class="code" href="tbl__indexes_8php.html#ab2303c817e3b402b77b7f99627b9c319" title="Gets some core libraries.">$fields</a>[$f][<span class="stringliteral">&#39;Key&#39;</span>] = <span class="stringliteral">&#39;PRI&#39;</span>;
 <a name="l01123"></a>01123             }
 <a name="l01124"></a>01124         }
 <a name="l01125"></a>01125     }
@@ -1276,17 +1276,17 @@
 <a name="l01198"></a>01198 <span class="comment"> *</span>
 <a name="l01199"></a>01199 <span class="comment"> * @return  mixed   value for mysql server variable</span>
 <a name="l01200"></a>01200 <span class="comment"> */</span>
-<a name="l01201"></a><a class="code" href="database__interface_8lib_8php.html#aef733cc7fae20c7b795f896a38380166">01201</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#aef733cc7fae20c7b795f896a38380166" title="returns value of given mysql server variable">PMA_DBI_get_variable</a>($var, <a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> = <a class="code" href="database__interface_8lib_8php.html#ad2561933a3ada2f74de7b5a40d461d03" title="Get session variable.">PMA_DBI_GETVAR_SESSION</a>, $link = null)
+<a name="l01201"></a><a class="code" href="database__interface_8lib_8php.html#aef733cc7fae20c7b795f896a38380166">01201</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#aef733cc7fae20c7b795f896a38380166" title="returns value of given mysql server variable">PMA_DBI_get_variable</a>($var, <a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a> = <a class="code" href="database__interface_8lib_8php.html#ad2561933a3ada2f74de7b5a40d461d03" title="Get session variable.">PMA_DBI_GETVAR_SESSION</a>, $link = null)
 <a name="l01202"></a>01202 {
 <a name="l01203"></a>01203     <span class="keywordflow">if</span> ($link === null) {
-<a name="l01204"></a>01204         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l01205"></a>01205             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l01204"></a>01204         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l01205"></a>01205             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l01206"></a>01206         } <span class="keywordflow">else</span> {
 <a name="l01207"></a>01207             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l01208"></a>01208         }
 <a name="l01209"></a>01209     }
 <a name="l01210"></a>01210 
-<a name="l01211"></a>01211     <span class="keywordflow">switch</span> (<a class="code" href="export_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>) {
+<a name="l01211"></a>01211     <span class="keywordflow">switch</span> (<a class="code" href="sp_8php.html#a9a4a6fba2208984cabb3afacadf33919">$type</a>) {
 <a name="l01212"></a>01212     <span class="keywordflow">case</span> <a class="code" href="database__interface_8lib_8php.html#ad2561933a3ada2f74de7b5a40d461d03" title="Get session variable.">PMA_DBI_GETVAR_SESSION</a>:
 <a name="l01213"></a>01213         $modifier = <span class="stringliteral">&#39; SESSION&#39;</span>;
 <a name="l01214"></a>01214         <span class="keywordflow">break</span>;
@@ -1689,8 +1689,8 @@
 <a name="l01611"></a><a class="code" href="database__interface_8lib_8php.html#aa8c164d7df8c3d6ff1b7a483731cc229">01611</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#aa8c164d7df8c3d6ff1b7a483731cc229" title="returns warnings for last query">PMA_DBI_get_warnings</a>($link = null)
 <a name="l01612"></a>01612 {
 <a name="l01613"></a>01613     <span class="keywordflow">if</span> (empty($link)) {
-<a name="l01614"></a>01614         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
-<a name="l01615"></a>01615             $link = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
+<a name="l01614"></a>01614         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l01615"></a>01615             $link = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>];
 <a name="l01616"></a>01616         } <span class="keywordflow">else</span> {
 <a name="l01617"></a>01617             <span class="keywordflow">return</span> array();
 <a name="l01618"></a>01618         }
@@ -1712,23 +1712,23 @@
 <a name="l01634"></a>01634     }
 <a name="l01635"></a>01635 
 <a name="l01636"></a>01636     <span class="comment">// when connection failed we don&#39;t have a $userlink</span>
-<a name="l01637"></a>01637     <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
+<a name="l01637"></a>01637     <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>])) {
 <a name="l01638"></a>01638         <span class="keywordflow">if</span> (PMA_DRIZZLE) {
 <a name="l01639"></a>01639             <span class="comment">// Drizzle has no authorization by default, so when no plugin is</span>
 <a name="l01640"></a>01640             <span class="comment">// enabled everyone is a superuser</span>
 <a name="l01641"></a>01641             <span class="comment">// Known authorization libraries: regex_policy, simple_user_policy</span>
 <a name="l01642"></a>01642             <span class="comment">// Plugins limit object visibility (dbs, tables, processes), we can</span>
 <a name="l01643"></a>01643             <span class="comment">// safely assume we always deal with superuser</span>
-<a name="l01644"></a>01644             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = <span class="keyword">true</span>;
+<a name="l01644"></a>01644             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = <span class="keyword">true</span>;
 <a name="l01645"></a>01645         } <span class="keywordflow">else</span> {
 <a name="l01646"></a>01646             <span class="comment">// check access to mysql.user table</span>
-<a name="l01647"></a>01647             <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = (bool) <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(
+<a name="l01647"></a>01647             <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> = (bool) <a class="code" href="database__interface_8lib_8php.html#af4f8622d2f5df7858e4e6ca425ac0274" title="runs a query and returns the result">PMA_DBI_try_query</a>(
 <a name="l01648"></a>01648                 <span class="stringliteral">&#39;SELECT COUNT(*) FROM mysql.user&#39;</span>,
-<a name="l01649"></a>01649                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>],
+<a name="l01649"></a>01649                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;userlink&#39;</span>],
 <a name="l01650"></a>01650                 <a class="code" href="database__interface_8lib_8php.html#a77bfb86197a8bde52b8e52b2dff26993" title="Force STORE_RESULT method, ignored by classic MySQL.">PMA_DBI_QUERY_STORE</a>
 <a name="l01651"></a>01651             );
 <a name="l01652"></a>01652         }
-<a name="l01653"></a>01653         <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_superuser&#39;</span>, <a class="code" href="indexfb_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>, <span class="keyword">true</span>);
+<a name="l01653"></a>01653         <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_superuser&#39;</span>, <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>, <span class="keyword">true</span>);
 <a name="l01654"></a>01654     } <span class="keywordflow">else</span> {
 <a name="l01655"></a>01655         <a class="code" href="common_8lib_8php.html#a9aee3c59e4ddf7a52c78060afb85654d" title="Caches information in the session.">PMA_cacheSet</a>(<span class="stringliteral">&#39;is_superuser&#39;</span>, <span class="keyword">false</span>, <span class="keyword">true</span>);
 <a name="l01656"></a>01656     }
@@ -1752,13 +1752,13 @@
 <a name="l01674"></a>01674         <span class="keywordflow">return</span> array();
 <a name="l01675"></a>01675     }
 <a name="l01676"></a>01676     $shows = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<span class="stringliteral">&#39;SHOW &#39;</span> . <a class="code" href="slogan_8php.html#ae68766bfcc2b1965650856cc97da0512">$which</a> . <span class="stringliteral">&#39; STATUS;&#39;</span>, null, null, $link);
-<a name="l01677"></a>01677     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = array();
+<a name="l01677"></a>01677     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = array();
 <a name="l01678"></a>01678     <span class="keywordflow">foreach</span> ($shows as $one_show) {
 <a name="l01679"></a>01679         <span class="keywordflow">if</span> ($one_show[<span class="stringliteral">&#39;Db&#39;</span>] == <a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a> &amp;&amp; $one_show[<span class="stringliteral">&#39;Type&#39;</span>] == <a class="code" href="slogan_8php.html#ae68766bfcc2b1965650856cc97da0512">$which</a>) {
-<a name="l01680"></a>01680             <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>[] = $one_show[<span class="stringliteral">&#39;Name&#39;</span>];
+<a name="l01680"></a>01680             <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>[] = $one_show[<span class="stringliteral">&#39;Name&#39;</span>];
 <a name="l01681"></a>01681         }
 <a name="l01682"></a>01682     }
-<a name="l01683"></a>01683     <span class="keywordflow">return</span>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l01683"></a>01683     <span class="keywordflow">return</span>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l01684"></a>01684 }
 <a name="l01685"></a>01685 <span class="comment"></span>
 <a name="l01686"></a>01686 <span class="comment">/**</span>
@@ -1771,7 +1771,7 @@
 <a name="l01693"></a>01693 <span class="comment"> *</span>
 <a name="l01694"></a>01694 <span class="comment"> * @return string the definition</span>
 <a name="l01695"></a>01695 <span class="comment"> */</span>
-<a name="l01696"></a><a class="code" href="database__interface_8lib_8php.html#a6c0f9fb5171128a50f3fdb22c9faf4f6">01696</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#a6c0f9fb5171128a50f3fdb22c9faf4f6" title="returns the definition of a specific PROCEDURE, FUNCTION, EVENT or VIEW">PMA_DBI_get_definition</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="slogan_8php.html#ae68766bfcc2b1965650856cc97da0512">$which</a>, <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>, $link = null)
+<a name="l01696"></a><a class="code" href="database__interface_8lib_8php.html#a6c0f9fb5171128a50f3fdb22c9faf4f6">01696</a> <span class="keyword">function</span> <a class="code" href="database__interface_8lib_8php.html#a6c0f9fb5171128a50f3fdb22c9faf4f6" title="returns the definition of a specific PROCEDURE, FUNCTION, EVENT or VIEW">PMA_DBI_get_definition</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>, <a class="code" href="slogan_8php.html#ae68766bfcc2b1965650856cc97da0512">$which</a>, <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>, $link = null)
 <a name="l01697"></a>01697 {
 <a name="l01698"></a>01698     $returned_field = array(
 <a name="l01699"></a>01699         <span class="stringliteral">&#39;PROCEDURE&#39;</span> =&gt; <span class="stringliteral">&#39;Create Procedure&#39;</span>,
@@ -1779,9 +1779,9 @@
 <a name="l01701"></a>01701         <span class="stringliteral">&#39;EVENT&#39;</span>     =&gt; <span class="stringliteral">&#39;Create Event&#39;</span>,
 <a name="l01702"></a>01702         <span class="stringliteral">&#39;VIEW&#39;</span>      =&gt; <span class="stringliteral">&#39;Create View&#39;</span>
 <a name="l01703"></a>01703     );
-<a name="l01704"></a>01704     <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="stringliteral">&#39;SHOW CREATE &#39;</span> . <a class="code" href="slogan_8php.html#ae68766bfcc2b1965650856cc97da0512">$which</a> . <span class="charliteral">&#39; &#39;</span>
-<a name="l01705"></a>01705         . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) . <span class="charliteral">&#39;.&#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>);
-<a name="l01706"></a>01706     <span class="keywordflow">return</span>(<a class="code" href="database__interface_8lib_8php.html#a772f12a953dd2908745bb16a8fa7b63a" title="returns a single value from the given result or query, if the query or the result has more than one r...">PMA_DBI_fetch_value</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>, 0, $returned_field[<a class="code" href="slogan_8php.html#ae68766bfcc2b1965650856cc97da0512">$which</a>]));
+<a name="l01704"></a>01704     $query = <span class="stringliteral">&#39;SHOW CREATE &#39;</span> . <a class="code" href="slogan_8php.html#ae68766bfcc2b1965650856cc97da0512">$which</a> . <span class="charliteral">&#39; &#39;</span>
+<a name="l01705"></a>01705         . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) . <span class="charliteral">&#39;.&#39;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>);
+<a name="l01706"></a>01706     <span class="keywordflow">return</span>(<a class="code" href="database__interface_8lib_8php.html#a772f12a953dd2908745bb16a8fa7b63a" title="returns a single value from the given result or query, if the query or the result has more than one r...">PMA_DBI_fetch_value</a>($query, 0, $returned_field[<a class="code" href="slogan_8php.html#ae68766bfcc2b1965650856cc97da0512">$which</a>]));
 <a name="l01707"></a>01707 }
 <a name="l01708"></a>01708 <span class="comment"></span>
 <a name="l01709"></a>01709 <span class="comment">/**</span>
@@ -1800,30 +1800,30 @@
 <a name="l01722"></a>01722         <span class="keywordflow">return</span> array();
 <a name="l01723"></a>01723     }
 <a name="l01724"></a>01724 
-<a name="l01725"></a>01725     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = array();
-<a name="l01726"></a>01726     <span class="keywordflow">if</span> (! <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {
+<a name="l01725"></a>01725     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = array();
+<a name="l01726"></a>01726     <span class="keywordflow">if</span> (! <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {
 <a name="l01727"></a>01727         <span class="comment">// Note: in http://dev.mysql.com/doc/refman/5.0/en/faqs-triggers.html</span>
 <a name="l01728"></a>01728         <span class="comment">// their example uses WHERE TRIGGER_SCHEMA=&#39;dbname&#39; so let&#39;s use this</span>
 <a name="l01729"></a>01729         <span class="comment">// instead of WHERE EVENT_OBJECT_SCHEMA=&#39;dbname&#39;</span>
-<a name="l01730"></a>01730         <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="stringliteral">&#39;SELECT TRIGGER_SCHEMA, TRIGGER_NAME, EVENT_MANIPULATION&#39;</span>
+<a name="l01730"></a>01730         $query = <span class="stringliteral">&#39;SELECT TRIGGER_SCHEMA, TRIGGER_NAME, EVENT_MANIPULATION&#39;</span>
 <a name="l01731"></a>01731             . <span class="stringliteral">&#39;, EVENT_OBJECT_TABLE, ACTION_TIMING, ACTION_STATEMENT&#39;</span>
 <a name="l01732"></a>01732             . <span class="stringliteral">&#39;, EVENT_OBJECT_SCHEMA, EVENT_OBJECT_TABLE, DEFINER&#39;</span>
 <a name="l01733"></a>01733             . <span class="stringliteral">&#39; FROM information_schema.TRIGGERS&#39;</span>
 <a name="l01734"></a>01734             . <span class="stringliteral">&#39; WHERE TRIGGER_SCHEMA= \&#39;&#39;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>) . <span class="charliteral">&#39;\&#39;&#39;</span>;
 <a name="l01735"></a>01735 
 <a name="l01736"></a>01736         <span class="keywordflow">if</span> (! empty(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>)) {
-<a name="l01737"></a>01737             <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> .= <span class="stringliteral">&quot; AND EVENT_OBJECT_TABLE = &#39;&quot;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>) . <span class="stringliteral">&quot;&#39;;&quot;</span>;
+<a name="l01737"></a>01737             $query .= <span class="stringliteral">&quot; AND EVENT_OBJECT_TABLE = &#39;&quot;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>) . <span class="stringliteral">&quot;&#39;;&quot;</span>;
 <a name="l01738"></a>01738         }
 <a name="l01739"></a>01739     } <span class="keywordflow">else</span> {
-<a name="l01740"></a>01740         <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = <span class="stringliteral">&quot;SHOW TRIGGERS FROM &quot;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>);
+<a name="l01740"></a>01740         $query = <span class="stringliteral">&quot;SHOW TRIGGERS FROM &quot;</span> . <a class="code" href="common_8lib_8php.html#a81c4628f679a153bb4475c5ee2ae49ec" title="Adds backquotes on both sides of a database, table or field name.">PMA_backquote</a>(<a class="code" href="schema__export_8php.html#a907d78797a1b764e913b0c565a5097b0" title="get all the export options and verify call and include the appropriate Schema Class depending on $exp...">$db</a>);
 <a name="l01741"></a>01741         <span class="keywordflow">if</span> (! empty(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>)) {
-<a name="l01742"></a>01742             <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> .= <span class="stringliteral">&quot; LIKE &#39;&quot;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, <span class="keyword">true</span>) . <span class="stringliteral">&quot;&#39;;&quot;</span>;
+<a name="l01742"></a>01742             $query .= <span class="stringliteral">&quot; LIKE &#39;&quot;</span> . <a class="code" href="common_8lib_8php.html#a799062f79f401d1f20735d292d008eaf" title="Add slashes before &quot;&#39;&quot; and &quot;\&quot; characters so a value containing them can be used in a sql comparison...">PMA_sqlAddSlashes</a>(<a class="code" href="pmd__display__field_8php.html#ae8876a14058f368335baccf35af4a22b">$table</a>, <span class="keyword">true</span>) . <span class="stringliteral">&quot;&#39;;&quot;</span>;
 <a name="l01743"></a>01743         }
 <a name="l01744"></a>01744     }
 <a name="l01745"></a>01745 
-<a name="l01746"></a>01746     <span class="keywordflow">if</span> ($triggers = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>(<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a>)) {
+<a name="l01746"></a>01746     <span class="keywordflow">if</span> ($triggers = <a class="code" href="database__interface_8lib_8php.html#a761f919096699667412d2ffd391eaa5b" title="returns all rows in the resultset in one array">PMA_DBI_fetch_result</a>($query)) {
 <a name="l01747"></a>01747         <span class="keywordflow">foreach</span> ($triggers as $trigger) {
-<a name="l01748"></a>01748             <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {
+<a name="l01748"></a>01748             <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;cfg&#39;</span>][<span class="stringliteral">&#39;Server&#39;</span>][<span class="stringliteral">&#39;DisableIS&#39;</span>]) {
 <a name="l01749"></a>01749                 $trigger[<span class="stringliteral">&#39;TRIGGER_NAME&#39;</span>] = $trigger[<span class="stringliteral">&#39;Trigger&#39;</span>];
 <a name="l01750"></a>01750                 $trigger[<span class="stringliteral">&#39;ACTION_TIMING&#39;</span>] = $trigger[<span class="stringliteral">&#39;Timing&#39;</span>];
 <a name="l01751"></a>01751                 $trigger[<span class="stringliteral">&#39;EVENT_MANIPULATION&#39;</span>] = $trigger[<span class="stringliteral">&#39;Event&#39;</span>];
@@ -1852,18 +1852,18 @@
 <a name="l01774"></a>01774                 . <span class="stringliteral">&quot;\n&quot;</span> . <span class="stringliteral">&#39; FOR EACH ROW &#39;</span>
 <a name="l01775"></a>01775                 . $trigger[<span class="stringliteral">&#39;ACTION_STATEMENT&#39;</span>] . <span class="stringliteral">&quot;\n&quot;</span> . $delimiter . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l01776"></a>01776 
-<a name="l01777"></a>01777             <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>[] = $one_result;
+<a name="l01777"></a>01777             <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>[] = $one_result;
 <a name="l01778"></a>01778         }
 <a name="l01779"></a>01779     }
 <a name="l01780"></a>01780 
 <a name="l01781"></a>01781     <span class="comment">// Sort results by name</span>
-<a name="l01782"></a>01782     <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = array();
-<a name="l01783"></a>01783     <span class="keywordflow">foreach</span> (<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> as $key =&gt; $value) {
-<a name="l01784"></a>01784         <a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>[] = $value[<span class="stringliteral">&#39;name&#39;</span>];
+<a name="l01782"></a>01782     <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a> = array();
+<a name="l01783"></a>01783     <span class="keywordflow">foreach</span> (<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> as $key =&gt; $value) {
+<a name="l01784"></a>01784         <a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>[] = $value[<span class="stringliteral">&#39;name&#39;</span>];
 <a name="l01785"></a>01785     }
-<a name="l01786"></a>01786     array_multisort(<a class="code" href="dejavusans_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>, SORT_ASC, <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l01786"></a>01786     array_multisort(<a class="code" href="wab_8php.html#ab2fc40d43824ea3e1ce5d86dee0d763b">$name</a>, SORT_ASC, <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l01787"></a>01787 
-<a name="l01788"></a>01788     <span class="keywordflow">return</span>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l01788"></a>01788     <span class="keywordflow">return</span>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l01789"></a>01789 }
 <a name="l01790"></a>01790 <span class="comment"></span>
 <a name="l01791"></a>01791 <span class="comment">/**</span>
@@ -1889,10 +1889,10 @@
 <a name="l01811"></a>01811     <span class="keywordflow">if</span> ($error_number == 2002) {
 <a name="l01812"></a>01812         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> .= <span class="stringliteral">&#39; - &#39;</span> . $error_message;
 <a name="l01813"></a>01813         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> .= <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span> . __(<span class="stringliteral">&#39;The server is not responding (or the local server\&#39;s socket is not correctly configured).&#39;</span>);
-<a name="l01814"></a>01814     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> ($error_number == 2003) {
+<a name="l01814"></a>01814     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> ($error_number == 2003) {
 <a name="l01815"></a>01815         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> .= <span class="stringliteral">&#39; - &#39;</span> . $error_message;
 <a name="l01816"></a>01816         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> .= <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span> . __(<span class="stringliteral">&#39;The server is not responding.&#39;</span>);
-<a name="l01817"></a>01817     } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> ($error_number == 1005) {
+<a name="l01817"></a>01817     } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> ($error_number == 1005) {
 <a name="l01818"></a>01818         <span class="keywordflow">if</span> (strpos($error_message, <span class="stringliteral">&#39;errno: 13&#39;</span>) !== <span class="keyword">false</span>) {
 <a name="l01819"></a>01819             <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> .= <span class="stringliteral">&#39; - &#39;</span> . $error_message;
 <a name="l01820"></a>01820             <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> .= <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span> . __(<span class="stringliteral">&#39;Please check privileges of directory containing database.&#39;</span>);
@@ -1937,7 +1937,7 @@
     <ul>
       <li class="navelem"><a class="el" href="database__interface_8lib_8php.html">database_interface.lib.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:28 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

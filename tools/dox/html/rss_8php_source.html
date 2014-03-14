@@ -74,38 +74,39 @@
 </div><!--header-->
 <div class="contents">
 <a href="rss_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?
-<a name="l00002"></a>00002 include(<span class="stringliteral">&quot;header.php&quot;</span>);
-<a name="l00003"></a>00003 include(<span class="stringliteral">&quot;3rdparty/rsslib/rsslib.php&quot;</span>);
-<a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">// table_top(&quot;Latest RSS Feeds&quot;);</span>
-<a name="l00006"></a>00006 
-<a name="l00007"></a>00007 echo <span class="stringliteral">&quot;&lt;table width=$site_singletablewidth border=0&gt;&lt;tr&gt;&quot;</span>;
-<a name="l00008"></a>00008 echo <span class="stringliteral">&quot;&lt;td valign=top class=contenttd&gt;&quot;</span>;
-<a name="l00009"></a>00009 
-<a name="l00010"></a><a class="code" href="rss_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">00010</a> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;select * from rss_feeds&quot;</span>);
-<a name="l00011"></a><a class="code" href="rss_8php.html#aab5ded576868df8431ef8994a97c6013">00011</a> <a class="code" href="rss_8php.html#aab5ded576868df8431ef8994a97c6013">$num_feeds</a>=mysql_num_rows(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00012"></a><a class="code" href="rss_8php.html#a65f3e6b60075d99309ba9284d1944ac8">00012</a> <span class="keywordflow">for</span>($i=0;$i&lt;<a class="code" href="rss_8php.html#aab5ded576868df8431ef8994a97c6013">$num_feeds</a>;$i++)
-<a name="l00013"></a>00013 {
-<a name="l00014"></a>00014     $feed=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
-<a name="l00015"></a>00015     <span class="comment">// echo $feed-&gt;feed.&quot;&lt;br&gt;&quot;;</span>
-<a name="l00016"></a>00016     echo RSS_display($feed-&gt;feed, 3, <span class="keyword">false</span>);
-<a name="l00017"></a>00017     <span class="comment">// putnews($feed-&gt;feed);</span>
-<a name="l00018"></a>00018 }
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="comment">//echo RSS_display(&quot;http://www.wowarmory.com/character-feed.atom?r=Bladefist&amp;cn=Smashed&amp;locale=en_US&quot;, 5, true);</span>
-<a name="l00021"></a>00021 <span class="comment">//echo RSS_display(&quot;http://rss.cnn.com/rss/cnn_topstories.rss&quot;, 5, true);</span>
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
-<a name="l00024"></a>00024 <span class="comment">//table_bottom();</span>
-<a name="l00025"></a>00025 include(<span class="stringliteral">&quot;footer.php&quot;</span>);
-<a name="l00026"></a>00026 ?&gt;
+<a name="l00002"></a><a class="code" href="rss_8php.html#a7c9250cff996bda510128b7da823de02">00002</a> <span class="keywordflow">if</span>(stristr(getcwd(),<span class="stringliteral">&quot;modules&quot;</span>)) { chdir(<span class="stringliteral">&quot;../../&quot;</span>); }
+<a name="l00003"></a>00003 include(<span class="stringliteral">&quot;header.php&quot;</span>);
+<a name="l00004"></a>00004 include(<span class="stringliteral">&quot;3rdparty/rsslib/rsslib.php&quot;</span>);
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 <span class="comment">// table_top(&quot;Latest RSS Feeds&quot;);</span>
+<a name="l00007"></a>00007 
+<a name="l00008"></a>00008 echo <span class="stringliteral">&quot;&lt;table width=$site_singletablewidth border=0&gt;&lt;tr&gt;&quot;</span>;
+<a name="l00009"></a>00009 echo <span class="stringliteral">&quot;&lt;td valign=top class=contenttd&gt;&quot;</span>;
+<a name="l00010"></a>00010 
+<a name="l00011"></a><a class="code" href="rss_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">00011</a> <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from rss_feeds&quot;</span>);
+<a name="l00012"></a><a class="code" href="rss_8php.html#aab5ded576868df8431ef8994a97c6013">00012</a> <a class="code" href="rss_8php.html#aab5ded576868df8431ef8994a97c6013">$num_feeds</a>=mysql_num_rows(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00013"></a><a class="code" href="rss_8php.html#ab4a10053139c0bce2daddf5a2f25ef36">00013</a> <span class="keywordflow">for</span>($i=0;$i&lt;<a class="code" href="rss_8php.html#aab5ded576868df8431ef8994a97c6013">$num_feeds</a>;$i++)
+<a name="l00014"></a>00014 {
+<a name="l00015"></a>00015     $feed=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00016"></a>00016     <span class="comment">// echo $feed-&gt;feed.&quot;&lt;br&gt;&quot;;</span>
+<a name="l00017"></a>00017     echo RSS_display($feed-&gt;feed, 3, <span class="keyword">false</span>);
+<a name="l00018"></a>00018     <span class="comment">// putnews($feed-&gt;feed);</span>
+<a name="l00019"></a>00019 }
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="comment">//echo RSS_display(&quot;http://www.wowarmory.com/character-feed.atom?r=Bladefist&amp;cn=Smashed&amp;locale=en_US&quot;, 5, true);</span>
+<a name="l00022"></a>00022 <span class="comment">//echo RSS_display(&quot;http://rss.cnn.com/rss/cnn_topstories.rss&quot;, 5, true);</span>
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
+<a name="l00025"></a>00025 <span class="comment">//table_bottom();</span>
+<a name="l00026"></a>00026 include(<span class="stringliteral">&quot;footer.php&quot;</span>);
+<a name="l00027"></a>00027 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="rss_8php.html">rss.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

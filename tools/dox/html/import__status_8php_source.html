@@ -90,7 +90,7 @@
 <a name="l00012"></a>00012 <a class="code" href="core_8lib_8php.html#af2d4b6f9457d5685d5e3a1c04a6e112d" title="Outputs headers to prevent caching in browser (and on the way).">PMA_no_cache_header</a>();
 <a name="l00013"></a>00013 
 <a name="l00014"></a>00014 <span class="comment">// $GLOBALS[&quot;message&quot;] is used for asking for an import message</span>
-<a name="l00015"></a>00015 <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&quot;message&quot;</span>]) &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&quot;message&quot;</span>]) {
+<a name="l00015"></a>00015 <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&quot;message&quot;</span>]) &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&quot;message&quot;</span>]) {
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017     header(<span class="stringliteral">&#39;Content-type: text/html&#39;</span>);
 <a name="l00018"></a>00018 
@@ -98,17 +98,17 @@
 <a name="l00020"></a>00020     usleep(300000);
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022     <span class="comment">// wait until message is available</span>
-<a name="l00023"></a>00023     <span class="keywordflow">while</span> (<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;Import_message&#39;</span>][<span class="stringliteral">&#39;message&#39;</span>] == null) {
+<a name="l00023"></a>00023     <span class="keywordflow">while</span> (<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;Import_message&#39;</span>][<span class="stringliteral">&#39;message&#39;</span>] == null) {
 <a name="l00024"></a>00024         usleep(250000); <span class="comment">// 0.25 sec</span>
 <a name="l00025"></a>00025     }
 <a name="l00026"></a>00026 
-<a name="l00027"></a>00027     echo <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;Import_message&#39;</span>][<span class="stringliteral">&#39;message&#39;</span>];
+<a name="l00027"></a>00027     echo <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;Import_message&#39;</span>][<span class="stringliteral">&#39;message&#39;</span>];
 <a name="l00028"></a>00028     echo <span class="stringliteral">&#39;&lt;fieldset class=&quot;tblFooters&quot;&gt;&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00029"></a>00029     echo <span class="stringliteral">&#39;    [ &lt;a href=&quot;&#39;</span> . $_SESSION[<span class="stringliteral">&#39;Import_message&#39;</span>][<span class="stringliteral">&#39;go_back_url&#39;</span>] . <span class="stringliteral">&#39;&quot;&gt;&#39;</span> . __(<span class="stringliteral">&#39;Back&#39;</span>) . <span class="stringliteral">&#39;&lt;/a&gt; ]&#39;</span> . <span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00030"></a>00030     echo <span class="stringliteral">&#39;&lt;/fieldset&gt;&#39;</span>.<span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00031"></a>00031 
 <a name="l00032"></a>00032 } <span class="keywordflow">else</span> {
-<a name="l00033"></a>00033     <a class="code" href="display__import__ajax_8lib_8php.html#a393a68dbc57d92c9970c9266e4471ab1" title="The function outputs json encoded status of uploaded.">PMA_importAjaxStatus</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&quot;id&quot;</span>]);
+<a name="l00033"></a>00033     <a class="code" href="display__import__ajax_8lib_8php.html#a393a68dbc57d92c9970c9266e4471ab1" title="The function outputs json encoded status of uploaded.">PMA_importAjaxStatus</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&quot;id&quot;</span>]);
 <a name="l00034"></a>00034 }
 <a name="l00035"></a>00035 ?&gt;
 </pre></div></div><!-- contents -->
@@ -117,7 +117,7 @@
     <ul>
       <li class="navelem"><a class="el" href="import__status_8php.html">import_status.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

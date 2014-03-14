@@ -1,0 +1,37 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_Message\\getNumber",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_Error\\getHash",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a7c1a10f8dfbe74a62511cea590777145",tooltip="returns unique PMA_Error::$_hash, if not exists it will be created"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_Error\\getType",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#acee741b6a4eacfeca9d65ee2202f78be",tooltip="returns type of error"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_Error\\getTitle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a24e8709d5ab72850d9567f1ca1ed3a98",tooltip="returns title for error"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_Error\\getHtmlTitle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a086824028afb06d700d8f2ad3c3e417d",tooltip="returns title prepared for HTML Title-Tag"];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_Error\\display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a8b50ee3c073f50d9fdd269996a4c20b1",tooltip="Displays the error in HTML."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="PMA_Error\\getLevel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a2ba5600c131478162cdb7be8401e4bc6",tooltip="returns level of error"];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PMA_Error\\isUserError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Error.html#a6679264f0c24a097a08ed11b52e34ca0",tooltip="whether this error is a user error"];
+  Node8 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="PMA_Message\\isSuccess",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a6e2c6683b6ea432f7d62571413b3de29",tooltip="returns whether this message is a success message or not and optionaly makes this message a success m..."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="PMA_Message\\isNotice",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#ade3e340dd2b42147eb7f17f1b7a463b7",tooltip="returns whether this message is a notice message or not and optionally makes this message a notice me..."];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="PMA_Message\\isError",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#a868375f2642673716888f570d2456364",tooltip="returns whether this message is an error message or not and optionally makes this message an error me..."];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="PMA_Message\\getHash",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#aa22a4e48a71487c64418b31c7d216ad9",tooltip="returns unique PMA_Message::$_hash, if not exists it will be created"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="PMA_Message\\getLevel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#ac1e2480e0be85462940b0b99ca516d46",tooltip="returns level of message"];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="PMA_Message\\getDisplay",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#ab5a9dc7650dadcd83a3c4bfaf3c3b4d6",tooltip="returns HTML code for displaying this message"];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="PMA_Message\\display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__Message.html#adefab0885ebc8342413a11eda943c512",tooltip="Displays the message in HTML."];
+}

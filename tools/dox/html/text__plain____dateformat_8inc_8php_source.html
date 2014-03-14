@@ -166,11 +166,11 @@
 <a name="l00088"></a>00088         <a class="code" href="import_8php.html#ac83ba29f01705883356a250e7d93f258">$timestamp</a> -= <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[0] * 60 * 60;
 <a name="l00089"></a>00089         $source = <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a>;
 <a name="l00090"></a>00090         <span class="keywordflow">if</span> (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[2] == <span class="stringliteral">&#39;local&#39;</span>) {
-<a name="l00091"></a>00091             <a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a> = <a class="code" href="common_8lib_8php.html#a5fd5c1fc97dd60dd15cdd39a74655292" title="Writes localised date.">PMA_localisedDate</a>(<a class="code" href="import_8php.html#ac83ba29f01705883356a250e7d93f258">$timestamp</a>, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[1]);
-<a name="l00092"></a>00092         } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[2] == <span class="stringliteral">&#39;utc&#39;</span>) {
-<a name="l00093"></a>00093             <a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a> = gmdate(<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[1], <a class="code" href="import_8php.html#ac83ba29f01705883356a250e7d93f258">$timestamp</a>);
+<a name="l00091"></a>00091             $text = <a class="code" href="common_8lib_8php.html#a5fd5c1fc97dd60dd15cdd39a74655292" title="Writes localised date.">PMA_localisedDate</a>(<a class="code" href="import_8php.html#ac83ba29f01705883356a250e7d93f258">$timestamp</a>, <a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[1]);
+<a name="l00092"></a>00092         } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[2] == <span class="stringliteral">&#39;utc&#39;</span>) {
+<a name="l00093"></a>00093             $text = gmdate(<a class="code" href="db__qbe_8php.html#a011800c63ece4cbbfa77136a20607023">$options</a>[1], <a class="code" href="import_8php.html#ac83ba29f01705883356a250e7d93f258">$timestamp</a>);
 <a name="l00094"></a>00094         } <span class="keywordflow">else</span> {
-<a name="l00095"></a>00095             <a class="code" href="indexfb_8php.html#adf95f30eaafccead90ab5e2cdb55e9b9">$text</a> = <span class="stringliteral">&#39;INVALID DATE TYPE&#39;</span>;
+<a name="l00095"></a>00095             $text = <span class="stringliteral">&#39;INVALID DATE TYPE&#39;</span>;
 <a name="l00096"></a>00096         }
 <a name="l00097"></a>00097         <a class="code" href="import_2csv_8php.html#aeb1bb175dd27fe3c0ca3761206965deb">$buffer</a> = <span class="stringliteral">&#39;&lt;dfn onclick=&quot;alert(\&#39;&#39;</span> . $source . <span class="charliteral">&#39;\&#39;</span>);<span class="stringliteral">&quot; title=&quot;</span><span class="stringliteral">&#39; . $source . &#39;</span><span class="stringliteral">&quot;&gt;&#39; . $text . &#39;&lt;/dfn&gt;&#39;;</span>
 <a name="l00098"></a>00098 <span class="stringliteral">    }</span>
@@ -185,7 +185,7 @@
     <ul>
       <li class="navelem"><a class="el" href="text__plain____dateformat_8inc_8php.html">text_plain__dateformat.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:36 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

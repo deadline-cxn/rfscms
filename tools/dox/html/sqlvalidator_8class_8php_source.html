@@ -103,21 +103,21 @@
 <a name="l00025"></a>00025 <span class="comment"> * Load SOAP client.</span>
 <a name="l00026"></a>00026 <span class="comment"> */</span>
 <a name="l00027"></a>00027 <span class="keywordflow">if</span> (class_exists(<span class="stringliteral">&#39;SOAPClient&#39;</span>)) {
-<a name="l00028"></a>00028     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>] = <span class="keyword">false</span>;
-<a name="l00029"></a>00029     <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] = <span class="stringliteral">&#39;PHP&#39;</span>;
+<a name="l00028"></a>00028     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>] = <span class="keyword">false</span>;
+<a name="l00029"></a>00029     <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] = <span class="stringliteral">&#39;PHP&#39;</span>;
 <a name="l00030"></a>00030 } <span class="keywordflow">else</span> {
 <a name="l00031"></a>00031     @include_once <span class="stringliteral">&#39;SOAP/Client.php&#39;</span>;
 <a name="l00032"></a>00032     <span class="keywordflow">if</span> (class_exists(<span class="stringliteral">&#39;SOAP_Client&#39;</span>)) {
-<a name="l00033"></a>00033         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] = <span class="stringliteral">&#39;PEAR&#39;</span>;
-<a name="l00034"></a>00034         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>] = <span class="keyword">false</span>;
+<a name="l00033"></a>00033         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] = <span class="stringliteral">&#39;PEAR&#39;</span>;
+<a name="l00034"></a>00034         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>] = <span class="keyword">false</span>;
 <a name="l00035"></a>00035     } <span class="keywordflow">else</span> {
-<a name="l00036"></a>00036         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] = <span class="stringliteral">&#39;NONE&#39;</span>;
-<a name="l00037"></a>00037         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>] = <span class="keyword">true</span>;
+<a name="l00036"></a>00036         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] = <span class="stringliteral">&#39;NONE&#39;</span>;
+<a name="l00037"></a>00037         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00038"></a>00038         <a class="code" href="core_8lib_8php.html#a27df85e8ab20ca0f54dd31bddcc092ab" title="Warn or fail on missing extension.">PMA_warnMissingExtension</a>(<span class="stringliteral">&#39;soap&#39;</span>);
 <a name="l00039"></a>00039     }
 <a name="l00040"></a>00040 }
 <a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="keywordflow">if</span> (!<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>]) {
+<a name="l00042"></a>00042 <span class="keywordflow">if</span> (!<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>]) {
 <a name="l00043"></a>00043     <span class="comment">// Ok, we have SOAP Support, so let&#39;s use it!</span>
 <a name="l00044"></a>00044 <span class="comment"></span>
 <a name="l00045"></a>00045 <span class="comment">/**</span>
@@ -125,7 +125,7 @@
 <a name="l00047"></a>00047 <span class="comment"> */</span>
 <a name="l00048"></a>00048     <span class="keyword">class </span>PMA_SQLValidator
 <a name="l00049"></a>00049     {
-<a name="l00050"></a>00050         var <a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>;
+<a name="l00050"></a>00050         var <a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>;
 <a name="l00051"></a>00051         var $service_name;
 <a name="l00052"></a>00052         var $wsdl;
 <a name="l00053"></a>00053         var $output_type;
@@ -157,12 +157,12 @@
 <a name="l00079"></a>00079 <span class="comment">         *</span>
 <a name="l00080"></a>00080 <span class="comment">         * @access private</span>
 <a name="l00081"></a>00081 <span class="comment">         */</span>
-<a name="l00082"></a>00082         <span class="keyword">function</span> _openService(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>)
+<a name="l00082"></a>00082         <span class="keyword">function</span> _openService(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>)
 <a name="l00083"></a>00083         {
-<a name="l00084"></a>00084             <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] == <span class="stringliteral">&#39;PHP&#39;</span>) {
-<a name="l00085"></a>00085                 $obj = <span class="keyword">new</span> SOAPClient(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
+<a name="l00084"></a>00084             <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] == <span class="stringliteral">&#39;PHP&#39;</span>) {
+<a name="l00085"></a>00085                 $obj = <span class="keyword">new</span> SOAPClient(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>);
 <a name="l00086"></a>00086             } <span class="keywordflow">else</span> {
-<a name="l00087"></a>00087                 $obj = <span class="keyword">new</span> SOAP_Client(<a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, <span class="keyword">true</span>);
+<a name="l00087"></a>00087                 $obj = <span class="keyword">new</span> SOAP_Client(<a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a>, <span class="keyword">true</span>);
 <a name="l00088"></a>00088             }
 <a name="l00089"></a>00089             <span class="keywordflow">return</span> $obj;
 <a name="l00090"></a>00090         } <span class="comment">// end of the &quot;openService()&quot; function</span>
@@ -204,7 +204,7 @@
 <a name="l00126"></a>00126                 <span class="stringliteral">&quot;a_interactive&quot;</span> =&gt; $interactive,
 <a name="l00127"></a>00127             );
 <a name="l00128"></a>00128 
-<a name="l00129"></a>00129             <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] == <span class="stringliteral">&#39;PHP&#39;</span>) {
+<a name="l00129"></a>00129             <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] == <span class="stringliteral">&#39;PHP&#39;</span>) {
 <a name="l00130"></a>00130                 $ret = $obj-&gt;__soapCall(<span class="stringliteral">&quot;openSession&quot;</span>, $use_array);
 <a name="l00131"></a>00131             } <span class="keywordflow">else</span> {
 <a name="l00132"></a>00132                 $ret = $obj-&gt;call(<span class="stringliteral">&quot;openSession&quot;</span>, $use_array);
@@ -235,13 +235,13 @@
 <a name="l00157"></a>00157                 <span class="stringliteral">&quot;a_resultType&quot;</span> =&gt; $this-&gt;output_type,
 <a name="l00158"></a>00158             );
 <a name="l00159"></a>00159 
-<a name="l00160"></a>00160             <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] == <span class="stringliteral">&#39;PHP&#39;</span>) {
-<a name="l00161"></a>00161                 <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $obj-&gt;__soapCall(<span class="stringliteral">&quot;validateSQL&quot;</span>, $use_array);
+<a name="l00160"></a>00160             <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_soap&#39;</span>] == <span class="stringliteral">&#39;PHP&#39;</span>) {
+<a name="l00161"></a>00161                 <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $obj-&gt;__soapCall(<span class="stringliteral">&quot;validateSQL&quot;</span>, $use_array);
 <a name="l00162"></a>00162             } <span class="keywordflow">else</span> {
-<a name="l00163"></a>00163                 <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $obj-&gt;call(<span class="stringliteral">&quot;validateSQL&quot;</span>, $use_array);
+<a name="l00163"></a>00163                 <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $obj-&gt;call(<span class="stringliteral">&quot;validateSQL&quot;</span>, $use_array);
 <a name="l00164"></a>00164             }
 <a name="l00165"></a>00165 
-<a name="l00166"></a>00166             <span class="keywordflow">return</span> <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00166"></a>00166             <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
 <a name="l00167"></a>00167         } <span class="comment">// end of the &quot;validateSQL()&quot; function</span>
 <a name="l00168"></a>00168 
 <a name="l00169"></a>00169 <span class="comment"></span>
@@ -456,7 +456,7 @@
 <a name="l00378"></a>00378             <span class="keywordflow">if</span> (isset($this-&gt;session_data) &amp;&amp; ($this-&gt;session_data != null)
 <a name="l00379"></a>00379                 &amp;&amp; ($this-&gt;session_data-&gt;target != $this-&gt;url)) {
 <a name="l00380"></a>00380                 <span class="comment">// Reopens the service on the new URL that was provided</span>
-<a name="l00381"></a>00381                 <a class="code" href="query_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a> = $this-&gt;session_data-&gt;target;
+<a name="l00381"></a>00381                 <a class="code" href="rss-direct-site_8php.html#acf215f34a917d014776ce684a9ee8909">$url</a> = $this-&gt;session_data-&gt;target;
 <a name="l00382"></a>00382                 $this-&gt;startService();
 <a name="l00383"></a>00383             }
 <a name="l00384"></a>00384         } <span class="comment">// end of the &quot;startSession()&quot; function</span>
@@ -485,8 +485,8 @@
 <a name="l00407"></a>00407 <span class="comment">         */</span>
 <a name="l00408"></a>00408         <span class="keyword">function</span> isValid(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>)
 <a name="l00409"></a>00409         {
-<a name="l00410"></a>00410             <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $this-&gt;_validate(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>);
-<a name="l00411"></a>00411             <span class="keywordflow">return</span> <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>-&gt;standard;
+<a name="l00410"></a>00410             <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $this-&gt;_validate(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>);
+<a name="l00411"></a>00411             <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>-&gt;standard;
 <a name="l00412"></a>00412         } <span class="comment">// end of the &quot;isValid()&quot; function</span>
 <a name="l00413"></a>00413 
 <a name="l00414"></a>00414 <span class="comment"></span>
@@ -501,15 +501,15 @@
 <a name="l00423"></a>00423 <span class="comment">         */</span>
 <a name="l00424"></a>00424         <span class="keyword">function</span> validationString(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>)
 <a name="l00425"></a>00425         {
-<a name="l00426"></a>00426             <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $this-&gt;_validate(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>);
-<a name="l00427"></a>00427             <span class="keywordflow">return</span> <a class="code" href="server__plugins_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>-&gt;data;
+<a name="l00426"></a>00426             <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = $this-&gt;_validate(<a class="code" href="ldi_8php.html#a778a0e0eff4555e51ea81fd9d2851e84">$sql</a>);
+<a name="l00427"></a>00427             <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>-&gt;data;
 <a name="l00428"></a>00428 
 <a name="l00429"></a>00429         } <span class="comment">// end of the &quot;validationString()&quot; function</span>
 <a name="l00430"></a>00430     } <span class="comment">// end class PMA_SQLValidator</span>
 <a name="l00431"></a>00431 
 <a name="l00432"></a>00432     <span class="comment">//add an extra check to ensure that the class was defined without errors</span>
 <a name="l00433"></a>00433     <span class="keywordflow">if</span> (!class_exists(<span class="stringliteral">&#39;PMA_SQLValidator&#39;</span>)) {
-<a name="l00434"></a>00434         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>] = <span class="keyword">true</span>;
+<a name="l00434"></a>00434         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;sqlvalidator_error&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00435"></a>00435     }
 <a name="l00436"></a>00436 
 <a name="l00437"></a>00437 } <span class="comment">// end else</span>
@@ -521,7 +521,7 @@
     <ul>
       <li class="navelem"><a class="el" href="sqlvalidator_8class_8php.html">sqlvalidator.class.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:33 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

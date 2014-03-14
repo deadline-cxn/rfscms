@@ -77,8 +77,8 @@
 <a name="l00002"></a>00002 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00003"></a>00003 <span class="comment"></span><span class="comment">// RFSCMS http://www.sethcoder.com/</span><span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00005"></a>00005 <span class="comment"></span>sc_div(__FILE__);
-<a name="l00006"></a><a class="code" href="lib_8flash_8php.html#a5d8e50eb66c90b22a00bc921d35e3e73">00006</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a5d8e50eb66c90b22a00bc921d35e3e73">flashnosize</a>($swf){
+<a name="l00005"></a>00005 <span class="comment"></span>lib_div(__FILE__);
+<a name="l00006"></a><a class="code" href="lib_8flash_8php.html#ad2790dcfa7af6c884083f86c5135fd6d">00006</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#ad2790dcfa7af6c884083f86c5135fd6d">lib_flash_embed_nosize</a>($swf){
 <a name="l00007"></a>00007         echo <span class="stringliteral">&quot;&lt;object classid=\&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\&quot; \n&quot;</span>;
 <a name="l00008"></a>00008         echo <span class="stringliteral">&quot;codebase=\&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\&quot; &gt;\n&quot;</span>;
 <a name="l00009"></a>00009         echo <span class="stringliteral">&quot;&lt;param name=src value=\&quot;$swf\&quot;&gt;&quot;</span>;
@@ -93,23 +93,23 @@
 <a name="l00018"></a>00018         echo <span class="stringliteral">&quot;&lt;/embed&gt;&lt;/object&gt;&quot;</span>;
 <a name="l00019"></a>00019 }
 <a name="l00020"></a>00020 
-<a name="l00021"></a><a class="code" href="lib_8flash_8php.html#a6c4506a2abda520cdc27e1c964806743">00021</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a6c4506a2abda520cdc27e1c964806743">flash_color</a>($swf,$bgcolor,$width,$height){
+<a name="l00021"></a><a class="code" href="lib_8flash_8php.html#a3f28f17c4f12aa8e86f4797c0718bc3a">00021</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a3f28f17c4f12aa8e86f4797c0718bc3a">lib_flash_embed_color</a>($swf,$bgcolor,$width,$height){
 <a name="l00022"></a>00022     echo <span class="stringliteral">&quot;&lt;table border=0 bgcolor=black&gt;&lt;tr&gt;&lt;td&gt;&quot;</span>;
 <a name="l00023"></a>00023     echo <span class="stringliteral">&quot;&lt;table border=0 bgcolor=$bgcolor&gt;&lt;tr&gt;&lt;td&gt;&quot;</span>;
-<a name="l00024"></a>00024     <a class="code" href="lib_8flash_8php.html#a50ffdea08d68fc09dac7ce72543af639">flash</a>($swf,$width,$height);
+<a name="l00024"></a>00024     <a class="code" href="lib_8flash_8php.html#a6a80a939513d07fa6c3a811284140d81">lib_flash_embed</a>($swf,$width,$height);
 <a name="l00025"></a>00025     echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
 <a name="l00026"></a>00026     echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
 <a name="l00027"></a>00027 }
 <a name="l00028"></a>00028 
-<a name="l00029"></a><a class="code" href="lib_8flash_8php.html#a77f7c05e83b516bf5a5b4ad87f9d9f30">00029</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a77f7c05e83b516bf5a5b4ad87f9d9f30">flash_white</a>($swf,$width,$height){
+<a name="l00029"></a><a class="code" href="lib_8flash_8php.html#a8331d71120600fc52d32cd2d8fdc160d">00029</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a8331d71120600fc52d32cd2d8fdc160d">lib_flash_embed_white</a>($swf,$width,$height){
 <a name="l00030"></a>00030     echo <span class="stringliteral">&quot;&lt;table border=0 bgcolor=black&gt;&lt;tr&gt;&lt;td&gt;&quot;</span>;
 <a name="l00031"></a>00031     echo <span class="stringliteral">&quot;&lt;table border=0 bgcolor=white&gt;&lt;tr&gt;&lt;td&gt;&quot;</span>;
-<a name="l00032"></a>00032     <a class="code" href="lib_8flash_8php.html#a50ffdea08d68fc09dac7ce72543af639">flash</a>($swf,$width,$height);
+<a name="l00032"></a>00032     flash($swf,$width,$height);
 <a name="l00033"></a>00033     echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
 <a name="l00034"></a>00034     echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
 <a name="l00035"></a>00035 }
 <a name="l00036"></a>00036 
-<a name="l00037"></a><a class="code" href="lib_8flash_8php.html#a50ffdea08d68fc09dac7ce72543af639">00037</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a50ffdea08d68fc09dac7ce72543af639">flash</a>($swf,$width,$height){
+<a name="l00037"></a><a class="code" href="lib_8flash_8php.html#a6a80a939513d07fa6c3a811284140d81">00037</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a6a80a939513d07fa6c3a811284140d81">lib_flash_embed</a>($swf,$width,$height){
 <a name="l00038"></a>00038         echo <span class="stringliteral">&quot;&lt;object align=center classid=\&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\&quot; \n&quot;</span>;
 <a name="l00039"></a>00039         echo <span class="stringliteral">&quot;codebase=\&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\&quot; width=$width height=$height&gt;\n&quot;</span>;
 <a name="l00040"></a>00040         echo <span class="stringliteral">&quot;&lt;param name=src value=\&quot;$swf\&quot;&gt;&quot;</span>;
@@ -123,7 +123,7 @@
 <a name="l00048"></a>00048         echo <span class="stringliteral">&quot;&lt;/embed&gt;&lt;/object&gt;&quot;</span>;
 <a name="l00049"></a>00049 }
 <a name="l00050"></a>00050 
-<a name="l00051"></a><a class="code" href="lib_8flash_8php.html#ad234d029030d07ebdb96376c6952bc8d">00051</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#ad234d029030d07ebdb96376c6952bc8d">al_flash</a>($swf,$width,$height,$align){
+<a name="l00051"></a><a class="code" href="lib_8flash_8php.html#a25ada4825ed4b2ec7d0cd02cd6069dcf">00051</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a25ada4825ed4b2ec7d0cd02cd6069dcf">lib_flash_embed_align</a>($swf,$width,$height,$align){
 <a name="l00052"></a>00052     echo <span class="stringliteral">&quot;&lt;object align=\&quot;$align\&quot; classid=\&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\&quot; \n&quot;</span>;
 <a name="l00053"></a>00053     echo <span class="stringliteral">&quot;codebase=\&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\&quot; width=$width height=$height&gt;\n&quot;</span>;
 <a name="l00054"></a>00054     echo <span class="stringliteral">&quot;&lt;param name=src value=\&quot;$swf\&quot;&gt;&quot;</span>;
@@ -137,7 +137,7 @@
 <a name="l00062"></a>00062     echo <span class="stringliteral">&quot;&lt;/embed&gt;&lt;/object&gt;&quot;</span>;
 <a name="l00063"></a>00063 }
 <a name="l00064"></a>00064 
-<a name="l00065"></a><a class="code" href="lib_8flash_8php.html#a7e4cf691271d5323b534737d11e93cd8">00065</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#a7e4cf691271d5323b534737d11e93cd8">sc_getflashcode</a>($swf,$width,$height){
+<a name="l00065"></a><a class="code" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74">00065</a> <span class="keyword">function</span> <a class="code" href="lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74">lib_flash_embed_code</a>($swf,$width,$height){
 <a name="l00066"></a>00066 
 <a name="l00067"></a>00067     $d=  <span class="stringliteral">&quot;&lt;object classid=\&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\&quot; \n&quot;</span>;
 <a name="l00068"></a>00068     $d.= <span class="stringliteral">&quot;codebase=\&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=4,0,28,0\&quot; width=$width height=$height&gt;\n&quot;</span>;
@@ -156,7 +156,7 @@
     <ul>
       <li class="navelem"><a class="el" href="lib_8flash_8php.html">lib.flash.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

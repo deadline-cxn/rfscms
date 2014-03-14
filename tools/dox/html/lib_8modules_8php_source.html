@@ -77,76 +77,85 @@
 <a name="l00002"></a>00002 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00003"></a>00003 <span class="comment"></span><span class="comment">// RFSCMS http://www.sethcoder.com/</span><span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00005"></a>00005 <span class="comment"></span>sc_div(__FILE__);<span class="comment"></span>
-<a name="l00006"></a>00006 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00007"></a>00007 <span class="comment"></span><span class="comment">// GET MODULES</span>
-<a name="l00008"></a><a class="code" href="lib_8modules_8php.html#a48915099c7879d74e436a17cd2139426">00008</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a48915099c7879d74e436a17cd2139426">sc_get_modules_array</a>() {
-<a name="l00009"></a>00009     eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>());
-<a name="l00010"></a>00010     $dr=<span class="stringliteral">&quot;$RFS_SITE_PATH/modules&quot;</span>;
-<a name="l00011"></a>00011     $modules=array();
-<a name="l00012"></a>00012     $d=opendir($dr) or die(<span class="stringliteral">&quot;MODULE PATH ERROR lib.modules.php - sc_get_modules() -&gt; [$dr]&quot;</span>);
-<a name="l00013"></a>00013     <span class="keywordflow">while</span>(<span class="keyword">false</span>!==($entry = readdir($d))) {
-<a name="l00014"></a>00014         <span class="keywordflow">if</span>( ($entry == <span class="charliteral">&#39;.&#39;</span>) || ($entry == <span class="stringliteral">&#39;..&#39;</span>) ) { }
-<a name="l00015"></a>00015         <span class="keywordflow">else</span> {
-<a name="l00016"></a>00016             <span class="keywordflow">if</span>(is_dir($dr.<span class="stringliteral">&quot;/&quot;</span>.$entry)) {
-<a name="l00017"></a>00017                 array_push($modules,$entry);
-<a name="l00018"></a>00018             }
-<a name="l00019"></a>00019         }
-<a name="l00020"></a>00020     }
-<a name="l00021"></a>00021     closedir($d);
-<a name="l00022"></a>00022     natcasesort($modules);
-<a name="l00023"></a>00023     reset($modules);
-<a name="l00024"></a>00024     <span class="keywordflow">return</span> $modules;
-<a name="l00025"></a>00025 }<span class="comment"></span>
-<a name="l00026"></a>00026 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00027"></a><a class="code" href="lib_8modules_8php.html#a997f128bf26da2977290671a7b3030b9">00027</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a997f128bf26da2977290671a7b3030b9">sc_get_modules</a>() {
-<a name="l00028"></a>00028     eval(<a class="code" href="lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba">scg</a>());
-<a name="l00029"></a>00029     $dr=<span class="stringliteral">&quot;$RFS_SITE_PATH/modules&quot;</span>;
-<a name="l00030"></a>00030     $modules=array();
-<a name="l00031"></a>00031     $d=opendir($dr) or die(<span class="stringliteral">&quot;MODULE PATH ERROR lib.modules.php - sc_get_modules() -&gt; [$dr]&quot;</span>);
-<a name="l00032"></a>00032     <span class="keywordflow">while</span>(<span class="keyword">false</span>!==($entry = readdir($d))) {
-<a name="l00033"></a>00033         <span class="keywordflow">if</span>( ($entry == <span class="charliteral">&#39;.&#39;</span>) || ($entry == <span class="stringliteral">&#39;..&#39;</span>) ) { }
-<a name="l00034"></a>00034         <span class="keywordflow">else</span> {
-<a name="l00035"></a>00035             <span class="keywordflow">if</span>(is_dir($dr.<span class="stringliteral">&quot;/&quot;</span>.$entry)) {
-<a name="l00036"></a>00036                 $module=<span class="stringliteral">&quot;$dr/$entry/lib.$entry.php&quot;</span>;
-<a name="l00037"></a>00037                 sc_div($module);
-<a name="l00038"></a>00038                 include($module);
-<a name="l00039"></a>00039                 array_push($modules,$entry);
-<a name="l00040"></a>00040             }
-<a name="l00041"></a>00041         }
-<a name="l00042"></a>00042     }
-<a name="l00043"></a>00043     closedir($d);
-<a name="l00044"></a>00044     natcasesort($modules);
-<a name="l00045"></a>00045     reset($modules);
-<a name="l00046"></a>00046     <span class="keywordflow">return</span> $modules;
-<a name="l00047"></a>00047 }<span class="comment"></span>
-<a name="l00048"></a>00048 <span class="comment">//////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00049"></a>00049 <span class="comment"></span><span class="comment">// MODULE DRAW        </span>
-<a name="l00050"></a><a class="code" href="lib_8modules_8php.html#acb5394cbc063ac4e1776ce7d2458a49e">00050</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#acb5394cbc063ac4e1776ce7d2458a49e">sc_draw_module</a>($location) {
-<a name="l00051"></a>00051     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0">sc_query</a>(<span class="stringliteral">&quot;select * from arrangement where location=&#39;$location&#39; order by sequence&quot;</span>);
-<a name="l00052"></a>00052     <span class="keywordflow">if</span>(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>) {
-<a name="l00053"></a>00053         $n=mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
-<a name="l00054"></a>00054         <span class="keywordflow">for</span>($i=0;$i&lt;$n;$i++) {
-<a name="l00055"></a>00055             $ar=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
-<a name="l00056"></a>00056             
-<a name="l00057"></a>00057             <span class="keywordflow">if</span>(function_exists(<span class="stringliteral">&quot;sc_module_$ar-&gt;mini&quot;</span>)) {
-<a name="l00058"></a>00058                 
-<a name="l00059"></a>00059                     
-<a name="l00060"></a>00060                 
-<a name="l00061"></a>00061                 eval(<span class="stringliteral">&quot;sc_module_$ar-&gt;mini($ar-&gt;num);&quot;</span>);
-<a name="l00062"></a>00062             }
-<a name="l00063"></a>00063         }
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065 }<span class="comment"></span>
-<a name="l00066"></a>00066 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00067"></a>00067 <span class="comment"></span>?&gt;
+<a name="l00005"></a>00005 <span class="comment"></span>lib_div(__FILE__);
+<a name="l00006"></a><a class="code" href="lib_8modules_8php.html#aee280757c8a0d881a4ce2b5838911ee7">00006</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#aee280757c8a0d881a4ce2b5838911ee7">lib_modules_get_array</a>() {
+<a name="l00007"></a>00007     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00008"></a>00008     $dr=<span class="stringliteral">&quot;$RFS_SITE_PATH/modules&quot;</span>;
+<a name="l00009"></a>00009     $modules=array();
+<a name="l00010"></a>00010     $d=opendir($dr) or die(<span class="stringliteral">&quot;MODULE PATH ERROR lib.modules.php - lib_modules_array() -&gt; [$dr]&quot;</span>);
+<a name="l00011"></a>00011     <span class="keywordflow">while</span>(<span class="keyword">false</span>!==($entry = readdir($d))) {
+<a name="l00012"></a>00012         <span class="keywordflow">if</span>( ($entry == <span class="charliteral">&#39;.&#39;</span>) || ($entry == <span class="stringliteral">&#39;..&#39;</span>) ) { }
+<a name="l00013"></a>00013         <span class="keywordflow">else</span> {
+<a name="l00014"></a>00014             <span class="keywordflow">if</span>(is_dir($dr.<span class="stringliteral">&quot;/&quot;</span>.$entry)) {
+<a name="l00015"></a>00015                 array_push($modules,$entry);
+<a name="l00016"></a>00016             }
+<a name="l00017"></a>00017         }
+<a name="l00018"></a>00018     }
+<a name="l00019"></a>00019     closedir($d);
+<a name="l00020"></a>00020     natcasesort($modules);
+<a name="l00021"></a>00021     reset($modules);
+<a name="l00022"></a>00022     <span class="keywordflow">return</span> $modules;
+<a name="l00023"></a>00023 }
+<a name="l00024"></a><a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">00024</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">lib_modules_register</a>($x) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00025"></a>00025     global $RFS_MODULE;
+<a name="l00026"></a>00026     @$RFS_MODULE[$x]=<span class="keyword">true</span>;
+<a name="l00027"></a>00027 }
+<a name="l00028"></a><a class="code" href="lib_8modules_8php.html#af148486046f7ffdb671e7fca96fe3db9">00028</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#af148486046f7ffdb671e7fca96fe3db9">lib_modules_installed</a>($x) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00029"></a>00029     global $RFS_MODULE;
+<a name="l00030"></a>00030     <span class="keywordflow">return</span> $RFS_MODULE[$x];
+<a name="l00031"></a>00031 }
+<a name="l00032"></a><a class="code" href="lib_8modules_8php.html#a67e24231889bfac2fe447a4eceb71b4e">00032</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a67e24231889bfac2fe447a4eceb71b4e">lib_modules_show_registered</a>() {
+<a name="l00033"></a>00033     echo <span class="stringliteral">&quot;&lt;h1&gt;Modules Installed&lt;/h1&gt;&lt;hr&gt;&quot;</span>;
+<a name="l00034"></a>00034     global $RFS_MODULE;
+<a name="l00035"></a>00035     asort($RFS_MODULE);
+<a name="l00036"></a>00036     <span class="keywordflow">foreach</span>($RFS_MODULE as $k =&gt; $v) {
+<a name="l00037"></a>00037         echo <span class="stringliteral">&quot;[ $k ] &quot;</span>;
+<a name="l00038"></a>00038     }
+<a name="l00039"></a>00039     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
+<a name="l00040"></a>00040 }
+<a name="l00041"></a><a class="code" href="lib_8modules_8php.html#a86ff688e300b9bac5678466c27285a64">00041</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a86ff688e300b9bac5678466c27285a64">lib_modules_array</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00042"></a>00042     $dr=<span class="stringliteral">&quot;$RFS_SITE_PATH/modules&quot;</span>;
+<a name="l00043"></a>00043     $modules=array();
+<a name="l00044"></a>00044     $d=opendir($dr) or die(<span class="stringliteral">&quot;MODULE PATH ERROR lib.modules.php - lib_modules_array() -&gt; [$dr]&quot;</span>);
+<a name="l00045"></a>00045     <span class="keywordflow">while</span>(<span class="keyword">false</span>!==($entry = readdir($d))) {
+<a name="l00046"></a>00046         <span class="keywordflow">if</span>( ($entry == <span class="charliteral">&#39;.&#39;</span>) || ($entry == <span class="stringliteral">&#39;..&#39;</span>) ) { }
+<a name="l00047"></a>00047         <span class="keywordflow">else</span> {
+<a name="l00048"></a>00048             <span class="keywordflow">if</span>(is_dir($dr.<span class="stringliteral">&quot;/&quot;</span>.$entry)) {
+<a name="l00049"></a>00049                 <a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">lib_modules_register</a>($entry);
+<a name="l00050"></a>00050                 $module=<span class="stringliteral">&quot;$dr/$entry/module.$entry.php&quot;</span>;
+<a name="l00051"></a>00051                 lib_div($module);
+<a name="l00052"></a>00052                 include($module);
+<a name="l00053"></a>00053                 array_push($modules,$entry);
+<a name="l00054"></a>00054             }
+<a name="l00055"></a>00055         }
+<a name="l00056"></a>00056     }
+<a name="l00057"></a>00057     closedir($d);
+<a name="l00058"></a>00058     natcasesort($modules);
+<a name="l00059"></a>00059     reset($modules);
+<a name="l00060"></a>00060     <span class="keywordflow">return</span> $modules;
+<a name="l00061"></a>00061 }
+<a name="l00062"></a><a class="code" href="lib_8modules_8php.html#ace7bed36502c6de4a947dc74ff4a6d2f">00062</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#ace7bed36502c6de4a947dc74ff4a6d2f">lib_modules_draw</a>($location) {
+<a name="l00063"></a>00063     <span class="keywordflow">if</span>(stristr(<a class="code" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e">lib_domain_canonical_url</a>(),<span class="stringliteral">&quot;admin/adm.php&quot;</span>)) <span class="keywordflow">return</span>;
+<a name="l00064"></a>00064     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from arrangement where location=&#39;$location&#39; order by sequence&quot;</span>);
+<a name="l00065"></a>00065     <span class="keywordflow">if</span>(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>) {
+<a name="l00066"></a>00066         $n=mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
+<a name="l00067"></a>00067         <span class="keywordflow">for</span>($i=0;$i&lt;$n;$i++) {
+<a name="l00068"></a>00068             $ar=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
+<a name="l00069"></a>00069             <span class="keywordflow">if</span>(function_exists(<span class="stringliteral">&quot;module_$ar-&gt;mini&quot;</span>)) {
+<a name="l00070"></a>00070                 eval(<span class="stringliteral">&quot;module_$ar-&gt;mini($ar-&gt;num);&quot;</span>);
+<a name="l00071"></a>00071                 echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
+<a name="l00072"></a>00072             }
+<a name="l00073"></a>00073         }
+<a name="l00074"></a>00074     }
+<a name="l00075"></a>00075 }
+<a name="l00076"></a>00076 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="lib_8modules_8php.html">lib.modules.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:29 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

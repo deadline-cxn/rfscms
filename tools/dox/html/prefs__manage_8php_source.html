@@ -148,7 +148,7 @@
 <a name="l00070"></a>00070     }
 <a name="l00071"></a>00071 
 <a name="l00072"></a>00072     <span class="comment">// hide header message</span>
-<a name="l00073"></a>00073     <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;userprefs_autoload&#39;</span>] = <span class="keyword">true</span>;
+<a name="l00073"></a>00073     <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;userprefs_autoload&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075     $config = json_decode($json, <span class="keyword">true</span>);
 <a name="l00076"></a>00076     $return_url = filter_input(INPUT_POST, <span class="stringliteral">&#39;return_url&#39;</span>);
@@ -197,10 +197,10 @@
 <a name="l00119"></a>00119                 &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;fix_errors&quot;</span> value=<span class="stringliteral">&quot;1&quot;</span> /&gt;
 <a name="l00120"></a>00120                 &lt;?php <span class="keywordflow">if</span> (!empty($_POST[<span class="stringliteral">&#39;import_merge&#39;</span>])): ?&gt;
 <a name="l00121"></a>00121                 &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;import_merge&quot;</span> value=<span class="stringliteral">&quot;1&quot;</span> /&gt;
-<a name="l00122"></a>00122                 &lt;?php <a class="code" href="OSS__list_8php.html#a82cd33ca97ff99f2fcc5e9c81d65251b">endif</a>; ?&gt;
+<a name="l00122"></a>00122                 &lt;?php endif; ?&gt;
 <a name="l00123"></a>00123                 &lt;?php <span class="keywordflow">if</span> ($return_url): ?&gt;
 <a name="l00124"></a>00124                 &lt;input type=<span class="stringliteral">&quot;hidden&quot;</span> name=<span class="stringliteral">&quot;return_url&quot;</span> value=<span class="stringliteral">&quot;&lt;?php echo htmlspecialchars($return_url) ?&gt;&quot;</span> /&gt;
-<a name="l00125"></a>00125                 &lt;?php <a class="code" href="OSS__list_8php.html#a82cd33ca97ff99f2fcc5e9c81d65251b">endif</a>; ?&gt;
+<a name="l00125"></a>00125                 &lt;?php endif; ?&gt;
 <a name="l00126"></a>00126                 &lt;p&gt;&lt;?php echo __(<span class="stringliteral">&#39;Do you want to import remaining settings?&#39;</span>) ?&gt;&lt;/p&gt;
 <a name="l00127"></a>00127                 &lt;input type=<span class="stringliteral">&quot;submit&quot;</span> name=<span class="stringliteral">&quot;submit_import&quot;</span> value=<span class="stringliteral">&quot;&lt;?php echo __(&#39;Yes&#39;) ?&gt;&quot;</span> /&gt;
 <a name="l00128"></a>00128                 &lt;input type=<span class="stringliteral">&quot;submit&quot;</span> name=<span class="stringliteral">&quot;submit_ignore&quot;</span> value=<span class="stringliteral">&quot;&lt;?php echo __(&#39;No&#39;) ?&gt;&quot;</span> /&gt;
@@ -213,36 +213,36 @@
 <a name="l00135"></a>00135         <span class="comment">// check for ThemeDefault and fontsize</span>
 <a name="l00136"></a>00136         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a> = array();
 <a name="l00137"></a>00137         <span class="keywordflow">if</span> (isset($config[<span class="stringliteral">&#39;ThemeDefault&#39;</span>])
-<a name="l00138"></a>00138                 &amp;&amp; <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;theme-&gt;getId() != $config[<span class="stringliteral">&#39;ThemeDefault&#39;</span>]
-<a name="l00139"></a>00139                 &amp;&amp; <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;checkTheme($config[<span class="stringliteral">&#39;ThemeDefault&#39;</span>])) {
-<a name="l00140"></a>00140             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;setActiveTheme($config[<span class="stringliteral">&#39;ThemeDefault&#39;</span>]);
-<a name="l00141"></a>00141             <a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;setThemeCookie();
+<a name="l00138"></a>00138                 &amp;&amp; <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;theme-&gt;getId() != $config[<span class="stringliteral">&#39;ThemeDefault&#39;</span>]
+<a name="l00139"></a>00139                 &amp;&amp; <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;checkTheme($config[<span class="stringliteral">&#39;ThemeDefault&#39;</span>])) {
+<a name="l00140"></a>00140             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;setActiveTheme($config[<span class="stringliteral">&#39;ThemeDefault&#39;</span>]);
+<a name="l00141"></a>00141             <a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;setThemeCookie();
 <a name="l00142"></a>00142             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;reload_left_frame&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00143"></a>00143         }
 <a name="l00144"></a>00144         <span class="keywordflow">if</span> (isset($config[<span class="stringliteral">&#39;fontsize&#39;</span>])
-<a name="l00145"></a>00145                 &amp;&amp; $config[<span class="stringliteral">&#39;fontsize&#39;</span>] != <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;<span class="keyword">get</span>(<span class="stringliteral">&#39;fontsize&#39;</span>)) {
+<a name="l00145"></a>00145                 &amp;&amp; $config[<span class="stringliteral">&#39;fontsize&#39;</span>] != <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;<span class="keyword">get</span>(<span class="stringliteral">&#39;fontsize&#39;</span>)) {
 <a name="l00146"></a>00146             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;set_fontsize&#39;</span>] = $config[<span class="stringliteral">&#39;fontsize&#39;</span>];
 <a name="l00147"></a>00147             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;reload_left_frame&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00148"></a>00148         }
 <a name="l00149"></a>00149         <span class="keywordflow">if</span> (isset($config[<span class="stringliteral">&#39;lang&#39;</span>])
-<a name="l00150"></a>00150                 &amp;&amp; $config[<span class="stringliteral">&#39;lang&#39;</span>] != <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>]) {
+<a name="l00150"></a>00150                 &amp;&amp; $config[<span class="stringliteral">&#39;lang&#39;</span>] != <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;lang&#39;</span>]) {
 <a name="l00151"></a>00151             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;lang&#39;</span>] = $config[<span class="stringliteral">&#39;lang&#39;</span>];
 <a name="l00152"></a>00152             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;reload_left_frame&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00153"></a>00153         }
 <a name="l00154"></a>00154         <span class="keywordflow">if</span> (isset($config[<span class="stringliteral">&#39;collation_connection&#39;</span>])
-<a name="l00155"></a>00155                 &amp;&amp; $config[<span class="stringliteral">&#39;collation_connection&#39;</span>] != <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>]) {
+<a name="l00155"></a>00155                 &amp;&amp; $config[<span class="stringliteral">&#39;collation_connection&#39;</span>] != <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>]) {
 <a name="l00156"></a>00156             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;collation_connection&#39;</span>] = $config[<span class="stringliteral">&#39;collation_connection&#39;</span>];
 <a name="l00157"></a>00157             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;reload_left_frame&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00158"></a>00158         }
 <a name="l00159"></a>00159 
 <a name="l00160"></a>00160         <span class="comment">// save settings</span>
 <a name="l00161"></a>00161         $old_settings = <a class="code" href="user__preferences_8lib_8php.html#ab1f255ccfeec708bae280a2a392c2a76" title="Loads user preferences.">PMA_load_userprefs</a>();
-<a name="l00162"></a>00162         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="user__preferences_8lib_8php.html#a612367b15875675745672a4b50e4a1a2" title="Saves user preferences.">PMA_save_userprefs</a>(<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getConfigArray());
-<a name="l00163"></a>00163         <span class="keywordflow">if</span> (<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> === <span class="keyword">true</span>) {
+<a name="l00162"></a>00162         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="user__preferences_8lib_8php.html#a612367b15875675745672a4b50e4a1a2" title="Saves user preferences.">PMA_save_userprefs</a>(<a class="code" href="index_8inc_8php.html#ab1d468e367dcd8307116d91c70602af7">$cf</a>-&gt;getConfigArray());
+<a name="l00163"></a>00163         <span class="keywordflow">if</span> (<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> === <span class="keyword">true</span>) {
 <a name="l00164"></a>00164             <span class="keywordflow">if</span> ($return_url) {
-<a name="l00165"></a>00165                 <a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> = explode(<span class="charliteral">&#39;&amp;&#39;</span>, parse_url($return_url, PHP_URL_QUERY));
+<a name="l00165"></a>00165                 $query = explode(<span class="charliteral">&#39;&amp;&#39;</span>, parse_url($return_url, PHP_URL_QUERY));
 <a name="l00166"></a>00166                 $return_url = parse_url($return_url, PHP_URL_PATH);
-<a name="l00167"></a>00167                 <span class="keywordflow">foreach</span> (<a class="code" href="simple_8php.html#af59a5f7cd609e592c41dc3643efd3c98">$query</a> as $q) {
+<a name="l00167"></a>00167                 <span class="keywordflow">foreach</span> ($query as <a class="code" href="search_8php.html#abb0f8f809252372e25f48d52b63ef29d">$q</a>) {
 <a name="l00168"></a>00168                     <a class="code" href="bs__disp__as__mime__type_8php.html#a5de51f0c80b3bb3b39a57b23f6b9ea9f">$pos</a> = strpos($q, <span class="charliteral">&#39;=&#39;</span>);
 <a name="l00169"></a>00169                     $k = substr($q, 0, <a class="code" href="bs__disp__as__mime__type_8php.html#a5de51f0c80b3bb3b39a57b23f6b9ea9f">$pos</a>);
 <a name="l00170"></a>00170                     <span class="keywordflow">if</span> ($k == <span class="stringliteral">&#39;token&#39;</span>) {
@@ -254,39 +254,39 @@
 <a name="l00176"></a>00176                 $return_url = <span class="stringliteral">&#39;prefs_manage.php&#39;</span>;
 <a name="l00177"></a>00177             }
 <a name="l00178"></a>00178             <span class="comment">// reload config</span>
-<a name="l00179"></a>00179             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;loadUserPreferences();
+<a name="l00179"></a>00179             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;loadUserPreferences();
 <a name="l00180"></a>00180             <a class="code" href="user__preferences_8lib_8php.html#a4bccdbd1cfb8f10dfaa41ee6aec56738" title="Redirects after saving new user preferences.">PMA_userprefs_redirect</a>(<a class="code" href="setup_8forms_8php.html#a8dcd469e6c336555e43c3003b0a0da54">$forms</a>, $old_settings, $return_url, <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>);
 <a name="l00181"></a>00181             <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>;
 <a name="l00182"></a>00182         } <span class="keywordflow">else</span> {
-<a name="l00183"></a>00183             <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00183"></a>00183             <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00184"></a>00184         }
 <a name="l00185"></a>00185     }
 <a name="l00186"></a>00186 } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (isset($_POST[<span class="stringliteral">&#39;submit_clear&#39;</span>])) {
 <a name="l00187"></a>00187     $old_settings = <a class="code" href="user__preferences_8lib_8php.html#ab1f255ccfeec708bae280a2a392c2a76" title="Loads user preferences.">PMA_load_userprefs</a>();
-<a name="l00188"></a>00188     <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="user__preferences_8lib_8php.html#a612367b15875675745672a4b50e4a1a2" title="Saves user preferences.">PMA_save_userprefs</a>(array());
-<a name="l00189"></a>00189     <span class="keywordflow">if</span> (<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> === <span class="keyword">true</span>) {
+<a name="l00188"></a>00188     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> = <a class="code" href="user__preferences_8lib_8php.html#a612367b15875675745672a4b50e4a1a2" title="Saves user preferences.">PMA_save_userprefs</a>(array());
+<a name="l00189"></a>00189     <span class="keywordflow">if</span> (<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a> === <span class="keyword">true</span>) {
 <a name="l00190"></a>00190         <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a> = array();
-<a name="l00191"></a>00191         <span class="keywordflow">if</span> (<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;theme-&gt;getId() != <span class="stringliteral">&#39;original&#39;</span>) {
-<a name="l00192"></a>00192             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;getThemeCookieName());
-<a name="l00193"></a>00193             unset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]);
-<a name="l00194"></a>00194             unset(<a class="code" href="import_8php.html#a3469aa7fd930b721cec515c385833a65" title="Get the variables sent or posted to this script and a core script.">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme&#39;</span>]);
+<a name="l00191"></a>00191         <span class="keywordflow">if</span> (<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;theme-&gt;getId() != <span class="stringliteral">&#39;original&#39;</span>) {
+<a name="l00192"></a>00192             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]-&gt;getThemeCookieName());
+<a name="l00193"></a>00193             unset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme_Manager&#39;</span>]);
+<a name="l00194"></a>00194             unset(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;PMA_Theme&#39;</span>]);
 <a name="l00195"></a>00195             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;reload_left_frame&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00196"></a>00196         }
-<a name="l00197"></a>00197         <span class="keywordflow">if</span> (<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;<span class="keyword">get</span>(<span class="stringliteral">&#39;fontsize&#39;</span>) != <span class="stringliteral">&#39;82%&#39;</span>) {
-<a name="l00198"></a>00198             <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pma_fontsize&#39;</span>);
+<a name="l00197"></a>00197         <span class="keywordflow">if</span> (<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;<span class="keyword">get</span>(<span class="stringliteral">&#39;fontsize&#39;</span>) != <span class="stringliteral">&#39;82%&#39;</span>) {
+<a name="l00198"></a>00198             <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pma_fontsize&#39;</span>);
 <a name="l00199"></a>00199             <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>[<span class="stringliteral">&#39;reload_left_frame&#39;</span>] = <span class="keyword">true</span>;
 <a name="l00200"></a>00200         }
-<a name="l00201"></a>00201         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pma_collaction_connection&#39;</span>);
-<a name="l00202"></a>00202         <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pma_lang&#39;</span>);
+<a name="l00201"></a>00201         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pma_collaction_connection&#39;</span>);
+<a name="l00202"></a>00202         <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;PMA_Config&#39;</span>]-&gt;removeCookie(<span class="stringliteral">&#39;pma_lang&#39;</span>);
 <a name="l00203"></a>00203         <a class="code" href="user__preferences_8lib_8php.html#a4bccdbd1cfb8f10dfaa41ee6aec56738" title="Redirects after saving new user preferences.">PMA_userprefs_redirect</a>(<a class="code" href="setup_8forms_8php.html#a8dcd469e6c336555e43c3003b0a0da54">$forms</a>, $old_settings, <span class="stringliteral">&#39;prefs_manage.php&#39;</span>, <a class="code" href="header__scripts_8inc_8php.html#afe68e6fbe7acfbffc0af0c84a1996466">$params</a>);
 <a name="l00204"></a>00204         <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>;
 <a name="l00205"></a>00205     } <span class="keywordflow">else</span> {
-<a name="l00206"></a>00206         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
+<a name="l00206"></a>00206         <a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a> = <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>;
 <a name="l00207"></a>00207     }
 <a name="l00208"></a>00208     <a class="code" href="footer_8inc_8php.html#a74ed6a30cde2182cef18dc4d7d998773" title="for PMA_setHistory()">exit</a>;
 <a name="l00209"></a>00209 }
 <a name="l00210"></a>00210 
-<a name="l00211"></a><a class="code" href="prefs__manage_8php.html#a287f9218e87c61ae7a20b9660234dfb8">00211</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;config.js&#39;</span>;
+<a name="l00211"></a><a class="code" href="prefs__manage_8php.html#a287f9218e87c61ae7a20b9660234dfb8">00211</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;js_include&#39;</span>][] = <span class="stringliteral">&#39;config.js&#39;</span>;
 <a name="l00212"></a>00212 require <span class="stringliteral">&#39;./libraries/header.inc.php&#39;</span>;
 <a name="l00213"></a>00213 require <span class="stringliteral">&#39;./libraries/user_preferences.inc.php&#39;</span>;
 <a name="l00214"></a>00214 <span class="keywordflow">if</span> (<a class="code" href="import_8php.html#aeba2ab722cedda53dbb7ec1a59f45550">$error</a>) {
@@ -364,7 +364,7 @@
 <a name="l00286"></a>00286             &lt;h2&gt;&lt;?php echo __(<span class="stringliteral">&#39;Export&#39;</span>) ?&gt;&lt;/h2&gt;
 <a name="l00287"></a>00287             &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;click-hide-message group-cnt&quot;</span> style=<span class="stringliteral">&quot;display:none&quot;</span>&gt;
 <a name="l00288"></a>00288                 &lt;?php
-<a name="l00289"></a>00289                 <a class="code" href="display__export_8lib_8php.html#ad042a0e26704b701e548e7c9062ec998">$message</a> = <a class="code" href="classPMA__Message.html#aceb56e3340472adda3e810a11a79b11a" title="get PMA_Message of type success with custom content">PMA_Message::rawSuccess</a>(__(<span class="stringliteral">&#39;Configuration has been saved&#39;</span>));
+<a name="l00289"></a>00289                 <a class="code" href="forums_8php.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a> = <a class="code" href="classPMA__Message.html#aceb56e3340472adda3e810a11a79b11a" title="get PMA_Message of type success with custom content">PMA_Message::rawSuccess</a>(__(<span class="stringliteral">&#39;Configuration has been saved&#39;</span>));
 <a name="l00290"></a>00290                 $message-&gt;display();
 <a name="l00291"></a>00291                 ?&gt;
 <a name="l00292"></a>00292             &lt;/div&gt;
@@ -417,7 +417,7 @@
     <ul>
       <li class="navelem"><a class="el" href="prefs__manage_8php.html">prefs_manage.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:50 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

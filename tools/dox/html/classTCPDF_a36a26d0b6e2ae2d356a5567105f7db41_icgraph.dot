@@ -1,0 +1,16 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="TCPDF\\swapPageBoxCoordinates",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="TCPDF\\setPageOrientation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#ad6a3575405b61049ff85ce019df5451d",tooltip="Set page orientation."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="TCPDF\\setPageUnit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#aad2c0cbfe5b6330eed5850f87c2a32d9",tooltip="Set the units of measure for the document."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="TCPDF\\__construct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#a134232ae3ad1ec186ed45046f94b7755",tooltip="This is the class constructor."];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="TCPDF\\setPageFormat",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#aa389d4419c77510dc3998f0af78d8a00",tooltip="Change the format of the current page."];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

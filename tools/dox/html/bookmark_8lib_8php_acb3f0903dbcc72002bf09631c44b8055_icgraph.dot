@@ -1,0 +1,17 @@
+digraph G
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="PMA_Bookmark_getParams",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="PMA_Bookmark_getList",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bookmark_8lib_8php.html#a28bf0dfac1fd0617239eef76e7ff1550",tooltip="Gets the list of bookmarks defined for the current database."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="PMA_sqlQueryFormBookmark",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sql__query__form_8lib_8php.html#a0354aed36253f1d29d510223e966ebc5",tooltip="prints bookmark fieldset"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PMA_sqlQueryForm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$sql__query__form_8lib_8php.html#ad1f1165db8b6302766041d3d9cdda39c",tooltip="prints the sql query boxes"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PMA_Bookmark_get",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bookmark_8lib_8php.html#af695d6be5caeb194980bb2669f6dcaec",tooltip="Gets the sql command from a bookmark."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PMA_Bookmark_save",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bookmark_8lib_8php.html#adbe9d461d8f59adc55a7e7e5e94f5cf2",tooltip="Adds a bookmark."];
+}

@@ -110,7 +110,7 @@
 <a name="l00032"></a>00032 <span class="comment"> */</span>
 <a name="l00033"></a>00033 <span class="comment">// Seems we need to do this in MySQL 5.0.2,</span>
 <a name="l00034"></a>00034 <span class="comment">// otherwise error #1046, no database selected</span>
-<a name="l00035"></a>00035 <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]);
+<a name="l00035"></a>00035 <a class="code" href="drizzle_8dbi_8lib_8php.html#ad7887c8952b000aa32b359f160cac73a" title="selects given database">PMA_DBI_select_db</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>]);
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037 <span class="comment"></span>
 <a name="l00038"></a>00038 <span class="comment">/**</span>
@@ -120,20 +120,20 @@
 <a name="l00042"></a>00042 <span class="comment"> * @global array $GLOBALS[&#39;showtable&#39;]</span>
 <a name="l00043"></a>00043 <span class="comment"> * @name $showtable</span>
 <a name="l00044"></a>00044 <span class="comment"> */</span>
-<a name="l00045"></a><a class="code" href="tbl__info_8inc_8php.html#a680de9c4e6c76bb0bcd15a763e533db1">00045</a> <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;showtable&#39;</span>] = array();
+<a name="l00045"></a><a class="code" href="tbl__info_8inc_8php.html#a680de9c4e6c76bb0bcd15a763e533db1">00045</a> <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;showtable&#39;</span>] = array();
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="comment">// PMA_Table::sGetStatusInfo() does caching by default, but here</span>
 <a name="l00048"></a>00048 <span class="comment">// we force reading of the current table status</span>
 <a name="l00049"></a>00049 <span class="comment">// if $reread_info is true (for example, coming from tbl_operations.php</span>
 <a name="l00050"></a>00050 <span class="comment">// and we just changed the table&#39;s storage engine)</span>
-<a name="l00051"></a>00051 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;showtable&#39;</span>] = <a class="code" href="classPMA__Table.html#a5bcf320752029cac160933f74afc8742" title="Returns full table status info, or specific if $info provided this info is collected from information...">PMA_Table::sGetStatusInfo</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>], <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>], null, (isset(<a class="code" href="tbl__operations_8php.html#a2dd47224a288af4c20fdefd6876decdb">$reread_info</a>) &amp;&amp; <a class="code" href="tbl__operations_8php.html#a2dd47224a288af4c20fdefd6876decdb">$reread_info</a> ? <span class="keyword">true</span> : <span class="keyword">false</span>));
+<a name="l00051"></a>00051 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;showtable&#39;</span>] = <a class="code" href="classPMA__Table.html#a5bcf320752029cac160933f74afc8742" title="Returns full table status info, or specific if $info provided this info is collected from information...">PMA_Table::sGetStatusInfo</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>], <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>], null, (isset(<a class="code" href="tbl__operations_8php.html#a2dd47224a288af4c20fdefd6876decdb">$reread_info</a>) &amp;&amp; <a class="code" href="tbl__operations_8php.html#a2dd47224a288af4c20fdefd6876decdb">$reread_info</a> ? <span class="keyword">true</span> : <span class="keyword">false</span>));
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053 <span class="comment">// need this test because when we are creating a table, we get 0 rows</span>
 <a name="l00054"></a>00054 <span class="comment">// from the SHOW TABLE query</span>
 <a name="l00055"></a>00055 <span class="comment">// and we don&#39;t want to mess up the $tbl_type coming from the form</span>
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 <span class="keywordflow">if</span> ($showtable) {
-<a name="l00058"></a>00058     <span class="keywordflow">if</span> (<a class="code" href="classPMA__Table.html#af9040740c71098b2c58b3234d7f0afaa" title="returns whether the table is actually a view">PMA_Table::isView</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>], <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>])) {
+<a name="l00058"></a>00058     <span class="keywordflow">if</span> (<a class="code" href="classPMA__Table.html#af9040740c71098b2c58b3234d7f0afaa" title="returns whether the table is actually a view">PMA_Table::isView</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>], <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;table&#39;</span>])) {
 <a name="l00059"></a>00059         $tbl_is_view     = <span class="keyword">true</span>;
 <a name="l00060"></a>00060         $tbl_type        = __(<span class="stringliteral">&#39;View&#39;</span>);
 <a name="l00061"></a>00061         $show_comment    = null;
@@ -157,7 +157,7 @@
 <a name="l00079"></a>00079         : $showtable[<span class="stringliteral">&#39;Collation&#39;</span>];
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081     <span class="keywordflow">if</span> (null === $showtable[<span class="stringliteral">&#39;Rows&#39;</span>]) {
-<a name="l00082"></a>00082         $showtable[<span class="stringliteral">&#39;Rows&#39;</span>]   = <a class="code" href="classPMA__Table.html#af4c743afaabb1e05e2336e1307ec2df3" title="Counts and returns (or displays) the number of records in a table.">PMA_Table::countRecords</a>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>],
+<a name="l00082"></a>00082         $showtable[<span class="stringliteral">&#39;Rows&#39;</span>]   = <a class="code" href="classPMA__Table.html#af4c743afaabb1e05e2336e1307ec2df3" title="Counts and returns (or displays) the number of records in a table.">PMA_Table::countRecords</a>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;db&#39;</span>],
 <a name="l00083"></a>00083             $showtable[<span class="stringliteral">&#39;Name&#39;</span>], <span class="keyword">true</span>);
 <a name="l00084"></a>00084     }
 <a name="l00085"></a>00085     $table_info_num_rows = isset($showtable[<span class="stringliteral">&#39;Rows&#39;</span>]) ? $showtable[<span class="stringliteral">&#39;Rows&#39;</span>] : 0;
@@ -190,7 +190,7 @@
     <ul>
       <li class="navelem"><a class="el" href="tbl__info_8inc_8php.html">tbl_info.inc.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:34 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:51 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

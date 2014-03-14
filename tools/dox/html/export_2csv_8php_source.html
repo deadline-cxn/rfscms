@@ -141,7 +141,7 @@
 <a name="l00063"></a>00063         <span class="comment">// Here we just prepare some values for export</span>
 <a name="l00064"></a>00064         <span class="keywordflow">if</span> ($what == <span class="stringliteral">&#39;excel&#39;</span>) {
 <a name="l00065"></a>00065             $csv_terminated      = <span class="stringliteral">&quot;\015\012&quot;</span>;
-<a name="l00066"></a>00066             <span class="keywordflow">switch</span>(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;excel_edition&#39;</span>]) {
+<a name="l00066"></a>00066             <span class="keywordflow">switch</span>(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;excel_edition&#39;</span>]) {
 <a name="l00067"></a>00067             <span class="keywordflow">case</span> <span class="stringliteral">&#39;win&#39;</span>:
 <a name="l00068"></a>00068                 <span class="comment">// as tested on Windows with Excel 2002 and Excel 2007</span>
 <a name="l00069"></a>00069                 $csv_separator = <span class="charliteral">&#39;;&#39;</span>;
@@ -155,12 +155,12 @@
 <a name="l00077"></a>00077             }
 <a name="l00078"></a>00078             $csv_enclosed           = <span class="charliteral">&#39;&quot;&#39;</span>;
 <a name="l00079"></a>00079             $csv_escaped            = <span class="charliteral">&#39;&quot;&#39;</span>;
-<a name="l00080"></a>00080             <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;excel_columns&#39;</span>])) {
-<a name="l00081"></a>00081                 <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;csv_columns&#39;</span>] = <span class="stringliteral">&#39;yes&#39;</span>;
+<a name="l00080"></a>00080             <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;excel_columns&#39;</span>])) {
+<a name="l00081"></a>00081                 <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;csv_columns&#39;</span>] = <span class="stringliteral">&#39;yes&#39;</span>;
 <a name="l00082"></a>00082             }
 <a name="l00083"></a>00083         } <span class="keywordflow">else</span> {
 <a name="l00084"></a>00084             <span class="keywordflow">if</span> (empty($csv_terminated) || strtolower($csv_terminated) == <span class="stringliteral">&#39;auto&#39;</span>) {
-<a name="l00085"></a>00085                 $csv_terminated  = <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;crlf&#39;</span>];
+<a name="l00085"></a>00085                 $csv_terminated  = <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;crlf&#39;</span>];
 <a name="l00086"></a>00086             } <span class="keywordflow">else</span> {
 <a name="l00087"></a>00087                 $csv_terminated  = str_replace(<span class="stringliteral">&#39;\\r&#39;</span>, <span class="stringliteral">&quot;\015&quot;</span>, $csv_terminated);
 <a name="l00088"></a>00088                 $csv_terminated  = str_replace(<span class="stringliteral">&#39;\\n&#39;</span>, <span class="stringliteral">&quot;\012&quot;</span>, $csv_terminated);
@@ -227,18 +227,18 @@
 <a name="l00149"></a>00149         global <a class="code" href="import_2csv_8php.html#aba401c6f566c5f2836c33302691071d9">$csv_escaped</a>;
 <a name="l00150"></a>00150 
 <a name="l00151"></a>00151         <span class="comment">// Gets the data from the database</span>
-<a name="l00152"></a>00152         <a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>      = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>, null, <a class="code" href="database__interface_8lib_8php.html#adb95171b9d89470d933f6d59c4c9f000" title="Do not read whole query.">PMA_DBI_QUERY_UNBUFFERED</a>);
-<a name="l00153"></a>00153         <a class="code" href="tbl__change_8php.html#a580526107852923681984db1a74a921c">$fields_cnt</a>  = <a class="code" href="drizzle_8dbi_8lib_8php.html#a1fdd817905fb477d64e66db0d6c5c6b1" title="return number of fields in given $result">PMA_DBI_num_fields</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00152"></a>00152         <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>      = <a class="code" href="database__interface_8lib_8php.html#ab439cded0e18a60e731e76aa4567c089" title="runs a query">PMA_DBI_query</a>(<a class="code" href="db__create_8php.html#a6ca9ccb878a51d945e0c234b5291329c" title="Builds and executes the db creation sql query.">$sql_query</a>, null, <a class="code" href="database__interface_8lib_8php.html#adb95171b9d89470d933f6d59c4c9f000" title="Do not read whole query.">PMA_DBI_QUERY_UNBUFFERED</a>);
+<a name="l00153"></a>00153         <a class="code" href="tbl__change_8php.html#a580526107852923681984db1a74a921c">$fields_cnt</a>  = <a class="code" href="drizzle_8dbi_8lib_8php.html#a1fdd817905fb477d64e66db0d6c5c6b1" title="return number of fields in given $result">PMA_DBI_num_fields</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00154"></a>00154 
 <a name="l00155"></a>00155         <span class="comment">// If required, get fields name at the first line</span>
-<a name="l00156"></a>00156         <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[<span class="stringliteral">&#39;csv_columns&#39;</span>])) {
+<a name="l00156"></a>00156         <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;csv_columns&#39;</span>])) {
 <a name="l00157"></a>00157             $schema_insert = <span class="stringliteral">&#39;&#39;</span>;
-<a name="l00158"></a>00158             <span class="keywordflow">for</span> (<a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> = 0; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a> &lt; <a class="code" href="tbl__change_8php.html#a580526107852923681984db1a74a921c">$fields_cnt</a>; <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>++) {
+<a name="l00158"></a>00158             <span class="keywordflow">for</span> (<a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> = 0; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a> &lt; <a class="code" href="tbl__change_8php.html#a580526107852923681984db1a74a921c">$fields_cnt</a>; <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>++) {
 <a name="l00159"></a>00159                 <span class="keywordflow">if</span> ($csv_enclosed == <span class="stringliteral">&#39;&#39;</span>) {
-<a name="l00160"></a>00160                     $schema_insert .= stripslashes(<a class="code" href="drizzle_8dbi_8lib_8php.html#a8b065b7a63e92d4887422ecefc9bff67" title="returns name of $i.">PMA_DBI_field_name</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>));
+<a name="l00160"></a>00160                     $schema_insert .= stripslashes(<a class="code" href="drizzle_8dbi_8lib_8php.html#a8b065b7a63e92d4887422ecefc9bff67" title="returns name of $i.">PMA_DBI_field_name</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>));
 <a name="l00161"></a>00161                 } <span class="keywordflow">else</span> {
 <a name="l00162"></a>00162                     $schema_insert .= $csv_enclosed
-<a name="l00163"></a>00163                                    . str_replace($csv_enclosed, $csv_escaped . $csv_enclosed, stripslashes(<a class="code" href="drizzle_8dbi_8lib_8php.html#a8b065b7a63e92d4887422ecefc9bff67" title="returns name of $i.">PMA_DBI_field_name</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="OSS__paging_8php.html#ab37d39c0f2691e721bfb51525837549f">$i</a>)))
+<a name="l00163"></a>00163                                    . str_replace($csv_enclosed, $csv_escaped . $csv_enclosed, stripslashes(<a class="code" href="drizzle_8dbi_8lib_8php.html#a8b065b7a63e92d4887422ecefc9bff67" title="returns name of $i.">PMA_DBI_field_name</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>, <a class="code" href="config_8sample_8inc_8php.html#a83018d9153d17d91fbcf3bc10158d34f">$i</a>)))
 <a name="l00164"></a>00164                                    . <a class="code" href="import_2csv_8php.html#acff82a91fffcdaca6fe24d58342b8840">$csv_enclosed</a>;
 <a name="l00165"></a>00165                 }
 <a name="l00166"></a>00166                 $schema_insert     .= $csv_separator;
@@ -250,18 +250,18 @@
 <a name="l00172"></a>00172         } <span class="comment">// end if</span>
 <a name="l00173"></a>00173 
 <a name="l00174"></a>00174         <span class="comment">// Format the data</span>
-<a name="l00175"></a>00175         <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
+<a name="l00175"></a>00175         <span class="keywordflow">while</span> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a> = <a class="code" href="drizzle_8dbi_8lib_8php.html#a76a677a68b562828af0dfe4467107d31" title="returns array of rows with numeric keys from $result">PMA_DBI_fetch_row</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00176"></a>00176             $schema_insert = <span class="stringliteral">&#39;&#39;</span>;
 <a name="l00177"></a>00177             <span class="keywordflow">for</span> ($j = 0; $j &lt; <a class="code" href="tbl__change_8php.html#a580526107852923681984db1a74a921c">$fields_cnt</a>; $j++) {
 <a name="l00178"></a>00178                 <span class="keywordflow">if</span> (!isset(<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j]) || is_null(<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j])) {
-<a name="l00179"></a>00179                     $schema_insert .= <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[$what . <span class="stringliteral">&#39;_null&#39;</span>];
-<a name="l00180"></a>00180                 } <a class="code" href="webSearch_8php.html#a22c43bd532094615fe50f41d98acfb44">elseif</a> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j] == <span class="charliteral">&#39;0&#39;</span> || <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j] != <span class="stringliteral">&#39;&#39;</span>) {
+<a name="l00179"></a>00179                     $schema_insert .= <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[$what . <span class="stringliteral">&#39;_null&#39;</span>];
+<a name="l00180"></a>00180                 } <a class="code" href="import_8php.html#a7cbb4f0532e284397800df76c439983e">elseif</a> (<a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j] == <span class="charliteral">&#39;0&#39;</span> || <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j] != <span class="stringliteral">&#39;&#39;</span>) {
 <a name="l00181"></a>00181                     <span class="comment">// always enclose fields</span>
 <a name="l00182"></a>00182                     <span class="keywordflow">if</span> ($what == <span class="stringliteral">&#39;excel&#39;</span>) {
 <a name="l00183"></a>00183                         <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j]       = preg_replace(<span class="stringliteral">&quot;/\015(\012)?/&quot;</span>, <span class="stringliteral">&quot;\012&quot;</span>, <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j]);
 <a name="l00184"></a>00184                     }
 <a name="l00185"></a>00185                     <span class="comment">// remove CRLF characters within field</span>
-<a name="l00186"></a>00186                     <span class="keywordflow">if</span> (isset(<a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[$what . <span class="stringliteral">&#39;_removeCRLF&#39;</span>]) &amp;&amp; <a class="code" href="oss__fr_8php.html#a6b9bfa59e3c28a706f7baf8c57e4f254">$GLOBALS</a>[$what . <span class="stringliteral">&#39;_removeCRLF&#39;</span>]) {
+<a name="l00186"></a>00186                     <span class="keywordflow">if</span> (isset(<a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[$what . <span class="stringliteral">&#39;_removeCRLF&#39;</span>]) &amp;&amp; <a class="code" href="config_2config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[$what . <span class="stringliteral">&#39;_removeCRLF&#39;</span>]) {
 <a name="l00187"></a>00187                         <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j] = str_replace(<span class="stringliteral">&quot;\n&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, str_replace(<span class="stringliteral">&quot;\r&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <a class="code" href="db__qbe_8php.html#aa1d731aa570613e5bcff831bb10e9b87">$row</a>[$j]));
 <a name="l00188"></a>00188                     }
 <a name="l00189"></a>00189                     <span class="keywordflow">if</span> ($csv_enclosed == <span class="stringliteral">&#39;&#39;</span>) {
@@ -291,7 +291,7 @@
 <a name="l00213"></a>00213                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00214"></a>00214             }
 <a name="l00215"></a>00215         } <span class="comment">// end while</span>
-<a name="l00216"></a>00216         <a class="code" href="drizzle_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a" title="Frees memory associated with the result.">PMA_DBI_free_result</a>(<a class="code" href="db__create_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
+<a name="l00216"></a>00216         <a class="code" href="drizzle_8dbi_8lib_8php.html#a69ffa6649f3460798f5d0db03f1e2a5a" title="Frees memory associated with the result.">PMA_DBI_free_result</a>(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00217"></a>00217 
 <a name="l00218"></a>00218         <span class="keywordflow">return</span> <span class="keyword">true</span>;
 <a name="l00219"></a>00219     } <span class="comment">// end of the &#39;PMA_getTableCsv()&#39; function</span>
@@ -304,7 +304,7 @@
     <ul>
       <li class="navelem"><a class="el" href="export_2csv_8php.html">csv.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:18:27 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:14:49 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

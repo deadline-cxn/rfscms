@@ -75,46 +75,69 @@
 <div class="contents">
 <a href="footer_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?<span class="comment"></span>
 <a name="l00002"></a>00002 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00003"></a>00003 <span class="comment"></span><span class="comment">// RFS CMS (c) 2012 Seth Parson http://www.sethcoder.com/</span><span class="comment"></span>
+<a name="l00003"></a>00003 <span class="comment"></span><span class="comment">// RFS CMS http://www.sethcoder.com/</span><span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00005"></a>00005 <span class="comment"></span>
-<a name="l00006"></a><a class="code" href="footer_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">00006</a> <a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;data&#39;</span>];
-<a name="l00007"></a>00007 <span class="keywordflow">if</span>(empty(<a class="code" href="v_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>)) <a class="code" href="v_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>=<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;theme;
-<a name="l00008"></a>00008 <span class="keywordflow">if</span>(empty(<a class="code" href="v_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>)) <a class="code" href="v_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;theme&#39;</span>];
-<a name="l00009"></a>00009 
-<a name="l00010"></a>00010 echo <span class="stringliteral">&quot;&lt;p align=left&gt;&lt;pre&gt;&quot;</span>;
-<a name="l00011"></a>00011 <a class="code" href="lib_8debug_8php.html#ae3406df45c865d3ab59772fb6d1de411">sc_debugfooter</a>(0);
-<a name="l00012"></a>00012 echo <span class="stringliteral">&quot;&lt;/pre&gt;&lt;/p&gt;&quot;</span>;
-<a name="l00013"></a>00013 
-<a name="l00014"></a><a class="code" href="footer_8php.html#a28f0c86249e434384732985e7edcc0b6">00014</a> <a class="code" href="footer_8php.html#a28f0c86249e434384732985e7edcc0b6">$tf</a>=<span class="stringliteral">&quot;$RFS_SITE_PATH/themes/$theme/t.footer.php&quot;</span>;
-<a name="l00015"></a>00015 <span class="keywordflow">if</span>(file_exists(<a class="code" href="footer_8php.html#a28f0c86249e434384732985e7edcc0b6">$tf</a>)){
-<a name="l00016"></a>00016     include(<a class="code" href="footer_8php.html#a28f0c86249e434384732985e7edcc0b6">$tf</a>);
-<a name="l00017"></a>00017 }
-<a name="l00018"></a>00018 <span class="keywordflow">else</span>{
-<a name="l00019"></a>00019     echo <span class="stringliteral">&quot;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;&quot;</span>;
-<a name="l00020"></a>00020     <span class="keywordflow">if</span>(empty(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;donated)){
-<a name="l00021"></a>00021         echo <span class="stringliteral">&quot;&lt;table border=0 width=100% &gt;&lt;tr&gt;&lt;td align=center&gt;&quot;</span>;
-<a name="l00022"></a>00022         <span class="keywordflow">if</span>(empty(<a class="code" href="adm_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;donated)) {
-<a name="l00023"></a>00023             <a class="code" href="lib_8social__buttons_8php.html#ac5ad1d50aa63be8ae67b8707e8ce8b7d">sc_google_adsense</a>($RFS_SITE_GOOGLE_ADSENSE);
-<a name="l00024"></a>00024         }
-<a name="l00025"></a>00025         <span class="keywordflow">else</span> {
+<a name="l00005"></a>00005 <span class="comment"></span><span class="comment">// include(&quot;include/lib.all.php&quot;);</span>
+<a name="l00006"></a>00006 <span class="comment">// $data=$GLOBALS[&#39;data&#39;]; if(empty($theme)) $theme=$data-&gt;theme; if(empty($theme)) $theme=$GLOBALS[&#39;theme&#39;];</span>
+<a name="l00007"></a>00007 <span class="comment">// output some debug information</span>
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 <a class="code" href="lib_8debug_8php.html#a5e417b96dd43be2c87f7bc0f6bfb11aa">lib_debug_footer</a>(0);
+<a name="l00010"></a>00010 <span class="comment">// include custom theme footer instead of this one</span>
+<a name="l00011"></a>00011 <span class="keywordflow">if</span>(file_exists(<span class="stringliteral">&quot;$RFS_SITE_PATH/themes/$theme/t.footer.php&quot;</span>)){
+<a name="l00012"></a>00012     include(<span class="stringliteral">&quot;$RFS_SITE_PATH/themes/$theme/t.footer.php&quot;</span>);
+<a name="l00013"></a>00013 }
+<a name="l00014"></a>00014 <span class="keywordflow">else</span>{
+<a name="l00015"></a>00015         
+<a name="l00016"></a>00016     <span class="keywordflow">if</span>(isset(<a class="code" href="files_8php.html#a0c464d3907e57952652e1a461af892ef">$RFS_LITTLE_HEADER</a>)) {
+<a name="l00017"></a>00017         <span class="keywordflow">if</span>(<a class="code" href="files_8php.html#a0c464d3907e57952652e1a461af892ef">$RFS_LITTLE_HEADER</a>==<span class="keyword">true</span>) {
+<a name="l00018"></a>00018             
+<a name="l00019"></a>00019             echo <span class="stringliteral">&quot;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&quot;</span>;
+<a name="l00020"></a>00020             echo <span class="stringliteral">&quot;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&quot;</span>;
+<a name="l00021"></a>00021             echo <span class="stringliteral">&quot;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&quot;</span>;
+<a name="l00022"></a>00022             
+<a name="l00023"></a>00023             <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>(<a class="code" href="config_8sitevars_8php.html#a1e3f02008ea99cba00b878ceb312fb67">$RFS_SITE_BODY_CLOSE</a>);
+<a name="l00024"></a>00024             <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>(<a class="code" href="config_8sitevars_8php.html#ac2254053c2f06044bee6c4ec1ba7a8b5">$RFS_SITE_HTML_CLOSE</a>);
+<a name="l00025"></a>00025             <span class="keywordflow">return</span>;
 <a name="l00026"></a>00026         }
-<a name="l00027"></a>00027         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
-<a name="l00028"></a>00028     }
-<a name="l00029"></a>00029     echo <span class="stringliteral">&quot;&lt;center&gt;$RFS_SITE_COPYRIGHT&lt;/center&gt;&quot;</span>;
-<a name="l00030"></a>00030     <span class="keywordflow">for</span>($i=0;$i&lt;10;$i++) echo <span class="stringliteral">&quot;&lt;p&gt; &amp;nbsp; &lt;/p&gt; &lt;br&gt; &amp;nbsp; &lt;br&gt;&quot;</span>;
-<a name="l00031"></a>00031     echo <span class="stringliteral">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>;
-<a name="l00032"></a>00032 }
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034 ?&gt;
-<a name="l00035"></a>00035 
+<a name="l00027"></a>00027     }
+<a name="l00028"></a>00028     
+<a name="l00029"></a>00029     echo <span class="stringliteral">&quot;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;&quot;</span>;
+<a name="l00030"></a>00030         
+<a name="l00031"></a>00031     <span class="keywordflow">if</span>(empty(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;donated)) {
+<a name="l00032"></a>00032         <a class="code" href="lib_8social_8php.html#ac5ad1d50aa63be8ae67b8707e8ce8b7d">sc_google_adsense</a>($RFS_SITE_GOOGLE_ADSENSE);
+<a name="l00033"></a>00033     }
+<a name="l00034"></a>00034     <span class="keywordflow">else</span> {
+<a name="l00035"></a>00035         
+<a name="l00036"></a>00036     }
+<a name="l00037"></a>00037     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>; <span class="comment">// END MIDTD  </span>
+<a name="l00038"></a>00038     <span class="comment"></span>
+<a name="l00039"></a>00039 <span class="comment">    ////////////////////////////////////////////////////////////////////</span>
+<a name="l00040"></a>00040 <span class="comment"></span>    <span class="comment">// DRAW THE RIGHT MODULES (RIGHTTD)</span>
+<a name="l00041"></a>00041     echo <span class="stringliteral">&quot;&lt;td class=\&quot;righttd\&quot; valign=top&gt;&quot;</span>;
+<a name="l00042"></a>00042     <a class="code" href="lib_8modules_8php.html#ace7bed36502c6de4a947dc74ff4a6d2f">lib_modules_draw</a>(<span class="stringliteral">&quot;right&quot;</span>);  
+<a name="l00043"></a>00043     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>; <span class="comment">// END RIGHTTD</span>
+<a name="l00044"></a>00044     
+<a name="l00045"></a>00045     echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;&quot;</span>; <span class="comment">// FINISH PAGE TABLE</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047     <span class="comment">// PUT COPYRIGHT INFORMATION</span>
+<a name="l00048"></a>00048     echo <span class="stringliteral">&quot;&lt;div class=\&quot;copyright\&quot;&gt;&quot;</span>;
+<a name="l00049"></a>00049     echo <a class="code" href="config_8sitevars_8php.html#a36c2d5924cef4e680b54fc0d4ea136b0">$RFS_SITE_COPYRIGHT</a>;   
+<a name="l00050"></a>00050     echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
+<a name="l00051"></a>00051     
+<a name="l00052"></a>00052     <span class="comment">// END THE PAGE</span>
+<a name="l00053"></a>00053     <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>(<a class="code" href="config_8sitevars_8php.html#a1e3f02008ea99cba00b878ceb312fb67">$RFS_SITE_BODY_CLOSE</a>);
+<a name="l00054"></a>00054     <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>(<a class="code" href="config_8sitevars_8php.html#ac2254053c2f06044bee6c4ec1ba7a8b5">$RFS_SITE_HTML_CLOSE</a>);
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 ?&gt;
+<a name="l00058"></a>00058 
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="footer_8php.html">footer.php</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 27 2013 13:56:28 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>
