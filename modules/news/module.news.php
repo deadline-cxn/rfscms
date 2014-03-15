@@ -5,7 +5,7 @@ lib_menus_register("News","$RFS_SITE_URL/modules/news/news.php");
 // MODULE NEWS
 function news_buttons() { eval(lib_rfs_get_globals());
 	if(lib_access_check("news","submit")) {
-		lib_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
 	}
 }
 

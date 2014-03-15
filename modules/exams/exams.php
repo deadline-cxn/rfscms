@@ -304,9 +304,9 @@ if($action=="wipe_exam") {
 			
 			<center>
 			".
-			lib_button_text("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=really_wipe_exam","RESTART")
+			lib_buttons_text("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=really_wipe_exam","RESTART")
 			.
-			lib_button_text("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=run_exam","RESUME")."
+			lib_buttons_text("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=run_exam","RESUME")."
 			</center>
 			<hr>
 			<br>

@@ -42,7 +42,7 @@ $RFS_TAGS=array(
 "RFS_TAG_PHP_SELF"			=> "RFS_TAG_PHP_SELF",
 "RFS_TAG_CANONICAL"			=> "RFS_TAG_CANONICAL",
 "sc_facebook_login_r" 		=> "<!--RTAG_FACEBOOK_LOGIN-->",
-"lib_button"				=> "<!--RTAG_BUTTON"
+"lib_buttons"				=> "<!--RTAG_BUTTON"
 );
 /////////////////////////////////////////////////////////////////////////////////////////
 // WIKI STUFF

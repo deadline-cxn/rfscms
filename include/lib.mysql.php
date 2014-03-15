@@ -258,14 +258,16 @@ function lib_mysql_database_query($query,$becho){
     return $res;
 }
 function lib_mysql_database_query_form($page,$action,$query){
+	
     echo "<form action=\"$page\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
     echo "<input type=\"hidden\" name=\"action\" value=\"$action\">";
-    echo "<textarea rows=5 cols=70 name=\"query\">";
+    echo "<textarea rows=10  cols=120 name=\"query\">";
     $query=str_replace("</textarea>","&lt;/textarea>",$query);
     echo stripslashes($query);
     echo "</textarea><br>";
     echo "<input type=\"submit\" name=\"submit\" value=\"submit query\">";
     echo "</form>";
+	
 }
 function lib_mysql_dump_table($table,$showform,$key,$search){
 	eval(lib_rfs_get_globals());	
@@ -326,8 +328,8 @@ function lib_mysql_dump_table($table,$showform,$key,$search){
             }
 
             
-            lib_button("$page?action=".$showform_action."edit_$table&$key=$key_val","Edit");
-            lib_button("$page?action=".$showform_action."del_$table&$key=$key_val","Delete");
+            lib_buttons_make_button("$page?action=".$showform_action."edit_$table&$key=$key_val","Edit");
+            lib_buttons_make_button("$page?action=".$showform_action."del_$table&$key=$key_val","Delete");
             
 
             echo"</td>";

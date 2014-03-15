@@ -58,6 +58,9 @@ function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$ke
 	return false;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+function lib_file_get_size($file) {
+	return lib_file_sizefile(filesize($file));
+}
 function lib_file_sizefile($bytesize) {
     $size = $bytesize." bytes";	
     if($bytesize>1024)       		$size = (round($bytesize/1024,2))."kB"; 				// kilobyte 2^10
@@ -76,14 +79,11 @@ function lib_file_folder_to_array($folder) {
 	$handle=opendir($folder);
 	if(!$handle) return 0;
 	while (false!==($file = readdir($handle))) {
-	
 		if( 
 		($file!=".") && 
 		($file!="..") && 
-		(!empty($file)) )
-		
+		(!empty($file)) )		
 		array_push($dirfiles,$file);
-		
 	}
 	closedir($handle);
 	reset($dirfiles);

@@ -5,9 +5,9 @@ include("header.php");
 function videos_buttons() {
 	eval(lib_rfs_get_globals()); 
 	echo "<br>";
-	lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=random","Random Video");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/videos/videos.php?action=random","Random Video");
 	if(lib_access_check("videos","submit"))
-		lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=submitvid","Submit Video");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/videos/videos.php?action=submitvid","Submit Video");
 	echo "<br>";
 }
 function videos_pagefinish(){
@@ -255,8 +255,8 @@ function videos_action_view($id) {
 	echo "<br>";
 	echo "<br>";	
 	echo $linkprev;
-	if(lib_access_check("videos","edit"))   lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit");
-	if(lib_access_check("videos","delete")) lib_button("$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&id=$video->id","Delete");
+	if(lib_access_check("videos","edit"))   lib_buttons_make_button("$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&id=$video->id","Edit");
+	if(lib_access_check("videos","delete")) lib_buttons_make_button("$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&id=$video->id","Delete");
 	echo $linknext;
 	echo "</div>";
 	videos_action_viewcat($video->category);

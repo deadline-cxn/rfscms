@@ -98,14 +98,14 @@ if($_REQUEST['act']=="update") {
 function pro_nav_bar($data) {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("news","edit")) 
-		lib_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
 	if(lib_access_check("news","submit")) 
-		lib_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
 	if(lib_access_check("files","upload"))
-		lib_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
 	if(lib_access_check("admin","access"))
-		lib_button("$RFS_SITE_URL/admin/adm.php","Admin");
-	lib_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
+		lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php","Admin");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
 }
 
 if(empty($data->name)) {

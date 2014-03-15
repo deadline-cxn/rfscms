@@ -21,10 +21,10 @@ function lib_menus_options() {
 		echo "<tr>";
 		if(lib_access_check("admin","access")) {
 			echo "<td>";
-			lib_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&lname=$k&lurl=$v","Add to Top Menu");
+			lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&lname=$k&lurl=$v","Add to Top Menu");
 			echo "</td>";
 			echo "<td>";
-			lib_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_admin_add_link&lname=$k&lurl=$v","Add to Admin Menu");
+			lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_admin_add_link&lname=$k&lurl=$v","Add to Admin Menu");
 			echo "</td>";
 		}
 		
@@ -74,7 +74,7 @@ function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
                 }
 
                 if(lib_rfs_bool_true($RFS_THEME_NAV_BUTTONS)) {
-                    lib_button(lib_rfs_get($link->link),$link->name);
+                    lib_buttons_make_button(lib_rfs_get($link->link),$link->name);
                 }
                 else {
                     echo "<a class=sc_top_menu_link href=\"";

@@ -38,14 +38,14 @@ function sc_show1meme($inmid) { eval(lib_rfs_get_globals());
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
 	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
 	echo "<hr>";	
-	lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&onlyshow=$m->name","$m->name");
-	lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$m->basepic&name=$m->name","New Caption");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&onlyshow=$m->name","$m->name");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$m->basepic&name=$m->name","New Caption");
 	echo "<br>";
 	if(lib_access_check("memes","edit")) {
-		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id","Edit");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id","Edit");
 	}
 	if(lib_access_check("memes","delete")) {
-		lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=meme_delete&mid=$m->id","Delete");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/memes/memes.php?action=meme_delete&mid=$m->id","Delete");
 		echo "<br>";
 	}
 	echo "</div>";

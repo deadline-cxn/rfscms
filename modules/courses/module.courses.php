@@ -35,9 +35,9 @@ function module_course_list($x) { eval(lib_rfs_get_globals());
         $course=mysql_fetch_object($result);
 			echo "<div>";
 		sc_togglediv_start("course_info$course->id"," COURSE: $course->id $course->name",1);
-		lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=run&id=$course->id","Take This Course");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/courses/courses.php?action=run&id=$course->id","Take This Course");
 		if(lib_access_check("course","edit")) {
-			lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
 		}
 		echo "<div class=\"course_info\">";
 		echo $course->description;
@@ -51,7 +51,7 @@ function module_course_list($x) { eval(lib_rfs_get_globals());
 function module_course_admin() { eval(lib_rfs_get_globals());
 
 	if(lib_access_check("course","edit")) {
-		lib_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_list","Edit Courses");		
+		lib_buttons_make_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_list","Edit Courses");		
 	}
 	
 }

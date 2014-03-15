@@ -553,21 +553,21 @@ function forums_action_forum_showposts() {
 			   
 			   echo "<div style='float: left;'>";
 			   
-				lib_button_image_sizeable(
+				lib_buttons_image_sizeable(
 				"$RFS_SITE_URL/modules/forums/forums.php?action=sticky_thread&thread=".$post['thread'],
 				"Sticky",
 				"$RFS_SITE_URL/images/icons/stickyico.gif",
 				16,
 				16);
 				
-				lib_button_image_sizeable(
+				lib_buttons_image_sizeable(
 				"$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&thread=".$post['thread'],
 				"Delete",
 				"$RFS_SITE_URL/images/icons/Delete.png",
 				16,
 				16);
 				
-				lib_button_image_sizeable(
+				lib_buttons_image_sizeable(
 				"$RFS_SITE_URL/modules/forums/forums.php?action=sticky_thread&thread=".$post['thread'],
 				"Lock",
 				"$RFS_SITE_URL/images/icons/Lock.png",

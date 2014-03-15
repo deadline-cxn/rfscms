@@ -153,32 +153,32 @@ if(lib_access_check("files","sort")) {
 	echo "<td>";
 	if($_SESSION['thumbs']=="true") {
 		echo "<font style='background-color:red;'>SHOW THUMBS</font><br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?thumbs=off&$outvars","Thumbs Off");		
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?thumbs=off&$outvars","Thumbs Off");		
 	}
 	else {
 		echo "HIDE Thumbs<br>";
-		lib_button("$RFS_SITE_URL/modules/files/files.php?thumbs=on&$outvars","Thumbs On");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?thumbs=on&$outvars","Thumbs On");
 	}
 	echo "</td>";
 	
 	echo "<td>";
 	if($_SESSION['hidden']=="yes") {
 		echo "<font style='background-color:red;'>SHOW HIDDEN</font><br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?hidden=hide&$outvars","Hidden Off");		
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?hidden=hide&$outvars","Hidden Off");		
 	}
 	else {
 		echo "HIDE HIDDEN<br>";
-		lib_button("$RFS_SITE_URL/modules/files/files.php?hidden=show&$outvars","Hidden On");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?hidden=show&$outvars","Hidden On");
 	}
 	echo "</td>";
 	
 	echo "<td>";
 	if($_SESSION['worksafemode']!="off") {
 		echo "WORKSAFE ON<br>";
-		lib_button("$RFS_SITE_URL/modules/files/files.php?worksafe=off&$outvars","Worksafe off");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?worksafe=off&$outvars","Worksafe off");
 	}else {
 		echo "<font style='background-color:red;'>WORKSAFE OFF</font><br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?worksafe=on&$outvars","Worksafe on");		
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?worksafe=on&$outvars","Worksafe on");		
 	}
 	echo "</td>";
 
@@ -186,11 +186,11 @@ if(lib_access_check("files","sort")) {
 	echo "<td>";
 	if($_SESSION['show_temp']==true){
 		echo "<font style='background-color:red;'>SORT ON</font><br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?temp=hide&$outvars","Sort Off");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?temp=hide&$outvars","Sort Off");
 	}
 	else {		
 		echo "SORT OFF<br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?temp=show&$outvars","Sort On");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?temp=show&$outvars","Sort On");
 	}
 	echo "</td>";
 }
@@ -198,10 +198,10 @@ if(lib_access_check("files","edit")) {
 	echo "<td>";
 	if($_SESSION['editmode']==true){
 		echo "<font style='background-color:red;'>EDIT ON</font><br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?editmode=off&$outvars","Edit Off");		
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?editmode=off&$outvars","Edit Off");		
 	}else {
 		echo "EDIT OFF<br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?editmode=on&$outvars","Edit On");		
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?editmode=on&$outvars","Edit On");		
 	}
 	echo "</td>";
 }
@@ -210,10 +210,10 @@ if(lib_access_check("files","delete")) {
 	echo "<td>";
 	if($_SESSION['deletemode']==true){
 		echo "<font style='background-color:red;'>DELETE ON</font><br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?deletemode=off&$outvars","Delete Off");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?deletemode=off&$outvars","Delete Off");
 	}else {
 		echo "DELETE OFF<br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?deletemode=on&$outvars","Delete On");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?deletemode=on&$outvars","Delete On");
 	}
 	echo "</td>";
 }
@@ -222,10 +222,10 @@ if(lib_access_check("files","edit")) {
 	echo "<td>";
 	if($_SESSION['tagmode']==true){
 		echo "<font style='background-color:red;'>TAG ON</font><br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?tagmode=off&$outvars","Tag Off");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?tagmode=off&$outvars","Tag Off");
 	}else {
 		echo "TAG OFF<br>";	
-		lib_button("$RFS_SITE_URL/modules/files/files.php?tagmode=on&$outvars","Tag On");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?tagmode=on&$outvars","Tag On");
 	}
 	echo "</td>";
 }
@@ -239,38 +239,38 @@ echo "<table border=0> <tr>";
 if(lib_access_check("files","sort")) {
 	echo "<td>";
 	echo "<br>";
-	lib_button("$RFS_SITE_URL/modules/files/files.php?action=show_duplicates","Show Duplicates");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=show_duplicates","Show Duplicates");
 	echo "</td>";
 }
 	
 if(lib_access_check("files","upload")) {
 	echo "<td>";
 	echo "<br>";
-	lib_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload");
 	echo "</td>";
 }
 if(lib_access_check("files","addlink")) {
 	echo "<td>";    
 	echo "<br>";
-    lib_button("$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb","Add Link as File");
+    lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb","Add Link as File");
 	echo "</td>";
 }
 if(lib_access_check("files","orphanscan")) {
 	echo "<td>";
 	echo "<br>";
-    lib_button("$RFS_SITE_URL/modules/files/files.php?action=getorphans","Add orphan files");
+    lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=getorphans","Add orphan files");
 	echo "</td>";
 }
 if(lib_access_check("files","purge")) {
 	echo "<td>";
 	echo "<br>";
-	lib_button("$RFS_SITE_URL/modules/files/files.php?action=purge","Purge missing files");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=purge","Purge missing files");
 	echo "</td>";
 }
 if(lib_access_check("files","xplorer")) {	
 	echo "<td>";
 	echo "<br>";
-    lib_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
+    lib_buttons_make_button("$RFS_SITE_URL/modules/xplorer/xplorer.php","Xplorer");
 	echo "</td>";
 }
 echo "</tr></table>";
@@ -476,16 +476,16 @@ function files_action_get_file() { eval(lib_rfs_get_globals());
 
 		echo "<table border=0><tr>";
 		echo "<td>";
-		lib_button(lib_domain_canonical_url()."&get_file_extended=yes","Get Extended File Information");
+		lib_buttons_make_button(lib_domain_canonical_url()."&get_file_extended=yes","Get Extended File Information");
 		echo "</td>";
 		if(lib_access_check("files","edit")) {
 			echo "<td>";
-				lib_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&id=$filedata->id","Edit");		
+				lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=mdf&id=$filedata->id","Edit");		
 			echo "</td>";
 		}
 		if(lib_access_check("files","delete")) {
 			echo "<td>";
-			lib_button("$RFS_SITE_URL/modules/files/files.php?action=del&id=$filedata->id","Delete");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=del&id=$filedata->id","Delete");
 			echo "</td>";
 		}		
 		echo "</tr></table>";
@@ -1109,9 +1109,9 @@ if($_SESSION['show_temp']) {
 		}
 		
 		if($prevtop>0) 
-			lib_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch","PREV PAGE");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch","PREV PAGE");
 		if($x==$amount) 
-			lib_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch","NEXT PAGE");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch","NEXT PAGE");
 
 		if(count($filelist)) {
 			echo "<div class=file_list style='float: left;' >";
@@ -1137,11 +1137,11 @@ if($_SESSION['show_temp']) {
 		echo "<div style='clear: both;'></div>";
 		
 		if($prevtop>0) 
-			lib_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch","PREV PAGE");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch","PREV PAGE");
 		if($x==$amount) 
-			lib_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch","NEXT PAGE");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch","NEXT PAGE");
 			
-		lib_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&$reload&category=$category&criteria=$criteria","RELOAD");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=listcategory&$reload&category=$category&criteria=$criteria","RELOAD");
 
 		include("footer.php");
 		exit();

@@ -37,12 +37,12 @@ function pictures_show_buttons() {
 	echo "<table border=0><tr>"; 
 	if(lib_access_check("pictures","orphanscan")) {
 		echo "<td>";
-		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=addorphans","Add Orphans");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=addorphans","Add Orphans");
 		echo "</td>";
 	}
 	if(lib_access_check("pictures","upload")) {
 		echo "<td>";
-		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=uploadpic","Upload picture");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=uploadpic","Upload picture");
 		echo "</td>";
 	}
 	if(lib_access_check("pictures","sort")) {
@@ -50,7 +50,7 @@ function pictures_show_buttons() {
 		$numpics=mysql_num_rows($res2);
 		if($numpics>0){
 			echo "<td>";
-			lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=sorttemp&category=unsorted","Sort $numpics Pictures");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=sorttemp&category=unsorted","Sort $numpics Pictures");
 			echo "</td>";
 		}
 	}
@@ -397,31 +397,31 @@ function pictures_action_view($id) {
 	echo "<center><table border=0><tr>";
 	if(!empty($picture3->id)) {
 		echo "<td>";
-		lib_button($linkprev,"Previous");
+		lib_buttons_make_button($linkprev,"Previous");
 		echo "</td>";
 	}    
     if($id) {
 		if(lib_rfs_bool_true($RFS_SITE_CAPTIONS)){
 			echo "<td>";
-			lib_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
 			echo "</td>";
 		}
 		echo "<td>";
-		lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=random","Random Picture");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=random","Random Picture");
 		echo "</td>";
 		if(lib_access_check("pictures","edit")) {
 			echo "<td>";
-			lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=modifypicture&id=$picture->id","Edit");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=modifypicture&id=$picture->id","Edit");
 			echo "</td>";
 		}			
 		if(lib_access_check("pictures","delete")) {
 			echo "<td>";
-			lib_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=removepicture&id=$picture->id","Delete");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/pictures/pictures.php?action=removepicture&id=$picture->id","Delete");
 			echo "</td>";
 		}			
 		echo "<td>";
 		if(!empty($picture2->id))
-			lib_button($linknext,"Next");
+			lib_buttons_make_button($linknext,"Next");
 		echo "</td>";
 		echo "</tr></table></center>";	
 		echo "<center>";

@@ -5,7 +5,7 @@ include_once("config/config.php");
 include_once("include/session.php");
 function adm_action_f_rfs_db_element_ed1() { eval(lib_rfs_get_globals());
 	echo "<p> </p>";
-	lib_button("$rtnpage?action=$rtnact","Go back");
+	lib_buttons_make_button("$rtnpage?action=$rtnact","Go back");
 	echo "<h2>Edit $label</h2>";
 	lib_forms_build(  "$RFS_SITE_URL/admin/adm.php",
             "action=f_rfs_db_element_ed2".$RFS_SITE_DELIMITER.
@@ -46,8 +46,8 @@ function adm_action_f_rfs_db_element_del2($rtnpage,$rtnact,$table,$id) { eval(li
 	lib_domain_gotopage("$rtnpage?action=$rtnact");
 }
 function rfs_db_element_edit($label,$rtnpage,$rtnact,$table, $id) { eval(lib_rfs_get_globals());
-lib_button("$rtnpage?action=f_rfs_db_element_ed1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Edit");
-lib_button("$rtnpage?action=f_rfs_db_element_del1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Delete");
+lib_buttons_make_button("$rtnpage?action=f_rfs_db_element_ed1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Edit");
+lib_buttons_make_button("$rtnpage?action=f_rfs_db_element_del1&label=$label&table=$table&id=$id&rtnpage=$rtnpage&rtnact=$rtnact","Delete");
 echo "$label ";
 }
 function lib_forms_join_vars($x){
@@ -1012,7 +1012,7 @@ function lib_forms_css_file($css_file,$returnpage,$returnaction,$hiddenvars) { e
 				$buttout.="&$vn=$vv";
 			}
 			echo " \n <!-- *******************************	NEW SECTION ********************************************************* --> \n";
-			lib_button($buttout,"Delete");
+			lib_buttons_make_button($buttout,"Delete");
 
 		echo "$cssx2[0] { <br>";
 		
