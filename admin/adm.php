@@ -78,9 +78,46 @@ function adm_action_f_unbandomain() {
 	lib_domain_unban_domain($domain);
 	finishadminpage();					  
 }
+
+
+function adm_action_f_edit_banned_go() {
+	eval( lib_rfs_get_globals() );
+	echo "<h3>User updated</h3>";
+	lib_mysql_update_database( "users","id",$id,1 );
+	adm_action_user_edit();
+}
+function adm_action_f_edit_banned() { eval( lib_rfs_get_globals() );
+	$res=lib_mysql_query( "select * from `users` where `id`='$id'" );
+	$user=mysql_fetch_object( $res );
+	echo "<h3>Editing User [$user->name]</h3>";
+	lib_forms_build( "$RFS_SITE_URL/admin/adm.php","action=f_edit_users_go".$RFS_SITE_DELIMITER."id=$id","users","select * from `users` where `id`='$id'","","id".$RFS_SITE_DELIMITER,"omit","",60,"update" );
+	include("footer.php");
+	exit();
+}
+function adm_action_f_del_banned_go() {
+	eval( lib_rfs_get_globals() );
+	$res=lib_mysql_query( "select * from `banned` where `id`='$id'" );
+	$banned=mysql_fetch_object( $res );
+	if( $yes=="Yes" ) {
+		echo "User $banned->name removed from database";
+		lib_mysql_query( "delete from `banned` where `id`='$id'" );
+	}
+	adm_action_ban_management();
+}
+function adm_action_f_del_banned() {
+	eval( lib_rfs_get_globals() );
+	echo lib_string_convert_smiles( "<p class=warning>^X<br>WARNING!<BR></p>" );
+	$res=lib_mysql_query( "select * from `banned` where `id`='$id'" );
+	$banned=mysql_fetch_object( $res );
+	lib_forms_confirm( "Delete $banned->name?",
+                    "$RFS_SITE_URL/admin/adm.php",
+                    "action=f_del_banned_go".$RFS_SITE_DELIMITER."id=$id" );
+	include("footer.php");
+	exit();
+}
 function adm_action_ban_management(){
 	echo "<h1>Ban Management</h1><hr>";
-	lib_mysql_dump_table("banned","showform","id","");
+	lib_mysql_dump_table("banned", "showform".$RFS_SITE_DELIMITER."f_","id","");
 	
 	finishadminpage();
 	
