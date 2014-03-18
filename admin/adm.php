@@ -116,6 +116,7 @@ function adm_action_f_del_banned() {
 	exit();
 }
 function adm_action_ban_management(){
+	eval( lib_rfs_get_globals() );
 	echo "<h1>Ban Management</h1><hr>";
 
 	lib_mysql_dump_table("banned,id,domain,link,ip", "showform".$RFS_SITE_DELIMITER."f_", "id","");
