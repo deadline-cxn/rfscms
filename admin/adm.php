@@ -50,7 +50,7 @@ function adm_action_f_bandomain_go() {
 	echo "Banning domain $domain";
 	lib_domain_ban_domain($domain);
 	lib_log_add_entry("$data->name banned domain: $domain");
-	finishadminpage();					  
+	finishadminpage();
 }
 function adm_action_f_bandomain() {
 	eval(lib_rfs_get_globals());

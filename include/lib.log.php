@@ -38,8 +38,7 @@ function lib_log_count($user) {
 	$refer_ban=str_replace("?","%3F",$refer_ban);
 	$countip_ban=$countip;
 	$domain_ban=lib_domain_getdomain($refer_ban);
-	$a=explode("/",$domain_ban);
-	$domain_who=$a[2];
+	
 	$refer_link=str_replace("%20"," ",$refer);
 	$refer_link=str_replace("%2F","/",$refer_link);
 	$refer_link=str_replace("%2f","/",$refer_link);
@@ -62,7 +61,7 @@ function lib_log_count($user) {
 			lib_log_add_entry("SEARCH: ".$searched[$i]);
 			$time=date("Y-m-d H:i:s");
 			lib_mysql_query("insert into `searches` (`search`,            `engine`,      `fullsearch`,`time`)
-			         VALUES ('".$searched[$i]."', '$domain_who', '$refer',  '$time')");
+											VALUES ('".$searched[$i]."', '$domain_ban', '$refer',  '$time')");
 		}
 	}
 	$banip=""; if(!empty($countip_ban))   	$banip="[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banip&ip=$countip_ban\">Ban this IP</a>]";
@@ -70,7 +69,7 @@ function lib_log_count($user) {
 	$testweb=""; if(!empty($countip_ban)) 	$testweb="[<a href=\"http://$countip_ban/\" target=_blank>Test Web Server</a>]";
 	$bandomain=""; if(!empty($domain_ban))	$bandomain="[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_bandomain&domain=$domain_ban\">Ban this Domain</a>]";
 	$whoisip=""; if(!empty($countip))  		$whoisip="[<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=arin&target=$countip\">WhoIS IP</a>]";
-	$whoisdm=""; if(!empty($domain_who)) 	$whoisdm="[<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=wwwhois&target=$domain_who\">WhoIS Domain</a>]";
+	$whoisdm=""; if(!empty($domain_ban)) 	$whoisdm="[<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=wwwhois&target=$domain_ban\">WhoIS Domain</a>]";
 	$banned=0;
 	if(empty($refer_ban)) $refer_ban="duh";
 	if(empty($domain_ban)) $domain_ban="duh";
