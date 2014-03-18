@@ -88,7 +88,7 @@ function courses_action_add_course() { eval(lib_rfs_get_globals());
 
 
 function lib_ajax_callback_courses_action_ccl() { eval(lib_rfs_get_globals());
-	echo sc_course_components_list($id);
+	echo rfs_course_components_list($id);
 
 }
 

@@ -330,22 +330,22 @@ class PMA_DbQbe
      * Provides select options list containing sort options (ASC/DESC)
      *
      * @param integer $column_number Column Number (0,1,2) or more
-     * @param string  $asc_selected  Selected criteria 'Ascending'
-     * @param string  $desc_selected Selected criteria 'Descending'
+     * @param string  $arfs_selected  Selected criteria 'Ascending'
+     * @param string  $derfs_selected Selected criteria 'Descending'
      *
      * @return HTML for select options
      */
-    private function _getSortSelectCell($column_number, $asc_selected = '',
-        $desc_selected = ''
+    private function _getSortSelectCell($column_number, $arfs_selected = '',
+        $derfs_selected = ''
     ) {
         $html_output = '<td class="center">';
         $html_output .= '<select style="width: ' . $this->_realwidth
             . '" name="criteriaSort[' . $column_number . ']" size="1">';
         $html_output .= '<option value="">&nbsp;</option>';
-        $html_output .= '<option value="ASC"' . $asc_selected . '>'
+        $html_output .= '<option value="ASC"' . $arfs_selected . '>'
             . __('Ascending')
             . '</option>';
-        $html_output .= '<option value="DESC"' . $desc_selected . '>'
+        $html_output .= '<option value="DESC"' . $derfs_selected . '>'
             . __('Descending')
             . '</option>';
         $html_output .= '</select>';
@@ -428,15 +428,15 @@ class PMA_DbQbe
             ) {
                 $_REQUEST['criteriaSort'][$column_index] = '';
             } //end if
-            // Set asc_selected
+            // Set arfs_selected
             if (isset($_REQUEST['criteriaSort'][$column_index])
                 && $_REQUEST['criteriaSort'][$column_index] == 'ASC'
             ) {
                 $this->_curSort[$new_column_count]
                     = $_REQUEST['criteriaSort'][$column_index];
-                $asc_selected = ' selected="selected"';
+                $arfs_selected = ' selected="selected"';
             } else {
-                $asc_selected = '';
+                $arfs_selected = '';
             } // end if
             // Set desc selected
             if (isset($_REQUEST['criteriaSort'][$column_index])
@@ -444,12 +444,12 @@ class PMA_DbQbe
             ) {
                 $this->_curSort[$new_column_count]
                     = $_REQUEST['criteriaSort'][$column_index];
-                $desc_selected = ' selected="selected"';
+                $derfs_selected = ' selected="selected"';
             } else {
-                $desc_selected = '';
+                $derfs_selected = '';
             } // end if
             $html_output .= $this->_getSortSelectCell(
-                $new_column_count, $asc_selected, $desc_selected
+                $new_column_count, $arfs_selected, $derfs_selected
             );
             $new_column_count++;
         } // end for

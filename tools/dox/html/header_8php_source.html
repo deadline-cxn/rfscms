@@ -167,27 +167,27 @@
 <a name="l00092"></a>00092         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;       
 <a name="l00093"></a>00093         echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
 <a name="l00094"></a>00094         
-<a name="l00095"></a>00095         echo <span class="stringliteral">&quot;&lt;table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0&gt;&quot;</span>;
-<a name="l00096"></a>00096         echo <span class="stringliteral">&quot;&lt;tr class=sc_top_menu_table_td&gt;&quot;</span>;
-<a name="l00097"></a>00097         echo <span class="stringliteral">&quot;&lt;td class=sc_top_menu_table_td valign=top&gt;&quot;</span>;
+<a name="l00095"></a>00095         echo <span class="stringliteral">&quot;&lt;table border=0 width=100% class=rfs_top_menu_table cellpadding=0 cellspacing=0&gt;&quot;</span>;
+<a name="l00096"></a>00096         echo <span class="stringliteral">&quot;&lt;tr class=rfs_top_menu_table_td&gt;&quot;</span>;
+<a name="l00097"></a>00097         echo <span class="stringliteral">&quot;&lt;td class=rfs_top_menu_table_td valign=top&gt;&quot;</span>;
 <a name="l00098"></a>00098         
-<a name="l00099"></a>00099         echo <span class="stringliteral">&quot;&lt;table border=0 cellpadding=0 cellspacing=0 class=sc_top_menu_table&gt;&quot;</span>;
-<a name="l00100"></a>00100         echo <span class="stringliteral">&quot;&lt;tr class=sc_top_menu_table_td&gt;&quot;</span>;
+<a name="l00099"></a>00099         echo <span class="stringliteral">&quot;&lt;table border=0 cellpadding=0 cellspacing=0 class=rfs_top_menu_table&gt;&quot;</span>;
+<a name="l00100"></a>00100         echo <span class="stringliteral">&quot;&lt;tr class=rfs_top_menu_table_td&gt;&quot;</span>;
 <a name="l00101"></a>00101                      
 <a name="l00102"></a>00102         <a class="code" href="lib_8menus_8php.html#a50992ee49106be372bb4b3d1377e7a18">lib_menus_draw</a>(<a class="code" href="config_8sitevars_8php.html#affa5abef8f51f34c1d8f7086b318c58e">$RFS_THEME_MENU_TOP_LOCATION</a>); 
-<a name="l00103"></a>00103         <span class="comment">//echo &quot;&lt;td align=right class=sc_top_menu_table_td&gt;&quot;;</span>
-<a name="l00104"></a>00104         echo <span class="stringliteral">&quot;&lt;td class=sc_top_menu_table_inner class=contenttd&gt;&quot;</span>;
+<a name="l00103"></a>00103         <span class="comment">//echo &quot;&lt;td align=right class=rfs_top_menu_table_td&gt;&quot;;</span>
+<a name="l00104"></a>00104         echo <span class="stringliteral">&quot;&lt;td class=rfs_top_menu_table_inner class=contenttd&gt;&quot;</span>;
 <a name="l00105"></a>00105         <a class="code" href="lib_8forms_8php.html#ad4a55cdf1b3bbe4e0773430b23d238de">lib_forms_theme_select</a>();       
 <a name="l00106"></a>00106         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00107"></a>00107         echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;\n&quot;</span>;
 <a name="l00108"></a>00108         <span class="comment">//echo &quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;;</span>
 <a name="l00109"></a>00109         
-<a name="l00110"></a>00110         echo <span class="stringliteral">&quot;&lt;table border=0 width=100% class=sc_top_menu_table cellpadding=0 cellspacing=0 align=center&gt;&quot;</span>;
+<a name="l00110"></a>00110         echo <span class="stringliteral">&quot;&lt;table border=0 width=100% class=rfs_top_menu_table cellpadding=0 cellspacing=0 align=center&gt;&quot;</span>;
 <a name="l00111"></a>00111         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td align=center&gt;&quot;</span>;
 <a name="l00112"></a>00112         
 <a name="l00113"></a>00113         <span class="keywordflow">if</span>(!<a class="code" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">lib_rfs_bool_true</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;donated)) {
 <a name="l00114"></a>00114             <a class="code" href="lib_8social_8php.html#af1946d1e0d5bce57ed40441f0f1808a8">lib_social_paypal</a>();        
-<a name="l00115"></a>00115             <a class="code" href="lib_8social_8php.html#ac5ad1d50aa63be8ae67b8707e8ce8b7d">sc_google_adsense</a>($RFS_SITE_GOOGLE_ADSENSE);
+<a name="l00115"></a>00115             <a class="code" href="lib_8social_8php.html#a560a495e4f1caa73a7e8f9ad006e8904">lib_social_google_adsense</a>($RFS_SITE_GOOGLE_ADSENSE);
 <a name="l00116"></a>00116         
 <a name="l00117"></a>00117         }
 <a name="l00118"></a>00118         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
@@ -208,7 +208,7 @@
 <a name="l00133"></a>00133 }
 <a name="l00134"></a>00134 
 <a name="l00135"></a>00135 <a class="code" href="lib_8ajax_8php.html#a7aa23be6023472192a084a023d122a4a">lib_ajax_javascript</a>();
-<a name="l00136"></a>00136 <a class="code" href="lib_8helpers_8php.html#a0993a67531f71739ec8351077553ef6a">sc_javascript</a>();
+<a name="l00136"></a>00136 <a class="code" href="lib_8helpers_8php.html#aca07ff00e585c901cb716aa5341ce371">rfs_javascript</a>();
 <a name="l00137"></a>00137 
 <a name="l00138"></a>00138 <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>(<a class="code" href="config_8sitevars_8php.html#a449bdd68b089deb0f3d7378b98a29a1d">$RFS_SITE_JS_MSDROPDOWN_THEME</a>);
 <a name="l00139"></a>00139 <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>(<a class="code" href="config_8sitevars_8php.html#a54de4d1960953850a70604c33ff65306">$RFS_SITE_JS_JQUERY</a>);
@@ -216,7 +216,7 @@
 <a name="l00141"></a>00141 <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>(<a class="code" href="config_8sitevars_8php.html#abde6de3b70be32db11dfba2e155cc405">$RFS_SITE_JS_EDITAREA</a>);
 <a name="l00142"></a>00142 <span class="comment">//lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN);</span>
 <a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <a class="code" href="lib_8social_8php.html#a8cf8e3b5f2b463c6624a749fc2e1ddf0">sc_google_analytics</a>();
+<a name="l00144"></a>00144 <a class="code" href="lib_8social_8php.html#a6cd404c2558dcbddd82499901c9e869a">lib_social_google_analytics</a>();
 <a name="l00145"></a>00145 <a class="code" href="lib_8forms_8php.html#ad60363749b947ab5ff054107e03f8eea">lib_forms_system_message</a>();
 <a name="l00146"></a>00146 <a class="code" href="lib_8rfs_8php.html#a3d4d0a6b07045e162291cda3308ea50f">lib_rfs_do_action</a>();
 <a name="l00147"></a>00147 ?&gt;
@@ -226,7 +226,7 @@
     <ul>
       <li class="navelem"><a class="el" href="header_8php.html">header.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

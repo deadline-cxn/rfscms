@@ -16,7 +16,7 @@ function module_top_referrers($x) { eval(lib_rfs_get_globals());
        echo "<a class=\"a_cat\" href=\"$site_url/link_out.php?link=$url\" \n";
        echo " target=\"_blank\" title=\"$link->sname (in[$link->referrals] out[$link->clicks])\"\n";
         echo ">".lib_string_truncate($link->sname,24)."</a> ";        
-        echo " <font class=sc_black>[$link->referrals] <br>";
+        echo " <font class=rfs_black>[$link->referrals] <br>";
     }
 }
 

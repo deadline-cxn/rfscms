@@ -85,6 +85,7 @@ function lib_users_avatar_code($user) { eval(lib_rfs_get_globals());
     return($ret);
 }
 function lib_users_set_var($name,$var,$set) {
+	$set=addslashes($set);
 	lib_mysql_query_user_db("UPDATE `users` SET `$var`='$set' where name = '$name'");
 }
 function lib_users_get_name($x){

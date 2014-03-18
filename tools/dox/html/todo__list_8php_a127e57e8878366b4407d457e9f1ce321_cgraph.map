@@ -1,9 +1,9 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="803,177,933,206"/>
-<area shape="rect" id="node5" href="$lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789" title="lib_button" alt="" coords="408,230,485,260"/>
+<area shape="rect" id="node5" href="$lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17" title="lib_buttons_make_button" alt="" coords="364,230,529,260"/>
 <area shape="rect" id="node12" href="$lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="185,125,300,154"/>
 <area shape="rect" id="node20" href="$lib_8forms_8php.html#a098b167296ec6269a9c46eb442cc6352" title="rfs_db_element_edit" alt="" coords="173,178,312,208"/>
-<area shape="rect" id="node7" href="$lib_8buttons_8php.html#acb5b7a1897563c3ec9d2d03149862d00" title="lib_button_text" alt="" coords="615,230,721,260"/>
+<area shape="rect" id="node7" href="$lib_8buttons_8php.html#a248ceefceff04cb69a1032f6cfc1dad6" title="lib_buttons_text" alt="" coords="611,230,725,260"/>
 <area shape="rect" id="node10" href="$lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="809,230,927,260"/>
 <area shape="rect" id="node14" href="$lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="363,73,531,102"/>
 <area shape="rect" id="node18" href="$lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="361,126,532,156"/>

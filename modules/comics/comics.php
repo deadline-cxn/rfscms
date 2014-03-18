@@ -594,7 +594,7 @@ if($data->access==255){
     {
         $page=mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
 			
-			sc_comics_page_mini_preview($pid);
+			rfs_comics_page_mini_preview($pid);
         
         echo "<table border=\"0\"><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles(":X")."\n";
         echo "<br>WARNING:<br>The page will be completely removed are you sure?</center>\n";
@@ -609,7 +609,7 @@ if($data->access==255){
     {
         echo "<p>Deleting page $pid</p>";
         $page=mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
-        sc_comics_page_mini_preview($pid);
+        rfs_comics_page_mini_preview($pid);
         lib_mysql_query("delete from `comics_pages` where `pid`='$pid'");
         renumber_pages($page->parent);
         echo "<p>Page deleted...</p>";
@@ -665,7 +665,7 @@ if($data->access==255){
         for($i=0;$i<$npages;$i++) {
             $page=mysql_fetch_object($res);
             echo "<table border=0><tr><td class=contenttd>";
-            sc_comics_page_mini_preview($page->pid);
+            rfs_comics_page_mini_preview($page->pid);
             echo "</td><td class=contenttd>";
             echo "Page: $page->page<br>";
             $template=mysql_fetch_object(lib_mysql_query("select * from `comics_page_templates` where `id`='$page->template'"));

@@ -199,14 +199,14 @@ function wikitext($text) { eval(lib_rfs_get_globals());
 							
 							
 							$lstd=explode(",",$ila2[0]);
-							$outtext.=sc_togglediv_start_ne($lstd[1],$lstd[2],$lstd[3]);							
+							$outtext.=rfs_togglediv_start_ne($lstd[1],$lstd[2],$lstd[3]);							
 							$outtext.=$ila2[1];
 							
 							
 						}
 						if($fnc=="toggledivend") {
 							
-							$outtext.=sc_togglediv_end_ne();
+							$outtext.=rfs_togglediv_end_ne();
 							$outtext.="<br>";
 							$outtext.=$ila2[1];
 							

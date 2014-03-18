@@ -80,9 +80,9 @@
 <a name="l00002"></a>00002 <span class="comment">/* function shownewsarticle($nid,$gt)</span>
 <a name="l00003"></a>00003 <span class="comment"> {</span>
 <a name="l00004"></a>00004 <span class="comment">    $RFS_SITE_URL/modules/news=$GLOBALS[&#39;site_url&#39;];</span>
-<a name="l00005"></a>00005 <span class="comment">    $sc_table_top_mid_1=$GLOBALS[&#39;sc_table_top_mid_1&#39;];</span>
-<a name="l00006"></a>00006 <span class="comment">    $sc_table_bot_mid_1=$GLOBALS[&#39;sc_table_bot_mid_1&#39;];</span>
-<a name="l00007"></a>00007 <span class="comment">    $news=sc_getnewsdata($nid);</span>
+<a name="l00005"></a>00005 <span class="comment">    $rfs_table_top_mid_1=$GLOBALS[&#39;rfs_table_top_mid_1&#39;];</span>
+<a name="l00006"></a>00006 <span class="comment">    $rfs_table_bot_mid_1=$GLOBALS[&#39;rfs_table_bot_mid_1&#39;];</span>
+<a name="l00007"></a>00007 <span class="comment">    $news=rfs_getnewsdata($nid);</span>
 <a name="l00008"></a>00008 <span class="comment">    $userdata=getuserdata($news-&gt;submitter);</span>
 <a name="l00009"></a>00009 <span class="comment">    $thisemail=str_replace(&quot;@&quot;,&quot;$at&quot;,$userdata-&gt;email);</span>
 <a name="l00010"></a>00010 <span class="comment">    echo &quot;\n\n&lt;news top ******************************************* news top&gt;\n&quot;;</span>
@@ -120,7 +120,7 @@
 <a name="l00042"></a>00042 <span class="comment">    lib_users_avatar_code($userdata-&gt;name);</span>
 <a name="l00043"></a>00043 <span class="comment">    echo &quot;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&quot;;</span>
 <a name="l00044"></a>00044 <span class="comment">    echo &quot;&lt;table border=0 cellspacing=0 cellpadding=2 width=100%&gt;&lt;tr&gt;&lt;td  class=contenttd&gt;&quot;;</span>
-<a name="l00045"></a>00045 <span class="comment">    // echo sc_getcommentstats($news-&gt;headline,&quot;news&quot;,$nid);</span>
+<a name="l00045"></a>00045 <span class="comment">    // echo rfs_getcommentstats($news-&gt;headline,&quot;news&quot;,$nid);</span>
 <a name="l00046"></a>00046 <span class="comment">    echo &quot;&lt;/td&gt;&quot;;</span>
 <a name="l00047"></a>00047 <span class="comment">    echo &quot;&lt;td class=contenttd&gt;&quot;;</span>
 <a name="l00048"></a>00048 <span class="comment">    $data=$GLOBALS[&#39;data&#39;];</span>

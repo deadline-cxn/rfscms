@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8social_8php.html#ab320f7ab7ccbcea5a126eb4259e9e572" title="sc_tweet" alt="" coords="267,5,341,35"/>
-<area shape="rect" id="node5" href="$lib_8social_8php.html#a4c9c3fa8bfffa5f7e79782ff826b95d5" title="sc_facebook_like" alt="" coords="243,59,365,88"/>
-<area shape="rect" id="node7" href="$lib_8social_8php.html#a016b2e0bb5704cb0b723611f9652009f" title="sc_google_plus" alt="" coords="248,112,360,141"/>
+<area shape="rect" id="node3" href="$lib_8social_8php.html#ac4ccd6a00a63ad47b744c0bbf2ae8127" title="lib_social_tweet" alt="" coords="247,5,361,35"/>
+<area shape="rect" id="node5" href="$lib_8social_8php.html#a1e5bed330b3430d5b25aa22224205242" title="lib_social_facebook_like" alt="" coords="223,59,385,88"/>
+<area shape="rect" id="node7" href="$lib_8social_8php.html#a1849b4faa96a05e77170c6f1026cf947" title="lib_social_google_plus" alt="" coords="228,112,380,141"/>
 <area shape="rect" id="node9" href="$lib_8social_8php.html#a9aae5bcd7eeb29c860d8f2aee5d57c68" title="lib_social_stumble_upon_badge" alt="" coords="201,165,407,195"/>
 </map>

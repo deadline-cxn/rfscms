@@ -80,9 +80,9 @@
 <a name="l00005"></a><a class="code" href="videos_8php.html#a992c066f6f4995125193c8b90f3eeebd">00005</a> <span class="keyword">function</span> <a class="code" href="videos_8php.html#a992c066f6f4995125193c8b90f3eeebd">videos_buttons</a>() {
 <a name="l00006"></a>00006     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>()); 
 <a name="l00007"></a>00007     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00008"></a>00008     <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/videos/videos.php?action=random&quot;</span>,<span class="stringliteral">&quot;Random Video&quot;</span>);
+<a name="l00008"></a>00008     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/videos/videos.php?action=random&quot;</span>,<span class="stringliteral">&quot;Random Video&quot;</span>);
 <a name="l00009"></a>00009     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;videos&quot;</span>,<span class="stringliteral">&quot;submit&quot;</span>))
-<a name="l00010"></a>00010         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/videos/videos.php?action=submitvid&quot;</span>,<span class="stringliteral">&quot;Submit Video&quot;</span>);
+<a name="l00010"></a>00010         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/videos/videos.php?action=submitvid&quot;</span>,<span class="stringliteral">&quot;Submit Video&quot;</span>);
 <a name="l00011"></a>00011     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
 <a name="l00012"></a>00012 }
 <a name="l00013"></a><a class="code" href="videos_8php.html#a86bcd28017efc225b7999d65dd1af5a3">00013</a> <span class="keyword">function</span> <a class="code" href="videos_8php.html#a86bcd28017efc225b7999d65dd1af5a3">videos_pagefinish</a>(){
@@ -330,8 +330,8 @@
 <a name="l00255"></a>00255     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
 <a name="l00256"></a>00256     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;    
 <a name="l00257"></a>00257     echo $linkprev;
-<a name="l00258"></a>00258     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;videos&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>))   <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&amp;id=$video-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
-<a name="l00259"></a>00259     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;videos&quot;</span>,<span class="stringliteral">&quot;delete&quot;</span>)) <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&amp;id=$video-&gt;id&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
+<a name="l00258"></a>00258     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;videos&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>))   <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/videos/videos.php?action=modifyvideo&amp;id=$video-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
+<a name="l00259"></a>00259     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;videos&quot;</span>,<span class="stringliteral">&quot;delete&quot;</span>)) <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/videos/videos.php?action=removevideo&amp;id=$video-&gt;id&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
 <a name="l00260"></a>00260     echo $linknext;
 <a name="l00261"></a>00261     echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
 <a name="l00262"></a>00262     <a class="code" href="videos_8php.html#abda8f4c2c82c04a859b2a9b3eaac7157">videos_action_viewcat</a>($video-&gt;category);
@@ -438,7 +438,7 @@
     <ul>
       <li class="navelem"><a class="el" href="videos_8php.html">videos.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

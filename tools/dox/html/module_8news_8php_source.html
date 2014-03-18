@@ -80,7 +80,7 @@
 <a name="l00005"></a>00005 <span class="comment"></span><span class="comment">// MODULE NEWS</span>
 <a name="l00006"></a><a class="code" href="module_8news_8php.html#a49e9d5381b94dc01caed1b81670ca2fa">00006</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a49e9d5381b94dc01caed1b81670ca2fa">news_buttons</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00007"></a>00007     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;news&quot;</span>,<span class="stringliteral">&quot;submit&quot;</span>)) {
-<a name="l00008"></a>00008         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/news/news.php?showform=yes&quot;</span>,<span class="stringliteral">&quot;Submit News&quot;</span>);
+<a name="l00008"></a>00008         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/news/news.php?showform=yes&quot;</span>,<span class="stringliteral">&quot;Submit News&quot;</span>);
 <a name="l00009"></a>00009     }
 <a name="l00010"></a>00010 }
 <a name="l00011"></a>00011 
@@ -93,12 +93,12 @@
 <a name="l00018"></a><a class="code" href="module_8news_8php.html#afec2d86b71579125669c943c7063f3f8">00018</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#afec2d86b71579125669c943c7063f3f8">module_news_list</a>($x) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00019"></a>00019     lib_div(<span class="stringliteral">&quot;NEWS MODULE SECTION&quot;</span>);
 <a name="l00020"></a>00020     echo <span class="stringliteral">&quot;&lt;h2&gt;Last $x News Articles&lt;/h2&gt;&quot;</span>;
-<a name="l00021"></a>00021     $newslist=<a class="code" href="module_8news_8php.html#a9f987f3164576c348824b4612dc991bf">sc_getnewslist</a>($newssearch);
+<a name="l00021"></a>00021     $newslist=<a class="code" href="module_8news_8php.html#a6b10943d7e2c0115139f6be21e4f0448">rfs_getnewslist</a>($newssearch);
 <a name="l00022"></a>00022     echo <span class="stringliteral">&quot;&lt;table border=0 cellspacing=0&gt;&quot;</span>;
 <a name="l00023"></a>00023     $ct=count($newslist); <span class="keywordflow">if</span>($ct&gt;$x) $ct=$x;
 <a name="l00024"></a>00024     <span class="keywordflow">for</span>($cci=0;$cci&lt;$ct;$cci++){
 <a name="l00025"></a>00025         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=contenttd width=2% &gt;&quot;</span>;
-<a name="l00026"></a>00026         $news=<a class="code" href="module_8news_8php.html#a7debbf60eae49fedf20f0e3ba381b5fa">sc_getnewsdata</a>($newslist[$cci]);
+<a name="l00026"></a>00026         $news=<a class="code" href="module_8news_8php.html#a12518464cf83c0929e4056f7332ed668">rfs_getnewsdata</a>($newslist[$cci]);
 <a name="l00027"></a>00027         <span class="keywordflow">if</span>(!file_exists(<span class="stringliteral">&quot;$RFS_SITE_PATH/$news-&gt;image_url&quot;</span>))
 <a name="l00028"></a>00028             $news-&gt;image_url=<span class="stringliteral">&quot;$RFS_SITE_URL/images/icons/404.png&quot;</span>;
 <a name="l00029"></a>00029         <span class="keywordflow">if</span>(empty($news-&gt;image_url))
@@ -115,7 +115,7 @@
 <a name="l00040"></a>00040         $ntext=str_replace(<span class="stringliteral">&quot;&lt;p&gt;&quot;</span>,<span class="stringliteral">&quot; &quot;</span>,$ntext);
 <a name="l00041"></a>00041         $ntext=str_replace(<span class="stringliteral">&quot;&lt;/p&gt;&quot;</span>,<span class="stringliteral">&quot; &quot;</span>,$ntext);
 <a name="l00042"></a>00042         $ntext=str_replace(<span class="stringliteral">&quot;&lt;&quot;</span>,<span class="stringliteral">&quot;&amp;lt;&quot;</span>,$ntext);
-<a name="l00043"></a>00043         echo <span class="stringliteral">&quot;&lt;font class=sc_black&gt;$ntext&lt;/font&gt;&quot;</span>;
+<a name="l00043"></a>00043         echo <span class="stringliteral">&quot;&lt;font class=rfs_black&gt;$ntext&lt;/font&gt;&quot;</span>;
 <a name="l00044"></a>00044         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&quot;</span>;
 <a name="l00045"></a>00045     }
 <a name="l00046"></a>00046     echo <span class="stringliteral">&quot;&lt;/table&gt;&quot;</span>;
@@ -150,36 +150,36 @@
 <a name="l00075"></a>00075         $ntext=str_replace(<span class="stringliteral">&quot;&lt;/body&gt;&quot;</span>,<span class="stringliteral">&quot;&lt;nobody&gt;&quot;</span>,$ntext);
 <a name="l00076"></a>00076         $ntext=str_replace(<span class="stringliteral">&quot;&lt;p&gt;&quot;</span>,<span class="stringliteral">&quot; &quot;</span>,$ntext);
 <a name="l00077"></a>00077         $ntext=str_replace(<span class="stringliteral">&quot;&lt;/p&gt;&quot;</span>,<span class="stringliteral">&quot; &quot;</span>,$ntext);
-<a name="l00078"></a>00078         echo <span class="stringliteral">&quot;&lt;font class=sc_black&gt;$ntext&lt;/font&gt;&quot;</span>;
+<a name="l00078"></a>00078         echo <span class="stringliteral">&quot;&lt;font class=rfs_black&gt;$ntext&lt;/font&gt;&quot;</span>;
 <a name="l00079"></a>00079         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&quot;</span>;
 <a name="l00080"></a>00080     }
 <a name="l00081"></a>00081     echo <span class="stringliteral">&quot;&lt;/table&gt;&quot;</span>;
 <a name="l00082"></a>00082 }
 <a name="l00083"></a><a class="code" href="module_8news_8php.html#a965caa6a205118bc46830ab6c28f657f">00083</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a965caa6a205118bc46830ab6c28f657f">module_news_top_story</a>() {
-<a name="l00084"></a>00084     <a class="code" href="module_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1">sc_show_top_news</a>();
+<a name="l00084"></a>00084     <a class="code" href="module_8news_8php.html#a1b535fb28626af95329f8b4c550901bc">rfs_show_top_news</a>();
 <a name="l00085"></a>00085 }
 <a name="l00086"></a><a class="code" href="module_8news_8php.html#a8be7be5f89c1a6434b080695f7361478">00086</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a8be7be5f89c1a6434b080695f7361478">module_news_blog_style</a>($x) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
-<a name="l00087"></a>00087     <a class="code" href="module_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1">sc_show_top_news</a>();
-<a name="l00088"></a>00088     $newslist=<a class="code" href="module_8news_8php.html#a9f987f3164576c348824b4612dc991bf">sc_getnewslist</a>(<span class="stringliteral">&quot;&quot;</span>); $ct=count($newslist); <span class="keywordflow">if</span>($ct&gt;$x) $ct=$x;
+<a name="l00087"></a>00087     <a class="code" href="module_8news_8php.html#a1b535fb28626af95329f8b4c550901bc">rfs_show_top_news</a>();
+<a name="l00088"></a>00088     $newslist=<a class="code" href="module_8news_8php.html#a6b10943d7e2c0115139f6be21e4f0448">rfs_getnewslist</a>(<span class="stringliteral">&quot;&quot;</span>); $ct=count($newslist); <span class="keywordflow">if</span>($ct&gt;$x) $ct=$x;
 <a name="l00089"></a>00089     echo <span class="stringliteral">&quot;Older news...&lt;br&gt;&quot;</span>;
 <a name="l00090"></a>00090     <span class="keywordflow">for</span>($cci=0;$cci&lt;$ct;$cci++) {
-<a name="l00091"></a>00091         $news=<a class="code" href="module_8news_8php.html#a7debbf60eae49fedf20f0e3ba381b5fa">sc_getnewsdata</a>($newslist[$cci]);
-<a name="l00092"></a>00092         <a class="code" href="module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257">sc_show_news</a>($news-&gt;id);
+<a name="l00091"></a>00091         $news=<a class="code" href="module_8news_8php.html#a12518464cf83c0929e4056f7332ed668">rfs_getnewsdata</a>($newslist[$cci]);
+<a name="l00092"></a>00092         <a class="code" href="module_8news_8php.html#a2fe2c4043050b244e321126bcadc6014">rfs_show_news</a>($news-&gt;id);
 <a name="l00093"></a>00093     }
 <a name="l00094"></a>00094 }
 <a name="l00095"></a>00095 
-<a name="l00096"></a><a class="code" href="module_8news_8php.html#a1bc659b1e959e90b692cf1281caba247">00096</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a1bc659b1e959e90b692cf1281caba247">sc_getnewstopstory</a>(){
+<a name="l00096"></a><a class="code" href="module_8news_8php.html#a82481a23e1d766b3a8beb52ae6f1168f">00096</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a82481a23e1d766b3a8beb52ae6f1168f">rfs_getnewstopstory</a>(){
 <a name="l00097"></a>00097     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from news where topstory=&#39;yes&#39; and published=&#39;yes&#39;&quot;</span>);
 <a name="l00098"></a>00098     $news=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00099"></a>00099     <span class="keywordflow">return</span> $news;
 <a name="l00100"></a>00100 }
-<a name="l00101"></a><a class="code" href="module_8news_8php.html#a7debbf60eae49fedf20f0e3ba381b5fa">00101</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a7debbf60eae49fedf20f0e3ba381b5fa">sc_getnewsdata</a>($news){
+<a name="l00101"></a><a class="code" href="module_8news_8php.html#a12518464cf83c0929e4056f7332ed668">00101</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a12518464cf83c0929e4056f7332ed668">rfs_getnewsdata</a>($news){
 <a name="l00102"></a>00102     $query=<span class="stringliteral">&quot;select * from news where id = &#39;$news&#39;&quot;</span>;
 <a name="l00103"></a>00103     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>($query);
 <a name="l00104"></a>00104     <span class="keywordflow">if</span>(mysql_num_rows(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>) &gt;0 ) $news = mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00105"></a>00105     <span class="keywordflow">return</span> $news;
 <a name="l00106"></a>00106 }
-<a name="l00107"></a><a class="code" href="module_8news_8php.html#a9f987f3164576c348824b4612dc991bf">00107</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a9f987f3164576c348824b4612dc991bf">sc_getnewslist</a>($newssearch) {
+<a name="l00107"></a><a class="code" href="module_8news_8php.html#a6b10943d7e2c0115139f6be21e4f0448">00107</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a6b10943d7e2c0115139f6be21e4f0448">rfs_getnewslist</a>($newssearch) {
 <a name="l00108"></a>00108     $newsbeg=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;top&#39;</span>];
 <a name="l00109"></a>00109     $newsend=<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;bot&#39;</span>];
 <a name="l00110"></a>00110     $query = <span class="stringliteral">&quot;select * from news where topstory!=&#39;yes&#39; and published=&#39;yes&#39; &quot;</span>;
@@ -196,21 +196,21 @@
 <a name="l00121"></a>00121     }
 <a name="l00122"></a>00122     <span class="keywordflow">return</span> $newslist;
 <a name="l00123"></a>00123 }
-<a name="l00124"></a><a class="code" href="module_8news_8php.html#ac19f19c24dbb5ffa4d46b00d63552d46">00124</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#ac19f19c24dbb5ffa4d46b00d63552d46">sc_get_news_headline</a>($id){
+<a name="l00124"></a><a class="code" href="module_8news_8php.html#ab8010c4d52932bf45f74dfe1455af9b5">00124</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#ab8010c4d52932bf45f74dfe1455af9b5">rfs_get_news_headline</a>($id){
 <a name="l00125"></a>00125     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from news where id=&#39;$id&#39;&quot;</span>);
 <a name="l00126"></a>00126     $news=@mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00127"></a>00127     <span class="keywordflow">return</span> $news-&gt;headline;
 <a name="l00128"></a>00128 }
-<a name="l00129"></a><a class="code" href="module_8news_8php.html#a32aa3b3efcc9caf4dc8a8909e2f1268f">00129</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a32aa3b3efcc9caf4dc8a8909e2f1268f">sc_get_top_news_id</a>(){
+<a name="l00129"></a><a class="code" href="module_8news_8php.html#a719987df3e33ede912ec1c2b19324aee">00129</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a719987df3e33ede912ec1c2b19324aee">rfs_get_top_news_id</a>(){
 <a name="l00130"></a>00130     <a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from news where topstory=&#39;yes&#39; and published=&#39;yes&#39;&quot;</span>);
 <a name="l00131"></a>00131     $news=@mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00132"></a>00132     <span class="keywordflow">return</span> $news-&gt;id;
 <a name="l00133"></a>00133 }
-<a name="l00134"></a><a class="code" href="module_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1">00134</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1">sc_show_top_news</a>() {
+<a name="l00134"></a><a class="code" href="module_8news_8php.html#a1b535fb28626af95329f8b4c550901bc">00134</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a1b535fb28626af95329f8b4c550901bc">rfs_show_top_news</a>() {
 <a name="l00135"></a>00135     $news=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from news where topstory=&#39;yes&#39; and published=&#39;yes&#39;&quot;</span>);    
-<a name="l00136"></a>00136     <a class="code" href="module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257">sc_show_news</a>($news-&gt;id);
+<a name="l00136"></a>00136     <a class="code" href="module_8news_8php.html#a2fe2c4043050b244e321126bcadc6014">rfs_show_news</a>($news-&gt;id);
 <a name="l00137"></a>00137 }
-<a name="l00138"></a><a class="code" href="module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257">00138</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257">sc_show_news</a>($nid) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00138"></a><a class="code" href="module_8news_8php.html#a2fe2c4043050b244e321126bcadc6014">00138</a> <span class="keyword">function</span> <a class="code" href="module_8news_8php.html#a2fe2c4043050b244e321126bcadc6014">rfs_show_news</a>($nid) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00139"></a>00139     <span class="keywordflow">if</span>(empty($nid)) {
 <a name="l00140"></a>00140         
 <a name="l00141"></a>00141         <a class="code" href="module_8news_8php.html#a49e9d5381b94dc01caed1b81670ca2fa">news_buttons</a>();
@@ -265,7 +265,7 @@
 <a name="l00190"></a>00190     <a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>=<span class="stringliteral">&quot;$RFS_SITE_URL/modules/news/news.php?action=view&amp;nid=$nid&quot;</span>;   
 <a name="l00191"></a>00191     
 <a name="l00192"></a>00192     <span class="keywordflow">if</span>($RFS_SITE_FACEBOOK_NEWS_COMMENTS) 
-<a name="l00193"></a>00193         <a class="code" href="lib_8social_8php.html#aaec18af12951e8702113b20365c428b3">sc_facebook_comments</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>);
+<a name="l00193"></a>00193         <a class="code" href="lib_8social_8php.html#ae7709227f2d05691fead39753f0188cd">lib_social_facebook_comments</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>);
 <a name="l00194"></a>00194     
 <a name="l00195"></a>00195     echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
 <a name="l00196"></a>00196     
@@ -542,7 +542,7 @@
 <a name="l00467"></a>00467     }
 <a name="l00468"></a>00468     <span class="keywordflow">if</span>(empty(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;top&#39;</span>])) <a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;top&#39;</span>]=0;
 <a name="l00469"></a>00469     <span class="keywordflow">if</span>(empty(<a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;bot&#39;</span>])) <a class="code" href="config_8php.html#aad108a6abffdea835bc6cc2f3244751e">$GLOBALS</a>[<span class="stringliteral">&#39;bot&#39;</span>]=1500;
-<a name="l00470"></a>00470     $newslist=<a class="code" href="module_8news_8php.html#a9f987f3164576c348824b4612dc991bf">sc_getnewslist</a>($newssearch);
+<a name="l00470"></a>00470     $newslist=<a class="code" href="module_8news_8php.html#a6b10943d7e2c0115139f6be21e4f0448">rfs_getnewslist</a>($newssearch);
 <a name="l00471"></a>00471     
 <a name="l00472"></a>00472     <span class="comment">// search method dictate sort order?</span>
 <a name="l00473"></a>00473     
@@ -559,7 +559,7 @@
 <a name="l00484"></a>00484     }
 <a name="l00485"></a>00485     
 <a name="l00486"></a>00486     <span class="keywordflow">for</span>($i=0;$i&lt;count($newslist);$i++) {
-<a name="l00487"></a>00487         $news=<a class="code" href="module_8news_8php.html#a7debbf60eae49fedf20f0e3ba381b5fa">sc_getnewsdata</a>($newslist[$i]);
+<a name="l00487"></a>00487         $news=<a class="code" href="module_8news_8php.html#a12518464cf83c0929e4056f7332ed668">rfs_getnewsdata</a>($newslist[$i]);
 <a name="l00488"></a>00488         echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
 <a name="l00489"></a>00489         
 <a name="l00490"></a>00490     <span class="comment"></span>
@@ -613,7 +613,7 @@
     <ul>
       <li class="navelem"><a class="el" href="module_8news_8php.html">module.news.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

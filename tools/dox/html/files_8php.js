@@ -21,9 +21,8 @@ var files_8php =
     [ "files_action_search", "files_8php.html#a8270d6471085c0b68d20d4a27913b278", null ],
     [ "files_action_show_duplicates", "files_8php.html#a22a24260122fa395b53442dcdc518c0a", null ],
     [ "files_action_upload", "files_8php.html#abf356101a6b71ce5af379389ce9516a2", null ],
-    [ "files_action_upload_avatar", "files_8php.html#a9c30dea3632e5845bf264dff5bb22032", null ],
     [ "files_header", "files_8php.html#a2ce752f3be9da0d6c1fd20c085b3833e", null ],
     [ "$outvars", "files_8php.html#a599f6325fe6146820fd92d9bcd88af37", null ],
     [ "$RFS_LITTLE_HEADER", "files_8php.html#a0c464d3907e57952652e1a461af892ef", null ],
-    [ "if", "files_8php.html#aa251de83bdd8a8eeb1096e06631ed9ac", null ]
+    [ "if", "files_8php.html#a60e18cb2b20f04cf2e34a236e6edcfa8", null ]
 ];

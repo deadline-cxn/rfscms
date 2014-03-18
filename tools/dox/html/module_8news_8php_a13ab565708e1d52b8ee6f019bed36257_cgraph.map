@@ -8,7 +8,7 @@
 <area shape="rect" id="node54" href="$module_8wiki_8php.html#ae0a2597a7e38e1d239fe19ded5afe24e" title="wikiimg" alt="" coords="703,590,769,620"/>
 <area shape="rect" id="node60" href="$module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="224,537,291,566"/>
 <area shape="rect" id="node77" href="$lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8" title="lib_rfs_echo" alt="" coords="212,302,303,332"/>
-<area shape="rect" id="node80" href="$lib_8social_8php.html#aaec18af12951e8702113b20365c428b3" title="sc_facebook_comments" alt="" coords="176,878,339,908"/>
+<area shape="rect" id="node80" href="$lib_8social_8php.html#aaec18af12951e8702113b20365c428b3" title="rfs_facebook_comments" alt="" coords="176,878,339,908"/>
 <area shape="rect" id="node83" href="$lib_8social_8php.html#a6a14a606173ee099fbb37a8eb4d91e08" title="lib_social_share_bar2" alt="" coords="184,934,331,964"/>
 <area shape="rect" id="node24" href="$lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789" title="lib_button" alt="" coords="697,828,775,857"/>
 <area shape="rect" id="node10" href="$lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="884,250,1017,280"/>
@@ -28,10 +28,10 @@
 <area shape="rect" id="node65" href="$lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="416,457,587,486"/>
 <area shape="rect" id="node67" href="$lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="424,510,579,540"/>
 <area shape="rect" id="node69" href="$lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="469,724,533,753"/>
-<area shape="rect" id="node73" href="$lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="427,564,576,593"/>
-<area shape="rect" id="node75" href="$lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="429,617,573,646"/>
-<area shape="rect" id="node85" href="$lib_8social_8php.html#ab320f7ab7ccbcea5a126eb4259e9e572" title="sc_tweet" alt="" coords="464,1041,539,1070"/>
-<area shape="rect" id="node87" href="$lib_8social_8php.html#a4c9c3fa8bfffa5f7e79782ff826b95d5" title="sc_facebook_like" alt="" coords="440,881,563,910"/>
-<area shape="rect" id="node89" href="$lib_8social_8php.html#a016b2e0bb5704cb0b723611f9652009f" title="sc_google_plus" alt="" coords="445,934,557,964"/>
+<area shape="rect" id="node73" href="$lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="rfs_togglediv_start_ne" alt="" coords="427,564,576,593"/>
+<area shape="rect" id="node75" href="$lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="rfs_togglediv_end_ne" alt="" coords="429,617,573,646"/>
+<area shape="rect" id="node85" href="$lib_8social_8php.html#ab320f7ab7ccbcea5a126eb4259e9e572" title="rfs_tweet" alt="" coords="464,1041,539,1070"/>
+<area shape="rect" id="node87" href="$lib_8social_8php.html#a4c9c3fa8bfffa5f7e79782ff826b95d5" title="rfs_facebook_like" alt="" coords="440,881,563,910"/>
+<area shape="rect" id="node89" href="$lib_8social_8php.html#a016b2e0bb5704cb0b723611f9652009f" title="rfs_google_plus" alt="" coords="445,934,557,964"/>
 <area shape="rect" id="node91" href="$lib_8social_8php.html#a9aae5bcd7eeb29c860d8f2aee5d57c68" title="lib_social_stumble_upon_badge" alt="" coords="399,988,604,1017"/>
 </map>

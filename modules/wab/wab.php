@@ -28,12 +28,12 @@ $lnk= "$RFS_SITE_URL/modules/wab/wab.php?runapp=1";
 
 if($data->access==255) {
     if($_SESSION['hide_wab_admin_menu']!=true) {
-        echo "<table border=0 width=100%><tr><td align=left class=sc_project_table_0>";
+        echo "<table border=0 width=100%><tr><td align=left class=rfs_project_table_0>";
         echo "WAB Engine $wab_version ";
         echo "[<a href=$RFS_SITE_URL/modules/wab/wab.php?runapp=1&action=editapp&edapp=$runapp>edit this app</a>] ";
         echo "[<a href=$lnk>List all Apps</A>] ";
         echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=RFS+Website+Application+Builder\">What is this?</a>] ";
-        echo "</td><td align=left class=sc_project_table_0>";
+        echo "</td><td align=left class=rfs_project_table_0>";
         lib_forms_build(  lib_domain_phpself(),
                         "action=hide_wab_admin_menu".$RFS_SITE_DELIMITER.
                         "runapp=".lib_mysql_fetch_one_object("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`")->id.$RFS_SITE_DELIMITER.
@@ -102,9 +102,9 @@ function wab_engine_action_(){ eval(lib_rfs_get_globals());
     while($app=mysql_fetch_object($res)) {   
         if(!$app->hidden) {
             $gt++; if($gt>1) $gt=0;
-            echo "<tr><td class=sc_project_table_$gt>";		
+            echo "<tr><td class=rfs_project_table_$gt>";		
             echo "<a href=\"$RFS_SITE_URL/modules/wab/wab.php?runapp=$app->id\">$app->name</a> ";
-            echo "</td><td class=sc_project_table_$gt>";
+            echo "</td><td class=rfs_project_table_$gt>";
             if($data->access==255) {
                 if($_SESSION['hide_wab_admin_menu']!=true)
                     lib_forms_build(  lib_domain_phpself(),
@@ -116,8 +116,8 @@ function wab_engine_action_(){ eval(lib_rfs_get_globals());
         }
     }
     if($data->access==255){
-        echo "<tr><td class=sc_project_table_$gt></td>";
-        echo "<td class=sc_project_table_$gt>";        
+        echo "<tr><td class=rfs_project_table_$gt></td>";
+        echo "<td class=rfs_project_table_$gt>";        
 		if($_SESSION['hide_wab_admin_menu']==true){
 				lib_forms_build(  lib_domain_phpself(),"action=show_wab_admin_menu","", "", "", "", "", "", 20, "Show WAB Admin");
 		}                        

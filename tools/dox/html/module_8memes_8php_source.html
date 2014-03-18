@@ -88,14 +88,14 @@
 <a name="l00013"></a>00013         <a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
 <a name="l00014"></a>00014         <span class="keywordflow">if</span>(<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>) {
 <a name="l00015"></a>00015             echo <span class="stringliteral">&quot;&lt;div id=$m-&gt;id style=\&quot;float: left;\&quot;&gt;&quot;</span>;
-<a name="l00016"></a>00016             <a class="code" href="module_8memes_8php.html#a7cdf9f007c94c2b8159603c3a5e6e5bc">sc_show1minimeme</a>(<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>-&gt;id);
+<a name="l00016"></a>00016             <a class="code" href="module_8memes_8php.html#abddfd3b9d18c495cd12cef229bff8ae2">rfs_show1minimeme</a>(<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>-&gt;id);
 <a name="l00017"></a>00017             echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
 <a name="l00018"></a>00018         }
 <a name="l00019"></a>00019     }
 <a name="l00020"></a>00020     echo <span class="stringliteral">&quot;&lt;br style=&#39;clear: both;&#39;&gt;&quot;</span>; 
 <a name="l00021"></a>00021 }
 <a name="l00022"></a>00022 
-<a name="l00023"></a><a class="code" href="module_8memes_8php.html#aae6ab435815633f66df7cb706585020f">00023</a> <span class="keyword">function</span> <a class="code" href="module_8memes_8php.html#aae6ab435815633f66df7cb706585020f">sc_show1meme</a>($inmid) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00023"></a><a class="code" href="module_8memes_8php.html#ab20928f166c1d5de1cd06d53795c3af4">00023</a> <span class="keyword">function</span> <a class="code" href="module_8memes_8php.html#ab20928f166c1d5de1cd06d53795c3af4">rfs_show1meme</a>($inmid) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00024"></a>00024 
 <a name="l00025"></a>00025     <a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from meme where id=&#39;$inmid&#39;&quot;</span>);
 <a name="l00026"></a>00026     $t=<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>-&gt;name.<span class="stringliteral">&quot;-&quot;</span>.time();
@@ -113,20 +113,20 @@
 <a name="l00038"></a>00038     echo <span class="stringliteral">&quot;&lt;a href=&#39;$RFS_SITE_URL/modules/memes/memes.php?action=muv&amp;mid=$m-&gt;id&#39;&gt;&lt;img src=&#39;$RFS_SITE_URL/images/icons/thumbup.png&#39;   border=0 width=24&gt;&lt;/a&gt;&quot;</span>;
 <a name="l00039"></a>00039     echo <span class="stringliteral">&quot;&lt;a href=&#39;$RFS_SITE_URL/modules/memes/memes.php?action=mdv&amp;mid=$m-&gt;id&#39;&gt;&lt;img src=&#39;$RFS_SITE_URL/images/icons/thumbdown.png&#39; border=0 width=24&gt;&lt;/a&gt;&quot;</span>;
 <a name="l00040"></a>00040     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;    
-<a name="l00041"></a>00041     <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&amp;onlyshow=$m-&gt;name&quot;</span>,<span class="stringliteral">&quot;$m-&gt;name&quot;</span>);
-<a name="l00042"></a>00042     <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&amp;basepic=$m-&gt;basepic&amp;name=$m-&gt;name&quot;</span>,<span class="stringliteral">&quot;New Caption&quot;</span>);
+<a name="l00041"></a>00041     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&amp;onlyshow=$m-&gt;name&quot;</span>,<span class="stringliteral">&quot;$m-&gt;name&quot;</span>);
+<a name="l00042"></a>00042     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&amp;basepic=$m-&gt;basepic&amp;name=$m-&gt;name&quot;</span>,<span class="stringliteral">&quot;New Caption&quot;</span>);
 <a name="l00043"></a>00043     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
 <a name="l00044"></a>00044     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;memes&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>)) {
-<a name="l00045"></a>00045         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&amp;mid=$m-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
+<a name="l00045"></a>00045         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&amp;mid=$m-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
 <a name="l00046"></a>00046     }
 <a name="l00047"></a>00047     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;memes&quot;</span>,<span class="stringliteral">&quot;delete&quot;</span>)) {
-<a name="l00048"></a>00048         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=meme_delete&amp;mid=$m-&gt;id&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
+<a name="l00048"></a>00048         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=meme_delete&amp;mid=$m-&gt;id&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
 <a name="l00049"></a>00049         echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
 <a name="l00050"></a>00050     }
 <a name="l00051"></a>00051     echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
 <a name="l00052"></a>00052 }
 <a name="l00053"></a>00053 
-<a name="l00054"></a><a class="code" href="module_8memes_8php.html#a7cdf9f007c94c2b8159603c3a5e6e5bc">00054</a> <span class="keyword">function</span> <a class="code" href="module_8memes_8php.html#a7cdf9f007c94c2b8159603c3a5e6e5bc">sc_show1minimeme</a>($inmid) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00054"></a><a class="code" href="module_8memes_8php.html#abddfd3b9d18c495cd12cef229bff8ae2">00054</a> <span class="keyword">function</span> <a class="code" href="module_8memes_8php.html#abddfd3b9d18c495cd12cef229bff8ae2">rfs_show1minimeme</a>($inmid) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00055"></a>00055     <a class="code" href="memes_8php.html#a68275239561953622e8a0cbe1d88962b">$meme_fullsize</a>=512;
 <a name="l00056"></a>00056     <a class="code" href="memes_8php.html#a4f1246057441cf06b8f4c6bbf00e17c0">$meme_thumbwidth</a>=160;
 <a name="l00057"></a>00057     <a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from meme where id=&#39;$inmid&#39; and `status`=&#39;SAVED&#39;&quot;</span>);
@@ -152,7 +152,7 @@
     <ul>
       <li class="navelem"><a class="el" href="module_8memes_8php.html">module.memes.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

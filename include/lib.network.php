@@ -19,7 +19,7 @@ function echo_updown($x){
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_ping($ip){
+function rfs_ping($ip){
    exec("ping -c 1 -w 2 -i .2 $ip",$ippa);
 	$ipstat="up";
 	for($ig=0;$ig<count($ippa);$ig++) {
@@ -40,7 +40,7 @@ function ping($host, $port, $timeout) {
   return round((($tA - $tB) * 1000), 2)." ms";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_show_galaga_status(){
+function rfs_show_galaga_status(){
 echo "<font style='color: orange; background-color: black;'>INFO: galaga has reported in from ip address: ";
 $gal=file_get_contents("temp/galagaip.txt"); echo $gal;
 $b=explode(" ",$gal);
@@ -53,7 +53,7 @@ if($st=="down") echo "<font style='color: white; background-color: red;'>DOWN</f
 else            echo "<font style='color: white; background-color: green;'> UP $st</font>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-function sc_valid_ip($ip_addr){
+function rfs_valid_ip($ip_addr){
   //first of all the format of the ip address is matched
   if(preg_match("/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/",$ip_addr))
   {

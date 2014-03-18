@@ -20,7 +20,7 @@ function module_comics($x) { eval(lib_rfs_get_globals());
 
 $comic=mysql_fetch_object($res);
 $page=mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc limit 1"));
-sc_comics_mini_preview_link($page->pid,"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id");
+rfs_comics_mini_preview_link($page->pid,"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id");
 echo "<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id\">$comic->title vol. $comic->volume issue $comic->issue</a>";
 echo "</div>";
 
@@ -30,7 +30,7 @@ echo "</div>";
 }
 
 
-function sc_comics_mini_preview_link($id,$link){
+function rfs_comics_mini_preview_link($id,$link){
     $site_url=$GLOBALS['site_url'];
     $page=mysql_fetch_array(lib_mysql_query("select * from `comics_pages` where `pid`='$id'"));
     $tid=$page['template'];
@@ -58,7 +58,7 @@ function sc_comics_mini_preview_link($id,$link){
     echo "</td></tr></table>";
 }
 
-function sc_comics_page_mini_preview($id){
+function rfs_comics_page_mini_preview($id){
     $site_url=$GLOBALS['site_url'];
     $page=mysql_fetch_array(lib_mysql_query("select * from `comics_pages` where `pid`='$id'"));
     $tid=$page['template'];

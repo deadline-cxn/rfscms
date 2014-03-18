@@ -1,5 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8social__buttons_8php.html#abe94a6804db7fb9ac86fc65e5e93b527" title="sc_facebook_like_little" alt="" coords="181,5,336,35"/>
-<area shape="rect" id="node5" href="$lib_8social__buttons_8php.html#aabd2788a6f5c2d2667011641f09eeb51" title="sc_stumble_upon" alt="" coords="197,59,320,88"/>
-<area shape="rect" id="node7" href="$lib_8social__buttons_8php.html#a016b2e0bb5704cb0b723611f9652009f" title="sc_google_plus" alt="" coords="203,112,315,141"/>
+<area shape="rect" id="node3" href="$lib_8social__buttons_8php.html#abe94a6804db7fb9ac86fc65e5e93b527" title="rfs_facebook_like_little" alt="" coords="181,5,336,35"/>
+<area shape="rect" id="node5" href="$lib_8social__buttons_8php.html#aabd2788a6f5c2d2667011641f09eeb51" title="rfs_stumble_upon" alt="" coords="197,59,320,88"/>
+<area shape="rect" id="node7" href="$lib_8social__buttons_8php.html#a016b2e0bb5704cb0b723611f9652009f" title="rfs_google_plus" alt="" coords="203,112,315,141"/>
 </map>

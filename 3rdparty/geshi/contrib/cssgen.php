@@ -424,10 +424,10 @@ it includes most of the basic information.</p>';
     }
 
     $esc = get_var('escaped-chars');
-    $esc_selector = str_replace('{PART}', '.es0', $part_selector_1);
+    $erfs_selector = str_replace('{PART}', '.es0', $part_selector_1);
     if ( $esc != '' )
     {
-        $stylesheet .= "\n$esc_selector {{$esc}}";
+        $stylesheet .= "\n$erfs_selector {{$esc}}";
     }
 
     $brackets = get_var('brackets');

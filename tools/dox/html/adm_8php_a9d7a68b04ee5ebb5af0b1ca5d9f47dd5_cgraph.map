@@ -1,3 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="264,5,307,35"/>
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="643,5,773,35"/>
+<area shape="rect" id="node5" href="$lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17" title="lib_buttons_make_button" alt="" coords="265,57,431,87"/>
+<area shape="rect" id="node7" href="$lib_8buttons_8php.html#a248ceefceff04cb69a1032f6cfc1dad6" title="lib_buttons_text" alt="" coords="480,57,595,87"/>
+<area shape="rect" id="node10" href="$lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="649,59,767,88"/>
 </map>

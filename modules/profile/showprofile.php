@@ -18,7 +18,7 @@ echo "<img src=\"$RFS_SITE_URL/images/icons/sym_".$gen.".gif\" border=0 alt=\"$g
 
 if($userdata->show_contact_info=="yes") {
     
-    echo "<a href=\"".sc_getemailcode($userdata->email)."\"><font class=sc_email>$thisemail</font><img src=$RFS_SITE_URL/images/email2.gif border=0 alt=\"E-Mail\" height=16></a><br>\n";
+    echo "<a href=\"".rfs_getemailcode($userdata->email)."\"><font class=rfs_email>$thisemail</font><img src=$RFS_SITE_URL/images/email2.gif border=0 alt=\"E-Mail\" height=16></a><br>\n";
     echo "<a href=$userdata->webpage target=_blank><img src=$RFS_SITE_URL/images/wp.gif  border=0 alt=\"Visit this person's website!\" height=16></a><br>\n";
     echo "<a href=$userdata->webpage target=_blank>$userdata->webpage</a><br>";
     
@@ -56,7 +56,7 @@ echo "Personal Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$userdata->web
 echo "Favorite Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$userdata->website_fav\" target=\"_blank\">$userdata->website_fav</a><br>";
 }
 
-//echo "Awards: ".sc_getawards($userdata->name)."<br>\n";
+//echo "Awards: ".rfs_getawards($userdata->name)."<br>\n";
 
 echo "</tr></table>\n";
 

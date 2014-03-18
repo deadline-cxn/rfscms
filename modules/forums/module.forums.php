@@ -14,7 +14,7 @@ function module_forum_threads($x) { eval(lib_rfs_get_globals());
 	if($numposts) { $gt=1;
 		while($thread=mysql_fetch_object($result)) {
 				$gt++; if($gt>2) $gt=1;
-				echo "<tr><td class=\"sc_forum_table_$gt\">";				
+				echo "<tr><td class=\"rfs_forum_table_$gt\">";				
 				$lastreply=lib_mysql_fetch_one_object("	select * from `forum_posts` where `thread` = '$thread->thread' order by time desc limit 1");
 				echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$thread->thread&forum_which=$thread->forum#$lastreply->id\">";
 				echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 >";

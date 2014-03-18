@@ -44,9 +44,9 @@ define('redirect_message',
  * it does.
  */
 function link_render($url, $text=null) {
-    $esc_url = htmlspecialchars($url, ENT_QUOTES);
-    $text = ($text === null) ? $esc_url : $text;
-    return sprintf('<a href="%s">%s</a>', $esc_url, $text);
+    $erfs_url = htmlspecialchars($url, ENT_QUOTES);
+    $text = ($text === null) ? $erfs_url : $text;
+    return sprintf('<a href="%s">%s</a>', $erfs_url, $text);
 }
 
 /**

@@ -1,9 +1,9 @@
 var lib_8buttons_8php =
 [
-    [ "lib_button", "lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789", null ],
-    [ "lib_button_image", "lib_8buttons_8php.html#a8674aee8189ab5f9289bbf95bfcb7734", null ],
-    [ "lib_button_image_sizeable", "lib_8buttons_8php.html#a1d9732d30dcf85752f02efae7ef08381", null ],
-    [ "lib_button_text", "lib_8buttons_8php.html#acb5b7a1897563c3ec9d2d03149862d00", null ],
-    [ "lib_button_warn", "lib_8buttons_8php.html#ada616963d967171e16d33497f1103638", null ],
-    [ "lib_button_width_text", "lib_8buttons_8php.html#ada94729d9f0f9a411b10b0a653f97f8f", null ]
+    [ "lib_buttons_image", "lib_8buttons_8php.html#af41afbb5326afb42da630c62cec92cab", null ],
+    [ "lib_buttons_image_sizeable", "lib_8buttons_8php.html#a865350c36d4ae0da2c9ba9919951fab9", null ],
+    [ "lib_buttons_make_button", "lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17", null ],
+    [ "lib_buttons_text", "lib_8buttons_8php.html#a248ceefceff04cb69a1032f6cfc1dad6", null ],
+    [ "lib_buttons_warn", "lib_8buttons_8php.html#ae0da63f155bb6eaf1dab630aa250a368", null ],
+    [ "lib_buttons_width_text", "lib_8buttons_8php.html#a7151319668b4d534792363c10a5ddcaa", null ]
 ];

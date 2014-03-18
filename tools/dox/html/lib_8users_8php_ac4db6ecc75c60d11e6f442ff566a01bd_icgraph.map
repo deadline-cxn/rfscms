@@ -1,16 +1,22 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="220,192,388,221"/>
-<area shape="rect" id="node5" href="$forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="460,112,607,141"/>
-<area shape="rect" id="node19" href="$forums_8php.html#a3295282c8b15e6078d2f970dc436ce3a" title="forums_action_delete_post_s" alt="" coords="437,165,629,195"/>
-<area shape="rect" id="node21" href="$lib_8forms_8php.html#a348d44386a8efb03802323d887094d75" title="lib_forms_question" alt="" coords="468,219,599,248"/>
-<area shape="rect" id="node23" href="$module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257" title="sc_show_news" alt="" coords="477,272,589,301"/>
-<area shape="rect" id="node7" href="$forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="679,112,849,141"/>
-<area shape="rect" id="node9" href="$forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="900,5,1100,35"/>
-<area shape="rect" id="node11" href="$forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551" title="forums_action_move_thread" alt="" coords="907,59,1093,88"/>
-<area shape="rect" id="node13" href="$forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce" title="forums_action_delete_reply" alt="" coords="909,112,1091,141"/>
-<area shape="rect" id="node15" href="$forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9" title="forums_action_edit_reply_go" alt="" coords="907,165,1093,195"/>
-<area shape="rect" id="node17" href="$forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="900,219,1100,248"/>
-<area shape="rect" id="node25" href="$module_8news_8php.html#a8be7be5f89c1a6434b080695f7361478" title="module_news_blog_style" alt="" coords="916,272,1084,301"/>
-<area shape="rect" id="node27" href="$module_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1" title="sc_show_top_news" alt="" coords="696,324,832,353"/>
-<area shape="rect" id="node29" href="$module_8news_8php.html#a965caa6a205118bc46830ab6c28f657f" title="module_news_top_story" alt="" coords="919,325,1081,355"/>
+<area shape="rect" id="node3" href="$adm_8php.html#ae61c9a0b2524c9e3f584d50a6504fb71" title="adm_action_user_edit" alt="" coords="229,85,379,115"/>
+<area shape="rect" id="node11" href="$lib_8string_8php.html#af48e91d82b79c1c69f3859cd4b618707" title="lib_string_convert_smiles" alt="" coords="220,272,388,301"/>
+<area shape="rect" id="node5" href="$adm_8php.html#aaacf1c4d21f907b2c19ab04502cfcd05" title="adm_action_f_edit_users_go" alt="" coords="461,5,648,35"/>
+<area shape="rect" id="node7" href="$adm_8php.html#a6f2f72ad11309918eebcbbdc9c92bfa0" title="adm_action_f_del_users_go" alt="" coords="463,59,647,88"/>
+<area shape="rect" id="node9" href="$adm_8php.html#a81986b0289c7ac7584512e6555a64831" title="adm_action_f_add_user" alt="" coords="475,112,635,141"/>
+<area shape="rect" id="node13" href="$adm_8php.html#a8ca9c7209f4167ca0fda4e5f55eadb8c" title="adm_action_f_admin_menu_edit_del" alt="" coords="439,165,671,195"/>
+<area shape="rect" id="node15" href="$adm_8php.html#a470a8c463d79190417419433e848a6da" title="adm_action_f_del_users" alt="" coords="473,219,636,248"/>
+<area shape="rect" id="node17" href="$forums_8php.html#aa93eeced10eacc6b647c1b4e78364464" title="forums_get_message" alt="" coords="481,272,628,301"/>
+<area shape="rect" id="node31" href="$forums_8php.html#a3295282c8b15e6078d2f970dc436ce3a" title="forums_action_delete_post_s" alt="" coords="459,325,651,355"/>
+<area shape="rect" id="node33" href="$lib_8forms_8php.html#a348d44386a8efb03802323d887094d75" title="lib_forms_question" alt="" coords="489,379,620,408"/>
+<area shape="rect" id="node35" href="$module_8news_8php.html#a2fe2c4043050b244e321126bcadc6014" title="rfs_show_news" alt="" coords="499,432,611,461"/>
+<area shape="rect" id="node19" href="$forums_8php.html#adf5c1f56475c06fd39e098d3367438f9" title="forums_action_get_thread" alt="" coords="721,272,892,301"/>
+<area shape="rect" id="node21" href="$forums_8php.html#aa8ada007e79d0b120803aa9e2c809648" title="forums_action_start_thread_go" alt="" coords="943,165,1143,195"/>
+<area shape="rect" id="node23" href="$forums_8php.html#a5daa316c12c9bcf99c4204e8b339c551" title="forums_action_move_thread" alt="" coords="949,219,1136,248"/>
+<area shape="rect" id="node25" href="$forums_8php.html#a2a25a5d312840679729a85a6ee0d80ce" title="forums_action_delete_reply" alt="" coords="952,272,1133,301"/>
+<area shape="rect" id="node27" href="$forums_8php.html#aec29ea6e894609f44c1f9c3e2f048df9" title="forums_action_edit_reply_go" alt="" coords="949,325,1136,355"/>
+<area shape="rect" id="node29" href="$forums_8php.html#ab32eb279f361a115e580e3cedffdc6bb" title="forums_action_reply_to_thread" alt="" coords="943,379,1143,408"/>
+<area shape="rect" id="node37" href="$module_8news_8php.html#a8be7be5f89c1a6434b080695f7361478" title="module_news_blog_style" alt="" coords="959,432,1127,461"/>
+<area shape="rect" id="node39" href="$module_8news_8php.html#a1b535fb28626af95329f8b4c550901bc" title="rfs_show_top_news" alt="" coords="737,484,876,513"/>
+<area shape="rect" id="node41" href="$module_8news_8php.html#a965caa6a205118bc46830ab6c28f657f" title="module_news_top_story" alt="" coords="961,485,1124,515"/>
 </map>

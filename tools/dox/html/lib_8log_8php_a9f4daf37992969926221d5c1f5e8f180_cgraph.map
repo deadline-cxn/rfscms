@@ -1,13 +1,13 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8domain_8php.html#a86ba66dfb94dd609c457f7b598d8e55f" title="sc_getdomain" alt="" coords="145,5,247,35"/>
-<area shape="rect" id="node5" href="$lib_8log_8php.html#a85306751b884541d0eff4186e78730fa" title="sc_log" alt="" coords="320,84,379,113"/>
-<area shape="rect" id="node9" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="312,240,387,269"/>
-<area shape="rect" id="node17" href="$lib_8domain_8php.html#a4abedc672132b8d26c548c31c5e0609f" title="sc_banned_ref" alt="" coords="143,213,249,243"/>
-<area shape="rect" id="node20" href="$lib_8domain_8php.html#a929f3fafa63593e2ececbac976371c15" title="sc_banned_ip" alt="" coords="145,267,247,296"/>
-<area shape="rect" id="node23" href="$lib_8domain_8php.html#ae20ebb6ae33c9172ff26e9b114ed7091" title="sc_banned_domain" alt="" coords="129,320,263,349"/>
-<area shape="rect" id="node26" href="$lib_8log_8php.html#ab64176170f6440db761530df5b29ed4b" title="sc_kill" alt="" coords="167,109,225,139"/>
+<area shape="rect" id="node3" href="$lib_8domain_8php.html#a86ba66dfb94dd609c457f7b598d8e55f" title="rfs_getdomain" alt="" coords="145,5,247,35"/>
+<area shape="rect" id="node5" href="$lib_8log_8php.html#a85306751b884541d0eff4186e78730fa" title="rfs_log" alt="" coords="320,84,379,113"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="rfs_query" alt="" coords="312,240,387,269"/>
+<area shape="rect" id="node17" href="$lib_8domain_8php.html#a4abedc672132b8d26c548c31c5e0609f" title="rfs_banned_ref" alt="" coords="143,213,249,243"/>
+<area shape="rect" id="node20" href="$lib_8domain_8php.html#a929f3fafa63593e2ececbac976371c15" title="rfs_banned_ip" alt="" coords="145,267,247,296"/>
+<area shape="rect" id="node23" href="$lib_8domain_8php.html#ae20ebb6ae33c9172ff26e9b114ed7091" title="rfs_banned_domain" alt="" coords="129,320,263,349"/>
+<area shape="rect" id="node26" href="$lib_8log_8php.html#ab64176170f6440db761530df5b29ed4b" title="rfs_kill" alt="" coords="167,109,225,139"/>
 <area shape="rect" id="node7" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="477,84,520,113"/>
-<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="435,213,563,243"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="rfs_query_user_db" alt="" coords="435,213,563,243"/>
 <area shape="rect" id="node15" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="477,267,520,296"/>
-<area shape="rect" id="node13" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="612,213,743,243"/>
+<area shape="rect" id="node13" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="rfs_query_other_db" alt="" coords="612,213,743,243"/>
 </map>

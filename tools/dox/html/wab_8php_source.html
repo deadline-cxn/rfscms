@@ -103,12 +103,12 @@
 <a name="l00028"></a>00028 
 <a name="l00029"></a><a class="code" href="wab_8php.html#ad01f67a91735ee57a36fe991a83e950a">00029</a> <span class="keywordflow">if</span>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;access==255) {
 <a name="l00030"></a>00030     <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;hide_wab_admin_menu&#39;</span>]!=<span class="keyword">true</span>) {
-<a name="l00031"></a>00031         echo <span class="stringliteral">&quot;&lt;table border=0 width=100%&gt;&lt;tr&gt;&lt;td align=left class=sc_project_table_0&gt;&quot;</span>;
+<a name="l00031"></a>00031         echo <span class="stringliteral">&quot;&lt;table border=0 width=100%&gt;&lt;tr&gt;&lt;td align=left class=rfs_project_table_0&gt;&quot;</span>;
 <a name="l00032"></a>00032         echo <span class="stringliteral">&quot;WAB Engine $wab_version &quot;</span>;
 <a name="l00033"></a>00033         echo <span class="stringliteral">&quot;[&lt;a href=$RFS_SITE_URL/modules/wab/wab.php?runapp=1&amp;action=editapp&amp;edapp=$runapp&gt;edit this app&lt;/a&gt;] &quot;</span>;
 <a name="l00034"></a>00034         echo <span class="stringliteral">&quot;[&lt;a href=$lnk&gt;List all Apps&lt;/A&gt;] &quot;</span>;
 <a name="l00035"></a>00035         echo <span class="stringliteral">&quot;[&lt;a href=\&quot;$RFS_SITE_URL/modules/wiki/rfswiki.php?name=RFS+Website+Application+Builder\&quot;&gt;What is this?&lt;/a&gt;] &quot;</span>;
-<a name="l00036"></a>00036         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;td align=left class=sc_project_table_0&gt;&quot;</span>;
+<a name="l00036"></a>00036         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;td align=left class=rfs_project_table_0&gt;&quot;</span>;
 <a name="l00037"></a>00037         <a class="code" href="lib_8forms_8php.html#a1490fdf9f61cae1f1ffebc9f3aaad0eb">lib_forms_build</a>(  <a class="code" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12">lib_domain_phpself</a>(),
 <a name="l00038"></a>00038                         <span class="stringliteral">&quot;action=hide_wab_admin_menu&quot;</span>.<a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>.
 <a name="l00039"></a>00039                         <span class="stringliteral">&quot;runapp=&quot;</span>.lib_mysql_fetch_one_object(<span class="stringliteral">&quot;select * from `wab_engine` where `name`=&#39;wab_engine&#39; and `parent`=`id`&quot;</span>)-&gt;id.$RFS_SITE_DELIMITER.
@@ -177,9 +177,9 @@
 <a name="l00102"></a>00102     <span class="keywordflow">while</span>($app=mysql_fetch_object(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>)) {   
 <a name="l00103"></a>00103         <span class="keywordflow">if</span>(!$app-&gt;hidden) {
 <a name="l00104"></a>00104             <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++; <span class="keywordflow">if</span>(<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;1) <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=0;
-<a name="l00105"></a>00105             echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;     
+<a name="l00105"></a>00105             echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;        
 <a name="l00106"></a>00106             echo <span class="stringliteral">&quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/wab/wab.php?runapp=$app-&gt;id\&quot;&gt;$app-&gt;name&lt;/a&gt; &quot;</span>;
-<a name="l00107"></a>00107             echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00107"></a>00107             echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00108"></a>00108             <span class="keywordflow">if</span>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;access==255) {
 <a name="l00109"></a>00109                 <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;hide_wab_admin_menu&#39;</span>]!=<span class="keyword">true</span>)
 <a name="l00110"></a>00110                     <a class="code" href="lib_8forms_8php.html#a1490fdf9f61cae1f1ffebc9f3aaad0eb">lib_forms_build</a>(  <a class="code" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12">lib_domain_phpself</a>(),
@@ -191,8 +191,8 @@
 <a name="l00116"></a>00116         }
 <a name="l00117"></a>00117     }
 <a name="l00118"></a>00118     <span class="keywordflow">if</span>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;access==255){
-<a name="l00119"></a>00119         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=sc_project_table_$gt&gt;&lt;/td&gt;&quot;</span>;
-<a name="l00120"></a>00120         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;        
+<a name="l00119"></a>00119         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=rfs_project_table_$gt&gt;&lt;/td&gt;&quot;</span>;
+<a name="l00120"></a>00120         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;        
 <a name="l00121"></a>00121         <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;hide_wab_admin_menu&#39;</span>]==<span class="keyword">true</span>){
 <a name="l00122"></a>00122                 <a class="code" href="lib_8forms_8php.html#a1490fdf9f61cae1f1ffebc9f3aaad0eb">lib_forms_build</a>(  <a class="code" href="lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12">lib_domain_phpself</a>(),<span class="stringliteral">&quot;action=show_wab_admin_menu&quot;</span>,<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>, 20, <span class="stringliteral">&quot;Show WAB Admin&quot;</span>);
 <a name="l00123"></a>00123         }                        
@@ -412,7 +412,7 @@
     <ul>
       <li class="navelem"><a class="el" href="wab_8php.html">wab.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

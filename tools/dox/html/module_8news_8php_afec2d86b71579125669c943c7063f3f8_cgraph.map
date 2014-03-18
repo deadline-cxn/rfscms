@@ -1,7 +1,7 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="181,5,312,35"/>
-<area shape="rect" id="node5" href="$module_8news_8php.html#a9f987f3164576c348824b4612dc991bf" title="sc_getnewslist" alt="" coords="192,59,301,88"/>
-<area shape="rect" id="node15" href="$module_8news_8php.html#a7debbf60eae49fedf20f0e3ba381b5fa" title="sc_getnewsdata" alt="" coords="188,112,305,141"/>
+<area shape="rect" id="node5" href="$module_8news_8php.html#a6b10943d7e2c0115139f6be21e4f0448" title="rfs_getnewslist" alt="" coords="192,59,301,88"/>
+<area shape="rect" id="node15" href="$module_8news_8php.html#a12518464cf83c0929e4056f7332ed668" title="rfs_getnewsdata" alt="" coords="188,112,305,141"/>
 <area shape="rect" id="node7" href="$lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="361,85,476,115"/>
 <area shape="rect" id="node9" href="$lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="528,59,696,88"/>
 <area shape="rect" id="node13" href="$lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="527,112,697,141"/>

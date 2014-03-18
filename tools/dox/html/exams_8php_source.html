@@ -290,18 +290,18 @@
 <a name="l00215"></a>00215             $exam=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
 <a name="l00216"></a>00216             echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
 <a name="l00217"></a>00217             
-<a name="l00218"></a>00218             echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;         
+<a name="l00218"></a>00218             echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;            
 <a name="l00219"></a>00219             echo <span class="stringliteral">&quot;&lt;a href=&#39;$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&amp;exam_id=$exam-&gt;id&#39;&gt;</span>
 <a name="l00220"></a>00220 <span class="stringliteral">            &lt;img src=&#39;$RFS_SITE_URL/images/icons/Play.png&#39; width=16 border=0&gt;&lt;/a&gt;</span>
 <a name="l00221"></a>00221 <span class="stringliteral">            &lt;/td&gt;&quot;</span>;
 <a name="l00222"></a>00222             
-<a name="l00223"></a>00223             echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00223"></a>00223             echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00224"></a>00224             
 <a name="l00225"></a>00225             echo <span class="stringliteral">&quot;&lt;a href=&#39;$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&amp;exam_id=$exam-&gt;id&#39;&gt;$exam-&gt;name&lt;/a&gt;&quot;</span>;
 <a name="l00226"></a>00226             
 <a name="l00227"></a>00227             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00228"></a>00228             
-<a name="l00229"></a>00229             echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00229"></a>00229             echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00230"></a>00230             echo <a class="code" href="module_8exams_8php.html#a346cbfcaf6d4eac8d9eeb85657ac9c45">exams_get_total_questions_answered</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name,$exam-&gt;id);
 <a name="l00231"></a>00231             
 <a name="l00232"></a>00232             echo <span class="stringliteral">&quot; ( &quot;</span>.exams_get_completed_prct(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name,$exam-&gt;id).<span class="stringliteral">&quot;% )&quot;</span>;
@@ -309,7 +309,7 @@
 <a name="l00234"></a>00234             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00235"></a>00235             
 <a name="l00236"></a>00236             
-<a name="l00237"></a>00237             echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00237"></a>00237             echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00238"></a>00238             $eprct=<a class="code" href="module_8exams_8php.html#a9806992330b13f93930b7d77043f6af6">exams_get_prct</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name,$exam-&gt;id);
 <a name="l00239"></a>00239             $escor=<a class="code" href="module_8exams_8php.html#a23a9e36c4642c574f1dcc00404ae1926">exams_get_score</a>(<a class="code" href="video__wall_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">$data</a>-&gt;name,$exam-&gt;id);
 <a name="l00240"></a>00240             $etotq=<a class="code" href="module_8exams_8php.html#abc7a2842625f3b9d9c427f8e4cd9a52d">exams_get_total_questions</a>($exam-&gt;id);
@@ -322,7 +322,7 @@
 <a name="l00247"></a>00247             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00248"></a>00248             
 <a name="l00249"></a>00249 
-<a name="l00250"></a>00250             echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00250"></a>00250             echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00251"></a>00251             echo $exam-&gt;pass_percent.<span class="stringliteral">&quot;%&quot;</span>;           
 <a name="l00252"></a>00252             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00253"></a>00253             
@@ -379,9 +379,9 @@
 <a name="l00304"></a>00304 <span class="stringliteral">            </span>
 <a name="l00305"></a>00305 <span class="stringliteral">            &lt;center&gt;</span>
 <a name="l00306"></a>00306 <span class="stringliteral">            &quot;</span>.
-<a name="l00307"></a>00307             <a class="code" href="lib_8buttons_8php.html#acb5b7a1897563c3ec9d2d03149862d00">lib_button_text</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam-&gt;id&amp;action=really_wipe_exam&quot;</span>,<span class="stringliteral">&quot;RESTART&quot;</span>)
+<a name="l00307"></a>00307             <a class="code" href="lib_8buttons_8php.html#a248ceefceff04cb69a1032f6cfc1dad6">lib_buttons_text</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam-&gt;id&amp;action=really_wipe_exam&quot;</span>,<span class="stringliteral">&quot;RESTART&quot;</span>)
 <a name="l00308"></a>00308             .
-<a name="l00309"></a>00309             <a class="code" href="lib_8buttons_8php.html#acb5b7a1897563c3ec9d2d03149862d00">lib_button_text</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam-&gt;id&amp;action=run_exam&quot;</span>,<span class="stringliteral">&quot;RESUME&quot;</span>).<span class="stringliteral">&quot;</span>
+<a name="l00309"></a>00309             <a class="code" href="lib_8buttons_8php.html#a248ceefceff04cb69a1032f6cfc1dad6">lib_buttons_text</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam-&gt;id&amp;action=run_exam&quot;</span>,<span class="stringliteral">&quot;RESUME&quot;</span>).<span class="stringliteral">&quot;</span>
 <a name="l00310"></a>00310 <span class="stringliteral">            &lt;/center&gt;</span>
 <a name="l00311"></a>00311 <span class="stringliteral">            &lt;hr&gt;</span>
 <a name="l00312"></a>00312 <span class="stringliteral">            &lt;br&gt;</span>
@@ -849,7 +849,7 @@
 <a name="l00774"></a>00774                 echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
 <a name="l00775"></a>00775         
 <a name="l00776"></a>00776                 $q=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
-<a name="l00777"></a>00777                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;</span>
+<a name="l00777"></a>00777                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;</span>
 <a name="l00778"></a>00778 <span class="stringliteral">                &lt;a href=&#39;$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_question_edit&amp;exam_id=$exam-&gt;id&amp;q=$q-&gt;id&#39;&gt;&quot;</span>;
 <a name="l00779"></a>00779                 echo <span class="stringliteral">&quot;&lt;img src=&#39;$RFS_SITE_URL/images/icons/Edit.png&#39; width=16 border=0&gt;&quot;</span>;
 <a name="l00780"></a>00780                 echo <span class="stringliteral">&quot;&lt;/a&gt;</span>
@@ -857,34 +857,34 @@
 <a name="l00782"></a>00782 
 <a name="l00783"></a>00783 
 <a name="l00784"></a>00784                                 
-<a name="l00785"></a>00785                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;</span>
+<a name="l00785"></a>00785                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;</span>
 <a name="l00786"></a>00786 <span class="stringliteral">                &lt;a href=&#39;$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_question_remove&amp;exam_id=$exam-&gt;id&amp;q=$q-&gt;id&#39;&gt;&quot;</span>;
 <a name="l00787"></a>00787                 echo <span class="stringliteral">&quot;&lt;img src=&#39;$RFS_SITE_URL/images/icons/Delete.png&#39; width=16 border=0&gt;&quot;</span>;
 <a name="l00788"></a>00788                 echo <span class="stringliteral">&quot;&lt;/a&gt;</span>
 <a name="l00789"></a>00789 <span class="stringliteral">                &lt;/td&gt;&quot;</span>;
-<a name="l00790"></a>00790                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&lt;img src=&#39;$RFS_SITE_URL/images/icons/arrow-up.png&#39; border=0 width=16&gt;&lt;/td&gt;&quot;</span>;
-<a name="l00791"></a>00791                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&lt;img src=&#39;$RFS_SITE_URL/images/icons/arrow-down.png&#39; border=0 width=16&gt;&lt;/td&gt;&quot;</span>;
-<a name="l00792"></a>00792                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;exam_sequence)&lt;/td&gt;&quot;</span>;
-<a name="l00793"></a>00793                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;type&lt;/td&gt;&quot;</span>;
-<a name="l00794"></a>00794                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>.lib_string_truncate($q-&gt;intro,85).<span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
-<a name="l00795"></a>00795                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;question&lt;/td&gt;&quot;</span>;
-<a name="l00796"></a>00796                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;correct_answer&lt;/td&gt;&quot;</span>;
+<a name="l00790"></a>00790                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&lt;img src=&#39;$RFS_SITE_URL/images/icons/arrow-up.png&#39; border=0 width=16&gt;&lt;/td&gt;&quot;</span>;
+<a name="l00791"></a>00791                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&lt;img src=&#39;$RFS_SITE_URL/images/icons/arrow-down.png&#39; border=0 width=16&gt;&lt;/td&gt;&quot;</span>;
+<a name="l00792"></a>00792                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;exam_sequence)&lt;/td&gt;&quot;</span>;
+<a name="l00793"></a>00793                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;type&lt;/td&gt;&quot;</span>;
+<a name="l00794"></a>00794                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>.lib_string_truncate($q-&gt;intro,85).<span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00795"></a>00795                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;question&lt;/td&gt;&quot;</span>;
+<a name="l00796"></a>00796                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;correct_answer&lt;/td&gt;&quot;</span>;
 <a name="l00797"></a>00797                 
-<a name="l00798"></a>00798                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;choice_1&lt;/td&gt;&quot;</span>;
-<a name="l00799"></a>00799                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;choice_2&lt;/td&gt;&quot;</span>;
-<a name="l00800"></a>00800                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;choice_3&lt;/td&gt;&quot;</span>;
-<a name="l00801"></a>00801                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;choice_4&lt;/td&gt;&quot;</span>;
-<a name="l00802"></a>00802                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;choice_5&lt;/td&gt;&quot;</span>;
-<a name="l00803"></a>00803                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;choice_6&lt;/td&gt;&quot;</span>;
+<a name="l00798"></a>00798                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;choice_1&lt;/td&gt;&quot;</span>;
+<a name="l00799"></a>00799                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;choice_2&lt;/td&gt;&quot;</span>;
+<a name="l00800"></a>00800                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;choice_3&lt;/td&gt;&quot;</span>;
+<a name="l00801"></a>00801                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;choice_4&lt;/td&gt;&quot;</span>;
+<a name="l00802"></a>00802                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;choice_5&lt;/td&gt;&quot;</span>;
+<a name="l00803"></a>00803                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;choice_6&lt;/td&gt;&quot;</span>;
 <a name="l00804"></a>00804                 
-<a name="l00805"></a>00805                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;$q-&gt;task&lt;/td&gt;&quot;</span>;
+<a name="l00805"></a>00805                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;$q-&gt;task&lt;/td&gt;&quot;</span>;
 <a name="l00806"></a>00806                 
 <a name="l00807"></a>00807                 
 <a name="l00808"></a>00808                 
 <a name="l00809"></a>00809                 
 <a name="l00810"></a>00810                 
 <a name="l00811"></a>00811                 
-<a name="l00812"></a>00812                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00812"></a>00812                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00813"></a>00813                 <span class="keywordflow">if</span>(!empty($q-&gt;question_image)) 
 <a name="l00814"></a>00814                     <a class="code" href="lib_8rfs_8php.html#a905520775646905a0d80482ddcb07fa8">lib_rfs_echo</a>(<span class="stringliteral">&quot;&lt;img src=$q-&gt;question_image width=32&gt;&quot;</span>);
 <a name="l00815"></a>00815                 echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
@@ -932,7 +932,7 @@
 <a name="l00857"></a>00857     <span class="comment">// True / False</span>
 <a name="l00858"></a>00858     <span class="comment">// Matching</span>
 <a name="l00859"></a>00859 
-<a name="l00860"></a>00860         sc_bqf(<span class="stringliteral">&quot;action=admin_new_exam&quot;</span>.<a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>.<span class="stringliteral">&quot;SHOW_TEXT_name=new exam&quot;</span>,<span class="stringliteral">&quot;Create new exam&quot;</span>);
+<a name="l00860"></a>00860         rfs_bqf(<span class="stringliteral">&quot;action=admin_new_exam&quot;</span>.<a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>.<span class="stringliteral">&quot;SHOW_TEXT_name=new exam&quot;</span>,<span class="stringliteral">&quot;Create new exam&quot;</span>);
 <a name="l00861"></a>00861 
 <a name="l00862"></a>00862         $q=<span class="stringliteral">&quot;select * from exams order by name &quot;</span>;
 <a name="l00863"></a>00863         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>($q); $n=mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
@@ -957,7 +957,7 @@
 <a name="l00882"></a>00882 
 <a name="l00883"></a>00883             echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
 <a name="l00884"></a>00884 
-<a name="l00885"></a>00885                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;<span class="comment"></span>
+<a name="l00885"></a>00885                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;<span class="comment"></span>
 <a name="l00886"></a>00886 <span class="comment">                ///////// tools</span>
 <a name="l00887"></a>00887 <span class="comment"></span>                                                echo <span class="stringliteral">&quot;&lt;table border=0 cellspacing=0 cellpadding=0&gt;&quot;</span>;
 <a name="l00888"></a>00888                                         echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
@@ -1005,33 +1005,33 @@
 <a name="l00930"></a>00930 <span class="comment"></span>
 <a name="l00931"></a>00931 <span class="comment">                //// exam name</span>
 <a name="l00932"></a>00932 <span class="comment"></span>
-<a name="l00933"></a>00933                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00933"></a>00933                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00934"></a>00934                     echo $exam-&gt;name;
 <a name="l00935"></a>00935                 echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00936"></a>00936 
 <a name="l00937"></a>00937 <span class="comment"></span>
 <a name="l00938"></a>00938 <span class="comment">                //// exam method</span>
 <a name="l00939"></a>00939 <span class="comment"></span>
-<a name="l00940"></a>00940                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00940"></a>00940                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00941"></a>00941                     echo $exam-&gt;method;
 <a name="l00942"></a>00942                 echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00943"></a>00943                 <span class="comment"></span>
 <a name="l00944"></a>00944 <span class="comment">               //// exam pass percent</span>
 <a name="l00945"></a>00945 <span class="comment"></span>
-<a name="l00946"></a>00946                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00946"></a>00946                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00947"></a>00947                     echo $exam-&gt;pass_percent;
 <a name="l00948"></a>00948                 echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00949"></a>00949         <span class="comment"></span>
 <a name="l00950"></a>00950 <span class="comment">               //// exam questions</span>
 <a name="l00951"></a>00951 <span class="comment"></span>
-<a name="l00952"></a>00952                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00952"></a>00952                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00953"></a>00953                     echo $exam-&gt;questions;
 <a name="l00954"></a>00954                 echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00955"></a>00955                 
 <a name="l00956"></a>00956                 <span class="comment"></span>
 <a name="l00957"></a>00957 <span class="comment">               //// exam total questions</span>
 <a name="l00958"></a>00958 <span class="comment"></span>
-<a name="l00959"></a>00959                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00959"></a>00959                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00960"></a>00960                 $rnq=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from exam_questions where exam_id=&#39;$exam-&gt;id&#39;&quot;</span>);
 <a name="l00961"></a>00961                 $nq=mysql_num_rows($rnq);
 <a name="l00962"></a>00962                     echo $nq;
@@ -1042,7 +1042,7 @@
 <a name="l00967"></a>00967                 
 <a name="l00968"></a>00968 <span class="comment"></span>
 <a name="l00969"></a>00969 <span class="comment">                //// POD association</span>
-<a name="l00970"></a>00970 <span class="comment"></span>                    echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00970"></a>00970 <span class="comment"></span>                    echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00971"></a>00971                     $pod_id=$exam-&gt;pod_id;
 <a name="l00972"></a>00972                     $pod=<span class="stringliteral">&quot; &quot;</span>;
 <a name="l00973"></a>00973                     <span class="keywordflow">if</span>($pod_id==0){
@@ -1086,7 +1086,7 @@
     <ul>
       <li class="navelem"><a class="el" href="exams_8php.html">exams.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

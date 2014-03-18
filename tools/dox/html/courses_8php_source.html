@@ -86,7 +86,7 @@
 <a name="l00011"></a><a class="code" href="courses_8php.html#afe331e1fced967a8c2e44fe6a291bcb5">00011</a> <span class="keyword">function</span> <a class="code" href="courses_8php.html#afe331e1fced967a8c2e44fe6a291bcb5">courses_action_edit_list</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00012"></a>00012     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;course&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>)) { 
 <a name="l00013"></a>00013         echo <span class="stringliteral">&quot;&lt;h2&gt;EDIT COURSES&lt;/h2&gt;&quot;</span>;
-<a name="l00014"></a>00014         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types&quot;</span>,<span class="stringliteral">&quot;Edit Component Types&quot;</span>);     
+<a name="l00014"></a>00014         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types&quot;</span>,<span class="stringliteral">&quot;Edit Component Types&quot;</span>);        
 <a name="l00015"></a>00015         <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from courses&quot;</span>);
 <a name="l00016"></a>00016         <span class="keywordflow">for</span>($i=0;$i&lt;mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);$i++){
 <a name="l00017"></a>00017             $course=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
@@ -139,8 +139,8 @@
 <a name="l00064"></a>00064     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;course&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>)) {
 <a name="l00065"></a>00065     $course=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from courses where id=&#39;$id&#39;&quot;</span>);
 <a name="l00066"></a>00066     echo <span class="stringliteral">&quot;&lt;h2&gt;EDIT COURSE: $course-&gt;id $course-&gt;name &lt;/h2&gt;&quot;</span>;    
-<a name="l00067"></a>00067     <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit&amp;id=$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit Course&quot;</span>);
-<a name="l00068"></a>00068     <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types&amp;id=$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit Component Types&quot;</span>);
+<a name="l00067"></a>00067     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit&amp;id=$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit Course&quot;</span>);
+<a name="l00068"></a>00068     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types&amp;id=$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit Component Types&quot;</span>);
 <a name="l00069"></a>00069     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;    
 <a name="l00070"></a>00070         <a class="code" href="lib_8ajax_8php.html#aa520d66149cf7a9c02ec818db60a9e3e">lib_ajax</a>(<span class="stringliteral">&quot;Type,10&quot;</span>,<span class="stringliteral">&quot;course_component&quot;</span>,<span class="stringliteral">&quot;id&quot;</span>,<span class="stringliteral">&quot;$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;type&quot;</span>,420, 
 <a name="l00071"></a>00071                     <span class="stringliteral">&quot;select,table,course_component_type,name&quot;</span>,<span class="stringliteral">&quot;course&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);
@@ -163,7 +163,7 @@
 <a name="l00088"></a>00088 
 <a name="l00089"></a>00089 
 <a name="l00090"></a><a class="code" href="courses_8php.html#aa6d6981fb0358333eee5078d014f3624">00090</a> <span class="keyword">function</span> <a class="code" href="courses_8php.html#aa6d6981fb0358333eee5078d014f3624">lib_ajax_callback_courses_action_ccl</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
-<a name="l00091"></a>00091     echo <a class="code" href="module_8courses_8php.html#a6f18f5eacabeb7f05cd59b5868dbcdd0">sc_course_components_list</a>($id);
+<a name="l00091"></a>00091     echo <a class="code" href="module_8courses_8php.html#a52f938aa07d173e6798a14397ca50b5f">rfs_course_components_list</a>($id);
 <a name="l00092"></a>00092 
 <a name="l00093"></a>00093 }
 <a name="l00094"></a>00094 
@@ -183,7 +183,7 @@
 <a name="l00108"></a>00108         
 <a name="l00109"></a>00109         $course=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from courses where id=&#39;$id&#39;&quot;</span>);
 <a name="l00110"></a>00110         echo <span class="stringliteral">&quot;&lt;h2&gt;EDIT COURSE: $course-&gt;id $course-&gt;name &lt;/h2&gt;&quot;</span>;
-<a name="l00111"></a>00111         <span class="comment">// if(lib_access_check(&quot;course&quot;,&quot;edit&quot;))            lib_button(&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit_components&amp;id=$course-&gt;id&quot;,&quot;Edit Components&quot;);</span>
+<a name="l00111"></a>00111         <span class="comment">// if(lib_access_check(&quot;course&quot;,&quot;edit&quot;))            lib_buttons_make_button(&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit_components&amp;id=$course-&gt;id&quot;,&quot;Edit Components&quot;);</span>
 <a name="l00112"></a>00112         echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
 <a name="l00113"></a>00113         
 <a name="l00114"></a>00114         <a class="code" href="lib_8ajax_8php.html#aa520d66149cf7a9c02ec818db60a9e3e">lib_ajax</a>(<span class="stringliteral">&quot;Name,80&quot;</span>,<span class="stringliteral">&quot;courses&quot;</span>,<span class="stringliteral">&quot;id&quot;</span>,<span class="stringliteral">&quot;$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;name&quot;</span>,60,<span class="stringliteral">&quot;&quot;</span>,<span class="stringliteral">&quot;course&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>,<span class="stringliteral">&quot;&quot;</span>);   
@@ -234,7 +234,7 @@
     <ul>
       <li class="navelem"><a class="el" href="courses_8php.html">courses.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

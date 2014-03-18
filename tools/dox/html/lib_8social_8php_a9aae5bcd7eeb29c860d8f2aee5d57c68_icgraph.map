@@ -1,8 +1,8 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$lib_8social_8php.html#a6a14a606173ee099fbb37a8eb4d91e08" title="lib_social_share_bar2" alt="" coords="261,32,408,61"/>
-<area shape="rect" id="node14" href="$lib_8social_8php.html#a4893af6fb84b84e174488e3afb5939b8" title="sc_social_buttons" alt="" coords="272,85,397,115"/>
-<area shape="rect" id="node5" href="$module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257" title="sc_show_news" alt="" coords="456,32,568,61"/>
-<area shape="rect" id="node7" href="$module_8news_8php.html#a8be7be5f89c1a6434b080695f7361478" title="module_news_blog_style" alt="" coords="803,5,971,35"/>
-<area shape="rect" id="node9" href="$module_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1" title="sc_show_top_news" alt="" coords="617,57,753,87"/>
-<area shape="rect" id="node11" href="$module_8news_8php.html#a965caa6a205118bc46830ab6c28f657f" title="module_news_top_story" alt="" coords="805,59,968,88"/>
+<area shape="rect" id="node14" href="$lib_8social_8php.html#a7ef7196cc7c4909aec813ed6efb1d8ee" title="lib_social_buttons" alt="" coords="272,85,397,115"/>
+<area shape="rect" id="node5" href="$module_8news_8php.html#a2fe2c4043050b244e321126bcadc6014" title="rfs_show_news" alt="" coords="457,32,569,61"/>
+<area shape="rect" id="node7" href="$module_8news_8php.html#a8be7be5f89c1a6434b080695f7361478" title="module_news_blog_style" alt="" coords="805,5,973,35"/>
+<area shape="rect" id="node9" href="$module_8news_8php.html#a1b535fb28626af95329f8b4c550901bc" title="rfs_show_top_news" alt="" coords="619,57,757,87"/>
+<area shape="rect" id="node11" href="$module_8news_8php.html#a965caa6a205118bc46830ab6c28f657f" title="module_news_top_story" alt="" coords="808,59,971,88"/>
 </map>

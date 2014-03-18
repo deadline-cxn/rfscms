@@ -63,7 +63,7 @@ function todo_list_action_search() { eval(lib_rfs_get_globals());
 	$tdl=lib_mysql_fetch_one_object("select * from todo_list where id='$tdl'");
 	echo "<h1>$tdl->name</h1>";
 	echo "Search tasks<br>";
-	sc_bqf("SHOW_TEXT_Name","Search");
+	rfs_bqf("SHOW_TEXT_Name","Search");
 }
 
 function todo_list_action_edit_task_go() { eval(lib_rfs_get_globals());

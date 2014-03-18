@@ -41,7 +41,7 @@ $RFS_TAGS=array(
 "RFS_TAG_FUNCTION" 			=> "RFS_TAG_FUNCTION",
 "RFS_TAG_PHP_SELF"			=> "RFS_TAG_PHP_SELF",
 "RFS_TAG_CANONICAL"			=> "RFS_TAG_CANONICAL",
-"sc_facebook_login_r" 		=> "<!--RTAG_FACEBOOK_LOGIN-->",
+"lib_social_facebook_login_r" 		=> "<!--RTAG_FACEBOOK_LOGIN-->",
 "lib_buttons"				=> "<!--RTAG_BUTTON"
 );
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -146,7 +146,7 @@ $RFS_SITE_JS_MSDROPDOWN_THEME = "<link rel=\"stylesheet\" type=\"text/css\" href
 	@include_once("lib.news.php");
         $title=$_GLOBALS['site_name'];
         if($_SERVER['PHP_SELF']==$_GLOBALS['site_url'].'/index.php')
-            $title=sc_get_news_headline(sc_get_top_news_id());
+            $title=rfs_get_news_headline(rfs_get_top_news_id());
         if(!empty($description)) $title=$description;
         if(!empty($name)) $title=$name;
         if(!empty($sname)) $title=$sname;
@@ -167,7 +167,7 @@ $RFS_SITE_JS_MSDROPDOWN_THEME = "<link rel=\"stylesheet\" type=\"text/css\" href
         }
 
         if(!empty($_GET['nid']))
-            $title=sc_get_news_headline($_GET['nid']);
+            $title=rfs_get_news_headline($_GET['nid']);
         if(!empty($what)) $title=$what;
 */
 if(!isset($title)) $title=" ";

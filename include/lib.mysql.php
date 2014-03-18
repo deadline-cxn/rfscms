@@ -228,8 +228,16 @@ function lib_mysql_database_query($query,$becho){
             //echo $row[key($row)]." ";
             echo "<tr>";
             while(key($row)!==NULL){
-                echo "<td class=sc_project_table_$gt>";
-                echo current($row);
+                echo "<td class=rfs_project_table_$gt>";
+				
+				
+				
+					$txtout=current($row);
+					$txtout=str_replace("<","&lt;",$txtout);
+					$txtout=str_replace(">","&gt;",$txtout);
+					echo $txtout;
+				
+				
                 echo "</td>";
                 next($row);
             }
@@ -269,8 +277,19 @@ function lib_mysql_database_query_form($page,$action,$query){
     echo "</form>";
 	
 }
-function lib_mysql_dump_table($table,$showform,$key,$search){
-	eval(lib_rfs_get_globals());	
+function lib_mysql_dump_table($table,$showform,$key,$search,$ignore,$short){
+	eval(lib_rfs_get_globals());
+	
+	if(!empty($ignore)) {
+		if(stristr($ignore,",")) {
+			$ign=explode(",",$ignore);
+		} else {
+			$ign=array();
+			$ign[0]=$ignore;
+		}
+	}
+	
+	
 	$fields="*";
 	if(stristr($table,",")) { 
 		$tbx=explode(",",$table);
@@ -288,7 +307,7 @@ function lib_mysql_dump_table($table,$showform,$key,$search){
     $page=$RFS_SITE_URL.lib_domain_phpself();
     $gt=0;
     $res=lib_mysql_query("select $fields from `$table` $search");
-    $num=mysql_num_rows($res);
+    
     echo "<table border=0 cellpadding=5>";
     $hdr=0;
     while($row=mysql_fetch_assoc($res)){
@@ -300,9 +319,17 @@ function lib_mysql_dump_table($table,$showform,$key,$search){
             }
             reset($row);
             while(key($row)!==NULL){
-                echo "<th>";
-                echo key($row);
-                echo "</th>";
+				
+				$ignore_column=0;
+				foreach($ign as $igna => $ignb) {
+					if($ignb==key($row)) $ignore_column=1;
+				}
+				
+				if(!$ignore_column) {
+					echo "<th>";
+					echo key($row);	
+					echo "</th>";
+				}
                 next($row);
             }
             echo "</tr>";
@@ -312,7 +339,7 @@ function lib_mysql_dump_table($table,$showform,$key,$search){
 
         echo "<tr>";
 
-        $showform_action="sc_";
+        $showform_action="rfs_";
 
         if(count($gx)) {
             $showform_action=$gx[1];
@@ -335,10 +362,24 @@ function lib_mysql_dump_table($table,$showform,$key,$search){
             echo"</td>";
         }
         reset($row);
+		
         while(key($row)!==NULL){
-            echo "<td class=sc_project_table_$gt>";
-            echo nl2br(current($row));
-            echo "</td>";
+			$ignore_column=0;
+				foreach($ign as $igna => $ignb) {
+					if($ignb==key($row)) $ignore_column=1;
+				}
+				
+				if(!$ignore_column) {
+					echo "<td class=rfs_project_table_$gt>";
+					$txtout=current($row);
+					$txtout=str_replace("<","&lt;",$txtout);
+					$txtout=str_replace(">","&gt;",$txtout);
+					if($short)
+						echo lib_string_truncate($txtout,$short);
+					else
+						echo $txtout;
+					echo "</td>";
+				}
             next($row);
         }
         echo "</tr>";

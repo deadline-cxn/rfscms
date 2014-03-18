@@ -173,7 +173,7 @@
 <a name="l00098"></a>00098         <a class="code" href="forums_8php.html#a010f1b47d072e0127366fe8f141d7456">forums_bumpthread</a>($id);
 <a name="l00099"></a>00099         <a class="code" href="lib_8log_8php.html#a32ae1cfe8fbc148f91d705ef1237aac2">lib_log_add_entry</a>(<span class="stringliteral">&quot;*****&gt; $data-&gt;name started a new thread! [$header]&quot;</span>);
 <a name="l00100"></a>00100     }
-<a name="l00101"></a>00101     <span class="keywordflow">else</span> echo <span class="stringliteral">&quot;&lt;p class=sc_site_urlr&gt;You must be logged in to post or reply!&lt;/p&gt;\n&quot;</span>;
+<a name="l00101"></a>00101     <span class="keywordflow">else</span> echo <span class="stringliteral">&quot;&lt;p class=rfs_site_urlr&gt;You must be logged in to post or reply!&lt;/p&gt;\n&quot;</span>;
 <a name="l00102"></a>00102     <a class="code" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9">forums_action_get_thread</a>($thread,$forum_which);
 <a name="l00103"></a>00103 }
 <a name="l00104"></a><a class="code" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464">00104</a> <span class="keyword">function</span> <a class="code" href="forums_8php.html#aa93eeced10eacc6b647c1b4e78364464">forums_get_message</a>($post) {
@@ -188,7 +188,7 @@
 <a name="l00113"></a>00113         echo <span class="stringliteral">&quot;&lt;a id=\&quot;&quot;</span>.$post[<span class="stringliteral">&#39;id&#39;</span>].<span class="stringliteral">&quot;\&quot;&gt;&lt;/a&gt;&quot;</span>;
 <a name="l00114"></a>00114         echo <span class="stringliteral">&quot;&lt;div class=\&quot;forum_box\&quot;&gt;&quot;</span>;
 <a name="l00115"></a>00115         echo <span class="stringliteral">&quot;&lt;h2&gt;&quot;</span>.$post[<span class="stringliteral">&#39;title&#39;</span>].<span class="stringliteral">&quot;&lt;/h2&gt;&quot;</span>;
-<a name="l00116"></a>00116         echo <span class="stringliteral">&quot;&lt;div class=\&quot;sc_forum_table_1\&quot;&gt;&quot;</span>;
+<a name="l00116"></a>00116         echo <span class="stringliteral">&quot;&lt;div class=\&quot;rfs_forum_table_1\&quot;&gt;&quot;</span>;
 <a name="l00117"></a>00117         echo <span class="stringliteral">&quot;&lt;div class=\&quot;forum_user\&quot; &gt;&quot;</span>;
 <a name="l00118"></a>00118         echo <a class="code" href="lib_8users_8php.html#a9c800a89cc853ea81bba02c8e383c5b2">lib_users_avatar_code</a>($poster-&gt;name);
 <a name="l00119"></a>00119         echo <span class="stringliteral">&quot;&lt;br&gt;&lt;a href=\&quot;$RFS_SITE_URL/modules/profile/showprofile.php?user=$poster-&gt;name\&quot;&gt;$poster-&gt;name&lt;/a&gt;&lt;br&gt;&quot;</span>;
@@ -269,7 +269,7 @@
 <a name="l00194"></a>00194                 echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
 <a name="l00195"></a>00195         }
 <a name="l00196"></a>00196         <span class="keywordflow">else</span> {
-<a name="l00197"></a>00197             echo <span class="stringliteral">&quot;&lt;p class=sc_site_urlr&gt;&lt;a href=$RFS_SITE_URL/login.php&gt;Login&lt;/a&gt; to reply to this post!&lt;/p&gt;\n&quot;</span>;
+<a name="l00197"></a>00197             echo <span class="stringliteral">&quot;&lt;p class=rfs_site_urlr&gt;&lt;a href=$RFS_SITE_URL/login.php&gt;Login&lt;/a&gt; to reply to this post!&lt;/p&gt;\n&quot;</span>;
 <a name="l00198"></a>00198         }
 <a name="l00199"></a>00199     echo <span class="stringliteral">&quot;&lt;br&gt;\n&quot;</span>;
 <a name="l00200"></a>00200     include(<span class="stringliteral">&quot;footer.php&quot;</span>);
@@ -403,7 +403,7 @@
 <a name="l00328"></a>00328         <a class="code" href="lib_8log_8php.html#a32ae1cfe8fbc148f91d705ef1237aac2">lib_log_add_entry</a>(<span class="stringliteral">&quot;*****&gt; $data-&gt;name replied to thread [$theader]&quot;</span>);
 <a name="l00329"></a>00329     }
 <a name="l00330"></a>00330     <span class="keywordflow">else</span> {
-<a name="l00331"></a>00331         echo <span class="stringliteral">&quot;&lt;p class=sc_site_urlr&gt;&lt;a href=$RFS_SITE_URL/login&gt;Login&lt;/a&gt; to reply&lt;/p&gt;\n&quot;</span>;
+<a name="l00331"></a>00331         echo <span class="stringliteral">&quot;&lt;p class=rfs_site_urlr&gt;&lt;a href=$RFS_SITE_URL/login&gt;Login&lt;/a&gt; to reply&lt;/p&gt;\n&quot;</span>;
 <a name="l00332"></a>00332     }
 <a name="l00333"></a>00333     <a class="code" href="forums_8php.html#adf5c1f56475c06fd39e098d3367438f9">forums_action_get_thread</a>($thread,$forum_which);
 <a name="l00334"></a>00334 }
@@ -628,21 +628,21 @@
 <a name="l00553"></a>00553                
 <a name="l00554"></a>00554                echo <span class="stringliteral">&quot;&lt;div style=&#39;float: left;&#39;&gt;&quot;</span>;
 <a name="l00555"></a>00555                
-<a name="l00556"></a>00556                 <a class="code" href="lib_8buttons_8php.html#a1d9732d30dcf85752f02efae7ef08381">lib_button_image_sizeable</a>(
+<a name="l00556"></a>00556                 <a class="code" href="lib_8buttons_8php.html#a865350c36d4ae0da2c9ba9919951fab9">lib_buttons_image_sizeable</a>(
 <a name="l00557"></a>00557                 <span class="stringliteral">&quot;$RFS_SITE_URL/modules/forums/forums.php?action=sticky_thread&amp;thread=&quot;</span>.$post[<span class="stringliteral">&#39;thread&#39;</span>],
 <a name="l00558"></a>00558                 <span class="stringliteral">&quot;Sticky&quot;</span>,
 <a name="l00559"></a>00559                 <span class="stringliteral">&quot;$RFS_SITE_URL/images/icons/stickyico.gif&quot;</span>,
 <a name="l00560"></a>00560                 16,
 <a name="l00561"></a>00561                 16);
 <a name="l00562"></a>00562                 
-<a name="l00563"></a>00563                 <a class="code" href="lib_8buttons_8php.html#a1d9732d30dcf85752f02efae7ef08381">lib_button_image_sizeable</a>(
+<a name="l00563"></a>00563                 <a class="code" href="lib_8buttons_8php.html#a865350c36d4ae0da2c9ba9919951fab9">lib_buttons_image_sizeable</a>(
 <a name="l00564"></a>00564                 <span class="stringliteral">&quot;$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&amp;thread=&quot;</span>.$post[<span class="stringliteral">&#39;thread&#39;</span>],
 <a name="l00565"></a>00565                 <span class="stringliteral">&quot;Delete&quot;</span>,
 <a name="l00566"></a>00566                 <span class="stringliteral">&quot;$RFS_SITE_URL/images/icons/Delete.png&quot;</span>,
 <a name="l00567"></a>00567                 16,
 <a name="l00568"></a>00568                 16);
 <a name="l00569"></a>00569                 
-<a name="l00570"></a>00570                 <a class="code" href="lib_8buttons_8php.html#a1d9732d30dcf85752f02efae7ef08381">lib_button_image_sizeable</a>(
+<a name="l00570"></a>00570                 <a class="code" href="lib_8buttons_8php.html#a865350c36d4ae0da2c9ba9919951fab9">lib_buttons_image_sizeable</a>(
 <a name="l00571"></a>00571                 <span class="stringliteral">&quot;$RFS_SITE_URL/modules/forums/forums.php?action=sticky_thread&amp;thread=&quot;</span>.$post[<span class="stringliteral">&#39;thread&#39;</span>],
 <a name="l00572"></a>00572                 <span class="stringliteral">&quot;Lock&quot;</span>,
 <a name="l00573"></a>00573                 <span class="stringliteral">&quot;$RFS_SITE_URL/images/icons/Lock.png&quot;</span>,
@@ -688,7 +688,7 @@
     <ul>
       <li class="navelem"><a class="el" href="forums_8php.html">forums.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

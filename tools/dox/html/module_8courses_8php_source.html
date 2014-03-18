@@ -109,15 +109,15 @@
 <a name="l00034"></a>00034     <span class="keywordflow">for</span>($i=0;$i&lt;$num;$i++) {
 <a name="l00035"></a>00035         $course=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>);
 <a name="l00036"></a>00036             echo <span class="stringliteral">&quot;&lt;div&gt;&quot;</span>;
-<a name="l00037"></a>00037         <a class="code" href="lib_8helpers_8php.html#a042d80b1a73898150d4dfd941b4417c5">sc_togglediv_start</a>(<span class="stringliteral">&quot;course_info$course-&gt;id&quot;</span>,<span class="stringliteral">&quot; COURSE: $course-&gt;id $course-&gt;name&quot;</span>,1);
-<a name="l00038"></a>00038         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=run&amp;id=$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;Take This Course&quot;</span>);
+<a name="l00037"></a>00037         <a class="code" href="lib_8helpers_8php.html#aca53e04bec4fd00440ea523c0994703b">rfs_togglediv_start</a>(<span class="stringliteral">&quot;course_info$course-&gt;id&quot;</span>,<span class="stringliteral">&quot; COURSE: $course-&gt;id $course-&gt;name&quot;</span>,1);
+<a name="l00038"></a>00038         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=run&amp;id=$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;Take This Course&quot;</span>);
 <a name="l00039"></a>00039         <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;course&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>)) {
-<a name="l00040"></a>00040             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit&amp;id=$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit Course&quot;</span>);
+<a name="l00040"></a>00040             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit&amp;id=$course-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit Course&quot;</span>);
 <a name="l00041"></a>00041         }
 <a name="l00042"></a>00042         echo <span class="stringliteral">&quot;&lt;div class=\&quot;course_info\&quot;&gt;&quot;</span>;
 <a name="l00043"></a>00043         echo $course-&gt;description;
 <a name="l00044"></a>00044         echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
-<a name="l00045"></a>00045         <a class="code" href="lib_8helpers_8php.html#acbcf0cbcb07ec95b04f3987b9550aa90">sc_togglediv_end</a>();
+<a name="l00045"></a>00045         <a class="code" href="lib_8helpers_8php.html#ae2aee1f8dab7567176835d560a107a5f">rfs_togglediv_end</a>();
 <a name="l00046"></a>00046         echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
 <a name="l00047"></a>00047     }
 <a name="l00048"></a>00048     echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
@@ -126,12 +126,12 @@
 <a name="l00051"></a><a class="code" href="module_8courses_8php.html#ad3bdcec7d4bb0b245d116104530796e5">00051</a> <span class="keyword">function</span> <a class="code" href="module_8courses_8php.html#ad3bdcec7d4bb0b245d116104530796e5">module_course_admin</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;course&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>)) {
-<a name="l00054"></a>00054         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit_list&quot;</span>,<span class="stringliteral">&quot;Edit Courses&quot;</span>);        
+<a name="l00054"></a>00054         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/courses/courses.php?action=edit_list&quot;</span>,<span class="stringliteral">&quot;Edit Courses&quot;</span>);       
 <a name="l00055"></a>00055     }
 <a name="l00056"></a>00056     
 <a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 
-<a name="l00059"></a><a class="code" href="module_8courses_8php.html#a6f18f5eacabeb7f05cd59b5868dbcdd0">00059</a> <span class="keyword">function</span> <a class="code" href="module_8courses_8php.html#a6f18f5eacabeb7f05cd59b5868dbcdd0">sc_course_components_list</a>($id) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00059"></a><a class="code" href="module_8courses_8php.html#a52f938aa07d173e6798a14397ca50b5f">00059</a> <span class="keyword">function</span> <a class="code" href="module_8courses_8php.html#a52f938aa07d173e6798a14397ca50b5f">rfs_course_components_list</a>($id) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00060"></a>00060     $out=<span class="stringliteral">&quot;&quot;</span>;
 <a name="l00061"></a>00061     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from course_component where parent=&#39;$id&#39;&quot;</span>);
 <a name="l00062"></a>00062         <span class="keywordflow">for</span>($i=0;$i&lt;mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);$i++) {
@@ -165,7 +165,7 @@
     <ul>
       <li class="navelem"><a class="el" href="module_8courses_8php.html">module.courses.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

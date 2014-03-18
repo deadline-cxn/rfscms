@@ -96,66 +96,162 @@
 <a name="l00021"></a>00021     reset($modules);
 <a name="l00022"></a>00022     <span class="keywordflow">return</span> $modules;
 <a name="l00023"></a>00023 }
-<a name="l00024"></a><a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">00024</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">lib_modules_register</a>($x) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
-<a name="l00025"></a>00025     global $RFS_MODULE;
-<a name="l00026"></a>00026     @$RFS_MODULE[$x]=<span class="keyword">true</span>;
-<a name="l00027"></a>00027 }
-<a name="l00028"></a><a class="code" href="lib_8modules_8php.html#af148486046f7ffdb671e7fca96fe3db9">00028</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#af148486046f7ffdb671e7fca96fe3db9">lib_modules_installed</a>($x) { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
-<a name="l00029"></a>00029     global $RFS_MODULE;
-<a name="l00030"></a>00030     <span class="keywordflow">return</span> $RFS_MODULE[$x];
-<a name="l00031"></a>00031 }
-<a name="l00032"></a><a class="code" href="lib_8modules_8php.html#a67e24231889bfac2fe447a4eceb71b4e">00032</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a67e24231889bfac2fe447a4eceb71b4e">lib_modules_show_registered</a>() {
-<a name="l00033"></a>00033     echo <span class="stringliteral">&quot;&lt;h1&gt;Modules Installed&lt;/h1&gt;&lt;hr&gt;&quot;</span>;
-<a name="l00034"></a>00034     global $RFS_MODULE;
-<a name="l00035"></a>00035     asort($RFS_MODULE);
-<a name="l00036"></a>00036     <span class="keywordflow">foreach</span>($RFS_MODULE as $k =&gt; $v) {
-<a name="l00037"></a>00037         echo <span class="stringliteral">&quot;[ $k ] &quot;</span>;
-<a name="l00038"></a>00038     }
-<a name="l00039"></a>00039     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00040"></a>00040 }
-<a name="l00041"></a><a class="code" href="lib_8modules_8php.html#a86ff688e300b9bac5678466c27285a64">00041</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a86ff688e300b9bac5678466c27285a64">lib_modules_array</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
-<a name="l00042"></a>00042     $dr=<span class="stringliteral">&quot;$RFS_SITE_PATH/modules&quot;</span>;
-<a name="l00043"></a>00043     $modules=array();
-<a name="l00044"></a>00044     $d=opendir($dr) or die(<span class="stringliteral">&quot;MODULE PATH ERROR lib.modules.php - lib_modules_array() -&gt; [$dr]&quot;</span>);
-<a name="l00045"></a>00045     <span class="keywordflow">while</span>(<span class="keyword">false</span>!==($entry = readdir($d))) {
-<a name="l00046"></a>00046         <span class="keywordflow">if</span>( ($entry == <span class="charliteral">&#39;.&#39;</span>) || ($entry == <span class="stringliteral">&#39;..&#39;</span>) ) { }
-<a name="l00047"></a>00047         <span class="keywordflow">else</span> {
-<a name="l00048"></a>00048             <span class="keywordflow">if</span>(is_dir($dr.<span class="stringliteral">&quot;/&quot;</span>.$entry)) {
-<a name="l00049"></a>00049                 <a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">lib_modules_register</a>($entry);
-<a name="l00050"></a>00050                 $module=<span class="stringliteral">&quot;$dr/$entry/module.$entry.php&quot;</span>;
-<a name="l00051"></a>00051                 lib_div($module);
-<a name="l00052"></a>00052                 include($module);
-<a name="l00053"></a>00053                 array_push($modules,$entry);
-<a name="l00054"></a>00054             }
-<a name="l00055"></a>00055         }
-<a name="l00056"></a>00056     }
-<a name="l00057"></a>00057     closedir($d);
-<a name="l00058"></a>00058     natcasesort($modules);
-<a name="l00059"></a>00059     reset($modules);
-<a name="l00060"></a>00060     <span class="keywordflow">return</span> $modules;
-<a name="l00061"></a>00061 }
-<a name="l00062"></a><a class="code" href="lib_8modules_8php.html#ace7bed36502c6de4a947dc74ff4a6d2f">00062</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#ace7bed36502c6de4a947dc74ff4a6d2f">lib_modules_draw</a>($location) {
-<a name="l00063"></a>00063     <span class="keywordflow">if</span>(stristr(<a class="code" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e">lib_domain_canonical_url</a>(),<span class="stringliteral">&quot;admin/adm.php&quot;</span>)) <span class="keywordflow">return</span>;
-<a name="l00064"></a>00064     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from arrangement where location=&#39;$location&#39; order by sequence&quot;</span>);
-<a name="l00065"></a>00065     <span class="keywordflow">if</span>(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>) {
-<a name="l00066"></a>00066         $n=mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
-<a name="l00067"></a>00067         <span class="keywordflow">for</span>($i=0;$i&lt;$n;$i++) {
-<a name="l00068"></a>00068             $ar=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
-<a name="l00069"></a>00069             <span class="keywordflow">if</span>(function_exists(<span class="stringliteral">&quot;module_$ar-&gt;mini&quot;</span>)) {
-<a name="l00070"></a>00070                 eval(<span class="stringliteral">&quot;module_$ar-&gt;mini($ar-&gt;num);&quot;</span>);
-<a name="l00071"></a>00071                 echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
-<a name="l00072"></a>00072             }
-<a name="l00073"></a>00073         }
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075 }
-<a name="l00076"></a>00076 ?&gt;
+<a name="l00024"></a><a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">00024</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">lib_modules_register</a>($x) {
+<a name="l00025"></a>00025     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00026"></a>00026     global $RFS_MODULE;
+<a name="l00027"></a>00027     @$RFS_MODULE[$x]=<span class="keyword">true</span>;
+<a name="l00028"></a>00028 }
+<a name="l00029"></a><a class="code" href="lib_8modules_8php.html#af148486046f7ffdb671e7fca96fe3db9">00029</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#af148486046f7ffdb671e7fca96fe3db9">lib_modules_installed</a>($x) {
+<a name="l00030"></a>00030     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00031"></a>00031     global $RFS_MODULE;
+<a name="l00032"></a>00032     <span class="keywordflow">return</span> $RFS_MODULE[$x];
+<a name="l00033"></a>00033 }
+<a name="l00034"></a><a class="code" href="lib_8modules_8php.html#a99198533d98de5d34bc1b8a366d44d10">00034</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a99198533d98de5d34bc1b8a366d44d10">lib_modules_properties</a>($module) {
+<a name="l00035"></a>00035     echo <span class="stringliteral">&quot;&lt;h1&gt;Module $module Properties&lt;/h1&gt;&quot;</span>;
+<a name="l00036"></a>00036 }
+<a name="l00037"></a><a class="code" href="lib_8modules_8php.html#a86ff688e300b9bac5678466c27285a64">00037</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a86ff688e300b9bac5678466c27285a64">lib_modules_array</a>() {
+<a name="l00038"></a>00038     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00039"></a>00039     $dr=<span class="stringliteral">&quot;$RFS_SITE_PATH/modules&quot;</span>;
+<a name="l00040"></a>00040     $modules=array();
+<a name="l00041"></a>00041     $d=opendir($dr) or die(<span class="stringliteral">&quot;MODULE PATH ERROR lib.modules.php - lib_modules_array() -&gt; [$dr]&quot;</span>);
+<a name="l00042"></a>00042     <span class="keywordflow">while</span>(<span class="keyword">false</span>!==($entry = readdir($d))) {
+<a name="l00043"></a>00043         <span class="keywordflow">if</span>( ($entry == <span class="charliteral">&#39;.&#39;</span>) || ($entry == <span class="stringliteral">&#39;..&#39;</span>) ) { }
+<a name="l00044"></a>00044         <span class="keywordflow">else</span> {
+<a name="l00045"></a>00045             <span class="keywordflow">if</span>(is_dir($dr.<span class="stringliteral">&quot;/&quot;</span>.$entry)) {
+<a name="l00046"></a>00046                 <a class="code" href="lib_8modules_8php.html#a7ca86345793728d659c17860358472a3">lib_modules_register</a>($entry);
+<a name="l00047"></a>00047                 $module=<span class="stringliteral">&quot;$dr/$entry/module.$entry.php&quot;</span>;
+<a name="l00048"></a>00048                 lib_div($module);
+<a name="l00049"></a>00049                 include($module);
+<a name="l00050"></a>00050                 array_push($modules,$entry);
+<a name="l00051"></a>00051             }
+<a name="l00052"></a>00052         }
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054     closedir($d);
+<a name="l00055"></a>00055     natcasesort($modules);
+<a name="l00056"></a>00056     reset($modules);
+<a name="l00057"></a>00057     <span class="keywordflow">return</span> $modules;
+<a name="l00058"></a>00058 }
+<a name="l00059"></a><a class="code" href="lib_8modules_8php.html#ace7bed36502c6de4a947dc74ff4a6d2f">00059</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#ace7bed36502c6de4a947dc74ff4a6d2f">lib_modules_draw</a>($location) {
+<a name="l00060"></a>00060     <span class="keywordflow">if</span>(stristr(<a class="code" href="lib_8domain_8php.html#ae57b798bbec2d92fb85410e86a89389e">lib_domain_canonical_url</a>(),<span class="stringliteral">&quot;admin/adm.php&quot;</span>)) <span class="keywordflow">return</span>;
+<a name="l00061"></a>00061     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from arrangement where location=&#39;$location&#39; order by sequence&quot;</span>);
+<a name="l00062"></a>00062     <span class="keywordflow">if</span>(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>) {
+<a name="l00063"></a>00063         $n=mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
+<a name="l00064"></a>00064         <span class="keywordflow">for</span>($i=0;$i&lt;$n;$i++) {
+<a name="l00065"></a>00065             $ar=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
+<a name="l00066"></a>00066             <span class="keywordflow">if</span>(function_exists(<span class="stringliteral">&quot;module_$ar-&gt;mini&quot;</span>)) {
+<a name="l00067"></a>00067                 eval(<span class="stringliteral">&quot;module_$ar-&gt;mini($ar-&gt;num);&quot;</span>);
+<a name="l00068"></a>00068                 echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
+<a name="l00069"></a>00069             }
+<a name="l00070"></a>00070         }
+<a name="l00071"></a>00071     }
+<a name="l00072"></a>00072 }
+<a name="l00073"></a>00073 <span class="comment"></span>
+<a name="l00074"></a>00074 <span class="comment">////////////////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00075"></a>00075 <span class="comment"></span><span class="comment">// Module Admin Panel Plugins</span>
+<a name="l00076"></a><a class="code" href="lib_8modules_8php.html#a012ac46c6f1f191b6d0e222dc54688ef">00076</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a012ac46c6f1f191b6d0e222dc54688ef">adm_action_modules</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00077"></a>00077     echo <span class="stringliteral">&quot;&lt;h1&gt;Module Management&lt;/h1&gt;&lt;hr&gt;&quot;</span>;
+<a name="l00078"></a>00078     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php?action=f_show_installed_modules&quot;</span>,<span class="stringliteral">&quot;Installed modules&quot;</span>);
+<a name="l00079"></a>00079     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php?action=f_module_menu&quot;</span>,<span class="stringliteral">&quot;Module Registered Menu Items&quot;</span>);
+<a name="l00080"></a>00080     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php?action=f_module_store&quot;</span>,<span class="stringliteral">&quot;Module Store&quot;</span>);
+<a name="l00081"></a>00081     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;<span class="comment"></span>
+<a name="l00082"></a>00082 <span class="comment">    ///////////////////////////////////////////////</span>
+<a name="l00083"></a>00083 <span class="comment"></span>    <span class="comment">// get list of modules from sethcoder.com</span>
+<a name="l00084"></a>00084     <span class="comment">// </span>
+<a name="l00085"></a>00085     <span class="comment">// download the database once every 24 hours to addon_database table</span>
+<a name="l00086"></a>00086     <span class="comment">// add rfs_site_addon_database_time to check for time</span>
+<a name="l00087"></a>00087     <span class="keywordflow">if</span>(empty($RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL))
+<a name="l00088"></a>00088         <a class="code" href="lib_8sitevars_8php.html#af2e0fac915c14d0ff35a755f5e8d7d70">lib_sitevars_assign</a>(<span class="stringliteral">&quot;RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL&quot;</span>,<span class="stringliteral">&quot;86400&quot;</span>);
+<a name="l00089"></a>00089     $time=time();
+<a name="l00090"></a>00090     $x=$time-intval($RFS_SITE_ADDON_DATABASE_TIME);
+<a name="l00091"></a>00091     echo <span class="stringliteral">&quot;[$time] [$RFS_SITE_ADDON_DATABASE_TIME] [$x] [$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL]&quot;</span>;
+<a name="l00092"></a>00092     <span class="keywordflow">if</span>($x&gt;$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL) {
+<a name="l00093"></a>00093         <a class="code" href="lib_8sitevars_8php.html#af2e0fac915c14d0ff35a755f5e8d7d70">lib_sitevars_assign</a>(<span class="stringliteral">&quot;RFS_SITE_ADDON_DATABASE_TIME&quot;</span>,$time);
+<a name="l00094"></a>00094         $addon_database=file_get_contents(<span class="stringliteral">&quot;http://www.sethcoder.com/files/addon_database.sql&quot;</span>);
+<a name="l00095"></a>00095         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>($addon_database);
+<a name="l00096"></a>00096         <a class="code" href="lib_8forms_8php.html#ad285a3a501e01b34c5905b2d94728dd6">lib_forms_info</a>(<span class="stringliteral">&quot;ADDON DATABASE UPDATED...&quot;</span>,<span class="stringliteral">&quot;white&quot;</span>,<span class="stringliteral">&quot;green&quot;</span>);
+<a name="l00097"></a>00097     }
+<a name="l00098"></a>00098     <a class="code" href="adm_8php.html#a80b875005654440f8f81ee7fa4d42ed4">finishadminpage</a>();
+<a name="l00099"></a>00099 }
+<a name="l00100"></a>00100 
+<a name="l00101"></a><a class="code" href="lib_8modules_8php.html#a86470160f5fc56c0d2a4a062d7810488">00101</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a86470160f5fc56c0d2a4a062d7810488">adm_action_f_module_store</a>(){
+<a name="l00102"></a>00102     echo <span class="stringliteral">&quot;&lt;h1&gt;Module Store&lt;/h1&gt;&quot;</span>;
+<a name="l00103"></a>00103     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
+<a name="l00104"></a>00104     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php?action=modules&quot;</span>,<span class="stringliteral">&quot;Module Management&quot;</span>);
+<a name="l00105"></a>00105     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
+<a name="l00106"></a>00106     <span class="comment">//lib_mysql_data_add(&quot;addon_database&quot;,&quot;name&quot;,&quot;TEST!!!&quot;.time(),&quot;&quot;);  </span>
+<a name="l00107"></a>00107     <span class="comment">// id name datetime_added   datetime_updated    version sub_version release description requirements    cost    license dependencies    author  author_email    author_website  rating  images      </span>
+<a name="l00108"></a>00108     echo <span class="stringliteral">&quot;MODULES... &lt;br&gt;&quot;</span>;
+<a name="l00109"></a>00109     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from `addon_database`&quot;</span>);
+<a name="l00110"></a>00110     <span class="keywordflow">while</span>($module=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>)) {
+<a name="l00111"></a>00111         echo <span class="stringliteral">&quot;Name: $module-&gt;name &lt;br&gt;&quot;</span>;
+<a name="l00112"></a>00112     }
+<a name="l00113"></a>00113     
+<a name="l00114"></a>00114     <a class="code" href="adm_8php.html#a80b875005654440f8f81ee7fa4d42ed4">finishadminpage</a>();
+<a name="l00115"></a>00115 }
+<a name="l00116"></a><a class="code" href="lib_8modules_8php.html#a2ad74c9232090bb544043385f22c6092">00116</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a2ad74c9232090bb544043385f22c6092">adm_action_f_module_menu</a>(){
+<a name="l00117"></a>00117     echo <span class="stringliteral">&quot;&lt;h1&gt;Menu Options registered by Modules&lt;/h1&gt;&quot;</span>;
+<a name="l00118"></a>00118     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
+<a name="l00119"></a>00119     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php?action=modules&quot;</span>,<span class="stringliteral">&quot;Module Management&quot;</span>);
+<a name="l00120"></a>00120     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
+<a name="l00121"></a>00121     global <a class="code" href="lib_8menus_8php.html#aec669def244cf9ca08518141aba2ca49">$RFS_MENU_OPTION</a>;
+<a name="l00122"></a>00122     echo <span class="stringliteral">&quot;&lt;table border=0&gt;&quot;</span>;
+<a name="l00123"></a>00123     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;Link Short Name&lt;/th&gt;&lt;th&gt;Link URL&lt;/th&gt;&lt;/tr&gt;&quot;</span>;
+<a name="l00124"></a>00124     asort($RFS_MENU_OPTION);
+<a name="l00125"></a>00125     <span class="keywordflow">foreach</span>($RFS_MENU_OPTION as $k =&gt; $v) {
+<a name="l00126"></a>00126         echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
+<a name="l00127"></a>00127         <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;admin&quot;</span>,<span class="stringliteral">&quot;access&quot;</span>)) {
+<a name="l00128"></a>00128             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
+<a name="l00129"></a>00129             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&amp;lname=$k&amp;lurl=$v&quot;</span>,<span class="stringliteral">&quot;Add to Top Menu&quot;</span>);
+<a name="l00130"></a>00130             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00131"></a>00131             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
+<a name="l00132"></a>00132             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php?action=f_menu_admin_add_link&amp;lname=$k&amp;lurl=$v&quot;</span>,<span class="stringliteral">&quot;Add to Admin Menu&quot;</span>);
+<a name="l00133"></a>00133             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00134"></a>00134         }
+<a name="l00135"></a>00135         
+<a name="l00136"></a>00136         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;        
+<a name="l00137"></a>00137         echo <a class="code" href="module_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8">wikitext</a>(<span class="stringliteral">&quot;$k&lt;/td&gt;&lt;td&gt;[$v]&lt;/td&gt;&lt;/tr&gt;&quot;</span>);
+<a name="l00138"></a>00138         
+<a name="l00139"></a>00139     }
+<a name="l00140"></a>00140     echo <span class="stringliteral">&quot;&lt;/table&gt;&quot;</span>;
+<a name="l00141"></a>00141     <a class="code" href="adm_8php.html#a80b875005654440f8f81ee7fa4d42ed4">finishadminpage</a>();
+<a name="l00142"></a>00142 }
+<a name="l00143"></a><a class="code" href="lib_8modules_8php.html#a02e0c0e468bacdcc98e376a71d15ab61">00143</a> <span class="keyword">function</span> <a class="code" href="lib_8modules_8php.html#a02e0c0e468bacdcc98e376a71d15ab61">adm_action_f_show_installed_modules</a>() {
+<a name="l00144"></a>00144     echo <span class="stringliteral">&quot;&lt;h1&gt;Modules Installed&lt;/h1&gt;&lt;hr&gt;&quot;</span>;
+<a name="l00145"></a>00145     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php?action=modules&quot;</span>,<span class="stringliteral">&quot;Module Management&quot;</span>);
+<a name="l00146"></a>00146     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
+<a name="l00147"></a>00147     
+<a name="l00148"></a>00148     
+<a name="l00149"></a>00149     echo <span class="stringliteral">&quot;&lt;table border=0&gt;&quot;</span>;
+<a name="l00150"></a>00150     
+<a name="l00151"></a>00151     global $RFS_MODULE;
+<a name="l00152"></a>00152     asort($RFS_MODULE);
+<a name="l00153"></a>00153     <span class="keywordflow">foreach</span>($RFS_MODULE as $k =&gt; $v) {
+<a name="l00154"></a>00154         echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
+<a name="l00155"></a>00155         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
+<a name="l00156"></a>00156         echo <span class="stringliteral">&quot;&lt;font style=&#39;color:white; background-color:green;&#39;&gt;ACTIVE&lt;/font&gt; &quot;</span>;
+<a name="l00157"></a>00157         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00158"></a>00158         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
+<a name="l00159"></a>00159         echo <span class="stringliteral">&quot;&lt;font style=&#39;color:white; background-color:blue;&#39;&gt;CORE&lt;/font&gt; &quot;</span>;
+<a name="l00160"></a>00160         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;       
+<a name="l00161"></a>00161         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;        
+<a name="l00162"></a>00162         echo <span class="stringliteral">&quot;[$k]&lt;br&gt;&quot;</span>;
+<a name="l00163"></a>00163         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00164"></a>00164         echo <span class="stringliteral">&quot;&lt;/tr&gt;&quot;</span>;
+<a name="l00165"></a>00165         
+<a name="l00166"></a>00166     }
+<a name="l00167"></a>00167     echo <span class="stringliteral">&quot;&lt;/table&gt;&quot;</span>;
+<a name="l00168"></a>00168     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
+<a name="l00169"></a>00169     <a class="code" href="adm_8php.html#a80b875005654440f8f81ee7fa4d42ed4">finishadminpage</a>();
+<a name="l00170"></a>00170 }
+<a name="l00171"></a>00171 
+<a name="l00172"></a>00172 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="lib_8modules_8php.html">lib.modules.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

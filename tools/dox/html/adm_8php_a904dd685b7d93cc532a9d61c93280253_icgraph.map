@@ -1,4 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$adm_8php.html#aa91f80c03a054b601bcd65e18ba4e5d7" title="adm_action_f_theme_edit_php" alt="" coords="243,5,440,35"/>
-<area shape="rect" id="node5" href="$adm_8php.html#ab91ce2cc24b273a690208d8ee067ec75" title="adm_action_f_theme_edit_delete_go" alt="" coords="224,59,459,88"/>
+<area shape="rect" id="node3" href="$adm_8php.html#a07149ee80456fa9afd5cfc053ceb6e06" title="adm_action_f_theme_edit_css" alt="" coords="243,5,440,35"/>
+<area shape="rect" id="node5" href="$adm_8php.html#aa91f80c03a054b601bcd65e18ba4e5d7" title="adm_action_f_theme_edit_php" alt="" coords="243,59,440,88"/>
+<area shape="rect" id="node7" href="$adm_8php.html#ab91ce2cc24b273a690208d8ee067ec75" title="adm_action_f_theme_edit_delete_go" alt="" coords="224,112,459,141"/>
 </map>

@@ -5,7 +5,7 @@
 function PMA_sprites()
 {
     return array(
-        'asc_order' => array(
+        'arfs_order' => array(
             'position' => '1',
             'width'    => '16',
             'height'   => '16'

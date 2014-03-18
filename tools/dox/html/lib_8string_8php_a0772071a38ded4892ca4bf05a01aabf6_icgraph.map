@@ -1,10 +1,17 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$module_8files_8php.html#a807d1ffabe5e2eebc2924ce8a8ae0158" title="show1file" alt="" coords="231,32,308,61"/>
-<area shape="rect" id="node11" href="$module_8news_8php.html#a48a3cb345893ce8f26f9a56670ed6559" title="module_news_list_popular" alt="" coords="183,85,356,115"/>
-<area shape="rect" id="node13" href="$module_8news_8php.html#ae8c389b2a6dca6fbaf572b603709ac37" title="shownews" alt="" coords="228,139,311,168"/>
-<area shape="rect" id="node15" href="$module_8pictures_8php.html#a2edb98cf7e95f5f1155102e22525368f" title="module_pictures" alt="" coords="211,192,328,221"/>
-<area shape="rect" id="node17" href="$module_8videos_8php.html#a6996e85342f6d21dbe688df4eb96dd03" title="module_videos" alt="" coords="215,245,324,275"/>
-<area shape="rect" id="node5" href="$files_8php.html#aac0eb47fdd2e6f9496ebc793bdc14f55" title="files_action_listcategory" alt="" coords="405,5,568,35"/>
-<area shape="rect" id="node9" href="$files_8php.html#ab21bae1e491d8c249927b1dea7db010c" title="files_action_" alt="" coords="440,59,533,88"/>
-<area shape="rect" id="node7" href="$files_8php.html#a8270d6471085c0b68d20d4a27913b278" title="files_action_search" alt="" coords="617,5,751,35"/>
+<area shape="rect" id="node3" href="$adm_8php.html#addf5ee80a861c3bb13de835f36996780" title="adm_action_counters" alt="" coords="196,32,343,61"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#a36da65fb55125a243ed88445bf3d497e" title="lib_mysql_dump_table" alt="" coords="195,85,344,115"/>
+<area shape="rect" id="node17" href="$module_8files_8php.html#a807d1ffabe5e2eebc2924ce8a8ae0158" title="show1file" alt="" coords="231,139,308,168"/>
+<area shape="rect" id="node25" href="$module_8news_8php.html#a48a3cb345893ce8f26f9a56670ed6559" title="module_news_list_popular" alt="" coords="183,192,356,221"/>
+<area shape="rect" id="node27" href="$module_8news_8php.html#ae8c389b2a6dca6fbaf572b603709ac37" title="shownews" alt="" coords="228,245,311,275"/>
+<area shape="rect" id="node29" href="$module_8pictures_8php.html#a2edb98cf7e95f5f1155102e22525368f" title="module_pictures" alt="" coords="211,299,328,328"/>
+<area shape="rect" id="node31" href="$module_8videos_8php.html#a6996e85342f6d21dbe688df4eb96dd03" title="module_videos" alt="" coords="215,352,324,381"/>
+<area shape="rect" id="node7" href="$adm_8php.html#a6ce354e2df97a865036726a1b3812d0b" title="adm_action_ban_management" alt="" coords="407,32,604,61"/>
+<area shape="rect" id="node9" href="$adm_8php.html#ae61c9a0b2524c9e3f584d50a6504fb71" title="adm_action_user_edit" alt="" coords="431,85,580,115"/>
+<area shape="rect" id="node11" href="$adm_8php.html#aaacf1c4d21f907b2c19ab04502cfcd05" title="adm_action_f_edit_users_go" alt="" coords="655,5,841,35"/>
+<area shape="rect" id="node13" href="$adm_8php.html#a6f2f72ad11309918eebcbbdc9c92bfa0" title="adm_action_f_del_users_go" alt="" coords="656,59,840,88"/>
+<area shape="rect" id="node15" href="$adm_8php.html#a81986b0289c7ac7584512e6555a64831" title="adm_action_f_add_user" alt="" coords="668,112,828,141"/>
+<area shape="rect" id="node19" href="$files_8php.html#aac0eb47fdd2e6f9496ebc793bdc14f55" title="files_action_listcategory" alt="" coords="424,139,587,168"/>
+<area shape="rect" id="node23" href="$files_8php.html#ab21bae1e491d8c249927b1dea7db010c" title="files_action_" alt="" coords="459,192,552,221"/>
+<area shape="rect" id="node21" href="$files_8php.html#a8270d6471085c0b68d20d4a27913b278" title="files_action_search" alt="" coords="681,165,815,195"/>
 </map>

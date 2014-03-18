@@ -259,7 +259,7 @@ if(empty($action)) {
             $msg=mysql_fetch_object($result);
             $lnk="<a href=$RFS_SITE_URL/modules/messages/messages.php?action=read&id=$msg->id>";
 
-            echo "<tr class=\"sc_project_table_$gt\">";
+            echo "<tr class=\"rfs_project_table_$gt\">";
 
             echo "<td><input type=checkbox name=\"pmsg_$msg->id\"></td>";
 

@@ -21,17 +21,17 @@ function mailgo($email,$message,$subject) {
 */
 }
 function mailto($user,$domain) { echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=mailto.php?user=$user&domain=$domain\">"; }
-function sc_togglediv_ne($x) {
+function rfs_togglediv_ne($x) {
 	$id=lib_string_generate_password();	
-	$r=	sc_togglediv_start_ne("did_".md5($id),"");
+	$r=	rfs_togglediv_start_ne("did_".md5($id),"");
 	$r.=$x;
-	$r.=sc_togglediv_end_ne();
+	$r.=rfs_togglediv_end_ne();
 	return $r;
 }
-function sc_togglediv($x) {
-	echo sc_togglediv_ne($x);
+function rfs_togglediv($x) {
+	echo rfs_togglediv_ne($x);
 }
-function sc_togglediv_start_ne($x,$y,$folded) {
+function rfs_togglediv_start_ne($x,$y,$folded) {
 	$fold="[-]"; if($folded) $fold="[+]";
 	$foldstate="block"; if($folded) $foldstate="none";
 	$anchor=md5($x.$y.$foldstate);
@@ -39,17 +39,17 @@ function sc_togglediv_start_ne($x,$y,$folded) {
 	$r="<script> state['$x']='$foldstate'; </script>	<a href=\"#\" onclick=\"showhide('$x');\" title=\"$titley\"><div id=\"$x"."plusminus\" style='float:left;'>$fold</div></a>$y<div id=\"$x\" style=\"clear:both; display:$foldstate;\">";
 	return $r;
 }
-function sc_togglediv_start($x,$y,$folded) {
-	echo sc_togglediv_start_ne($x,$y,$folded);
+function rfs_togglediv_start($x,$y,$folded) {
+	echo rfs_togglediv_start_ne($x,$y,$folded);
 }
-function sc_togglediv_end_ne() {
+function rfs_togglediv_end_ne() {
 	return  "</div>";
 }
-function sc_togglediv_end() {
-	echo sc_togglediv_end_ne();
+function rfs_togglediv_end() {
+	echo rfs_togglediv_end_ne();
 }
 
-function sc_javascript() { eval(lib_rfs_get_globals());
+function rfs_javascript() { eval(lib_rfs_get_globals());
 echo "<script language=\"javascript\">
 <!--
 var state = {};

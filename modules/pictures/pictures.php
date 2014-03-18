@@ -466,7 +466,7 @@ function pictures_action_view($id) {
 		}
 		echo "<p>&nbsp;</p>";
 			$page="$RFS_SITE_URL/modules/pictures/pictures.php?action=view&id=$picture->id";	
-			sc_facebook_comments($page);
+			lib_social_facebook_comments($page);
 	}
 	else {
 		echo "<h1>There are no pictures!</h1>";

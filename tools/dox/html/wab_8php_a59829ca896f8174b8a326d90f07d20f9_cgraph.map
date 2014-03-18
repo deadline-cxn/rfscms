@@ -1,21 +1,21 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="607,64,649,93"/>
-<area shape="rect" id="node5" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="591,334,665,364"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="rfs_query" alt="" coords="591,334,665,364"/>
 <area shape="rect" id="node13" href="$lib_8mysql_8php.html#a85e467d821d8c197471a5344e590c7d1" title="mfo" alt="" coords="459,520,501,549"/>
 <area shape="rect" id="node15" href="$wab_8php.html#a1ded8498f34e6332fcd2d800147e4170" title="wab_database" alt="" coords="255,154,361,184"/>
 <area shape="rect" id="node39" href="$wab_8php.html#a2af4ff7d3d266996081c932df2c290c8" title="wab_engine_actions" alt="" coords="239,520,377,549"/>
 <area shape="rect" id="node43" href="$wab_8php.html#ab812a929cd80d60f8bc19e8c7b322e47" title="wab_variables" alt="" coords="256,361,360,390"/>
 <area shape="rect" id="node52" href="$wab_8php.html#aac89fe0b8ac48c93cda21ca4df88ea71" title="wab_functions" alt="" coords="255,258,361,288"/>
-<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="723,426,851,456"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="rfs_query_user_db" alt="" coords="723,426,851,456"/>
 <area shape="rect" id="node11" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="765,334,808,364"/>
-<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="900,426,1031,456"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="rfs_query_other_db" alt="" coords="900,426,1031,456"/>
 <area shape="rect" id="node18" href="$lib_8mysql_8php.html#ad42d2c11477299cecf3dd06b259a316e" title="mfo1" alt="" coords="455,258,505,288"/>
-<area shape="rect" id="node21" href="$lib_8mysql_8php.html#a30360a1db4e566d38556e8ccefc639cf" title="sc_tableexists" alt="" coords="427,413,533,442"/>
-<area shape="rect" id="node26" href="$lib_8mysql_8php.html#ab2a2e03dfc31eb5074a990325393609d" title="sc_bf" alt="" coords="453,154,507,184"/>
-<area shape="rect" id="node36" href="$lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="sc_phpself" alt="" coords="437,50,523,80"/>
+<area shape="rect" id="node21" href="$lib_8mysql_8php.html#a30360a1db4e566d38556e8ccefc639cf" title="rfs_tableexists" alt="" coords="427,413,533,442"/>
+<area shape="rect" id="node26" href="$lib_8mysql_8php.html#ab2a2e03dfc31eb5074a990325393609d" title="rfs_bf" alt="" coords="453,154,507,184"/>
+<area shape="rect" id="node36" href="$lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="rfs_phpself" alt="" coords="437,50,523,80"/>
 <area shape="rect" id="node24" href="$lib_8mysql_8php.html#ac8685e9ff3175e2bfee6cb4561ce94ab" title="mnr" alt="" coords="607,413,649,442"/>
 <area shape="rect" id="node29" href="$lib_8debug_8php.html#a9b55f447faf2e1928eb5c9ce9b9a864d" title="d_echo" alt="" coords="596,142,660,172"/>
-<area shape="rect" id="node33" href="$lib_8mysql_8php.html#a189b90c36bbbaff0b120155ef1907bbe" title="sc_delimiter" alt="" coords="583,196,673,225"/>
-<area shape="rect" id="node31" href="$lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="sc_yes" alt="" coords="755,142,819,172"/>
-<area shape="rect" id="node48" href="$lib_8mysql_8php.html#a187dd36cc05457c2600e5fc7ae20e4c4" title="sc_db_query" alt="" coords="432,466,528,496"/>
+<area shape="rect" id="node33" href="$lib_8mysql_8php.html#a189b90c36bbbaff0b120155ef1907bbe" title="rfs_delimiter" alt="" coords="583,196,673,225"/>
+<area shape="rect" id="node31" href="$lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="rfs_yes" alt="" coords="755,142,819,172"/>
+<area shape="rect" id="node48" href="$lib_8mysql_8php.html#a187dd36cc05457c2600e5fc7ae20e4c4" title="rfs_db_query" alt="" coords="432,466,528,496"/>
 </map>

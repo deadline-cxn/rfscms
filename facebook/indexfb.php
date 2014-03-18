@@ -91,12 +91,12 @@ lib_rfs_echo( "$RFS_SITE_JS_JQUERY");
 echo "<title>$RFS_SITE_NAME</title></head>    
 <body style='background-color: #ffffff;'> <center>";
 $text="Defective Minds";$font="TenOClock.ttf";$fontsize=25;$w = 512;$h =85;$ox=0;$oy=0;$inicr = 255;$inicg = 255;$inicb = 0;$inbcr = 15;$inbcg = 15;$inbcb = 0;$forcerender = 1;$forceheight = 1;
-sc_image_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
+rfs_image_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
 $text="Facebook Meme Generator";$font="TenOClock.ttf";$fontsize=25;$w = 512;$h =85;$ox=0;$oy=0;$inicr = 255;$inicg = 255;$inicb = 0;$inbcr = 15;$inbcg = 15;$inbcb = 0;$forcerender = 1;$forceheight = 1;
-sc_image_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
+rfs_image_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
 if($dbg=="off") { $_SESSION['debug_msgs']=false; }
 if($dbg=="on") { $_SESSION['debug_msgs']=true; }
-sc_debugfooter(0);
+rfs_debugfooter(0);
 
 // if($data->id) { echo "<BR>Logged in as $data->name <BR>"; echo "Visit the main website <a href=http://www.defectiveminds.com/>http://www.defectiveminds.com/</a>"; }
 

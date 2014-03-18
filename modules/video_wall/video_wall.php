@@ -117,7 +117,7 @@ if( (empty($_SESSION['darr'])) ||
 	
 	echo "<body style=\" margin:0; \">\n";
 
-	// sc_google_analytics();
+	// lib_social_google_analytics();
 		
 	echo "<center>";
 
@@ -261,16 +261,16 @@ if($act=="add") {
 	echo "$count hits";
 	echo "</td><td>";
 	echo "</td><td>";
-		//sc_twitter_follow();
+		//lib_social_twitter_follow();
 	echo "</td><td>";
 	echo "</td><td>";
-		//sc_tweet("$RFS_SITE_URL/modules/video_wall/v.php","Video Wall", "Check out this page, it lets you view a bunch of different live streams at one time. ");
+		//lib_social_tweet("$RFS_SITE_URL/modules/video_wall/v.php","Video Wall", "Check out this page, it lets you view a bunch of different live streams at one time. ");
 	echo "</td><td>";
 	echo "</td><td>";	
-		//sc_facebook_like("$RFS_SITE_URL/modules/video_wall/v.php");	
+		//lib_social_facebook_like("$RFS_SITE_URL/modules/video_wall/v.php");	
 	echo "</td><td>";
 	echo "</td><td>";
-		//sc_google_plus("$RFS_SITE_URL/modules/video_wall/v.php");
+		//lib_social_google_plus("$RFS_SITE_URL/modules/video_wall/v.php");
 	echo "</td><td>";
 	if(empty($data->donated))
 		//lib_social_paypal_small();
@@ -343,7 +343,7 @@ if($act=="add") {
 
 echo "<table border=0 width=100% ><tr><td align=center>";
 if(empty($data->donated))
-	sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+	lib_social_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 	
 
 echo "</td></tr></table>";

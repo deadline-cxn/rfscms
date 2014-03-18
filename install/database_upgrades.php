@@ -208,6 +208,29 @@ if($a<956) {
 	echo "Added interim database changes 955<br>";
 }
 
+if($a<964) {
+	
+	lib_mysql_add("addon_database","name","text","not null");
+	lib_mysql_add("addon_database","datetime_added","timestamp","NOT NULL");
+	lib_mysql_add("addon_database","datetime_updated","timestamp","NOT NULL");
+	lib_mysql_add("addon_database","version","text","not null");
+	lib_mysql_add("addon_database","sub_version","text","not null");
+	lib_mysql_add("addon_database","release","text","not null");
+	lib_mysql_add("addon_database","description","text","not null");
+	lib_mysql_add("addon_database","requirements","text","not null");
+	lib_mysql_add("addon_database","cost","text","not null");
+	lib_mysql_add("addon_database","license","text","not null");
+	lib_mysql_add("addon_database","dependencies","text","not null");
+	lib_mysql_add("addon_database","author","text","not null");
+	lib_mysql_add("addon_database","author_email","text","not null");
+	lib_mysql_add("addon_database","author_website","text","not null");
+	lib_mysql_add("addon_database","rating","text","not null");
+	lib_mysql_add("addon_database","images","text","not null");
+	
+	echo "Added interim database changes 964<br>";
+	
+}
+
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=lib_mysql_fetch_one_object("select * from site_vars where name='database_upgrade'");

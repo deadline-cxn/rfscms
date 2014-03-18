@@ -29,7 +29,7 @@ else{
     echo "<BR><BR><BR>";
 		
 	if(empty($data->donated)) {
-		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+		lib_social_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 	}
 	else {
 		

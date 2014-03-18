@@ -126,7 +126,7 @@ $language_data = array (
             '%Nomad_Auto_Close', '%Nomad_Center_Wdw', '%Nomad_Concurrent_Wdw',
             '%Nomad_Custom_Define', '%Nomad_Custom_Dir$',
             '%Nomad_Custom_Genmtc', '%Nomad_Custom_Skip_Definition',
-            '%Nomad_Def_Sfx$', '%Nomad_Enter_Tab', '%Nomad_Esc_Sel',
+            '%Nomad_Def_Sfx$', '%Nomad_Enter_Tab', '%Nomad_Erfs_Sel',
             '%Nomad_Isjavx', '%Nomad_Iswindx', '%Nomad_Iswindx$',
             '%Nomad_Menu$', '%Nomad_Menu_Leftedge_Clr$',
             '%Nomad_Menu_Textbackground_Clr$', '%Nomad_Mln_Sep$',

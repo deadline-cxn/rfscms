@@ -18,12 +18,12 @@ function adm_action_lib_news_news_edit() { eval(lib_rfs_get_globals());
 function module_news_list($x) { eval(lib_rfs_get_globals());
     lib_div("NEWS MODULE SECTION");
     echo "<h2>Last $x News Articles</h2>";
-    $newslist=sc_getnewslist($newssearch);
+    $newslist=rfs_getnewslist($newssearch);
     echo "<table border=0 cellspacing=0>";
     $ct=count($newslist); if($ct>$x) $ct=$x;
     for($cci=0;$cci<$ct;$cci++){
         echo "<tr><td class=contenttd width=2% >";
-        $news=sc_getnewsdata($newslist[$cci]);
+        $news=rfs_getnewsdata($newslist[$cci]);
         if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
             $news->image_url="$RFS_SITE_URL/images/icons/404.png";
         if(empty($news->image_url))
@@ -40,7 +40,7 @@ function module_news_list($x) { eval(lib_rfs_get_globals());
         $ntext=str_replace("<p>"," ",$ntext);
         $ntext=str_replace("</p>"," ",$ntext);
         $ntext=str_replace("<","&lt;",$ntext);
-        echo "<font class=sc_black>$ntext</font>";
+        echo "<font class=rfs_black>$ntext</font>";
         echo "</td></tr>";
     }
     echo "</table>";
@@ -75,36 +75,36 @@ function module_news_list_popular($x) { eval(lib_rfs_get_globals());
         $ntext=str_replace("</body>","<nobody>",$ntext);
         $ntext=str_replace("<p>"," ",$ntext);
         $ntext=str_replace("</p>"," ",$ntext);
-        echo "<font class=sc_black>$ntext</font>";
+        echo "<font class=rfs_black>$ntext</font>";
         echo "</td></tr>";
     }
     echo "</table>";
 }
 function module_news_top_story() {
-    sc_show_top_news();
+    rfs_show_top_news();
 }
 function module_news_blog_style($x) { eval(lib_rfs_get_globals());
-	sc_show_top_news();
-	$newslist=sc_getnewslist(""); $ct=count($newslist); if($ct>$x) $ct=$x;
+	rfs_show_top_news();
+	$newslist=rfs_getnewslist(""); $ct=count($newslist); if($ct>$x) $ct=$x;
 	echo "Older news...<br>";
 	for($cci=0;$cci<$ct;$cci++) {
-		$news=sc_getnewsdata($newslist[$cci]);
-		sc_show_news($news->id);
+		$news=rfs_getnewsdata($newslist[$cci]);
+		rfs_show_news($news->id);
     }
 }
 
-function sc_getnewstopstory(){
+function rfs_getnewstopstory(){
     $result=lib_mysql_query("select * from news where topstory='yes' and published='yes'");
     $news=mysql_fetch_object($result);
     return $news;
 }
-function sc_getnewsdata($news){
+function rfs_getnewsdata($news){
     $query="select * from news where id = '$news'";
     $result=lib_mysql_query($query);
     if(mysql_num_rows($result) >0 ) $news = mysql_fetch_object($result);
     return $news;
 }
-function sc_getnewslist($newssearch) {
+function rfs_getnewslist($newssearch) {
     $newsbeg=$GLOBALS['top'];
     $newsend=$GLOBALS['bot'];
     $query = "select * from news where topstory!='yes' and published='yes' ";
@@ -121,21 +121,21 @@ function sc_getnewslist($newssearch) {
     }
     return $newslist;
 }
-function sc_get_news_headline($id){
+function rfs_get_news_headline($id){
     $result=lib_mysql_query("select * from news where id='$id'");
     $news=@mysql_fetch_object($result);
     return $news->headline;
 }
-function sc_get_top_news_id(){
+function rfs_get_top_news_id(){
     $result=lib_mysql_query("select * from news where topstory='yes' and published='yes'");
     $news=@mysql_fetch_object($result);
     return $news->id;
 }
-function sc_show_top_news() {
+function rfs_show_top_news() {
     $news=lib_mysql_fetch_one_object("select * from news where topstory='yes' and published='yes'");    
-    sc_show_news($news->id);
+    rfs_show_news($news->id);
 }
-function sc_show_news($nid) { eval(lib_rfs_get_globals());
+function rfs_show_news($nid) { eval(lib_rfs_get_globals());
 	if(empty($nid)) {
 		
 		news_buttons();
@@ -190,7 +190,7 @@ function sc_show_news($nid) { eval(lib_rfs_get_globals());
 	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
 	
 	if($RFS_SITE_FACEBOOK_NEWS_COMMENTS) 
-		sc_facebook_comments($page);
+		lib_social_facebook_comments($page);
 	
 	echo "</div>";
     
@@ -467,7 +467,7 @@ function shownews() { eval(lib_rfs_get_globals());
     }
     if(empty($GLOBALS['top'])) $GLOBALS['top']=0;
     if(empty($GLOBALS['bot'])) $GLOBALS['bot']=1500;
-    $newslist=sc_getnewslist($newssearch);
+    $newslist=rfs_getnewslist($newssearch);
 	
     // search method dictate sort order?
 	
@@ -484,7 +484,7 @@ function shownews() { eval(lib_rfs_get_globals());
 	}
     
 	for($i=0;$i<count($newslist);$i++) {
-        $news=sc_getnewsdata($newslist[$i]);
+        $news=rfs_getnewsdata($newslist[$i]);
 		echo "<tr>";
 		
 	

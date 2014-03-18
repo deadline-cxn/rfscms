@@ -112,12 +112,12 @@
 <a name="l00037"></a>00037     echo <span class="stringliteral">&quot;&lt;table border=0&gt;&lt;tr&gt;&quot;</span>; 
 <a name="l00038"></a>00038     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;pictures&quot;</span>,<span class="stringliteral">&quot;orphanscan&quot;</span>)) {
 <a name="l00039"></a>00039         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00040"></a>00040         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=addorphans&quot;</span>,<span class="stringliteral">&quot;Add Orphans&quot;</span>);
+<a name="l00040"></a>00040         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=addorphans&quot;</span>,<span class="stringliteral">&quot;Add Orphans&quot;</span>);
 <a name="l00041"></a>00041         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00042"></a>00042     }
 <a name="l00043"></a>00043     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;pictures&quot;</span>,<span class="stringliteral">&quot;upload&quot;</span>)) {
 <a name="l00044"></a>00044         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00045"></a>00045         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=uploadpic&quot;</span>,<span class="stringliteral">&quot;Upload picture&quot;</span>);
+<a name="l00045"></a>00045         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=uploadpic&quot;</span>,<span class="stringliteral">&quot;Upload picture&quot;</span>);
 <a name="l00046"></a>00046         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00047"></a>00047     }
 <a name="l00048"></a>00048     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;pictures&quot;</span>,<span class="stringliteral">&quot;sort&quot;</span>)) {
@@ -125,7 +125,7 @@
 <a name="l00050"></a>00050         $numpics=mysql_num_rows($res2);
 <a name="l00051"></a>00051         <span class="keywordflow">if</span>($numpics&gt;0){
 <a name="l00052"></a>00052             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00053"></a>00053             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=sorttemp&amp;category=unsorted&quot;</span>,<span class="stringliteral">&quot;Sort $numpics Pictures&quot;</span>);
+<a name="l00053"></a>00053             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=sorttemp&amp;category=unsorted&quot;</span>,<span class="stringliteral">&quot;Sort $numpics Pictures&quot;</span>);
 <a name="l00054"></a>00054             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00055"></a>00055         }
 <a name="l00056"></a>00056     }
@@ -472,31 +472,31 @@
 <a name="l00397"></a>00397     echo <span class="stringliteral">&quot;&lt;center&gt;&lt;table border=0&gt;&lt;tr&gt;&quot;</span>;
 <a name="l00398"></a>00398     <span class="keywordflow">if</span>(!empty($picture3-&gt;id)) {
 <a name="l00399"></a>00399         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00400"></a>00400         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>($linkprev,<span class="stringliteral">&quot;Previous&quot;</span>);
+<a name="l00400"></a>00400         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>($linkprev,<span class="stringliteral">&quot;Previous&quot;</span>);
 <a name="l00401"></a>00401         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00402"></a>00402     }    
 <a name="l00403"></a>00403     <span class="keywordflow">if</span>($id) {
 <a name="l00404"></a>00404         <span class="keywordflow">if</span>(<a class="code" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">lib_rfs_bool_true</a>($RFS_SITE_CAPTIONS)){
 <a name="l00405"></a>00405             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00406"></a>00406             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&amp;basepic=$picture-&gt;id&quot;</span>,<span class="stringliteral">&quot;Caption&quot;</span>);
+<a name="l00406"></a>00406             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&amp;basepic=$picture-&gt;id&quot;</span>,<span class="stringliteral">&quot;Caption&quot;</span>);
 <a name="l00407"></a>00407             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00408"></a>00408         }
 <a name="l00409"></a>00409         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00410"></a>00410         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=random&quot;</span>,<span class="stringliteral">&quot;Random Picture&quot;</span>);
+<a name="l00410"></a>00410         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=random&quot;</span>,<span class="stringliteral">&quot;Random Picture&quot;</span>);
 <a name="l00411"></a>00411         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00412"></a>00412         <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;pictures&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>)) {
 <a name="l00413"></a>00413             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00414"></a>00414             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=modifypicture&amp;id=$picture-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
+<a name="l00414"></a>00414             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=modifypicture&amp;id=$picture-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
 <a name="l00415"></a>00415             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00416"></a>00416         }           
 <a name="l00417"></a>00417         <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;pictures&quot;</span>,<span class="stringliteral">&quot;delete&quot;</span>)) {
 <a name="l00418"></a>00418             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00419"></a>00419             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=removepicture&amp;id=$picture-&gt;id&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
+<a name="l00419"></a>00419             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=removepicture&amp;id=$picture-&gt;id&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
 <a name="l00420"></a>00420             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00421"></a>00421         }           
 <a name="l00422"></a>00422         echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00423"></a>00423         <span class="keywordflow">if</span>(!empty($picture2-&gt;id))
-<a name="l00424"></a>00424             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>($linknext,<span class="stringliteral">&quot;Next&quot;</span>);
+<a name="l00424"></a>00424             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>($linknext,<span class="stringliteral">&quot;Next&quot;</span>);
 <a name="l00425"></a>00425         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00426"></a>00426         echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;&quot;</span>;  
 <a name="l00427"></a>00427         echo <span class="stringliteral">&quot;&lt;center&gt;&quot;</span>;
@@ -541,7 +541,7 @@
 <a name="l00466"></a>00466         }
 <a name="l00467"></a>00467         echo <span class="stringliteral">&quot;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&quot;</span>;
 <a name="l00468"></a>00468             <a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>=<span class="stringliteral">&quot;$RFS_SITE_URL/modules/pictures/pictures.php?action=view&amp;id=$picture-&gt;id&quot;</span>;    
-<a name="l00469"></a>00469             <a class="code" href="lib_8social_8php.html#aaec18af12951e8702113b20365c428b3">sc_facebook_comments</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>);
+<a name="l00469"></a>00469             <a class="code" href="lib_8social_8php.html#ae7709227f2d05691fead39753f0188cd">lib_social_facebook_comments</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>);
 <a name="l00470"></a>00470     }
 <a name="l00471"></a>00471     <span class="keywordflow">else</span> {
 <a name="l00472"></a>00472         echo <span class="stringliteral">&quot;&lt;h1&gt;There are no pictures!&lt;/h1&gt;&quot;</span>;
@@ -671,7 +671,7 @@
     <ul>
       <li class="navelem"><a class="el" href="pictures_8php.html">pictures.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

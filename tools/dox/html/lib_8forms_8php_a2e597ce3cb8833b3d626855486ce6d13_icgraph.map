@@ -1,5 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8forms_8php.html#a8de0fd7d210f17acc05faac7a035b48c" title="adm_action_f_rfs_db_element_del1" alt="" coords="179,5,405,35"/>
-<area shape="rect" id="node7" href="$module_8linkbin_8php.html#ae06e8b329dcdf45d65fea0a458544d43" title="adm_action_f_modify_link" alt="" coords="205,59,379,88"/>
-<area shape="rect" id="node5" href="$todo__list_8php.html#a047bf374db0c63df42888317f031b115" title="todo_list_action_f_rfs_db_element_del1" alt="" coords="453,5,704,35"/>
+<area shape="rect" id="node3" href="$adm_8php.html#a07d484ccd9da532b7c6ee20dcb4a1c02" title="adm_action_f_bandomain" alt="" coords="209,5,380,35"/>
+<area shape="rect" id="node5" href="$adm_8php.html#a55a732630eb7b827c13b5d395c55be5f" title="adm_action_f_arrange_delete" alt="" coords="199,59,391,88"/>
+<area shape="rect" id="node7" href="$adm_8php.html#a8ae1234993872b7f9152027cd64947ff" title="adm_action_f_access_group_delete" alt="" coords="180,112,409,141"/>
+<area shape="rect" id="node9" href="$adm_8php.html#a3bd2f5be6668b76b5214b4fb1e3eb8c3" title="adm_action_f_theme_edit_delete" alt="" coords="188,165,401,195"/>
+<area shape="rect" id="node11" href="$adm_8php.html#add82feef5c2e3494081989990805f154" title="adm_action_f_delsitevar" alt="" coords="213,219,376,248"/>
+<area shape="rect" id="node13" href="$adm_8php.html#a470a8c463d79190417419433e848a6da" title="adm_action_f_del_users" alt="" coords="213,272,376,301"/>
+<area shape="rect" id="node15" href="$adm_8php.html#a7708957015b097d3e07c7dea4487fbab" title="adm_action_f_delete_log" alt="" coords="212,325,377,355"/>
+<area shape="rect" id="node17" href="$lib_8forms_8php.html#a8de0fd7d210f17acc05faac7a035b48c" title="adm_action_f_rfs_db_element_del1" alt="" coords="181,379,408,408"/>
+<area shape="rect" id="node21" href="$module_8linkbin_8php.html#ae06e8b329dcdf45d65fea0a458544d43" title="adm_action_f_modify_link" alt="" coords="208,432,381,461"/>
+<area shape="rect" id="node19" href="$todo__list_8php.html#a047bf374db0c63df42888317f031b115" title="todo_list_action_f_rfs_db_element_del1" alt="" coords="459,379,709,408"/>
 </map>

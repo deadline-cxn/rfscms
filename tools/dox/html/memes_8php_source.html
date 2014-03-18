@@ -268,7 +268,7 @@
 <a name="l00193"></a>00193         <span class="keywordflow">if</span>(!empty(<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>-&gt;text_bg_color)) $text_bg_color=<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>-&gt;text_bg_color;
 <a name="l00194"></a>00194         <span class="keywordflow">if</span>(empty($private)) $private=<span class="stringliteral">&quot;no&quot;</span>;
 <a name="l00195"></a>00195 
-<a name="l00196"></a>00196         sc_bqf( <span class="stringliteral">&quot;action=memegenerate&quot;</span>.<a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>.
+<a name="l00196"></a>00196         rfs_bqf( <span class="stringliteral">&quot;action=memegenerate&quot;</span>.<a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>.
 <a name="l00197"></a>00197                  <span class="stringliteral">&quot;id=$pic-&gt;id&quot;</span>.$RFS_SITE_DELIMITER.
 <a name="l00198"></a>00198                  <span class="stringliteral">&quot;mid=$m-&gt;id&quot;</span>.$RFS_SITE_DELIMITER.
 <a name="l00199"></a>00199                  <span class="stringliteral">&quot;chgfont=$m-&gt;font&quot;</span>.$RFS_SITE_DELIMITER.
@@ -402,10 +402,10 @@
 <a name="l00327"></a>00327 
 <a name="l00328"></a>00328     <span class="keywordflow">if</span>( $mtop &gt; 0 ) {
 <a name="l00329"></a>00329         $tmtop=$mtop-$mbot;
-<a name="l00330"></a>00330         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&amp;mtop=$tmtop&amp;mbot=$mbot&amp;onlyshow=$onlyshow&quot;</span>,<span class="stringliteral">&quot;PREVIOUS PAGE&quot;</span>);
+<a name="l00330"></a>00330         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&amp;mtop=$tmtop&amp;mbot=$mbot&amp;onlyshow=$onlyshow&quot;</span>,<span class="stringliteral">&quot;PREVIOUS PAGE&quot;</span>);
 <a name="l00331"></a>00331     } 
 <a name="l00332"></a>00332     <span class="keywordflow">if</span>(!empty($onlyshow)) {
-<a name="l00333"></a>00333         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&amp;mtop=$mtop&amp;mbot=$mbot&amp;onlyshow=&quot;</span>,<span class="stringliteral">&quot;Show All Captions&quot;</span>);
+<a name="l00333"></a>00333         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&amp;mtop=$mtop&amp;mbot=$mbot&amp;onlyshow=&quot;</span>,<span class="stringliteral">&quot;Show All Captions&quot;</span>);
 <a name="l00334"></a>00334     }
 <a name="l00335"></a>00335     $ql=<span class="stringliteral">&quot; limit &quot;</span>.($mtop+$mbot+$toget).<span class="stringliteral">&quot; ;&quot;</span>;
 <a name="l00336"></a>00336     $rrr=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>($q.$ql);
@@ -414,14 +414,14 @@
 <a name="l00339"></a>00339     <span class="comment">//echo &quot;&lt;hr&gt; mtop+mbot+toget [&quot;.($mtop+$mbot+$toget).&quot;] mbot+mtop [&quot;.($mbot+$mtop).&quot;] nnn[&quot;.$nnn.&quot;] &lt;BR&gt;&quot;;</span>
 <a name="l00340"></a>00340     <span class="keywordflow">if</span>( ($mbot+$mtop) &lt; $nnn) {
 <a name="l00341"></a>00341         $mtop+=$mbot;
-<a name="l00342"></a>00342         <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&amp;mtop=$mtop&amp;mbot=$mbot&amp;onlyshow=$onlyshow&quot;</span>,<span class="stringliteral">&quot;NEXT PAGE&quot;</span>);
+<a name="l00342"></a>00342         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&amp;mtop=$mtop&amp;mbot=$mbot&amp;onlyshow=$onlyshow&quot;</span>,<span class="stringliteral">&quot;NEXT PAGE&quot;</span>);
 <a name="l00343"></a>00343     }
 <a name="l00344"></a>00344     
 <a name="l00345"></a>00345     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
 <a name="l00346"></a>00346     <span class="keywordflow">for</span>($i=0;$i&lt;$n;$i++){
 <a name="l00347"></a>00347         <a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>=mysql_fetch_object(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
 <a name="l00348"></a>00348         echo <span class="stringliteral">&quot;&lt;div id=$m-&gt;id style=\&quot;float: left;\&quot;&gt;&quot;</span>;
-<a name="l00349"></a>00349         <a class="code" href="module_8memes_8php.html#aae6ab435815633f66df7cb706585020f">sc_show1meme</a>(<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>-&gt;id);
+<a name="l00349"></a>00349         <a class="code" href="module_8memes_8php.html#ab20928f166c1d5de1cd06d53795c3af4">rfs_show1meme</a>(<a class="code" href="sp_8php.html#a0c788ee1ad50aa3f1b2c28bb7a00db49">$m</a>-&gt;id);
 <a name="l00350"></a>00350         echo <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
 <a name="l00351"></a>00351     }
 <a name="l00352"></a>00352     echo <span class="stringliteral">&quot;&lt;br style=&#39;clear: both;&#39;&gt;&quot;</span>;
@@ -441,7 +441,7 @@
     <ul>
       <li class="navelem"><a class="el" href="memes_8php.html">memes.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

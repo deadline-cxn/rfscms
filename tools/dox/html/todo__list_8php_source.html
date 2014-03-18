@@ -88,7 +88,7 @@
 <a name="l00013"></a><a class="code" href="todo__list_8php.html#a127e57e8878366b4407d457e9f1ce321">00013</a> <span class="keyword">function</span> <a class="code" href="todo__list_8php.html#a127e57e8878366b4407d457e9f1ce321">todo_list_action_</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00014"></a>00014     echo <span class="stringliteral">&quot;&lt;h1&gt;TODO List&lt;/h1&gt;&quot;</span>;
 <a name="l00015"></a>00015     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
-<a name="l00016"></a>00016     <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/todo_list/todo_list.php?action=new_todo_list&quot;</span>,<span class="stringliteral">&quot;New List&quot;</span>);
+<a name="l00016"></a>00016     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/todo_list/todo_list.php?action=new_todo_list&quot;</span>,<span class="stringliteral">&quot;New List&quot;</span>);
 <a name="l00017"></a>00017     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
 <a name="l00018"></a>00018     <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from todo_list&quot;</span>);
 <a name="l00019"></a>00019     <span class="keywordflow">for</span>($i=0;$i&lt;mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);$i++) {
@@ -138,7 +138,7 @@
 <a name="l00063"></a>00063     $tdl=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from todo_list where id=&#39;$tdl&#39;&quot;</span>);
 <a name="l00064"></a>00064     echo <span class="stringliteral">&quot;&lt;h1&gt;$tdl-&gt;name&lt;/h1&gt;&quot;</span>;
 <a name="l00065"></a>00065     echo <span class="stringliteral">&quot;Search tasks&lt;br&gt;&quot;</span>;
-<a name="l00066"></a>00066     sc_bqf(<span class="stringliteral">&quot;SHOW_TEXT_Name&quot;</span>,<span class="stringliteral">&quot;Search&quot;</span>);
+<a name="l00066"></a>00066     rfs_bqf(<span class="stringliteral">&quot;SHOW_TEXT_Name&quot;</span>,<span class="stringliteral">&quot;Search&quot;</span>);
 <a name="l00067"></a>00067 }
 <a name="l00068"></a>00068 
 <a name="l00069"></a><a class="code" href="todo__list_8php.html#a91d4bc5697695be820e818a6c89d3a61">00069</a> <span class="keyword">function</span> <a class="code" href="todo__list_8php.html#a91d4bc5697695be820e818a6c89d3a61">todo_list_action_edit_task_go</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
@@ -174,8 +174,8 @@
 <a name="l00099"></a>00099     
 <a name="l00100"></a>00100     echo <span class="stringliteral">&quot;&lt;h1&gt;$tdl-&gt;name&lt;/h1&gt;&quot;</span>;
 <a name="l00101"></a>00101     echo <span class="stringliteral">&quot;$tdl-&gt;description&lt;br&gt;&quot;</span>;
-<a name="l00102"></a>00102     <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/todo_list/todo_list.php?action=search&amp;tdl=$tdl-&gt;id&quot;</span>,<span class="stringliteral">&quot;Search&quot;</span>);
-<a name="l00103"></a>00103     <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/todo_list/todo_list.php?action=open_task&amp;tdl=$tdl-&gt;id&quot;</span>,<span class="stringliteral">&quot;Open&quot;</span>);
+<a name="l00102"></a>00102     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/todo_list/todo_list.php?action=search&amp;tdl=$tdl-&gt;id&quot;</span>,<span class="stringliteral">&quot;Search&quot;</span>);
+<a name="l00103"></a>00103     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/todo_list/todo_list.php?action=open_task&amp;tdl=$tdl-&gt;id&quot;</span>,<span class="stringliteral">&quot;Open&quot;</span>);
 <a name="l00104"></a>00104     <span class="comment">// if(!empty($tdl-&gt;assigned_to)) echo &quot;Assigned to: $tdl-&gt;assigned_to&lt;br&gt;&quot;;</span>
 <a name="l00105"></a>00105     <span class="comment">// if(!empty($tdl-&gt;owner))       echo &quot;Owner: $tdl-&gt;owner&lt;br&gt;&quot;;</span>
 <a name="l00106"></a>00106     echo <span class="stringliteral">&quot;&lt;hr&gt;&quot;</span>;
@@ -257,7 +257,7 @@
 <a name="l00182"></a>00182             echo <span class="stringliteral">&quot;&lt;td class=\&quot;todo_$task_status\&quot;&gt;$task-&gt;id&lt;/td&gt;&quot;</span>;
 <a name="l00183"></a>00183             
 <a name="l00184"></a>00184             echo <span class="stringliteral">&quot;&lt;td class=\&quot;todo_$task_status\&quot;&gt;&quot;</span>;
-<a name="l00185"></a>00185             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/todo_list/todo_list.php?action=edit_task&amp;task=$task-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
+<a name="l00185"></a>00185             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/todo_list/todo_list.php?action=edit_task&amp;task=$task-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
 <a name="l00186"></a>00186             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00187"></a>00187             
 <a name="l00188"></a>00188             echo <span class="stringliteral">&quot;&lt;td class=\&quot;todo_$task_status\&quot;&gt;&lt;img src=\&quot;$RFS_SITE_URL/modules/todo_list/icons/$task-&gt;status.png\&quot;&gt;&lt;/td&gt;&quot;</span>;
@@ -308,7 +308,7 @@
     <ul>
       <li class="navelem"><a class="el" href="todo__list_8php.html">todo_list.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -87,7 +87,7 @@
 <a name="l00009"></a>00009 // @include_once(&quot;../lib.news.php&quot;); @include_once(&quot;lib.news.php&quot;); @include_once(&quot;../lib.rfs.php&quot;); @include_once(&quot;lib.rfs.php&quot;);
 <a name="l00010"></a>00010  $title=$_GLOBALS[&#39;RFS_SITE_NAME&#39;];
 <a name="l00011"></a>00011     if($_SERVER[&#39;PHP_SELF&#39;]==$_GLOBALS[&#39;site_url&#39;].&#39;/index.php&#39;)
-<a name="l00012"></a>00012             $title=sc_get_news_headline(sc_get_top_news_id());
+<a name="l00012"></a>00012             $title=rfs_get_news_headline(rfs_get_top_news_id());
 <a name="l00013"></a>00013         if(!empty($description)) $title=$description;
 <a name="l00014"></a>00014         if(!empty($name)) $title=$name;
 <a name="l00015"></a>00015         if(!empty($sname)) $title=$sname;
@@ -107,7 +107,7 @@
 <a name="l00029"></a>00029             }
 <a name="l00030"></a>00030         }
 <a name="l00031"></a>00031         if(!empty($_GET[&#39;nid&#39;]))
-<a name="l00032"></a>00032             $title=sc_get_news_headline($_GET[&#39;nid&#39;]);
+<a name="l00032"></a>00032             $title=rfs_get_news_headline($_GET[&#39;nid&#39;]);
 <a name="l00033"></a>00033         if(!empty($what)) $title=$what;
 <a name="l00034"></a>00034 */
 <a name="l00035"></a>00035 ?&gt;

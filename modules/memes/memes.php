@@ -193,7 +193,7 @@ function memes_action_memeedit() { eval(lib_rfs_get_globals());
 		if(!empty($m->text_bg_color)) $text_bg_color=$m->text_bg_color;
 		if(empty($private)) $private="no";
 
-		sc_bqf( "action=memegenerate".$RFS_SITE_DELIMITER.
+		rfs_bqf( "action=memegenerate".$RFS_SITE_DELIMITER.
 				 "id=$pic->id".$RFS_SITE_DELIMITER.
 				 "mid=$m->id".$RFS_SITE_DELIMITER.
 				 "chgfont=$m->font".$RFS_SITE_DELIMITER.
@@ -346,7 +346,7 @@ function memes_action_showmemes(){ eval(lib_rfs_get_globals());
 	for($i=0;$i<$n;$i++){
 		$m=mysql_fetch_object($r);
 		echo "<div id=$m->id style=\"float: left;\">";
-		sc_show1meme($m->id);
+		rfs_show1meme($m->id);
 		echo "</div>";
 	}
 	echo "<br style='clear: both;'>";

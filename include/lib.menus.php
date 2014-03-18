@@ -10,32 +10,8 @@ function lib_menus_register($short,$url) {
 	global $RFS_MENU_OPTION;
 	$RFS_MENU_OPTION[$short]=$url;
 }
-function lib_menus_options() {
-	echo "<h1>Menu Options registered by Modules</h1>";
-	echo "<hr>";
-	global $RFS_MENU_OPTION;
-	echo "<table border=0>";
-	echo "<tr><th></th><th></th><th>Link Short Name</th><th>Link URL</th></tr>";
-	asort($RFS_MENU_OPTION);
-	foreach($RFS_MENU_OPTION as $k => $v) {
-		echo "<tr>";
-		if(lib_access_check("admin","access")) {
-			echo "<td>";
-			lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&lname=$k&lurl=$v","Add to Top Menu");
-			echo "</td>";
-			echo "<td>";
-			lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_admin_add_link&lname=$k&lurl=$v","Add to Admin Menu");
-			echo "</td>";
-		}
-		
-		echo "<td>";		
-		echo wikitext("$k</td><td>[$v]</td></tr>");
-		
-	}
-	echo "</table>";
-}
-function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
 
+function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
     $res=lib_mysql_query("select * from `menu_top` order by `sort_order` asc");
     if($menu_location=="left") echo "<table  border=0 cellspacing=0 cellpadding=0 align=center>\n";
     while($link=mysql_fetch_object($res))    {
@@ -70,14 +46,14 @@ function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
                         echo "<tr><td width=5 class=lefttd>";
                 }
                 if($menu_location=="top"){
-                        echo "<td class=sc_top_menu_table_td >";
+                        echo "<td class=rfs_top_menu_table_td >";
                 }
 
                 if(lib_rfs_bool_true($RFS_THEME_NAV_BUTTONS)) {
                     lib_buttons_make_button(lib_rfs_get($link->link),$link->name);
                 }
                 else {
-                    echo "<a class=sc_top_menu_link href=\"";
+                    echo "<a class=rfs_top_menu_link href=\"";
                     lib_rfs_echo($link->link);
 					echo "\" ";
 					if(!empty($link->target)) {

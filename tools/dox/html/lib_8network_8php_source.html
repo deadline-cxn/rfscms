@@ -94,7 +94,7 @@
 <a name="l00019"></a>00019     }
 <a name="l00020"></a>00020 }<span class="comment"></span>
 <a name="l00021"></a>00021 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00022"></a><a class="code" href="lib_8network_8php.html#a0ed7fe0159a2ab130bbb346a6dcc40e3">00022</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8network_8php.html#a0ed7fe0159a2ab130bbb346a6dcc40e3">sc_ping</a>($ip){
+<a name="l00022"></a><a class="code" href="lib_8network_8php.html#a7b4ca9352116b4f796098d47a9ee8f5d">00022</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8network_8php.html#a7b4ca9352116b4f796098d47a9ee8f5d">rfs_ping</a>($ip){
 <a name="l00023"></a>00023    exec(<span class="stringliteral">&quot;ping -c 1 -w 2 -i .2 $ip&quot;</span>,$ippa);
 <a name="l00024"></a>00024     $ipstat=<span class="stringliteral">&quot;up&quot;</span>;
 <a name="l00025"></a>00025     <span class="keywordflow">for</span>($ig=0;$ig&lt;count($ippa);$ig++) {
@@ -115,7 +115,7 @@
 <a name="l00040"></a>00040   <span class="keywordflow">return</span> round((($tA - $tB) * 1000), 2).<span class="stringliteral">&quot; ms&quot;</span>;
 <a name="l00041"></a>00041 }<span class="comment"></span>
 <a name="l00042"></a>00042 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00043"></a><a class="code" href="lib_8network_8php.html#a232d49888ad5ccd370318292bd18d029">00043</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8network_8php.html#a232d49888ad5ccd370318292bd18d029">sc_show_galaga_status</a>(){
+<a name="l00043"></a><a class="code" href="lib_8network_8php.html#a21a5c21defb36b235f030c7150e1c2b7">00043</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8network_8php.html#a21a5c21defb36b235f030c7150e1c2b7">rfs_show_galaga_status</a>(){
 <a name="l00044"></a>00044 echo <span class="stringliteral">&quot;&lt;font style=&#39;color: orange; background-color: black;&#39;&gt;INFO: galaga has reported in from ip address: &quot;</span>;
 <a name="l00045"></a>00045 $gal=file_get_contents(<span class="stringliteral">&quot;temp/galagaip.txt&quot;</span>); echo $gal;
 <a name="l00046"></a>00046 <a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>=explode(<span class="stringliteral">&quot; &quot;</span>,$gal);
@@ -128,7 +128,7 @@
 <a name="l00053"></a>00053 <span class="keywordflow">else</span>            echo <span class="stringliteral">&quot;&lt;font style=&#39;color: white; background-color: green;&#39;&gt; UP $st&lt;/font&gt;&quot;</span>;
 <a name="l00054"></a>00054 }<span class="comment"></span>
 <a name="l00055"></a>00055 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00056"></a><a class="code" href="lib_8network_8php.html#ade141ba8b33c8ebfbcdf8e178f0e8bb8">00056</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8network_8php.html#ade141ba8b33c8ebfbcdf8e178f0e8bb8">sc_valid_ip</a>($ip_addr){
+<a name="l00056"></a><a class="code" href="lib_8network_8php.html#a40f752e95c238e540592b3e2b5774016">00056</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8network_8php.html#a40f752e95c238e540592b3e2b5774016">rfs_valid_ip</a>($ip_addr){
 <a name="l00057"></a>00057   <span class="comment">//first of all the format of the ip address is matched</span>
 <a name="l00058"></a>00058   <span class="keywordflow">if</span>(preg_match(<span class="stringliteral">&quot;/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/&quot;</span>,$ip_addr))
 <a name="l00059"></a>00059   {
@@ -153,7 +153,7 @@
     <ul>
       <li class="navelem"><a class="el" href="lib_8network_8php.html">lib.network.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -27,11 +27,11 @@ function run() {
         // identity URL and Simple Registration data (if it was
         // returned).
         $openid = $response->getDisplayIdentifier();
-        $esc_identity = escape($openid);
+        $erfs_identity = escape($openid);
 
         $success = sprintf('You have successfully verified ' .
                            '<a href="%s">%s</a> as your identity.',
-                           $esc_identity, $esc_identity);
+                           $erfs_identity, $erfs_identity);
 
         if ($response->endpoint->canonicalID) {
             $escaped_canonicalID = escape($response->endpoint->canonicalID);

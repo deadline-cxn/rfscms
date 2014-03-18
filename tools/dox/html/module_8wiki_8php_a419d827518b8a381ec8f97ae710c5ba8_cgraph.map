@@ -4,8 +4,8 @@
 <area shape="rect" id="node7" href="$lib_8string_8php.html#a4a84107e03c718e6c128aa1c4fb765b8" title="lib_string_get_email_code" alt="" coords="124,127,295,156"/>
 <area shape="rect" id="node9" href="$lib_8string_8php.html#aa2a0538b491fb931eacd853f42ac6f6f" title="lib_string_get_url_code" alt="" coords="132,180,287,210"/>
 <area shape="rect" id="node11" href="$lib_8debug_8php.html#a724b8757fd23253e49a92069cfb59fa7" title="d_echo" alt="" coords="177,234,241,263"/>
-<area shape="rect" id="node31" href="$lib_8helpers_8php.html#a02d494084953a67693f2d1da20120873" title="sc_togglediv_start_ne" alt="" coords="135,287,284,316"/>
-<area shape="rect" id="node33" href="$lib_8helpers_8php.html#ab3c85e53c03890a18e455906747c0e79" title="sc_togglediv_end_ne" alt="" coords="137,340,281,370"/>
+<area shape="rect" id="node31" href="$lib_8helpers_8php.html#a76c88580b09adff1776c9be9df7dbeae" title="rfs_togglediv_start_ne" alt="" coords="135,287,284,316"/>
+<area shape="rect" id="node33" href="$lib_8helpers_8php.html#a4e9fb395a0d6bab99edb8998ade1b6f8" title="rfs_togglediv_end_ne" alt="" coords="137,340,281,370"/>
 <area shape="rect" id="node13" href="$lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="348,174,473,203"/>
 <area shape="rect" id="node29" href="$lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="352,234,469,263"/>
 <area shape="rect" id="node15" href="$lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="523,87,656,116"/>

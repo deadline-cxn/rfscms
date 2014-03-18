@@ -89,7 +89,7 @@
 <a name="l00014"></a>00014     <span class="keywordflow">if</span>($numposts) { <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=1;
 <a name="l00015"></a>00015         <span class="keywordflow">while</span>($thread=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00016"></a>00016                 <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++; <span class="keywordflow">if</span>(<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;2) <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=1;
-<a name="l00017"></a>00017                 echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=\&quot;sc_forum_table_$gt\&quot;&gt;&quot;</span>;               
+<a name="l00017"></a>00017                 echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=\&quot;rfs_forum_table_$gt\&quot;&gt;&quot;</span>;              
 <a name="l00018"></a>00018                 $lastreply=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot; select * from `forum_posts` where `thread` = &#39;$thread-&gt;thread&#39; order by time desc limit 1&quot;</span>);
 <a name="l00019"></a>00019                 echo <span class="stringliteral">&quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&amp;thread=$thread-&gt;thread&amp;forum_which=$thread-&gt;forum#$lastreply-&gt;id\&quot;&gt;&quot;</span>;
 <a name="l00020"></a>00020                 echo <span class="stringliteral">&quot;&lt;img src=\&quot;$RFS_SITE_URL/images/icons/icon_minipost.gif\&quot; border=0 &gt;&quot;</span>;
@@ -210,7 +210,7 @@
     <ul>
       <li class="navelem"><a class="el" href="module_8forums_8php.html">module.forums.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

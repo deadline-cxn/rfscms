@@ -6,16 +6,16 @@ $title="Administration";
 /////////////////////////////////////////////////////////////////////////////////////////
 include("lib.adm.php");
 chdir( "../" );
-if(stristr($_REQUEST['action'],"ajx")) { include("include/lib.all.php"); exit(); }
-else { include( "lilheader.php" ); }
+include("include/lib.all.php");
 /////////////////////////////////////////////////////////////////////////////////////////
 // ACCESS CHECK
 if(!lib_access_check("admin","access")) {
-	echo lib_string_convert_smiles( "<table border=0 width=300><tr><td class=warning><center>^X<br>You can not use admin</td></tr></table>\n" );
+	echo lib_string_convert_smiles("<table border=0 width=300><tr><td class=warning><center>^X<br>You can not use admin</td></tr></table>\n");
 	lib_log_add_entry( "*****> $data->name tried to access the admin area!" );
 	include("footer.php");
 	exit();
 }
+include( "lilheader.php" ); 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM CHECK FOR UPDATES
 function adm_action_update() { eval(lib_rfs_get_globals());
@@ -160,51 +160,7 @@ wiki
  */
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// ADM_ADDONS MANAGEMENT
-function adm_action_addons() { eval(lib_rfs_get_globals());
-	echo "<h1>Addons</h1>";
-	
-	echo "[Installed Addons]<br>";
-	
-	echo "[Browse Addons]<br>";
-	///////////////////////////////////////////////
-	//
-	// get list of addons from sethcoder.com
-	// 
-	// download the database once every 24 hours to addon_database table
-	// addon_database: 
-	// 
-	// 		name
-	//		datetime_added
-	//		datetime_updated
-	//		version
-	//		sub_version
-	// 		release
-	//		description
-	//		requirements
-	//		cost
-	// 		license
-	//		dependencies
-	//		author
-	//		author_website
-	//		documentation_website
-	// 		rating
-	// 
-	// add rfs_site_addon_database_time to check for time
-	
-	$time=time();
-	if($time-intval($RFS_SITE_ADDON_DATABASE_TIME)>86400) {
-		$addon_database=file_get_contents("http://www.sethcoder.com/files/addon_database.sql");
-		lib_mysql_query($addon_database);
-	}
-	
 
-}
-function adm_action_registered_menu_items() { 
-	lib_menus_options();
-	finishadminpage();
-}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AUTH FUNCTIONS
 function adm_action_auth_config() { eval(lib_rfs_get_globals());
@@ -233,7 +189,7 @@ function adm_action_auth_config() { eval(lib_rfs_get_globals());
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_ARRANGE FUNCTIONS
-function sc_admin_module( $loc ) { eval( lib_rfs_get_globals() );
+function rfs_admin_module( $loc ) { eval( lib_rfs_get_globals() );
     $location=$loc;
 	$r=lib_mysql_query( "select * from arrangement where location='$location' order by sequence " );
 	if($r){
@@ -363,14 +319,14 @@ function adm_action_arrange() { eval( lib_rfs_get_globals() );
 
 	echo "<table border=0><tr>"; // TOP START
 	echo "<td valign=top>";// class=lefttd>";	
-	sc_admin_module("left");
+	rfs_admin_module("left");
 	echo "</td><td valign=top>"; // MIDDLE START
-    sc_admin_module("middle");
+    rfs_admin_module("middle");
     echo "</td><td valign=top>"; // RIGHT SIDE START
-    sc_admin_module("right");
+    rfs_admin_module("right");
     echo "</td> </tr> </table>"; // TOP END
     echo "<table border=0><tr><td>"; // BOTTOM START
-    sc_admin_module("bottom");
+    rfs_admin_module("bottom");
     echo "</td></tr></table>"; // BOTTOM END
 	include( "footer.php" );
 	exit();
@@ -511,7 +467,7 @@ function adm_action_access_groups() { eval(lib_rfs_get_globals());
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_PHPMYADMIN
-function adm_action_phpmyadmin_out() { eval(lib_rfs_get_globals()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
+function adm_action_phpmyadmin_out() { eval(lib_rfs_get_globals()); rfs_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORM BUILDER FUNCTIONS
 /*function adm_action_form_builder() { eval(lib_rfs_get_globals());
@@ -1172,7 +1128,7 @@ function adm_action_f_addsitevar() { eval( lib_rfs_get_globals() );
 	$name=strtolower( $name );
 	$name=str_replace( " ","_",$name );
 	$val=addslashes( $_REQUEST['val'] );
-	lib_mysql_query( "insert into `site_vars` (`name`, `type`, `value`, `desc`) values ('$name', '$type', '$val', '$desc')" );
+	lib_sitevars_assign($name,$val,$type,$desc);
 	adm_action_edit_site_vars();
 }
 function adm_action_f_upsitevar() { eval( lib_rfs_get_globals() );
@@ -1180,9 +1136,7 @@ function adm_action_f_upsitevar() { eval( lib_rfs_get_globals() );
 	$x=strtoupper($sv->name);
 	echo "[\$RFS_SITE_$x] set to [$val] <br>";
 	$val=addslashes( $_REQUEST['val'] );
-	lib_mysql_query("update `site_vars` set `type`='$type' where id='$id'");
-	lib_mysql_query("update `site_vars` set `value`='$val' where id='$id'");
-	lib_mysql_query("update `site_vars` set `desc`='$desc' where id='$id'");
+	lib_sitevars_assign($x,$val,$type,$desc);
 	adm_action_edit_site_vars();
 }
 function adm_action_f_delsitevar_go() { eval( lib_rfs_get_globals() );
@@ -1211,6 +1165,7 @@ function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
 		if(empty($site_var->type)) $site_var->type="text";
 		echo "<option>$site_var->type";		
 		echo "<option>text";
+		echo "<option>time";		
 		echo "<option>bool";
 		echo "<option>file";
 		echo "<option>theme";
@@ -1268,6 +1223,7 @@ function adm_action_edit_site_vars() { eval( lib_rfs_get_globals() );
 	echo "\$RFS_SITE_<input name=name size=17 value=\"ADD NEW\"> ";
 	echo "<select name=\"type\">";		
 		echo "<option>text";
+		echo "<option>time";
 		echo "<option>bool";
 		echo "<option>file";
 		echo "<option>theme";
@@ -1377,7 +1333,7 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(lib_rfs_get
 
           echo "<tr>";
 			echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 
 			echo "<input type=hidden name=action value=f_admin_menu_edit_del>";
 			echo "<input type=hidden name=id value=$menuitem->id>";
@@ -1388,7 +1344,7 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(lib_rfs_get
 
 			echo "</td>";
 			echo "<form method=\"post\" enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\">";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 
 			echo "<input type=hidden name=action value=f_admin_menu_edit_mod>";
 
@@ -1396,7 +1352,7 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(lib_rfs_get
 			echo "<input size=20 type=text name=mname value=\"$menuitem->name\">";
 			echo "</td>";
 
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 			echo "<Select name=mcategory>";
 			if( !empty( $menuitem->category ) )
 				echo "<option>$menuitem->category";
@@ -1412,10 +1368,10 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(lib_rfs_get
 
 			echo "</td>";
 
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 			echo "<input size=40 type=text name=murl value=\"$menuitem->url\">";
 			echo "</td>";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 
 
 			echo "<a href='adm.php?action=f_admin_menu_change_icon&id=$menuitem->id'>";
@@ -1426,10 +1382,10 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) { eval(lib_rfs_get
 
 			echo "<input size=40 type=text name=micon value=\"$menuitem->icon\">";
 			echo "</td>";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 			echo "<input type=text name=mtarget value=\"$menuitem->target\">";
 			echo "</td>";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 
 			echo "<div class=menutop><input type=submit name=submit value=modify></div>";
 
@@ -1544,7 +1500,7 @@ function adm_action_admin_menu_edit() { eval( lib_rfs_get_globals() );
             adm_action_f_admin_menu_edit_entry_data($menuitem->id,$tdlc);
 /*			echo "<tr>";
 			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/admin/adm.php>";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 
 			echo "<input type=hidden name=action value=f_admin_menu_edit_del>";
 			echo "<input type=hidden name=id value=$menuitem->id>";
@@ -1555,7 +1511,7 @@ function adm_action_admin_menu_edit() { eval( lib_rfs_get_globals() );
 
 			echo "</td>";
 			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/admin/adm.php>";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 
 			echo "<input type=hidden name=action value=f_admin_menu_edit_mod>";
 
@@ -1563,7 +1519,7 @@ function adm_action_admin_menu_edit() { eval( lib_rfs_get_globals() );
 			echo "<input size=20 type=text name=mname value=\"$menuitem->name\">";
 			echo "</td>";
 
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 			echo "<Select name=mcategory>";
 			if( !empty( $menuitem->category ) )
 				echo "<option>$menuitem->category";
@@ -1579,10 +1535,10 @@ function adm_action_admin_menu_edit() { eval( lib_rfs_get_globals() );
 
 			echo "</td>";
 
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 			echo "<input size=40 type=text name=murl value=\"$menuitem->url\">";
 			echo "</td>";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 
 
 			echo "<a href='adm.php?action=f_admin_menu_change_icon&id=$menuitem->id'>";
@@ -1593,10 +1549,10 @@ function adm_action_admin_menu_edit() { eval( lib_rfs_get_globals() );
 
 			echo "<input size=40 type=text name=micon value=\"$menuitem->icon\">";
 			echo "</td>";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 			echo "<input type=text name=mtarget value=\"$menuitem->target\">";
 			echo "</td>";
-			echo "<td class=sc_project_table_$tdlc valign=bottom>";
+			echo "<td class=rfs_project_table_$tdlc valign=bottom>";
 
 			echo "<div class=menutop><input type=submit name=submit value=modify></div>";
 
@@ -2041,27 +1997,27 @@ function adm_action_edit_smilies() {
 		$sfrom=stripslashes( $smiley['sfrom'] );
 		$sto=stripslashes( $smiley['sto'] );
 		echo "<tr>\n";
-		lib_rfs_echo( "<td class=sc_project_table_$bg align=center width=24 valign=top>$sto</td>");
-		echo "<td class=sc_project_table_$bg valign=top>\n";
+		lib_rfs_echo( "<td class=rfs_project_table_$bg align=center width=24 valign=top>$sto</td>");
+		echo "<td class=rfs_project_table_$bg valign=top>\n";
 		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=hidden name=action value=edit_smilies>\n";
 		echo "<input type=hidden name=smact value=update>";
 		echo "<input type=hidden name=ofrom value=\"$sfrom\">\n";
 		echo "</td>";
-		echo "<td class=sc_project_table_$bg>";
+		echo "<td class=rfs_project_table_$bg>";
 		echo "<input size=5 type=textbox name=sfrom value=\"$sfrom\">\n";
 		echo "</td>";
-		echo "<td class=sc_project_table_$bg>";
+		echo "<td class=rfs_project_table_$bg>";
 		echo "<textarea name=sto cols=80>$sto</textarea>\n";
 		echo "</td>";
-		echo "<td class=sc_project_table_$bg>";
+		echo "<td class=rfs_project_table_$bg>";
 		echo "<input type=submit name=smact value=update></form></td>";
-		echo "<td class=sc_project_table_$bg>";
+		echo "<td class=rfs_project_table_$bg>";
 		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=hidden name=action value=edit_smilies>\n";
 		echo "<input type=hidden name=smact value=delete>";
 		echo "</td>";
-		echo "<td class=sc_project_table_$bg>";
+		echo "<td class=rfs_project_table_$bg>";
 		echo "<input type=hidden name=sfrom value=\"$sfrom\">\n";
 		echo "<input type=hidden name=sto   value=\"".urlencode( $sto )."\">\n";
 		echo "<input type=submit name=delete value=delete>";
@@ -2218,7 +2174,7 @@ function adm_action_counters() {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AWARD EDIT
-// function adm_action_awards_edit() { 	echo "<h3>Award Editor</h3>\n"; 	sc_awards_list(); 	include("footer.php");	exit();}
+// function adm_action_awards_edit() { 	echo "<h3>Award Editor</h3>\n"; 	rfs_awards_list(); 	include("footer.php");	exit();}
 function adm_action_f_add_award_go() {
 	eval( lib_rfs_get_globals() );
 	echo "<h3>Add award!</h3>\n";
@@ -2254,7 +2210,7 @@ function adm_action_edit_tags() { eval(lib_rfs_get_globals());
 	
 	echo "<p>Hidden tags will not be shown to the public. They won't even show up in listings of available tags.</p>";
 	
-	echo "<div style='clear:both;' class='sc_file_table_$gt'  >";
+	echo "<div style='clear:both;' class='rfs_file_table_$gt'  >";
 		echo "<div style='float:left; width:170px;'>";		
 			echo "Tag";
 		echo "</div>";
@@ -2266,7 +2222,7 @@ function adm_action_edit_tags() { eval(lib_rfs_get_globals());
 	for($i=0;$i<$n;$i++) {
 		$tag=mysql_fetch_object($r);
 		$gt++;if($gt>1) $gt=0;		
-		echo "<div style='clear:both;' class='sc_file_table_$gt'  >";
+		echo "<div style='clear:both;' class='rfs_file_table_$gt'  >";
 			echo "<div style='float:left;'>";		
 				lib_ajax("Tag,80"			  	, "tags"  	,  "id",    "$tag->id",      "tag",       "", "nohide,nolabel",	"admin", "access", "");
 			echo "</div>";
@@ -2305,13 +2261,7 @@ function adm_action_() { eval(lib_rfs_get_globals());
 
 
 	if($db_queries=="list" ) { adm_db_query_list();  exit(); }
-		// lib_ajax($label,$table,$key,$kv,$field,$width,$type)
-		// echo "<table border=0>";
-		// lib_ajax("Avatar","users", "name", "$data->name","avatar", 60, "","admin","access","lib_ajax_callback_image");
-		// 	lib_ajax("Last Name"	,"users","name","seth.parson","last_name","","","admin","access","");
-		// lib_ajax("Email"		,"users","name","seth.parson","email",80,"","admin","access");
-		// lib_ajax("File",      "files","name","amwifi.exe","name",60,"","files","edit");
-		// echo "</table>";	
+		
 	
 	$ax=lib_mysql_fetch_one_object("select * from access where name='Administrator' and action='access' and page='admin'");
 	if(!$ax->id) {
@@ -2381,19 +2331,18 @@ function adm_action_() { eval(lib_rfs_get_globals());
 	lib_social_paypal2();
 	lib_social_share_bar($u,$t);
 	lib_social_share_bar2("",$t);
-	sc_social_buttons();
-	sc_reddit();
-	sc_google_plus_badge();
-	sc_google_plus_badge2();
-	sc_google_plus("http://www.sethcoder.com/");
-	sc_tweet("http://www.sethcoder.com/","#RFSCMS","Great content management system.");	
-	sc_twitter_follow("Sethcoder");	
+	lib_social_buttons();
+	lib_social_reddit();
+	lib_social_google_plus_badge();
+	lib_social_google_plus_badge2();
+	lib_social_google_plus("http://www.sethcoder.com/");
+	lib_social_tweet("http://www.sethcoder.com/","#RFSCMS","Great content management system.");	
+	lib_social_twitter_follow("Sethcoder");	
 	echo "<hr>";
 	
 	
 	*/
 	echo "<hr>";
-	lib_modules_show_registered();
 
     adm_menu_built_in();
 		

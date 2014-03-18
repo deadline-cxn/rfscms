@@ -1,13 +1,15 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="467,5,509,35"/>
-<area shape="rect" id="node5" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="451,112,525,141"/>
-<area shape="rect" id="node13" href="$adm_8php.html#a92f9924e31d6460b7e54ef0a1553bf08" title="adm_action_edit_site_vars" alt="" coords="223,59,399,88"/>
-<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="576,165,704,195"/>
-<area shape="rect" id="node11" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="619,112,661,141"/>
-<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="756,165,887,195"/>
-<area shape="rect" id="node17" href="$lib_8buttons_8php.html#a666362cb0a8603c56ee45762028a24a4" title="sc_button" alt="" coords="449,59,527,88"/>
-<area shape="rect" id="node19" href="$lib_8buttons_8php.html#aab8ac9602362dc3e4f93b3fd545d5369" title="sc_button_l" alt="" coords="596,59,684,88"/>
-<area shape="rect" id="node21" href="$lib_8buttons_8php.html#a714921c1f613923442fcd7b484b22d1c" title="sc_makebuttonstart" alt="" coords="753,59,889,88"/>
-<area shape="rect" id="node23" href="$lib_8buttons_8php.html#ae684d5b0a007ec007ba38aa3aa3fd067" title="sc_makebutton" alt="" coords="767,112,876,141"/>
-<area shape="rect" id="node25" href="$lib_8buttons_8php.html#a492729bd6c797205a3fd22da1fb1f174" title="sc_makebuttonend" alt="" coords="756,5,887,35"/>
+<area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="1139,268,1269,297"/>
+<area shape="rect" id="node5" href="$lib_8sitevars_8php.html#af2e0fac915c14d0ff35a755f5e8d7d70" title="lib_sitevars_assign" alt="" coords="244,33,377,63"/>
+<area shape="rect" id="node18" href="$adm_8php.html#a92f9924e31d6460b7e54ef0a1553bf08" title="adm_action_edit_site_vars" alt="" coords="223,188,399,217"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="449,33,631,63"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="707,33,821,63"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="899,5,1067,35"/>
+<area shape="rect" id="node15" href="$lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="897,59,1068,88"/>
+<area shape="rect" id="node13" href="$lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="1117,5,1291,35"/>
+<area shape="rect" id="node22" href="$lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a" title="lib_rfs_bool_true" alt="" coords="1145,164,1263,193"/>
+<area shape="rect" id="node24" href="$lib_8themes_8php.html#ad6e63cc3bc300805b66603a5f3369528" title="lib_themes_get_array" alt="" coords="467,188,613,217"/>
+<area shape="rect" id="node26" href="$lib_8forms_8php.html#a098b167296ec6269a9c46eb442cc6352" title="rfs_db_element_edit" alt="" coords="471,241,609,271"/>
+<area shape="rect" id="node29" href="$lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17" title="lib_buttons_make_button" alt="" coords="681,191,847,220"/>
+<area shape="rect" id="node31" href="$lib_8buttons_8php.html#a248ceefceff04cb69a1032f6cfc1dad6" title="lib_buttons_text" alt="" coords="925,191,1040,220"/>
 </map>

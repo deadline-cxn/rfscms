@@ -215,18 +215,18 @@ if($action=="list_exams") {
 			$exam=mysql_fetch_object($r);
 			echo "<tr>";
 			
-			echo "<td class=sc_project_table_$gt>";			
+			echo "<td class=rfs_project_table_$gt>";			
 			echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam->id'>
 			<img src='$RFS_SITE_URL/images/icons/Play.png' width=16 border=0></a>
 			</td>";
 			
-			echo "<td class=sc_project_table_$gt>";
+			echo "<td class=rfs_project_table_$gt>";
 			
 			echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam->id'>$exam->name</a>";
 			
 			echo "</td>";
 			
-			echo "<td class=sc_project_table_$gt>";
+			echo "<td class=rfs_project_table_$gt>";
 			echo exams_get_total_questions_answered($data->name,$exam->id);
 			
 			echo " ( ".exams_get_completed_prct($data->name,$exam->id)."% )";
@@ -234,7 +234,7 @@ if($action=="list_exams") {
 			echo "</td>";
 			
 			
-			echo "<td class=sc_project_table_$gt>";
+			echo "<td class=rfs_project_table_$gt>";
 			$eprct=exams_get_prct($data->name,$exam->id);
 			$escor=exams_get_score($data->name,$exam->id);
 			$etotq=exams_get_total_questions($exam->id);
@@ -247,7 +247,7 @@ if($action=="list_exams") {
 			echo "</td>";
 			
 
-			echo "<td class=sc_project_table_$gt>";
+			echo "<td class=rfs_project_table_$gt>";
 			echo $exam->pass_percent."%";			
 			echo "</td>";
 			
@@ -774,7 +774,7 @@ if(lib_access_check("exams","edit") ) {
 				echo "<tr>";
 		
 				$q=mysql_fetch_object($r);
-				echo "<td class=sc_project_table_$gt>
+				echo "<td class=rfs_project_table_$gt>
 				<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_question_edit&exam_id=$exam->id&q=$q->id'>";
                 echo "<img src='$RFS_SITE_URL/images/icons/Edit.png' width=16 border=0>";
                 echo "</a>
@@ -782,34 +782,34 @@ if(lib_access_check("exams","edit") ) {
 
 
                 				
-				echo "<td class=sc_project_table_$gt>
+				echo "<td class=rfs_project_table_$gt>
 				<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_question_remove&exam_id=$exam->id&q=$q->id'>";
                 echo "<img src='$RFS_SITE_URL/images/icons/Delete.png' width=16 border=0>";
                 echo "</a>
 				</td>";
-				echo "<td class=sc_project_table_$gt><img src='$RFS_SITE_URL/images/icons/arrow-up.png' border=0 width=16></td>";
-				echo "<td class=sc_project_table_$gt><img src='$RFS_SITE_URL/images/icons/arrow-down.png' border=0 width=16></td>";
-				echo "<td class=sc_project_table_$gt>$q->exam_sequence)</td>";
-				echo "<td class=sc_project_table_$gt>$q->type</td>";
-				echo "<td class=sc_project_table_$gt>".lib_string_truncate($q->intro,85)."</td>";
-				echo "<td class=sc_project_table_$gt>$q->question</td>";
-				echo "<td class=sc_project_table_$gt>$q->correct_answer</td>";
+				echo "<td class=rfs_project_table_$gt><img src='$RFS_SITE_URL/images/icons/arrow-up.png' border=0 width=16></td>";
+				echo "<td class=rfs_project_table_$gt><img src='$RFS_SITE_URL/images/icons/arrow-down.png' border=0 width=16></td>";
+				echo "<td class=rfs_project_table_$gt>$q->exam_sequence)</td>";
+				echo "<td class=rfs_project_table_$gt>$q->type</td>";
+				echo "<td class=rfs_project_table_$gt>".lib_string_truncate($q->intro,85)."</td>";
+				echo "<td class=rfs_project_table_$gt>$q->question</td>";
+				echo "<td class=rfs_project_table_$gt>$q->correct_answer</td>";
 				
-				echo "<td class=sc_project_table_$gt>$q->choice_1</td>";
-				echo "<td class=sc_project_table_$gt>$q->choice_2</td>";
-				echo "<td class=sc_project_table_$gt>$q->choice_3</td>";
-				echo "<td class=sc_project_table_$gt>$q->choice_4</td>";
-				echo "<td class=sc_project_table_$gt>$q->choice_5</td>";
-				echo "<td class=sc_project_table_$gt>$q->choice_6</td>";
+				echo "<td class=rfs_project_table_$gt>$q->choice_1</td>";
+				echo "<td class=rfs_project_table_$gt>$q->choice_2</td>";
+				echo "<td class=rfs_project_table_$gt>$q->choice_3</td>";
+				echo "<td class=rfs_project_table_$gt>$q->choice_4</td>";
+				echo "<td class=rfs_project_table_$gt>$q->choice_5</td>";
+				echo "<td class=rfs_project_table_$gt>$q->choice_6</td>";
 				
-				echo "<td class=sc_project_table_$gt>$q->task</td>";
-				
-				
+				echo "<td class=rfs_project_table_$gt>$q->task</td>";
 				
 				
 				
 				
-				echo "<td class=sc_project_table_$gt>";
+				
+				
+				echo "<td class=rfs_project_table_$gt>";
 				if(!empty($q->question_image)) 
 					lib_rfs_echo("<img src=$q->question_image width=32>");
 				echo "</td>";
@@ -857,7 +857,7 @@ if(lib_access_check("exams","edit") ) {
     // True / False
     // Matching
 
-        sc_bqf("action=admin_new_exam".$RFS_SITE_DELIMITER."SHOW_TEXT_name=new exam","Create new exam");
+        rfs_bqf("action=admin_new_exam".$RFS_SITE_DELIMITER."SHOW_TEXT_name=new exam","Create new exam");
 
         $q="select * from exams order by name ";
         $r=lib_mysql_query($q); $n=mysql_num_rows($r);
@@ -882,7 +882,7 @@ if(lib_access_check("exams","edit") ) {
 
             echo "<tr>";
 
-                echo "<td class=sc_project_table_$gt>";
+                echo "<td class=rfs_project_table_$gt>";
                 ///////// tools
                                                 echo "<table border=0 cellspacing=0 cellpadding=0>";
                                         echo "<tr>";
@@ -930,33 +930,33 @@ if(lib_access_check("exams","edit") ) {
 
                 //// exam name
 
-                echo "<td class=sc_project_table_$gt>";
+                echo "<td class=rfs_project_table_$gt>";
 					echo $exam->name;
                 echo "</td>";
 
 
                 //// exam method
 
-                echo "<td class=sc_project_table_$gt>";
+                echo "<td class=rfs_project_table_$gt>";
 					echo $exam->method;
                 echo "</td>";
 				
                //// exam pass percent
 
-                echo "<td class=sc_project_table_$gt>";
+                echo "<td class=rfs_project_table_$gt>";
 					echo $exam->pass_percent;
                 echo "</td>";
 		
                //// exam questions
 
-                echo "<td class=sc_project_table_$gt>";
+                echo "<td class=rfs_project_table_$gt>";
 					echo $exam->questions;
                 echo "</td>";
 				
 				
                //// exam total questions
 
-                echo "<td class=sc_project_table_$gt>";
+                echo "<td class=rfs_project_table_$gt>";
 				$rnq=lib_mysql_query("select * from exam_questions where exam_id='$exam->id'");
 				$nq=mysql_num_rows($rnq);
 					echo $nq;
@@ -967,7 +967,7 @@ if(lib_access_check("exams","edit") ) {
                 
 
                 //// POD association
-					echo "<td class=sc_project_table_$gt>";
+					echo "<td class=rfs_project_table_$gt>";
                     $pod_id=$exam->pod_id;
                     $pod=" ";
                     if($pod_id==0){

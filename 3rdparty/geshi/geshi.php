@@ -2391,16 +2391,16 @@ class GeSHi {
         $escaped_escape_char = $this->hsc($this->language_data['ESCAPE_CHAR']);
 
         // this is used for single-line comments
-        $sc_disallowed_before = "";
-        $sc_disallowed_after = "";
+        $rfs_disallowed_before = "";
+        $rfs_disallowed_after = "";
 
         if (isset($this->language_data['PARSER_CONTROL'])) {
             if (isset($this->language_data['PARSER_CONTROL']['COMMENTS'])) {
                 if (isset($this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'])) {
-                    $sc_disallowed_before = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'];
+                    $rfs_disallowed_before = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'];
                 }
                 if (isset($this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'])) {
-                    $sc_disallowed_after = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'];
+                    $rfs_disallowed_after = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'];
                 }
             }
         }
@@ -3030,10 +3030,10 @@ class GeSHi {
 
                                 // This check will find special variables like $# in bash
                                 // or compiler directives of Delphi beginning {$
-                                if ((empty($sc_disallowed_before) || ($i == 0) ||
-                                    (false === strpos($sc_disallowed_before, $part[$i-1]))) &&
-                                    (empty($sc_disallowed_after) || ($length <= $i + $com_len) ||
-                                    (false === strpos($sc_disallowed_after, $part[$i + $com_len]))))
+                                if ((empty($rfs_disallowed_before) || ($i == 0) ||
+                                    (false === strpos($rfs_disallowed_before, $part[$i-1]))) &&
+                                    (empty($rfs_disallowed_after) || ($length <= $i + $com_len) ||
+                                    (false === strpos($rfs_disallowed_after, $part[$i + $com_len]))))
                                 {
                                     // this is a valid comment
                                     $COMMENT_MATCHED = true;

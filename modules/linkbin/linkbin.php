@@ -138,7 +138,7 @@ function linkbin_action_() {
 			$lastmonth=$lmonth;
 		}
 		if(empty($link->description)) $link->description="<i>No description</i>";
-		echo "<tr class=sc_project_table_$gt>";
+		echo "<tr class=rfs_project_table_$gt>";
 
 		$link->sname=str_replace("www.","",$link->sname);
 		$link->sname=str_replace(".com","",$link->sname);

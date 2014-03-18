@@ -45,9 +45,9 @@ function login_render($errors=null, $input=null, $needed=null)
         $errors[] = sprintf(login_needed_pat, link_render($needed));
     }
 
-    $esc_input = htmlspecialchars($input, ENT_QUOTES);
+    $erfs_input = htmlspecialchars($input, ENT_QUOTES);
     $login_url = buildURL('login', true);
-    $body = sprintf(login_form_pat, idURL('USERNAME'), $login_url, $esc_input);
+    $body = sprintf(login_form_pat, idURL('USERNAME'), $login_url, $erfs_input);
     if ($errors) {
         $body = loginError_render($errors) . $body;
     }

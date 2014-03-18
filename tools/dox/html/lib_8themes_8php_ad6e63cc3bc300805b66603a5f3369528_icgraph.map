@@ -1,3 +1,13 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8forms_8php.html#ad4a55cdf1b3bbe4e0773430b23d238de" title="lib_forms_theme_select" alt="" coords="200,5,360,35"/>
+<area shape="rect" id="node3" href="$adm_8php.html#a577cdf162087f15da40c15095d2a4bea" title="adm_action_f_theme_add_css_value_go" alt="" coords="200,5,459,35"/>
+<area shape="rect" id="node5" href="$adm_8php.html#aa0c477ea95a4ad1a058d6f8e30c00baf" title="adm_action_f_theme_css_checker" alt="" coords="509,16,733,45"/>
+<area shape="rect" id="node7" href="$adm_8php.html#a0615a29e6c064bd5c0c3757734096f3d" title="adm_action_theme" alt="" coords="264,109,395,139"/>
+<area shape="rect" id="node14" href="$adm_8php.html#a92f9924e31d6460b7e54ef0a1553bf08" title="adm_action_edit_site_vars" alt="" coords="241,189,417,219"/>
+<area shape="rect" id="node24" href="$lib_8forms_8php.html#ad4a55cdf1b3bbe4e0773430b23d238de" title="lib_forms_theme_select" alt="" coords="249,243,409,272"/>
+<area shape="rect" id="node9" href="$adm_8php.html#acb6014e45c705e5c90c9ab4bd505938e" title="adm_action_f_theme_clone_go" alt="" coords="520,69,723,99"/>
+<area shape="rect" id="node11" href="$adm_8php.html#a5dddb69b60010e05080d7e7091a1092b" title="adm_action_f_theme_view_classes" alt="" coords="507,123,736,152"/>
+<area shape="rect" id="node16" href="$adm_8php.html#a6e3a8c2da3942ace294006b3f623ba33" title="adm_action_f_addsitevar" alt="" coords="539,176,704,205"/>
+<area shape="rect" id="node18" href="$adm_8php.html#ad6bf8be7b65dfcf97317d89ac8ebe528" title="adm_action_f_upsitevar" alt="" coords="541,229,701,259"/>
+<area shape="rect" id="node20" href="$adm_8php.html#a9fb20851caed11d93dc5b53982de6094" title="adm_action_f_delsitevar_go" alt="" coords="529,283,713,312"/>
+<area shape="rect" id="node22" href="$adm_8php.html#add82feef5c2e3494081989990805f154" title="adm_action_f_delsitevar" alt="" coords="540,336,703,365"/>
 </map>

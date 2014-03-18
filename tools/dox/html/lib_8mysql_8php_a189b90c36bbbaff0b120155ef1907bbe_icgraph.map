@@ -1,7 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8mysql_8php.html#a238eaa47b98b06591deb8e16a715e14c" title="sc_confirmform" alt="" coords="335,165,447,195"/>
-<area shape="rect" id="node17" href="$lib_8mysql_8php.html#a8594d0f9a34f20d40018060b96f6e679" title="sc_optionizer" alt="" coords="147,379,245,408"/>
-<area shape="rect" id="node46" href="$lib_8mysql_8php.html#ab2a2e03dfc31eb5074a990325393609d" title="sc_bf" alt="" coords="169,1123,223,1152"/>
+<area shape="rect" id="node3" href="$lib_8mysql_8php.html#a238eaa47b98b06591deb8e16a715e14c" title="rfs_confirmform" alt="" coords="335,165,447,195"/>
+<area shape="rect" id="node17" href="$lib_8mysql_8php.html#a8594d0f9a34f20d40018060b96f6e679" title="rfs_optionizer" alt="" coords="147,379,245,408"/>
+<area shape="rect" id="node46" href="$lib_8mysql_8php.html#ab2a2e03dfc31eb5074a990325393609d" title="rfs_bf" alt="" coords="169,1123,223,1152"/>
 <area shape="rect" id="node5" href="$adm_8php.html#a55a732630eb7b827c13b5d395c55be5f" title="adm_action_f_arrange_delete" alt="" coords="568,5,760,35"/>
 <area shape="rect" id="node7" href="$adm_8php.html#a8ae1234993872b7f9152027cd64947ff" title="adm_action_f_access_group_delete" alt="" coords="549,219,779,248"/>
 <area shape="rect" id="node9" href="$adm_8php.html#a3bd2f5be6668b76b5214b4fb1e3eb8c3" title="adm_action_f_theme_edit_delete" alt="" coords="557,59,771,88"/>
@@ -28,8 +28,8 @@
 <area shape="rect" id="node62" href="$adm_8php.html#a3f080bc5ed21800a5f17a8cc8722d675" title="adm_action_f_edit_users" alt="" coords="308,1440,473,1469"/>
 <area shape="rect" id="node64" href="$adm_8php.html#ae61c9a0b2524c9e3f584d50a6504fb71" title="adm_action_user_edit" alt="" coords="316,1567,465,1596"/>
 <area shape="rect" id="node72" href="$adm_8php.html#ac44251b5ae4effd5d00a073768e8d0af" title="adm_action_edit_linkbin" alt="" coords="311,805,471,835"/>
-<area shape="rect" id="node77" href="$lib_8mysql_8php.html#a9324214cbed25fcb67c05adc6651a6f5" title="sc_bfa" alt="" coords="360,752,421,781"/>
-<area shape="rect" id="node79" href="$lib_8mysql_8php.html#a80abbdad3e2473fa9a676869019a152f" title="sc_bqf" alt="" coords="360,909,421,939"/>
+<area shape="rect" id="node77" href="$lib_8mysql_8php.html#a9324214cbed25fcb67c05adc6651a6f5" title="rfs_bfa" alt="" coords="360,752,421,781"/>
+<area shape="rect" id="node79" href="$lib_8mysql_8php.html#a80abbdad3e2473fa9a676869019a152f" title="rfs_bqf" alt="" coords="360,909,421,939"/>
 <area shape="rect" id="node85" href="$wab_8php.html#acdfb73a4001eeb541592f6ab46353be8" title="wab_engine_action_" alt="" coords="321,1069,460,1099"/>
 <area shape="rect" id="node89" href="$wab_8php.html#a3fc0ad1f8faed2e8354555b12caea18b" title="wab_engine_action_edcode" alt="" coords="300,963,481,992"/>
 <area shape="rect" id="node91" href="$wab_8php.html#a54f174c0d1a9c9b6c105156643e4af71" title="wab_engine_action_add_form" alt="" coords="293,1016,488,1045"/>

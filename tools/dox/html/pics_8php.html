@@ -86,8 +86,8 @@ if($action==&quot;removepicture&quot;) <br class="typebreak"/>
 if($action==&quot;removego&quot;)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pics_8php.html#aa7cadf2261122f5b738b9292f697293c">addorphans</a> ($folder, $cat)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>(<a class="el" href="lib_8mysql_8php.html#acdc8ebc6dbeee8624b9ddcfd3f892098">sc_access_check</a>(&quot;pictures&quot;,&quot;orphanscan&quot;)) <br class="typebreak"/>
-if(<a class="el" href="lib_8mysql_8php.html#acdc8ebc6dbeee8624b9ddcfd3f892098">sc_access_check</a>(&quot;pictures&quot;,&quot;upload&quot;))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pics_8php.html#a5270f8c9ad2a7e10ed5c6475102bead5">if</a> (<a class="el" href="lib_8mysql_8php.html#acdc8ebc6dbeee8624b9ddcfd3f892098">sc_access_check</a>(&quot;pictures&quot;,&quot;sort&quot;))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="xplorer_8php.html#ad01f67a91735ee57a36fe991a83e950a">if</a>(<a class="el" href="lib_8mysql_8php.html#acdc8ebc6dbeee8624b9ddcfd3f892098">rfs_access_check</a>(&quot;pictures&quot;,&quot;orphanscan&quot;)) <br class="typebreak"/>
+if(<a class="el" href="lib_8mysql_8php.html#acdc8ebc6dbeee8624b9ddcfd3f892098">rfs_access_check</a>(&quot;pictures&quot;,&quot;upload&quot;))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pics_8php.html#a5270f8c9ad2a7e10ed5c6475102bead5">if</a> (<a class="el" href="lib_8mysql_8php.html#acdc8ebc6dbeee8624b9ddcfd3f892098">rfs_access_check</a>(&quot;pictures&quot;,&quot;sort&quot;))</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pics_8php.html#a042e27c4aaa482e9bdac9f8f953462fd">$ourl</a> = &quot;$RFS_SITE_URL/modules/pictures/pics.php?action=$action&amp;id=$id&quot;</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pics_8php.html#ae608c8b956717f4655f891bf4c9e8b52">$mcols</a> = 5</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pics_8php.html#a5e38826376e9a34ad510cc409c8a220d">$mrows</a> = 6</td></tr>
@@ -129,7 +129,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="pics_8php_aa7cadf2261122f5b738b9292f697293c_cgraph.png" border="0" usemap="#pics_8php_aa7cadf2261122f5b738b9292f697293c_cgraph" alt=""/></div>
 <map name="pics_8php_aa7cadf2261122f5b738b9292f697293c_cgraph" id="pics_8php_aa7cadf2261122f5b738b9292f697293c_cgraph">
-<area shape="rect" id="node3" href="lib_8file_8php.html#a0053aea7ffd89c9c3564b2a7904b3fbf" title="sc_folder_to_array" alt="" coords="145,5,273,35"/><area shape="rect" id="node5" href="lib_8file_8php.html#a0145e555488271a734d8f0ba81a1b283" title="sc_getfiletype" alt="" coords="159,59,260,88"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="172,112,247,141"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="323,85,451,115"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="365,139,408,168"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="500,85,631,115"/></map>
+<area shape="rect" id="node3" href="lib_8file_8php.html#a0053aea7ffd89c9c3564b2a7904b3fbf" title="rfs_folder_to_array" alt="" coords="145,5,273,35"/><area shape="rect" id="node5" href="lib_8file_8php.html#a0145e555488271a734d8f0ba81a1b283" title="rfs_getfiletype" alt="" coords="159,59,260,88"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="rfs_query" alt="" coords="172,112,247,141"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="rfs_query_user_db" alt="" coords="323,85,451,115"/><area shape="rect" id="node13" href="lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="365,139,408,168"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="rfs_query_other_db" alt="" coords="500,85,631,115"/></map>
 </div>
 </p>
 
@@ -241,7 +241,7 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a5270f8c9ad2a7e10ed5c6475102bead5"></a><!-- doxytag: member="pics.php::if" ref="a5270f8c9ad2a7e10ed5c6475102bead5" args="(sc_access_check(&quot;pictures&quot;,&quot;sort&quot;))" -->
+<a class="anchor" id="a5270f8c9ad2a7e10ed5c6475102bead5"></a><!-- doxytag: member="pics.php::if" ref="a5270f8c9ad2a7e10ed5c6475102bead5" args="(rfs_access_check(&quot;pictures&quot;,&quot;sort&quot;))" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">

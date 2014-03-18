@@ -1,5 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8mysql_8php.html#a189b90c36bbbaff0b120155ef1907bbe" title="sc_delimiter" alt="" coords="189,5,280,35"/>
-<area shape="rect" id="node5" href="$lib_8buttons_8php.html#a714921c1f613923442fcd7b484b22d1c" title="sc_makebuttonstart" alt="" coords="167,59,303,88"/>
-<area shape="rect" id="node7" href="$lib_8buttons_8php.html#a492729bd6c797205a3fd22da1fb1f174" title="sc_makebuttonend" alt="" coords="169,112,300,141"/>
+<area shape="rect" id="node3" href="$lib_8mysql_8php.html#a189b90c36bbbaff0b120155ef1907bbe" title="rfs_delimiter" alt="" coords="189,5,280,35"/>
+<area shape="rect" id="node5" href="$lib_8buttons_8php.html#a714921c1f613923442fcd7b484b22d1c" title="rfs_makebuttonstart" alt="" coords="167,59,303,88"/>
+<area shape="rect" id="node7" href="$lib_8buttons_8php.html#a492729bd6c797205a3fd22da1fb1f174" title="rfs_makebuttonend" alt="" coords="169,112,300,141"/>
 </map>

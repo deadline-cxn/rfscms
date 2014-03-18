@@ -423,9 +423,9 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
                 }
             }
             if($tref){
-                echo "<tr><td class=sc_project_table_$gt align=right>\n";
+                echo "<tr><td class=rfs_project_table_$gt align=right>\n";
                 echo $name;
-                echo "</td><td class=sc_project_table_$gt>";
+                echo "</td><td class=rfs_project_table_$gt>";
                 echo "<select name=\"".$i['Field']."\">";
                 if(!empty($dat->{$i['Field']})){
                    $q="select * from `$tref_table` where `id`='".$dat->{$i['Field']}."'";
@@ -509,10 +509,10 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
 						}
 					}
 					if($hidden==0){
-						echo "<tr><td class=sc_project_table_$gt align=right>\n";
+						echo "<tr><td class=rfs_project_table_$gt align=right>\n";
 						if($relabel==true)	echo $label;
 						else               	echo $name;
-						echo "</td><td class=sc_project_table_$gt>";
+						echo "</td><td class=rfs_project_table_$gt>";
 					}
 					if($i['Field']=="password")	$type="password";
 					if($i['Field']=="pass") 	$type="password";
@@ -605,7 +605,7 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
 			$taname=$hidvar_b[0];
 			if($field[0]) $taname=$field[0];
 			$rw=explode("#",$hidvar_b[0]);			
-			echo "<tr><td class=sc_project_table_$gt align=right>";
+			echo "<tr><td class=rfs_project_table_$gt align=right>";
 			echo ucwords(str_replace("_"," ",$taname));
 			echo " </td>
 			<td ><input name=\"$taname\" type=\"file\" size=80> </td></tr>\n";
@@ -626,9 +626,9 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
 				if(count($keys)>1) {
 					$key=join($RFS_SITE_DELIMITER,$keys);
 				}
-            echo "<tr><td class=\"sc_project_table_$gt\" align=right>";			
+            echo "<tr><td class=\"rfs_project_table_$gt\" align=right>";			
 			echo ucwords(str_replace("_"," ",$name));
-            echo "</td><td class=\"sc_project_table_$gt\">";
+            echo "</td><td class=\"rfs_project_table_$gt\">";
 			if($table!="NOTABLE") {
 				lib_forms_optionize("INLINE","SELECTNAME=$name".$RFS_SITE_DELIMITER,$table,$key,0,$default,0);
 			}
@@ -653,8 +653,8 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
 		$cols=$field[1];
 		$rows=$field[0];
 		//echo "[".$hidvar_b[0]."][$rows][$cols]";
-		echo "<tr><td class=sc_project_table_$gt align=right>";
-		echo "</td><td class=sc_project_table_$gt>";
+		echo "<tr><td class=rfs_project_table_$gt align=right>";
+		echo "</td><td class=rfs_project_table_$gt>";
 		lib_forms_codearea( "lib_forms_build_codearea",$rows,$cols,$name,$hidvar_b[1]);
 		echo "</td></tr>";
 		$gt++; if($gt>2) $gt=1;
@@ -684,9 +684,9 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
 			$rows=$rw[0];
 			$taname=$rw[1];
 		}
-		echo "<tr><td class=sc_project_table_$gt align=right>";
+		echo "<tr><td class=rfs_project_table_$gt align=right>";
 		echo ucwords(str_replace("_"," ",$taname));
-		echo "</td><td class=sc_project_table_$gt>";
+		echo "</td><td class=rfs_project_table_$gt>";
 
 			echo " <input ";
 			echo "size=\"$cols\" ";
@@ -715,9 +715,9 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
 			$taname=$rw[1];
 		}
 		// echo "--- $field[1] $hidvar_b[1]<br>";
-		echo "<tr><td class=sc_project_table_$gt align=right>";
+		echo "<tr><td class=rfs_project_table_$gt align=right>";
 		echo ucwords(str_replace("_"," ",$taname));
-		echo "</td><td class=sc_project_table_$gt>";
+		echo "</td><td class=rfs_project_table_$gt>";
 		echo "<textarea rows=$rows cols=$cols name=\"$taname\">";
 		$code=str_replace("</textarea>","&lt;/textarea>",$hidvar_b[1]);
 		echo stripslashes($code);
@@ -754,9 +754,9 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
 			$taname=$rw[1];
 		}
 		// echo "--- $field[1] $hidvar_b[1]<br>";
-		echo "<tr><td class=sc_project_table_$gt align=right>";
+		echo "<tr><td class=rfs_project_table_$gt align=right>";
 		echo ucwords(str_replace("_"," ",$taname));
-		echo "</td><td class=sc_project_table_$gt>";
+		echo "</td><td class=rfs_project_table_$gt>";
 
 		echo " <input type=password ";
 		echo "size=$cols ";

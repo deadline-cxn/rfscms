@@ -394,11 +394,11 @@ function getServerTrafficHtml($ServerStatusData)
 
         if ($is_sorted) {
             if ($_REQUEST['sort_order'] == 'ASC') {
-                $asc_display_style = 'inline';
-                $desc_display_style = 'none';
+                $arfs_display_style = 'inline';
+                $derfs_display_style = 'none';
             } elseif ($_REQUEST['sort_order'] == 'DESC') {
-                $desc_display_style = 'inline';
-                $asc_display_style = 'none';
+                $derfs_display_style = 'inline';
+                $arfs_display_style = 'none';
             }
         }
 
@@ -415,10 +415,10 @@ function getServerTrafficHtml($ServerStatusData)
         if ($is_sorted) {
             $retval .= '<img class="icon ic_s_desc soimg" alt="'
                 . __('Descending') . '" title="" src="themes/dot.gif" '
-                . 'style="display: ' . $desc_display_style . '" />';
+                . 'style="display: ' . $derfs_display_style . '" />';
             $retval .= '<img class="icon ic_s_asc soimg hide" alt="'
                 . __('Ascending') . '" title="" src="themes/dot.gif" '
-                . 'style="display: ' . $asc_display_style . '" />';
+                . 'style="display: ' . $arfs_display_style . '" />';
         }
 
         $retval .= '</a>';

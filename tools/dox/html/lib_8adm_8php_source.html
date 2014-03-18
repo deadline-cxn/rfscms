@@ -84,9 +84,9 @@
 <a name="l00009"></a>00009     <span class="keywordflow">if</span>( <a class="code" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">lib_rfs_bool_true</a>( <a class="code" href="config_8sitevars_8php.html#abb0051c332d18b8256a4bfd7db2fbe61">$RFS_SITE_FORCE_THEME</a> ) ) <a class="code" href="video__wall_8php.html#a1ae541f7fe1c5e21cb4535f88ec9e9dc">$theme</a>=<a class="code" href="config_8sitevars_8php.html#ace98164e78bce9598b5dc24ee4389f93">$RFS_SITE_FORCED_THEME</a>;
 <a name="l00010"></a>00010     echo <span class="stringliteral">&quot;&lt;link rel=\&quot;stylesheet\&quot; href=\&quot;$RFS_SITE_URL/themes/$theme/t.css\&quot; type=\&quot;text/css\&quot;&gt;\n&quot;</span>;
 <a name="l00011"></a>00011     
-<a name="l00012"></a>00012     adm_db_query( <span class="stringliteral">&quot;SELECT name,email,donated FROM users&quot;</span> );
-<a name="l00013"></a>00013     adm_db_query( <span class="stringliteral">&quot;SELECT * FROM users&quot;</span> );
-<a name="l00014"></a>00014     adm_db_query( <span class="stringliteral">&quot;SHOW FULL COLUMNS FROM users&quot;</span> );
+<a name="l00012"></a>00012     <a class="code" href="adm_8php.html#ab2f55426a598f5f8a994284f1de192d9">adm_db_query</a>( <span class="stringliteral">&quot;SELECT name,email,donated FROM users&quot;</span> );
+<a name="l00013"></a>00013     <a class="code" href="adm_8php.html#ab2f55426a598f5f8a994284f1de192d9">adm_db_query</a>( <span class="stringliteral">&quot;SELECT * FROM users&quot;</span> );
+<a name="l00014"></a>00014     <a class="code" href="adm_8php.html#ab2f55426a598f5f8a994284f1de192d9">adm_db_query</a>( <span class="stringliteral">&quot;SHOW FULL COLUMNS FROM users&quot;</span> );
 <a name="l00015"></a>00015     
 <a name="l00016"></a>00016     <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>( <span class="stringliteral">&quot; CREATE TABLE db_queries2 like db_queries; &quot;</span> );
 <a name="l00017"></a>00017     <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>( <span class="stringliteral">&quot; INSERT db_queries2 SELECT * FROM db_queries GROUP BY query;&quot;</span> );
@@ -105,7 +105,7 @@
 <a name="l00030"></a>00030         $n=mysql_num_rows(<a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a>);
 <a name="l00031"></a>00031         <span class="keywordflow">for</span>( $i=0; $i&lt;$n; $i++ ) {
 <a name="l00032"></a>00032             $dq=mysql_fetch_object( <a class="code" href="sp_8php.html#a8abe176bc41afd728f32ba8c506cbd98">$r</a> );
-<a name="l00033"></a>00033             adm_db_query( $dq-&gt;query );
+<a name="l00033"></a>00033             <a class="code" href="adm_8php.html#ab2f55426a598f5f8a994284f1de192d9">adm_db_query</a>( $dq-&gt;query );
 <a name="l00034"></a>00034         }
 <a name="l00035"></a>00035     }
 <a name="l00036"></a>00036     exit();
@@ -118,7 +118,7 @@
     <ul>
       <li class="navelem"><a class="el" href="lib_8adm_8php.html">lib.adm.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

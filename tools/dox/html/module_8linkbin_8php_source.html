@@ -156,35 +156,35 @@
 <a name="l00081"></a>00081     <span class="keywordflow">while</span>($link=mysql_fetch_object(<a class="code" href="link__out_8php.html#a112ef069ddc0454086e3d1e6d8d55d07">$result</a>)) {
 <a name="l00082"></a>00082         <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++;
 <a name="l00083"></a>00083         <span class="keywordflow">if</span>(<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;2)<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=1;
-<a name="l00084"></a>00084         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=sc_project_table_$gt&gt;&lt;br&gt;\n&quot;</span>;       
+<a name="l00084"></a>00084         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=rfs_project_table_$gt&gt;&lt;br&gt;\n&quot;</span>;      
 <a name="l00085"></a>00085         <a class="code" href="showprofile_8php.html#af70e594e86a310311c717b13e6ecac00">$userdata</a>=<a class="code" href="lib_8users_8php.html#ab325575e26a72205f4f036d966330e22">lib_users_get_data</a>( $link-&gt;poster );
 <a name="l00086"></a>00086         echo <span class="stringliteral">&quot;&lt;table border=0 cellspacing=0 cellpadding=0 width=100% &gt;\n&quot;</span>;
 <a name="l00087"></a>00087         echo <span class="stringliteral">&quot;&lt;form enctype=\&quot;application/x-www-form-URLencoded\&quot; action=\&quot;$RFS_SITE_URL/admin/adm.php\&quot; method=\&quot;post\&quot;&gt;\n&quot;</span>;
 <a name="l00088"></a>00088         echo <span class="stringliteral">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;action\&quot; value=\&quot;f_modify_link\&quot;&gt;\n&quot;</span>;
 <a name="l00089"></a>00089         echo <span class="stringliteral">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;linkid\&quot; value=\&quot;$link-&gt;id\&quot;&gt;\n&quot;</span>;
-<a name="l00090"></a>00090         echo <span class="stringliteral">&quot;&lt;tr class=sc_project_table_$gt&gt;\n&quot;</span>;
-<a name="l00091"></a>00091         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;Short Name&lt;/td&gt;&quot;</span>;
-<a name="l00092"></a>00092         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt width=230&gt;&lt;input type=text name=short_name value=\&quot;$link-&gt;sname\&quot; size=28&gt;&lt;/td&gt;&quot;</span>;
-<a name="l00093"></a>00093         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;URL&lt;/td&gt;&quot;</span>;
-<a name="l00094"></a>00094         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt width=250&gt;&lt;input type=text name=linkurl value=\&quot;$link-&gt;link\&quot; size=40&gt; &lt;/td&gt;\n&quot;</span>;
-<a name="l00095"></a>00095         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt width=300&gt;(submitted by $userdata-&gt;name on &quot;</span>.lib_string_current_time( $link-&gt;time ).<span class="stringliteral">&quot;)&lt;/td&gt;\n&quot;</span>;
-<a name="l00096"></a>00096         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;Rating:&lt;/td&gt;\n&quot;</span>;
-<a name="l00097"></a>00097         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt width=100 align=center&gt;&lt;input type=submit name=renamelink value=modify&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00090"></a>00090         echo <span class="stringliteral">&quot;&lt;tr class=rfs_project_table_$gt&gt;\n&quot;</span>;
+<a name="l00091"></a>00091         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;Short Name&lt;/td&gt;&quot;</span>;
+<a name="l00092"></a>00092         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt width=230&gt;&lt;input type=text name=short_name value=\&quot;$link-&gt;sname\&quot; size=28&gt;&lt;/td&gt;&quot;</span>;
+<a name="l00093"></a>00093         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;URL&lt;/td&gt;&quot;</span>;
+<a name="l00094"></a>00094         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt width=250&gt;&lt;input type=text name=linkurl value=\&quot;$link-&gt;link\&quot; size=40&gt; &lt;/td&gt;\n&quot;</span>;
+<a name="l00095"></a>00095         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt width=300&gt;(submitted by $userdata-&gt;name on &quot;</span>.lib_string_current_time( $link-&gt;time ).<span class="stringliteral">&quot;)&lt;/td&gt;\n&quot;</span>;
+<a name="l00096"></a>00096         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;Rating:&lt;/td&gt;\n&quot;</span>;
+<a name="l00097"></a>00097         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt width=100 align=center&gt;&lt;input type=submit name=renamelink value=modify&gt;&lt;/td&gt;\n&quot;</span>;
 <a name="l00098"></a>00098         echo <span class="stringliteral">&quot;&lt;/tr&gt;\n&lt;tr&gt;\n&quot;</span>;
-<a name="l00099"></a>00099         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;Category&lt;/td&gt;&quot;</span>;
-<a name="l00100"></a>00100         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;\n&quot;</span>;
+<a name="l00099"></a>00099         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;Category&lt;/td&gt;&quot;</span>;
+<a name="l00100"></a>00100         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;\n&quot;</span>;
 <a name="l00101"></a>00101         echo <span class="stringliteral">&quot;&lt;select name=category&gt;\n&quot;</span>;
 <a name="l00102"></a>00102         echo <span class="stringliteral">&quot;&lt;option&gt;$link-&gt;category\n&quot;</span>;
 <a name="l00103"></a>00103         $result2=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from `categories` order by name asc&quot;</span>);
 <a name="l00104"></a>00104         <span class="keywordflow">while</span>($cat=mysql_fetch_object($result2)) echo <span class="stringliteral">&quot;&lt;option&gt;$cat-&gt;name\n&quot;</span>;
 <a name="l00105"></a>00105         echo <span class="stringliteral">&quot;&lt;/select&gt;\n&quot;</span>;
 <a name="l00106"></a>00106         echo <span class="stringliteral">&quot;&lt;/td&gt;\n&quot;</span>;
-<a name="l00107"></a>00107         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;Description&lt;/td&gt;&quot;</span>;
-<a name="l00108"></a>00108         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&lt;input type=text name=description value=\&quot;$link-&gt;description\&quot; size=40&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00109"></a>00109         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&lt;table border=0&gt;&lt;tr&gt;\n&quot;</span>;
-<a name="l00110"></a>00110         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;referrals&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&lt;input type=text size=4 name=referrals value=\&quot;$link-&gt;referrals\&quot;&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00111"></a>00111         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;clicks&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&lt;input type=text size=4 name=clicks value=\&quot;$link-&gt;clicks\&quot;&gt;&lt;/td&gt;\n&quot;</span>;        
-<a name="l00112"></a>00112         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;     
+<a name="l00107"></a>00107         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;Description&lt;/td&gt;&quot;</span>;
+<a name="l00108"></a>00108         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&lt;input type=text name=description value=\&quot;$link-&gt;description\&quot; size=40&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00109"></a>00109         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&lt;table border=0&gt;&lt;tr&gt;\n&quot;</span>;
+<a name="l00110"></a>00110         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;referrals&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&lt;input type=text size=4 name=referrals value=\&quot;$link-&gt;referrals\&quot;&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00111"></a>00111         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;clicks&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&lt;input type=text size=4 name=clicks value=\&quot;$link-&gt;clicks\&quot;&gt;&lt;/td&gt;\n&quot;</span>;      
+<a name="l00112"></a>00112         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;        
 <a name="l00113"></a>00113         
 <a name="l00114"></a>00114         <span class="keywordflow">if</span>( <a class="code" href="lib_8rfs_8php.html#a41646ab38b8723bf0f938082d18cbd3a">lib_rfs_bool_true</a>($link-&gt;hidden) ) echo <span class="stringliteral">&quot;hidden &lt;select name=hidden&gt;&lt;option&gt;yes&lt;option&gt;no&lt;/select&gt;\n&quot;</span>;
 <a name="l00115"></a>00115         <span class="keywordflow">else</span> echo <span class="stringliteral">&quot;hidden &lt;select name=hidden&gt;&lt;option&gt;no&lt;option&gt;yes&lt;/select&gt;\n&quot;</span>;
@@ -196,12 +196,12 @@
 <a name="l00121"></a>00121         <span class="keywordflow">else</span> echo <span class="stringliteral">&quot;referral &lt;select name=referral&gt;&lt;option&gt;no&lt;option&gt;yes&lt;/select&gt;\n&quot;</span>;        
 <a name="l00122"></a>00122         echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;        
 <a name="l00123"></a>00123         echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00124"></a>00124         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&lt;select name=rating&gt;&lt;option&gt;$link-&gt;rating\n&quot;</span>;
+<a name="l00124"></a>00124         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&lt;select name=rating&gt;&lt;option&gt;$link-&gt;rating\n&quot;</span>;
 <a name="l00125"></a>00125         <span class="keywordflow">for</span>( $j=1; $j&lt;6; $j++ ) echo <span class="stringliteral">&quot;&lt;option&gt;$j\n&quot;</span>;
 <a name="l00126"></a>00126         echo <span class="stringliteral">&quot;&lt;/select&gt;&lt;/td&gt;\n&quot;</span>;
-<a name="l00127"></a>00127         echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt align=center&gt;&lt;input type=submit name=deletelink value=delete&gt;&lt;/td&gt;\n&quot;</span>;
+<a name="l00127"></a>00127         echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt align=center&gt;&lt;input type=submit name=deletelink value=delete&gt;&lt;/td&gt;\n&quot;</span>;
 <a name="l00128"></a>00128         echo <span class="stringliteral">&quot;&lt;/tr&gt;\n&quot;</span>;
-<a name="l00129"></a>00129         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=sc_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
+<a name="l00129"></a>00129         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=rfs_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
 <a name="l00130"></a>00130         echo <span class="stringliteral">&quot;&lt;/table&gt;\n&quot;</span>;
 <a name="l00131"></a>00131         echo <span class="stringliteral">&quot;&lt;/form&gt;\n&quot;</span>;
 <a name="l00132"></a>00132         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
@@ -218,7 +218,7 @@
     <ul>
       <li class="navelem"><a class="el" href="module_8linkbin_8php.html">module.linkbin.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

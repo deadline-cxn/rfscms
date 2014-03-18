@@ -13,14 +13,14 @@ function module_memes($x) { eval(lib_rfs_get_globals());
 		$m=mysql_fetch_object($r);
 		if($m) {
 			echo "<div id=$m->id style=\"float: left;\">";
-			sc_show1minimeme($m->id);
+			rfs_show1minimeme($m->id);
 			echo "</div>";
 		}
 	}
 	echo "<br style='clear: both;'>"; 
 }
 
-function sc_show1meme($inmid) { eval(lib_rfs_get_globals());
+function rfs_show1meme($inmid) { eval(lib_rfs_get_globals());
 
 	$m=lib_mysql_fetch_one_object("select * from meme where id='$inmid'");
 	$t=$m->name."-".time();
@@ -51,7 +51,7 @@ function sc_show1meme($inmid) { eval(lib_rfs_get_globals());
 	echo "</div>";
 }
 
-function sc_show1minimeme($inmid) { eval(lib_rfs_get_globals());
+function rfs_show1minimeme($inmid) { eval(lib_rfs_get_globals());
 	$meme_fullsize=512;
 	$meme_thumbwidth=160;
 	$m=lib_mysql_fetch_one_object("select * from meme where id='$inmid' and `status`='SAVED'");

@@ -81,27 +81,39 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">while($site_var=mysql_fetch_object($res))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8sitevars_8php.html#aa30db1becaa19373128cef965f62eac3">lib_sitevars_assign</a> ($x, $y)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">while($site_var=mysql_fetch_object($res))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8sitevars_8php.html#af2e0fac915c14d0ff35a755f5e8d7d70">lib_sitevars_assign</a> ($name, $value, $type, $desc)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a> = <a class="el" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(&quot;select * from `site_vars`&quot;)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="aa30db1becaa19373128cef965f62eac3"></a><!-- doxytag: member="lib.sitevars.php::lib_sitevars_assign" ref="aa30db1becaa19373128cef965f62eac3" args="($x, $y)" -->
+<a class="anchor" id="af2e0fac915c14d0ff35a755f5e8d7d70"></a><!-- doxytag: member="lib.sitevars.php::lib_sitevars_assign" ref="af2e0fac915c14d0ff35a755f5e8d7d70" args="($name, $value, $type, $desc)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">while ($site_var=mysql_fetch_object($res)) <a class="el" href="lib_8sitevars_8php.html#aa30db1becaa19373128cef965f62eac3">lib_sitevars_assign</a> </td>
+          <td class="memname">while ($site_var=mysql_fetch_object($res)) <a class="el" href="lib_8sitevars_8php.html#af2e0fac915c14d0ff35a755f5e8d7d70">lib_sitevars_assign</a> </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
+          <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>desc</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -117,9 +129,18 @@ Variables</h2></td></tr>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="lib_8sitevars_8php_aa30db1becaa19373128cef965f62eac3_cgraph.png" border="0" usemap="#lib_8sitevars_8php_aa30db1becaa19373128cef965f62eac3_cgraph" alt=""/></div>
-<map name="lib_8sitevars_8php_aa30db1becaa19373128cef965f62eac3_cgraph" id="lib_8sitevars_8php_aa30db1becaa19373128cef965f62eac3_cgraph">
-<area shape="rect" id="node3" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="188,32,303,61"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="355,5,523,35"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="353,59,524,88"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="573,5,747,35"/></map>
+<div class="center"><img src="lib_8sitevars_8php_af2e0fac915c14d0ff35a755f5e8d7d70_cgraph.png" border="0" usemap="#lib_8sitevars_8php_af2e0fac915c14d0ff35a755f5e8d7d70_cgraph" alt=""/></div>
+<map name="lib_8sitevars_8php_af2e0fac915c14d0ff35a755f5e8d7d70_cgraph" id="lib_8sitevars_8php_af2e0fac915c14d0ff35a755f5e8d7d70_cgraph">
+<area shape="rect" id="node3" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6" title="lib_mysql_fetch_one_object" alt="" coords="188,5,369,35"/><area shape="rect" id="node5" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd" title="lib_mysql_query" alt="" coords="420,32,535,61"/><area shape="rect" id="node7" href="lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="587,5,755,35"/><area shape="rect" id="node11" href="lib_8mysql_8php.html#aaa8a1d12f0cf7b04ec8219ff48847551" title="lib_mysql_open_database" alt="" coords="585,59,756,88"/><area shape="rect" id="node9" href="lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="805,5,979,35"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lib_8sitevars_8php_af2e0fac915c14d0ff35a755f5e8d7d70_icgraph.png" border="0" usemap="#lib_8sitevars_8php_af2e0fac915c14d0ff35a755f5e8d7d70_icgraph" alt=""/></div>
+<map name="lib_8sitevars_8php_af2e0fac915c14d0ff35a755f5e8d7d70_icgraph" id="lib_8sitevars_8php_af2e0fac915c14d0ff35a755f5e8d7d70_icgraph">
+<area shape="rect" id="node3" href="adm_8php.html#a6e3a8c2da3942ace294006b3f623ba33" title="adm_action_f_addsitevar" alt="" coords="188,5,353,35"/><area shape="rect" id="node5" href="adm_8php.html#ad6bf8be7b65dfcf97317d89ac8ebe528" title="adm_action_f_upsitevar" alt="" coords="191,59,351,88"/><area shape="rect" id="node7" href="lib_8modules_8php.html#a012ac46c6f1f191b6d0e222dc54688ef" title="adm_action_modules" alt="" coords="199,112,343,141"/></map>
 </div>
 </p>
 
@@ -147,7 +168,7 @@ Here is the call graph for this function:</div>
     <ul>
       <li class="navelem"><a class="el" href="lib_8sitevars_8php.html">lib.sitevars.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

@@ -1,19 +1,19 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="720,134,763,163"/>
-<area shape="rect" id="node5" href="$lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923" title="sc_getuserdata" alt="" coords="516,186,625,215"/>
-<area shape="rect" id="node11" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="533,318,608,347"/>
-<area shape="rect" id="node16" href="$lib_8mysql_8php.html#ab43f9376fcf831592e4af8d77aaafcb8" title="sc_useravatar" alt="" coords="168,82,272,111"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923" title="rfs_getuserdata" alt="" coords="516,186,625,215"/>
+<area shape="rect" id="node11" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="rfs_query" alt="" coords="533,318,608,347"/>
+<area shape="rect" id="node16" href="$lib_8mysql_8php.html#ab43f9376fcf831592e4af8d77aaafcb8" title="rfs_useravatar" alt="" coords="168,82,272,111"/>
 <area shape="rect" id="node26" href="$lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd" title="smiles" alt="" coords="191,266,249,295"/>
-<area shape="rect" id="node44" href="$lib_8rfs_8php.html#afbb1b36be3cc698e2954eeee58a3c944" title="sc_time" alt="" coords="187,500,253,530"/>
-<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="677,226,805,255"/>
-<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="855,226,985,255"/>
+<area shape="rect" id="node44" href="$lib_8rfs_8php.html#afbb1b36be3cc698e2954eeee58a3c944" title="rfs_time" alt="" coords="187,500,253,530"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="rfs_query_user_db" alt="" coords="677,226,805,255"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="rfs_query_other_db" alt="" coords="855,226,985,255"/>
 <area shape="rect" id="node14" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="720,318,763,347"/>
-<area shape="rect" id="node18" href="$lib_8mysql_8php.html#a98041b6609bb91e2d8c3f60c7a868ac8" title="sc_getuseravatar" alt="" coords="331,82,453,111"/>
-<area shape="rect" id="node22" href="$lib_8file_8php.html#a0145e555488271a734d8f0ba81a1b283" title="sc_getfiletype" alt="" coords="520,28,621,58"/>
-<area shape="rect" id="node24" href="$lib_8flash_8php.html#a7e4cf691271d5323b534737d11e93cd8" title="sc_getflashcode" alt="" coords="512,82,629,111"/>
+<area shape="rect" id="node18" href="$lib_8mysql_8php.html#a98041b6609bb91e2d8c3f60c7a868ac8" title="rfs_getuseravatar" alt="" coords="331,82,453,111"/>
+<area shape="rect" id="node22" href="$lib_8file_8php.html#a0145e555488271a734d8f0ba81a1b283" title="rfs_getfiletype" alt="" coords="520,28,621,58"/>
+<area shape="rect" id="node24" href="$lib_8flash_8php.html#a7e4cf691271d5323b534737d11e93cd8" title="rfs_getflashcode" alt="" coords="512,82,629,111"/>
 <area shape="rect" id="node29" href="$lib_8mysql_8php.html#a3f89d375ed707c0c0097abb0f9361a14" title="usersonline" alt="" coords="348,239,436,268"/>
 <area shape="rect" id="node35" href="$lib_8mysql_8php.html#a8bae936e7314964bd4118712e5451e66" title="usersloggedin" alt="" coords="341,343,443,372"/>
 <area shape="rect" id="node38" href="$lib_8mysql_8php.html#a3a11d6e3eabf6b1ee7bbcf163eea861b" title="users_logged_details" alt="" coords="320,396,464,426"/>
 <area shape="rect" id="node41" href="$lib_8rfs_8php.html#a4ceb7fb93465e14bb01a81ba0ec7feac" title="rfs_get" alt="" coords="361,186,423,215"/>
-<area shape="rect" id="node31" href="$lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="sc_phpself" alt="" coords="528,239,613,268"/>
+<area shape="rect" id="node31" href="$lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="rfs_phpself" alt="" coords="528,239,613,268"/>
 </map>

@@ -5,9 +5,9 @@
 function lib_log_kill($what) {
 	echo "<html><head><title>SethCoder</title></head>\n";
 	echo "<body>The webpage you were looking for is no longer available... Please try again later.\n";
-	lib_log_add_entry("<font class=sc_admin>[kill start]==========================</font>");
-	lib_log_add_entry("<font class=sc_admin>".$what."</font>");
-	lib_log_add_entry("<font class=sc_admin>============================[kill end]</font>");
+	lib_log_add_entry("<font class=rfs_admin>[kill start]==========================</font>");
+	lib_log_add_entry("<font class=rfs_admin>".$what."</font>");
+	lib_log_add_entry("<font class=rfs_admin>============================[kill end]</font>");
 	echo "<br>Actions Logged...<br>";
 	die("</body></html>");
 }

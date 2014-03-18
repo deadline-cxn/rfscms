@@ -669,7 +669,7 @@
 <a name="l00594"></a>00594     {
 <a name="l00595"></a>00595         <a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>=mysql_fetch_object(<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from `comics_pages` where `pid`=&#39;$pid&#39;&quot;</span>));
 <a name="l00596"></a>00596             
-<a name="l00597"></a>00597             <a class="code" href="module_8comics_8php.html#ad6c5b118effe94cc5000ec8aa58fdc9c">sc_comics_page_mini_preview</a>($pid);
+<a name="l00597"></a>00597             <a class="code" href="module_8comics_8php.html#a84421983d404e896a9b1c2aae8538fdb">rfs_comics_page_mini_preview</a>($pid);
 <a name="l00598"></a>00598         
 <a name="l00599"></a>00599         echo <span class="stringliteral">&quot;&lt;table border=\&quot;0\&quot;&gt;&lt;tr&gt;&lt;td class=\&quot;lib_forms_warning\&quot;&gt;&lt;center&gt;&quot;</span>.lib_string_convert_smiles(<span class="stringliteral">&quot;:X&quot;</span>).<span class="stringliteral">&quot;\n&quot;</span>;
 <a name="l00600"></a>00600         echo <span class="stringliteral">&quot;&lt;br&gt;WARNING:&lt;br&gt;The page will be completely removed are you sure?&lt;/center&gt;\n&quot;</span>;
@@ -684,7 +684,7 @@
 <a name="l00609"></a>00609     {
 <a name="l00610"></a>00610         echo <span class="stringliteral">&quot;&lt;p&gt;Deleting page $pid&lt;/p&gt;&quot;</span>;
 <a name="l00611"></a>00611         <a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>=mysql_fetch_object(<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from `comics_pages` where `pid`=&#39;$pid&#39;&quot;</span>));
-<a name="l00612"></a>00612         <a class="code" href="module_8comics_8php.html#ad6c5b118effe94cc5000ec8aa58fdc9c">sc_comics_page_mini_preview</a>($pid);
+<a name="l00612"></a>00612         <a class="code" href="module_8comics_8php.html#a84421983d404e896a9b1c2aae8538fdb">rfs_comics_page_mini_preview</a>($pid);
 <a name="l00613"></a>00613         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;delete from `comics_pages` where `pid`=&#39;$pid&#39;&quot;</span>);
 <a name="l00614"></a>00614         <a class="code" href="comics_8php.html#a287883ebfda4cdc682a36eb5cb7f2ff7">renumber_pages</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>-&gt;parent);
 <a name="l00615"></a>00615         echo <span class="stringliteral">&quot;&lt;p&gt;Page deleted...&lt;/p&gt;&quot;</span>;
@@ -740,7 +740,7 @@
 <a name="l00665"></a>00665         <span class="keywordflow">for</span>($i=0;$i&lt;$npages;$i++) {
 <a name="l00666"></a>00666             <a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>=mysql_fetch_object(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
 <a name="l00667"></a>00667             echo <span class="stringliteral">&quot;&lt;table border=0&gt;&lt;tr&gt;&lt;td class=contenttd&gt;&quot;</span>;
-<a name="l00668"></a>00668             <a class="code" href="module_8comics_8php.html#ad6c5b118effe94cc5000ec8aa58fdc9c">sc_comics_page_mini_preview</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>-&gt;pid);
+<a name="l00668"></a>00668             <a class="code" href="module_8comics_8php.html#a84421983d404e896a9b1c2aae8538fdb">rfs_comics_page_mini_preview</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>-&gt;pid);
 <a name="l00669"></a>00669             echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;td class=contenttd&gt;&quot;</span>;
 <a name="l00670"></a>00670             echo <span class="stringliteral">&quot;Page: $page-&gt;page&lt;br&gt;&quot;</span>;
 <a name="l00671"></a>00671             $template=mysql_fetch_object(<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select * from `comics_page_templates` where `id`=&#39;$page-&gt;template&#39;&quot;</span>));
@@ -858,7 +858,7 @@
     <ul>
       <li class="navelem"><a class="el" href="comics_8php.html">comics.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

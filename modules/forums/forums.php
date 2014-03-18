@@ -98,7 +98,7 @@ function forums_action_start_thread_go() {
         forums_bumpthread($id);
         lib_log_add_entry("*****> $data->name started a new thread! [$header]");
     }
-    else echo "<p class=sc_site_urlr>You must be logged in to post or reply!</p>\n";
+    else echo "<p class=rfs_site_urlr>You must be logged in to post or reply!</p>\n";
     forums_action_get_thread($thread,$forum_which);
 }
 function forums_get_message($post) {
@@ -113,7 +113,7 @@ function forums_get_message($post) {
 		echo "<a id=\"".$post['id']."\"></a>";
 		echo "<div class=\"forum_box\">";
         echo "<h2>".$post['title']."</h2>";
-		echo "<div class=\"sc_forum_table_1\">";
+		echo "<div class=\"rfs_forum_table_1\">";
 		echo "<div class=\"forum_user\" >";
 		echo lib_users_avatar_code($poster->name);
 		echo "<br><a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$poster->name\">$poster->name</a><br>";
@@ -194,7 +194,7 @@ function forums_action_get_thread($thread) {
 				echo "</div>";
         }
 		else {
-            echo "<p class=sc_site_urlr><a href=$RFS_SITE_URL/login.php>Login</a> to reply to this post!</p>\n";
+            echo "<p class=rfs_site_urlr><a href=$RFS_SITE_URL/login.php>Login</a> to reply to this post!</p>\n";
         }
     echo "<br>\n";
 	include("footer.php");
@@ -328,7 +328,7 @@ function forums_action_reply_to_thread() {
         lib_log_add_entry("*****> $data->name replied to thread [$theader]");
     }
 	else {
-        echo "<p class=sc_site_urlr><a href=$RFS_SITE_URL/login>Login</a> to reply</p>\n";
+        echo "<p class=rfs_site_urlr><a href=$RFS_SITE_URL/login>Login</a> to reply</p>\n";
     }
 	forums_action_get_thread($thread,$forum_which);
 }

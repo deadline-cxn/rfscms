@@ -283,23 +283,46 @@
 <a name="l00208"></a>00208     echo <span class="stringliteral">&quot;Added interim database changes 955&lt;br&gt;&quot;</span>;
 <a name="l00209"></a>00209 }
 <a name="l00210"></a>00210 
-<a name="l00211"></a>00211 <span class="keywordflow">if</span>(<a class="code" href="database__upgrades_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a> &lt; <a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>) {
-<a name="l00212"></a>00212     $RFS_SITE_DATABASE_UPGRADE=intval(<a class="code" href="version_8php.html#a6c3916d4db25e8bfde2fb622808dc61f">$RFS_BUILD</a>);
-<a name="l00213"></a>00213     $dbu=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from site_vars where name=&#39;database_upgrade&#39;&quot;</span>);
-<a name="l00214"></a>00214     <span class="keywordflow">if</span>(empty($dbu-&gt;id)) <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;insert into site_vars (`name`,`value`) values(&#39;database_upgrade&#39;,&#39;$RFS_SITE_DATABASE_UPGRADE&#39;);&quot;</span>);
-<a name="l00215"></a>00215     <span class="keywordflow">else</span> <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update site_vars set `value` = &#39;$RFS_SITE_DATABASE_UPGRADE&#39; where `name`=&#39;database_upgrade&#39;&quot;</span>);
-<a name="l00216"></a>00216         echo <span class="stringliteral">&quot;Added interim database changes $RFS_SITE_DATABASE_UPGRADE&lt;br&gt;&quot;</span>;
-<a name="l00217"></a>00217 }
-<a name="l00218"></a>00218 
-<a name="l00219"></a>00219 
-<a name="l00220"></a>00220 ?&gt;
+<a name="l00211"></a>00211 <span class="keywordflow">if</span>(<a class="code" href="database__upgrades_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a>&lt;964) {
+<a name="l00212"></a>00212     
+<a name="l00213"></a>00213     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;name&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00214"></a>00214     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;datetime_added&quot;</span>,<span class="stringliteral">&quot;timestamp&quot;</span>,<span class="stringliteral">&quot;NOT NULL&quot;</span>);
+<a name="l00215"></a>00215     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;datetime_updated&quot;</span>,<span class="stringliteral">&quot;timestamp&quot;</span>,<span class="stringliteral">&quot;NOT NULL&quot;</span>);
+<a name="l00216"></a>00216     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;version&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00217"></a>00217     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;sub_version&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00218"></a>00218     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;release&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00219"></a>00219     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;description&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00220"></a>00220     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;requirements&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00221"></a>00221     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;cost&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00222"></a>00222     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;license&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00223"></a>00223     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;dependencies&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00224"></a>00224     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;author&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00225"></a>00225     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;author_email&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00226"></a>00226     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;author_website&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00227"></a>00227     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;rating&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00228"></a>00228     <a class="code" href="lib_8mysql_8php.html#a0f4bd846486f233cd173e86d3ad7bb2c">lib_mysql_add</a>(<span class="stringliteral">&quot;addon_database&quot;</span>,<span class="stringliteral">&quot;images&quot;</span>,<span class="stringliteral">&quot;text&quot;</span>,<span class="stringliteral">&quot;not null&quot;</span>);
+<a name="l00229"></a>00229     
+<a name="l00230"></a>00230     echo <span class="stringliteral">&quot;Added interim database changes 964&lt;br&gt;&quot;</span>;
+<a name="l00231"></a>00231     
+<a name="l00232"></a>00232 }
+<a name="l00233"></a>00233 
+<a name="l00234"></a>00234 <span class="keywordflow">if</span>(<a class="code" href="database__upgrades_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a> &lt; <a class="code" href="database__upgrades_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>) {
+<a name="l00235"></a>00235     $RFS_SITE_DATABASE_UPGRADE=intval(<a class="code" href="version_8php.html#a6c3916d4db25e8bfde2fb622808dc61f">$RFS_BUILD</a>);
+<a name="l00236"></a>00236     $dbu=<a class="code" href="lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6">lib_mysql_fetch_one_object</a>(<span class="stringliteral">&quot;select * from site_vars where name=&#39;database_upgrade&#39;&quot;</span>);
+<a name="l00237"></a>00237     <span class="keywordflow">if</span>(empty($dbu-&gt;id)) <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;insert into site_vars (`name`,`value`) values(&#39;database_upgrade&#39;,&#39;$RFS_SITE_DATABASE_UPGRADE&#39;);&quot;</span>);
+<a name="l00238"></a>00238     <span class="keywordflow">else</span> <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;update site_vars set `value` = &#39;$RFS_SITE_DATABASE_UPGRADE&#39; where `name`=&#39;database_upgrade&#39;&quot;</span>);
+<a name="l00239"></a>00239         echo <span class="stringliteral">&quot;Added interim database changes $RFS_SITE_DATABASE_UPGRADE&lt;br&gt;&quot;</span>;
+<a name="l00240"></a>00240 }
+<a name="l00241"></a>00241 
+<a name="l00242"></a>00242 
+<a name="l00243"></a>00243 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="database__upgrades_8php.html">database_upgrades.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

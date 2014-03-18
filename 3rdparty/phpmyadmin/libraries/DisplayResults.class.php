@@ -1235,17 +1235,17 @@ class PMA_DisplayResults
 
         foreach ($indexes as $index) {
 
-            $asc_sort = '`'
+            $arfs_sort = '`'
                 . implode('` ASC, `', array_keys($index->getColumns()))
                 . '` ASC';
 
-            $desc_sort = '`'
+            $derfs_sort = '`'
                 . implode('` DESC, `', array_keys($index->getColumns()))
                 . '` DESC';
 
             $used_index = $used_index
-                || ($local_order == $asc_sort)
-                || ($local_order == $desc_sort);
+                || ($local_order == $arfs_sort)
+                || ($local_order == $derfs_sort);
 
             if (preg_match(
                 '@(.*)([[:space:]](LIMIT (.*)|PROCEDURE (.*)|'
@@ -1262,10 +1262,10 @@ class PMA_DisplayResults
             $drop_down_html .= '<option value="'
                 . htmlspecialchars(
                     $unsorted_sql_query_first_part  . "\n"
-                    . ' ORDER BY ' . $asc_sort
+                    . ' ORDER BY ' . $arfs_sort
                     . $unsorted_sql_query_second_part
                 )
-                . '"' . ($local_order == $asc_sort
+                . '"' . ($local_order == $arfs_sort
                     ? ' selected="selected"'
                     : '')
                 . '>' . htmlspecialchars($index->getName()) . ' ('
@@ -1274,10 +1274,10 @@ class PMA_DisplayResults
             $drop_down_html .= '<option value="'
                 . htmlspecialchars(
                     $unsorted_sql_query_first_part . "\n"
-                    . ' ORDER BY ' . $desc_sort
+                    . ' ORDER BY ' . $derfs_sort
                     . $unsorted_sql_query_second_part
                 )
-                . '"' . ($local_order == $desc_sort
+                . '"' . ($local_order == $derfs_sort
                     ? ' selected="selected"'
                     : '')
                 . '>' . htmlspecialchars($index->getName()) . ' ('

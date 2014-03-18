@@ -303,135 +303,178 @@
 <a name="l00228"></a>00228             <span class="comment">//echo $row[key($row)].&quot; &quot;;</span>
 <a name="l00229"></a>00229             echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
 <a name="l00230"></a>00230             <span class="keywordflow">while</span>(key($row)!==NULL){
-<a name="l00231"></a>00231                 echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
-<a name="l00232"></a>00232                 echo current($row);
-<a name="l00233"></a>00233                 echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
-<a name="l00234"></a>00234                 next($row);
-<a name="l00235"></a>00235             }
-<a name="l00236"></a>00236             echo <span class="stringliteral">&quot;&lt;/tr&gt;&quot;</span>;
-<a name="l00237"></a>00237             <span class="comment">/*</span>
-<a name="l00238"></a>00238 <span class="comment">            echo $row[0];</span>
-<a name="l00239"></a>00239 <span class="comment">            $rnum=count($row);</span>
-<a name="l00240"></a>00240 <span class="comment">            for($k=0;$k&lt;$rnum;$k++){</span>
-<a name="l00241"></a>00241 <span class="comment">                echo $row[$k].&quot; &quot;;</span>
-<a name="l00242"></a>00242 <span class="comment">            }</span>
-<a name="l00243"></a>00243 <span class="comment">            echo &quot;&lt;br&gt;&quot;;</span>
-<a name="l00244"></a>00244 <span class="comment">            */</span>
-<a name="l00245"></a>00245         }
-<a name="l00246"></a>00246         echo <span class="stringliteral">&quot;&lt;/table&gt;&quot;</span>;
-<a name="l00247"></a>00247         <span class="comment">/*</span>
-<a name="l00248"></a>00248 <span class="comment">        $t=array();</span>
-<a name="l00249"></a>00249 <span class="comment">        for($i=0;$i&lt;$num;$i++){</span>
-<a name="l00250"></a>00250 <span class="comment">            array_push($t, mysql_result($res,$i));</span>
-<a name="l00251"></a>00251 <span class="comment">            $tnum=count($t);</span>
-<a name="l00252"></a>00252 <span class="comment">            for($k=0;$k&lt;$tnum;$k++)</span>
-<a name="l00253"></a>00253 <span class="comment">            echo $t[$k].&quot; &quot;;</span>
-<a name="l00254"></a>00254 <span class="comment">            echo &quot;&lt;br&gt;&quot;;</span>
-<a name="l00255"></a>00255 <span class="comment">        }</span>
-<a name="l00256"></a>00256 <span class="comment">        */</span>
-<a name="l00257"></a>00257     }
-<a name="l00258"></a>00258     <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
-<a name="l00259"></a>00259 }
-<a name="l00260"></a><a class="code" href="lib_8mysql_8php.html#afc21d2d6c01c5f38bfcc347821a19b8e">00260</a> <span class="keyword">function</span> <a class="code" href="lib_8mysql_8php.html#afc21d2d6c01c5f38bfcc347821a19b8e">lib_mysql_database_query_form</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>,<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>,$query){
-<a name="l00261"></a>00261     echo <span class="stringliteral">&quot;&lt;form action=\&quot;$page\&quot; method=\&quot;POST\&quot; enctype=\&quot;application/x-www-form-URLencoded\&quot;&gt;&quot;</span>;
-<a name="l00262"></a>00262     echo <span class="stringliteral">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;action\&quot; value=\&quot;$action\&quot;&gt;&quot;</span>;
-<a name="l00263"></a>00263     echo <span class="stringliteral">&quot;&lt;textarea rows=5 cols=70 name=\&quot;query\&quot;&gt;&quot;</span>;
-<a name="l00264"></a>00264     $query=str_replace(<span class="stringliteral">&quot;&lt;/textarea&gt;&quot;</span>,<span class="stringliteral">&quot;&amp;lt;/textarea&gt;&quot;</span>,$query);
-<a name="l00265"></a>00265     echo stripslashes($query);
-<a name="l00266"></a>00266     echo <span class="stringliteral">&quot;&lt;/textarea&gt;&lt;br&gt;&quot;</span>;
-<a name="l00267"></a>00267     echo <span class="stringliteral">&quot;&lt;input type=\&quot;submit\&quot; name=\&quot;submit\&quot; value=\&quot;submit query\&quot;&gt;&quot;</span>;
-<a name="l00268"></a>00268     echo <span class="stringliteral">&quot;&lt;/form&gt;&quot;</span>;
-<a name="l00269"></a>00269 }
-<a name="l00270"></a><a class="code" href="lib_8mysql_8php.html#ae6552148e2e76dd8135e447b894902c4">00270</a> <span class="keyword">function</span> <a class="code" href="lib_8mysql_8php.html#ae6552148e2e76dd8135e447b894902c4">lib_mysql_dump_table</a>($table,$showform,$key,$search){
-<a name="l00271"></a>00271     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());    
-<a name="l00272"></a>00272     $fields=<span class="stringliteral">&quot;*&quot;</span>;
-<a name="l00273"></a>00273     <span class="keywordflow">if</span>(stristr($table,<span class="stringliteral">&quot;,&quot;</span>)) { 
-<a name="l00274"></a>00274         $tbx=explode(<span class="stringliteral">&quot;,&quot;</span>,$table);
-<a name="l00275"></a>00275         $table=$tbx[0];
-<a name="l00276"></a>00276         $fields=<span class="stringliteral">&quot;&quot;</span>;
-<a name="l00277"></a>00277         <span class="keywordflow">for</span>($x=1;$x&lt;count($tbx);$x++) {
-<a name="l00278"></a>00278             $fields.=$tbx[$x].<span class="stringliteral">&quot;,&quot;</span>;
-<a name="l00279"></a>00279         }
-<a name="l00280"></a>00280         $fields=rtrim($fields,<span class="stringliteral">&quot;,&quot;</span>);
-<a name="l00281"></a>00281     }   
-<a name="l00282"></a>00282     <span class="keywordflow">if</span>(stristr($showform, <a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>)) {
-<a name="l00283"></a>00283             $gx=explode(<a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>,$showform);
-<a name="l00284"></a>00284             $showform=$gx[0];
-<a name="l00285"></a>00285     }
-<a name="l00286"></a>00286     <a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>=<a class="code" href="config_8sitevars_8php.html#ac3d3378b57bd437398e3c2ef9fc1989a">$RFS_SITE_URL</a>.lib_domain_phpself();
-<a name="l00287"></a>00287     <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=0;
-<a name="l00288"></a>00288     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select $fields from `$table` $search&quot;</span>);
-<a name="l00289"></a>00289     $num=mysql_num_rows(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>);
-<a name="l00290"></a>00290     echo <span class="stringliteral">&quot;&lt;table border=0 cellpadding=5&gt;&quot;</span>;
-<a name="l00291"></a>00291     $hdr=0;
-<a name="l00292"></a>00292     <span class="keywordflow">while</span>($row=mysql_fetch_assoc(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>)){
-<a name="l00293"></a>00293         <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++; <span class="keywordflow">if</span>(<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;2) <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=1;
-<a name="l00294"></a>00294         <span class="keywordflow">if</span>($hdr==0){
-<a name="l00295"></a>00295             echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
-<a name="l00296"></a>00296             <span class="keywordflow">if</span>($showform==<span class="stringliteral">&quot;showform&quot;</span>){
-<a name="l00297"></a>00297             echo <span class="stringliteral">&quot;&lt;th&gt;&lt;/th&gt;&quot;</span>;
-<a name="l00298"></a>00298             }
-<a name="l00299"></a>00299             reset($row);
-<a name="l00300"></a>00300             <span class="keywordflow">while</span>(key($row)!==NULL){
-<a name="l00301"></a>00301                 echo <span class="stringliteral">&quot;&lt;th&gt;&quot;</span>;
-<a name="l00302"></a>00302                 echo key($row);
-<a name="l00303"></a>00303                 echo <span class="stringliteral">&quot;&lt;/th&gt;&quot;</span>;
-<a name="l00304"></a>00304                 next($row);
-<a name="l00305"></a>00305             }
-<a name="l00306"></a>00306             echo <span class="stringliteral">&quot;&lt;/tr&gt;&quot;</span>;
-<a name="l00307"></a>00307             $hdr=1;
-<a name="l00308"></a>00308         }
-<a name="l00309"></a>00309         reset($row);
-<a name="l00310"></a>00310 
-<a name="l00311"></a>00311         echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
-<a name="l00312"></a>00312 
-<a name="l00313"></a>00313         $showform_action=<span class="stringliteral">&quot;sc_&quot;</span>;
-<a name="l00314"></a>00314 
-<a name="l00315"></a>00315         <span class="keywordflow">if</span>(count($gx)) {
-<a name="l00316"></a>00316             $showform_action=$gx[1];
-<a name="l00317"></a>00317         }
-<a name="l00318"></a>00318 
-<a name="l00319"></a>00319         <span class="keywordflow">if</span>($showform==<span class="stringliteral">&quot;showform&quot;</span>){
-<a name="l00320"></a>00320             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00321"></a>00321             <span class="keywordflow">while</span>(key($row)!=NULL) {
-<a name="l00322"></a>00322                 <span class="keywordflow">if</span>(key($row)==$key){
-<a name="l00323"></a>00323                     $key_val=current($row);
-<a name="l00324"></a>00324                 }
-<a name="l00325"></a>00325                 next($row);
-<a name="l00326"></a>00326             }
-<a name="l00327"></a>00327 
-<a name="l00328"></a>00328             
-<a name="l00329"></a>00329             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$page?action=&quot;</span>.$showform_action.<span class="stringliteral">&quot;edit_$table&amp;$key=$key_val&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
-<a name="l00330"></a>00330             <a class="code" href="lib_8buttons_8php.html#afd9762359ae6c5fb545c356bb1136789">lib_button</a>(<span class="stringliteral">&quot;$page?action=&quot;</span>.$showform_action.<span class="stringliteral">&quot;del_$table&amp;$key=$key_val&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
-<a name="l00331"></a>00331             
-<a name="l00332"></a>00332 
-<a name="l00333"></a>00333             echo<span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
-<a name="l00334"></a>00334         }
-<a name="l00335"></a>00335         reset($row);
-<a name="l00336"></a>00336         <span class="keywordflow">while</span>(key($row)!==NULL){
-<a name="l00337"></a>00337             echo <span class="stringliteral">&quot;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
-<a name="l00338"></a>00338             echo nl2br(current($row));
-<a name="l00339"></a>00339             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
-<a name="l00340"></a>00340             next($row);
-<a name="l00341"></a>00341         }
-<a name="l00342"></a>00342         echo <span class="stringliteral">&quot;&lt;/tr&gt;&quot;</span>;
-<a name="l00343"></a>00343     }
-<a name="l00344"></a>00344     echo <span class="stringliteral">&quot;&lt;/table&gt;&quot;</span>;
-<a name="l00345"></a>00345 
-<a name="l00346"></a>00346     <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00231"></a>00231                 echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
+<a name="l00232"></a>00232                 
+<a name="l00233"></a>00233                 
+<a name="l00234"></a>00234                 
+<a name="l00235"></a>00235                     $txtout=current($row);
+<a name="l00236"></a>00236                     $txtout=str_replace(<span class="stringliteral">&quot;&lt;&quot;</span>,<span class="stringliteral">&quot;&amp;lt;&quot;</span>,$txtout);
+<a name="l00237"></a>00237                     $txtout=str_replace(<span class="stringliteral">&quot;&gt;&quot;</span>,<span class="stringliteral">&quot;&amp;gt;&quot;</span>,$txtout);
+<a name="l00238"></a>00238                     echo $txtout;
+<a name="l00239"></a>00239                 
+<a name="l00240"></a>00240                 
+<a name="l00241"></a>00241                 echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00242"></a>00242                 next($row);
+<a name="l00243"></a>00243             }
+<a name="l00244"></a>00244             echo <span class="stringliteral">&quot;&lt;/tr&gt;&quot;</span>;
+<a name="l00245"></a>00245             <span class="comment">/*</span>
+<a name="l00246"></a>00246 <span class="comment">            echo $row[0];</span>
+<a name="l00247"></a>00247 <span class="comment">            $rnum=count($row);</span>
+<a name="l00248"></a>00248 <span class="comment">            for($k=0;$k&lt;$rnum;$k++){</span>
+<a name="l00249"></a>00249 <span class="comment">                echo $row[$k].&quot; &quot;;</span>
+<a name="l00250"></a>00250 <span class="comment">            }</span>
+<a name="l00251"></a>00251 <span class="comment">            echo &quot;&lt;br&gt;&quot;;</span>
+<a name="l00252"></a>00252 <span class="comment">            */</span>
+<a name="l00253"></a>00253         }
+<a name="l00254"></a>00254         echo <span class="stringliteral">&quot;&lt;/table&gt;&quot;</span>;
+<a name="l00255"></a>00255         <span class="comment">/*</span>
+<a name="l00256"></a>00256 <span class="comment">        $t=array();</span>
+<a name="l00257"></a>00257 <span class="comment">        for($i=0;$i&lt;$num;$i++){</span>
+<a name="l00258"></a>00258 <span class="comment">            array_push($t, mysql_result($res,$i));</span>
+<a name="l00259"></a>00259 <span class="comment">            $tnum=count($t);</span>
+<a name="l00260"></a>00260 <span class="comment">            for($k=0;$k&lt;$tnum;$k++)</span>
+<a name="l00261"></a>00261 <span class="comment">            echo $t[$k].&quot; &quot;;</span>
+<a name="l00262"></a>00262 <span class="comment">            echo &quot;&lt;br&gt;&quot;;</span>
+<a name="l00263"></a>00263 <span class="comment">        }</span>
+<a name="l00264"></a>00264 <span class="comment">        */</span>
+<a name="l00265"></a>00265     }
+<a name="l00266"></a>00266     <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00267"></a>00267 }
+<a name="l00268"></a><a class="code" href="lib_8mysql_8php.html#afc21d2d6c01c5f38bfcc347821a19b8e">00268</a> <span class="keyword">function</span> <a class="code" href="lib_8mysql_8php.html#afc21d2d6c01c5f38bfcc347821a19b8e">lib_mysql_database_query_form</a>(<a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>,<a class="code" href="install_8php.html#af9da176a74bd49cb97ea35c6ac7257bc">$action</a>,$query){
+<a name="l00269"></a>00269     
+<a name="l00270"></a>00270     echo <span class="stringliteral">&quot;&lt;form action=\&quot;$page\&quot; method=\&quot;POST\&quot; enctype=\&quot;application/x-www-form-URLencoded\&quot;&gt;&quot;</span>;
+<a name="l00271"></a>00271     echo <span class="stringliteral">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;action\&quot; value=\&quot;$action\&quot;&gt;&quot;</span>;
+<a name="l00272"></a>00272     echo <span class="stringliteral">&quot;&lt;textarea rows=10  cols=120 name=\&quot;query\&quot;&gt;&quot;</span>;
+<a name="l00273"></a>00273     $query=str_replace(<span class="stringliteral">&quot;&lt;/textarea&gt;&quot;</span>,<span class="stringliteral">&quot;&amp;lt;/textarea&gt;&quot;</span>,$query);
+<a name="l00274"></a>00274     echo stripslashes($query);
+<a name="l00275"></a>00275     echo <span class="stringliteral">&quot;&lt;/textarea&gt;&lt;br&gt;&quot;</span>;
+<a name="l00276"></a>00276     echo <span class="stringliteral">&quot;&lt;input type=\&quot;submit\&quot; name=\&quot;submit\&quot; value=\&quot;submit query\&quot;&gt;&quot;</span>;
+<a name="l00277"></a>00277     echo <span class="stringliteral">&quot;&lt;/form&gt;&quot;</span>;
+<a name="l00278"></a>00278     
+<a name="l00279"></a>00279 }
+<a name="l00280"></a><a class="code" href="lib_8mysql_8php.html#a36da65fb55125a243ed88445bf3d497e">00280</a> <span class="keyword">function</span> <a class="code" href="lib_8mysql_8php.html#a36da65fb55125a243ed88445bf3d497e">lib_mysql_dump_table</a>($table,$showform,$key,$search,$ignore,$short){
+<a name="l00281"></a>00281     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
+<a name="l00282"></a>00282     
+<a name="l00283"></a>00283     <span class="keywordflow">if</span>(!empty($ignore)) {
+<a name="l00284"></a>00284         <span class="keywordflow">if</span>(stristr($ignore,<span class="stringliteral">&quot;,&quot;</span>)) {
+<a name="l00285"></a>00285             $ign=explode(<span class="stringliteral">&quot;,&quot;</span>,$ignore);
+<a name="l00286"></a>00286         } <span class="keywordflow">else</span> {
+<a name="l00287"></a>00287             $ign=array();
+<a name="l00288"></a>00288             $ign[0]=$ignore;
+<a name="l00289"></a>00289         }
+<a name="l00290"></a>00290     }
+<a name="l00291"></a>00291     
+<a name="l00292"></a>00292     
+<a name="l00293"></a>00293     $fields=<span class="stringliteral">&quot;*&quot;</span>;
+<a name="l00294"></a>00294     <span class="keywordflow">if</span>(stristr($table,<span class="stringliteral">&quot;,&quot;</span>)) { 
+<a name="l00295"></a>00295         $tbx=explode(<span class="stringliteral">&quot;,&quot;</span>,$table);
+<a name="l00296"></a>00296         $table=$tbx[0];
+<a name="l00297"></a>00297         $fields=<span class="stringliteral">&quot;&quot;</span>;
+<a name="l00298"></a>00298         <span class="keywordflow">for</span>($x=1;$x&lt;count($tbx);$x++) {
+<a name="l00299"></a>00299             $fields.=$tbx[$x].<span class="stringliteral">&quot;,&quot;</span>;
+<a name="l00300"></a>00300         }
+<a name="l00301"></a>00301         $fields=rtrim($fields,<span class="stringliteral">&quot;,&quot;</span>);
+<a name="l00302"></a>00302     }   
+<a name="l00303"></a>00303     <span class="keywordflow">if</span>(stristr($showform, <a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>)) {
+<a name="l00304"></a>00304             $gx=explode(<a class="code" href="config_8sitevars_8php.html#a06fab752c166675deeb7a9191add17ab">$RFS_SITE_DELIMITER</a>,$showform);
+<a name="l00305"></a>00305             $showform=$gx[0];
+<a name="l00306"></a>00306     }
+<a name="l00307"></a>00307     <a class="code" href="install_8php.html#a0a44e6760141442bb439b1ab1395d8ff">$page</a>=<a class="code" href="config_8sitevars_8php.html#ac3d3378b57bd437398e3c2ef9fc1989a">$RFS_SITE_URL</a>.lib_domain_phpself();
+<a name="l00308"></a>00308     <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=0;
+<a name="l00309"></a>00309     <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>=<a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;select $fields from `$table` $search&quot;</span>);
+<a name="l00310"></a>00310     
+<a name="l00311"></a>00311     echo <span class="stringliteral">&quot;&lt;table border=0 cellpadding=5&gt;&quot;</span>;
+<a name="l00312"></a>00312     $hdr=0;
+<a name="l00313"></a>00313     <span class="keywordflow">while</span>($row=mysql_fetch_assoc(<a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>)){
+<a name="l00314"></a>00314         <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++; <span class="keywordflow">if</span>(<a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;2) <a class="code" href="top__referrers_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=1;
+<a name="l00315"></a>00315         <span class="keywordflow">if</span>($hdr==0){
+<a name="l00316"></a>00316             echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
+<a name="l00317"></a>00317             <span class="keywordflow">if</span>($showform==<span class="stringliteral">&quot;showform&quot;</span>){
+<a name="l00318"></a>00318             echo <span class="stringliteral">&quot;&lt;th&gt;&lt;/th&gt;&quot;</span>;
+<a name="l00319"></a>00319             }
+<a name="l00320"></a>00320             reset($row);
+<a name="l00321"></a>00321             <span class="keywordflow">while</span>(key($row)!==NULL){
+<a name="l00322"></a>00322                 
+<a name="l00323"></a>00323                 $ignore_column=0;
+<a name="l00324"></a>00324                 <span class="keywordflow">foreach</span>($ign as $igna =&gt; $ignb) {
+<a name="l00325"></a>00325                     <span class="keywordflow">if</span>($ignb==key($row)) $ignore_column=1;
+<a name="l00326"></a>00326                 }
+<a name="l00327"></a>00327                 
+<a name="l00328"></a>00328                 <span class="keywordflow">if</span>(!$ignore_column) {
+<a name="l00329"></a>00329                     echo <span class="stringliteral">&quot;&lt;th&gt;&quot;</span>;
+<a name="l00330"></a>00330                     echo key($row); 
+<a name="l00331"></a>00331                     echo <span class="stringliteral">&quot;&lt;/th&gt;&quot;</span>;
+<a name="l00332"></a>00332                 }
+<a name="l00333"></a>00333                 next($row);
+<a name="l00334"></a>00334             }
+<a name="l00335"></a>00335             echo <span class="stringliteral">&quot;&lt;/tr&gt;&quot;</span>;
+<a name="l00336"></a>00336             $hdr=1;
+<a name="l00337"></a>00337         }
+<a name="l00338"></a>00338         reset($row);
+<a name="l00339"></a>00339 
+<a name="l00340"></a>00340         echo <span class="stringliteral">&quot;&lt;tr&gt;&quot;</span>;
+<a name="l00341"></a>00341 
+<a name="l00342"></a>00342         $showform_action=<span class="stringliteral">&quot;rfs_&quot;</span>;
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344         <span class="keywordflow">if</span>(count($gx)) {
+<a name="l00345"></a>00345             $showform_action=$gx[1];
+<a name="l00346"></a>00346         }
 <a name="l00347"></a>00347 
-<a name="l00348"></a>00348 }
-<a name="l00349"></a>00349 <span class="comment"></span>
-<a name="l00350"></a>00350 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00351"></a>00351 <span class="comment"></span><span class="comment">// This file can not have any trailing spaces</span>
-<a name="l00352"></a>00352 ?&gt;
+<a name="l00348"></a>00348         <span class="keywordflow">if</span>($showform==<span class="stringliteral">&quot;showform&quot;</span>){
+<a name="l00349"></a>00349             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
+<a name="l00350"></a>00350             <span class="keywordflow">while</span>(key($row)!=NULL) {
+<a name="l00351"></a>00351                 <span class="keywordflow">if</span>(key($row)==$key){
+<a name="l00352"></a>00352                     $key_val=current($row);
+<a name="l00353"></a>00353                 }
+<a name="l00354"></a>00354                 next($row);
+<a name="l00355"></a>00355             }
+<a name="l00356"></a>00356 
+<a name="l00357"></a>00357             
+<a name="l00358"></a>00358             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$page?action=&quot;</span>.$showform_action.<span class="stringliteral">&quot;edit_$table&amp;$key=$key_val&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);
+<a name="l00359"></a>00359             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$page?action=&quot;</span>.$showform_action.<span class="stringliteral">&quot;del_$table&amp;$key=$key_val&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
+<a name="l00360"></a>00360             
+<a name="l00361"></a>00361 
+<a name="l00362"></a>00362             echo<span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00363"></a>00363         }
+<a name="l00364"></a>00364         reset($row);
+<a name="l00365"></a>00365         
+<a name="l00366"></a>00366         <span class="keywordflow">while</span>(key($row)!==NULL){
+<a name="l00367"></a>00367             $ignore_column=0;
+<a name="l00368"></a>00368                 <span class="keywordflow">foreach</span>($ign as $igna =&gt; $ignb) {
+<a name="l00369"></a>00369                     <span class="keywordflow">if</span>($ignb==key($row)) $ignore_column=1;
+<a name="l00370"></a>00370                 }
+<a name="l00371"></a>00371                 
+<a name="l00372"></a>00372                 <span class="keywordflow">if</span>(!$ignore_column) {
+<a name="l00373"></a>00373                     echo <span class="stringliteral">&quot;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
+<a name="l00374"></a>00374                     $txtout=current($row);
+<a name="l00375"></a>00375                     $txtout=str_replace(<span class="stringliteral">&quot;&lt;&quot;</span>,<span class="stringliteral">&quot;&amp;lt;&quot;</span>,$txtout);
+<a name="l00376"></a>00376                     $txtout=str_replace(<span class="stringliteral">&quot;&gt;&quot;</span>,<span class="stringliteral">&quot;&amp;gt;&quot;</span>,$txtout);
+<a name="l00377"></a>00377                     <span class="keywordflow">if</span>($short)
+<a name="l00378"></a>00378                         echo <a class="code" href="lib_8string_8php.html#a0772071a38ded4892ca4bf05a01aabf6">lib_string_truncate</a>($txtout,$short);
+<a name="l00379"></a>00379                     <span class="keywordflow">else</span>
+<a name="l00380"></a>00380                         echo $txtout;
+<a name="l00381"></a>00381                     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
+<a name="l00382"></a>00382                 }
+<a name="l00383"></a>00383             next($row);
+<a name="l00384"></a>00384         }
+<a name="l00385"></a>00385         echo <span class="stringliteral">&quot;&lt;/tr&gt;&quot;</span>;
+<a name="l00386"></a>00386     }
+<a name="l00387"></a>00387     echo <span class="stringliteral">&quot;&lt;/table&gt;&quot;</span>;
+<a name="l00388"></a>00388 
+<a name="l00389"></a>00389     <span class="keywordflow">return</span> <a class="code" href="lib_8sitevars_8php.html#a49a8a4009b02e49717caa88b128affc5">$res</a>;
+<a name="l00390"></a>00390 
+<a name="l00391"></a>00391 }
+<a name="l00392"></a>00392 <span class="comment"></span>
+<a name="l00393"></a>00393 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00394"></a>00394 <span class="comment"></span><span class="comment">// This file can not have any trailing spaces</span>
+<a name="l00395"></a>00395 ?&gt;
 </pre></div></div><!-- contents -->
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="lib_8mysql_8php.html">lib.mysql.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

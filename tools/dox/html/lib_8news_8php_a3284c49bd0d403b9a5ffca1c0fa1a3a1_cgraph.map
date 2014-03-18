@@ -1,22 +1,22 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$lib_8mysql_8php.html#ad42d2c11477299cecf3dd06b259a316e" title="mfo1" alt="" coords="409,5,460,35"/>
-<area shape="rect" id="node13" href="$lib_8news_8php.html#a5b4884cdbbda02398946139fe82b991d" title="sc_show_news" alt="" coords="192,156,304,185"/>
-<area shape="rect" id="node5" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="768,135,843,164"/>
-<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="901,161,1029,191"/>
+<area shape="rect" id="node13" href="$lib_8news_8php.html#a5b4884cdbbda02398946139fe82b991d" title="rfs_show_news" alt="" coords="192,156,304,185"/>
+<area shape="rect" id="node5" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="rfs_query" alt="" coords="768,135,843,164"/>
+<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="rfs_query_user_db" alt="" coords="901,161,1029,191"/>
 <area shape="rect" id="node11" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="944,108,987,137"/>
-<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="1079,161,1209,191"/>
+<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="rfs_query_other_db" alt="" coords="1079,161,1209,191"/>
 <area shape="rect" id="node15" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="944,475,987,504"/>
 <area shape="rect" id="node19" href="$lib_8rfs_8php.html#ae90d9606f0fc99c3462a0bc897b4d6bd" title="smiles" alt="" coords="405,188,464,217"/>
 <area shape="rect" id="node37" href="$lib_8wiki_8php.html#a419d827518b8a381ec8f97ae710c5ba8" title="wikitext" alt="" coords="401,503,468,532"/>
-<area shape="rect" id="node50" href="$lib_8social__buttons_8php.html#a40904f6fb48117e4fc56902c4c3aaea1" title="sc_socials_content" alt="" coords="571,423,704,452"/>
-<area shape="rect" id="node54" href="$lib_8social__buttons_8php.html#aaec18af12951e8702113b20365c428b3" title="sc_facebook_comments" alt="" coords="353,59,516,88"/>
+<area shape="rect" id="node50" href="$lib_8social__buttons_8php.html#a40904f6fb48117e4fc56902c4c3aaea1" title="rfs_socials_content" alt="" coords="571,423,704,452"/>
+<area shape="rect" id="node54" href="$lib_8social__buttons_8php.html#aaec18af12951e8702113b20365c428b3" title="rfs_facebook_comments" alt="" coords="353,59,516,88"/>
 <area shape="rect" id="node22" href="$lib_8mysql_8php.html#a3f89d375ed707c0c0097abb0f9361a14" title="usersonline" alt="" coords="593,265,681,295"/>
 <area shape="rect" id="node28" href="$lib_8mysql_8php.html#a8bae936e7314964bd4118712e5451e66" title="usersloggedin" alt="" coords="587,108,688,137"/>
 <area shape="rect" id="node31" href="$lib_8mysql_8php.html#a3a11d6e3eabf6b1ee7bbcf163eea861b" title="users_logged_details" alt="" coords="565,161,709,191"/>
 <area shape="rect" id="node34" href="$lib_8rfs_8php.html#a4ceb7fb93465e14bb01a81ba0ec7feac" title="rfs_get" alt="" coords="607,319,668,348"/>
-<area shape="rect" id="node24" href="$lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="sc_phpself" alt="" coords="763,319,848,348"/>
+<area shape="rect" id="node24" href="$lib_8mysql_8php.html#a90227497e3406a51ddbaad5bcf7ba665" title="rfs_phpself" alt="" coords="763,319,848,348"/>
 <area shape="rect" id="node40" href="$lib_8wiki_8php.html#ae0a2597a7e38e1d239fe19ded5afe24e" title="wikiimg" alt="" coords="604,529,671,559"/>
 <area shape="rect" id="node46" href="$lib_8debug_8php.html#a9b55f447faf2e1928eb5c9ce9b9a864d" title="d_echo" alt="" coords="605,476,669,505"/>
-<area shape="rect" id="node43" href="$lib_8images_8php.html#ad53b34acc1774634ab3f64856cbfd6ba" title="sc_picthumb" alt="" coords="757,527,853,556"/>
-<area shape="rect" id="node48" href="$lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="sc_yes" alt="" coords="773,473,837,503"/>
+<area shape="rect" id="node43" href="$lib_8images_8php.html#ad53b34acc1774634ab3f64856cbfd6ba" title="rfs_picthumb" alt="" coords="757,527,853,556"/>
+<area shape="rect" id="node48" href="$lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="rfs_yes" alt="" coords="773,473,837,503"/>
 </map>

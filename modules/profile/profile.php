@@ -3,6 +3,9 @@ $title="User Profile";
 chdir("../../");
 $RFS_LITTLE_HEADER=true;
 include("header.php");
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 // CHANGE PASSWORD
 if($change_password == "yes"){
@@ -40,7 +43,48 @@ if($change_password == "yes"){
 }
 //////////////////////////////////////////////////////////////////////////////////////
 // UPDATE USER DATA
-if($_REQUEST['act']=="update") {
+function profile_action_update() {	
+		eval(lib_rfs_get_globals());
+		lib_forms_info("UPDATING PROFILE","WHITE","GREEN");
+        $f_ext=lib_file_getfiletype($_FILES['favatar']['name']); //  echo "!!!";
+		echo $_ext;
+	
+        $uploadFile=$RFS_SITE_PATH."/images/avatars/".$_FILES['favatar']['name'];
+        if(($f_ext=="png") || ($f_ext=="gif")||($f_ext=="jpg")||($f_ext=="swf")) {
+			
+            $oldname=$_FILES['favatar']['name'];
+            if(move_uploaded_file($_FILES['favatar']['tmp_name'], $uploadFile)){
+                system("chmod 755 $uploadFile");
+                $error="File is valid, and was successfully uploaded. ";
+                echo "<P>You sent: ".$_FILES['favatar']['name'].", a ".$_FILES['favatar']['size']." byte file with a mime type of ".$_FILES['favatar']['type'];
+                $oldname=$_FILES['favatar']['name'];
+                $newname=$data->name.".".$f_ext;
+                rename($RFS_SITE_PATH."/images/avatars/".$oldname,$RFS_SITE_PATH."/images/avatars/".$newname);
+                echo " stored as [<a href=\"$RFS_SITE_URL/images/avatars/$newname\" target=\"_blank\">$RFS_SITE_URL/images/avatars/$newname</a>]</p>\n";
+                // lib_users_set_var($data->name,"avatar","");
+				$fu=addslashes("$RFS_SITE_URL/images/avatars/$newname");
+				lib_mysql_query("update `users` set `avatar` = '$fu' where `name`='$data->name'");
+				$avatar_was_uploaded=true;
+            } else {
+                $error ="File upload error!";
+                echo "File upload error! [";
+                echo $_FILES['favatar']['name'];
+                echo "][";
+                echo $_FILES['favatar']['error'];
+                echo "][";
+                echo $_FILES['favatar']['tmp_name'] ;
+                echo "][";
+                echo $uploadFile;
+                echo "]\n";
+            }
+            if(!$error) $error .= "No files have been selected for upload";
+			if(!stristr($error,"File is valid"))
+				echo "<P>Status: [$error]</P>\n";
+        }
+        else {
+			if(!empty($f_ext))
+			echo "<p>Invalid filetype ($f_ext) for an avatar!</p>";			
+		}
 	
 	$name=$_REQUEST['name'];
 	$sentence=$_REQUEST['sentence'];
@@ -55,7 +99,7 @@ if($_REQUEST['act']=="update") {
 	$birth_day=$_REQUEST['birth_day'];
 	$birth_month=$_REQUEST['birth_month'];
 
-	lib_forms_info("UPDATED PROFILE","WHITE","GREEN");
+	
     
     if(!empty($name)) lib_mysql_query("UPDATE `users` SET `real_name`='$name' where `name` = '$data->name'");
 	
@@ -70,8 +114,12 @@ if($_REQUEST['act']=="update") {
 		lib_mysql_query("UPDATE `users` SET `webpage`='$webpage' where `name` = '$data->name'");
     if(!empty($website_fav))
 		lib_mysql_query("UPDATE `users` SET `website_fav`='$website_fav' where `name` = '$data->name'");
-    if(!empty($avatar))
-		lib_mysql_query("UPDATE `users` SET `avatar`='$avatar' where `name` = '$data->name'");
+    
+	
+	if(!empty($avatar)) {
+		if(!$avatar_was_uploaded)
+			lib_mysql_query("UPDATE `users` SET `avatar`='$avatar' where `name` = '$data->name'");
+	}
     if(!empty($country))
 		lib_mysql_query("UPDATE `users` SET `country`='$country' where `name` = '$data->name'");
 		
@@ -91,9 +139,8 @@ if($_REQUEST['act']=="update") {
         $der .= " 01:01:01";
         lib_mysql_query("UPDATE `users` SET birthday='$der' where name = '$data->name'");
     }
+	profile_action_();
 }
-
-//$data=lib_users_get_data($data->name);
 
 function pro_nav_bar($data) {
 	eval(lib_rfs_get_globals());
@@ -140,20 +187,89 @@ function profile_action_() {
 
 function profile_show_form() {
 	eval(lib_rfs_get_globals());
+	$data=lib_users_get_data($data->name);
 	$nm=$data->real_name;
+	
+	echo "<div class=forum_box>";
 	if(empty($nm)) $nm=str_replace("."," ",$data->name);
 	echo ucwords("<h1> $nm's $RFS_SITE_NAME profile </h1>");
+	echo "<hr>";
 	pro_nav_bar($data);
-	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/modules/profile/profile.php\" >";
+	echo "<hr>";
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+	// status stuff
 
-	echo "<table border=0 cellpadding=0 cellspacing=0><tr><td>";
-	echo "<input type=hidden name=act value=update>\n";
-	echo "<td> ";
+	echo "<table border=0 cellspacing=2 cellpadding=2><tr><td>\n";
+	//echo "<a href=\"javascript:win('helpposts.php')\">News Posts</a>:$data->newsposts\n";
+	//echo "</td><td>\n";
+	echo "<a href=\"javascript:win('helpfposts.php')\">Forum Posts</a>:$data->forumposts\n";
+	echo "</td><td>\n";
+	echo "<a href=\"javascript:win('helpfreply.php')\">Forum Replies</a>:$data->forumreplies\n";
+	echo "</td><td>\n";
+	//echo "<a href=\"javascript:win('helpcomments.php')\">Comments</a>:$data->comments\n";
+	//echo "</td><td>\n";
+	echo "<a href=\"javascript:win('helpuploads.php')\">Uploads</a>:$data->uploads\n";
+	echo "</td><td>\n";
+	echo "<a href=\"javascript:win('helpdownloads.php')\">Downloads</a>:$data->downloads\n";
+	//echo "</td><td>\n";
+	//echo "<a href=\"javascript:win('helpfreply.php')\">Links Added</a>:$data->linksadded\n";
+	//echo "</td><td>\n";
+	//echo "<a href=\"javascript:win('helpref.php')\">Referrals</a>:$data->referrals\n";
+	echo "</td></tr></table>\n";
+		
+	echo "<hr>";
+	
+
+	// lib_ajax($label,$table,$key,$kv,$field,$width,$type)
+	// lib_ajax("Avatar","users", "name", "$data->name","avatar", 60, "","admin","access","lib_ajax_callback_image");
+	
+	lib_ajax("User Name"	,"users","name","$data->name","name",80,"","admin","access","");
+	lib_ajax("First Name"	,"users","name","$data->name","first_name",80,"","admin","access","");
+	lib_ajax("Last Name"	,"users","name","$data->name","last_name",80,"","admin","access","");
+	lib_ajax("Alias"	,	"users","name","$data->name","alias",80,"","admin","access","");	
+	lib_ajax("Shown Name"	,	"users","name","$data->name","name_shown",80,"","admin","access","");
+	lib_ajax("Email"		,"users","name","$data->name","email",80,"","admin","access");
+			
+		
+
+	echo "<hr>";
+	
+	
+	echo "<form 
+	enctype=\"multipart/form-data\"
+	method=\"post\" action=\"$RFS_SITE_URL/modules/profile/profile.php\" >"; // enctype=\"application/x-www-form-URLencoded\"
+
+	echo "<table border=0 cellpadding=0 cellspacing=0>";// "<tr><td>";
+	
+	echo "<input type=hidden name=action value=update>\n";
+		
+	echo "<tr><td>";
+	
 	echo lib_users_avatar_code($data->name);
-	echo "</td>\n";
+	
+	echo "</td>";
+	echo "<td>";
+	echo "<input type=text name=avatar size=80 value=\"$data->avatar\"><br><input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
+	echo "<input type=file name=favatar size=30>";
+	
+	
+
+				
+	
+	echo "</td></td> \n";
+	//echo "<a href=$RFS_SITE_URL/modules/files/files.php?action=upload_avatar> \n";
+	// <img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
+	//echo "Upload an swf, gif, or jpg avatar!</a></td></tr>\n";
+	// echo "</table>";
+	// echo "</td>\n";
+	echo "<tr>";
 	if(empty($data->gender)) $data->gender="male";
 	echo "<td><img src=$RFS_SITE_URL/images/icons/sym_$data->gender.gif border=0 title=\"$data->gender\" alt=\"$data->gender\"></td>\n";
-	echo "<td><select name=gender><option>$data->gender<option>male<option>female</select></td>";
+	echo "<td><select name=gender><option>$data->gender<option>male<option>female</select></td></tr>";
+	
+	
+	echo "<tr>";
 	list($adate,$atime)=explode(" ",$data->first_login );
 	list($tyear,$tmonth,$tday)=explode("-",$adate);
 	$dtq=explode(" ",$data->first_login);
@@ -162,41 +278,12 @@ function profile_show_form() {
 	$t=mktime($time[0],$time[1],$time[2],
 			  $date[1],$date[2],$date[0]);  // h,s,m,mnth,d,y
 	$nmonth=date("M",$t);
-	echo "<td> <i> Member since $nmonth $tday, $tyear </i> </td>\n";
-	echo "</tr></table>";
+	echo "<td> Member since:</td><td>$nmonth $tday, $tyear</td>\n";
+	echo "</tr>";
 
-	//////////////////////////////////////////////////////////////////////////////////////////////////
-	// status stuff
-
-
-	echo "<table border=0 cellspacing=2 cellpadding=2><tr><td>\n";
-	echo "<a href=\"javascript:win('helpposts.php')\">News Posts</a>:$data->posts\n";
-	echo "</td><td>\n";
-	echo "<a href=\"javascript:win('helpfposts.php')\">Forum Posts</a>:$data->forumposts\n";
-	echo "</td><td>\n";
-	echo "<a href=\"javascript:win('helpfreply.php')\">Forum Replies</a>:$data->forumreplies\n";
-	echo "</td><td>\n";
-	echo "<a href=\"javascript:win('helpcomments.php')\">Comments</a>:$data->comments\n";
-	echo "</td><td>\n";
-	echo "<a href=\"javascript:win('helpuploads.php')\">U/L</a>:$data->files_uploaded\n";
-	echo "</td><td>\n";
-	echo "<a href=\"javascript:win('helpdownloads.php')\">D/L</a>:$data->files_downloaded\n";
-	echo "</td><td>\n";
-	echo "<a href=\"javascript:win('helpfreply.php')\">Links Added</a>:$data->linksadded\n";
-	echo "</td><td>\n";
-	echo "<a href=\"javascript:win('helpref.php')\">Referrals</a>:$data->referrals\n";
-	echo "</td></tr></table>\n";
-
-
-	//////////////////////////////////////////////////////////////////////////////////////////////////
-	// profile data start
-
-	echo "<table border=0> <tr><td>\n";
-
-	echo "<table border=0>\n";
 	echo "<tr><td>Real Name :</td><td>";
-	echo "<input type=textbox name=name size=30 value=\"$data->real_name\"> </td>";
-	echo "<td>&nbsp;</td></tr>\n";
+	echo "<input type=textbox name=name size=80 value=\"$data->real_name\"> </td>";
+	echo "</tr>\n";
 
 
 	$dtq=explode(" ",$data->birthday);
@@ -234,81 +321,74 @@ function profile_show_form() {
 		else      echo "<option>$i";
 		$i=$i+1;
 	}
-
 	echo "</select>";
 	echo "<select name=birth_year style=\"width:80;\">\n";
 	echo "<option>$tyear\n";
 	$i=1901; while($i<2050) { echo "<option>$i"; $i=$i+1; }
-	echo "</select> (<i>$years years old</i>)</td><td> </td></tr>\n";
+	echo "</select> (<i>$years years old</i>)</td></tr>\n";
 	if(empty($data->country)) $data->country="Select Country";
 	echo "<tr><td>Country   :</td><td> <select name=country><option>$data->country\n";
 	lib_forms_option_countries();
-	echo "</select> </td><td>&nbsp;</td></tr>\n";
+	echo "</select> </td></tr>\n";
 	echo "<tr><td>Quote     :</td>";
-	echo "<td><textarea name=sentence rows=5 cols=50>";
+	echo "<td><textarea name=sentence rows=5 cols=70>";
 	echo $data->sentence;
-	echo "</textarea>    </td><td>&nbsp;</td></tr>\n";
-	echo "<tr><td>Email :</td><td> <input type=textbox name=email    size=30 value=\"$data->email\">         </td><td></td></tr>\n";
+	echo "</textarea> </td></tr>\n";
+	echo "<tr><td>Email :</td><td> <input type=text name=email    size=80 value=\"$data->email\"></td></tr>\n";
+	echo "<tr><td>Personal Webpage:</td><td> <input type=text name=webpage  size=80 value=\"$data->webpage\"></td></tr>\n";
+	echo "<tr><td>Favorite Webpage:</td><td> <input type=text name=website_fav  size=80 value=\"$data->website_fav\"></td></tr>\n";
 
-	echo "<tr><td>Personal Webpage:</td><td> <input type=textbox name=webpage  size=30 value=\"$data->webpage\">       </td><td> <a href=$data->webpage target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's website!\" title=\"Visit this person's website!\" height=16> </a></td></tr>\n";
-	echo "<tr><td>Favorite Webpage:</td><td> <input type=textbox name=website_fav  size=30 value=\"$data->website_fav\">       </td><td> <a href=$data->website_fav target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's favorite website!\" title=\"Visit this person's favorite website!\" height=16> </a></td></tr>\n";
-	echo "<tr><td>Avatar:</td><td> <input type=textbox name=avatar size=30 value=\"$data->avatar\"> </td><td> \n";
-	echo "<a href=$RFS_SITE_URL/modules/files/files.php?action=upload_avatar> \n";
-	// <img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
-	echo "Upload an swf, gif, or jpg avatar!</a></td></tr>\n";
-	echo "<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>\n";
 	echo "<tr><td>Show Contact Info:</td><td><select name=show_contact_info>\n";
 	if($data->show_contact_info=="yes") echo "<option>yes<option>no";
 	else echo "<option>no<option>yes";
-	echo "</select></td><td>&nbsp;</td></tr>\n";
-
+	echo "</select></td></tr>\n";
 	echo "<tr><td align=right>Update</td><td>\n";
 	echo "<input type=submit name=\"update\" value=\"Go!\">\n";
-	echo "</td><td>&nbsp;</td></tr>\n";
-	echo "</table> ";
-	echo "</td></tr></table>\n";
-	echo "</form>\n";
-
-	/* 
-	/////////////////////////
-	// awards - medals
-	echo "<p>Your Achievments...</p>\n";
-	echo "<table border=0 cellspacing=0 cellpadding=0 width=100% class=sc_black>\n";
-	echo "<tr><td>\n";
-	 sc_putawards($data->name);
 	echo "</td></tr>\n";
 	echo "</table>\n";
-	*/
+	echo "</form>\n";
+	
+	echo "</div>";
+
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+include("footer.php");
+
+/*
+ * 
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	// files start
 
 	$q="where submitter='$data->name'";
 	$l="$filetop,$filelimit";  
-	$i=0; $bg=0; $filelist=@sc_getfilelist($q,$l);
+	$i=0; $bg=0; $filelist=@rfs_getfilelist($q,$l);
 	if(count($filelist)) {
 		lib_forms_info("Your files...","BLACK","WHITE");
 		if(lib_access_check("files","upload")) 
 			echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>]";
 		if(lib_access_check("files","addlink")) 
 			echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
-		  echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=sc_black>\n";
-		  echo "<tr bgcolor=$file_header height=16 class=sc_black>\n";
-		  echo "<td class=\"sc_black\">Work Safe</td>\n";
-		  echo "<td class=\"sc_black\">Type</td>\n";
-		  echo "<td class=\"sc_black\">Name</td>\n";
-		  echo "<td class=\"sc_black\" width=100>Size</td>\n";
-		  echo "<td class=\"sc_black\" width=50>D'lds</td>\n";
-		  echo "<td class=\"sc_black\">Category</td>\n";
-		  echo "<td class=\"sc_black\">Description &nbsp;</td>\n";
-		  echo "<td class=\"sc_black\">&nbsp;</td>\n";
-		  echo "<td class=\"sc_black\">&nbsp;</td>\n";
+		  echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=rfs_black>\n";
+		  echo "<tr bgcolor=$file_header height=16 class=rfs_black>\n";
+		  echo "<td class=\"rfs_black\">Work Safe</td>\n";
+		  echo "<td class=\"rfs_black\">Type</td>\n";
+		  echo "<td class=\"rfs_black\">Name</td>\n";
+		  echo "<td class=\"rfs_black\" width=100>Size</td>\n";
+		  echo "<td class=\"rfs_black\" width=50>D'lds</td>\n";
+		  echo "<td class=\"rfs_black\">Category</td>\n";
+		  echo "<td class=\"rfs_black\">Description &nbsp;</td>\n";
+		  echo "<td class=\"rfs_black\">&nbsp;</td>\n";
+		  echo "<td class=\"rfs_black\">&nbsp;</td>\n";
 		  echo "</tr>\n";
 	  
 	  if(empty($filetop)) 	$filetop=0;
 	  if(empty($filelimit))	$filelimit=25;
 	  
 	  while($i<count($filelist)) {
-		$filedata=sc_getfiledata($filelist[$i]);
+		$filedata=rfs_getfiledata($filelist[$i]);
 		$colr=$file_color[1];
 		if($bg=="1") $colr=$file_color[2];
 		echo "<tr bgcolor=#$colr>\n";
@@ -332,12 +412,12 @@ function profile_show_form() {
 		echo "<input type=hidden name=action value=ren>\n";
 		echo "<input type=hidden name=id value=$filedata->id>\n";
 		echo "</form>\n";
-		echo "<td class=\"sc_black\">$filedata->size &nbsp;</td>\n";
-		echo "<td class=\"sc_black\">$filedata->downloads &nbsp;</td>\n";
-		echo "<td class=\"sc_black\">$filedata->category &nbsp;</td>\n";
-		echo "<td class=\"sc_black\">$filedata->description &nbsp;</td>\n";
-		echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
-		echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
+		echo "<td class=\"rfs_black\">$filedata->size &nbsp;</td>\n";
+		echo "<td class=\"rfs_black\">$filedata->downloads &nbsp;</td>\n";
+		echo "<td class=\"rfs_black\">$filedata->category &nbsp;</td>\n";
+		echo "<td class=\"rfs_black\">$filedata->description &nbsp;</td>\n";
+		echo "<td class=\"rfs_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
+		echo "<td class=\"rfs_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
 		echo "</tr>\n";
 		$i=$i+1;
 		$bg=$bg+1; if($bg>1) $bg=0;
@@ -345,11 +425,5 @@ function profile_show_form() {
 	  echo "</table>\n";
 	  //////////////////
 	} // end Files
-}
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-include("footer.php");
-
+	 */
 ?>

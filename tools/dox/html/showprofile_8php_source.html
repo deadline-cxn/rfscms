@@ -93,7 +93,7 @@
 <a name="l00018"></a>00018 
 <a name="l00019"></a>00019 <span class="keywordflow">if</span>(<a class="code" href="showprofile_8php.html#af70e594e86a310311c717b13e6ecac00">$userdata</a>-&gt;show_contact_info==<span class="stringliteral">&quot;yes&quot;</span>) {
 <a name="l00020"></a>00020     
-<a name="l00021"></a>00021     echo <span class="stringliteral">&quot;&lt;a href=\&quot;&quot;</span>.sc_getemailcode(<a class="code" href="showprofile_8php.html#af70e594e86a310311c717b13e6ecac00">$userdata</a>-&gt;email).<span class="stringliteral">&quot;\&quot;&gt;&lt;font class=sc_email&gt;$thisemail&lt;/font&gt;&lt;img src=$RFS_SITE_URL/images/email2.gif border=0 alt=\&quot;E-Mail\&quot; height=16&gt;&lt;/a&gt;&lt;br&gt;\n&quot;</span>;
+<a name="l00021"></a>00021     echo <span class="stringliteral">&quot;&lt;a href=\&quot;&quot;</span>.rfs_getemailcode(<a class="code" href="showprofile_8php.html#af70e594e86a310311c717b13e6ecac00">$userdata</a>-&gt;email).<span class="stringliteral">&quot;\&quot;&gt;&lt;font class=rfs_email&gt;$thisemail&lt;/font&gt;&lt;img src=$RFS_SITE_URL/images/email2.gif border=0 alt=\&quot;E-Mail\&quot; height=16&gt;&lt;/a&gt;&lt;br&gt;\n&quot;</span>;
 <a name="l00022"></a>00022     echo <span class="stringliteral">&quot;&lt;a href=$userdata-&gt;webpage target=_blank&gt;&lt;img src=$RFS_SITE_URL/images/wp.gif  border=0 alt=\&quot;Visit this person&#39;s website!\&quot; height=16&gt;&lt;/a&gt;&lt;br&gt;\n&quot;</span>;
 <a name="l00023"></a>00023     echo <span class="stringliteral">&quot;&lt;a href=$userdata-&gt;webpage target=_blank&gt;$userdata-&gt;webpage&lt;/a&gt;&lt;br&gt;&quot;</span>;
 <a name="l00024"></a>00024     
@@ -131,7 +131,7 @@
 <a name="l00056"></a>00056 echo <span class="stringliteral">&quot;Favorite Website: &lt;a href=\&quot;$RFS_SITE_URL/link_out.php?link=$userdata-&gt;website_fav\&quot; target=\&quot;_blank\&quot;&gt;$userdata-&gt;website_fav&lt;/a&gt;&lt;br&gt;&quot;</span>;
 <a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 
-<a name="l00059"></a>00059 <span class="comment">//echo &quot;Awards: &quot;.sc_getawards($userdata-&gt;name).&quot;&lt;br&gt;\n&quot;;</span>
+<a name="l00059"></a>00059 <span class="comment">//echo &quot;Awards: &quot;.rfs_getawards($userdata-&gt;name).&quot;&lt;br&gt;\n&quot;;</span>
 <a name="l00060"></a>00060 
 <a name="l00061"></a>00061 echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;\n&quot;</span>;
 <a name="l00062"></a>00062 
@@ -147,7 +147,7 @@
     <ul>
       <li class="navelem"><a class="el" href="showprofile_8php.html">showprofile.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

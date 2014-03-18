@@ -1,7 +1,7 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="544,5,675,35"/>
 <area shape="rect" id="node5" href="$lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a" title="lib_access_check" alt="" coords="167,84,292,113"/>
-<area shape="rect" id="node21" href="$module_8files_8php.html#a56e3c98543159163918e032212dc531d" title="sc_getfiledata" alt="" coords="179,137,280,167"/>
+<area shape="rect" id="node21" href="$module_8files_8php.html#acfdb5186852eb6d996ac5b99ff4ce156" title="rfs_getfiledata" alt="" coords="177,137,281,167"/>
 <area shape="rect" id="node24" href="$lib_8forms_8php.html#ad285a3a501e01b34c5905b2d94728dd6" title="lib_forms_info" alt="" coords="179,191,280,220"/>
 <area shape="rect" id="node7" href="$lib_8domain_8php.html#a298425b552e261433262bcbd0768fa12" title="lib_domain_phpself" alt="" coords="341,31,475,60"/>
 <area shape="rect" id="node10" href="$lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="343,84,473,113"/>

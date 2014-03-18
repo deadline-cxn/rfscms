@@ -17,16 +17,16 @@ function module_files($x) { eval(lib_rfs_get_globals());
         $link="$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$file->id";
         $fdescription=str_replace('"',"&quote;",stripslashes($file->description));
         $gt++; if($gt>2)$gt=1;
-        echo "<tr><td class=sc_file_table_$gt>";
+        echo "<tr><td class=rfs_file_table_$gt>";
         echo "<a href=\"$link\">$file->name</a> ";
-        echo"</td><td class=sc_file_table_$gt>";
+        echo"</td><td class=rfs_file_table_$gt>";
         echo lib_file_sizefile($file->size);
         echo "</td></tr>";
     }
     echo "</table>";
 }
 
-function sc_update_file($fid) {
+function rfs_update_file($fid) {
 	$file=lib_mysql_fetch_one_object("select * from files where id = '$fid'");
 	if($file->id!=$fid) return;
 	
@@ -143,7 +143,7 @@ function lib_ajax_callback_rename_file() { eval(lib_rfs_get_globals());
 
 function lib_ajax_callback_delete_file() { eval(lib_rfs_get_globals());
 	if(lib_access_check($rfaapage,$rfaact)) {
-		sc_lib_file_delete($rfakv,"yes");
+		rfs_lib_file_delete($rfakv,"yes");
 			
 	}
 	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
@@ -190,14 +190,14 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	if((($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) ) $fedit=true;
 	if(($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") ) $fworksafe=true;
 
-	// sc_update_file($filedata->id);
+	// rfs_update_file($filedata->id);
 	$filedata=lib_mysql_fetch_one_object("select * from files where id='$filedata->id'");
 	
 	echo "<div style='clear: both;' id=\"$filedata->id\" >";
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left;' class='sc_file_table_outer_$bg'>"; 
+	echo "<div style='display: block; float:left;' class='rfs_file_table_outer_$bg'>"; 
 	
 	///////////////////////////////////
 
@@ -215,7 +215,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left;' class='sc_file_table_$bg'>"; 
+	echo "<div style='display: block; float:left;' class='rfs_file_table_$bg'>"; 
 		echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$filedata->id\">";
 		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
 		echo "</a>";
@@ -230,7 +230,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 						width:$nwidth"."px; 
 						max-width:$nwidth"."px; 
 						min-width:$nwidth"."px;' 
-				class='sc_file_table_$bg'>";
+				class='rfs_file_table_$bg'>";
 
 	if($fedit || $_SESSION['deletemode']) {
 		if(lib_access_check("files","delete")) {
@@ -238,7 +238,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			lib_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button,nolabel", "files","delete","lib_ajax_callback_delete_file");
 		}			
 
-		echo "<div style='display: block; float:left; min-width:250px;' class='sc_file_table_$bg'>";
+		echo "<div style='display: block; float:left; min-width:250px;' class='rfs_file_table_$bg'>";
 			echo"$filedata->md5 ";
 			$fdr=lib_mysql_query("select * from files where md5='$filedata->md5'");
 			if(mysql_num_rows($fdr)>1) {
@@ -254,7 +254,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 							$ftype=lib_file_getfiletype($dfile->name);
 							if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
 								if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
-									echo sc_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
+									echo rfs_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
 							echo "<br>$dfile->name";
 							echo "</a><BR>
 							$dfile->location<br>";
@@ -293,7 +293,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			($filetype=="jpeg"))
 			if($fworksafe) {
 				if($_SESSION['thumbs'])
-					echo sc_picthumb("$RFS_SITE_URL/$filedata->location",$nwidth,0,1)."<br>";	
+					echo rfs_picthumb("$RFS_SITE_URL/$filedata->location",$nwidth,0,1)."<br>";	
 				}
 
 		if(	($filetype=="mp3") ||
@@ -329,7 +329,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			}
 		}
 		
-		echo "<div style='display: block; float:left;' class='sc_file_table_$bg'
+		echo "<div style='display: block; float:left;' class='rfs_file_table_$bg'
 			id=\"tags_$filedata->id\"> &nbsp; </div>"; 
 		
 		if($_SESSION['tagmode'])
@@ -347,7 +347,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 						width:340px;
 						max-width:340px;
 						min-width:340px;'
-				class='sc_file_table_$bg'>";
+				class='rfs_file_table_$bg'>";
 	
 	if( ($filetype=="ttf") || 
 		($filetype=="otf") ||
@@ -378,7 +378,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	
 	///////////////////////////////////
 		
-	echo "<div style='display: block; float:left; min-width:60px;' class='sc_file_table_$bg'>";
+	echo "<div style='display: block; float:left; min-width:60px;' class='rfs_file_table_$bg'>";
 		echo "$size ";
 		if($fedit)
 			echo "<br> Submitted by:<br>$filedata->submitter ";
@@ -386,26 +386,26 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left; min-width:80px;' class='sc_file_table_$bg'>";
+	echo "<div style='display: block; float:left; min-width:80px;' class='rfs_file_table_$bg'>";
 		echo"$filedata->version &nbsp;";
 	echo "</div>";
 	
 	///////////////////////////////////
 		
-	echo "<div style='display: block; float:left; min-width:40px;' class='sc_file_table_$bg'>";
+	echo "<div style='display: block; float:left; min-width:40px;' class='rfs_file_table_$bg'>";
 		echo"$filedata->platform &nbsp;";
 	echo "</div>";
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left; min-width:40px;' class='sc_file_table_$bg'>"; 
+	echo "<div style='display: block; float:left; min-width:40px;' class='rfs_file_table_$bg'>"; 
 		echo"$filedata->os &nbsp;";
 	echo "</div>";
 	
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left; min-width:20px;' class='sc_file_table_$bg'>";
+	echo "<div style='display: block; float:left; min-width:20px;' class='rfs_file_table_$bg'>";
 		echo" &nbsp;";
 	echo "</div>";
 	
@@ -419,7 +419,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 
 
 
-function sc_scrubfiledatabase() {
+function rfs_scrubfiledatabase() {
 	lib_mysql_query(" CREATE TABLE files2 like files; ");
 	lib_mysql_query(" INSERT files2 SELECT * FROM files GROUP BY location;" );
 	lib_mysql_query(" RENAME TABLE `files`  TO `files_scrub`; ");
@@ -427,7 +427,7 @@ function sc_scrubfiledatabase() {
 	lib_mysql_query(" DROP TABLE files_scrub; ");
 }
 
-function sc_getfiledata($file){
+function rfs_getfiledata($file){
     $query = "select * from files where `name` = '$file' ";
     if(intval($file)!=0)
     $query = "select * from files where `id` = '$file'";
@@ -436,7 +436,7 @@ function sc_getfiledata($file){
     return $filedata;
 }
 
-function sc_getfilelist($filesearch,$limit){
+function rfs_getfilelist($filesearch,$limit){
     $query = "select * from files";
     if(!empty($filesearch)) $query.=" ".$filesearch;
 		
@@ -458,9 +458,9 @@ function sc_getfilelist($filesearch,$limit){
 
 
 function md5_scan($RFS_CMD_LINE) {
-	$filelist=sc_getfilelist(" ",0);
+	$filelist=rfs_getfilelist(" ",0);
 	for($i=0;$i<count($filelist);$i++) {
-		$filedata=sc_getfiledata($filelist[$i]);
+		$filedata=rfs_getfiledata($filelist[$i]);
 		$fl=stripslashes($filedata->location);
 		$tmd5=@md5_file ($fl);
 		if($tmd5) {
@@ -482,9 +482,9 @@ function md5_scan($RFS_CMD_LINE) {
 
 
 function quick_md5_scan($RFS_CMD_LINE) {
-	$filelist=sc_getfilelist(" ",0);
+	$filelist=rfs_getfilelist(" ",0);
 	for($i=0;$i<count($filelist);$i++) {
-		$filedata=sc_getfiledata($filelist[$i]);
+		$filedata=rfs_getfiledata($filelist[$i]);
 		$fl=stripslashes($filedata->location);
 		if(empty($filedata->md5)) {
 			$tmd5=@md5_file ($fl);
@@ -612,7 +612,7 @@ function purge_files($RFS_CMD_LINE){
 		}
 	}
 }
-function sc_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
+function rfs_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
 	
 	$loc1=addslashes($loc1);
 	$size1=addslashes($size1);
@@ -629,7 +629,7 @@ function sc_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
 }
 
 
-function sc_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
+function rfs_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
 		$f=lib_mysql_fetch_one_object("select * from files where id='$id'");
 	
 		echo "<tr>";		
@@ -639,9 +639,9 @@ function sc_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
 		
 		echo "<td	class='$color'>";
 
-		sc_img_button_x( "$RFS_SITE_URL/modules/files/files.php?action=del&id=".
+		rfs_img_button_x( "$RFS_SITE_URL/modules/files/files.php?action=del&id=".
 							$f->id.
-							"&retpage=".urlencode(sc_canonical_url()),
+							"&retpage=".urlencode(rfs_canonical_url()),
 							"Delete ",
 							"$RFS_SITE_URL/images/icons/Delete.png",
 							16,16);
@@ -670,7 +670,7 @@ function sc_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
 		echo "</tr>";
 		
 }
-function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(lib_rfs_get_globals());
+function rfs_show_scanned_duplicates($RFS_CMD_LINE) { eval(lib_rfs_get_globals());
 
 	echo "<h1>Duplicate files</h1>";
 	
@@ -702,15 +702,15 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(lib_rfs_get_globals())
 		$dupe=mysql_fetch_object($r);
 		
 		$clr++; if($clr>2) $clr=1;
-		$color="sc_project_table_$clr";
+		$color="rfs_project_table_$clr";
 		
 		$rr=lib_mysql_query("select * from files where md5 = '$dupe->md5'");
 		for($u=0;$u<mysql_num_rows($rr);$u++)  {		
 			$f=mysql_fetch_object($rr);
-			sc_show_one_scanned_duplicate($RFS_CMD_LINE,$f->id,$color);
+			rfs_show_one_scanned_duplicate($RFS_CMD_LINE,$f->id,$color);
 			
 		}
-		// sc_show_one_scanned_duplicate($RFS_CMD_LINE,$filelist[$dupe->loc2]['id'],$color);
+		// rfs_show_one_scanned_duplicate($RFS_CMD_LINE,$filelist[$dupe->loc2]['id'],$color);
 		
 	}
 	echo "</table>";
@@ -719,7 +719,7 @@ function sc_show_scanned_duplicates($RFS_CMD_LINE) { eval(lib_rfs_get_globals())
 	echo "</div>";
 }
 
-function sc_show_duplicate_files($RFS_CMD_LINE) {
+function rfs_show_duplicate_files($RFS_CMD_LINE) {
 	$result = lib_mysql_query("select * from files");
 	$i=0; $k=mysql_num_rows($result);	
 	while($i<$k) {
@@ -731,7 +731,7 @@ function sc_show_duplicate_files($RFS_CMD_LINE) {
 		for($z=0;$z<mysql_num_rows($r2);$z++) {
 			$dupe = mysql_fetch_object($r2);
 			
-		sc_duplicate_add( $der->location, $der->size,
+		rfs_duplicate_add( $der->location, $der->size,
 							$dupe->location,$dupe->size,$der->md5);
 			
 			echo "F1: $der->md5 $der->size $der->location \n"; if(!$RFS_CMD_LINE) echo "<br>";
@@ -743,7 +743,7 @@ function sc_show_duplicate_files($RFS_CMD_LINE) {
 	}
 }
 
-function sc_scan_duplicate_files2($RFS_CMS_LINE) {
+function rfs_scan_duplicate_files2($RFS_CMS_LINE) {
 
 	$result = lib_mysql_query("select * from files");
 	$i=0; $k=mysql_num_rows($result);
@@ -775,7 +775,7 @@ function sc_scan_duplicate_files2($RFS_CMS_LINE) {
 
 							echo "$k = $filelist[$i]\n";
 							
-							sc_duplicate_add( $filelist[$x],$filesize[$x],$k,$loc_size[$filelist[$x]],$tmd5);
+							rfs_duplicate_add( $filelist[$x],$filesize[$x],$k,$loc_size[$filelist[$x]],$tmd5);
 							
 							
 							$dupefound["$k"]=true;
@@ -789,7 +789,7 @@ function sc_scan_duplicate_files2($RFS_CMS_LINE) {
 	if(!$RFS_CMD_LINE) 
 		echo "</table>";	
 }
-function sc_show_duplicate_files2($RFS_CMD_LINE) {
+function rfs_show_duplicate_files2($RFS_CMD_LINE) {
 	echo "MD5 SEARCH \n"; if(!$RFS_CMD_LINE) echo "<br>";
     $result = lib_mysql_query("select * from files");
     $i=0; $k=mysql_num_rows($result);
@@ -829,8 +829,8 @@ function sc_show_duplicate_files2($RFS_CMD_LINE) {
 }
 
 
-function sc_lib_file_delete($id,$annihilate) { eval(lib_rfs_get_globals());
-	$filedata=sc_getfiledata($id);
+function rfs_lib_file_delete($id,$annihilate) { eval(lib_rfs_get_globals());
+	$filedata=rfs_getfiledata($id);
 	lib_mysql_query("delete from files where id = '$id'");
 	lib_mysql_query("delete from file_duplicates where loc1 = '$filedata->location'");
 	lib_mysql_query("delete from file_duplicates where loc2 = '$filedata->location'");

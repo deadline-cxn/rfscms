@@ -42,9 +42,9 @@ to("100%"," align=center cellpadding=0");
 					 
 					 if(!lib_rfs_bool_true($data->donated)) {
 					 		lib_social_paypal();
-							sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
-							//sc_reddit();
-							//sc_social_buttons();
+							lib_social_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+							//lib_social_reddit();
+							//lib_social_buttons();
 					 
 					 }
                     tcc();

@@ -116,8 +116,8 @@
 <a name="l00041"></a>00041 <span class="stringliteral">&quot;RFS_TAG_FUNCTION&quot;</span>          =&gt; <span class="stringliteral">&quot;RFS_TAG_FUNCTION&quot;</span>,
 <a name="l00042"></a>00042 <span class="stringliteral">&quot;RFS_TAG_PHP_SELF&quot;</span>          =&gt; <span class="stringliteral">&quot;RFS_TAG_PHP_SELF&quot;</span>,
 <a name="l00043"></a>00043 <span class="stringliteral">&quot;RFS_TAG_CANONICAL&quot;</span>         =&gt; <span class="stringliteral">&quot;RFS_TAG_CANONICAL&quot;</span>,
-<a name="l00044"></a>00044 <span class="stringliteral">&quot;sc_facebook_login_r&quot;</span>       =&gt; <span class="stringliteral">&quot;&lt;!--RTAG_FACEBOOK_LOGIN--&gt;&quot;</span>,
-<a name="l00045"></a>00045 <span class="stringliteral">&quot;lib_button&quot;</span>                =&gt; <span class="stringliteral">&quot;&lt;!--RTAG_BUTTON&quot;</span>
+<a name="l00044"></a>00044 <span class="stringliteral">&quot;lib_social_facebook_login_r&quot;</span>       =&gt; <span class="stringliteral">&quot;&lt;!--RTAG_FACEBOOK_LOGIN--&gt;&quot;</span>,
+<a name="l00045"></a>00045 <span class="stringliteral">&quot;lib_buttons&quot;</span>               =&gt; <span class="stringliteral">&quot;&lt;!--RTAG_BUTTON&quot;</span>
 <a name="l00046"></a>00046 );<span class="comment"></span>
 <a name="l00047"></a>00047 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00048"></a>00048 <span class="comment"></span><span class="comment">// WIKI STUFF</span>
@@ -221,7 +221,7 @@
 <a name="l00146"></a>00146 <span class="comment">    @include_once(&quot;lib.news.php&quot;);</span>
 <a name="l00147"></a>00147 <span class="comment">        $title=$_GLOBALS[&#39;site_name&#39;];</span>
 <a name="l00148"></a>00148 <span class="comment">        if($_SERVER[&#39;PHP_SELF&#39;]==$_GLOBALS[&#39;site_url&#39;].&#39;/index.php&#39;)</span>
-<a name="l00149"></a>00149 <span class="comment">            $title=sc_get_news_headline(sc_get_top_news_id());</span>
+<a name="l00149"></a>00149 <span class="comment">            $title=rfs_get_news_headline(rfs_get_top_news_id());</span>
 <a name="l00150"></a>00150 <span class="comment">        if(!empty($description)) $title=$description;</span>
 <a name="l00151"></a>00151 <span class="comment">        if(!empty($name)) $title=$name;</span>
 <a name="l00152"></a>00152 <span class="comment">        if(!empty($sname)) $title=$sname;</span>
@@ -242,7 +242,7 @@
 <a name="l00167"></a>00167 <span class="comment">        }</span>
 <a name="l00168"></a>00168 <span class="comment"></span>
 <a name="l00169"></a>00169 <span class="comment">        if(!empty($_GET[&#39;nid&#39;]))</span>
-<a name="l00170"></a>00170 <span class="comment">            $title=sc_get_news_headline($_GET[&#39;nid&#39;]);</span>
+<a name="l00170"></a>00170 <span class="comment">            $title=rfs_get_news_headline($_GET[&#39;nid&#39;]);</span>
 <a name="l00171"></a>00171 <span class="comment">        if(!empty($what)) $title=$what;</span>
 <a name="l00172"></a>00172 <span class="comment">*/</span>
 <a name="l00173"></a>00173 <span class="keywordflow">if</span>(!isset(<a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a>)) <a class="code" href="adm_8php.html#ada57e7bb7c152edad18fe2f166188691">$title</a>=<span class="stringliteral">&quot; &quot;</span>;
@@ -274,7 +274,7 @@
     <ul>
       <li class="navelem"><a class="el" href="config_8sitevars_8php.html">config.sitevars.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

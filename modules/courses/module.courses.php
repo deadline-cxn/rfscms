@@ -34,7 +34,7 @@ function module_course_list($x) { eval(lib_rfs_get_globals());
     for($i=0;$i<$num;$i++) {
         $course=mysql_fetch_object($result);
 			echo "<div>";
-		sc_togglediv_start("course_info$course->id"," COURSE: $course->id $course->name",1);
+		rfs_togglediv_start("course_info$course->id"," COURSE: $course->id $course->name",1);
 		lib_buttons_make_button("$RFS_SITE_URL/modules/courses/courses.php?action=run&id=$course->id","Take This Course");
 		if(lib_access_check("course","edit")) {
 			lib_buttons_make_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
@@ -42,7 +42,7 @@ function module_course_list($x) { eval(lib_rfs_get_globals());
 		echo "<div class=\"course_info\">";
 		echo $course->description;
 		echo "</div>";
-		sc_togglediv_end();
+		rfs_togglediv_end();
 		echo "</div>";
     }
     echo "</div>";
@@ -56,7 +56,7 @@ function module_course_admin() { eval(lib_rfs_get_globals());
 	
 }
 
-function sc_course_components_list($id) { eval(lib_rfs_get_globals());
+function rfs_course_components_list($id) { eval(lib_rfs_get_globals());
 	$out="";
 	$r=lib_mysql_query("select * from course_component where parent='$id'");
 		for($i=0;$i<mysql_num_rows($r);$i++) {

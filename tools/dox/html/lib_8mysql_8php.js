@@ -8,7 +8,7 @@ var lib_8mysql_8php =
     [ "lib_mysql_database_query_form", "lib_8mysql_8php.html#afc21d2d6c01c5f38bfcc347821a19b8e", null ],
     [ "lib_mysql_delimiter", "lib_8mysql_8php.html#a8d862410c3ba241bb1a0cc132c8df84d", null ],
     [ "lib_mysql_describe_table", "lib_8mysql_8php.html#a1d27a4e7c4c776aa5d5fc5b1999785c9", null ],
-    [ "lib_mysql_dump_table", "lib_8mysql_8php.html#ae6552148e2e76dd8135e447b894902c4", null ],
+    [ "lib_mysql_dump_table", "lib_8mysql_8php.html#a36da65fb55125a243ed88445bf3d497e", null ],
     [ "lib_mysql_fetch_one_object", "lib_8mysql_8php.html#a80af159483fec4094697cef8c5c187a6", null ],
     [ "lib_mysql_generate_content_ids", "lib_8mysql_8php.html#ac021a22906587f16bce68f493058b365", null ],
     [ "lib_mysql_hidden_var", "lib_8mysql_8php.html#a61ff614375103ba16a37e4aed92dac0e", null ],

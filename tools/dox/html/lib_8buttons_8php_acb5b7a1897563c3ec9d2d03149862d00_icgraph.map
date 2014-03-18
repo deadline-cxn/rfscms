@@ -15,7 +15,7 @@
 <area shape="rect" id="node42" href="$memes_8php.html#aefda927d28dab6028cba434fab908d29" title="memes_action_showmemes" alt="" coords="591,639,777,668"/>
 <area shape="rect" id="node54" href="$module_8courses_8php.html#a859393b241804b8e52cd0b5020706d05" title="module_course_list" alt="" coords="333,744,467,773"/>
 <area shape="rect" id="node60" href="$module_8courses_8php.html#ad3bdcec7d4bb0b245d116104530796e5" title="module_course_admin" alt="" coords="324,797,476,827"/>
-<area shape="rect" id="node63" href="$module_8memes_8php.html#aae6ab435815633f66df7cb706585020f" title="sc_show1meme" alt="" coords="341,691,459,720"/>
+<area shape="rect" id="node63" href="$module_8memes_8php.html#aae6ab435815633f66df7cb706585020f" title="rfs_show1meme" alt="" coords="341,691,459,720"/>
 <area shape="rect" id="node66" href="$module_8news_8php.html#a49e9d5381b94dc01caed1b81670ca2fa" title="news_buttons" alt="" coords="349,851,451,880"/>
 <area shape="rect" id="node70" href="$pictures_8php.html#a6af0579e877348e7e08a6f3a166dd64f" title="pictures_show_buttons" alt="" coords="323,955,477,984"/>
 <area shape="rect" id="node72" href="$pictures_8php.html#ae76d93c89427c493c0fe5a5640576bd1" title="pictures_action_view" alt="" coords="612,901,756,931"/>
@@ -36,7 +36,7 @@
 <area shape="rect" id="node52" href="$memes_8php.html#ac34f84ba1847fd5f5d114dc32b23da34" title="memes_action_" alt="" coords="916,744,1031,773"/>
 <area shape="rect" id="node56" href="$courses_8php.html#aaba87f7ff1d34b7ede88a01cbef6af52" title="courses_action_" alt="" coords="625,795,743,824"/>
 <area shape="rect" id="node58" href="$courses_8php.html#a892050f549b39093d7a0d85c3d817d24" title="courses_action_edit" alt="" coords="615,741,753,771"/>
-<area shape="rect" id="node68" href="$module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257" title="sc_show_news" alt="" coords="628,848,740,877"/>
+<area shape="rect" id="node68" href="$module_8news_8php.html#a13ab565708e1d52b8ee6f019bed36257" title="rfs_show_news" alt="" coords="628,848,740,877"/>
 <area shape="rect" id="node84" href="$pictures_8php.html#ad45ed9fe25f8b24cec7e99cfa7fcd235" title="pictures_action_viewcat" alt="" coords="603,955,765,984"/>
 <area shape="rect" id="node86" href="$pictures_8php.html#a7aa0cb5dda6f04a02831e5b15d2dac29" title="pictures_action_" alt="" coords="625,1008,743,1037"/>
 <area shape="rect" id="node74" href="$pictures_8php.html#ad345676c9f389760df5a6e7fa1336037" title="pictures_action_uploadpicgo" alt="" coords="880,797,1067,827"/>

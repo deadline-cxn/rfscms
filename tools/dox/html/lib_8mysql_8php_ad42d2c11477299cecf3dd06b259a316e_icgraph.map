@@ -6,12 +6,12 @@
 <area shape="rect" id="node27" href="$adm_8php.html#ae06e8b329dcdf45d65fea0a458544d43" title="adm_action_f_modify_link" alt="" coords="156,269,329,299"/>
 <area shape="rect" id="node29" href="$adm_8php.html#ace8c7439fed268e4befe9585719e1aca" title="adm_action_" alt="" coords="512,164,608,193"/>
 <area shape="rect" id="node37" href="$lib_8exams_8php.html#abc7a2842625f3b9d9c427f8e4cd9a52d" title="exams_get_total_questions" alt="" coords="152,323,333,352"/>
-<area shape="rect" id="node41" href="$lib_8file_8php.html#a51f42d8ead49964c536832b6bf95313b" title="sc_file_get_readme" alt="" coords="176,376,309,405"/>
-<area shape="rect" id="node43" href="$lib_8mysql_8php.html#a172f01492eb228b893671cf2a02849a8" title="sc_selectimage" alt="" coords="187,429,299,459"/>
-<area shape="rect" id="node49" href="$lib_8mysql_8php.html#ae5a50b36cce10fcb0aec73586e2b9d44" title="sc_mcount" alt="" coords="200,483,285,512"/>
-<area shape="rect" id="node51" href="$lib_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1" title="sc_show_top_news" alt="" coords="492,548,628,577"/>
-<area shape="rect" id="node55" href="$lib_8news_8php.html#a5b4884cdbbda02398946139fe82b991d" title="sc_show_news" alt="" coords="187,587,299,616"/>
-<area shape="rect" id="node58" href="$lib_8pictures_8php.html#a3bc18836c8d16dd6a21f5ab5f283bcb8" title="sc_mini_meme" alt="" coords="188,640,297,669"/>
+<area shape="rect" id="node41" href="$lib_8file_8php.html#a51f42d8ead49964c536832b6bf95313b" title="rfs_file_get_readme" alt="" coords="176,376,309,405"/>
+<area shape="rect" id="node43" href="$lib_8mysql_8php.html#a172f01492eb228b893671cf2a02849a8" title="rfs_selectimage" alt="" coords="187,429,299,459"/>
+<area shape="rect" id="node49" href="$lib_8mysql_8php.html#ae5a50b36cce10fcb0aec73586e2b9d44" title="rfs_mcount" alt="" coords="200,483,285,512"/>
+<area shape="rect" id="node51" href="$lib_8news_8php.html#a3284c49bd0d403b9a5ffca1c0fa1a3a1" title="rfs_show_top_news" alt="" coords="492,548,628,577"/>
+<area shape="rect" id="node55" href="$lib_8news_8php.html#a5b4884cdbbda02398946139fe82b991d" title="rfs_show_news" alt="" coords="187,587,299,616"/>
+<area shape="rect" id="node58" href="$lib_8pictures_8php.html#a3bc18836c8d16dd6a21f5ab5f283bcb8" title="rfs_mini_meme" alt="" coords="188,640,297,669"/>
 <area shape="rect" id="node60" href="$v_8php.html#a8eb251e0036d8bc843e30b2411d3b0bb" title="load_vw" alt="" coords="208,693,277,723"/>
 <area shape="rect" id="node62" href="$wab_8php.html#a157955d4dad817d614338de9e87fb10e" title="no_func" alt="" coords="209,747,276,776"/>
 <area shape="rect" id="node64" href="$wab_8php.html#a163edfca11288d6f8aef4db2e9202d6c" title="wab_engine_action_edcodego" alt="" coords="769,932,964,961"/>
@@ -32,6 +32,6 @@
 <area shape="rect" id="node39" href="$lib_8exams_8php.html#a9806992330b13f93930b7d77043f6af6" title="exams_get_prct" alt="" coords="503,323,617,352"/>
 <area shape="rect" id="node45" href="$adm_8php.html#aef16e5b98508317a04b62e975445f424" title="adm_action_f_admin_menu_change_icon" alt="" coords="429,469,691,499"/>
 <area shape="rect" id="node47" href="$adm_8php.html#a0e25910326a836c905765a2c72c52b46" title="adm_action_f_category_change_icon" alt="" coords="441,416,679,445"/>
-<area shape="rect" id="node53" href="$lib_8news_8php.html#a3eadb01f165caca65018c27fd6c7e39b" title="sc_module_news_top_story" alt="" coords="775,548,959,577"/>
+<area shape="rect" id="node53" href="$lib_8news_8php.html#a3eadb01f165caca65018c27fd6c7e39b" title="rfs_module_news_top_story" alt="" coords="775,548,959,577"/>
 <area shape="rect" id="node74" href="$wab_8php.html#a59829ca896f8174b8a326d90f07d20f9" title="wab_engine_action_editapp" alt="" coords="469,880,651,909"/>
 </map>

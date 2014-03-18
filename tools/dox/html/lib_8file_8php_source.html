@@ -133,32 +133,32 @@
 <a name="l00058"></a>00058     <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00059"></a>00059 }<span class="comment"></span>
 <a name="l00060"></a>00060 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00061"></a><a class="code" href="lib_8file_8php.html#af8530c0491b53ccad0fc6b856038f456">00061</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#af8530c0491b53ccad0fc6b856038f456">lib_file_sizefile</a>($bytesize) {
-<a name="l00062"></a>00062     $size = $bytesize.<span class="stringliteral">&quot; bytes&quot;</span>; 
-<a name="l00063"></a>00063     <span class="keywordflow">if</span>($bytesize&gt;1024)              $size = (round($bytesize/1024,2)).<span class="stringliteral">&quot;kB&quot;</span>;                 <span class="comment">// kilobyte 2^10</span>
-<a name="l00064"></a>00064     <span class="keywordflow">if</span>($bytesize&gt;1048576)           $size = (round($bytesize/1048576,2)).<span class="stringliteral">&quot;MB&quot;</span>;          <span class="comment">// megabyte 2^20</span>
-<a name="l00065"></a>00065     <span class="keywordflow">if</span>($bytesize&gt;1073741824)        $size = (round($bytesize/1073741824,2)).<span class="stringliteral">&quot;GB&quot;</span>;       <span class="comment">// gigabyte 2^30</span>
-<a name="l00066"></a>00066      <span class="keywordflow">if</span>($bytesize&gt;1099511627776)    $size = (round($bytesize/1099511627776,2)).<span class="stringliteral">&quot;TB&quot;</span>;    <span class="comment">// terabyte 2^40</span>
-<a name="l00067"></a>00067      <span class="comment">// PB petabyte 2^50</span>
-<a name="l00068"></a>00068      <span class="comment">// EB exabyte 2^60</span>
-<a name="l00069"></a>00069      <span class="comment">// ZB zettabyte 2^70</span>
-<a name="l00070"></a>00070      <span class="comment">// YB yottabyte 2^80</span>
-<a name="l00071"></a>00071     <span class="keywordflow">return</span> $size;
-<a name="l00072"></a>00072 }<span class="comment"></span>
-<a name="l00073"></a>00073 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00074"></a><a class="code" href="lib_8file_8php.html#a871e6b67d062989ce288217d9646b632">00074</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a871e6b67d062989ce288217d9646b632">lib_file_folder_to_array</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>) {
-<a name="l00075"></a>00075     $dirfiles = array();
-<a name="l00076"></a>00076     $handle=opendir(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>);
-<a name="l00077"></a>00077     <span class="keywordflow">if</span>(!$handle) <span class="keywordflow">return</span> 0;
-<a name="l00078"></a>00078     <span class="keywordflow">while</span> (<span class="keyword">false</span>!==(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> = readdir($handle))) {
-<a name="l00079"></a>00079     
-<a name="l00080"></a>00080         <span class="keywordflow">if</span>( 
-<a name="l00081"></a>00081         (<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;.&quot;</span>) &amp;&amp; 
-<a name="l00082"></a>00082         (<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;..&quot;</span>) &amp;&amp; 
-<a name="l00083"></a>00083         (!empty(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>)) )
-<a name="l00084"></a>00084         
-<a name="l00085"></a>00085         array_push($dirfiles,<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
-<a name="l00086"></a>00086         
+<a name="l00061"></a><a class="code" href="lib_8file_8php.html#a5a67475949f7bd174f7dbbc477ba0b02">00061</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a5a67475949f7bd174f7dbbc477ba0b02">lib_file_get_size</a>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>) {
+<a name="l00062"></a>00062     <span class="keywordflow">return</span> <a class="code" href="lib_8file_8php.html#af8530c0491b53ccad0fc6b856038f456">lib_file_sizefile</a>(filesize(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>));
+<a name="l00063"></a>00063 }
+<a name="l00064"></a><a class="code" href="lib_8file_8php.html#af8530c0491b53ccad0fc6b856038f456">00064</a> <span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#af8530c0491b53ccad0fc6b856038f456">lib_file_sizefile</a>($bytesize) {
+<a name="l00065"></a>00065     $size = $bytesize.<span class="stringliteral">&quot; bytes&quot;</span>; 
+<a name="l00066"></a>00066     <span class="keywordflow">if</span>($bytesize&gt;1024)              $size = (round($bytesize/1024,2)).<span class="stringliteral">&quot;kB&quot;</span>;                 <span class="comment">// kilobyte 2^10</span>
+<a name="l00067"></a>00067     <span class="keywordflow">if</span>($bytesize&gt;1048576)           $size = (round($bytesize/1048576,2)).<span class="stringliteral">&quot;MB&quot;</span>;          <span class="comment">// megabyte 2^20</span>
+<a name="l00068"></a>00068     <span class="keywordflow">if</span>($bytesize&gt;1073741824)        $size = (round($bytesize/1073741824,2)).<span class="stringliteral">&quot;GB&quot;</span>;       <span class="comment">// gigabyte 2^30</span>
+<a name="l00069"></a>00069      <span class="keywordflow">if</span>($bytesize&gt;1099511627776)    $size = (round($bytesize/1099511627776,2)).<span class="stringliteral">&quot;TB&quot;</span>;    <span class="comment">// terabyte 2^40</span>
+<a name="l00070"></a>00070      <span class="comment">// PB petabyte 2^50</span>
+<a name="l00071"></a>00071      <span class="comment">// EB exabyte 2^60</span>
+<a name="l00072"></a>00072      <span class="comment">// ZB zettabyte 2^70</span>
+<a name="l00073"></a>00073      <span class="comment">// YB yottabyte 2^80</span>
+<a name="l00074"></a>00074     <span class="keywordflow">return</span> $size;
+<a name="l00075"></a>00075 }<span class="comment"></span>
+<a name="l00076"></a>00076 <span class="comment">/////////////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00077"></a><a class="code" href="lib_8file_8php.html#a871e6b67d062989ce288217d9646b632">00077</a> <span class="comment"></span><span class="keyword">function</span> <a class="code" href="lib_8file_8php.html#a871e6b67d062989ce288217d9646b632">lib_file_folder_to_array</a>(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>) {
+<a name="l00078"></a>00078     $dirfiles = array();
+<a name="l00079"></a>00079     $handle=opendir(<a class="code" href="install_8php.html#a5ade1bb16ee3a241cefc0b84918f1598">$folder</a>);
+<a name="l00080"></a>00080     <span class="keywordflow">if</span>(!$handle) <span class="keywordflow">return</span> 0;
+<a name="l00081"></a>00081     <span class="keywordflow">while</span> (<span class="keyword">false</span>!==(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a> = readdir($handle))) {
+<a name="l00082"></a>00082         <span class="keywordflow">if</span>( 
+<a name="l00083"></a>00083         (<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;.&quot;</span>) &amp;&amp; 
+<a name="l00084"></a>00084         (<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>!=<span class="stringliteral">&quot;..&quot;</span>) &amp;&amp; 
+<a name="l00085"></a>00085         (!empty(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>)) )       
+<a name="l00086"></a>00086         array_push($dirfiles,<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>);
 <a name="l00087"></a>00087     }
 <a name="l00088"></a>00088     closedir($handle);
 <a name="l00089"></a>00089     reset($dirfiles);
@@ -290,7 +290,7 @@
     <ul>
       <li class="navelem"><a class="el" href="lib_8file_8php.html">lib.file.php</a>      </li>
 
-    <li class="footer">Generated on Fri Mar 14 2014 04:15:32 for RFSCMSAPIDocumentation by
+    <li class="footer">Generated on Tue Mar 18 2014 03:33:39 for RFSCMSAPIDocumentation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

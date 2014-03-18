@@ -13,7 +13,7 @@ function module_profile($x) { eval(lib_rfs_get_globals());
     $ct=count($profilelist); if($ct>$x) $ct=$x;
     for($cci=0;$cci<$ct;$cci++){
         echo "<tr><td class=contenttd width=2% >";       
-		$profile=sc_getprofiledata($profilelist[$cci]);
+		$profile=rfs_getprofiledata($profilelist[$cci]);
         if(empty($profile->image_url)) $profile->image_url="images/noimage.gif";
         $altern=stripslashes($profile->image_alt);
         $picf="$RFS_SITE_PATH/$profile->image_url";
@@ -24,7 +24,7 @@ function module_profile($x) { eval(lib_rfs_get_globals());
         $ntext=str_replace("<p>"," ",$ntext);
         $ntext=str_replace("</p>"," ",$ntext);
         $ntext=str_replace("<","&lt;",$ntext);
-        echo "<font class=sc_black>$ntext</font>";
+        echo "<font class=rfs_black>$ntext</font>";
         echo "</td></tr>";
     }
     echo "</table>";
