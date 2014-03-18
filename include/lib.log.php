@@ -65,12 +65,12 @@ function lib_log_count($user) {
 			         VALUES ('".$searched[$i]."', '$domain_who', '$refer',  '$time')");
 		}
 	}
-	$banip="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banip&ip=$countip_ban\">Ban this IP</a>";
-	$banref="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banref&ref=$refer_ban\">Ban this Referral</a>";
-	$testweb="<a href=\"http://$countip_ban/\" target=_blank>Test Web Server</a>";
-	$bandomain="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_bandomain&domain=$domain_ban\">Ban this Domain</a>";
-	$whoisip="<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=arin&target=$countip\">WhoIS IP</a>";
-	$whoisdm="<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=wwwhois&target=$domain_who\">WhoIS Domain</a>";
+	$banip=""; if(!empty($countip_ban))   	$banip="[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banip&ip=$countip_ban\">Ban this IP</a>]";
+	$banref=""; if(!empty($refer_ban)) 	  	$banref="[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_banref&ref=$refer_ban\">Ban this Referral</a>]";
+	$testweb=""; if(!empty($countip_ban)) 	$testweb="[<a href=\"http://$countip_ban/\" target=_blank>Test Web Server</a>]";
+	$bandomain=""; if(!empty($domain_ban))	$bandomain="[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_bandomain&domain=$domain_ban\">Ban this Domain</a>]";
+	$whoisip=""; if(!empty($countip))  		$whoisip="[<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=arin&target=$countip\">WhoIS IP</a>]";
+	$whoisdm=""; if(!empty($domain_who)) 	$whoisdm="[<a href=\"$RFS_SITE_URL/modules/nqt/nqt.php?queryType=wwwhois&target=$domain_who\">WhoIS Domain</a>]";
 	$banned=0;
 	if(empty($refer_ban)) $refer_ban="duh";
 	if(empty($domain_ban)) $domain_ban="duh";
@@ -79,24 +79,24 @@ function lib_log_count($user) {
 	if(lib_domain_banned_domain($domain_ban)==true) $banned=1;
 
 	$what="<br>\n";
-	$what.="vIPADD|".$countip."| [$banip][$whoisip][$testweb]<br>";
-	$what.="vAGENT|".getenv('HTTP_USER_AGENT')."|<br>\n";
+	$what.="IP | ".$countip."| $banip $whoisip $testweb<br>";
+	$what.="AGENT|".getenv('HTTP_USER_AGENT')."|<br>\n";
 	if(stristr($refer,"<a href")!=FALSE)
-		$what.="vREFER|".$refer."|<br>\n ";
+		$what.="REFER|".$refer."|<br>\n ";
 	else
-		$what.="vREFER|<a href=\"".$refer."\" target=_blank>".$refer_link."</a>|<br>[$banref][$bandomain][$whoisdm]<br>\n ";
+		$what.="REFER|<a href=\"".$refer."\" target=_blank>".$refer_link."</a>|<br>$banref $bandomain $whoisdm<br>\n ";
 
-	if($banned==1) {
-		$unbanip="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbanip&ip=$countip_ban\">UnBan this IP</a>";
-		$unbanref="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbanref&ref=$refer_ban\">UnBan this Referral</a>";
-		$unbandomain="<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbandomain&domain=$domain_ban\">UnBan this Domain</a>";
+	if($banned==1) { 
+		$unbanip="[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbanip&ip=$countip_ban\">UnBan this IP</a>]";
+		$unbanref="[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbanref&ref=$refer_ban\">UnBan this Referral</a>]";
+		$unbandomain="[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_unbandomain&domain=$domain_ban\">UnBan this Domain</a>]";
 		$what="BANNED:<br>\n";
-		$what.="vIPADD|".$countip."| [$unbanip][$whoisip][$testweb]<br>";
-		$what.="vAGENT|".getenv('HTTP_USER_AGENT')."|<br>\n";
+		$what.="IP|".$countip."| $unbanip $whoisip $testweb <br>";
+		$what.="AGENT|".getenv('HTTP_USER_AGENT')."|<br>\n";
 		if(stristr($refer,"<a href")!=FALSE)
-			$what.="vREFER|".$refer."|<br>\n ";
+			$what.="REFER|".$refer."|<br>\n ";
 		else
-			$what.="vREFER|<a href=\"".$refer."\" target=_blank>".$refer_link."</a>|<br>[$unbanref][$unbandomain][$whoisdm]<br>\n ";
+			$what.="REFER|<a href=\"".$refer."\" target=_blank>".$refer_link."</a>|<br> $unbanref $unbandomain $whoisdm <br>\n ";
 		lib_log_kill($what);
 	}
 
@@ -115,18 +115,12 @@ function lib_log_count($user) {
 	if($do_not_log==false) lib_log_add_entry($what);
 
 	// do not count search engine stuff, but log that it was searching the site
-	// msnbot
-	//if(stristr(getenv('HTTP_USER_AGENT'),"msnbot")!=FALSE) $what=" --------> MSN Bot!";
-	// Googlebot
-	//if(stristr(getenv('HTTP_USER_AGENT'),"googlebot")!=FALSE) $what=" --------> Google Bot!";
-	// Mediapartners-Google
-	//if(stristr(getenv('HTTP_USER_AGENT'),"mediapartners-google")!=FALSE) $what=" --------> Ad Google Bot!";
-	// Yahoo
-	//if(stristr(getenv('HTTP_USER_AGENT'),"yahoo")!=FALSE) $what=" --------> Yahoo Slurp Bot!";
-	// Slurp
-	//if(stristr(getenv('HTTP_USER_AGENT'),"slurp")!=FALSE) $what=" --------> Yahoo Slurp Bot!";
-	// CydralSpider
-	//if(stristr(getenv('HTTP_USER_AGENT'),"CydralSpider")!=FALSE) $what=" --------> CydralSpider Bot!";
+	//if(stristr(getenv('HTTP_USER_AGENT'),"msnbot")!=FALSE) $what=" --------> MSN Bot!"; // msnbot
+	//if(stristr(getenv('HTTP_USER_AGENT'),"googlebot")!=FALSE) $what=" --------> Google Bot!";	 // Googlebot
+	//if(stristr(getenv('HTTP_USER_AGENT'),"mediapartners-google")!=FALSE) $what=" --------> Ad Google Bot!";	 // Mediapartners-Google
+	//if(stristr(getenv('HTTP_USER_AGENT'),"yahoo")!=FALSE) $what=" --------> Yahoo Slurp Bot!"; // Yahoo	
+	//if(stristr(getenv('HTTP_USER_AGENT'),"slurp")!=FALSE) $what=" --------> Yahoo Slurp Bot!"; // Slurp	
+	//if(stristr(getenv('HTTP_USER_AGENT'),"CydralSpider")!=FALSE) $what=" --------> CydralSpider Bot!"; // CydralSpider
 
 	$url2=explode("/",$refer);
 	$url=$url2['0']."//".$url2['2']."/";
@@ -146,7 +140,8 @@ function lib_log_count($user) {
 	} 
 	else {
 		$time=date("Y-m-d H:i:s");
-		lib_mysql_query("insert into `link_bin` (`link`, `sname`, `time`, `bumptime`, `referrals`, `clicks`, `referral`, `hidden`, `category`,`reviewed`) values('$url','".$url2['2']."','$time','$time','1','0','yes','1','!!!TEMP!!!','no')");
+		lib_mysql_query("insert into `link_bin` (`link`, `sname`, `time`, `bumptime`, `referrals`, `clicks`, `referral`, `hidden`, `category`,`reviewed`)
+										  values('$url','".$url2['2']."','$time','$time','1','0','yes','1','unsorted','no')");
 	}
 	if(date("d")==$countdate) {
 		$counttoday++;

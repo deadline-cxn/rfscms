@@ -23,8 +23,9 @@ function adm_action_update() { eval(lib_rfs_get_globals());
 	lib_rfs_flush_buffers();
 	system("git stash save --keep-index");
 	lib_rfs_flush_buffers();
-	system("git pull https://github.com/sethcoder/rfscms.git");
+	$x=system("git pull https://github.com/sethcoder/rfscms.git");
 	lib_rfs_flush_buffers();
+	lib_log_add_entry("Update: $x");
 	echo "</pre>";
 	include("footer.php");
 	exit();
@@ -48,6 +49,7 @@ function adm_action_f_bandomain_go() {
 	echo "<h1>Ban Domain</h1>";
 	echo "Banning domain $domain";
 	lib_domain_ban_domain($domain);
+	lib_log_add_entry("$data->name banned domain: $domain");
 	finishadminpage();					  
 }
 function adm_action_f_bandomain() {
@@ -57,7 +59,7 @@ function adm_action_f_bandomain() {
 	lib_forms_confirm("Are you sure you want to ban this domain?",
 					  "$RFS_SITE_URL/admin/adm.php?action=f_bandomain_go",
 					  "domain=$domain");
-	finishadminpage();					  
+	finishadminpage();
 }
 function adm_action_f_unbanip() { 
 	eval(lib_rfs_get_globals());
