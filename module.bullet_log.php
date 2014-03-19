@@ -1,7 +1,7 @@
 <?
 include_once("include/lib.all.php");
 
-lib_menus_register("My Bullets","$RFS_SITE_URL/modules/bullet_log/bullet_log.php");
+lib_menus_register("My Bullets","$RFS_SITE_URL/modules/rfscms_bullet_log/bullet_log.php");
 
 lib_access_add_method("bullet_log", "admin");
 
