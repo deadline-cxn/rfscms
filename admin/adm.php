@@ -35,14 +35,16 @@ function adm_action_update() { eval(lib_rfs_get_globals());
 
 function adm_action_f_banip() {
 	eval(lib_rfs_get_globals());
-	echo "<h1>Ban IP Address</h1>";
 	lib_domain_ban_ip($ip);
-	finishadminpage();					  
+	lib_forms_info("$ip banned","white","red");
+	adm_action_ban_management();
 }
 function adm_action_f_banref() {
 	eval(lib_rfs_get_globals());
-	echo "<h1>Ban Referrer</h1>";
-	finishadminpage();					  
+	lib_domain_ban_referrer($ip);
+	lib_forms_info("$refer banned","white","red");
+	adm_action_ban_management();
+	
 }
 function adm_action_f_bandomain_go() {
 	eval(lib_rfs_get_globals());
@@ -78,8 +80,6 @@ function adm_action_f_unbandomain() {
 	lib_domain_unban_domain($domain);
 	finishadminpage();					  
 }
-
-
 function adm_action_f_edit_banned_go() {
 	eval( lib_rfs_get_globals() );
 	echo "<h3>Ban updated</h3>";
@@ -392,7 +392,9 @@ function adm_action_f_access_group_edit_go() { eval(lib_rfs_get_globals());
 }
 function adm_action_f_access_group_edit() { eval(lib_rfs_get_globals()); 
 	echo "<h1>Edit Access Group</h1>";
+	echo "<hr>";
 	echo "<h2>$axnm</h2>";
+	echo "<hr>";
 	
 echo "Check all <input type=checkbox onclick=\"
 for(c in document.getElementsByID('g1'))

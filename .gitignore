@@ -16,12 +16,7 @@ develop/*
 images/*
 tmp/*
 wtf/*
-modules/rfsft/*
-modules/bullet_log/*
-modules/netman/*
-modules/gns3/*
-modules/political_game/*
-modules/netman_tools/*
-modules/nqt/*
+modules/rfs*
 modules/videos/cache/*.jpg
+
 
