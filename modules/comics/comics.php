@@ -1,4 +1,5 @@
 <?
+
 chdir("../../");
 include("header.php");
 echo "<h1>Comics </h1>";
