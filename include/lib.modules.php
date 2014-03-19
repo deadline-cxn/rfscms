@@ -43,10 +43,10 @@ function lib_modules_array() {
         if( ($entry == '.') || ($entry == '..') ) { }
         else {
             if(is_dir($dr."/".$entry)) {
-				lib_modules_register($entry);
+		lib_modules_register($entry);
                 $module="$dr/$entry/module.$entry.php";
                 lib_div($module);
-                include($module);
+                @include($module);
                 array_push($modules,$entry);
             }
         }
