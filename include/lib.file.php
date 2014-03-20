@@ -26,7 +26,7 @@ function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$ke
 				$finfo=pathinfo($uploadFile);
 				$filetype=strtolower($finfo['extension']);
 				// if(empty($fu_name)) $fu_name=$fx['name'];				// $fu_name=addslashes($fu_name);				// $time1=date("Y-m-d H:i:s");				lib_mysql_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)											VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");$id=mysql_insert_id();echo "DATABASE ID[$id]<br>";
-				echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$id\">View file information</a><br>";
+				echo "<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$id\">View file information</a><br>";
 				$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
 				lib_mysql_query("UPDATE files SET location	='$httppath' 		where id='$id'");								
 				$fu_desc=addslashes($fu_desc);

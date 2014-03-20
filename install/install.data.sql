@@ -34,7 +34,7 @@ INSERT INTO `menu_top` (`name`, `id`, `link`, `sort_order`, `access`) VALUES
 ('News', 10, '$RFS_SITE_URL/', 124, 0),
 ('Videos', 11, '$RFS_SITE_URL/modules/videos/videos.php', 195, 0),
 ('Forum', 12, '$RFS_SITE_URL/modules/forums/forums.php?forum_list=yes', 199, 0),
-('Files', 13, '$RFS_SITE_URL/modules/files/files.php', 179, 0),
+('Files', 13, '$RFS_SITE_URL/modules/core_files/files.php', 179, 0),
 ('Pictures', 14, '$RFS_SITE_URL/modules/pictures/pics.php', 189, 0),
 ('Profile', 15, '$RFS_SITE_URL/modules/profile/profile.php', 432, 0),
 ('Wiki', 16, '$RFS_SITE_URL/modules/wiki/rfswiki.php', 140, 0),

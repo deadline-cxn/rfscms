@@ -147,10 +147,6 @@ if($a<903) {
 }
 
 
-if($a<923) {
-	lib_file_touch_dir("$RFS_SITE_PATH/modules/videos/cache");
-}
-
 if($a<925) {
 	lib_access_add_method("admin", "access");
 	lib_access_add_method("admin", "categories");
@@ -226,9 +222,32 @@ if($a<964) {
 	lib_mysql_add("addon_database","author_website","text","not null");
 	lib_mysql_add("addon_database","rating","text","not null");
 	lib_mysql_add("addon_database","images","text","not null");
-	
 	echo "Added interim database changes 964<br>";
-	
+}
+
+if($a<984) {
+    $r=lib_mysql_query("select * from menu_top");
+    while($link=mysql_fetch_object($r)) {
+        if(!strstr($link->link,"rfs")) {
+            $link->link = str_replace("modules/","modules/core_",$link->link);
+            $link->link = str_replace("core_core_","core_",$link->link);
+            $link->link = str_replace("core_core_","core_",$link->link);            
+            lib_mysql_query("update menu_top set `link`='$link->link' where `id`='$link->id'");
+        }
+    }
+
+    $r=lib_mysql_query("select * from admin_menu");
+    while($link=mysql_fetch_object($r)) {
+        if(!strstr($link->url,"rfs")) {
+            $link->url = str_replace("modules/","modules/core_",$link->url);
+            $link->url = str_replace("core_core_","core_",$link->url);
+            $link->url = str_replace("core_core_","core_",$link->url);            
+            lib_mysql_query("update admin_menu set `url`='$link->url' where `id`='$link->id'");
+        }
+    }    
+    lib_file_touch_dir("$RFS_SITE_PATH/modules/core_videos/cache");
+    echo "Added interim database changes 984<br>";
+    
 }
 
 if($a < $b) {

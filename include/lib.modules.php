@@ -3,58 +3,38 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
-function lib_modules_get_array() {
-	eval(lib_rfs_get_globals());
-	$dr="$RFS_SITE_PATH/modules";
-	$modules=array();
-    $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
-	while(false!==($entry = readdir($d))) {
-        if( ($entry == '.') || ($entry == '..') ) { }
-        else {
-            if(is_dir($dr."/".$entry)) {
-                array_push($modules,$entry);
-            }
-        }
-    }
-	closedir($d);
-	natcasesort($modules);
-	reset($modules);
-	return $modules;
-}
-function lib_modules_register($x) {
-	eval(lib_rfs_get_globals());
-	global $RFS_MODULE;
-	@$RFS_MODULE[$x]=true;
-}
-function lib_modules_installed($x) {
-	eval(lib_rfs_get_globals());
-	global $RFS_MODULE;
-	return $RFS_MODULE[$x];
+function lib_modules_register($x,$core) {
+    global $RFS_MODULE;
+    $RFS_MODULE[$x]=array();
+    $RFS_MODULE[$x]["core"]=$core; 
 }
 function lib_modules_properties($module) {
-	echo "<h1>Module $module Properties</h1>";
+    global $RFS_MODULE;
+    echo "$module... <br>";
+    foreach($RFS_MODULE[$module] as $k => $v) {
+            echo "$k -> $v<br>";
+    }
 }
 function lib_modules_array() {
 	eval(lib_rfs_get_globals());
 	$dr="$RFS_SITE_PATH/modules";
-	$modules=array();
+	$modules=array();    
     $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
 	while(false!==($entry = readdir($d))) {
         if( ($entry == '.') || ($entry == '..') ) { }
         else {
             if(is_dir($dr."/".$entry)) {
-		lib_modules_register($entry);
-                $module="$dr/$entry/module.$entry.php";
+                
+                $core=false; if(stristr($entry,"core")) $core=true;
+                $entry2=str_replace("core_","",$entry);
+                $module="$dr/$entry/module.$entry2.php";
+                lib_modules_register($entry2,$core);
                 lib_div($module);
-                @include($module);
-                array_push($modules,$entry);
+                include($module);
             }
         }
     }
 	closedir($d);
-	natcasesort($modules);
-	reset($modules);
-	return $modules;
 }
 function lib_modules_draw($location) {
 	if(stristr(lib_domain_canonical_url(),"admin/adm.php")) return;
@@ -88,7 +68,7 @@ function adm_action_modules() { eval(lib_rfs_get_globals());
 		lib_sitevars_assign("RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL","86400");
 	$time=time();
 	$x=$time-intval($RFS_SITE_ADDON_DATABASE_TIME);
-	echo "[$time] [$RFS_SITE_ADDON_DATABASE_TIME] [$x] [$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL]";
+	// echo "[$time] [$RFS_SITE_ADDON_DATABASE_TIME] [$x] [$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL]";
 	if($x>$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL) {
 		lib_sitevars_assign("RFS_SITE_ADDON_DATABASE_TIME",$time);
 		$addon_database=file_get_contents("http://www.sethcoder.com/files/addon_database.sql");
@@ -145,21 +125,28 @@ function adm_action_f_show_installed_modules() {
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
 	echo "<hr>";
 	
-	
 	echo "<table border=0>";
 	
 	global $RFS_MODULE;
 	asort($RFS_MODULE);
 	foreach($RFS_MODULE as $k => $v) {
+	   
 		echo "<tr>";
 		echo "<td>";
+            
 		echo "<font style='color:white; background-color:green;'>ACTIVE</font> ";
 		echo "</td>";
 		echo "<td>";
-		echo "<font style='color:white; background-color:blue;'>CORE</font> ";
+        foreach($v as $k2 => $v2) {
+            if($k2=="core" and $v2==true)
+                echo "<font style='color:white; background-color:blue;'>CORE</font> ";
+        }		
 		echo "</td>";		
 		echo "<td>";		
 		echo "[$k]<br>";
+        
+        
+        lib_modules_properties($k);
 		echo "</td>";
 		echo "</tr>";
 		

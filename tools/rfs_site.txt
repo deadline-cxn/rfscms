@@ -313,7 +313,7 @@
 ../include/generate.image.php:193:    $font_file=$RFS_SITE_PATH."/files/fonts/".$font_file;
 ../include/generate.image.php:243:                $ad="  Create new captions @ $RFS_SITE_URL/";
 ../include/lib.file.php:26:		if(!stristr($uploadFile,$RFS_SITE_PATH)) $uploadFile=$RFS_SITE_PATH.$uploadFile;
-../include/lib.file.php:41:				echo "<a href=\"$RFS_SITE_URL/modules/files/files.php?action=get_file&id=$id\">View file information</a><br>";
+../include/lib.file.php:41:				echo "<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$id\">View file information</a><br>";
 ../include/lib.file.php:42:				$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
 ../include/lib.file.php:150:	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
 ../include/lib.file.php:151:	system("yes| rm -R $RFS_SITE_PATH/tmp/.*");
@@ -505,7 +505,7 @@
 ../install/install.data.sql:34:('News', 10, '$RFS_SITE_URL/', 124, 0),
 ../install/install.data.sql:35:('Videos', 11, '$RFS_SITE_URL/modules/videos/videos.php', 195, 0),
 ../install/install.data.sql:36:('Forum', 12, '$RFS_SITE_URL/modules/forums/forums.php?forum_list=yes', 199, 0),
-../install/install.data.sql:37:('Files', 13, '$RFS_SITE_URL/modules/files/files.php', 179, 0),
+../install/install.data.sql:37:('Files', 13, '$RFS_SITE_URL/modules/core_files/files.php', 179, 0),
 ../install/install.data.sql:38:('Pictures', 14, '$RFS_SITE_URL/modules/pictures/pics.php', 189, 0),
 ../install/install.data.sql:39:('Profile', 15, '$RFS_SITE_URL/modules/profile/profile.php', 432, 0),
 ../install/install.data.sql:40:('Wiki', 16, '$RFS_SITE_URL/modules/wiki/rfswiki.php', 140, 0),
@@ -705,7 +705,7 @@
 ../modules/profile/profile.php:10:        echo sc_warn("You must be <a href=$RFS_SITE_URL/login.php>logged in</a> to change your password!");
 ../modules/profile/profile.php:99:	sc_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
 ../modules/profile/profile.php:101:	sc_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
-../modules/profile/profile.php:103:	sc_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
+../modules/profile/profile.php:103:	sc_button("$RFS_SITE_URL/modules/core_files/files.php?action=upload","Upload file");
 ../modules/profile/profile.php:105:	sc_button("$RFS_SITE_URL/admin/adm.php","Admin");
 ../modules/profile/profile.php:107:sc_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
 ../modules/profile/profile.php:114:  echo "<p>You must <a href=$RFS_SITE_URL/login.php>login</a> first!</p>\n";
@@ -715,15 +715,15 @@
 ../modules/profile/profile.php:155:echo "<td><img src=$RFS_SITE_URL/images/icons/sym_$data->gender.gif border=0 title=\"$data->gender\" alt=\"$data->gender\"></td>\n";
 ../modules/profile/profile.php:258:echo "<tr><td>Personal Webpage:</td><td> <input type=textbox name=webpage  size=30 value=\"$data->webpage\">       </td><td> <a href=$data->webpage target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's website!\" title=\"Visit this person's website!\" height=16> </a></td></tr>\n";
 ../modules/profile/profile.php:259:echo "<tr><td>Favorite Webpage:</td><td> <input type=textbox name=website_fav  size=30 value=\"$data->website_fav\">       </td><td> <a href=$data->website_fav target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's favorite website!\" title=\"Visit this person's favorite website!\" height=16> </a></td></tr>\n";
-../modules/profile/profile.php:261:echo "<a href=$RFS_SITE_URL/modules/files/files.php?action=upload_avatar> \n";// <img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
-../modules/profile/profile.php:297:		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>]";
-../modules/profile/profile.php:299:		echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
+../modules/profile/profile.php:261:echo "<a href=$RFS_SITE_URL/modules/core_files/files.php?action=upload_avatar> \n";// <img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
+../modules/profile/profile.php:297:		echo "[<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=upload\">Upload</a>]";
+../modules/profile/profile.php:299:		echo "[<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
 ../modules/profile/profile.php:325:        echo "<td align=center><img src=$RFS_SITE_URL/images/icons/worksafe.gif border=0 align=center alt=\"Safe for work... Productivity Chart!\" title=\"Safe for work... Productivity Chart!\"></td>\n";
 ../modules/profile/profile.php:327:        echo "<td align=center><img src=$RFS_SITE_URL/images/icons/pinkslip.gif border=0 align=center alt=\"Not safe for work... Pink Slip!\" title=\"Not safe for work... Pink Slip!\"></td>\n";
 ../modules/profile/profile.php:332:    echo "<img src=$RFS_SITE_URL/images/icons/filetypes/$ftype.png border=0 title=\"$filedata->name\" alt=\"$filedata->name\" width=16></a>\n";
-../modules/profile/profile.php:334:    echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
-../modules/profile/profile.php:348:    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
-../modules/profile/profile.php:349:    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
+../modules/profile/profile.php:334:    echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_files/files.php method=post>\n";
+../modules/profile/profile.php:348:    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/core_files/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
+../modules/profile/profile.php:349:    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/core_files/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
 ../modules/profile/showprofile.php:8:echo "<br><h1>$userdata->name's $RFS_SITE_NAME profile</h1>";
 ../modules/profile/showprofile.php:11:echo "<td width=10 valign=top><center><a href=\"$RFS_SITE_URL/showprofile.php?user=$userdata->name\">\n";
 ../modules/profile/showprofile.php:17:echo "<img src=\"$RFS_SITE_URL/images/icons/sym_".$gen.".gif\" border=0 alt=\"$gen\" ><br>\n";

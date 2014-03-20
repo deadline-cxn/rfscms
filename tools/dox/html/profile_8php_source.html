@@ -224,7 +224,7 @@
 <a name="l00149"></a>00149     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;news&quot;</span>,<span class="stringliteral">&quot;submit&quot;</span>)) 
 <a name="l00150"></a>00150         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/news/news.php?showform=yes&quot;</span>,<span class="stringliteral">&quot;Create news&quot;</span>);
 <a name="l00151"></a>00151     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;upload&quot;</span>))
-<a name="l00152"></a>00152         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=upload&quot;</span>,<span class="stringliteral">&quot;Upload file&quot;</span>);
+<a name="l00152"></a>00152         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=upload&quot;</span>,<span class="stringliteral">&quot;Upload file&quot;</span>);
 <a name="l00153"></a>00153     <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;admin&quot;</span>,<span class="stringliteral">&quot;access&quot;</span>))
 <a name="l00154"></a>00154         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/admin/adm.php&quot;</span>,<span class="stringliteral">&quot;Admin&quot;</span>);
 <a name="l00155"></a>00155     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form&quot;</span>,<span class="stringliteral">&quot;Change password&quot;</span>);
@@ -333,7 +333,7 @@
 <a name="l00258"></a>00258                 
 <a name="l00259"></a>00259     
 <a name="l00260"></a>00260     echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/td&gt; \n&quot;</span>;
-<a name="l00261"></a>00261     <span class="comment">//echo &quot;&lt;a href=$RFS_SITE_URL/modules/files/files.php?action=upload_avatar&gt; \n&quot;;</span>
+<a name="l00261"></a>00261     <span class="comment">//echo &quot;&lt;a href=$RFS_SITE_URL/modules/core_files/files.php?action=upload_avatar&gt; \n&quot;;</span>
 <a name="l00262"></a>00262     <span class="comment">// &lt;img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\&quot;Upload an avatar!\&quot; alt=\&quot;Upload an swf, gif, or jpg avatar!\&quot;&gt;&lt;/a&gt;\n&quot;;</span>
 <a name="l00263"></a>00263     <span class="comment">//echo &quot;Upload an swf, gif, or jpg avatar!&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;;</span>
 <a name="l00264"></a>00264     <span class="comment">// echo &quot;&lt;/table&gt;&quot;;</span>
@@ -443,9 +443,9 @@
 <a name="l00368"></a>00368     if(count($filelist)) {
 <a name="l00369"></a>00369         lib_forms_info(&quot;Your files...&quot;,&quot;BLACK&quot;,&quot;WHITE&quot;);
 <a name="l00370"></a>00370         if(lib_access_check(&quot;files&quot;,&quot;upload&quot;)) 
-<a name="l00371"></a>00371             echo &quot;[&lt;a href=\&quot;$RFS_SITE_URL/modules/files/files.php?action=upload\&quot;&gt;Upload&lt;/a&gt;]&quot;;
+<a name="l00371"></a>00371             echo &quot;[&lt;a href=\&quot;$RFS_SITE_URL/modules/core_files/files.php?action=upload\&quot;&gt;Upload&lt;/a&gt;]&quot;;
 <a name="l00372"></a>00372         if(lib_access_check(&quot;files&quot;,&quot;addlink&quot;)) 
-<a name="l00373"></a>00373             echo &quot;[&lt;a href=\&quot;$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\&quot;&gt;Add Link&lt;/a&gt;]\n&quot;;
+<a name="l00373"></a>00373             echo &quot;[&lt;a href=\&quot;$RFS_SITE_URL/modules/core_files/files.php?action=addfilelinktodb\&quot;&gt;Add Link&lt;/a&gt;]\n&quot;;
 <a name="l00374"></a>00374           echo &quot;&lt;table border=0 cellspacing=0 cellpadding=3 width=100% class=rfs_black&gt;\n&quot;;
 <a name="l00375"></a>00375           echo &quot;&lt;tr bgcolor=$file_header height=16 class=rfs_black&gt;\n&quot;;
 <a name="l00376"></a>00376           echo &quot;&lt;td class=\&quot;rfs_black\&quot;&gt;Work Safe&lt;/td&gt;\n&quot;;
@@ -477,7 +477,7 @@
 <a name="l00402"></a>00402         $ftype=strtolower($ext);
 <a name="l00403"></a>00403         echo &quot;&lt;img src=$RFS_SITE_URL/images/icons/filetypes/$ftype.png border=0 title=\&quot;$filedata-&gt;name\&quot; alt=\&quot;$filedata-&gt;name\&quot; width=16&gt;&lt;/a&gt;\n&quot;;
 <a name="l00404"></a>00404         echo &quot;&lt;/center&gt;&lt;/td&gt;\n&quot;;
-<a name="l00405"></a>00405         echo &quot;&lt;td&gt;&lt;form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post&gt;\n&quot;;
+<a name="l00405"></a>00405         echo &quot;&lt;td&gt;&lt;form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_files/files.php method=post&gt;\n&quot;;
 <a name="l00406"></a>00406         echo &quot;&lt;table border=0&gt;&lt;tr&gt;&lt;td&gt;\n&quot;;
 <a name="l00407"></a>00407         echo &quot;&lt;input name=name value=\&quot;$filedata-&gt;name\&quot; size=30&gt;\n&quot;;
 <a name="l00408"></a>00408         echo &quot;&lt;/td&gt;&lt;td&gt;\n&quot;;
@@ -491,8 +491,8 @@
 <a name="l00416"></a>00416         echo &quot;&lt;td class=\&quot;rfs_black\&quot;&gt;$filedata-&gt;downloads &amp;nbsp;&lt;/td&gt;\n&quot;;
 <a name="l00417"></a>00417         echo &quot;&lt;td class=\&quot;rfs_black\&quot;&gt;$filedata-&gt;category &amp;nbsp;&lt;/td&gt;\n&quot;;
 <a name="l00418"></a>00418         echo &quot;&lt;td class=\&quot;rfs_black\&quot;&gt;$filedata-&gt;description &amp;nbsp;&lt;/td&gt;\n&quot;;
-<a name="l00419"></a>00419         echo &quot;&lt;td class=\&quot;rfs_black\&quot;&gt;&lt;a href=$RFS_SITE_URL/modules/files/files.php?action=del&amp;file_mod=yes&amp;id=$filedata-&gt;id&gt;&lt;img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\&quot;Delete file!\&quot; title=\&quot;Delete file!\&quot; border=0&gt;&lt;/a&gt;&lt;/td&gt;\n&quot;;
-<a name="l00420"></a>00420         echo &quot;&lt;td class=\&quot;rfs_black\&quot;&gt;&lt;a href=$RFS_SITE_URL/modules/files/files.php?action=mdf&amp;file_mod=yes&amp;id=$filedata-&gt;id&gt;modify&lt;/a&gt;&lt;/td&gt;\n&quot;;
+<a name="l00419"></a>00419         echo &quot;&lt;td class=\&quot;rfs_black\&quot;&gt;&lt;a href=$RFS_SITE_URL/modules/core_files/files.php?action=del&amp;file_mod=yes&amp;id=$filedata-&gt;id&gt;&lt;img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\&quot;Delete file!\&quot; title=\&quot;Delete file!\&quot; border=0&gt;&lt;/a&gt;&lt;/td&gt;\n&quot;;
+<a name="l00420"></a>00420         echo &quot;&lt;td class=\&quot;rfs_black\&quot;&gt;&lt;a href=$RFS_SITE_URL/modules/core_files/files.php?action=mdf&amp;file_mod=yes&amp;id=$filedata-&gt;id&gt;modify&lt;/a&gt;&lt;/td&gt;\n&quot;;
 <a name="l00421"></a>00421         echo &quot;&lt;/tr&gt;\n&quot;;
 <a name="l00422"></a>00422         $i=$i+1;
 <a name="l00423"></a>00423         $bg=$bg+1; if($bg&gt;1) $bg=0;

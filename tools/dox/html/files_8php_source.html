@@ -188,32 +188,32 @@
 <a name="l00113"></a>00113     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00114"></a>00114     <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;thumbs&#39;</span>]==<span class="stringliteral">&quot;true&quot;</span>) {
 <a name="l00115"></a>00115         echo <span class="stringliteral">&quot;&lt;font style=&#39;background-color:red;&#39;&gt;SHOW THUMBS&lt;/font&gt;&lt;br&gt;&quot;</span>;  
-<a name="l00116"></a>00116         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?thumbs=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Thumbs Off&quot;</span>);      
+<a name="l00116"></a>00116         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?thumbs=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Thumbs Off&quot;</span>);      
 <a name="l00117"></a>00117     }
 <a name="l00118"></a>00118     <span class="keywordflow">else</span> {
 <a name="l00119"></a>00119         echo <span class="stringliteral">&quot;HIDE Thumbs&lt;br&gt;&quot;</span>;
-<a name="l00120"></a>00120         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?thumbs=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Thumbs On&quot;</span>);
+<a name="l00120"></a>00120         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?thumbs=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Thumbs On&quot;</span>);
 <a name="l00121"></a>00121     }
 <a name="l00122"></a>00122     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00123"></a>00123     
 <a name="l00124"></a>00124     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00125"></a>00125     <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;hidden&#39;</span>]==<span class="stringliteral">&quot;yes&quot;</span>) {
 <a name="l00126"></a>00126         echo <span class="stringliteral">&quot;&lt;font style=&#39;background-color:red;&#39;&gt;SHOW HIDDEN&lt;/font&gt;&lt;br&gt;&quot;</span>;  
-<a name="l00127"></a>00127         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?hidden=hide&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Hidden Off&quot;</span>);     
+<a name="l00127"></a>00127         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?hidden=hide&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Hidden Off&quot;</span>);     
 <a name="l00128"></a>00128     }
 <a name="l00129"></a>00129     <span class="keywordflow">else</span> {
 <a name="l00130"></a>00130         echo <span class="stringliteral">&quot;HIDE HIDDEN&lt;br&gt;&quot;</span>;
-<a name="l00131"></a>00131         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?hidden=show&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Hidden On&quot;</span>);
+<a name="l00131"></a>00131         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?hidden=show&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Hidden On&quot;</span>);
 <a name="l00132"></a>00132     }
 <a name="l00133"></a>00133     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00134"></a>00134     
 <a name="l00135"></a>00135     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00136"></a>00136     <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;worksafemode&#39;</span>]!=<span class="stringliteral">&quot;off&quot;</span>) {
 <a name="l00137"></a>00137         echo <span class="stringliteral">&quot;WORKSAFE ON&lt;br&gt;&quot;</span>;
-<a name="l00138"></a>00138         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?worksafe=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Worksafe off&quot;</span>);
+<a name="l00138"></a>00138         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?worksafe=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Worksafe off&quot;</span>);
 <a name="l00139"></a>00139     }<span class="keywordflow">else</span> {
 <a name="l00140"></a>00140         echo <span class="stringliteral">&quot;&lt;font style=&#39;background-color:red;&#39;&gt;WORKSAFE OFF&lt;/font&gt;&lt;br&gt;&quot;</span>; 
-<a name="l00141"></a>00141         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?worksafe=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Worksafe on&quot;</span>);        
+<a name="l00141"></a>00141         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?worksafe=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Worksafe on&quot;</span>);        
 <a name="l00142"></a>00142     }
 <a name="l00143"></a>00143     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00144"></a>00144 
@@ -221,11 +221,11 @@
 <a name="l00146"></a>00146     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00147"></a>00147     <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;show_temp&#39;</span>]==<span class="keyword">true</span>){
 <a name="l00148"></a>00148         echo <span class="stringliteral">&quot;&lt;font style=&#39;background-color:red;&#39;&gt;SORT ON&lt;/font&gt;&lt;br&gt;&quot;</span>;  
-<a name="l00149"></a>00149         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?temp=hide&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Sort Off&quot;</span>);
+<a name="l00149"></a>00149         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?temp=hide&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Sort Off&quot;</span>);
 <a name="l00150"></a>00150     }
 <a name="l00151"></a>00151     <span class="keywordflow">else</span> {      
 <a name="l00152"></a>00152         echo <span class="stringliteral">&quot;SORT OFF&lt;br&gt;&quot;</span>;    
-<a name="l00153"></a>00153         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?temp=show&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Sort On&quot;</span>);
+<a name="l00153"></a>00153         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?temp=show&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Sort On&quot;</span>);
 <a name="l00154"></a>00154     }
 <a name="l00155"></a>00155     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00156"></a>00156 }
@@ -233,10 +233,10 @@
 <a name="l00158"></a>00158     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00159"></a>00159     <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;editmode&#39;</span>]==<span class="keyword">true</span>){
 <a name="l00160"></a>00160         echo <span class="stringliteral">&quot;&lt;font style=&#39;background-color:red;&#39;&gt;EDIT ON&lt;/font&gt;&lt;br&gt;&quot;</span>;  
-<a name="l00161"></a>00161         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?editmode=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Edit Off&quot;</span>);      
+<a name="l00161"></a>00161         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?editmode=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Edit Off&quot;</span>);      
 <a name="l00162"></a>00162     }<span class="keywordflow">else</span> {
 <a name="l00163"></a>00163         echo <span class="stringliteral">&quot;EDIT OFF&lt;br&gt;&quot;</span>;    
-<a name="l00164"></a>00164         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?editmode=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Edit On&quot;</span>);        
+<a name="l00164"></a>00164         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?editmode=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Edit On&quot;</span>);        
 <a name="l00165"></a>00165     }
 <a name="l00166"></a>00166     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00167"></a>00167 }
@@ -245,10 +245,10 @@
 <a name="l00170"></a>00170     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00171"></a>00171     <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;deletemode&#39;</span>]==<span class="keyword">true</span>){
 <a name="l00172"></a>00172         echo <span class="stringliteral">&quot;&lt;font style=&#39;background-color:red;&#39;&gt;DELETE ON&lt;/font&gt;&lt;br&gt;&quot;</span>;    
-<a name="l00173"></a>00173         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?deletemode=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Delete Off&quot;</span>);
+<a name="l00173"></a>00173         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?deletemode=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Delete Off&quot;</span>);
 <a name="l00174"></a>00174     }<span class="keywordflow">else</span> {
 <a name="l00175"></a>00175         echo <span class="stringliteral">&quot;DELETE OFF&lt;br&gt;&quot;</span>;  
-<a name="l00176"></a>00176         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?deletemode=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Delete On&quot;</span>);
+<a name="l00176"></a>00176         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?deletemode=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Delete On&quot;</span>);
 <a name="l00177"></a>00177     }
 <a name="l00178"></a>00178     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00179"></a>00179 }
@@ -257,10 +257,10 @@
 <a name="l00182"></a>00182     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00183"></a>00183     <span class="keywordflow">if</span>(<a class="code" href="wab_8php.html#a7e78406241b519489b23a8c902b4a8de">$_SESSION</a>[<span class="stringliteral">&#39;tagmode&#39;</span>]==<span class="keyword">true</span>){
 <a name="l00184"></a>00184         echo <span class="stringliteral">&quot;&lt;font style=&#39;background-color:red;&#39;&gt;TAG ON&lt;/font&gt;&lt;br&gt;&quot;</span>;   
-<a name="l00185"></a>00185         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?tagmode=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Tag Off&quot;</span>);
+<a name="l00185"></a>00185         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?tagmode=off&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Tag Off&quot;</span>);
 <a name="l00186"></a>00186     }<span class="keywordflow">else</span> {
 <a name="l00187"></a>00187         echo <span class="stringliteral">&quot;TAG OFF&lt;br&gt;&quot;</span>; 
-<a name="l00188"></a>00188         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?tagmode=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Tag On&quot;</span>);
+<a name="l00188"></a>00188         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?tagmode=on&amp;$outvars&quot;</span>,<span class="stringliteral">&quot;Tag On&quot;</span>);
 <a name="l00189"></a>00189     }
 <a name="l00190"></a>00190     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00191"></a>00191 }
@@ -274,32 +274,32 @@
 <a name="l00199"></a>00199 <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;sort&quot;</span>)) {
 <a name="l00200"></a>00200     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00201"></a>00201     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00202"></a>00202     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=show_duplicates&quot;</span>,<span class="stringliteral">&quot;Show Duplicates&quot;</span>);
+<a name="l00202"></a>00202     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=show_duplicates&quot;</span>,<span class="stringliteral">&quot;Show Duplicates&quot;</span>);
 <a name="l00203"></a>00203     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00204"></a>00204 }
 <a name="l00205"></a>00205     
 <a name="l00206"></a>00206 <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;upload&quot;</span>)) {
 <a name="l00207"></a>00207     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00208"></a>00208     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00209"></a>00209     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=upload&quot;</span>,<span class="stringliteral">&quot;Upload&quot;</span>);
+<a name="l00209"></a>00209     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=upload&quot;</span>,<span class="stringliteral">&quot;Upload&quot;</span>);
 <a name="l00210"></a>00210     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00211"></a>00211 }
 <a name="l00212"></a>00212 <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;addlink&quot;</span>)) {
 <a name="l00213"></a>00213     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;    
 <a name="l00214"></a>00214     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00215"></a>00215     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb&quot;</span>,<span class="stringliteral">&quot;Add Link as File&quot;</span>);
+<a name="l00215"></a>00215     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=addfilelinktodb&quot;</span>,<span class="stringliteral">&quot;Add Link as File&quot;</span>);
 <a name="l00216"></a>00216     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00217"></a>00217 }
 <a name="l00218"></a>00218 <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;orphanscan&quot;</span>)) {
 <a name="l00219"></a>00219     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00220"></a>00220     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00221"></a>00221     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=getorphans&quot;</span>,<span class="stringliteral">&quot;Add orphan files&quot;</span>);
+<a name="l00221"></a>00221     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=getorphans&quot;</span>,<span class="stringliteral">&quot;Add orphan files&quot;</span>);
 <a name="l00222"></a>00222     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00223"></a>00223 }
 <a name="l00224"></a>00224 <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;purge&quot;</span>)) {
 <a name="l00225"></a>00225     echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
 <a name="l00226"></a>00226     echo <span class="stringliteral">&quot;&lt;br&gt;&quot;</span>;
-<a name="l00227"></a>00227     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=purge&quot;</span>,<span class="stringliteral">&quot;Purge missing files&quot;</span>);
+<a name="l00227"></a>00227     <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=purge&quot;</span>,<span class="stringliteral">&quot;Purge missing files&quot;</span>);
 <a name="l00228"></a>00228     echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00229"></a>00229 }
 <a name="l00230"></a>00230 <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;xplorer&quot;</span>)) {   
@@ -312,7 +312,7 @@
 <a name="l00237"></a>00237     
 <a name="l00238"></a>00238 }
 <a name="l00239"></a>00239 
-<a name="l00240"></a>00240 echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=\&quot;$RFS_SITE_URL/modules/files/files.php\&quot; method=post&gt;\n&quot;</span>;
+<a name="l00240"></a>00240 echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=\&quot;$RFS_SITE_URL/modules/core_files/files.php\&quot; method=post&gt;\n&quot;</span>;
 <a name="l00241"></a>00241 echo <span class="stringliteral">&quot;&lt;table border=0 cellspacing=0 cellpadding=0 &gt;&quot;</span>;
 <a name="l00242"></a>00242 echo <span class="stringliteral">&quot;&lt;tr&gt;\n&quot;</span>;
 <a name="l00243"></a>00243 echo <span class="stringliteral">&quot;&lt;input type=hidden name=action value=search&gt;\n&quot;</span>;
@@ -343,7 +343,7 @@
 <a name="l00268"></a>00268 
 <a name="l00269"></a><a class="code" href="files_8php.html#ac16ee334c2a4839c860a9885f0f9c8dc">00269</a> <span class="keyword">function</span> <a class="code" href="files_8php.html#ac16ee334c2a4839c860a9885f0f9c8dc">files_action_addfilelinktlib_mysql_open_database</a>() { eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>()); <span class="comment">// if($action==&quot;addfilelinktodb&quot;) {</span>
 <a name="l00270"></a>00270     echo <span class="stringliteral">&quot;&lt;table border=0&gt;\n&quot;</span>;
-<a name="l00271"></a>00271     echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post&gt;\n&quot;</span>;
+<a name="l00271"></a>00271     echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_files/files.php method=post&gt;\n&quot;</span>;
 <a name="l00272"></a>00272     echo <span class="stringliteral">&quot;&lt;input type=hidden name=action value=addfilelinktodb_go&gt;\n&quot;</span>;
 <a name="l00273"></a>00273     echo <span class="stringliteral">&quot;&lt;input type=hidden name=file_add value=\&quot;$file_add\&quot;&gt;\n&quot;</span>;
 <a name="l00274"></a>00274     echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td&gt;Name &lt;/td&gt;&lt;td&gt;&lt;input name=name value=\&quot;$filedata-&gt;name\&quot;&gt;&lt;/td&gt;&lt;/tr&gt;\n&quot;</span>;
@@ -392,7 +392,7 @@
 <a name="l00317"></a>00317     eval(<a class="code" href="lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1">lib_rfs_get_globals</a>());
 <a name="l00318"></a>00318     echo <span class="stringliteral">&quot;&lt;p&gt;You are adding:&lt;/p&gt;&lt;p&gt;$file_url&lt;/p&gt;&lt;p&gt;$file_add&lt;/p&gt;\n&quot;</span>;
 <a name="l00319"></a>00319     echo <span class="stringliteral">&quot;&lt;table border=0&gt;\n&quot;</span>;
-<a name="l00320"></a>00320     echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post&gt;\n&quot;</span>;
+<a name="l00320"></a>00320     echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_files/files.php method=post&gt;\n&quot;</span>;
 <a name="l00321"></a>00321     echo <span class="stringliteral">&quot;&lt;input type=hidden name=action value=addfiletodb_go&gt;\n&quot;</span>;
 <a name="l00322"></a>00322     echo <span class="stringliteral">&quot;&lt;input type=hidden name=file_url value=\&quot;$file_url\&quot;&gt;\n&quot;</span>;
 <a name="l00323"></a>00323     echo <span class="stringliteral">&quot;&lt;input type=hidden name=file_add value=\&quot;$file_add\&quot;&gt;\n&quot;</span>;
@@ -448,7 +448,7 @@
 <a name="l00373"></a>00373         <span class="keywordflow">if</span>(!empty($filedata-&gt;thumb)) {
 <a name="l00374"></a>00374             echo <a class="code" href="lib_8images_8php.html#a62b122b322eb4c53e1fd11e1289b931d">lib_images_thumb</a>($filedata-&gt;thumb);
 <a name="l00375"></a>00375         }
-<a name="l00376"></a>00376         echo <span class="stringliteral">&quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/files/files.php?action=get_file_go&amp;id=$filedata-&gt;id\&quot; target=_new_window&gt;&quot;</span>;
+<a name="l00376"></a>00376         echo <span class="stringliteral">&quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/core_files/files.php?action=get_file_go&amp;id=$filedata-&gt;id\&quot; target=_new_window&gt;&quot;</span>;
 <a name="l00377"></a>00377         echo <span class="stringliteral">&quot;&lt;font size=4&gt;&quot;</span>;
 <a name="l00378"></a>00378         echo <span class="stringliteral">&quot;$filedata-&gt;name ($size)&quot;</span>;
 <a name="l00379"></a>00379         echo <span class="stringliteral">&quot;&lt;/font&gt;&quot;</span>;
@@ -516,12 +516,12 @@
 <a name="l00441"></a>00441         echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00442"></a>00442         <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;edit&quot;</span>)) {
 <a name="l00443"></a>00443             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00444"></a>00444                 <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=mdf&amp;id=$filedata-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);        
+<a name="l00444"></a>00444                 <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=mdf&amp;id=$filedata-&gt;id&quot;</span>,<span class="stringliteral">&quot;Edit&quot;</span>);        
 <a name="l00445"></a>00445             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00446"></a>00446         }
 <a name="l00447"></a>00447         <span class="keywordflow">if</span>(<a class="code" href="lib_8access_8php.html#af6adaf74ff6c2ded2143f472076c176a">lib_access_check</a>(<span class="stringliteral">&quot;files&quot;</span>,<span class="stringliteral">&quot;delete&quot;</span>)) {
 <a name="l00448"></a>00448             echo <span class="stringliteral">&quot;&lt;td&gt;&quot;</span>;
-<a name="l00449"></a>00449             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=del&amp;id=$filedata-&gt;id&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
+<a name="l00449"></a>00449             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=del&amp;id=$filedata-&gt;id&quot;</span>,<span class="stringliteral">&quot;Delete&quot;</span>);
 <a name="l00450"></a>00450             echo <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>;
 <a name="l00451"></a>00451         }       
 <a name="l00452"></a>00452         echo <span class="stringliteral">&quot;&lt;/tr&gt;&lt;/table&gt;&quot;</span>;
@@ -813,7 +813,7 @@
 <a name="l00738"></a>00738         <a class="code" href="lib_8forms_8php.html#ad285a3a501e01b34c5905b2d94728dd6">lib_forms_info</a>(<span class="stringliteral">&quot;REMOVE FILE &lt;br&gt;[$filedata-&gt;location]&quot;</span>,<span class="stringliteral">&quot;WHITE&quot;</span>,<span class="stringliteral">&quot;RED&quot;</span>);
 <a name="l00739"></a>00739         echo <span class="stringliteral">&quot;&lt;p&gt;&lt;/p&gt;&quot;</span>;
 <a name="l00740"></a>00740         echo <span class="stringliteral">&quot;&lt;table border=0&gt;\n&quot;</span>;
-<a name="l00741"></a>00741         echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post&gt;\n&quot;</span>;
+<a name="l00741"></a>00741         echo <span class="stringliteral">&quot;&lt;form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_files/files.php method=post&gt;\n&quot;</span>;
 <a name="l00742"></a>00742         echo <span class="stringliteral">&quot;&lt;input type=hidden name=retpage value=\&quot;$retpage\&quot;&gt;&quot;</span>;
 <a name="l00743"></a>00743         echo <span class="stringliteral">&quot;&lt;input type=hidden name=action value=del_conf&gt;\n&quot;</span>;
 <a name="l00744"></a>00744         echo <span class="stringliteral">&quot;&lt;input type=hidden name=id value=\&quot;$id\&quot;&gt;\n&quot;</span>;
@@ -857,7 +857,7 @@
 <a name="l00782"></a>00782         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;UPDATE files SET rating=&#39;$rating&#39; where id=&#39;$id&#39;&quot;</span>);
 <a name="l00783"></a>00783         <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;UPDATE files SET worksafe=&#39;$sfw&#39; where id = &#39;$id&#39;&quot;</span>);
 <a name="l00784"></a>00784 
-<a name="l00785"></a>00785         echo <span class="stringliteral">&quot;&lt;p&gt;&lt;a href=$RFS_SITE_URL/modules/files/files.php&gt;File&lt;/a&gt; modified...&lt;/p&gt;&lt;br&gt;\n&quot;</span>;
+<a name="l00785"></a>00785         echo <span class="stringliteral">&quot;&lt;p&gt;&lt;a href=$RFS_SITE_URL/modules/core_files/files.php&gt;File&lt;/a&gt; modified...&lt;/p&gt;&lt;br&gt;\n&quot;</span>;
 <a name="l00786"></a>00786     }
 <a name="l00787"></a>00787     <span class="keywordflow">else</span> {
 <a name="l00788"></a>00788         echo <span class="stringliteral">&quot;You don&#39;t have access to edit files.&lt;br&gt;&quot;</span>;
@@ -967,7 +967,7 @@
 <a name="l00892"></a>00892                 $id=mysql_insert_id();
 <a name="l00893"></a>00893                 echo <span class="stringliteral">&quot;DATABASE ID[$id]&lt;br&gt;&quot;</span>;
 <a name="l00894"></a>00894                 
-<a name="l00895"></a>00895                 echo <span class="stringliteral">&quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/files/files.php?action=get_file&amp;id=$id\&quot;&gt;View file information&lt;/a&gt;&lt;br&gt;&quot;</span>;
+<a name="l00895"></a>00895                 echo <span class="stringliteral">&quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/core_files/files.php?action=get_file&amp;id=$id\&quot;&gt;View file information&lt;/a&gt;&lt;br&gt;&quot;</span>;
 <a name="l00896"></a>00896                 $httppath=str_replace(<span class="stringliteral">&quot;$RFS_SITE_URL/&quot;</span>,<span class="stringliteral">&quot;&quot;</span>,$httppath);
 <a name="l00897"></a>00897                 <a class="code" href="lib_8mysql_8php.html#a06fb53fc71e262dce115fd3a98bcecdd">lib_mysql_query</a>(<span class="stringliteral">&quot;UPDATE files SET location  =&#39;$httppath&#39;        where id=&#39;$id&#39;&quot;</span>);                               
 <a name="l00898"></a>00898                 $fu_desc=addslashes($fu_desc);
@@ -992,8 +992,8 @@
 <a name="l00917"></a>00917             $error .= <span class="stringliteral">&quot;No files have been selected for upload&quot;</span>;
 <a name="l00918"></a>00918         }
 <a name="l00919"></a>00919         echo <span class="stringliteral">&quot;&lt;P&gt;Status: [$error]&lt;/P&gt;\n&quot;</span>;
-<a name="l00920"></a>00920         echo <span class="stringliteral">&quot;&lt;p&gt;[&lt;a href=$RFS_SITE_URL/modules/files/files.php?action=upload&gt;Add another file&lt;/a&gt;]\n&quot;</span>;
-<a name="l00921"></a>00921         echo <span class="stringliteral">&quot;[&lt;a href=$RFS_SITE_URL/modules/files/files.php&gt;Files&lt;/a&gt;]&lt;/p&gt;\n&quot;</span>;
+<a name="l00920"></a>00920         echo <span class="stringliteral">&quot;&lt;p&gt;[&lt;a href=$RFS_SITE_URL/modules/core_files/files.php?action=upload&gt;Add another file&lt;/a&gt;]\n&quot;</span>;
+<a name="l00921"></a>00921         echo <span class="stringliteral">&quot;[&lt;a href=$RFS_SITE_URL/modules/core_files/files.php&gt;Files&lt;/a&gt;]&lt;/p&gt;\n&quot;</span>;
 <a name="l00922"></a>00922         }
 <a name="l00923"></a>00923     }
 <a name="l00924"></a>00924 }
@@ -1004,7 +1004,7 @@
 <a name="l00929"></a>00929             <span class="keywordflow">else</span> {
 <a name="l00930"></a>00930                 lib_div(<span class="stringliteral">&quot;UPLOAD FILE FORM START&quot;</span>);
 <a name="l00931"></a>00931                 echo <span class="stringliteral">&quot;&lt;p&gt;Upload a file&lt;/p&gt;\n&quot;</span>;              
-<a name="l00932"></a>00932                 echo <span class="stringliteral">&quot;&lt;form enctype=\&quot;multipart/form-data\&quot; action=\&quot;$RFS_SITE_URL/modules/files/files.php\&quot; method=\&quot;post\&quot;&gt;\n&quot;</span>;
+<a name="l00932"></a>00932                 echo <span class="stringliteral">&quot;&lt;form enctype=\&quot;multipart/form-data\&quot; action=\&quot;$RFS_SITE_URL/modules/core_files/files.php\&quot; method=\&quot;post\&quot;&gt;\n&quot;</span>;
 <a name="l00933"></a>00933                 echo <span class="stringliteral">&quot;&lt;table border=0&gt;\n\n\n&quot;</span>;
 <a name="l00934"></a>00934                 echo <span class="stringliteral">&quot; &lt;!--  ******************************************************************************** --&gt; \n&quot;</span>;
 <a name="l00935"></a>00935                 echo <span class="stringliteral">&quot;&lt;tr&gt;\n&quot;</span>;          
@@ -1125,9 +1125,9 @@
 <a name="l01050"></a>01050         }
 <a name="l01051"></a>01051         
 <a name="l01052"></a>01052         <span class="keywordflow">if</span>($prevtop&gt;0) 
-<a name="l01053"></a>01053             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=listcategory&amp;amount=$amount&amp;top=$prevtop&amp;category=$category&amp;criteria=$criteria&amp;tagsearch=$tagsearch&quot;</span>,<span class="stringliteral">&quot;PREV PAGE&quot;</span>);
+<a name="l01053"></a>01053             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=listcategory&amp;amount=$amount&amp;top=$prevtop&amp;category=$category&amp;criteria=$criteria&amp;tagsearch=$tagsearch&quot;</span>,<span class="stringliteral">&quot;PREV PAGE&quot;</span>);
 <a name="l01054"></a>01054         <span class="keywordflow">if</span>($x==$amount) 
-<a name="l01055"></a>01055             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=listcategory&amp;amount=$amount&amp;top=$nexttop&amp;category=$category&amp;criteria=$criteria&amp;tagsearch=$tagsearch&quot;</span>,<span class="stringliteral">&quot;NEXT PAGE&quot;</span>);
+<a name="l01055"></a>01055             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=listcategory&amp;amount=$amount&amp;top=$nexttop&amp;category=$category&amp;criteria=$criteria&amp;tagsearch=$tagsearch&quot;</span>,<span class="stringliteral">&quot;NEXT PAGE&quot;</span>);
 <a name="l01056"></a>01056 
 <a name="l01057"></a>01057         <span class="keywordflow">if</span>(count($filelist)) {
 <a name="l01058"></a>01058             echo <span class="stringliteral">&quot;&lt;div class=file_list style=&#39;float: left;&#39; &gt;&quot;</span>;
@@ -1153,11 +1153,11 @@
 <a name="l01078"></a>01078         echo <span class="stringliteral">&quot;&lt;div style=&#39;clear: both;&#39;&gt;&lt;/div&gt;&quot;</span>;
 <a name="l01079"></a>01079         
 <a name="l01080"></a>01080         <span class="keywordflow">if</span>($prevtop&gt;0) 
-<a name="l01081"></a>01081             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=listcategory&amp;amount=$amount&amp;top=$prevtop&amp;category=$category&amp;criteria=$criteria&amp;tagsearch=$tagsearch&quot;</span>,<span class="stringliteral">&quot;PREV PAGE&quot;</span>);
+<a name="l01081"></a>01081             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=listcategory&amp;amount=$amount&amp;top=$prevtop&amp;category=$category&amp;criteria=$criteria&amp;tagsearch=$tagsearch&quot;</span>,<span class="stringliteral">&quot;PREV PAGE&quot;</span>);
 <a name="l01082"></a>01082         <span class="keywordflow">if</span>($x==$amount) 
-<a name="l01083"></a>01083             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=listcategory&amp;amount=$amount&amp;top=$nexttop&amp;category=$category&amp;criteria=$criteria&amp;tagsearch=$tagsearch&quot;</span>,<span class="stringliteral">&quot;NEXT PAGE&quot;</span>);
+<a name="l01083"></a>01083             <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=listcategory&amp;amount=$amount&amp;top=$nexttop&amp;category=$category&amp;criteria=$criteria&amp;tagsearch=$tagsearch&quot;</span>,<span class="stringliteral">&quot;NEXT PAGE&quot;</span>);
 <a name="l01084"></a>01084             
-<a name="l01085"></a>01085         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/files/files.php?action=listcategory&amp;$reload&amp;category=$category&amp;criteria=$criteria&quot;</span>,<span class="stringliteral">&quot;RELOAD&quot;</span>);
+<a name="l01085"></a>01085         <a class="code" href="lib_8buttons_8php.html#aa742abd5349fe3663c04f8474591cf17">lib_buttons_make_button</a>(<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=listcategory&amp;$reload&amp;category=$category&amp;criteria=$criteria&quot;</span>,<span class="stringliteral">&quot;RELOAD&quot;</span>);
 <a name="l01086"></a>01086 
 <a name="l01087"></a>01087         include(<span class="stringliteral">&quot;footer.php&quot;</span>);
 <a name="l01088"></a>01088         exit();
@@ -1194,12 +1194,12 @@
 <a name="l01119"></a>01119                 $iconp=<a class="code" href="config_8sitevars_8php.html#a0304f1c6ce0928c6dda1a31ca21a58ae">$RFS_SITE_PATH</a>.<span class="stringliteral">&quot;/&quot;</span>.$cat-&gt;image;
 <a name="l01120"></a>01120                 $icon=<a class="code" href="config_8sitevars_8php.html#ac3d3378b57bd437398e3c2ef9fc1989a">$RFS_SITE_URL</a>.<span class="stringliteral">&quot;/&quot;</span>.$cat-&gt;image;
 <a name="l01121"></a>01121                 <span class="keywordflow">if</span>(file_exists($iconp)) {
-<a name="l01122"></a>01122                     echo <span class="stringliteral">&quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/files/files.php?action=listcategory&amp;category=$buffer\&quot; title=\&quot;List all $buffer files\&quot;&gt;&quot;</span>;
+<a name="l01122"></a>01122                     echo <span class="stringliteral">&quot;&lt;a href=\&quot;$RFS_SITE_URL/modules/core_files/files.php?action=listcategory&amp;category=$buffer\&quot; title=\&quot;List all $buffer files\&quot;&gt;&quot;</span>;
 <a name="l01123"></a>01123                     echo <span class="stringliteral">&quot;&lt;img src=$icon border=0 width=32 height=32&gt;&quot;</span>;
 <a name="l01124"></a>01124                     echo <span class="stringliteral">&quot;&lt;/a&gt;&quot;</span>;
 <a name="l01125"></a>01125                 }
 <a name="l01126"></a>01126                 
-<a name="l01127"></a>01127                 echo <span class="stringliteral">&quot;&lt;a class=file_category_link href=\&quot;$RFS_SITE_URL/modules/files/files.php?action=listcategory&amp;category=$buffer\&quot; title=\&quot;List all $buffer files\&quot;&gt;[&quot;</span>;          
+<a name="l01127"></a>01127                 echo <span class="stringliteral">&quot;&lt;a class=file_category_link href=\&quot;$RFS_SITE_URL/modules/core_files/files.php?action=listcategory&amp;category=$buffer\&quot; title=\&quot;List all $buffer files\&quot;&gt;[&quot;</span>;          
 <a name="l01128"></a>01128                 echo ucwords(<span class="stringliteral">&quot;$buffer&quot;</span>);
 <a name="l01129"></a>01129                 echo <span class="stringliteral">&quot;] &quot;</span>;
 <a name="l01130"></a>01130                 $myr=<a class="code" href="module_8files_8php.html#a0629a0c12eb1fd37e1bbeafdbe6b342f">rfs_getfilelist</a>(<span class="stringliteral">&quot;where category=&#39;$buffer&#39; $shide &quot;</span>,999999999);
