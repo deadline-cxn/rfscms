@@ -45,7 +45,7 @@ function videos_get_url_from_code($code) {
 
 function videos_get_thumbnail($url) {
 	eval(lib_rfs_get_globals());
-	$ytturl="$RFS_SITE_URL/modules/videos/cache/oops.png";
+	$ytturl="$RFS_SITE_URL/modules/core_videos/cache/oops.png";
 	$ytthumb="";
 	if(stristr($url,"youtube")) {
 		$ytx=explode("\"",$url);
@@ -57,8 +57,8 @@ function videos_get_thumbnail($url) {
 		}
 	}
 	if($ytthumb) {
-		$yttlocal="$RFS_SITE_PATH/modules/videos/cache/$ytthumb.jpg";
-		$ytturl="$RFS_SITE_URL/modules/videos/cache/$ytthumb.jpg";
+		$yttlocal="$RFS_SITE_PATH/modules/core_videos/cache/$ytthumb.jpg";
+		$ytturl="$RFS_SITE_URL/modules/core_videos/cache/$ytthumb.jpg";
 		if(!file_exists($yttlocal)) {
 			$ch = curl_init("http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -67,7 +67,7 @@ function videos_get_thumbnail($url) {
 			file_put_contents("$yttlocal", $ytt);
 		}
 		if(!file_exists($yttlocal)) {
-			$ytturl="$RFS_SITE_URL/modules/videos/cache/oops.png";
+			$ytturl="$RFS_SITE_URL/modules/core_videos/cache/oops.png";
 		}
 	} 
 	return $ytturl;
