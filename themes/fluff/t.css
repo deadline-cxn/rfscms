@@ -154,7 +154,7 @@ margin: 2px;
 	background-color: #baba6a;
 }
 
-.sc_top_file_table {
+.rfs_top_file_table {
 
   font-family: Consolas, Lucidia;
   font-size: large;
@@ -215,8 +215,8 @@ margin: 2px;
 }
 .file_link:hover { color: #FF0; }
 
-.sc_file_table_outer_0 { background-color:rgba(120,220,0,0.6); }
-.sc_file_table_0 {
+.rfs_file_table_outer_0 { background-color:rgba(120,220,0,0.6); }
+.rfs_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -224,8 +224,8 @@ margin: 2px;
 	padding-left: 5px;
 }
 
-.sc_file_table_outer_1 {  background-color:rgba(120,160,0,0.6); }
-.sc_file_table_1 {
+.rfs_file_table_outer_1 {  background-color:rgba(120,160,0,0.6); }
+.rfs_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -557,7 +557,7 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
     color: #9595f5;
 }
 
-.sc_top_menu_table
+.rfs_top_menu_table
 {
   font-family: Lucidia;
   font-size: large;
@@ -568,7 +568,7 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
   height: 28px;
 }
 
-.sc_top_menu_link
+.rfs_top_menu_link
 {
     font-family: Lucidia;
     font-size: 17px;
@@ -581,7 +581,7 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
     background-image: url(http://3dnetlabs.info/images/6_mid_mid.gif);
 }
 
-.sc_top_menu_link:link
+.rfs_top_menu_link:link
 {
     font-family: Lucidia;
     font-size: 17px;
@@ -592,7 +592,7 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
 
 }
 
-.sc_top_menu_link:visited
+.rfs_top_menu_link:visited
 {
     font-family: Lucidia;
     font-size: 17px;
@@ -603,7 +603,7 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
 
 }
 
-.sc_top_menu_link:hover
+.rfs_top_menu_link:hover
 {
     font-family: Lucidia;
     font-size: 17px;
@@ -730,7 +730,7 @@ td
 
 
 
-.sc_project_table_0
+.rfs_project_table_0
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -738,7 +738,7 @@ td
 	background-color: #9c9c74;
 }
 
-.sc_project_table_1
+.rfs_project_table_1
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -966,7 +966,7 @@ padding: 5px;
 {
 }
 
-.sc_admin
+.rfs_admin
 {
 }
 
@@ -986,11 +986,11 @@ padding: 5px;
 {
 }
 
-.sc_black
+.rfs_black
 {
 }
 
-.sc_email
+.rfs_email
 {
 }
 
@@ -1002,7 +1002,7 @@ padding: 5px;
 {
 }
 
-.sc_warning
+.rfs_warning
 {
 }
 
@@ -1042,7 +1042,7 @@ padding: 5px;
 {
 }
 
-.sc_site_urlr
+.rfs_site_urlr
 {
 }
 
@@ -1050,7 +1050,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_header
+.rfs_project_table_header
 {
 }
 

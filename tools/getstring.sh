@@ -14,4 +14,3 @@ grep -nR \
 --exclude-dir=modules/netman \
 --exclude-dir=not_included \
 "$1" ../*
-

@@ -111,12 +111,12 @@ body{
 }
 
 
-.sc_top_menu_table{
+.rfs_top_menu_table{
   font-family: Lucidia; 
   font-style: normal;  
 }
 
-.sc_top_menu_link {
+.rfs_top_menu_link {
     font-family: Lucidia;
     font-size: 23px;
     font-weight: bold;
@@ -125,12 +125,12 @@ body{
     color: #00FF00;
 	padding-right: 30px;
 }
-.sc_top_menu_link:link {
+.rfs_top_menu_link:link {
     color: #00FF00;
 	text-shadow: 2px 2px 2px #000;
 
 }
-.sc_top_menu_link:hover {
+.rfs_top_menu_link:hover {
 	background-color:  #007700;
 	color: #00FF00;
 }
@@ -259,16 +259,16 @@ td {
 th {
 	background-color: #2c5c2c;
 }
-.sc_project_table_header {
+.rfs_project_table_header {
 	background-color: #2c5c2c;
 }
 
-.sc_project_table_1{
+.rfs_project_table_1{
 	background-color: #407c40;
 	color: #000000;
 }
 
-.sc_project_table_2 {
+.rfs_project_table_2 {
 	background-color: #3c6c3c;
 	color: #000000;
 }
@@ -317,16 +317,16 @@ th {
 }
 
 
-.sc_forum_table_header {
+.rfs_forum_table_header {
 	background-color: #2c5c2c;
 }
 
-.sc_forum_table_1{
+.rfs_forum_table_1{
 	background-color: #407c40;
 	color: #000000;
 }
 
-.sc_forum_table_2 {
+.rfs_forum_table_2 {
 	background-color: #3c6c3c;
 	color: #000000;
 }
@@ -362,20 +362,20 @@ th {
 	color: #0f0;
 }
 
-.sc_file_table_outer_0 {
+.rfs_file_table_outer_0 {
 	background-color:rgba(0,260,0,0.1);
 	border-top: 1px dashed #070; 
 }
-.sc_file_table_0 {
+.rfs_file_table_0 {
 	background-color: #407c40;
 	color: #000000;
 }
 
-.sc_file_table_outer_1 {
+.rfs_file_table_outer_1 {
 	background-color:rgba(0,160,0,0.1);
 	border-top: 1px dashed #070; 
 }
-.sc_file_table_1 {	
+.rfs_file_table_1 {	
 	background-color: #3c6c3c;
  	color: #000000;
 }
@@ -438,7 +438,7 @@ input, select, textarea {
 {
 }
 
-.sc_project_table_0
+.rfs_project_table_0
 {
 }
 
@@ -458,7 +458,7 @@ input, select, textarea {
 {
 }
 
-.sc_admin
+.rfs_admin
 {
 }
 
@@ -490,11 +490,11 @@ input, select, textarea {
 {
 }
 
-.sc_black
+.rfs_black
 {
 }
 
-.sc_email
+.rfs_email
 {
 }
 
@@ -506,7 +506,7 @@ input, select, textarea {
 {
 }
 
-.sc_warning
+.rfs_warning
 {
 }
 
@@ -562,7 +562,7 @@ input, select, textarea {
 {
 }
 
-.sc_top_file_table
+.rfs_top_file_table
 {
 }
 
@@ -582,7 +582,7 @@ input, select, textarea {
 {
 }
 
-.sc_site_urlr
+.rfs_site_urlr
 {
 }
 

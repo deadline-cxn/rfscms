@@ -161,21 +161,21 @@ font-family: Verdana;
     
 }
 
-.sc_top_menu_table
+.rfs_top_menu_table
 {
   font-family: Lucidia;
   gfont-size: x-large;
   font-style: normal;
   background-color: #333333;
 }
-.sc_top_menu_table_td
+.rfs_top_menu_table_td
 {
   font-family: Lucidia;
   gfont-size: x-large;
   font-style: normal;
   background-color: #333333;
 }
-.sc_top_menu_table_inner
+.rfs_top_menu_table_inner
 {
   font-family: Lucidia;
   gfont-size: x-large;
@@ -214,7 +214,7 @@ font-family: Verdana;
     color: #9595f5;    
 }
 
-.sc_top_menu_link
+.rfs_top_menu_link
 {
     font-family: Lucidia;
     font-size: 17px;
@@ -225,7 +225,7 @@ font-family: Verdana;
     background-color: #333333;
 }
 
-.sc_top_menu_link:link
+.rfs_top_menu_link:link
 {
     font-family: Lucidia;
     font-size: 17px;
@@ -236,7 +236,7 @@ font-family: Verdana;
     background-color: #333333;
 }
 
-.sc_top_menu_link:visited
+.rfs_top_menu_link:visited
 {
     font-family: Lucidia;
     font-size: 17px;
@@ -247,7 +247,7 @@ font-family: Verdana;
     background-color: #333333;
 }
 
-.sc_top_menu_link:hover
+.rfs_top_menu_link:hover
 {
     font-family: Lucidia;
     font-size: 17px;
@@ -331,14 +331,14 @@ td{
 }
 
 
-.sc_project_table_0{
+.rfs_project_table_0{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
 	background-color: #000000;
 }
 
-.sc_project_table_1{
+.rfs_project_table_1{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
@@ -380,28 +380,28 @@ td{
 }
 
 
-.sc_top_file_table{
+.rfs_top_file_table{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 18px;
     color:   #777777;
     background-color: #000000;
 }
 
-.sc_file_table_0{
+.rfs_file_table_0{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
     background-color: #333333;
 }
 
-.sc_file_table_1{
+.rfs_file_table_1{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
     background-color: #444444;
 }
 
-.sc_file_table_2{
+.rfs_file_table_2{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #777777;
@@ -502,7 +502,7 @@ padding: 5px;
 {
 }
 
-.sc_admin
+.rfs_admin
 {
 }
 
@@ -530,11 +530,11 @@ padding: 5px;
 {
 }
 
-.sc_black
+.rfs_black
 {
 }
 
-.sc_email
+.rfs_email
 {
 }
 
@@ -546,7 +546,7 @@ padding: 5px;
 {
 }
 
-.sc_warning
+.rfs_warning
 {
 }
 
@@ -618,7 +618,7 @@ padding: 5px;
 {
 }
 
-.sc_site_urlr
+.rfs_site_urlr
 {
 }
 
@@ -630,7 +630,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_header
+.rfs_project_table_header
 {
 }
 

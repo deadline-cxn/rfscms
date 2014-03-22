@@ -74,7 +74,7 @@ hr {
     color: #FFFFFF;
 }
 
-.sc_top_menu_table{
+.rfs_top_menu_table{
   font-family: Lucidia;
   font-style: normal;
   background-color: #f1dea1;
@@ -108,7 +108,7 @@ color: #C4AC45;
     color: #9595f5;    
 }
 
-.sc_top_menu_link {
+.rfs_top_menu_link {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
@@ -118,7 +118,7 @@ color: #C4AC45;
     fbackground-color: #c1ae91;
 }
 
-.sc_top_menu_link:link{
+.rfs_top_menu_link:link{
     font-family: Lucidia;
      font-size: 17px;
     font-weight: bold;
@@ -128,7 +128,7 @@ color: #C4AC45;
     fbackground-color: #c1ae91;
 }
 
-.sc_top_menu_link:visited{
+.rfs_top_menu_link:visited{
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
@@ -138,7 +138,7 @@ color: #C4AC45;
     fbackground-color: #d1bea1;
 }
 
-.sc_top_menu_link:hover {
+.rfs_top_menu_link:hover {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
@@ -263,21 +263,21 @@ td{
 }
 
 
-.sc_project_table_0 {
+.rfs_project_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
 	background-color: #cccccc;
 }
 
-.sc_project_table_1 {
+.rfs_project_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
 	background-color: #dddddd;
 }
 
-.sc_project_table_2 {
+.rfs_project_table_2 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
@@ -322,7 +322,7 @@ td{
 	color: #000;
 }
 
-.sc_file_table_0 {
+.rfs_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -331,7 +331,7 @@ td{
 	padding-left: 5px;
 }
 
-.sc_file_table_1 {
+.rfs_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -459,7 +459,7 @@ padding: 5px;
 {
 }
 
-.sc_admin
+.rfs_admin
 {
 }
 
@@ -487,11 +487,11 @@ padding: 5px;
 {
 }
 
-.sc_black
+.rfs_black
 {
 }
 
-.sc_email
+.rfs_email
 {
 }
 
@@ -503,7 +503,7 @@ padding: 5px;
 {
 }
 
-.sc_warning
+.rfs_warning
 {
 }
 
@@ -559,7 +559,7 @@ padding: 5px;
 {
 }
 
-.sc_top_file_table
+.rfs_top_file_table
 {
 }
 
@@ -579,7 +579,7 @@ padding: 5px;
 {
 }
 
-.sc_site_urlr
+.rfs_site_urlr
 {
 }
 
@@ -591,7 +591,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_header
+.rfs_project_table_header
 {
 }
 

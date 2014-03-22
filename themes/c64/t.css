@@ -200,7 +200,7 @@ background-color: #F8F76F;
     color: #A397FF;
 }
 
-.sc_top_menu_table
+.rfs_top_menu_table
 {
   font-family: C64;
 	font-size: 12px;
@@ -208,7 +208,7 @@ background-color: #F8F76F;
   background-color: #A397FF;
 }
 
-.sc_top_menu_table_td
+.rfs_top_menu_table_td
 {
   font-family: C64;
 	font-size: 12px;
@@ -216,7 +216,7 @@ background-color: #F8F76F;
   background-color: #A397FF;
 }
 
-.sc_top_menu_table_inner
+.rfs_top_menu_table_inner
 {
   font-family: C64;
 	font-size: 12px;
@@ -224,7 +224,7 @@ background-color: #F8F76F;
   background-color: #A397FF;
 }
 
-.sc_top_menu_link
+.rfs_top_menu_link
 {
     font-family: C64;
 	font-size: 12px;
@@ -234,7 +234,7 @@ background-color: #F8F76F;
     background-color:  #A397FF;
 }
 
-.sc_top_menu_link:link
+.rfs_top_menu_link:link
 {
     font-family: C64;
 	font-size: 12px;
@@ -244,7 +244,7 @@ background-color: #F8F76F;
 
 }
 
-.sc_top_menu_link:hover{
+.rfs_top_menu_link:hover{
     font-family: C64;
 	font-size: 12px;
     font-style: normal;
@@ -396,7 +396,7 @@ td
 	padding:  5px;
 }
 
-.sc_project_table_1
+.rfs_project_table_1
 {
     font-family: C64;
 	font-size: 12px;
@@ -405,7 +405,7 @@ td
 	background-color: #A397FF;
 }
 
-.sc_project_table_2
+.rfs_project_table_2
 {
     font-family: C64;
 	font-size: 12px;
@@ -415,7 +415,7 @@ td
 }
 
 
-.sc_top_file_table
+.rfs_top_file_table
 {
     font-family: C64;
 	font-size: 12px;
@@ -423,7 +423,7 @@ td
 	background-color: #A397FF;
 }
 
-.sc_file_table_0
+.rfs_file_table_0
 {
     font-family: C64;
 	font-size: 12px;    
@@ -431,7 +431,7 @@ td
 	background-color: #A397FF;
 }
 
-.sc_file_table_1
+.rfs_file_table_1
 {
     font-family: C64;
 	font-size: 12px;
@@ -440,7 +440,7 @@ td
 
 }
 
-.sc_file_table_2
+.rfs_file_table_2
 {
     font-family: C64;
 	font-size: 12px;    
@@ -577,7 +577,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_0
+.rfs_project_table_0
 {
 }
 
@@ -597,7 +597,7 @@ padding: 5px;
 {
 }
 
-.sc_admin
+.rfs_admin
 {
 }
 
@@ -625,11 +625,11 @@ padding: 5px;
 {
 }
 
-.sc_black
+.rfs_black
 {
 }
 
-.sc_email
+.rfs_email
 {
 }
 
@@ -641,7 +641,7 @@ padding: 5px;
 {
 }
 
-.sc_warning
+.rfs_warning
 {
 }
 
@@ -713,7 +713,7 @@ padding: 5px;
 {
 }
 
-.sc_site_urlr
+.rfs_site_urlr
 {
 }
 
@@ -725,7 +725,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_header
+.rfs_project_table_header
 {
 }
 

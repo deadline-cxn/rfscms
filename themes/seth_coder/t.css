@@ -182,7 +182,7 @@ hr{
     border-style: dotted;
 }
 
-.sc_top_menu_table {
+.rfs_top_menu_table {
     font-family: Verdana;
     font-weight: bold;
     font-size: 12px;
@@ -194,7 +194,7 @@ hr{
     padding-bottom: 5px;
 }
 
-.sc_top_menu_table_td {
+.rfs_top_menu_table_td {
     font-family: Verdana;
     font-weight: bold;
     font-size: 12px;
@@ -206,7 +206,7 @@ hr{
     padding-bottom: 5px;
 }
 
-.sc_top_menu_table_inner {
+.rfs_top_menu_table_inner {
     font-family: Verdana;
     font-weight: bold;
     font-size: 12px;
@@ -322,16 +322,16 @@ hr{
 	border-top-right-radius: 8px;
 }
 
-.sc_file_table_outer_0 { background-color: #ddd;  }
-.sc_file_table_0 {
+.rfs_file_table_outer_0 { background-color: #ddd;  }
+.rfs_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
 	padding-left: 5px;
 }
 
-.sc_file_table_outer_1 { background-color: #ccc;  }
-.sc_file_table_1 {
+.rfs_file_table_outer_1 { background-color: #ccc;  }
+.rfs_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -444,7 +444,7 @@ a:hover {
 }
 
 
-a.sc_top_menu_link {
+a.rfs_top_menu_link {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: x-large;
     font-weight: bold;
@@ -454,11 +454,11 @@ a.sc_top_menu_link {
 	text-shadow: 1px 1px 1px #000;
 }
 
-a.sc_top_menu_link:link {
+a.rfs_top_menu_link:link {
     color: #5577FF;
 }
 
-a.sc_top_menu_link:hover {
+a.rfs_top_menu_link:hover {
     color: #a5a555;
 }
 
@@ -507,19 +507,19 @@ input[type="submit"] {
 	color: #FFF;
 }
 
-.sc_project_table_header {
+.rfs_project_table_header {
 	background-color: #333;
 }
 
-.sc_project_table_0 {
+.rfs_project_table_0 {
 	background-color: #77b;
 }
 
-.sc_project_table_1 {
+.rfs_project_table_1 {
 	background-color: #99b;
 }
 
-.sc_project_table_2 {
+.rfs_project_table_2 {
 	background-color: #88b;
 }
 
@@ -550,7 +550,7 @@ margin: 5px;
 .reddit_button{
 }
 
-.sc_admin{
+.rfs_admin{
 }
 
 .inform{
@@ -574,16 +574,16 @@ margin: 5px;
 .td_cat{
 }
 
-.sc_black{
+.rfs_black{
 }
 
-.sc_email{
+.rfs_email{
 }
 
 .b4button{
 }
 
-.sc_warning{
+.rfs_warning{
 }
 
 .dm_warning{
@@ -625,7 +625,7 @@ margin: 5px;
 .tdfilehead{
 }
 
-.sc_top_file_table{
+.rfs_top_file_table{
 }
 
 .pod{
@@ -640,7 +640,7 @@ margin: 5px;
 .pmsglink{
 }
 
-.sc_site_urlr{
+.rfs_site_urlr{
 }
 
 .tt_contenttd{

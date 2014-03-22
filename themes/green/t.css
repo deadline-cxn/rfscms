@@ -122,8 +122,8 @@ background-color: #006E0C;
 	color: #000;
 }
 
-.sc_file_table_outer_0 { background-color:rgba(0,20,0,0.1); }
-.sc_file_table_0 {
+.rfs_file_table_outer_0 { background-color:rgba(0,20,0,0.1); }
+.rfs_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -131,8 +131,8 @@ background-color: #006E0C;
 	padding-left: 5px;
 }
 
-.sc_file_table_outer_1 { background-color:rgba(0,60,0,0.1); }
-.sc_file_table_1 {
+.rfs_file_table_outer_1 { background-color:rgba(0,60,0,0.1); }
+.rfs_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -237,7 +237,7 @@ color: #0D2B0F;
 background-color: #05FF05;
 }
 
-.sc_top_menu_link {
+.rfs_top_menu_link {
 	padding-left: 10px;
 }
 
@@ -282,7 +282,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_0
+.rfs_project_table_0
 {
 }
 
@@ -302,7 +302,7 @@ padding: 5px;
 {
 }
 
-.sc_top_menu_table
+.rfs_top_menu_table
 {
 }
 
@@ -318,7 +318,7 @@ padding: 5px;
 {
 }
 
-.sc_admin
+.rfs_admin
 {
 }
 
@@ -350,11 +350,11 @@ padding: 5px;
 {
 }
 
-.sc_black
+.rfs_black
 {
 }
 
-.sc_email
+.rfs_email
 {
 }
 
@@ -366,7 +366,7 @@ padding: 5px;
 {
 }
 
-.sc_warning
+.rfs_warning
 {
 }
 
@@ -422,7 +422,7 @@ padding: 5px;
 {
 }
 
-.sc_top_file_table
+.rfs_top_file_table
 {
 }
 
@@ -442,7 +442,7 @@ padding: 5px;
 {
 }
 
-.sc_site_urlr
+.rfs_site_urlr
 {
 }
 
@@ -458,7 +458,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_header
+.rfs_project_table_header
 {
 }
 
@@ -486,7 +486,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_1
+.rfs_project_table_1
 {
 }
 

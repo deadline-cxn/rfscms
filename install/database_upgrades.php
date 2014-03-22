@@ -247,7 +247,11 @@ if($a<984) {
     }    
     lib_file_touch_dir("$RFS_SITE_PATH/modules/core_videos/cache");
     echo "Added interim database changes 984<br>";
-    
+}
+if($a<986) {
+	
+	mysql_query("ALTER TABLE `files` CHANGE `lastupdate` `lastupdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;");
+	echo "Added interim database changes 986<br>";
 }
 
 if($a < $b) {

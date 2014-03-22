@@ -103,25 +103,25 @@ hr{
     color: #FFFFFF;
 }
 
-.sc_top_menu_table {
+.rfs_top_menu_table {
   font-family: Lucidia; 
   font-style: normal;
   background-color: #996600;
 }
 
-.sc_top_menu_table_td {
+.rfs_top_menu_table_td {
   font-family: Lucidia; 
   font-style: normal;
   background-color: #996600;
 }
 
-.sc_top_menu_table_inner {
+.rfs_top_menu_table_inner {
   font-family: Lucidia; 
   font-style: normal;
   background-color: #996600;
 }
 
-.sc_top_menu_link {
+.rfs_top_menu_link {
     font-family: System;
     font-size: 23px;
     font-weight: bold;
@@ -129,7 +129,7 @@ hr{
     text-decoration: none;
     color: #FFFF00;
 }
-.sc_top_menu_link:link {
+.rfs_top_menu_link:link {
     font-family: System;
     font-size: 23px;
     font-weight: bold;
@@ -137,7 +137,7 @@ hr{
     text-decoration: none;
     color: #FFFF00;
 }
-.sc_top_menu_link:hover {
+.rfs_top_menu_link:hover {
     font-family: System;
     font-size: 23px;
     font-weight: bold;
@@ -306,16 +306,16 @@ td {
 th {
 	background-color: #9c5c2c;
 }
-.sc_project_table_header {
+.rfs_project_table_header {
 	background-color: #9c5c2c;
 }
 
-.sc_project_table_1{
+.rfs_project_table_1{
 	background-color: #fc7c40;
 	color: #000000;
 }
 
-.sc_project_table_2 {
+.rfs_project_table_2 {
 	background-color: #cc6c3c;
 	color: #000000;
 }
@@ -362,13 +362,13 @@ th {
 	color: #000;
 }
 
-.sc_file_table_outer_0 {
+.rfs_file_table_outer_0 {
 	background-color:rgba(260,160,0,0.1);
 	border-top: 1px dashed #530; 
 }
 
 
-.sc_file_table_0 {
+.rfs_file_table_0 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -376,13 +376,13 @@ th {
 	padding-left: 5px;
 }
 
-.sc_file_table_outer_1 {
+.rfs_file_table_outer_1 {
 	background-color:rgba(160,70,0,0.1);
 	border-top: 1px dashed #530; 
 }
 
 
-.sc_file_table_1 {
+.rfs_file_table_1 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
 	font-weight: normal;
@@ -474,7 +474,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_0
+.rfs_project_table_0
 {
 }
 
@@ -498,7 +498,7 @@ padding: 5px;
 {
 }
 
-.sc_admin
+.rfs_admin
 {
 }
 
@@ -530,11 +530,11 @@ padding: 5px;
 {
 }
 
-.sc_black
+.rfs_black
 {
 }
 
-.sc_email
+.rfs_email
 {
 }
 
@@ -546,7 +546,7 @@ padding: 5px;
 {
 }
 
-.sc_warning
+.rfs_warning
 {
 }
 
@@ -602,7 +602,7 @@ padding: 5px;
 {
 }
 
-.sc_top_file_table
+.rfs_top_file_table
 {
 }
 
@@ -622,7 +622,7 @@ padding: 5px;
 {
 }
 
-.sc_site_urlr
+.rfs_site_urlr
 {
 }
 

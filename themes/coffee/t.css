@@ -48,10 +48,10 @@ body {
 	padding-left: 5px;
 }
 
-.sc_file_table_0 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; 
+.rfs_file_table_0 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; 
 		color: #000000; background-color: #973; }
 
-.sc_file_table_1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal;
+.rfs_file_table_1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal;
 		color: #000000; background-color: #863; }
 
 .forum_box {
@@ -182,24 +182,24 @@ body {
 
 
 
-.sc_top_menu_table {
+.rfs_top_menu_table {
 	background: linear-gradient(#645510,#a09060);
 	width: 100%;
 }
 
-.sc_top_menu_table_td {
+.rfs_top_menu_table_td {
   font-family: Lucidia;  
   font-style: normal;
   background: linear-gradient(#645510,#a09060);
   
 }
-.sc_top_menu_table_inner {
+.rfs_top_menu_table_inner {
   font-family: Lucidia;  
   font-style: normal;
   
 }
 
-.sc_top_menu_link {
+.rfs_top_menu_link {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
@@ -209,7 +209,7 @@ body {
     padding-right: 20px;
 }
 
-.sc_top_menu_link:link {
+.rfs_top_menu_link:link {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
@@ -218,7 +218,7 @@ body {
     color: #FAFAFA;
 }
 
-.sc_top_menu_link:visited {
+.rfs_top_menu_link:visited {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
@@ -227,7 +227,7 @@ body {
     color: #000000;
 }
 
-.sc_top_menu_link:hover {
+.rfs_top_menu_link:hover {
     font-family: Lucidia;
     font-size: 17px;
     font-weight: bold;
@@ -316,7 +316,7 @@ h3
 }
 
 
-.sc_project_table_0
+.rfs_project_table_0
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -326,7 +326,7 @@ h3
 	
 }
 
-.sc_project_table_1
+.rfs_project_table_1
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -334,7 +334,7 @@ h3
 	background-color: #A49560;
 }
 
-.sc_project_table_2
+.rfs_project_table_2
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -525,7 +525,7 @@ padding: 5px;
 {
 }
 
-.sc_admin
+.rfs_admin
 {
 }
 
@@ -553,11 +553,11 @@ padding: 5px;
 {
 }
 
-.sc_black
+.rfs_black
 {
 }
 
-.sc_email
+.rfs_email
 {
 }
 
@@ -569,7 +569,7 @@ padding: 5px;
 {
 }
 
-.sc_warning
+.rfs_warning
 {
 }
 
@@ -625,7 +625,7 @@ padding: 5px;
 {
 }
 
-.sc_top_file_table
+.rfs_top_file_table
 {
 }
 
@@ -645,7 +645,7 @@ padding: 5px;
 {
 }
 
-.sc_site_urlr
+.rfs_site_urlr
 {
 }
 
@@ -657,7 +657,7 @@ padding: 5px;
 {
 }
 
-.sc_project_table_header
+.rfs_project_table_header
 {
 }
 
