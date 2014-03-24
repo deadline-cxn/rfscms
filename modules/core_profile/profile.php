@@ -364,7 +364,7 @@ include("footer.php");
 
 	$q="where submitter='$data->name'";
 	$l="$filetop,$filelimit";  
-	$i=0; $bg=0; $filelist=@rfs_getfilelist($q,$l);
+	$i=0; $bg=0; $filelist=@module_files_getfilelist($q,$l);
 	if(count($filelist)) {
 		lib_forms_info("Your files...","BLACK","WHITE");
 		if(lib_access_check("files","upload")) 
@@ -388,7 +388,7 @@ include("footer.php");
 	  if(empty($filelimit))	$filelimit=25;
 	  
 	  while($i<count($filelist)) {
-		$filedata=rfs_getfiledata($filelist[$i]);
+		$filedata=module_files_getfiledata($filelist[$i]);
 		$colr=$file_color[1];
 		if($bg=="1") $colr=$file_color[2];
 		echo "<tr bgcolor=#$colr>\n";

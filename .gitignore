@@ -21,3 +21,5 @@ tmp/*
 wtf/*
 modules/rfs*
 modules/videos/cache/*.jpg
+modules/addon*
+

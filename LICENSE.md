@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 RFSCMS Really Frickin Simple Content Management System
 Copyright (C) 2014 Seth T. Parson
 
@@ -18,4 +19,8 @@ Email: defectiveseth@gmail.com
 Twitter: @SethCoder
 http://www.sethcoder.com/
 
+=======
+
+TODO: Update this
+>>>>>>> 62342a0ec2c93e37b9ad3085b2c726d3ccb1591b
 

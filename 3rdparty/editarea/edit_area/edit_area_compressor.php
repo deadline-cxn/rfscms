@@ -346,13 +346,13 @@
 			{
 				// remove all comments
 				//	(\"(?:[^\"\\]*(?:\\\\)*(?:\\\"?)?)*(?:\"|$))|(\'(?:[^\'\\]*(?:\\\\)*(?:\\'?)?)*(?:\'|$))|(?:\/\/(?:.|\r|\t)*?(\n|$))|(?:\/\*(?:.|\n|\r|\t)*?(?:\*\/|$))
-				$code= preg_replace("/(\"(?:[^\"\\\\]*(?:\\\\\\\\)*(?:\\\\\"?)?)*(?:\"|$))|(\'(?:[^\'\\\\]*(?:\\\\\\\\)*(?:\\\\\'?)?)*(?:\'|$))|(?:\/\/(?:.|\r|\t)*?(\n|$))|(?:\/\*(?:.|\n|\r|\t)*?(?:\*\/|$))/s", "$2$2$3", $code);
+				$code= preg_replace("/(\"(?:[^\"\\\\]*(?:\\\\\\\\)*(?:\\\\\"?)?)*(?:\"|$))|(\'(?:[^\'\\\\]*(?:\\\\\\\\)*(?:\\\\\'?)?)*(?:\'|$))|(?:\/\/(?:.|\r|\t)*?(\n|$))|(?:\/\*(?:.|\n|\r|\t)*?(?:\*\/|$))/s", "$3$3$3", $code);
 				// remove line return, empty line and tabulation
 				$code= preg_replace('/(( |\t|\r)*\n( |\t)*)+/s', " ", $code);
 				// add line break before "else" otherwise navigators can't manage to parse the file
-				$code= preg_replace('/(\b(else)\b)/', "\n$2", $code);
+				$code= preg_replace('/(\b(else)\b)/', "\n$3", $code);
 				// remove unnecessary spaces
-				$code= preg_replace('/( |\t|\r)*(;|\{|\}|=|==|\-|\+|,|\(|\)|\|\||&\&|\:)( |\t|\r)*/', "$2", $code);
+				$code= preg_replace('/( |\t|\r)*(;|\{|\}|=|==|\-|\+|,|\(|\)|\|\||&\&|\:)( |\t|\r)*/', "$3", $code);
 			}
 		}
 		
@@ -363,7 +363,7 @@
 			// remove spaces
 			$code= preg_replace('/(( |\t|\r)*\n( |\t)*)+/s', "", $code);
 			// remove spaces
-			$code= preg_replace('/( |\t|\r)?(\:|,|\{|\})( |\t|\r)+/', "$2", $code);
+			$code= preg_replace('/( |\t|\r)?(\:|,|\{|\})( |\t|\r)+/', "$3", $code);
 		
 			$this->prepare_string_for_quotes($code);
 			return $code;
@@ -371,7 +371,7 @@
 		
 		function get_html_content($end_uri){
 			$code=$this->get_content($end_uri);
-			//$code= preg_replace('/(\"(?:\\\"|[^\"])*(?:\"|$))|' . "(\'(?:\\\'|[^\'])*(?:\'|$))|(?:\/\/(?:.|\r|\t)*?(\n|$))|(?:\/\*(?:.|\n|\r|\t)*?(?:\*\/|$))/s", "$2$2$3", $code);
+			//$code= preg_replace('/(\"(?:\\\"|[^\"])*(?:\"|$))|' . "(\'(?:\\\'|[^\'])*(?:\'|$))|(?:\/\/(?:.|\r|\t)*?(\n|$))|(?:\/\*(?:.|\n|\r|\t)*?(?:\*\/|$))/s", "$3$3$3", $code);
 			$code= preg_replace('/(( |\t|\r)*\n( |\t)*)+/s', " ", $code);
 			$this->prepare_string_for_quotes($code);
 			return $code;
@@ -380,12 +380,12 @@
 		function prepare_string_for_quotes(&$str){
 			// prepare the code to be putted into quotes 
 			/*$pattern= array("/(\\\\)?\"/", '/\\\n/'	, '/\\\r/'	, "/(\r?\n)/");
-			$replace= array('$2$2\\"', '\\\\\\n', '\\\\\\r'	, '\\\n"$2+"');*/
+			$replace= array('$3$3\\"', '\\\\\\n', '\\\\\\r'	, '\\\n"$3+"');*/
 			$pattern= array("/(\\\\)?\"/", '/\\\n/'	, '/\\\r/'	, "/(\r?\n)/");
 			if($this->param['compress'])
-				$replace= array('$2$2\\"', '\\\\\\n', '\\\\\\r'	, '\n');
+				$replace= array('$3$3\\"', '\\\\\\n', '\\\\\\r'	, '\n');
 			else
-				$replace= array('$2$2\\"', '\\\\\\n', '\\\\\\r'	, "\\n\"\n+\"");
+				$replace= array('$3$3\\"', '\\\\\\n', '\\\\\\r'	, "\\n\"\n+\"");
 			$str= preg_replace($pattern, $replace, $str);
 		}
 		

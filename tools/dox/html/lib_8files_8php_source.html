@@ -101,12 +101,12 @@
 <a name="l00026"></a>00026         $link=<span class="stringliteral">&quot;$RFS_SITE_URL/modules/core_files/files.php?action=get_file&amp;id=$file-&gt;id&quot;</span>;
 <a name="l00027"></a>00027         $fdescription=str_replace(<span class="charliteral">&#39;&quot;&#39;</span>,<span class="stringliteral">&quot;&amp;quote;&quot;</span>,stripslashes(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>-&gt;description));
 <a name="l00028"></a>00028         <a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>++; <span class="keywordflow">if</span>(<a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>&gt;2)<a class="code" href="linkbin_2linkbin_8php.html#acc3ddc926074609c4cff4f0aa1793fad">$gt</a>=1;
-<a name="l00029"></a>00029         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00029"></a>00029         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00030"></a>00030         echo <span class="stringliteral">&quot;&lt;a href=\&quot;$link\&quot;&gt;$file-&gt;name&lt;/a&gt; &quot;</span>;
-<a name="l00031"></a>00031         echo<span class="stringliteral">&quot;&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00031"></a>00031         echo<span class="stringliteral">&quot;&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00032"></a>00032         echo <a class="code" href="lib_8file_8php.html#a5f59a1a511c17b65625d08cabfbd1ee8">sc_sizefile</a>(<a class="code" href="thumbnail_8php.html#aa1bfbd27060176201b271918dff57e8f">$file</a>-&gt;size);
 <a name="l00033"></a>00033         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&quot;</span>;
-<a name="l00034"></a>00034         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=sc_project_table_$gt&gt;&lt;/td&gt;&lt;td class=sc_project_table_$gt&gt;&quot;</span>;
+<a name="l00034"></a>00034         echo <span class="stringliteral">&quot;&lt;tr&gt;&lt;td class=rfs_project_table_$gt&gt;&lt;/td&gt;&lt;td class=rfs_project_table_$gt&gt;&quot;</span>;
 <a name="l00035"></a>00035         echo <span class="stringliteral">&quot;$file-&gt;description\n&quot;</span>;
 <a name="l00036"></a>00036         echo <span class="stringliteral">&quot;&lt;/td&gt;&lt;/tr&gt;&quot;</span>;
 <a name="l00037"></a>00037     }

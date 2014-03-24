@@ -58,7 +58,7 @@ if ($_REQUEST['action'] == "get_file_go") {
     include ("modules/core_files/module.files.php");
     if ($_SESSION["logged_in"] == "true") {
         $id = $_REQUEST['id'];
-        $filedata = rfs_getfiledata($id);
+        $filedata = module_files_getfiledata($id);
         if (empty($filedata)) {
             echo "Error, file does not exist?\n";
             exit();
@@ -413,7 +413,7 @@ function files_action_get_file()
     eval(lib_rfs_get_globals());
     if ((lib_rfs_bool_true($RFS_SITE_ALLOW_FREE_DOWNLOADS)) || ($_SESSION["logged_in"] ==
         "true")) {
-        $filedata = rfs_getfiledata($_REQUEST['id']);
+        $filedata = module_files_getfiledata($_REQUEST['id']);
         if (empty($filedata)) {
             echo "Error 3392! File does not exist?\n";
             include ("footer.php");
@@ -786,7 +786,7 @@ function files_action_del()
 {
     eval(lib_rfs_get_globals());
     if (lib_access_check("files", "delete")) {
-        $filedata = rfs_getfiledata($id);
+        $filedata = module_files_getfiledata($id);
         lib_forms_info("REMOVE FILE <br>[$filedata->location]", "WHITE", "RED");
         echo "<p></p>";
         echo "<table border=0>\n";
@@ -849,7 +849,7 @@ function files_action_mdf()
 {
     eval(lib_rfs_get_globals());
     if (lib_access_check("files", "edit")) {
-        $filedata = rfs_getfiledata($id);
+        $filedata = module_files_getfiledata($id);
         echo "<p>Modify [$filedata->name]</p>\n";
         lib_ajax("Name,80", "files", "id", "$id", "name", 70, "", "files", "edit", "");
         lib_ajax("Location,80", "files", "id", "$id", "location", 70, "", "files",
@@ -1110,7 +1110,7 @@ function files_action_listcategory()
     if ($prevtop < 0)
         $prevtop = 0;
 
-    $filelist = rfs_getfilelist($query, $limit);
+    $filelist = module_files_getfilelist($query, $limit);
     $x = count($filelist);
     if ($x == 0) {
         echo "<p>Your search for $criteria yielded no results...</p>";
@@ -1136,7 +1136,7 @@ function files_action_listcategory()
         $i = 0;
         $bg = 0;
         while ($i < count($filelist)) {
-            $filedata = rfs_getfiledata($filelist[$i]);
+            $filedata = module_files_getfiledata($filelist[$i]);
             if (!empty($filedata->name)) {
                 $bg++;
                 if ($bg > 1)
@@ -1198,7 +1198,7 @@ function files_action_()  {
             $q = "";
             if (!empty($tagsearch))
                 $q .= " (`tags` like '%$tagsearch%' ) and ";
-            $filelist = rfs_getfilelist("where $q category = '$buffer' $shide ", 50);
+            $filelist = module_files_getfilelist("where $q category = '$buffer' $shide ", 50);
             if (count($filelist)) {
                 echo "<div class=file_list style='float: left;' >";
                 echo "<div class=file_category style='float:left;' >";
@@ -1214,7 +1214,7 @@ function files_action_()  {
                 echo "<a class=file_category_link href=\"$addon_folder?action=listcategory&category=$buffer\" title=\"List all $buffer files\">[";
                 echo ucwords("$buffer");
                 echo "] ";
-                $myr = rfs_getfilelist("where category='$buffer' $shide ", 999999999);
+                $myr = module_files_getfilelist("where category='$buffer' $shide ", 999999999);
                 echo "(";
                 echo count($myr);
                 echo " files)";
@@ -1224,7 +1224,7 @@ function files_action_()  {
                 $i2 = 0;
                 echo "<table border=0>";
                 while ($i2 < count($filelist)) {
-                    $filedata = rfs_getfiledata($filelist[$i2]);
+                    $filedata = module_files_getfiledata($filelist[$i2]);
                     $bg = $bg + 1;
                     if ($bg > 1)
                         $bg = 0;                        

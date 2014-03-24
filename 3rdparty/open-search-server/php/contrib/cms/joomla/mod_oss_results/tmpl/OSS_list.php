@@ -13,7 +13,7 @@ $uri	   = array_first($entry->xpath('*[@name="url"]'));
 //$directory = array_first($entry->xpath('*[@name="directory"]'));
 //$file	   = str_replace($directory, '', $uri);
 //$date	   = array_first($entry->xpath('*[@name="fileSystemDate"]'));
-//$dateTS    = strtotime(preg_replace('/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\d+$/', '$2-$2-$3 $4:$5:$6', $date));
+//$dateTS    = strtotime(preg_replace('/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\d+$/', '$3-$3-$3 $4:$5:$6', $date));
 //$crawlDate = array_first($entry->xpath('*[@name="crawlDate"]'));
 //$extension = array_last(explode('.', $file));
 $content   = implode('', $entry->xpath('snippet[@name="content"]'));

@@ -438,7 +438,7 @@ function rfs_scrubfiledatabase() {
 	lib_mysql_query(" DROP TABLE files_scrub; ");
 }
 
-function rfs_getfiledata($file){
+function module_files_getfiledata($file){
     $query = "select * from files where `name` = '$file' ";
     if(intval($file)!=0)
     $query = "select * from files where `id` = '$file'";
@@ -447,7 +447,7 @@ function rfs_getfiledata($file){
     return $filedata;
 }
 
-function rfs_getfilelist($filesearch,$limit){
+function module_files_getfilelist($filesearch,$limit){
     $query = "select * from files";
     if(!empty($filesearch)) $query.=" ".$filesearch;
 		
@@ -469,9 +469,9 @@ function rfs_getfilelist($filesearch,$limit){
 
 
 function md5_scan($RFS_CMD_LINE) {
-	$filelist=rfs_getfilelist(" ",0);
+	$filelist=module_files_getfilelist(" ",0);
 	for($i=0;$i<count($filelist);$i++) {
-		$filedata=rfs_getfiledata($filelist[$i]);
+		$filedata=module_files_getfiledata($filelist[$i]);
 		$fl=stripslashes($filedata->location);
 		$tmd5=@md5_file ($fl);
 		if($tmd5) {
@@ -493,9 +493,9 @@ function md5_scan($RFS_CMD_LINE) {
 
 
 function quick_md5_scan($RFS_CMD_LINE) {
-	$filelist=rfs_getfilelist(" ",0);
+	$filelist=module_files_getfilelist(" ",0);
 	for($i=0;$i<count($filelist);$i++) {
-		$filedata=rfs_getfiledata($filelist[$i]);
+		$filedata=module_files_getfiledata($filelist[$i]);
 		$fl=stripslashes($filedata->location);
 		if(empty($filedata->md5)) {
 			$tmd5=@md5_file ($fl);
@@ -841,7 +841,7 @@ function rfs_show_duplicate_files2($RFS_CMD_LINE) {
 
 
 function rfs_lib_file_delete($id,$annihilate) { eval(lib_rfs_get_globals());
-	$filedata=rfs_getfiledata($id);
+	$filedata=module_files_getfiledata($id);
 	lib_mysql_query("delete from files where id = '$id'");
 	lib_mysql_query("delete from file_duplicates where loc1 = '$filedata->location'");
 	lib_mysql_query("delete from file_duplicates where loc2 = '$filedata->location'");

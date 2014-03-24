@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 RFS CMS - Really Frickin Simple Content Management System.
  
 This project is available free of charge,
@@ -84,3 +85,11 @@ please contact me, and I will make sure these issues are corrected.
 
 Thanks,
 Seth
+=======
+This is a module for RFSCMS that will let users track Air Force style bullets for EPR's.
+If you don't know what that means, you probably don't want this.
+
+Thanks,
+Seth
+
+>>>>>>> 62342a0ec2c93e37b9ad3085b2c726d3ccb1591b
