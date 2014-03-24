@@ -143,7 +143,7 @@ if(($action=="view") || ($action=="ad")) {
 
 if($action=="edityournews"){
     echo "<h1>Editing your news stories</h1>";
-	lib_buttons_make_button("$RFS_SITE_URL/modules/core_news/news.php?showform=yes","Submit new news article");
+	lib_buttons_make_button("$addon_folder?showform=yes","Submit new news article");
 
     echo "<table border=0 cellspacing=0 cellpadding=5 width=100%><tr><td class=contenttd>";
     echo "<p>Unpublished:</p>";

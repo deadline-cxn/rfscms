@@ -1,11 +1,11 @@
 <?
 include_once("include/lib.all.php");
-
-lib_menus_register("Files","$RFS_SITE_URL/modules/core_files/files.php");
+// lib_menus_register("Files","$addon_folder");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FILES
-function module_files($x) { eval(lib_rfs_get_globals());
+function module_files($x) {
+    eval(lib_rfs_get_globals());
     lib_div("FILES MODULE SECTION");
     echo "<h2>Last $x Files</h2>";
     $result=lib_mysql_query("select * from files where category !='unsorted' order by `time` desc limit 0,$x");
@@ -14,7 +14,7 @@ function module_files($x) { eval(lib_rfs_get_globals());
     $gt=2;
     for($i=0;$i<$numfiles;$i++){
         $file=mysql_fetch_object($result);
-        $link="$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$file->id";
+        $link="$addon_folder?action=get_file&id=$file->id";
         $fdescription=str_replace('"',"&quote;",stripslashes($file->description));
         $gt++; if($gt>2)$gt=1;
         echo "<tr><td class=rfs_file_table_$gt>";
@@ -43,7 +43,6 @@ function rfs_update_file($fid) {
 		lib_mysql_query("UPDATE files SET md5='$tmd5' where id='$fid'");
 	}
 }
-///////////////////////////////////////////////////////////////////////////////////
 
 function lib_ajax_callback_files_add_tag() { eval(lib_rfs_get_globals());
 
@@ -185,6 +184,19 @@ function lib_ajax_javascript_dupefile_delete(name,ajv,table,ikey,kv,field,page,a
 }
 
 
+function show1filee($filedata,$bg) {
+    eval(lib_rfs_get_globals());
+    echo "<tr>";
+    foreach($filedata as $k => $v) {
+        echo "<td>";
+        if(empty($v)) $v="=====================================";               echo lib_string_truncate($v,10);
+        
+        echo "</td>";
+    }
+    echo "</tr>";
+}
+
+
 function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 
 	if((($_SESSION['editmode']==true) || ($_SESSION['show_temp']==true)) ) $fedit=true;
@@ -216,7 +228,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	///////////////////////////////////
 	
 	echo "<div style='display: block; float:left;' class='rfs_file_table_$bg'>"; 
-		echo "<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$filedata->id\">";
+		echo "<a href=\"$addon_folder?action=get_file&id=$filedata->id\">";
 		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
 		echo "</a>";
 	echo "</div>";
@@ -249,7 +261,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 						echo "<div style='display: block; float:left; padding:5px; margin:5px; background-color: #500; color: #f00;
 						border: 1px dashed #f00; border-radius: 10px;
 						' id='dfd_$dfile->id'> ";
-							echo "<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$dfile->id\"
+							echo "<a href=\"$addon_folder?action=get_file&id=$dfile->id\"
 								title=\"matching file $dfile->location\">";
 							$ftype=lib_file_getfiletype($dfile->name);
 							if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
@@ -280,7 +292,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 		else {
 			$shortname=lib_string_truncate($filedata->name,24);
 			if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
-			echo "<a class=\"file_link\" href=\"$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$filedata->id\"	 >$shortname</a>";
+			echo "<a class=\"file_link\" href=\"$addon_folder?action=get_file&id=$filedata->id\"	 >$shortname</a>";
 		}
 		
 		echo "<br>";
@@ -293,7 +305,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			($filetype=="jpeg"))
 			if($fworksafe) {
 				if($_SESSION['thumbs'])
-					echo rfs_picthumb("$RFS_SITE_URL/$filedata->location",$nwidth,0,1)."<br>";	
+					echo lib_images_thumb("$RFS_SITE_URL/$filedata->location",$nwidth,0,1)."<br>";	
 				}
 
 		if(	($filetype=="mp3") ||
@@ -329,8 +341,7 @@ function show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			}
 		}
 		
-		echo "<div style='display: block; float:left;' class='rfs_file_table_$bg'
-			id=\"tags_$filedata->id\"> &nbsp; </div>"; 
+		// echo "<div style='display: block; float:left;' class='rfs_file_table_$bg' id=\"tags_$filedata->id\"> &nbsp; </div>"; 
 		
 		if($_SESSION['tagmode'])
 				lib_tags_add_link("files",$filedata->id);
@@ -623,7 +634,7 @@ function rfs_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
 	if($r) if(mysql_num_rows($r)) return;
 
 	lib_mysql_query("INSERT INTO `file_duplicates` (`loc1`,   `size1`,   `loc2`, `size2`,    `md5` )
-				                      VALUES ( '$loc1', '$size1', '$loc2',  '$size2', '$md5' ) ;");
+				                           VALUES ( '$loc1', '$size1', '$loc2',  '$size2', '$md5' ) ;");
 
 	
 }
@@ -639,7 +650,7 @@ function rfs_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
 		
 		echo "<td	class='$color'>";
 
-		rfs_img_button_x( "$RFS_SITE_URL/modules/core_files/files.php?action=del&id=".
+		rfs_img_button_x( "$addon_folder?action=del&id=".
 							$f->id.
 							"&retpage=".urlencode(rfs_canonical_url()),
 							"Delete ",
@@ -650,7 +661,7 @@ function rfs_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
 		echo "</td>";
 		
 		echo "<td class='$color'>";
-		echo "<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$f->id\">";
+		echo "<a href=\"$addon_folder?action=get_file&id=$f->id\">";
 		echo $f->location;
 		echo "</a>";
 		echo "</td>";
@@ -688,7 +699,7 @@ function rfs_show_scanned_duplicates($RFS_CMD_LINE) { eval(lib_rfs_get_globals()
 	}*/
 	
 	
-	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/core_files/files.php\" method=post>\n";
+	echo "<form enctype=application/x-www-form-URLencoded action=\"$addon_folder\" method=post>\n";
 	echo "<input type=hidden name=action value=f_dup_rem_checked>";
 	
 	$r=lib_mysql_query("select * from file_duplicates $limit");

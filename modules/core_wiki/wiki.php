@@ -62,7 +62,7 @@ if($action=="history") {
 	for($i=0;$i<mysql_num_rows($r);$i++){
 		echo "<div class=\"forum_box\">";
 		$wpage=mysql_fetch_object($r);
-		echo "<a href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?action=viewpagebyid&id=$wpage->id\">$wpage->name</a> ";
+		echo "<a href=\"$addon_folder?action=viewpagebyid&id=$wpage->id\">$wpage->name</a> ";
 		echo "REVISION: $wpage->revision ";
 		if(empty($wpage->revised_by)) $wpage->revised_by=$wpage->author;
 		echo "by $wpage->revised_by <br>";
@@ -93,7 +93,7 @@ if($action!="edit") {
 } else {
 	if(lib_access_check("wiki","edit")) {
 
-	echo  "<form action='$RFS_SITE_URL/modules/core_wiki/wiki.php' method='post'>
+	echo  "<form action='$addon_folder' method='post'>
 			<input type=hidden name=action value=editname>
 			<input type=hidden name=name value='$name'>
 			<input id='nname' name=nname value=\"$name\" size=120 onblur=\"this.form.submit()\">
@@ -119,7 +119,7 @@ if($name=="Contents") {
 		for($i=0;$i<$num;$i++) {
 			$wpage=mysql_fetch_object($res);
 			if(!empty($wpage->name))
-			echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/core_wiki/wiki.php?name=".urlencode($wpage->name).">$wpage->name</a>]";
+			echo "[<a class=rfswiki_link href=$addon_folder?name=".urlencode($wpage->name).">$wpage->name</a>]";
 		}
 		echo "<hr>";
 	}
@@ -159,7 +159,7 @@ $wikipage=mysql_fetch_object($res);
 if($GLOBALS['rfsw_admin_mode']=="true"){
     if($action=="createnewpage")    {
         echo "<h3>Enter the name of the page to create below</h3>";
-        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_wiki/wiki.php>";
+        echo "<form enctype=application/x-www-form-URLencoded action=$addon_folder>";
         echo "<input type=hidden name=action value=editgo>";
         echo "<input name=name value=\"Page Name\">";
         echo "<input type=submit name=submit value=\"Create\">";
@@ -172,7 +172,7 @@ if($GLOBALS['rfsw_admin_mode']=="true"){
             $res=rfs_query("select * from wiki where name='$name'");
 			$wikipage=mysql_fetch_object($res);
             echo "<h3>Are you sure you want to delete $wikipage->name?</h3>";
-            echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_wiki/wiki.php>";
+            echo "<form enctype=application/x-www-form-URLencoded action=$addon_folder>";
             echo "<input type=hidden name=action value=deletepagego>";
             echo "<input type=hidden name=name value=\"$name\">";
             echo "<input type=submit name=submit value=confirm>";
@@ -209,7 +209,7 @@ if( ($action=="viewpagebyid") || ($id) ) {
 
 if($action=="edit"){
     if($GLOBALS['rfsw_admin_mode']=="true")    {
-        echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/core_wiki/wiki.php>";
+        echo "<form enctype=application/x-www-form-URLencoded method=post action=$addon_folder>";
 		echo "<input type=hidden name=action value=editgo>";
         echo "<input type=hidden name=name value=\"$name\">";
         echo "<textarea rows=30 cols=120 style=\"width: 80%;\" name=wikiedittext>";
@@ -235,7 +235,7 @@ else {
 		}	else	{
             echo "<h2>This page is empty.</h2>";
             $name=urlencode($name);
-            echo "<p>[<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?action=edit&name=$name\">Edit this page</a>]</p>";
+            echo "<p>[<a class=rfswiki_link href=\"$addon_folder?action=edit&name=$name\">Edit this page</a>]</p>";
             }
     }
     else    {
@@ -247,7 +247,7 @@ else {
         if($hide_wiki_menu!="true")
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
 		
-		$page="$RFS_SITE_URL/modules/core_wiki/wiki.php?name=$name";	
+		$page="$addon_folder?name=$name";	
 		if($RFS_SITE_FACEBOOK_WIKI_COMMENTS) 
 			lib_social_facebook_comments($page);
     }
@@ -266,32 +266,32 @@ if($hide_wiki_menu!="true"){
 	}
 	
     echo "RFS Wiki ( $RFS_FULL_VERSION ) <br>";
-    echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/core_wiki/wiki.php?name=home>main page</a>]";
-    echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/core_wiki/wiki.php?name=contents>view all pages</a>]";
+    echo "[<a class=rfswiki_link href=$addon_folder?name=home>main page</a>]";
+    echo "[<a class=rfswiki_link href=$addon_folder?name=contents>view all pages</a>]";
 	
 	
 	if($wpage->revision) {
-	echo "[<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?action=history&name=$name\">view this page's history</a>]";
+	echo "[<a class=rfswiki_link href=\"$addon_folder?action=history&name=$name\">view this page's history</a>]";
 		
 	}
     if( ($name=="Home") || ($name=="Contents")  || ($name=="contents") ){
         if($name=="Home")    {
             if($GLOBALS['rfsw_admin_mode']=="true")        {
 				if(lib_access_check("wiki","admin"))
-                echo "[<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?action=edit&name=$name&id=$id\">edit this page</a>]";
+                echo "[<a class=rfswiki_link href=\"$addon_folder?action=edit&name=$name&id=$id\">edit this page</a>]";
             }
         }
     } else {
         $name=urlencode($name);
         if($GLOBALS['rfsw_admin_mode']=="true")    {
 			if(lib_access_check("wiki","admin")) {
-            echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/core_wiki/wiki.php?action=edit&name=$name&id=$id>edit this page</a>]";
-            echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/core_wiki/wiki.php?action=deletepage&name=$name&id=$id>delete this page</a>]";
+            echo "[<a class=rfswiki_link href=$addon_folder?action=edit&name=$name&id=$id>edit this page</a>]";
+            echo "[<a class=rfswiki_link href=$addon_folder?action=deletepage&name=$name&id=$id>delete this page</a>]";
 			}
         }
     }
     if($GLOBALS['rfsw_admin_mode']=="true")
-    echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/core_wiki/wiki.php?action=createnewpage>create new page</a>]";
+    echo "[<a class=rfswiki_link href=$addon_folder?action=createnewpage>create new page</a>]";
 }
 
 echo "</div>";

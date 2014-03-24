@@ -1,8 +1,6 @@
 <?
 include_once("include/lib.all.php");
 
-lib_menus_register("Wiki","$RFS_SITE_URL/modules/core_wiki/wiki.php");
-
 lib_access_add_method("wiki", "admin");
 lib_access_add_method("wiki", "edit");
 lib_access_add_method("wiki", "delete");
@@ -21,10 +19,10 @@ function module_wiki($x) { eval(lib_rfs_get_globals());
     for($i=0;$i<$num;$i++) {
         $page=mysql_fetch_object($res);
 		 $opage=urlencode($page->name);
-        echo "<a href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?name=$opage\">$page->name</a> ";
+        echo "<a href=\"$addon_folder?name=$opage\">$page->name</a> ";
         echo "<br>\n";
     }
-    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/core_wiki/wiki.php?name=contents class=a_cat>More...</a>)</p>";
+    echo "<p align=right>(<a href=$addon_folder?name=contents class=a_cat>More...</a>)</p>";
     echo "</td></tr></table>";
 }
 
@@ -64,7 +62,7 @@ function wikiimg($text) { eval(lib_rfs_get_globals());
 					$outtext.="</td><td class=warning> Image not found";
 					//////////////////////////////////////////////////////////////////////////////
 					if($GLOBALS['rfsw_admin_mode']=="true") {
-                    $outtext.=" </td><td class=warning> <form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/core_wiki/wiki.php\" method=\"post\">\n";
+                    $outtext.=" </td><td class=warning> <form enctype=\"multipart/form-data\" action=\"$addon_folder\" method=\"post\">\n";
                     $outtext.="<input type=hidden name=give_file value=yes>\n";
                     $outtext.="<input type=hidden name=name value=\"$name\">\n";
                     $outtext.="<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
@@ -175,7 +173,7 @@ function wikitext($text) { eval(lib_rfs_get_globals());
                 case "@":                 
                     // symbolic page link
                     $fnc=explode(",",substr($ila2[0],1));
-						$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?name=".urlencode($fnc[0])."\">".$fnc[1]."</a>";
+						$outtext.="<a class=rfswiki_link href=\"$addon_folder?name=".urlencode($fnc[0])."\">".$fnc[1]."</a>";
 						$outtext.=nl2br($ila2[1]);						
                     break;
                     
@@ -312,7 +310,7 @@ function wikitext($text) { eval(lib_rfs_get_globals());
 									$outtext.=nl2br($ila2[1]);
 							}
 						else
-							$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?name=".urlencode($ila2[0])."\">".$ila2[0]."</a>".nl2br($ila2[1]);
+							$outtext.="<a class=rfswiki_link href=\"$addon_folder?name=".urlencode($ila2[0])."\">".$ila2[0]."</a>".nl2br($ila2[1]);
 							
 					
 					

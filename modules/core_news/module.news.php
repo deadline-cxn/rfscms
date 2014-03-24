@@ -1,19 +1,18 @@
 <?
 include_once("include/lib.all.php");
-lib_menus_register("News","$RFS_SITE_URL/modules/core_news/news.php");
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE NEWS
 function news_buttons() { eval(lib_rfs_get_globals());
 	if(lib_access_check("news","submit")) {
-		lib_buttons_make_button("$RFS_SITE_URL/modules/core_news/news.php?showform=yes","Submit News");
+		lib_buttons_make_button("$addon_folder?showform=yes","Submit News");
 	}
 }
 
 function adm_action_lib_news_news_submit() { eval(lib_rfs_get_globals());
-    lib_domain_gotopage("$RFS_SITE_URL/modules/core_news/news.php?showform=yes");
+    lib_domain_gotopage("$addon_folder?showform=yes");
 }
 function adm_action_lib_news_news_edit() { eval(lib_rfs_get_globals());
-    lib_domain_gotopage("$RFS_SITE_URL/modules/core_news/news.php?action=edityournews");
+    lib_domain_gotopage("$addon_folder?action=edityournews");
 }
 function module_news_list($x) { eval(lib_rfs_get_globals());
     lib_div("NEWS MODULE SECTION");
@@ -34,9 +33,9 @@ function module_news_list($x) { eval(lib_rfs_get_globals());
         $altern=stripslashes($news->image_alt);
         $picf="$RFS_SITE_PATH/$news->image_url";
         $picf=str_replace($RFS_SITE_URL,"",$picf);
-        echo "<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$news->id\">".lib_images_thumb("$picf",30,0,1	)."</a>\n";
+        echo "<a href=\"$addon_folder?action=view&nid=$news->id\">".lib_images_thumb("$picf",30,0,1	)."</a>\n";
         echo "</td><td valign=top  class=contenttd 90%>";
-        echo "<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".lib_string_truncate("$news->headline",50)."</a>";
+        echo "<a href=\"$addon_folder?action=view&nid=$news->id\" class=\"a_cat\">".lib_string_truncate("$news->headline",50)."</a>";
         $ntext=str_replace("<p>"," ",$ntext);
         $ntext=str_replace("</p>"," ",$ntext);
         $ntext=str_replace("<","&lt;",$ntext);
@@ -44,7 +43,7 @@ function module_news_list($x) { eval(lib_rfs_get_globals());
         echo "</td></tr>";
     }
     echo "</table>";
-    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/core_news/news.php class=\"a_cat\" align=right>More...</a>)</p>";
+    echo "<p align=right>(<a href=$addon_folder class=\"a_cat\" align=right>More...</a>)</p>";
 }
 function module_news_list_popular($x) { eval(lib_rfs_get_globals());
     lib_div("NEWS MODULE SECTION");
@@ -65,10 +64,10 @@ function module_news_list_popular($x) { eval(lib_rfs_get_globals());
             $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
 
         $altern=stripslashes($news->image_alt);
-        echo "<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$news->id\"><img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30></a>\n";
+        echo "<a href=\"$addon_folder?action=view&nid=$news->id\"><img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30></a>\n";
         echo "</td></tr></table>";
         echo "</td><td valign=top>";
-        echo "<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".lib_string_truncate("$news->headline",50)."</a><br>";
+        echo "<a href=\"$addon_folder?action=view&nid=$news->id\" class=\"a_cat\">".lib_string_truncate("$news->headline",50)."</a><br>";
         $ntext=str_replace("<br>"," ",stripslashes(lib_string_truncate("$news->message",70)));
         $ntext=str_replace("<img",$news->headline,$ntext);
         $ntext=str_replace("<iframe",$news->headline,$ntext);
@@ -154,14 +153,14 @@ function rfs_show_news($nid) { eval(lib_rfs_get_globals());
 		
 		echo "<div class=\"news_image\">";
 	   
-    $out_link=urlencode("$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$news->id");
+    $out_link=urlencode("$addon_folder?action=view&nid=$news->id");
 
     if(!empty($news->image_url)) {		
 		$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
 		$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);		
 		$altern=stripslashes($news->image_alt);		
 		if(empty($news->image_link))
-			$news->image_link="$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$news->id";
+			$news->image_link="$addon_folder?action=view&nid=$news->id";
 		echo "<a href=\"$news->image_link\" target=\"_blank\" class=\"news_a\" >";
 		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
 			$oldimage=$news->image_url;
@@ -187,7 +186,7 @@ function rfs_show_news($nid) { eval(lib_rfs_get_globals());
         lib_rfs_echo(lib_string_convert_smiles(stripslashes(wikiimg((wikitext($news->message))))));
     }
 	
-	$page="$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$nid";	
+	$page="$addon_folder?action=view&nid=$nid";	
 	
 	if($RFS_SITE_FACEBOOK_NEWS_COMMENTS) 
 		lib_social_facebook_comments($page);
@@ -203,12 +202,12 @@ function rfs_show_news($nid) { eval(lib_rfs_get_globals());
 		echo "<div>";
 		if(!empty($news->wiki)) {
 			echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n";
-			echo "[<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=ed&nid=$nid\" class=news_a>edit (news)</a>] \n";			
+			echo "[<a href=\"$addon_folder?action=ed&nid=$nid\" class=news_a>edit (news)</a>] \n";			
 		} else {
-			echo "[<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=ed&nid=$nid\" class=news_a>edit</a>] \n";
+			echo "[<a href=\"$addon_folder?action=ed&nid=$nid\" class=news_a>edit</a>] \n";
 		}
 		
-        echo "[<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=de&nid=$nid\" class=news_a>remove</a>] \n";
+        echo "[<a href=\"$addon_folder?action=de&nid=$nid\" class=news_a>remove</a>] \n";
 		echo "</div>";
     }   		
 		echo "<div>";
@@ -268,10 +267,10 @@ function deletenews($nid) { eval(lib_rfs_get_globals());
     echo "<table border=\"0\" align=center><tr><td class=\"lib_forms_warning\"><center>".lib_string_convert_smiles(":X")."\n";
     echo "<br>WARNING:<br>The news article will be completely removed are you sure?</center>\n";
     echo "</td></tr></table>\n";
-    echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/core_news/news.php\">\n";
+    echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$addon_folder\">\n";
     echo "<input type=hidden name=action value=dego><input type=hidden name=nid value=$nid>\n";
     echo "<input type=\"submit\" name=\"submit\" value=\"Yes\"></form></td>\n";
-    echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/core_news/news.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
+    echo "<td><form enctype=application/x-www-form-URLencoded action=\"$addon_folder\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
 }
 function deletenewsgo($nid){ 	eval(lib_rfs_get_globals());
     lib_mysql_query("DELETE FROM news where id = '$nid'");
@@ -284,7 +283,7 @@ function editnews($nid) { eval(lib_rfs_get_globals());
 
     $news=mysql_fetch_object(lib_mysql_query("select * from news where id='$nid'"));
     
-	echo "<a href=$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$nid>Preview</a>";
+	echo "<a href=$addon_folder?action=view&nid=$nid>Preview</a>";
 	
 	$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
 	$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);
@@ -319,7 +318,7 @@ function editnews($nid) { eval(lib_rfs_get_globals());
     echo "Enter a url";
     echo "<table border=0>\n";
     echo "<form enctype=application/x-www-form-URLencoded ";
-    echo " enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/core_news/news.php\" method=\"post\">\n";
+    echo " enctype=\"multipart/form-data\" action=\"$addon_folder\" method=\"post\">\n";
     echo "<input type=hidden name=action value=imageurl>\n";
     echo "<input type=hidden name=nid value=$nid>";
     echo "<tr><td><input name=\"userfile\"> </td><td>";
@@ -328,7 +327,7 @@ function editnews($nid) { eval(lib_rfs_get_globals());
     echo "</table>\n";
     echo "Or select a file to upload";
     echo "<table border=0>\n";
-    echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/core_news/news.php\" method=\"post\">\n";
+    echo "<form enctype=\"multipart/form-data\" action=\"$addon_folder\" method=\"post\">\n";
     echo "<input type=hidden name=give_file value=news>\n";
     echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"99900000\">";
     echo "<input type=hidden name=local value=\"images/news\">";
@@ -338,7 +337,7 @@ function editnews($nid) { eval(lib_rfs_get_globals());
     echo "</form>\n";
     echo "</table>\n";
     echo "<table border=0>\n";
-    echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/core_news/news.php\" method=\"post\">\n";
+    echo "<form enctype=\"multipart/form-data\" action=\"$addon_folder\" method=\"post\">\n";
     echo "<input type=hidden name=action value=clearnewsimage>\n";
     echo "<input type=hidden name=nid value=$nid>";
     echo "<tr><td>Or clear current image: <input type=\"submit\" name=\"submit\" value=\"Clear\"></td></tr>\n";
@@ -349,7 +348,7 @@ function editnews($nid) { eval(lib_rfs_get_globals());
     echo "</td>";
     echo "</tr></table>";
 
-echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/core_news/news.php\">\n";
+echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$addon_folder\">\n";
     echo "<table border=0>";
 	
 	
@@ -506,7 +505,7 @@ function shownews() { eval(lib_rfs_get_globals());
 		
 		/////////////////
 		echo "<td class=contenttd>";
-		echo "<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$news->id\">";
+		echo "<a href=\"$addon_folder?action=view&nid=$news->id\">";
 		echo "<img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30>";
 		echo "</a>\n";
 		echo "</td>";
@@ -514,7 +513,7 @@ function shownews() { eval(lib_rfs_get_globals());
 
 		/////////////////
 		echo "<td class=contenttd valign=top>";		
-		echo "<a href=\"$RFS_SITE_URL/modules/core_news/news.php?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a><br>";
+		echo "<a href=\"$addon_folder?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a><br>";
        $ntext=str_replace("<br>"," ",stripslashes(lib_string_truncate("$news->message",80)));
        $ntext=str_replace("<p>"," ",$ntext);
        $ntext=str_replace("</p>"," ",$ntext);

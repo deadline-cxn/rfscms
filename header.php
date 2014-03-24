@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-if(isset($RFS_LITTLE_HEADER)) { if($RFS_LITTLE_HEADER==true) { include("lilheader.php"); exit(); } }
+// if(isset($RFS_LITTLE_HEADER)) { if($RFS_LITTLE_HEADER==true) { include("lilheader.php"); exit(); } }
 if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
 include_once("include/lib.all.php");
 if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
@@ -15,6 +15,7 @@ if(stristr($_REQUEST['action'],"lib_ajax_callback")) {
 	exit();
 }
 lib_log_count($data->name);
+$addon_folder=lib_modules_get_folder();
 // include theme definition file (if it exists)
 if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
 // include theme header file (if it exists)
@@ -144,4 +145,6 @@ lib_rfs_echo($RFS_SITE_JS_EDITAREA);
 lib_social_google_analytics();
 lib_forms_system_message();
 lib_rfs_do_action();
+
+
 ?>

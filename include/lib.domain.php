@@ -4,7 +4,14 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_domain_phpself() { eval(lib_rfs_get_globals()); 
+function lib_domain_get_current_pagename() {
+    $x=lib_domain_phpself();
+    $y=explode("/",$x);
+    $x=$y[count($y)-1];
+    return $x;
+}
+function lib_domain_phpself() {
+    eval(lib_rfs_get_globals()); 
 	$page=$_SERVER['PHP_SELF'];
 	return $page;
 }

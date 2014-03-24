@@ -3,10 +3,31 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
-function lib_modules_register($x,$core) {
+
+function lib_modules_register($x,$core,$loc) {
+    eval(lib_rfs_get_globals());
+    
+    global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
     $RFS_MODULE[$x]=array();
-    $RFS_MODULE[$x]["core"]=$core; 
+    $RFS_MODULE[$x]["core"]=$core;
+    $RFS_MODULE[$x]["loc"]=$loc;   
+    $loc=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
+     
+    lib_menus_register($x,$loc);
+}
+function lib_modules_get_folder() {
+    eval(lib_rfs_get_globals());
+    global $RFS_SITE_PATH,$RFS_SITE_URL;
+    global $RFS_MODULE;
+    $x=lib_domain_get_current_pagename();
+    $x=explode(".",$x);
+    $x=$x[0];
+    
+    $loc=$RFS_MODULE[$x]["loc"];
+    $loc=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
+    
+    return $loc;
 }
 function lib_modules_properties($module) {
     global $RFS_MODULE;
@@ -28,7 +49,8 @@ function lib_modules_array() {
                 $core=false; if(stristr($entry,"core")) $core=true;
                 $entry2=str_replace("core_","",$entry);
                 $module="$dr/$entry/module.$entry2.php";
-                lib_modules_register($entry2,$core);
+                $loc="$dr/$entry/$entry2.php";
+                lib_modules_register($entry2,$core,$loc);
                 lib_div($module);
                 include($module);
             }
