@@ -2555,7 +2555,6 @@ function adm_menu_built_in() { eval(lib_rfs_get_globals());
 }
 function finishadminpage() {
 	eval( lib_rfs_get_globals() );
-
 	if(!lib_access_check("debug","view")) return;
 		if(isset($_SESSION['debug_msgs'])) {
 		if(lib_rfs_bool_true($_SESSION['debug_msgs'])){    

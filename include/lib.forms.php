@@ -411,7 +411,8 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
     }
     if(!empty($table)){
         $result = lib_mysql_query("SHOW FULL COLUMNS FROM `$table`");
-        while($i = mysql_fetch_assoc($result)){
+		if($result)
+        while($i = mysql_fetch_assoc($result)) {
             $this_codearea=false;
             $name=ucwords(str_replace("_"," ",$i['Field']));
             $tref=0;

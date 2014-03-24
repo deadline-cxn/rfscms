@@ -4,14 +4,17 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
 
-function lib_modules_base_url($x) {
+function lib_modules_get_property($x,$property) {
 	global $RFS_MODULE;
-	return $RFS_MODULE[$x]["base_url"];
+	return $RFS_MODULE[$x][$property];
+}
+
+function lib_modules_register_property($x,$property,$property_value) {
+	global $RFS_MODULE;
+	$RFS_MODULE[$x][$property]=$property_value;
 }
 
 function lib_modules_register($x,$core,$loc) {
-    eval(lib_rfs_get_globals());
-    
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
     $RFS_MODULE[$x]=array();
@@ -25,12 +28,9 @@ function lib_modules_register($x,$core,$loc) {
 	$RFS_MODULE[$x]["loc"]=$loc;
 }
 function lib_modules_get_url($z) {
-	eval(lib_rfs_get_globals());
     global $RFS_SITE_PATH,$RFS_SITE_URL;
-    global $RFS_MODULE;
-	
+    global $RFS_MODULE;	
 	if(!empty($z)) return $RFS_MODULE[$z]["url"];
-	
 	$x=lib_domain_canonical_url();
     $x=explode("/",$x);
 	for($i=0;$i<count($x);$i++) {
@@ -41,10 +41,30 @@ function lib_modules_get_url($z) {
     $loc=$RFS_MODULE[$addon]["url"];
     return $loc;
 }
-function lib_modules_get_folder($z) {
-	eval(lib_rfs_get_globals());
+
+function lib_modules_get_base_url_from_file($f) {
+	global $RFS_SITE_PATH;
+	global $RFS_SITE_URL;
+	$f=str_replace($RFS_SITE_PATH,"",$f);
+	$x=explode("/",$f);
+	$outurl=$RFS_SITE_URL;
+	
+	for($i=0;$i<count($x);$i++) {
+		$outurl.=$x[$i];
+		$outurl.="/";
+		if(strstr($x[$i],"modules")) {
+			$addon=$x[$i+1];
+			$outurl.=$x[$i+1];
+			break;
+		}
+	}
+    $RFS_MODULE[$addon]["base_url"]=$outurl;
+    return $RFS_MODULE[$addon]["base_url"];
+}
+function lib_modules_get_base_url($z) {
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
+	if(!empty($z)) return $RFS_MODULE[$z]["base_url"];
 	$x=lib_domain_canonical_url();
     $x=explode("/",$x);
 	for($i=0;$i<count($x);$i++) {
@@ -57,13 +77,18 @@ function lib_modules_get_folder($z) {
 }
 function lib_modules_properties($module) {
     global $RFS_MODULE;
-    echo "$module... <br>";
+	echo "<div class=forum_box>";
+    lib_forms_info("REGISTERED MODULE [$module]<br>","white","green");
+	echo "PROPERTIES:<br>";
+	echo "<table border=0>";
     foreach($RFS_MODULE[$module] as $k => $v) {
-            echo "$k -> $v<br>";
+            echo "<tr><td>[$k]</td><td>=</td><td>[$v]</td></tr>";
     }
+	echo "</table>";
+	echo "</div>";
 }
 function lib_modules_array() {
-	eval(lib_rfs_get_globals());
+	global $RFS_SITE_PATH;
 	$dr="$RFS_SITE_PATH/modules";
 	$modules=array();    
     $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
@@ -123,7 +148,8 @@ function adm_action_modules() { eval(lib_rfs_get_globals());
 		lib_mysql_query($addon_database);
 		lib_forms_info("ADDON DATABASE UPDATED...","white","green");
 	}
-	finishadminpage();
+	include( "footer.php" );
+	exit();
 }
 
 function adm_action_f_module_store(){
@@ -139,13 +165,15 @@ function adm_action_f_module_store(){
 		echo "Name: $module->name <br>";
 	}
 	
-	finishadminpage();
+	include( "footer.php" );
+	exit();
 }
 function adm_action_f_module_menu(){
 	echo "<h1>Menu Options registered by Modules</h1>";
-	echo "<hr>";
+	echo "<hr>";	
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
 	echo "<hr>";
+	echo "<div class='forum_box'>";
 	global $RFS_MENU_OPTION;
 	echo "<table border=0>";
 	echo "<tr><th></th><th></th><th>Link Short Name</th><th>Link URL</th></tr>";
@@ -166,13 +194,16 @@ function adm_action_f_module_menu(){
 		
 	}
 	echo "</table>";
-	finishadminpage();
+	echo "</div>";
+	include( "footer.php" );
+	exit();
 }
 function adm_action_f_show_installed_modules() {
 	echo "<h1>Modules Installed</h1><hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
 	echo "<hr>";
 	
+	echo "<div class='forum_box'>";
 	echo "<table border=0>";
 	
 	global $RFS_MODULE;
@@ -181,18 +212,15 @@ function adm_action_f_show_installed_modules() {
 	   
 		echo "<tr>";
 		echo "<td>";
-            
 		echo "<font style='color:white; background-color:green;'>ACTIVE</font> ";
 		echo "</td>";
 		echo "<td>";
         foreach($v as $k2 => $v2) {
             if($k2=="core" and $v2==true)
                 echo "<font style='color:white; background-color:blue;'>CORE</font> ";
-        }		
+        }
 		echo "</td>";		
-		echo "<td>";		
-		echo "[$k]<br>";
-        
+		echo "<td>";      
         
         lib_modules_properties($k);
 		echo "</td>";
@@ -200,8 +228,10 @@ function adm_action_f_show_installed_modules() {
 		
 	}
 	echo "</table>";
+	echo "</div>";
 	echo "<br>";
-	finishadminpage();
+	include( "footer.php" );
+	exit();
 }
 
 ?>
