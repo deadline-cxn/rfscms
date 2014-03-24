@@ -1,4 +1,5 @@
-cd /var/www
+cd /var/www/modules
+
 git clone https://github.com/sethcoder/rfscms_bullet_log.git
 git clone https://github.com/sethcoder/rfscms_gns3.git
 git clone https://github.com/sethcoder/rfscms_netman.git
