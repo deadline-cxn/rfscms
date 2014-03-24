@@ -3,7 +3,6 @@
 // RFS Wiki (Really Frickin Simple)
 // By Seth Parson http://www.SethCoder.com/
 $title="Wiki ".$_REQUEST['name'];
-
 chdir("../../");
 include_once("include/lib.all.php");
 if(empty($RFSW_BULLET_IMAGE))
@@ -13,8 +12,8 @@ if(empty($RFSW_LINK_IMAGE))
 if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = getcwd();
 if(!empty($rfsw_header)) include($rfsw_header);
 $rfsw_admin_mode="false";
-if(lib_access_check("wiki","admin"))
-	$rfsw_admin_mode="true";
+if(lib_access_check("wiki","admin")) $rfsw_admin_mode="true";
+$addon_url=lib_modules_get_url("core_wiki");
 ///////////////////////////////////////////////////////////////////////////////
 // DO NOT MODIFY BELOW THIS LINE
 ///////////////////////////////////////////////////////////////////////////////
@@ -23,15 +22,21 @@ if(!empty($authdbaddress))  $rfsw_address      = $authdbaddress;
 if(!empty($authdbuser))     $rfsw_user         = $authdbuser;
 if(!empty($authdbpass))     $rfsw_pass         = $authdbpass;
 if(!function_exists('rfs_query')) {
-    function rfs_query($query)  {
-        $address = $GLOBALS['rfsw_address'];
-        $user    = $GLOBALS['rfsw_user'];
-        $pass    = $GLOBALS['rfsw_pass'];
-        $dbname  = $GLOBALS['rfsw_dbname'];
-        $mysql=mysql_connect($address, $user, $pass);
-    	mysql_select_db($dbname, $mysql);
-        return mysql_query($query,$mysql);
-    }
+	if(function_exists('lib_mysql_query')) {
+		function rfs_query($x) { return lib_mysql_query($x); }
+	}
+	else {
+		function rfs_query($query)  {
+			$address = $GLOBALS['rfsw_address'];
+			$user    = $GLOBALS['rfsw_user'];
+			$pass    = $GLOBALS['rfsw_pass'];
+			$dbname  = $GLOBALS['rfsw_dbname'];
+			$mysql=mysql_connect($address, $user, $pass);
+			mysql_select_db($dbname, $mysql);
+			return mysql_query($query,$mysql);
+		}
+		
+	}
 }
 function rfs_time($whattime){
 	// 0000-00-00 00:00:00
@@ -53,7 +58,6 @@ if($give_file=="yes"){
 if(empty($name)) $name="home";
 $name=ucwords($name);
 lib_rfs_echo("<h1>$name</h1>");
-
 if($action=="history") {
 	echo "<hr>";
 	echo "$name history: <br>";
@@ -62,7 +66,7 @@ if($action=="history") {
 	for($i=0;$i<mysql_num_rows($r);$i++){
 		echo "<div class=\"forum_box\">";
 		$wpage=mysql_fetch_object($r);
-		echo "<a href=\"$addon_folder?action=viewpagebyid&id=$wpage->id\">$wpage->name</a> ";
+		echo "<a href=\"$addon_url?action=viewpagebyid&id=$wpage->id\">$wpage->name</a> ";
 		echo "REVISION: $wpage->revision ";
 		if(empty($wpage->revised_by)) $wpage->revised_by=$wpage->author;
 		echo "by $wpage->revised_by <br>";
@@ -93,7 +97,7 @@ if($action!="edit") {
 } else {
 	if(lib_access_check("wiki","edit")) {
 
-	echo  "<form action='$addon_folder' method='post'>
+	echo  "<form action='$addon_url' method='post'>
 			<input type=hidden name=action value=editname>
 			<input type=hidden name=name value='$name'>
 			<input id='nname' name=nname value=\"$name\" size=120 onblur=\"this.form.submit()\">
@@ -106,38 +110,31 @@ if($action!="edit") {
 echo "<hr>";
 
 if($name=="Contents") {	
-	// Add in limited number of contents displayed per page
-	
+	// Add in limited number of contents displayed per page	
 } else { 
-	$res = rfs_query("	select distinct name from wiki where 
-						`text` like '%[$name]%' or 
-						`text` like '%\@$name,%' 
-						order by name asc" ); 
-	$num = mysql_num_rows($res);
-	if($num) {
+	$res = rfs_query("	select distinct name from wiki where `text` like '%[$name]%' or `text` like '%\@$name,%' order by name asc" );
+	if($res) {
+		$num=mysql_num_rows($res);
 		echo "Linked Pages ($num) >> ";
-		for($i=0;$i<$num;$i++) {
-			$wpage=mysql_fetch_object($res);
+		while($wpage=mysql_fetch_object($res)) {
+			
 			if(!empty($wpage->name))
-			echo "[<a class=rfswiki_link href=$addon_folder?name=".urlencode($wpage->name).">$wpage->name</a>]";
+			echo "[<a class=rfswiki_link href=$addon_url?name=".urlencode($wpage->name).">$wpage->name</a>]";
 		}
 		echo "<hr>";
 	}
 }
 //////////////////////////////////////////////////////////////////////////////
 if($name=="Contents") {
-    $res=rfs_query("select distinct name from wiki order by name asc");
-    $num=mysql_num_rows($res);
-	
+    $res=rfs_query("select distinct `name` from `wiki` order by `name` asc");
+
     echo "<h3>RFSWiki All Pages ($num)</h3>";
     echo "<table border=0 cellspacing=0 cellpadding=0>";
-    for($i=0;$i<$num;$i++)    {
-		$tpage=mysql_fetch_object($res);
+	if($res)
+    while($tpage=mysql_fetch_object($res))    {		
 		$wpage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
-		
-		
         echo "<tr><td class=rfswiki_contenttd>";
-        echo "<a class=rfswiki_link href=$RFS_SITE_URL/modules/core_`wiki/wiki.php?name=".urlencode($wpage->name).">$wpage->name</a>";
+        echo "<a class=rfswiki_link href=\"$addon_url?name=".urlencode($wpage->name)."\">$wpage->name</a>";
         echo "</td>";
         echo "<td class=rfswiki_contenttd> &nbsp; $wpage->author &nbsp; </td>";
 		echo "<td class=rfswiki_contenttd>";
@@ -159,7 +156,7 @@ $wikipage=mysql_fetch_object($res);
 if($GLOBALS['rfsw_admin_mode']=="true"){
     if($action=="createnewpage")    {
         echo "<h3>Enter the name of the page to create below</h3>";
-        echo "<form enctype=application/x-www-form-URLencoded action=$addon_folder>";
+        echo "<form enctype=application/x-www-form-URLencoded action=$addon_url>";
         echo "<input type=hidden name=action value=editgo>";
         echo "<input name=name value=\"Page Name\">";
         echo "<input type=submit name=submit value=\"Create\">";
@@ -172,7 +169,7 @@ if($GLOBALS['rfsw_admin_mode']=="true"){
             $res=rfs_query("select * from wiki where name='$name'");
 			$wikipage=mysql_fetch_object($res);
             echo "<h3>Are you sure you want to delete $wikipage->name?</h3>";
-            echo "<form enctype=application/x-www-form-URLencoded action=$addon_folder>";
+            echo "<form enctype=application/x-www-form-URLencoded action=$addon_url>";
             echo "<input type=hidden name=action value=deletepagego>";
             echo "<input type=hidden name=name value=\"$name\">";
             echo "<input type=submit name=submit value=confirm>";
@@ -209,7 +206,7 @@ if( ($action=="viewpagebyid") || ($id) ) {
 
 if($action=="edit"){
     if($GLOBALS['rfsw_admin_mode']=="true")    {
-        echo "<form enctype=application/x-www-form-URLencoded method=post action=$addon_folder>";
+        echo "<form enctype=application/x-www-form-URLencoded method=post action=$addon_url>";
 		echo "<input type=hidden name=action value=editgo>";
         echo "<input type=hidden name=name value=\"$name\">";
         echo "<textarea rows=30 cols=120 style=\"width: 80%;\" name=wikiedittext>";
@@ -235,7 +232,7 @@ else {
 		}	else	{
             echo "<h2>This page is empty.</h2>";
             $name=urlencode($name);
-            echo "<p>[<a class=rfswiki_link href=\"$addon_folder?action=edit&name=$name\">Edit this page</a>]</p>";
+            echo "<p>[<a class=rfswiki_link href=\"$addon_url?action=edit&name=$name\">Edit this page</a>]</p>";
             }
     }
     else    {
@@ -247,7 +244,7 @@ else {
         if($hide_wiki_menu!="true")
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
 		
-		$page="$addon_folder?name=$name";	
+		$page="$addon_url?name=$name";	
 		if($RFS_SITE_FACEBOOK_WIKI_COMMENTS) 
 			lib_social_facebook_comments($page);
     }
@@ -266,32 +263,32 @@ if($hide_wiki_menu!="true"){
 	}
 	
     echo "RFS Wiki ( $RFS_FULL_VERSION ) <br>";
-    echo "[<a class=rfswiki_link href=$addon_folder?name=home>main page</a>]";
-    echo "[<a class=rfswiki_link href=$addon_folder?name=contents>view all pages</a>]";
+    echo "[<a class=rfswiki_link href=$addon_url?name=home>main page</a>]";
+    echo "[<a class=rfswiki_link href=$addon_url?name=contents>view all pages</a>]";
 	
 	
 	if($wpage->revision) {
-	echo "[<a class=rfswiki_link href=\"$addon_folder?action=history&name=$name\">view this page's history</a>]";
+	echo "[<a class=rfswiki_link href=\"$addon_url?action=history&name=$name\">view this page's history</a>]";
 		
 	}
     if( ($name=="Home") || ($name=="Contents")  || ($name=="contents") ){
         if($name=="Home")    {
             if($GLOBALS['rfsw_admin_mode']=="true")        {
 				if(lib_access_check("wiki","admin"))
-                echo "[<a class=rfswiki_link href=\"$addon_folder?action=edit&name=$name&id=$id\">edit this page</a>]";
+                echo "[<a class=rfswiki_link href=\"$addon_url?action=edit&name=$name&id=$id\">edit this page</a>]";
             }
         }
     } else {
         $name=urlencode($name);
         if($GLOBALS['rfsw_admin_mode']=="true")    {
 			if(lib_access_check("wiki","admin")) {
-            echo "[<a class=rfswiki_link href=$addon_folder?action=edit&name=$name&id=$id>edit this page</a>]";
-            echo "[<a class=rfswiki_link href=$addon_folder?action=deletepage&name=$name&id=$id>delete this page</a>]";
+            echo "[<a class=rfswiki_link href=$addon_url?action=edit&name=$name&id=$id>edit this page</a>]";
+            echo "[<a class=rfswiki_link href=$addon_url?action=deletepage&name=$name&id=$id>delete this page</a>]";
 			}
         }
     }
     if($GLOBALS['rfsw_admin_mode']=="true")
-    echo "[<a class=rfswiki_link href=$addon_folder?action=createnewpage>create new page</a>]";
+    echo "[<a class=rfswiki_link href=$addon_url?action=createnewpage>create new page</a>]";
 }
 
 echo "</div>";

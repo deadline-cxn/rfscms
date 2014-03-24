@@ -11,18 +11,27 @@ lib_access_add_method("wiki", "deleteothers");
 ///// MODULE WIKI
 function module_wiki($x) { eval(lib_rfs_get_globals());
     lib_div("WIKI MODULE SECTION");
-    echo "<h2>Last $x Wiki Page Updates</h2>";
+	$addon_url=lib_modules_get_url("wiki");
+    echo "<h2>Last $x Wiki Pages</h2>";
     echo "<table width=100% border=0><tr>";
     echo "<td valign=top class=contenttd>";
-	$res=lib_mysql_query(" SELECT name, MAX( updated ) FROM wiki GROUP BY name ORDER BY MAX( updated ) DESC LIMIT 0 , $x");
-    $num=mysql_num_rows($res);
-    for($i=0;$i<$num;$i++) {
-        $page=mysql_fetch_object($res);
-		 $opage=urlencode($page->name);
-        echo "<a href=\"$addon_folder?name=$opage\">$page->name</a> ";
-        echo "<br>\n";
-    }
-    echo "<p align=right>(<a href=$addon_folder?name=contents class=a_cat>More...</a>)</p>";
+	
+	$res=lib_mysql_query("
+	
+	SELECT * 
+FROM  `wiki` 
+ORDER BY  `updated` DESC 
+LIMIT 0 , $x
+");
+// SELECT `name`, MAX( updated ) 						FROM `wiki` 						GROUP BY `name` 						ORDER BY MAX( updated ) DESC						LIMIT 0,$x");
+	if($res) {
+		while($page=mysql_fetch_object($res)) {        
+			 $opage=urlencode($page->name);
+			echo "<a href=\"$addon_url?name=$opage\">$page->name</a> ";
+			echo "<br>\n";
+		}
+	}
+    echo "<p align=right>(<a href=\"$addon_url?name=contents\" class=a_cat>More...</a>)</p>";
     echo "</td></tr></table>";
 }
 

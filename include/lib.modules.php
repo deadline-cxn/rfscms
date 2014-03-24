@@ -4,6 +4,11 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 lib_div(__FILE__);
 
+function lib_modules_base_url($x) {
+	global $RFS_MODULE;
+	return $RFS_MODULE[$x]["base_url"];
+}
+
 function lib_modules_register($x,$core,$loc) {
     eval(lib_rfs_get_globals());
     
@@ -11,22 +16,43 @@ function lib_modules_register($x,$core,$loc) {
     global $RFS_MODULE;
     $RFS_MODULE[$x]=array();
     $RFS_MODULE[$x]["core"]=$core;
-    $RFS_MODULE[$x]["loc"]=$loc;   
-    $loc=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
-     
-    lib_menus_register($x,$loc);
+    $url=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
+	$RFS_MODULE[$x]["url"]=$url;
+	lib_menus_register($x,$url);
+	$url=str_replace("/$x.php","",$url);
+	$RFS_MODULE[$x]["base_url"]=$url;
+	$loc=str_replace("/$x.php","",$loc);
+	$RFS_MODULE[$x]["loc"]=$loc;
 }
-function lib_modules_get_folder() {
-    eval(lib_rfs_get_globals());
+function lib_modules_get_url($z) {
+	eval(lib_rfs_get_globals());
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
-    $x=lib_domain_get_current_pagename();
-    $x=explode(".",$x);
-    $x=$x[0];
-    
-    $loc=$RFS_MODULE[$x]["loc"];
-    $loc=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
-    
+	
+	if(!empty($z)) return $RFS_MODULE[$z]["url"];
+	
+	$x=lib_domain_canonical_url();
+    $x=explode("/",$x);
+	for($i=0;$i<count($x);$i++) {
+		if(strstr($x[$i],"modules")) {
+			$addon=$x[$i+1];			
+		}
+	}
+    $loc=$RFS_MODULE[$addon]["url"];
+    return $loc;
+}
+function lib_modules_get_folder($z) {
+	eval(lib_rfs_get_globals());
+    global $RFS_SITE_PATH,$RFS_SITE_URL;
+    global $RFS_MODULE;
+	$x=lib_domain_canonical_url();
+    $x=explode("/",$x);
+	for($i=0;$i<count($x);$i++) {
+		if(strstr($x[$i],"modules")) {
+			$addon=$x[$i+1];			
+		}
+	}
+    $loc=$RFS_MODULE[$addon]["base_url"];
     return $loc;
 }
 function lib_modules_properties($module) {
