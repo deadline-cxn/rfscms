@@ -22,4 +22,5 @@ wtf/*
 modules/rfs*
 modules/videos/cache/*.jpg
 modules/addon*
+error_log
 
