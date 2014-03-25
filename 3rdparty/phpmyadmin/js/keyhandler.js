@@ -1,1 +1,118 @@
-AJAX.registerTeardown("keyhandler.js",function(){$("#table_columns").die("keydown");$("table.insertRowTable").die("keydown")});AJAX.registerOnload("keyhandler.js",function(){$("#table_columns").live("keydown",function(a){onKeyDownArrowsHandler(a.originalEvent)});$("table.insertRowTable").live("keydown",function(a){onKeyDownArrowsHandler(a.originalEvent)})});function onKeyDownArrowsHandler(c){c=c||window.event;var d=(c.srcElement||c.target);if(!d){return}if(d.tagName!="TEXTAREA"&&d.tagName!="INPUT"&&d.tagName!="SELECT"){return}if(navigator.userAgent.toLowerCase().indexOf("applewebkit/")!=-1){if(c.ctrlKey||c.shiftKey||!c.altKey){return}}else{if(!c.ctrlKey||c.shiftKey||c.altKey){return}}if(!d.id){return}var h=d.id.split("_");if(h[0]!="field"||typeof h[2]=="undefined"){return}var a=h[2],g=h[1];var b=null;switch(c.keyCode){case 38:g--;break;case 40:g++;break;case 37:a--;break;case 39:a++;break;default:return}var f="field_"+g+"_"+a;b=document.getElementById(f);if(!b){f="field_"+g+"_"+a+"_0";b=document.getElementById(f)}if(!b){return}b.focus();if(b.tagName!="SELECT"){b.select()}c.returnValue=false};
+/* vim: set expandtab sw=4 ts=4 sts=4: */
+
+// gloabl vars to hold Arrow Down event timeStamps
+var prevTimeStamp = 0; 
+var curTimeStamp = 0;
+
+/**
+  * Allows moving around inputs/select by Ctrl+arrows
+  *
+  * @param object   event data
+  */
+function onKeyDownArrowsHandler(e)
+{
+    e = e || window.event;
+
+    curTimeStamp = e.timeStamp;
+    if( prevTimeStamp == 0 ) {
+        prevTimeStamp = curTimeStamp;
+    }
+    else if( Math.abs(curTimeStamp-prevTimeStamp) < 150 ) {
+        // event in a very quick succession
+        return;
+    }
+    prevTimeStamp = curTimeStamp;
+    
+    var o = (e.srcElement || e.target);
+    if (!o) {
+        return;
+    }
+    if (o.tagName != "TEXTAREA" && o.tagName != "INPUT" && o.tagName != "SELECT") {
+        return;
+    }
+    if (navigator.userAgent.toLowerCase().indexOf('applewebkit/') != -1) {
+        if (e.ctrlKey || e.shiftKey || !e.altKey) {
+            return;
+        }
+    } else {
+        if (!e.ctrlKey || e.shiftKey || e.altKey) {
+            return;
+        }
+    }
+    if (!o.id) {
+        return;
+    }
+
+    var pos = o.id.split("_");
+    if (pos[0] != "field" || typeof pos[2] == "undefined") {
+        return;
+    }
+
+    var x = pos[2], y = pos[1];
+
+    var nO = null;
+
+    switch (e.keyCode) {
+    case 38:
+        // up
+        y--;
+        break;
+    case 40:
+        // down
+        y++;
+        break;
+    case 37:
+        // left
+        x--;
+        break;
+    case 39:
+        // right
+        x++;
+        break;
+    default:
+        return;
+    }
+
+    var is_firefox = navigator.userAgent.toLowerCase().indexOf("firefox/") > -1;
+
+    // restore selected index, bug #3799
+    if (is_firefox && e.type == "keyup") {
+        o.selectedIndex = window["selectedIndex_" + o.id];
+    }
+
+    var id = "field_" + y + "_" + x;
+    nO = document.getElementById(id);
+    if (! nO) {
+        id = "field_" + y + "_" + x + "_0";
+        nO = document.getElementById(id);
+    }
+
+    // skip non existent fields
+    if (! nO) {
+        return;
+    }
+    if (e.type == "keydown") {
+        nO.focus();
+        if (is_firefox) {
+            window["selectedIndex_" + nO.id] = nO.selectedIndex;
+        }
+    }
+    if (nO.tagName != 'SELECT') {
+        nO.select();
+    }
+    e.returnValue = false;
+}
+
+AJAX.registerTeardown('keyhandler.js', function () {
+    $('#table_columns').die('keydown keyup');
+    $('table.insertRowTable').die('keydown keyup');
+});
+
+AJAX.registerOnload('keyhandler.js', function () {
+    $('#table_columns').live('keydown keyup', function (event) {
+        onKeyDownArrowsHandler(event.originalEvent);
+    });
+    $('table.insertRowTable').live('keydown keyup', function (event) {
+        onKeyDownArrowsHandler(event.originalEvent);
+    });
+});

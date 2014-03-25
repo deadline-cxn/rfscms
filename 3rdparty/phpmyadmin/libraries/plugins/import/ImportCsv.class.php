@@ -12,7 +12,7 @@ if (! defined('PHPMYADMIN')) {
 }
 
 /* Get the import interface */
-require_once 'libraries/plugins/ImportPlugin.class.php';
+require_once 'libraries/plugins/import/AbstractImportCsv.class.php';
 
 /**
  * Handles the import for the CSV format
@@ -20,7 +20,7 @@ require_once 'libraries/plugins/ImportPlugin.class.php';
  * @package    PhpMyAdmin-Import
  * @subpackage CSV
  */
-class ImportCsv extends ImportPlugin
+class ImportCsv extends AbstractImportCsv
 {
     /**
      * Whether to analyze tables
@@ -51,55 +51,9 @@ class ImportCsv extends ImportPlugin
             $this->_setAnalyze(true);
         }
 
-        $props = 'libraries/properties/';
-        include_once "$props/plugins/ImportPluginProperties.class.php";
-        include_once "$props/options/groups/OptionsPropertyRootGroup.class.php";
-        include_once "$props/options/groups/OptionsPropertyMainGroup.class.php";
-        include_once "$props/options/items/BoolPropertyItem.class.php";
-        include_once "$props/options/items/TextPropertyItem.class.php";
-
-        $importPluginProperties = new ImportPluginProperties();
-        $importPluginProperties->setText('CSV');
-        $importPluginProperties->setExtension('csv');
-        $importPluginProperties->setOptionsText(__('Options'));
-
-        // create the root group that will be the options field for
-        // $importPluginProperties
-        // this will be shown as "Format specific options"
-        $importSpecificOptions = new OptionsPropertyRootGroup();
-        $importSpecificOptions->setName("Format Specific Options");
-
-        // general options main group
-        $generalOptions = new OptionsPropertyMainGroup();
-        $generalOptions->setName("general_opts");
-        // create primary items and add them to the group
-        $leaf = new BoolPropertyItem();
-        $leaf->setName("replace");
-        $leaf->setText(__('Replace table data with file'));
-        $generalOptions->addProperty($leaf);
-        $leaf = new TextPropertyItem();
-        $leaf->setName("terminated");
-        $leaf->setText(__('Columns separated with:'));
-        $leaf->setSize(2);
-        $leaf->setLen(2);
-        $generalOptions->addProperty($leaf);
-        $leaf = new TextPropertyItem();
-        $leaf->setName("enclosed");
-        $leaf->setText(__('Columns enclosed with:'));
-        $leaf->setSize(2);
-        $leaf->setLen(2);
-        $generalOptions->addProperty($leaf);
-        $leaf = new TextPropertyItem();
-        $leaf->setName("escaped");
-        $leaf->setText(__('Columns escaped with:'));
-        $leaf->setSize(2);
-        $leaf->setLen(2);
-        $generalOptions->addProperty($leaf);
-        $leaf = new TextPropertyItem();
-        $leaf->setName("new_line");
-        $leaf->setText(__('Lines terminated with:'));
-        $leaf->setSize(2);
-        $generalOptions->addProperty($leaf);
+        $generalOptions = parent::setProperties();
+        $this->properties->setText('CSV');
+        $this->properties->setExtension('csv');
 
         if ($GLOBALS['plugin_param'] !== 'table') {
             $leaf = new BoolPropertyItem();
@@ -130,12 +84,11 @@ class ImportCsv extends ImportPlugin
             $generalOptions->addProperty($leaf);
         }
 
-        // add the main group to the root group
-        $importSpecificOptions->addProperty($generalOptions);
+        $leaf = new BoolPropertyItem();
+        $leaf->setName("ignore");
+        $leaf->setText(__('Do not abort on INSERT error'));
+        $generalOptions->addProperty($leaf);
 
-        // set the options for the import plugin property item
-        $importPluginProperties->setOptions($importSpecificOptions);
-        $this->properties = $importPluginProperties;
     }
 
     /**
@@ -158,8 +111,11 @@ class ImportCsv extends ImportPlugin
      */
     public function doImport()
     {
-        global $db, $csv_terminated, $csv_enclosed, $csv_escaped, $csv_new_line;
-        global $error, $timeout_passed, $finished;
+        global $db, $table, $csv_terminated, $csv_enclosed, $csv_escaped,
+            $csv_new_line, $csv_columns, $err_url;
+        // $csv_replace and $csv_ignore should have been here,
+        // but we use directly from $_POST
+        global $error, $timeout_passed, $finished, $message;
 
         $replacements = array(
             '\\n'   => "\n",
@@ -176,12 +132,12 @@ class ImportCsv extends ImportPlugin
             $message = PMA_Message::error(
                 __('Invalid parameter for CSV import: %s')
             );
-            $message->addParam(__('Columns terminated by'), false);
+            $message->addParam(__('Columns terminated with'), false);
             $error = true;
             $param_error = true;
             // The default dialog of MS Excel when generating a CSV produces a
             // semi-colon-separated file with no chance of specifying the
-            // enclosing character. Thus, `users` who want to import this file
+            // enclosing character. Thus, users who want to import this file
             // tend to remove the enclosing character on the Import dialog.
             // I could not find a test case where having no enclosing characters
             // confuses this script.
@@ -191,21 +147,21 @@ class ImportCsv extends ImportPlugin
             $message = PMA_Message::error(
                 __('Invalid parameter for CSV import: %s')
             );
-            $message->addParam(__('Columns enclosed by'), false);
+            $message->addParam(__('Columns enclosed with'), false);
             $error = true;
             $param_error = true;
         } elseif (strlen($csv_escaped) != 1) {
             $message = PMA_Message::error(
                 __('Invalid parameter for CSV import: %s')
             );
-            $message->addParam(__('Columns escaped by'), false);
+            $message->addParam(__('Columns escaped with'), false);
             $error = true;
             $param_error = true;
         } elseif (strlen($csv_new_line) != 1 && $csv_new_line != 'auto') {
             $message = PMA_Message::error(
                 __('Invalid parameter for CSV import: %s')
             );
-            $message->addParam(__('Lines terminated by'), false);
+            $message->addParam(__('Lines terminated with'), false);
             $error = true;
             $param_error = true;
         }
@@ -220,17 +176,17 @@ class ImportCsv extends ImportPlugin
         $required_fields = 0;
 
         if (! $this->_getAnalyze()) {
-            if (isset($csv_replace)) {
+            if (isset($_POST['csv_replace'])) {
                 $sql_template = 'REPLACE';
             } else {
                 $sql_template = 'INSERT';
-                if (isset($csv_ignore)) {
+                if (isset($_POST['csv_ignore'])) {
                     $sql_template .= ' IGNORE';
                 }
             }
             $sql_template .= ' INTO ' . PMA_Util::backquote($table);
 
-            $tmp_fields = PMA_DBI_get_columns($db, $table);
+            $tmp_fields = $GLOBALS['dbi']->getColumns($db, $table);
 
             if (empty($csv_columns)) {
                 $fields = $tmp_fields;
@@ -277,6 +233,7 @@ class ImportCsv extends ImportPlugin
         // Defaults for parser
         $i = 0;
         $len = 0;
+        $lastlen = null;
         $line = 1;
         $lasti = -1;
         $values = array();
@@ -294,7 +251,7 @@ class ImportCsv extends ImportPlugin
             $data = PMA_importGetNextChunk();
             if ($data === false) {
                 // subtract data we didn't handle yet and stop processing
-                $offset -= strlen($buffer);
+                $GLOBALS['offset'] -= strlen($buffer);
                 break;
             } elseif ($data === true) {
                 // Handle rest of buffer
@@ -302,6 +259,22 @@ class ImportCsv extends ImportPlugin
                 // Append new data to buffer
                 $buffer .= $data;
                 unset($data);
+                
+                // Force a trailing new line at EOF to prevent parsing problems
+                if ($finished && $buffer) {
+                    $finalch = substr($buffer, -1);
+                    if ($csv_new_line == 'auto'
+                        && $finalch != "\r"
+                        && $finalch != "\n"
+                    ) {
+                        $buffer .= "\n";
+                    } elseif ($csv_new_line != 'auto' 
+                        && $finalch != $csv_new_line
+                    ) {
+                        $buffer .= $csv_new_line;
+                    }
+                }
+                
                 // Do not parse string when we're not at the end
                 // and don't have new line inside
                 if (($csv_new_line == 'auto'
@@ -478,7 +451,10 @@ class ImportCsv extends ImportPlugin
                                 unset($values[count($values) - 1]);
                             } else {
                                 $message = PMA_Message::error(
-                                    __('Invalid column count in CSV input on line %d.')
+                                    __(
+                                        'Invalid column count in CSV input'
+                                        . ' on line %d.'
+                                    )
                                 );
                                 $message->addParam($line);
                                 $error = true;
@@ -547,7 +523,7 @@ class ImportCsv extends ImportPlugin
             }
 
             if (strlen($db)) {
-                $result = PMA_DBI_fetch_result('SHOW TABLES');
+                $result = $GLOBALS['dbi']->fetchResult('SHOW TABLES');
                 $tbl_name = 'TABLE '.(count($result) + 1);
             } else {
                 $tbl_name = 'TBL_NAME';

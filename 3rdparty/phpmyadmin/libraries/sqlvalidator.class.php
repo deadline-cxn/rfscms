@@ -386,7 +386,8 @@ if (!$GLOBALS['sqlvalidator_error']) {
                 $this->service_link, $this->username, $this->password,
                 $this->calling_program, $this->calling_program_version,
                 $this->target_dbms, $this->target_dbms_version,
-                $this->connection_technology, $this->connection_technology_version
+                $this->connection_technology, $this->connection_technology_version,
+                true // FIXME: Are we to tell them that we are interactive?
             );
 
             if (isset($this->session_data)
@@ -394,7 +395,7 @@ if (!$GLOBALS['sqlvalidator_error']) {
                 && ($this->session_data->target != $this->url)
             ) {
                 // Reopens the service on the new URL that was provided
-                $url = $this->session_data->target;
+                $this->url = $this->session_data->target;
                 $this->startService();
             }
         } // end of the "startSession()" function

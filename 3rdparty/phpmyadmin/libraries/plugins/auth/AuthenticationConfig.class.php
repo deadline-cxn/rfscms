@@ -68,7 +68,7 @@ class AuthenticationConfig extends AuthenticationPlugin
      */
     public function authFails()
     {
-        $conn_error = PMA_DBI_getError();
+        $conn_error = $GLOBALS['dbi']->getError();
         if (! $conn_error) {
             $conn_error = __('Cannot connect: invalid settings.');
         }
@@ -77,6 +77,7 @@ class AuthenticationConfig extends AuthenticationPlugin
         $response = PMA_Response::getInstance();
         $response->getFooter()->setMinimal();
         $header = $response->getHeader();
+        $header->setBodyId('loginform');
         $header->setTitle(__('Access denied'));
         $header->disableMenu();
         echo '<br /><br />
@@ -110,7 +111,7 @@ class AuthenticationConfig extends AuthenticationPlugin
                 && $GLOBALS['errno'] != 2003
             ) {
                 // if we display the "Server not responding" error, do not confuse
-                // `users` by telling them they have a settings problem
+                // users by telling them they have a settings problem
                 // (note: it's true that they could have a badly typed host name,
                 // but anyway the current message tells that the server
                 //  rejected the connection, which is not really what happened)
@@ -132,7 +133,16 @@ class AuthenticationConfig extends AuthenticationPlugin
         }
         $GLOBALS['error_handler']->dispUserErrors();
         echo '</td>
-        </tr>';
+        </tr>
+        <tr>
+            <td>' . "\n";
+        echo '<a href="'
+            . $GLOBALS['cfg']['DefaultTabServer']
+            . PMA_URL_getCommon(array()) . '" class="button disableAjax">'
+            . __('Retry to connect')
+            . '</a>' . "\n";
+        echo '</td>
+        </tr>' . "\n";
         if (count($GLOBALS['cfg']['Servers']) > 1) {
             // offer a chance to login to other servers if the current one failed
             include_once './libraries/select_server.lib.php';
@@ -143,7 +153,9 @@ class AuthenticationConfig extends AuthenticationPlugin
             echo '</tr>' . "\n";
         }
         echo '</table>' . "\n";
-        exit;
+        if (!defined('TESTSUITE')) {
+            exit;
+        }
         return true;
     }
 
