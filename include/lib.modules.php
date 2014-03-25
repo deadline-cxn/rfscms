@@ -15,7 +15,6 @@ function lib_modules_register_property($x,$property,$property_value) {
 }
 
 function lib_modules_register($x,$core,$loc) {
-    $loc=str_replace("home4","home",$loc); //hostgator fix your shit
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
     $RFS_MODULE[$x]=array();
