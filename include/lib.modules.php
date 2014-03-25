@@ -21,7 +21,7 @@ function lib_modules_register($x,$core,$loc) {
     $RFS_MODULE[$x]["core"]=$core;
     $url=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
 	$RFS_MODULE[$x]["url"]=$url;
-	lib_menus_register($x,$url);
+	// lib_menus_register($x,$url);
 	$url=str_replace("/$x.php","",$url);
 	$RFS_MODULE[$x]["base_url"]=$url;
 	$loc=str_replace("/$x.php","",$loc);
@@ -90,14 +90,14 @@ function lib_modules_properties($module) {
 function lib_modules_array() {
 	global $RFS_SITE_PATH;
 	$dr="$RFS_SITE_PATH/modules";
-	$modules=array();    
+	$modules=array();
     $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
 	while(false!==($entry = readdir($d))) {
         if( ($entry == '.') || ($entry == '..') ) { }
         else {
             if(is_dir($dr."/".$entry)) {
-                
-                $core=false; if(stristr($entry,"core")) $core=true;
+                $core=false;
+                if(stristr($entry,"core")) $core=true;
                 $entry2=str_replace("core_","",$entry);
                 $module="$dr/$entry/module.$entry2.php";
                 $loc="$dr/$entry/$entry2.php";
