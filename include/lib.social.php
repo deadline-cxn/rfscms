@@ -101,16 +101,32 @@ function lib_social_buttons(){
 function lib_social_google_adsense($x){
 	if(stristr(lib_domain_phpself(),"adm.php")) return;
 	global $RFS_SITE_GOOGLE_ADSENSE;
+    global $RFS_SITE_GOOGLE_ADSENSE_AD;
 	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
 		lib_div("GOOGLE ADSENSE");
+        
+        echo "
+        
+<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>
+<!-- hey -->
+<ins class=\"adsbygoogle\"
+     style=\"display:inline-block;width:728px;height:90px\"
+     data-ad-client=\"$RFS_SITE_GOOGLE_ADSENSE\"
+     data-ad-slot=\"$RFS_SITE_GOOGLE_ADSENSE_AD\"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> ";
+
+        /*
 		echo "<script type=\"text/javascript\"><!--
-				google_ad_client = \"$RFS_SITE_GOOGLE_ADSENSE\";
+				google_ad_client = \"\";
 				google_ad_slot = \"9276856171\";
 				google_ad_width = 728;
 				google_ad_height = 90;
 				//-->
 				</script>
 				<script type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></script>";
+                */
 		
 	}
 }
@@ -120,7 +136,7 @@ function lib_social_google_adsense_2(){ eval(lib_rfs_get_globals());
 		echo ' <script type="text/javascript">
 				<!--	
 				google_ad_client = "'.$RFS_SITE_GOOGLE_ADSENSE.'";
-				google_ad_slot = "2325338978";
+				google_ad_slot = "$RFS_SITE_GOOGLE_ADSENSE_AD";
 				google_ad_width = 160;
 				google_ad_height = 90; //-->
 				</script>

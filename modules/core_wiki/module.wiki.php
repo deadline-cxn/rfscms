@@ -16,14 +16,8 @@ function module_wiki($x) { eval(lib_rfs_get_globals());
     echo "<table width=100% border=0><tr>";
     echo "<td valign=top class=contenttd>";
 	
-	$res=lib_mysql_query("
-	
-	SELECT * 
-FROM  `wiki` 
-ORDER BY  `updated` DESC 
-LIMIT 0 , $x
-");
-// SELECT `name`, MAX( updated ) 						FROM `wiki` 						GROUP BY `name` 						ORDER BY MAX( updated ) DESC						LIMIT 0,$x");
+	$res=lib_mysql_query("SELECT `name`, MAX( updated ) FROM `wiki` GROUP BY `name` ORDER BY MAX( updated ) DESC LIMIT 0,$x	");
+// 	SELECT * FROM  `wiki` ORDER BY  `updated` DESC LIMIT 0 , $x
 	if($res) {
 		while($page=mysql_fetch_object($res)) {        
 			 $opage=urlencode($page->name);
