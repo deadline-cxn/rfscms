@@ -111,7 +111,7 @@ function videos_action_submitvid_youtube_go() {
 		$sname=addslashes($sname);
 		$youtube=addslashes($youtube);
         $q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`,       `time`, `bumptime`, `category`, `hidden`, `sfw`)
-						   VALUES ('$cont',      '$sname','$vembed_code' , `$youtube` ,'$time',    '$time','$category',      '0', '$sfw');";
+						   VALUES ('$cont',      '$sname','$vembed_code' , '$youtube' ,'$time',    '$time','$category',      '0', '$sfw');";
          echo $q;
 		lib_mysql_query($q);
 		$id=mysql_insert_id();
