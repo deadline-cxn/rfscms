@@ -280,7 +280,7 @@ function videos_action_viewcat($cat) {
 function videos_action_random() { 
 	eval(lib_rfs_get_globals());
 	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
-	$num=mysql_num_rows($res);	
+	$num=mysql_num_rows($res);
 	if($num==0) { 
 		videos_buttons();
 		echo "<p>There are no videos.</p>";
