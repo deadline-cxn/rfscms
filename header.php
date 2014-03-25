@@ -7,6 +7,7 @@ if(!file_exists("config/config.php")) { include("install/install.php"); exit(); 
 include_once("include/lib.all.php");
 if(empty($RFS_SITE_NAME)) {
     $RFS_SITE_URL  = "http://".$_SERVER['SERVER_NAME'];
+    echo $RFS_SITE_URL;
     lib_domain_gotopage("$RFS_SITE_URL/install/install.php");
     exit();
 }
