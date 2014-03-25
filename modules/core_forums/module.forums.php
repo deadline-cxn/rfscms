@@ -39,14 +39,16 @@ function adm_action_f_add_forum_folder() { eval( lib_rfs_get_globals() );
 	lib_mysql_query( "insert into forum_list (`name`,`folder`) VALUES ('$name','yes') ; " );
 	adm_action_forum_admin();
 }
-function adm_action_forum_admin() { eval( lib_rfs_get_globals() );
+function adm_action_forum_admin() {
+    
+    eval( lib_rfs_get_globals() );
 	
 	// Select forum folders
 	$r=lib_mysql_query( "select * from forum_list where folder='yes' order by priority asc" );
 	$n=mysql_num_rows( $r );
 
 	if( $n==0 ) {
-		rfs_warn("<p>No forum folders defined.</p>");
+	   lib_forms_warn("<p>No forum folders defined.</p>");
 	}
 	else {
 		

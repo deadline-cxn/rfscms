@@ -1620,8 +1620,7 @@ function adm_action_f_menu_topedit_del_go() { eval( lib_rfs_get_globals() );
 	$menuitem=mysql_fetch_object( $res );
 	echo "<h3>Edit Top Menu :: Delete $menuitem->name :: DELETED!</h3>";
 	lib_mysql_query( "delete from menu_top where `id`='$id'" );
-	// adm_action_menu_topedit();
-	lib_menus_options();
+	adm_action_menu_topedit();
 	exit();
 }
 function adm_action_f_menu_topedit_del() { eval( lib_rfs_get_globals() );
@@ -1632,8 +1631,7 @@ function adm_action_f_menu_topedit_del() { eval( lib_rfs_get_globals() );
 	echo "<input type=hidden name=action value=f_menu_topedit_del_go>";
 	echo "<input type=hidden name=id value=$id>";
 	echo "<input type=submit name=submit value=confirm></form>";
-	// adm_action_menu_topedit();
-	lib_menus_options();
+    lib_menus_options();
 	exit();
 }
 function adm_action_f_menu_top_add_link() { eval(lib_rfs_get_globals());
@@ -1659,8 +1657,7 @@ function adm_action_f_menu_topedit_add() { eval( lib_rfs_get_globals());
 	
 	lib_mysql_query( "insert into menu_top (   `name`,      `link`, `target`, `sort_order`, `access_method`)
 								  values('$mname', '$menu_url', '$target',     '$msor', '$access_method');" );
-	// adm_action_menu_topedit();
-	lib_menus_options();
+    adm_action_menu_topedit();
 	exit();
 }
 function adm_action_f_menu_topedit_mod() { eval( lib_rfs_get_globals() );
@@ -1672,8 +1669,7 @@ function adm_action_f_menu_topedit_mod() { eval( lib_rfs_get_globals() );
 	lib_mysql_query( "update menu_top set `target`='$target' where `id`='$id'" );
 	lib_mysql_query( "update menu_top set `sort_order`='$msor' where `id`='$id'" );
 	lib_mysql_query( "update menu_top set `access_method`='$access_method' where `id`='$id'" );
-	// adm_action_menu_topedit();
-	lib_menus_options();
+    adm_action_menu_topedit();
 	exit();
 }
 function adm_action_menu_topedit() { eval( lib_rfs_get_globals() );
