@@ -32,15 +32,15 @@ INSERT INTO `colors` (`id`, `name`, `r`, `g`, `b`) VALUES
 INSERT INTO `menu_top` (`name`, `id`, `link`, `sort_order`, `access`) VALUES
 ('Admin', 9, '$RFS_SITE_URL/admin/adm.php', 434, 255),
 ('News', 10, '$RFS_SITE_URL/', 124, 0),
-('Videos', 11, '$RFS_SITE_URL/modules/videos/videos.php', 195, 0),
-('Forum', 12, '$RFS_SITE_URL/modules/forums/forums.php?forum_list=yes', 199, 0),
+('Videos', 11, '$RFS_SITE_URL/modules/core_videos/videos.php', 195, 0),
+('Forum', 12, '$RFS_SITE_URL/modules/core_forums/forums.php?forum_list=yes', 199, 0),
 ('Files', 13, '$RFS_SITE_URL/modules/core_files/files.php', 179, 0),
-('Pictures', 14, '$RFS_SITE_URL/modules/pictures/pics.php', 189, 0),
-('Profile', 15, '$RFS_SITE_URL/modules/profile/profile.php', 432, 0),
-('Wiki', 16, '$RFS_SITE_URL/modules/wiki/rfswiki.php', 140, 0),
-('Comics', 17, '$RFS_SITE_URL/modules/comics/comics.php', 155, 0),
-('Meme Generator', 18, '$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes', 192, 0),
-('Video Wall', 19, '$RFS_SITE_URL/modules/video_wall/v.php', 196, 0);
+('Pictures', 14, '$RFS_SITE_URL/modules/core_pictures/pics.php', 189, 0),
+('Profile', 15, '$RFS_SITE_URL/modules/core_profile/profile.php', 432, 0),
+('Wiki', 16, '$RFS_SITE_URL/modules/core_wiki/wiki.php', 140, 0),
+('Comics', 17, '$RFS_SITE_URL/modules/core_comics/comics.php', 155, 0),
+('Meme Generator', 18, '$RFS_SITE_URL/modules/core_memes/memes.php', 192, 0),
+('Video Wall', 19, '$RFS_SITE_URL/modules/core_video_wall/video_wall.php', 196, 0);
 -;-
 INSERT INTO `arrangement` (`id`, `location`, `mini`, `num`, `sequence`) VALUES
 (17, 'middle', 'news_top_story', 5, 999);

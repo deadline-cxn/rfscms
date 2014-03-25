@@ -18,11 +18,13 @@ if($action=="logout") {
 /////////////////////////////////////////////////////////////////////
 ///////// LOGIN GO
 if($action=="logingo") {
-	include_once("include/lib.sitevars.php");
-	include_once("include/lib.log.php");
-	include_once("include/lib.forms.php");
-	include_once("include/lib.rfs.php");
-	include_once("include/lib.domain.php");
+	include_once("include/lib.all.php");
+//	include_once("include/lib.modules.php");
+//	include_once("include/lib.sitevars.php");
+//	include_once("include/lib.log.php");
+//	include_once("include/lib.forms.php");
+//	include_once("include/lib.rfs.php");
+//	include_once("include/lib.domain.php");
 	
     if(!empty($_GET['userid'])) $userid=$_GET['userid'];
     if(!empty($_POST['userid'])) $userid=$_POST['userid'];
@@ -60,12 +62,7 @@ if($action=="logingo") {
 
     $result = lib_mysql_query_user_db("select * from `users` where name = '$userid' and pass = '".md5($password)."'");
     
-        if(mysql_num_rows($result) > 0){
-			
-				
-				
-
-			
+    if(mysql_num_rows($result) > 0){
             $data=lib_users_get_data($userid);
             lib_users_set_var($userid,"last_login",$data->last_activity);
             lib_users_set_var($userid,"last_activity",date("Y-m-d H:i:s"));				

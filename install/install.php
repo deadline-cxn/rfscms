@@ -19,14 +19,14 @@ function install_mysql_open_database(){
 	return $mysql;
 }
 function install_mysql_query($query) {
-	if(stristr($query,"`users`")) { $x=lib_mysql_query_user_db($query); return $x; }
-	$mysql=lib_mysql_open_database(); if($mysql==false) return false;
+	if(stristr($query,"`users`")) { $x=install_mysql_query_user_db($query); return $x; }
+	$mysql=install_mysql_open_database(); if($mysql==false) return false;
 	$result=mysql_query($query,$mysql);
 	if(empty($result)) return false;
 	return $result;
 }
 function install_mysql_query_user_db($q){
-    $r=lib_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
+    $r=install_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
     return$r;
 }
 function install_mysql_query_other_db($db,$host,$user,$pass,$query){
@@ -203,16 +203,16 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			$qx=explode(";",file_get_contents("$RFS_SITE_PATH/install/install.sql"));
 			for($i=0;$i<count($qx);$i++) {
 				$q=$qx[$i];
-				lib_mysql_query("$q;");
+				install_mysql_query("$q;");
 			}
 			$rfs_password=md5($rfs_password);
-			lib_mysql_query("
+			install_mysql_query("
 			INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `access_groups`, `theme`) VALUES
 			('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255',  'Administrator', 'default'); ");
 											
 			///////////////////////////////////////////////////////////////////////////////
 			// CHECK DATABASE				
-			$r=lib_mysql_query("select * from users");
+			$r=install_mysql_query("select * from users");
 			$n=0;
 			if($r) $n=mysql_num_rows($r);
 			if(!$n) {
@@ -222,7 +222,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				echo "<div width=100% style='background-color: green; color:white;'>Database activated... Adding RFSCMS data.</div>";
 			///////////////////////////////////////////////////////////////////////////////
 			// UPDATE DATABASE				
-			lib_mysql_query("
+			install_mysql_query("
 			INSERT INTO `site_vars` (`name`, `value`) VALUES
 			('path', '$RFS_SITE_PATH'),
 			('url',  '$RFS_SITE_URL'),
@@ -235,7 +235,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				$q=$qx[$i];
 				echo "<hr>";
 				// echo nl2br("$q;");
-				lib_mysql_query("$q;");
+				install_mysql_query("$q;");
 			}
 			///////////////////////////////////////////////////////////////////////////////
 					
