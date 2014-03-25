@@ -2,8 +2,6 @@ INSERT INTO `users` (`name`, `id` ) VALUES
 ('anonymous', '999');
 -;-
 INSERT INTO `site_vars` (`name`, `value`) VALUES
-('singletablewidth', '910'),
-('doubletablewidth', '435'),
 ('theme_dropdown', 'true'),
 ('default_theme', 'default'),
 ('force_theme', 'false'),
@@ -29,24 +27,20 @@ INSERT INTO `colors` (`id`, `name`, `r`, `g`, `b`) VALUES
 (6, 'yellow', 255, 255, 0),
 (7, 'purple', 255, 0, 255);
 -;-
-INSERT INTO `menu_top` (`name`, `id`, `link`, `sort_order`, `access`) VALUES
-('Admin', 9, '$RFS_SITE_URL/admin/adm.php', 434, 255),
-('News', 10, '$RFS_SITE_URL/', 124, 0),
-('Videos', 11, '$RFS_SITE_URL/modules/core_videos/videos.php', 195, 0),
-('Forum', 12, '$RFS_SITE_URL/modules/core_forums/forums.php?forum_list=yes', 199, 0),
-('Files', 13, '$RFS_SITE_URL/modules/core_files/files.php', 179, 0),
-('Pictures', 14, '$RFS_SITE_URL/modules/core_pictures/pics.php', 189, 0),
-('Profile', 15, '$RFS_SITE_URL/modules/core_profile/profile.php', 432, 0),
-('Wiki', 16, '$RFS_SITE_URL/modules/core_wiki/wiki.php', 140, 0),
-('Comics', 17, '$RFS_SITE_URL/modules/core_comics/comics.php', 155, 0),
-('Meme Generator', 18, '$RFS_SITE_URL/modules/core_memes/memes.php', 192, 0),
-('Video Wall', 19, '$RFS_SITE_URL/modules/core_video_wall/video_wall.php', 196, 0);
+INSERT INTO `menu_top` (`name`, `id`, `link`, `sort_order`, `target`, `access_method`, `other_requirement`) VALUES
+('Admin', 19, '$RFS_SITE_URL/admin/adm.php', 5000, '', 'admin,access', NULL),
+('News', 21, '$RFS_SITE_URL/', 0, '', NULL, NULL),
+('Wiki', 23, '$RFS_SITE_URL/modules/core_wiki/wiki.php', 20, '', '', NULL),
+('Forum', 12, '$RFS_SITE_URL/modules/core_forums/forums.php', 199, '', NULL, NULL),
+('Profile', 15, '$RFS_SITE_URL/modules/core_profile/profile.php', 799, '', 'logged_in,true', 'loggedin=true'),
+('Videos', 31, 'http://area56.sethcoder.com/modules/core_videos/videos.php', 599, '', NULL, NULL),
+('Files', 35, 'http://area56.sethcoder.com/modules/core_files/files.php', 51, '', '', NULL),
+('Pictures', 33, 'http://area56.sethcoder.com/modules/core_pictures/pictures.php', 465, '', '', NULL);
 -;-
 INSERT INTO `arrangement` (`id`, `location`, `mini`, `num`, `sequence`) VALUES
 (17, 'middle', 'news_top_story', 5, 999);
 -;-
 INSERT INTO `access_methods` (`id`, `page`, `action`) VALUES
-(1, 'admin', 'access'),
 (5, 'news', 'edit'),
 (11, 'news', 'deleteothers'),
 (7, 'news', 'submit'),
@@ -82,10 +76,37 @@ INSERT INTO `access_methods` (`id`, `page`, `action`) VALUES
 (39, 'pictures', 'upload'),
 (40, 'pictures', 'edit'),
 (41, 'pictures', 'delete'),
-(42, 'pictures', 'sort');
+(42, 'pictures', 'sort'),
+(43, 'admin', 'access'),
+(44, 'admin', 'categories'),
+(45, 'memes', 'upload'),
+(46, 'memes', 'edit'),
+(47, 'memes', 'delete'),
+(48, 'forums', 'admin'),
+(49, 'exams', 'create'),
+(50, 'exams', 'viewresults'),
+(51, 'exam_questions', 'edit'),
+(52, 'course', 'edit'),
+(53, 'course', 'delete'),
+(55, 'wiki', 'edit'),
+(56, 'wiki', 'delete'),
+(61, 'slogan', 'edit'),
+(63, 'todo_list', 'add'),
+(64, 'videos', 'submit'),
+(65, 'videos', 'edit'),
+(66, 'videos', 'delete'),
+(67, 'videos', 'editothers'),
+(68, 'videos', 'deleteothers'),
+(69, 'debug', 'view'),
+(70, 'linkbin', 'edit'),
+(71, 'linkbin', 'add'),
+(72, 'linkbin', 'delete'),
+(74, 'comics', 'admin'),
+(75, 'comics', 'publish'),
+(76, 'comics', 'unpublish');
 -;-
 INSERT INTO `access` (`id`, `name`, `access`, `action`, `page`, `table`) VALUES
-(1,  'Administrator,  '', 'admin', 'access', ''),
+(1,  'Administrator', '', 'admin', 'access', ''),
 (60, 'Administrator', '', 'editothers', 'exams', ''),
 (59, 'Administrator', '', 'edit', 'exams', ''),
 (58, 'Administrator', '', 'deleteothers', 'exams', ''),

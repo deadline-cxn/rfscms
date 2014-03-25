@@ -1,12 +1,13 @@
 CREATE TABLE IF NOT EXISTS `access` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `access` text NOT NULL,
-  `action` text NOT NULL,
-  `page` text NOT NULL,
-  `table` text NOT NULL,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `access` text COLLATE utf8_unicode_ci NOT NULL,
+  `action` text COLLATE utf8_unicode_ci NOT NULL,
+  `page` text COLLATE utf8_unicode_ci NOT NULL,
+  `table` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=390 ;
+
 
 CREATE TABLE IF NOT EXISTS `access_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -270,14 +271,16 @@ CREATE TABLE IF NOT EXISTS `meme` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `menu_top` (
-  `name` text,
+  `name` text COLLATE utf8_unicode_ci,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `link` text NOT NULL,
+  `link` text COLLATE utf8_unicode_ci NOT NULL,
   `sort_order` int(11) NOT NULL,
-  `access` int(11) NOT NULL,
-  `target` text NOT NULL,
+  `target` text COLLATE utf8_unicode_ci NOT NULL,
+  `access_method` text COLLATE utf8_unicode_ci,
+  `other_requirement` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=37 ;
+
 
 CREATE TABLE IF NOT EXISTS `pictures` (
   `name` text NOT NULL,
@@ -307,26 +310,6 @@ CREATE TABLE IF NOT EXISTS `pmsg` (
   `read` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
-
-CREATE TABLE IF NOT EXISTS `projects` (
-  `name` text NOT NULL,
-  `icon` text,
-  `id` int(11) NOT NULL DEFAULT '0',
-  `thumb` text NOT NULL,
-  `version` text NOT NULL,
-  `description` text NOT NULL,
-  `author` text NOT NULL,
-  `type` text NOT NULL,
-  `started` datetime NOT NULL,
-  `updated` datetime NOT NULL,
-  `windows` text NOT NULL,
-  `linux` text NOT NULL,
-  `bsd` text NOT NULL,
-  `status` text NOT NULL,
-  `html` text NOT NULL,
-  `file` int(11) NOT NULL COMMENT 'files',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `rss_feeds` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -364,26 +347,6 @@ CREATE TABLE IF NOT EXISTS `smilies` (
   `sto` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
-
-CREATE TABLE IF NOT EXISTS `snippets` (
-  `name` text,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` text NOT NULL,
-  `code` text NOT NULL,
-  `poster` text NOT NULL,
-  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `category` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
-CREATE TABLE IF NOT EXISTS `topmenu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `link` text NOT NULL,
-  `sor` int(11) NOT NULL,
-  `access` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `transactions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
