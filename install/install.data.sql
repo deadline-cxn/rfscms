@@ -5,7 +5,8 @@ INSERT INTO `site_vars` (`name`, `value`) VALUES
 ('theme_dropdown', 'true'),
 ('default_theme', 'default'),
 ('force_theme', 'false'),
-('forced_theme', 'default');
+('forced_theme', 'default'),
+('slogan', 'Really Freaking Simple Content Management System');
 -;-
 INSERT INTO `categories` (`name`, `id`, `image`) VALUES
 ('!!!TEMP!!!', 1, '0'),
@@ -106,7 +107,7 @@ INSERT INTO `access_methods` (`id`, `page`, `action`) VALUES
 (76, 'comics', 'unpublish');
 -;-
 INSERT INTO `access` (`id`, `name`, `access`, `action`, `page`, `table`) VALUES
-(1,  'Administrator', '', 'admin', 'access', ''),
+(1,  'Administrator', '', 'access', 'admin', ''),
 (60, 'Administrator', '', 'editothers', 'exams', ''),
 (59, 'Administrator', '', 'edit', 'exams', ''),
 (58, 'Administrator', '', 'deleteothers', 'exams', ''),
