@@ -112,7 +112,7 @@ function videos_action_submitvid_youtube_go() {
 		$url=addslashes($url);
         $q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`, `time`, `bumptime`, `category`, `hidden`, `sfw`)
 								 VALUES ('$cont',	 	'$sname','$vembed_code' , `$youtube` ,'$time',    '$time','$category',      '0', '$sfw');";
-        echo $q;
+        echo $q; 
 		//$c=lib_mysql_fetch_one_object("select * from `categories` where name='$category'");
 		// $category=$c->id;
 		lib_mysql_query($q);
