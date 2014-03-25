@@ -112,12 +112,13 @@ function lib_users_alias($x) {
 function lib_users_get_data($name){
     if(is_numeric($name)){
 		$result = lib_mysql_query_user_db("select * from `users` where `id` = '$name'");
-		$d=mysql_fetch_object($result); 
+		$d=mysql_fetch_object($result);
 		if(empty($d->name_shown)) $d->name_shown=$d->name;
 		return ($d);
-	}	
+	}
     else {
         $r=lib_mysql_query_user_db("select * from users");
+	if($r) {
         $n=mysql_num_rows($r);
         for($i=0;$i<$n;$i++) {
             $d=mysql_fetch_object($r);
@@ -134,8 +135,9 @@ function lib_users_get_data($name){
 							return $d; //$ax[$j];
 						}
 					}
+            	}
             }
-        }
+	}
     }
     return 0;
 }

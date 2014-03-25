@@ -7,7 +7,7 @@ foreach($_REQUEST as $k => $v) $GLOBALS["$k"]=$v;
 include_once("lib.mysql.php");
 include_once("config/config.sitevars.php");
 $res=lib_mysql_query("select * from `site_vars`");
-while($site_var=mysql_fetch_object($res)) {
+if($res) while($site_var=mysql_fetch_object($res)) {
     $upsitevar=strtoupper($site_var->name);
     $GLOBALS["RFS_SITE_$upsitevar"]=stripslashes($site_var->value);
 }
