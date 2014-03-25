@@ -76,7 +76,7 @@ function lib_modules_get_base_url($z) {
     return $loc;
 }
 function lib_modules_properties($module) {
-    global $RFS_MODULE;
+    eval(lib_rfs_get_globals());
 	echo "<div class=forum_box>";
     lib_forms_info("REGISTERED MODULE [$module]<br>","white","green");
 	echo "PROPERTIES:<br>";
@@ -88,7 +88,7 @@ function lib_modules_properties($module) {
 	echo "</div>";
 }
 function lib_modules_array() {
-	global $RFS_SITE_PATH;
+    eval(lib_rfs_get_globals());
 	$dr="$RFS_SITE_PATH/modules";
 	$modules=array();
     $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
@@ -126,7 +126,8 @@ function lib_modules_draw($location) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Module Admin Panel Plugins
-function adm_action_modules() { eval(lib_rfs_get_globals());
+function adm_action_modules() {
+    eval(lib_rfs_get_globals());
 	echo "<h1>Module Management</h1><hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_show_installed_modules","Installed modules");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_module_menu","Module Registered Menu Items");
@@ -152,7 +153,8 @@ function adm_action_modules() { eval(lib_rfs_get_globals());
 	exit();
 }
 
-function adm_action_f_module_store(){
+function adm_action_f_module_store() {
+    eval(lib_rfs_get_globals());
 	echo "<h1>Module Store</h1>";
 	echo "<hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
@@ -168,9 +170,10 @@ function adm_action_f_module_store(){
 	include( "footer.php" );
 	exit();
 }
-function adm_action_f_module_menu(){
+function adm_action_f_module_menu() {
+    eval(lib_rfs_get_globals());
 	echo "<h1>Menu Options registered by Modules</h1>";
-	echo "<hr>";	
+	echo "<hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
 	echo "<hr>";
 	echo "<div class='forum_box'>";
@@ -199,6 +202,7 @@ function adm_action_f_module_menu(){
 	exit();
 }
 function adm_action_f_show_installed_modules() {
+    eval(lib_rfs_get_globals());
 	echo "<h1>Modules Installed</h1><hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
 	echo "<hr>";

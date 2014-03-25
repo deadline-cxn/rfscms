@@ -1,6 +1,6 @@
 <?
-
 include_once ("include/lib.all.php");
+
 lib_menus_register("Comics", "$RFS_SITE_URL/modules/core_comics/comics.php");
 
 lib_access_add_method("comics", "admin");
