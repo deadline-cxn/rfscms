@@ -34,9 +34,9 @@ INSERT INTO `menu_top` (`name`, `id`, `link`, `sort_order`, `target`, `access_me
 ('Wiki', 23, '$RFS_SITE_URL/modules/core_wiki/wiki.php', 20, '', '', NULL),
 ('Forum', 12, '$RFS_SITE_URL/modules/core_forums/forums.php', 199, '', NULL, NULL),
 ('Profile', 15, '$RFS_SITE_URL/modules/core_profile/profile.php', 799, '', 'logged_in,true', 'loggedin=true'),
-('Videos', 31, 'http://area56.sethcoder.com/modules/core_videos/videos.php', 599, '', NULL, NULL),
-('Files', 35, 'http://area56.sethcoder.com/modules/core_files/files.php', 51, '', '', NULL),
-('Pictures', 33, 'http://area56.sethcoder.com/modules/core_pictures/pictures.php', 465, '', '', NULL);
+('Videos', 31, '$RFS_SITE_URL/modules/core_videos/videos.php', 599, '', NULL, NULL),
+('Files', 35, '$RFS_SITE_URL/modules/core_files/files.php', 51, '', '', NULL),
+('Pictures', 33, '$RFS_SITE_URL/modules/core_pictures/pictures.php', 465, '', '', NULL);
 -;-
 INSERT INTO `arrangement` (`id`, `location`, `mini`, `num`, `sequence`) VALUES
 (17, 'middle', 'news_top_story', 5, 999);
