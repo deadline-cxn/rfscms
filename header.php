@@ -6,7 +6,7 @@
 if(!file_exists("config/config.php")) { include("install/install.php"); exit(); }
 include_once("include/lib.all.php");
 if(empty($RFS_SITE_NAME)) { 
-    lib_domain_goto_page("install/install.php");
+    lib_domain_gotopage("install/install.php");
     exit();
 }
 lib_rfs_maintenance();
