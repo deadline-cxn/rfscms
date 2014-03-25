@@ -44,18 +44,18 @@ else {
 if($showform=="yes"){
 	
 	if(!lib_access_check("news","submit")) {
-        	echo lib_string_convert_smiles("<p>:X</p><p>You can not edit or submit news!</p>");
+        echo lib_string_convert_smiles("<p>:X</p><p>You can not edit or submit news!</p>");
 	}
 	else {
-			echo "<div class=\"forum_box\">";
+        echo "<div class=\"forum_box\">";
         echo "<h1>Submit News</h1>";
         echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\"> \n";
-        echo "<br><form enctype=application/x-www-form-URLencoded method=POST action=\"news.php\">\n";
+        echo "<br><form enctype=application/x-www-form-URLencoded method=POST action=\"$RFS_ADDON_URL\">\n";
         echo "<input type=hidden name=action value=createnewsgo>";
         echo "<tr><td>Headline:</td><td><input type=\"text\" name=\"headline\" size=\"100\"></td></tr>\n";
         echo "<tr><td></td><td><input type=\"submit\" value=\"Add News\" class=b4button></td></tr>\n";
         echo "</table></form><br>\n";
-		echo "</div>";
+        echo "</div>";
     }
 }
 
@@ -115,36 +115,17 @@ if(lib_access_check("news","edit")) {
 }
 
 if(($action=="view") || ($action=="ad")) {
-
-    //echo "<table border=0 cellspacing=0 cellpadding=1 width=95 % ><tr><td>";
-    //echo "<table border=0 width=100% ><tr>";
-    //echo "<td valign=top class=td_cat>";
 	rfs_show_news($nid);
     echo "<br>\n";
-    echo "<p align=right><a href=news.php  class=\"a_cat\" align=right>More news stories...</a></p>";
-    //echo "</td></tr></table>";
-    //echo "</td></tr></table>";
+    echo "<p align=right><a href=\"$RFS_ADDON_URL\"  class=\"a_cat\" align=right>More news stories...</a></p>";
     echo "<br>";
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    //echo "<table border=0 cellspacing=0 cellpadding=1 width=100 % ><tr><td>";
-    //echo "<table border=0 width=100% ><tr>";
-    //echo "<td valign=top class=td_cat>";
-
     module_news_list(10);
-    // module_popular_news(10);
-
-    echo "<p align=right><a href=news.php  class=\"a_cat\" align=right>More news stories...</a></p>";
-    //echo "</td></tr></table>";
-    //echo "</td></tr></table>";
-
+    echo "<p align=right><a href=\"$RFS_ADDON_URL\" class=\"a_cat\" align=right>More news stories...</a></p>";
 }
 
 if($action=="edityournews"){
     echo "<h1>Editing your news stories</h1>";
-	lib_buttons_make_button("$addon_folder?showform=yes","Submit new news article");
-
+	lib_buttons_make_button("$RFS_ADDON_URL?showform=yes","Submit new news article");
     echo "<table border=0 cellspacing=0 cellpadding=5 width=100%><tr><td class=contenttd>";
     echo "<p>Unpublished:</p>";
     echo "<p align=left>";
@@ -152,24 +133,22 @@ if($action=="edityournews"){
     $count=mysql_num_rows($res);
     for($i=0;$i<$count;$i++) {
         $news=mysql_fetch_object($res);
-        echo "[<a href=news.php?action=de&nid=$news->id>Delete</a>] ";
-        echo "[<a href=news.php?action=ed&nid=$news->id>Edit</a>] ";
-        echo "[<a href=news.php?action=publish&nid=$news->id>Publish</a>] ";
-        echo "<a href=\"news.php?action=view&nid=$news->id\">link: $news->headline</a><br>";
+        echo "[<a href=\"$RFS_ADDON_URL?action=de&nid=$news->id\">Delete</a>] ";
+        echo "[<a href=\"$RFS_ADDON_URL?action=ed&nid=$news->id\">Edit</a>] ";
+        echo "[<a href=\"$RFS_ADDON_URL?action=publish&nid=$news->id\">Publish</a>] ";
+        echo " <a href=\"$RFS_ADDON_URL?action=view&nid=$news->id\">link: $news->headline</a><br>";
     }
     echo "</p>";
-
     echo "<p>Published:</p>";
-
     echo "<p align=left>";
     $res=lib_mysql_query("select * from news where submitter='$data->id' and published='yes' order by time desc");
     $count=mysql_num_rows($res);
     for($i=0;$i<$count;$i++) {
         $news=mysql_fetch_object($res);
-        echo "[<a href=news.php?action=de&nid=$news->id>Delete</a>] ";
-        echo "[<a href=news.php?action=ed&nid=$news->id>Edit</a>] ";
-        echo "[<a href=news.php?action=unpublish&nid=$news->id>Unpublish</a>] ";
-        echo "<a href=\"news.php?action=view&nid=$news->id\">link: $news->headline</a><br>";
+        echo "[<a href=\"$RFS_ADDON_URL?action=de&nid=$news->id\">Delete</a>] ";
+        echo "[<a href=\"$RFS_ADDON_URL?action=ed&nid=$news->id\">Edit</a>] ";
+        echo "[<a href=\"$RFS_ADDON_URL?action=unpublish&nid=$news->id\">Unpublish</a>] ";
+        echo " <a href=\"$RFS_ADDON_URL?action=view&nid=$news->id\">link: $news->headline</a><br>";
     }
     echo "</p>";
 
@@ -183,10 +162,10 @@ if($action=="edityournews"){
     for($i=0;$i<$count;$i++) {
         $news=mysql_fetch_object($res);
         $userdata=getuserdata($news->submitter);
-        echo "[<a href=news.php?action=de&nid=$news->id>Delete</a>] ";
-        echo "[<a href=news.php?action=ed&nid=$news->id>Edit</a>] ";
-        echo "[<a href=news.php?action=publish&nid=$news->id>Publish</a>] ";
-        echo "<a href=\"news.php?action=view&nid=$news->id\">link: $news->headline</a> ($userdata->name)<br>";
+        echo "[<a href=\"$RFS_ADDON_URL?action=de&nid=$news->id\">Delete</a>] ";
+        echo "[<a href=\"$RFS_ADDON_URL?action=ed&nid=$news->id\">Edit</a>] ";
+        echo "[<a href=\"$RFS_ADDON_URL?action=publish&nid=$news->id\">Publish</a>] ";
+        echo " <a href=\"$RFS_ADDON_URL?action=view&nid=$news->id\">link: $news->headline</a> ($userdata->name)<br>";
     }
     echo "</p>";
 
@@ -198,10 +177,10 @@ if($action=="edityournews"){
     for($i=0;$i<$count;$i++) {
         $news=mysql_fetch_object($res);
         $userdata=lib_users_get_data($news->submitter);
-        echo "[<a href=news.php?action=de&nid=$news->id>Delete</a>] ";
-        echo "[<a href=news.php?action=ed&nid=$news->id>Edit</a>] ";
-        echo "[<a href=news.php?action=unpublish&nid=$news->id>Unpublish</a>] ";
-        echo "<a href=\"news.php?action=view&nid=$news->id\">link: $news->headline</a> ($userdata->name)<br>";
+        echo "[<a href=\"$RFS_ADDON_URL?action=de&nid=$news->id\">Delete</a>] ";
+        echo "[<a href=\"$RFS_ADDON_URL?action=ed&nid=$news->id\">Edit</a>] ";
+        echo "[<a href=\"$RFS_ADDON_URL?action=unpublish&nid=$news->id\">Unpublish</a>] ";
+        echo " <a href=\"$RFS_ADDON_URL?action=view&nid=$news->id\">link: $news->headline</a> ($userdata->name)<br>";
     }
     echo "</p>";
     echo "</td></tr></table>";

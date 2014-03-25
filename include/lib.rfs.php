@@ -69,7 +69,9 @@ function lib_rfs_get_globals() {
 		}
 	}
 	
-	$out.="\$addon_url=lib_modules_get_url(\"\");\n";
+	$out.="\$RFS_ADDON_URL=lib_modules_get_url(\"\");\n";
+    
+    
 	return $out;
 }
 function lib_rfs_var($x) {
