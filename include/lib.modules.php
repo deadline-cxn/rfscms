@@ -15,12 +15,12 @@ function lib_modules_register_property($x,$property,$property_value) {
 }
 
 function lib_modules_register($x,$core,$loc) {
+    $loc=str_replace("home4","home",$loc); //hostgator fix your shit
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
     $RFS_MODULE[$x]=array();
     $RFS_MODULE[$x]["core"]=$core;
-    $url=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
-    $url=str_replace("home4/dminds1/public_html/sethcoder.com/","",$url); // quick hack to fix host gator stuff
+    $url=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);    
 	$RFS_MODULE[$x]["url"]=$url;
 	// lib_menus_register($x,$url);
 	$url=str_replace("/$x.php","",$url);
