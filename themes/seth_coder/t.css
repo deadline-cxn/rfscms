@@ -430,7 +430,7 @@ a:link {
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #5577FF;
+    color: #aaccFF;
 }
 
 a:hover {
@@ -439,9 +439,9 @@ a:hover {
     font-weight: bold;
     font-style: italic;
     text-decoration: none;
-    color: #a5a555;
-	fbackground-color: #000000;
-}
+    color: #bbddFF;
+	background-color: #530;
+ }
 
 
 a.rfs_top_menu_link {
