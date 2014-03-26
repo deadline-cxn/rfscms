@@ -21,8 +21,7 @@ if($userdata->show_contact_info=="yes") {
     
     
     echo "<font class=rfs_email>$userdata->email</font><br>\n";
-    echo "<a href=$userdata->webpage target=_blank><img src=$RFS_SITE_URL/images/wp.gif  border=0 alt=\"Visit this person's website!\" height=16></a><br>\n";
-    echo "<a href=$userdata->webpage target=_blank>$userdata->webpage</a><br>";
+    echo "<a href=$userdata->webpage target=_blank>$userdata->webpage</a><br>\n";
     
 }
 else {
@@ -49,10 +48,10 @@ echo "Real Name: $userdata->real_name<br>";
 echo "Country: $userdata->country<br>";
 echo "Born: ".lib_string_current_time($userdata->birthday)."<br>";
 
-$userdata->webpage=str_replace(":","_rfs_colon_",$userdata->webpage);
-$userdata->website_fav=str_replace(":","_rfs_colon_",$userdata->website_fav);
-echo "Personal Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$userdata->webpage\" target=\"_blank\">$userdata->webpage</a><br>";
-echo "Favorite Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$userdata->website_fav\" target=\"_blank\">$userdata->website_fav</a><br>";
+$uwebpage=str_replace(":","_rfs_colon_",$userdata->webpage);
+$uwebsite_fav=str_replace(":","_rfs_colon_",$userdata->website_fav);
+echo "Personal Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$uwebpage\" target=\"_blank\">$userdata->webpage</a><br>";
+echo "Favorite Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$uwebsite_fav\" target=\"_blank\">$userdata->website_fav</a><br>";
 }
 
 //echo "Awards: ".rfs_getawards($userdata->name)."<br>\n";
