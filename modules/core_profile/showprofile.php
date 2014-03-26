@@ -18,17 +18,17 @@ echo "<img src=\"$RFS_SITE_URL/images/icons/sym_".$gen.".gif\" border=0 alt=\"$g
 
 if($userdata->show_contact_info=="yes") {
     
-    echo "<a href=\"".rfs_getemailcode($userdata->email)."\"><font class=rfs_email>$thisemail</font><img src=$RFS_SITE_URL/images/email2.gif border=0 alt=\"E-Mail\" height=16></a><br>\n";
+    
+    
+    echo "<font class=rfs_email>$userdata->email</font><br>\n";
     echo "<a href=$userdata->webpage target=_blank><img src=$RFS_SITE_URL/images/wp.gif  border=0 alt=\"Visit this person's website!\" height=16></a><br>\n";
     echo "<a href=$userdata->webpage target=_blank>$userdata->webpage</a><br>";
     
 }
-else
-{
+else {
     $sex="her"; if(($userdata->gender)=="male") $sex="his";
     echo "$userdata->name has $sex contact info hidden <br>\n";
 }
-
 
 echo "News Posts: $userdata->posts<br>\n";
 echo "Forum Posts: $userdata->forumposts<br>\n";
@@ -44,11 +44,10 @@ echo "Last seen on: ".lib_string_current_time($userdata->last_login)."<br>";
 
 echo "Quote: $userdata->sentence<br>";
 
-if($userdata->show_contact_info=="yes")
-{
+if($userdata->show_contact_info=="yes") {
 echo "Real Name: $userdata->real_name<br>";
 echo "Country: $userdata->country<br>";
-echo "Born: ".b4time($userdata->birthday)."<br>";
+echo "Born: ".lib_string_current_time($userdata->birthday)."<br>";
 
 $userdata->webpage=str_replace(":","_rfs_colon_",$userdata->webpage);
 $userdata->website_fav=str_replace(":","_rfs_colon_",$userdata->website_fav);
