@@ -5,7 +5,7 @@
 if(!function_exists("lib_div")) {
 function lib_div($t) {	
 	if(!isset($GLOBALS['RFS_GEN_IMAGE'])) {	
-		echo "<!-- ******************** ($t) ******************** -->\n";
+		d_echo("<!-- ******************** ($t) ******************** -->\n");
 		}
 	}
 }
