@@ -6,7 +6,6 @@ if(array_pop(explode("/",getcwd()))=="include")	chdir("..");
 include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
-lib_div(__FILE__); 
 if(isset($act)) {
 	if($act=="select_image_go") {
 		include("lib.all.php");
