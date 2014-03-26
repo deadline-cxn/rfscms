@@ -1329,13 +1329,13 @@ function lib_forms_question($inquest) {
 }
 function lib_forms_system_message() {
     eval(lib_rfs_get_globals());
-    $RFS_ADDON_URL=lib_modules_get_base_url("profile");
+    $RFS_ADDON_URL=lib_modules_get_url("profile");
 	if($_SESSION['logged_in']){
 		if(empty($data->pass)) {
-			lib_forms_info("You have not established a password. [<a href=\"$RFS_ADDON_URL/profile.php?act=show_password_form\" style=\"font-size: 1em;\">Change your password</a>]","WHITE","RED");
+			lib_forms_info("You have not established a password. [<a href=\"$RFS_ADDON_URL?action=show_password_form\" style=\"font-size: 1em;\">Change your password</a>]","WHITE","RED");
 		}
 		if(empty($data->email)) {
-			lib_forms_info("You have not established an email address. [<a href=\"$RFS_ADDON_URL/profile.php\" style=\"font-size: 1em;\">Add your email</a>]","WHITE","RED");
+			lib_forms_info("You have not established an email address. [<a href=\"$RFS_ADDON_URL\" style=\"font-size: 1em;\">Add your email</a>]","WHITE","RED");
 		}
 	}
 }

@@ -4,43 +4,6 @@ chdir("../../");
 $RFS_LITTLE_HEADER=true;
 include("header.php");
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-// CHANGE PASSWORD
-if($change_password == "yes"){
-    echo "<h1>Change Password</h1>\n";
-    if(empty($data->name)) {
-        echo lib_forms_warn("You must be <a href=$RFS_SITE_URL/login.php>logged in</a> to change your password!");
-    }
-	
-    if( (!empty($data->pass)) &&
-			 ( md5($pass1) != $data->pass ) ) {
-			echo lib_forms_warn("You did not enter the correct current password!");
-			$act="show_password_form";
-    }
-    else {
-		
-        if($pass2==$pass3) {			
-				if(!empty($pass2)) {
-					$pass2=md5($pass2);
-					lib_mysql_query("update `users` set pass='$pass2' where name = '$data->name'");
-					lib_forms_info("Password changed!","WHITE","GREEN");
-					include("footer.php");
-					exit;					
-				}
-				else {
-					echo lib_forms_warn("The password can not be empty.");
-					$act="show_password_form";
-				}
-        }
-        else {
-			echo lib_forms_warn("The passwords do not match!");
-			$act="show_password_form";
-		}
-    }    
-
-}
 //////////////////////////////////////////////////////////////////////////////////////
 // UPDATE USER DATA
 function profile_action_update() {	
@@ -152,7 +115,7 @@ function pro_nav_bar($data) {
 		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
 	if(lib_access_check("admin","access"))
 		lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php","Admin");
-	lib_buttons_make_button("$RFS_SITE_URL/modules/core_profile/profile.php?act=show_password_form","Change password");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/core_profile/profile.php?action=show_password_form","Change password");
 }
 
 if(empty($data->name)) {
@@ -161,21 +124,58 @@ if(empty($data->name)) {
   exit;
 }
 
-if($act=="show_password_form") {
+function profile_action_show_password_form() {
+    eval(lib_rfs_get_globals());
+    $RFS_ADDON_URL=lib_modules_get_url("profile");
+    echo $RFS_ADDON_URL;
     echo "<h2>Change Password</h2>";
-    echo "<table border=0><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_profile/profile.php method=post>\n";
-    echo "<input type=hidden name=change_password value=yes>\n";
-
+    echo "<table border=0><form enctype=application/x-www-form-URLencoded action=$RFS_ADDON_URL method=post>\n";
+    echo "<input type=hidden name=action value=change_password>\n";
 	if(!empty($data->pass))
 		echo "<tr><td>Current Password</td><td><input type=password name=pass1 value=\"\"></td></tr>\n";
-
     echo "<tr><td>New Password</td><td><input type=password name=pass2></td></tr>\n";
     echo "<tr><td>New Password (again)</td><td><input type=password name=pass3></td></tr>\n";
     echo "<tr><td>&nbsp;</td><td><input type=submit name=submit value=\"Go!\"></td></tr>\n";
     echo "</form></table>\n";
-
     include("footer.php");
     exit();
+}
+//////////////////////////////////////////////////////////////////////////////////////
+// CHANGE PASSWORD
+function profile_action_change_password() {
+     eval(lib_rfs_get_globals());
+    echo "<h1>Change Password</h1>\n";
+    
+    if(empty($data->name)) {
+        echo lib_forms_warn("You must be <a href=$RFS_SITE_URL/login.php>logged in</a> to change your password!");
+    }
+    if( (!empty($data->pass)) &&
+			 ( md5($pass1) != $data->pass ) ) {
+			echo lib_forms_warn("You did not enter the correct current password!");
+            profile_action_show_password_form();
+            exit();
+    }
+    else {
+        if($pass2==$pass3) {			
+				if(!empty($pass2)) {
+					$pass2=md5($pass2);
+					lib_mysql_query("update `users` set pass='$pass2' where name = '$data->name'");
+					lib_forms_info("Password changed!","WHITE","GREEN");
+					include("footer.php");
+					exit;					
+				}
+				else {
+					echo lib_forms_warn("The password can not be empty.");
+					profile_action_show_password_form();
+                    exit();
+				}
+        }
+        else {
+			echo lib_forms_warn("The passwords do not match!");
+			profile_action_show_password_form();
+            exit();
+		}
+    }    
 }
 
 
