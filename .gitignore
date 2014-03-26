@@ -20,7 +20,7 @@ images/*
 tmp/*
 wtf/*
 modules/rfs*
-modules/videos/cache/*.jpg
+modules/core_videos/cache/*.jpg
 modules/addon*
 error_log
 
