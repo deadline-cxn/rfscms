@@ -5,6 +5,9 @@ $user=$_REQUEST['user'];
 if(empty($user)) $user=$data->name;
 $userdata=lib_users_get_data($user);
 
+
+echo "<div class='forum_box'>";
+
 echo "<br><h1>$userdata->name's $RFS_SITE_NAME profile</h1>";
 
 echo "<table border=0><tr>";
@@ -58,7 +61,7 @@ echo "Favorite Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$uwebsite_fav\
 
 echo "</tr></table>\n";
 
-
+echo "</div>";
 
 include("footer.php");
 ?>
