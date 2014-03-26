@@ -227,8 +227,8 @@ function profile_show_form() {
 	lib_ajax("User Name"	,"users","name","$data->name","name",80,"","admin","access","");
 	lib_ajax("First Name"	,"users","name","$data->name","first_name",80,"","admin","access","");
 	lib_ajax("Last Name"	,"users","name","$data->name","last_name",80,"","admin","access","");
-	lib_ajax("Alias"	,	"users","name","$data->name","alias",80,"","admin","access","");	
-	lib_ajax("Shown Name"	,	"users","name","$data->name","name_shown",80,"","admin","access","");
+	lib_ajax("Alias"	    ,"users","name","$data->name","alias",80,"","admin","access","");	
+	lib_ajax("Shown Name"	,"users","name","$data->name","name_shown",80,"","admin","access","");
 	lib_ajax("Email"		,"users","name","$data->name","email",80,"","admin","access");
 			
 		

@@ -5,7 +5,9 @@ lib_menus_register("Forums","$RFS_SITE_URL/modules/core_forums/forums.php");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FORUM
-function module_forum_threads($x) { eval(lib_rfs_get_globals());
+function module_forum_threads($x) {
+    eval(lib_rfs_get_globals());
+    $RFS_ADDON_URL=lib_modules_get_url("forums");
     lib_div("FORUMS MODULE SECTION");
     echo "<h2>Last $x Threads</h2>";
     echo "<table border=0 cellspacing=0>";
@@ -16,13 +18,13 @@ function module_forum_threads($x) { eval(lib_rfs_get_globals());
 				$gt++; if($gt>2) $gt=1;
 				echo "<tr><td class=\"rfs_forum_table_$gt\">";				
 				$lastreply=lib_mysql_fetch_one_object("	select * from `forum_posts` where `thread` = '$thread->thread' order by time desc limit 1");
-				echo "<a href=\"$RFS_SITE_URL/modules/core_forums/forums.php?action=get_thread&thread=$thread->thread&forum_which=$thread->forum#$lastreply->id\">";
+				echo "<a href=\"$RFS_ADDON_URL?action=get_thread&thread=$thread->thread&forum_which=$thread->forum#$lastreply->id\">";
 				echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 >";
 				echo "$thread->title </a>";
 				echo "</td></tr>";
 		}
 	}
-	echo "<tr><td class=contenttd>(<a href=$RFS_SITE_URL/modules/core_forums/forums.php class=\"a_cat\" align=right>More...</a>)</td></tr>";
+	echo "<tr><td class=contenttd>(<a href=\"$RFS_ADDON_URL\" class=\"a_cat\" align=right>More...</a>)</td></tr>";
     echo "</table>";
 }
 
@@ -30,32 +32,28 @@ function module_forum_threads($x) { eval(lib_rfs_get_globals());
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORUMS
 
-function adm_action_f_add_forum() { eval( lib_rfs_get_globals() );
+function adm_action_f_add_forum() {
+    eval( lib_rfs_get_globals() );
 	lib_mysql_query( "insert into forum_list (`name`,`folder`,`parent`) VALUES ('$name','no','$parent') ; " );
 	adm_action_forum_admin();
 }
 
-function adm_action_f_add_forum_folder() { eval( lib_rfs_get_globals() );
+function adm_action_f_add_forum_folder() {
+    eval( lib_rfs_get_globals() );
 	lib_mysql_query( "insert into forum_list (`name`,`folder`) VALUES ('$name','yes') ; " );
 	adm_action_forum_admin();
 }
 function adm_action_forum_admin() {
-    
-    eval( lib_rfs_get_globals() );
-	
+    eval( lib_rfs_get_globals() );	
 	// Select forum folders
 	$r=lib_mysql_query( "select * from forum_list where folder='yes' order by priority asc" );
 	$n=mysql_num_rows( $r );
-
 	if( $n==0 ) {
 	   lib_forms_warn("<p>No forum folders defined.</p>");
 	}
 	else {
-		
 		for( $i=0; $i<$n; $i++ ) {
-
 			$folder=mysql_fetch_object( $r );
-			
 			echo "<div class=forum_box>";
 			
 			echo "<img src=$RFS_SITE_URL/images/icons/folder_big.gif style='float: left;'>";
