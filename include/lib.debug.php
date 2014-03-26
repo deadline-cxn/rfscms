@@ -33,6 +33,13 @@ function d_echo($t){
         }
     }
 }
+if(!function_exists("lib_div")) {
+function lib_div($t) {	
+	if(!isset($GLOBALS['RFS_GEN_IMAGE'])) {	
+		d_echo("<!-- ******************** ($t) ******************** -->\n");
+		}
+	}
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_debug_tail_error_log() { global $RFS_SITE_ERROR_LOG;	
 	if(empty($RFS_SITE_ERROR_LOG)) {
