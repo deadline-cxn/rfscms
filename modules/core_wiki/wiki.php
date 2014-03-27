@@ -115,13 +115,14 @@ if($name=="Contents") {
 	$res = rfs_query("	select distinct name from wiki where `text` like '%[$name]%' or `text` like '%\@$name,%' order by name asc" );
 	if($res) {
 		$num=mysql_num_rows($res);
-		echo "Linked Pages ($num) >> ";
-		while($wpage=mysql_fetch_object($res)) {
-			
-			if(!empty($wpage->name))
-			echo "[<a class=rfswiki_link href=$addon_url?name=".urlencode($wpage->name).">$wpage->name</a>]";
+		if($num) {
+			echo "Linked Pages ($num) >> ";
+			while($wpage=mysql_fetch_object($res)) {			
+				if(!empty($wpage->name))
+				echo "[<a class=rfswiki_link href=$addon_url?name=".urlencode($wpage->name).">$wpage->name</a>]";
+			}
+			echo "<hr>";
 		}
-		echo "<hr>";
 	}
 }
 //////////////////////////////////////////////////////////////////////////////
