@@ -76,6 +76,18 @@ td{
     font-size: 12px;
 }
 
+.rfs_image_text {
+	position:absolute;
+	right:0px;
+	top: 0px;
+	border-bottom-left-radius: 15px;
+background: -webkit-linear-gradient(#999,#555); /* For Safari 5.1 to 6.0 */
+background: -o-linear-gradient(#999,#555); /* For Opera 11.1 to 12.0 */
+background: -moz-linear-gradient(#999,#555); /* For Firefox 3.6 to 15 */
+background: linear-gradient(#999,#555); 
+
+}
+
 
 .news_box {
 	clear: both;
@@ -93,12 +105,10 @@ td{
 	padding: 5px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: x-large;
-    ffont-weight: bold;
-    ffont-style: italic;
 	color: #5F79FF;
 	fcolor: #000;
 	float: left;
-text-shadow: 1px 1px 1px #000;
+	text-shadow: 1px 1px 1px #000;
 }
 
 .news_time {

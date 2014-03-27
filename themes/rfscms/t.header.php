@@ -23,10 +23,36 @@ to("100%"," align=center cellpadding=0");
                 tro("");
                     tco("toptd");
 
+// echo "$RFS_SITE_NAME";
 
-	//       echo "$RFS_SITE_NAME";
 
-
+if ($RFS_THEME_TTF_TOP)  {
+			$clr 	= lib_images_html2rgb($RFS_THEME_TTF_TOP_COLOR);
+           $bclr	= lib_images_html2rgb($RFS_THEME_TTF_TOP_BGCOLOR);
+			echo lib_images_text(
+						$RFS_SITE_NAME,
+						$RFS_THEME_TTF_TOP_FONT,						
+						$RFS_THEME_TTF_TOP_FONT_SIZE,
+						952,30,
+						$RFS_THEME_TTF_TOP_FONT_X_OFFSET,
+						$RFS_THEME_TTF_TOP_FONT_Y_OFFSET,
+						$clr[0], $clr[1], $clr[2],
+						$bclr[0], $bclr[1], $bclr[2],
+						1,0 );
+		}
+		else {
+			$base_srch="themes/$theme/t.top_image";
+			$timg=0;
+			if(file_exists("$RFS_SITE_PATH/$base_srch.jpg")) $timg=$base_srch.".jpg";
+			if(file_exists("$RFS_SITE_PATH/$base_srch.gif")) $timg=$base_srch.".gif";
+			if(file_exists("$RFS_SITE_PATH/$base_srch.png")) $timg=$base_srch.".png";
+			if($timg) {
+				echo "<img src=\"$RFS_SITE_URL/$timg\" align=\"left\" border=\"0\">";
+			}
+			else {
+				echo "<div class=\"top_site_name\">$RFS_SITE_NAME</div>";
+			}
+		}
 
 	if(lib_rfs_bool_true($RFS_SITE_SHOW_SLOGAN))
 		if(!empty($RFS_SITE_SLOGAN))
@@ -48,13 +74,6 @@ to("100%"," align=center cellpadding=0");
 					*/
 					 tcr("toptd");
 					 
-					 if(!lib_rfs_bool_true($data->donated)) {
-					 		lib_social_paypal();
-							lib_social_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
-							//lib_social_reddit();
-							//lib_social_buttons();
-					 
-					 }
                     tcc();
                 trc();
             tc();
@@ -86,7 +105,15 @@ to("100% cellpadding=5"," align=center ");
 
 			tcr("thirdtd ");
 			
-			if(empty($data->donated))
+			
+					 if(!lib_rfs_bool_true($data->donated)) {
+					 		lib_social_paypal();
+							lib_social_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+							//lib_social_reddit();
+							//lib_social_buttons();
+					 
+					 }
+
 
 			tcr("thirdtd align=center");
 
