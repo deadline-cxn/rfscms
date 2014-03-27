@@ -1,19 +1,17 @@
-<<<<<<< HEAD
-RFS CMS - Really Frickin Simple Content Management System.
+RFSCMS - Really Frickin Simple Content Management System.
  
 This project is available free of charge,
 and you may use it and modify it under the GNU GPL v3.
 
-The RFS CMS home page is http://www.sethcoder.com/
-If you have any questions, comments or suggestions,
-please use the forum, email me: defectiveseth@gmail.com,
-or contact me on twitter @Sethcoder.
+The RFS CMS home page is http://rfscms.org/
 
 INSTALLATION:
 =================================================================
 You must set up Apache2, PHP, and MySQL prior to installation.
 For Linux install LAMP package. For Windows install each package
 separately or use something like XAMPP (http://www.apachefriends.org/)
+Please note, that there has been very little testing using Windows, 
+so some things may not work.
 See the official wiki for more information about how to set this up.
 
 You can either manually download the zip file, or clone the git
@@ -66,14 +64,6 @@ I plan on correcting all the notices in the future.
 
 ================================================================
 
-If you would like to contribute to the project, please do so,
-but please contact me.
-Email: defectiveseth@gmail.com 
-Twitter: @SethCoder
-http://www.sethcoder.com/
-
-================================================================
-
 Some parts of this project, the 3rdparty folder in particular,
 are from other projects. I have made the best effort of
 providing documentation, and disclosure every where I can when it 
@@ -85,11 +75,9 @@ please contact me, and I will make sure these issues are corrected.
 
 Thanks,
 Seth
-=======
-This is a module for RFSCMS that will let users track Air Force style bullets for EPR's.
-If you don't know what that means, you probably don't want this.
 
-Thanks,
-Seth
+Email: sethcoder@rfscms.org
+Twitter: @SethCoder
+http://rfscms.org/
 
->>>>>>> 62342a0ec2c93e37b9ad3085b2c726d3ccb1591b
+================================================================
