@@ -23,7 +23,13 @@ to("100%"," align=center cellpadding=0");
                 tro("");
                     tco("toptd");
 
-                    echo "$RFS_SITE_NAME";
+
+	//       echo "$RFS_SITE_NAME";
+
+
+
+	if(lib_rfs_bool_true($RFS_SITE_SHOW_SLOGAN))
+		if(!empty($RFS_SITE_SLOGAN))
                     echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
                     tcr("toptd");
 					/*

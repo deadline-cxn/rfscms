@@ -247,19 +247,22 @@ hr{
 }
 
 .verytoptd {
+	margin: 1px;
 	min-width: 900px;
 	border: 1px;
 	border-color: #000000;
 	border-style: solid;
+	height: 64px;
 }
     
 .toptd {
+    height: 198px;
     font-family: Verdana;
     font-size: 32px;
     font-weight: bold;
     color: #3D7EBF;
     text-shadow: 1px 1px 2px #000;
-    background:url("images/rfscms.png");
+    background: url('http://rfscms.org/files/pictures/rfscmscode.jpg');
 }
 
 .lefttd {
@@ -825,4 +828,3 @@ input[type="submit"] {
 padding: 5px;
 margin: 5px;
 }
-
