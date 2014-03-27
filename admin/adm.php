@@ -385,18 +385,33 @@ function adm_action_f_access_group_edit() {
 	echo "<hr>";
 	echo "<h2>$axnm</h2>";
 	echo "<hr>";
-    echo "Check all <input type=checkbox onclick=\"for(c in document.getElementsByID('g1'))	document.getElementsByID('g1').item(c).checked = this.checked	\">";	
+	
+echo "<script>
+$(document).ready(function () {
+    $('#selectall').click(function () {
+        $('.selectedId').prop('checked', this.checked);
+    });
+
+    $('.selectedId').change(function () {
+        var check = ($('.selectedId').filter(\":checked\").length == $('.selectedId').length);
+        $('#selectall').prop(\"checked\", check);
+    });
+});
+	</script>";
+	echo "<input type=\"checkbox\" id=\"selectall\">Select all</input>";
 	echo "<div class=\"forum_box\">";
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
+	
 	$r=lib_mysql_query("select * from `access_methods` order by page,action");
 	while($am=mysql_fetch_object($r)) {
 		$checked="";
 		$rw=lib_mysql_fetch_one_object("select * from `access` where name='$axnm' and page='$am->page' and action='$am->action'");
 		if($rw->name==$axnm) { $checked="checked";}
 		echo "<div style=\"float: left; width: 200px;\">";
-		echo "<input id='g1' name=\"$am->page"."_$am->action\" type=checkbox $checked>";
+		echo "<input  type=\"checkbox\" class=\"selectedId\" name=\"$am->page"."_$am->action\" $checked >";
+		//  class=\"checkitout\"> ";
 		echo " $am->page -> $am->action";
 		echo "</div>";
 	}	
