@@ -1,2 +1,3 @@
-rm /var/www/modules/videos/cache/*.jpg
+rm ../modules/videos/cache/*.jpg
+
 

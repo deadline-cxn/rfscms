@@ -1,2 +1,3 @@
-find /var/www/themes -name '*.bak.*' -exec rm -rf {} \;
+find ../themes -name '*.bak.*' -exec rm -rf {} \;
+
 
