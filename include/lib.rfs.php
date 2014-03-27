@@ -130,7 +130,7 @@ function lib_rfs_bool_true($x) {
 }
 function lib_rfs_echo($t) {	echo lib_rfs_get($t); }
 function lib_rfs_get($t) {
-	foreach($GLOBALS['RFS_TAGS'] as $key => $value) {		
+	foreach($GLOBALS['RFS_TAGS'] as $key => $value) {
 		//$x=explode("RFS_FTAG",$t);
 		// echo("0".$result[0]."1".$result[1]."2".$result[2]."<br>");
 		//$z=explode(" ",$x[1]);
@@ -139,7 +139,8 @@ function lib_rfs_get($t) {
 			// echo "FOUND... DO:  [$y]";			
 			// echo "... RESULT[".eval($y)."]";
 		//}
-		if(stristr($t,$value)) {			
+		
+		if(stristr($t,$value)) {
 			switch($value) {
 				case "<!--RTAG_BUTTON":
 					$zx=explode("<!--RTAG_BUTTON",$t);
@@ -160,7 +161,7 @@ function lib_rfs_get($t) {
 					$t=str_replace("$key","RUNNING:($key)($value)",$t);				
 					break;
 					
-				default:
+				default: 
 					if(function_exists($key)) {
 						$t=str_replace($value,call_user_func($key),$t);
 					}

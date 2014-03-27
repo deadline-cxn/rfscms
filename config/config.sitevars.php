@@ -119,7 +119,7 @@ $RFS_SITE_LOGIN_FORM_CODE   = "
 <tr>
 <td></td>
 <td></td>
-<td> &nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=\$PHP_SELF>Register</a>)
+<td> &nbsp;<a href=\$RFS_SITE_URL/login.php?action=join&outpage=\$PHP_SELF>Register</a>
 </td>
 </tr>
 </table>
