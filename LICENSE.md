@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-RFSCMS Really Frickin Simple Content Management System
+RFSCMS Really Freaking Simple Content Management System
 Copyright (C) 2014 Seth T. Parson
 
 This program is free software: you can redistribute it and/or modify
@@ -15,12 +14,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Email: defectiveseth@gmail.com
+Email: sethcoder@rfscms.org
 Twitter: @SethCoder
-http://www.sethcoder.com/
+http://rfscms.org/
 
-=======
-
-TODO: Update this
->>>>>>> 62342a0ec2c93e37b9ad3085b2c726d3ccb1591b
 
