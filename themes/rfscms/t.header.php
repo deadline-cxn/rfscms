@@ -1,4 +1,5 @@
 <?
+
 lib_rfs_echo($RFS_SITE_DOC_TYPE);
 lib_rfs_echo($RFS_SITE_HTML_OPEN);
 lib_rfs_echo($RFS_SITE_HEAD_OPEN);

@@ -1,6 +1,5 @@
 <?
 
-
 //$RFS_THEME_TOP_MENU_LOCATION="top";
 //$RFS_THEME_NAV_IMG_TOP="1";
 //$RFS_THEME_NAV_FONT="Crumb.ttf";
