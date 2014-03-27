@@ -38,8 +38,8 @@ INSERT INTO `menu_top` (`name`, `id`, `link`, `sort_order`, `target`, `access_me
 ('Files', 35, '$RFS_SITE_URL/modules/core_files/files.php', 51, '', '', NULL),
 ('Pictures', 33, '$RFS_SITE_URL/modules/core_pictures/pictures.php', 465, '', '', NULL);
 -;-
-INSERT INTO `arrangement` (`id`, `location`, `mini`, `num`, `sequence`) VALUES
-(17, 'middle', 'news_top_story', 5, 999);
+INSERT INTO `arrangement` (`id`, `location`, `mini`, `type`, `tableref`, `tablerefid` `num`, `sequence`,`access`,`page`) VALUES
+(17, 'middle', 'news_top_story', 'internal_query','','', 5, 999,'','');
 -;-
 INSERT INTO `access_methods` (`id`, `page`, `action`) VALUES
 (5, 'news', 'edit'),

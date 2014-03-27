@@ -18,20 +18,20 @@ function module_system_static_html($x) {
 			 (lib_access_check("static_html","edit")) ||
 			  (lib_access_check("admin","access")) ) {
 				echo "<br>";
-				lib_buttons_make_button(	"$RFS_SITE_URL/admin/adm.php?action=module_system_static_edit&id=$x","Edit HTML");
 		}
 	}
 	else 
 		adm_function_module_system_static_edit();
 }
-function adm_action_module_system_static_edit() {
+/*
+function adm_action_f_module_system_static_edit() {
 	eval(lib_rfs_get_globals());
 	$RFS_ADDON_URL=lib_modules_get_url("system");
 	$r=lib_mysql_query("select * from `static_html` where id='$id'");
 	$shtml=mysql_fetch_object($r);
 	echo "<h1> Editing custom static HTML</h1>";
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"POST\" enctype=\"application/x-www-form-URLencoded\">";
-    echo "<input type=\"hidden\" name=\"action\" value=\"module_system_static_edit_go\">";
+    echo "<input type=\"hidden\" name=\"action\" value=\"f_module_system_static_edit_go\">";
 	echo "<input type=\"hidden\" name=\"id\" value=\"$id\">";
     echo "<textarea rows=20  cols=120 name=\"shtml\">";
     $shtml->html=str_replace("</textarea>","&lt;/textarea>",$shtml->html);
@@ -41,9 +41,7 @@ function adm_action_module_system_static_edit() {
     echo "</form>";
 	finishadminpage();
 }
-
-
-function adm_action_module_system_static_edit_go() {
+function adm_action_f_module_system_static_edit_go() {
 	eval(lib_rfs_get_globals());
 	$RFS_ADDON_URL=lib_modules_get_url("system");
 	$r=lib_mysql_query("delete from static_html where id='$id'");
@@ -53,5 +51,6 @@ function adm_action_module_system_static_edit_go() {
 	echo lib_rfs_echo(nl2br($shtml));
 	finishadminpage();
 }
+*/
 
 ?>

@@ -363,7 +363,8 @@ hr{
 .forum_box {
 	width: 100%;
 	float: left;
-	background-color:rgba(0,15,150,0.5);
+	#background-color:rgba(0,15,150,0.5);
+	background-color: #666;
 	padding-right: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -393,8 +394,8 @@ hr{
 	padding: 15px;
 	margin: 15px;
 	color: #000;
-	background-color: #fff;
-	background-color:rgba(0,0,0,.2);
+	background-color: #888;
+	#background-color:rgba(0,0,0,.2);
 	border-radius: 10px;
 	
 }

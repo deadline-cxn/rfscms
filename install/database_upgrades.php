@@ -253,6 +253,13 @@ if($a<986) {
 	mysql_query("ALTER TABLE `files` CHANGE `lastupdate` `lastupdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;");
 	echo "Added interim database changes 986<br>";
 }
+if($a<1053) {
+	lib_mysql_add("arrangement","type","text","not null");
+	lib_mysql_add("arrangement","tableref","text","not null");
+	lib_mysql_add("arrangementid","tableref","text","not null");
+	lib_mysql_add("arrangement","access","text","not null");
+	lib_mysql_add("arrangement","page","text","not null");
+}
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
@@ -261,6 +268,7 @@ if($a < $b) {
 	else lib_mysql_query("update site_vars set `value` = '$RFS_SITE_DATABASE_UPGRADE' where `name`='database_upgrade'");
         echo "Added interim database changes $RFS_SITE_DATABASE_UPGRADE<br>";
 }
+
 
 
 ?>

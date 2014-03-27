@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS `access` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=390 ;
 
-
 CREATE TABLE IF NOT EXISTS `access_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page` text COLLATE utf8_unicode_ci NOT NULL,
@@ -26,21 +25,17 @@ CREATE TABLE IF NOT EXISTS `admin_menu` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
-CREATE TABLE IF NOT EXISTS `ads_skyscrapers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,  
-  `type` text NOT NULL,
-  `html` text NOT NULL,
-  `paid` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
 CREATE TABLE IF NOT EXISTS `arrangement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `location` text NOT NULL,
   `mini` text NOT NULL,
+  `type` text NOT NULL,
+  `tableref` text NOT NULL,
+  `tablerefid` text NOT NULL,
   `num` int(11) NOT NULL,
   `sequence` int(11) NOT NULL,
+  `access` text NOT NULL,
+  `page` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -160,15 +155,6 @@ CREATE TABLE IF NOT EXISTS `db_queries` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
-
-CREATE TABLE IF NOT EXISTS `delp_last_searches` (
-  `name` text NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `search_text` text NOT NULL,
-  `link` text NOT NULL,
-  `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `files` (
   `name` text NOT NULL,
