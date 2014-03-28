@@ -1159,35 +1159,35 @@ function adm_action_f_addsitevar() {
 }
 function adm_action_f_upsitevar() {
     eval( lib_rfs_get_globals() );
-	$sv=lib_mysql_fetch_one_object("select * from site_vars where id=$id");
+	$sv=lib_mysql_fetch_one_object("select * from site_vars where id=$svid");
 	$x=strtoupper($sv->name);
-	echo "[\$RFS_SITE_$x] set to [$val] <br>";
+	lib_forms_info("[\$RFS_SITE_$x] [$type] [$desc] [$val]","white","green");
 	$val=addslashes( $_REQUEST['val'] );
 	lib_sitevars_assign($x,$val,$type,$desc);
 	adm_action_edit_site_vars();
 }
 function adm_action_f_delsitevar_go() {
     eval( lib_rfs_get_globals() );
-	lib_mysql_query( "delete from `site_vars` where `id`='$id'" );
+	lib_mysql_query( "delete from `site_vars` where `id`='$svid'" );
 	adm_action_edit_site_vars();
 }
 function adm_action_f_delsitevar() {
     eval(lib_rfs_get_globals());
-	$site_var=lib_mysql_fetch_one_object("select * from site_vars where id='$id'");
+	$site_var=lib_mysql_fetch_one_object("select * from site_vars where id='$svid'");
 	lib_forms_confirm("<p>Delete \$RFS_SITE_$site_var->name ?</p>","$RFS_SITE_URL/admin/adm.php?action=f_delsitevar_go","id=$id");
 	adm_action_edit_site_vars();
 }
 function adm_action_edit_site_vars() {
     eval( lib_rfs_get_globals() );
 	echo "<h1>Edit Site Variables</h1><hr>";
-	echo "<table border=0>";	
+	echo "<table border=0>";
 	echo "<tr><th>Variable</th><th>Type</th><th>Value</th><th></th><th></th></tr>";
 	$res=lib_mysql_query("select * from site_vars order by name");
 	while($site_var=mysql_fetch_object($res)) {
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
 		echo "<tr><td>";
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
-		echo "<input type=hidden name=id value=\"$site_var->id\">";
+		echo "<input type=hidden name=\"svid\" value=\"$site_var->id\">";
 		$site_var->name=strtoupper(stripslashes(($site_var->name)));
 		echo "\$RFS_SITE_$site_var->name <br>$site_var->desc";
 		echo "</td><td>";
@@ -1195,7 +1195,7 @@ function adm_action_edit_site_vars() {
 		if(empty($site_var->type)) $site_var->type="text";
 		echo "<option>$site_var->type";		
 		echo "<option>text";
-		echo "<option>time";		
+		echo "<option>time";
 		echo "<option>bool";
 		echo "<option>file";
 		echo "<option>theme";
@@ -1238,12 +1238,15 @@ function adm_action_edit_site_vars() {
 			break;
 		}
 		echo "</td>";
-		echo "</form>";
+		
 		echo "<td>";
 		rfs_db_element_edit("","$RFS_SITE_URL/admin/adm.php","edit_site_vars","site_vars", $site_var->id);
 		echo "</td></tr>";
+		echo "</form>";
 	}
+	
 	echo "</table>";
+	
 	echo "<div class=\"forum_box\">";
 	echo "<table>";
 	echo "<tr><td>";

@@ -273,7 +273,7 @@ hr{
 }
 
 .thirdtd {
-    height: 90px;
+    fheight: 90px;
     font-family: Verdana;
     font-size: 12px;
     color: #333377;
@@ -411,7 +411,7 @@ hr{
 .forum_box {
 	width: 100%;
 	float: left;
-	background-color:rgba(0,15,150,0.5);
+	background-color:rgba(100,100,100,0.5);
 	padding-right: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -496,13 +496,13 @@ input,textarea{
     font-size: 12px;
     color: #000000;
     border: 1px;
-    border-color: #c2c7f6;
+    border-color: #b29736;
     border-style: solid;
-    background-color: #a2a7d6;
+    background-color: #a28736;
 }
 
 input[type="select"] {
-	background-color: #a2a7d6;
+	background-color: #a28736;
 }
 
 input[type="submit"] {
@@ -519,7 +519,25 @@ input[type="submit"] {
 	-webkit-box-shadow: 5px 5px 3px   #555;
 	box-shadow: 5px 5px 3px  #555;
 	cursor: pointer;
-}.warning
+}
+
+.lflflf {
+color
+date
+datetime
+datetime-local
+email
+month
+number
+range
+search
+tel
+time
+url
+week
+}
+
+.warning
 {
 }
 

@@ -1089,8 +1089,10 @@ echo "
 			
 			if( 	(substr(trim($cssx4[1]),0,1)=="#") || 
 					(    stristr($cssx4[0],"color")) )
-				echo "class='color' ";
-echo " size=60 onblur=\"this.form.submit();\">
+				echo " type=\"color\" onchange=\"this.form.submit();";
+			else 
+				echo "onblur=\"this.form.submit();";
+echo " size=60 \">
 
 </td>
 
@@ -1201,8 +1203,12 @@ function lib_forms_php_file($php_file,$returnpage,$returnaction,$hiddenvars) { e
 			echo "<input name=\"newvalue\" value=\"$varx[1]\" ";
 				if( 	(substr(trim($varx[1]),0,1)=="#") || 
 					(    stristr($varx[0],"color")) )
-				echo "class='color' ";
-			echo " size=60 onblur=\"this.form.submit();\">";
+				echo " type=\"color\" onchange=\"this.form.submit();";
+			else 
+				echo "onblur=\"this.form.submit();";
+					
+					
+			echo " size=60 >";
 
 			
 				
