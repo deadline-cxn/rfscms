@@ -326,7 +326,7 @@ function adm_action_f_module_add() {
 	$nseq=$ars->seq+1;
 	echo "$ars->seq $nseq  <br>";
 	lib_mysql_query( "insert into arrangement  (`panel`,`location`,`num`,`sequence`)
-	          values('$module','$location','5','$nseq');" );
+	                                   values('$module','$location','5','$nseq');" );
 	adm_action_arrange();
 }
 function adm_action_f_module_chg_num() {

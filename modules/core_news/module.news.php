@@ -53,7 +53,7 @@ function m_panel_news_list($x) {
     echo "</table>";
     echo "<p align=right>(<a href=$RFS_ADDON_URL class=\"a_cat\" align=right>More...</a>)</p>";
 }
-function module_news_list_popular($x) {
+function m_panel_news_list_popular($x) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("news");
     lib_div("NEWS MODULE SECTION");
@@ -92,7 +92,7 @@ function module_news_list_popular($x) {
 function module_news_top_story() {
     rfs_show_top_news();
 }
-function module_news_blog_style($x) {
+function m_panel_news_blog_style($x) {
     eval(lib_rfs_get_globals());
 	rfs_show_top_news();
 	$newslist=rfs_getnewslist(""); $ct=count($newslist); if($ct>$x) $ct=$x;

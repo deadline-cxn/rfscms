@@ -263,10 +263,6 @@ if($a<1053) {
 	lib_mysql_add("arrangement","page","text","not null");
 	echo "Added interim database changes 1053<br>";
 }
-if($a<1062) {
-	lib_mysql_query("ALTER TABLE arrangement CHANGE mini panel text");
-	echo "Added interim database changes 1062<br>";
-}
 if($a<1065) {
 	lib_mysql_add("site_var_types","name","text","not null");
 	lib_mysql_add("site_var_types","table","text","not null");
@@ -348,9 +344,17 @@ if($a<1065) {
 	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('GALLERIAS','bool','');");
 	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('CAPTIONS','bool','');");
 	
-	
 	echo "Added interim database changes 1066<br>";
 }
+
+if($a<1067) {
+    
+    lib_mysql_query("ALTER TABLE arrangement CHANGE mini panel text");
+    
+    echo "Added interim database changes 1067<br>";
+   	
+}
+
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
