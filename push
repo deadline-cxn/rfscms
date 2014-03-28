@@ -1,5 +1,5 @@
 #!/bin/bash
-rm /var/www/modules/core_videos/cache/*.jpg
+yes | rm /var/www/modules/core_videos/cache/*.jpg
 cd tools
 tools/cleanthemes.sh
 cd ..
