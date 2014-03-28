@@ -9,7 +9,7 @@ lib_access_add_method("wiki", "deleteothers");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///// MODULE WIKI
-function module_wiki($x) { eval(lib_rfs_get_globals());
+function m_panel_wiki($x) { eval(lib_rfs_get_globals());
     lib_div("WIKI MODULE SECTION");
 	$addon_url=lib_modules_get_url("wiki");
     echo "<h2>Last $x Wiki Pages</h2>";

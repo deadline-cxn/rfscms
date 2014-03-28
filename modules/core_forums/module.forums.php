@@ -5,7 +5,7 @@ lib_menus_register("Forums","$RFS_SITE_URL/modules/core_forums/forums.php");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE FORUM
-function module_forum_threads($x) {
+function m_panel_forum_threads($x) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("forums");
     lib_div("FORUMS MODULE SECTION");

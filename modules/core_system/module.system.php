@@ -5,10 +5,10 @@ lib_access_add_method("static_html","edit");
 lib_mysql_add("static_html","html","text","not null");
 lib_mysql_add("static_html","owner","text","not null");
 
-function module_system_linefeed($x) { for($i=0;$i<$x;$i++) echo "<br>"; }
-function module_system_custom($x)   { echo $x; }
+function m_panel_system_linefeed($x) { for($i=0;$i<$x;$i++) echo "<br>"; }
+function m_panel_system_custom($x)   { echo $x; }
 
-function module_system_static_html($x) {
+function m_panel_system_static_html($x) {
 	eval(lib_rfs_get_globals());
 	$r=lib_mysql_query("select * from `static_html` where id='$x'");
 	if($r) {

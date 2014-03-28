@@ -1,9 +1,7 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFSCMS http://www.sethcoder.com/
+// RFSCMS http://www.rfscms.org/
 /////////////////////////////////////////////////////////////////////////////////////////
-
-
 if (isset($argv[1])) {
     if (stristr(getcwd(), "modules")) {
         chdir("../../");
@@ -12,23 +10,23 @@ if (isset($argv[1])) {
     system("clear");
     lib_modules_array();
     if ($argv[1] == "scrub") {
-        rfs_scrubfiledatabase(1);
+        m_files_scrubfiledatabase(1);
         exit();
     }
     if ($argv[1] == "orph") {
-        orphan_scan("files", 1);
+        m_files_orphan_scan("files", 1);
         exit();
     }
     if ($argv[1] == "purge") {
-        purge_files(1);
+        m_files_purge_files(1);
         exit();
     }
     if ($argv[1] == "md5") {
-        md5_scan(1);
+        m_files_md5_scan(1);
         exit();
     }
     if ($argv[1] == "quickmd5") {
-        quick_md5_scan(1);
+        m_files_quick_md5_scan(1);
         exit();
     }
     if ($argv[1] == "imgrar") {
@@ -36,7 +34,7 @@ if (isset($argv[1])) {
         exit();
     }
     if ($argv[1] == "dupes") {
-        rfs_show_duplicate_files(1);
+        m_files_show_duplicate_files(1);
         exit();
     }
 
@@ -58,7 +56,7 @@ if ($_REQUEST['action'] == "get_file_go") {
     include ("modules/core_files/module.files.php");
     if ($_SESSION["logged_in"] == "true") {
         $id = $_REQUEST['id'];
-        $filedata = module_files_getfiledata($id);
+        $filedata = m_files_getfiledata($id);
         if (empty($filedata)) {
             echo "Error, file does not exist?\n";
             exit();
@@ -74,15 +72,10 @@ if ($_REQUEST['action'] == "get_file_go") {
     }
     exit();
 }
-
-if (stristr(getcwd(), "modules")) {
-    chdir("../../");
-}
+if (stristr(getcwd(), "modules")) chdir("../../");
 include_once ("include/lib.all.php");
 include_once ("3rdparty/ycTIN.php");
-
 $outvars = "action=$action&category=$category&amount=$amount&top=$top&criteria=$criteria&tagsearch=$tagsearch";
-
 if ($_REQUEST['temp'] == "show") {
     $_SESSION['show_temp'] = true;
 }
@@ -125,12 +118,10 @@ if ($_REQUEST['thumbs'] == "on") {
 if ($_REQUEST['thumbs'] == "off") {
     $_SESSION['thumbs'] = false;
 }
-
 $RFS_LITTLE_HEADER = true;
 include ("header.php");
-
 function files_header() {
-
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     echo "<script> function playvid(x,y) { document.getElementById(x).innerHTML=\"<iframe src='\"+y+\"' width=400 height=300> </iframe>\"; } function stopvid(x)  { document.getElementById(x).innerHTML=\" \"; } </script>";
     echo "<h1>Files</h1>";
     lib_div("files.php");
@@ -139,11 +130,11 @@ function files_header() {
         echo "<td>";
         if ($_SESSION['thumbs'] == "true") {
             echo "<font style='background-color:red;'>SHOW THUMBS</font><br>";
-            lib_buttons_make_button("$addon_folder?thumbs=off&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?thumbs=off&$outvars",
                 "Thumbs Off");
         } else {
             echo "HIDE Thumbs<br>";
-            lib_buttons_make_button("$addon_folder?thumbs=on&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?thumbs=on&$outvars",
                 "Thumbs On");
         }
         echo "</td>";
@@ -151,11 +142,11 @@ function files_header() {
         echo "<td>";
         if ($_SESSION['hidden'] == "yes") {
             echo "<font style='background-color:red;'>SHOW HIDDEN</font><br>";
-            lib_buttons_make_button("$addon_folder?hidden=hide&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?hidden=hide&$outvars",
                 "Hidden Off");
         } else {
             echo "HIDE HIDDEN<br>";
-            lib_buttons_make_button("$addon_folder?hidden=show&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?hidden=show&$outvars",
                 "Hidden On");
         }
         echo "</td>";
@@ -163,11 +154,11 @@ function files_header() {
         echo "<td>";
         if ($_SESSION['worksafemode'] != "off") {
             echo "WORKSAFE ON<br>";
-            lib_buttons_make_button("$addon_folder?worksafe=off&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?worksafe=off&$outvars",
                 "Worksafe off");
         } else {
             echo "<font style='background-color:red;'>WORKSAFE OFF</font><br>";
-            lib_buttons_make_button("$addon_folder?worksafe=on&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?worksafe=on&$outvars",
                 "Worksafe on");
         }
         echo "</td>";
@@ -176,11 +167,11 @@ function files_header() {
         echo "<td>";
         if ($_SESSION['show_temp'] == true) {
             echo "<font style='background-color:red;'>SORT ON</font><br>";
-            lib_buttons_make_button("$addon_folder?temp=hide&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?temp=hide&$outvars",
                 "Sort Off");
         } else {
             echo "SORT OFF<br>";
-            lib_buttons_make_button("$addon_folder?temp=show&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?temp=show&$outvars",
                 "Sort On");
         }
         echo "</td>";
@@ -189,11 +180,11 @@ function files_header() {
         echo "<td>";
         if ($_SESSION['editmode'] == true) {
             echo "<font style='background-color:red;'>EDIT ON</font><br>";
-            lib_buttons_make_button("$addon_folder?editmode=off&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?editmode=off&$outvars",
                 "Edit Off");
         } else {
             echo "EDIT OFF<br>";
-            lib_buttons_make_button("$addon_folder?editmode=on&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?editmode=on&$outvars",
                 "Edit On");
         }
         echo "</td>";
@@ -203,11 +194,11 @@ function files_header() {
         echo "<td>";
         if ($_SESSION['deletemode'] == true) {
             echo "<font style='background-color:red;'>DELETE ON</font><br>";
-            lib_buttons_make_button("$addon_folder?deletemode=off&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?deletemode=off&$outvars",
                 "Delete Off");
         } else {
             echo "DELETE OFF<br>";
-            lib_buttons_make_button("$addon_folder?deletemode=on&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?deletemode=on&$outvars",
                 "Delete On");
         }
         echo "</td>";
@@ -217,11 +208,11 @@ function files_header() {
         echo "<td>";
         if ($_SESSION['tagmode'] == true) {
             echo "<font style='background-color:red;'>TAG ON</font><br>";
-            lib_buttons_make_button("$addon_folder?tagmode=off&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?tagmode=off&$outvars",
                 "Tag Off");
         } else {
             echo "TAG OFF<br>";
-            lib_buttons_make_button("$addon_folder?tagmode=on&$outvars",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?tagmode=on&$outvars",
                 "Tag On");
         }
         echo "</td>";
@@ -236,7 +227,7 @@ function files_header() {
         if (lib_access_check("files", "sort")) {
             echo "<td>";
             echo "<br>";
-            lib_buttons_make_button("$addon_folder?action=show_duplicates",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=show_duplicates",
                 "Show Duplicates");
             echo "</td>";
         }
@@ -244,28 +235,28 @@ function files_header() {
         if (lib_access_check("files", "upload")) {
             echo "<td>";
             echo "<br>";
-            lib_buttons_make_button("$addon_folder?action=upload",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=upload",
                 "Upload");
             echo "</td>";
         }
         if (lib_access_check("files", "addlink")) {
             echo "<td>";
             echo "<br>";
-            lib_buttons_make_button("$addon_folder?action=addfilelinktodb",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=addfilelinktodb",
                 "Add Link as File");
             echo "</td>";
         }
         if (lib_access_check("files", "orphanscan")) {
             echo "<td>";
             echo "<br>";
-            lib_buttons_make_button("$addon_folder?action=getorphans",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=getorphans",
                 "Add orphan files");
             echo "</td>";
         }
         if (lib_access_check("files", "purge")) {
             echo "<td>";
             echo "<br>";
-            lib_buttons_make_button("$addon_folder?action=purge",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=purge",
                 "Purge missing files");
             echo "</td>";
         }
@@ -279,7 +270,7 @@ function files_header() {
 
     }
 
-    echo "<form enctype=application/x-www-form-URLencoded action=\"$addon_folder\" method=post>\n";
+    echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_FOLDER\" method=post>\n";
     echo "<table border=0 cellspacing=0 cellpadding=0 >";
     echo "<tr>\n";
     echo "<input type=hidden name=action value=search>\n";
@@ -307,12 +298,11 @@ function files_header() {
     echo "</form>";
 
 }
-
-function files_action_addfilelinktlib_mysql_open_database()
-{
-    eval(lib_rfs_get_globals()); // if($action=="addfilelinktodb") {
+function files_action_addfilelinktodb() {
+	eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     echo "<table border=0>\n";
-    echo "<form enctype=application/x-www-form-URLencoded action=$addon_folder method=post>\n";
+    echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_FOLDER\" method=post>\n";
     echo "<input type=hidden name=action value=addfilelinktodb_go>\n";
     echo "<input type=hidden name=file_add value=\"$file_add\">\n";
     echo "<tr><td>Name </td><td><input name=name value=\"$filedata->name\"></td></tr>\n";
@@ -338,14 +328,13 @@ function files_action_addfilelinktlib_mysql_open_database()
     include ("footer.php");
     exit();
 }
-function files_action_addfilelinktodb_go()
-{
+function files_action_addfilelinktodb_go() {
     eval(lib_rfs_get_globals());
     $file_url = addslashes($file_url);
     $file_add = addslashes($file_add);
     $description = addslashes($description);
     $name = addslashes($name);
-    $filetype = rfs_getfiletype($file_add);
+    $filetype = lib_file_getfiletype($file_add);
     echo "<p>New file link added: $name</p>";
     $time1 = date("Y-m-d H:i:s");
     lib_mysql_query("INSERT INTO `files` (`name`) VALUES ('$name');");
@@ -362,13 +351,16 @@ function files_action_addfilelinktodb_go()
     lib_mysql_query("UPDATE files SET os='$os' where name='$name'");
     lib_mysql_query("UPDATE files SET owner='$owner' where name='$name'");
     lib_mysql_query("UPDATE files SET version='$version' where name='$name'");
+	echo "Added link as file...<br>";
+	files_action_();
+	
 }
-function files_action_addfiletlib_mysql_open_database()
-{
+function files_action_addfiletlib_mysql_open_database() {
     eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     echo "<p>You are adding:</p><p>$file_url</p><p>$file_add</p>\n";
     echo "<table border=0>\n";
-    echo "<form enctype=application/x-www-form-URLencoded action=$addon_folder method=post>\n";
+    echo "<form enctype=application/x-www-form-URLencoded action=$RFS_ADDON_FOLDER method=post>\n";
     echo "<input type=hidden name=action value=addfiletodb_go>\n";
     echo "<input type=hidden name=file_url value=\"$file_url\">\n";
     echo "<input type=hidden name=file_add value=\"$file_add\">\n";
@@ -385,14 +377,13 @@ function files_action_addfiletlib_mysql_open_database()
     include ("footer.php");
     exit();
 }
-function files_action_addfiletodb_go()
-{
+function files_action_addfiletodb_go() {
     eval(lib_rfs_get_globals());
     $file_url = addslashes($file_url);
     $file_add = addslashes($file_add);
     $description = addslashes($description);
     $name = addslashes($name);
-    $filetype = rfs_getfiletype($file_add);
+    $filetype = lib_file_getfiletype($file_add);
     $fsize = filesize($file_add);
     $fsize = intval($fsize);
     if ($fsize != "0") {
@@ -408,23 +399,42 @@ function files_action_addfiletodb_go()
         lib_mysql_query("UPDATE files SET worksafe='$sfw' where name='$name'");
     }
 }
-function files_action_get_file()
-{
+function files_action_get_file() {
     eval(lib_rfs_get_globals());
-    if ((lib_rfs_bool_true($RFS_SITE_ALLOW_FREE_DOWNLOADS)) || ($_SESSION["logged_in"] ==
-        "true")) {
-        $filedata = module_files_getfiledata($_REQUEST['id']);
+	
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
+    if ((lib_rfs_bool_true($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
+		($_SESSION["logged_in"] == "true")) {
+        $filedata = m_files_getfiledata($_REQUEST['id']);
         if (empty($filedata)) {
-            echo "Error 3392! File does not exist?\n";
+            lib_forms_warn("Error 3392! File does not exist?\n");
             include ("footer.php");
             exit();
         }
+		if(!m_files_is_link($filedata->id)){
+			if(!file_exists($filedata->location)) {
+				lib_forms_info("File has been moved or deleted.","white","red");
+				
+				echo "<div class='forum_box'>";
+				echo "<input type=text value=\"Locate file\"><br>";
+				echo "[Locate File]<br>";
+				echo "Reupload file <input type=file><br>";
+				
+				echo "Remove this file from database<br>";
+				files_action_del();
+				echo "</div>";
+			}		
+		}
+		else {
+			lib_forms_info("This file is located on a different server.","white","green");
+		}
+		
         $size = lib_file_sizefile($filedata->size);
         echo "<p>";
         if (!empty($filedata->thumb)) {
             echo lib_images_thumb($filedata->thumb);
         }
-        echo "<a href=\"$addon_folder?action=get_file_go&id=$filedata->id\" target=_new_window>";
+        echo "<a href=\"$RFS_ADDON_FOLDER?action=get_file_go&id=$filedata->id\" target=_new_window>";
         echo "<font size=4>";
         echo "$filedata->name ($size)";
         echo "</font>";
@@ -495,13 +505,13 @@ function files_action_get_file()
         echo "</td>";
         if (lib_access_check("files", "edit")) {
             echo "<td>";
-            lib_buttons_make_button("$addon_folder?action=mdf&id=$filedata->id",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=mdf&id=$filedata->id",
                 "Edit");
             echo "</td>";
         }
         if (lib_access_check("files", "delete")) {
             echo "<td>";
-            lib_buttons_make_button("$addon_folder?action=del&id=$filedata->id",
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=del_form&id=$filedata->id",
                 "Delete");
             echo "</td>";
         }
@@ -726,13 +736,14 @@ function files_action_get_file()
 
         echo "</div>";
     } else
-        echo "<p> You can't download files unless you are <a href=\"$RFS_SITE_URL/login.php\">Logged in</a>!</p>\n";
-    include ("footer.php");
-    exit();
+		echo "<p> You can't download files unless you are <a href=\"$RFS_SITE_URL/login.php\">Logged in</a>!</p>\n";
+    
+	include ("footer.php");
+	
+	
+    
 }
-
-function files_action_f_dup_rem_checked()
-{
+function files_action_f_dup_rem_checked() {
     eval(lib_rfs_get_globals());
     if (lib_access_check("files", "delete")) {
         foreach ($_POST as $k => $v) {
@@ -742,21 +753,18 @@ function files_action_f_dup_rem_checked()
             }
         }
         foreach ($delar as $k => $v) {
-            rfs_lib_file_delete($v, "yes");
+            m_files_delete($v, "yes");
         }
-        rfs_show_scanned_duplicates($RFS_CMD_LINE);
+        m_files_show_scanned_duplicates($RFS_CMD_LINE);
     } else {
         echo "You can't delete files.<br>";
     }
     exit();
 }
-
-function files_action_ren()
-{
+function files_action_ren() {
     eval(lib_rfs_get_globals());
     if (lib_access_check("files", "edit")) {
         if (!empty($data->name)) {
-
             if (!empty($name))
                 lib_mysql_query("UPDATE files SET name='$name' where id = '$id'");
         }
@@ -766,11 +774,10 @@ function files_action_ren()
     include ("footer.php");
     exit();
 }
-
 function files_action_del_conf() {
     eval(lib_rfs_get_globals());
     if (lib_access_check("files", "delete")) {
-        rfs_lib_file_delete($id, $annihilate);
+		m_files_delete($id, $annihilate);
         if (!empty($retpage)) {
             lib_domain_gotopage($retpage);
             exit();
@@ -781,16 +788,14 @@ function files_action_del_conf() {
         exit();
     }
 }
-
-function files_action_del()
-{
+function files_action_del() {
     eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     if (lib_access_check("files", "delete")) {
-        $filedata = module_files_getfiledata($id);
+        $filedata = m_files_getfiledata($id);
         lib_forms_info("REMOVE FILE <br>[$filedata->location]", "WHITE", "RED");
-        echo "<p></p>";
         echo "<table border=0>\n";
-        echo "<form enctype=application/x-www-form-URLencoded action=$addon_folder method=post>\n";
+        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_ADDON_FOLDER method=post>\n";
         echo "<input type=hidden name=retpage value=\"$retpage\">";
         echo "<input type=hidden name=action value=del_conf>\n";
         echo "<input type=hidden name=id value=\"$id\">\n";
@@ -801,30 +806,32 @@ function files_action_del()
 			<a href=\"$retpage\">click here</a>!</td>\n";
         echo "<td>&nbsp;</td><td>&nbsp;</td></tr>\n";
         echo "</form></table>\n";
-        echo "</td></tr></table>";
+        
     } else {
         echo "You can't delete files<br>";
     }
-    include ("footer.php");
-    exit();
 }
-
-function files_action_mod()
-{
+function files_action_del_form() {
+	files_action_del();
+	include("footer.php");
+	exit();
+	
+}
+function files_action_mod() {
     eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     if (lib_access_check("files", "edit")) {
         if (!empty($name))
             lib_mysql_query("UPDATE files SET name='" . addslashes($name) . "' where id = '$id'");
         if (!empty($location)) {
             lib_mysql_query("UPDATE files SET location='$location' where id = '$id'");
-            $filetype = rfs_getfiletype($location);
+            $filetype = lib_file_getfiletype($location);
             lib_mysql_query("UPDATE files SET filetype='$filetype' where id = '$id'");
         }
         lib_mysql_query("UPDATE files SET category='$category' where id='$id'");
         lib_mysql_query("UPDATE files SET hidden='$hidden' where id='$id'");
         lib_mysql_query("UPDATE files SET downloads='$downloads' where id='$id'");
-        lib_mysql_query("UPDATE files SET description='" . addslashes($description) .
-            "' where id = '$id'");
+        lib_mysql_query("UPDATE files SET description='" . addslashes($description)."' where id = '$id'");
         lib_mysql_query("UPDATE files SET size='$size' where id='$id'");
         $time = date("Y-m-d H:i:s");
         lib_mysql_query("UPDATE files SET time='$time' where id='$id'");
@@ -836,83 +843,64 @@ function files_action_mod()
         lib_mysql_query("UPDATE files SET os='$fos' where id='$id'");
         lib_mysql_query("UPDATE files SET rating='$rating' where id='$id'");
         lib_mysql_query("UPDATE files SET worksafe='$sfw' where id = '$id'");
-
-        echo "<p><a href=$addon_folder>File</a> modified...</p><br>\n";
+        echo "<p><a href=$RFS_ADDON_FOLDER>File</a> modified...</p><br>\n";
     } else {
         echo "You don't have access to edit files.<br>";
     }
     include ("footer.php");
     exit();
 }
-
-function files_action_mdf()
-{
+function files_action_mdf() {
     eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     if (lib_access_check("files", "edit")) {
-        $filedata = module_files_getfiledata($id);
+        $filedata = m_files_getfiledata($id);
         echo "<p>Modify [$filedata->name]</p>\n";
         lib_ajax("Name,80", "files", "id", "$id", "name", 70, "", "files", "edit", "");
-        lib_ajax("Location,80", "files", "id", "$id", "location", 70, "", "files",
-            "edit", "");
-        lib_ajax("Thumbnail,80", "files", "id", "$id", "thumb", 70, "", "files", "edit",
-            "");
-        lib_ajax("Homepage,80", "files", "id", "$id", "homepage", 70, "", "files",
-            "edit", "");
-        lib_ajax("Category,80", "files", "id", "$id", "category", 70,
-            "select,table,categories,name", "files", "edit", "");
-        lib_ajax("Description,80", "files", "id", "$id", "description", "15,70",
-            "textarea", "files", "edit", "");
-        lib_ajax("Filesize,80", "files", "id", "$id", "size", 30, "", "files", "edit",
-            "");
-        lib_ajax("Version,80", "files", "id", "$id", "version", 30, "", "files", "edit",
-            "");
+        lib_ajax("Location,80", "files", "id", "$id", "location", 70, "", "files", "edit", "");
+        lib_ajax("Thumbnail,80", "files", "id", "$id", "thumb", 70, "", "files", "edit", "");
+        lib_ajax("Homepage,80", "files", "id", "$id", "homepage", 70, "", "files", "edit", "");
+        lib_ajax("Category,80", "files", "id", "$id", "category", 70, "select,table,categories,name", "files", "edit", "");
+        lib_ajax("Description,80", "files", "id", "$id", "description", "15,70", "textarea", "files", "edit", "");
+        lib_ajax("Filesize,80", "files", "id", "$id", "size", 30, "", "files", "edit", "");
+        lib_ajax("Version,80", "files", "id", "$id", "version", 30, "", "files", "edit", "");
         lib_ajax("Owner,80", "files", "id", "$id", "owner", 30, "", "files", "edit", "");
-        lib_ajax("Platform,80", "files", "id", "$id", "platform", 30, "", "files",
-            "edit", "");
+        lib_ajax("Platform,80", "files", "id", "$id", "platform", 30, "", "files", "edit", "");
         lib_ajax("OS,80", "files", "id", "$id", "os", 30, "", "files", "edit", "");
-        lib_ajax("Downloads,80", "files", "id", "$id", "downloads", 10, "", "files",
-            "edit", "");
-        lib_ajax("Hidden,80", "files", "id", "$id", "hidden", 10, "", "files", "edit",
-            "");
-        lib_ajax("Worksafe,80", "files", "id", "$id", "worksafe", 10, "", "files",
-            "edit", "");
-        lib_ajax("Rating,80", "files", "id", "$id", "rating", 10, "", "files", "edit",
-            "");
+        lib_ajax("Downloads,80", "files", "id", "$id", "downloads", 10, "", "files", "edit", "");
+        lib_ajax("Hidden,80", "files", "id", "$id", "hidden", 10, "", "files", "edit", "");
+        lib_ajax("Worksafe,80", "files", "id", "$id", "worksafe", 10, "", "files", "edit", "");
+        lib_ajax("Rating,80", "files", "id", "$id", "rating", 10, "", "files", "edit", "");
     } else {
         echo "You don't have access to edit files.<br>";
     }
     include ("footer.php");
     exit();
 }
-
-function files_action_show_duplicates()
-{
+function files_action_show_duplicates() {
     eval(lib_rfs_get_globals());
-    rfs_show_scanned_duplicates(0);
+    m_files_show_scanned_duplicates(0);
     exit();
 }
-function files_action_remove_duplicates()
-{
+function files_action_remove_duplicates() {
     eval(lib_rfs_get_globals());
     exit();
 }
-function files_action_getorphans()
-{
+function files_action_getorphans() {
     eval(lib_rfs_get_globals());
-    orphan_scan("files", 0);
+    m_files_orphan_scan("files", 0);
     include ("footer.php");
     exit();
 }
-function files_action_purge()
-{
+function files_action_purge() {
     eval(lib_rfs_get_globals());
-    purge_files(0);
+    m_files_purge_files(0);
     include ("footer.php");
     exit();
 }
-function files_action_f_upload_go()
-{
+function files_action_f_upload_go() {
     eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     lib_rfs_var("fu_dir");
     if ($fu_dir == "- Select -") {
         lib_forms_info("You must choose a location", "WHITE", "RED");
@@ -958,8 +946,7 @@ function files_action_f_upload_go()
                     VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");
                     $id = mysql_insert_id();
                     echo "DATABASE ID[$id]<br>";
-
-                    echo "<a href=\"$addon_folder?action=get_file&id=$id\">View file information</a><br>";
+                    echo "<a href=\"$RFS_ADDON_FOLDER?action=get_file&id=$id\">View file information</a><br>";
                     $httppath = str_replace("$RFS_SITE_URL/", "", $httppath);
                     lib_mysql_query("UPDATE files SET location	='$httppath' 		where id='$id'");
                     $fu_desc = addslashes($fu_desc);
@@ -978,14 +965,14 @@ function files_action_f_upload_go()
             if (!$error)
                 $error .= "No files have been selected for upload";
             echo "<P>Status: [$error]</P>\n";
-            echo "<p>[<a href=$addon_folder?action=upload>Add another file</a>]\n";
-            echo "[<a href=$addon_folder>Files</a>]</p>\n";
+            echo "<p>[<a href=$RFS_ADDON_FOLDER?action=upload>Add another file</a>]\n";
+            echo "[<a href=$RFS_ADDON_FOLDER>Files</a>]</p>\n";
         }
     }
 }
-function files_action_upload()
-{
+function files_action_upload() {
     eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     if (empty($data->name)) {
         echo "<p>You must be logged in to upload files...</p>\n";
     } else {
@@ -994,7 +981,7 @@ function files_action_upload()
         } else {
             lib_div("UPLOAD FILE FORM START");
             echo "<p>Upload a file</p>\n";
-            echo "<form enctype=\"multipart/form-data\" action=\"$addon_folder\" method=\"post\">\n";
+            echo "<form enctype=\"multipart/form-data\" action=\"$RFS_ADDON_FOLDER\" method=\"post\">\n";
             echo "<table border=0>\n\n\n";
             echo " <!--  ******************************************************************************** --> \n";
             echo "<tr>\n";
@@ -1025,26 +1012,20 @@ function files_action_upload()
     include ("footer.php");
     exit();
 }
-
-
-function files_action_file_change_category()
-{
+function files_action_file_change_category() {
     eval(lib_rfs_get_globals());
     lib_mysql_query("update files set category = '$name' where id = '$id'");
     $name = "";
     $action = "search";
     $category = "all categories";
 }
-
-function files_action_search()
-{
+function files_action_search() {
     files_action_listcategory();
 }
-function files_action_listcategory()
-{
+function files_action_listcategory() {
     eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     files_header();
-
     if ($_SESSION['show_temp']) {
         $action = "listcategory";
         if (empty($category))
@@ -1056,7 +1037,6 @@ function files_action_listcategory()
         $query .= " order by location asc ";
         lib_forms_info("SORT MODE", "WHITE", "RED");
     }
-
     $category = rtrim($category);
     if ($category == "all categories")
         $category = "all";
@@ -1075,7 +1055,6 @@ function files_action_listcategory()
     if ($action == "listcategory")
         if (empty($query))
             $query = "where `category` = '$category' ";
-
     if (!empty($tagsearch)) {
         $ts = " (`tags` like '%$tagsearch%' ) ";
         $top = 0;
@@ -1085,7 +1064,6 @@ function files_action_listcategory()
         else
             $query = "where $ts ";
     }
-
     if ($_SESSION['tagmode']) {
         $ts = " `tags`='' ";
         if (stristr($query, "where"))
@@ -1093,9 +1071,7 @@ function files_action_listcategory()
         else
             $query = "where $ts ";
     }
-
     $reload = "amount=$amount&top=$top";
-
     if ($top == "")
         $top = 0;
     if ($amount == "")
@@ -1104,13 +1080,11 @@ function files_action_listcategory()
         $limit = "$top,$amount";
     else
         $limit = "";
-
     $nexttop = $top + $amount + 1;
     $prevtop = $top - $amount;
     if ($prevtop < 0)
         $prevtop = 0;
-
-    $filelist = module_files_getfilelist($query, $limit);
+    $filelist = m_files_getfilelist($query, $limit);
     $x = count($filelist);
     if ($x == 0) {
         echo "<p>Your search for $criteria yielded no results...</p>";
@@ -1121,14 +1095,12 @@ function files_action_listcategory()
             echo "<p>Your search for $criteria yielded $x results...</p>";
         }
     }
-
     if ($prevtop > 0)
-        lib_buttons_make_button("$addon_folder?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch",
+        lib_buttons_make_button("$RFS_ADDON_FOLDER?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch",
             "PREV PAGE");
     if ($x == $amount)
-        lib_buttons_make_button("$addon_folder?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch",
+        lib_buttons_make_button("$RFS_ADDON_FOLDER?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch",
             "NEXT PAGE");
-
     if (count($filelist)) {
         echo "<div class=file_list style='float: left;' >";
         echo "<div class=file_category style='float:left;' >";
@@ -1136,13 +1108,13 @@ function files_action_listcategory()
         $i = 0;
         $bg = 0;
         while ($i < count($filelist)) {
-            $filedata = module_files_getfiledata($filelist[$i]);
+            $filedata = m_files_getfiledata($filelist[$i]);
             if (!empty($filedata->name)) {
                 $bg++;
                 if ($bg > 1)
                     $bg = 0;
                 $i++;
-                show1file($filedata, $bg);
+                m_files_show1file($filedata, $bg);
                 $la = $amount;
                 if (empty($la))
                     $la = 5;
@@ -1155,26 +1127,18 @@ function files_action_listcategory()
         echo "</div>";
     }
     echo "<div style='clear: both;'></div>";
-
     if ($prevtop > 0)
-        lib_buttons_make_button("$addon_folder?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch",
-            "PREV PAGE");
+        lib_buttons_make_button("$RFS_ADDON_FOLDER?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch", "PREV PAGE");
     if ($x == $amount)
-        lib_buttons_make_button("$addon_folder?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch",
-            "NEXT PAGE");
-
-    lib_buttons_make_button("$addon_folder?action=listcategory&$reload&category=$category&criteria=$criteria",
-        "RELOAD");
-
+        lib_buttons_make_button("$RFS_ADDON_FOLDER?action=listcategory&amount=$amount&top=$nexttop&category=$category&criteria=$criteria&tagsearch=$tagsearch", "NEXT PAGE");
+    lib_buttons_make_button("$RFS_ADDON_FOLDER?action=listcategory&$reload&category=$category&criteria=$criteria", "RELOAD");
     include ("footer.php");
     exit();
 }
-
-
 function files_action_()  {
     eval(lib_rfs_get_globals());
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     files_header();
-
     if ($_SESSION['show_temp']) {
         $action = "listcategory";
         if (empty($category))
@@ -1198,23 +1162,21 @@ function files_action_()  {
             $q = "";
             if (!empty($tagsearch))
                 $q .= " (`tags` like '%$tagsearch%' ) and ";
-            $filelist = module_files_getfilelist("where $q category = '$buffer' $shide ", 50);
+            $filelist = m_files_getfilelist("where $q category = '$buffer' $shide ", 50);
             if (count($filelist)) {
                 echo "<div class=file_list style='float: left;' >";
                 echo "<div class=file_category style='float:left;' >";
-
                 $iconp = $RFS_SITE_PATH . "/" . $cat->image;
                 $icon = $RFS_SITE_URL . "/" . $cat->image;
                 if (file_exists($iconp)) {
-                    echo "<a href=\"$addon_folder?action=listcategory&category=$buffer\" title=\"List all $buffer files\">";
+                    echo "<a href=\"$RFS_ADDON_FOLDER?action=listcategory&category=$buffer\" title=\"List all $buffer files\">";
                     echo "<img src=$icon border=0 width=32 height=32>";
                     echo "</a>";
                 }
-
-                echo "<a class=file_category_link href=\"$addon_folder?action=listcategory&category=$buffer\" title=\"List all $buffer files\">[";
+                echo "<a class=file_category_link href=\"$RFS_ADDON_FOLDER?action=listcategory&category=$buffer\" title=\"List all $buffer files\">[";
                 echo ucwords("$buffer");
                 echo "] ";
-                $myr = module_files_getfilelist("where category='$buffer' $shide ", 999999999);
+                $myr = m_files_getfilelist("where category='$buffer' $shide ", 999999999);
                 echo "(";
                 echo count($myr);
                 echo " files)";
@@ -1224,11 +1186,11 @@ function files_action_()  {
                 $i2 = 0;
                 echo "<table border=0>";
                 while ($i2 < count($filelist)) {
-                    $filedata = module_files_getfiledata($filelist[$i2]);
+                    $filedata = m_files_getfiledata($filelist[$i2]);
                     $bg = $bg + 1;
                     if ($bg > 1)
                         $bg = 0;                        
-                    show1file($filedata, $bg);
+                    m_files_show1file($filedata, $bg);
                     $i2 = $i2 + 1;
                     $la = $amount;
                     if (empty($la))
@@ -1238,7 +1200,6 @@ function files_action_()  {
                     }
                 }
                 echo "</table>";
-
                 echo "</div>";
                 echo "<br style=\"clear:both;\">";
                 if ($i2 == $la) {
@@ -1249,9 +1210,6 @@ function files_action_()  {
     include ("footer.php");
     exit();
 }
-
-
-
 
 
 ?>

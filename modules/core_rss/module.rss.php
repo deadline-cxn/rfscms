@@ -5,8 +5,8 @@ lib_menus_register("RSS Feeds","$RFS_SITE_URL/modules/core_rss/rss.php");
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE RSS
-function module_rss() { eval(lib_rfs_get_globals());
-	lib_div("RSS MODULE SECTION");
+function m_panel_rss() { eval(lib_rfs_get_globals());
+	
 	echo "<h2>News from around the world</h2>";
     include("$RFS_SITE_PATH/3rdparty/rsslib/rsslib.php");    
     $result=lib_mysql_query("select * from rss_feeds");

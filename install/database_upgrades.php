@@ -1,4 +1,7 @@
 <?
+/////////////////////////////////////////////////////////////////////////////////////////
+// RFSCMS http://www.rfscms.org/
+/////////////////////////////////////////////////////////////////////////////////////////
 // Interim Database Changes. These changes will be rotated out into the install script
 $a=intval($RFS_SITE_DATABASE_UPGRADE);
 $b=intval($RFS_BUILD);
@@ -259,6 +262,10 @@ if($a<1053) {
 	lib_mysql_add("arrangementid","tableref","text","not null");
 	lib_mysql_add("arrangement","access","text","not null");
 	lib_mysql_add("arrangement","page","text","not null");
+}
+
+if($a<1062) {
+	lib_mysql_query("ALTER TABLE arrangement CHANGE mini panel text");
 }
 
 if($a < $b) {

@@ -3,7 +3,7 @@ include_once("include/lib.all.php");
 lib_menus_register("Videos","$RFS_SITE_URL/modules/core_videos/videos.php");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE VIDEOS
-function module_videos($x) { eval(lib_rfs_get_globals());
+function m_panel_videos($x) { eval(lib_rfs_get_globals());
     echo "<h2>Last $x Videos</h2>";
     $res2=lib_mysql_query("select * from `videos` order by time desc limit 0,$x");
 	echo "<table border=0 cellspacing=0 cellpadding=0>";

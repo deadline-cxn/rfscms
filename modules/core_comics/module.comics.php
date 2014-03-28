@@ -14,7 +14,7 @@ lib_access_add_method("comics", "unpublish");
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE COMICS
-function module_comics($x) {
+function m_panel_comics($x) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL = lib_modules_get_url("comics");
     lib_div("COMIC MODULE SECTION");

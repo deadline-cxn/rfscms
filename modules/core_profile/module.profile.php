@@ -5,7 +5,7 @@ lib_menus_register("My Profile","$RFS_SITE_URL/modules/core_profile/profile.php"
 
 //////////////////////////////////////////////////////////////////////////////////
 // MODULE profile
-function module_profile($x) { eval(lib_rfs_get_globals());
+function m_panel_profile($x) { eval(lib_rfs_get_globals());
     lib_div("PROFILE MODULE SECTION");
     echo "<h2>Profile</h2>";
     /*

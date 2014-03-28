@@ -1,6 +1,6 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFSCMS http://www.sethcoder.com/
+// RFSCMS http://www.rfscms.org/
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_modules_get_property($x,$property) {
 	global $RFS_MODULE;
@@ -114,9 +114,8 @@ function lib_modules_draw($location) {
 		$n=mysql_num_rows($r);
 		for($i=0;$i<$n;$i++) {
 			$ar=mysql_fetch_object($r);
-			if(function_exists("module_$ar->mini")) {
-				eval("module_$ar->mini($ar->num);");
-				echo "<hr>";
+			if(function_exists("m_panel_$ar->panel")) {
+				eval(("m_panel_$ar->panel($ar->num);"));
 			}
 		}
 	}

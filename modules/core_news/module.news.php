@@ -20,7 +20,7 @@ function adm_action_lib_news_news_edit() {
     $RFS_ADDON_URL=lib_modules_get_url("news");
     lib_domain_gotopage("$RFS_ADDON_URL?action=edityournews");
 }
-function module_news_list($x) {
+function m_panel_news_list($x) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("news");
     lib_div("NEWS MODULE SECTION");

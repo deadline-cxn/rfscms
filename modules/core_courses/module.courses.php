@@ -25,7 +25,7 @@ function adm_action_lib_courses_courses() { eval(lib_rfs_get_globals());
     lib_domain_gotopage("$RFS_SITE_URL/modules/core_courses/courses.php");
 }
 
-function module_course_list($x) { eval(lib_rfs_get_globals());
+function m_panel_course_list($x) { eval(lib_rfs_get_globals());
     echo "<h2>Courses available</h2><hr>";
 	
     echo "<div class=\"courses_box\">";

@@ -3,7 +3,7 @@ include_once("include/lib.all.php");
 lib_menus_register("Links","$RFS_SITE_URL/modules/core_linkbin/linkbin.php");
 ///////////////////////////////////////////////////////////////
 // MODULE LINK FRIENDS
-function module_link_friends($x) {
+function mo_panel_link_friends($x) {
 	eval(lib_rfs_get_globals());
 	$result=lib_mysql_query("select * from link_bin where friend='yes' order by time limit $x");
 	echo "<h2>Link Friends</h2>";

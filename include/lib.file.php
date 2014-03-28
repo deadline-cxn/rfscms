@@ -1,61 +1,34 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFSCMS http://www.sethcoder.com/
+// RFSCMS http://www.rfscms.org/
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_file_getfiletype($filen){
 	$finfo=pathinfo($filen);
 	return strtolower( $finfo['extension']	);
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$key) { eval(lib_rfs_get_globals());
-		echo "<p> Upload file</p>\n";		
+function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$key) {
+	eval(lib_rfs_get_globals());
 		$fx=$_FILES[$filedata];
 		$uploadFile=$filepath."/".$pre.$fx['name'].$suf;
 		$uploadFile =str_replace("//","/",$uploadFile);
-		if(!stristr($uploadFile,$RFS_SITE_PATH)) $uploadFile=$RFS_SITE_PATH.$uploadFile;		
+		if(!stristr($uploadFile,$RFS_SITE_PATH)) $uploadFile=$RFS_SITE_PATH.$uploadFile;
 		if(move_uploaded_file($fx['tmp_name'], $uploadFile)) {
-			system("chmod $chmod $uploadFile");			
+			system("chmod $chmod $uploadFile");
 			$error="File is valid, and was successfully uploaded. ";
 			echo "<P>You sent: ".$fx['name'].", a ".$fx['size']." byte file with a mime type of ";
 			echo $fx['type']."</p>\n";
 			echo "<p>It was stored as [$httppath"."/".$fx['name']."]</p>\n";
-		/* if($fu_hidden=="no") {
-				$httppath=$httppath."/".$fx['name'];					
-				$finfo=pathinfo($uploadFile);
-				$filetype=strtolower($finfo['extension']);
-				// if(empty($fu_name)) $fu_name=$fx['name'];				// $fu_name=addslashes($fu_name);				// $time1=date("Y-m-d H:i:s");				lib_mysql_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)											VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");$id=mysql_insert_id();echo "DATABASE ID[$id]<br>";
-				echo "<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$id\">View file information</a><br>";
-				$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
-				lib_mysql_query("UPDATE files SET location	='$httppath' 		where id='$id'");								
-				$fu_desc=addslashes($fu_desc);
-				lib_mysql_query("UPDATE files SET description	='$fu_desc'	 	where id='$id'");	
-				$filesizebytes=$fx['size'];
-				lib_mysql_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");					
-				$extra_sp=$fx['size']/10240;
-				$data->files_uploaded=$data->files_uploaded+1;
-				lib_mysql_query("update `users` set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
-				} */
 			return $uploadFile;
 		}
 		else {
-			//UPLOAD_ERR_OK        //Value: 0; There is no error, the file uploaded with success.
-			//UPLOAD_ERR_INI_SIZE  //Value: 1; The uploaded file exceeds the upload_max_filesize directive in php.ini.
-			//UPLOAD_ERR_FORM_SIZE //Value: 2; The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
-			//UPLOAD_ERR_PARTIAL   //Value: 3; The uploaded file was only partially uploaded.
-			//UPLOAD_ERR_NO_FILE
-			$error ="File upload error!";
-			echo "File upload error! ";
 			echo "[".$fx['name']."]";
 			echo "[".$fx['error']."]";
 			echo "[".$fx['tmp_name']."]";
 			echo "[".$uploadFile."]\n";
 		}
-		if(!$error) {
-			$error .= "No files have been selected for upload";
-		}		
+		if(!$error) $error .= "No files have been selected for upload";
 	return false;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_file_get_size($file) {
 	return lib_file_sizefile(filesize($file));
 }
@@ -71,7 +44,6 @@ function lib_file_sizefile($bytesize) {
 	 // YB yottabyte 2^80
     return $size;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_file_folder_to_array($folder) {
 	$dirfiles = array();
 	$handle=opendir($folder);
@@ -88,7 +60,6 @@ function lib_file_folder_to_array($folder) {
 	asort($dirfiles);
 	return $dirfiles;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_file_get_folder_files($folder){
     $dirfiles = array();
     $handle=opendir($folder);
@@ -100,7 +71,6 @@ function lib_file_get_folder_files($folder){
 	asort($dirfiles);
     return $dirfiles;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_file_multi_rename($folder,$old_pattern,$new_pattern) {
 	$dirfiles=lib_file_get_folder_files($folder);
     while(list ($key, $file) = each ($dirfiles)) {
@@ -115,7 +85,6 @@ function lib_file_multi_rename($folder,$old_pattern,$new_pattern) {
         }
     }
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_file_echo_file($file) { 
 	eval(lib_rfs_get_globals()); 
 	if(file_exists($file)) {
@@ -125,7 +94,6 @@ function lib_file_echo_file($file) {
 		return $f;
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_file_file_get_readme($file_name) { 
 	eval (lib_rfs_get_globals());
 	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
@@ -196,7 +164,6 @@ function lib_file_file_get_readme($file_name) {
 		}
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 function lib_file_touch_dir($dir) { 
 	eval(lib_rfs_get_globals());
 	if(!file_exists($dir)) {
@@ -205,5 +172,7 @@ function lib_file_touch_dir($dir) {
 		system("$RFS_SITE_SUDO_CMD chown www-data:www-data $dir");
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////
+function lib_file_delete($file) {
+	unlink($file);
+}
 ?>

@@ -5,7 +5,7 @@ lib_menus_register("Memes","$RFS_SITE_URL/modules/core_memes/memes.php");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODULE MEMES
-function module_memes($x) { eval(lib_rfs_get_globals());
+function m_panel_memes($x) { eval(lib_rfs_get_globals());
 	echo "<h2>Last $x Memes</h2>";
 	$r=lib_mysql_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc limit $x");
 	if($r)

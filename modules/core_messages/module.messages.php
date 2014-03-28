@@ -43,7 +43,7 @@ function send_all($from,$subject,$message) {
 
 }
 
-function module_messages_link() { eval(lib_rfs_get_globals());
+function m_panel_messages_link() { eval(lib_rfs_get_globals());
 
 		echo "<h2>Private Messages</h2>";
 		if($_SESSION["logged_in"]!="true") return;
@@ -61,7 +61,7 @@ function module_messages_link() { eval(lib_rfs_get_globals());
        echo "</tr></table>";
 }
 
-function module_messages_indicator_small() { eval(lib_rfs_get_globals());
+function m_panel_messages_indicator_small() { eval(lib_rfs_get_globals());
 	echo "<h2>Private Messages</h2>";
 	if($_SESSION["logged_in"]!="true") return;
     $ur=get_unread_messages();

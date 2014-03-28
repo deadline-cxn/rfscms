@@ -1,6 +1,6 @@
 <?
 /////////////////////////////////////////////////////////////////////////////////////////
-// RFS CMS http://www.sethcoder.com/
+// RFSCMS http://www.rfscms.org/
 /////////////////////////////////////////////////////////////////////////////////////////
 $title="Administration";
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -226,14 +226,14 @@ function rfs_admin_module( $loc ) {
     $location=$loc;
 	$r=lib_mysql_query( "select * from arrangement where location='$location' order by sequence " );
 	if($r){
-		echo "<center><h2>Arrange location $location";
+		echo "<center><h2>Panel arrangement location $location";
 		if( $location=="left" ) echo " (left panel)";
 		echo "</h2></center>";
 		$n=mysql_num_rows($r);
-        if(!$n) echo " ( NOTHING IN THIS AREA! ) <BR> ";
+        if(!$n) echo " ( NO PANELS IN THIS AREA! ) <BR> ";
         else
-		for( $i=0; $i<$n; $i++ ) {
-			$ar=mysql_fetch_object( $r );
+		for($i=0; $i<$n; $i++) {
+			$ar=mysql_fetch_object($r);
 			echo "<table border=0 cellspacing=0><tr><td>";
             echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_delete&location=$location&arid=$ar->id'>";
 			echo "<img src='$RFS_SITE_URL/images/icons/circle-delete.png' border='0'>";
@@ -253,7 +253,7 @@ function rfs_admin_module( $loc ) {
 				echo " <img src=$RFS_SITE_URL/images/icons/arrow-right.png width=32 height=32 border=0> ";				
 			}
 			echo "	</td><td>";
-			echo ucwords( "Module: $ar->mini show " );
+			echo ucwords( "Panel: $ar->panel show " );
 			echo "</td>	<form action='$RFS_SITE_URL/admin/adm.php' method='post'>	<td>
 			<input type=hidden name=action value=f_module_chg_num>
 			<input type=hidden name=id value='$ar->id'>
@@ -266,12 +266,12 @@ function rfs_admin_module( $loc ) {
 	echo "<input type=hidden name=action value=f_module_add>";
 	echo "<input type=hidden name=location value=$location>";
 	echo "<select name=module onchange='this.form.submit();'>";
-	echo "<option>Add module to this area";
+	echo "<option>Add panel to this area";
 	$arr=get_defined_functions();
 	asort($arr['user']);
 	foreach( $arr['user'] as $k=>$v ) {
-		if( substr($v,0,7)=="module_")  {
-			$v=str_replace("module_","",$v);
+		if( substr($v,0,8)=="m_panel_")  {
+			$v=str_replace("m_panel_","",$v);
 			echo "<option name='$v' value='$v'>";
 			echo ucwords(str_replace( "_"," ",$v ) );
 		}
@@ -282,7 +282,7 @@ function rfs_admin_module( $loc ) {
 function adm_action_f_arrange_move_up() {
     eval(lib_rfs_get_globals());
 	$ar=lib_mysql_fetch_one_object("select * from arrangement where `id`='$arid'");	
-	//echo $ar->mini."<br>";
+	//echo $ar->panel."<br>";
 	//echo $ar->location."<br>";
 	//echo $ar->num."<br>";
 	//echo $ar->sequence."<br>";
@@ -312,8 +312,8 @@ function adm_action_f_arrange_delete_go() {
 function adm_action_f_arrange_delete() {
     eval(lib_rfs_get_globals());
     $ar=lib_mysql_fetch_one_object("select * from arrangement where `location` = '$location' and `id`= '$arid' ");
-    echo "Delete arrangement ($location: $ar->mini)<br>";
-    lib_forms_confirm( "Delete $ar->mini from $location?",
+    echo "Delete arrangement ($location: $ar->panel)<br>";
+    lib_forms_confirm( "Delete $ar->panel from $location?",
                     "$RFS_SITE_URL/admin/adm.php",
                     "action=f_arrange_delete_go".$RFS_SITE_DELIMITER."id=$ar->id" );
     adm_action_arrange();
@@ -325,7 +325,7 @@ function adm_action_f_module_add() {
 	$ars=mysql_fetch_object($r);
 	$nseq=$ars->seq+1;
 	echo "$ars->seq $nseq  <br>";
-	lib_mysql_query( "insert into arrangement  (`mini`,`location`,`num`,`sequence`)
+	lib_mysql_query( "insert into arrangement  (`panel`,`location`,`num`,`sequence`)
 	          values('$module','$location','5','$nseq');" );
 	adm_action_arrange();
 }
@@ -340,7 +340,7 @@ function adm_action_arrange() {
 	lib_mysql_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`location` text NOT NULL,
-				`mini` text NOT NULL,
+				`panel` text NOT NULL,
 				`num` int(11) NOT NULL,
 				`sequence` int(11) NOT NULL,
 				PRIMARY KEY (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ; ");
