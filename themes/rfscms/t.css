@@ -1,3 +1,30 @@
+@font-face {
+    font-family: unispace;
+    src: url('unispace.ttf'); 
+}
+
+@font-face {
+    font-family: trashed;
+    src: url('trashed.ttf');
+}
+
+@font-face {
+    
+    font-family: MONOFONT;
+    src: url('MONOFONT');
+}
+
+@font-face {
+    font-family: KingsOfPacifica;
+    src: url('KingsOfPacifica.ttf');
+}
+
+@font-face {
+	font-family: rfscms;
+	src: url('rfscms.ttf');
+}
+
+
 body{
 background-color: #bF7F3F;
 padding: 0px;
@@ -69,8 +96,13 @@ margin: 0px;
 	border-bottom-right-radius: 8px;
 }
 
+div{
+    font-family: terminal;
+    font-size: 12px;
+    
+}
 td{
-    font-family: Verdana;
+    font-family: terminal;
     font-size: 12px;
 }
 
@@ -120,26 +152,23 @@ font-family: Verdana;
 }
 .news_headline {
 	padding: 5px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: x-large;
-	color: #5F79FF;
-	fcolor: #000;
+    font-family: rfscms;
+    font-size: 20px;
+	color: #bD9A17;
 	float: left;
-	text-shadow: 1px 1px 1px #000;
+	text-shadow: 2px 2px 2px #000;
 }
 
 .news_time {
 
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: small;
-    
-	color: #5F79FF;
-	
+    font-family: rfscms;
+    font-size: 20px;
+	color: #bD9A17;	
 	font-style: italic;
 	padding: 6px 25px;
 	vertical-align: text-bottom;
 	float: right;
-	text-shadow: 1px 1px 1px #000;
+	text-shadow: 2px 2px 2px #000;
 }
 
 .news_image {
@@ -148,11 +177,12 @@ font-family: Verdana;
 }
 
 .news_article {
+
 	border-top: 1px solid #000;
 	min-height: 160px;
 	clear: both; 
 	padding: 15px;
-	background-color:rgba(0,0,100,0.3);
+	background-color:rgba(100,100,100,0.3);
 }
 
 .news_edit_bar {
@@ -186,22 +216,20 @@ font-family: Verdana;
 }
 
 h1{
-	font-weight: bold;
-	font-size: 20px;
+    font-family: rfscms;
+	font-size: 24px;
 	margin: 0px;
 }
 
 h2 {
-	font-weight: bold;
-	font-size: 18px;
+    font-family: rfscms;
+	font-size: 22px;
 	margin: 0px;
-	padding-left: 10px;
-	
 }
 
 h3 {
-	font-weight: bold;
-	font-size: 16px;
+    font-family: rfscms;
+	font-size: 18px;
 	margin: 0px;
 }
 
@@ -212,7 +240,6 @@ hr{
 }
 
 .rfs_top_menu_table {
-    font-family: Verdana;
     font-weight: bold;
     font-size: 12px;
     color: #555599;    
@@ -224,7 +251,6 @@ hr{
 }
 
 .rfs_top_menu_table_td {
-    font-family: Verdana;
     font-weight: bold;
     font-size: 12px;
     color: #555599;    
@@ -236,7 +262,6 @@ hr{
 }
 
 .rfs_top_menu_table_inner {
-    font-family: Verdana;
     font-weight: bold;
     font-size: 12px;
     color: #555599;    
@@ -249,25 +274,24 @@ hr{
 
 
 .rfs_top_menu_link {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-style: italic; 
+    font-family: KingsOfPacifica;
+    font-size: 3em;
     text-decoration: none;
     color: #9D7A17;
-    
-			
 	text-shadow: 1px 1px 1px #000;
 	padding-right: 15px;
 }
 
 .rfs_top_menu_link:link {
-	font-size: 2em;
+    font-family: KingsOfPacifica;
+	font-size: 3em;
+    
     color: #9D7A17;
-    
-    
 }
 
 .rfs_top_menu_link:hover {
+    font-family: KingsOfPacifica;
+    font-size: 3em;
     color: #f5a555;
     background-color: #4D2A17;
 }
@@ -283,6 +307,7 @@ hr{
 }
 
 .contenttd {
+    
     color: #000000;
 }
 
@@ -369,18 +394,18 @@ hr{
 	border-top-right-radius: 8px;
 }
 
-.rfs_file_table_outer_0 { background-color: #ddd;  }
-.rfs_file_table_0 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 10px;
+.rfs_file_table_outer_2 { background-color: #ddd;  }
+.rfs_file_table_2 {
+    font-family: terminal;
+    font-size: 12px;
 	font-weight: normal;
 	padding-left: 5px;
 }
 
 .rfs_file_table_outer_1 { background-color: #ccc;  }
 .rfs_file_table_1 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 10px;
+    font-family: terminal;
+    font-size: 12px;
 	font-weight: normal;
 	padding-left: 5px;
 }
@@ -458,10 +483,8 @@ hr{
 
 
 a {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: terminal;
     font-size: 12px;
-    font-weight: bold;
-    font-style: italic;
     text-decoration: none;
     color: #FFFF66;
 	text-shadow: 1px 1px 1px #000;
@@ -469,20 +492,10 @@ a {
 }
 
 a:link {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: none;
     color: #CCCC22;
 }
 
 a:hover {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: none;
     color: #000;
 	background-color: #FF6;
 }
@@ -492,7 +505,7 @@ a:hover {
 
 
 input,textarea{
-    font-family: Arial;
+    font-family: terminal;
     font-size: 12px;
     color: #000000;
     border: 1px;
