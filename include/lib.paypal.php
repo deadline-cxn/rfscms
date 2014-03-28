@@ -6,11 +6,8 @@ function adm_action_f_paypal_config_go() {
 	echo "$ppemail<br>";
 	echo "$ppbutton1<br>";
 	echo "$ppbutton2<br>";
-
-	
-	
-	
 }
+
 function adm_action_paypal_config() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Paypal Configuration</h1>";
@@ -21,10 +18,8 @@ function adm_action_paypal_config() {
 	echo "Paypal Button 2 ID: <input name=ppbutton2 value=\"$RFS_SITE_PAYPAL_BUTTON2\"><br>";
 	echo "<input type=submit value=\"Update\">";
 	echo "</form>";
-	
-	
-	
 }
+
 function lib_paypal_record_transaction() {
 	eval(lib_rfs_get_globals());
 	lib_mysql_query("

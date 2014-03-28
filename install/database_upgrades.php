@@ -252,7 +252,6 @@ if($a<984) {
     echo "Added interim database changes 984<br>";
 }
 if($a<986) {
-	
 	mysql_query("ALTER TABLE `files` CHANGE `lastupdate` `lastupdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;");
 	echo "Added interim database changes 986<br>";
 }
@@ -262,10 +261,95 @@ if($a<1053) {
 	lib_mysql_add("arrangementid","tableref","text","not null");
 	lib_mysql_add("arrangement","access","text","not null");
 	lib_mysql_add("arrangement","page","text","not null");
+	echo "Added interim database changes 1053<br>";
 }
-
 if($a<1062) {
 	lib_mysql_query("ALTER TABLE arrangement CHANGE mini panel text");
+	echo "Added interim database changes 1062<br>";
+}
+if($a<1065) {
+	lib_mysql_add("site_var_types","name","text","not null");
+	lib_mysql_add("site_var_types","table","text","not null");
+	lib_mysql_add("site_var_types","key","text","not null");
+	lib_mysql_add("site_var_types","other","text","not null");
+	
+	lib_mysql_query("insert into `site_var_types` (`name`,`table`,`key`,`other`) values ('text','','','');");
+	lib_mysql_query("insert into `site_var_types` (`name`,`table`,`key`,`other`) values ('bool','','','on,off');");
+	lib_mysql_query("insert into `site_var_types` (`name`,`table`,`key`,`other`) values ('theme','','','');");
+	lib_mysql_query("insert into `site_var_types` (`name`,`table`,`key`,`other`) values ('file','','','');");
+	lib_mysql_query("insert into `site_var_types` (`name`,`table`,`key`,`other`) values ('menu_location','','','');");
+	lib_mysql_query("insert into `site_var_types` (`name`,`table`,`key`,`other`) values ('picture','pictures','name','');");
+	lib_mysql_query("insert into `site_var_types` (`name`,`table`,`key`,`other`) values ('video','videos','name','');");
+	
+	lib_mysql_add("site_vars_available","var","text","not null");
+	lib_mysql_add("site_vars_available","type","text","not null");
+	lib_mysql_add("site_vars_available","description","text","not null");
+					
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`) values ('LOCALE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('OS','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('PATH_SEP','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('HEAD','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FONT','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('NAV_IMG_TOP','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('URL','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('DELIMITER','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('SUDO_CMD','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('PATH','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('CHECK_UPDATE','bool','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('DEFAULT_THEME','theme','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FORCE_THEME','bool','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FORCED_THEME','theme','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('SESSION_ID','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('SESSION_USER','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('ADMIN','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('ADMIN_EMAIL','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('SLOGAN','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('URL','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('ERROR_LOG','file','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('THEME_DROPDOWN','bool','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('ADDTHIS_ACCT','text','');");	 
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FACEBOOK_APP_ID','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FACEBOOK_SECRET','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FACEBOOK_SDK','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FACEBOOK_NEWS_COMMENTS','bool','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FACEBOOK_WIKI_COMMENTS','bool','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('ALLOW_FREE_DOWNLOADS','bool','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('MENU_TOP_LOCATION','menu_location','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('MENU_LEFT_LOCATION','menu_location','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('FOOTER','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('COPYRIGHT','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('JOIN_FORM_CODE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('LOGIN_FORM_CODE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('LOGGED_IN_CODE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('JS_JQUERY','file','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('JS_COLOR','file','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('JS_MOOTOOLS','file','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('JS_EDITAREA','file','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('JS_MSDROPDOWN','file','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('JS_MSDROPDOWN_THEME','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('TITLE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('NAME','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('SEO_KEYWORDS','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('DOC_TYPE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('HTML_OPEN','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('HEAD_OPEN','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('HEAD_CLOSE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('BODY_OPEN','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('BODY_CLOSE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('HTML_CLOSE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('GOOGLE_ADSENSE','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('PAYPAL_BUTTON1','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('PAYPAL_BUTTON1_MSG','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('PAYPAL_BUTTON2','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('PAYPAL_BUTTON2_MSG','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('SHOW_SOCIALS','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('ADDTHIS_ACCT','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('GOOGLE_ANALYTICS','text','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('GALLERIAS','bool','');");
+	lib_mysql_query("insert into `site_vars_available` (`var`,`type`,`description`)	values ('CAPTIONS','bool','');");
+	
+	
+	echo "Added interim database changes 1066<br>";
 }
 
 if($a < $b) {
@@ -273,9 +357,6 @@ if($a < $b) {
 	$dbu=lib_mysql_fetch_one_object("select * from site_vars where name='database_upgrade'");
 	if(empty($dbu->id)) lib_mysql_query("insert into site_vars (`name`,`value`) values('database_upgrade','$RFS_SITE_DATABASE_UPGRADE');");
 	else lib_mysql_query("update site_vars set `value` = '$RFS_SITE_DATABASE_UPGRADE' where `name`='database_upgrade'");
-        echo "Added interim database changes $RFS_SITE_DATABASE_UPGRADE<br>";
+	echo "Added interim database changes $RFS_SITE_DATABASE_UPGRADE<br>";
 }
-
-
-
 ?>
