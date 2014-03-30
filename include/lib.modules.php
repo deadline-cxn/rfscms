@@ -34,7 +34,7 @@ function lib_modules_get_url($z) {
     $x=explode("/",$x);
 	for($i=0;$i<count($x);$i++) {
 		if(strstr($x[$i],"modules")) {
-			$addon=$x[$i+1];			
+			$addon=$x[$i+1];
 		}
 	}
     $loc=$RFS_MODULE[$addon]["url"];
