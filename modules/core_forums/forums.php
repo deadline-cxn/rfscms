@@ -161,6 +161,7 @@ function forums_action_get_thread($thread) {
 		echo "<p>Error! This post or reply has been moved or deleted.</p>";
 		return;
 	}
+	$locked=$post['locked'];
 	$forum_which=$post['forum'];
 	$folder=mysql_fetch_array(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));
 	$title=stripslashes($post['title']);
@@ -179,6 +180,15 @@ function forums_action_get_thread($thread) {
 			}
 		}
         if($logged_in=="true") {
+			if(lib_rfs_bool_true($locked)) {
+				
+				
+				echo "<h2>
+				<img src=\"$RFS_SITE_URL/images/icons/Lock.png\" width=32 height=32>
+				This thread is locked. No replies are allowed.</h2>";
+			}
+			else {
+				
 				echo "<div class=\"forum_box\">";
 				echo "<h2>Reply</h2>";				
 				echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_URL\" method=post>\n";
@@ -195,6 +205,8 @@ function forums_action_get_thread($thread) {
 				echo "<select id=\"anonymous\" name=anonymous style=\"width:160px; min-width: 160px;\" width=160><option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\">";
 				echo "</form>\n";
 				echo "</div>";
+				
+			}
         }
 		else {
             echo "<p class=rfs_site_urlr><a href=$RFS_SITE_URL/login.php>Login</a> to reply to this post!</p>\n";
@@ -283,7 +295,7 @@ function forums_action_edit_reply() {
 		echo "<div class=\"forum_box\">";
 		echo "<h2>Editing reply #$reply: $post->title</h2>";
         echo "<table border=0 width=100%>\n";
-        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_ADDON_URL method=post>\n";
+        echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_URL\" method=post>\n";
         echo "<input type=hidden name=action value=edit_reply_go>\n";
         echo "<input type=hidden name=reply value=$reply>\n";
         echo "<input type=hidden name=forum_which value=$forum_which>\n";
@@ -512,6 +524,12 @@ function forums_action_forum_showposts() {
             echo "<img src=\"$RFS_SITE_URL/images/icons/Documents.png\" height=32 border=0 >\n";
 			echo "</a>";
 			echo "</td><td width=500>";
+			if(lib_rfs_bool_true($post['sticky'])) {
+				echo "<img src=\"$RFS_SITE_URL/images/icons/stickyico.gif\" width=16 height=16>";
+			}
+			if(lib_rfs_bool_true($post['locked'])) {
+				echo "<img src=\"$RFS_SITE_URL/images/icons/Lock.png\" width=16 height=16>";
+			}
 			echo $flink;
 			echo stripslashes($post['title']);
 			echo "</a><br>";
@@ -557,13 +575,38 @@ function forums_action_forum_showposts() {
            if( (lib_access_check("forums","admin")) & ($_SESSION['forum_admin']=="yes")) {
 			   
 			   echo "<div style='float: left;'>";
+			   if(lib_rfs_bool_true(($post['sticky']))) {
+					lib_buttons_image_sizeable(
+					"$RFS_ADDON_URL?action=unsticky_thread&thread=".$post['thread'],
+					"Sticky",
+					"$RFS_SITE_URL/images/icons/stickyico.gif",
+					16, 16);
+			   } 
+			   else {
+					lib_buttons_image_sizeable(
+					"$RFS_ADDON_URL?action=sticky_thread&thread=".$post['thread'],
+					"Sticky",
+					"$RFS_SITE_URL/images/icons/stickyico.gif",
+					16, 16);
+			   } 
 			   
-				lib_buttons_image_sizeable(
-				"$RFS_ADDON_URL?action=sticky_thread&thread=".$post['thread'],
-				"Sticky",
-				"$RFS_SITE_URL/images/icons/stickyico.gif",
-				16,
-				16);
+				if(lib_rfs_bool_true(($post['locked']))) {			
+					lib_buttons_image_sizeable(
+					"$RFS_ADDON_URL?action=unlock_thread&thread=".$post['thread'],
+					"Lock",
+					"$RFS_SITE_URL/images/icons/Lock.png",
+					16,
+					16);
+				}
+				else {			
+					lib_buttons_image_sizeable(
+					"$RFS_ADDON_URL?action=lock_thread&thread=".$post['thread'],
+					"Lock",
+					"$RFS_SITE_URL/images/icons/Lock.png",
+					16,
+					16);
+				}
+				
 				
 				lib_buttons_image_sizeable(
 				"$RFS_ADDON_URL?action=delete_post_s&thread=".$post['thread'],
@@ -571,13 +614,8 @@ function forums_action_forum_showposts() {
 				"$RFS_SITE_URL/images/icons/Delete.png",
 				16,
 				16);
-				
-				lib_buttons_image_sizeable(
-				"$RFS_ADDON_URL?action=lock_thread&thread=".$post['thread'],
-				"Lock",
-				"$RFS_SITE_URL/images/icons/Lock.png",
-				16,
-				16);
+
+
 				
 				echo "</div>";
 				echo "<div>";

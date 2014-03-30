@@ -137,9 +137,10 @@ function wikicode($text) {
 }
 //////////////////////////////////////////////////////////////////////////////
 // WIKITEXT FUNCTION
-function wikitext($text) { eval(lib_rfs_get_globals());
+function wikitext($text) {
+	eval(lib_rfs_get_globals());
 	if(empty($RFSW_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/core_wiki/images/bullet.gif";
-	if(empty($RFSW_LINK_IMAGE))   $RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/core_wiki/images/link2.png";
+	if(empty($RFSW_LINK_IMAGE))   $RFSW_LINK_IMAGE   = $RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	
 	// $text=wikicode($text);
 	// $text= wikiimg($text);
@@ -309,7 +310,8 @@ function wikitext($text) { eval(lib_rfs_get_globals());
 									
 									
 									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$outlink target=\"$target\">".$shortname;
-									$outtext.="  <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ";
+									$outtext.="  <img src=\"$RFS_SITE_URL/modules/core_wiki/images/link2.png\"
+									 border=\"0\" width=\"11\" height=\"10\" ></a> ";
 									$outtext.=nl2br($ila2[1]);
 							}
 						else
