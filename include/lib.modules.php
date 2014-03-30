@@ -27,9 +27,10 @@ function lib_modules_register($x,$core,$loc) {
 }
 function lib_modules_get_url($z) {
     global $RFS_SITE_PATH,$RFS_SITE_URL;
-    global $RFS_MODULE;	
+    global $RFS_MODULE;
 	if(!empty($z)) return $RFS_MODULE[$z]["url"];
 	$x=lib_domain_canonical_url();
+	$y=explode("?",$x); $x=$y[0];
     $x=explode("/",$x);
 	for($i=0;$i<count($x);$i++) {
 		if(strstr($x[$i],"modules")) {
