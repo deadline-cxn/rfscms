@@ -348,11 +348,21 @@ if($a<1065) {
 }
 
 if($a<1067) {
-    
     lib_mysql_query("ALTER TABLE arrangement CHANGE mini panel text");
-    
     echo "Added interim database changes 1067<br>";
-   	
+}
+
+if($a<1067) {
+    lib_mysql_add("panel_types","name","text","not null");
+	lib_mysql_add("panel_types","table","text","not null");
+	lib_mysql_add("panel_types","key","text","not null");
+	lib_mysql_add("panel_types","other","text","not null");
+	
+	lib_mysql_query("insert into `panel_types` (`name`,`table`,`key`,`other`) values ('results','','','');");
+	lib_mysql_query("insert into `panel_types` (`name`,`table`,`key`,`other`) values ('eval','','','');");
+	lib_mysql_query("insert into `panel_types` (`name`,`table`,`key`,`other`) values ('static','','','');");
+    
+    echo "Added interim database changes 1069<br>";
 }
 
 

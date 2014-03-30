@@ -16,7 +16,8 @@ if(lib_rfs_bool_true($_SESSION['forum_admin'])) {
 	}
 }
 function forums_buttons($forum_which) { 
-	eval(lib_rfs_get_globals());    
+	eval(lib_rfs_get_globals());
+	$RFS_ADDON_URL=lib_modules_get_url();
 	if($forum_list!="yes") {
         echo "[<a href=\"$RFS_ADDON_URL\">List Forums</a>]";
         echo "[<a href=\"$RFS_ADDON_URL?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";

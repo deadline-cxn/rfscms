@@ -225,7 +225,7 @@ function rfs_admin_module( $loc ) {
     eval( lib_rfs_get_globals() );
     $location=$loc;
 	$r=lib_mysql_query( "select * from arrangement where location='$location' order by sequence " );
-	if($r){
+	if($r) {
 		echo "<center><h2>Panel arrangement location $location";
 		if( $location=="left" ) echo " (left panel)";
 		echo "</h2></center>";
@@ -253,19 +253,49 @@ function rfs_admin_module( $loc ) {
 				echo " <img src=$RFS_SITE_URL/images/icons/arrow-right.png width=32 height=32 border=0> ";				
 			}
 			echo "	</td><td>";
-			echo ucwords( "Panel: $ar->panel show " );
-			echo "</td>	<form action='$RFS_SITE_URL/admin/adm.php' method='post'>	<td>
-			<input type=hidden name=action value=f_module_chg_num>
-			<input type=hidden name=id value='$ar->id'>
-			<input name=num size=1 value=$ar->num  onblur='this.form.submit()'  >
-			</td>	</form>	<td> results</td>	</tr></table>";
+			echo ucwords( "Panel: $ar->panel" );
+            
+            
+            echo "</td>";
+            
+            echo "<td>";
+            
+            echo $ar->type;
+   
+            if(empty($ar->type)) $ar->type="results";
+            
+            lib_forms_optionize($phpself,"action=f_module_chg_type".$RFS_SITE_DELIMITER."id=$ar->id","panel_types","name","",$ar-type,"0");
+                        
+            // echo "$ar->id $ar->location $ar->panel $ar->num $ar->sequence $ar->type $ar->tableref $ar->access $ar->page";
+            
+            echo "</td>";
+            
+            
+            if($ar->type=="results") {            
+               echo "type result";
+                echo "<td>
+                        <form action='$RFS_SITE_URL/admin/adm.php' method='post'>
+    			        <input type=hidden name=action value=f_module_chg_num>
+                        <input type=hidden name=id value='$ar->id'>
+                        <input name=num size=1 value=$ar->num  onblur='this.form.submit()'>
+    				</form> </td>
+                    <td> results</td>";
+            }
+                
+                
+            echo "</tr></table>";
 		}
 		echo "<p>&nbsp;</p>";
 	}
+    
+    
+    
 	echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
 	echo "<input type=hidden name=action value=f_module_add>";
 	echo "<input type=hidden name=location value=$location>";
-	echo "<select name=module onchange='this.form.submit();'>";
+    
+    echo "<select name=module onchange='this.form.submit();'>";
+    
 	echo "<option>Add panel to this area";
 	$arr=get_defined_functions();
 	asort($arr['user']);
@@ -329,9 +359,15 @@ function adm_action_f_module_add() {
 	                                   values('$module','$location','5','$nseq');" );
 	adm_action_arrange();
 }
+function adm_action_f_module_chg_type() {
+    eval( lib_rfs_get_globals() );
+    //echo "$id... $name";
+    lib_mysql_query( "update `arrangement` set `type`='$name' where id='$id'" );
+	adm_action_arrange();
+}
 function adm_action_f_module_chg_num() {
     eval( lib_rfs_get_globals() );
-	lib_mysql_query( "update arrangement set num='$num' where id='$id'" );
+	lib_mysql_query( "update arrangement set `num` ='$num' where id='$id'" );
 	adm_action_arrange();
 }
 function adm_action_arrange() {
