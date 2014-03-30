@@ -573,7 +573,7 @@ function forums_action_forum_showposts() {
 				16);
 				
 				lib_buttons_image_sizeable(
-				"$RFS_ADDON_URL?action=sticky_thread&thread=".$post['thread'],
+				"$RFS_ADDON_URL?action=lock_thread&thread=".$post['thread'],
 				"Lock",
 				"$RFS_SITE_URL/images/icons/Lock.png",
 				16,
@@ -606,6 +606,46 @@ function forums_action_forum_showposts() {
 	
 	include("footer.php");
     
+}
+function forums_action_unlock_thread($t) {
+	eval(lib_rfs_get_globals());
+	if(!empty($t)) $thread=$t;
+	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
+	$thread=mysql_fetch_object($r);
+	if($r) {
+		lib_mysql_query("update forum_posts set locked='false' where id='$thread->id'");	
+		echo "Thread $thread->title unlocked.";
+	}
+}
+function forums_action_lock_thread($t) {
+	eval(lib_rfs_get_globals());
+	if(!empty($t)) $thread=$t;
+	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
+	$thread=mysql_fetch_object($r);
+	if($r) {
+		lib_mysql_query("update forum_posts set locked='true' where id='$thread->id'");	
+		echo "Thread $thread->title locked.";
+	}
+}
+function forums_action_unsticky_thread($t) {
+	eval(lib_rfs_get_globals());
+	if(!empty($t)) $thread=$t;
+	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
+	$thread=mysql_fetch_object($r);
+	if($r) {
+		lib_mysql_query("update forum_posts set sticky='false' where id='$thread->id'");		
+		echo "Thread $thread->title unstickied.";
+	}	
+}
+function forums_action_sticky_thread($t) {
+	eval(lib_rfs_get_globals());
+	if(!empty($t)) $thread=$t;
+	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
+	$thread=mysql_fetch_object($r);
+	if($r) {
+		lib_mysql_query("update forum_posts set sticky='true' where id='$thread->id'");		
+		echo "Thread $thread->title stickied.";
+	}	
 }
 function forums_action_() {
 	forums_action_forum_list();

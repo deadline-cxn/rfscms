@@ -365,6 +365,11 @@ if($a<1067) {
     echo "Added interim database changes 1069<br>";
 }
 
+if($a<1073) {
+	lib_mysql_add("forum_posts","locked","text","not null");
+	echo "Added interim database changes 1073<br>";
+}
+
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
