@@ -25,7 +25,7 @@ function m_panel_forum_threads($x) {
 		}
 	}	
     echo "</table><br>";
-	echo "(<a href=\"$RFS_ADDON_URL\" class=\"a_cat\" align=right>More...</a>)
+	echo "(<a href=\"$RFS_ADDON_URL\" class=\"a_cat\" align=right>More...</a>)";
 }
 
 
