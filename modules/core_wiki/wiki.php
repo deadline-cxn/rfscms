@@ -57,6 +57,7 @@ if($give_file=="yes"){
 }
 if(empty($name)) $name="home";
 $name=ucwords($name);
+echo "<div class=\"wikitext\">";
 lib_rfs_echo("<h1>$name</h1>");
 if($action=="history") {
 	echo "<hr>";
@@ -76,7 +77,7 @@ if($action=="history") {
 }
 
 
-echo "<div class=\"wikitext\">";
+
 //////////////////////////////////////////////////////////////////////////////
 // backtrace this link
 if($action=="editname") {

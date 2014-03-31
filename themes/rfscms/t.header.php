@@ -68,17 +68,18 @@ echo "<div class=\"toptd\">";
 
 	echo "<div class=\"rfs_top_menu_table\">";
 	lib_menus_draw($RFS_THEME_MENU_TOP_LOCATION);
-	echo "</div>";
-
-	echo "<div style=\"height:3px;\"></div>";
-
-	echo "<div class=\"thirdtd\">";
 	lib_forms_theme_select();
-
-	if(!lib_rfs_bool_true($data->donated)) {
+if(!lib_rfs_bool_true($data->donated)) {
 		lib_social_paypal();
 		lib_social_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
-	}
+	}	
+	echo "</div>";
+
+	// echo "<div style=\"height:3px;\"></div>";
+
+	//echo "<div class=\"thirdtd\">";	
+
+	
            
 echo "</div>";
 

@@ -1,24 +1,15 @@
 @font-face {
-    font-family: unispace;
-    src: url('unispace.ttf'); 
+	font-family: link;
+	src: url('link.ttf');
 }
-
 @font-face {
-    font-family: trashed;
-    src: url('trashed.ttf');
+	font-family: header;
+	src: url('header.ttf');
 }
-
 @font-face {
-    
-    font-family: MONOFONT;
-    src: url('MONOFONT');
+    font-family: menu;
+    src: url('menu.ttf');
 }
-
-@font-face {
-    font-family: KingsOfPacifica;
-    src: url('KingsOfPacifica.ttf');
-}
-
 @font-face {
 	font-family: rfscms;
 	src: url('rfscms.ttf');
@@ -44,7 +35,7 @@ margin: 0px;
 .tag_link,
 .tag_link:visited,
 .tag_link:link {	
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-family: rfscms;
     font-size: 10px;
     font-weight: normal;
     font-style: normal;
@@ -62,7 +53,6 @@ margin: 0px;
 	box-shadow: 3px 3px 3px #222222;
 	border:solid 1px #222222;
 	border-radius:5px;
-	
 	margin: 10px;
 }
 
@@ -82,6 +72,18 @@ margin: 0px;
 	text-align: center;
 }
 
+
+.wikitext {
+	width: 98%;
+	float: left;
+	background-color:rgba(100,100,100,0.5);
+	padding: 10px;
+	border-radius: 10px;	
+	margin: 5px;
+	box-shadow: 5px 5px 5px #000;
+}
+
+
 .wikishell {
 	padding: 5px;
 	margin:0 auto;
@@ -97,12 +99,12 @@ margin: 0px;
 }
 
 div{
-    font-family: terminal;
+    font-family: rfscms;
     font-size: 12px;
     
 }
 td{
-    font-family: terminal;
+    font-family: rfscms;
     font-size: 12px;
 }
 
@@ -121,7 +123,7 @@ td{
 }
 
 .rfs_login_box {
-font-family: Verdana;
+	font-family: Verdana;
     font-size: 12px;
 	padding: 15px;
 	position:absolute;
@@ -141,33 +143,34 @@ font-family: Verdana;
 .news_box {
 	clear: both;
 	margin: 5px;
+	border-radius: 15px;
+	box-shadow: 2px 2px 2px #000;
 }
 
 .news_headline_bar {
 	background-color:rgba(0,0,150,0.1);
-	height: 35px;
+	height: 46px;
 	padding: 5px;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 }
 .news_headline {
 	padding: 5px;
-    font-family: rfscms;
-    font-size: 20px;
-	color: #bD9A17;
+	font-family: header;
+    font-size: 2em;
 	float: left;
+	color: #eDbA17;	
 	text-shadow: 2px 2px 2px #000;
 }
 
 .news_time {
-
-    font-family: rfscms;
-    font-size: 20px;
-	color: #bD9A17;	
+    font-family: header;
+    font-size: 2em;
 	font-style: italic;
 	padding: 6px 25px;
 	vertical-align: text-bottom;
 	float: right;
+	color: #eDbA17;	
 	text-shadow: 2px 2px 2px #000;
 }
 
@@ -177,7 +180,6 @@ font-family: Verdana;
 }
 
 .news_article {
-
 	border-top: 1px solid #000;
 	min-height: 160px;
 	clear: both; 
@@ -216,21 +218,30 @@ font-family: Verdana;
 }
 
 h1{
-    font-family: rfscms;
-	font-size: 24px;
+    font-family: header;
+	font-style: normal;
+	font-size: 2em;
 	margin: 0px;
+	color: #eDbA17;	
+	text-shadow: 2px 2px 2px #000;
 }
 
 h2 {
-    font-family: rfscms;
-	font-size: 22px;
+    font-family: header;
+	font-style: normal;
+	font-size: 1.5em;
 	margin: 0px;
+	color: #eDbA17;	
+	text-shadow: 2px 2px 2px #000;
 }
 
 h3 {
-    font-family: rfscms;
-	font-size: 18px;
+    font-family: header;
+	font-style: normal;
+	font-size: .5em;
 	margin: 0px;
+	color: #eDbA17;	
+	text-shadow: 2px 2px 2px #000;
 }
 
 hr{
@@ -240,7 +251,6 @@ hr{
 }
 
 .rfs_top_menu_table {
-    font-weight: bold;
     font-size: 12px;
     color: #555599;    
     background-color: #4D2A17;
@@ -251,10 +261,8 @@ hr{
 }
 
 .rfs_top_menu_table_td {
-    font-weight: bold;
     font-size: 12px;
     color: #555599;    
-    fackground-color: #c2c7f6;
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
@@ -262,10 +270,8 @@ hr{
 }
 
 .rfs_top_menu_table_inner {
-    font-weight: bold;
     font-size: 12px;
     color: #555599;    
-    fackground-color: #c2c7f6;
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
@@ -274,7 +280,8 @@ hr{
 
 
 .rfs_top_menu_link {
-    font-family: KingsOfPacifica;
+    font-family: menu;
+	font-style: italic;
     font-size: 3em;
     text-decoration: none;
     color: #9D7A17;
@@ -283,14 +290,13 @@ hr{
 }
 
 .rfs_top_menu_link:link {
-    font-family: KingsOfPacifica;
+    font-family: menu;
 	font-size: 3em;
-    
     color: #9D7A17;
 }
 
 .rfs_top_menu_link:hover {
-    font-family: KingsOfPacifica;
+    font-family: menu;
     font-size: 3em;
     color: #f5a555;
     background-color: #4D2A17;
@@ -300,10 +306,10 @@ hr{
     fheight: 90px;
     font-family: Verdana;
     font-size: 12px;
-    color: #333377;
-	background-color: #3D1A17; ff376ac;
-    border: 1px;
-    border-color: #000000;
+    gcolor: #333377;
+	gbackground-color: #3D1A17; ff376ac;
+    gborder: 1px;
+    gborder-color: #000000;
 }
 
 .contenttd {
@@ -350,12 +356,12 @@ hr{
 
 .midtd {
 	vertical-align: top;
-	padding:10px;
-	border: 1px;
-	border-color: #000000;
-	border-style: solid;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
+	padding: 5px;
+	gborder: 1px;
+	gborder-color: #000000;
+	gborder-style: solid;
+	gborder-top-left-radius: 8px;
+	gborder-top-right-radius: 8px;
 	min-width: 800px;
 }
 
@@ -396,7 +402,7 @@ hr{
 
 .rfs_file_table_outer_2 { background-color: #ddd;  }
 .rfs_file_table_2 {
-    font-family: terminal;
+    font-family: rfscms;
     font-size: 12px;
 	font-weight: normal;
 	padding-left: 5px;
@@ -404,7 +410,7 @@ hr{
 
 .rfs_file_table_outer_1 { background-color: #ccc;  }
 .rfs_file_table_1 {
-    font-family: terminal;
+    font-family: rfscms;
     font-size: 12px;
 	font-weight: normal;
 	padding-left: 5px;
@@ -419,24 +425,12 @@ hr{
 	padding: 5px;
  }
 
-.wikishell {
-	margin:5px auto;
-	padding: 5px;
-	align: center;
-	width: 80%;
-	font-family: monospace;
-	background-color: #000000;
-	color: #00ff00;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
-}
 
 .forum_box {
-	width: 100%;
+	width: 98%;
 	float: left;
 	background-color:rgba(100,100,100,0.5);
+	padding-left: 10px;
 	padding-right: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -483,7 +477,7 @@ hr{
 
 
 a {
-    font-family: terminal;
+    font-family: rfscms;
     font-size: 12px;
     text-decoration: none;
     color: #FFFF66;
@@ -505,7 +499,7 @@ a:hover {
 
 
 input,textarea{
-    font-family: terminal;
+    font-family: rfscms;
     font-size: 12px;
     color: #000000;
     border: 1px;
@@ -588,10 +582,6 @@ input[type="submit"] {
 }
 
 .questionhr
-{
-}
-
-.rfswiki_link
 {
 }
 
@@ -716,10 +706,6 @@ input[type="submit"] {
 }
 
 .atpb
-{
-}
-
-.rfswiki_contenttd
 {
 }
 
