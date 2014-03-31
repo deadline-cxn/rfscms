@@ -15,9 +15,7 @@ function m_panel_wiki($x) { eval(lib_rfs_get_globals());
     echo "<h2>Last $x Wiki Pages</h2>";
     echo "<table width=100% border=0><tr>";
     echo "<td valign=top class=contenttd>";
-	
 	$res=lib_mysql_query("SELECT `name`, MAX( updated ) FROM `wiki` GROUP BY `name` ORDER BY MAX( updated ) DESC LIMIT 0,$x	");
-// 	SELECT * FROM  `wiki` ORDER BY  `updated` DESC LIMIT 0 , $x
 	if($res) {
 		while($page=mysql_fetch_object($res)) {        
 			 $opage=urlencode($page->name);
@@ -25,7 +23,7 @@ function m_panel_wiki($x) { eval(lib_rfs_get_globals());
 			echo "<br>\n";
 		}
 	}
-    echo "<p align=right>(<a href=\"$addon_url?name=contents\" class=a_cat>More...</a>)</p>";
+    echo "<p class=contenttd>(<a href=\"$addon_url?name=contents\" class=a_cat>More...</a>)</p>";
     echo "</td></tr></table>";
 }
 
