@@ -370,6 +370,10 @@ if($a<1073) {
 	echo "Added interim database changes 1073<br>";
 }
 
+if($a<1077) {
+	lib_mysql_query("alter table static_html add column name text not null");
+}
+
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);

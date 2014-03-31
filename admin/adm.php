@@ -233,6 +233,7 @@ function rfs_admin_module( $loc ) {
         if(!$n) echo " ( NO PANELS IN THIS AREA! ) <BR> ";
         else
 		for($i=0; $i<$n; $i++) {
+			echo "<div class=news_article>";
 			$ar=mysql_fetch_object($r);
 			echo "<table border=0 cellspacing=0><tr><td>";
             echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_delete&location=$location&arid=$ar->id'>";
@@ -260,30 +261,61 @@ function rfs_admin_module( $loc ) {
             
             echo "<td>";
             
-            echo $ar->type;
-   
+            //echo $ar->type;   
             if(empty($ar->type)) $ar->type="results";
-            
-            lib_forms_optionize($phpself,"action=f_module_chg_type".$RFS_SITE_DELIMITER."id=$ar->id","panel_types","name","",$ar-type,"0");
-                        
+			
+            lib_forms_optionize($phpself,"action=f_module_chg_type".$RFS_SITE_DELIMITER."id=$ar->id","panel_types","name","0",$ar->type,"1");
+			
             // echo "$ar->id $ar->location $ar->panel $ar->num $ar->sequence $ar->type $ar->tableref $ar->access $ar->page";
+			// id name table key other
             
             echo "</td>";
             
             
             if($ar->type=="results") {            
-               echo "type result";
-                echo "<td>
-                        <form action='$RFS_SITE_URL/admin/adm.php' method='post'>
+               
+                echo "<td>";
+				// echo "type result";
+				echo "	<form action='$RFS_SITE_URL/admin/adm.php' method='post'>
     			        <input type=hidden name=action value=f_module_chg_num>
                         <input type=hidden name=id value='$ar->id'>
                         <input name=num size=1 value=$ar->num  onblur='this.form.submit()'>
     				</form> </td>
                     <td> results</td>";
             }
+			
+			if($ar->type=="static") {				
+				echo "<td>";
+				// echo "Type: static ";
+				if(empty($ar->page)) {
+					echo "(No page defined)<br>";
+					echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
+					echo "<input type=hidden name=action value=f_module_add_static>";
+					echo "<input type=hidden name=arid value=$ar->id>";
+					echo "Create new page: <input name=staticpage><br>";
+					echo "<input type=submit>";
+					echo "</form>";
+				}
+				else {
+					lib_forms_optionize($phpself,"action=f_module_chg_static".$RFS_SITE_DELIMITER."id=$ar->id","static_html","name","",$ar->page,"1");
+					$str=lib_mysql_query("select distinct * from static_html where name='$ar->page'");
+					$st=mysql_fetch_object($str);
+					echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
+					echo "<input type=hidden name=action value=f_module_edit_static_go>";
+					echo "<input type=hidden name=arid value=\"$ar->id\">";
+					echo "<input type=hidden name=staticpage value=\"$ar->page\">";
+					echo "<textarea cols=50 rows=10 name=\"statichtml\">$st->html</textarea><br>";
+					echo "<input type=submit></form>";
+					echo "Preview:<hr>";
+					echo lib_rfs_echo(nl2br($st->html));
+					
+				}
+				echo " </td>";
+			}
                 
                 
             echo "</tr></table>";
+			echo "</div>";
 		}
 		echo "<p>&nbsp;</p>";
 	}
@@ -307,6 +339,41 @@ function rfs_admin_module( $loc ) {
 		}
 	}
 	echo "</select>";
+	echo "</form>";
+}
+
+function adm_action_f_module_edit_static_go() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>Edit static page $staticpage</h1>";
+	echo "Entered html:<br>$statichtml<br>";
+	echo "<textarea>$statichtml</textarea>";
+	$statichtml=addslashes($statichtml);
+	lib_mysql_query("update `static_html` set `html`='$statichtml' where name='$staticpage'");
+	lib_mysql_query("update arrangement set `page`='$staticpage' where id='$arid'");
+	adm_action_arrange();
+}
+function adm_action_f_module_add_static_go() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>Add new static page $staticpage</h1>";
+	echo "Add $staticpage to arrangement ($arid)<br>";
+	echo "Entered html:<br>$statichtml<br>";
+	echo "<textarea>$statichtml</textarea>";
+	$statichtml=addslashes($statichtml);
+	lib_mysql_query("insert into `static_html` (`name`,`html`) values('$staticpage','$statichtml')");
+	lib_mysql_query("update arrangement set `page`='$staticpage' where id='$arid'");
+	adm_action_arrange();
+}
+function adm_action_f_module_add_static() {
+	eval(lib_rfs_get_globals());
+	echo "<h1>Add new static page $staticpage</h1>";
+	echo "Add $staticpage to arrangement ($arid)<br>";
+	echo "Enter static html:<br>";
+	echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
+	echo "<textarea name=statichtml></textarea>";
+	echo "<input type=hidden name=action value=f_module_add_static_go>";
+	echo "<input type=hidden name=arid value=$arid>";
+	echo "<input type=hidden name=staticpage value=\"$staticpage\">";
+	echo "<input type=submit>";
 	echo "</form>";
 }
 function adm_action_f_arrange_move_up() {

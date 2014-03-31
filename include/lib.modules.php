@@ -116,7 +116,7 @@ function lib_modules_draw($location) {
 		for($i=0;$i<$n;$i++) {
 			$ar=mysql_fetch_object($r);
 			if(function_exists("m_panel_$ar->panel")) {
-				eval(("m_panel_$ar->panel($ar->num);"));
+				eval(("m_panel_$ar->panel($ar->id);"));
 			}
 		}
 	}
