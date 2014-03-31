@@ -352,7 +352,16 @@ if($a<1067) {
     echo "Added interim database changes 1067<br>";
 }
 
-if($a<1067) {
+if($a<1073) {
+	lib_mysql_add("forum_posts","locked","text","not null");
+	echo "Added interim database changes 1073<br>";
+}
+
+if($a<1077) {
+	lib_mysql_query("alter table static_html add column name text not null");
+}
+
+if($a<1078) {
     lib_mysql_add("panel_types","name","text","not null");
 	lib_mysql_add("panel_types","table","text","not null");
 	lib_mysql_add("panel_types","key","text","not null");
@@ -364,16 +373,6 @@ if($a<1067) {
     
     echo "Added interim database changes 1069<br>";
 }
-
-if($a<1073) {
-	lib_mysql_add("forum_posts","locked","text","not null");
-	echo "Added interim database changes 1073<br>";
-}
-
-if($a<1077) {
-	lib_mysql_query("alter table static_html add column name text not null");
-}
-
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
