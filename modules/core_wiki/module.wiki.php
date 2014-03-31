@@ -11,7 +11,7 @@ lib_access_add_method("wiki", "deleteothers");
 ///// MODULE WIKI
 function m_panel_wiki($x) { eval(lib_rfs_get_globals());
     lib_div("WIKI MODULE SECTION");
-	$addon_url=lib_modules_get_url("wiki");
+	$RFS_ADDON_URL=lib_modules_get_url("wiki");
     echo "<h2>Last $x Wiki Pages</h2>";
     echo "<table width=100% border=0><tr>";
     echo "<td valign=top class=contenttd>";
@@ -19,12 +19,12 @@ function m_panel_wiki($x) { eval(lib_rfs_get_globals());
 	if($res) {
 		while($page=mysql_fetch_object($res)) {        
 			 $opage=urlencode($page->name);
-			echo "<a href=\"$addon_url?name=$opage\">$page->name</a> ";
+			echo "<a href=\"$RFS_ADDON_URL?name=$opage\">$page->name</a> ";
 			echo "<br>\n";
 		}
-	}
-    echo "<p class=contenttd>(<a href=\"$addon_url?name=contents\" class=a_cat>More...</a>)</p>";
+	}    
     echo "</td></tr></table>";
+	echo "(<a href=\"$RFS_ADDON_URL?name=contents\" class=a_cat>More...</a>)";
 }
 
 
