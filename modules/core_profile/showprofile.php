@@ -11,7 +11,7 @@ echo "<div class='forum_box'>";
 echo "<br><h1>$userdata->name's $RFS_SITE_NAME profile</h1>";
 
 echo "<table border=0><tr>";
-echo "<td width=10 valign=top><center><a href=\"$RFS_SITE_URL/showprofile.php?user=$userdata->name\">\n";
+echo "<td width=10 valign=top><center><a href=\"$RFS_SITE_URL/modules/core_profile/showprofile.php?user=$userdata->name\">\n";
 lib_users_avatar_code($userdata->name);
 echo "</a></center></td>\n";
 

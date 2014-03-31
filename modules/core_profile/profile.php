@@ -108,11 +108,11 @@ function profile_action_update() {
 function pro_nav_bar($data) {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("news","edit")) 
-		lib_buttons_make_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/core_news/news.php?action=edityournews","Edit news");
 	if(lib_access_check("news","submit")) 
-		lib_buttons_make_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/core_news/news.php?showform=yes","Create news");
 	if(lib_access_check("files","upload"))
-		lib_buttons_make_button("$RFS_SITE_URL/modules/files/files.php?action=upload","Upload file");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/core_files/files.php?action=upload","Upload file");
 	if(lib_access_check("admin","access"))
 		lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php","Admin");
 	lib_buttons_make_button("$RFS_SITE_URL/modules/core_profile/profile.php?action=show_password_form","Change password");
@@ -258,7 +258,7 @@ function profile_show_form() {
 				
 	
 	echo "</td></td> \n";
-	//echo "<a href=$RFS_SITE_URL/modules/files/files.php?action=upload_avatar> \n";
+	//echo "<a href=$RFS_SITE_URL/modules/core_files/files.php?action=upload_avatar> \n";
 	// <img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
 	//echo "Upload an swf, gif, or jpg avatar!</a></td></tr>\n";
 	// echo "</table>";
@@ -368,9 +368,9 @@ include("footer.php");
 	if(count($filelist)) {
 		lib_forms_info("Your files...","BLACK","WHITE");
 		if(lib_access_check("files","upload")) 
-			echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=upload\">Upload</a>]";
+			echo "[<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=upload\">Upload</a>]";
 		if(lib_access_check("files","addlink")) 
-			echo "[<a href=\"$RFS_SITE_URL/modules/files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
+			echo "[<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
 		  echo "<table border=0 cellspacing=0 cellpadding=3 width=100% class=rfs_black>\n";
 		  echo "<tr bgcolor=$file_header height=16 class=rfs_black>\n";
 		  echo "<td class=\"rfs_black\">Work Safe</td>\n";
@@ -402,7 +402,7 @@ include("footer.php");
 		$ftype=strtolower($ext);
 		echo "<img src=$RFS_SITE_URL/images/icons/filetypes/$ftype.png border=0 title=\"$filedata->name\" alt=\"$filedata->name\" width=16></a>\n";
 		echo "</center></td>\n";
-		echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/files/files.php method=post>\n";
+		echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_files/files.php method=post>\n";
 		echo "<table border=0><tr><td>\n";
 		echo "<input name=name value=\"$filedata->name\" size=30>\n";
 		echo "</td><td>\n";
@@ -416,8 +416,8 @@ include("footer.php");
 		echo "<td class=\"rfs_black\">$filedata->downloads &nbsp;</td>\n";
 		echo "<td class=\"rfs_black\">$filedata->category &nbsp;</td>\n";
 		echo "<td class=\"rfs_black\">$filedata->description &nbsp;</td>\n";
-		echo "<td class=\"rfs_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
-		echo "<td class=\"rfs_black\"><a href=$RFS_SITE_URL/modules/files/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
+		echo "<td class=\"rfs_black\"><a href=$RFS_SITE_URL/modules/core_files/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
+		echo "<td class=\"rfs_black\"><a href=$RFS_SITE_URL/modules/core_files/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
 		echo "</tr>\n";
 		$i=$i+1;
 		$bg=$bg+1; if($bg>1) $bg=0;
