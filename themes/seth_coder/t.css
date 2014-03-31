@@ -338,6 +338,14 @@ hr{
 	padding-left: 5px;
 }
 
+.rfs_file_table_outer_2 { background-color: #ddd;  }
+.rfs_file_table_2 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	font-weight: normal;
+	padding-left: 5px;
+}
+
 
 .slogan {
     font-family: Verdana;
