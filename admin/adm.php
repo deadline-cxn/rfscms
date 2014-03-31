@@ -345,8 +345,9 @@ function rfs_admin_module( $loc ) {
 function adm_action_f_module_edit_static_go() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Edit static page $staticpage</h1>";
-	echo "Entered html:<br>$statichtml<br>";
-	echo "<textarea>$statichtml</textarea>";
+	echo "Entered html:<br>";
+	echo lib_rfs_echo(nl2br($statichtml));
+	echo "<br><textarea>$statichtml</textarea>";
 	$statichtml=addslashes($statichtml);
 	lib_mysql_query("update `static_html` set `html`='$statichtml' where name='$staticpage'");
 	lib_mysql_query("update arrangement set `page`='$staticpage' where id='$arid'");
@@ -356,8 +357,8 @@ function adm_action_f_module_add_static_go() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Add new static page $staticpage</h1>";
 	echo "Add $staticpage to arrangement ($arid)<br>";
-	echo "Entered html:<br>$statichtml<br>";
-	echo "<textarea>$statichtml</textarea>";
+	echo lib_rfs_echo(nl2br($statichtml));
+	echo "<br><textarea>$statichtml</textarea>";
 	$statichtml=addslashes($statichtml);
 	lib_mysql_query("insert into `static_html` (`name`,`html`) values('$staticpage','$statichtml')");
 	lib_mysql_query("update arrangement set `page`='$staticpage' where id='$arid'");
