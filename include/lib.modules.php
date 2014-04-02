@@ -74,17 +74,19 @@ function lib_modules_get_base_url($z) {
     $loc=$RFS_MODULE[$addon]["base_url"];
     return $loc;
 }
-function lib_modules_properties($module) {
+function lib_modules_properties($module) {    
     eval(lib_rfs_get_globals());
-	echo "<div class=forum_box>";
+	
     lib_forms_info("REGISTERED MODULE [$module]<br>","white","green");
 	echo "PROPERTIES:<br>";
 	echo "<table border=0>";
     foreach($RFS_MODULE[$module] as $k => $v) {
+        if(!empty($v))
             echo "<tr><td>[$k]</td><td>=</td><td>[$v]</td></tr>";
     }
+    echo "<tr><td></td><td></td><td></td></tr>";
 	echo "</table>";
-	echo "</div>";
+	
 }
 function lib_modules_array() {
     eval(lib_rfs_get_globals());
@@ -205,35 +207,39 @@ function adm_action_f_show_installed_modules() {
     eval(lib_rfs_get_globals());
 	echo "<h1>Modules Installed</h1><hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
-	echo "<hr>";
+	echo "<hr>";	
 	
-	echo "<div class='forum_box'>";
 	echo "<table border=0>";
 	
 	global $RFS_MODULE;
 	asort($RFS_MODULE);
 	foreach($RFS_MODULE as $k => $v) {
 	   
-		echo "<tr>";
-		echo "<td>";
-		echo "<font style='color:white; background-color:green;'>ACTIVE</font> ";
-		echo "</td>";
-		echo "<td>";
-        foreach($v as $k2 => $v2) {
-            if($k2=="core" and $v2==true)
-                echo "<font style='color:white; background-color:blue;'>CORE</font> ";
-        }
-		echo "</td>";		
-		echo "<td>";      
+	   	echo "<tr>";        
         
+        foreach($v as $hh => $jj) {
+        echo "<td>";
+       
+        if($hh=="active" and $jj==true)	
+            echo "<font style='color:white; background-color:green;'>ACTIVE</font> $v3 ";
+        
+        echo "</td>";       
+		
+        echo "<td>";
+        if($hh=="core" and $jj==true)  
+             echo "<font style='color:white; background-color:blue;'>CORE</font> ";
+        echo "</td>";
+        }
+		
+		echo "<td>";
         lib_modules_properties($k);
 		echo "</td>";
 		echo "</tr>";
 		
 	}
 	echo "</table>";
-	echo "</div>";
-	echo "<br>";
+	
+    
 	include( "footer.php" );
 	exit();
 }
