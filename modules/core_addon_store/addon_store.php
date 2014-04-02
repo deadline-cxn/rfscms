@@ -4,7 +4,8 @@ include("header.php");
 
 
 function addon_store_action_() {
-	echo "Addon Store";
+	eval(lib_rfs_get_globals());
+	echo "<h1>Addon Store</h1>";
 
 }
 
