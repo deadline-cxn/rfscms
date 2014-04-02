@@ -1,10 +1,13 @@
 <?
+/////////////////////////////////////////////////////////////////////////////////////////
+// RFSCMS http://www.rfscms.org/
+/////////////////////////////////////////////////////////////////////////////////////////
+// FORUMS CORE MODULE
+/////////////////////////////////////////////////////////////////////////////////////////
 include_once("include/lib.all.php");
-
 lib_menus_register("Forums","$RFS_SITE_URL/modules/core_forums/forums.php");
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// MODULE FORUM
+////////////////////////////////////////////////////////////////
+// PANELS
 function m_panel_forum_threads($x) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("forums");
@@ -27,17 +30,13 @@ function m_panel_forum_threads($x) {
     echo "</table>";
 	echo "(<a href=\"$RFS_ADDON_URL\" class=\"a_cat\" align=right>More...</a>)";
 }
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// ADM_FORUMS
-
+////////////////////////////////////////////////////////////////
+// ADMIN
 function adm_action_f_add_forum() {
     eval( lib_rfs_get_globals() );
 	lib_mysql_query( "insert into forum_list (`name`,`folder`,`parent`) VALUES ('$name','no','$parent') ; " );
 	adm_action_forum_admin();
 }
-
 function adm_action_f_add_forum_folder() {
     eval( lib_rfs_get_globals() );
 	lib_mysql_query( "insert into forum_list (`name`,`folder`) VALUES ('$name','yes') ; " );

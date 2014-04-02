@@ -1,14 +1,18 @@
 <?
+/////////////////////////////////////////////////////////////////////////////////////////
+// RFSCMS http://www.rfscms.org/
+/////////////////////////////////////////////////////////////////////////////////////////
+// WIKI CORE MODULE
+/////////////////////////////////////////////////////////////////////////////////////////
 include_once("include/lib.all.php");
-
+lib_menus_register("Wiki","$RFS_SITE_URL/modules/core_wiki/wiki.php");
 lib_access_add_method("wiki", "admin");
 lib_access_add_method("wiki", "edit");
 lib_access_add_method("wiki", "delete");
 lib_access_add_method("wiki", "editothers");
 lib_access_add_method("wiki", "deleteothers");
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-///// MODULE WIKI
+/////////////////////////////////////////////////////////////////////////////////////////
+// PANELS
 function m_panel_wiki($x) { eval(lib_rfs_get_globals());
     lib_div("WIKI MODULE SECTION");
 	$RFS_ADDON_URL=lib_modules_get_url("wiki");
@@ -26,8 +30,8 @@ function m_panel_wiki($x) { eval(lib_rfs_get_globals());
     echo "</td></tr></table>";
 	echo "(<a href=\"$RFS_ADDON_URL?name=contents\" class=a_cat>More...</a>)";
 }
-
-
+/////////////////////////////////////////////////////////////////////////////////////////
+// FUNCTIONS
 function wiki_img($text) {
 // search for pattern {image.png,x,y} 
 // replace with image box
@@ -39,7 +43,6 @@ function wiki_img($text) {
 
 
 }
-
 function wikiimg($text) { eval(lib_rfs_get_globals());    
     $text=stripslashes($text);
     $text=str_replace("{{","&#123;",$text);
@@ -133,8 +136,6 @@ function wikicode($text) {
 	}    
 	return $outtext;
 }
-//////////////////////////////////////////////////////////////////////////////
-// WIKITEXT FUNCTION
 function wikitext($text) {
 	eval(lib_rfs_get_globals());
 	if(empty($RFSW_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/core_wiki/images/bullet.gif";

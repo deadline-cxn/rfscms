@@ -161,8 +161,6 @@ function adm_action_f_module_store() {
 	echo "<hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
 	echo "<hr>";
-	//lib_mysql_data_add("addon_database","name","TEST!!!".time(),"");	
-	// id name datetime_added	datetime_updated	version	sub_version	release	description	requirements	cost	license	dependencies	author	author_email	author_website	rating	images		
 	echo "MODULES... <br>";
 	$r=lib_mysql_query("select * from `addon_database`");
 	while($module=mysql_fetch_object($r)) {

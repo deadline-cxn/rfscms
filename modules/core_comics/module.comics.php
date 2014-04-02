@@ -1,8 +1,11 @@
 <?
-include_once ("include/lib.all.php");
-
+/////////////////////////////////////////////////////////////////////////////////////////
+// RFSCMS http://www.rfscms.org/
+/////////////////////////////////////////////////////////////////////////////////////////
+// COMICS CORE MODULE
+/////////////////////////////////////////////////////////////////////////////////////////
+include_once("include/lib.all.php");
 lib_menus_register("Comics", "$RFS_SITE_URL/modules/core_comics/comics.php");
-
 lib_access_add_method("comics", "admin");
 lib_access_add_method("comics", "create");
 lib_access_add_method("comics", "delete");
@@ -11,9 +14,8 @@ lib_access_add_method("comics", "edit");
 lib_access_add_method("comics", "editothers");
 lib_access_add_method("comics", "publish");
 lib_access_add_method("comics", "unpublish");
-
-//////////////////////////////////////////////////////////////////////////////////
-// MODULE COMICS
+///////////////////////////////////////////////////////////////////
+// PANELS
 function m_panel_comics($x) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL = lib_modules_get_url("comics");
@@ -31,8 +33,8 @@ function m_panel_comics($x) {
     }
     echo "(<a href=\"$RFS_ADDON_URL\" class=a_cat>More...</a>)";
 }
-
-
+///////////////////////////////////////////////////////////////////
+// FUNCTIONS
 function rfs_comics_mini_preview_link($pid, $link) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL = lib_modules_get_url("comics");
@@ -63,7 +65,6 @@ function rfs_comics_mini_preview_link($pid, $link) {
     }
     echo "</td></tr></table>";
 }
-
 function rfs_comics_page_mini_preview($pid) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL = lib_modules_get_url("comics");
@@ -92,7 +93,6 @@ function rfs_comics_page_mini_preview($pid) {
     }
     echo "</td></tr></table>";
 }
-
 function page_full_view($pid) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL  = lib_modules_get_url("comics");

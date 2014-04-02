@@ -13,14 +13,14 @@ function todo_list_action_f_rfs_db_element_ed1() { adm_action_f_rfs_db_element_e
 function todo_list_action_() { eval(lib_rfs_get_globals());
 	echo "<h1>TODO List</h1>";
 	echo "<hr>";
-	lib_buttons_make_button("$RFS_SITE_URL/modules//core_todo_list/todo_list.php?action=new_todo_list","New List");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/core_todo_list/todo_list.php?action=new_todo_list","New List");
 	echo "<hr>";
 	$r=lib_mysql_query("select * from todo_list");
 	for($i=0;$i<mysql_num_rows($r);$i++) {
 		$tdl=mysql_fetch_object($r);
 		
 		rfs_db_element_edit($tdl->name,
-							"$RFS_SITE_URL/modules//core_todo_list/todo_list.php",
+							"$RFS_SITE_URL/modules/core_todo_list/todo_list.php",
 							"",
 							"todo_list",
 							$tdl->id); 
@@ -99,8 +99,8 @@ function todo_list_action_view_todo_list($list) { eval(lib_rfs_get_globals());
 	
 	echo "<h1>$tdl->name</h1>";
 	echo "$tdl->description<br>";
-	lib_buttons_make_button("$RFS_SITE_URL/modules//core_todo_list/todo_list.php?action=search&tdl=$tdl->id","Search");
-	lib_buttons_make_button("$RFS_SITE_URL/modules//core_todo_list/todo_list.php?action=open_task&tdl=$tdl->id","Open");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/core_todo_list/todo_list.php?action=search&tdl=$tdl->id","Search");
+	lib_buttons_make_button("$RFS_SITE_URL/modules/core_todo_list/todo_list.php?action=open_task&tdl=$tdl->id","Open");
 	// if(!empty($tdl->assigned_to)) echo "Assigned to: $tdl->assigned_to<br>";
 	// if(!empty($tdl->owner))       echo "Owner: $tdl->owner<br>";
 	echo "<hr>";
@@ -182,10 +182,10 @@ where (`list`='$tdl->id')  ;");
 			echo "<td class=\"todo_$task_status\">$task->id</td>";
 			
 			echo "<td class=\"todo_$task_status\">";
-			lib_buttons_make_button("$RFS_SITE_URL/modules//core_todo_list/todo_list.php?action=edit_task&task=$task->id","Edit");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/core_todo_list/todo_list.php?action=edit_task&task=$task->id","Edit");
 			echo "</td>";
 			
-			echo "<td class=\"todo_$task_status\"><img src=\"$RFS_SITE_URL/modules/todo_list/icons/$task->status.png\"></td>";
+			echo "<td class=\"todo_$task_status\"><img src=\"$RFS_SITE_URL/modules/core_todo_list/icons/$task->status.png\"></td>";
 			
 			echo "<td class=\"todo_$task_status\">";
 			lib_ajax("Status","todo_list_task","id",$task->id,"status","30",

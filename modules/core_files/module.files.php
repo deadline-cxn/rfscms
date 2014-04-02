@@ -2,9 +2,12 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.rfscms.org/
 /////////////////////////////////////////////////////////////////////////////////////////
+// FILES CORE MODULE
+/////////////////////////////////////////////////////////////////////////////////////////
 include_once("include/lib.all.php");
+lib_menus_register("Files","$RFS_SITE_URL/modules/core_files/files.php");
 ////////////////////////////////////////////////////////////////
-// PANELS /////////////////////////////////////////////////////
+// PANELS
 function m_panel_files($x) {
     eval(lib_rfs_get_globals());
 	$RFS_ADDON_URL=lib_modules_get_url("files");
@@ -27,7 +30,7 @@ function m_panel_files($x) {
     echo "</table>";
 }
 ////////////////////////////////////////////////////////////////
-// AJAX ////////////////////////////////////////////////////////
+// AJAX
 function lib_ajax_callback_files_add_tag() {
 	eval(lib_rfs_get_globals());
 	$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
@@ -151,7 +154,7 @@ function lib_ajax_javascript_dupefile_delete(name,ajv,table,ikey,kv,field,page,a
 		}</script>';
 }
 ////////////////////////////////////////////////////////////////
-// MODULE FUNCTIONS ////////////////////////////////////////////
+// FUNCTIONS
 function m_files_show1filee($filedata,$bg) {
     eval(lib_rfs_get_globals());
     echo "<tr>";
@@ -428,9 +431,9 @@ function m_files_getfilelist($filesearch,$limit){
     return $filelist;
 }
 function m_files_md5_scan($RFS_CMD_LINE) {
-	$filelist=module_files_getfilelist(" ",0);
+	$filelist=m_files_getfilelist(" ",0);
 	for($i=0;$i<count($filelist);$i++) {
-		$filedata=module_files_getfiledata($filelist[$i]);
+		$filedata=m_files_getfiledata($filelist[$i]);
 		$fl=stripslashes($filedata->location);
 		$tmd5=@md5_file ($fl);
 		if($tmd5) {
@@ -450,9 +453,9 @@ function m_files_md5_scan($RFS_CMD_LINE) {
 	}
 }
 function m_files_quick_md5_scan($RFS_CMD_LINE) {
-	$filelist=module_files_getfilelist(" ",0);
+	$filelist=m_files_getfilelist(" ",0);
 	for($i=0;$i<count($filelist);$i++) {
-		$filedata=module_files_getfiledata($filelist[$i]);
+		$filedata=m_files_getfiledata($filelist[$i]);
 		$fl=stripslashes($filedata->location);
 		if(empty($filedata->md5)) {
 			$tmd5=@md5_file ($fl);
