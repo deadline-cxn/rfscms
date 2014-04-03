@@ -5,7 +5,7 @@
 function lib_string_get_twitter_code($t) {
 	$RFSW_LINK_IMAGE=$GLOBALS['RFSW_LINK_IMAGE']; $RFS_SITE_URL=$GLOBALS['RFS_SITE_URL'];
 	if(empty($RFSW_LINK_IMAGE))
-		$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/wiki/images/link2.png";
+		$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	return	preg_replace("/\s\@(\w+)/"," <a href=\"http://www.twitter.com/$1\" target=_blank>@$1 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
 
 
@@ -13,7 +13,7 @@ function lib_string_get_twitter_code($t) {
 function lib_string_get_email_code($t) {
 	$RFSW_LINK_IMAGE=$GLOBALS['RFSW_LINK_IMAGE']; $RFS_SITE_URL=$GLOBALS['RFS_SITE_URL'];
 	if(empty($RFSW_LINK_IMAGE))
-		$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/wiki/images/link2.png";
+		$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	return preg_replace("/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/"," <a href=\"mailto:$1@$2.$3\">$1@$2.$3 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
 }
 function lib_string_get_url_code($t){
