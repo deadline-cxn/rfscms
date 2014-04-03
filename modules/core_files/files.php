@@ -1158,11 +1158,11 @@ function files_action_()  {
             if (lib_rfs_bool_true($_SESSION['hidden']))
                 $shide = "";
             else
-                $shide = " and hidden='no' ";
+                $shide = " and hidden!='yes' ";
             $q = "";
             if (!empty($tagsearch))
                 $q .= " (`tags` like '%$tagsearch%' ) and ";
-            $filelist = m_files_getfilelist("where $q category = '$buffer' $shide ", 50);
+				$filelist = m_files_getfilelist("where $q category = '$buffer' $shide ", 50);
             if (count($filelist)) {
                 echo "<div class=file_list style='float: left;' >";
                 echo "<div class=file_category style='float:left;' >";
