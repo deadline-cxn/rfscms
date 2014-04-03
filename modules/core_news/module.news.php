@@ -7,15 +7,7 @@
 include_once("include/lib.all.php");
 lib_menus_register("News","$RFS_SITE_URL/modules/core_news/news.php");
 //////////////////////////////////////////////////////////////////////////////////
-// MODULE NEWS
-function news_buttons() {
-    eval(lib_rfs_get_globals());
-    $RFS_ADDON_URL=lib_modules_get_url("news");
-	if(lib_access_check("news","submit")) {
-		lib_buttons_make_button("$RFS_ADDON_URL?showform=yes","Submit News");
-	}
-}
-
+// ADMIN
 function adm_action_lib_news_news_submit() {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("news");
@@ -26,6 +18,8 @@ function adm_action_lib_news_news_edit() {
     $RFS_ADDON_URL=lib_modules_get_url("news");
     lib_domain_gotopage("$RFS_ADDON_URL?action=edityournews");
 }
+//////////////////////////////////////////////////////////////////////////////////
+// PANELS
 function m_panel_news_list($x) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("news");
@@ -95,6 +89,15 @@ function m_panel_news_list_popular($x) {
     }
     echo "</table>";
 }
+//////////////////////////////////////////////////////////////////////////////////
+// FUNCTIONS
+function news_buttons() {
+    eval(lib_rfs_get_globals());
+    $RFS_ADDON_URL=lib_modules_get_url("news");
+	if(lib_access_check("news","submit")) {
+		lib_buttons_make_button("$RFS_ADDON_URL?showform=yes","Submit News");
+	}
+}
 function module_news_top_story() {
     rfs_show_top_news();
 }
@@ -108,7 +111,6 @@ function m_panel_news_blog_style($x) {
 		rfs_show_news($news->id);
     }
 }
-
 function rfs_getnewstopstory(){
     $result=lib_mysql_query("select * from news where topstory='yes' and published='yes'");
     $news=mysql_fetch_object($result);
@@ -155,8 +157,9 @@ function rfs_show_top_news() {
 function rfs_show_news($nid) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("news");
-	if(empty($nid)) {
-		
+	if(empty($RFSW_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/core_wiki/images/bullet.gif";
+	if(empty($RFSW_LINK_IMAGE))   $RFSW_LINK_IMAGE     = $RFS_SITE_URL."/modules/core_wiki/images/link2.png";
+	if(empty($nid)) {		
 		news_buttons();
 		return;
 	}
@@ -172,10 +175,10 @@ function rfs_show_news($nid) {
 		echo "<div class=\"news_article\">";
 		
 		echo "<div class=\"news_image\">";
-	   
-    $out_link=urlencode("$RFS_ADDON_URL?action=view&nid=$news->id");
+		
+		$out_link=urlencode("$RFS_ADDON_URL?action=view&nid=$news->id");
 
-    if(!empty($news->image_url)) {		
+    if(!empty($news->image_url)) {
 		$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
 		$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);		
 		$altern=stripslashes($news->image_alt);		
@@ -186,9 +189,12 @@ function rfs_show_news($nid) {
 			$oldimage=$news->image_url;
 			$news->image_url="$RFS_SITE_URL/images/icons/404.png";
 			echo "<br>($oldimage)";
-		}		
-		if(!stristr($news->image_url,$RFS_SITE_URL))
+		}
+		if(!stristr($news->image_url,$RFS_SITE_URL)) {
+			
 			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");		
+			
+		}
 		echo "<img src=\"".lib_images_thumb_raw($news->image_url,100,0,1)."\" border=\"0\" title = '$altern' alt='$altern' class='rfs_thumb'>";
 	}	
 	if(!empty($news->image_url)) {
@@ -478,8 +484,6 @@ function editnews($nid) {
 	
 	
 }
-
-
 function shownews() {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("news");
@@ -560,6 +564,4 @@ function shownews() {
     
     echo "</table>";
 }
-
-
 ?>
