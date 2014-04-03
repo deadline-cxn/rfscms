@@ -25,12 +25,12 @@ MYSQL *con;
 vector<string> files;
 void finish_with_error(MYSQL *con) { fprintf(stderr, "%s\n", mysql_error(con)); mysql_close(con); exit(1); }
 bool isdir(char *dir) { struct stat st; if(stat(dir,&st)==-1) return false; if(st.st_mode&S_IFDIR) return true; return false; }
-int  filesize(char *file) { struct stat st; stat(file, &st); int size = st.st_size; return size; }
+long  filesize(char *file) { struct stat st; stat(file, &st); long size = st.st_size; return size; }
 void add_file(char* file, char* filename) {
 	char q[1024]; memset(q,0,1024);
 	char fout[1024]; memset(fout,0,1024);
 	char fnout[1024]; memset(fnout,0,1024);
-	int fsize;
+	long fsize;
 	fsize=filesize(filename);
 	mysql_real_escape_string(con, fout,file, strlen(file));
 	mysql_real_escape_string(con, fnout, filename, strlen(filename));
@@ -39,10 +39,10 @@ void add_file(char* file, char* filename) {
 // version, homepage, owner, platform, os, rating, worksafe,
 // md5, tags, ignore
 	sprintf(q,"insert into `files` (`name`, `location`, `submitter`, `category`,`size`,`worksafe`,`hidden`,`time`) \
-				 values('%s','%s', 'forph', 'unsorted','%d','no','yes',NOW());",
+				 values('%s','%s', 'forph', 'unsorted','%lu','no','yes',NOW());",
 					fout,fnout,fsize);
-	if(mysql_query(con,q)) printf("ERROR: %s [%d]\n",fnout,fsize);
-	else    	       printf("ADDED: %s [%d]\n",fnout,fsize);
+	if(mysql_query(con,q)) printf("ERROR: %s [%lu]\n",fnout,fsize);
+	else    	       printf("ADDED: %s [%lu]\n",fnout,fsize);
 }
 bool file_in_db(char *filename) {
 	if(files.empty()) {
@@ -84,7 +84,7 @@ void scan_dir(char *dir) {
 }
 
 int main() {
-	chdir("..");
+	int xx=chdir("..");
 	con = mysql_init(NULL); if(con==NULL) { fprintf(stderr, "%s\n", mysql_error(con)); exit(1); }
 	printf("RFSCMS Find ORPhan files (%s)\n(MySQL: %s)\n",RFSCMS_FORPH_VER, mysql_get_client_info());
 	if(mysql_real_connect(con, DB_HOST, DB_USER, DB_PASS, DB_DB, 0, NULL, 0) == NULL) { finish_with_error(con); }
@@ -94,4 +94,3 @@ int main() {
 	mysql_close(con);
 	exit(0);
 }
-
