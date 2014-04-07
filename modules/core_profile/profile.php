@@ -110,7 +110,7 @@ function pro_nav_bar($data) {
 	if(lib_access_check("news","edit")) 
 		lib_buttons_make_button("$RFS_SITE_URL/modules/core_news/news.php?action=edityournews","Edit news");
 	if(lib_access_check("news","submit")) 
-		lib_buttons_make_button("$RFS_SITE_URL/modules/core_news/news.php?showform=yes","Create news");
+		lib_buttons_make_button("$RFS_SITE_URL/modules/core_news/news.php?action=createnews","Create news");
 	if(lib_access_check("files","upload"))
 		lib_buttons_make_button("$RFS_SITE_URL/modules/core_files/files.php?action=upload","Upload file");
 	if(lib_access_check("admin","access"))
