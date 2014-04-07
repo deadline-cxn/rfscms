@@ -366,13 +366,17 @@ if($a<1078) {
 	lib_mysql_add("panel_types","table","text","not null");
 	lib_mysql_add("panel_types","key","text","not null");
 	lib_mysql_add("panel_types","other","text","not null");
-	
 	lib_mysql_query("insert into `panel_types` (`name`,`table`,`key`,`other`) values ('results','','','');");
 	lib_mysql_query("insert into `panel_types` (`name`,`table`,`key`,`other`) values ('eval','','','');");
 	lib_mysql_query("insert into `panel_types` (`name`,`table`,`key`,`other`) values ('static','','','');");
-    
-    echo "Added interim database changes 1069<br>";
+    echo "Added interim database changes 1078<br>";
 }
+if($a<1103) {
+	lib_mysql_add("users","forumposts","text","not null");
+	lib_mysql_add("users","forumreplies","text","not null");
+	echo "Added interim database changes 1103<br>";
+}
+
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
