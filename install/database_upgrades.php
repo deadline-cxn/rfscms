@@ -377,6 +377,11 @@ if($a<1103) {
 	echo "Added interim database changes 1103<br>";
 }
 
+if($a<1107) {
+	lib_mysql_query("ALTER TABLE videos CHANGE poster contributor text");
+	
+}
+
 
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);

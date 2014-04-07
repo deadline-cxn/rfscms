@@ -1283,7 +1283,9 @@ function adm_action_f_delsitevar() {
 }
 function adm_action_edit_site_vars() {
     eval( lib_rfs_get_globals() );
+	echo "<div class=forum_box>";
 	echo "<h1>Edit Site Variables</h1><hr>";
+	
 	echo "<table border=0>";
 	echo "<tr><th>Variable</th><th>Type</th><th>Value</th><th></th><th></th></tr>";
 	$res=lib_mysql_query("select * from site_vars order by name");
@@ -1351,6 +1353,8 @@ function adm_action_edit_site_vars() {
 	
 	echo "</table>";
 	
+	echo "</div>";
+	
 	echo "<div class=\"forum_box\">";
 	echo "<table>";
 	echo "<tr><td>";
@@ -1375,6 +1379,7 @@ function adm_action_edit_site_vars() {
 	echo "</td></tr>";
 	echo "</table>";
 	echo "</div>";
+	
 	include("footer.php");
 	exit();
 }
