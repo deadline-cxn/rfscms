@@ -2,6 +2,16 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.rfscms.org/
 /////////////////////////////////////////////////////////////////////////////////////////
+function lib_modules_get_name($module) {
+	global $RFS_MODULE;
+	foreach($RFS_MODULE as $k => $v) {
+		echo "$k <br>";
+	}
+}
+function lib_modules_get_properties($module) {
+		global $RFS_MODULE;
+		return $RFS_MODULE[$x];
+}
 function lib_modules_get_property($x,$property) {
 	global $RFS_MODULE;
 	return $RFS_MODULE[$x][$property];
@@ -74,6 +84,7 @@ function lib_modules_get_base_url($z) {
     $loc=$RFS_MODULE[$addon]["base_url"];
     return $loc;
 }
+
 function lib_modules_properties($module) {    
     eval(lib_rfs_get_globals());
 	

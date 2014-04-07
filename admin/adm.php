@@ -2281,8 +2281,9 @@ function adm_action_() {
             lib_forms_info("Up to date, no new updates.","white","green");
         }
 	}
-    lib_forms_info(exec("uptime"),"white","blue");
+	lib_forms_info(exec("uptime"),"white","blue");
 	lib_forms_info(exec("uname -a"),"white","blue");
+	lib_forms_info(exec("get --version"),"white","blue");
 	echo "<table border=0><tr><td>";
 	lib_buttons_make_button( "$RFS_SITE_URL/admin/adm.php?debug=on","Debug on <font style='color: green; background-color: dark-green;'> ON </font>" );
 	lib_buttons_make_button( "$RFS_SITE_URL/admin/adm.php?debug=off","Debug <font style='color:red; background-color: dark-green;'> OFF </font>" );
@@ -2297,8 +2298,7 @@ function adm_action_() {
 	lib_buttons_make_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=show","Show banner" );
 	echo "</td></tr></table>";
 	/////////// TEST AREA
-	/*
-	echo "<hr>";	
+/*	echo "<hr>";	
 	lib_social_paypal();
 	lib_social_paypal2();
 	lib_social_share_bar($u,$t);
@@ -2310,8 +2310,7 @@ function adm_action_() {
 	lib_social_google_plus("http://www.sethcoder.com/");
 	lib_social_tweet("http://www.sethcoder.com/","#RFSCMS","Great content management system.");	
 	lib_social_twitter_follow("Sethcoder");	
-	echo "<hr>";
-	*/
+	echo "<hr>";	*/
 	echo "<hr>";
     adm_menu_built_in();
 	echo "</div>";
@@ -2326,28 +2325,40 @@ function adm_menu_built_in() {
             if( !stristr( $v,"_lib_") ) {
                 if( !stristr( $v,"_go" ) ) {
                     if( !stristr( $v,"_f_" ) ) {
-                        $x=str_replace( "adm_action_","",$v );
-						$lx=$x;
-			            if(!empty($x)) {
-							$target="";
-							if(stristr($x,"_out")) {
-								$target=" target=\"_blank\" ";
-								$x=str_replace("_out","",$x);
+							$x=str_replace( "adm_action_","",$v );
+							$lx=$x;
+							if(!empty($x)) {
+								$target="";
+								if(stristr($x,"_out")) {
+									$target=" target=\"_blank\" ";
+									$x=str_replace("_out","",$x);
+								}
+								echo "<div style='	float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#555535; border-radius:12px;' > ";
+								echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$lx\" $target>";
+								$imglnk="<img src='$RFS_SITE_URL/admin/images/";
+								$image="";
+								if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" )) $image="$x.png'";
+								if( file_exists( "$RFS_SITE_PATH/admin/images/$x.gif" )) $image="$x.gif'";
+								if( file_exists( "$RFS_SITE_PATH/admin/images/$x.jpg" )) $image.="$x.jpg'";
+								// TODO: If the function is from a module, search the module/images folder
+								if(empty($image)) {
+									$imx=explode("_",$x);
+									$module_name=$imx[0];
+									lib_modules_get_name($module_name);
+									$core=lib_modules_get_property($module_name,"Core");
+									$author=lib_modules_get_property($module_name,"Author");
+									echo "--$module_name ($core $author)--";
+									
+									
+								}								
+								$imglnk.=$image." width=64 height=64 border='0' align=center>";
+								echo $imglnk;
+								echo "</a><br>";
+								echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$lx'>";
+								echo ucwords(str_replace("_"," ",$x));
+								echo "</a>";
+								echo "</div>";
 							}
-							echo "<div style='	float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#555535; border-radius:12px;' > ";
-                            echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$lx\" $target>";
-							$imglnk="<img src='$RFS_SITE_URL/admin/images/";
-                            if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" )) $imglnk.="$x.png'";
-			             	if( file_exists( "$RFS_SITE_PATH/admin/images/$x.gif" )) $imglnk.="$x.gif'";
-							if( file_exists( "$RFS_SITE_PATH/admin/images/$x.jpg" )) $imglnk.="$x.jpg'";
-                            $imglnk.=" width=64 height=64 border='0' align=center>";
-							echo $imglnk;
-    						echo "</a><br>";
-							echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$lx'>";
-							echo ucwords(str_replace("_"," ",$x));
-							echo "</a>";
-							echo "</div>";
-						}
                     }
                 }
             }
