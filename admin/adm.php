@@ -1908,6 +1908,7 @@ function adm_action_f_add_user() {
 }
 function adm_action_user_edit() {
 	eval( lib_rfs_get_globals() );
+	echo "<div class=forum_box>";
     echo "<h1>User Editor</h1>";
     $uol=lib_users_online(); 
     $uli=lib_users_logged_in();
@@ -1915,6 +1916,7 @@ function adm_action_user_edit() {
 	echo "<h2>Add User</h2>";
 	lib_forms_build(  "$RFS_SITE_URL/admin/adm.php","action=f_add_user", "users", "","", "name".$RFS_SITE_DELIMITER."pass","include", "", 20, "add new user" );
 	lib_mysql_dump_table( "users,id,first_name,last_name,name,email,donated,forumposts,forumreplies,downloads,uploads","showform".$RFS_SITE_DELIMITER."f_","id","" );
+	echo "</div>";
 	include("footer.php");
 	exit();
 }
