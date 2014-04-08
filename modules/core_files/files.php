@@ -54,7 +54,8 @@ if ($_REQUEST['action'] == "get_file_go") {
     chdir("../../");
     include_once ("include/lib.all.php");
     include ("modules/core_files/module.files.php");
-    if ($_SESSION["logged_in"] == "true") {
+	if ((lib_rfs_bool_true($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
+		($_SESSION["logged_in"] == "true")) {
         $id = $_REQUEST['id'];
         $filedata = m_files_getfiledata($id);
         if (empty($filedata)) {
@@ -69,8 +70,11 @@ if ($_REQUEST['action'] == "get_file_go") {
             $fl = "$RFS_SITE_URL/$filedata->location";
             lib_domain_gotopage($fl);
         }
+		exit();
     }
-    exit();
+	else {
+		echo "<hr>You must be logged in to download files.<hr>";
+	}
 }
 if (stristr(getcwd(), "modules")) chdir("../../");
 include_once ("include/lib.all.php");
