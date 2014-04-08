@@ -130,6 +130,24 @@ function files_header() {
     echo "<h1>Files</h1>";
     lib_div("files.php");
     echo "<table border=0><tr>";
+	
+	
+
+        if (lib_access_check("files", "upload")) {
+            echo "<td>";
+            echo "<br>";
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=upload",
+                "Upload");
+            echo "</td>";
+        }
+        if (lib_access_check("files", "addlink")) {
+            echo "<td>";
+            echo "<br>";
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=addfilelinktodb",
+                "Add Link as File");
+            echo "</td>";
+        }	
+	
     if (lib_access_check("files", "sort")) {
         echo "<td>";
         if ($_SESSION['thumbs'] == "true") {
@@ -233,21 +251,6 @@ function files_header() {
             echo "<br>";
             lib_buttons_make_button("$RFS_ADDON_FOLDER?action=show_duplicates",
                 "Show Duplicates");
-            echo "</td>";
-        }
-
-        if (lib_access_check("files", "upload")) {
-            echo "<td>";
-            echo "<br>";
-            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=upload",
-                "Upload");
-            echo "</td>";
-        }
-        if (lib_access_check("files", "addlink")) {
-            echo "<td>";
-            echo "<br>";
-            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=addfilelinktodb",
-                "Add Link as File");
             echo "</td>";
         }
         if (lib_access_check("files", "orphanscan")) {
