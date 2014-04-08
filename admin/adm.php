@@ -324,6 +324,7 @@ function rfs_admin_module( $loc ) {
     
 	echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
 	echo "<input type=hidden name=action value=f_module_add>";
+	
 	echo "<input type=hidden name=location value=$location>";
     
     echo "<select name=module onchange='this.form.submit();'>";
@@ -419,12 +420,17 @@ function adm_action_f_arrange_delete() {
 function adm_action_f_module_add() {
     eval( lib_rfs_get_globals() );
 	echo ".. $module... $location";
+	
+	$num=5;
+	if(stristr($module,"static_html"))  { $type="static"; $num=""; }
+	
 	$r=lib_mysql_query("select max(sequence) as seq from arrangement where location = '$location'");
 	$ars=mysql_fetch_object($r);
 	$nseq=$ars->seq+1;
 	echo "$ars->seq $nseq  <br>";
-	lib_mysql_query( "insert into arrangement  (`panel`,`location`,`num`,`sequence`)
-	                                   values('$module','$location','5','$nseq');" );
+	
+	lib_mysql_query( "insert into arrangement  (`panel`,`location`,`num`,`type`,`sequence`)
+	                                   values('$module','$location','$num', '$type','$nseq');" );
 	adm_action_arrange();
 }
 function adm_action_f_module_chg_type() {
