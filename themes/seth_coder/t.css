@@ -371,8 +371,8 @@ hr{
 .forum_box {
 	width: 100%;
 	float: left;
-	#background-color:rgba(0,15,150,0.2);
-	background-color: #666;
+	background-color:rgba(0,15,150,0.2);
+	#background-color: #666;
 	padding-right: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
