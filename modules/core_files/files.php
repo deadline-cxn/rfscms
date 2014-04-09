@@ -285,6 +285,7 @@ function files_header() {
         echo "</tr></table><br>";
 
     }
+	files_admin_header();
 
     echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_FOLDER\" method=post>\n";
     echo "<table border=0 cellspacing=0 cellpadding=0 >";
