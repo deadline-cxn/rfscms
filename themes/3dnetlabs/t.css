@@ -789,35 +789,36 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
 h1
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
     font-style: italic;
 	margin: 0px;
+	color: #33cc33;
+	text-shadow: 2px 2px 2px #000;
 }
 
 h2
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: large;
+    font-size: medium;
     font-weight: bold;
     font-style: italic;
 	margin: 0px;
+	color: #33cc33;
+	text-shadow: 2px 2px 2px #000;
 }
 
 h3
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: medium;
+    font-size: small;
     font-weight: bold;
-    font-style: italic;
-   
+    font-style: italic;   
 	margin: 0px;
-}
-
-h1,h2,h3 {
 	color: #33cc33;
 	text-shadow: 2px 2px 2px #000;
 }
+
 
 td
 {
