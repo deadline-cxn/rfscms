@@ -46,7 +46,7 @@ $RFS_TAGS=array(
 );
 /////////////////////////////////////////////////////////////////////////////////////////
 // WIKI STUFF
-$RFS_SITE_WIKI_IMAGES_PATH  = "images/wiki";
+$RFS_SITE_WIKI_IMAGES_PATH      = "images/wiki";
 $rfsw_header        			= "header.php"; 
 $rfsw_footer        			= "footer.php";
 $rfsw_dbname        			= "";   			// change these
