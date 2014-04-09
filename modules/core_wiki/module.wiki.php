@@ -62,7 +62,7 @@ function wikiimg($text) { eval(lib_rfs_get_globals());
 
 				if(!file_exists($img)) {
 					$outtext.= "<table border=0 class=warning><tr><td class=warning> ";
-					$outtext.= lib_images_thumb("$RFS_SITE_URL/modules/core_wiki/images/wiki_warning.png",32,32,1);
+					$outtext.= lib_images_thumb("$RFS_SITE_WIKI_IMAGES_PATH/wiki_warning.png",32,32,1);
 					$outtext.="</td><td class=warning> Image not found";
 					//////////////////////////////////////////////////////////////////////////////
 					if($GLOBALS['rfsw_admin_mode']=="true") {
