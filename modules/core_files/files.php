@@ -122,7 +122,7 @@ if ($_REQUEST['thumbs'] == "on") {
 if ($_REQUEST['thumbs'] == "off") {
     $_SESSION['thumbs'] = false;
 }
-$RFS_LITTLE_HEADER = true;
+//$RFS_LITTLE_HEADER = true;
 include ("header.php");
 function files_header() {
 	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
@@ -1214,8 +1214,7 @@ function files_action_()  {
             }
         }
     }
-    include ("footer.php");
-    exit();
+	// $ft="$RFS_SITE_PATH/footer.php";    include ($ft);     exit();
 }
 
 

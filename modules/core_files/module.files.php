@@ -221,34 +221,36 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 
 		echo "<div style='display: block; float:left; min-width:250px;' class='rfs_file_table_$bg'>";
 			echo"$filedata->md5 ";
-			$fdr=lib_mysql_query("select * from files where md5='$filedata->md5'");
-			if(mysql_num_rows($fdr)>1) {
-				echo "<br>Matching MD5:<br>";
-				for($jjq=0;$jjq<mysql_num_rows($fdr);$jjq++) {
-					$dfile=mysql_fetch_object($fdr);
-					if($dfile->id!=$filedata->id) {
-						echo "<div style='display: block; float:left; padding:5px; margin:5px; background-color: #500; color: #f00;
-						border: 1px dashed #f00; border-radius: 10px;
-						' id='dfd_$dfile->id'> ";
-							echo "<a href=\"$addon_folder?action=get_file&id=$dfile->id\"
-								title=\"matching file $dfile->location\">";
-							$ftype=lib_file_getfiletype($dfile->name);
-							if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
-								if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
-									echo rfs_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
-							echo "<br>$dfile->name";
-							echo "</a><BR>
-							$dfile->location<br>";
-							echo "<div style='clear:both;'>";
-								lib_tags_show_tags("files",$dfile->id);
+			if(!empty($filedata->md5)) {
+				$fdr=lib_mysql_query("select * from files where md5='$filedata->md5'");
+				if(mysql_num_rows($fdr)>1) {
+					echo "<br>Matching MD5:<br>";
+					for($jjq=0;$jjq<mysql_num_rows($fdr);$jjq++) {
+						$dfile=mysql_fetch_object($fdr);
+						if($dfile->id!=$filedata->id) {
+							echo "<div style='display: block; float:left; padding:5px; margin:5px; background-color: #500; color: #f00;
+							border: 1px dashed #f00; border-radius: 10px;
+							' id='dfd_$dfile->id'> ";
+								echo "<a href=\"$addon_folder?action=get_file&id=$dfile->id\"
+									title=\"matching file $dfile->location\">";
+								$ftype=lib_file_getfiletype($dfile->name);
+								if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
+									if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
+										echo rfs_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
+								echo "<br>$dfile->name";
+								echo "</a><BR>
+								$dfile->location<br>";
+								echo "<div style='clear:both;'>";
+									lib_tags_show_tags("files",$dfile->id);
+								echo "</div>";
+								echo "<div style='clear:both;'>";
+									if(lib_access_check("files","delete")) {
+										lib_ajax("Delete", "files",   "id", "$dfile->id", "id", 20,"button,nolabel", "files","delete","lib_ajax_callback_delete_file,lib_ajax_javascript_dupefile_delete");
+									}
+								echo "</div>";
 							echo "</div>";
-							echo "<div style='clear:both;'>";
-								if(lib_access_check("files","delete")) {
-									lib_ajax("Delete", "files",   "id", "$dfile->id", "id", 20,"button,nolabel", "files","delete","lib_ajax_callback_delete_file,lib_ajax_javascript_dupefile_delete");
-								}
-							echo "</div>";
-						echo "</div>";
-					}			
+						}			
+					}
 				}
 			}
 		echo "</div>";		

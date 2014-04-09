@@ -13,18 +13,7 @@ if(file_exists("$RFS_SITE_PATH/themes/$theme/t.footer.php")){
 }
 else{
 		
-	if(isset($RFS_LITTLE_HEADER)) {
-		if($RFS_LITTLE_HEADER==true) {
-			
-			echo "<p>&nbsp;</p>";
-			echo "<p>&nbsp;</p>";
-			echo "<p>&nbsp;</p>";
-			
-			lib_rfs_echo($RFS_SITE_BODY_CLOSE);
-			lib_rfs_echo($RFS_SITE_HTML_CLOSE);
-			return;
-		}
-	}
+	// if(isset($RFS_LITTLE_HEADER)) {	if($RFS_LITTLE_HEADER==true) {	echo "<p>&nbsp;</p>"; lib_rfs_echo($RFS_SITE_BODY_CLOSE); lib_rfs_echo($RFS_SITE_HTML_CLOSE); return;}}
 	
     echo "<BR><BR><BR>";
 		
