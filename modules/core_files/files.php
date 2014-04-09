@@ -124,31 +124,11 @@ if ($_REQUEST['thumbs'] == "off") {
 }
 //$RFS_LITTLE_HEADER = true;
 include ("header.php");
-function files_header() {
-	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
-    echo "<script> function playvid(x,y) { document.getElementById(x).innerHTML=\"<iframe src='\"+y+\"' width=400 height=300> </iframe>\"; } function stopvid(x)  { document.getElementById(x).innerHTML=\" \"; } </script>";
-    echo "<h1>Files</h1>";
-    lib_div("files.php");
-    echo "<table border=0><tr>";
-	
-	
 
-        if (lib_access_check("files", "upload")) {
-            echo "<td>";
-            echo "<br>";
-            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=upload",
-                "Upload");
-            echo "</td>";
-        }
-        if (lib_access_check("files", "addlink")) {
-            echo "<td>";
-            echo "<br>";
-            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=addfilelinktodb",
-                "Add Link as File");
-            echo "</td>";
-        }	
-	
-    if (lib_access_check("files", "sort")) {
+function files_admin_header() {
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
+	echo "<table border=0><tr>";
+	    if (lib_access_check("files", "sort")) {
         echo "<td>";
         if ($_SESSION['thumbs'] == "true") {
             echo "<font style='background-color:red;'>SHOW THUMBS</font><br>";
@@ -239,8 +219,37 @@ function files_header() {
         }
         echo "</td>";
     }
+	echo "</tr></table>";
 
-    echo "</tr></table>";
+	
+}
+
+function files_header() {
+	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
+    echo "<script> function playvid(x,y) { document.getElementById(x).innerHTML=\"<iframe src='\"+y+\"' width=400 height=300> </iframe>\"; } function stopvid(x)  { document.getElementById(x).innerHTML=\" \"; } </script>";
+    echo "<h1>Files</h1>";
+    lib_div("files.php");
+    echo "<table border=0><tr>";
+	
+	
+
+        if (lib_access_check("files", "upload")) {
+            echo "<td>";
+            echo "<br>";
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=upload",
+                "Upload");
+            echo "</td>";
+        }
+        if (lib_access_check("files", "addlink")) {
+            echo "<td>";
+            echo "<br>";
+            lib_buttons_make_button("$RFS_ADDON_FOLDER?action=addfilelinktodb",
+                "Add Link as File");
+            echo "</td>";
+        }	
+	
+
+    echo "</tr></table><br>";
 
 
     if ($_SESSION['editmode']) {
@@ -273,7 +282,7 @@ function files_header() {
             lib_buttons_make_button("$RFS_SITE_URL/modules/xplorer/xplorer.php", "Xplorer");
             echo "</td>";
         }
-        echo "</tr></table>";
+        echo "</tr></table><br>";
 
     }
 
