@@ -21,9 +21,10 @@ function m_panel_pictures($x) { eval(lib_rfs_get_globals());
         echo "<tr><td class=contenttd>";
         echo "<a href=\"$RFS_SITE_URL/modules/core_pictures/pictures.php?action=view&id=$picture->id\">".
 		        lib_images_thumb("$RFS_SITE_PATH/$picture->url",50,0,1)."</a>";
-        echo "</td><td class=contenttd width='95%' valign=top>";
+        echo "</td><td class=contenttd width='95%' valign=top style='padding: 10px;'>";
         echo "<a href=\"$RFS_SITE_URL/modules/core_pictures/pictures.php?action=view&id=$picture->id\">";
-        echo "$picture->sname</a><br>";
+		$pname=lib_string_truncate($picture->sname,40);
+        echo "$pname</a><br>";
         echo lib_string_truncate($picture->description,50);        
         echo "</td></tr>";
     }

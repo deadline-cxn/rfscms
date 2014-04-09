@@ -196,7 +196,7 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left;' class='rfs_file_table_$bg'>"; 
+	echo "<div style='display: block; float:left; width: 18px; max-width: 18px; min-width: 18px;' class='rfs_file_table_$bg'>"; 
 		echo "<a href=\"$addon_folder?action=get_file&id=$filedata->id\">";
 		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
 		echo "</a>";
@@ -219,7 +219,7 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			lib_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button,nolabel", "files","delete","lib_ajax_callback_delete_file");
 		}			
 
-		echo "<div style='display: block; float:left; min-width:250px;' class='rfs_file_table_$bg'>";
+		echo "<div style='display: block; float:left; width: 250px; max-width: 250px; min-width:250px;' class='rfs_file_table_$bg'>";
 			echo"$filedata->md5 ";
 			if(!empty($filedata->md5)) {
 				$fdr=lib_mysql_query("select * from files where md5='$filedata->md5'");
@@ -279,7 +279,8 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 					echo lib_images_thumb("$RFS_SITE_URL/$filedata->location",$nwidth,0,1)."<br>";	
 				}
 
-		if(	($filetype=="mp3") ||
+		if(	($filetype=="webm") ||
+			($filetype=="mp3") ||
 			($filetype=="wav") ||
 			($filetype=="wma") ||
 			($filetype=="mpg") ||		
@@ -288,11 +289,7 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			($filetype=="avi") ||
 			($filetype=="flv")  ) {		
 				if($fworksafe) {
-					echo "<br>
-					
-<div style='display: block; float: left;' name=\"play$filedata->id\" id=\"play$filedata->id\"></div>
-<a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a>
-<a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>";
+					echo "<br><div style='display: block; float: left;' name=\"play$filedata->id\" id=\"play$filedata->id\"></div><a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a><a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>";
 		}
 	}
 		
@@ -321,8 +318,6 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	echo "</div>";
 	
 	///////////////////////////////////
-	
-	$size=(lib_file_sizefile($filedata->size));
 	
 	echo "<div style='display: block;
 						float:left;
@@ -360,7 +355,8 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	
 	///////////////////////////////////
 		
-	echo "<div style='display: block; float:left; min-width:60px;' class='rfs_file_table_$bg'>";
+	echo "<div style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' class='rfs_file_table_$bg'>";
+		$size=(lib_file_sizefile($filedata->size));
 		echo "$size ";
 		if($fedit)
 			echo "<br> Submitted by:<br>$filedata->submitter ";
@@ -368,29 +364,24 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left; min-width:80px;' class='rfs_file_table_$bg'>";
+	echo "<div style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' class='rfs_file_table_$bg'>";
 		echo"$filedata->version &nbsp;";
 	echo "</div>";
 	
 	///////////////////////////////////
 		
-	echo "<div style='display: block; float:left; min-width:40px;' class='rfs_file_table_$bg'>";
+	echo "<div style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' class='rfs_file_table_$bg'>";
 		echo"$filedata->platform &nbsp;";
 	echo "</div>";
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left; min-width:40px;' class='rfs_file_table_$bg'>"; 
+	echo "<div style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' class='rfs_file_table_$bg'>"; 
 		echo"$filedata->os &nbsp;";
 	echo "</div>";
 	
 	
-	///////////////////////////////////
-	
-	echo "<div style='display: block; float:left; min-width:20px;' class='rfs_file_table_$bg'>";
-		echo" &nbsp;";
-	echo "</div>";
-	
+		
 	///////////////////////////////////
 	
 	echo "</div>";

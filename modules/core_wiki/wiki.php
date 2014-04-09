@@ -247,14 +247,20 @@ else {
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
 		
 		$page="$addon_url?name=$name";	
-		if($RFS_SITE_FACEBOOK_WIKI_COMMENTS) 
+		if(lib_rfs_bool_true($RFS_SITE_WIKI_FACEBOOK_COMMENTS))
 			lib_social_facebook_comments($page);
     }
 }
-echo "<hr>";
-$u=lib_domain_canonical_url();
-$p="$RFS_SITE_NAME Wiki:".$name;
-lib_social_share_bar2($u,$p);
+
+
+if(lib_rfs_bool_true($RFS_SITE_WIKI_SOCIALS)) {
+	$u=lib_domain_canonical_url();
+	$p="$RFS_SITE_NAME Wiki:".$name;
+	echo "<hr>";
+
+	lib_social_share_bar2($u,$p);
+	
+}
 
 echo "<hr style='clear:both'>";
 

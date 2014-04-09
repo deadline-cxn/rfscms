@@ -358,7 +358,8 @@ background-color: #33FF1C;
 
 .rfs_file_table_0
 {
-	min-height: 60px;
+	min-width: 50px;
+	min-height: 80px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #111111;
@@ -367,7 +368,8 @@ background-color: #33FF1C;
 
 .rfs_file_table_1
 {
-	min-height: 60px;
+	min-width: 50px;
+	min-height: 80px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #000000;
@@ -375,7 +377,8 @@ background-color: #33FF1C;
 }
 .rfs_file_table_2
 {
-	min-height: 60px;
+	min-width: 50px;
+	min-height: 80px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color:   #111111;
@@ -722,8 +725,6 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
     font-style: normal;
     text-decoration: none;
     color: #FFFFFF;
-  rackground-color: #101010;
-
     background-image: url(http://3dnetlabs.info/images/6_mid_mid.gif);
 }
 
@@ -765,7 +766,7 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
     font-size: large;
     font-weight: bold;
     font-style: italic;
-    color: #777777;
+    color: #77B777;
 }
 
 .news_headline:link
@@ -774,7 +775,7 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
     font-size: large;
     font-weight: bold;
     font-style: italic;
-    color: #777777;
+    color: #77A777;
 }
 
 .news_headline:hover
@@ -783,18 +784,22 @@ Box-shadow: 6px 6px 6px 6px rgba(0,0,0,0.4);
     font-size: large;
     font-weight: bold;
     font-style: italic;
-    color: #555555;
+    color: #55F555;
 }
 
 h1
 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: large;
-    font-weight: bold;
+    font-weight: bold;	
     font-style: italic;
-	margin: 0px;
+	width: 200px;
 	color: #33cc33;
 	text-shadow: 2px 2px 2px #000;
+	-moz-text-shadow: 2px 2px 2px #000000;
+	-webkit-text-shadow: 2px 2px 2px #000000;
+	filter: dropshadow(color=#000000, offx=2, offy=2);
+	display: block; /* that's the important part */
 }
 
 h2
@@ -802,10 +807,14 @@ h2
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: medium;
     font-weight: bold;
-    font-style: italic;
-	margin: 0px;
+    font-style: italic;	
+	width: 200px;
 	color: #33cc33;
 	text-shadow: 2px 2px 2px #000;
+	-moz-text-shadow: 2px 2px 2px #000000;
+	-webkit-text-shadow: 2px 2px 2px #000000;
+	filter: dropshadow(color=#000000, offx=2, offy=2);
+	display: block; /* that's the important part */
 }
 
 h3
@@ -813,10 +822,14 @@ h3
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: small;
     font-weight: bold;
-    font-style: italic;   
-	margin: 0px;
+    font-style: italic; 
 	color: #33cc33;
+	width: 200px;
 	text-shadow: 2px 2px 2px #000;
+	-moz-text-shadow: 2px 2px 2px #000000;
+	-webkit-text-shadow: 2px 2px 2px #000000;
+	filter: dropshadow(color=#000000, offx=2, offy=2);
+	display: block; /* that's the important part */
 }
 
 
@@ -904,8 +917,7 @@ td
 
 
 
-hr
-{
+hr {
     border: 1px;
     border-color: #004400;
     border-style: dotted;
@@ -914,34 +926,42 @@ hr
 }
 
 
-a
-{
+a {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
     dfont-style: italic;
     text-decoration: none;
-    color: #474777;
+    color: #477747;
+	text-shadow: 1px 1px 1px #000;
+	-moz-text-shadow: 1px 1px 1px #000000;
+	-webkit-text-shadow: 1px 1px 1px #000000;
+	filter: dropshadow(color=#000000, offx=1, offy=1);
+	
 }
 
-a:link
-{
+a:link {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
-    dfont-style: italic;
     text-decoration: none;
-    color: #373767;
+	color: #479947;
+	text-shadow: 1px 1px 1px #000;
+	-moz-text-shadow: 1px 1px 1px #000000;
+	-webkit-text-shadow: 1px 1px 1px #000000;
+	filter: dropshadow(color=#000000, offx=1, offy=1);
 }
 
-a:hover
-{
+a:hover {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
-    ffont-style: italic;
     text-decoration: none;
-    color: #ffffff;
+	color: #77FF77;
+	text-shadow: 1px 1px 1px #000;
+	-moz-text-shadow: 1px 1px 1px #000000;
+	-webkit-text-shadow: 1px 1px 1px #000000;
+	filter: dropshadow(color=#000000, offx=1, offy=1);
 }
 
 

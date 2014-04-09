@@ -214,9 +214,6 @@ function rfs_show_news($nid) {
 	
 	$page="$RFS_ADDON_URL?action=view&nid=$nid";	
 	
-	if($RFS_SITE_FACEBOOK_NEWS_COMMENTS) 
-		lib_social_facebook_comments($page);
-	
 	echo "</div>";
     
 	echo "<div class=\"news_edit_bar\">";
@@ -234,10 +231,15 @@ function rfs_show_news($nid) {
 		}
 		
         echo "[<a href=\"$RFS_ADDON_URL?action=deletenews&nid=$nid\" class=news_a>remove</a>] \n";
+		echo "<p>&nbsp;</p>";
 		echo "</div>";
     }   		
 		echo "<div>";
-		lib_social_share_bar2($page,$news->headline);
+		
+		if(lib_rfs_bool_true($RFS_SITE_NEWS_FACEBOOK_COMMENTS))
+			lib_social_facebook_comments($page);			
+		if(lib_rfs_bool_true($RFS_SITE_NEWS_SOCIALS))
+			lib_social_share_bar2($page,$news->headline);
 		echo "</div>";
 		echo "</div>";
 	echo "</div>";

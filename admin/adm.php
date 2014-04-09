@@ -228,9 +228,8 @@ function rfs_admin_module( $loc ) {
     $location=$loc;
 	$r=lib_mysql_query( "select * from arrangement where location='$location' order by sequence " );
 	if($r) {
-		echo "<center><h2>Panel arrangement location $location";
-		if( $location=="left" ) echo " (left panel)";
-		echo "</h2></center>";
+		echo "<center><h2>$location";
+		echo " Panels</h2></center>";
 		$n=mysql_num_rows($r);
         if(!$n) echo " ( NO PANELS IN THIS AREA! ) <BR> ";
         else
@@ -457,6 +456,8 @@ function adm_action_arrange() {
 				`sequence` int(11) NOT NULL,
 				PRIMARY KEY (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ; ");
 
+	echo "<div class=forum_box>";
+
 	echo "<table border=0><tr>"; // TOP START
 	echo "<td valign=top>";// class=lefttd>";	
 	rfs_admin_module("left");
@@ -468,6 +469,7 @@ function adm_action_arrange() {
     echo "<table border=0><tr><td>"; // BOTTOM START
     rfs_admin_module("bottom");
     echo "</td></tr></table>"; // BOTTOM END
+	echo "</div>";
 	include( "footer.php" );
 	exit();
 }

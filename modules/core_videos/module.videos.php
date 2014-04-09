@@ -14,12 +14,22 @@ function m_panel_videos($x) { eval(lib_rfs_get_globals());
 	echo "<table border=0 cellspacing=0 cellpadding=0>";
     while($video=mysql_fetch_object($res2)) {        
         if($video->sfw=="no") $video->embed_code="$RFS_SITE_URL/files/videos/NSFW.gif";        
+		
+		$vlink="<a href=\"$RFS_SITE_URL/modules/core_videos/videos.php?action=view&id=$video->id\"
+		alt=\"$video->sname\"
+		text=\"$video->sname\"
+		title=\"$video->sname\"
+		>";
+		
         echo "<tr><td class=contenttd>";
-		echo "<table border=0 cellspacing=0 cellpadding=0><tr><td>";        
-		echo "<img src=\"".videos_get_thumbnail($video->embed_code)."\" width=100 class='rfs_thumb'>";
-		echo "</td><td>";
-		echo "<a href=\"$RFS_SITE_URL/modules/core_videos/videos.php?action=view&id=$video->id\">";
-        echo "$video->sname</a><br>";
+		echo "<table border=0 cellspacing=0 cellpadding=0><tr><td>";
+		echo $vlink;
+		echo "<img src=\"".videos_get_thumbnail($video->embed_code)."\" width=100 class='rfs_thumb' title=\"$video->sname\">";
+		echo "</a>";
+		echo "</td><td style='padding: 10px;'>";
+		echo $vlink;
+		$vname=lib_string_truncate($video->sname,20);
+        echo "$vname</a><br>";
         echo lib_string_truncate($video->description,50);        
 		echo "</td><tr></table>";
         echo "</td></tr>";
