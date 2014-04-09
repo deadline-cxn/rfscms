@@ -20,6 +20,7 @@ include( "lilheader.php" );
 // ADM CHECK FOR UPDATES
 function adm_action_update() {
     eval(lib_rfs_get_globals());
+	echo "<div class=forum_box>";
 	echo "<pre>";
 	lib_rfs_flush_buffers();
 	system("git stash save --keep-index");
@@ -28,7 +29,8 @@ function adm_action_update() {
 	lib_rfs_flush_buffers();
 	lib_log_add_entry("Update: $x");
 	echo "</pre>";
-	include("footer.php");
+	echo "</div>";
+	include("footer.php");	
 	exit();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////

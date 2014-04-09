@@ -1214,7 +1214,7 @@ function files_action_()  {
             }
         }
     }
-	// $ft="$RFS_SITE_PATH/footer.php";    include ($ft);     exit();
+	$ft="$RFS_SITE_PATH/footer.php";    include ($ft);     exit();
 }
 
 
