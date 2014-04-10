@@ -5,12 +5,31 @@
 // WIKI CORE MODULE
 /////////////////////////////////////////////////////////////////////////////////////////
 include_once("include/lib.all.php");
+
+$RFS_ADDON_NAME="wiki";
+$RFS_ADDON_VERSION="3.5.1";
+$RFS_ADDON_SUB_VERSION="0";
+$RFS_ADDON_RELEASE="";
+$RFS_ADDON_DESCRIPTION="Wiki";
+$RFS_ADDON_REQUIREMENTS="";
+$RFS_ADDON_COST="";
+$RFS_ADDON_LICENSE="";
+$RFS_ADDON_DEPENDENCIES="";
+$RFS_ADDON_AUTHOR="Seth T. Parson";
+$RFS_ADDON_AUTHOR_EMAIL="seth.parson@rfscms.org";
+$RFS_ADDON_AUTHOR_WEBSITE="http://rfscms.org/";
+$RFS_ADDON_IMAGES="";
+$RFS_ADDON_FILE_URL="";
+$RFS_ADDON_GIT_REPOSITORY="";
+$RFS_ADDON_URL=lib_modules_get_base_url_from_file(__FILE__);
+
 lib_menus_register("Wiki","$RFS_SITE_URL/modules/core_wiki/wiki.php");
 lib_access_add_method("wiki", "admin");
 lib_access_add_method("wiki", "edit");
 lib_access_add_method("wiki", "delete");
 lib_access_add_method("wiki", "editothers");
 lib_access_add_method("wiki", "deleteothers");
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // PANELS
 function m_panel_wiki($x) { eval(lib_rfs_get_globals());

@@ -417,6 +417,15 @@ if($a<1124) {
 	lib_log_add_entry($logtext);
 }
 
+if($a<1127) {
+	
+	lib_mysql_add("addon_database","file_url","text","not null");	
+	lib_mysql_add("addon_database","git_repository","text","NOT NULL");
+	lib_mysql_add("addon_database","core","text","not null");
+	$logtext="Added interim database changes 1127";
+	lib_log_add_entry($logtext);
+}
+
 if($a < $b) {
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=lib_mysql_fetch_one_object("select * from site_vars where name='database_upgrade'");

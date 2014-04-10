@@ -2083,6 +2083,7 @@ function adm_action_f_delete_log_go() {
 	adm_action_f_view_old_logs();
 }
 function adm_action_f_delete_log() {
+	echo "<div class=forum_box>";
 	echo "<h3>Delete Log</h3>";
 	echo "<hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=log_view","View Current Log");
@@ -2090,6 +2091,7 @@ function adm_action_f_delete_log() {
 	echo "<hr>";
 	eval(lib_rfs_get_globals());
 	lib_forms_confirm("Delete $wlog","$RFS_SITE_URL/admin/adm.php?action=f_delete_log_go&wlog=$wlog","what");
+	echo "</div>";
 	include("footer.php");
 	exit();	
 	
@@ -2112,6 +2114,7 @@ function adm_action_f_log_rotate() {
 }
 function adm_action_f_view_old_logs_go() {
 	eval(lib_rfs_get_globals());
+	echo "<div class=forum_box>";
 	echo "<h3>View Log</h3>";
 	echo "<hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=log_view","View Current Log");
@@ -2130,10 +2133,12 @@ function adm_action_f_view_old_logs_go() {
 	$x=str_replace("</s","&lt;/s",$x);
 	$x=str_replace("</d","&lt;/d",$x);
 	echo $x;
+	echo "</div>";
 	include("footer.php");
 	exit();
 }
 function adm_action_f_view_old_logs() {
+	echo "<div class=forum_box>";
 	echo "<h3>View Old Logs</h3>";
 	echo "<hr>";
 	eval(lib_rfs_get_globals());
@@ -2153,23 +2158,27 @@ function adm_action_f_view_old_logs() {
 		echo "</tr>";
 	}
 	echo "</table>";
+	echo "</div>";
 	include("footer.php");
 	exit();
 }
 function adm_action_log_view() {
 	eval( lib_rfs_get_globals() );
+	echo "<div class=forum_box>";
 	echo "<h3>View Log</h3>";
 	echo "<hr>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_log_rotate","Rotate Log");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_view_old_logs","View Old Logs");
 	echo "<hr>";	
 	@include( "$RFS_SITE_PATH/log/log.htm" );
+	echo "</div>";
 	include("footer.php");
 	exit();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_COUNTERS
 function adm_action_counters() {
+	echo "<div class=forum_box>";
 	echo "<h3>Counters</h3>\n";
 	$hits_raw=$_REQUEST['hits_raw']; if(empty($hits_raw)) $hits_raw=50;
 	echo "Showing pages with at least $hits_raw hits<br>";
@@ -2191,6 +2200,7 @@ function adm_action_counters() {
 		echo "</td><tr>";
 	}
 	echo "<table>";	
+	echo "</div>";
 	include("footer.php");
 	exit();
 }

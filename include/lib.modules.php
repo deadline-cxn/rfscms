@@ -22,18 +22,42 @@ function lib_modules_register_property($x,$property,$property_value) {
 	$RFS_MODULE[$x][$property]=$property_value;
 }
 
-function lib_modules_register($x,$core,$loc) {
+function lib_modules_register($name,$core,$loc,$version,$sub_version,$release,$description,$requirements,$cost,$license,$dependencies,
+$author,$author_email,$author_website,$images,$file_url,$git_repository) {
     global $RFS_SITE_PATH,$RFS_SITE_URL;
-    global $RFS_MODULE;
-    $RFS_MODULE[$x]=array();
-    $RFS_MODULE[$x]["core"]=$core;
-    $url=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);    
-	$RFS_MODULE[$x]["url"]=$url;
-	// lib_menus_register($x,$url);
-	$url=str_replace("/$x.php","",$url);
-	$RFS_MODULE[$x]["base_url"]=$url;
-	$loc=str_replace("/$x.php","",$loc);
-	$RFS_MODULE[$x]["loc"]=$loc;
+	global $RFS_MODULE;
+    $RFS_MODULE[$name]=array();
+    $RFS_MODULE[$name]["core"]=$core;
+    $url=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
+	$RFS_MODULE[$name]["url"]=$url;
+	$url=str_replace("/$name.php","",$url);
+	$RFS_MODULE[$name]["base_url"]=$url;
+	$loc=str_replace("/$name.php","",$loc);
+	$RFS_MODULE[$name]["loc"]=$loc;
+	
+	lib_modules_register_property($name,"version",$version);
+	lib_modules_register_property($name,"sub_version",$sub_version);
+	lib_modules_register_property($name,"file",$loc);
+	lib_modules_register_property($name,"author",$author);
+	lib_modules_register_property($name,"author_email",$sub_version);
+	lib_modules_register_property($name,"author_website",$sub_version);
+	
+	$r=lib_mysql_query("select * from addon_database where `name`='$name'");
+	if($addon=mysql_fetch_object($r)) {
+		if(!empty($addon->name)) {
+			if($addon->version<$version) { }
+		}
+	}
+	else {
+		if(!empty($name)) {
+			$q="
+			insert into `addon_database`
+					(`name`,`core`,`version`,`sub_version`,`release`,`description`,`requirements`,`cost`,`license`,`dependencies`,`author`,`author_email`,`author_website`,`images`,`file_url`,`git_repository`)
+			VALUES  ('$name','$core','$version','$sub_version','$release','$description','$requirements','$cost','$license','$dependencies','$author','$author_email','$author_website','$images','$file_url','$git_repository') ";			
+			lib_log_add_entry($q);
+			lib_mysql_query($q);
+		}
+	}
 }
 function lib_modules_get_url($z) {
     global $RFS_SITE_PATH,$RFS_SITE_URL;
@@ -109,13 +133,65 @@ function lib_modules_array() {
         else {
             if(is_dir($dr."/".$entry)) {
                 $core=false;
-                if(stristr($entry,"core")) $core=true;
+                if(stristr($entry,"core_")) $core=true;
                 $entry2=str_replace("core_","",$entry);
                 $module="$dr/$entry/module.$entry2.php";
-                $loc="$dr/$entry/$entry2.php";
-                lib_modules_register($entry2,$core,$loc);
-                lib_div($module);
+                $loc="$dr/$entry/$entry2.php";		
+				/*
+				global $RFS_ADDON_NAME="";
+				global $RFS_ADDON_VERSION="";
+				global $RFS_ADDON_SUB_VERSION="";
+				global $RFS_ADDON_RELEASE="";
+				global $RFS_ADDON_DESCRIPTION="";
+				global $RFS_ADDON_REQUIREMENTS="";
+				global $RFS_ADDON_COST="";
+				global $RFS_ADDON_LICENSE="";
+				global $RFS_ADDON_DEPENDENCIES="";
+				global $RFS_ADDON_AUTHOR="";
+				global $RFS_ADDON_AUTHOR_EMAIL="";
+				global $RFS_ADDON_AUTHOR_WEBSITE="";
+				global $RFS_ADDON_IMAGES="";
+				global $RFS_ADDON_FILE_URL="";
+				global $RFS_ADDON_GIT_REPOSITORY="";
+				 */
+								
                 include($module);
+				
+				global $RFS_ADDON_NAME;
+				global $RFS_ADDON_VERSION;
+				global $RFS_ADDON_SUB_VERSION;
+				global $RFS_ADDON_RELEASE;
+				global $RFS_ADDON_DESCRIPTION;
+				global $RFS_ADDON_REQUIREMENTS;
+				global $RFS_ADDON_COST;
+				global $RFS_ADDON_LICENSE;
+				global $RFS_ADDON_DEPENDENCIES;
+				global $RFS_ADDON_AUTHOR;
+				global $RFS_ADDON_AUTHOR_EMAIL;
+				global $RFS_ADDON_AUTHOR_WEBSITE;
+				global $RFS_ADDON_IMAGES;
+				global $RFS_ADDON_FILE_URL;
+				global $RFS_ADDON_GIT_REPOSITORY;
+				
+				lib_modules_register( //				$entry2, $core, $loc );					
+						$RFS_ADDON_NAME,
+						$core,
+						$loc,
+						$RFS_ADDON_VERSION,
+						$RFS_ADDON_SUB_VERSION,
+						$RFS_ADDON_RELEASE,
+						$RFS_ADDON_DESCRIPTION,
+						$RFS_ADDON_REQUIREMENTS,
+						$RFS_ADDON_COST,
+						$RFS_ADDON_LICENSE,
+						$RFS_ADDON_DEPENDENCIES,
+						$RFS_ADDON_AUTHOR,
+						$RFS_ADDON_AUTHOR_EMAIL,
+						$RFS_ADDON_AUTHOR_WEBSITE,
+						$RFS_ADDON_IMAGES,
+						$RFS_ADDON_FILE_URL,
+						$RFS_ADDON_GIT_REPOSITORY
+						);					
             }
         }
     }
@@ -158,8 +234,10 @@ function adm_action_modules() {
 	// echo "[$time] [$RFS_SITE_ADDON_DATABASE_TIME] [$x] [$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL]";
 	if($x>$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL) {
 		lib_sitevars_assign("RFS_SITE_ADDON_DATABASE_TIME",$time);
-		$addon_database=file_get_contents("http://www.sethcoder.com/files/addon_database.sql");
-		lib_mysql_query($addon_database);
+		$addon_database=file_get_contents("http://rfscms.org/files/addon_database.sql");
+		
+		echo $addon_database;
+		lib_mysql_query($addon_database);		
 		lib_forms_info("ADDON DATABASE UPDATED...","white","green");
 	}
 	include( "footer.php" );
