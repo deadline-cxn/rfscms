@@ -32,7 +32,10 @@ if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) include("$RFS_SITE
 else {
 	lib_rfs_echo($RFS_SITE_DOC_TYPE);
 	lib_rfs_echo($RFS_SITE_HTML_OPEN);
-	lib_rfs_echo($RFS_SITE_HEAD_OPEN);    
+	lib_rfs_echo($RFS_SITE_HEAD_OPEN);
+	
+	lib_rfs_echo($RFS_SITE_META);
+	
 	// get keywords from any search engine queries and put them in the seo output
 	$keywords=$_GET['query'];
 	if(empty($keywords)) $keywords=$_GET['q'];
