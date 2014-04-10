@@ -418,6 +418,7 @@ function files_action_addfiletodb_go() {
 }
 function files_action_get_file() {
     eval(lib_rfs_get_globals());
+	echo "<div class=forum_box>";
 	
 	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     if ((lib_rfs_bool_true($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
@@ -425,6 +426,7 @@ function files_action_get_file() {
         $filedata = m_files_getfiledata($_REQUEST['id']);
         if (empty($filedata)) {
             lib_forms_warn("Error 3392! File does not exist?\n");
+			echo "</div>";
             include ("footer.php");
             exit();
         }
@@ -447,15 +449,24 @@ function files_action_get_file() {
 		}
 		
         $size = lib_file_sizefile($filedata->size);
+		
+		
+		
         echo "<p>";
         if (!empty($filedata->thumb)) {
             echo lib_images_thumb($filedata->thumb);
         }
-        echo "<a href=\"$RFS_ADDON_FOLDER?action=get_file_go&id=$filedata->id\" target=_new_window>";
+		
+		
+        
+		echo "<a href=\"$RFS_ADDON_FOLDER?action=get_file_go&id=$filedata->id\" target=_new_window>";
+		echo "<img src=\"$RFS_SITE_URL/images/icons/Download.png\" title=\"Download File\"><br>";
         echo "<font size=4>";
         echo "$filedata->name ($size)";
         echo "</font>";
         echo "</a>";
+		
+		
         echo "</p>\n";
         echo "<div style='clear:both;'>";
         lib_tags_show_tags("files", $filedata->id);
@@ -465,8 +476,10 @@ function files_action_get_file() {
         if (empty($get_file_extended)) {
             echo "<table border=0>";
             echo "<tr><td>Bytes:</td><td>$filedata->size ($size)</td></tr>";
-            echo "<tr><td>md5 hash:</td><td>" . md5($filedata->location) . "</td></tr>";
-            echo "<tr><td>Posted by:</td><td> <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a></td></tr>";
+			if(!m_files_is_link($filedata->id))
+				echo "<tr><td>md5 hash:</td><td>" . md5($filedata->location) . "</td></tr>";
+			if(!empty($filedata->submitter)) 
+				echo "<tr><td>Posted by:</td><td> <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$filedata->submitter\">$filedata->submitter</a></td></tr>";
             echo "<tr><td>Downloaded:</td><td> $filedata->downloads times</td></tr>";
             if (empty($filedata->rating))
                 $filedata->rating = "unrated";
@@ -480,12 +493,15 @@ function files_action_get_file() {
                 echo "<tr><td>Platform:</td><td>$filedata->platform</td></tr>";
             if (!empty($filedata->os))
                 echo "<tr><td>Operating System:</td><td>$filedata->os</td></tr>";
-            echo "<tr><td>Added:</td><td>$filedata->time</td></tr>";
-            echo "<tr><td>Last update:</td><td>$filedata->lastupdate</td></tr>";
+			if (!empty($filedata->time))
+				echo "<tr><td>Added:</td><td>$filedata->time</td></tr>";
+			if (!empty($filedata->lastupdate))
+				echo "<tr><td>Last update:</td><td>$filedata->lastupdate</td></tr>";
             if (empty($filedata->worksafe))
                 $filedata->worksafe = "yes";
             echo "<tr><td>Safe for work:</td><td>$filedata->worksafe</td></tr>";
             echo "</table>";
+			echo "<hr>";
 
             if (!empty($filedata->description)) {
                 echo "<p>";
@@ -509,8 +525,9 @@ function files_action_get_file() {
                 echo "</tr>\n";
                 echo "</table>\n";
                 echo "</p>\n";
+				echo "<hr>";
             }
-
+			
         }
 
         echo "<p>(Right click and 'save target as' to save the file to your computer...)</p>\n";
@@ -754,6 +771,8 @@ function files_action_get_file() {
         echo "</div>";
     } else
 		echo "<p> You can't download files unless you are <a href=\"$RFS_SITE_URL/login.php\">Logged in</a>!</p>\n";
+		
+	echo "</div>";
     
 	include ("footer.php");
 	

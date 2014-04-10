@@ -1311,6 +1311,7 @@ function adm_action_edit_site_vars() {
 		if(empty($site_var->type)) $site_var->type="text";
 		echo "<option>$site_var->type";		
 		echo "<option>text";
+		echo "<option>textarea";
 		echo "<option>time";
 		echo "<option>bool";
 		echo "<option>file";
@@ -1319,7 +1320,10 @@ function adm_action_edit_site_vars() {
 		echo "<option>password";
 		echo "</select>";		
 		echo "</td><td>";		
-		$site_var->value=stripslashes( $site_var->value );		
+		$site_var->value=stripslashes( $site_var->value );
+		$site_var->value=str_replace("<","&lt;",$site_var->value);
+		$site_var->value=str_replace(">","&gt;",$site_var->value);
+		$site_var->value=str_replace('"',"&#34;", $site_var->value);
 		switch($site_var->type) {
 		case "bool":
 			echo "<select name=val onchange=\"form.submit();\">";			
@@ -1349,7 +1353,12 @@ function adm_action_edit_site_vars() {
 				echo "<font style='color:white; background-color:red;'><br>FILE DOES NOT EXIST";
 			}
 			break;
-		default:		
+			
+		case "textarea":
+			echo "<textarea name=val cols=40 rows=10 onblur=\"form.submit();\">$site_var->value</textarea>";		
+			break;
+		default:
+			
 			echo "<input name=val size=40 value=\"$site_var->value\" onblur=\"form.submit();\">";
 			break;
 		}
@@ -1374,6 +1383,7 @@ function adm_action_edit_site_vars() {
 	echo "\$RFS_SITE_<input name=name size=17 value=\"ADD NEW\"> ";
 	echo "<select name=\"type\">";		
 		echo "<option>text";
+		echo "<option>textarea";
 		echo "<option>time";
 		echo "<option>bool";
 		echo "<option>file";

@@ -73,9 +73,6 @@ projects such as this one. If you feel there is a mistake, there
 is copyrighted content, or I have left out important information,
 please contact me, and I will make sure these issues are corrected.
 
-Thanks,
-Seth
-
 Email: sethcoder@rfscms.org
 Twitter: @SethCoder
 http://rfscms.org/

@@ -12,7 +12,7 @@ function m_panel_files($x) {
     eval(lib_rfs_get_globals());
 	$RFS_ADDON_URL=lib_modules_get_url("files");
     echo "<h2>Last $x Files</h2>";
-    $result=lib_mysql_query("select * from files where category !='unsorted' order by `time` desc limit 0,$x");
+    $result=lib_mysql_query("select * from files where category !='unsorted' and hidden ='no' order by `time` desc limit 0,$x");
     $numfiles=mysql_num_rows($result);
     echo "<table border=0 cellspacing=0 cellpadding=0 >";
     $gt=2;
