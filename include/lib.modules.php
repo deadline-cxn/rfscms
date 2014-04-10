@@ -221,25 +221,10 @@ function adm_action_modules() {
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_show_installed_modules","Installed modules");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_module_menu","Module Registered Menu Items");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_module_store","Module Store");
+	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_module_store_update_force","Manual Database Update");
+
+	adm_action_f_module_store_update(0);
 	echo "<hr>";
-	///////////////////////////////////////////////
-	// get list of modules from sethcoder.com
-	// 
-	// download the database once every 24 hours to addon_database table
-	// add rfs_site_addon_database_time to check for time
-	if(empty($RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL))
-		lib_sitevars_assign("RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL","86400");
-	$time=time();
-	$x=$time-intval($RFS_SITE_ADDON_DATABASE_TIME);
-	// echo "[$time] [$RFS_SITE_ADDON_DATABASE_TIME] [$x] [$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL]";
-	if($x>$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL) {
-		lib_sitevars_assign("RFS_SITE_ADDON_DATABASE_TIME",$time);
-		$addon_database=file_get_contents("http://rfscms.org/files/addon_database.sql");
-		
-		echo $addon_database;
-		lib_mysql_query($addon_database);		
-		lib_forms_info("ADDON DATABASE UPDATED...","white","green");
-	}
 	include( "footer.php" );
 	exit();
 }

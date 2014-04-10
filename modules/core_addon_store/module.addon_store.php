@@ -28,7 +28,29 @@ lib_menus_register("Files","$RFS_SITE_URL/modules/core_files/files.php");
 //lib_mysql_data_add("addon_database","name","TEST!!!".time(),"");	
 // id name datetime_added	datetime_updated	version	sub_version	release	description	requirements	cost	license	dependencies	author	author_email	author_website	rating	images		
 
-
+function adm_action_f_module_store_update_force() {
+	adm_action_f_module_store_update(true);
+	adm_action_f_module_store();
+}
+function adm_action_f_module_store_update($force) {
+	eval(lib_rfs_get_globals());
+	///////////////////////////////////////////////
+	// get list of modules from rfscms.org
+	// download the database once every 24 hours to addon_database table
+	// add rfs_site_addon_database_time to check for time
+	if(empty($RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL))
+		lib_sitevars_assign("RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL","86400");
+	$time=time();
+	$x=$time-intval($RFS_SITE_ADDON_DATABASE_TIME);
+	if( ($x>$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL) ||
+		($force)) {
+		lib_sitevars_assign("RFS_SITE_ADDON_DATABASE_TIME",$time);
+		$addon_database=file_get_contents("http://rfscms.org/files/addon_database.sql");		
+		echo $addon_database;
+		lib_mysql_query($addon_database);		
+		lib_forms_info("ADDON DATABASE UPDATED...","white","green");
+	}
+}
 function adm_action_f_module_store() {
     eval(lib_rfs_get_globals());
 	echo "<h1>Module Store</h1>";
