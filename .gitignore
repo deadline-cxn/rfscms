@@ -6,6 +6,7 @@ files_b
 trip*
 _404.php
 error.log
+error_log
 tripwords2.txt
 tripwords.txt
 db_config.h
@@ -21,8 +22,6 @@ develop/*
 images/*
 tmp/*
 wtf/*
-modules/rfs*
+modules/*
+!modules/core*
 modules/core_videos/cache/*.jpg
-modules/addon*
-error_log
-
