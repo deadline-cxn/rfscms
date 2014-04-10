@@ -67,9 +67,14 @@ function lib_mysql_delimiter($t){
 	if(empty($d)) if(stristr($t,",")) $d=",";
 	return $d;
 }
+function lib_mysql_backup_table($table,$filename) {
+	eval(lib_rfs_get_globals());
+	echo "Backing up $table to $filename<br>";
+	return system("mysqldump -u$authdbuser -p$authdbpass $authdbname $table > $filename");
+}
 function lib_mysql_backup_database($filename) { eval(lib_rfs_get_globals());
 	$tm=time();
-	$a="mysqldump -u $authdbuser -p$authdbpass --databases $authdbname > ";
+	$a="mysqldump -u$authdbuser -p$authdbpass --databases $authdbname > ";
 	$r1="$filename.$tm.sql";
 	system($a.$r1);
 	if( ( $userdbname == $authdbname ) && ( $userdbaddress == $authdbaddress) ){

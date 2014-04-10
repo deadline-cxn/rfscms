@@ -727,10 +727,13 @@ function adm_action_db_query() {
 }
 function adm_action_database_backup() {
     eval(lib_rfs_get_globals());
+	echo "<div class=forum_box>";
 	echo "<h1>Database Backup</h1><hr>";
 	$sn=str_replace("http://","",$RFS_SITE_URL);
-	$sn=str_replace("/","",$sn);	
+	$sn=str_replace("/","",$sn);
 	echo (lib_mysql_backup_database($RFS_SITE_PATH."/files/.backups/$sn"));
+	echo (lib_mysql_backup_table("addon_database",$RFS_SITE_PATH."/files/addon_database.sql"));
+	echo "</div>";
 	finishadminpage();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
