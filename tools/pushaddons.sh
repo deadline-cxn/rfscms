@@ -1,25 +1,26 @@
 cd /var/www/modules
 echo "PUSHING BULLETLOG\n"
-cd rfscms_bullet_log
+cd bullet_log
 gpush 'update'
 echo "PUSHING GNS3\n"
-cd ../rfscms_gns3
+cd ../gns3
 gpush 'update'
 echo "PUSHING NETMAN\n"
-cd ../rfscms_netman
+cd ../netman
 gpush 'update'
 echo "PUSHING NETMAN TOOLS\n"
-cd ../rfscms_netman_tools
+cd ../netman_tools
 gpush 'update'
 echo "PUSHING NQT\n"
-cd ../rfscms-nqt
+cd ../nqt
 gpush 'update'
 echo "PUSHING PG\n"
-cd ../rfscms_political_game
+cd ../political_game
 gpush 'update'
 echo "PUSHING FT\n"
-cd ../rfsft
+cd ../fitness_tracker
 gpush 'update'
+
 
 
 
