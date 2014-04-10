@@ -1,10 +1,11 @@
-cd /var/www/modules
+cd ../modules
+git clone https://github.com/sethcoder/bullet_log.git bullet_log
+git clone https://github.com/sethcoder/gns3.git gns3
+git clone https://github.com/sethcoder/netman.git netman
+git clone https://github.com/sethcoder/netman_tools.git netman_tools
+git clone https://github.com/sethcoder/nqt.git nqt
+git clone https://github.com/sethcoder/political_game.git political_game
+git clone https://github.com/sethcoder/fitness_tracker.git fitness_tracker
 
-git clone https://github.com/sethcoder/rfscms_bullet_log.git
-git clone https://github.com/sethcoder/rfscms_gns3.git
-git clone https://github.com/sethcoder/rfscms_netman.git
-git clone https://github.com/sethcoder/rfscms_netman_tools.git
-git clone https://github.com/sethcoder/rfscms-nqt.git
-git clone https://github.com/sethcoder/rfscms_political_game.git
-git clone https://github.com/sethcoder/rfsft.git
+
 
