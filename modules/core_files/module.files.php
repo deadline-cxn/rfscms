@@ -136,8 +136,7 @@ function lib_ajax_callback_rename_file() { eval(lib_rfs_get_globals());
 }
 function lib_ajax_callback_delete_file() { eval(lib_rfs_get_globals());
 	if(lib_access_check($rfaapage,$rfaact)) {
-		rfs_lib_file_delete($rfakv,"yes");
-			
+		m_files_delete($rfakv,"yes");
 	}
 	else   echo "<font style='color:white; background-color:red;'>NOT AUTHORIZED</font>";
 	exit;

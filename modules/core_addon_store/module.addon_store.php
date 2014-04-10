@@ -28,4 +28,22 @@ lib_menus_register("Files","$RFS_SITE_URL/modules/core_files/files.php");
 //lib_mysql_data_add("addon_database","name","TEST!!!".time(),"");	
 // id name datetime_added	datetime_updated	version	sub_version	release	description	requirements	cost	license	dependencies	author	author_email	author_website	rating	images		
 
+
+function adm_action_f_module_store() {
+    eval(lib_rfs_get_globals());
+	echo "<h1>Module Store</h1>";
+	echo "<hr>";
+	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
+	echo "<hr>";
+	echo "MODULES... <br>";
+	$r=lib_mysql_query("select * from `addon_database`");
+	while($module=mysql_fetch_object($r)) {
+		echo "Name: $module->name <br>";
+		echo "      $module->git_repository<br>";
+	}
+	
+	include( "footer.php" );
+	exit();
+}
+
 ?>

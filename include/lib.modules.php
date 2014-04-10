@@ -173,7 +173,7 @@ function lib_modules_array() {
 				global $RFS_ADDON_FILE_URL;
 				global $RFS_ADDON_GIT_REPOSITORY;
 				
-				lib_modules_register( //				$entry2, $core, $loc );					
+				lib_modules_register(
 						$RFS_ADDON_NAME,
 						$core,
 						$loc,
@@ -244,21 +244,6 @@ function adm_action_modules() {
 	exit();
 }
 
-function adm_action_f_module_store() {
-    eval(lib_rfs_get_globals());
-	echo "<h1>Module Store</h1>";
-	echo "<hr>";
-	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=modules","Module Management");
-	echo "<hr>";
-	echo "MODULES... <br>";
-	$r=lib_mysql_query("select * from `addon_database`");
-	while($module=mysql_fetch_object($r)) {
-		echo "Name: $module->name <br>";
-	}
-	
-	include( "footer.php" );
-	exit();
-}
 function adm_action_f_module_menu() {
     eval(lib_rfs_get_globals());
 	echo "<h1>Menu Options registered by Modules</h1>";
