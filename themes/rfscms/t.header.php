@@ -3,7 +3,7 @@
 lib_rfs_echo($RFS_SITE_DOC_TYPE);
 lib_rfs_echo($RFS_SITE_HTML_OPEN);
 lib_rfs_echo($RFS_SITE_HEAD_OPEN);
-
+lib_rfs_echo($RFS_SITE_META);
 lib_rfs_echo($RFS_SITE_TITLE);
 
 $RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
