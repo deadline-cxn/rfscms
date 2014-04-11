@@ -218,13 +218,12 @@ function lib_modules_draw($location) {
 function adm_action_modules() {
     eval(lib_rfs_get_globals());
 	echo "<h1>Module Management</h1><hr>";
-	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_show_installed_modules","Installed modules");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_module_menu","Module Registered Menu Items");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_module_store","Module Store");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_module_store_update_force","Manual Database Update");
-
-	adm_action_f_module_store_update(0);
+	adm_action_f_module_store_update(0);	
 	echo "<hr>";
+	adm_action_f_show_installed_modules();
 	include( "footer.php" );
 	exit();
 }

@@ -67,6 +67,13 @@ function lib_mysql_delimiter($t){
 	if(empty($d)) if(stristr($t,",")) $d=",";
 	return $d;
 }
+
+function lib_mysql_import_sql($filename) {
+	//	mysql -u username –-password=password database_name < file.sql 
+	eval(lib_rfs_get_globals());
+	// echo "Backing up $table to $filename<br>";
+	return system("mysql -u $authdbuser --password=$authdbpass $authdbname < $filename");
+}
 function lib_mysql_backup_table($table,$filename) {
 	eval(lib_rfs_get_globals());
 	echo "Backing up $table to $filename<br>";

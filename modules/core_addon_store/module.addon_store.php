@@ -45,9 +45,10 @@ function adm_action_f_module_store_update($force) {
 	if( ($x>$RFS_SITE_ADDON_DATABASE_CHECK_INTERVAL) ||
 		($force)) {
 		lib_sitevars_assign("RFS_SITE_ADDON_DATABASE_TIME",$time);
-		$addon_database=file_get_contents("http://rfscms.org/files/addon_database.sql");		
-		echo $addon_database;
-		lib_mysql_query($addon_database);		
+		$addon_database=file_get_contents("http://rfscms.org/files/addon_database.sql");
+		$filename="$RFS_SITE_PATH/tmp/addon_database.sql";
+		file_put_contents($filename,$addon_database);
+		lib_mysql_import_sql($filename);
 		lib_forms_info("ADDON DATABASE UPDATED...","white","green");
 	}
 }
