@@ -1400,7 +1400,40 @@ function adm_action_edit_site_vars() {
 	echo "</form>";
 	echo "</td><td>";
 	echo "</td></tr>";
+	echo "</table>";	
+	
+	echo "<h2>All site vars</h2>";
+	echo "<table border=0>";
+	foreach($GLOBALS as $k => $v) {
+		if(stristr($k,"RFS_SITE")) {
+			
+			$x=str_replace("RFS_SITE_","",$k);
+			$x=strtolower($x);
+			$rescheck=lib_mysql_query("select * from site_vars where name='$x'");
+			$svarcheck=mysql_fetch_object($rescheck);
+			if(empty($svarcheck)) {
+			
+			echo "<tr>";
+			$v=str_replace("<","&lt;",$v);
+			$v=str_replace(">","&gt;",$v);
+			echo "<td>";
+			lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_addsitevar_from_global&name=$k","Add to database");
+			
+			echo "</td>";
+			echo "<td>";
+			echo " $k ";
+			echo "</td>";
+			echo "<td>";
+			echo "<textarea cols=100 rows=10>$v</textarea>";
+			echo "</td>";
+			echo "</tr>";
+			
+			}
+		}
+	}
 	echo "</table>";
+	
+	
 	echo "</div>";
 	
 	include("footer.php");
