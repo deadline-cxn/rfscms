@@ -56,6 +56,19 @@ color: #000000;
 	text-align: center;
 }
 
+.wikitext {
+	min-height: 160px;	
+	padding: 15px;
+	margin: 15px;
+	#color: #000;
+	#background-color: #888;
+	background-color:rgba(0,0,0,.2);
+	border-radius: 10px;
+	border-radius:15px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+
 .wikishell {
 	padding: 5px;
 	margin:0 auto;
@@ -74,6 +87,8 @@ td{
     font-family: Verdana;
     font-size: 12px;
 }
+
+
 
 
 .news_box {
@@ -398,6 +413,7 @@ hr{
 	ffborder:solid 1px #222222;
 	
 }
+
 
 .forum_message{
 	
