@@ -10,7 +10,10 @@ if(empty($RFSW_BULLET_IMAGE))
 if(empty($RFSW_LINK_IMAGE))
 	$RFSW_LINK_IMAGE= $RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = getcwd();
-if(!empty($rfsw_header)) include($rfsw_header);
+
+$rfsw_header="$RFS_SITE_PATH/lilheader.php";
+if(!empty($rfsw_header))  include($rfsw_header);
+
 $rfsw_admin_mode="false";
 if(lib_access_check("wiki","admin")) $rfsw_admin_mode="true";
 $addon_url=lib_modules_get_url("core_wiki");
@@ -35,7 +38,6 @@ if(!function_exists('rfs_query')) {
 			mysql_select_db($dbname, $mysql);
 			return mysql_query($query,$mysql);
 		}
-		
 	}
 }
 function rfs_time($whattime){
@@ -83,7 +85,7 @@ if($action=="history") {
 if($action=="editname") {
     lib_mysql_query("update wiki set name='$nname' where name='$name'");
    	$res = rfs_query(" 	select * from wiki where `text` like '%[$name]%' or `text` like '%,$name]%' order by name asc" ); 
-    $npg=@mysql_num_rows($res);    
+    $npg=@mysql_num_rows($res);
     for($ni=0;$ni<$npg;$ni++) {
         $pg=mysql_fetch_object($res);
     $pg->text=str_ireplace("[$name]","[$nname]",$pg->text);
@@ -103,16 +105,14 @@ if($action!="edit") {
 			<input type=hidden name=name value='$name'>
 			<input id='nname' name=nname value=\"$name\" size=120 onblur=\"this.form.submit()\">
 			</form> \n";
-	
 	}
-    
 }
 
 echo "<hr>";
 
 if($name=="Contents") {	
 	// Add in limited number of contents displayed per page	
-} else { 
+} else {
 	$res = rfs_query("	select distinct name from wiki where `text` like '%[$name]%' or `text` like '%\@$name,%' order by name asc" );
 	if($res) {
 		$num=mysql_num_rows($res);
@@ -199,7 +199,7 @@ if($GLOBALS['rfsw_admin_mode']=="true"){
 }
 
 $res=rfs_query("select * from wiki where name='$name'");
-$tpage=mysql_fetch_object($res);	
+$tpage=mysql_fetch_object($res);
 $wikipage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 if( ($action=="viewpagebyid") || ($id) ) {
 	$wikipage=lib_mysql_fetch_one_object("select * from wiki where id='$id'");
@@ -214,19 +214,16 @@ if($action=="edit"){
         echo "<textarea rows=30 cols=120 style=\"width: 80%;\" name=wikiedittext>";
         echo   $wikipage->text;
         echo "</textarea><br>";
-		
 		$lastpage=lib_mysql_fetch_one_object("select * from wiki where name='$wikipage->name' order by revision desc limit 1");
 		$revision=$lastpage->revision+1;
-		
 		echo "<textarea style=\"width:80%\" name=revision_note>Enter revision note here. REVISION: $revision</textarea>";
         echo "<br><br><input type=submit name=submit value=update>";
         echo "</form>";
     }    else    {
         echo "You can not edit pages.";
     }
-} 
-else {	
-
+}
+else {
     if(empty($wikipage->text)){
             if( ($name=="contents") ||
                 ($name=="Contents") ){
@@ -238,14 +235,10 @@ else {
             }
     }
     else    {
-		
-		
-		//echo "<pre>$wikipage->text </pre> ";
-        
-		lib_rfs_echo(wikitext(wikiimg(($wikipage->text))));
+	//echo "<pre>$wikipage->text </pre> ";
+	lib_rfs_echo(wikitext(wikiimg(($wikipage->text))));
         if($hide_wiki_menu!="true")
             echo "<p>This page was created by $wikipage->author ".rfs_time($wikipage->updated)."</p>";
-		
 		$page="$addon_url?name=$name";	
 		if(lib_rfs_bool_true($RFS_SITE_WIKI_FACEBOOK_COMMENTS))
 			lib_social_facebook_comments($page);
@@ -257,9 +250,7 @@ if(lib_rfs_bool_true($RFS_SITE_WIKI_SOCIALS)) {
 	$u=lib_domain_canonical_url();
 	$p="$RFS_SITE_NAME Wiki:".$name;
 	echo "<hr>";
-
 	lib_social_share_bar2($u,$p);
-	
 }
 
 echo "<hr style='clear:both'>";
@@ -269,15 +260,15 @@ if($hide_wiki_menu!="true"){
 	if($wpage->revision) {
 		echo "Page Revision: $wpage->revision (revised by: $wpage->revised_by) ";
 	}
-	
+
     echo "RFS Wiki ( $RFS_FULL_VERSION ) <br>";
     echo "[<a class=rfswiki_link href=$addon_url?name=home>main page</a>]";
     echo "[<a class=rfswiki_link href=$addon_url?name=contents>view all pages</a>]";
-	
-	
+
+
 	if($wpage->revision) {
 	echo "[<a class=rfswiki_link href=\"$addon_url?action=history&name=$name\">view this page's history</a>]";
-		
+
 	}
     if( ($name=="Home") || ($name=="Contents")  || ($name=="contents") ){
         if($name=="Home")    {
@@ -301,6 +292,7 @@ if($hide_wiki_menu!="true"){
 
 echo "</div>";
 
-include($rfsw_footer);
+
+// echo "include($rfsw_footer);
 
 ?>
