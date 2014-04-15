@@ -146,6 +146,7 @@ else {
 
 lib_ajax_javascript();
 rfs_javascript();
+lib_social_javascripts();
 
 lib_rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
 lib_rfs_echo($RFS_SITE_JS_JQUERY);

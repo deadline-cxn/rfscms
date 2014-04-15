@@ -2,6 +2,46 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
+function lib_social_javascripts() {
+	eval(lib_rfs_get_globals());
+	echo "
+<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=1\"></script>
+<script type=\"text/javascript\">
+(function() {
+var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+po.src = 'https://apis.google.com/js/plusone.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script> 
+	
+	<script> 
+		!function(d,s,id){
+			var js,fjs=d.getElementsByTagName(s)[0];
+			if(!d.getElementById(id)) {
+				js=d.createElement(s);
+				js.id=id;
+				js.src='https://platform.twitter.com/widgets.js';
+				fjs.parentNode.insertBefore(js,fjs);
+				}
+		} (document,'script','twitter-wjs'); </script> 
+					<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+						js.src = \"//connect.facebook.net/en_GB/all.js#xfbml=1&appId=$RFS_SITE_FACEBOOK_APP_ID\";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+				</script>
+<script type='text/javascript'>
+		(function() {
+		var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
+		li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
+		})();
+		</script>
+	";
+		
+}
 function module_share_bar() {
 	echo '<!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style ">
@@ -21,14 +61,7 @@ src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"
 function lib_social_stumble_upon_badge($url) {
 echo " <!-- Place this tag where you want the su badge to render -->
 		<su:badge layout='2'></su:badge>
-		<!-- Place this snippet wherever appropriate -->
-		<script type='text/javascript'>
-		(function() {
-		var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
-		li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
-		})();
-		</script>";
+		<!-- Place this snippet wherever appropriate -->";
 }
 function lib_social_paypal() { eval(lib_rfs_get_globals());
 if(empty($RFS_SITE_PAYPAL_BUTTON1)) return;
@@ -151,7 +184,7 @@ function lib_social_google_analytics(){
 				var _gaq = _gaq || [];  
 				_gaq.push(['_setAccount', '$RFS_SITE_GOOGLE_ANALYTICS']);
 				_gaq.push(['_trackPageview']);
-(function() {
+				(function() {
 				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
@@ -160,21 +193,7 @@ function lib_social_google_analytics(){
 	}
 }
 function lib_social_reddit() { 
-// eval(lib_rfs_get_globals());
-echo '<script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=1"></script>';
-/* echo "<script>";
-echo "(function() {";
-echo "var styled_submit = \"<a style='color: #369; text-decoration: none;' href='http://www.reddit.com/submit?title=' target='_parent'>\"; ";
-echo "var unstyled_submit = \"<a href='http://www.reddit.com/submit?title=' target='http://www.reddit.com/submit?title='> \";";
-echo "var write_string=\"<span class='reddit_button' style='color: grey;' >\";";
-echo "write_string += unstyled_submit + \"<img style='height: 2.3ex; vertical-align:top; margin-right: 1ex' src='http://www.redditstatic.com/spreddit1.gif'></a>\";";
-echo " write_string += styled_submit + 'submit';
-    write_string += '</a>';
-    write_string += '</span>';
-document.write(write_string);
-})()
-</script>';
-";    $RFS_SITE_ADDTHIS_ACCT		= "ra-50b82f7c63926ef6";*/
+	eval(lib_rfs_get_globals());
 }
 function lib_social_google_plus_badge(){
 echo '<!-- Place this code where you want the badge to render. -->
@@ -191,77 +210,45 @@ echo "	<!-- Place this code where you want the badge to render. -->
 function lib_social_google_plus($url){
 echo " <!-- Place this tag where you want the +1 button to render. -->
 <div class=\"g-plusone\" data-size=\"medium\" href=\"$url\"></div>
-<!-- Place this tag after the last +1 button tag. -->
-<script type=\"text/javascript\">
-(function() {
-var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-po.src = 'https://apis.google.com/js/plusone.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
-</script> ";
+<!-- Place this tag after the last +1 button tag. -->";
 }
 function lib_social_tweet($url,$hash,$text){	
 	$url=urlencode($url);
 	$text=urlencode($text);
 	echo "<a href='https://twitter.com/share?text=$text&url=$url' class='twitter-share-button' data-lang='en'> Tweet </a>"; // data-via='sethcoder' 
-	echo "<script> !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0]; if(!d.getElementById(id)) { js=d.createElement(s); js.id=id; js.src='https://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js,fjs);	}  } (document,'script','twitter-wjs'); </script>";
 }
 function lib_social_facebook_likebox($url){
 echo "	<div id=\"fb-root\"></div>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = \"//connect.facebook.net/en_GB/all.js#xfbml=1\";
-		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
-
-		<div class=\"fb-like-box\"
-			data-href=\"$url\"
-			data-width=\"292\"
-			data-show-faces=\"true\"
-			data-stream=\"true\"
-			data-header=\"false\">
-		</div>";
+<div class=\"fb-like-box\"
+	data-href=\"$url\"
+	data-width=\"292\"
+	data-show-faces=\"true\"
+	data-stream=\"true\"
+	data-header=\"false\">
+</div>";
 }
 function lib_social_facebook_like($url){
-	$url=rawurlencode($url);
-	echo "	<div id=\"fb-root\"></div>
-			<script>(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = \"//connect.facebook.net/en_US/all.js#xfbml=1\";
-			fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));</script>
-			
-			<div class=\"fb-like\"
-				data-send=\"true\"
-				data-layout=\"button_count\"
-				data-width=\"200\"
-				data-show-faces=\"false\"
-				data-font=\"verdana\"
-				data-href=\"$url\">
-			</div>";
+$url=rawurlencode($url);
+echo "	<div id=\"fb-root\"></div>
+<div class=\"fb-like\"
+	data-send=\"true\"
+	data-layout=\"button_count\"
+	data-width=\"200\"
+	data-show-faces=\"false\"
+	data-font=\"verdana\"
+	data-href=\"$url\">
+</div>";
 }
 function lib_social_facebook_like_little($url){    
 	$url=rawurlencode($url);	
 	echo " <div id=\"fb-root\"></div>
-			<script>(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			  js = d.createElement(s); js.id = id;
-			  js.src = \"//connect.facebook.net/en_GB/all.js#xfbml=1&appId=357980654298886\";
-			  fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));</script>
-			
-			<div class=\"fb-like\"
-				data-send=\"false\"
-				data-layout=\"button_count\"
-				data-width=\"450\"
-				data-show-faces=\"true\"
-				data-colorscheme=\"dark\">
-			</div>";
+<div class=\"fb-like\"
+	data-send=\"false\"
+	data-layout=\"button_count\"
+	data-width=\"450\"
+	data-show-faces=\"true\"
+	data-colorscheme=\"dark\">
+</div>";
 }
 function lib_social_facebook_like2(){
 	echo "<iframe src='https://www.facebook.com/plugins/like.php?href=".lib_domain_canonical_url()."'
@@ -273,17 +260,7 @@ function lib_social_twitter_follow($username) {
 				class=\"twitter-follow-button\"
 				data-show-count=\"true\"
 				data-show-screen-name=\"false\">
-				</a>
-			<script>!function(d,s,id){
-				var js,fjs=d.getElementsByTagName(s)[0];
-				if(!d.getElementById(id)){
-					js=d.createElement(s);
-					js.id=id;
-					js.src=\"//platform.twitter.com/widgets.js\";
-					fjs.parentNode.insertBefore(js,fjs);
-					}
-				}
-			(document,\"script\",\"twitter-wjs\");  </script>";
+				</a>";
 }
 function lib_social_facebook_login() { echo lib_social_facebook_login_r(); }
 function lib_social_facebook_login_r() {
@@ -304,23 +281,14 @@ function lib_social_facebook_login_r() {
 function lib_social_facebook_comments($page) {
 	$RFS_SITE_FACEBOOK_APP_ID=$GLOBALS['RFS_SITE_FACEBOOK_APP_ID'];
 	if(!empty($RFS_SITE_FACEBOOK_APP_ID)) {
-		echo "<div id=\"fb-root\"></div>
-				<script>(function(d, s, id) {
-					  var js, fjs = d.getElementsByTagName(s)[0];
-					  if (d.getElementById(id)) return;
-					  js = d.createElement(s); js.id = id;
-						js.src = \"//connect.facebook.net/en_GB/all.js#xfbml=1&appId=$RFS_SITE_FACEBOOK_APP_ID\";
-					  fjs.parentNode.insertBefore(js, fjs);
-					}(document, 'script', 'facebook-jssdk'));
-				</script>";
-
-	echo "	<div
+		echo "<div id=\"fb-root\"></div>";
+		echo "	<div
 				class=\"fb-comments\"
 				data-url=\"$page\"
 				data-title=\"$page\"
 				data-href=\"$page\"
 				data-width=\"600\"
-				data-num-posts=\"10\">
+				data-num-posts=\"10\"> 
 			</div>";
 	}
 }
