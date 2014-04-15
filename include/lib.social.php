@@ -118,9 +118,9 @@ function lib_social_share_bar2($u,$t) {
 	echo "<div style='float:left;'>";	
 	lib_social_google_plus($u);
 	echo "</div>";
-	echo "<div style='float:left;'>";	
-	lib_social_stumble_upon_badge($u);
-	echo "</div>";
+	//echo "<div style='float:left;'>";	
+	// lib_social_stumble_upon_badge($u);
+	// echo "</div>";
 }
 function lib_social_buttons(){
 	echo "<table border=0><tr><td>";
