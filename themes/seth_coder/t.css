@@ -79,6 +79,8 @@ td{
 .news_box {
 	clear: both;
 	margin: 5px;
+	border-radius:15px;
+	box-shadow: 5px 5px 5px #888888;
 }
 
 .news_headline_bar {
@@ -91,7 +93,7 @@ td{
 .news_headline {
 	padding: 5px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: x-large;
+    font-size: large;
     ffont-weight: bold;
     ffont-style: italic;
 	color: #5F79FF;
@@ -103,12 +105,12 @@ td{
 .news_time {
 
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: small;
+    font-size: x-small;
     
 	color: #5F79FF;
 	
 	font-style: italic;
-	padding: 6px 25px;
+	fpadding: 6px 25px;
 	vertical-align: text-bottom;
 	float: right;
 	text-shadow: 1px 1px 1px #000;
@@ -272,25 +274,25 @@ hr{
 
 .lefttd {
 	vertical-align: top;
-	width:1px;
+	fwidth:1px;
 	padding: 5px;
 }
 
 .midtd {
 	vertical-align: top;
-	padding: 10px;
-	margin: 5px;
-	border: 1px;
-	border-color: #000000;
-	border-style: solid;
+	padding: 5px;
+	fmargin: 5px;
+	fborder: 1px;
+	fborder-color: #000000;
+	fborder-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
-	min-width: 800px;
+	ffmin-ffwidth: 800px;
 }
 
 .righttd {
 	vertical-align: top;	
-	max-width: 300px;
+	fmax-wfidth: 300px;
 	padding: 5px;
 	
 }
