@@ -103,6 +103,17 @@ html, body
 }
 
 
+.wikitext {
+	width: 95%;
+	float: left;
+	background-color: #999;
+	#rgba(256,256,256,0.5);
+	border-radius: 10px;
+	margin: 10px;
+	padding: 15px;
+	box-shadow: 3px 3px 3px #222222;
+}
+
 .forum_box {
 	width: 90%;
 	float: left;

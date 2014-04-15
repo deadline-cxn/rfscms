@@ -121,6 +121,8 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 	$x=explode(",",$size);
 		$width=$x[0];
 		$height=$x[1];
+		
+	// $x=explode(",",$rfafield);		$rfafield=$x[0]; 		$rfaotherfield=$x[1];
 	
 	$rfanname="RFAJAX_".time()."_".md5($rfakv.$rfalabel.$rfatable.$rfaikey);	
 	
@@ -147,16 +149,16 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 		$type=$properties[1];
 		
 		if($type=="table") {
-			$tab=$properties[2];
+			$table=$properties[2];
 			$key=$properties[3];
-			$val=$properties[4];
-
-			if(!empty($val)) {
-				$r=lib_mysql_query("select * from `$tab` where `$key`='".$d[$rfafield]."'");
+			$value=$properties[4];
+			
+			if(!empty($value)) {
+				$q="select * from `$table` where `$key`='".$d[$rfafield]."'";
+				$r=lib_mysql_query($q);
 				$tdat=mysql_fetch_array($r);
-				$tvalue=$tdat[$val];
+				$tvalue=$tdat[$value];
 				$tdata=$tdat[$key];
-				
 			}
 			else {
 				$tvalue=$d[$rfafield];
@@ -164,7 +166,7 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 			}
 			
 			if(empty($tvalue)) $tvalue="Select";
-			if(empty($tdata)) $tdata="Select";
+			if(empty($tdata))  $tdata="Select";
 			
 			echo "<select
 					width=\"$width\"
@@ -190,9 +192,9 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 
 			echo "value=\"$tvalue\">$tdata</option>";
 
-			$r=lib_mysql_query("select * from `$tab` order by `$key` asc");
-			for($i=0;$i<mysql_num_rows($r);$i++) {
-				$dat=mysql_fetch_array($r);
+			$raa=lib_mysql_query("select * from `$table` order by `$key` asc");
+			for($i=0;$i<mysql_num_rows($raa);$i++) {
+				$dat=mysql_fetch_array($raa);
 
 				echo "<option ";
 
@@ -207,10 +209,22 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 					}
 				}
 				
+				if(!empty($value)) {
+					$q="select * from `$table` where `$key`='".$dat[$key]."'";
+					$ree=lib_mysql_query($q);
+					$tdat=mysql_fetch_array($ree);
+					$tvalue=$tdat[$value];
+					$tdata=$tdat[$key];
+				}
+				else {
+					$tvalue=$d[$rfafield];
+					$tdata=$d[$rfafield];
+				}				
+				
 				echo "NOVALVAR='NOPE' value='";
-				echo $dat[$key];
+				echo $tvalue; //$dat[$key];
 				echo "' >";
-				echo $dat[$key];
+				echo $tdata; //$dat[$key];
 				echo "</option>";
 			}
 			echo "</select>";

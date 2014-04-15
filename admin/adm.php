@@ -719,11 +719,12 @@ function adm_action_db_query() {
 	if( !empty( $query ) ) {	
 		// echo " DING [$query] <BR>";	
 		lib_mysql_query( "insert into `db_queries` (`id`, `query`) VALUES ('',\"$query\" ) " );
-
+		echo "<div class=forum_box>";
 		echo $query;
-		echo "<table cellspacing=0 cellpadding=0 border=0><tr><td class=contenttd>";
+		// echo "<table cellspacing=0 cellpadding=0 border=0><tr><td class=contenttd>";
 		lib_mysql_database_query( $query, "true" );
-		echo "</td></tr></table>";
+		// echo "</td></tr></table>";
+		echo "</div>";
 	}
     finishadminpage();
 }
@@ -2474,6 +2475,7 @@ function adm_menu_built_in() {
             }
         }
     }
+	/*
 	echo "<div style='clear: left; '>&nbsp;</div>";	
 	echo "<h1>Module Admin Buttons</h1>";
     $mods=lib_modules_get_array() ;
@@ -2513,6 +2515,7 @@ function adm_menu_built_in() {
         }
     }
     echo "<div style='clear: left; '>&nbsp;</div>";	
+	 */
 }
 function finishadminpage() {
 	eval( lib_rfs_get_globals() );
