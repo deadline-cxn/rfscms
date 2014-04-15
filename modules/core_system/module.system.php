@@ -42,7 +42,7 @@ function m_panel_system_static_html($arx) {
 	
 	$shtml->html=str_replace("&gt;",">",$shtml->html);
 	$shtml->html=str_replace("&lt;","<",$shtml->html);
-	echo lib_rfs_echo(nl2br($shtml->html));		
+	echo lib_rfs_echo($shtml->html);
 		// if ( ($shtml->owner==$data->name) ||			 (lib_access_check("static_html","edit")) ||			  (lib_access_check("admin","access")) ) {				echo "<br>";		}
 		// se 	adm_function_module_system_static_edit();
 }
