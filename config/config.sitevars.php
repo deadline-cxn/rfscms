@@ -36,26 +36,13 @@ else
 $RFS_SITE_PATH                 = getcwd();
 $RFS_SITE_ERROR_LOG            = "/var/log/apache2/error.log";
 /////////////////////////////////////////////////////////////////////////////////////////
-// TAGS  (Experimental)
-$RFS_TAGS=array(
-"RFS_TAG_FUNCTION"             => "RFS_TAG_FUNCTION",
-"RFS_TAG_PHP_SELF"             => "RFS_TAG_PHP_SELF",
-"RFS_TAG_CANONICAL"            => "RFS_TAG_CANONICAL",
-"lib_social_facebook_login_r"  => "<!--RTAG_FACEBOOK_LOGIN-->",
-"lib_buttons"                  => "<!--RTAG_BUTTON"
-);
-/////////////////////////////////////////////////////////////////////////////////////////
 // WIKI STUFF
 $RFS_SITE_WIKI_IMAGES_PATH     = "images/wiki";
-$rfsw_header                   = "header.php";
-$rfsw_footer                   = "footer.php";
-$rfsw_dbname                   = ""; // change these
-$rfsw_address                  = ""; // variables
-$rfsw_user                     = ""; // to work with
-$rfsw_pass                     = ""; // your database
-$rfsw_img_path                 = "images/wiki"; // path to image uploads
-$rfsw_bullet_image             = "$rfsw_img_path/bullet.gif";
-$rfsw_admin_mode               = "false";
+$RFS_SITE_WIKI_HEADER          = "$RFS_SITE_PATH/header.php";
+$RFS_SITE_WIKI_FOOTER          = "footer.php";
+$RFS_SITE_WIKI_IMAGES_PATH	   = "images/wiki"; // path to image uploads
+$RFS_SITE_WIKI_BULLET_IMAGE    = "$RFS_SITE_WIKI_IMAGES_PATH/bullet.gif";
+$RFS_SITE_WIKI_LINK_IMAGE      = "$RFS_SITE_WIKI_IMAGES_PATH/link2.gif";
 /////////////////////////////////////////////////////////////////////////////////////////
 // FONT STUFF
 $RFS_SITE_NAV_FONT             = "impact.ttf";
@@ -146,6 +133,15 @@ $RFS_SITE_BODY_OPEN         = "<BODY>\n";// topmargin=0 leftmargin=0 rightmargin
 $RFS_SITE_BODY_CLOSE        = "</BODY>\n";
 $RFS_SITE_HTML_CLOSE        = "</HTML>\n";
 $RFS_SITE_DELIMITER         = "¥";
+/////////////////////////////////////////////////////////////////////////////////////////
+// TAGS  (Experimental)
+$RFS_TAGS=array(
+"RFS_TAG_FUNCTION"             => "RFS_TAG_FUNCTION",
+"RFS_TAG_PHP_SELF"             => "RFS_TAG_PHP_SELF",
+"RFS_TAG_CANONICAL"            => "RFS_TAG_CANONICAL",
+"lib_social_facebook_login_r"  => "<!--RTAG_FACEBOOK_LOGIN-->",
+"lib_buttons"                  => "<!--RTAG_BUTTON"
+);
 /////////////////////////////////////////////////////////////////////////////////////////
 // This file can not have any trailing spaces
 ?>

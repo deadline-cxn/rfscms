@@ -29,6 +29,7 @@ lib_access_add_method("wiki", "edit");
 lib_access_add_method("wiki", "delete");
 lib_access_add_method("wiki", "editothers");
 lib_access_add_method("wiki", "deleteothers");
+lib_access_add_method("wiki", "uploadfile");
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // PANELS
@@ -61,7 +62,8 @@ function wiki_img($text) {
 
 
 }
-function wikiimg($text) { eval(lib_rfs_get_globals());    
+function wikiimg($text) {
+	eval(lib_rfs_get_globals());    
     $text=stripslashes($text);
     $text=str_replace("{{","&#123;",$text);
     $text=str_replace("}}","&#125;",$text);
@@ -156,9 +158,8 @@ function wikicode($text) {
 }
 function wikitext($text) {
 	eval(lib_rfs_get_globals());
-	if(empty($RFSW_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/core_wiki/images/bullet.gif";
-	if(empty($RFSW_LINK_IMAGE))   $RFSW_LINK_IMAGE   = $RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	
+	// 	if(empty($RFS_SITE_WIKI_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/core_wiki/images/bullet.gif";	if(empty($RFS_SITE_WIKI_LINK_IMAGE))   $RFSW_LINK_IMAGE   = $RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	// $text=wikicode($text);
 	// $text= wikiimg($text);
 
