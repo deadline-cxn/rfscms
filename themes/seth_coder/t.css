@@ -275,7 +275,7 @@ hr{
 .lefttd {
 	vertical-align: top;
 	fwidth:1px;
-	max-width: 300px;
+	max-width: 200px;
 	padding: 5px;
 }
 
@@ -293,7 +293,7 @@ hr{
 
 .righttd {
 	vertical-align: top;	
-	max-width: 300px;
+	max-width: 200px;
 	padding: 5px;
 	
 }
