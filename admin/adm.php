@@ -308,7 +308,7 @@ function rfs_admin_module( $loc ) {
 					echo "<textarea cols=50 rows=10 name=\"statichtml\">$st->html</textarea><br>";
 					echo "<input type=submit></form>";
 					echo "Preview:<hr>";
-					echo lib_rfs_echo(nl2br($st->html));
+					echo lib_rfs_echo($st->html);
 					
 				}
 				echo " </td>";
