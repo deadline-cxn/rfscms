@@ -5,7 +5,7 @@
 function lib_social_javascripts() {
 	eval(lib_rfs_get_globals());
 	echo "
-<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=1\"></script>
+
 <script type=\"text/javascript\">
 (function() {
 var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -32,6 +32,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 					  fjs.parentNode.insertBefore(js, fjs);
 					}(document, 'script', 'facebook-jssdk'));
 				</script>
+				
 <script type='text/javascript'>
 		(function() {
 		var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
