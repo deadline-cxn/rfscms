@@ -46,22 +46,35 @@ function forums_action_start_thread() {
         echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_URL\" method=post>\n";
         echo "<input type=hidden name=action value=start_thread_go>\n";
         echo "<input type=hidden name=forum_which value=\"$forum_which\">\n";
-		echo "Title: ";
-		echo "<input type=text name=\"theader\" value=\"\" size=78><br>";
-		echo "Message:";
-		echo "<textarea name=reply cols=78 rows=10></textarea><br>";
+		echo "<div style='width: 120px; float: left;'> Title: </div>";
+		echo "<div style='float: left;'><input type=text name=\"theader\" value=\"\" size=85></div>";
+		echo "<div style='clear: both;'></div>";
+		
+		
+		if( (lib_access_check("forums","admin")) || 
+			(lib_access_check("forums","moderate")) ) {
+			echo "<div style='width: 120px; float: left;'> &nbsp;</div>";
+			echo "<div style='float: left;'>";
+			echo " <img src=\"$RFS_SITE_URL/images/icons/stickyico.gif\" width=16 height=16> Sticky: <input type=checkbox name=sticky> ";
+			echo " <img src=\"$RFS_SITE_URL/images/icons/Lock.png\" width=16 height=16> Locked: <input type=checkbox name=locked></div>";
+			echo "<div style='clear: both;'></div>";
+		}
+		
+		echo "<div style='width: 120px; float: left;'>Message: </div>";
+		echo "<div style='float: left;'><textarea name=reply cols=90 rows=15></textarea></div>";
+		echo "<div style='clear: both;'></div>";
         if($data->name=="Visitor") { 
-			echo "Name:";
+			// echo "Name:";
 			echo "<input type=hidden name=visitor value=true>";
         }
         else {
-			echo "Anonymous:";
-			echo "	<select id=\"anonymous\" name=anonymous
+			echo "<div style='width: 500px; float: left;'>Anonymous: </div>";
+			echo "<div style='float: left;'><select id=\"anonymous\" name=anonymous
 						style=\"width:160px; min-width: 160px;\"
 						width=160>
 			<option>no<option>yes</select> &nbsp;<input type=submit name=submit value=\"Go!\">";
 			}
-		echo "</form>\n";
+		echo "</div></form>\n";
     }
     else  {
 		echo "<h2>You must be logged in to post!</h2>\n";
@@ -72,6 +85,10 @@ function forums_action_start_thread() {
 function forums_action_start_thread_go() {
 	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
+		
+		
+		if(lib_rfs_bool_true($sticky)) $sticky='true';
+		if(lib_rfs_bool_true($locked)) $locked='true';
 		
         $user=$data->id;
         if($anonymous=="yes") $user=999;
@@ -92,6 +109,10 @@ function forums_action_start_thread_go() {
         lib_mysql_query("UPDATE `forum_posts` set `forum`        = '$forum_which' where `id`='$id';");
         lib_mysql_query("UPDATE `forum_posts` set `time`         = '$time' where `id`='$id';");
         lib_mysql_query("UPDATE `forum_posts` set `thread_top`   = 'yes' where `id`='$id';");
+		
+		lib_mysql_query("UPDATE `forum_posts` set `sticky`       = '$sticky' where `id`='$id'");
+		lib_mysql_query("UPDATE `forum_posts` set `locked`       = '$locked' where `id`='$id'");
+		
         lib_mysql_query("DELETE from `forum_posts` where `title` ='__chkdel'");
         $data->forumposts+=1;
         lib_mysql_query("update `users` set `forumposts`='$data->forumposts' where `id`='$data->id'");
@@ -477,6 +498,125 @@ function forums_action_forum_list() {
     }
 	include("footer.php");
 }
+
+function forums_action_forum_showposts_rows($x) {
+	eval(lib_rfs_get_globals());
+    $PROFILE_BASE_URL=lib_modules_get_base_url("profile");
+	if($x=="sticky") $result = lib_mysql_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' and sticky='true'  order by bumptime desc limit 0,30");
+	else 			 $result = lib_mysql_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' and sticky!='true' order by bumptime desc limit 0,30");
+	if($result) $numposts=mysql_num_rows($result);
+    else $numposts=0;
+	while($post=mysql_fetch_array($result)) {
+		$new=0;
+		$fork = lib_mysql_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no'");
+		$posts=0;
+		if($fork) $posts=mysql_num_rows($fork);
+		for($star=0;$star<$posts;$star++) {
+			$fart=mysql_fetch_array($fork);
+			if($fart['time']>=$data->last_login) $new=1;
+		}
+		$flink="<a href=\"$RFS_ADDON_URL?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
+		
+		echo "<tr>";			
+		echo "<td>";
+		
+		echo "<table border=0><tr><td>";
+		
+		echo $flink;
+		echo "<img src=\"$RFS_SITE_URL/images/icons/Documents.png\" height=32 border=0 >\n";
+		echo "</a>";
+		echo "</td><td width=500>";
+		if(lib_rfs_bool_true($post['sticky'])) {
+			echo "<img src=\"$RFS_SITE_URL/images/icons/stickyico.gif\" width=16 height=16>";
+		}
+		if(lib_rfs_bool_true($post['locked'])) {
+			echo "<img src=\"$RFS_SITE_URL/images/icons/Lock.png\" width=16 height=16>";
+		}
+		echo $flink;
+		echo stripslashes($post['title']);
+		echo "</a><br>";
+		$great=lib_users_get_data($post['poster']);
+
+		$time=lib_string_current_time($post['time']);
+
+		echo " posted $time by ".$great->name;
+		
+		echo "</td></tr></table>";
+		
+		echo "</td><td>";
+								
+		echo $posts;
+		echo "</td><td>";
+		
+		echo $post['views'];
+		
+		echo "</td><td>";
+		
+		$lreply="";
+		$lrepr=lib_mysql_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no' order by `time` desc limit 1");
+		if($lrepr) $lreply=mysql_fetch_object($lrepr);
+		if($lreply) {
+			$great=lib_users_get_data($lreply->poster);
+			// echo "<a href=\"$RFS_ADDON_URL?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
+			echo "<a href=\"$PROFILE_BASE_URL/showprofile.php?user=$great->name\">$great->name</a><br>";
+			echo lib_string_current_time($lreply->time);
+		}
+		else {
+			echo " ";
+		}
+		
+		echo "</td><td>";
+				
+
+		if( ( (lib_access_check("forums","admin")) ||
+			  (lib_access_check("forums","moderate")) ) & ($_SESSION['forum_admin']=="yes")) {
+		   
+		   echo "<div style='float: left;'>";
+		   if(lib_rfs_bool_true(($post['sticky']))) {
+			   $lnk="$RFS_ADDON_URL?action=unsticky_thread&forum_which=$forum_which&thread=".$post['thread'];
+				lib_buttons_image_sizeable($lnk,"Unsticky","$RFS_SITE_URL/images/icons/stickyico.gif",16,16);
+				lib_buttons_make_button($lnk,"Unsticky");
+		   } 
+		   else {
+			   $lnk="$RFS_ADDON_URL?action=sticky_thread&forum_which=$forum_which&thread=".$post['thread'];
+				lib_buttons_image_sizeable($lnk,"Sticky","$RFS_SITE_URL/images/icons/stickyico.gif",16,16);
+				lib_buttons_make_button($lnk,"Sticky");
+		   } 
+		   
+			if(lib_rfs_bool_true(($post['locked']))) {
+				$lnk="$RFS_ADDON_URL?action=unlock_thread&forum_which=$forum_which&thread=".$post['thread'];
+				lib_buttons_image_sizeable($lnk,"Unlock","$RFS_SITE_URL/images/icons/Lock.png",16,16);
+				lib_buttons_make_button($lnk,"Unlock");
+			}
+			else {
+				$lnk="$RFS_ADDON_URL?action=lock_thread&forum_which=$forum_which&thread=".$post['thread'];
+				lib_buttons_image_sizeable($lnk,"Lock","$RFS_SITE_URL/images/icons/Lock.png",16,16);
+				lib_buttons_make_button($lnk,"Lock");
+			}
+			$lnk="$RFS_ADDON_URL?action=delete_post_s&forum_which=$forum_which&thread=".$post['thread'];
+			lib_buttons_image_sizeable($lnk,"Delete","$RFS_SITE_URL/images/icons/Delete.png",16,16);
+			lib_buttons_make_button($lnk,"Delete");
+			
+			echo "</div>";
+			echo "<div>";
+		   
+			echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_URL\">\n";
+			echo "<input type=hidden name=action value=move_thread><input type=hidden name=id value=".$post['id'].">\n";
+			$resultj = lib_mysql_query("select * from forum_list where `folder`!='yes' order by priority");
+			echo "<br>Move to:<select name=move>";
+			while($forumj=mysql_fetch_object($resultj)) {
+				echo "<option>$forumj->name";
+			}
+
+			echo "</select>";
+			echo "<input type=\"submit\" name=\"submit\" value=\"go\"></form>";
+			echo "</div>";
+		}
+		
+		echo "</td></tr>";
+	}
+	
+}
 function forums_action_forum_showposts() {
 	eval(lib_rfs_get_globals());
     $PROFILE_BASE_URL=lib_modules_get_base_url("profile");
@@ -488,158 +628,30 @@ function forums_action_forum_showposts() {
     echo "<h1>$folder->name</h1>";
 	
 	forums_buttons($forum_which);
+	
+	echo "<div class=\"forum_box\">";
+	echo "<table border=0 cellpadding=5 cellspacing=0>";
 
     $result = lib_mysql_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' order by bumptime desc limit 0,30");
-    if($result) $numposts=mysql_num_rows($result);
+	if($result) $numposts=mysql_num_rows($result);
     else $numposts=0;
-    if($numposts) {
-		
-		echo "<div class=\"forum_box\">";
-		echo "<table border=0 cellpadding=0 cellspacing=0>";
+    if($numposts) {		
 		echo "<tr>";
 		echo "<td class=\"forum_table_head\">Topics</td>";
 		echo "<td class=\"forum_table_head\">Replies</td>";
 		echo "<td class=\"forum_table_head\">Views</td>";
 		echo "<td class=\"forum_table_head\">Latest Post</td>";
-		echo "<td class=\"forum_table_head\"> </td>";
+		$adm=""; if($_SESSION['forum_admin']=="yes") $adm="Administration";
+		echo "<td class=\"forum_table_head\"> $adm</td>";
 		echo "</tr>";
-        
-        while($post=mysql_fetch_array($result)) {
-            $new=0;
-            $fork = lib_mysql_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no'");
-            $posts=0;
-            if($fork) $posts=mysql_num_rows($fork);
-            for($star=0;$star<$posts;$star++) {
-                $fart=mysql_fetch_array($fork);
-                if($fart['time']>=$data->last_login) $new=1;
-            }
-			$flink="<a href=\"$RFS_ADDON_URL?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
-			
-			echo "<tr>";			
-			echo "<td>";
-			
-			echo "<table border=0><tr><td>";
-			
-            echo $flink;
-            echo "<img src=\"$RFS_SITE_URL/images/icons/Documents.png\" height=32 border=0 >\n";
-			echo "</a>";
-			echo "</td><td width=500>";
-			if(lib_rfs_bool_true($post['sticky'])) {
-				echo "<img src=\"$RFS_SITE_URL/images/icons/stickyico.gif\" width=16 height=16>";
-			}
-			if(lib_rfs_bool_true($post['locked'])) {
-				echo "<img src=\"$RFS_SITE_URL/images/icons/Lock.png\" width=16 height=16>";
-			}
-			echo $flink;
-			echo stripslashes($post['title']);
-			echo "</a><br>";
-			$great=lib_users_get_data($post['poster']);
-
-			$time=lib_string_current_time($post['time']);
-
-            echo " posted $time by ".$great->name;
-			
-			echo "</td></tr></table>";
-			
-			echo "</td><td>";
-                        			
-			echo $posts;
-			echo "</td><td>";
-			
-		    echo $post['views'];
-			
-			echo "</td><td>";
-			
-			$lreply="";
-			$lrepr=lib_mysql_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no' order by `time` desc limit 1");
-			if($lrepr) $lreply=mysql_fetch_object($lrepr);
-			if($lreply) {
-
-				$great=lib_users_get_data($lreply->poster);
-				// echo "<a href=\"$RFS_ADDON_URL?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
-				
-				
-				echo "<a href=\"$PROFILE_BASE_URL/showprofile.php?user=$great->name\">$great->name</a><br>";
-				echo lib_string_current_time($lreply->time);
-				
-				
-				}
-				else {
-				echo " ";
-			}
-			
-			echo "</td><td>";
-			
-			
-
-           if( (lib_access_check("forums","admin")) & ($_SESSION['forum_admin']=="yes")) {
-			   
-			   echo "<div style='float: left;'>";
-			   if(lib_rfs_bool_true(($post['sticky']))) {
-					lib_buttons_image_sizeable(
-					"$RFS_ADDON_URL?action=unsticky_thread&thread=".$post['thread'],
-					"Sticky",
-					"$RFS_SITE_URL/images/icons/stickyico.gif",
-					16, 16);
-			   } 
-			   else {
-					lib_buttons_image_sizeable(
-					"$RFS_ADDON_URL?action=sticky_thread&thread=".$post['thread'],
-					"Sticky",
-					"$RFS_SITE_URL/images/icons/stickyico.gif",
-					16, 16);
-			   } 
-			   
-				if(lib_rfs_bool_true(($post['locked']))) {			
-					lib_buttons_image_sizeable(
-					"$RFS_ADDON_URL?action=unlock_thread&thread=".$post['thread'],
-					"Lock",
-					"$RFS_SITE_URL/images/icons/Lock.png",
-					16,
-					16);
-				}
-				else {			
-					lib_buttons_image_sizeable(
-					"$RFS_ADDON_URL?action=lock_thread&thread=".$post['thread'],
-					"Lock",
-					"$RFS_SITE_URL/images/icons/Lock.png",
-					16,
-					16);
-				}
-				
-				
-				lib_buttons_image_sizeable(
-				"$RFS_ADDON_URL?action=delete_post_s&thread=".$post['thread'],
-				"Delete",
-				"$RFS_SITE_URL/images/icons/Delete.png",
-				16,
-				16);
-
-
-				
-				echo "</div>";
-				echo "<div>";
-			   
-                echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_URL\">\n";
-                echo "<input type=hidden name=action value=move_thread><input type=hidden name=id value=".$post['id'].">\n";
-                $resultj = lib_mysql_query("select * from forum_list where `folder`!='yes' order by priority");
-		        echo "Move to:<select name=move>";
-                while($forumj=mysql_fetch_object($resultj)) {
-                    echo "<option>$forumj->name";
-                }
-
-                echo "</select>";
-                echo "<input type=\"submit\" name=\"submit\" value=\"go\"></form>";
-				echo "</div>";
-            }
-			
-			echo "</td></tr>";
-
-        }
-		echo "</table>";
-		echo "</div>";
+		forums_action_forum_showposts_rows("sticky");
+		forums_action_forum_showposts_rows("");		
+		
     }
-    else echo "<p align=center> There are no threads! </p>\n";    
+    else echo "<tr><td><p align=center> There are no threads! </p></td></tr>";    
+	
+	echo "</table>";	
+	echo "</div>";
 	
 	
 	include("footer.php");
@@ -654,6 +666,7 @@ function forums_action_unlock_thread($t) {
 		lib_mysql_query("update forum_posts set locked='false' where id='$thread->id'");	
 		echo "Thread $thread->title unlocked.";
 	}
+	forums_action_forum_showposts();
 }
 function forums_action_lock_thread($t) {
 	eval(lib_rfs_get_globals());
@@ -664,6 +677,7 @@ function forums_action_lock_thread($t) {
 		lib_mysql_query("update forum_posts set locked='true' where id='$thread->id'");	
 		echo "Thread $thread->title locked.";
 	}
+	forums_action_forum_showposts();
 }
 function forums_action_unsticky_thread($t) {
 	eval(lib_rfs_get_globals());
@@ -673,7 +687,8 @@ function forums_action_unsticky_thread($t) {
 	if($r) {
 		lib_mysql_query("update forum_posts set sticky='false' where id='$thread->id'");		
 		echo "Thread $thread->title unstickied.";
-	}	
+	}
+	forums_action_forum_showposts();
 }
 function forums_action_sticky_thread($t) {
 	eval(lib_rfs_get_globals());
@@ -681,9 +696,10 @@ function forums_action_sticky_thread($t) {
 	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
 	$thread=mysql_fetch_object($r);
 	if($r) {
-		lib_mysql_query("update forum_posts set sticky='true' where id='$thread->id'");		
+		lib_mysql_query("update forum_posts set `sticky`='true' where id='$thread->id'");		
 		echo "Thread $thread->title stickied.";
-	}	
+	}
+	forums_action_forum_showposts();
 }
 function forums_action_() {
 	forums_action_forum_list();
