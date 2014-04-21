@@ -159,7 +159,7 @@ function wikicode($text) {
 function wikitext($text) {
 	eval(lib_rfs_get_globals());
 	
-	// 	if(empty($RFS_SITE_WIKI_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/core_wiki/images/bullet.gif";	if(empty($RFS_SITE_WIKI_LINK_IMAGE))   $RFSW_LINK_IMAGE   = $RFS_SITE_URL."/modules/core_wiki/images/link2.png";
+	// if(empty($RFS_SITE_WIKI_BULLET_IMAGE)) $RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/core_wiki/images/bullet.gif";	if(empty($RFS_SITE_WIKI_LINK_IMAGE))   $RFSW_LINK_IMAGE   = $RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	// $text=wikicode($text);
 	// $text= wikiimg($text);
 
@@ -183,12 +183,10 @@ function wikitext($text) {
 	
     $outtext="";
     $ila=explode("[",$text);
-    for($i=0;$i<count($ila);$i++)     {
-        if(stristr($ila[$i],"]"))         {
+    for($i=0;$i<count($ila);$i++) {
+        if(stristr($ila[$i],"]")) {
             $ila2=explode("]",$ila[$i]);
             $fnc= $ila2[0][0];
-			
-			
 			
             switch($fnc) {
 								
@@ -215,7 +213,8 @@ function wikitext($text) {
                     if($GLOBALS['RFS_DEBUG']=="yes")
                         $outtext.=" # FUNCTION $fnc()\n{";                        
 						
-						if($fnc=="toggledivstart") {
+						if( ($fnc=="toggledivstart") ||
+						    ($fnc=="tds") ) {
 							
 							
 							$lstd=explode(",",$ila2[0]);
@@ -224,7 +223,8 @@ function wikitext($text) {
 							
 							
 						}
-						if($fnc=="toggledivend") {
+						if( ($fnc=="toggledivend") ||
+							($fnc=="tde") ) {
 							
 							$outtext.=rfs_togglediv_end_ne();
 							$outtext.="<br>";
@@ -252,26 +252,31 @@ function wikitext($text) {
                         $outtext.="</pre>".nl2br($ila2[1]);                        
                     }
                         
-                    if($fnc=="codestart"){
+                    if( ($fnc=="codestart") || 
+					    ($fnc=="cs") ) {
 							
 							$language=$ar1;
 							if(empty($language)) $language="php";
 						
 							include_once("$RFS_SITE_PATH/3rdparty/geshi/geshi.php");
+							$ila2[1]=html_entity_decode($ila2[1]);
 							$geshi=new GeSHi($ila2[1],$language);
 							
 							$code=$geshi->parse_code();
 							$code=str_replace("class=","class='codez' ff=",$code);
+							
 							$outtext.=$code;
 							
 							
                     }
-                    if($fnc=="codeend"){ 
+                    if( ($fnc=="codeend") || 
+						($fnc=="ce") ) {
 					
                         $outtext.=nl2br($ila2[1]);
                     }
                         
-                    if($fnc=="beginlist"){
+                    if( ($fnc=="beginlist") ||
+					    ($fnc=="bl") ) {
 						
                         $outtext.="<table class=rfs_bulletlist width=100%>";
                         $outtext.="<tr><td class=rfs_bulletlist_txt_td>";
@@ -296,7 +301,8 @@ function wikitext($text) {
                         $outtext.= "</td></tr>";
                         $outtext.="</table>";
                     }
-                    if($fnc=="endlist") {
+                    if( ($fnc=="endlist") || 
+					    ($fnc=="el") ) {
                         $outtext.=nl2br($ila2[1]);
                     }
 					

@@ -68,6 +68,18 @@ color: #000000;
 	box-shadow: 5px 5px 5px #888888;
 }
 
+.codez {
+	padding: 5px;
+	margin:0 auto;
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #fff;
+	color: #000;
+	border: solid 1px #000;
+	border-radius: 8px;
+	box-shadow: 5px 5px 5px #888888;
+}
 
 .wikishell {
 	padding: 5px;
@@ -77,10 +89,9 @@ color: #000000;
 	font-family: monospace;
 	background-color: #000000;
 	color: #00ff00;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
+	border: solid 1px #0f0;
+	border-radius: 8px;
+	box-shadow: 5px 5px 5px #888888;
 }
 
 td{
