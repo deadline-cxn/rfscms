@@ -26,3 +26,5 @@ wtf/*
 modules/*
 !modules/core*
 modules/core_videos/cache/*.jpg
+admin/update/*
+
