@@ -20,11 +20,10 @@ include( "lilheader.php" );
 // ADM CHECK FOR UPDATES
 function adm_action_update() {
     eval(lib_rfs_get_globals());
+	set_time_limit(0);
     echo "<div class=forum_box>";
-
     echo "<pre>";
     echo "Update RFSCMS\n";
-
     echo "Local git repo:";
     $git=false;
     if(file_exists("$RFS_SITE_PATH/.git")) {
@@ -34,7 +33,6 @@ function adm_action_update() {
     else {
         echo " ---> false\n";
     }
-
     echo "\$RFS_SITE_FORCE_ZIP_UPDATE check:";
     if(lib_rfs_bool_true($RFS_SITE_FORCE_ZIP_UPDATE)) {
         echo " ---> true\n";
@@ -43,30 +41,29 @@ function adm_action_update() {
     else {
         echo " ---> false\n";
     }
-
     echo "Current folder:";
     system("pwd");
-
     if($git) {
         echo "Pulling remote git repo...\n";
-        // lib_rfs_flush_buffers();
-        // system("git stash save --keep-index");
-        // lib_rfs_flush_buffers();
+        lib_rfs_flush_buffers();
+        system("git stash save --keep-index");
+        lib_rfs_flush_buffers();
         $f="https://github.com/sethcoder/rfscms.git";
-        // $x=system("git pull $f");
-        // lib_rfs_flush_buffers();
-        // lib_log_add_entry("Update: $x");
+        $x=system("git pull $f");
+        lib_rfs_flush_buffers();
+        lib_log_add_entry("Update: $x");
         echo "$f\n";
     }
     else {
         echo "Getting latest zip...\n";
-        $f="https://github.com/sethcoder/rfscms/archive/master.zip";
-        system("mkdir $RFS_SITE_PATH/admin/update");
-        system("wget $f -o $RFS_SITE_PATH/admin/update/rfscms.zip");
-        echo "$f\n";
+		mkdir("$RFS_SITE_PATH/admin/update");
+		chdir("$RFS_SITE_PATH/admin/update");
+		lib_rfs_flush_buffers();
+        $f="http://github.com/sethcoder/rfscms/archive/master.zip";
+		echo system(wget $f);
+		$c="unzip master.zip";
+		echo system($c);
     }
-
-
     echo "</pre>";
     echo "</div>";
     include("footer.php");
