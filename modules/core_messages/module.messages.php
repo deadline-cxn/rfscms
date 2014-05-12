@@ -30,8 +30,7 @@ function adm_action_lib_messages_messages() { eval(lib_rfs_get_globals());
 }
 
 function get_unread_messages() { eval(lib_rfs_get_globals());
-    $q= "select * from `pmsg` where
-    (
+    $q= "select * from `pmsg` where (
     `to` = '$data->name' or
     `to` = '$data->name_shown' or ";
     for($i=0;$i<count($dax);$i++) {
@@ -50,22 +49,19 @@ function send_message($to,$from,$subject,$message) {
    $mtime=date("Y-m-d H:i:s");
    $subject=addslashes($subject);
    $message=addslashes($message);
-	lib_mysql_query("  insert into `pmsg` (`to`, `from`,`subject`, `message`,   `time`, `read`)
-                           VALUES ('$to','$from','$subject','$message', '$mtime', 'no');");
-	echo "<p>Message to $to sent!</p>";
+   lib_mysql_query("insert into `pmsg` (`to`, `from`,`subject`, `message`,   `time`, `read`) VALUES ('$to','$from','$subject','$message', '$mtime', 'no');");
+   echo "<p>Message to $to sent!</p>";
 }
 
 function send_all($from,$subject,$message) {
     $r=lib_mysql_query("select * from users");
-    $n=$r->num_rows;
-    for($i=0;$i<$n;$i++) {
-        $u=$r->fetch_object($r);
-
+    while($u=$r->fetch_object()) {
+        //do stuff
     }
-
 }
 
-function m_panel_messages_link() { eval(lib_rfs_get_globals());
+function m_panel_messages_link() {
+    eval(lib_rfs_get_globals());
 	if($_SESSION["logged_in"]!="true") return;
 	echo "<h2>Private Messages</h2>";
 	echo "<table border=0 cellspacing=0 cellpadding=3>";
@@ -82,7 +78,8 @@ function m_panel_messages_link() { eval(lib_rfs_get_globals());
 	echo "</tr></table>";
 }
 
-function m_panel_messages_indicator_small() { eval(lib_rfs_get_globals());
+function m_panel_messages_indicator_small() {
+    eval(lib_rfs_get_globals());
 	if($_SESSION["logged_in"]!="true") return;
 	echo "<h2>Private Messages</h2>";	
     $ur=get_unread_messages();
@@ -117,31 +114,35 @@ function m_panel_messages_indicator_small() { eval(lib_rfs_get_globals());
 
 }
 
-function module_latest_messages($x) { eval(lib_rfs_get_globals());
+function module_latest_messages($x) {
+    eval(lib_rfs_get_globals());
     lib_div("MESSAGES MODULE SECTION");
     echo "<h2>Private Messages</h2>";
 
     echo "<table border=0 cellspacing=0>";
 
-    $result = lib_mysql_query("select * from pmsg where 'to' = '$data->name' ");
-    if($result) $numposts=$result->num_rows;
+    $r=lib_mysql_query("select * from pmsg where 'to' = '$data->name' ");
+    if($r) $numposts=$r->num_rows;
     else $numposts=0;
     if($numposts) {
        $gt=1; $i=0;
-
         echo "<tr><td class=contenttd width=2% >";
-        $thread=$result->fetch_object($result);
-
-
+        $thread=$r->fetch_object();
         echo "</td></tr>";
     }
     echo "</table>";
-
     echo "<p align=right>(<a href=$RFS_SITE_URL/modules/core_messages/messages.php class=\"a_cat\" align=right>More...</a>)</p>";
 }
 
-function messages_f_send($to,$from,$title,$message) { eval(lib_rfs_get_globals()); 
-/*   "admin",  $usr->name,  "REQUEST TO ACCESS POD: $pod",        "	<a class=pmsglink href=$RFS_SITE_URL/index.php?action=netman_add_pod&useradd=$usr->id&pod=$pod > 		$usr->name is requesting access to pod: $pod 		</a>"         */
+function messages_f_send($to,$from,$title,$message) {
+    eval(lib_rfs_get_globals()); 
+
+/*
+"admin",
+$usr->name,
+"REQUEST TO ACCESS POD: $pod",
+"<a class=pmsglink href=$RFS_SITE_URL/index.php?action=netman_add_pod&useradd=$usr->id&pod=$pod > $usr->name is requesting access to pod: $pod 		</a>"
+ */
 	
 
 }
