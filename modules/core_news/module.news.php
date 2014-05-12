@@ -152,7 +152,7 @@ function rfs_getnewslist($newssearch) {
     $numnews=$result->num_rows;
     $i=0;
     while($i<$numnews) {
-        $der = $result->fetch_array($result);
+        $der = $result->fetch_array();
         $newslist[$i] = $der['id'];
         $i=$i+1;
     }

@@ -34,7 +34,7 @@ function m_panel_todo_list($x) {
 	$num=$result->num_rows;
 	echo "<table border=0 cellspacing=0 cellpadding=0 >";
 	for($i=0;$i<$num;$i++){
-		$task=$result->fetch_object($result);
+		$task=$result->fetch_object();
 		$link="$RFS_SITE_URL/modules/core_todo_list/todo_list.php?action=view_todo_list&id=$task->id";
 		echo "<tr><td>";
 		echo "<a href=\"$link\">$task->name</a>";

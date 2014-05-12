@@ -30,7 +30,7 @@ function m_panel_link_friends($x) {
 	eval(lib_rfs_get_globals());
 	$result=lib_mysql_query("select * from link_bin where friend='yes' order by time limit $x");
 	echo "<h2>Link Friends</h2>";
-	while($link=$result->fetch_object($result)) {		
+	while($link=$result->fetch_object()) {
 		$url=$link->link;
 		$url=str_replace(":","_rfs_colon_",$url);
 		$url=urlencode($url);

@@ -28,7 +28,7 @@ function lib_string_convert_smiles($text) {
 	$num_smilies=$smiley_result->num_rows;
 	if($num_smilies>0) {
 		for($i=0; $i<$num_smilies; $i++) {
-			$der = $smiley_result->fetch_array($smiley_result);
+			$der = $smiley_result->fetch_array();
 			$from=$der['sfrom'];
 			$to=$der['sto'];
 			$text=str_replace($from,$to,$text);
