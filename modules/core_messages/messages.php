@@ -149,7 +149,7 @@ if($action=="delete") {
     $result=lib_mysql_query($q);
 
     for($i=0;$i<$result->num_rows;$i++){
-        $p=$result->fetch_object($result);
+        $p=$result->fetch_object();
 
         if(!empty($_POST["pmsg_$p->id"])) {
 
@@ -177,7 +177,7 @@ if($action=="mark read") {
     $result=lib_mysql_query($q);
 
     for($i=0;$i<$result->num_rows;$i++){
-        $p=$result->fetch_object($result);
+        $p=$result->fetch_object();
 
         if(!empty($_POST["pmsg_$p->id"])) {
 
@@ -257,7 +257,7 @@ if(empty($action)) {
 
         for($i=0;$i<$numpmsg;$i++) {
             $gt++; if($gt>1) $gt=0;
-            $msg=$result->fetch_object($result);
+            $msg=$result->fetch_object();
             $lnk="<a href=$RFS_SITE_URL/modules/core_messages/messages.php?action=read&id=$msg->id>";
 
             echo "<tr class=\"rfs_project_table_$gt\">";

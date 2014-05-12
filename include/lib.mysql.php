@@ -101,32 +101,6 @@ function lib_mysql_backup_database($filename) { eval(lib_rfs_get_globals());
 	return ($r1."<br>".$r2."<br>");
 }
 
-/*
-function lib_mysql_open_database(){
-	$mysql=@mysql_connect($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass']);
-	if(empty($mysql)) return false;	
-	mysql_select_db( $GLOBALS['authdbname'], $mysql);
-	return $mysql;
-}
-function lib_mysql_query($query) {	
-	if(stristr($query,"`users`")) { return lib_mysql_query_user_db($query); }
-	$mysql=lib_mysql_open_database(); if($mysql==false) return false;
-	$result=$res->query($query,$mysql);
-	if(empty($result)) return false;
-	return $result;
-}
-function lib_mysql_query_user_db($q){
-    $r=lib_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
-    return $r;
-}
-function lib_mysql_query_other_db($db,$host,$user,$pass,$query){
-	$mysql=$res->connect($host,$user,$pass);
-	mysql_select_db($db, $mysql);
-	$result=$res->query($query,$mysql);
-	return $result;
-}
-*/
-
 function lib_mysql_describe_table($table){
     $query ="DESCRIBE $table";
     $result=lib_mysql_query($query);

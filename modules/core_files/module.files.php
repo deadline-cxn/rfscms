@@ -35,7 +35,7 @@ function m_panel_files($x) {
     echo "<table border=0 cellspacing=0 cellpadding=0 >";
     $gt=2;
     for($i=0;$i<$numfiles;$i++){
-        $file=$result->fetch_object($result);
+        $file=$result->fetch_object();
         $link="$RFS_ADDON_URL?action=get_file&id=$file->id";
         $fdescription=str_replace('"',"&quote;",stripslashes($file->description));
         $gt++; if($gt>2)$gt=1;

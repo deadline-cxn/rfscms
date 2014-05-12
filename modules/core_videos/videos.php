@@ -225,9 +225,9 @@ function videos_action_view($id) {
 	$res2=lib_mysql_query("select * from `videos` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
 	$linkprev="";
 	$linknext="";
-	while($video2=$res2->fetch_object($res2)){		
+	while($video2=$res2->fetch_object()){		
 		if($video2->id==$video->id) {
-			$video2=$res2->fetch_object($res2);
+			$video2=$res2->fetch_object();
 			if(!empty($video2->id)){
 				$linknext="[<a href=videos.php?action=view&id=$video2->id>Next</a>]";
 				if(!empty($video3->id))
@@ -266,7 +266,7 @@ function videos_action_viewcat($cat) {
 	eval(lib_rfs_get_globals());
 	videos_buttons();
 	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
-	while($vid=$res2->fetch_object($res2)) {		
+	while($vid=$res2->fetch_object()) {		
 		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
 		echo "<a href=videos.php?action=view&id=$vid->id>";
 		$ytturl=videos_get_thumbnail($vid->embed_code);

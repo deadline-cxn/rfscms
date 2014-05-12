@@ -42,7 +42,7 @@ function renumber_pages($id) {
     for ($i = 0; $i < $npages; $i++) {
         $newpage = $i + 1;
 		$res=lib_mysql_query("update `comics_pages` set `page`='$newpage' where `pid`='$page->pid'");
-        $page=$res->fetch_object($res);
+        $page=$res->fetch_object();
 		
 		
         
@@ -624,7 +624,7 @@ if ($action == "viewcomic") {
 	$res=lib_mysql_query("select * from `comics` where `id`='$id'");
     $comic  =$res->fetch_object();
     $pres   =lib_mysql_query("select * from `comics_pages` where `parent`='$id' order by page asc");
-    $page   =$pres->fetch_object($pres);
+    $page   =$pres->fetch_object();
     $npages =$pres->num_rows;
     $pagenumber=$_REQUEST['pagenumber'];
     

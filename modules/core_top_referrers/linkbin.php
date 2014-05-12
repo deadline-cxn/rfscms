@@ -14,7 +14,7 @@ function linkbin_showaddform()
     $numcats=$r->num_rows;
     for($i=0;$i<$numcats;$i++)
     {
-    	$cat=$result->fetch_object($result);
+    	$cat=$result->fetch_object();
     	echo "<option>$cat->name\n";
     }
     echo "</select></td></tr>\n";

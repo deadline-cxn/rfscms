@@ -78,7 +78,7 @@ function news_action_createnewsgo() {
 									  VALUES ('$headline','$data->id','$time','no');");
 		echo "<p>News headline entered into database... The story is unpublished.</p>";
 		$result=lib_mysql_query("select * from news where `headline`='$headline' and `submitter`='$data->id'");
-		$news=$result->fetch_object($result);
+		$news=$result->fetch_object();
 		$nid=$news->id;
 	}
 	news_action_editnews($nid);
@@ -261,7 +261,7 @@ function news_action_editnews($nid) {
     $res=lib_mysql_query("select * from `categories` order by `name` asc");
     $ncats=$res->num_rows;
     for($i=0;$i<$ncats;$i++) {
-        $cat=$res->fetch_object($res);
+        $cat=$res->fetch_object();
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";

@@ -101,7 +101,7 @@ function adm_action_edit_linkbin() {
 	$result=lib_mysql_query( "select * from link_bin order by time desc" );
 	echo "<table width=100% border=0 cellspacing=0 cellpadding=4 align=center>\n";
 	$gt=2;
-	while($link=$result->fetch_object($result)) {
+	while($link=$result->fetch_object()) {
 		$gt++;
 		if($gt>2)$gt=1;
 		echo "<tr><td class=rfs_project_table_$gt><br>\n";		
@@ -124,7 +124,7 @@ function adm_action_edit_linkbin() {
 		echo "<select name=category>\n";
 		echo "<option>$link->category\n";
 		$result2=lib_mysql_query("select * from `categories` order by name asc");
-		while($cat=$result->fetch_object($result2)) echo "<option>$cat->name\n";
+		while($cat=$result->fetch_object()) echo "<option>$cat->name\n";
 		echo "</select>\n";
 		echo "</td>\n";
 		echo "<td class=rfs_project_table_$gt>Description</td>";

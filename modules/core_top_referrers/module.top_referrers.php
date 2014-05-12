@@ -29,7 +29,7 @@ function m_panel_top_referrers($x) {
 	eval(lib_rfs_get_globals());
 	$result=lib_mysql_query("select * from link_bin where hidden != '1' and `referral`='yes' order by `referrals` desc limit $x");
 	echo "<h2>Top $x Referrers</h2>";
-	while($link=$result->fetch_object($result)){
+	while($link=$result->fetch_object()){
 		$url=$link->link;
 		$url=str_replace(":","_rfs_colon_",$url);
        echo "<a class=\"a_cat\" href=\"$site_url/link_out.php?link=$url\" \n";

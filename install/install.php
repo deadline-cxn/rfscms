@@ -9,8 +9,7 @@ if(substr(PHP_OS,0,3)=="WIN") {
 	$RFS_SITE_PATH_SEP="\\";
 	$RFS_SITE_OS="Windows";
 }
-/*
-function install_mysql_open_database(){
+/* function install_mysql_open_database(){
 	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'], $GLOBALS['authdbuser'], $GLOBALS['authdbpass']);
 	if(empty($mysql))	{
 		return false;

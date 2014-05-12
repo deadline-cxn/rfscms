@@ -160,7 +160,7 @@ if(!lib_rfs_bool_true($_SESSION['logged_in'])) {
 															  `user`='$data->name' and
 															  `exam_id`='$exam_id' ");
 															  
-			$eud=@mysql_fetch_object($r);
+			$eud=$r->fetch_object();
 															
 			if($eud->id) { 
 				
@@ -605,7 +605,7 @@ if(lib_access_check("exams","edit") ) {
 		
 		if(empty($eqt->type)){
 			$r=lib_mysql_query("select * from exam_question_types where type='$type'");
-			$eqt=$r->fetch_object($r);
+			$eqt=$r->fetch_object();
 		}
 		if(empty($eqt->type)) $eqt->type="multiple_choice";
 
@@ -648,7 +648,7 @@ if(lib_access_check("exams","edit") ) {
 	if($action=="admin_exam_edit_add_2") {
 		
 		$r=lib_mysql_query("select * from exam_question_types where name='$name'");
-		$eqt=$r->fetch_object($r);
+		$eqt=$r->fetch_object();
 				
 		echo "Adding new question to exam: $exam_id -> $exam_sequence -> $name ($eqt->type)<br>";		
 		
@@ -723,7 +723,7 @@ if(lib_access_check("exams","edit") ) {
 		
 		$q= "select MAX(`exam_sequence`) from `exam_questions` where exam_id='$exam_id'";
 		$rrr=lib_mysql_query($q);
-		$exq=$rrr->fetch_array($rrr);
+		$exq=$rrr->fetch_array();
 		$exam_sequence=$exq[0]+1;
 		
 		echo "[<a href='$RFS_SITE_URL/modules/core_exams/exams.php?action=admin_exam_edit_add&exam_id=$exam_id&exam_sequence=$exam_sequence'><img src='$RFS_SITE_URL/images/icons/plus_2.gif' width=16 border=0>Add Question</a>]<br>";		

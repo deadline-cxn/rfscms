@@ -30,7 +30,7 @@ function m_panel_videos($x) { eval(lib_rfs_get_globals());
     echo "<h2>Last $x Videos</h2>";
     $res2=lib_mysql_query("select * from `videos` order by time desc limit 0,$x");
 	echo "<table border=0 cellspacing=0 cellpadding=0>";
-    while($video=$res2->fetch_object($res2)) {        
+    while($video=$res2->fetch_object()) {        
         if($video->sfw=="no") $video->embed_code="$RFS_SITE_URL/files/videos/NSFW.gif";        
 		
 		$vlink="<a href=\"$RFS_SITE_URL/modules/core_videos/videos.php?action=view&id=$video->id\"

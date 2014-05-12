@@ -463,7 +463,7 @@ function forums_action_forum_showposts_rows($x) {
 		$posts=0;
 		if($fork) $posts=$fork->num_rows;
 		for($star=0;$star<$posts;$star++) {
-			$stres=$fork->fetch_array($fork);
+			$stres=$fork->fetch_array();
 			if($stres['time']>=$data->last_login) $new=1;
 		}
 		$flink="<a href=\"$RFS_ADDON_URL?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
