@@ -122,7 +122,7 @@ function news_action_editnewsgo($nid) {
 function news_action_editnews($nid) { 
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("news");
-	$res=lib_mysql_query("select * from news where id='$nid'")
+	$res=lib_mysql_query("select * from news where id='$nid'");
     $news=$res->fetch_object();    
 	echo "<a href=$RFS_ADDON_URL?action=view&nid=$nid>Preview</a>";
 	
