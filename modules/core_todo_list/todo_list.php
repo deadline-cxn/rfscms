@@ -16,8 +16,8 @@ function todo_list_action_() { eval(lib_rfs_get_globals());
 	lib_buttons_make_button("$RFS_SITE_URL/modules/core_todo_list/todo_list.php?action=new_todo_list","New List");
 	echo "<hr>";
 	$r=lib_mysql_query("select * from todo_list");
-	for($i=0;$i<mysql_num_rows($r);$i++) {
-		$tdl=mysql_fetch_object($r);
+	for($i=0;$i<$r->num_rows;$i++) {
+		$tdl=$r->fetch_object();
 		
 		rfs_db_element_edit($tdl->name,
 							"$RFS_SITE_URL/modules/core_todo_list/todo_list.php",
@@ -36,7 +36,7 @@ function todo_list_status_icon() { eval(lib_rfs_get_globals());
 function todo_list_action_open_task_go() { eval(lib_rfs_get_globals());
 echo "INSERTING";
 	lib_mysql_query("insert into `todo_list_task` (`name`,`list`) values ('$name','$list');");
-	$id=mysql_insert_id();
+	$id=mysqli_insert_id();
 	lib_mysql_update_database("todo_list_task","id","$id","");
 	$id=$list;
 	todo_list_action_view_todo_list($list);
@@ -95,7 +95,7 @@ function todo_list_action_edit_task() { eval(lib_rfs_get_globals());
 function todo_list_action_view_todo_list($list) { eval(lib_rfs_get_globals());
 	if(!empty($list)) $id=$list;
 	$r=lib_mysql_query("select * from todo_list where id=$id");
-	$tdl=mysql_fetch_object($r);
+	$tdl=$r->fetch_object();
 	
 	echo "<h1>$tdl->name</h1>";
 	echo "$tdl->description<br>";
@@ -148,7 +148,7 @@ $r=lib_mysql_query("
 select * from `todo_list_task` 
 where (`list`='$tdl->id')  ;");
 	  
-	$n=mysql_num_rows($r);
+	$n=$r->num_rows;
 
 	if($n>0) {
 		
@@ -171,7 +171,7 @@ where (`list`='$tdl->id')  ;");
 			
 			echo "</tr>";		
 		
-		while($task=mysql_fetch_object($r)) {
+		while($task=$r->fetch_object()) {
 			
 			// todo_list_task: name opened due list priority step
 			

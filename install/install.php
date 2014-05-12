@@ -9,7 +9,7 @@ if(substr(PHP_OS,0,3)=="WIN") {
 	$RFS_SITE_PATH_SEP="\\";
 	$RFS_SITE_OS="Windows";
 }
-
+/*
 function install_mysql_open_database(){
 	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'], $GLOBALS['authdbuser'], $GLOBALS['authdbpass']);
 	if(empty($mysql))	{
@@ -21,7 +21,7 @@ function install_mysql_open_database(){
 function install_mysql_query($query) {
 	if(stristr($query,"`users`")) { $x=install_mysql_query_user_db($query); return $x; }
 	$mysql=install_mysql_open_database(); if($mysql==false) return false;
-	$result=mysql_query($query,$mysql);
+	$result=mysqlquery($query,$mysql);
 	if(empty($result)) return false;
 	return $result;
 }
@@ -30,12 +30,12 @@ function install_mysql_query_user_db($q){
     return$r;
 }
 function install_mysql_query_other_db($db,$host,$user,$pass,$query){
-	$mysql=mysql_connect($host,$user,$pass);
+	$mysql=stuff connect($host,$user,$pass);
 	mysql_select_db($db, $mysql);
-	$result=mysql_query($query,$mysql);
+	$result blah query($query,$mysql);
 	return $result;
 }
-
+*/
 $RFS_SITE_PATH = getcwd();
 $cwdx=explode($RFS_SITE_PATH_SEP,$RFS_SITE_PATH);
 $installd=array_pop($cwdx);
@@ -214,7 +214,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			// CHECK DATABASE				
 			$r=install_mysql_query("select * from users");
 			$n=0;
-			if($r) $n=mysql_num_rows($r);
+			if($r) $n=$r->num_rows($r);
 			if(!$n) {
 				echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
 				$action="step_a";

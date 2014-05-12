@@ -54,9 +54,9 @@ function m_panel_course_list($x) {
 	
     echo "<div class=\"courses_box\">";
     $result=lib_mysql_query("select * from courses");
-    $num=mysql_num_rows($result);
+    $num=$result->num_rows;
     for($i=0;$i<$num;$i++) {
-        $course=mysql_fetch_object($result);
+        $course=$result->fetch_object();
 			echo "<div>";
 		rfs_togglediv_start("course_info$course->id"," COURSE: $course->id $course->name",1);
 		lib_buttons_make_button("$RFS_SITE_URL/modules/core_courses/courses.php?action=run&id=$course->id","Take This Course");
@@ -81,10 +81,8 @@ function module_course_admin() {
 function rfs_course_components_list($id) { eval(lib_rfs_get_globals());
 	$out="";
 	$r=lib_mysql_query("select * from course_component where parent='$id'");
-		for($i=0;$i<mysql_num_rows($r);$i++) {
-			$component=mysql_fetch_object($r);
-			$out.=" [UP] [DOWN] [DELETE] [EDIT]---> $component->name $component->id $component->parent<br>";
-	}
+	while($component=$r->fetch_object())
+	$out.=" [UP] [DOWN] [DELETE] [EDIT]---> $component->name $component->id $component->parent<br>";	
 	echo $out;
 }
 ////////////////////////////////////////////////////////////////

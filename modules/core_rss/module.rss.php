@@ -32,9 +32,9 @@ function m_panel_rss() { eval(lib_rfs_get_globals());
 	echo "<h2>News from around the world</h2>";
     include("$RFS_SITE_PATH/3rdparty/rsslib/rsslib.php");    
     $result=lib_mysql_query("select * from rss_feeds");
-    $num_feeds=mysql_num_rows($result);
+    $num_feeds=$result->num_rows;
     for($i=0;$i<$num_feeds;$i++){
-    	$feed=mysql_fetch_object($result);
+    	$feed=$result->fetch_object();
     	echo RSS_display($feed->feed, 3, false);
     }    
 }

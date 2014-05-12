@@ -2,7 +2,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-if(array_pop(explode("/",getcwd()))=="include")	chdir("..");
+$gcdx=explode("/",getcwd());
+if(array_pop($gcdx)=="include")	chdir("..");
 include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");

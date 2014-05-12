@@ -35,23 +35,26 @@ function lib_domain_getdomain($link) {
 function lib_domain_ban_domain($domain) {
     lib_mysql_query("insert into `banned` (`domain`) VALUES ('$domain')");
     //$res=lib_mysql_query("select * from `link_bin` where `link`='$domain'");
-    //if(mysql_num_rows($res))
+    //if($res->num_rows)
     lib_mysql_query("update `link_bin` set `banned`='yes' where `link`='$domain'");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_domain_ban_ref($refer){
-    $res=mysql_num_rows(lib_mysql_query("select * from banned where `link`='$refer'"));
+	$res=lib_mysql_query("select * from banned where `link`='$refer'");
+    $res=$res->num_rows;
     if($res==0) lib_mysql_query("insert into `banned` (`link`) VALUES ('$refer')");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_domain_ban_ip($ip){
-    $res=mysql_num_rows(lib_mysql_query("select * from banned where `ip`='$ip'"));
-    if($res==0) lib_mysql_query("insert into `banned` (`ip`) VALUES ('$ip')");
+    
+	$res=lib_mysql_query("select * from banned where `ip`='$ip'");
+    if($res->num_rows==0)
+		lib_mysql_query("insert into `banned` (`ip`) VALUES ('$ip')");
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_domain_unban_domain($domain){
 	lib_mysql_query("delete from `banned` where `domain`='$domain'");
-    // $res=mysql_num_rows(lib_mysql_query("select * from banned where `domain`='$domain'"));
+    // $res=$res->num_rows(lib_mysql_query("select * from banned where `domain`='$domain'"));
     // if($res==0) 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -65,19 +68,19 @@ function lib_domain_unban_ip($ip){
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_domain_banned_domain($domain){
     $res=lib_mysql_query("select * from `banned` where `domain`='$domain'");
-    if(mysql_num_rows($res)) return true;
+    if($res->num_rows) return true;
     return false;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_domain_banned_ref($refer){
     $res=lib_mysql_query("select * from `banned` where `link`='$refer'");
-    if(@mysql_num_rows($res)) return true;
+    if($res->num_rows) return true;
     return false;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_domain_banned_ip($ip){
     $res=lib_mysql_query("select * from `banned` where `ip`='$ip'");
-    if(mysql_num_rows($res)) return true;
+    if($res->num_rows) return true;
     return false;
 }
 /////////////////////////////////////////////////////////////////////////////////////////

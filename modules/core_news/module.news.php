@@ -79,9 +79,9 @@ function m_panel_news_list_popular($x) {
     //search method dictate sort order?
     $result=lib_mysql_query("select * from news where topstory!='yes' and published='yes' order by views desc limit $x");
     echo "<table border=0>";
-    $ct=mysql_num_rows($result);
+    $ct=$result->num_rows;
     for($i=0;$i<$ct;$i++)    {
-        $news=mysql_fetch_object($result);
+        $news=$result->fetch_object();
         echo "<tr><td>";
         echo "<table border=0 cellpadding=1 cellspacing=0><tr><td>";
         if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
@@ -131,14 +131,14 @@ function m_panel_news_blog_style($x) {
 }
 function rfs_getnewstopstory(){
     $result=lib_mysql_query("select * from news where topstory='yes' and published='yes'");
-    $news=mysql_fetch_object($result);
+    $news=$result->fetch_object();
     return $news;
 }
 function rfs_getnewsdata($news){
     $query="select * from news where id = '$news'";
     $result=lib_mysql_query($query);
-    if(mysql_num_rows($result) >0 )
-        $news = mysql_fetch_object($result);
+    if($result->num_rows>0)
+        $news=$result->fetch_object();
     return $news;
 }
 function rfs_getnewslist($newssearch) {
@@ -149,10 +149,10 @@ function rfs_getnewslist($newssearch) {
     if(empty($newsbeg)) $newsbeg=0; if(empty($newsend)) $newsend=10;
     $query .= " order by time desc";
     $result = lib_mysql_query($query);
-    $numnews=mysql_num_rows($result);
+    $numnews=$result->num_rows;
     $i=0;
     while($i<$numnews) {
-        $der = mysql_fetch_array($result);
+        $der = $result->fetch_array($result);
         $newslist[$i] = $der['id'];
         $i=$i+1;
     }
@@ -160,13 +160,13 @@ function rfs_getnewslist($newssearch) {
 }
 function rfs_get_news_headline($id){
     $result=lib_mysql_query("select * from news where id='$id'");
-    $news=@mysql_fetch_object($result);
+    $news=$result->fetch_object();
     return $news->headline;
 }
 function rfs_get_top_news_id(){
     $result=lib_mysql_query("select * from news where topstory='yes' and published='yes'");
-    $news=@mysql_fetch_object($result);
-    return $news->id;
+    $news=$result->fetch_object();
+   return $news->id;
 }
 function rfs_show_top_news() {
     $news=lib_mysql_fetch_one_object("select * from news where topstory='yes' and published='yes'");    
@@ -182,7 +182,7 @@ function rfs_show_news($nid) {
 		return;
 	}
 	$result=lib_mysql_query("select * from news where id='$nid'");
-    $news=mysql_fetch_object($result);
+    $news=$result->fetch_object();
     $userdata=lib_mysql_fetch_one_object("select * from `users` where id='$news->submitter'");
 	
 	echo "<div class=\"news_box\">";

@@ -106,7 +106,6 @@ else
     //////////////////////////////////////////// MERGE PICTURE WITH TEXT
 	$mid=$_REQUEST['mid'];
 	$meme=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
-	
 	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$meme->basepic'");
 	$ptf=$RFS_SITE_PATH."/".$pic->url;
 	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";	

@@ -23,15 +23,15 @@ function lib_users_online() {
 	$timeout = $timestamp-$timeoutseconds;
 
 	$res=lib_mysql_query("select * from useronline where `ip`='$REMOTE_ADDR'");
-	if(mysql_num_rows($res)) {
-		$usro=mysql_fetch_object($res);
+	if($res->num_rows) {
+		$usro=$res->fetch_object();
 		$insert = lib_mysql_query("update useronline set `name`='$name' where `ip`='$REMOTE_ADDR'");
 		$insert = lib_mysql_query("update useronline set `timestamp`='$timestamp' where `ip`='$REMOTE_ADDR'");
 		$insert = lib_mysql_query("update useronline set `loggedin`='$li' where `ip`='$REMOTE_ADDR'");
 
 	} else {
 		$res=lib_mysql_query("select * from useronline where name='$name'");
-		if(mysql_num_rows($res)) {
+		if($res->num_rows) {
 			$insert = lib_mysql_query("update useronline set timestamp='$timestamp' where name='$name'");
 			$insert = lib_mysql_query("update useronline set page='$PHP_SELF' where name='$name'");
 			$insert = lib_mysql_query("update useronline set `loggedin`='$li' where `ip`='$REMOTE_ADDR'");
@@ -45,22 +45,21 @@ function lib_users_online() {
 	}
 
 	$delete = lib_mysql_query("DELETE FROM useronline WHERE timestamp<$timeout");
-
 	$result = lib_mysql_query("SELECT DISTINCT ip FROM useronline");
-	$user = mysql_num_rows($result);
+	$user = $result->num_rows;
 	return $user;
 }
 function lib_users_logged_in() {
 	$result = lib_mysql_query("SELECT DISTINCT ip FROM useronline WHERE loggedin='1'");
-	$user   = mysql_num_rows($result);
+	$user   = $result->num_rows;
 	return $user;
 }
 function lib_users_logged_details() {
 	$result = lib_mysql_query("SELECT DISTINCT ip,page,name FROM useronline");
-	$nusers = mysql_num_rows($result);
+	
 	$user="";
-	for($i=0; $i<$nusers; $i++) {
-		$usrdata=mysql_fetch_object($result);
+	for($i=0; $i<$result->num_rows; $i++) {
+		$usrdata=$result->fetch_object();
 		// $usrdata->page=str_replace("/","",$usrdata->page);
 		$pg=explode("/",$usrdata->page);
 		$upg=$pg[count($pg)-1];
@@ -86,15 +85,18 @@ function lib_users_avatar_code($user) { eval(lib_rfs_get_globals());
 }
 function lib_users_set_var($name,$var,$set) {
 	$set=addslashes($set);
-	lib_mysql_query_user_db("UPDATE `users` SET `$var`='$set' where name = '$name'");
+	lib_mysql_query("UPDATE `users` SET `$var`='$set' where name = '$name'");
 }
 function lib_users_get_name($x){
+
 	$o=$x;
 	if(is_numeric($x)) {
-		$ur=lib_mysql_query_user_db("select * from `users` where id='$x'");
-		$u=mysql_fetch_object($ur);
+		$ur=lib_mysql_query("select * from `users` where id='$x'");
+		$u=$ur->fetch_object(); 
 		$o=$u->first_name;
 	}
+	
+	
     return $o;
 }
 function lib_users_create($name,$pass,$e){
@@ -112,20 +114,19 @@ function lib_users_alias($x) {
 function lib_users_get_data($name){
     if(is_numeric($name)){
 		$result = lib_mysql_query_user_db("select * from `users` where `id` = '$name'");
-		$d=mysql_fetch_object($result);
+		$d=$result->fetch_object();
 		if(empty($d->name_shown)) $d->name_shown=$d->name;
 		return ($d);
 	}
     else {
-        $r=lib_mysql_query_user_db("select * from users");
+        $r=lib_mysql_query("select * from users");
 	if($r) {
-        $n=mysql_num_rows($r);
-        for($i=0;$i<$n;$i++) {
-            $d=mysql_fetch_object($r);
+		while($d=$r->fetch_object()) {
             if($d->name==$name) {
 				if(empty($d->name_shown)) $d->name_shown=$d->name;
 				return $d;
 			}
+			
             $ax=explode(",",$d->alias);
             for($j=0;$j<count($ax);$j++) {
                 if($ax[$j]==$name) {
@@ -137,18 +138,19 @@ function lib_users_get_data($name){
 					}
             	}
             }
-	}
+		}
+	   
     }
     return 0;
 }
 function lib_users_get_databyfield($field,$data){
     $result=lib_mysql_query_user_db("select * from `users` where `$field` = '$data'");
-    return mysql_fetch_object($result);
+    return $result->fetch_object();
 }
 function lib_users_add_downloads($user,$points){
   $result = lib_mysql_query("select * from `users` where name = '$user'");
-  if(mysql_num_rows($result) >0 ){
-    $ud=mysql_fetch_object($result);
+  if($result->num_rows>0){
+    $ud=$result->fetch_object();
     $downloads=intval($ud->downloads)+intval($points);
     lib_mysql_query("UPDATE `users` SET files_downloaded=$downloads where name = '$user'");
   }

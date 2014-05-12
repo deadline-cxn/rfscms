@@ -31,11 +31,11 @@ function m_panel_files($x) {
 	$RFS_ADDON_URL=lib_modules_get_url("files");
     echo "<h2>Last $x Files</h2>";
     $result=lib_mysql_query("select * from files where category !='unsorted' and hidden ='no' order by `time` desc limit 0,$x");
-    $numfiles=mysql_num_rows($result);
+    $numfiles=$result->num_rows;
     echo "<table border=0 cellspacing=0 cellpadding=0 >";
     $gt=2;
     for($i=0;$i<$numfiles;$i++){
-        $file=mysql_fetch_object($result);
+        $file=$result->fetch_object($result);
         $link="$RFS_ADDON_URL?action=get_file&id=$file->id";
         $fdescription=str_replace('"',"&quote;",stripslashes($file->description));
         $gt++; if($gt>2)$gt=1;
@@ -240,10 +240,10 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			echo"$filedata->md5 ";
 			if(!empty($filedata->md5)) {
 				$fdr=lib_mysql_query("select * from files where md5='$filedata->md5'");
-				if(mysql_num_rows($fdr)>1) {
+				if($fdr->num_rows>1) {
 					echo "<br>Matching MD5:<br>";
-					for($jjq=0;$jjq<mysql_num_rows($fdr);$jjq++) {
-						$dfile=mysql_fetch_object($fdr);
+					for($jjq=0;$jjq<$fdr->num_rows;$jjq++) {
+						$dfile=$fdr->fetch_object();
 						if($dfile->id!=$filedata->id) {
 							echo "<div style='display: block; float:left; padding:5px; margin:5px; background-color: #500; color: #f00;
 							border: 1px dashed #f00; border-radius: 10px;
@@ -418,7 +418,7 @@ function m_files_getfiledata($file){
     if(intval($file)!=0)
     $query = "select * from files where `id` = '$file'";
     $result = lib_mysql_query($query);
-    if(mysql_num_rows($result) >0 ) $filedata = mysql_fetch_object($result);
+    if($result->num_rows>0) $filedata = $result->fetch_object();
     return $filedata;
 }
 function m_files_getfilelist($filesearch,$limit){
@@ -432,9 +432,9 @@ function m_files_getfilelist($filesearch,$limit){
 	
 
     $result = lib_mysql_query($query);
-    $i=0; $k=mysql_num_rows($result);
+    $i=0; $k=$result->num_rows;
     while($i<$k) {
-        $der = mysql_fetch_array($result);
+        $der=$result->fetch_array();
         $filelist[$i] = $der['id'];
         $i=$i+1;
     }
@@ -502,9 +502,9 @@ function m_files_orphan_scan($dir,$RFS_CMD_LINE) { eval(lib_rfs_get_globals());
 	reset($dirfiles);
 	
     $result = lib_mysql_query("select * from files");
-    $i=0; $k=mysql_num_rows($result);
+    $i=0; $k=$result->num_rows;
     while($i<$k) {
-        $der = mysql_fetch_array($result);
+        $der=$result->fetch_array();
         $filelist[$i] = stripslashes($der['location']);
         $i=$i+1;
     }
@@ -548,7 +548,7 @@ function m_files_orphan_scan($dir,$RFS_CMD_LINE) { eval(lib_rfs_get_globals());
 									$name=addslashes($file);
 									$infile=addslashes($file);							
 									lib_mysql_query("INSERT INTO `files` (`name`) VALUES('$infile');");
-									$fid=mysql_insert_id();
+									$fid=mysqli_insert_id();
 									$loc=addslashes("$dir/$file");
 									lib_mysql_query("UPDATE files SET `location`='$loc' where id='$fid'");
 									$dname="system";
@@ -580,8 +580,8 @@ function m_files_purge_files($RFS_CMD_LINE){
 		}
 	}
 	$r=lib_mysql_query("select * from files");
-	for($i=0;$i<mysql_num_rows($r);$i++){
-		$file=mysql_fetch_object($r);
+	for($i=0;$i<$r->num_rows;$i++){
+		$file=$r->fetch_object();
 		if(!file_exists($file->location)) {
 			echo "$file->location purged \n"; if(!$RFS_CMD_LINE) echo "<br>";
 			$dloc=addslashes($file->location);
@@ -596,7 +596,7 @@ function m_files_duplicate_add($loc1,$size1,$loc2,$size2,$md5) {
 	$size2=addslashes($size2);
 	$md5=addslashes($md5);
 	$r=lib_mysql_query("select * from file_duplicates where loc1 = '$loc1'");
-	if($r) if(mysql_num_rows($r)) return;
+	if($r) if($r->num_rows) return;
 	lib_mysql_query("INSERT INTO `file_duplicates` (`loc1`,   `size1`,   `loc2`, `size2`,    `md5` ) VALUES ( '$loc1', '$size1', '$loc2',  '$size2', '$md5' ) ;");
 }
 function m_files_show_one_scanned_duplicate($RFS_CMD_LINE,$id,$color) {
@@ -640,13 +640,13 @@ function m_files_show_scanned_duplicates($RFS_CMD_LINE) {
 	echo "<tr><th>";
 	echo "<input type=checkbox name=whatly_diddly_do onclick=\"	\" >";	
 	echo "</th><th>id</th><th>file location</th><th>file size</th><th>category</th><th>md5</th></tr>";
-	for($i=0;$i<mysql_num_rows($r);$i++) {
-		$dupe=mysql_fetch_object($r);
+	for($i=0;$i<$r->num_rows;$i++) {
+		$dupe=$r->fetch_object();
 		$clr++; if($clr>2) $clr=1;
 		$color="rfs_project_table_$clr";
 		$rr=lib_mysql_query("select * from files where md5 = '$dupe->md5'");
-		for($u=0;$u<mysql_num_rows($rr);$u++)  {		
-			$f=mysql_fetch_object($rr);
+		for($u=0;$u<$rr->num_rows;$u++)  {		
+			$f=$rr->fetch_object();
 			m_files_show_one_scanned_duplicate($RFS_CMD_LINE,$f->id,$color);
 		}
 		// m_files_show_one_scanned_duplicate($RFS_CMD_LINE,$filelist[$dupe->loc2]['id'],$color);		
@@ -658,15 +658,15 @@ function m_files_show_scanned_duplicates($RFS_CMD_LINE) {
 }
 function m_files_show_duplicate_files($RFS_CMD_LINE) {
 	$result = lib_mysql_query("select * from files");
-	$i=0; $k=mysql_num_rows($result);	
+	$i=0; $k=$result->num_rows;
 	while($i<$k) {
-		$der = mysql_fetch_object($result);
+		$der=$result->fetch_object();
 		$r2 = 
 		lib_mysql_query("select * from files where (md5 = '$der->md5' ) and 
 												 (location != '$der->location') ");
 		if($r2)
-		for($z=0;$z<mysql_num_rows($r2);$z++) {
-			$dupe = mysql_fetch_object($r2);
+		for($z=0;$z<$r2->num_rows;$z++) {
+			$dupe=$r2->fetch_object();
 		m_files_duplicate_add( $der->location, $der->size, $dupe->location,$dupe->size,$der->md5);
 			echo "F1: $der->md5 $der->size $der->location \n"; if(!$RFS_CMD_LINE) echo "<br>";
 			echo "F2: $dupe->md5 $dupe->size $dupe->location \n"; if(!$RFS_CMD_LINE) echo "<br>";
@@ -678,9 +678,9 @@ function m_files_show_duplicate_files($RFS_CMD_LINE) {
 }
 function m_files_scan_duplicate_files2($RFS_CMS_LINE) {
 	$result = lib_mysql_query("select * from files");
-	$i=0; $k=mysql_num_rows($result);
+	$i=0; $k=$result->num_rows;
 	while($i<$k) {	
-		$der = mysql_fetch_array($result);
+		$der=$result->fetch_array();
 
 		$filelist[$i]  = 	$der['location'];
 		$filemd5[$i]   = 	$der['md5'];
@@ -715,9 +715,9 @@ function m_files_scan_duplicate_files2($RFS_CMS_LINE) {
 function m_files_show_duplicate_files2($RFS_CMD_LINE) {
 	echo "MD5 SEARCH \n"; if(!$RFS_CMD_LINE) echo "<br>";
     $result = lib_mysql_query("select * from files");
-    $i=0; $k=mysql_num_rows($result);
+    $i=0; $k=$result->num_rows;
     while($i<$k) {
-        $der = mysql_fetch_array($result);
+        $der=$result->fetch_array();
         $filelist[$i] = $der['location'];
 		$filemd5[$i]  = $der['md5'];
 		$x=$der['location'];

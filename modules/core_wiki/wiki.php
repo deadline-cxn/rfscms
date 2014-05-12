@@ -68,9 +68,9 @@ function wiki_action_history() {
 	echo "$name history: <br>";
 	echo "<hr>";
 	$r=lib_mysql_query("select * from wiki where name='$name'");
-	for($i=0;$i<mysql_num_rows($r);$i++){
+	for($i=0;$i<$r->num_rows;$i++){
 		echo "<div class=\"forum_box\">";
-		$wpage=mysql_fetch_object($r);
+		$wpage=$r->fetch_object();
 		echo "<a href=\"$addon_url?action=viewpagebyid&id=$wpage->id&name=$wpage->name\">$wpage->name</a> ";
 		echo "REVISION: $wpage->revision ";
 		if(empty($wpage->revised_by)) $wpage->revised_by=$wpage->author;
@@ -101,7 +101,7 @@ function wiki_action_deletepage() {
 		}
 		else {
 			$res=lib_mysql_query("select * from wiki where name='$name'");
-			$wikipage=mysql_fetch_object($res);
+			$wikipage=$res->fetch_object();
 			echo "<h3>Are you sure you want to delete $wikipage->name?</h3>";
 			echo "<form enctype=application/x-www-form-URLencoded action=$addon_url>";
 			echo "<input type=hidden name=action value=deletepagego>";
@@ -125,7 +125,7 @@ function wiki_action_editgo() {
 	if(lib_access_check("wiki","edit")){
 		$time=date("Y-m-d H:i:s");
 		$res=lib_mysql_query("select * from wiki where name='$name'");
-		$tpage=mysql_fetch_object($res);
+		$tpage=$res->fetch_object();
 		$wikipage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 		$revision=$wikipage->revision+1;
 		$wikiedittext=addslashes($wikiedittext);
@@ -143,9 +143,9 @@ function wiki_action_editname() {
     if(lib_access_check("wiki","edit")) {
 		lib_mysql_query("update wiki set name='$nname' where name='$name'");
 		$res = lib_mysql_query(" 	select * from wiki where `text` like '%[$name]%' or `text` like '%,$name]%' order by name asc" ); 
-		$npg=@mysql_num_rows($res);
+		$npg=$res->num_rows;
 		for($ni=0;$ni<$npg;$ni++) {
-			$pg=mysql_fetch_object($res);
+			$pg=$res->fetch_object();
 		$pg->text=str_ireplace("[$name]","[$nname]",$pg->text);
 		$pg->text=str_ireplace("\@$name,","\@$nname,",$pg->text);
 			lib_mysql_query("update wiki set text='$pg->text' where name='$pg->name'");
@@ -164,7 +164,7 @@ function wiki_action_edit(){
 		echo "<hr>";		
 		if(empty($name)) $name="home";
 		$res=lib_mysql_query("select * from wiki where name='$name'");
-		$tpage=mysql_fetch_object($res);
+		$tpage=$res->fetch_object();
 		$wikipage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 		if( ($action=="viewpagebyid") || ($id) ) {
 			$wikipage=lib_mysql_fetch_one_object("select * from wiki where id='$id'");
@@ -203,13 +203,13 @@ function wiki_action_() {
 	echo "<hr>";
     if(empty($name)) $name="home";
 	$res=lib_mysql_query("select * from wiki where name='$name'");
-	$wikipage=mysql_fetch_object($res);
+	$wikipage=$res->fetch_object();
 	$name=ucwords($name);
 
 	lib_rfs_echo("<h1>$name</h1>");
 	
 	$res=lib_mysql_query("select * from wiki where name='$name'");
-	$tpage=mysql_fetch_object($res);
+	$tpage=$res->fetch_object();
 	$wikipage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 	if( ($action=="viewpagebyid") || ($id) ) {
 		$wikipage=lib_mysql_fetch_one_object("select * from wiki where id='$id'");
@@ -220,10 +220,10 @@ function wiki_action_() {
 	} else {
 		$res = lib_mysql_query("	select distinct name from wiki where `text` like '%[$name]%' or `text` like '%\@$name,%' order by name asc" );
 		if($res) {
-			$num=mysql_num_rows($res);
+			$num=$r->num_rows;
 			if($num) {
 				echo "Linked Pages ($num) >> ";
-				while($wpage=mysql_fetch_object($res)) {			
+				while($wpage=$res->fetch_object()) {
 					if(!empty($wpage->name))
 					echo "[<a class=rfswiki_link href=$addon_url?name=".urlencode($wpage->name).">$wpage->name</a>]";
 				}
@@ -238,7 +238,7 @@ function wiki_action_() {
 		echo "<h3>RFSWiki All Pages ($num)</h3>";
 		echo "<table border=0 cellspacing=0 cellpadding=0>";
 		if($res)
-		while($tpage=mysql_fetch_object($res))    {		
+		while($tpage=$res->fetch_object()) {
 			$wpage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
 			echo "<tr><td class=rfswiki_contenttd>";
 			echo "<a class=rfswiki_link href=\"$addon_url?name=".urlencode($wpage->name)."\">$wpage->name</a>";
@@ -272,7 +272,7 @@ function wiki_action_() {
         if($hide_wiki_menu!="true") {
 			echo "<hr>";
 			$tres=lib_mysql_query("select * from wiki where name='$name' and revision='0'");
-			$twik=mysql_fetch_object($tres);
+			$twik=$tres->fetch_object();
             echo "<p>This page was created by $wikipage->author ".lib_string_current_time($twik->updated); 
 			if($wikipage->revision) {
 				echo " (revision: $wikipage->revision by: $wikipage->revised_by ".lib_string_current_time($wikipage->updated).")</p>";

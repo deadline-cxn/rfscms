@@ -40,7 +40,7 @@ function m_panel_wiki($x) {
 	echo "<td valign=top class=contenttd>";
 	$res=lib_mysql_query("SELECT `name`, MAX( updated ) FROM `wiki` GROUP BY `name` ORDER BY MAX( updated ) DESC LIMIT 0,$x	");
 	if($res) {
-		while($page=mysql_fetch_object($res)) {
+		while($page=$res->fetch_object()) {
 			$opage=urlencode($page->name);
 			echo "<a href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?name=$opage\">$page->name</a> ";
 			echo "<br>\n";

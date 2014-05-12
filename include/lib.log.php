@@ -130,8 +130,8 @@ function lib_log_count($user) {
 	if($aol)           $url="http://www.aol.com/";
 	
 	$result=lib_mysql_query("select * from `link_bin` where `link` = '$url'");
-	if(mysql_num_rows($result)) {
-		$link=mysql_fetch_object($result);
+	if($result->num_rows) {
+		$link=$result->fetch_object();
 		$link->referrals=$link->referrals+1;
 		lib_mysql_query("update `link_bin` set `referrals` = '$link->referrals' where `id` = '$link->id'");
 		$time=date("Y-m-d H:i:s");

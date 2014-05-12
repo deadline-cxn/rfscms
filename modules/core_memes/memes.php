@@ -50,8 +50,8 @@ function memes_action_new_meme_go() { eval(lib_rfs_get_globals());
 		$poster=999;
 		if($data->id)$poster=$data->id;
 		lib_mysql_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
-		$id=mysql_insert_id();
-		//$cid=mysql_fetch_object(lib_mysql_query("select * from categories where name = '$category'"));
+		$id=mysqli_insert_id();
+		//$cid=$r->fetch_object(lib_mysql_query("select * from categories where name = '$category'"));
 		lib_mysql_query("update `pictures` set `category`='$category'  where `id`='$id'");
 		lib_mysql_query("update `pictures` set `sname`='$sname'        where `id`='$id'");
 		lib_mysql_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");
@@ -135,7 +135,7 @@ function memes_action_memegenerate() { eval(lib_rfs_get_globals());
 				  ( `name`,`poster`, `basepic`,`texttop`,`status`)
 			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
         lib_mysql_query($q);
-        $GLOBALS['mid']=mysql_insert_id();
+        $GLOBALS['mid']=mysqli_insert_id();
        }
 	else {
 		$infoout="Updating caption $mid";
@@ -323,8 +323,7 @@ function memes_action_showmemes(){ eval(lib_rfs_get_globals());
 	$q.=" order by rating desc ";
 	$ql=" limit $mtop,$mbot ";
 	$r=lib_mysql_query($q.$ql);
-	$n=mysql_num_rows($r); 
-
+	$n=$r->num_rows;
 	if( $mtop > 0 ) {
 		$tmtop=$mtop-$mbot;
 		lib_buttons_make_button("$RFS_SITE_URL/modules/core_memes/memes.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow","PREVIOUS PAGE");
@@ -334,8 +333,7 @@ function memes_action_showmemes(){ eval(lib_rfs_get_globals());
 	}
 	$ql=" limit ".($mtop+$mbot+$toget)." ;";
 	$rrr=lib_mysql_query($q.$ql);
-	
-	$nnn=mysql_num_rows($rrr);
+	$nnn=$rrr->num_rows;
 	//echo "<hr> mtop+mbot+toget [".($mtop+$mbot+$toget)."] mbot+mtop [".($mbot+$mtop)."] nnn[".$nnn."] <BR>";
 	if( ($mbot+$mtop) < $nnn) {
 		$mtop+=$mbot;
@@ -344,7 +342,7 @@ function memes_action_showmemes(){ eval(lib_rfs_get_globals());
 	
 	echo "<hr>";
 	for($i=0;$i<$n;$i++){
-		$m=mysql_fetch_object($r);
+		$m=$r->fetch_object();
 		echo "<div id=$m->id style=\"float: left;\">";
 		rfs_show1meme($m->id);
 		echo "</div>";

@@ -57,7 +57,7 @@ function exams_get_last_question_answered($user,$exam_id) {
 	$r=lib_mysql_query("select * from `exam_users` where `user`='$user' 
 												and `exam_id`='$exam_id' 
 												and `completed` IS NULL; ");
-	$x=mysql_fetch_object($r);
+	$x=$r->fetch_object();
 	// echo " $x->question_id <br>";
 	return $x->question_id;
 	
@@ -70,11 +70,8 @@ function exams_get_total_questions($exam_id) {
 }
 
 function exams_get_total_questions_answered($user,$exam_id) {
-	$r=lib_mysql_query("select * from `exam_users` where `user`='$user' 
-												and `exam_id`='$exam_id' 
-												and `completed` IS NOT NULL; ");
-		$nqca=mysql_num_rows($r);
-return $nqca;
+	$r=lib_mysql_query("select * from `exam_users` where `user`='$user' and `exam_id`='$exam_id' and `completed` IS NOT NULL; ");
+	return $r->num_rows;
 }
 
 function exams_get_completed_prct($user,$exam_id) {
@@ -104,8 +101,7 @@ function exams_get_prct($user,$exam_id) {
 }
 function exams_get_score($user,$exam_id) {		
 	$r=lib_mysql_query("select * from exam_users where user='$user' and exam_id='$exam_id' and correct='1'");
-	$nqc=mysql_num_rows($r);
-	return $nqc;
+	return $r->num_rows;
 }
 
 function exams_wipe_user_exam($user,$exam_id) {

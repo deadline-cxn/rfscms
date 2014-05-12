@@ -297,7 +297,7 @@ function files_header() {
     echo "<td width=80 class=contenttd>";
     echo "<select name=category style=\"min-width:250px;\"><option>all categories\n";
     $result = lib_mysql_query("select * from categories where name != 'ignore' order by name asc");
-    while ($cat = mysql_fetch_object($result)) {
+    while ($cat=$result->fetch_object()) {
         echo "<option ";
         if (!empty($cat->image) && file_exists("$RFS_SITE_PATH/$cat->image")) {
             echo " data-image=\"" . lib_images_thumb_raw($cat->image, 16, 0, 0) . "\" ";
@@ -329,9 +329,9 @@ function files_action_addfilelinktodb() {
     echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
     echo "<tr><td align=right>category:         </td><td><select name=category>\n";
     $result = lib_mysql_query("select * from categories order by name asc");
-    $numcats = mysql_num_rows($result);
+    $numcats = $result->num_rows;
     for ($i = 0; $i < $numcats; $i++) {
-        $cat = mysql_fetch_object($result);
+        $cat=$result->fetch_object();
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";
@@ -385,7 +385,7 @@ function files_action_addfiletlib_mysql_open_database() {
     echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
     echo "<tr><td align=right>category:         </td><td><select name=category>\n";
     $result = lib_mysql_query("select * from categories order by name asc");
-    while ($cat = mysql_fetch_object($result))
+    while ($cat=$result->fetch_object())
         echo "<option>$cat->name";
     echo "</select></td></tr>\n";
     echo "<tr><td>Description</td><td><textarea name=description rows=7 cols=60>$filedata->description</textarea></td></tr>\n";
@@ -980,7 +980,7 @@ function files_action_f_upload_go() {
                     $time1 = date("Y-m-d H:i:s");
                     lib_mysql_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)
                     VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");
-                    $id = mysql_insert_id();
+                    $id = mysqli_insert_id();
                     echo "DATABASE ID[$id]<br>";
                     echo "<a href=\"$RFS_ADDON_FOLDER?action=get_file&id=$id\">View file information</a><br>";
                     $httppath = str_replace("$RFS_SITE_URL/", "", $httppath);
@@ -1031,7 +1031,7 @@ function files_action_upload() {
             echo "<tr>  <td align=right>Safe for work:    </td><td><select name=fu_sfw><option>yes<option>no</select></td></tr>\n";
             echo "<tr>  <td align=right>category:         </td><td><select name=fu_category>\n";
             $result = lib_mysql_query("select * from categories order by name asc");
-            while ($cat = mysql_fetch_object($result))
+            while ($cat=$result->fetch_object())
                 echo "<option>$cat->name";
             echo "</select></td></tr>\n";
             echo "<tr><td align=right>Short name :</td><td><input type=textbox name=fu_name value=\"$name\"></td></tr>\n";
@@ -1187,7 +1187,7 @@ function files_action_()  {
         lib_forms_info("SORT MODE", "WHITE", "RED");
     }
     $result = lib_mysql_query("select * from categories  where  (`name` != 'unsorted')  order by name asc");
-    while ($cat = mysql_fetch_object($result)) {
+    while ($cat=$result->fetch_object()) {
         if (!empty($cat->name)) {
             $bg = 0;
             $buffer = rtrim($cat->name);

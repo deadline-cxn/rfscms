@@ -17,11 +17,11 @@ if(lib_access_check("slogan","edit")) {
         echo "<p>Slogan renamed...</p>\n";
     }
     $result=lib_mysql_query("select * from slogans");
-    $numslogans=mysql_num_rows($result);
+    $numslogans=$r->num_rows;
 
     echo "<table border=0 width=100%>\n";
     for($i=0;$i<$numslogans;$i++) {
-        $slog=mysql_fetch_array($result);
+        $slog=$result->fetch_array();
         echo "<tr><td><form action=\"$RFS_SITE_URL/slogan_admin.php\" method\"post\">\n";
         echo "<input type=\"hidden\" name=\"action\" value=\"del_slogan\">\n";
         echo "<input type=\"hidden\" name=\"sid\" value=\"".$slog['id']."\">\n";

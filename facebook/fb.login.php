@@ -157,7 +157,7 @@ if(!$_SESSION['valid_user']) {
 
             // echo "$facebook_id... $facebook_name fetching your account details<br>";
             $r=lib_mysql_query_user_db("select * from `users` where `facebook_id` = '$facebook_id'");
-            $user=mysql_fetch_object($r);
+            $userdeliberate_errorfetch_object($r);
 
             //echo "name: $first_name<br>";
             //echo "last name: $last_name<br>";
@@ -233,7 +233,7 @@ $user=@mysql_fetch_object($r);
 
 $r=lib_mysql_query_user_db("select * from `users` where `email` = '$email'");
 if($r) {
-            $user=mysql_fetch_object($r);
+            $userdeliberate_errorfetch_object($r);
             if($user->facebook_id=="") { // First time visiting with a facebook id, update database
                 echo "First visit from facebook... Welcome $first_name.<br>";
                 lib_mysql_query_user_db("update `users` set facebook_id='$facebook_id' where `email`='$email'");

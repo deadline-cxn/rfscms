@@ -68,7 +68,7 @@ if( (empty($_SESSION['darr'])) ||
 	$rr=lib_mysql_query("select * from videos where category = '$cat' order by id asc");
 	for($darx=0;$darx<10;$darx++){
 		for($dary=0;$dary<10;$dary++){
-			$vs=mysql_fetch_object($rr);
+			$vs=$rr->fetch_object();
 			$_SESSION['darr'][$darx][$dary]= array();
 			$_SESSION['darr'][$darx][$dary]['id']=$vs->id;
 			$_SESSION['darr'][$darx][$dary]['sname']=$vs->sname;
@@ -123,8 +123,8 @@ if( (empty($_SESSION['darr'])) ||
 
 if($action=="fixall") {
 	$r=lib_mysql_query("select * from videos where category='87'");
-	for($i=0;$i<mysql_num_rows($r);$i++){
-		$video=mysql_fetch_object($r);
+	for($i=0;$i<$r->num_rows;$i++){
+		$video=$r->fetch_object();
 		$video->sname=str_replace("(BROKEN)","",$video->sname);
 		lib_mysql_query("update videos set sname='$video->sname' where id='$video->id'");
 	}
@@ -435,8 +435,8 @@ echo "</td></tr></table>";
 		
 		
 		$r=lib_mysql_query("select * from videos where category='$cat' order by sname asc");
-		for($jj=0;$jj<mysql_num_rows($r);$jj++){
-			$v=mysql_fetch_object($r);
+		for($jj=0;$jj<$r->num_rows;$jj++){
+			$v=$r->fetch_object();
 			
 			echo "<tr>";
 			

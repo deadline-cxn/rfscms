@@ -35,19 +35,24 @@ if($give_file == "comics") {
 }
 
 function renumber_pages($id) {
-    $comic = mysql_fetch_object(lib_mysql_query("select * from `comics` where `id`='$id'"));
+	$res=lib_mysql_query("select * from `comics` where `id`='$id'");
+    $comic=$res->fetch_object();
     $res = lib_mysql_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc");
-    $npages = mysql_num_rows($res);
+    $npages=$res->num_rows;
     for ($i = 0; $i < $npages; $i++) {
         $newpage = $i + 1;
-        $page = mysql_fetch_object($res);
-        lib_mysql_query("update `comics_pages` set `page`='$newpage' where `pid`='$page->pid'");
+		$res=lib_mysql_query("update `comics_pages` set `page`='$newpage' where `pid`='$page->pid'");
+        $page=$res->fetch_object($res);
+		
+		
+        
     }
 }
 
 function template_mini_preview($id) {
     eval(lib_rfs_get_globals());
-    $template = mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='$id'"));
+	$res=lib_mysql_query("select * from `comics_page_templates` where `id`='$id'");
+    $template=$res->fetch_array();
     echo "<table border=0><tr><td class=contenttd>&nbsp;";
     for ($i = 0; $i < $template['panels']; $i++) {
         $var = "panel" . ($i + 1) . "_x";
@@ -73,7 +78,8 @@ function template_mini_preview($id) {
 
 function template_full_preview($id) {
     eval(lib_rfs_get_globals());
-    $template = mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='$id'"));
+	$res=lib_mysql_query("select * from `comics_page_templates` where `id`='$id'");
+    $template=$res->fetch_array();
     echo "<table border=0><tr><td class=contenttd>";
     for ($i = 0; $i < $template['panels']; $i++) {
         $var = "panel" . ($i + 1) . "_x";
@@ -90,8 +96,8 @@ function template_full_preview($id) {
 }
 
 function getcomic($title, $volume, $issue) {
-    $res = mysql_fetch_object(lib_mysql_query("select * from `comics` where `title`='$title' and `volume`='$volume' and `issue`='$issue'"));
-    return $res;
+	$res=lib_mysql_query("select * from `comics` where `title`='$title' and `volume`='$volume' and `issue`='$issue'");
+    return $res->fetch_object();    
 }
 
 if (lib_access_check("comics", "create")) {
@@ -113,8 +119,8 @@ if (lib_access_check("comics", "create")) {
         echo "<h1>Add a new comic</h1>";
 
         $res = lib_mysql_query("select * from `comics` where `title`='$title' and `volume`='$volume' and `issue`='$issue'");
-        if (mysql_num_rows($res)) {
-            $comic = mysql_fetch_object($res);
+        if ($res->num_rows) {
+            $comic=$res->fetch_object();
             echo "<p>That title, volume, and issue already exists!<br>";
             echo "[<a href=$RFS_SITE_URL/modules/core_comics/comics.php?action=editcomic&id=$comic->id>Edit $title vol. $volume issue $issue</a>]";
             echo "</p>";
@@ -171,13 +177,15 @@ if (lib_access_check("comics", "create")) {
     }
 
     if ($action == "delpagetemplatego") {
-        $template = mysql_fetch_object(lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'"));
+		$res=lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'");
+        $template=$res->fetch_object();
         lib_mysql_query("delete from `comics_page_templates` where `id`='$tid'");
         echo "$template->name template removed.<br>";
     }
 
     if ($action == "delpagetemplate") {
-        $template = mysql_fetch_object(lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'"));
+		$res->lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'");
+        $template=$res->fetch_object();
         template_mini_preview($tid);
         echo "<table border=\"0\"><tr><td class=\"lib_forms_warning\"><center>" .
             lib_string_convert_smiles(":X") . "\n";
@@ -191,7 +199,8 @@ if (lib_access_check("comics", "create")) {
 
     if ($action == "editpagetemplatego") {
         echo "<h1>Updating comic page template</h1>";
-        $template = mysql_fetch_object(lib_mysql_query("select * from `comics_page_templates` where `name`='$name'"));
+		$res=lib_mysql_query("select * from `comics_page_templates` where `name`='$name'");
+        $template=$res->fetch_object();
         echo "Panels: $panels<br>";
         lib_mysql_query("update `comics_page_templates` set `panels`='$panels' where `id`='$template->id'");
         foreach ($_REQUEST as $key => $value) {
@@ -354,7 +363,8 @@ if (lib_access_check("comics", "create")) {
     }
 
     if ($action == "editpagetemplate") {
-        $template = mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'"));
+		$res=lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'");
+        $template=$res->fetch_array();
         echo "<h1>Edit a comic page template</h1>";
         echo "<table border=0>";
         echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/core_comics/comics.php>";
@@ -398,10 +408,12 @@ if (lib_access_check("comics", "create")) {
     }
 
     if ($action == "addpagego") {
-        $comic = mysql_fetch_object(lib_mysql_query("select * from `comics` where `id`='$id'"));
-        $template = mysql_fetch_object(lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'"));
+		$res=lib_mysql_query("select * from `comics` where `id`='$id'");
+        $comic=$res->fetch_object();
+		$res=lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'");
+        $template=$res->fetch_object();
         $res = lib_mysql_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` desc limit 1");
-        $page = mysql_fetch_object($res);
+        $page = $res->fetch_object();
         $pageno = $page->page + 1;
         echo "<h1>Add a page to comic $comic->title</h1>";
         lib_mysql_query("insert into `comics_pages` (`parent`,`template`, `page`) VALUES ('$id','$tid','$pageno')");
@@ -410,13 +422,14 @@ if (lib_access_check("comics", "create")) {
     }
 
     if ($action == "addpage") {
-        $comic = mysql_fetch_object(lib_mysql_query("select * from `comics` where `id`='$id'"));
+		$res=lib_mysql_query("select * from `comics` where `id`='$id'");
+        $comic = $res->fetch_object();
         echo "<h1>Adding a page to comic $comic->title</h1>";
         $res = lib_mysql_query("select * from `comics_page_templates`");
-        $ntemplates = mysql_num_rows($res);
+        $ntemplates  =$res->num_rows;
         echo "<p>There are $ntemplates templates defined...</p>";
         for ($i = 0; $i < $ntemplates; $i++) {
-            $template = mysql_fetch_object($res);
+            $template=$res->fetch_object();
             echo "<table border=0><tr><td class=contenttd>";
             template_mini_preview($template->id);
             echo "</td><td class=contenttd>";
@@ -447,9 +460,12 @@ if (lib_access_check("comics", "create")) {
     }
 
     if ($action == "defpage") {
-        $page = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
-        $pagea = mysql_fetch_array(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
-        $template = mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='$page->template'"));
+		$res=lib_mysql_query("select * from `comics_pages` where `pid`='$pid'");
+        $page  = $res->fetch_object();
+		$res=lib_mysql_query("select * from `comics_pages` where `pid`='$pid'");
+        $pagea = $res->fetch_array();
+		$res=lib_mysql_query("select * from `comics_page_templates` where `id`='$page->template'");
+        $template=$res->fetch_array();
         echo "<table border=0><tr><td class=contenttd>";
         echo "<table border=0><tr>";
         for ($i = 0; $i < $template['panels']; $i++) {
@@ -503,7 +519,8 @@ if (lib_access_check("comics", "create")) {
     }
 
     if ($action == "delpage") {
-        $page = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
+		$res=lib_mysql_query("select * from `comics_pages` where `pid`='$pid'");
+        $page=$res->fetch_object();
         rfs_comics_page_mini_preview($pid);
         echo "<table border=\"0\"><tr><td class=\"lib_forms_warning\"><center>" .
             lib_string_convert_smiles(":X") . "\n";
@@ -517,7 +534,8 @@ if (lib_access_check("comics", "create")) {
 
     if ($action == "delpagego") {
         echo "<p>Deleting page $pid</p>";
-        $page = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
+		$res=lib_mysql_query("select * from `comics_pages` where `pid`='$pid'");
+        $page=$res->fetch_object();
         rfs_comics_page_mini_preview($pid);
         lib_mysql_query("delete from `comics_pages` where `pid`='$pid'");
         renumber_pages($page->parent);
@@ -529,10 +547,13 @@ if (lib_access_check("comics", "create")) {
         if ($page < 2) {
             echo "<p>You can't move that page up</p>";
         } else {
-            $comic = mysql_fetch_object(lib_mysql_query("select * from `comics` where `id`='$id'"));
+			$res=lib_mysql_query("select * from `comics` where `id`='$id'");
+            $comic = $res->fetch_object();
             $pagea = $page - 1;
-            $pageabove = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$pagea'"));
-            $pagebelow = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$page'"));
+			$res=lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$pagea'");
+            $pageabove = $res->fetch_object();
+			$res=lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$page'");
+            $pagebelow = $res->fetch_object();
             $pagena = $pageabove->page;
             $pagenb = $pagebelow->page;
             lib_mysql_query("update `comics_pages` set `page`='$pagena' where `pid`='$pagebelow->pid'");
@@ -542,15 +563,20 @@ if (lib_access_check("comics", "create")) {
     }
 
     if ($action == "movepagedown") {
-        $comic = mysql_fetch_object(lib_mysql_query("select * from `comics` where `id`='$id'"));
-        $totalpages = mysql_num_rows(lib_mysql_query("select * from `comics_pages` where `parent`='$id'"));
+		$res=lib_mysql_query("select * from `comics` where `id`='$id'");
+        $comic = $res->fetch_object();
+        $res=lib_mysql_query("select * from `comics_pages` where `parent`='$id'");
+		$totalpages=$res->num_rows;
         if ($page > ($totalpages - 1)) {
             echo "<p>You can't move that page down</p>";
         } else {
-            $comic = mysql_fetch_object(lib_mysql_query("select * from `comics` where `id`='$id'"));
+			$res=lib_mysql_query("select * from `comics` where `id`='$id'");
+            $comic=$res->fetch_object();
             $pagea = $page + 1;
-            $pageabove = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$pagea'"));
-            $pagebelow = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$page'"));
+			$res=lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$pagea'");
+            $pageabove=$res->fetch_object();
+			$res=lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$page'");
+            $pagebelow=$res->fetch_object();
             $pagena = $pageabove->page;
             $pagenb = $pagebelow->page;
             lib_mysql_query("update `comics_pages` set `page`='$pagena' where `pid`='$pagebelow->pid'");
@@ -560,18 +586,20 @@ if (lib_access_check("comics", "create")) {
     }
 
     if ($action == "editcomic") {
-        $comic = mysql_fetch_object(lib_mysql_query("select * from `comics` where `id`='$id'"));
+		$res=lib_mysql_query("select * from `comics` where `id`='$id'");
+        $comic=$res->fetch_object();
         echo "<h1>Editing Comic: $comic->title vol. $comic->volume issue $comic->issue</h1>";
         $res = lib_mysql_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc");
-        $npages = mysql_num_rows($res);
+        $npages=$res->num_rows;
         echo "<p>There are $npages pages defined...</p>";
         for ($i = 0; $i < $npages; $i++) {
-            $page = mysql_fetch_object($res);
+            $page=$res->fetch_object();
             echo "<table border=0><tr><td class=contenttd>";
             rfs_comics_page_mini_preview($page->pid);
             echo "</td><td class=contenttd>";
             echo "Page: $page->page<br>";
-            $template = mysql_fetch_object(lib_mysql_query("select * from `comics_page_templates` where `id`='$page->template'"));
+			$res->lib_mysql_query("select * from `comics_page_templates` where `id`='$page->template'");
+            $template=$res->fetch_object();
             echo "Template: $template->name<br>";
             echo "[<a href=\"$RFS_SITE_URL/modules/core_comics/comics.php?action=movepageup&id=$comic->id&page=$page->page\">Move up</a>]<br>";
             echo "[<a href=\"$RFS_SITE_URL/modules/core_comics/comics.php?action=movepagedown&id=$comic->id&page=$page->page\">Move down</a>]<br>";
@@ -593,15 +621,16 @@ if (lib_access_check("comics", "create")) {
 }
 
 if ($action == "viewcomic") {
-    $comic = mysql_fetch_object(lib_mysql_query("select * from `comics` where `id`='$id'"));
-    $pres = lib_mysql_query("select * from `comics_pages` where `parent`='$id' order by page asc");
-    $page = mysql_fetch_object($pres);
-    $npages = mysql_num_rows($pres);
+	$res=lib_mysql_query("select * from `comics` where `id`='$id'");
+    $comic  =$res->fetch_object();
+    $pres   =lib_mysql_query("select * from `comics_pages` where `parent`='$id' order by page asc");
+    $page   =$pres->fetch_object($pres);
+    $npages =$pres->num_rows;
     $pagenumber=$_REQUEST['pagenumber'];
     
     if(!empty($pagenumber)) {
         $press = lib_mysql_query("select * from `comics_pages` where `parent`='$id' and `page`='$pagenumber'");
-        $page = mysql_fetch_object($press);
+        $page=$press->etch_object();
     }
     
     echo "<center>";
@@ -638,9 +667,10 @@ if ($action == "viewcomic") {
 
     echo "<table border=0 width=100%><tr><td align=center class=contenttd>";
     $res = lib_mysql_query("select * from comics where `published`='yes' order by time desc limit 1");
-    $numc = mysql_num_rows($res);
-    $comic = mysql_fetch_object($res);
-    $page = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc limit 1"));
+    $numc=$res->num_rows;
+    $comic=$res->fetch_object();
+	$res=lib_mysql_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc limit 1");
+    $page=$res->fetch_object();
     page_full_view($page->pid); // ,"$RFS_SITE_URL/modules/core_comics/comics.php?action=viewcomic&id=$comic->id");
     echo "<a href=\"$RFS_SITE_URL/modules/core_comics/comics.php?action=viewcomic&id=$comic->id\" class=\"a_cat\">$comic->title vol. $comic->volume issue $comic->issue</a>";
     echo "<br>";
@@ -654,12 +684,12 @@ if ($action == "viewcomic") {
 echo "<table border=0 width=100%><tr><td valign=top width=440 class=contenttd>";
 
 $res = lib_mysql_query("select * from comics where `published`='yes' order by time desc");
-$numc = mysql_num_rows($res);
+$numc=$res->num_rows;
 
 echo "<p> $numc Comics available...</p>";
 
 for ($i = 0; $i < $numc; $i++) {
-    $comic = mysql_fetch_object($res);
+    $comic=$res->fetch_object();
     echo "<a href=\"$RFS_SITE_URL/modules/core_comics/comics.php?action=viewcomic&id=$comic->id\">$comic->title vol. $comic->volume issue $comic->issue</a>";
     if(lib_access_check("comics","unpublish"))
         echo "[<a href=\"$RFS_SITE_URL/modules/core_comics/comics.php?action=unpublish&id=$comic->id\">Unpublish</a>]";
@@ -671,9 +701,9 @@ if(lib_access_check("comics","admin")) {
     echo "[<a href=$RFS_SITE_URL/modules/core_comics/comics.php?action=newcomic>Add new comic</a>]<br>";
     echo "<h1>Unpublished Comics:</h1>";
     $res = lib_mysql_query("select * from comics where `published`='no' order by time desc");
-    $numc = mysql_num_rows($res);
+    $numc=$res->num_rows;
     for ($i = 0; $i < $numc; $i++) {
-        $comic = mysql_fetch_object($res);
+        $comic=$res->fetch_object();
         
         if(lib_access_check("comics","edit"))
         echo "[<a href=\"$RFS_SITE_URL/modules/core_comics/comics.php?action=editcomic&id=$comic->id\">Edit $comic->title vol. $comic->volume issue $comic->issue</a>]";

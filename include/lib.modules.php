@@ -43,7 +43,8 @@ $author,$author_email,$author_website,$images,$file_url,$git_repository) {
 	lib_modules_register_property($name,"author_website",$sub_version);
 	
 	$r=lib_mysql_query("select * from addon_database where `name`='$name'");
-	if($addon=mysql_fetch_object($r)) {
+	if($r) {
+		$addon=$r->fetch_object();
 		if(!empty($addon->name)) {
 			if($addon->version<$version) { }
 		}
@@ -201,9 +202,8 @@ function lib_modules_draw($location) {
 	if(stristr(lib_domain_canonical_url(),"admin/adm.php")) return;
 	$r=lib_mysql_query("select * from arrangement where location='$location' order by sequence");
 	if($r) {
-		$n=mysql_num_rows($r);
-		for($i=0;$i<$n;$i++) {
-			$ar=mysql_fetch_object($r);
+		for($i=0;$i<$r->num_rows;$i++) {
+			$ar=$r->fetch_object();
 			if(function_exists("m_panel_$ar->panel")) {
 				$x=$ar->num;
 				if($ar->type=="static") $x=$ar->id;

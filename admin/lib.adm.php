@@ -27,9 +27,8 @@ function lib_ajax_callback_query_list() { eval( lib_rfs_get_globals()) ;
 
 	$r=lib_mysql_query("select distinct query from `db_queries` order by `time`");
     if($r) {
-        $n=mysql_num_rows($r);
-        for( $i=0; $i<$n; $i++ ) {
-            $dq=mysql_fetch_object( $r );
+         for( $i=0; $i<$r->num_rows; $i++ ) {
+            $dq=$r->fetch_object();
             adm_db_query( $dq->query );
         }
     }

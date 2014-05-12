@@ -13,8 +13,8 @@ function courses_action_edit_list() { eval(lib_rfs_get_globals());
 		echo "<h2>EDIT COURSES</h2>";
 		lib_buttons_make_button("$RFS_SITE_URL/modules/core_courses/courses.php?action=edit_component_types","Edit Component Types");		
 		$r=lib_mysql_query("select * from courses");
-		for($i=0;$i<mysql_num_rows($r);$i++){
-			$course=mysql_fetch_object($r);
+		for($i=0;$i<$r->num_rows;$i++){
+			$course=$r->fetch_object();
 			echo "$course->name (id:$course->id) $course->description $course->image<br>";
 		}
 	}
@@ -46,8 +46,8 @@ function courses_action_edit_component_types() { eval(lib_rfs_get_globals());
 			   "","","","","","",50,"Add Component Type" );
 
 		$r=lib_mysql_query("select * from course_component_type");
-		for($i=0;$i<mysql_num_rows($r);$i++) {
-			$cct=mysql_fetch_object($r);
+		for($i=0;$i<$r->num_rows;$i++) {
+			$cct=$r->fetch_object();
 			echo "<div style='float:left;' >";
 			if(empty($cct->image)) $cct->image="images/icons/exclamation.png";
 			echo "<a href=\"$RFS_SITE_URL/modules/core_courses/courses.php?action=edit_component_types_image&id=$cct->id\" ><img src=\"$RFS_SITE_URL/$cct->image\" border=\"0\" width=\"32\" title=\"Change Image\" alt=\"Change Image\" text=\"Change Image\"></a>";
@@ -78,7 +78,7 @@ function courses_action_add_course() { eval(lib_rfs_get_globals());
 		echo "<h2>Add new course</h2>";
 		echo $name;
 		lib_mysql_query("insert into courses (`name`) VALUES ('$name') ");
-		$id=mysql_insert_id();
+		$id=mysqli_insert_id();
 		echo "$id";
 		courses_action_edit_components();
 		

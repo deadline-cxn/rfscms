@@ -47,7 +47,7 @@ function pictures_show_buttons() {
 	}
 	if(lib_access_check("pictures","sort")) {
 		$res2=lib_mysql_query("select * from `pictures` where `category`='unsorted'");
-		$numpics=mysql_num_rows($res2);
+		$numpics=$res2->num_rows;
 		if($numpics>0){
 			echo "<td>";
 			lib_buttons_make_button("$RFS_SITE_URL/modules/core_pictures/pictures.php?action=sorttemp&category=unsorted","Sort $numpics Pictures");
@@ -93,7 +93,7 @@ function pictures_action_uploadpicgo() {
 		if($data->id)$poster=$data->id;
 		$furl=addslashes($furl);
 		lib_mysql_query("INSERT INTO `pictures` (`url`) VALUES('$furl');");
-		$id=mysql_insert_id();
+		$id=mysqli_insert_id();
 		lib_mysql_query("update `pictures` set `category`='$category'  	where `id`='$id'");
 		lib_mysql_query("update `pictures` set `sname`='$sname'        where `id`='$id'");
 		lib_mysql_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");
@@ -118,7 +118,7 @@ function pictures_action_removepicture() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Remove picture: $id</h1>";
 	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
-	$picture=mysql_fetch_object($res);
+	$picture=$res->fetch_object();
 	if( ($data->access==255) ||
 		($data->id==$picture->poster) ){	
 			
@@ -141,7 +141,7 @@ function pictures_action_removepicture() {
 function pictures_action_removego() {
 	eval(lib_rfs_get_globals());
 	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
-	$picture=mysql_fetch_object($res);
+	$picture=$res->fetch_object();
 	if( ($data->access==255) ||
 		($data->id==$picture->poster) )	 {
 		
@@ -191,9 +191,9 @@ function pictures_action_sorttemp() {
 		}
 
 		$res=lib_mysql_query("select * from `pictures` where `category`='unsorted' order by time asc");
-		$numpics=mysql_num_rows($res);
+		$numpics=$res->num_rows;
 		if($numpics>0){
-            $picture=mysql_fetch_object($res);
+            $picture=$res->fetch_object();
             echo "<p align=center>$picture->url<br>";
             echo "<table border=0><tr><td width=610 valign=top>";
             echo "<center><a href='$RFS_SITE_URL/modules/core_pictures/pictures.php?action=removego&gosorttemp=yes&id=$picture->id&annihilate=yes'><img src=$RFS_SITE_URL/images/icons/Delete.png border=0><br>Delete (Warning there is no confirmation)</a><br>";
@@ -207,11 +207,11 @@ function pictures_action_sorttemp() {
 			$w=""; $h="";
 			echo "Select a category:<br>";
             $rc=lib_mysql_query("select * from categories where name != 'unsorted' order by name"); 
-            $rn=mysql_num_rows($rc);
+            $rn=$rc->num_rows;
 
 			for($ri=0;$ri<$rn;$ri++) {
 				echo "<div style='float: left; padding: 10px; text-align: center; width: 80px; height: 120px;'>";
-				$incat=mysql_fetch_object($rc);
+				$incat=$rc->fetch_object();
 				$imout=$incat->image;
 				if(!file_exists($RFS_SITE_PATH."/$incat->image"))
 					$imout="images/noimage_file.gif";
@@ -234,13 +234,14 @@ function pictures_action_sorttemp() {
 			echo "Hidden<select name=hidden>";
 
 			echo "<option>no<option>yes</select>";
-			$cat=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$picture->category'"));
+			$res->lib_mysql_query("select * from `categories` where `name`='$picture->category'");			
+			$cat=$res->fetch_object();
 			echo "<select name=category>\n";
 			echo "<option>Funny<option>$cat->name\n";
 			$result2=lib_mysql_query("select * from categories order by name asc");
-			$numcats=mysql_num_rows($result2);
+			$numcats=$result2->num_rows;
 			for($i2=0;$i2<$numcats;$i2++){
-				$cat=mysql_fetch_object($result2);
+				$cat=$result2->fetch_object();
 				echo "<option>$cat->name\n";}
 			echo "</select>\n";
 			
@@ -310,7 +311,7 @@ function pictures_action_modifypicture() {
 	eval(lib_rfs_get_globals());
     if(lib_access_check("pictures","edit")) {
 		$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
-		$picture=mysql_fetch_object($res);
+		$picture=$res->fetch_object();
 		echo "<center><img src=$RFS_SITE_URL/$picture->url height=$editwidth>";
 		echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/core_pictures/pictures.php>";
 		echo "<table border=0>";
@@ -321,11 +322,13 @@ function pictures_action_modifypicture() {
 		echo "<tr><td class=contenttd align=right>";
 		echo "Category:";
 		echo "</td><td class=contenttd>";
-		$cat=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$picture->category'"));
+		$resh=lib_mysql_query("select * from `categories` where `name`='$picture->category'");
+		$cat=$resh->fetch_object();
+		
 		echo "<select name=category>";
 		echo "<option>$cat->name";
 		$result2=lib_mysql_query("select * from categories order by name asc");
-		while($cat=mysql_fetch_object($result2)) echo "<option>$cat->name";
+		while($cat=$result2->fetch_object()) echo "<option>$cat->name";
 		echo "</select>\n";
 		echo "</td></tr>";
 		echo "<tr><td class=contenttd>";
@@ -343,7 +346,7 @@ function pictures_action_modifypicture() {
 			$poster=lib_users_get_data($picture->poster);
 		echo "<option>$poster->name";
 		$result2=lib_mysql_query_user_db("select * from `users` order by name asc");
-		while($usr=mysql_fetch_object($result2)) echo "<option value='$usr->id'>$usr->name";
+		while($usr=$result2->fetch_object()) echo "<option value='$usr->id'>$usr->name";
 		echo "</select>\n";
 		echo "</td></tr>\n";
 		echo "<tr><td class=contenttd align=right>Rating:</td><td class=contenttd><input name=rating value=\"$picture->rating\"></td></tr>";
@@ -360,11 +363,11 @@ function pictures_action_modifypicture() {
 function pictures_action_random() {
 	eval(lib_rfs_get_globals());
     $res=lib_mysql_query("select * from `pictures` where `hidden`!='yes'");
-    $num=mysql_num_rows($res);
+    $num=$res->num_rows;
     if($num>0) {
         $pict=rand(1,($num))-1;
-        mysql_data_seek($res,$pict);
-        $pic=mysql_fetch_object($res);
+        $res->data_seek($pict);
+        $pic=$res->fetch_object();
         pictures_action_view($pic->id);
     }
 }
@@ -373,16 +376,16 @@ function pictures_action_view($id) {
 	pictures_show_buttons();
 	eval(lib_rfs_get_globals());
     $res=lib_mysql_query("select * from `pictures` where `id`='$id' order by time asc");
-    $picture=mysql_fetch_object($res);
+    $picture=$res->fetch_object();
 	$category=$picture->category;
     $res2=lib_mysql_query("select * from `pictures` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
-    $numres2=mysql_num_rows($res2);
+    $numres2=$res2->num_rows;
     $linkprev="";
     $linknext="";
     for($i=0;$i<$numres2;$i++)    {
-        $picture2=mysql_fetch_object($res2);
+        $picture2=$res2->fetch_object();
         if($picture2->id==$picture->id)        {
-            $picture2=mysql_fetch_object($res2);
+            $picture2=$res2->fetch_object();
             if(!empty($picture2->id))            {
 					$linknext="$RFS_SITE_URL/modules/core_pictures/pictures.php?action=view&id=$picture2->id";
                 if(!empty($picture3->id))
@@ -489,7 +492,7 @@ function pictures_action_viewcat($cizat) {
 	if($cati->id) $cat=$cati;
     if(!empty($cat->name)) echo "<center><font class=th>Category: $cat->name</font></center>";
     $r=lib_mysql_query("select * from `pictures` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
-	$numpics=mysql_num_rows($r);	
+	$numpics=$r->num_rows;
 	echo "<center>";			
 
 	if(lib_rfs_bool_true($RFS_SITE_GALLERIAS)){
@@ -509,7 +512,7 @@ function pictures_action_viewcat($cizat) {
 		> ";
 	}
 
-    while($picture=mysql_fetch_object($r)) {
+    while($picture=$r->fetch_object()) {
 		if($picture->sfw=="no")
 			$picture->url="files/pictures/NSFW.gif";			
 		if(!empty($picture->url)) {
@@ -545,9 +548,9 @@ function pictures_action_viewcats() {
 		$numcols=0;
 		
 		echo "<tr>";
-		while($cat=mysql_fetch_object($res)) {
+		while($cat=$res->fetch_object()) {
 			$res2=lib_mysql_query("select * from `pictures` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc limit 6");
-			$numpics=mysql_num_rows($res2);
+			$numpics=$res2->num_rows;
 			if($numpics>0) {
 				echo "<td class=contenttd>";
 				echo "<table border=0 cellspacing=0 cellpadding=3 width=100%><tr><td class=contenttd>";
@@ -560,7 +563,7 @@ function pictures_action_viewcats() {
 				echo "</td></tr>";
 				echo "<tr>";
 				echo "<td class=contenttd valign=top height=200 width=220>";
-				while($picture=mysql_fetch_object($res2)) {
+				while($picture=$res2->fetch_object()) {
 					if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
 					echo "<a href='$RFS_SITE_URL/modules/core_pictures/pictures.php?action=view&id=$picture->id'>";
 					$img=$RFS_SITE_URL."/".$picture->url;

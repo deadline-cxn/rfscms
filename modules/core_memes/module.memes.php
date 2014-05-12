@@ -31,7 +31,7 @@ function m_panel_memes($x) { eval(lib_rfs_get_globals());
 	$r=lib_mysql_query("select * from meme where `private`!='yes' and `status` = 'SAVED' order by time desc limit $x");
 	if($r)
 	for($i=0;$i<$x;$i++) {
-		$m=mysql_fetch_object($r);
+		$m=$r->fetch_object($r);
 		if($m) {
 			echo "<div id=$m->id style=\"float: left;\">";
 			rfs_show1minimeme($m->id);

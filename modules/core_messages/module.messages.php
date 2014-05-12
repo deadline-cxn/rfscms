@@ -41,7 +41,7 @@ function get_unread_messages() { eval(lib_rfs_get_globals());
     $q.= " and  `read` = 'no'";
 
     $urresult=lib_mysql_query($q);
-    $numunread=mysql_num_rows($urresult);
+    $numunread=$urresult->num_rows;
     if(empty($numunread)) $numunread=0;
     return $numunread;
 }
@@ -57,9 +57,9 @@ function send_message($to,$from,$subject,$message) {
 
 function send_all($from,$subject,$message) {
     $r=lib_mysql_query("select * from users");
-    $n=mysql_num_rows($r);
+    $n=$r->num_rows;
     for($i=0;$i<$n;$i++) {
-        $u=mysql_fetch_object($r);
+        $u=$r->fetch_object($r);
 
     }
 
@@ -124,13 +124,13 @@ function module_latest_messages($x) { eval(lib_rfs_get_globals());
     echo "<table border=0 cellspacing=0>";
 
     $result = lib_mysql_query("select * from pmsg where 'to' = '$data->name' ");
-    if($result) $numposts=mysql_num_rows($result);
+    if($result) $numposts=$result->num_rows;
     else $numposts=0;
     if($numposts) {
        $gt=1; $i=0;
 
         echo "<tr><td class=contenttd width=2% >";
-        $thread=mysql_fetch_object($result);
+        $thread=$result->fetch_object($result);
 
 
         echo "</td></tr>";

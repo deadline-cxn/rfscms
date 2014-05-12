@@ -142,7 +142,7 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 	$rfakv=addslashes($rfakv);	
 	$q="select * from `$rfatable` where `$rfaikey`='$rfakv'";
 	$r=lib_mysql_query($q);
-	$d=mysql_fetch_array($r);
+	$d=$r->fetch_array();
 
 	if($rfatype=="select") {	
 		
@@ -156,7 +156,7 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 			if(!empty($value)) {
 				$q="select * from `$table` where `$key`='".$d[$rfafield]."'";
 				$r=lib_mysql_query($q);
-				$tdat=mysql_fetch_array($r);
+				$tdat=$r->fetch_array();
 				$tvalue=$tdat[$value];
 				$tdata=$tdat[$key];
 			}
@@ -193,8 +193,8 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 			echo "value=\"$tvalue\">$tdata</option>";
 
 			$raa=lib_mysql_query("select * from `$table` order by `$key` asc");
-			for($i=0;$i<mysql_num_rows($raa);$i++) {
-				$dat=mysql_fetch_array($raa);
+			for($i=0;$i<$raa->num_rows;$i++) {
+				$dat=$raa->fetch_array();
 
 				echo "<option ";
 
@@ -212,7 +212,7 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 				if(!empty($value)) {
 					$q="select * from `$table` where `$key`='".$dat[$key]."'";
 					$ree=lib_mysql_query($q);
-					$tdat=mysql_fetch_array($ree);
+					$tdat=$ree->fetch_array();
 					$tvalue=$tdat[$value];
 					$tdata=$tdat[$key];
 				}

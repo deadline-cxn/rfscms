@@ -57,8 +57,8 @@
  <div id="headmenu">
  <?
 $res=lib_mysql_query("select * from `menu_top` order by `sort_order` asc");
-for($i=0;$i<mysql_num_rows($res);$i++) {
-	$link=mysql_fetch_object($res);
+for($i=0;$i<$res->num_rows;$i++) {
+	$link=$res->fetch_object();
 	$link->link=urldecode($link->link);
     $showlink=0;
     if($data->access >= $link->access) $showlink=1;

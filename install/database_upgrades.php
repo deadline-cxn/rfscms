@@ -165,7 +165,7 @@ if($a<925) {
 	lib_access_add_method("admin", "access");
 	lib_access_add_method("admin", "categories");
 	$r=lib_mysql_query("select * from categories");
-	while($cat=mysql_fetch_object($r)){ 
+	while($cat=$r->fetch_object()){ 
 		lib_mysql_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");
 		if($cat->worksafe=="no") {
 			lib_mysql_query("update files set worksafe='no' where worksafe!='no and category = '$cat->name'");
@@ -206,7 +206,7 @@ if($a<956) {
 	lib_access_add_method("videos", "deleteothers");
 	lib_mysql_add("videos","embed_code","text","not null");
 	$r=lib_mysql_query("select * from videos");
-	while($v=mysql_fetch_object($r)) {
+	while($v=$r->fetch_object()) {
 		if(empty($v->embed_code)) {
 			$v->embed_code=$v->url;
 			lib_mysql_query("update videos set `embed_code`='$v->embed_code' where id='$v->id'");
@@ -248,7 +248,7 @@ if($a<964) {
 
 if($a<984) {
     $r=lib_mysql_query("select * from menu_top");
-    while($link=mysql_fetch_object($r)) {
+    while($link=$r->fetch_object()) {
         if(!strstr($link->link,"rfs")) {
             $link->link = str_replace("modules/","modules/core_",$link->link);
             $link->link = str_replace("core_core_","core_",$link->link);
@@ -258,7 +258,7 @@ if($a<984) {
     }
 
     $r=lib_mysql_query("select * from admin_menu");
-    while($link=mysql_fetch_object($r)) {
+    while($link=$r->fetch_object()) {
         if(!strstr($link->url,"rfs")) {
             $link->url = str_replace("modules/","modules/core_",$link->url);
             $link->url = str_replace("core_core_","core_",$link->url);

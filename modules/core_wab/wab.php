@@ -46,7 +46,7 @@ if($data->access==255) {
 echo "<table border=0 width=$site_singletablewidth><tr><td>";
 //eval functions
 $res=lib_mysql_query("select * from `$wab_database` where `type`='function' and `parent`='$wab_engine->id'");
-while($wab_engine_function=mysql_fetch_object($res)) {
+while($wab_engine_function=$r->fetch_object()) {
 	//echo stripslashes($wab_engine_function->code)."<br>";
     eval(stripslashes($wab_engine_function->code));	
 }
@@ -73,7 +73,7 @@ function no_func($wbna){
 
 $found_action=0;
 $res=lib_mysql_query("select * from `$wab_database` where `type`='action' and `parent`='$wab_engine->id'");
-while($wab_engine_action=mysql_fetch_object($res)){
+while($wab_engine_action=$res->fetch_object()){
     if($action==$wab_engine_action->value){
         $found_action=1;
         eval($wab_engine_action->code);
@@ -99,7 +99,7 @@ function wab_engine_action_(){ eval(lib_rfs_get_globals());
     echo "<table border=0>";
     $data=$GLOBALS['data'];
     $res=lib_mysql_query("select * from wab_engine where parent=id");
-    while($app=mysql_fetch_object($res)) {   
+    while($app=$res->fetch_object()) {   
         if(!$app->hidden) {
             $gt++; if($gt>1) $gt=0;
             echo "<tr><td class=rfs_project_table_$gt>";		
@@ -183,7 +183,7 @@ function wab_engine_action_add_form() { eval(lib_rfs_get_globals());
 function wab_engine_action_editapp() { eval(lib_rfs_get_globals());
     $id=$_REQUEST['edapp'];
     $res=lib_mysql_query("select * from `wab_engine` where `id`='$id'");
-    $co=mysql_fetch_object($res); 
+    $co=$res->fetch_object(); 
     $wab_engine_name=ucwords(str_replace("_"," ",$co->name));
     echo "<table border=0><tr><td>";
     echo "<a href=\"$RFS_SITE_URL/modules/wab/wab.php?runapp=$id\">"; 
@@ -284,7 +284,7 @@ function wab_functions($id) { eval(lib_rfs_get_globals());
     $db=lib_mysql_fetch_one_object("select * from `wab_engine` where `parent`='$id' and type = 'database'");    
     if(lib_mysql_table_exists($db->value)) {    
         $res=lib_mysql_query("select * from `$db->value` where `parent`='$id' and type = 'function'");
-        while($co=mysql_fetch_object($res)) {
+        while($co=$res->fetch_object()) {
             echo "$co->type : $co->value --- [<a href=wab.php?action=edcode&edapp=".$GLOBALS['edapp']."&_function=$co->value>edit code</a>]<br>";
         }
  // $page, $hiddenvars, $table, $query, $hidevars, $specifiedvars, $svarf , $tabrefvars, $width, $submit
@@ -304,7 +304,7 @@ function wab_engine_actions($id) {
     echo "<p>";
     echo "ACTIONS:<BR>";
     $res=lib_mysql_query("select * from `wab_engine` where `parent`='$id' and type = 'action'");
-    while($co=mysql_fetch_object($res)) {
+    while($co=$res->fetch_object()) {
         echo "$co->type : $co->value --- [code]<br>";
     }
     echo "</p>";

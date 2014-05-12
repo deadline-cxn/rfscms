@@ -9,10 +9,10 @@ echo "<table width=$site_singletablewidth border=0><tr>";
 echo "<td valign=top class=contenttd>";
 
 $result=lib_mysql_query("select * from rss_feeds");
-$num_feeds=mysql_num_rows($result);
+$num_feeds=$result->num_rows;
 for($i=0;$i<$num_feeds;$i++)
 {
-	$feed=mysql_fetch_object($result);
+	$feed=$result->fetch_object();
 	// echo $feed->feed."<br>";
 	echo RSS_display($feed->feed, 3, false);
 	// putnews($feed->feed);

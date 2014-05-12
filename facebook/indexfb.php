@@ -37,7 +37,7 @@ if($action=="uploadpicgo"){
         $poster=999;
         if($data->id) $poster=$data->id;
         lib_mysql_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
-        $cid=mysql_fetch_object(lib_mysql_query("select * from categories where name = '$category'"));
+        $ciddeliberate_errorfetch_object(lib_mysql_query("select * from categories where name = '$category'"));
         lib_mysql_query("update `pictures` set `category`='$cid->id'   where `name`='$name'");
         lib_mysql_query("update `pictures` set `sname`='$sname'        where `name`='$name'");
         lib_mysql_query("update `pictures` set `sfw`='$sfw'            where `name`='$name'");

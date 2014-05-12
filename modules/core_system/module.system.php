@@ -34,9 +34,9 @@ function m_panel_system_custom($x)   { echo $x; }
 function m_panel_system_static_html($arx) {
 	eval(lib_rfs_get_globals());
 	$arr=lib_mysql_query("select * from `arrangement` where id='$arx'");
-	$ar=mysql_fetch_object($arr);	
+	$ar=$arr->fetch_object();
 	$shr=lib_mysql_query("select * from `static_html` where `name`='$ar->page'");
-	$shtml=mysql_fetch_object($shr);
+	$shtml=$shr->fetch_object();
 	// echo "<h1>$shtml->name</h1>";
 	// echo $shtml->html;
 	

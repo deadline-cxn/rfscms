@@ -1,10 +1,10 @@
 <?
 $slogan="Exposing the web that you don't want to accept...";
 $result=dm_query("select * from slogans");
-$numslogans=mysql_num_rows($result);
+$numslogans=$result->num_rows;
 $which = rand(0,$numslogans);
 for($i=0;$i<$which;$i++) {
-    $slog=mysql_fetch_array($result);
+    $slog=$result->fetch_array();
 }
 $slogan=stripslashes($slog['slogan']);
 ?>

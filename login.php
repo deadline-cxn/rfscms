@@ -34,11 +34,9 @@ if($action=="logingo") {
 
     $password = urldecode($password);
 
-    $r=lib_mysql_query_user_db("select * from users");
-    $n=mysql_num_rows($r);
-	
-    for($i=0;$i<$n;$i++) {
-        $u=mysql_fetch_object($r);
+    $r=lib_mysql_query("select * from users");
+    for($i=0;$i<$r->num_rows;$i++) {
+        $u=$r->fetch_object();
         $x=explode(",",$u->alias);
         for($j=0;$j<count($x);$j++) {
             if($x[$j]==$userid) {
@@ -60,9 +58,9 @@ if($action=="logingo") {
     }
 	
 
-    $result = lib_mysql_query_user_db("select * from `users` where name = '$userid' and pass = '".md5($password)."'");
+    $result = lib_mysql_query("select * from `users` where name = '$userid' and pass = '".md5($password)."'");
     
-    if(mysql_num_rows($result) > 0){
+    if($result->num_rows>0){
             $data=lib_users_get_data($userid);
             lib_users_set_var($userid,"last_login",$data->last_activity);
             lib_users_set_var($userid,"last_activity",date("Y-m-d H:i:s"));				
@@ -108,7 +106,7 @@ if($action=="join_go") {
 		/////////////////////////////////////////////////////////////////////
 		// CHECK USERID IN DB
 		$result = lib_mysql_query_user_db("select * from `users` where name = '$userid'");
-		if(mysql_num_rows($result) > 0 ){
+		if($result->num_rows>0) {
 			echo "<p>Sorry! There is already a user named $userid</p>\n";
 			include("footer.php");
 			exit;
@@ -117,7 +115,7 @@ if($action=="join_go") {
 	/////////////////////////////////////////////////////////////////////
 	// CHECK EMAIL IN DB
 	$result = lib_mysql_query_user_db("select * from `users` where email = '$email'");
-	if(mysql_num_rows($result) > 0 ){
+	if($result->num_rows>0){
 		echo "<p>Sorry! That email is already being used.</p>\n";
 		include("footer.php");
 		exit();

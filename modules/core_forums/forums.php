@@ -36,11 +36,13 @@ function forums_action_forum_admin_on()  { $_SESSION['forum_admin']="yes"; forum
 function forums_action_forum_admin_off() { $_SESSION['forum_admin']="no";  forums_action_forum_showposts(); }
 function forums_action_start_thread() {
 	eval(lib_rfs_get_globals());
-	$folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));   
+	$r=lib_mysql_query("select * from `forum_list` where `id`='$forum_which';");
+	$folder=$r->fetch_object();
     echo "<h1>$folder->name</h1>";
 	forums_buttons($forum_which);
     if($logged_in=="true") {
-	    $folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));	
+		$r=lib_mysql_query("select * from `forum_list` where `id`='$forum_which';");
+		$folder=$r->fetch_object();	
 		echo "<div class=\"forum_box\">";
 	    echo "<h2>Start a new thread in $folder->name</h2>";
         echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_URL\" method=post>\n";
@@ -96,7 +98,7 @@ function forums_action_start_thread_go() {
         $time=date("Y-m-d H:i:s");
         lib_mysql_query("INSERT INTO `forum_posts` (`id`, `title`) VALUES ('', '__chkdel');");
         $fart=lib_mysql_query("select * from `forum_posts` where `title`='__chkdel'");
-        $lick=mysql_fetch_array($fart);
+        $lick=$fart->fetch_array();
         $id=$lick['id'];
         $thread=$id;
         $theader=addslashes($theader);
@@ -127,7 +129,8 @@ function forums_get_message($post) {
 	eval(lib_rfs_get_globals());
     $PROFILE_BASE_URL=lib_modules_get_base_url("profile");
 	$poster=lib_users_get_data($post['poster']);
-	$forum=mysql_fetch_object(lib_mysql_query("select * from forum_list where id=".$post['forum']));
+	$r=lib_mysql_query("select * from forum_list where id=".$post['forum']);
+	$forum=$r->fetch_object();
 	if(	($forum->private=="yes") &&
 		(($logged_in!="true") || (lib_access_check("forums","admin"))) ) {
 		echo "<p>You don't have access to this forum.</p>";
@@ -172,8 +175,8 @@ function forums_get_message($post) {
 function forums_action_get_thread($thread) {
 	eval(lib_rfs_get_globals());
 	$result = lib_mysql_query("select * from `forum_posts` where `thread_top`='yes' and `thread`='$thread' order by time limit 0,30");
-	if($result) 	$numposts=mysql_num_rows($result);
-	if($numposts>0) $post=mysql_fetch_array($result);
+	if($result) 	$numposts=$result->num_rows;
+	if($numposts>0) $post=$result->fetch_array();
 	if(empty($forum_which)) {
 		$th=lib_mysql_fetch_one_object("select * from `forum_posts` where `thread`='$thread'");
 		$forum_which=$th->forum;
@@ -184,10 +187,12 @@ function forums_action_get_thread($thread) {
 	}
 	$locked=$post['locked'];
 	$forum_which=$post['forum'];
-	$folder=mysql_fetch_array(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));
+	$r=lib_mysql_query("select * from `forum_list` where `id`='$forum_which';");
+	$folder=$r->fetch_array();
 	$title=stripslashes($post['title']);
 	$thread=$post['id'];
-   	$folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));
+   	$r=lib_mysql_query("select * from `forum_list` where `id`='$forum_which';");
+	$folder=$r->fetch_object();
     echo "<h1>$folder->name >> $title</h1>";
 	forums_buttons($forum_which);
 	$GLOBALS['forum_list']="no";
@@ -196,7 +201,7 @@ function forums_action_get_thread($thread) {
 		lib_mysql_query("update `forum_posts` set `views` ='$views' where `thread_top`='yes' and `thread`='$thread'");
 		forums_get_message($post,$gx);
 		$thread_res=lib_mysql_query("select * from `forum_posts` where `forum`='$forum_which' and `thread`='$thread' and `thread_top`='no' order by time limit 0,30");
-		while($post = mysql_fetch_array($thread_res)) {
+		while($post=$result->fetch_array()) {
 				forums_get_message($post);
 			}
 		}
@@ -238,7 +243,7 @@ function forums_action_get_thread($thread) {
 function forums_action_move_thread() {
 	eval(lib_rfs_get_globals());
     $tofor=lib_mysql_query("select * from forum_list where name='$move'");
-    $toforum=mysql_fetch_object($tofor);
+    $toforum=$tofor->fetch_object();
     lib_mysql_query("update forum_posts set forum='$toforum->id' where id='$id'");
     lib_mysql_query("update forum_posts set forum='$toforum->id' where thread='$id'");
 	$thread=lib_mysql_fetch_one_object("select * from forum_posts where id='$id'");
@@ -311,7 +316,7 @@ function forums_action_edit_reply() {
 	eval(lib_rfs_get_globals());
     if($logged_in=="true") {
         $posttt=lib_mysql_query("select * from forum_posts where id='$reply';");
-        $post=mysql_fetch_object($posttt);
+        $post=$posttt->fetch_object();
         $fw=$forum_which;
 		echo "<div class=\"forum_box\">";
 		echo "<h2>Editing reply #$reply: $post->title</h2>";
@@ -358,7 +363,7 @@ function forums_action_reply_to_thread() {
         $data->forumreplies+=1;
         lib_mysql_query("update `users` set `forumreplies`='$data->forumreplies' where `id`='$data->id'");
         $posts=lib_mysql_query("select * from `forum_posts` order by `time` desc limit 1");
-        $post=mysql_fetch_object($posts); 
+        $post=$posts->fetch_object(); 
         lib_mysql_query("UPDATE `forum_list` set `last_post` = '$post->id' where `id` = '$forum_which';");
         forums_bumpthread($post->thread);
         lib_log_add_entry("*****> $data->name replied to thread [$theader]");
@@ -373,7 +378,7 @@ function forums_action_forum_list() {
     $PROFILE_BASE_URL=lib_modules_get_base_url("profile");
 	echo "<h1>Forums</h1>";
     $folder_res = lib_mysql_query("select * from forum_list where `folder`='yes' order by priority");
-    while($dfold=mysql_fetch_object($folder_res)) {
+    while($dfold=$folder_res->fetch_object()) {
 		$seefolder=false;		
 		if(lib_access_check("forums","admin")) {
 			$seefolder=true;
@@ -399,7 +404,7 @@ function forums_action_forum_list() {
 			<td class=forum_table_head>Last Post</td>
 			</tr>";
 			$result = lib_mysql_query("select * from forum_list where `parent`='$dfold->id' order by priority");
-			while($folder=mysql_fetch_object($result)) {
+			while($folder=$result->fetch_object($result)) {
 				
 				$name=stripslashes($folder->name);
 				$comment=stripslashes($folder->comment);
@@ -421,10 +426,10 @@ function forums_action_forum_list() {
 				$new=0;
 				if($dumpforum) {
 					$forum_r=lib_mysql_query("select * from forum_posts where `forum`= '$folder->id' and `thread_top`='yes'");
-					while($timecheck=mysql_fetch_array($forum_r)) {
+					while($timecheck=$forum_r->fetch_array()) {
 						if($timecheck['time']>=$data->last_login) $new=1;
 						$thread_r=lib_mysql_query("select * from forum_posts where `thread`=".($fart['thread']));
-						while($thread_time_check=mysql_fetch_array($thread_r)) {
+						while($thread_time_check=$thread_r->fetch_array($thread_r)) {
 							if($thread_time_check['time']>=$data->last_login) $new=1;
 						}
 					}
@@ -463,9 +468,9 @@ function forums_action_forum_list() {
 					
 
 					$topres=lib_mysql_query("select id from `forum_posts` where `forum`= '$folder->id' and `thread_top`='yes'");
-					$topics=mysql_num_rows($topres);
+					$topics=$topres->num_rows;
 					$postres=lib_mysql_query("select id from `forum_posts` where `forum`='$folder->id';");
-					$posts=mysql_num_rows($postres);
+					$posts=$postres->num_rows;
 					echo "$topics";
 					echo "</td>";
 					echo "<td>";
@@ -473,7 +478,7 @@ function forums_action_forum_list() {
 					echo "</td>";
 					echo "<td>";
 					$last_post_r=lib_mysql_query("select * from `forum_posts` where `forum` = '$folder->id' order by time desc limit 1");					
-					if($lastpost=mysql_fetch_object($last_post_r)) {
+					if($lastpost=$last_post_r->fetch_object()) {
 						$link="$RFS_ADDON_URL?action=get_thread&thread=$lastpost->id";
 						$link="$RFS_ADDON_URL?forum_list=no&action=get_thread&thread=$lastpost->thread&forum_which=$lastpost->forum";
 						echo "<a href=\"$link\" title=\"$lastpost->title\">$lastpost->title</a><br>";
@@ -504,15 +509,15 @@ function forums_action_forum_showposts_rows($x) {
     $PROFILE_BASE_URL=lib_modules_get_base_url("profile");
 	if($x=="sticky") $result = lib_mysql_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' and sticky='true'  order by bumptime desc limit 0,30");
 	else 			 $result = lib_mysql_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' and sticky!='true' order by bumptime desc limit 0,30");
-	if($result) $numposts=mysql_num_rows($result);
+	if($result) $numposts=$result->num_rows;
     else $numposts=0;
-	while($post=mysql_fetch_array($result)) {
+	while($post=$result->fetch_array()) {
 		$new=0;
 		$fork = lib_mysql_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no'");
 		$posts=0;
-		if($fork) $posts=mysql_num_rows($fork);
+		if($fork) $posts=$fork->num_rows;
 		for($star=0;$star<$posts;$star++) {
-			$fart=mysql_fetch_array($fork);
+			$fart=$fork->fetch_array($fork);
 			if($fart['time']>=$data->last_login) $new=1;
 		}
 		$flink="<a href=\"$RFS_ADDON_URL?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
@@ -554,7 +559,7 @@ function forums_action_forum_showposts_rows($x) {
 		
 		$lreply="";
 		$lrepr=lib_mysql_query("select * from forum_posts where `thread`=".$post['thread']." and `thread_top`='no' order by `time` desc limit 1");
-		if($lrepr) $lreply=mysql_fetch_object($lrepr);
+		if($lrepr) $lreply=$lrepr->fetch_object();
 		if($lreply) {
 			$great=lib_users_get_data($lreply->poster);
 			// echo "<a href=\"$RFS_ADDON_URL?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
@@ -604,7 +609,7 @@ function forums_action_forum_showposts_rows($x) {
 			echo "<input type=hidden name=action value=move_thread><input type=hidden name=id value=".$post['id'].">\n";
 			$resultj = lib_mysql_query("select * from forum_list where `folder`!='yes' order by priority");
 			echo "<br>Move to:<select name=move>";
-			while($forumj=mysql_fetch_object($resultj)) {
+			while($forumj=$resultj->fetch_object()) {
 				echo "<option>$forumj->name";
 			}
 
@@ -621,10 +626,11 @@ function forums_action_forum_showposts() {
 	eval(lib_rfs_get_globals());
     $PROFILE_BASE_URL=lib_modules_get_base_url("profile");
     $res=lib_mysql_query("select * from `forum_list` where `id`='$forum_which'");
-    $fold=mysql_fetch_object($res);
+    $fold=$res->fetch_object();
     $res=lib_mysql_query("select * from `forum_list` where `id`='$fold->parent'");
-    $fold=mysql_fetch_object($res);
-    $folder=mysql_fetch_object(lib_mysql_query("select * from `forum_list` where `id`='$forum_which';"));   
+    $fold=$res->fetch_object();
+	$r=lib_mysql_query("select * from `forum_list` where `id`='$forum_which';");
+    $folder=$r->fetch_object();
     echo "<h1>$folder->name</h1>";
 	
 	forums_buttons($forum_which);
@@ -633,7 +639,7 @@ function forums_action_forum_showposts() {
 	echo "<table border=0 cellpadding=5 cellspacing=0>";
 
     $result = lib_mysql_query("select * from forum_posts where `forum`='$forum_which' and `thread_top`='yes' order by bumptime desc limit 0,30");
-	if($result) $numposts=mysql_num_rows($result);
+	if($result) $numposts=$result->num_rows;
     else $numposts=0;
     if($numposts) {		
 		echo "<tr>";
@@ -661,7 +667,7 @@ function forums_action_unlock_thread($t) {
 	eval(lib_rfs_get_globals());
 	if(!empty($t)) $thread=$t;
 	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
-	$thread=mysql_fetch_object($r);
+	$thread=$r->fetch_object();
 	if($r) {
 		lib_mysql_query("update forum_posts set locked='false' where id='$thread->id'");	
 		echo "Thread $thread->title unlocked.";
@@ -672,7 +678,7 @@ function forums_action_lock_thread($t) {
 	eval(lib_rfs_get_globals());
 	if(!empty($t)) $thread=$t;
 	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
-	$thread=mysql_fetch_object($r);
+	$thread=$r->fetch_object();
 	if($r) {
 		lib_mysql_query("update forum_posts set locked='true' where id='$thread->id'");	
 		echo "Thread $thread->title locked.";
@@ -683,7 +689,7 @@ function forums_action_unsticky_thread($t) {
 	eval(lib_rfs_get_globals());
 	if(!empty($t)) $thread=$t;
 	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
-	$thread=mysql_fetch_object($r);
+	$thread=$r->fetch_object();
 	if($r) {
 		lib_mysql_query("update forum_posts set sticky='false' where id='$thread->id'");		
 		echo "Thread $thread->title unstickied.";
@@ -694,7 +700,7 @@ function forums_action_sticky_thread($t) {
 	eval(lib_rfs_get_globals());
 	if(!empty($t)) $thread=$t;
 	$r=lib_mysql_query("select * from forum_posts where id='$thread'");
-	$thread=mysql_fetch_object($r);
+	$thread=$r->fetch_object();
 	if($r) {
 		lib_mysql_query("update forum_posts set `sticky`='true' where id='$thread->id'");		
 		echo "Thread $thread->title stickied.";

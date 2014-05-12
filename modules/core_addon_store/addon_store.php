@@ -10,7 +10,7 @@ function addon_store_action_() {
 	echo "<h1>Addon Store</h1>";
 
 	$r=lib_mysql_query("select * from addon_database where core!='1'");
-	while($addon=mysql_fetch_object($r)) {
+	while($addon=$r->fetch_object()) {
 		echo "<hr>";
 		echo "<div class=forum_message>";
 		echo "<h3>$addon->name</h3>";

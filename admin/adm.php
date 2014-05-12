@@ -60,7 +60,7 @@ function adm_action_update() {
 		chdir("$RFS_SITE_PATH/admin/update");
 		lib_rfs_flush_buffers();
         $f="http://github.com/sethcoder/rfscms/archive/master.zip";
-		echo system(wget $f);
+		echo system("wget $f");
 		$c="unzip master.zip";
 		echo system($c);
     }
@@ -127,7 +127,7 @@ function adm_action_f_edit_banned_go() {
 function adm_action_f_edit_banned() {
     eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from `banned` where `id`='$id'" );
-	$banned=mysql_fetch_object( $res );
+	$banned=$res->fetch_object();
 	echo "<h3>Editing ban [$banned->id]</h3>";
 	lib_forms_build( "$RFS_SITE_URL/admin/adm.php","action=f_edit_users_go".$RFS_SITE_DELIMITER."id=$id","banned","select * from `banned` where `id`='$id'","","id".$RFS_SITE_DELIMITER,"omit","",60,"update" );
 	include("footer.php");
@@ -136,7 +136,7 @@ function adm_action_f_edit_banned() {
 function adm_action_f_del_banned_go() {
 	eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from `banned` where `id`='$id'" );
-	$banned=mysql_fetch_object( $res );
+	$banned=$res->fetch_object();
 	if( $yes=="Yes" ) {
 		echo "$banned->id removed from database";
 		lib_mysql_query( "delete from `banned` where `id`='$id'" );
@@ -147,7 +147,7 @@ function adm_action_f_del_banned() {
 	eval( lib_rfs_get_globals() );
 	echo lib_string_convert_smiles( "<p class=warning>^X<br>WARNING!<BR></p>" );
 	$res=lib_mysql_query( "select * from `banned` where `id`='$id'" );
-	$banned=mysql_fetch_object( $res );
+	$banned=$res->fetch_object();
 	lib_forms_confirm( "Delete $banned->id?",
                     "$RFS_SITE_URL/admin/adm.php",
                     "action=f_del_banned_go".$RFS_SITE_DELIMITER."id=$id" );
@@ -266,12 +266,11 @@ function rfs_admin_module( $loc ) {
 	if($r) {
 		echo "<center><h2>$location";
 		echo " Panels</h2></center>";
-		$n=mysql_num_rows($r);
-        if(!$n) echo " ( NO PANELS IN THIS AREA! ) <BR> ";
+        if(!$r->num_rows) echo " ( NO PANELS IN THIS AREA! ) <BR> ";
         else
-		for($i=0; $i<$n; $i++) {
+		for($i=0; $i<$r->num_rows; $i++) {
 			echo "<div class=news_article>";
-			$ar=mysql_fetch_object($r);
+			$ar=$r->fetch_object();
 			echo "<table border=0 cellspacing=0><tr><td>";
             echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_delete&location=$location&arid=$ar->id'>";
 			echo "<img src='$RFS_SITE_URL/images/icons/circle-delete.png' border='0'>";
@@ -336,7 +335,7 @@ function rfs_admin_module( $loc ) {
 				else {
 					lib_forms_optionize($phpself,"action=f_module_chg_static".$RFS_SITE_DELIMITER."id=$ar->id","static_html","name","",$ar->page,"1");
 					$str=lib_mysql_query("select distinct * from static_html where name='$ar->page'");
-					$st=mysql_fetch_object($str);
+					$st=$str->fetch_object();
 					echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
 					echo "<input type=hidden name=action value=f_module_edit_static_go>";
 					echo "<input type=hidden name=arid value=\"$ar->id\">";
@@ -426,10 +425,7 @@ function adm_action_f_arrange_move_up() {
 	//echo $ar->sequence."<br>";
 	$arrange=array();
 	$r=lib_mysql_query("select * from arrangement where `location`='$ar->location'");
-	for($i=0;$i<mysql_num_rows($r);$i++) {
-		$tar=mysql_fetch_object($r);
-		$arrange[$tar->id]=$tar->sequence;
-	}
+	while($tar=$r->fetch_object()) $arrange[$tar->id]=$tar->sequence;
 	$ar->sequence--;
 	foreach($arrange as $k => $v) {
 		if($v==$ar->sequence) $arrange[$k]=$v+1;
@@ -464,7 +460,7 @@ function adm_action_f_module_add() {
 	if(stristr($module,"static_html"))  { $type="static"; $num=""; }
 	
 	$r=lib_mysql_query("select max(sequence) as seq from arrangement where location = '$location'");
-	$ars=mysql_fetch_object($r);
+	$ars=$r->fetch_object();
 	$nseq=$ars->seq+1;
 	echo "$ars->seq $nseq  <br>";
 	
@@ -523,8 +519,7 @@ function adm_action_f_access_group_edit_go() {
     eval(lib_rfs_get_globals());
 	lib_mysql_query("delete from `access` where name='$axnm'");
 	$r=lib_mysql_query("select * from `access_methods`");
-	for($i=0;$i<mysql_num_rows($r);$i++) {
-		$am=mysql_fetch_object($r);
+	while($am=$r->fetch_object()) {
 		if($_POST["$am->page"."_$am->action"]=="on") {
 			lib_mysql_query("insert into `access` (`name`,`page`,`action`) VALUES('$axnm','$am->page','$am->action')");
 		}
@@ -538,18 +533,7 @@ function adm_action_f_access_group_edit() {
 	echo "<h2>$axnm</h2>";
 	echo "<hr>";
 	
-echo "<script>
-$(document).ready(function () {
-    $('#selectall').click(function () {
-        $('.selectedId').prop('checked', this.checked);
-    });
-
-    $('.selectedId').change(function () {
-        var check = ($('.selectedId').filter(\":checked\").length == $('.selectedId').length);
-        $('#selectall').prop(\"checked\", check);
-    });
-});
-	</script>";
+    echo "<script> $(document).ready(function () {    $('#selectall').click(function () { $('.selectedId').prop('checked', this.checked); }); $('.selectedId').change(function () { var check = ($('.selectedId').filter(\":checked\").length == $('.selectedId').length); $('#selectall').prop(\"checked\", check);}); }); </script>";
 	echo "<input type=\"checkbox\" id=\"selectall\">Select all</input>";
 	echo "<div class=\"forum_box\">";
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
@@ -557,7 +541,7 @@ $(document).ready(function () {
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
 	
 	$r=lib_mysql_query("select * from `access_methods` order by page,action");
-	while($am=mysql_fetch_object($r)) {
+	while($am=$r->fetch_object()) {
 		$checked="";
 		$rw=lib_mysql_fetch_one_object("select * from `access` where name='$axnm' and page='$am->page' and action='$am->action'");
 		if($rw->name==$axnm) { $checked="checked";}
@@ -612,6 +596,7 @@ function adm_action_f_access_group_delete_go() {
 }
 function adm_action_access_groups() {
     eval(lib_rfs_get_globals());
+    lib_mysql_scrub("access_methods","page");
 	echo "<h1>Modify Access Groups</h1>";
 	echo "<hr>";
 	echo "<h2>Create a new access group</h2>";
@@ -623,7 +608,7 @@ function adm_action_access_groups() {
 	echo "</form>\n";
 	lib_div("ADD ACCESS GROUP FORM END");
 	$r=lib_mysql_query("select distinct name from access");
-	while($a=mysql_fetch_object($r)) {
+	while($a=$r->fetch_object()) {
 		echo "<div class=\"forum_box\" style=\"float:left; width:300px;\">";
 		echo "<h2>$a->name</h2>";
 		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
@@ -631,7 +616,7 @@ function adm_action_access_groups() {
 		echo "<p>Members: </p>";
 		echo "<p>";		
 		$usrs=lib_mysql_query("select * from `users`");
-		while($usr=mysql_fetch_object($usrs)) {			
+		while($usr=$usrs->fetch_object()) {			
 			$agrps=explode(",",$usr->access_groups);
 			for($k=0;$k<count($agrps);$k++) {
 				if($a->name==$agrps[$k]) {					
@@ -728,8 +713,7 @@ function adm_action_db_query() {
     eval(lib_rfs_get_globals());
 	echo "<h1>Database Query</h1><hr>";
 	$r=lib_mysql_query("select * from db_queries");
-	for($x=0;$x<mysql_num_rows($r);$x++) {
-		$q=mysql_fetch_object($r);
+	while($q=$r->fetch_object()) {
 		$q->query=rtrim($q->query,"\r");
 		$q->query=rtrim($q->query,"\n");
 		$q->query=rtrim($q->query,"\r");
@@ -758,7 +742,7 @@ function adm_action_db_query() {
 		echo "<div class=forum_box>";
 		echo $query;
 		// echo "<table cellspacing=0 cellpadding=0 border=0><tr><td class=contenttd>";
-		lib_mysql_database_query( $query, "true" );
+		lib_mysql_database_query( $query, 1 );
 		// echo "</td></tr></table>";
 		echo "</div>";
 	}
@@ -1344,7 +1328,7 @@ function adm_action_edit_site_vars() {
 	echo "<table border=0>";
 	echo "<tr><th>Variable</th><th>Type</th><th>Value</th><th></th><th></th></tr>";
 	$res=lib_mysql_query("select * from site_vars order by name");
-	while($site_var=mysql_fetch_object($res)) {
+	while($site_var=$res->fetch_object()) {
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
 		echo "<tr><td>";
 		echo "<input type=hidden name=action value=\"f_upsitevar\">";
@@ -1452,7 +1436,7 @@ function adm_action_edit_site_vars() {
 			$x=str_replace("RFS_SITE_","",$k);
 			$x=strtolower($x);
 			$rescheck=lib_mysql_query("select * from site_vars where name='$x'");
-			$svarcheck=mysql_fetch_object($rescheck);
+			$svarcheck=$rescheck->fetch_object();
 			if(empty($svarcheck)) {
 			
 			echo "<tr>";
@@ -1491,7 +1475,7 @@ function adm_action_f_admin_menu_change_icon() {
 function adm_action_f_admin_menu_edit_del_go() {
     eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from admin_menu where `id`='$id'" );
-	$menuitem=mysql_fetch_object( $res );
+	$menuitem=$res->fetch_object();
 	echo "<h3>Edit Admin Menu :: Delete $menuitem->name :: DELETED!</h3>";
 	lib_mysql_query( "delete from admin_menu where `id`='$id'" );
 	if( $_SESSION['admed']=="on" ) adm_action_();
@@ -1500,7 +1484,7 @@ function adm_action_f_admin_menu_edit_del_go() {
 function adm_action_f_admin_menu_edit_del() {
     eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from admin_menu where `id`='$id'" );
-	$menuitem=mysql_fetch_object( $res );
+	$menuitem=$res->fetch_object();
 	echo "<h3>Edit Admin Menu</h3>";
 	echo "<table class=warning><tr><td>";
 	echo lib_string_convert_smiles( "Delete $menuitem->name ^X" );
@@ -1553,7 +1537,7 @@ function adm_action_f_admin_change_category() {
 function adm_action_f_admin_menu_edit_mod() {
     eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from admin_menu where `id`='$id'" );
-	$menuitem=mysql_fetch_object( $res );
+	$menuitem=$res->fetch_object();
     if(empty($mname)) $mname=$name;
 	echo "<h3>Edit Admin Menu :: Modify $menuitem->name = $mname</h3>";
 	if( empty( $mname ) )       $mname=$menuitem->name;
@@ -1594,9 +1578,8 @@ function adm_action_f_admin_menu_edit_entry_data($inid,$tdlc) {
 		if( !empty( $menuitem->category ) )
 			echo "<option>$menuitem->category";
 		$cres=lib_mysql_query( "select * from categories order by name" );
-		$j3=mysql_num_rows( $cres );
-		for( $i3=0; $i3<$j3; $i3++ ) {
-			$c=mysql_fetch_object( $cres );
+		for( $i3=0; $i3<$cres->num_rows; $i3++ ) {
+			$c=$cres->fetch_object();
 			echo "<option>$c->name";
 		}
 		echo "</select>";
@@ -1677,7 +1660,7 @@ function adm_action_admin_menu_edit() {
 	echo "<td>";
 	echo "<Select name=mcategory>";
 	$cres=lib_mysql_query( "select * from categories order by name" );
-	while($c=mysql_fetch_object( $cres )) {
+	while($c=$cres->fetch_object()) {
 		echo "<option>$c->name";
 	}
 	echo "</select>";
@@ -1697,9 +1680,9 @@ function adm_action_admin_menu_edit() {
 	echo "</form>";
 	echo "</tr>";
 	$cresz=lib_mysql_query( "select * from categories order by name asc" );
-	while($cc=mysql_fetch_object( $cresz )) {
+	while($cc=$cresz->fetch_object()) {
 		$res=lib_mysql_query( "select * from admin_menu where category = '$cc->name' order by name asc" );
-		while($menuitem=mysql_fetch_object( $res )) {
+		while($menuitem=$res->fetch_object()) {
 			$tdlc++;
 			if( $tdlc==2 ) $tdlc=0;
             adm_action_f_admin_menu_edit_entry_data($menuitem->id,$tdlc);
@@ -1722,9 +1705,9 @@ function adm_action_admin_menu_edit() {
 			if( !empty( $menuitem->category ) )
 				echo "<option>$menuitem->category";
 			$cres=lib_mysql_query( "select * from categories order by name" );
-			$j3=mysql_num_rows( $cres );
-			for( $i3=0; $i3<$j3; $i3++ ) {
-				$c=mysql_fetch_object( $cres );
+			
+			for( $i3=0; $i3<$cres->num_rows; $i3++ ) {
+				$c=$cres->fetch_object();
 				echo "<option>$c->name";
 			}
 			echo "</select>";
@@ -1758,7 +1741,7 @@ function adm_action_admin_menu_edit() {
 function adm_action_f_menu_topedit_del_go() {
     eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from menu_top where `id`='$id'" );
-	$menuitem=mysql_fetch_object( $res );
+	$menuitem=$res->fetch_object();
 	echo "<h3>Edit Top Menu :: Delete $menuitem->name :: DELETED!</h3>";
 	lib_mysql_query( "delete from menu_top where `id`='$id'" );
 	adm_action_menu_topedit();
@@ -1766,7 +1749,7 @@ function adm_action_f_menu_topedit_del_go() {
 }
 function adm_action_f_menu_topedit_del() { eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from menu_top where `id`='$id'" );
-	$menuitem=mysql_fetch_object( $res );
+	$menuitem=$res->fetch_object();
 	echo "<h3>Edit Top Menu :: Delete $menuitem->name</h3>";
 	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 	echo "<input type=hidden name=action value=f_menu_topedit_del_go>";
@@ -1804,7 +1787,7 @@ function adm_action_f_menu_topedit_add() {
 function adm_action_f_menu_topedit_mod() {
     eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from menu_top where `id`='$id'" );
-	$menuitem=mysql_fetch_object( $res );
+	$menuitem=$res->fetch_object();
 	echo "<h3>Edit Top Menu :: Modify $menuitem->name = $mname</h3>";
 	lib_mysql_query( "update menu_top set `name`='$mname' where `id`='$id'" );
 	lib_mysql_query( "update menu_top set `link`='$menu_url' where `id`='$id'" );
@@ -1828,9 +1811,8 @@ function adm_action_menu_topedit() {
 	echo "<td class=contenttd> &nbsp; </td>";
 	echo "</tr>";
 	$res=lib_mysql_query( "select * from menu_top order by sort_order asc" );
-	$count=mysql_num_rows( $res );
-	for( $i=0; $i<$count; $i++ ) {
-		$menuitem=mysql_fetch_object( $res );
+	for( $i=0; $i<$res->num_rows; $i++ ) {
+		$menuitem=$res->fetch_object();
 		echo "<tr>";
 		echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
 		echo "<td class=contenttd>";
@@ -1935,7 +1917,7 @@ function adm_action_edit_categories() {
 	</td><td><input type=text name=image value=''>
 	</td><td><input type=text name=worksafe value=''></td><td><div class=menutop><input type=submit name=submit        value=add>
 	</div></form></td></tr>";
-	while($cat=mysql_fetch_object($result)) {		
+	while($cat=$result->fetch_object()) {		
 		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\"><tr><td>";
 		echo "<input type=hidden name=action    value=f_delete_category>\n";
 		echo "<input type=hidden name=category  value=\"$cat->name\">\n";
@@ -1975,7 +1957,7 @@ function adm_action_f_edit_users_go() {
 }
 function adm_action_f_edit_users() { eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from `users` where `id`='$id'" );
-	$user=mysql_fetch_object( $res );
+	$user=$res->fetch_object();
 	echo "<h3>Editing User [$user->name]</h3>";
 	lib_forms_build( "$RFS_SITE_URL/admin/adm.php","action=f_edit_users_go".$RFS_SITE_DELIMITER."id=$id","users","select * from `users` where `id`='$id'","","id".$RFS_SITE_DELIMITER,"omit","",60,"update" );
 	include("footer.php");
@@ -1984,7 +1966,7 @@ function adm_action_f_edit_users() { eval( lib_rfs_get_globals() );
 function adm_action_f_del_users_go() {
 	eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from `users` where `id`='$id'" );
-	$user=mysql_fetch_object( $res );
+	$user=$res->fetch_object();
 	if( $yes=="Yes" ) {
 		echo "User $user->name removed from database";
 		lib_mysql_query( "delete from `users` where `id`='$id'" );
@@ -1995,7 +1977,7 @@ function adm_action_f_del_users() {
 	eval( lib_rfs_get_globals() );
 	echo lib_string_convert_smiles( "<p class=warning>^X<br>WARNING!<BR></p>" );
 	$res=lib_mysql_query( "select * from `users` where `id`='$id'" );
-	$user=mysql_fetch_object( $res );
+	$user=$res->fetch_object();
 	lib_forms_confirm( "Delete $user->name?",
                     "$RFS_SITE_URL/admin/adm.php",
                     "action=f_del_users_go".$RFS_SITE_DELIMITER."id=$id" );
@@ -2039,14 +2021,14 @@ function adm_action_f_rss_edit_go_add() {
 function adm_action_rss_edit() {
 	eval( lib_rfs_get_globals() );
 	$result=lib_mysql_query( "select * from rss_feeds" );
-	$num_feeds=mysql_num_rows( $result );
+	$num_feeds=$result->num_rows;
 	echo "<h3>Editing RSS Feeds </h3>";
 
 	for( $i=0; $i<$num_feeds; $i++ ) {
 		echo "<table border=0 cellspacing=0 cellpadding=0>\n";
 		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
 		echo "<input type=hidden name=action value=rsseditgoedit>\n";
-		$feed=mysql_fetch_object( $result );
+		$feed=$result->fetch_object();
 		echo "<tr><td>Feed URL</td> <td><input type=textbox name=edfeed value=\"$feed->feed\" size=100></td>\n";
 		echo "<td><input type=submit value=delete name=delete></td>\n";
 		echo "<td><input type=submit value=update name=update> <input type=hidden value=$feed->id name=oid></td>\n";
@@ -2067,6 +2049,7 @@ function adm_action_rss_edit() {
 function adm_action_edit_smilies() {
 	eval( lib_rfs_get_globals() );
 	echo "<h3>Smiley Editor</h3>";
+	
 	$sto=stripslashes( $sto );
 	$sfrom=stripslashes( $sfrom );
 	$ofrom=stripslashes( $ofrom );
@@ -2097,7 +2080,7 @@ function adm_action_edit_smilies() {
 	$result=lib_mysql_query( "select * from smilies" );	
 	echo "<td class=contenttd>\n";
 	echo "<table border=0 cellspacing=0 cellpadding=5 width=100%>";
-	while($smiley = mysql_fetch_array( $result )) {
+	while($smiley = $result->fetch_array()) {
 		$bg=$bg+1; if( $bg>2 ) $bg=1;		
 		$sfrom=stripslashes( $smiley['sfrom'] );
 		$sto=stripslashes( $smiley['sto'] );
@@ -2262,9 +2245,8 @@ function adm_action_counters() {
 	echo "Showing pages with at least $hits_raw hits<br>";
 	echo "<table>";
 	$r=lib_mysql_query("select * from counters where hits_raw > $hits_raw");
-	$n=mysql_num_rows($r);
-	for($x=0;$x<$n;$x++){
-		$counter=mysql_fetch_object($r);
+	for($x=0;$x<$r->num_rows;$x++){
+		$counter=$r->fetch_object();
 		echo "<tr><td width='200'>";
 		echo "$counter->user_timestamp ";
 		echo "</td><td>";
@@ -2325,7 +2307,7 @@ function adm_action_edit_tags() {
 	echo "</div>";
 	echo "</div>";
     $r=lib_mysql_query("select * from tags order by tag asc");
-	while($tag=mysql_fetch_object($r)) {
+	while($tag=$r->fetch_object()) {
 		$gt++;if($gt>1) $gt=0;		
 		echo "<div style='clear:both;' class='rfs_file_table_$gt'  >";
 			echo "<div style='float:left;'>";		
@@ -2482,14 +2464,12 @@ function adm_menu_built_in() {
 	echo "<div style='clear: left; '>&nbsp;</div>";	
 	echo "<h1>Custom Admin Buttons</h1>";
 	$cres=lib_mysql_query( "select * from categories order by name asc" );
-	$ccount=mysql_num_rows( $cres );
-	for( $ci=0; $ci<$ccount; $ci++ ) {
-        $cc=mysql_fetch_object( $cres );
+	for( $ci=0; $ci<$cres->num_rows; $ci++ ) {
+        $cc=$cres->fetch_object();
         $res=lib_mysql_query( "select * from admin_menu where category = '$cc->name' order by name asc" );
-        $count=mysql_num_rows( $res );
-        if( $count ) {
-            for( $i=0; $i<$count; $i++ ) {
-            $icon=mysql_fetch_object( $res );
+        if($res->num_rows) {
+            for( $i=0; $i<$res->num_rows; $i++ ) {
+            $icon=$res->fetch_object();
                 echo "<div style=' float:left; border: 1px solid #000000; margin: 5px; padding:5px 10px; background:#357535; border-radius:12px;'>";
 				echo "<a href=\"";
                 $icon->url=str_replace( ";","%3b",$icon->url );

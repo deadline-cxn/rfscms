@@ -35,7 +35,8 @@ if($action=="delete message"){
 }
 
 if($action=="reply"){
-	$result=lib_mysql_query("select * from `pmsg` where `id`='$id'"); $msg=mysql_fetch_object($result);
+	$result=lib_mysql_query("select * from `pmsg` where `id`='$id'");
+	$msg=$result->fetch_object();
 	echo "<p><form action=$RFS_SITE_URL/modules/core_messages/messages.php method=post>";
 	echo "To: <input name=to value=\"$msg->from\">";
 	echo "Subject: <input name=subject value=\"re: $msg->subject\"><br>";
@@ -53,10 +54,10 @@ if($action=="new message"){
 	echo "To:<select name=to>";
 
 	$res=lib_mysql_query("select * from `users` order by  `name` asc");
-	$count=mysql_num_rows($res);
+	$count=$res->num_rows;
 
 	for($i=0;$i<$count;$i++)	{
-			$userdata=mysql_fetch_object($res);
+			$userdata=$res->fetch_object();
     		echo "<option>$userdata->name";
     }
 
@@ -83,11 +84,11 @@ if($action=="messagego"){
 if($action=="read"){
 	lib_mysql_query("update `pmsg` set `read` = 'yes' where `id` = '$id'");
 	$urresult=lib_mysql_query("select * from `pmsg` where `id` = '$id'");
-	$msg=mysql_fetch_object($urresult);
+	$msg=$urresult->fetch_object();
 
 	$userdatar=lib_mysql_query("select * from `users` where `name`='$msg->from'");
 
-	$userdata=mysql_fetch_object($userdatar);
+	$userdata=$userdatar->fetch_object();
 
     if(empty($msg->from)) $msg->from=" *unknown* ";
 
@@ -147,8 +148,8 @@ if($action=="delete") {
     $q.=" order by id desc ;";
     $result=lib_mysql_query($q);
 
-    for($i=0;$i<mysql_num_rows($result);$i++){
-        $p=mysql_fetch_object($result);
+    for($i=0;$i<$result->num_rows;$i++){
+        $p=$result->fetch_object($result);
 
         if(!empty($_POST["pmsg_$p->id"])) {
 
@@ -175,8 +176,8 @@ if($action=="mark read") {
     $q.=" order by id desc ;";
     $result=lib_mysql_query($q);
 
-    for($i=0;$i<mysql_num_rows($result);$i++){
-        $p=mysql_fetch_object($result);
+    for($i=0;$i<$result->num_rows;$i++){
+        $p=$result->fetch_object($result);
 
         if(!empty($_POST["pmsg_$p->id"])) {
 
@@ -203,8 +204,8 @@ if($action=="mark unread") {
     $q.=" order by id desc ;";
     $result=lib_mysql_query($q);
 
-    for($i=0;$i<mysql_num_rows($result);$i++){
-        $p=mysql_fetch_object($result);
+    for($i=0;$i<$result->num_rows();$i++){
+        $p=$result->fetch_object();
 
         if(!empty($_POST["pmsg_$p->id"])) {
 
@@ -241,7 +242,7 @@ if(empty($action)) {
     $q.=" order by id desc ;";
     $result=lib_mysql_query($q);
 
-	$numpmsg=mysql_num_rows($result); if(empty($numpmsg)) $numpmsg=0;
+	$numpmsg=$result->num_rows; if(empty($numpmsg)) $numpmsg=0;
 
 	echo "<table border=0><tr><td>[<a href=\"$RFS_SITE_URL/modules/core_messages/messages.php?action=new message\">New Message</a>]</td></tr></table><br>";
 
@@ -256,7 +257,7 @@ if(empty($action)) {
 
         for($i=0;$i<$numpmsg;$i++) {
             $gt++; if($gt>1) $gt=0;
-            $msg=mysql_fetch_object($result);
+            $msg=$result->fetch_object($result);
             $lnk="<a href=$RFS_SITE_URL/modules/core_messages/messages.php?action=read&id=$msg->id>";
 
             echo "<tr class=\"rfs_project_table_$gt\">";

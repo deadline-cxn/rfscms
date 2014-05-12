@@ -23,7 +23,7 @@ if(!lib_rfs_bool_true($_SESSION['logged_in'])) {
 	if($qc) {
 
         $r=lib_mysql_query("select * from exam_questions where id='$qc'");
-        $q=mysql_fetch_assoc($r);
+        $q=$r->fetch_assoc();
 				
 		$correct=false;
         
@@ -206,13 +206,12 @@ if($action=="list_exams") {
 	
 	$n=0;
     $r=lib_mysql_query("select * from exams");
-    if($r) $n=mysql_num_rows($r);
 	
 	echo "<table border=0 cellspacing=0 cellpadding=2>";	
 	echo "<tr> <td></td> <td> Name </td>  <td>Completed</td> <td>Your Score</td>  <td>Passing Score</td> </tr>";
-    for($i=0;$i<$n;$i++) {
+    for($i=0;$i<$r->num_rows;$i++) {
 			$gt++; if($gt>1) $gt=0;
-			$exam=mysql_fetch_object($r);
+			$exam=$r->fetch_object();
 			echo "<tr>";
 			
 			echo "<td class=rfs_project_table_$gt>";			
@@ -356,38 +355,25 @@ if($action=="run_exam") {
 	} 
 
     $r=lib_mysql_query("select * from exam_questions where exam_id='$exam_id'");
-    $nq=mysql_num_rows($r);
-
+    $nq=$r->num_rows;
     d_echo("$nq");
-
     $qsid=$_SESSION["exam_$exam_id"];
-	
 	// echo "exam_$exam_id <br> \$qsid: $qsid <br>";
-
     if($qsid<2) $qsid=1;
-        $_SESSION["exam_$exam_id"]=1;
-
+	$_SESSION["exam_$exam_id"]=1;
     d_echo("$qsid");
     $question=lib_mysql_fetch_one_object("select * from exam_questions where exam_sequence='$qsid' and exam_id='$exam_id'");
-    d_echo($question->type);
-	
+    d_echo($question->type);	
 	$_SESSION["question_id"]=$question->id;
-	
 	// echo "!!!! \$question->type = $question->type<br>";
 	// echo "!!!! \$question->id = $question->id<br>";
-	
-	
 	if(empty($question->type)) {
-		
-		
 		$qq=" <BR><h1>END OF EXAM!</h1><HR>";
-		
-		/*
-		$r=lib_mysql_query("select * from exam_users where user='$data->name' and exam_id='$exam_id'");		
-		$nq=mysql_num_rows($r);
+		/*$r=lib_mysql_query("select * from exam_users where user='$data->name' and exam_id='$exam_id'");		
+		$nq=$r->num_rows;
 		
 		$r=lib_mysql_query("select * from exam_users where user='$data->name' and exam_id='$exam_id' and correct='1'");
-		$nqc=mysql_num_rows($r);
+		$nqc=$r->num_rows;
 		
 		$prct=$nqc/$nq;
 		
@@ -407,8 +393,8 @@ if($action=="run_exam") {
 			$qq.="<BR>Congratulations, you passed.<br><BR><hr>";
 			$qq.="Tasks covered by this exam:<br>";
 			$r=lib_mysql_query("select distinct task from exam_questions where exam_id='$exam_id'");
-			for($i=0;$i<mysql_num_rows($r);$i++) {
-				$eq=mysql_fetch_object($r);
+			for($i=0;$i<$r->num_rows;$i++) {
+				$eq=$r->fetch_object();
 				$qq.= " $eq->task <br>";
 			}
 			
@@ -571,7 +557,7 @@ if(lib_access_check("exams","edit") ) {
 		if(!is_numeric($questions)) $questions=100;
 		
 		$r=lib_mysql_query("select * from exam_questions where exam_id='$exam_id' order by exam_sequence");
-		$n=mysql_num_rows($r);
+		$n=$r->num_rows;
 		if($questions>$n) $questions=$n;
 		
 		lib_mysql_query("update exams set `questions` = '$questions' where id='$exam_id'");
@@ -615,11 +601,11 @@ if(lib_access_check("exams","edit") ) {
 	if($action=="admin_exam_question_edit_2") {
 	
 		$r=lib_mysql_query("select * from exam_question_types where name='$type'");
-		$eqt=mysql_fetch_object($r);
+		$eqt=$r->fetch_object();
 		
 		if(empty($eqt->type)){
 			$r=lib_mysql_query("select * from exam_question_types where type='$type'");
-			$eqt=mysql_fetch_object($r);
+			$eqt=$r->fetch_object($r);
 		}
 		if(empty($eqt->type)) $eqt->type="multiple_choice";
 
@@ -662,7 +648,7 @@ if(lib_access_check("exams","edit") ) {
 	if($action=="admin_exam_edit_add_2") {
 		
 		$r=lib_mysql_query("select * from exam_question_types where name='$name'");
-		$eqt=mysql_fetch_object($r);
+		$eqt=$r->fetch_object($r);
 				
 		echo "Adding new question to exam: $exam_id -> $exam_sequence -> $name ($eqt->type)<br>";		
 		
@@ -737,7 +723,7 @@ if(lib_access_check("exams","edit") ) {
 		
 		$q= "select MAX(`exam_sequence`) from `exam_questions` where exam_id='$exam_id'";
 		$rrr=lib_mysql_query($q);
-		$exq=mysql_fetch_array($rrr);
+		$exq=$rrr->fetch_array($rrr);
 		$exam_sequence=$exq[0]+1;
 		
 		echo "[<a href='$RFS_SITE_URL/modules/core_exams/exams.php?action=admin_exam_edit_add&exam_id=$exam_id&exam_sequence=$exam_sequence'><img src='$RFS_SITE_URL/images/icons/plus_2.gif' width=16 border=0>Add Question</a>]<br>";		
@@ -766,21 +752,15 @@ if(lib_access_check("exams","edit") ) {
 		echo "</tr>";
 			
         $r=lib_mysql_query("select * from exam_questions where exam_id='$exam_id' order by exam_sequence");
-        $n=mysql_num_rows($r);
-        for($i=0;$i<$n;$i++){
-			
-				$gt++; if($gt>1) $gt=0;
-			
-				echo "<tr>";
-		
-				$q=mysql_fetch_object($r);
+        for($i=0;$i<$r->num_rows;$i++){
+				$gt++; if($gt>1) $gt=0;			
+				echo "<tr>";		
+				$q=$r->fetch_object();
 				echo "<td class=rfs_project_table_$gt>
 				<a href='$RFS_SITE_URL/modules/core_exams/exams.php?action=admin_exam_question_edit&exam_id=$exam->id&q=$q->id'>";
                 echo "<img src='$RFS_SITE_URL/images/icons/Edit.png' width=16 border=0>";
                 echo "</a>
-				</td>";				
-
-
+				</td>";
                 				
 				echo "<td class=rfs_project_table_$gt>
 				<a href='$RFS_SITE_URL/modules/core_exams/exams.php?action=admin_exam_question_remove&exam_id=$exam->id&q=$q->id'>";
@@ -825,7 +805,7 @@ if(lib_access_check("exams","edit") ) {
     if($action=="admin_new_exam") {
 
         $r=lib_mysql_query( "insert into exams (`name`) VALUES ('$name')");
-        $id = mysql_insert_id();
+        $id=mysqli_insert_id();
         echo "<p> ";
         if($id)
             echo " Exam $name ($id) created";
@@ -860,10 +840,8 @@ if(lib_access_check("exams","edit") ) {
         rfs_bqf("action=admin_new_exam".$RFS_SITE_DELIMITER."SHOW_TEXT_name=new exam","Create new exam");
 
         $q="select * from exams order by name ";
-        $r=lib_mysql_query($q); $n=mysql_num_rows($r);
-
+        $r=lib_mysql_query($q);
         echo "<table border=0 cellspacing=o cell padding=0>";
-
         echo "<tr>";
         echo "<td>Tools</td>";
         echo "<td>Name </td>";
@@ -872,21 +850,16 @@ if(lib_access_check("exams","edit") ) {
 		echo "<td>Questions</td>";
 		echo "<td>Total Questions</td>";
         echo "<td>POD</td>";
-
         echo "</tr>";
 
-        for($i=0;$i<$n;$i++){
-
-            $exam=mysql_fetch_object($r);
+        for($i=0;$i<$r->num_rows;$i++){
+            $exam=$r->fetch_object();
             $gt++; if($gt>2) $gt=1;
-
             echo "<tr>";
-
-                echo "<td class=rfs_project_table_$gt>";
+			echo "<td class=rfs_project_table_$gt>";
                 ///////// tools
-                                                echo "<table border=0 cellspacing=0 cellpadding=0>";
-                                        echo "<tr>";
-
+				echo "<table border=0 cellspacing=0 cellpadding=0>";
+                echo "<tr>";
 
                 ///// edit
                                     echo "<td>";
@@ -958,13 +931,9 @@ if(lib_access_check("exams","edit") ) {
 
                 echo "<td class=rfs_project_table_$gt>";
 				$rnq=lib_mysql_query("select * from exam_questions where exam_id='$exam->id'");
-				$nq=mysql_num_rows($rnq);
+				$nq=$rnq->num_rows;
 					echo $nq;
                 echo "</td>";
-
-
-
-                
 
                 //// POD association
 					echo "<td class=rfs_project_table_$gt>";

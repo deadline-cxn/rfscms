@@ -25,10 +25,10 @@ function lib_string_get_url_code($t){
 function lib_string_convert_smiles($text) {
 	$query = "select * from smilies";
 	$smiley_result = lib_mysql_query($query);
-	$num_smilies=mysql_num_rows($smiley_result);
+	$num_smilies=$smiley_result->num_rows;
 	if($num_smilies>0) {
 		for($i=0; $i<$num_smilies; $i++) {
-			$der = mysql_fetch_array($smiley_result);
+			$der = $smiley_result->fetch_array($smiley_result);
 			$from=$der['sfrom'];
 			$to=$der['sto'];
 			$text=str_replace($from,$to,$text);

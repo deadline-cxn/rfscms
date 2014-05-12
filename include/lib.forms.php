@@ -1,5 +1,6 @@
 <?
-if(array_pop(explode("/",getcwd()))=="include")	chdir("..");
+$gcdx=explode("/",getcwd());
+if(array_pop($gcdx)=="include")	chdir("..");
 include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
@@ -28,7 +29,7 @@ function adm_action_f_rfs_db_element_del1($rtnpage,$rtnact,$table,$id) {
 	//echo "$rtnpage<br>";
 	//echo "$rtnact<br>";
 	$r=lib_mysql_query("select * from `$table` where id='$id'");
-	$element=mysql_fetch_object($r);
+	$element=$r->fetch_object();
 	lib_forms_confirm(	"Delete database element <br>
 						table:$table<br>
 						id:$id<br>
@@ -178,12 +179,12 @@ function lib_forms_optionize($return_page,$hiddenvars,$table,$key,$use_id_method
 		 
 		 $hasimage="";
 		 $result = lib_mysql_query("SHOW COLUMNS FROM `$table` LIKE 'image'");
-		 $exists = (mysql_num_rows($result))?TRUE:FALSE;
+		 $exists = ($result->num_rows)?TRUE:FALSE;
 		 if($exists) $hasimage= ",image";
 		 
 		 $hasicon="";
 		 $result = lib_mysql_query("SHOW COLUMNS FROM `$table` LIKE 'icon'");
-		 $exists = (mysql_num_rows($result))?TRUE:FALSE;
+		 $exists = ($result->num_rows)?TRUE:FALSE;
 		 if($exists) $hasicon= ",icon";
 		 
 		$scoq="select $distinct $key$hasimage$hasicon";
@@ -205,7 +206,7 @@ function lib_forms_optionize($return_page,$hiddenvars,$table,$key,$use_id_method
 		echo "<option value=\"--- None ---\">--- None ---</option>";
 		
 		if($r) {
-			while($d=mysql_fetch_object($r)){				
+			while($d=$r->fetch_object()){
 				echo "<option ";
 				if(!empty($d->image)) {
 					if(file_exists("$RFS_SITE_PATH/$d->image"))
@@ -401,7 +402,7 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
     if(!empty($query)) {
         $res=lib_mysql_query($query);
 		if($res) {
-			$dat=mysql_fetch_object($res);
+			$dat=$res->fetch_object();
 			for($i=0;$i<count($hidvar_a);$i++) {
 				$hidvar_b=explode("=",$hidvar_a[$i]);
 				if(empty($dat->{$hidvar_b[0]}))
@@ -412,7 +413,7 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
     if(!empty($table)){
         $result = lib_mysql_query("SHOW FULL COLUMNS FROM `$table`");
 		if($result)
-        while($i = mysql_fetch_assoc($result)) {
+        while($i=$result->fetch_assoc()) {
             $this_codearea=false;
             $name=ucwords(str_replace("_"," ",$i['Field']));
             $tref=0;
@@ -431,12 +432,12 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
                 if(!empty($dat->{$i['Field']})){
                    $q="select * from `$tref_table` where `id`='".$dat->{$i['Field']}."'";
                    $tres=lib_mysql_query($q);
-                   $obj=mysql_fetch_object($tres);
+                   $obj=$tres->fetch_object();
 				   echo "<option value=$obj->id>$obj->name";
                }
                 $tres=lib_mysql_query("select * from `$tref_table` order by `name`");
-                for($k=0;$k<mysql_num_rows($tres);$k++){
-                    $obj=mysql_fetch_object($tres);
+                for($k=0;$k<$tres->num_rows;$k++){
+                    $obj=$tres->fetch_object();
                     echo "<option value=$obj->id>$obj->name";
                 }
                 echo "</select>";

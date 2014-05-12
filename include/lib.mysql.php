@@ -2,21 +2,35 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-if(array_pop(explode("/",getcwd()))=="include")	chdir("..");
+$gcd=getcwd();
+$gcdx=explode("/",$gcd);
+if(array_pop($gcdx)=="include")	chdir("..");
 include_once("include/lib.div.php");
 include_once("config/config.php");
 include_once("include/session.php");
+
+function lib_mysql_open_database($address,$user,$pass,$dbname) {
+	$mysqli=new mysqli($address,$user,$pass,$dbname);
+	if($mysqli->connect_errno) { echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";	}
+	return $mysqli;
+}
+function lib_mysql_query($query) {
+	if(stristr($query,"`users`")) $msql=lib_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);		
+	else                          $msql=lib_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
+	return mysqli_query($msql,$query);
+}
+
 function lib_mysql_generate_content_ids() { eval(lib_rfs_get_globals());
 	$q1="SHOW FULL TABLES";
 	$r1=lib_mysql_query($q1);	
-	while($t=mysql_fetch_array($r1)) {		
+	while($t=$r1->fetch_array()) {
 		$table=$t[0];
 		$q2="DESCRIBE $table;";
 		echo $q2."<br>";
 		$hasid=false;
 		$r2=lib_mysql_query($q2);
 		if($r2)
-		while($t2=mysql_fetch_array($r2)) {
+		while($t2=$r2->fetch_array()) {
 			echo $t2[0]."<br>";
 			if($t2[0]=="id") $hasid=true;
 		}
@@ -43,22 +57,15 @@ function lib_mysql_data_add($table,$field,$value,$id) {
 	$r=lib_mysql_fetch_one_object("select * from `$table` where `$field`='$value' $chkid");	
 	if($r->id) return $r->id;
 	lib_mysql_query("insert into `$table` (`$field`) VALUES ('$value'); ");
-	$i=mysql_insert_id();
+	$i=mysqli_insert_id();
 	return $i;	
 }
 function lib_mysql_hidden_var($name,$value) { echo lib_mysql_hidden_var_r($name,$value); }
 function lib_mysql_hidden_var_r($name,$value) { return "<input type=\"hidden\" name=\"$name\" value=\"$value\">"; }
 function lib_mysql_copy_row($table,$id) { lib_mysql_query("CREATE TEMPORARY TABLE `tmp` SELECT * FROM `$table` WHERE `id` = '$id'; ALTER TABLE `tmp` DROP `id`; INSERT INTO `$table` SELECT * FROM `tmp`;"); }
-function lib_mysql_row_count($table) { $r=lib_mysql_query("select * from `$table`"); $n=mysql_num_rows($r); return $n; }
-function lib_mysql_query_user_db($q){
-    $r=lib_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
-    return$r;
-}
-function lib_mysql_query_other_db($db,$host,$user,$pass,$query){
-$mysql=mysql_connect($host,$user,$pass);
-mysql_select_db($db, $mysql);
-$result=mysql_query($query,$mysql);
-return $result;
+function lib_mysql_row_count($table) {
+	$r=lib_mysql_query("select * from `$table`");
+	return $r->num_rows;
 }
 function lib_mysql_delimiter($t){
 	$d="\n";
@@ -67,7 +74,6 @@ function lib_mysql_delimiter($t){
 	if(empty($d)) if(stristr($t,",")) $d=",";
 	return $d;
 }
-
 function lib_mysql_import_sql($filename) {
 	//	mysql -u username –-password=password database_name < file.sql 
 	eval(lib_rfs_get_globals());
@@ -94,6 +100,8 @@ function lib_mysql_backup_database($filename) { eval(lib_rfs_get_globals());
 	}
 	return ($r1."<br>".$r2."<br>");
 }
+
+/*
 function lib_mysql_open_database(){
 	$mysql=@mysql_connect($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass']);
 	if(empty($mysql)) return false;	
@@ -103,28 +111,26 @@ function lib_mysql_open_database(){
 function lib_mysql_query($query) {	
 	if(stristr($query,"`users`")) { return lib_mysql_query_user_db($query); }
 	$mysql=lib_mysql_open_database(); if($mysql==false) return false;
-	$result=mysql_query($query,$mysql);
+	$result=$res->query($query,$mysql);
 	if(empty($result)) return false;
 	return $result;
 }
-function lib_mysql_open_database_new() {
-	$mysqli=new mysqli(	$GLOBALS['authdbaddress'],
-							$GLOBALS['authdbuser'],
-							$GLOBALS['authdbpass'],
-							$GLOBALS['authdbname'] );
-	if($mysqli->connect_errno) {
-		echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";
-	}
-	return $mysqli;
+function lib_mysql_query_user_db($q){
+    $r=lib_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
+    return $r;
 }
-function lib_mysql_query_new($query) {
-	if(stristr($query,"`users`")) { return lib_mysql_query_user_db($query); }
-	return mysqli_query(lib_mysql_open_database(),$query);
+function lib_mysql_query_other_db($db,$host,$user,$pass,$query){
+	$mysql=$res->connect($host,$user,$pass);
+	mysql_select_db($db, $mysql);
+	$result=$res->query($query,$mysql);
+	return $result;
 }
+*/
+
 function lib_mysql_describe_table($table){
     $query ="DESCRIBE $table";
-    $result = mysql_query($query);
-    while($i = mysql_fetch_assoc($result)){
+    $result=lib_mysql_query($query);
+    while($i=$result->fetch_assoc()){
          echo $i['Field'];
          echo "<br>";
     }
@@ -158,11 +164,17 @@ function lib_mysql_scrub($table,$group) {
 	$q=" DROP TABLE `$tab3`; ";
 	lib_mysql_query($q);
 }
-function lib_mysql_fetch_one_object($query){ $res=lib_mysql_query($query); if($res) return mysql_fetch_object($res); else return $res; }
+function lib_mysql_fetch_one_object($query) {
+	$res=lib_mysql_query($query);
+	if($res)
+		return $res->fetch_object();
+	else
+		return $res;
+}
 function lib_mysql_table_to_array($table,$key,$kv,$field){
     $q="select $field from $table where $key = \"$kv\"";
     $res=lib_mysql_query($q);
-    $i=mysql_fetch_assoc($res);
+    $i=$res->fetch_assoc();
     reset($i);
     $j=current($i);
     return $j;
@@ -171,10 +183,10 @@ function lib_mysql_update_database($table,$key_field,$key_value,$md5_password) {
 	$q="select * from `$table` where `$key_field`='$key_value' limit 1";
 	d_echo("$q");
     $res=lib_mysql_query($q);
-    if(mysql_num_rows($res)==0)
+    if($res->num_rows==0)
 		lib_mysql_query("insert into `$table` (`$key_field`) values ('$key_value');");
     $res=lib_mysql_query("DESCRIBE $table");
-    while($i = mysql_fetch_assoc($res)) {
+    while($i = $res->fetch_assoc()) {
 		$q ="update $table set `";
 		$q.=$i['Field'];
 		$q.="`='";			
@@ -195,10 +207,10 @@ function lib_mysql_update_database($table,$key_field,$key_value,$md5_password) {
 }
 function lib_mysql_update_database_2($table,$key_field,$key_value){
 	$res=lib_mysql_query("select * from `$table` where `$key_field`='$key_value' limit 1");
-	if(mysql_num_rows($res)==0)
+	if($res->num_rows==0)
 	lib_mysql_query("insert into `$table` (`$key_field`) values ('$key_value');");
 	$res=lib_mysql_query("DESCRIBE $table");
-	while($i = mysql_fetch_assoc($res)){
+	while($i = $res->fetch_assoc()){
 		//echo $i['Field']."::".$_REQUEST[$i['Field']]."<br>";
 		if($_REQUEST[$i['Field']]!=''){
 			$q ="update $table set `";
@@ -210,21 +222,22 @@ function lib_mysql_update_database_2($table,$key_field,$key_value){
 		}
 	}
 }
-function lib_mysql_database_query($query,$becho){
+function lib_mysql_database_query($query,$becho) {
 	$gt=0;    
-	if(stristr($query,"users")) 	 $res=lib_mysql_query_user_db($query);
-	else                             $res=lib_mysql_query($query);
+	$res=lib_mysql_query($query);
 	if($res)
-	if($becho){
-		$num=@mysql_num_rows($res);
-		echo "<br>$num rows affected<br>";
+	
+    if(lib_rfs_bool_true($becho)){
+		$num=$res->num_rows-1;
+		echo "<br>$num rows<br>";
 		echo "<table border=0 cellpadding=5>";
 		$hdr=0;
-		while($row=@mysql_fetch_assoc($res)){
+		$row=$res->fetch_assoc();
+		while($row=$res->fetch_assoc()){
 			$gt++; if($gt>2) $gt=1;
 			if($hdr==0){
                 echo "<tr>";
-                reset($row);
+				reset($row);
                 while(key($row)!==NULL){
                     echo "<th>";
                     echo key($row);
@@ -241,8 +254,7 @@ function lib_mysql_database_query($query,$becho){
             echo "<tr>";
             while(key($row)!==NULL){
                 echo "<td class=rfs_project_table_$gt>";
-				
-				
+
 				
 					$txtout=current($row);
 					$txtout=str_replace("<","&lt;",$txtout);
@@ -322,7 +334,7 @@ function lib_mysql_dump_table($table,$showform,$key,$search,$ignore,$short){
     
     echo "<table border=0 cellpadding=5>";
     $hdr=0;
-    while($row=mysql_fetch_assoc($res)){
+    while($row=$res->fetch_assoc()){
         $gt++; if($gt>2) $gt=1;
         if($hdr==0){
             echo "<tr>";

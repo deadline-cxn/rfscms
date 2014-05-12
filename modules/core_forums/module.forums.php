@@ -33,9 +33,9 @@ function m_panel_forum_threads($x) {
     echo "<h2>Last $x Threads</h2>";
     echo "<table border=0 cellspacing=0>";
     $result = lib_mysql_query("select * from `forum_posts` where `thread_top`='yes' order by bumptime desc limit 0,$x");
-    $numposts=mysql_num_rows($result);    
+    $numposts=$result->num_rows;
 	if($numposts) { $gt=1;
-		while($thread=mysql_fetch_object($result)) {
+		while($thread=$result->fetch_object()) {
 				$gt++; if($gt>2) $gt=1;
 				echo "<tr><td class=\"rfs_forum_table_$gt\">";				
 				$lastreply=lib_mysql_fetch_one_object("	select * from `forum_posts` where `thread` = '$thread->thread' order by time desc limit 1");
@@ -64,13 +64,13 @@ function adm_action_forum_admin() {
     eval( lib_rfs_get_globals() );	
 	// Select forum folders
 	$r=lib_mysql_query( "select * from forum_list where folder='yes' order by priority asc" );
-	$n=mysql_num_rows( $r );
-	if( $n==0 ) {
+	
+	if( $r->num_rows==0 ) {
 	   lib_forms_warn("<p>No forum folders defined.</p>");
 	}
 	else {
-		for( $i=0; $i<$n; $i++ ) {
-			$folder=mysql_fetch_object( $r );
+		for( $i=0; $i<$r->num_rows; $i++ ) {
+			$folder=$r->fetch_object();
 			echo "<div class=forum_box>";
 			
 			echo "<img src=$RFS_SITE_URL/images/icons/folder_big.gif style='float: left;'>";
@@ -91,22 +91,20 @@ function adm_action_forum_admin() {
 			
 			$rr=lib_mysql_query("select * from `forum_list` where parent='$folder->id' order by priority asc");
 
-			$nn=mysql_num_rows($rr);
-			if($nn==0) {
+			
+			if($rr->num_rows==0) {
 				echo "<p>No forums defined.</p>";				
 			}
 			else {
 				
 				echo "<div style='margin-left: 100px;'>";
 				
-				for($j=0;$j<$nn;$j++) {
-					$forum=mysql_fetch_object($rr);
+				for($j=0;$j<$rr->num_rows;$j++) {
+					$forum=$rr->fetch_object();
 					echo "<div>";
 					
 					echo "<img src=$RFS_SITE_URL/images/icons/icon_minipost.gif>";
-					
-					
-			
+
 					rfs_db_element_edit(
 						"$forum->name",
 						"$RFS_SITE_URL/admin/adm.php",

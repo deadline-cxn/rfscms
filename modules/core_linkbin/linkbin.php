@@ -11,7 +11,7 @@ function linkbin_showaddform() {
     echo "<tr><td align=right>Description:    </td><td><textarea name=description rows=10 cols=70></textarea></td></tr>\n";
     echo "<tr><td align=right>Category:</td><td><select name=category>\n";
     $result=lib_mysql_query("select * from link_bin_categories");
-    while ($cat=mysql_fetch_object($result)) echo "<option>$cat->name\n";
+    while ($cat=$result->fetch_object()) echo "<option>$cat->name\n";
     echo "</select></td></tr>\n";
     echo "<tr><td align=right>&nbsp;</td><td><input type=submit name=submit value=\"add\"></td></tr>\n";
     echo "<input type=hidden name=action value=addlinkgo>\n";
@@ -74,7 +74,7 @@ function linkbin_action_editlinkbin() {
     
     echo "<table width=100% border=0 cellspacing=0 cellpadding=0 align=center>\n";
     $gt=2;
-    while($link=mysql_fetch_object($result)) {
+    while($link=$result->fetch_object()) {
     	    $gt++;if($gt>3)$gt=2;
             echo "<tr><td bgcolor=$forum_color[$gt]>\n";            
             $userdata=lib_users_get_data($link->poster);
@@ -97,7 +97,7 @@ function linkbin_action_editlinkbin() {
                 echo "<option>$link->category\n";
                 
                 $result2=lib_mysql_query("select * from categories order by name asc");
-                while($cat=mysql_fetch_object($result2)) echo "<option>$cat->name\n";
+                while($cat=$result2->fetch_object()) echo "<option>$cat->name\n";
                 echo "</select>\n";
                 echo "</td>\n";
 
@@ -129,7 +129,7 @@ function linkbin_action_() {
 	$result=lib_mysql_query("select * from link_bin order by time desc");
 	echo "<table width=100% cellspacing=0 cellpadding=0 border=0>\n";
 	$gt=0;
-	while($link=mysql_fetch_object($result)) {
+	while($link=$result->fetch_object()) {
 		$gt++; if($gt>1) $gt=0;
 		$userdata=lib_users_get_data($link->poster);
 		list($lmonth,$lday,$lyear,$ltime,$lampm) = explode(" ",lib_string_current_time($link->time));

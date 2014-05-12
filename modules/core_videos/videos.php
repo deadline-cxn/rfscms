@@ -51,7 +51,8 @@ function videos_action_modifyvideo() {
 		echo "<td><select name=category>";
 		echo "<option>$video->category";
 		$result2=lib_mysql_query("select * from `categories` order by `name` asc");
-		while($cat=mysql_fetch_object($result2)) echo "<option>$cat->name";
+		while($cat=$result2->fetch_object())
+			echo "<option>$cat->name";
 		echo "</select></td>";
 		echo "</tr>";
 		echo "<tr>";
@@ -75,7 +76,6 @@ function videos_action_modifygo() {
 	eval(lib_rfs_get_globals());
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
-    // $categoryz=mysql_fetch_object(lib_mysql_query("select * from `categories` where `name`='$categorey'")); $category=$categoryz->id;
 	if(lib_access_check("videos","edit")) {	
 		if((!lib_access_check("videos","editothers"))  &&
 			($data->id!=$video->contributor)) {
@@ -113,7 +113,7 @@ function videos_action_submitvid_youtube_go() {
         $q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`,       `time`, `bumptime`, `category`, `hidden`, `sfw`)
 						   VALUES ('$cont',      '$sname','$vembed_code' , '$youtube' ,'$time',    '$time','$category',      '0', '$sfw');";
 		lib_mysql_query($q);
-		$id=mysql_insert_id();
+		$id=mysqli_insert_id();
 		videos_action_view($id);
 	}
 }
@@ -136,7 +136,7 @@ function videos_action_submitvidgo() {
 				
 		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`embed_code`, `url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
 									   VALUES ('$cont','$sname','$vembed_code','$vurl','$time','$time','$category','0','$sfw');");
-		$id=mysql_insert_id();
+		$id=mysqli_insert_id();
 		videos_action_view($id);
 	}
 }
@@ -158,7 +158,7 @@ function videos_action_submitvid() {
 		$res=lib_mysql_query("select * from `categories` order by name asc");
 		echo "<tr><td>Category</td><td><select name=category>";
 		if(!empty($category_in)) echo "<option>$category_in";
-		while($cat=mysql_fetch_object($res)) echo "<option>$cat->name";
+		while($cat=$res->fetch_object()) echo "<option>$cat->name";
 		echo "</select></td></tr>\n";
 		echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Add Youtube Video\"></td></tr>\n";
 		echo "</table>\n";
@@ -181,7 +181,7 @@ function videos_action_submitvid() {
 		$res=lib_mysql_query("select * from `categories` order by name asc");
 		echo "<tr><td>Category</td><td><select name=category>";
 		if(!empty($category_in)) echo "<option>$category_in";
-		while($cat=mysql_fetch_object($res)) {
+		while($cat=$res->fetch_object()) {
 			echo "<option>$cat->name";
 		}		
 		echo "</select></td></tr>\n";
@@ -216,7 +216,7 @@ function videos_action_removevideo() {
 }
 function videos_action_view($id) {
 	eval(lib_rfs_get_globals());
-	if(empty($id)) $id=mysql_insert_id();
+	if(empty($id)) $id=mysqli_insert_id();
 	videos_buttons();
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
@@ -225,9 +225,9 @@ function videos_action_view($id) {
 	$res2=lib_mysql_query("select * from `videos` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
 	$linkprev="";
 	$linknext="";
-	while($video2=mysql_fetch_object($res2)){		
+	while($video2=$res2->fetch_object($res2)){		
 		if($video2->id==$video->id) {
-			$video2=mysql_fetch_object($res2);
+			$video2=$res2->fetch_object($res2);
 			if(!empty($video2->id)){
 				$linknext="[<a href=videos.php?action=view&id=$video2->id>Next</a>]";
 				if(!empty($video3->id))
@@ -266,7 +266,7 @@ function videos_action_viewcat($cat) {
 	eval(lib_rfs_get_globals());
 	videos_buttons();
 	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
-	while($vid=mysql_fetch_object($res2)) {		
+	while($vid=$res2->fetch_object($res2)) {		
 		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
 		echo "<a href=videos.php?action=view&id=$vid->id>";
 		$ytturl=videos_get_thumbnail($vid->embed_code);
@@ -280,15 +280,15 @@ function videos_action_viewcat($cat) {
 function videos_action_random() { 
 	eval(lib_rfs_get_globals());
 	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
-	$num=mysql_num_rows($res);
+	$num=$res->num_rows;
 	if($num==0) { 
 		videos_buttons();
 		echo "<p>There are no videos.</p>";
 	}
 	else {
 		$vid=rand(1,$num)-1;
-		mysql_data_seek($res,$vid);
-		$video=mysql_fetch_object($res);
+		mysqli_data_seek($res,$vid);		
+		$video=$res->fetch_object();
 		$vc=lib_users_get_data($video->contributor);
 		$id=$video->id;
 		videos_action_view($id);
@@ -299,9 +299,9 @@ function videos_action_view_cats() {
 	$numcols=0;
 	echo "<table border=0><tr>";
 	$res=lib_mysql_query("select * from `categories` order by name asc");	
-	while($cat=mysql_fetch_object($res)) {		
+	while($cat=$res->fetch_object()) {
 		$res2=lib_mysql_query("select * from `videos` where `category`='$cat->name' and `hidden`!='yes' order by `sname` asc");
-		$numvids=mysql_num_rows($res2);
+		$numvids=$res2->num_rows;
 		if(!empty($cat->name))
 			if($numvids>0){
 				echo "<td>";
@@ -317,7 +317,7 @@ function videos_action_view_cats() {
 				echo "<td class=td_cat valign=top height=200 width=220>";
 				if($numvids>5) $numvids=5;
 				for($i=0;$i<$numvids;$i++){
-					$video=mysql_fetch_object($res2);
+					$video=$res2->fetch_object();
 					if($video->sfw=="no")
 						$video->embed_code="$RFS_SITE_URL/images/icons/NSFW.gif";
 					echo "<table border=0>";

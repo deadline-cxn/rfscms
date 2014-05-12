@@ -60,7 +60,7 @@ function adm_action_f_module_store() {
 	echo "<hr>";
 	echo "MODULES... <br>";
 	$r=lib_mysql_query("select * from `addon_database`");
-	while($module=mysql_fetch_object($r)) {
+	while($module=$r->fetch_object()) {
 		echo "Name: $module->name <br>";
 		echo "      $module->git_repository<br>";
 	}

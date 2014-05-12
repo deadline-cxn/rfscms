@@ -40,11 +40,12 @@ function m_panel_comics($x) {
     lib_div("COMIC MODULE SECTION");
     echo "<h2>Last $x Comics</h2>";
     $res = lib_mysql_query("select * from comics where `published`='yes' order by time desc limit 1");
-    $numc = mysql_num_rows($res);
+    $numc = $res->num_rows;
     for ($i = 0; $i < $numc; $i++) {
         echo "<div class=\"memeboxmini\" >";
-        $comic = mysql_fetch_object($res);
-        $page = mysql_fetch_object(lib_mysql_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc limit 1"));
+        $comic = $res->fetch_object();
+		$rc2=lib_mysql_query("select * from `comics_pages` where `parent`='$comic->id' order by `page` asc limit 1");
+        $page = $rc2->fetch_object();
         rfs_comics_mini_preview_link($page->pid, "$RFS_ADDON_URL?action=viewcomic&id=$comic->id");
         echo "<a href=\"$RFS_ADDON_URL?action=viewcomic&id=$comic->id\">$comic->title vol. $comic->volume issue $comic->issue</a>";
         echo "</div>";
@@ -56,9 +57,11 @@ function m_panel_comics($x) {
 function rfs_comics_mini_preview_link($pid, $link) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL = lib_modules_get_url("comics");
-    $page = mysql_fetch_array(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
+	$res=lib_mysql_query("select * from `comics_pages` where `pid`='$pid'");
+    $page= $res->fetch_array();
     $tid = $page['template'];
-    $template = mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'"));
+	$res=lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'");
+    $template = $res->fetch_array();
     echo "<table border=0><tr><td> ";
     for ($i = 0; $i < $template['panels']; $i++) {
         $var = "panel" . ($i + 1) . "_x";
@@ -86,9 +89,11 @@ function rfs_comics_mini_preview_link($pid, $link) {
 function rfs_comics_page_mini_preview($pid) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL = lib_modules_get_url("comics");
-    $page = mysql_fetch_array(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
+	$res=lib_mysql_query("select * from `comics_pages` where `pid`='$pid'");
+    $page= $res->fetch_array();
     $tid = $page['template'];
-    $template = mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='$tid'"));
+	
+    $template= $res->fetch_array();
     echo "<table border=0><tr><td> ";
     for ($i = 0; $i < $template['panels']; $i++) {
         $var = "panel" . ($i + 1) . "_x";
@@ -114,8 +119,10 @@ function rfs_comics_page_mini_preview($pid) {
 function page_full_view($pid) {
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL  = lib_modules_get_url("comics");
-    $page           = mysql_fetch_array(lib_mysql_query("select * from `comics_pages` where `pid`='$pid'"));
-    $template       = mysql_fetch_array(lib_mysql_query("select * from `comics_page_templates` where `id`='".$page['template']."'"));
+	$res=lib_mysql_query("select * from `comics_pages` where `pid`='$pid'");
+    $page           = $res->fetch_array();
+	$res=lib_mysql_query("select * from `comics_page_templates` where `id`='".$page['template']."'");
+    $template       = $res->fetch_array();
     echo "<table border=0><tr><td> ";
     $pfvzz=$template['panels'];
     for($pfvi = 0; $pfvi < $pfvzz; $pfvi++) {

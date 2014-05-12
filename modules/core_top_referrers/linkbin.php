@@ -11,10 +11,10 @@ function linkbin_showaddform()
     echo "<tr><td align=right>Description:    </td><td><textarea name=description rows=10 cols=70></textarea></td></tr>\n";
     echo "<tr><td align=right>Category:</td><td><select name=category>\n";
     $result=lib_mysql_query("select * from link_bin_categories");
-    $numcats=mysql_num_rows($result);
+    $numcats=$r->num_rows;
     for($i=0;$i<$numcats;$i++)
     {
-    	$cat=mysql_fetch_object($result);
+    	$cat=$result->fetch_object($result);
     	echo "<option>$cat->name\n";
     }
     echo "</select></td></tr>\n";
@@ -86,7 +86,7 @@ if($action=="editlinkbin")
     echo "<p><h1>Link Bin Edirator</h1></p>\n";
     // list all the links here with edit or delete buttons...
     $result=lib_mysql_query("select * from link_bin order by time desc");
-    $numlinks=mysql_num_rows($result);
+    $numlinks=$result->num_rows;
     echo "<table width=100% border=0 cellspacing=0 cellpadding=0 align=center>\n";
 
     $gt=2;
@@ -95,7 +95,7 @@ if($action=="editlinkbin")
     	    $gt++;if($gt>3)$gt=2;
             echo "<tr><td bgcolor=$forum_color[$gt]>\n";
 
-            $link=mysql_fetch_object($result);
+            $link=$result->fetch_object();
             $userdata=lib_users_get_data($link->poster);
 
             echo "<table border=0 cellspacing=0 cellpadding=0 width=100% bgcolor=$forum_color[$gt]>\n";
@@ -117,10 +117,9 @@ if($action=="editlinkbin")
                 echo "<option>$link->category\n";
                 
                 $result2=lib_mysql_query("select * from categories order by name asc");
-                $numcats=mysql_num_rows($result2);
-                for($i2=0;$i2<$numcats;$i2++)
-                {
-                	$cat=mysql_fetch_object($result2);
+                $numcats=$result2->num_rows;
+                for($i2=0;$i2<$numcats;$i2++) {
+					$cat=$result2->fetch_object();
                 	echo "<option>$cat->name\n";
                 }
                 
@@ -156,13 +155,13 @@ if($action=="editlinkbin")
 
 
 $result=lib_mysql_query("select * from link_bin order by time desc");
-$numlinks=mysql_num_rows($result);
+$numlinks=$result->num_rows;
 echo "<table width=100% cellspacing=0 cellpadding=0 border=0>\n";
 $gt=4;
 for($u=0;$u<$numlinks;$u++)
 {
     $gt++; if($gt>5) $gt=4;
-    $link=mysql_fetch_object($result);
+    $link=$result->fetch_object();
     $userdata=lib_users_get_data($link->poster);
     list($lmonth,$lday,$lyear,$ltime,$lampm) = explode(" ",lib_string_current_time($link->time));
     if($lmonth!=$lastmonth)

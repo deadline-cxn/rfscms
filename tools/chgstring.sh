@@ -13,5 +13,5 @@ grep -nR \
 --exclude-dir=tools \
 --exclude-dir=modules/netman \
 --exclude-dir=not_included \
-"$1" ../* | xargs sed -i 's/$1/$2/g'
+"$1" ./* | xargs sed -i 's/$1/$2/g'
 

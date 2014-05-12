@@ -78,7 +78,7 @@ function news_action_createnewsgo() {
 									  VALUES ('$headline','$data->id','$time','no');");
 		echo "<p>News headline entered into database... The story is unpublished.</p>";
 		$result=lib_mysql_query("select * from news where `headline`='$headline' and `submitter`='$data->id'");
-		$news=mysql_fetch_object($result);
+		$news=$result->fetch_object($result);
 		$nid=$news->id;
 	}
 	news_action_editnews($nid);
@@ -122,9 +122,8 @@ function news_action_editnewsgo($nid) {
 function news_action_editnews($nid) { 
     eval(lib_rfs_get_globals());
     $RFS_ADDON_URL=lib_modules_get_url("news");
-
-    $news=mysql_fetch_object(lib_mysql_query("select * from news where id='$nid'"));
-    
+	$res=lib_mysql_query("select * from news where id='$nid'")
+    $news=$res->fetch_object();    
 	echo "<a href=$RFS_ADDON_URL?action=view&nid=$nid>Preview</a>";
 	
 	$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
@@ -260,9 +259,9 @@ function news_action_editnews($nid) {
     echo "<tr><td>Main Category:</td><td><select name=category1>";
     if(!empty($news->category1)) echo "<option>$news->category1";
     $res=lib_mysql_query("select * from `categories` order by `name` asc");
-    $ncats=mysql_num_rows($res);
+    $ncats=$res->num_rows;
     for($i=0;$i<$ncats;$i++) {
-        $cat=mysql_fetch_object($res);
+        $cat=$res->fetch_object($res);
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";
@@ -270,9 +269,9 @@ function news_action_editnews($nid) {
     if(!empty($news->category2)) echo "<option>$news->category2";
     echo "<option>none";
     $res=lib_mysql_query("select * from `categories` order by `name` asc");
-    $ncats=mysql_num_rows($res);
+    $ncats=$res->num_rows;
     for($i=0;$i<$ncats;$i++) {
-        $cat=mysql_fetch_object($res);
+        $cat=$res->fetch_object();
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";
@@ -280,9 +279,9 @@ function news_action_editnews($nid) {
     if(!empty($news->category3)) echo "<option>$news->category3";
     echo "<option>none";
     $res=lib_mysql_query("select * from `categories` order by `name` asc");
-    $ncats=mysql_num_rows($res);
+    $ncats=$res->num_rows;
     for($i=0;$i<$ncats;$i++) {
-        $cat=mysql_fetch_object($res);
+        $cat=$res->fetch_object();
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";
@@ -290,9 +289,9 @@ function news_action_editnews($nid) {
     if(!empty($news->category4)) echo "<option>$news->category4";
     echo "<option>none";
     $res=lib_mysql_query("select * from `categories` order by `name` asc");
-    $ncats=mysql_num_rows($res);
+    $ncats=$res->num_rows;
     for($i=0;$i<$ncats;$i++) {
-        $cat=mysql_fetch_object($res);
+        $cat=$res->fetch_object();
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";
@@ -381,9 +380,9 @@ function news_action_edityournews(){
     echo "<p>Unpublished:</p>";
     echo "<p align=left>";
     $res=lib_mysql_query("select * from news where submitter='$data->id' and published='no' order by time desc");
-    $count=mysql_num_rows($res);
+    $count=$res->num_rows;
     for($i=0;$i<$count;$i++) {
-        $news=mysql_fetch_object($res);
+        $news=$res->fetch_object();
         echo "[<a href=\"$RFS_ADDON_URL?action=deletenews&nid=$news->id\">Delete</a>] ";
         echo "[<a href=\"$RFS_ADDON_URL?action=editnews&nid=$news->id\">Edit</a>] ";
         echo "[<a href=\"$RFS_ADDON_URL?action=publish&nid=$news->id\">Publish</a>] ";
@@ -393,9 +392,9 @@ function news_action_edityournews(){
     echo "<p>Published:</p>";
     echo "<p align=left>";
     $res=lib_mysql_query("select * from news where submitter='$data->id' and published='yes' order by time desc");
-    $count=mysql_num_rows($res);
+    $count=$res->num_rows;
     for($i=0;$i<$count;$i++) {
-        $news=mysql_fetch_object($res);
+        $news=$res->fetch_object();
         echo "[<a href=\"$RFS_ADDON_URL?action=deletenews&nid=$news->id\">Delete</a>] ";
         echo "[<a href=\"$RFS_ADDON_URL?action=editnews&nid=$news->id\">Edit</a>] ";
         echo "[<a href=\"$RFS_ADDON_URL?action=unpublish&nid=$news->id\">Unpublish</a>] ";
@@ -409,9 +408,9 @@ function news_action_edityournews(){
     echo "<p align=left>";
     $res=lib_mysql_query("select * from news where submitter!='$data->id' and published='no' order by time desc");
 
-    $count=mysql_num_rows($res);
+    $count=$res-num_rows;
     for($i=0;$i<$count;$i++) {
-        $news=mysql_fetch_object($res);
+        $news=$res->fetch_object();
         $userdata=getuserdata($news->submitter);
         echo "[<a href=\"$RFS_ADDON_URL?action=deletenews&nid=$news->id\">Delete</a>] ";
         echo "[<a href=\"$RFS_ADDON_URL?action=editnews&nid=$news->id\">Edit</a>] ";
@@ -424,9 +423,9 @@ function news_action_edityournews(){
 
     echo "<p align=left>";
     $res=lib_mysql_query("select * from news where submitter!='$data->id' and published='yes' order by time desc");
-    $count=mysql_num_rows($res);
+    $count=$res->num_rows;
     for($i=0;$i<$count;$i++) {
-        $news=mysql_fetch_object($res);
+        $news=$res->fetch_object();
         $userdata=lib_users_get_data($news->submitter);
         echo "[<a href=\"$RFS_ADDON_URL?action=deletenews&nid=$news->id\">Delete</a>] ";
         echo "[<a href=\"$RFS_ADDON_URL?action=editnews&nid=$news->id\">Edit</a>] ";

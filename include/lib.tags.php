@@ -67,12 +67,12 @@ function lib_tags_add_link($table,$id) {
 	
 	lib_mysql_query("delete from tags where tag = ''");
 	$r=lib_mysql_query("select * from tags order by tag asc");
-	$n=mysql_num_rows($r);
+	$n=$r->num_rows;
 	
 	echo "<div style='clear:both;'>";
 	
 	for($i=0;$i<$n;$i++){
-	$tag=mysql_fetch_object($r);
+	$tag=$r->fetch_object();
 	if( (($tag->hidden=="yes") && (lib_rfs_bool_true($_SESSION['hidden']))) ||
 		$tag->hidden!="yes" ) {
 			echo "<div style='float:left;'>";

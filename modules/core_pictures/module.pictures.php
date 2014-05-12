@@ -31,10 +31,10 @@ function m_panel_pictures($x) { eval(lib_rfs_get_globals());
     lib_div("PICTURES MODULE SECTION");
     echo "<h2>Last $x Pictures</h2>";
     $res2=lib_mysql_query("select * from `pictures` where `hidden`='no' order by time desc limit 0,$x");
-    $numpics=mysql_num_rows($res2); // make pictures table...
+    $numpics=$res2->num_rows; // make pictures table...
 	echo "<table border=0 cellspacing=0 cellpadding=0>";
     for($i=0;$i<$numpics;$i++) {
-        $picture=mysql_fetch_object($res2);
+        $picture=$res2->fetch_object();
         if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";        
         echo "<tr><td class=contenttd>";
         echo "<a href=\"$RFS_SITE_URL/modules/core_pictures/pictures.php?action=view&id=$picture->id\">".
@@ -82,7 +82,7 @@ function pics_addorphans($folder,$cat) { eval(lib_rfs_get_globals());
                         // $ofolder=str_replace($GLOBALS['RFS_SITE_PATH'],"",$folder);
                         $url = "$folder/$file";
                         $res=lib_mysql_query("select * from `pictures` where `url`='$url'");
-                        if(!mysql_num_rows($res)) {
+                        if(!$res->num_rows) {
                             $time=date("Y-m-d H:i:s");
                             lib_mysql_query("insert into `pictures` (`time`,`url`,`category`,`hidden`)
                                                        VALUES('$time','$url','unsorted','yes')");

@@ -10,9 +10,10 @@ $link_out=urldecode($_REQUEST['link']);
 $link_out=str_replace("_rfs_colon_",":",$link_out);
 $foundlink=false;
 $result=lib_mysql_query("select * from link_bin where `link` like '%$link_out%'");
-if(mysql_num_rows($result)>0) {
+if($result->num_rows>0) {
 	$foundlink=true;
-	$link=mysql_fetch_object($result); $link->clicks=$link->clicks+1;
+	$link=$result->fetch_object();
+	$link->clicks=$link->clicks+1;
 	lib_mysql_query("update link_bin set `clicks` = '$link->clicks' where `id` = '$link->id'");
 }
 if(empty($link_out)) $link_out=$site_url;

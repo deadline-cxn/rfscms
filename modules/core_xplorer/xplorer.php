@@ -106,10 +106,8 @@ function xp_mysql_install() {
 
         echo "Creating table xp_data:<br>";
         $query = "CREATE TABLE xp_data (xp_id int(10) NOT NULL auto_increment, xp_user text, xp_pass text, xp_topfolder text, PRIMARY KEY (xp_id) )";
-
-        mysql_query($query);
-        $error = mysql_error();
-        echo "<br>$error<br>";
+        lib_mysql_query($query);
+        // $error = mysql_error();        echo "<br>$error<br>";
         echo "<br>Installation success!<br>Click <a href=index.php>here</a> to continue.";
     }
     else {
