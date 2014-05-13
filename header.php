@@ -5,14 +5,15 @@
 // if(isset($RFS_LITTLE_HEADER)) { if($RFS_LITTLE_HEADER==true) { include("lilheader.php"); exit(); } }
 if(!file_exists("config/config.php")) {
     $RFS_SITE_URL  = "http://".$_SERVER['SERVER_NAME'];
-    echo "NO CONFIG FILE FOUND
-<img src=images/icons/spinner.gif><META HTTP-EQUIV=\"refresh\" content=\"3;URL=$RFS_SITE_URL/install/install.php\">";
+    echo "<html><body style='background-color:#000; color:#0f0;'>
+	NO CONFIG FILE FOUND<img src=images/icons/spinner.gif><META HTTP-EQUIV=\"refresh\" content=\"2;URL=$RFS_SITE_URL/install/install.php\">";
     exit();
 }
 include_once("include/lib.all.php");
 if(empty($RFS_SITE_NAME)) {
     $RFS_SITE_URL  = "http://".$_SERVER['SERVER_NAME'];
-    echo "NO RFS_SITE_URL FOUND <META HTTP-EQUIV=\"refresh\" content=\"3;URL=$RFS_SITE_URL/install/install.php\">";
+    echo "NO RFS_SITE_URL FOUND
+	<body style='background-color:#000; color:#0f0;'><img src=images/icons/spinner.gif><META HTTP-EQUIV=\"refresh\" content=\"2;URL=$RFS_SITE_URL/install/install.php\">";
     exit();
 }
 lib_rfs_maintenance();

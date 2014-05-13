@@ -9,32 +9,18 @@ if(substr(PHP_OS,0,3)=="WIN") {
 	$RFS_SITE_PATH_SEP="\\";
 	$RFS_SITE_OS="Windows";
 }
-/* function install_mysql_open_database(){
-	$mysql=@mysql_connect(	$GLOBALS['authdbaddress'], $GLOBALS['authdbuser'], $GLOBALS['authdbpass']);
-	if(empty($mysql))	{
-		return false;
-	}
-	mysql_select_db( $GLOBALS['authdbname'], $mysql);
-	return $mysql;
+
+function install_mysql_open_database($address,$user,$pass,$dbname) {
+	$mysqli=new mysqli($address,$user,$pass,$dbname);
+	if($mysqli->connect_errno) { echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";	}
+	return $mysqli;
 }
 function install_mysql_query($query) {
-	if(stristr($query,"`users`")) { $x=install_mysql_query_user_db($query); return $x; }
-	$mysql=install_mysql_open_database(); if($mysql==false) return false;
-	$result=mysqlquery($query,$mysql);
-	if(empty($result)) return false;
-	return $result;
+	if(stristr($query,"`users`")) $msql=install_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);		
+	else                          $msql=install_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
+	return mysqli_query($msql,$query);
 }
-function install_mysql_query_user_db($q){
-    $r=install_mysql_query_other_db($GLOBALS['userdbname'], $GLOBALS['userdbaddress'], $GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$q);
-    return$r;
-}
-function install_mysql_query_other_db($db,$host,$user,$pass,$query){
-	$mysql=stuff connect($host,$user,$pass);
-	mysql_select_db($db, $mysql);
-	$result blah query($query,$mysql);
-	return $result;
-}
-*/
+
 $RFS_SITE_PATH = getcwd();
 $cwdx=explode($RFS_SITE_PATH_SEP,$RFS_SITE_PATH);
 $installd=array_pop($cwdx);
@@ -57,7 +43,6 @@ include("../include/version.php");
 $RFS_BUILD=file_get_contents("../build.dat");
 $rver=file_get_contents("https://raw.github.com/sethcoder/rfscms/master/include/version.php");
 $rbld=file_get_contents("https://raw.github.com/sethcoder/rfscms/master/build.dat");
-
 $rverx=explode("\"",$rver);
 
 // echo " [$RFS_VERSION][$RFS_BUILD] [$rverx[1]][$rbld]\n";
@@ -167,6 +152,8 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
         if(empty($rfs_udb_user))     $rfs_udb_user=$rfs_db_user;
         if(empty($rfs_udb_password)) $rfs_udb_password=$rfs_db_password;
 
+		system("sudo chmod 777 $RFS_SITE_PATH/config");
+
         echo "<div width=100% style='background-color: cyan; color: black;'>Attempting to create $RFS_SITE_PATH/config/config.php</div>";
         $fp=fopen("$RFS_SITE_PATH/config/config.php","wt");
 
@@ -204,16 +191,17 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				$q=$qx[$i];
 				install_mysql_query("$q;");
 			}
+			echo "...<br>";
 			$rfs_password=md5($rfs_password);
 			install_mysql_query("
 			INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `access_groups`, `theme`) VALUES
 			('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255',  'Administrator', 'default'); ");
-											
+			echo "...<br>";
 			///////////////////////////////////////////////////////////////////////////////
 			// CHECK DATABASE				
 			$r=install_mysql_query("select * from users");
 			$n=0;
-			if($r) $n=$r->num_rows($r);
+			if($r) $n=$r->num_rows;
 			if(!$n) {
 				echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
 				$action="step_a";
