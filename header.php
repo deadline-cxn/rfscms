@@ -5,7 +5,8 @@
 // if(isset($RFS_LITTLE_HEADER)) { if($RFS_LITTLE_HEADER==true) { include("lilheader.php"); exit(); } }
 if(!file_exists("config/config.php")) {
     $RFS_SITE_URL  = "http://".$_SERVER['SERVER_NAME'];
-    echo "NO CONFIG FILE FOUND <META HTTP-EQUIV=\"refresh\" content=\"3;URL=$RFS_SITE_URL/install/install.php\">";
+    echo "NO CONFIG FILE FOUND
+<img src=images/icons/spinner.gif><META HTTP-EQUIV=\"refresh\" content=\"3;URL=$RFS_SITE_URL/install/install.php\">";
     exit();
 }
 include_once("include/lib.all.php");
