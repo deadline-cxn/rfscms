@@ -62,8 +62,11 @@ function send_all($from,$subject,$message) {
 
 function m_panel_messages_link() {
     eval(lib_rfs_get_globals());
-	if($_SESSION["logged_in"]!="true") return;
-	echo "<h2>Private Messages</h2>";
+    echo "<h2>Private Messages</h2>";
+	if($_SESSION["logged_in"]!="true") {
+		echo "(Requires Login)";
+		return;
+	}
 	echo "<table border=0 cellspacing=0 cellpadding=3>";
 	echo "<tr class='message_mini_indicator'>";
 	echo "<td>";
@@ -80,8 +83,11 @@ function m_panel_messages_link() {
 
 function m_panel_messages_indicator_small() {
     eval(lib_rfs_get_globals());
-	if($_SESSION["logged_in"]!="true") return;
-	echo "<h2>Private Messages</h2>";	
+	echo "<h2>Private Messages</h2>";
+	if($_SESSION["logged_in"]!="true") {
+            echo "(Requires Login)";
+	    return;
+	}	
     $ur=get_unread_messages();
     if($ur) {
         echo "<table border=0 cellspacing=0 cellpadding=3>";
