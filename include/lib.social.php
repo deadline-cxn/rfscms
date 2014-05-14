@@ -3,9 +3,32 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_social_javascripts() {
+	
+	/*
+<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+		js.src = \"https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=$RFS_SITE_FACEBOOK_APP_ID\";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+
+		
+*/	
 	eval(lib_rfs_get_globals());
 	echo "
 
+
+<div id=\"fb-root\"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = \"//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1421334944783676&version=v2.0\";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 <script type=\"text/javascript\">
 (function() {
 var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -13,26 +36,19 @@ po.src = 'https://apis.google.com/js/plusone.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 })();
 </script> 
-	
-	<script> 
-		!function(d,s,id){
-			var js,fjs=d.getElementsByTagName(s)[0];
-			if(!d.getElementById(id)) {
-				js=d.createElement(s);
-				js.id=id;
-				js.src='https://platform.twitter.com/widgets.js';
-				fjs.parentNode.insertBefore(js,fjs);
-				}
-		} (document,'script','twitter-wjs'); </script> 
-					<script>(function(d, s, id) {
-					  var js, fjs = d.getElementsByTagName(s)[0];
-					  if (d.getElementById(id)) return;
-					  js = d.createElement(s); js.id = id;
-						js.src = \"//connect.facebook.net/en_GB/all.js#xfbml=1&appId=$RFS_SITE_FACEBOOK_APP_ID\";
-					  fjs.parentNode.insertBefore(js, fjs);
-					}(document, 'script', 'facebook-jssdk'));
-				</script>
-				
+
+
+<script>
+ !function(d,s,id){
+	var js,fjs=d.getElementsByTagName(s)[0];
+	if(!d.getElementById(id)) {
+	js=d.createElement(s);
+	js.id=id;
+	js.src='https://platform.twitter.com/widgets.js';
+	fjs.parentNode.insertBefore(js,fjs);
+	}
+} (document,'script','twitter-wjs'); </script> 
+
 <script type='text/javascript'>
 		(function() {
 		var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
@@ -40,6 +56,14 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
 		})();
 		</script>
+
+
+
+
+				
+	<script type=\"text/javascript\" src=\"//assets.pinterest.com/js/pinit.js\"></script>
+		
+
 	";
 		
 }
@@ -59,10 +83,13 @@ function module_share_bar() {
 src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"></script>
 <!-- AddThis Button END --> ';	
 }
+
 function lib_social_stumble_upon_badge($url) {
-echo " <!-- Place this tag where you want the su badge to render -->
-		<su:badge layout='2'></su:badge>
-		<!-- Place this snippet wherever appropriate -->";
+echo "
+
+<su:badge layout='2'
+location='$url'></su:badge>		
+";
 }
 function lib_social_paypal() { eval(lib_rfs_get_globals());
 if(empty($RFS_SITE_PAYPAL_BUTTON1)) return;
@@ -81,7 +108,35 @@ if(empty($RFS_SITE_PAYPAL_BUTTON2)) return;
 			<img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">
 			</form>";
 }
-function lib_social_share_bar($u,$t) { eval(lib_rfs_get_globals());
+
+
+function lib_social_share_bar4($u,$t,$i) {
+	eval(lib_rfs_get_globals());
+	if(lib_rfs_bool_true($RFS_SITE_NO_SHARING)) return;
+	if(!empty($RFS_SITE_ADDTHIS_ACCT)) {
+		echo "
+<!-- AddThis Button BEGIN -->
+<div class=\"addthis_toolbox addthis_default_style addthis_32x32_style\">
+<a class=\"addthis_button_preferred_1\"></a>
+<a class=\"addthis_button_preferred_2\"></a>
+<a class=\"addthis_button_preferred_3\"></a>
+<a class=\"addthis_button_preferred_4\"></a>
+<a class=\"addthis_button_compact\"></a>
+<a class=\"addthis_counter addthis_bubble_style\"></a>
+</div>
+<script type=\"text/javascript\">
+var addthis_config = {\"data_track_addressbar\":true};
+var addthis_share = { \"url\":'.$u.', title:'.$t.'};
+</script>
+<script type=\"text/javascript\" src=\"//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT\"></script>
+
+<!-- AddThis Button END -->
+";		
+		
+	}
+}
+function lib_social_share_bar1($u,$t,$i) {
+	eval(lib_rfs_get_globals());
 	if(lib_rfs_bool_true($RFS_SITE_NO_SHARING)) return;		
 	if(!empty($RFS_SITE_ADDTHIS_ACCT)) {
 echo '
@@ -103,25 +158,61 @@ echo '
 <a class="addthis_counter addthis_pill_style"></a>
 </td></tr></table>
 </div>
-<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript">
+var addthis_config = {
+	data_track_addressbar:false
+};
+var addthis_share = {
+	url:'.$u.',
+	title:'.$t.'
+	
+};
+</script>
 <script type="text/javascript" 
 src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"></script>
 <!-- AddThis Button END --> ';
 	}
 }
-function lib_social_share_bar2($u,$t) {
-	echo "<div style='float:left;'>";	
-	lib_social_tweet($u,"",$t);
-	echo "</div>";
-	echo "<div style='float:left;'>";	
-	lib_social_facebook_like($u);
-	echo "</div>";
-	echo "<div style='float:left;'>";	
+function lib_social_share_bar2($u,$i,$t) {
+	
+	//$u=urlencode($u);
+	echo "<table border=0 cellpadding=4 cellspacing=0> <tr>";
+	// echo "<div style='float:left;'> ";	
+	echo "<td width=80>";	
+	lib_pin_it_button($u,$i,$t);
+	echo "</td>";
+	echo "<td width=50>";	
+	// echo "</div> ";
+	// echo "<div style='float:left;'> ";	
+	lib_social_stumble_upon_badge($u);
+	echo "</td>";
+	echo "<td width=30>";	
+	//echo "</div> ";
+	//echo "<div style='float:left;'> ";	
 	lib_social_google_plus($u);
-	echo "</div>";
-	//echo "<div style='float:left;'>";	
-	// lib_social_stumble_upon_badge($u);
+	echo "</td>";
+	echo "<td width=150>";	
+	//echo "</div> ";	
+	//echo "<div style='float:left;'> ";
+	lib_social_facebook_like($u);
+	echo "</td>";
+	echo "<td width=30>";	
+	//echo "</div> ";
+	//echo "<div style='float:left;'> ";
+	lib_social_reddit($u);
+	echo "</td>";
+	echo "<td width=30>";	
+	// cho "</div> ";
+	// echo "<div style='float:left;'> ";
+	
+	
+	echo "</td>";
+	echo "<td width=20>";	
+	lib_social_tweet($u,"",$t);
+	
+	echo "</td></tr>";
 	// echo "</div>";
+	echo "</table>";
 }
 function lib_social_buttons(){
 	echo "<table border=0><tr><td>";
@@ -193,8 +284,117 @@ function lib_social_google_analytics(){
 			</script>";
 	}
 }
-function lib_social_reddit() { 
+
+function lib_pin_it_button($url,$pic,$desc) {
+
+$url=urlencode($url);
+echo "
+<a href=\"//www.pinterest.com/pin/create/button/?
+url=$url&
+media=$pic&
+description=$desc\" 
+data-pin-do=\"buttonPin\" 
+data-pin-config=\"beside\"
+>
+<img src=\"//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png\" /></a>
+";
+/*
+
+<a class=\"pin-it-button\" 
+href=\"http://www.pinterest.com/pin/create/button/?url=$url&description=$desc\"
+data-pin-do=\"buttonBookmark\"
+data-pin-color=\"white\" >
+<img src=\"http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png\" /></a>";
+
+/******************************************	
+Pinterest Variables:
+Supported fields:
+url	String, canonical URL for the page (for example "http://www.etsy.com/listing/83934917/chocolate-raspberry-drizzle-body-lotion")	Y
+title	String, product name. May be truncated, all formatting and HTML tags will be removed.	Y
+price	Number (float), product price (without currency sign, for example "6.50").	Y
+currency_code	String, currency code as defined in http://www.xe.com/iso4217.php (for example "USD").	Y
+provider_name	String, store name (for example "Etsy").	N
+description	String, product description. May be truncated, all line breaks and HTML tags will be removed.	N
+brand	String, brand name (for example "Lucky Brand").	N
+product_id	String, ID that uniquely identifies the product within your site.	N
+availability	Case-insensitive string, possible values: "in stock", "preorder", "backorder" (will be back in stock soon), “out of stock” (may be back in stock some time), “discontinued.” Discontinued items won’t be part of a daily scrape and marking them will decrease the load on your servers.	N
+quantity	Number (int). Positive value is interpreted as "in stock", "out of stock" otherwise.	N
+standard_price	Number (float). Product's original price if it's on sale (without currency sign, for example "10.00").	N
+sale_start_date	If the product is on sale, the start date in ISO 8601 date format.	N
+sale_end_date	If the product is on sale, the end date in ISO 8601 date format.	N
+product_expiration	Product expiration date in ISO 8601 date format.	N
+gender	Gender property of this product can only be 'male', 'female' and 'unisex'.	N
+geographic_availability	The list of product available geographic areas in ISO 3166 Country Code format. Can be 'All' if applies for all countries.	N
+color	List of color specs (in JSON format) if the product has different colors. you can specify the color's name, detail image, and standard color map name(must be one of 'beige', 'black', 'blue', 'bronze', 'brown', 'gold', 'green', 'gray', 'metallic', 'multicolored', 'off-white', 'orange', 'pink', 'purple', 'red', 'silver', 'transparent', 'turquoise', 'white', or 'yellow'). Please see sample oEmbed response below for full format.	N
+images	List of URLs of high resolution images for this product. Up to 6 images can be provided.	N
+related_items	List of URLs (must be the same domain) representing the related productsi.	N
+referenced_items	List of URLs representing the referenced other products.	N
+rating	Number (float), rating of this product (for example, 4.6).	N
+rating_scale	Number (int), maximum value of the ratings scale. Required if rating provided (e.g. 5).	N
+rating_count	Number (int), rating count of which the product is rated(e.g. 113).	N
+Supported fields:
+Field	Description	Required?
+url	String, canonical URL for the page (for example "http://www.etsy.com/listing/83934917/chocolate-raspberry-drizzle-body-lotion")	Y
+products	JSON list of dictionaries with product fields as defined below.	Y
+provider_name	String, store name (for example "Etsy")	N
+Product fields:
+Field	Description	Required?
+title	String, product name. May be truncated, all formatting and HTML tags will be removed.	Y
+offers	JSON list of dictionaries with offer fields as defined below.	Y
+description	String, product description. May be truncated, all line breaks and HTML tags will be removed.	N
+brand	String, brand name (for example "Lucky Brand").	N
+product_id	String, ID that uniquely identifies the product within your site.	N
+images	List of URLs of high resolution images for this product. Up to 6 images can be provided.	N
+gender	Gender property of this product can only be 'male', 'female' and 'unisex'.	N
+product_expiration	Product expiration date in ISO 8601 date format.	N
+color	List of color specs (in JSON format) if the product has different colors. you can specify the color's name, detail image, and standard color map name(must be one of 'beige', 'black', 'blue', 'bronze', 'brown', 'gold', 'green', 'gray', 'metallic', 'multicolored', 'off-white', 'orange', 'pink', 'purple', 'red', 'silver', 'transparent', 'turquoise', 'white', or 'yellow'). Please see below sample oEmbed response for full format.	N
+related_items	List of URLs (must be the same domain) representing the related products.	N
+referenced_items	List of URLs representing the referenced other products.	N
+rating	Number (float), rating of this product (for example, 4.6).	N
+rating_scale	Number (int), maximum value of the ratings scale. Required if rating provided (e.g. 5).	N
+rating_count	Number (int), rating count of which the product is rated(e.g. 113).	N
+Offer fields:
+Field	Description	Required?
+price	Number (float), product price (without currency sign, for example "6.50").	Y
+currency_code	String, currency code as defined in http://www.xe.com/iso4217.php (for example "USD").	Y
+title	String, product name. May be truncated, all formatting and HTML tags will be removed.	N
+description	String, product description. May be truncated, all line breaks and HTML tags will be removed.	N
+offer_id	String, ID that uniquely identifies the offer within your site.	N
+availability	Case-insensitive string, possible values: "in stock", "preorder", "backorder" (will be back in stock soon), “out of stock” (may be back in stock some time), “discontinued.” Discontinued items won’t be part of a daily scrape and marking them will decrease the load on your servers.	N
+quantity	Number (int). Positive value is interpreted as "in stock", "out of stock" otherwise.	N
+standard_price	Number (float). Product's original price if it's on sale (without currency sign, for example "10.00").	N
+sale_start_date	If the product is on sale, the start date in ISO 8601 date format.	N
+sale_end_date	If the product is on sale, the end date in ISO 8601 date format.	N
+geographic_availability	The list of product available geographic areas in ISO 3166 Country Code format. Can be 'All' if applies for all countries.	N
+<a href=\"http://www.pinterest.com/pin/create/button/
+        ?
+        data-pin-do=\"buttonPin\"
+        data-pin-config=\"beside\"
+		
+		>
+        <img src=\"//assets.pinterest.com/images/pidgets/pin_it_button.png\" />
+    </a>
+
+
+<a href=\"//www.pinterest.com/pin/create/button/?url=$url&data-pin-do='buttonBookmark'&data-pin-shape='round'\" >
+<img src=\"//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png\" />
+
+
+*******************************************/
+}
+
+function lib_social_reddit($url) { 
 	eval(lib_rfs_get_globals());
+/******************************************************
+customizing the look of your buttons
+
+the buttons with points have three additional options.
+
+styled=off no styles will be added, so you can style it yourself
+url=[URL] specify a url to use instead of the current url
+newwindow=1 opens links in a new window
+*******************************************************/
+echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=5&url=$url\"></script>";
 }
 function lib_social_google_plus_badge(){
 echo '<!-- Place this code where you want the badge to render. -->
@@ -209,14 +409,34 @@ echo "	<!-- Place this code where you want the badge to render. -->
 </a>";
 }
 function lib_social_google_plus($url){
-echo " <!-- Place this tag where you want the +1 button to render. -->
-<div class=\"g-plusone\" data-size=\"medium\" href=\"$url\"></div>
-<!-- Place this tag after the last +1 button tag. -->";
+echo "<div class=\"g-plusone\"
+			data-size=\"medium\"
+			data-href=\"$url\"></div>";
 }
-function lib_social_tweet($url,$hash,$text){	
+function lib_social_tweet($url,$hash,$text){
+/*******************************************
+TWITTER BUTTON VARIABLES:
+url	URL of the page to share
+via	Screen name of the user to attribute the Tweet to
+text	Default Tweet text
+related	Related accounts
+count	Count box position
+lang	The language for the Tweet Button
+counturl	URL to which your shared URL resolves
+hashtags	Comma separated hashtags appended to tweet text
+size	The size of the rendered button
+dnt	See this section for information
+*********************************************/	
 	$url=urlencode($url);
 	$text=urlencode($text);
-	echo "<a href='https://twitter.com/share?text=$text&url=$url' class='twitter-share-button' data-lang='en'> Tweet </a>"; // data-via='sethcoder' 
+echo "<a href='https://twitter.com/share?text=$text&url=$url' 
+class='twitter-share-button'
+data-lang='en'";
+
+if(!empty($RFS_SITE_TWITTER)) {
+	echo " data-via='$RFS_SITE_TWITTER' ";
+}
+echo "> Tweet </a>";
 }
 function lib_social_facebook_likebox($url){
 echo "	<div id=\"fb-root\"></div>
@@ -229,16 +449,43 @@ echo "	<div id=\"fb-root\"></div>
 </div>";
 }
 function lib_social_facebook_like($url){
-$url=rawurlencode($url);
-echo "	<div id=\"fb-root\"></div>
+// $url=urldecode($url);
+
+echo "
 <div class=\"fb-like\"
-	data-send=\"true\"
-	data-layout=\"button_count\"
-	data-width=\"200\"
-	data-show-faces=\"false\"
-	data-font=\"verdana\"
-	data-href=\"$url\">
+data-href=\"$url\"
+data-layout=\"standard\"
+data-action=\"like\"
+data-show-faces=\"true\"
+data-share=\"true\"></div>
+";
+/*
+<div class=\"fb-share-button\"
+data-href=\"$url\"
+data-type=\"button_count\"></div>
+
+<div class=\"fb-like-box\"
+data-href=\"$url\"
+data-colorscheme=\"light\"
+data-show-faces=\"true\"
+data-header=\"true\"
+data-stream=\"false\"
+data-show-border=\"true\"></div>
+
+
+
+echo "	<div id=\"fb-root\"></div>
+<div 
+class=\"fb-like\"
+data-send=\"true\"
+data-layout=\"button_count\"
+data-width=\"200\"
+data-show-faces=\"false\"
+data-font=\"verdana\"
+data-href=\"$url\">
 </div>";
+*/
+
 }
 function lib_social_facebook_like_little($url){    
 	$url=rawurlencode($url);	

@@ -364,11 +364,14 @@ function news_action_deletenewsgo($nid){
 function news_action_view() {
 	eval(lib_rfs_get_globals());
 	rfs_show_news($nid);
-    echo "<br>\n";
-    echo "<p align=right><a href=\"$RFS_ADDON_URL\"  class=\"a_cat\" align=right>More news stories...</a></p>";
-    echo "<br>";
-    module_news_list(10);
-    echo "<p align=right><a href=\"$RFS_ADDON_URL\" class=\"a_cat\" align=right>More news stories...</a></p>";
+//echo "<br>\n";    echo "<p align=right><a href=\"$RFS_ADDON_URL\"  class=\"a_cat\" align=right>More news stories...</a></p>";    echo "<br>";
+   
+   m_panel_news_list(5);
+echo "<p align=right>
+<a href=\"$RFS_ADDON_URL\" class=\"a_cat\" align=right>
+More news stories...</a></p>";
+	include("footer.php");
+	exit();
 }
 
 function news_action_edityournews(){
