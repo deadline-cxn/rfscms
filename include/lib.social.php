@@ -79,12 +79,9 @@ src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"
 <!-- AddThis Button END --> ';	
 }
 
-function lib_social_stumble_upon_badge($url) {
-echo "
-
-<su:badge layout='2'
-location='$url'></su:badge>		
-";
+function lib_social_stumble_upon_badge($u) {
+	$u=urlencode($u);
+	echo " <su:badge layout='2' location='$u'></su:badge> ";
 }
 function lib_social_paypal() { eval(lib_rfs_get_globals());
 if(empty($RFS_SITE_PAYPAL_BUTTON1)) return;
