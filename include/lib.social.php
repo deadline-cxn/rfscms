@@ -185,7 +185,7 @@ function lib_social_share_bar2($u,$i,$t) {
 	//echo "<div style='float:left;'> ";	
 	lib_social_google_plus($u);
 	echo "</td>";
-	echo "<td width=30>";	
+	echo "<td width=60>";	
 	//echo "</div> ";
 	//echo "<div style='float:left;'> ";
 	lib_social_reddit($u,$t);
