@@ -188,7 +188,7 @@ function lib_social_share_bar2($u,$i,$t) {
 	echo "<td width=30>";	
 	//echo "</div> ";
 	//echo "<div style='float:left;'> ";
-	lib_social_reddit($u);
+	lib_social_reddit($u,$t);
 	echo "</td>";
 	echo "<td width=30>";	
 	// cho "</div> ";
@@ -380,7 +380,7 @@ geographic_availability	The list of product available geographic areas in ISO 31
 *******************************************/
 }
 
-function lib_social_reddit($url) { 
+function lib_social_reddit($url,$title) { 
 	eval(lib_rfs_get_globals());
 /******************************************************
 customizing the look of your buttons
@@ -392,7 +392,7 @@ url=[URL] specify a url to use instead of the current url
 newwindow=1 opens links in a new window
 *******************************************************/
 $url=urlencode($url);
-echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=5&url=$url\"></script>";
+echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=5&url=$url&title=$title\"></script>";
 }
 function lib_social_google_plus_badge(){
 echo '<!-- Place this code where you want the badge to render. -->
