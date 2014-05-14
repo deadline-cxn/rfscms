@@ -393,11 +393,19 @@ newwindow=1 opens links in a new window
 $u=urlencode($u);
 $t=urlencode($t);
 
+echo "
+<a href=\"http://www.reddit.com/submit\"
+onclick=\"window.location='http://www.reddit.com/submit?url='+
+encodeURIComponent($u);
+return false\">
+<img src=\"http://www.reddit.com/static/spreddit7.gif\" alt=\"submit to reddit\" border=\"0\" /> </a>
+";
+/*
 echo "<script type=\"text/javascript\">reddit_url='$u'</script>";
 echo "<script type=\"text/javascript\">reddit_title='$t'</script>";
 echo "<script type=\"text/javascript\">reddit_newwindow='1'</script>";
-
 echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js\"></script>";
+*/
 }
 function lib_social_google_plus_badge(){
 echo '<!-- Place this code where you want the badge to render. -->
