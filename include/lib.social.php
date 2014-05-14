@@ -396,7 +396,7 @@ $t=urlencode($t);
 echo "
 <a href=\"http://www.reddit.com/submit\"
 onclick=\"window.location='http://www.reddit.com/submit?url='+
-encodeURIComponent($u);
+encodeURIComponent('$u');
 return false\">
 <img src=\"http://www.reddit.com/static/spreddit7.gif\" alt=\"submit to reddit\" border=\"0\" /> </a>
 ";
