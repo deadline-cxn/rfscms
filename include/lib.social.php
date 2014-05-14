@@ -185,11 +185,6 @@ function lib_social_share_bar2($u,$i,$t) {
 	//echo "<div style='float:left;'> ";	
 	lib_social_google_plus($u);
 	echo "</td>";
-	echo "<td width=150>";	
-	//echo "</div> ";	
-	//echo "<div style='float:left;'> ";
-	lib_social_facebook_like($u);
-	echo "</td>";
 	echo "<td width=30>";	
 	//echo "</div> ";
 	//echo "<div style='float:left;'> ";
@@ -204,7 +199,15 @@ function lib_social_share_bar2($u,$i,$t) {
 	echo "<td width=20>";	
 	lib_social_tweet($u,"",$t);
 	
-	echo "</td></tr>";
+	echo "</td>";
+	
+	echo "<td width=150>";	
+	//echo "</div> ";	
+	//echo "<div style='float:left;'> ";
+	lib_social_facebook_like($u);
+	echo "</td>";
+
+	echo "</tr>";
 	// echo "</div>";
 	echo "</table>";
 }
