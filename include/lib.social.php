@@ -48,18 +48,15 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 } (document,'script','twitter-wjs'); </script> 
 
 <script type='text/javascript'>
-		(function() {
-		var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
-		li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
-		})();
-		</script>
+	(function() {
+	var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;
+	li.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//platform.stumbleupon.com/1/widgets.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);
+	})();
+</script>
 
-
-
-
-				
-	<script type=\"text/javascript\" src=\"//assets.pinterest.com/js/pinit.js\"></script>
+<script type=\"text/javascript\" src=\"//assets.pinterest.com/js/pinit.js\">
+</script>
 		
 
 	";
@@ -172,7 +169,6 @@ src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"
 	}
 }
 function lib_social_share_bar2($u,$i,$t) {
-	
 	//$u=urlencode($u);
 	echo "<table border=0 cellpadding=4 cellspacing=0> <tr>";
 	// echo "<div style='float:left;'> ";	
@@ -240,7 +236,7 @@ function lib_social_google_adsense($x){
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script> ";
 
-        /*
+/*
 		echo "<script type=\"text/javascript\"><!--
 				google_ad_client = \"\";
 				google_ad_slot = \"9276856171\";
@@ -249,7 +245,7 @@ function lib_social_google_adsense($x){
 				//-->
 				</script>
 				<script type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\"></script>";
-                */
+*/
 		
 	}
 }
@@ -284,8 +280,8 @@ function lib_social_google_analytics(){
 }
 
 function lib_pin_it_button($url,$pic,$desc) {
-
 $url=urlencode($url);
+if(empty($pic)) $pic="null";
 echo "
 <a href=\"//www.pinterest.com/pin/create/button/?
 url=$url&
@@ -427,17 +423,17 @@ dnt	See this section for information
 *********************************************/	
 	$url=urlencode($url);
 	$text=urlencode($text);
-echo "<a href='https://twitter.com/share?text=$text&url=$url' 
+echo "<a href='https://twitter.com/share?text=$text&url=$url&hashtags=$hash'
 class='twitter-share-button'
 data-lang='en'";
-
 if(!empty($RFS_SITE_TWITTER)) {
 	echo " data-via='$RFS_SITE_TWITTER' ";
 }
 echo "> Tweet </a>";
 }
-function lib_social_facebook_likebox($url){
-echo "	<div id=\"fb-root\"></div>
+
+function lib_social_facebook_likebox($url){ // <div id=\"fb-root\"></div>
+echo "
 <div class=\"fb-like-box\"
 	data-href=\"$url\"
 	data-width=\"292\"
@@ -446,15 +442,13 @@ echo "	<div id=\"fb-root\"></div>
 	data-header=\"false\">
 </div>";
 }
-function lib_social_facebook_like($url){
-// $url=urldecode($url);
-
+function lib_social_facebook_like($url){ // $url=urldecode($url);
 echo "
 <div class=\"fb-like\"
 data-href=\"$url\"
 data-layout=\"standard\"
 data-action=\"like\"
-data-show-faces=\"true\"
+data-show-faces=\"false\"
 data-share=\"true\"></div>
 ";
 /*
@@ -469,8 +463,6 @@ data-show-faces=\"true\"
 data-header=\"true\"
 data-stream=\"false\"
 data-show-border=\"true\"></div>
-
-
 
 echo "	<div id=\"fb-root\"></div>
 <div 
