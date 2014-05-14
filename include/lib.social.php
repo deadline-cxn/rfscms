@@ -391,6 +391,7 @@ styled=off no styles will be added, so you can style it yourself
 url=[URL] specify a url to use instead of the current url
 newwindow=1 opens links in a new window
 *******************************************************/
+$url=urlencode($url);
 echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=5&url=$url\"></script>";
 }
 function lib_social_google_plus_badge(){
