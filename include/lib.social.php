@@ -63,7 +63,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po
 		
 }
 function module_share_bar() {
-	echo '<!-- AddThis Button BEGIN -->
+	echo '
+<!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style ">
 <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
 <a class="addthis_button_tweet"></a>
@@ -82,9 +83,7 @@ src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"
 function lib_social_stumble_upon_badge($u) {
 	
 	// $u=urlencode($u);
-	
-	echo $u;
-	
+	// echo $u;
 	echo " <su:badge layout='2' location='$u'></su:badge> ";
 }
 function lib_social_paypal() { eval(lib_rfs_get_globals());
