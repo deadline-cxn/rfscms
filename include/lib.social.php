@@ -391,7 +391,7 @@ newwindow=1 opens links in a new window
 *******************************************************/
 $u=urlencode($u);
 $t=urlencode($t);
-echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=5&url=$u&title=$t\"></script>";
+echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=5&title=$t&url=$u&newwindow=1\"></script>";
 }
 function lib_social_google_plus_badge(){
 echo '<!-- Place this code where you want the badge to render. -->
