@@ -189,6 +189,7 @@ function lib_social_share_bar2($u,$i,$t) {
 	//echo "</div> ";
 	//echo "<div style='float:left;'> ";
 	lib_social_reddit($u,$t);
+	
 	echo "</td>";
 	echo "<td width=30>";	
 	// cho "</div> ";
@@ -252,13 +253,14 @@ function lib_social_google_adsense($x){
 		
 	}
 }
-function lib_social_google_adsense_2(){ eval(lib_rfs_get_globals());
-    global $RFS_SITE_GOOGLE_ADSENSE;
+function lib_social_google_adsense_2(){
+	global $RFS_SITE_GOOGLE_ADSENSE;
+    global $RFS_SITE_GOOGLE_ADSENSE_AD;
 	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
 		echo ' <script type="text/javascript">
 				<!--	
 				google_ad_client = "'.$RFS_SITE_GOOGLE_ADSENSE.'";
-				google_ad_slot = "$RFS_SITE_GOOGLE_ADSENSE_AD";
+				google_ad_slot = "'.$RFS_SITE_GOOGLE_ADSENSE_AD.'";
 				google_ad_width = 160;
 				google_ad_height = 90; //-->
 				</script>
@@ -381,8 +383,7 @@ geographic_availability	The list of product available geographic areas in ISO 31
 *******************************************/
 }
 
-function lib_social_reddit($u,$t) { 
-	eval(lib_rfs_get_globals());
+function lib_social_reddit($u,$t) { //	eval(lib_rfs_get_globals());
 /******************************************************
 customizing the look of your buttons the buttons with points have three additional options.
 styled=off no styles will be added, so you can style it yourself
