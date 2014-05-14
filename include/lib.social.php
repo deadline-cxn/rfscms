@@ -80,7 +80,11 @@ src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"
 }
 
 function lib_social_stumble_upon_badge($u) {
+	
 	$u=urlencode($u);
+	
+	echo $u;
+	
 	echo " <su:badge layout='2' location='$u'></su:badge> ";
 }
 function lib_social_paypal() { eval(lib_rfs_get_globals());
