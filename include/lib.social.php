@@ -282,14 +282,15 @@ function lib_social_google_analytics(){
 	}
 }
 
-function lib_pin_it_button($url,$pic,$desc) {
-$url=urlencode($url);
-if(empty($pic)) $pic="null";
+function lib_pin_it_button($u,$i,$t) {
+$u=urlencode($u);
+$t=urlencode($t);
+if(empty($i)) $i="null";
 echo "
 <a href=\"//www.pinterest.com/pin/create/button/?
-url=$url&
-media=$pic&
-description=$desc\" 
+url=$u&
+media=$i&
+description=$t\" 
 data-pin-do=\"buttonPin\" 
 data-pin-config=\"beside\"
 >
@@ -380,19 +381,17 @@ geographic_availability	The list of product available geographic areas in ISO 31
 *******************************************/
 }
 
-function lib_social_reddit($url,$title) { 
+function lib_social_reddit($u,$t) { 
 	eval(lib_rfs_get_globals());
 /******************************************************
-customizing the look of your buttons
-
-the buttons with points have three additional options.
-
+customizing the look of your buttons the buttons with points have three additional options.
 styled=off no styles will be added, so you can style it yourself
 url=[URL] specify a url to use instead of the current url
 newwindow=1 opens links in a new window
 *******************************************************/
-$url=urlencode($url);
-echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=5&url=$url&title=$title\"></script>";
+$u=urlencode($u);
+$t=urlencode($t);
+echo"<script type=\"text/javascript\" src=\"http://www.reddit.com/buttonlite.js?i=5&url=$u&title=$t\"></script>";
 }
 function lib_social_google_plus_badge(){
 echo '<!-- Place this code where you want the badge to render. -->
