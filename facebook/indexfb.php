@@ -1,5 +1,6 @@
 <?
-include("../lib.all.php");
+chdir("../");
+include("include/lib.all.php");
 
 if($action=="uploadpic") {
     ?>
@@ -20,7 +21,7 @@ if($action=="uploadpicgo"){
     $furl="files/pictures/".$_FILES['userfile']['name'];
     
     $furl =str_replace("//","/",$furl);
-    $fiurl="/home/dminds1/public_html/rfs/".$furl;
+    $fiurl="/home/dminds1/public_html/".$furl;
     if(move_uploaded_file($_FILES['userfile']['tmp_name'], $fiurl)){
         $error="File is valid, and was successfully uploaded. ";
         $error.="It was stored as [$fiurl]\n";
@@ -71,7 +72,7 @@ if($action=="uploadpicgo"){
     
     parent.$('#example-placeholder').html("<img src=\"<? echo $RFS_SITE_URL."/".$furl; ?>\">");
     
-    parent.document.getElementById("upload-button").src="http://www.defectiveminds.com/rfs/facebook/indexfb.php?action=uploadpic";
+    parent.document.getElementById("upload-button").src="http://www.defectiveminds.com/facebook/indexfb.php?action=uploadpic";
     
     
     </script>
@@ -91,12 +92,12 @@ lib_rfs_echo( "$RFS_SITE_JS_JQUERY");
 echo "<title>$RFS_SITE_NAME</title></head>    
 <body style='background-color: #ffffff;'> <center>";
 $text="Defective Minds";$font="TenOClock.ttf";$fontsize=25;$w = 512;$h =85;$ox=0;$oy=0;$inicr = 255;$inicg = 255;$inicb = 0;$inbcr = 15;$inbcg = 15;$inbcb = 0;$forcerender = 1;$forceheight = 1;
-rfs_image_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
+lib_images_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
 $text="Facebook Meme Generator";$font="TenOClock.ttf";$fontsize=25;$w = 512;$h =85;$ox=0;$oy=0;$inicr = 255;$inicg = 255;$inicb = 0;$inbcr = 15;$inbcg = 15;$inbcb = 0;$forcerender = 1;$forceheight = 1;
-rfs_image_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
+lib_images_text( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight);
 if($dbg=="off") { $_SESSION['debug_msgs']=false; }
 if($dbg=="on") { $_SESSION['debug_msgs']=true; }
-rfs_debugfooter(0);
+//fs_debugfooter(0);
 
 // if($data->id) { echo "<BR>Logged in as $data->name <BR>"; echo "Visit the main website <a href=http://www.defectiveminds.com/>http://www.defectiveminds.com/</a>"; }
 
@@ -130,7 +131,7 @@ echo "
 $('#memecreate').html('<input type=\"button\" onclick=\"memestart()\" value=\"Create New\" name=\"create\" />');
 
 // $('#upload-button').load
-document.getElementById("upload-button").src='http://www.defectiveminds.com/rfs/facebook/indexfb.php?action=uploadpic';
+document.getElementById("upload-button").src='http://www.defectiveminds.com/facebook/indexfb.php?action=uploadpic';
 
 /// <form method=post enctype=multipart/form-data action=pics.php method=post><input type=hidden name=action value=uploadpicgo><input type=hidden name=MAX_FILE_SIZE value=93000000><input name=userfile type=file></form>' );
 
@@ -140,13 +141,13 @@ $('#save-button').html('<input type=\"button\" onclick=\"savememe()\" value=\"Sa
 
 function uploadfile() {
     $('#status').html("<p> file:"+document.getElementById('userfile').value+"</p>" );
-    // $('#status').html(url('http://www.defectiveminds.com/rfs/pics.php?action=uploadpicgo&userfile='+);
+    // $('#status').html(url('http://www.defectiveminds.com/modules/core_memes/memes.php?action=uploadpicgo&userfile='+);
 }
 
 
 function memestart() {
     $('#example-placeholder').html('<p><img src="../images/ajax-loader.gif" width="220" height="19" /></p>');
-    $('#example-placeholder').load("http://www.defectiveminds.com/rfs/pics.php?a=ms&id=328");
+    $('#example-placeholder').load("http://www.defectiveminds.com/modules/core_memes/memes.php?a=ms&id=328");
     document.getElementById('create').value="Upload an Image";
 }
 
