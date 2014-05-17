@@ -1,4 +1,6 @@
 <?
+
+
 chdir("../");
 include("include/lib.all.php");
 
