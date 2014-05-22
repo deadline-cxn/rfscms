@@ -192,10 +192,10 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				install_mysql_query("$q;");
 			}
 			echo "...<br>";
-			$rfs_password=md5($rfs_password);
+			$rfs_password_m=md5($rfs_password);
 			install_mysql_query("
 			INSERT INTO `users` (`name`, `pass`, `real_name`, `email`, `access`, `access_groups`, `theme`) VALUES
-			('$rfs_admin', '$rfs_password', '$rfs_admin_name', '$rfs_admin_email',  '255',  'Administrator', 'default'); ");
+			('$rfs_admin', '$rfs_password_m', '$rfs_admin_name', '$rfs_admin_email',  '255',  'Administrator', 'default'); ");
 			echo "...<br>";
 			///////////////////////////////////////////////////////////////////////////////
 			// CHECK DATABASE				
