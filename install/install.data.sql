@@ -1,32 +1,230 @@
-INSERT INTO `users` (`name`, `id` ) VALUES
-('anonymous', '999');
+// RFSCMS INITIAL DATABASE FILL
+// -;- = delimiter
 -;-
-INSERT INTO `site_vars` (`name`, `value`) VALUES
-('theme_dropdown', 'true'),
-('default_theme', 'default'),
-('force_theme', 'false'),
-('forced_theme', 'default'),
-('slogan', 'Really Freaking Simple Content Management System');
+INSERT INTO `users` (`name`, `id` ) VALUES ('anonymous', '999');
 -;-
-INSERT INTO `categories` (`name`, `id`, `image`) VALUES
-('!!!TEMP!!!', 1, '0'),
-('News', 2, '0'),
-('Videos', 3, '0'),
-('Interesting', 4, '0'),
-('Funny', 5, '0'),
-('Image', 6, '0'),
-('Social', 7, '0'),
-('Random', 8, '0'),
-('Music', 9, '0');
+INSERT INTO `arrangement` (`location`, `mini`, `type`, `tableref`, `tablerefid` `num`, `sequence`,`access`,`page`) VALUES ('middle', 'news_top_story', 'internal_query','','', 5, 999,'','');
 -;-
-INSERT INTO `colors` (`id`, `name`, `r`, `g`, `b`) VALUES
-(1, 'black', 0, 0, 0),
-(2, 'white', 255, 255, 255),
-(3, 'red', 255, 0, 0),
-(4, 'blue', 0, 0, 255),
-(5, 'green', 0, 255, 0),
-(6, 'yellow', 255, 255, 0),
-(7, 'purple', 255, 0, 255);
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('admin', 'access');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('comics', 'create');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('course', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('debug', 'view');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('exam_questions', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('exams', 'add');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'upload');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('forums', 'add');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('linkbin', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('memes', 'upload');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('news', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('pictures', 'orphanscan');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('slogan', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('static_html', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('todo_list', 'add');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('videos', 'submit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('wiki', 'admin');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('comics', 'admin');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('comics', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('comics', 'deleteothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('comics', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('comics', 'editothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('comics', 'publish');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('comics', 'unpublish');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('wiki', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('wiki', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('wiki', 'editothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('wiki', 'deleteothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('wiki', 'uploadfile');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('memes', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('memes', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('pictures', 'upload');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('pictures', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('pictures', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('pictures', 'sort');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'addlink');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'orphanscan');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'purge');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'sort');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'xplorer');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('files', 'xplorershell');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('admin', 'categories');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('forums', 'admin');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('forums', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('forums', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('forums', 'moderate');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('news', 'editothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('news', 'submit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('news', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('news', 'deleteothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('linkbin', 'add');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('linkbin', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('videos', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('videos', 'editothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('videos', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('videos', 'deleteothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('course', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('exams', 'create');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('exams', 'delete');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('exams', 'deleteothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('exams', 'edit');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('exams', 'editothers');
+INSERT INTO `access_methods` (`page`, `paction`) VALUES ('exams', 'viewresults');
+-;-
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'wiki', 'uploadfile');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'wiki', 'deleteothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'wiki', 'editothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'wiki', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'wiki', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'comics', 'unpublish');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'comics', 'publish');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'comics', 'editothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'comics', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'comics', 'deleteothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'comics', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'comics', 'admin');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'wiki', 'admin');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'videos', 'submit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'todo_list', 'add');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'static_html', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'slogan', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'pictures', 'orphanscan');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'news', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'memes', 'upload');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'linkbin', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'forums', 'add');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'upload');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'exams', 'add');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'exam_questions', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'debug', 'view');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'course', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'comics', 'create');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'admin', 'access');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'exams', 'create');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'exams', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'exams', 'deleteothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'exams', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'exams', 'editothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'exams', 'viewresults');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'course', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'memes', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'memes', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'pictures', 'upload');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'pictures', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'pictures', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'pictures', 'sort');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'addlink');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'orphanscan');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'purge');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'sort');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'xplorer');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'files', 'xplorershell');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'admin', 'categories');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'forums', 'admin');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'forums', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'forums', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'forums', 'moderate');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'news', 'editothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'news', 'submit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'news', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'news', 'deleteothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'linkbin', 'add');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'linkbin', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'videos', 'edit');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'videos', 'editothers');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'videos', 'delete');
+-;-                                                              
+INSERT INTO `access` (`name`, `page`, `paction`) VALUES ('Administrator', 'videos', 'deleteothers');
+-;-
+INSERT INTO `categories` (`name`, `image`, `worksafe`) VALUES
+('!!!TEMP!!!', '0', ''),
+('News', '0', ''),
+('Videos', '0', ''),
+('Interesting', '0', ''),
+('Funny', '0', ''),
+('Image', '0', ''),
+('Social', '0', ''),
+('Random', '0', ''),
+('Music', '0', ''),
+('unsorted', '', '');
+-;-
+INSERT INTO `colors` (`name`, `r`, `g`, `b`) VALUES
+('black', 0, 0, 0),
+('white', 255, 255, 255),
+('red', 255, 0, 0),
+('blue', 0, 0, 255),
+('green', 0, 255, 0),
+('yellow', 255, 255, 0),
+('purple', 255, 0, 255);
+-;-
+INSERT INTO `db_queries` (`query`, `time`) VALUES
+('SELECT * FROM users', '2014-05-22 02:24:37'),
+('SELECT name,email,donated FROM users', '2014-05-22 02:25:33');
 -;-
 INSERT INTO `menu_top` (`name`, `id`, `link`, `sort_order`, `target`, `access_method`, `other_requirement`) VALUES
 ('Admin', 19, '$RFS_SITE_URL/admin/adm.php', 5000, '', 'admin,access', NULL),
@@ -38,110 +236,109 @@ INSERT INTO `menu_top` (`name`, `id`, `link`, `sort_order`, `target`, `access_me
 ('Files', 35, '$RFS_SITE_URL/modules/core_files/files.php', 51, '', '', NULL),
 ('Pictures', 33, '$RFS_SITE_URL/modules/core_pictures/pictures.php', 465, '', '', NULL);
 -;-
-INSERT INTO `arrangement` (`id`, `location`, `mini`, `type`, `tableref`, `tablerefid` `num`, `sequence`,`access`,`page`) VALUES
-(17, 'middle', 'news_top_story', 'internal_query','','', 5, 999,'','');
+INSERT INTO `panel_types` (`name`, `table`, `key`, `other`) VALUES
+('results', '', '', ''),
+('eval', '', '', ''),
+('static', '', '', '');
 -;-
-INSERT INTO `access_methods` (`id`, `page`, `action`) VALUES
-(5, 'news', 'edit'),
-(11, 'news', 'deleteothers'),
-(7, 'news', 'submit'),
-(8, 'news', 'delete'),
-(10, 'news', 'editothers'),
-(12, 'wiki', 'admin'),
-(13, 'files', 'upload'),
-(14, 'files', 'addlink'),
-(15, 'files', 'orphanscan'),
-(16, 'files', 'purge'),
-(17, 'files', 'sort'),
-(18, 'files', 'edit'),
-(19, 'files', 'delete'),
-(20, 'files', 'xplorer'),
-(21, 'files', 'xplorershell'),
-(22, 'forums', 'add'),
-(23, 'forums', 'edit'),
-(24, 'forums', 'delete'),
-(25, 'forums', 'moderate'),
-(26, 'exams', 'add'),
-(27, 'exams', 'delete'),
-(28, 'exams', 'deleteothers'),
-(29, 'exams', 'edit'),
-(30, 'exams', 'editothers'),
-(31, 'comics', 'create'),
-(32, 'comics', 'delete'),
-(33, 'comics', 'deleteothers'),
-(34, 'comics', 'edit'),
-(35, 'comics', 'editothers'),
-(36, 'wiki', 'editothers'),
-(37, 'wiki', 'deleteothers'),
-(38, 'pictures', 'orphanscan'),
-(39, 'pictures', 'upload'),
-(40, 'pictures', 'edit'),
-(41, 'pictures', 'delete'),
-(42, 'pictures', 'sort'),
-(43, 'admin', 'access'),
-(44, 'admin', 'categories'),
-(45, 'memes', 'upload'),
-(46, 'memes', 'edit'),
-(47, 'memes', 'delete'),
-(48, 'forums', 'admin'),
-(49, 'exams', 'create'),
-(50, 'exams', 'viewresults'),
-(51, 'exam_questions', 'edit'),
-(52, 'course', 'edit'),
-(53, 'course', 'delete'),
-(55, 'wiki', 'edit'),
-(56, 'wiki', 'delete'),
-(61, 'slogan', 'edit'),
-(63, 'todo_list', 'add'),
-(64, 'videos', 'submit'),
-(65, 'videos', 'edit'),
-(66, 'videos', 'delete'),
-(67, 'videos', 'editothers'),
-(68, 'videos', 'deleteothers'),
-(69, 'debug', 'view'),
-(70, 'linkbin', 'edit'),
-(71, 'linkbin', 'add'),
-(72, 'linkbin', 'delete'),
-(74, 'comics', 'admin'),
-(75, 'comics', 'publish'),
-(76, 'comics', 'unpublish');
+INSERT INTO `rfsauth` (`name`, `enabled`, `value`, `value2`) VALUES
+('EBSR', '', '', ''),
+('', 'true', '', ''),
+('FACEBOOK', '', '', ''),
+('', 'false', '', ''),
+('OPENID', '', '', ''),
+('', 'true', '', ''),
+('', 'false', '', '');
 -;-
-INSERT INTO `access` (`id`, `name`, `access`, `action`, `page`, `table`) VALUES
-(1,  'Administrator', '', 'access', 'admin', ''),
-(60, 'Administrator', '', 'editothers', 'exams', ''),
-(59, 'Administrator', '', 'edit', 'exams', ''),
-(58, 'Administrator', '', 'deleteothers', 'exams', ''),
-(57, 'Administrator', '', 'delete', 'exams', ''),
-(56, 'Administrator', '', 'add', 'exams', ''),
-(55, 'Administrator', '', 'xplorershell', 'files', ''),
-(54, 'Administrator', '', 'xplorer', 'files', ''),
-(53, 'Administrator', '', 'delete', 'files', ''),
-(52, 'Administrator', '', 'edit', 'files', ''),
-(51, 'Administrator', '', 'sort', 'files', ''),
-(50, 'Administrator', '', 'purge', 'files', ''),
-(49, 'Administrator', '', 'orphanscan', 'files', ''),
-(48, 'Administrator', '', 'addlink', 'files', ''),
-(47, 'Administrator', '', 'upload', 'files', ''),
-(46, 'Administrator', '', 'editothers', 'comics', ''),
-(45, 'Administrator', '', 'edit', 'comics', ''),
-(44, 'Administrator', '', 'deleteothers', 'comics', ''),
-(43, 'Administrator', '', 'delete', 'comics', ''),
-(42, 'Administrator', '', 'create', 'comics', ''),
-(41, 'Administrator', '', 'moderate', 'forums', ''),
-(40, 'Administrator', '', 'delete', 'forums', ''),
-(39, 'Administrator', '', 'edit', 'forums', ''),
-(38, 'Administrator', '', 'add', 'forums', ''),
-(37, 'Administrator', '', 'admin', 'wiki', ''),
-(61, 'Administrator', '', 'edit', 'news', ''),
-(62, 'Administrator', '', 'editothers', 'news', ''),
-(63, 'Administrator', '', 'submit', 'news', ''),
-(64, 'Administrator', '', 'delete', 'news', ''),
-(65, 'Administrator', '', 'deleteothers', 'news', ''),
-(66, 'Administrator', '', 'editothers', 'wiki', ''),
-(67, 'Administrator', '', 'deleteothers', 'wiki', ''),
-(68, 'Administrator', '', 'orphanscan', 'pictures', ''),
-(69, 'Administrator', '', 'upload', 'pictures', ''),
-(70, 'Administrator', '', 'edit', 'pictures', ''),
-(71, 'Administrator', '', 'delete', 'pictures', ''),
-(72, 'Administrator', '', 'sort', 'pictures', '');
-
+INSERT INTO `site_vars` ( `name`, `value`, `desc`, `type`) VALUES
+('theme_dropdown', 'true', NULL, NULL),
+('default_theme', 'default', NULL, NULL),
+('force_theme', 'false', NULL, NULL),
+('forced_theme', 'default', NULL, NULL),
+('slogan', 'Really Freaking Simple Content Management System', NULL, NULL),
+('database_upgrade', '1', NULL, 'text');
+-;-
+INSERT INTO `site_vars_available` (`var`, `type`, `description`) VALUES
+('LOCALE', 'text', ''),
+('OS', 'text', ''),
+('PATH_SEP', 'text', ''),
+('HEAD', 'text', ''),
+('FONT', 'text', ''),
+('NAV_IMG_TOP', 'text', ''),
+('URL', 'text', ''),
+('DELIMITER', 'text', ''),
+('SUDO_CMD', 'text', ''),
+('PATH', 'text', ''),
+('CHECK_UPDATE', 'bool', ''),
+('DEFAULT_THEME', 'theme', ''),
+('FORCE_THEME', 'bool', ''),
+('FORCED_THEME', 'theme', ''),
+('SESSION_ID', 'text', ''),
+('SESSION_USER', 'text', ''),
+('ADMIN', 'text', ''),
+('ADMIN_EMAIL', 'text', ''),
+('SLOGAN', 'text', ''),
+('URL', 'text', ''),
+('ERROR_LOG', 'file', ''),
+('THEME_DROPDOWN', 'bool', ''),
+('ADDTHIS_ACCT', 'text', ''),
+('FACEBOOK_APP_ID', 'text', ''),
+('FACEBOOK_SECRET', 'text', ''),
+('FACEBOOK_SDK', 'text', ''),
+('FACEBOOK_NEWS_COMMENTS', 'bool', ''),
+('FACEBOOK_WIKI_COMMENTS', 'bool', ''),
+('ALLOW_FREE_DOWNLOADS', 'bool', ''),
+('MENU_TOP_LOCATION', 'menu_location', ''),
+('MENU_LEFT_LOCATION', 'menu_location', ''),
+('FOOTER', 'text', ''),
+('COPYRIGHT', 'text', ''),
+('JOIN_FORM_CODE', 'text', ''),
+('LOGIN_FORM_CODE', 'text', ''),
+('LOGGED_IN_CODE', 'text', ''),
+('JS_JQUERY', 'file', ''),
+('JS_COLOR', 'file', ''),
+('JS_MOOTOOLS', 'file', ''),
+('JS_EDITAREA', 'file', ''),
+('JS_MSDROPDOWN', 'file', ''),
+('JS_MSDROPDOWN_THEME', 'text', ''),
+('TITLE', 'text', ''),
+('NAME', 'text', ''),
+('SEO_KEYWORDS', 'text', ''),
+('DOC_TYPE', 'text', ''),
+('HTML_OPEN', 'text', ''),
+('HEAD_OPEN', 'text', ''),
+('HEAD_CLOSE', 'text', ''),
+('BODY_OPEN', 'text', ''),
+('BODY_CLOSE', 'text', ''),
+('HTML_CLOSE', 'text', ''),
+('GOOGLE_ADSENSE', 'text', ''),
+('PAYPAL_BUTTON1', 'text', ''),
+('PAYPAL_BUTTON1_MSG', 'text', ''),
+('PAYPAL_BUTTON2', 'text', ''),
+('PAYPAL_BUTTON2_MSG', 'text', ''),
+('SHOW_SOCIALS', 'text', ''),
+('ADDTHIS_ACCT', 'text', ''),
+('GOOGLE_ANALYTICS', 'text', ''),
+('GALLERIAS', 'bool', ''),
+('CAPTIONS', 'bool', '');
+-;-
+INSERT INTO `site_var_types` (`name`, `table`, `key`, `other`) VALUES
+('text', '', '', ''),
+('bool', '', '', 'on,off'),
+('theme', '', '', ''),
+('file', '', '', ''),
+('menu_location', '', '', ''),
+('picture', 'pictures', 'name', ''),
+('video', 'videos', 'name', ''),
+('text', '', '', '');
+-;-
+INSERT INTO `todo_list_status` (`name`) VALUES
+('Open'),
+('In Progress'),
+('Resolved'),
+('Closed');
+-;-
+INSERT INTO `todo_list_type` (`name`) VALUES
+('Personal'),
+('Bug'),
+('Task');

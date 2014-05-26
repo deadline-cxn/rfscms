@@ -87,7 +87,7 @@ function lib_rfs_do_action() {
 }
 function lib_rfs_maintenance() { eval(lib_rfs_get_globals());
 	global $theme;
-	lib_div("lib_rfs_maintenance start");
+	// lib_div("lib_rfs_maintenance start");
 	lib_modules_array();
 	$data=lib_users_get_data($_SESSION['valid_user']);
 	if($mc_gross>0) $data->donated="yes";

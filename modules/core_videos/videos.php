@@ -113,7 +113,7 @@ function videos_action_submitvid_youtube_go() {
         $q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`,       `time`, `bumptime`, `category`, `hidden`, `sfw`)
 						   VALUES ('$cont',      '$sname','$vembed_code' , '$youtube' ,'$time',    '$time','$category',      '0', '$sfw');";
 		lib_mysql_query($q);
-		$id=mysqli_insert_id();
+		$id=$_GLOBALS['mysqli_id'];
 		videos_action_view($id);
 	}
 }
@@ -136,7 +136,7 @@ function videos_action_submitvidgo() {
 				
 		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`embed_code`, `url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
 									   VALUES ('$cont','$sname','$vembed_code','$vurl','$time','$time','$category','0','$sfw');");
-		$id=mysqli_insert_id();
+		$id=$_GLOBALS['mysqli_id'];
 		videos_action_view($id);
 	}
 }
@@ -216,7 +216,7 @@ function videos_action_removevideo() {
 }
 function videos_action_view($id) {
 	eval(lib_rfs_get_globals());
-	if(empty($id)) $id=mysqli_insert_id();
+	if(empty($id)) $id=$_GLOBALS['mysqli_id'];
 	videos_buttons();
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);

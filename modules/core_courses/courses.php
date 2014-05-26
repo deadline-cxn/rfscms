@@ -78,7 +78,7 @@ function courses_action_add_course() { eval(lib_rfs_get_globals());
 		echo "<h2>Add new course</h2>";
 		echo $name;
 		lib_mysql_query("insert into courses (`name`) VALUES ('$name') ");
-		$id=mysqli_insert_id();
+		$id=$_GLOBALS['mysqli_id'];
 		echo "$id";
 		courses_action_edit_components();
 		

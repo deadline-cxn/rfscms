@@ -36,7 +36,7 @@ function todo_list_status_icon() { eval(lib_rfs_get_globals());
 function todo_list_action_open_task_go() { eval(lib_rfs_get_globals());
 echo "INSERTING";
 	lib_mysql_query("insert into `todo_list_task` (`name`,`list`) values ('$name','$list');");
-	$id=mysqli_insert_id();
+	$id=$_GLOBALS['mysqli_id'];
 	lib_mysql_update_database("todo_list_task","id","$id","");
 	$id=$list;
 	todo_list_action_view_todo_list($list);

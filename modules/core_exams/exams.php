@@ -805,7 +805,7 @@ if(lib_access_check("exams","edit") ) {
     if($action=="admin_new_exam") {
 
         $r=lib_mysql_query( "insert into exams (`name`) VALUES ('$name')");
-        $id=mysqli_insert_id();
+        $id=$_GLOBALS['mysqli_id'];
         echo "<p> ";
         if($id)
             echo " Exam $name ($id) created";

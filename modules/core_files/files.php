@@ -980,7 +980,7 @@ function files_action_f_upload_go() {
                     $time1 = date("Y-m-d H:i:s");
                     lib_mysql_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)
                     VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");
-                    $id = mysqli_insert_id();
+                    $id  =$_GLOBALS['mysqli_id']; 
                     echo "DATABASE ID[$id]<br>";
                     echo "<a href=\"$RFS_ADDON_FOLDER?action=get_file&id=$id\">View file information</a><br>";
                     $httppath = str_replace("$RFS_SITE_URL/", "", $httppath);

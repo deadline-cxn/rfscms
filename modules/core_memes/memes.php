@@ -50,7 +50,7 @@ function memes_action_new_meme_go() { eval(lib_rfs_get_globals());
 		$poster=999;
 		if($data->id)$poster=$data->id;
 		lib_mysql_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
-		$id=mysqli_insert_id();
+		$id=$_GLOBALS['mysqli_id'];
 		//$cid=$r->fetch_object(lib_mysql_query("select * from categories where name = '$category'"));
 		lib_mysql_query("update `pictures` set `category`='$category'  where `id`='$id'");
 		lib_mysql_query("update `pictures` set `sname`='$sname'        where `id`='$id'");
@@ -135,7 +135,7 @@ function memes_action_memegenerate() { eval(lib_rfs_get_globals());
 				  ( `name`,`poster`, `basepic`,`texttop`,`status`)
 			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
         lib_mysql_query($q);
-        $GLOBALS['mid']=mysqli_insert_id();
+        $GLOBALS['mid']=$_GLOBALS['mysqli_id'];
        }
 	else {
 		$infoout="Updating caption $mid";

@@ -2,10 +2,21 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.rfscms.org/
 /////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Interim Database Changes. These changes will be rotated out into the install script
+
 $a=intval($RFS_SITE_DATABASE_UPGRADE);
 $b=intval($RFS_BUILD);
-if(empty($RFS_SITE_DATABASE_UPGRADE)) {	
+
+if($a<2) {
+	lib_access_add_method("linkbin","edit");
+	lib_access_add_method("linkbin","add");
+	lib_access_add_method("linkbin","delete");	
+	lib_access_add_method("debug", "view");
+	lib_access_add_method("todo_list", "add");
+	lib_access_add_method("admin", "access");
+	lib_access_add_method("admin", "categories");
 	lib_access_add_method("memes", "upload");
 	lib_access_add_method("memes", "edit");
 	lib_access_add_method("memes", "delete");
@@ -14,7 +25,6 @@ if(empty($RFS_SITE_DATABASE_UPGRADE)) {
 	lib_access_add_method("pictures", "edit");
 	lib_access_add_method("pictures", "delete");
 	lib_access_add_method("pictures", "sort");
-
 	lib_access_add_method("files", "upload");
 	lib_access_add_method("files", "addlink");
 	lib_access_add_method("files", "orphanscan");
@@ -24,6 +34,27 @@ if(empty($RFS_SITE_DATABASE_UPGRADE)) {
 	lib_access_add_method("files", "delete");
 	lib_access_add_method("files", "xplorer");
 	lib_access_add_method("files", "xplorershell");	
+	lib_access_add_method("forums", "admin");
+	lib_access_add_method("forums", "add");
+	lib_access_add_method("forums", "edit");
+	lib_access_add_method("forums", "delete");
+	lib_access_add_method("forums", "moderate");
+	lib_access_add_method("news", "edit");
+	lib_access_add_method("news", "editothers");
+	lib_access_add_method("news", "submit");
+	lib_access_add_method("news", "delete");
+	lib_access_add_method("news", "deleteothers");	
+	lib_access_add_method("videos", "submit");
+	lib_access_add_method("videos", "edit");
+	lib_access_add_method("videos", "editothers");
+	lib_access_add_method("videos", "delete");
+	lib_access_add_method("videos", "deleteothers");	
+
+	$logtext="Added interim database changes 1";
+	lib_log_add_entry($logtext);	
+}
+
+if($a<700) {	
 
 	lib_mysql_add("rfsauth","name","text","NOT NULL");
 	lib_mysql_add("rfsauth","enabled","text","NOT NULL");
@@ -95,7 +126,7 @@ if(empty($RFS_SITE_DATABASE_UPGRADE)) {
 	lib_mysql_add("news","page",		"int",		"NOT NULL");
 	lib_mysql_add("news","wiki",		"text",	"NOT NULL");
 	lib_mysql_query( "CREATE TABLE IF NOT EXISTS `pmsg` (`id` int(11) NOT NULL AUTO_INCREMENT,`to` text NOT NULL, `from` text NOT NULL, `subject` text NOT NULL, `message` text NOT NULL, `time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',`read` text NOT NULL, PRIMARY KEY (`id`) ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=149 ; ");
-	$logtext="Added initial interim database changes";
+	$logtext="Added interim database changes 700";
 	lib_log_add_entry($logtext);	
 }
 
@@ -117,7 +148,7 @@ if($a<891) {
 	lib_log_add_entry($logtext);
 }
 if($a<901) {
-	lib_access_add_method("debug", "view");
+	
 	$logtext="Added interim database changes 901";
 	lib_log_add_entry($logtext);
 }
@@ -155,15 +186,14 @@ if($a<903) {
 	lib_mysql_data_add("todo_list_type","name","Bug","");
 	lib_mysql_data_add("todo_list_type","name","Task","");
 
-	lib_access_add_method("todo_list", "add");
+	
 	$logtext="Added interim database changes 903";
 	lib_log_add_entry($logtext);	
 }
 
 
 if($a<925) {
-	lib_access_add_method("admin", "access");
-	lib_access_add_method("admin", "categories");
+
 	$r=lib_mysql_query("select * from categories");
 	while($cat=$r->fetch_object()){ 
 		lib_mysql_query("update pictures set `category` = '$cat->name' where `category` = '$cat->id'");
@@ -176,34 +206,18 @@ if($a<925) {
 	lib_log_add_entry($logtext);
 }
 
-if($a<932) {
-	lib_access_add_method("forums", "admin");
-	lib_access_add_method("forums", "add");
-	lib_access_add_method("forums", "edit");
-	lib_access_add_method("forums", "delete");
-	lib_access_add_method("forums", "moderate");
-	lib_access_add_method("news", "edit");
-	lib_access_add_method("news", "editothers");
-	lib_access_add_method("news", "submit");
-	lib_access_add_method("news", "delete");
-	lib_access_add_method("news", "deleteothers");
+if($a<932) {	
 	$logtext="Added interim database changes 932";
 	lib_log_add_entry($logtext);
 }
 if($a<940) {
-	lib_access_add_method("linkbin","edit");
-	lib_access_add_method("linkbin","add");
-	lib_access_add_method("linkbin","delete");
+	
 	$logtext="Added interim database changes 940";
 	lib_log_add_entry($logtext);
 }
 
 if($a<956) {
-	lib_access_add_method("videos", "submit");
-	lib_access_add_method("videos", "edit");
-	lib_access_add_method("videos", "editothers");
-	lib_access_add_method("videos", "delete");
-	lib_access_add_method("videos", "deleteothers");
+	
 	lib_mysql_add("videos","embed_code","text","not null");
 	$r=lib_mysql_query("select * from videos");
 	while($v=$r->fetch_object()) {
@@ -406,7 +420,7 @@ if($a<1103) {
 }
 
 if($a<1107) {
-	lib_mysql_query("ALTER TABLE videos CHANGE poster contributor text");	
+	lib_mysql_query("ALTER TABLE videos CHANGE poster contributor text");
 	$logtext="Added interim database changes 1107";
 	lib_log_add_entry($logtext);
 }
@@ -488,10 +502,16 @@ if($a<1166) {
 	lib_mysql_query("ALTER TABLE `users` ADD `email` text NOT NULL;");
 	lib_mysql_query("ALTER TABLE `users` ADD `paypal_email` text NOT NULL;");
 	lib_mysql_query("ALTER TABLE `users` ADD `first_login` timestamp NOT NULL;");
+}
 
+if($a<1203) {
+	lib_mysql_query("ALTER TABLE `access_methods` CHANGE `action` `paction` text");
+	lib_mysql_query("ALTER TABLE `access` CHANGE `action` `paction` text");
+	lib_mysql_query("ALTER TABLE `access` CHANGE `table` `ptable` text");
 }
 
 if($a < $b) {
+	lib_forms_inform("Database upgraded from $a to $b<br>");
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
 	$dbu=lib_mysql_fetch_one_object("select * from site_vars where name='database_upgrade'");
 	if(empty($dbu->id)) lib_mysql_query("insert into site_vars (`name`,`value`) values('database_upgrade','$RFS_SITE_DATABASE_UPGRADE');");
@@ -499,4 +519,5 @@ if($a < $b) {
 	$logtext="Added interim database changes $RFS_SITE_DATABASE_UPGRADE";	
 	lib_log_add_entry($logtext);
 }
+
 ?>

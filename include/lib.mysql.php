@@ -17,7 +17,9 @@ function lib_mysql_open_database($address,$user,$pass,$dbname) {
 function lib_mysql_query($query) {
 	if(stristr($query,"`users`")) $msql=lib_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);		
 	else                          $msql=lib_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
-	return mysqli_query($msql,$query);
+	$x=mysqli_query($msql,$query);
+	$_GLOBALS['mysqli_id']=mysqli_insert_id($msql);
+	return ($x);
 }
 
 function lib_mysql_generate_content_ids() { eval(lib_rfs_get_globals());
@@ -57,8 +59,8 @@ function lib_mysql_data_add($table,$field,$value,$id) {
 	$r=lib_mysql_fetch_one_object("select * from `$table` where `$field`='$value' $chkid");	
 	if($r->id) return $r->id;
 	lib_mysql_query("insert into `$table` (`$field`) VALUES ('$value'); ");
-	$i=mysqli_insert_id();
-	return $i;	
+	$i=$_GLOBALS['mysqli_id'];
+	return $i;
 }
 function lib_mysql_hidden_var($name,$value) { echo lib_mysql_hidden_var_r($name,$value); }
 function lib_mysql_hidden_var_r($name,$value) { return "<input type=\"hidden\" name=\"$name\" value=\"$value\">"; }

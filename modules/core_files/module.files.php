@@ -24,6 +24,7 @@ $RFS_ADDON_GIT_REPOSITORY="";
 $RFS_ADDON_URL=lib_modules_get_base_url_from_file(__FILE__);
 
 lib_menus_register("Files","$RFS_SITE_URL/modules/core_files/files.php");
+
 ////////////////////////////////////////////////////////////////
 // PANELS
 function m_panel_files($x) {
@@ -548,7 +549,7 @@ function m_files_orphan_scan($dir,$RFS_CMD_LINE) { eval(lib_rfs_get_globals());
 									$name=addslashes($file);
 									$infile=addslashes($file);							
 									lib_mysql_query("INSERT INTO `files` (`name`) VALUES('$infile');");
-									$fid=mysqli_insert_id();
+									$fid=$_GLOBALS['mysqli_id'];
 									$loc=addslashes("$dir/$file");
 									lib_mysql_query("UPDATE files SET `location`='$loc' where id='$fid'");
 									$dname="system";

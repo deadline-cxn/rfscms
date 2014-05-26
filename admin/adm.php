@@ -520,8 +520,9 @@ function adm_action_f_access_group_edit_go() {
 	lib_mysql_query("delete from `access` where name='$axnm'");
 	$r=lib_mysql_query("select * from `access_methods`");
 	while($am=$r->fetch_object()) {
-		if($_POST["$am->page"."_$am->action"]=="on") {
-			lib_mysql_query("insert into `access` (`name`,`page`,`action`) VALUES('$axnm','$am->page','$am->action')");
+		if($_POST["$am->page"."_$am->paction"]=="on") {
+			lib_mysql_query("insert into `access` (`name`,`page`,`paction`)
+							VALUES('$axnm','$am->page','$am->paction')");
 		}
 	}
 	adm_action_access_groups();
@@ -533,24 +534,35 @@ function adm_action_f_access_group_edit() {
 	echo "<h2>$axnm</h2>";
 	echo "<hr>";
 	
-    echo "<script> $(document).ready(function () {    $('#selectall').click(function () { $('.selectedId').prop('checked', this.checked); }); $('.selectedId').change(function () { var check = ($('.selectedId').filter(\":checked\").length == $('.selectedId').length); $('#selectall').prop(\"checked\", check);}); }); </script>";
+	echo "<script> $(document).ready(function () {    $('#selectall').click(function () { $('.selectedId').prop('checked', this.checked); }); $('.selectedId').change(function () { var check = ($('.selectedId').filter(\":checked\").length == $('.selectedId').length); $('#selectall').prop(\"checked\", check);}); }); </script>";
 	echo "<input type=\"checkbox\" id=\"selectall\">Select all</input>";
 	echo "<div class=\"forum_box\">";
 	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
 	echo "<input type=\"hidden\" name=\"action\" value=\"f_access_group_edit_go\">";
 	echo "<input type=\"hidden\" name=\"axnm\" value=\"$axnm\">";
 	
-	$r=lib_mysql_query("select * from `access_methods` order by page,action");
+	$r=lib_mysql_query("select * from `access_methods` order by `page`,`paction`");
+	
 	while($am=$r->fetch_object()) {
+		$q="select * from `access` where name='$axnm' and page='$am->page' and `paction`='$am->paction'";
+		
+		$wwrw=lib_mysql_fetch_one_object($q);
+		
 		$checked="";
-		$rw=lib_mysql_fetch_one_object("select * from `access` where name='$axnm' and page='$am->page' and action='$am->action'");
-		if($rw->name==$axnm) { $checked="checked";}
-		echo "<div style=\"float: left; width: 200px;\">";
-		echo "<input  type=\"checkbox\" class=\"selectedId\" name=\"$am->page"."_$am->action\" $checked >";
-		//  class=\"checkitout\"> ";
-		echo " $am->page -> $am->action";
+		if($wwrw->name==$axnm) {
+			
+			$checked="checked";
+			
+		}
+		
+		echo "<div style=\"float: left; width: 230px;\">";
+		echo "<input  type=\"checkbox\" class=\"selectedId\" 
+			name=\"$am->page"."_$am->paction\" $checked >";
+		echo " $am->page -> $am->paction";
 		echo "</div>";
-	}	
+		
+	}
+	
 	echo "<div style=\"clear: left;\"></div>";
 	echo "</div>";
 	echo "<input type=\"submit\" value=\"Update\">";
@@ -595,8 +607,7 @@ function adm_action_f_access_group_delete_go() {
 	adm_action_access_groups();
 }
 function adm_action_access_groups() {
-    eval(lib_rfs_get_globals());
-    lib_mysql_scrub("access_methods","page");
+    eval(lib_rfs_get_globals());    
 	echo "<h1>Modify Access Groups</h1>";
 	echo "<hr>";
 	echo "<h2>Create a new access group</h2>";
