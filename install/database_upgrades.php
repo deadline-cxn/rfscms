@@ -9,51 +9,6 @@
 $a=intval($RFS_SITE_DATABASE_UPGRADE);
 $b=intval($RFS_BUILD);
 
-if($a<2) {
-	lib_access_add_method("linkbin","edit");
-	lib_access_add_method("linkbin","add");
-	lib_access_add_method("linkbin","delete");	
-	lib_access_add_method("debug", "view");
-	lib_access_add_method("todo_list", "add");
-	lib_access_add_method("admin", "access");
-	lib_access_add_method("admin", "categories");
-	lib_access_add_method("memes", "upload");
-	lib_access_add_method("memes", "edit");
-	lib_access_add_method("memes", "delete");
-	lib_access_add_method("pictures", "orphanscan");
-	lib_access_add_method("pictures", "upload");
-	lib_access_add_method("pictures", "edit");
-	lib_access_add_method("pictures", "delete");
-	lib_access_add_method("pictures", "sort");
-	lib_access_add_method("files", "upload");
-	lib_access_add_method("files", "addlink");
-	lib_access_add_method("files", "orphanscan");
-	lib_access_add_method("files", "purge");
-	lib_access_add_method("files", "sort");
-	lib_access_add_method("files", "edit");
-	lib_access_add_method("files", "delete");
-	lib_access_add_method("files", "xplorer");
-	lib_access_add_method("files", "xplorershell");	
-	lib_access_add_method("forums", "admin");
-	lib_access_add_method("forums", "add");
-	lib_access_add_method("forums", "edit");
-	lib_access_add_method("forums", "delete");
-	lib_access_add_method("forums", "moderate");
-	lib_access_add_method("news", "edit");
-	lib_access_add_method("news", "editothers");
-	lib_access_add_method("news", "submit");
-	lib_access_add_method("news", "delete");
-	lib_access_add_method("news", "deleteothers");	
-	lib_access_add_method("videos", "submit");
-	lib_access_add_method("videos", "edit");
-	lib_access_add_method("videos", "editothers");
-	lib_access_add_method("videos", "delete");
-	lib_access_add_method("videos", "deleteothers");	
-
-	$logtext="Added interim database changes 1";
-	lib_log_add_entry($logtext);	
-}
-
 if($a<700) {	
 
 	lib_mysql_add("rfsauth","name","text","NOT NULL");
@@ -508,6 +463,51 @@ if($a<1203) {
 	lib_mysql_query("ALTER TABLE `access_methods` CHANGE `action` `paction` text");
 	lib_mysql_query("ALTER TABLE `access` CHANGE `action` `paction` text");
 	lib_mysql_query("ALTER TABLE `access` CHANGE `table` `ptable` text");
+}
+
+if($a<1204) {
+	lib_access_add_method("linkbin","edit");
+	lib_access_add_method("linkbin","add");
+	lib_access_add_method("linkbin","delete");	
+	lib_access_add_method("debug", "view");
+	lib_access_add_method("todo_list", "add");
+	lib_access_add_method("admin", "access");
+	lib_access_add_method("admin", "categories");
+	lib_access_add_method("memes", "upload");
+	lib_access_add_method("memes", "edit");
+	lib_access_add_method("memes", "delete");
+	lib_access_add_method("pictures", "orphanscan");
+	lib_access_add_method("pictures", "upload");
+	lib_access_add_method("pictures", "edit");
+	lib_access_add_method("pictures", "delete");
+	lib_access_add_method("pictures", "sort");
+	lib_access_add_method("files", "upload");
+	lib_access_add_method("files", "addlink");
+	lib_access_add_method("files", "orphanscan");
+	lib_access_add_method("files", "purge");
+	lib_access_add_method("files", "sort");
+	lib_access_add_method("files", "edit");
+	lib_access_add_method("files", "delete");
+	lib_access_add_method("files", "xplorer");
+	lib_access_add_method("files", "xplorershell");	
+	lib_access_add_method("forums", "admin");
+	lib_access_add_method("forums", "add");
+	lib_access_add_method("forums", "edit");
+	lib_access_add_method("forums", "delete");
+	lib_access_add_method("forums", "moderate");
+	lib_access_add_method("news", "edit");
+	lib_access_add_method("news", "editothers");
+	lib_access_add_method("news", "submit");
+	lib_access_add_method("news", "delete");
+	lib_access_add_method("news", "deleteothers");	
+	lib_access_add_method("videos", "submit");
+	lib_access_add_method("videos", "edit");
+	lib_access_add_method("videos", "editothers");
+	lib_access_add_method("videos", "delete");
+	lib_access_add_method("videos", "deleteothers");	
+
+	$logtext="Added interim database changes 1204";
+	lib_log_add_entry($logtext);	
 }
 
 if($a < $b) {
