@@ -24,7 +24,9 @@ function finish_wiki_page() {
 
 function wiki_buttons() {
 	eval(lib_rfs_get_globals());
-	if($hide_wiki_menu!="true"){
+	
+	if(!lib_rfs_bool_true($RFS_SITE_HIDE_WIKI_MENU)) {
+		
 		$wpage=lib_mysql_fetch_one_object("select * from wiki where name='$name' order by revision desc limit 1");
 
 		echo "[<a class=rfswiki_link href=$addon_url?name=home>main page</a>]";
@@ -200,13 +202,15 @@ function wiki_action_() {
 	eval(lib_rfs_get_globals());
 	echo "<div class=\"wikitext\">";
 	wiki_buttons();
-	echo "<hr>";
+	
     if(empty($name)) $name="home";
+	
 	$res=lib_mysql_query("select * from wiki where name='$name'");
 	$wikipage=$res->fetch_object();
 	$name=ucwords($name);
 
 	lib_rfs_echo("<h1>$name</h1>");
+	
 	
 	$res=lib_mysql_query("select * from wiki where name='$name'");
 	$tpage=$res->fetch_object();
@@ -269,7 +273,7 @@ function wiki_action_() {
     else    {
 	
 		lib_rfs_echo(wikitext(wikiimg(($wikipage->text))));
-        if($hide_wiki_menu!="true") {
+        if(!lib_rfs_bool_true($RFS_SITE_HIDE_WIKI_MENU)) {
 			echo "<hr>";
 			$tres=lib_mysql_query("select * from wiki where name='$name' and revision='0'");
 			$twik=$tres->fetch_object();
@@ -277,8 +281,8 @@ function wiki_action_() {
 			if($wikipage->revision) {
 				echo " (revision: $wikipage->revision by: $wikipage->revised_by ".lib_string_current_time($wikipage->updated).")</p>";
 			}
-		
 		}
+		
 		$page="$addon_url?name=$name";	
 		if(lib_rfs_bool_true($RFS_SITE_WIKI_FACEBOOK_COMMENTS))
 			lib_social_facebook_comments($page);
@@ -289,7 +293,6 @@ function wiki_action_() {
 			echo "<hr>";
 			lib_social_share_bar2($u,$p);
 		}
-		echo "<hr>";
 	}
 	
 	wiki_buttons();

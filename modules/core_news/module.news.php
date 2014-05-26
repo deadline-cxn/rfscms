@@ -252,26 +252,30 @@ function rfs_show_news($nid) {
         echo "[<a href=\"$RFS_ADDON_URL?action=deletenews&nid=$nid\" class=news_a>remove</a>] \n";
 		echo "<p>&nbsp;</p>";
 		echo "</div>";
-    }   		
+    }
 		echo "<div>";
 		
-		 echo "<div style='clear: both;'></div>";
+			echo "<div style='clear: both;'></div>";
 		
-		echo "<hr>";
+		
 		
 		$page="$RFS_ADDON_URL?action=view&nid=$nid";
 		
 		// echo "[$page] [$RFS_ADDON_URL]";
 		
-		if(lib_rfs_bool_true($RFS_SITE_NEWS_SOCIALS))
+		if(lib_rfs_bool_true($RFS_SITE_NEWS_SOCIALS)) {
 			lib_social_share_bar2($page,$news->image_url,$news->headline);
-			echo "<div style='clear: both;'></div>";
-		echo "<hr>";		
-		if(lib_rfs_bool_true($RFS_SITE_NEWS_FACEBOOK_COMMENTS))
-			lib_social_facebook_comments($page);
-			echo "<div style='clear: both;'></div>";
+		}
 		
-		echo "</div>";
+				echo "<div style='clear: both;'></div>";
+		
+		if(lib_rfs_bool_true($RFS_SITE_NEWS_FACEBOOK_COMMENTS)) {			
+			lib_social_facebook_comments($page);
+			
+		}
+				echo "<div style='clear: both;'></div>";
+		
+			echo "</div>";
 		echo "</div>";
 	echo "</div>";
 }
