@@ -1347,7 +1347,17 @@ function lib_forms_system_message() {
 	}
 }
 function lib_forms_info($t,$c,$c2) {
-	echo "<div style=' font-size: 2em; color:$c; background-color:$c2; width:100%;'>$t</div>";
+$border="#000";
+if( $c2=="#000" || $c2=="black" || $c2="#000000" ) $border="#0f0";
+echo "<div style='
+padding: 5px;
+font-size: 1em;
+font-weight: bold;
+color:$c;
+background-color:$c2;
+border: 1px solid $border;
+border-radius: 5px;
+width:100%;'>$t</div>";
 }
 function lib_forms_confirm($message,$page,$hiddenvars){
 	echo "\n<lib_forms_confirm [START]================================================ />\n";
