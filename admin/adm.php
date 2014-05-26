@@ -16,7 +16,7 @@ if(!lib_access_check("admin","access")) {
 	include("footer.php");
 	exit();
 }
-include( "lilheader.php" ); 
+include( "lilheader.php" );
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM CHECK FOR UPDATES
 function adm_action_update() {

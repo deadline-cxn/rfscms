@@ -78,9 +78,38 @@ $rfs_site_url="";
 $rfs_db_password="";
 $rfs_db_password_confirm="";
 foreach( $_REQUEST as $k => $v ) { if(stristr($k,"rfs_")) { $GLOBALS["$k"]=$v; } }
+
+
+include_once("$RFS_SITE_PATH/config/config.php");
+$r=install_mysql_query("select * from site_vars where `name`='name'");
+$sv=$r->fetch_object();
+if(!empty($sv->name)) {	
+	echo "
+<center> <p></p><p></p>
+<table border=0 width=$table_width><tr><td class=formboxd>
+<center><h1> RFS CMS $RFS_VERSION ( Build: $RFS_BUILD)</h1></center>
+</td></tr></table>
+<table border=0 width=$table_width><tr><td class=formboxd>
+<br>";	
+echo "<div style='
+color: white;
+background-color: red;
+'>";
+
+	echo "Whoops... ($sv->name = $sv->value) is already defined in the database.<br>";
+	echo "If you want to reinstall RFSCMS, you must first either:<br>";
+	echo "1) remove $RFS_SITE_PATH/config/config.php<br>";
+	echo "2) drop table $authdbname and recreate it<br>";
+	echo "</div>";
+	echo "</td></tr></table>";
+	
+	exit();
+}
+
+
 $action=""; if(isset($_REQUEST['action'])) $action=$_REQUEST['action'];
 if(($action=="go_install") || (empty($action)) ) {
-	
+
 	system("rm install.log");
 	
 echo "<center> <p></p><p></p>
@@ -133,8 +162,9 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 
 		echo "<div width=100% style='background-color: cyan; color: black;'>Attempting to create $RFS_SITE_PATH/config/config.php</div>";
 		
-		// attempt to chmod config folder
+		// attempt to chmod install and config folder
 		install_log(system("sudo chmod 777 $RFS_SITE_PATH/config"));
+		install_log(system("sudo chmod 777 $RFS_SITE_PATH/install"));
 				
         $fp=fopen("$RFS_SITE_PATH/config/config.php","wt");
 		if($fp) {
@@ -177,7 +207,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			$qx=explode(";",file_get_contents("$RFS_SITE_PATH/install/install.sql"));
 			for($i=0;$i<count($qx);$i++) {
 				$q=$qx[$i];
-				echo "$q; <br><hr>";
+				// echo "$q; <br><hr>";
 				install_mysql_query("$q;");
 			}
 			
@@ -186,9 +216,8 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			
 			$q=" INSERT INTO `users` (`name`,`pass`,`real_name`,`email`,`access_groups`,`theme`)
 				VALUES('$rfs_admin', '$rfs_password_m', '$rfs_admin_name', '$rfs_admin_email', 'Administrator', 'default'); ";
-				
-			echo "<br>";
-			echo $q."<br>";
+			
+			// echo $q."<br>";
 			install_mysql_query($q);
 			
 			///////////////////////////////////////////////////////////////////////////////
@@ -219,7 +248,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			$qx=explode("-;-",file_get_contents($f));
 			for($i=0;$i<count($qx);$i++) {
 				$q=$qx[$i];
-				echo "$q<br><hr>";
+				// echo "$q<br><hr>";
 				install_mysql_query("$q;");
 			}
 					
@@ -231,6 +260,22 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			install_log(system("mkdir $RFS_SITE_PATH/files/pictures"));
 			install_log(system("mkdir $RFS_SITE_PATH/images"));
 			install_log(system("mkdir $RFS_SITE_PATH/images/avatars"));
+			
+			///////////////////////////////////////////////////////////////////////////////
+			// Password Protect install folder
+
+/*
+$htaccess="
+AuthType Basic
+AuthName \"RFSCMS INSTALL FOLDER\"
+AuthUserFile $RFS_SITE_PATH/install/.htpasswd
+Require valid-user
+";
+file_put_contents("$RFS_SITE_PATH/install/.htaccess");
+
+$htpasswd = $rfs_admin.":".crypt($rfs_password, base64_encode($rfs_password))."\n";
+file_put_contents("$RFS_SITE_PATH/install/.htpasswd");
+	*/		
 
 echo "
 <center>

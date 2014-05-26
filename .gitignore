@@ -27,4 +27,7 @@ modules/*
 !modules/core*
 modules/core_videos/cache/*.jpg
 admin/update/*
+install/.htaccess
+install/.htpasswd
+install/install.log
 
