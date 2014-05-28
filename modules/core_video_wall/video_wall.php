@@ -15,7 +15,7 @@ if($h>0) {	$_SESSION['he']=$h; $h=0;  save_vw(); }
 
 if(!empty($cat)) $_SESSION['cat']=$cat;
 if(empty($cat))  $cat=$_SESSION['cat'];
-if(empty($cat)) $cat='87';
+if(empty($cat)) $cat='Live Feeds';
 
 if($edzor=='1')   $_SESSION['edzors']=true;
 if($edzor=='0')  $_SESSION['edzors']=false;
@@ -36,7 +36,7 @@ function save_vw(){
 				
 			}
 		}
-		lib_mysql_query_user_db("update `users` set videowall = '$vw' where id='$data->id'");
+		lib_mysql_query("update `users` set videowall = '$vw' where id='$data->id'");
 	}
 }
 
@@ -222,7 +222,7 @@ if($act=="add") {
 	if(!empty($embed_code)) {
 
 		$time=date("Y-m-d H:i:s");
-		for($ci=200;$ci<1299;$ci++){
+		for($ci=100;$ci<5299;$ci++){
 			$embed_code=str_replace("width=\"$ci","width=\"400",$embed_code);
 			$embed_code=str_replace("height=\"$ci","height=\"300",$embed_code);
 			$embed_code=str_replace("width='$ci","width='400",$embed_code);
@@ -237,7 +237,7 @@ if($act=="add") {
 
 		$cont=$data->id; if(!$cont) $cont=999;
 
-	   $r=lib_mysql_query("insert into videos  (`contributor`, `sname`,`embed_code` , `time`, `category`)
+	   lib_mysql_query("insert into videos  (`contributor`, `sname`,`embed_code` , `time`, `category`)
 			     					 VALUES('$cont', '$name','$embed_code', '$time', '87')" );
 	}
 
@@ -295,20 +295,11 @@ if($act=="add") {
 			echo " (<a href=$RFS_SITE_URL/login.php?action=logout&outpage=modules/core_video_wall/v.php>logout</a>)<BR>";
 		}
 		echo "</td></tr></table>";
-				
-		/*if(empty($data->donated))
-			echo "If you would like to get this page free
-					  from advertising, you can donate to my
-					paypal and the ads will be removed.
-					Thanks, Seth.<br>";*/
-					
+							
 		echo "<table border=0 cellspacing=0><tr><td valign=top>";
-
-		
 
 		echo "If there is a glitch<br>in the matrix...<br>[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?action=resetmatrix>RESET EVERYTHING</a>]";
 		echo "</td><td>";
-		
 
 		echo "Matrix Size:<br>";
 		echo "Presets<br>";
