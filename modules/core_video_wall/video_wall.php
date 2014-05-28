@@ -426,8 +426,8 @@ echo "</td></tr></table>";
 		
 		
 		$r=lib_mysql_query("select * from videos where category='$cat' order by sname asc");
-		for($jj=0;$jj<$r->num_rows;$jj++){
-			$v=$r->fetch_object();
+		
+		while($v=$r->fetch_object()){
 			
 			echo "<tr>";
 			
