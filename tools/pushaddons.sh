@@ -1,4 +1,4 @@
-cd /var/www/modules
+cd ../modules
 echo "PUSHING BULLETLOG\n"
 cd bullet_log
 gpush 'update'
@@ -20,7 +20,3 @@ gpush 'update'
 echo "PUSHING FT\n"
 cd ../fitness_tracker
 gpush 'update'
-
-
-
-
