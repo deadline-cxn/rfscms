@@ -415,6 +415,10 @@ echo "</td></tr></table>";
 				
 		echo "All videos contributed...<br>";
 		
+		$q="select * from videos where category='$cat' order by sname asc";
+		echo $q;
+		$r=lib_mysql_query($q);
+		
 		echo "<table border=0 cellspacing=0 cellpadding=3>";
 		
 		echo "<tr>";
@@ -425,7 +429,7 @@ echo "</td></tr></table>";
 		echo "</tr>";
 		
 		
-		$r=lib_mysql_query("select * from videos where category='$cat' order by sname asc");
+		
 		
 		while($v=$r->fetch_object()){
 			
