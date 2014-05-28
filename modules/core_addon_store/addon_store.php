@@ -27,6 +27,7 @@ function addon_store_action_icon_list() {
 	}
 }
 function addon_store_action_details() {
+	global $RFS_SITE_URL;
 	$id=$_REQUEST['id'];
 	$r=lib_mysql_query("select * from addon_database where id='$id'");
 	$addon=$r->fetch_object();
