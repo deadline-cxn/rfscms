@@ -414,9 +414,9 @@ echo "</td></tr></table>";
 		echo "<hr>";
 				
 		echo "All videos contributed...<br>";
+		echo "(Note: Videos must be placed in the '$cat' category to be listed here)<br>";
 		
-		$q="select * from videos where category='$cat' order by sname asc";
-		echo $q;
+		$q="select * from videos where category='$cat' order by sname asc";		
 		$r=lib_mysql_query($q);
 		
 		echo "<table border=0 cellspacing=0 cellpadding=3>";
