@@ -2,29 +2,12 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.rfscms.org/
 /////////////////////////////////////////////////////////////////////////////////////////
-function lib_modules_get_name($module) {
-	global $RFS_MODULE;
-	foreach($RFS_MODULE as $k => $v) {
-		echo "$k <br>";
-	}
-}
-function lib_modules_get_properties($module) {
-		global $RFS_MODULE;
-		return $RFS_MODULE[$x];
-}
-function lib_modules_get_property($x,$property) {
-	global $RFS_MODULE;
-	return $RFS_MODULE[$x][$property];
-}
-
-function lib_modules_register_property($x,$property,$property_value) {
-	global $RFS_MODULE;
-	$RFS_MODULE[$x][$property]=$property_value;
-}
 
 function lib_modules_register($name,$core,$loc,$version,$sub_version,$release,$description,$requirements,$cost,$license,$dependencies,$author,$author_email,$author_website,$images,$file_url,$git_repository) {
-    global $RFS_SITE_PATH,$RFS_SITE_URL;
+    
+	global $RFS_SITE_PATH,$RFS_SITE_URL;
 	global $RFS_MODULE;
+	
     $RFS_MODULE[$name]=array();
     $RFS_MODULE[$name]["core"]=$core;
     $url=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
@@ -32,33 +15,38 @@ function lib_modules_register($name,$core,$loc,$version,$sub_version,$release,$d
 	$url=str_replace("/$name.php","",$url);
 	$RFS_MODULE[$name]["base_url"]=$url;
 	$loc=str_replace("/$name.php","",$loc);
-	$RFS_MODULE[$name]["loc"]=$loc;
+	$RFS_MODULE[$name]["loc"]=$loc;	
+	$RFS_MODULE[$name]["version"]=$version;		
+	$RFS_MODULE[$name]["sub_version"]=$sub_version;
+	$RFS_MODULE[$name]["file"]=$loc;
+	$RFS_MODULE[$name]["author"]=$author;
+	$RFS_MODULE[$name]["author_email"]=$sub_version;
+	$RFS_MODULE[$name]["author_website"]=$sub_version;
 	
-	lib_modules_register_property($name,"version",$version);
-	lib_modules_register_property($name,"sub_version",$sub_version);
-	lib_modules_register_property($name,"file",$loc);
-	lib_modules_register_property($name,"author",$author);
-	lib_modules_register_property($name,"author_email",$sub_version);
-	lib_modules_register_property($name,"author_website",$sub_version);
-	
-	$r=lib_mysql_query("select * from addon_database where `name`='$name'");
-	if($r) {
-		$addon=$r->fetch_object();
-		if(!empty($addon->name)) {
-			if($addon->version<$version) { }
+
+	// Store the main database at rfscms.org only
+	if($RFS_SITE_URL=="https://rfscms.org") {
+		// TODO: CHECK VERSION
+		$r=lib_mysql_query("select * from addon_database where `name`='$name'");
+		if($r) {
+			$addon=$r->fetch_object();
+			if(!empty($addon->name)) {
+				if($addon->version<$version) { }
+			}
 		}
-	}
-	else {
-		if(!empty($name)) {
-			$q="
-			insert into `addon_database`
-					(`name`,`core`,`version`,`sub_version`,`release`,`description`,`requirements`,`cost`,`license`,`dependencies`,`author`,`author_email`,`author_website`,`images`,`file_url`,`git_repository`)
-			VALUES  ('$name','$core','$version','$sub_version','$release','$description','$requirements','$cost','$license','$dependencies','$author','$author_email','$author_website','$images','$file_url','$git_repository') ";			
-			lib_log_add_entry($q);
-			lib_mysql_query($q);
+		else {
+			if(!empty($name)) {
+				$q="
+				insert into `addon_database`
+						(`name`,`core`,`version`,`sub_version`,`release`,`description`,`requirements`,`cost`,`license`,`dependencies`,`author`,`author_email`,`author_website`,`images`,`file_url`,`git_repository`)
+				VALUES  ('$name','$core','$version','$sub_version','$release','$description','$requirements','$cost','$license','$dependencies','$author','$author_email','$author_website','$images','$file_url','$git_repository') ";			
+				lib_log_add_entry($q);
+				lib_mysql_query($q);
+			}
 		}
 	}
 }
+
 function lib_modules_get_url($z) {
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
@@ -94,6 +82,7 @@ function lib_modules_get_base_url_from_file($f) {
     $RFS_MODULE[$addon]["base_url"]=$outurl;
     return $RFS_MODULE[$addon]["base_url"];
 }
+
 function lib_modules_get_base_url($z) {
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
@@ -109,25 +98,11 @@ function lib_modules_get_base_url($z) {
     return $loc;
 }
 
-function lib_modules_properties($module) {    
-    eval(lib_rfs_get_globals());
-	
-    lib_forms_info("REGISTERED MODULE [$module]<br>","white","green");
-	echo "PROPERTIES:<br>";
-	echo "<table border=0>";
-    foreach($RFS_MODULE[$module] as $k => $v) {
-        if(!empty($v))
-            echo "<tr><td>[$k]</td><td>=</td><td>[$v]</td></tr>";
-    }
-    echo "<tr><td></td><td></td><td></td></tr>";
-	echo "</table>";
-	
-}
-function lib_modules_array() {
+function lib_modules_discover() {
     eval(lib_rfs_get_globals());
 	$dr="$RFS_SITE_PATH/modules";
 	$modules=array();
-    $d=opendir($dr) or die("MODULE PATH ERROR lib.modules.php - lib_modules_array() -> [$dr]");
+    $d=opendir($dr) or die("MODULE PATH ERROR");
 	while(false!==($entry = readdir($d))) {
         if( ($entry == '.') || ($entry == '..') ) { }
         else {
@@ -164,6 +139,7 @@ lib_modules_register(	$RFS_ADDON_NAME,$core,$loc,$RFS_ADDON_VERSION,$RFS_ADDON_S
     }
 	closedir($d);
 }
+
 function lib_modules_draw($location) {
 	if(stristr(lib_domain_canonical_url(),"admin/adm.php")) return;
 	$r=lib_mysql_query("select * from arrangement where location='$location' order by sequence");
@@ -178,6 +154,7 @@ function lib_modules_draw($location) {
 		}
 	}
 }
+
 
 
 ?>

@@ -27,7 +27,10 @@ lib_menus_register("Addon Store","$RFS_SITE_URL/modules/core_addon_store/addon_s
 
 // lib_mysql_data_add("addon_database","name","TEST!!!".time(),"");	
 // id name datetime_added datetime_updated version sub_version release description requirements
-// cost license dependencies author author_email author_website rating images		
+// cost license dependencies author author_email author_website rating images	
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Module Admin Panel Plugins
 
 function adm_action_f_module_store_update_force() {
 	adm_action_f_module_store_update(true);
@@ -71,8 +74,6 @@ function adm_action_f_module_store() {
 	exit();
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Module Admin Panel Plugins
 function adm_action_modules() {
     eval(lib_rfs_get_globals());
 	echo "<h1>Module Management</h1><hr>";

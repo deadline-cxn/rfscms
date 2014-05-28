@@ -46,9 +46,13 @@ function addon_store_action_details() {
 		
 	echo "<br>";	
 	
-	echo "<br>";
-	echo " ADD INSTALL BUTTON HERE <br>";
-	echo "<br>";
+	
+	if($RFS_SITE_URL!="https://rfscms.org") {
+		echo "<br>";
+		echo " ADD INSTALL BUTTON HERE <br>";
+		echo "<br>";
+		
+	}
 	
 
 	

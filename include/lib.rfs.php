@@ -2,8 +2,11 @@
 /////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////
+
 srand((double) microtime() * 1000000);  // randomize timer
+
 if(isset($RFS_SITE_LOCALE)) setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
+
 function lib_rfs_get_globals() {
 	$out="";
 	foreach($GLOBALS as $k => $v) {
@@ -71,24 +74,27 @@ function lib_rfs_get_globals() {
 	$out.="\$RFS_ADDON_URL=lib_modules_get_url(\"\");\n";
 	return $out;
 }
+
 function lib_rfs_var($x) {
 	$GLOBALS[$x]=$_REQUEST[$x];
 	echo "\$$x=[".$GLOBALS[$x]."]<br>";
 }
+
 function lib_rfs_do_action() {
 	/////////////////////////////////////////////// Automatic action function
 	$action=$_REQUEST['action'];
 	$px=explode("/",$_SERVER['PHP_SELF']);
 	$_thisfunk=str_replace(" ","_",str_replace(".php","",$px[count($px)-1])."_action_$action");
 	@eval("
+	
 	if(function_exists(\"$_thisfunk\") == true) @$_thisfunk();
 		else if(\$_SESSION[\"debug_msgs\"]==true)
 			lib_forms_info(\"DEBUG >> WARNING: MISSING $_thisfunk(); \",\"WHITE\",\"BLUE\");");
 }
-function lib_rfs_maintenance() { eval(lib_rfs_get_globals());
-	global $theme;
-	// lib_div("lib_rfs_maintenance start");
-	lib_modules_array();
+function lib_rfs_maintenance() { 
+	eval(lib_rfs_get_globals());	
+	global $theme;	
+	lib_modules_discover();
 	$data=lib_users_get_data($_SESSION['valid_user']);
 	if($mc_gross>0) $data->donated="yes";
 	if(!empty($_REQUEST['theme'])) $theme=$_REQUEST['theme'];
@@ -106,16 +112,18 @@ function lib_rfs_maintenance() { eval(lib_rfs_get_globals());
 			}
 		}
 	}
-	lib_mysql_scrub("tags","tag");
+	// lib_mysql_scrub("tags","tag");
+	
 	include("$RFS_SITE_PATH/install/database_upgrades.php");
-	lib_div("lib_rfs_maintenance end [$theme]");
 }
+
 function lib_rfs_flush_buffers(){ 
     ob_end_flush(); 
     ob_flush(); 
     flush(); 
     ob_start(); 
 } 
+
 function lib_rfs_bool_true($x) {
 	$x=strtolower($x);
 	if( (stristr($x,"true")) ||
@@ -125,9 +133,15 @@ function lib_rfs_bool_true($x) {
 			return true;
 	return false;
 }
-function lib_rfs_echo($t) {	echo lib_rfs_get($t); }
+
+function lib_rfs_echo($t) {
+	echo lib_rfs_get($t);
+}
+
 function lib_rfs_get($t) {
+	
 	foreach($GLOBALS['RFS_TAGS'] as $key => $value) {
+		
 		//$x=explode("RFS_FTAG",$t);
 		// echo("0".$result[0]."1".$result[1]."2".$result[2]."<br>");
 		//$z=explode(" ",$x[1]);

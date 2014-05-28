@@ -8,7 +8,7 @@ if (isset($argv[1])) {
     }
     include_once ("include/lib.all.php");
     system("clear");
-    lib_modules_array();
+    lib_modules_discover();
     if ($argv[1] == "scrub") {
         m_files_scrubfiledatabase(1);
         exit();
