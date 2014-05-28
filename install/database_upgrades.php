@@ -509,6 +509,11 @@ if($a<1204) {
 	$logtext="Added interim database changes 1204";
 	lib_log_add_entry($logtext);	
 }
+if($a<1216) {
+	lib_mysql_data_add("categories","name","Live Streams",0);
+	$logtext="Added interim database changes 1216";
+	lib_log_add_entry($logtext);	
+}
 
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");

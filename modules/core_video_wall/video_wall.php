@@ -15,7 +15,7 @@ if($h>0) {	$_SESSION['he']=$h; $h=0;  save_vw(); }
 
 if(!empty($cat)) $_SESSION['cat']=$cat;
 if(empty($cat))  $cat=$_SESSION['cat'];
-if(empty($cat)) $cat='Live Feeds';
+if(empty($cat)) $cat='Live Stream';
 
 if($edzor=='1')   $_SESSION['edzors']=true;
 if($edzor=='0')  $_SESSION['edzors']=false;
@@ -122,7 +122,7 @@ if( (empty($_SESSION['darr'])) ||
 	echo "<center>";
 
 if($action=="fixall") {
-	$r=lib_mysql_query("select * from videos where category='87'");
+	$r=lib_mysql_query("select * from videos where category='$cat'");
 	for($i=0;$i<$r->num_rows;$i++){
 		$video=$r->fetch_object();
 		$video->sname=str_replace("(BROKEN)","",$video->sname);
@@ -176,7 +176,7 @@ if($act=="chg") {
 }
 
 if($action=="rmconfirmed"){
-	lib_mysql_query("update videos set category=88 where id='$id' limit 1");
+	lib_mysql_query("update videos set category='$cat' where id='$id' limit 1");
 		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
 		REMOVED $id
 		</td></tr></table>";
@@ -238,7 +238,7 @@ if($act=="add") {
 		$cont=$data->id; if(!$cont) $cont=999;
 
 	   lib_mysql_query("insert into videos  (`contributor`, `sname`,`embed_code` , `time`, `category`)
-			     					 VALUES('$cont', '$name','$embed_code', '$time', '87')" );
+			     					 VALUES('$cont', '$name','$embed_code', '$time', '$cat')" );
 	}
 
 		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
@@ -377,7 +377,7 @@ echo "</td></tr></table>";
 								"act=chg".$RFS_SITE_DELIMITER.
 								"dx=$darx".$RFS_SITE_DELIMITER.
 								"dy=$dary".$RFS_SITE_DELIMITER.
-								"include=category:87"
+								"include=category:$cat"
 								,
 								"videos",
 								"sname",
