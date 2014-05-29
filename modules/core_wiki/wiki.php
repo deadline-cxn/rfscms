@@ -24,9 +24,9 @@ function finish_wiki_page() {
 
 function wiki_buttons() {
 	eval(lib_rfs_get_globals());
-	
+
 	if(!lib_rfs_bool_true($RFS_SITE_HIDE_WIKI_MENU)) {
-		
+
 		$wpage=lib_mysql_fetch_one_object("select * from wiki where name='$name' order by revision desc limit 1");
 
 		echo "[<a class=rfswiki_link href=$addon_url?name=home>main page</a>]";
@@ -201,10 +201,11 @@ function wiki_action_viewpagebyid() {
 function wiki_action_() {
 	eval(lib_rfs_get_globals());
 	echo "<div class=\"wikitext\">";
-	wiki_buttons();
-	
-    if(empty($name)) $name="home";
-	
+
+	if(lib_rfs_bool_true($RFS_SITE_WIKI_TOP_BUTTONS)) wiki_buttons();
+
+       if(empty($name)) $name="home";
+
 	$res=lib_mysql_query("select * from wiki where name='$name'");
 	$wikipage=$res->fetch_object();
 	$name=ucwords($name);

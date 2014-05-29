@@ -1,5 +1,8 @@
 History File:
 
+3.3.1 (1221)  May 28, 2014:
+- Updated tools folder
+
 3.3.1 (1206):
 - Added database security check to install.php;
   The script will terminate if it discovers a defined database.
@@ -7,7 +10,7 @@ History File:
 - Fixed smilies bug that prevented new smilies from being created
 
 3.3.1 (1204):
-- Added ban tools
+- Added ban management into admin interface
 
 3.3.1 (1203):
 - Fixed access method bug
