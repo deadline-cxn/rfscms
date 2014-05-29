@@ -1,6 +1,10 @@
 History File:
 
-3.3.1 (1221)  May 28, 2014:
+3.3.1 (1223) May 28, 2014:
+- Added $RFS_SITE_WIKI_TOP_BUTTONS (bool)
+- Modified t.css for all themes to update private message formatting
+
+3.3.1 (1221) May 28, 2014:
 - Updated tools folder
 
 3.3.1 (1206):

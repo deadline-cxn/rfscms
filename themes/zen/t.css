@@ -718,20 +718,34 @@ padding: 5px;
 {
 }
 
-.private_message_from
-{
+.private_message_from {
+        font-family: "Times New Roman";
+        font-size: large;
+        color: black;
+        background-color: #666666;
 }
+.private_message_sent {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #888888;
 
-.private_message_sent
-{
 }
-
-.private_message_subject
-{
+.private_message_subject {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #aaaaaa;
 }
-
-.private_message_body
-{
+.private_message_body {
+    font-family: "Times New Roman";
+    font-size: medium;
+    color: black;
+    background-color: white;
+    outline: black dotted thin;
+    height: 300px;
+    vertical-align:text-top;
+    padding: 5px 5px 5px 5px;
 }
 
 .middle_cont
