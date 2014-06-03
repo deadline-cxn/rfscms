@@ -9,6 +9,8 @@ if(!file_exists("config/config.php")) {
 	NO CONFIG FILE FOUND<img src=images/icons/spinner.gif><META HTTP-EQUIV=\"refresh\" content=\"2;URL=$RFS_SITE_URL/install/install.php\">";
     exit();
 }
+
+
 include_once("include/lib.all.php");
 if(empty($RFS_SITE_NAME)) {
     $RFS_SITE_URL  = "http://".$_SERVER['SERVER_NAME'];
@@ -16,6 +18,7 @@ if(empty($RFS_SITE_NAME)) {
 	<body style='background-color:#000; color:#0f0;'><img src=images/icons/spinner.gif><META HTTP-EQUIV=\"refresh\" content=\"2;URL=$RFS_SITE_URL/install/install.php\">";
     exit();
 }
+
 lib_rfs_maintenance();
 lib_debug_header(0);
 // Divert ajax requests

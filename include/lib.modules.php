@@ -101,8 +101,9 @@ function lib_modules_get_base_url($z) {
 function lib_modules_discover() {
     eval(lib_rfs_get_globals());
 	$dr="$RFS_SITE_PATH/modules";
+	
 	$modules=array();
-    $d=opendir($dr) or die("MODULE PATH ERROR");
+    $d=opendir($dr) or die("MODULE PATH ERROR");	
 	while(false!==($entry = readdir($d))) {
         if( ($entry == '.') || ($entry == '..') ) { }
         else {
@@ -111,9 +112,10 @@ function lib_modules_discover() {
                 if(stristr($entry,"core_")) $core=true;
                 $entry2=str_replace("core_","",$entry);
                 $module="$dr/$entry/module.$entry2.php";
-                $loc="$dr/$entry/$entry2.php";		
+                $loc="$dr/$entry/$entry2.php";
                
 				include($module);
+				
 				
 				global $RFS_ADDON_NAME;
 				global $RFS_ADDON_VERSION;
@@ -131,14 +133,21 @@ function lib_modules_discover() {
 				global $RFS_ADDON_FILE_URL;
 				global $RFS_ADDON_GIT_REPOSITORY;
 				
-lib_modules_register(	$RFS_ADDON_NAME,$core,$loc,$RFS_ADDON_VERSION,$RFS_ADDON_SUB_VERSION,$RFS_ADDON_RELEASE,$RFS_ADDON_DESCRIPTION,$RFS_ADDON_REQUIREMENTS,
-						$RFS_ADDON_COST,$RFS_ADDON_LICENSE,$RFS_ADDON_DEPENDENCIES,$RFS_ADDON_AUTHOR,$RFS_ADDON_AUTHOR_EMAIL,$RFS_ADDON_AUTHOR_WEBSITE,
+				if(!empty($RFS_ADDON_NAME)) {
+					lib_modules_register(
+						$RFS_ADDON_NAME,$core,$loc,$RFS_ADDON_VERSION,$RFS_ADDON_SUB_VERSION,$RFS_ADDON_RELEASE,
+						$RFS_ADDON_DESCRIPTION,$RFS_ADDON_REQUIREMENTS,$RFS_ADDON_COST,$RFS_ADDON_LICENSE,
+						$RFS_ADDON_DEPENDENCIES,$RFS_ADDON_AUTHOR,$RFS_ADDON_AUTHOR_EMAIL,$RFS_ADDON_AUTHOR_WEBSITE,
 						$RFS_ADDON_IMAGES,$RFS_ADDON_FILE_URL,$RFS_ADDON_GIT_REPOSITORY );
+						// echo "what lib_modules_register(stuff) -> $RFS_ADDON_NAME<br> ";
+					 }
+				}
             }
         }
+		closedir($d);
     }
-	closedir($d);
-}
+	
+	
 
 function lib_modules_draw($location) {
 	if(stristr(lib_domain_canonical_url(),"admin/adm.php")) return;

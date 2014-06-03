@@ -14,11 +14,18 @@ function lib_mysql_open_database($address,$user,$pass,$dbname) {
 	if($mysqli->connect_errno) { echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";	}
 	return $mysqli;
 }
-function lib_mysql_query($query) {
-	if(stristr($query,"`users`")) $msql=lib_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);		
-	else                          $msql=lib_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
-	$x=mysqli_query($msql,$query);
-	$_GLOBALS['mysqli_id']=mysqli_insert_id($msql);
+function lib_mysql_query($query) {	
+	if(stristr($query,"`users`")) $mysqli=lib_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);
+	else                          $mysqli=lib_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
+	if(mysqli_connect_errno()) { echo "WARNING 38J4"; return; }
+	
+	$x=$mysqli->query($query);
+	
+	
+	if(mysqli_insert_id($mysqli) > 0) {
+		$_GLOBALS['mysql_id']=mysqli_insert_id($mysqli);
+	}
+	
 	return ($x);
 }
 
