@@ -111,8 +111,9 @@ function videos_action_submitvid_youtube_go() {
 		$q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`,       `time`, `bumptime`, `category`, `hidden`, `sfw`)
 						   VALUES ('$cont',      '$sname','$vembed_code' , '$youtube' ,'$time',    '$time','$category',      '0', '$sfw');";
 		lib_mysql_query($q);
-		$thisid=$_GLOBALS['mysql_id'];		
-		videos_action_view($thisid);
+		$q="select * from videos order by time desc limit 1";
+		$vid=lib_mysql_fetch_one_object($q);
+		videos_action_view($vid->id);
 	}
 }
 function videos_action_submitvidgo() {
@@ -134,9 +135,9 @@ function videos_action_submitvidgo() {
 
 		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`embed_code`, `url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
 										VALUES ('$cont','$sname','$vembed_code','$vurl','$time','$time','$category','0','$sfw');");
-		$id=$_GLOBALS['mysqli_id'];
-		echo "MySQL ID:[$id] ";
-		videos_action_view($id);
+		$q="select * from videos order by time desc limit 1";
+		$vid=lib_mysql_fetch_one_object($q);
+		videos_action_view($vid->id);
 	}
 }
 function videos_action_submitvid() {
@@ -213,7 +214,7 @@ function videos_action_removevideo() {
 	}
 }
 function videos_action_view($vid) {
-	eval(lib_rfs_get_globals()); // if(empty($id)) $id=$_GLOBALS['mysqli_id'];
+	eval(lib_rfs_get_globals());
 	videos_buttons();
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$vid'");
 	$vc=lib_users_get_data($video->contributor);
@@ -245,8 +246,7 @@ function videos_action_view($vid) {
 		if($viewsfw=="yes") echo "$video->embed_code<br>";
 		else echo "<a href=videos.php?action=view&id=$video->id&viewsfw=yes><img src=\"$RFS_SITE_URL/images/icons/NSFW.png\" border=0></a><BR>";
 	}
-	echo "<br>";
-	echo "<br>";
+	echo "<br><br>";
 	echo $linkprev;
 	if(lib_access_check("videos","edit"))   lib_buttons_make_button("$RFS_SITE_URL/modules/core_videos/videos.php?action=modifyvideo&id=$video->id","Edit");
 	if(lib_access_check("videos","delete")) lib_buttons_make_button("$RFS_SITE_URL/modules/core_videos/videos.php?action=removevideo&id=$video->id","Delete");
