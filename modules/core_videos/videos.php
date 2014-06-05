@@ -92,6 +92,24 @@ function videos_action_modifygo() {
 	}
 	videos_action_view($id);
 }
+
+
+function videos_action_submitvid_internet_go() {
+	eval(lib_rfs_get_globals());
+	echo "SOURCE: ".strtolower($source)."<br>";
+	
+}
+function videos_action_submitvid_liveleak_go() {
+	eval(lib_rfs_get_globals());
+/*	liveleak:
+	code: encodeURI('<iframe width="640" height="360" src="http://www.liveleak.com/ll_embed?f=1fe3095e0f2a" frameborder="0" allowfullscreen></iframe>'),
+	link: "http://www.liveleak.com/view?i=cc6_1394235601"
+	image: "http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Mar/7/1fe3095e0f2a_sf_6.jpg", 	*/
+	
+
+	
+}
+
 function videos_action_submitvid_youtube_go() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
@@ -122,8 +140,6 @@ function videos_action_submitvidgo() {
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s");
 		$url=addslashes($url);
-		// $c=lib_mysql_fetch_one_object("select * from categories where name='$category'"); $category=$c->id;
-
 		echo "	SUBMITTING VIDEO: <br>
 		contributor $cont <br>
 		sname $sname <br>
@@ -131,8 +147,7 @@ function videos_action_submitvidgo() {
 		time $time <br>
 		btime $time <br>
 		category $category<br>
-		sfw $sfw <br>"	 ;
-
+		sfw $sfw <br>";
 		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`embed_code`, `url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
 										VALUES ('$cont','$sname','$vembed_code','$vurl','$time','$time','$category','0','$sfw');");
 		$q="select * from videos order by time desc limit 1";
@@ -142,15 +157,30 @@ function videos_action_submitvidgo() {
 }
 function videos_action_submitvid() {
 	eval(lib_rfs_get_globals());
+	
+	
 	if(lib_access_check("videos","submit")) {
 		echo "\n\n\n\n";
 		echo "<h1>Submit new video</h1>\n";
 		echo "<div class='forum_box'>\n";
-		echo "<h1>From Youtube</h1>\n";
+		
+		echo "<h1>From Web</h1>\n";
+		
 		echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/core_videos/videos.php\">\n";
 		echo "<table border=0>\n";
-		echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_youtube_go\">\n";
-		echo "<tr><td>Youtube URL</td><td><input size=160 name=\"youtube\"></td></tr>\n";
+
+		
+		echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_internet_go\">\n";
+		
+		echo "<select name=\"source\">
+			<option>YouTube
+			<option>LiveLeak
+			</select>";
+		
+		
+		echo "<tr><td>URL</td><td><input size=160 name=\"youtube\"></td></tr>\n";
+		
+		
 		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
 		echo "<option>yes<option>no</select></td></tr>\n";
@@ -340,12 +370,5 @@ function videos_action_() {
 	videos_action_random();
 	videos_pagefinish();
 }
-
-/*
-liveleak:
-code: encodeURI('<iframe width="640" height="360" src="http://www.liveleak.com/ll_embed?f=1fe3095e0f2a" frameborder="0" allowfullscreen></iframe>'),
-link: "http://www.liveleak.com/view?i=cc6_1394235601"
-image: "http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Mar/7/1fe3095e0f2a_sf_6.jpg",
-*/
 
 ?>
