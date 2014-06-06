@@ -96,24 +96,87 @@ function videos_action_modifygo() {
 
 function videos_action_submitvid_internet_go() {
 	eval(lib_rfs_get_globals());
-	echo "SOURCE: ".strtolower($source)."<br>";
+	$x=strtolower($source);
 	
+	
+	$e="videos_action_submitvid_$x"."_go();";
+	
+	echo "$e<br>";
+	eval($e);
+
 }
 function videos_action_submitvid_liveleak_go() {
 	eval(lib_rfs_get_globals());
-/*	liveleak:
-	code: encodeURI('<iframe width="640" height="360" src="http://www.liveleak.com/ll_embed?f=1fe3095e0f2a" frameborder="0" allowfullscreen></iframe>'),
-	link: "http://www.liveleak.com/view?i=cc6_1394235601"
-	image: "http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Mar/7/1fe3095e0f2a_sf_6.jpg", 	*/
 	
+	if(lib_access_check("videos","submit")) {
+		echo "LiveLeak video <br>";	
+		echo "$url <br>";
+		
+		/*
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$txt=curl_exec($ch);
+		curl_close($ch);				
+		$tfile="$RFS_SITE_PATH/tmp/".time();
+		echo $tfile."<BR>";
+		file_put_contents($tfile, $txt);
+		 */
+		
+		$tags = get_meta_tags($url);
 
+echo count($tags)."<br>";		
+		foreach($tags as $k => $v) {
+			echo " TAG:$k = $v<br>";
+		}
+		
+		
+		
+		// Notice how the keys are all lowercase now, and
+		// how . was replaced by _ in the key.
+		//echo $tags['author'];       // name
+		///echo $tags['keywords'];     // php documentation/
+		//echo $tags['description'];  // a php manual
+		//echo $tags['geo_position']; // 49.33;-86.59
+		
+		/*		// $ll=get_meta_tags ( string $filename [, bool $use_include_path = false ] )
+		
+		
+		$ll = file_get_contents($url);
+		
+		
+		$ll = str_replace("meta itemprop=\"videoId\" content=",$RFS_SITE_DELIMITER,$ll);
+		$ll = str_replace("meta property=\"og:title\" content=",$RFS_SITE_DELIMITER,$ll);
+		$ll = str_replace("meta property=\"og:image\" content=",$RFS_SITE_DELIMITER,$ll);
+		$ll = str_replace("meta property=\"og:description\" content=",$RFS_SITE_DELIMITER,$ll);
+		
+		$ll = explode($RFS_SITE_DELIMITER,$ll);
+		$title 		= explode("\"",$ll[1]);
+		$ll_code	= explode("\"",$ll[2]);
+		
+		$sname       = $title[1];
+		$ll_code	 = $ll_code[1];
+		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
+		$cont		 = $data->id;
+		$time		 = date("Y-m-d H:i:s");
+		$sname		 = addslashes($sname);
+		$url	 	 =  addslashes($url);
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`,       `time`, `bumptime`, `category`, `hidden`, `sfw`)
+						   VALUES ('$cont',      '$sname','$vembed_code' , '$youtube' ,'$time',    '$time','$category',      '0', '$sfw');";
+			
+		echo $q;			   
+		// lib_mysql_query($q);
+		// $q="select * from videos order by time desc limit 1";
+		// $vid=lib_mysql_fetch_one_object($q);
+		// videos_action_view($vid->id);
+		 */
+	}
 	
 }
 
 function videos_action_submitvid_youtube_go() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
-		$ytw = file_get_contents($youtube);
+		$ytw = file_get_contents($url);
 		$ytw = str_replace("meta itemprop=\"videoId\" content=",$RFS_SITE_DELIMITER,$ytw);
 		$ytw = str_replace("meta property=\"og:title\" content=",$RFS_SITE_DELIMITER,$ytw);
 		$ytw = explode($RFS_SITE_DELIMITER,$ytw);
@@ -125,9 +188,9 @@ function videos_action_submitvid_youtube_go() {
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$sname		 = addslashes($sname);
-		$youtube	 = addslashes($youtube);
+		$url		 = addslashes($url);
 		$q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`,       `time`, `bumptime`, `category`, `hidden`, `sfw`)
-						   VALUES ('$cont',      '$sname','$vembed_code' , '$youtube' ,'$time',    '$time','$category',      '0', '$sfw');";
+						   VALUES ('$cont',      '$sname','$vembed_code' , '$url' ,'$time',    '$time','$category',      '0', '$sfw');";
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
@@ -178,7 +241,7 @@ function videos_action_submitvid() {
 			</select>";
 		
 		
-		echo "<tr><td>URL</td><td><input size=160 name=\"youtube\"></td></tr>\n";
+		echo "<tr><td>URL</td><td><input size=160 name=\"url\"></td></tr>\n";
 		
 		
 		echo "<tr><td>Safe For Work</td><td><select name=sfw>";

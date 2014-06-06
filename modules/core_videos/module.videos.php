@@ -80,7 +80,13 @@ function videos_get_thumbnail($url) {
 	eval(lib_rfs_get_globals());
 	$ytturl="$RFS_SITE_URL/modules/core_videos/cache/oops.png";
 	$ytthumb="";
-	if(stristr($url,"youtube")) {
+	
+	// <meta property="og:image" content="https://i1.ytimg.com/vi/fx6AXR8ehiA/hqdefault.jpg">
+	// <meta property="og:image" content="http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Jun/5/5625eccb67d8_sf_3.jpg"/>
+
+	
+	if( (stristr($url,"youtube")) || 
+		(stristr($url,"youtu.be")) ) {
 		$ytx=explode("\"",$url);
 		for($yti=0;$yti<count($ytx);$yti++) {
 			if(stristr($ytx[$yti],"youtube")) {
@@ -89,6 +95,7 @@ function videos_get_thumbnail($url) {
 			}
 		}
 	}
+	
 	if($ytthumb) {
 		$yttlocal="$RFS_SITE_PATH/modules/core_videos/cache/$ytthumb.jpg";
 		$ytturl="$RFS_SITE_URL/modules/core_videos/cache/$ytthumb.jpg";
