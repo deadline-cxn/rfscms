@@ -330,6 +330,7 @@ function videos_action_viewcat($cat) {
 	echo "<br style='clear: both;'>";
 }
 function videos_action_random() {
+	
 	eval(lib_rfs_get_globals());
 	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
 	$num=$res->num_rows;
@@ -341,8 +342,8 @@ function videos_action_random() {
 		mysqli_data_seek($res,$vid);
 		$video=$res->fetch_object();
 		$vc=lib_users_get_data($video->contributor);
-		$id=$video->id;
-		videos_action_view($id);
+		$_GLOBALS['id']=$video->id;
+		videos_action_view($_GLOBALS['id']);
 	}
 }
 function videos_action_view_cats() {
