@@ -130,7 +130,7 @@ function videos_action_submitvid_liveleak_go() {
 			}
 		}	
 
-		$ec=explode("/",$image); $ed=explode("_",$ec[1]); $embed_code=$ed[0];
+		$ec=explode("/",$image); $ed=explode("_",$ec[-1]); $embed_code=$ed[0];
 		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"http://www.liveleak.com/ll_embed?f=$embed_code\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
