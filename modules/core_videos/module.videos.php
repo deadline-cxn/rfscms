@@ -105,34 +105,33 @@ function videos_get_thumbnail($video) {
 		return $video->image;
 	}
 	
-	$url=$video->embed_code;
 	
-	if( (stristr($url,"youtube")) || 
-		(stristr($url,"youtu.be")) ) { $ytx=explode("\"",$url); for($yti=0;$yti<count($ytx);$yti++) { if(stristr($ytx[$yti],"youtube"))
-			{ $ytx2=explode("/",$ytx[$yti]);
-				$ytthumb=$ytx2[count($ytx2)-1];
+	if( (stristr($video->embed_code,"youtube")) || 
+		(stristr($video->embed_code,"youtu.be")) ) {
+			$ytx=explode("\"",$video->embed_code);
+			for($yti=0;$yti<count($ytx);$yti++) {
+				if(stristr($ytx[$yti],"youtube")) {
+					$ytx2=explode("/",$ytx[$yti]);
+					$ytthumb=$ytx2[count($ytx2)-1];
+			}
+		}
+		if($ytthumb) {
+			$yttlocal="$RFS_SITE_PATH/modules/core_videos/cache/$ytthumb.jpg";
+			$ytturl="$RFS_SITE_URL/modules/core_videos/cache/$ytthumb.jpg";
+			if(!file_exists($yttlocal)) {
+				$ch = curl_init("http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg");
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				$ytt = curl_exec($ch);
+				curl_close($ch);
+				$x=file_put_contents($yttlocal, $ytt);
+				if($x)
+					lib_mysql_query("update videos set `image`='$ytturl' where `id`='$video->id'");
+			}
+			if(!file_exists($yttlocal)) {
+				$ytturl="$RFS_SITE_URL/modules/core_videos/cache/oops.png";
 			}
 		}
 	}
-	
-	if($ytthumb) {
-		$yttlocal="$RFS_SITE_PATH/modules/core_videos/cache/$ytthumb.jpg";
-		$ytturl="$RFS_SITE_URL/modules/core_videos/cache/$ytthumb.jpg";
-		if(!file_exists($yttlocal)) {
-			if(function_exists("curl_init")) {
-			$ch = curl_init("http://i1.ytimg.com/vi/$ytthumb/mqdefault.jpg");
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$ytt = curl_exec($ch);
-			curl_close($ch);
-			$x=file_put_contents("$yttlocal", $ytt);
-			if($x)
-				lib_mysql_query("update videos set `image`='$ytturl' where `id`='$video->id'");			
-			}
-		}
-		if(!file_exists($yttlocal)) {
-			$ytturl="$RFS_SITE_URL/modules/core_videos/cache/oops.png";
-		}
-	} 
 	return $ytturl;
 }
 
