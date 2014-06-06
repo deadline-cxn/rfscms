@@ -164,11 +164,9 @@ function videos_action_submitvid_youtube_go() {
 				case "og:title": 		$sname = str_replace("LiveLeak.com - ","",$bx); break;	
 				case "og:description": 	$description=$bx; break;
 				case "og:image": 		$image=$bx; break;
-				case "og:url": 			$ex=explode("=",$bx); $ytcode=$ex[1]; break;
-				
+				case "og:url": 			$ex=explode("=",$bx); $ytcode=$ex[1]; break;				
 			}
-		}
-		
+		}		
 		
 		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont		 = $data->id;
@@ -185,6 +183,7 @@ function videos_action_submitvid_youtube_go() {
 		videos_action_view($vid->id);
 	}
 }
+
 function videos_action_submitvidgo() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
@@ -240,7 +239,7 @@ function videos_action_submitvid() {
 		if(!empty($category_in)) echo "<option>$category_in";
 		while($cat=$res->fetch_object()) echo "<option>$cat->name";
 		echo "</select></td></tr>\n";
-		echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Add Youtube Video\"></td></tr>\n";
+		echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Add Video\"></td></tr>\n";
 		echo "</table>\n";
 		echo "</form>\n";
 		echo "</div>\n";
@@ -301,9 +300,11 @@ function videos_action_view($id) {
 	$vc=lib_users_get_data($video->contributor);
 	echo "<div class=forum_message > <center> ";
 	echo "<h1>$video->category videos</h1>";
+	
 	$res2=lib_mysql_query("select * from `videos` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
 	$linkprev="";
 	$linknext="";
+	
 	while($video2=$res2->fetch_object()) {
 		if($video2->id==$video->id) {
 			$video2=$res2->fetch_object();
@@ -321,6 +322,7 @@ function videos_action_view($id) {
 		if(!empty($video3->id))
 			$linkprev="[<a href=videos.php?action=view&id=$video3->id>Previous</a>]";
 	echo "<p>$video->sname</p>"; 
+	echo "<p>$video->description</p>";
 	if($video->sfw=="yes") {
 		echo "$video->embed_code<br>";
 	} else {
