@@ -25,14 +25,11 @@ function videos_action_modifyvideo() {
 		echo "<table border=0>";
 		echo "<input type=hidden name=action value=modifygo>";
 		echo "<input type=hidden name=id value=\"$video->id\">";
-		echo "<tr><td>";
-		echo "Short Name</td>";
-		echo "<td><input name=sname size=100 value=\"$video->sname\"></td>";
-		echo "</tr>";
-		echo "<tr>";
-		echo "<td>URL</td>";
-		echo "<td><input name=vurl size=100 value=\"$video->url\"></td>";
-		echo "</tr>";
+				
+		echo "<tr><td>Short Name</td><td><input name=sname size=100 value=\"$video->sname\"></td></tr>";
+		echo "<tr><td>Description</td><td><textarea rows=10 cols=80 name=\"description\">$video->description</textarea></td></tr>";
+		echo "<tr><td>URL</td><td><textarea rows=10 cols=80 name=\"vurl\">$video->url</textarea></td></tr>";
+		
 		echo "<tr>";
 		echo "<td>Safe For Work </td>";
 		echo "<td> <select name=sfw>";
@@ -82,11 +79,13 @@ function videos_action_modifygo() {
 		} else {
 			$sname=addslashes($sname);
 			$vembed_code=addslashes($vembed_code);
-			lib_mysql_query("update `videos` set `category`='$category' where `id`='$id'");
+			$description=addslashes($description);
+			lib_mysql_query("update `videos` set `category`='$category' where `id`='$id'");			
 			lib_mysql_query("update `videos` set `sname`='$sname' where `id`='$id'");
+			lib_mysql_query("update `videos` set `description`='$description' where `id`='$id'");
 			lib_mysql_query("update `videos` set `sfw`='$sfw' where `id`='$id'");
 			lib_mysql_query("update `videos` set `hidden`='$hidden' where `id`='$id'");
-			lib_mysql_query("update `videos` set `url`='$vembed_code' where `id`='$id'");
+			lib_mysql_query("update `videos` set `url`='$vurl' where `id`='$id'");
 			lib_mysql_query("update `videos` set `embed_code`='$vembed_code' where `id`='$id'");
 		}
 	}
@@ -179,16 +178,10 @@ function videos_action_submitvidgo() {
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s");
 		$url=addslashes($url);
-		echo "	SUBMITTING VIDEO: <br>
-		contributor $cont <br>
-		sname $sname <br>
-		url $vembed_code <br>
-		time $time <br>
-		btime $time <br>
-		category $category<br>
-		sfw $sfw <br>";
-		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`embed_code`, `url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
-										VALUES ('$cont','$sname','$vembed_code','$vurl','$time','$time','$category','0','$sfw');");
+		$description=addslashes($description);
+		// echo "	SUBMITTING VIDEO: <br>contributor $cont <br>sname $sname <br>url $vembed_code <br>time $time <br>btime $time <br>category $category<br>	sfw $sfw <br>";
+		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`description`,`embed_code`, `url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
+										VALUES ('$cont','$sname', '$description', '$vembed_code','$vurl','$time','$time','$category','0','$sfw');");
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
 		videos_action_view($vid->id);
@@ -242,6 +235,7 @@ function videos_action_submitvid() {
 		echo "<tr><td>Title</td><td><input size=160 name=\"sname\"></td></tr>\n";
 		echo "<tr><td>Link</td><td><input size=160 name=\"link\"></td></tr>\n";
 		echo "<tr><td>URL</td><td><input size=160 name=\"vurl\"></td></tr>\n";
+		echo "<tr><td>Description</td><td><textarea rows=10 cols=80 name=\"description\"></textarea></td></tr>\n";
 		echo "<tr><td>Embed Code</td><td><textarea rows=10 cols=80 name=\"vembed_code\"></textarea></td></tr>\n";
 		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
@@ -334,7 +328,7 @@ function videos_action_viewcat($cat) {
 	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
 	while($vid=$res2->fetch_object()) {
 		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
-		echo "<a href=videos.php?action=view&id=$vid->id>";
+		echo "<a href=\"videos.php?action=view&id=$vid->id\" title=\"$vid->sname\">";
 		$ytturl=videos_get_thumbnail($vid);
 		echo "<img src=\"$ytturl\" width=100 class=rfs_thumb><br>";
 
