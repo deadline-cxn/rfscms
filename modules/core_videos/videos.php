@@ -28,38 +28,29 @@ function videos_action_modifyvideo() {
 				
 		echo "<tr><td>Short Name</td><td><input name=sname size=100 value=\"$video->sname\"></td></tr>";
 		echo "<tr><td>Description</td><td><textarea rows=10 cols=80 name=\"description\">$video->description</textarea></td></tr>";
-		echo "<tr><td>URL</td><td><textarea rows=10 cols=80 name=\"vurl\">$video->url</textarea></td></tr>";
+		echo "<tr><td>URL</td><td><textarea rows=2 cols=100 name=\"vurl\">$video->url</textarea></td></tr>";
+		echo "<tr><td>Image URL</td><td><textarea rows=2 cols=100 name=\"imageurl\">$video->image</textarea></td></tr>";
 		
-		echo "<tr>";
-		echo "<td>Safe For Work </td>";
-		echo "<td> <select name=sfw>";
+		
+		
+		echo "<tr><td>Safe For Work </td><td> <select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
-		echo "<option>yes<option>no</select></td>";
-		echo "</tr>";
-		echo "<tr>";
-		echo "<td>Hidden</td>";
-		echo "<td><select name=hidden>";
+		echo "<option>yes<option>no</select></td></tr>";
+		
+		echo "<tr><td>Hidden</td><td><select name=hidden>";
 		if(!empty($video->hidden)) echo "<option>$video->hidden";
-		echo "<option>no<option>yes</select></td>";
-		echo "</tr>";
-		echo "<tr>";
-
-		echo "<td>Category:</td>";
-		echo "<td><select name=category>";
-		echo "<option>$video->category";
+		echo "<option>no<option>yes</select></td></tr>";
+		
+		
+		echo "<tr><td>Category:</td><td><select name=category><option>$video->category";
 		$result2=lib_mysql_query("select * from `categories` order by `name` asc");
-		while($cat=$result2->fetch_object())
-			echo "<option>$cat->name";
-		echo "</select></td>";
-		echo "</tr>";
-		echo "<tr>";
-		echo "<td>Embed Code:</td>";
-		echo "<td><textarea rows=10 cols=100 name=vembed_code>$video->embed_code</textarea></td>";
-		echo "</tr>";
-		echo "<tr>";
-		echo "<td>&nbsp;</td><td>";
-		echo "<input type=submit name=go value=go>";
-		echo "</td></tr>";
+		while($cat=$result2->fetch_object()) echo "<option>$cat->name";
+		echo "</select></td></tr>";
+		
+		echo "<tr><td>Embed Code:</td><td><textarea rows=10 cols=100 name=vembed_code>$video->embed_code</textarea></td></tr>";
+		
+		echo "<tr><td>&nbsp;</td><td><input type=submit name=go value=go></td></tr>";
+		
 		echo "</table>";
 		echo "</form>";
 		echo "</p>";
@@ -86,6 +77,7 @@ function videos_action_modifygo() {
 			lib_mysql_query("update `videos` set `sfw`='$sfw' where `id`='$id'");
 			lib_mysql_query("update `videos` set `hidden`='$hidden' where `id`='$id'");
 			lib_mysql_query("update `videos` set `url`='$vurl' where `id`='$id'");
+			lib_mysql_query("update `videos` set `image`='$imageurl' where `id`='$id'");
 			lib_mysql_query("update `videos` set `embed_code`='$vembed_code' where `id`='$id'");
 		}
 	}
