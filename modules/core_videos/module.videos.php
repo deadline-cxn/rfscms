@@ -87,25 +87,21 @@ function videos_get_thumbnail($video) {
 	// <meta property="og:image" content="http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Jun/5/5625eccb67d8_sf_3.jpg"/>
 	
 	if(!empty($video->image)) {
-		
 		if(!stristr($video->image,$RFS_SITE_URL))  { // attempt to cache locally
+		
 			$t=time();
-			$thpath="$RFS_SITE_PATH/modules/core_videos/cache/$t.jpg";
-			$thmurl="$RFS_SITE_URL/modules/core_videos/cache/$t.jpg";
-			
+			$thmpath="$RFS_SITE_PATH/modules/core_videos/cache/$t.jpg";
+			$thmurl="$RFS_SITE_URL/modules/core_videos/cache/$t.jpg";			
 			$ch = curl_init($video->image);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$thmb = curl_exec($ch);
 			curl_close($ch);
 			$x=file_put_contents($thmpath, $thmb);
-			
 			if($x) {
 				lib_mysql_query("update videos set `image`='$thmurl' where `id`='$video->id'");
 				return $thmurl;
 			}
 		}
-		
-	
 		return $video->image;
 	}
 	
