@@ -114,19 +114,6 @@ function videos_action_submitvid_liveleak_go() {
 				case "og:title": 		$sname = str_replace("LiveLeak.com - ","",$bx); break;	
 				case "og:description": 	$description=$bx; break;
 				case "og:image": 		$image=$bx; break;
-				
-
-
-				/*<meta property="og:site_name" content="YouTube">
-				  <meta property="og:url" content="http://www.youtube.com/watch?v=fx6AXR8ehiA">
-				  <meta property="og:title" content="CHIPTUNE MUSIC ~ One hour mix #9">
-				  <meta property="og:image" content="https://i1.ytimg.com/vi/fx6AXR8ehiA/hqdefault.jpg">
-				  <meta property="og:description" content="This is a one hour mix of C64 games music and a few chiptune demos. This is made from emulated SID, the sound file for Commodore 64. Tracks length are quite ...">
-				  <meta property="og:type" content="video">
-				  <meta property="og:video" content="http://www.youtube.com/v/fx6AXR8ehiA?version=3&amp;autohide=1">
-				  <meta property="og:video:type" content="application/x-shockwave-flash">
-				  <meta property="og:video:width" content="640">
-				  <meta property="og:video:height" content="480"> */ 
 			}
 		}	
 
@@ -145,6 +132,7 @@ function videos_action_submitvid_liveleak_go() {
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
+		$_GLOBALS['id']=$vid->id;
 		videos_action_view($vid->id);
 	}
 	
@@ -180,6 +168,7 @@ function videos_action_submitvid_youtube_go() {
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
+		$_GLOBALS['id']=$vid->id;
 		videos_action_view($vid->id);
 	}
 }
@@ -399,7 +388,9 @@ function videos_action_view_cats() {
 					echo "<table border=0>";
 					echo "<tr><td valign=top>";
 					echo "<a href=videos.php?action=view&id=$video->id>";
-					echo "<img src=\"".videos_get_thumbnail($video->embed_code)."\" width=100 class=rfs_thumb><br>";
+					
+					echo "<img src=\"".videos_get_thumbnail($video)."\" width=100 class=rfs_thumb><br>";
+					
 					echo "$video->sname</a><br>";
 					echo "</td></tr>";
 					echo "</table>";

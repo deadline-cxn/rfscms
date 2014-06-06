@@ -76,13 +76,19 @@ function videos_get_url_from_code($code) {
 	return $url;
 }
 
-function videos_get_thumbnail($url) {
+function videos_get_thumbnail($video) {
 	eval(lib_rfs_get_globals());
+	
 	$ytturl="$RFS_SITE_URL/modules/core_videos/cache/oops.png";
 	$ytthumb="";
 	
+	
 	// <meta property="og:image" content="https://i1.ytimg.com/vi/fx6AXR8ehiA/hqdefault.jpg">
 	// <meta property="og:image" content="http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Jun/5/5625eccb67d8_sf_3.jpg"/>
+	
+	if(!empty($video->image)) return $video->image;
+	
+	$url=$video->embed_code;
 
 	
 	if( (stristr($url,"youtube")) || 
