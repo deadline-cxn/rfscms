@@ -88,7 +88,7 @@ function videos_get_thumbnail($video) {
 	
 	if(!empty($video->image)) {
 		
-		if(!stristr(,$RFS_SITE_URL))  { // attempt to cache locally
+		if(!stristr($video->image,$RFS_SITE_URL))  { // attempt to cache locally
 			
 			$thmurl="$RFS_SITE_URL/modules/core_videos/cache/".time().".jpg";
 			
