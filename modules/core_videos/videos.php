@@ -335,7 +335,7 @@ function videos_action_viewcat($cat) {
 	while($vid=$res2->fetch_object()) {
 		echo "<div style='margin: 5px; border: 1px; float: left; width: 100px; height: 170px;'>";
 		echo "<a href=videos.php?action=view&id=$vid->id>";
-		$ytturl=videos_get_thumbnail($vid->embed_code);
+		$ytturl=videos_get_thumbnail($vid);
 		echo "<img src=\"$ytturl\" width=100 class=rfs_thumb><br>";
 
 		echo "$vid->sname</a>";
