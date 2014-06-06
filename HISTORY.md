@@ -1,5 +1,11 @@
 History File:
 
+3.3.1 (1245) June 6, 2014 :
+- Added liveleak video submission
+- fixed some vi Dee 
+Ffc
+
+
 3.3.1 (1223) May 28, 2014:
 - Added $RFS_SITE_WIKI_TOP_BUTTONS (bool)
 - Modified t.css for all themes to update private message formatting
