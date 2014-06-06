@@ -89,14 +89,15 @@ function videos_get_thumbnail($video) {
 	if(!empty($video->image)) {
 		
 		if(!stristr($video->image,$RFS_SITE_URL))  { // attempt to cache locally
-			
-			$thmurl="$RFS_SITE_URL/modules/core_videos/cache/".time().".jpg";
+			$t=time();
+			$thpath="$RFS_SITE_PATH/modules/core_videos/cache/$t.jpg";
+			$thmurl="$RFS_SITE_URL/modules/core_videos/cache/$t.jpg";
 			
 			$ch = curl_init($video->image);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$thmb = curl_exec($ch);
 			curl_close($ch);
-			$x=file_put_contents($thmurl, $thmb);
+			$x=file_put_contents($thmpath, $thmb);
 			
 			if($x) {
 				lib_mysql_query("update videos set `image`='$thmurl' where `id`='$video->id'");
