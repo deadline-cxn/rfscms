@@ -116,8 +116,8 @@ function videos_action_submitvid_liveleak_go() {
 		$url	 	 = addslashes($url);
 		$description = addslashes($description);
 		
-		$q=" INSERT INTO `videos` (`contributor`, `sname`, `description`, `embed_code`,  `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
-						   VALUES ('$cont',      '$sname', '$description', '$vembed_code' , '$youtube' ,'$time',    '$time','$category', '0', 		'$sfw');";
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `description`, `embed_code`,  `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$image', '$description', '$vembed_code' , '$youtube' ,'$time',    '$time','$category', '0', 		'$sfw');";
 			
 		echo $q;			   
 		lib_mysql_query($q);

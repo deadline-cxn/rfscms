@@ -86,17 +86,33 @@ function videos_get_thumbnail($video) {
 	// <meta property="og:image" content="https://i1.ytimg.com/vi/fx6AXR8ehiA/hqdefault.jpg">
 	// <meta property="og:image" content="http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Jun/5/5625eccb67d8_sf_3.jpg"/>
 	
-	if(!empty($video->image)) return $video->image;
+	if(!empty($video->image)) {
+		
+		if(!stristr(,$RFS_SITE_URL))  { // attempt to cache locally
+			
+			$thmurl="$RFS_SITE_URL/modules/core_videos/cache/".time().".jpg";
+			
+			$ch = curl_init($video->image);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$thmb = curl_exec($ch);
+			curl_close($ch);
+			$x=file_put_contents($thmurl, $thmb);
+			
+			if($x) {
+				lib_mysql_query("update videos set `image`='$thmurl' where `id`='$video->id'");
+				return $thmurl;
+			}
+		}
+		
+	
+		return $video->image;
+	}
 	
 	$url=$video->embed_code;
-
 	
 	if( (stristr($url,"youtube")) || 
-		(stristr($url,"youtu.be")) ) {
-		$ytx=explode("\"",$url);
-		for($yti=0;$yti<count($ytx);$yti++) {
-			if(stristr($ytx[$yti],"youtube")) {
-				$ytx2=explode("/",$ytx[$yti]);
+		(stristr($url,"youtu.be")) ) { $ytx=explode("\"",$url); for($yti=0;$yti<count($ytx);$yti++) { if(stristr($ytx[$yti],"youtube"))
+			{ $ytx2=explode("/",$ytx[$yti]);
 				$ytthumb=$ytx2[count($ytx2)-1];
 			}
 		}
@@ -111,10 +127,10 @@ function videos_get_thumbnail($video) {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$ytt = curl_exec($ch);
 			curl_close($ch);
-			file_put_contents("$yttlocal", $ytt);
-			
+			$x=file_put_contents("$yttlocal", $ytt);
+			if($x)
+				lib_mysql_query("update videos set `image`='$ytturl' where `id`='$video->id'");			
 			}
-			
 		}
 		if(!file_exists($yttlocal)) {
 			$ytturl="$RFS_SITE_URL/modules/core_videos/cache/oops.png";
