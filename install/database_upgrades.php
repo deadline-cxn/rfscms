@@ -515,6 +515,12 @@ if($a<1216) {
 	lib_log_add_entry($logtext);	
 }
 
+if($a<1230) {
+	lib_mysql_add("videos","description","text","not null");
+	lib_mysql_add("videos","image","text","not null");
+	
+}
+
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);

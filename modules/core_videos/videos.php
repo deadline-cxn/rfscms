@@ -97,78 +97,55 @@ function videos_action_modifygo() {
 function videos_action_submitvid_internet_go() {
 	eval(lib_rfs_get_globals());
 	$x=strtolower($source);
-	
-	
 	$e="videos_action_submitvid_$x"."_go();";
-	
-	echo "$e<br>";
 	eval($e);
-
 }
 function videos_action_submitvid_liveleak_go() {
-	eval(lib_rfs_get_globals());
-	
+	eval(lib_rfs_get_globals());	
 	if(lib_access_check("videos","submit")) {
-		echo "LiveLeak video <br>";	
-		echo "$url <br>";
 		
-		/*
-		$ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$txt=curl_exec($ch);
-		curl_close($ch);				
-		$tfile="$RFS_SITE_PATH/tmp/".time();
-		echo $tfile."<BR>";
-		file_put_contents($tfile, $txt);
-		 */
-		
-		$tags = get_meta_tags($url);
+		$html_raw = file_get_contents($url);
+		$html = new DOMDocument();
+		@$html->loadHTML($html_raw);
+		foreach($html->getElementsByTagName('meta') as $meta) {
+			$ax=$meta->getAttribute('property');
+			$bx=$meta->getAttribute('content');
+			switch($ax){ 			
+				case "og:title": 		$sname = str_replace("LiveLeak.com - ","",$bx); break;	
+				case "og:description": 	$description=$bx; break;
+				case "og:image": 		$image=$bx; break;
+				
 
-echo count($tags)."<br>";		
-		foreach($tags as $k => $v) {
-			echo " TAG:$k = $v<br>";
-		}
-		
-		
-		
-		// Notice how the keys are all lowercase now, and
-		// how . was replaced by _ in the key.
-		//echo $tags['author'];       // name
-		///echo $tags['keywords'];     // php documentation/
-		//echo $tags['description'];  // a php manual
-		//echo $tags['geo_position']; // 49.33;-86.59
-		
-		/*		// $ll=get_meta_tags ( string $filename [, bool $use_include_path = false ] )
-		
-		
-		$ll = file_get_contents($url);
-		
-		
-		$ll = str_replace("meta itemprop=\"videoId\" content=",$RFS_SITE_DELIMITER,$ll);
-		$ll = str_replace("meta property=\"og:title\" content=",$RFS_SITE_DELIMITER,$ll);
-		$ll = str_replace("meta property=\"og:image\" content=",$RFS_SITE_DELIMITER,$ll);
-		$ll = str_replace("meta property=\"og:description\" content=",$RFS_SITE_DELIMITER,$ll);
-		
-		$ll = explode($RFS_SITE_DELIMITER,$ll);
-		$title 		= explode("\"",$ll[1]);
-		$ll_code	= explode("\"",$ll[2]);
-		
-		$sname       = $title[1];
-		$ll_code	 = $ll_code[1];
-		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
+
+				/*<meta property="og:site_name" content="YouTube">
+				  <meta property="og:url" content="http://www.youtube.com/watch?v=fx6AXR8ehiA">
+				  <meta property="og:title" content="CHIPTUNE MUSIC ~ One hour mix #9">
+				  <meta property="og:image" content="https://i1.ytimg.com/vi/fx6AXR8ehiA/hqdefault.jpg">
+				  <meta property="og:description" content="This is a one hour mix of C64 games music and a few chiptune demos. This is made from emulated SID, the sound file for Commodore 64. Tracks length are quite ...">
+				  <meta property="og:type" content="video">
+				  <meta property="og:video" content="http://www.youtube.com/v/fx6AXR8ehiA?version=3&amp;autohide=1">
+				  <meta property="og:video:type" content="application/x-shockwave-flash">
+				  <meta property="og:video:width" content="640">
+				  <meta property="og:video:height" content="480"> */ 
+			}
+		}	
+
+		$ec=explode("/",$image); $ed=explode("_",$ec[1]); $embed_code=$ed[0];
+		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"http://www.liveleak.com/ll_embed?f=$embed_code\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$sname		 = addslashes($sname);
-		$url	 	 =  addslashes($url);
-		$q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`,       `time`, `bumptime`, `category`, `hidden`, `sfw`)
-						   VALUES ('$cont',      '$sname','$vembed_code' , '$youtube' ,'$time',    '$time','$category',      '0', '$sfw');";
+		$url	 	 = addslashes($url);
+		$description = addslashes($description);
+		
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `description`, `embed_code`,  `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$description', '$vembed_code' , '$youtube' ,'$time',    '$time','$category', '0', 		'$sfw');";
 			
 		echo $q;			   
-		// lib_mysql_query($q);
-		// $q="select * from videos order by time desc limit 1";
-		// $vid=lib_mysql_fetch_one_object($q);
-		// videos_action_view($vid->id);
-		 */
+		lib_mysql_query($q);
+		$q="select * from videos order by time desc limit 1";
+		$vid=lib_mysql_fetch_one_object($q);
+		videos_action_view($vid->id);
 	}
 	
 }
@@ -176,21 +153,32 @@ echo count($tags)."<br>";
 function videos_action_submitvid_youtube_go() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
-		$ytw = file_get_contents($url);
-		$ytw = str_replace("meta itemprop=\"videoId\" content=",$RFS_SITE_DELIMITER,$ytw);
-		$ytw = str_replace("meta property=\"og:title\" content=",$RFS_SITE_DELIMITER,$ytw);
-		$ytw = explode($RFS_SITE_DELIMITER,$ytw);
-		$title = explode("\"",$ytw[1]);
-		$youtube_code= explode("\"",$ytw[2]);
-		$sname       = $title[1];
-		$ytcode		 = $youtube_code[1];
+		
+		$html_raw = file_get_contents($url);
+		$html = new DOMDocument();
+		@$html->loadHTML($html_raw);
+		foreach($html->getElementsByTagName('meta') as $meta) {
+			$ax=$meta->getAttribute('property');
+			$bx=$meta->getAttribute('content');
+			switch($ax){ 			
+				case "og:title": 		$sname = str_replace("LiveLeak.com - ","",$bx); break;	
+				case "og:description": 	$description=$bx; break;
+				case "og:image": 		$image=$bx; break;
+				case "og:url": 			$ex=explode("=",$bx); $ytcode=$ex[1]; break;
+				
+			}
+		}
+		
+		
 		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$sname		 = addslashes($sname);
 		$url		 = addslashes($url);
-		$q=" INSERT INTO `videos` (`contributor`, `sname`, `embed_code`,  `url`,       `time`, `bumptime`, `category`, `hidden`, `sfw`)
-						   VALUES ('$cont',      '$sname','$vembed_code' , '$url' ,'$time',    '$time','$category',      '0', '$sfw');";
+		$description = addslashes($description);
+		
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `description`, `embed_code`,  `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$description', '$vembed_code' , '$youtube' ,'$time',    '$time','$category', '0', 		'$sfw');";
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
@@ -306,10 +294,10 @@ function videos_action_removevideo() {
 		video_pagefinish();
 	}
 }
-function videos_action_view($vid) {
+function videos_action_view($id) {
 	eval(lib_rfs_get_globals());
 	videos_buttons();
-	$video=lib_mysql_fetch_one_object("select * from videos where id='$vid'");
+	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
 	echo "<div class=forum_message > <center> ";
 	echo "<h1>$video->category videos</h1>";
