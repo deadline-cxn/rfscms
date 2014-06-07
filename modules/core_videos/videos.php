@@ -286,17 +286,7 @@ function videos_action_submitvid() {
 
 		
 		echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_internet_go\">\n";
-		/*
-		echo "<select name=\"source\">
-			<option>YouTube
-			<option>LiveLeak
-			<option>Vimeo
-			</select>";
-		*/
-		
 		echo "<tr><td>URL</td><td><input size=160 name=\"url\"></td></tr>\n";
-		
-		
 		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
 		echo "<option>yes<option>no</select></td></tr>\n";
@@ -339,14 +329,12 @@ function videos_action_submitvid() {
 }
 function videos_action_removego() {
 	eval(lib_rfs_get_globals());
-	if(lib_access_check("videos","delete")) {
-		
-		$video=lib_mysql_fetch_one_object("select * from `videos` where `id`='$id'");
+	$video=lib_mysql_fetch_one_object("select * from `videos` where `id`='$id'");
+	if(lib_access_check("videos","delete")) {		
 		lib_mysql_query("delete from `videos` where `id`='$id'");
 		echo "<p>Removed $video->sname from the database...</p>";
-		
 	}
-	videos_action_view_cats();
+	videos_action_view_cat($video->category);
 }
 function videos_action_removevideo() {
 	eval(lib_rfs_get_globals());
