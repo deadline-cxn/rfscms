@@ -334,8 +334,7 @@ function videos_action_removego() {
 		lib_mysql_query("delete from `videos` where `id`='$id'");
 		echo "<p>Removed $video->sname from the database...</p>";
 	}
-	echo "$video->category<br>";
-	videos_action_view_cat($video->category);
+	videos_action_viewcat($video->category);
 }
 function videos_action_removevideo() {
 	eval(lib_rfs_get_globals());
