@@ -132,28 +132,12 @@ function videos_action_submitvid_generic_go() {
 			if(strtolower($meta->getAttribute('name')) == "twitter:player") 
 				if(empty($embed_code)) $embed_code=$meta->getAttribute('content');
 		}
-		
-		
 		$vembed_code="<iframe src=\"$embed_code\" width=\"835\" height=\"480\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
-		
 		if(stristr($url,"twitch.tv")) {
 			$ex=explode("/",$url);
 			$twitchchan=$ex[count($ex)-1];
-			$vembed_code="
-			<object type=\"application/x-shockwave-flash\" height=\"835\" width=\"480\" id=\"live_embed_player_flash\"
-			data=\"http://www.twitch.tv/widgets/live_embed_player.swf?channel=$twitchchan\"
-			bgcolor=\"#000000\"><param name=\"allowFullScreen\" value=\"true\" />
-			<param name=\"allowScriptAccess\" value=\"always\" />
-			<param name=\"allowNetworking\" value=\"all\" />
-			<param name=\"movie\"
-			value=\"http://www.twitch.tv/widgets/live_embed_player.swf\" />
-			<param name=\"flashvars\"
-			value=\"hostname=www.twitch.tv&channel=$twitchchan&auto_play=true&start_volume=25\" />
-			</object><a href=\"http://www.twitch.tv/$twitchchan\"
-			style=\"padding:2px 0px 4px; display:block; width:835px; font-weight:normal; font-size:10px;text-decoration:underline; text-align:center;\">
-			Watch live video from Derivus on www.twitch.tv</a>";
+			$vembed_code="<object type=\"application/x-shockwave-flash\" height=\"835\" width=\"480\" id=\"live_embed_player_flash\" data=\"http://www.twitch.tv/widgets/live_embed_player.swf?channel=$twitchchan\" bgcolor=\"#000000\"><param name=\"allowFullScreen\" value=\"true\" /> <param name=\"allowScriptAccess\" value=\"always\" />	<param name=\"allowNetworking\" value=\"all\" /><param name=\"movie\" value=\"http://www.twitch.tv/widgets/live_embed_player.swf\" /><param name=\"flashvars\" value=\"hostname=www.twitch.tv&channel=$twitchchan&auto_play=true&start_volume=25\" /></object>";
 		}
-		
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$url	 	 = addslashes($url);		
@@ -360,7 +344,6 @@ function videos_action_removego() {
 		lib_mysql_query("delete from `videos` where `id`='$id'");
 		echo "<p>Removed $video->sname from the database...</p>";
 	}
-	videos_action_();
 }
 function videos_action_removevideo() {
 	eval(lib_rfs_get_globals());
@@ -438,7 +421,6 @@ function videos_action_viewcat($cat) {
 	echo "<br style='clear: both;'>";
 }
 function videos_action_random() {
-	
 	eval(lib_rfs_get_globals());
 	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
 	$num=$res->num_rows;
