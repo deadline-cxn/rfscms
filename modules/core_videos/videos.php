@@ -340,10 +340,13 @@ function videos_action_submitvid() {
 function videos_action_removego() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","delete")) {
+		
 		$video=lib_mysql_fetch_one_object("select * from `videos` where `id`='$id'");
 		lib_mysql_query("delete from `videos` where `id`='$id'");
 		echo "<p>Removed $video->sname from the database...</p>";
+		
 	}
+	videos_action_view_cats();
 }
 function videos_action_removevideo() {
 	eval(lib_rfs_get_globals());
