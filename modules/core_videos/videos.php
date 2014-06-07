@@ -87,9 +87,118 @@ function videos_action_modifygo() {
 
 function videos_action_submitvid_internet_go() {
 	eval(lib_rfs_get_globals());
-	$x=strtolower($source);
-	$e="videos_action_submitvid_$x"."_go();";
+	$go="generic";
+	if(stristr($url,"youtube"))  $go="youtube";
+	if(stristr($url,"liveleak")) $go="liveleak";
+	if(stristr($url,"vimeo"))    $go="vimeo";
+	$e="videos_action_submitvid_$go"."_go();";
 	eval($e);
+	
+/*
+<meta property="og:title" content="Cinnamon Chasers - Luv Deluxe (Music Video)">
+<meta property="og:description" content="--------SXSW 2010 WINNER! Best Music Video--------- --------Saatchi &amp; Saatchi&#039;s New Director&#039;s Showcase 2010--------- --------2010 Vimeo Awards Shortlist--------  Luv&hellip;">
+<meta property="og:image" content="http://i.vimeocdn.com/video/33244883_1280.jpg">
+<meta property="og:type" content="video">
+<meta property="og:video" content="http://vimeo.com/moogaloop.swf?clip_id=6540668">
+<meta property="og:video:secure_url" content="https://vimeo.com/moogaloop.swf?clip_id=6540668">
+<meta property="og:video:type" content="application/x-shockwave-flash">
+<meta property="og:video:width" content="640">
+<meta property="og:video:height" content="360">
+<meta property="og:site_name" content="Vimeo">
+<meta property="og:url" content="http://vimeo.com/6540668">
+<meta property="video:duration" content="314">
+  
+*/
+
+}
+
+function videos_action_submitvid_generic_go() {
+	eval(lib_rfs_get_globals());
+	if(lib_access_check("videos","submit")) {
+		$html_raw = file_get_contents($url);
+		$html = new DOMDocument();
+		@$html->loadHTML($html_raw);
+		foreach($html->getElementsByTagName('meta') as $meta) {
+			$ax=strtolower($meta->getAttribute('property'));
+			$bx=$meta->getAttribute('content');
+			switch($ax){ 			
+				case "og:title": 		$sname      = addslashes($bx); break;	
+				case "og:description": 	$description= addslashes($bx); break;
+				case "og:image": 		$oimage     = addslashes($bx); $image=$oimage; break;
+				case "embedurl": 		$embed_code= addslashes($bx); break;
+			}
+			
+			if(strtolower($meta->getAttribute('itemprop'))=="embedurl") $embed_code=$meta->getAttribute('content');
+			if(strtolower($meta->getAttribute('name')) == "twitter:player") 
+				if(empty($embed_code)) $embed_code=$meta->getAttribute('content');
+		}
+		
+		
+		$vembed_code="<iframe src=\"$embed_code\" width=\"835\" height=\"480\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
+		
+		if(stristr($url,"twitch.tv")) {
+			$ex=explode("/",$url);
+			$twitchchan=$ex[count($ex)-1];
+			$vembed_code="
+			<object type=\"application/x-shockwave-flash\" height=\"835\" width=\"480\" id=\"live_embed_player_flash\"
+			data=\"http://www.twitch.tv/widgets/live_embed_player.swf?channel=$twitchchan\"
+			bgcolor=\"#000000\"><param name=\"allowFullScreen\" value=\"true\" />
+			<param name=\"allowScriptAccess\" value=\"always\" />
+			<param name=\"allowNetworking\" value=\"all\" />
+			<param name=\"movie\"
+			value=\"http://www.twitch.tv/widgets/live_embed_player.swf\" />
+			<param name=\"flashvars\"
+			value=\"hostname=www.twitch.tv&channel=$twitchchan&auto_play=true&start_volume=25\" />
+			</object><a href=\"http://www.twitch.tv/$twitchchan\"
+			style=\"padding:2px 0px 4px; display:block; width:835px; font-weight:normal; font-size:10px;text-decoration:underline; text-align:center;\">
+			Watch live video from Derivus on www.twitch.tv</a>";
+		}
+		
+		$cont		 = $data->id;
+		$time		 = date("Y-m-d H:i:s");
+		$url	 	 = addslashes($url);		
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, `embed_code`,      `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$image', '$oimage', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
+		//echo $q;
+		lib_mysql_query($q);
+		$q="select * from videos order by time desc limit 1";
+		$vid=lib_mysql_fetch_one_object($q);
+		$_GLOBALS['id']=$vid->id;
+		videos_action_view($vid->id);
+	}
+}
+
+function videos_action_submitvid_vimeo_go() {
+	eval(lib_rfs_get_globals());	
+	if(lib_access_check("videos","submit")) {
+		$html_raw = file_get_contents($url);
+		$html = new DOMDocument();
+		@$html->loadHTML($html_raw);
+		foreach($html->getElementsByTagName('meta') as $meta) {
+			$ax=$meta->getAttribute('property');
+			$bx=$meta->getAttribute('content');
+			switch($ax){ 			
+				case "og:title": 		$sname      = addslashes($bx); break;	
+				case "og:description": 	$description= addslashes($bx); break;
+				case "og:image": 		$oimage     = addslashes($bx); $image=$oimage; break;
+			}
+		}
+		
+		$vx=explode("/",$url);
+		$embed_code=$vx[count($vx)-1];
+		$vembed_code = "<iframe src=\"http://player.vimeo.com/video/$embed_code\" width=\"835\" height=\"480\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> ";
+		$cont		 = $data->id;
+		$time		 = date("Y-m-d H:i:s");
+		$url	 	 = addslashes($url);		
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, `embed_code`,      `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$image', '$oimage', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
+		//echo $q;
+		lib_mysql_query($q);
+		$q="select * from videos order by time desc limit 1";
+		$vid=lib_mysql_fetch_one_object($q);
+		$_GLOBALS['id']=$vid->id;
+		videos_action_view($vid->id);
+	}
 }
 function videos_action_submitvid_liveleak_go() {
 	eval(lib_rfs_get_globals());	
@@ -103,23 +212,22 @@ function videos_action_submitvid_liveleak_go() {
 			$bx=$meta->getAttribute('content');
 			switch($ax){ 			
 				case "og:title": 		$sname = str_replace("LiveLeak.com - ","",$bx); break;	
-				case "og:description": 	$description=$bx; break;
-				case "og:image": 		$image=$bx; break;
+				case "og:description": 	$description=addslashes($bx); break;
+				case "og:image": 		$oimage=addslashes($bx); $image=$oimage; break;
 			}
 		}	
 
-		$ec=explode("/",$image); $ed=explode("_",$ec[-1]); $embed_code=$ed[0];
+		$ec=explode("/",$image); $ed=explode("_",$ec[count($ec)-1]); $embed_code=$ed[0];
 		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"http://www.liveleak.com/ll_embed?f=$embed_code\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$sname		 = addslashes($sname);
 		$url	 	 = addslashes($url);
-		$description = addslashes($description);
 		
-		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `description`, `embed_code`,      `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
-						   VALUES ('$cont',      '$sname', '$image', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, `embed_code`,      `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$image', '$oimage', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
 			
-		echo $q;			   
+		//echo $q;			   
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
@@ -142,7 +250,7 @@ function videos_action_submitvid_youtube_go() {
 			switch($ax){ 			
 				case "og:title": 		$sname = str_replace("LiveLeak.com - ","",$bx); break;	
 				case "og:description": 	$description=$bx; break;
-				case "og:image": 		$image=$bx; break;
+				case "og:image": 		$oimage=addslashes($bx); $image=$oimage; break;
 				case "og:url": 			$ex=explode("=",$bx); $ytcode=$ex[1]; break;				
 			}
 		}		
@@ -154,8 +262,8 @@ function videos_action_submitvid_youtube_go() {
 		$url		 = addslashes($url);
 		$description = addslashes($description);
 		
-		$q=" INSERT INTO `videos` (`contributor`, `sname`, `description`, `embed_code`,  `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
-						   VALUES ('$cont',      '$sname', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, 	`embed_code`,  	`url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$image', '$oimage', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
@@ -171,7 +279,6 @@ function videos_action_submitvidgo() {
 		$time=date("Y-m-d H:i:s");
 		$url=addslashes($url);
 		$description=addslashes($description);
-		// echo "	SUBMITTING VIDEO: <br>contributor $cont <br>sname $sname <br>url $vembed_code <br>time $time <br>btime $time <br>category $category<br>	sfw $sfw <br>";
 		lib_mysql_query(" INSERT INTO `videos` (`contributor`,`sname`,`description`,`embed_code`, `url`,`time`,`bumptime`,`category`,`hidden`,`sfw`)
 										VALUES ('$cont','$sname', '$description', '$vembed_code','$vurl','$time','$time','$category','0','$sfw');");
 		$q="select * from videos order by time desc limit 1";
@@ -195,12 +302,13 @@ function videos_action_submitvid() {
 
 		
 		echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_internet_go\">\n";
-		
+		/*
 		echo "<select name=\"source\">
 			<option>YouTube
 			<option>LiveLeak
+			<option>Vimeo
 			</select>";
-		
+		*/
 		
 		echo "<tr><td>URL</td><td><input size=160 name=\"url\"></td></tr>\n";
 		

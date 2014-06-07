@@ -82,26 +82,26 @@ function videos_get_thumbnail($video) {
 	$ytturl="$RFS_SITE_URL/modules/core_videos/cache/oops.png";
 	$ytthumb="";
 	
-	
-	// <meta property="og:image" content="https://i1.ytimg.com/vi/fx6AXR8ehiA/hqdefault.jpg">
-	// <meta property="og:image" content="http://edge.liveleak.com/80281E/ll_a_u/thumbs/2014/Jun/5/5625eccb67d8_sf_3.jpg"/>
-	
 	if(!empty($video->image)) {
-		if(!stristr($video->image,$RFS_SITE_URL))  { // attempt to cache locally
+		$vicheck=str_replace($RFS_SITE_URL,$RFS_SITE_PATH,$video->image);
 		
-			$t=time();
-			$thmpath="$RFS_SITE_PATH/modules/core_videos/cache/$t.jpg";
-			$thmurl="$RFS_SITE_URL/modules/core_videos/cache/$t.jpg";			
-			$ch = curl_init($video->image);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$thmb = curl_exec($ch);
-			curl_close($ch);
-			$x=file_put_contents($thmpath, $thmb);
-			if($x) {
-				lib_mysql_query("update videos set `image`='$thmurl' where `id`='$video->id'");
-				return $thmurl;
-			}
+		if(file_exists($vicheck)) {
+			return $video->image;
 		}
+		
+		$t=lib_string_generate_uid(time());
+		
+		$thmpath="$RFS_SITE_PATH/modules/core_videos/cache/$t.jpg";
+		$thmurl="$RFS_SITE_URL/modules/core_videos/cache/$t.jpg";
+		$ch = curl_init($video->original_image);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$thmb = curl_exec($ch);
+		curl_close($ch);
+		$x=file_put_contents($thmpath, $thmb);
+		if($x) {
+			lib_mysql_query("update videos set `image`='$thmurl' where `id`='$video->id'");
+			return $thmurl;
+		}				
 		return $video->image;
 	}
 	

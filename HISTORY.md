@@ -1,10 +1,16 @@
 History File:
 
-3.3.1 (1245) June 6, 2014 :
-- Added liveleak video submission
-- fixed some vi Dee 
-Ffc
+3.3.2 (1246) June 7, 2014:
+- Added Vimeo submission support to videos module
+- Added FunnyOrDie submission support to videos module
+- Added USTREAM submission support to videos module
+- Added Twitch.tv submission support to video module
+- Removed drop down selector to choose what website the video should be pulled from, it now auto-recognizes from the url you enter
+- If the url is not, youtube, liveleak or vimeo, it tries to read in generic meta tags from the url you enter  
 
+3.3.1 (1245) June 6, 2014:
+- Added liveleak submission to videos module
+- fixed some video module bugs
 
 3.3.1 (1223) May 28, 2014:
 - Added $RFS_SITE_WIKI_TOP_BUTTONS (bool)
