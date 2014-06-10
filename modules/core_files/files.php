@@ -605,7 +605,10 @@ function files_action_get_file() {
                 case "otf":
                 case "fon":
                 case "eot":
-                    lib_images_text("$filedata->name", "$filedata->name", 72, // font, fontsize
+                    lib_images_text(
+                        "$filedata->name", // text to display 
+                        "$filedata->name", // font
+                        72, // fontsize
                         1, 1, // w,h
                         0, 0, // offset x, offset y
                         244, 245, 1, // RGB Inner
