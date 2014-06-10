@@ -40,16 +40,17 @@ function m_panel_videos($x) { eval(lib_rfs_get_globals());
 		>";
 		
         echo "<tr><td class=contenttd>";
-		echo "<table border=0 cellspacing=0 cellpadding=0><tr><td>";
+		// echo "<table border=0 cellspacing=0 cellpadding=0><tr><td>";
 		echo $vlink;
 		echo "<img src=\"".videos_get_thumbnail($video)."\" width=100 class='rfs_thumb' title=\"$video->sname\">";
 		echo "</a>";
-		echo "<br>";//"</td><td style='padding: 10px;'>";
-		echo $vlink;
-		$vname=lib_string_truncate($video->sname,20);
-        	echo "$vname</a><br>";
-        	echo lib_string_truncate($video->description,20);
-		echo "</td><tr></table>";
+		
+		//echo "<br>";//"</td><td style='padding: 10px;'>";
+		//echo $vlink;
+		//$vname=lib_string_truncate($video->sname,20);
+        	//echo "$vname</a><br>";
+        	//echo lib_string_truncate($video->description,20);
+		//echo "</td><tr></table>";
         echo "</td></tr>";
     }
 	echo "<tr><td class=contenttd></td><td class=contenttd>";
