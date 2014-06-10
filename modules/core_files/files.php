@@ -438,9 +438,14 @@ function files_action_get_file() {
 				echo "<input type=text value=\"Locate file\"><br>";
 				echo "[Locate File]<br>";
 				echo "Reupload file <input type=file><br>";
-				
+                
+                // TODO: Make this re-upload form work
+                
+                
 				echo "Remove this file from database<br>";
 				files_action_del();
+                
+                
 				echo "</div>";
 			}		
 		}
@@ -679,8 +684,7 @@ function files_action_get_file() {
                 case "lha":
                 case "arj":
                 case "arc":
-                case "rar":
-                case "zip":
+                case "rar":                
 
                     echo "Contents:<br><pre>";
                     echo system("7z l '$filedata->location'");
@@ -692,6 +696,12 @@ function files_action_get_file() {
                     echo system("unace v $filedata->location");
                     echo "</pre>";
 
+                    break;
+                    
+                case "zip":
+                    echo "Contents:<br><pre>";
+                    echo system("unzip -l '$filedata->location'");
+                    echo "</pre>";
                     break;
 
                 case "crx":

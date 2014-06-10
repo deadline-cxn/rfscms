@@ -221,17 +221,21 @@ function wiki_action_() {
 	}
 	
 	if($name=="Contents") {	
-		// Add in limited number of contents displayed per page	
+		// TODO: Add in limited number of contents displayed per page
+        // ie;  [<<]  [<] [FIRST] [2] [3] [4] [5] [LAST] [>] [>>]	
 	}
     else {
-		  $res=lib_mysql_query( " select distinct name from wiki where `text` like '%[$name]%' or `text` like '%[\@$name,%' order by name asc" );
-            $num=$res->num_rows;
-            echo "Linked Pages ($num) >> ";		 
-            while($wpage=$res->fetch_object()) {
-    		if(!empty($wpage->name))
-				    echo "[<a class=rfswiki_link href=$addon_url?name=".urlencode($wpage->name).">$wpage->name</a>]";
-		  }
-		  echo "<hr>";
+        
+            if(lib_rfs_bool_true($RFS_SITE_WIKI_SHOW_LINKED_PAGES)) {
+    		  $res=lib_mysql_query( " select distinct name from wiki where `text` like '%[$name]%' or `text` like '%[\@$name,%' order by name asc" );
+                $num=$res->num_rows;
+                if($num) echo "Linked Pages ($num) >> ";		 
+                while($wpage=$res->fetch_object()) {
+        		if(!empty($wpage->name))
+    				    echo "[<a class=rfswiki_link href=$addon_url?name=".urlencode($wpage->name).">$wpage->name</a>]";
+    		  }
+    		  echo "<hr>";
+          }
 			
 	}
 	

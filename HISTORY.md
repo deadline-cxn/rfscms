@@ -1,5 +1,10 @@
 History File:
 
+3.3.2 (1254) June 10, 2014:
+- Fixed wiki bug not showing linked pages
+- Added $RFS_SITE_WIKI_SHOW_LINKED_PAGES (bool - [on or off])
+- Changed extended file information to use unzip instead of 7zip
+
 3.3.2 (1246) June 7, 2014:
 - Added Vimeo submission support to videos module
 - Added FunnyOrDie submission support to videos module
