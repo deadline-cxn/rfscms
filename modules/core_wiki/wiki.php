@@ -222,7 +222,8 @@ function wiki_action_() {
 	
 	if($name=="Contents") {	
 		// Add in limited number of contents displayed per page	
-	} else {
+	}
+    else {
 		  $res=lib_mysql_query( " select distinct name from wiki where `text` like '%[$name]%' or `text` like '%[\@$name,%' order by name asc" );
             $num=$res->num_rows;
             echo "Linked Pages ($num) >> ";		 
@@ -232,8 +233,8 @@ function wiki_action_() {
 		  }
 		  echo "<hr>";
 			
-		}
 	}
+	
 
 	if($name=="Contents") {
 		$res=lib_mysql_query("select distinct `name` from `wiki` order by `name` asc");
