@@ -223,17 +223,15 @@ function wiki_action_() {
 	if($name=="Contents") {	
 		// Add in limited number of contents displayed per page	
 	} else {
-		$res = lib_mysql_query("	select distinct name from wiki where `text` like '%[$name]%' or `text` like '%\@$name,%' order by name asc" );
-		if($res) {
-			$num=$r->num_rows;
-			if($num) {
-				echo "Linked Pages ($num) >> ";
-				while($wpage=$res->fetch_object()) {
-					if(!empty($wpage->name))
-					echo "[<a class=rfswiki_link href=$addon_url?name=".urlencode($wpage->name).">$wpage->name</a>]";
-				}
-				echo "<hr>";
-			}
+		  $res=lib_mysql_query( " select distinct name from wiki where `text` like '%[$name]%' or `text` like '%[\@$name,%' order by name asc" );
+            $num=$res->num_rows;
+            echo "Linked Pages ($num) >> ";		 
+            while($wpage=$res->fetch_object()) {
+    		if(!empty($wpage->name))
+				    echo "[<a class=rfswiki_link href=$addon_url?name=".urlencode($wpage->name).">$wpage->name</a>]";
+		  }
+		  echo "<hr>";
+			
 		}
 	}
 
