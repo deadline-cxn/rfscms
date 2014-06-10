@@ -44,11 +44,11 @@ function m_panel_videos($x) { eval(lib_rfs_get_globals());
 		echo $vlink;
 		echo "<img src=\"".videos_get_thumbnail($video)."\" width=100 class='rfs_thumb' title=\"$video->sname\">";
 		echo "</a>";
-		echo "</td><td style='padding: 10px;'>";
+		echo "<br>";//"</td><td style='padding: 10px;'>";
 		echo $vlink;
 		$vname=lib_string_truncate($video->sname,20);
-        echo "$vname</a><br>";
-        echo lib_string_truncate($video->description,50);        
+        	echo "$vname</a><br>";
+        	echo lib_string_truncate($video->description,50);        
 		echo "</td><tr></table>";
         echo "</td></tr>";
     }
