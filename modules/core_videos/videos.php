@@ -239,7 +239,7 @@ function videos_action_submitvid_youtube_go() {
 			}
 		}		
 		
-		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode\" frameborder=\"0\" allowfullscreen></iframe>";
+		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$sname		 = addslashes($sname);
