@@ -48,7 +48,7 @@ function m_panel_videos($x) { eval(lib_rfs_get_globals());
 		echo $vlink;
 		$vname=lib_string_truncate($video->sname,20);
         	echo "$vname</a><br>";
-        	echo lib_string_truncate($video->description,50);        
+        	echo lib_string_truncate($video->description,20);
 		echo "</td><tr></table>";
         echo "</td></tr>";
     }
