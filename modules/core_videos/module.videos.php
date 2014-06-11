@@ -50,11 +50,12 @@ function m_panel_videos($x) { eval(lib_rfs_get_globals());
 		//echo "</td><tr></table>";
         echo "</td></tr>";
     }
+	echo "</table>";
 //	echo "<tr><td class=contenttd></td><td class=contenttd>";
     echo "(<a href=$RFS_SITE_URL/modules/core_videos/videos.php?action=random class=a_cat>Random video</a>)<br>";
     echo "(<a href=$RFS_SITE_URL/modules/core_videos/videos.php class=a_cat>More...</a>)";
 //	echo "</td></tr>";
-	echo "</table>";
+//	echo "</table>";
 }
 
 function videos_get_url_from_code($code) {
