@@ -43,7 +43,7 @@ function m_panel_wiki($x) {
 		while($page=$res->fetch_object()) {
 			$opage=urlencode($page->name);
 			echo "<a href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?name=$opage\" title=\"$page->name\">";
-			echo lib_string_truncate($page->name,25);
+			echo lib_string_truncate($page->name,20);
 			echo "</a> ";
 			echo "<br>\n";
 		}
