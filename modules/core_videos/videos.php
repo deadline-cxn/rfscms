@@ -270,6 +270,24 @@ function videos_action_submitvidgo() {
 		videos_action_view($vid->id);
 	}
 }
+function videos_action_submitvid_urlform() {
+		global $RFS_SITE_URL;
+		echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/core_videos/videos.php\">\n";
+		echo "<table border=0>\n";		
+		echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_internet_go\">\n";
+		echo "<tr><td>URL</td><td><input size=160 name=\"url\"></td>\n";
+		echo "<td>Safe For Work</td><td><select name=sfw>";
+		echo "<option>yes<option>no</select></td>\n";
+		$res=lib_mysql_query("select * from `categories` order by name asc");
+		echo "<td>Category</td><td><select name=category>";
+		while($cat=$res->fetch_object()) echo "<option>$cat->name";
+		echo "</select></td>\n";
+		echo "<td>&nbsp; </td><td><input type=\"submit\" value=\"Add Video\"></td>";
+		echo "</tr>\n";
+		echo "</table>\n";
+		echo "</form>\n";
+		echo "</div>\n";
+}
 function videos_action_submitvid() {
 	eval(lib_rfs_get_globals());
 	
@@ -279,27 +297,9 @@ function videos_action_submitvid() {
 		echo "<h1>Submit new video</h1>\n";
 		echo "<div class='forum_box'>\n";
 		
-		echo "<h1>From Web</h1>\n";
+		echo "<h1>URL</h1>\n";
+		videos_action_submitvid_urlform();
 		
-		echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/core_videos/videos.php\">\n";
-		echo "<table border=0>\n";
-
-		
-		echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_internet_go\">\n";
-		echo "<tr><td>URL</td><td><input size=160 name=\"url\"></td></tr>\n";
-		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
-		if(!empty($video->sfw)) echo "<option>$video->sfw";
-		echo "<option>yes<option>no</select></td></tr>\n";
-		$res=lib_mysql_query("select * from `categories` order by name asc");
-		echo "<tr><td>Category</td><td><select name=category>";
-		if(!empty($category_in)) echo "<option>$category_in";
-		while($cat=$res->fetch_object()) echo "<option>$cat->name";
-		echo "</select></td></tr>\n";
-		echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Add Video\"></td></tr>\n";
-		echo "</table>\n";
-		echo "</form>\n";
-		echo "</div>\n";
-		echo "\n\n\n\n";
 
 		echo "<div class='forum_box'>\n";
 		echo "<h1>From Embedded Code</h1>\n";
@@ -478,7 +478,8 @@ function videos_action_view_cats() {
 }
 function videos_action_() {
 	eval(lib_rfs_get_globals());
-	echo "Videos</h1>";
+	echo "<h1>Videos</h1>";
+	videos_action_submitvid_urlform();	
 	videos_action_random();
 	videos_pagefinish();
 }
