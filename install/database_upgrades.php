@@ -518,15 +518,14 @@ if($a<1216) {
 if($a<1230) {
 	lib_mysql_add("videos","description","text","not null");
 	lib_mysql_add("videos","image","text","not null");
-	
 }
 
 if($a<1246) {
 	lib_mysql_add("videos","original_image","text","not null");
-	
 }
-if($a<1267) {
+if($a<1268) {
 	lib_mysql_add("videos","image","text","not null");
+	lib_mysql_add("videos","description","text","not null");
 }
 
 if($a < $b) {
