@@ -1,5 +1,8 @@
 History File:
 
+3.3.4 ( ) June 12, 2014:
+- Added debug output in lib_mysql_query()
+
 3.3.3 (1265) June 11, 2014:
 - Fixed up arrangement panel editing
 - Fixed up TODO List bugs

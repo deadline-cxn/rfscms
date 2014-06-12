@@ -3,11 +3,14 @@ chdir("../../");
 $RFS_LITTLE_HEADER=true;
 include("header.php");
 function videos_buttons() {
-	eval(lib_rfs_get_globals());
+	global $RFS_SITE_URL;
 	echo "<br>";
 	lib_buttons_make_button("$RFS_SITE_URL/modules/core_videos/videos.php?action=random","Random Video");
-	if(lib_access_check("videos","submit"))
-		lib_buttons_make_button("$RFS_SITE_URL/modules/core_videos/videos.php?action=submitvid","Submit Video");
+	if(lib_access_check("videos","submit")) { lib_buttons_make_button("$RFS_SITE_URL/modules/core_videos/videos.php?action=submitvid","Submit Video");
+		echo "<br>";	
+		videos_action_submitvid_urlform();	
+		echo "<br>";
+	}
 	echo "<br>";
 }
 function videos_pagefinish() {
@@ -16,7 +19,7 @@ function videos_pagefinish() {
 	exit();
 }
 function videos_action_modifyvideo() {
-	eval(lib_rfs_get_globals());
+	$id=$_REQUEST['id'];
 	if( lib_access_check("videos","edit") ) {
 		$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 		echo "<p align=center>";
@@ -31,8 +34,6 @@ function videos_action_modifyvideo() {
 		echo "<tr><td>URL</td><td><textarea rows=2 cols=100 name=\"vurl\">$video->url</textarea></td></tr>";
 		echo "<tr><td>Image URL</td><td><textarea rows=2 cols=100 name=\"imageurl\">$video->image</textarea></td></tr>";
 		
-		
-		
 		echo "<tr><td>Safe For Work </td><td> <select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
 		echo "<option>yes<option>no</select></td></tr>";
@@ -40,8 +41,7 @@ function videos_action_modifyvideo() {
 		echo "<tr><td>Hidden</td><td><select name=hidden>";
 		if(!empty($video->hidden)) echo "<option>$video->hidden";
 		echo "<option>no<option>yes</select></td></tr>";
-		
-		
+				
 		echo "<tr><td>Category:</td><td><select name=category><option>$video->category";
 		$result2=lib_mysql_query("select * from `categories` order by `name` asc");
 		while($cat=$result2->fetch_object()) echo "<option>$cat->name";
@@ -86,8 +86,8 @@ function videos_action_modifygo() {
 
 
 function videos_action_submitvid_internet_go() {
-	eval(lib_rfs_get_globals());
 	$go="generic";
+	$url=$_REQUEST['url'];
 	if(stristr($url,"youtube"))  $go="youtube";
 	if(stristr($url,"liveleak")) $go="liveleak";
 	if(stristr($url,"vimeo"))    $go="vimeo";
@@ -95,19 +95,18 @@ function videos_action_submitvid_internet_go() {
 	eval($e);
 	
 /*
-<meta property="og:title" content="Cinnamon Chasers - Luv Deluxe (Music Video)">
-<meta property="og:description" content="--------SXSW 2010 WINNER! Best Music Video--------- --------Saatchi &amp; Saatchi&#039;s New Director&#039;s Showcase 2010--------- --------2010 Vimeo Awards Shortlist--------  Luv&hellip;">
-<meta property="og:image" content="http://i.vimeocdn.com/video/33244883_1280.jpg">
+<meta property="og:title" content="Name">
+<meta property="og:description" content="stuff">
+<meta property="og:image" content="image url ">
 <meta property="og:type" content="video">
-<meta property="og:video" content="http://vimeo.com/moogaloop.swf?clip_id=6540668">
-<meta property="og:video:secure_url" content="https://vimeo.com/moogaloop.swf?clip_id=6540668">
-<meta property="og:video:type" content="application/x-shockwave-flash">
-<meta property="og:video:width" content="640">
-<meta property="og:video:height" content="360">
-<meta property="og:site_name" content="Vimeo">
-<meta property="og:url" content="http://vimeo.com/6540668">
+<meta property="og:video" content="video url">
+<meta property="og:video:secure_url" content="secure url">
+<meta property="og:video:type"   content="mime type">
+<meta property="og:video:width"  content="850">
+<meta property="og:video:height" content="480">
+<meta property="og:site_name" content="Video Website">
+<meta property="og:url" content="video url">
 <meta property="video:duration" content="314">
-  
 */
 
 }
@@ -122,7 +121,7 @@ function videos_action_submitvid_generic_go() {
 			$ax=strtolower($meta->getAttribute('property'));
 			$bx=$meta->getAttribute('content');
 			switch($ax){ 			
-				case "og:title": 		$sname      = addslashes($bx); break;	
+				case "og:title": 		$sname      = str_replace("_"," ",addslashes($bx)); break;	
 				case "og:description": 	$description= addslashes($bx); break;
 				case "og:image": 		$oimage     = addslashes($bx); $image=$oimage; break;
 				case "embedurl": 		$embed_code= addslashes($bx); break;
@@ -132,22 +131,26 @@ function videos_action_submitvid_generic_go() {
 			if(strtolower($meta->getAttribute('name')) == "twitter:player") 
 				if(empty($embed_code)) $embed_code=$meta->getAttribute('content');
 		}
-		$vembed_code="<iframe src=\"$embed_code\" width=\"835\" height=\"480\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
+		$vembed_code="<iframe src=\"$embed_code\" width=\"850\" height=\"480\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
 		if(stristr($url,"twitch.tv")) {
 			$ex=explode("/",$url);
 			$twitchchan=$ex[count($ex)-1];
-			$vembed_code="<object type=\"application/x-shockwave-flash\" height=\"835\" width=\"480\" id=\"live_embed_player_flash\" data=\"http://www.twitch.tv/widgets/live_embed_player.swf?channel=$twitchchan\" bgcolor=\"#000000\"><param name=\"allowFullScreen\" value=\"true\" /> <param name=\"allowScriptAccess\" value=\"always\" />	<param name=\"allowNetworking\" value=\"all\" /><param name=\"movie\" value=\"http://www.twitch.tv/widgets/live_embed_player.swf\" /><param name=\"flashvars\" value=\"hostname=www.twitch.tv&channel=$twitchchan&auto_play=true&start_volume=25\" /></object>";
+			$vembed_code="<object type=\"application/x-shockwave-flash\" height=\"850\" width=\"480\" id=\"live_embed_player_flash\" data=\"http://www.twitch.tv/widgets/live_embed_player.swf?channel=$twitchchan\" bgcolor=\"#000000\"><param name=\"allowFullScreen\" value=\"true\" /> <param name=\"allowScriptAccess\" value=\"always\" />	<param name=\"allowNetworking\" value=\"all\" /><param name=\"movie\" value=\"http://www.twitch.tv/widgets/live_embed_player.swf\" /><param name=\"flashvars\" value=\"hostname=www.twitch.tv&channel=$twitchchan&auto_play=true&start_volume=25\" /></object>";
 		}
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
-		$url	 	 = addslashes($url);		
-		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, `embed_code`,      `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
-						   VALUES ('$cont',      '$sname', '$image', '$oimage', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
-		//echo $q;
-		lib_mysql_query($q);
+		$url	 	 = addslashes($url);
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`,   `original_image`, `description`,  `embed_code`,      `url`,       `time`,     `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$image', '$oimage',         '$description', '$vembed_code' ,   '$url' ,     '$time',    '$time',    '$category',    '0', 	'$sfw');";
+						   
+		// echo str_replace("<","&lt;",$q);
+		
+		$res=lib_mysql_query($q);
+		
+		
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
-		$_GLOBALS['id']=$vid->id;
+		//$_GLOBALS['id']=$vid->id;
 		videos_action_view($vid->id);
 	}
 }
@@ -167,16 +170,14 @@ function videos_action_submitvid_vimeo_go() {
 				case "og:image": 		$oimage     = addslashes($bx); $image=$oimage; break;
 			}
 		}
-		
 		$vx=explode("/",$url);
 		$embed_code=$vx[count($vx)-1];
-		$vembed_code = "<iframe src=\"http://player.vimeo.com/video/$embed_code\" width=\"835\" height=\"480\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> ";
+		$vembed_code = "<iframe src=\"http://player.vimeo.com/video/$embed_code\" width=\"850\" height=\"480\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> ";
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$url	 	 = addslashes($url);		
 		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, `embed_code`,      `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
 						   VALUES ('$cont',      '$sname', '$image', '$oimage', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
-		//echo $q;
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
@@ -186,8 +187,7 @@ function videos_action_submitvid_vimeo_go() {
 }
 function videos_action_submitvid_liveleak_go() {
 	eval(lib_rfs_get_globals());	
-	if(lib_access_check("videos","submit")) {
-		
+	if(lib_access_check("videos","submit")) {		
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
 		@$html->loadHTML($html_raw);
@@ -199,32 +199,25 @@ function videos_action_submitvid_liveleak_go() {
 				case "og:description": 	$description=addslashes($bx); break;
 				case "og:image": 		$oimage=addslashes($bx); $image=$oimage; break;
 			}
-		}	
-
+		}
 		$ec=explode("/",$image); $ed=explode("_",$ec[count($ec)-1]); $embed_code=$ed[0];
-		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"http://www.liveleak.com/ll_embed?f=$embed_code\" frameborder=\"0\" allowfullscreen></iframe>";
+		$vembed_code = "<iframe width=\"850\" height=\"480\" src=\"http://www.liveleak.com/ll_embed?f=$embed_code\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$sname		 = addslashes($sname);
 		$url	 	 = addslashes($url);
-		
 		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, `embed_code`,      `url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
 						   VALUES ('$cont',      '$sname', '$image', '$oimage', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
-			
-		//echo $q;			   
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
 		$_GLOBALS['id']=$vid->id;
 		videos_action_view($vid->id);
-	}
-	
+	}	
 }
-
 function videos_action_submitvid_youtube_go() {
-	eval(lib_rfs_get_globals());
+	$url=$_REQUEST['url'];
 	if(lib_access_check("videos","submit")) {
-		
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
 		@$html->loadHTML($html_raw);
@@ -232,30 +225,26 @@ function videos_action_submitvid_youtube_go() {
 			$ax=$meta->getAttribute('property');
 			$bx=$meta->getAttribute('content');
 			switch($ax){ 			
-				case "og:title": 		$sname = str_replace("LiveLeak.com - ","",$bx); break;	
+				case "og:title": 		$sname = $bx; break;
 				case "og:description": 	$description=$bx; break;
 				case "og:image": 		$oimage=addslashes($bx); $image=$oimage; break;
-				case "og:url": 			$ex=explode("=",$bx); $ytcode=$ex[1]; break;				
+				case "og:url": 			$ex=explode("=",$bx); $ytcode=$ex[1]; break;
 			}
-		}		
-		
-		$vembed_code = "<iframe width=\"853\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>";
+		}
+		$vembed_code = "<iframe width=\"850\" height=\"480\" src=\"//www.youtube.com/embed/$ytcode?autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>";
 		$cont		 = $data->id;
 		$time		 = date("Y-m-d H:i:s");
 		$sname		 = addslashes($sname);
 		$url		 = addslashes($url);
-		$description = addslashes($description);
-		
-		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, 	`embed_code`,  	`url`,       `time`, `bumptime`, `category`,    `hidden`,  `sfw`)
-						   VALUES ('$cont',      '$sname', '$image', '$oimage', '$description', '$vembed_code' , '$url' ,'$time',    '$time','$category', '0', 		'$sfw');";
+		$description = addslashes($description);		
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`, `original_image`, `description`, 	`embed_code`,  	`url`,       `time`,    `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$image', '$oimage', 	  '$description',  '$vembed_code' , '$url' ,    '$time',    '$time',    '$category',   '0',       '$sfw');";
 		lib_mysql_query($q);
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
-		$_GLOBALS['id']=$vid->id;
 		videos_action_view($vid->id);
 	}
 }
-
 function videos_action_submitvidgo() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("videos","submit")) {
@@ -270,65 +259,18 @@ function videos_action_submitvidgo() {
 		videos_action_view($vid->id);
 	}
 }
-function videos_action_submitvid_urlform() {
-		global $RFS_SITE_URL;
-		echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/core_videos/videos.php\">\n";
-		echo "<table border=0>\n";		
-		echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_internet_go\">\n";
-		echo "<tr><td>URL</td><td><input size=160 name=\"url\"></td>\n";
-		echo "<td>Safe For Work</td><td><select name=sfw>";
-		echo "<option>yes<option>no</select></td>\n";
-		$res=lib_mysql_query("select * from `categories` order by name asc");
-		echo "<td>Category</td><td><select name=category>";
-		while($cat=$res->fetch_object()) echo "<option>$cat->name";
-		echo "</select></td>\n";
-		echo "<td>&nbsp; </td><td><input type=\"submit\" value=\"Add Video\"></td>";
-		echo "</tr>\n";
-		echo "</table>\n";
-		echo "</form>\n";
-		echo "</div>\n";
-}
 function videos_action_submitvid() {
-	eval(lib_rfs_get_globals());
-	
-	
 	if(lib_access_check("videos","submit")) {
-		echo "\n\n\n\n";
 		echo "<h1>Submit new video</h1>\n";
 		echo "<div class='forum_box'>\n";
-		
 		echo "<h1>URL</h1>\n";
 		videos_action_submitvid_urlform();
-		
-
-		echo "<div class='forum_box'>\n";
-		echo "<h1>From Embedded Code</h1>\n";
-		echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/core_videos/videos.php\">\n";
-		echo "<table border=0>\n";
-		echo "<input type=\"hidden\" name=\"action\" value=\"submitvidgo\">\n";
-		echo "<tr><td>Title</td><td><input size=160 name=\"sname\"></td></tr>\n";
-		echo "<tr><td>Link</td><td><input size=160 name=\"link\"></td></tr>\n";
-		echo "<tr><td>URL</td><td><input size=160 name=\"vurl\"></td></tr>\n";
-		echo "<tr><td>Description</td><td><textarea rows=10 cols=80 name=\"description\"></textarea></td></tr>\n";
-		echo "<tr><td>Embed Code</td><td><textarea rows=10 cols=80 name=\"vembed_code\"></textarea></td></tr>\n";
-		echo "<tr><td>Safe For Work</td><td><select name=sfw>";
-		if(!empty($video->sfw)) echo "<option>$video->sfw";
-		echo "<option>yes<option>no</select></td></tr>\n";
-		$res=lib_mysql_query("select * from `categories` order by name asc");
-		echo "<tr><td>Category</td><td><select name=category>";
-		if(!empty($category_in)) echo "<option>$category_in";
-		while($cat=$res->fetch_object()) {
-			echo "<option>$cat->name";
-		}
-		echo "</select></td></tr>\n";
-		echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Add Video\"></td></tr>\n";
-		echo "</table>\n";
-		echo "</form>\n";
-		echo "</div>";
+		echo "<h1>Enter Embed Code</h1>\n";
+		videos_action_submitvid_embedform();
 	}
 }
-function videos_action_removego() {
-	eval(lib_rfs_get_globals());
+function videos_action_removego($id) {
+	if(empty($id)) $id=$_REQUEST['id'];
 	$video=lib_mysql_fetch_one_object("select * from `videos` where `id`='$id'");
 	if(lib_access_check("videos","delete")) {		
 		lib_mysql_query("delete from `videos` where `id`='$id'");
@@ -336,8 +278,9 @@ function videos_action_removego() {
 	}
 	videos_action_viewcat($video->category);
 }
-function videos_action_removevideo() {
-	eval(lib_rfs_get_globals());
+function videos_action_removevideo($id) {
+	if(empty($id)) $id=$_REQUEST['id'];
+	global $RFS_SITE_URL;
 	if(lib_access_check("videos","delete")) {
 		$video=lib_mysql_fetch_one_object("select * from `videos` where `id`='$id'");
 		echo "<table border=0>\n";
@@ -351,13 +294,13 @@ function videos_action_removevideo() {
 	}
 }
 function videos_action_view($id) {
-	eval(lib_rfs_get_globals());
+	if(empty($id)) $id=$_REQUEST['id'];
+	global $RFS_SITE_URL;
 	videos_buttons();
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	$vc=lib_users_get_data($video->contributor);
 	echo "<div class=forum_message > <center> ";
 	echo "<h1>$video->category videos</h1>";
-	
 	$res2=lib_mysql_query("select * from `videos` where `category`='$category' and `hidden`!='yes' order by `sname` asc");
 	$linkprev="";
 	$linknext="";
@@ -397,7 +340,7 @@ function videos_action_view($id) {
 	videos_pagefinish();
 }
 function videos_action_viewcat($cat) {
-	eval(lib_rfs_get_globals());
+	if(empty($cat)) $cat=$_REQUEST['cat'];
 	videos_buttons();
 	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
 	while($vid=$res2->fetch_object()) {
@@ -405,27 +348,10 @@ function videos_action_viewcat($cat) {
 		echo "<a href=\"videos.php?action=view&id=$vid->id\" title=\"$vid->sname\">";
 		$ytturl=videos_get_thumbnail($vid);
 		echo "<img src=\"$ytturl\" width=100 class=rfs_thumb><br>";
-
 		echo "$vid->sname</a>";
 		echo "</div>";
 	}
 	echo "<br style='clear: both;'>";
-}
-function videos_action_random() {
-	eval(lib_rfs_get_globals());
-	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
-	$num=$res->num_rows;
-	if($num==0) {
-		videos_buttons();
-		echo "<p>There are no videos.</p>";
-	} else {
-		$vid=rand(1,$num)-1;
-		mysqli_data_seek($res,$vid);
-		$video=$res->fetch_object();
-		$vc=lib_users_get_data($video->contributor);
-		$_GLOBALS['id']=$video->id;
-		videos_action_view($_GLOBALS['id']);
-	}
 }
 function videos_action_view_cats() {
 	eval(lib_rfs_get_globals());
@@ -476,11 +402,24 @@ function videos_action_view_cats() {
 	echo "</tr>";
 	echo "</table>";
 }
+function videos_action_random() { videos_action_(); }
+function videos_action_randoms() {
+	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
+	$num=$res->num_rows;
+	if($num==0) { videos_buttons(); echo "<p>There are no videos.</p>"; }
+	else {	
+		$vid=rand(1,$num)-1;
+		mysqli_data_seek($res,$vid);
+		$video=$res->fetch_object();
+		$vc=lib_users_get_data($video->contributor);
+		
+		videos_action_view($video->id);
+	}
+}
 function videos_action_() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Videos</h1>";
-	videos_action_submitvid_urlform();	
-	videos_action_random();
+	videos_action_randoms();
 	videos_pagefinish();
 }
 

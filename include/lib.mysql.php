@@ -14,24 +14,26 @@ function lib_mysql_open_database($address,$user,$pass,$dbname) {
 	if($mysqli->connect_errno) { echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";	}
 	return $mysqli;
 }
-function lib_mysql_query($query) {	
+function lib_mysql_query($query) {
 	if(stristr($query,"`users`")) $mysqli=lib_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);
 	else                          $mysqli=lib_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
 	if(mysqli_connect_errno()) { echo "WARNING 38J4"; return; }
-	
 	$x=$mysqli->query($query);
-	
-	
+	if(!$x) {
+		if(!stristr($mysqli->error,"duplicate")) {
+			$query=str_replace("<","&lt;",$query);
+			d_echo("<br>MYSQL ERROR:$mysqli->error<br>$query");
+		}
+	}
 	if(mysqli_insert_id($mysqli) > 0) {
 		$_GLOBALS['mysql_id']=mysqli_insert_id($mysqli);
 	}
-	
 	return ($x);
 }
 
 function lib_mysql_generate_content_ids() { eval(lib_rfs_get_globals());
 	$q1="SHOW FULL TABLES";
-	$r1=lib_mysql_query($q1);	
+	$r1=lib_mysql_query($q1);
 	while($t=$r1->fetch_array()) {
 		$table=$t[0];
 		$q2="DESCRIBE $table;";

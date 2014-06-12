@@ -525,6 +525,9 @@ if($a<1246) {
 	lib_mysql_add("videos","original_image","text","not null");
 	
 }
+if($a<1267) {
+	lib_mysql_add("videos","image","text","not null");
+}
 
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");

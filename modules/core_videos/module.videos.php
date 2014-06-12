@@ -58,6 +58,62 @@ function m_panel_videos($x) { eval(lib_rfs_get_globals());
 //	echo "</table>";
 }
 
+function videos_action_submitvid_embedform() {
+	global $RFS_SITE_URL;
+	$id=$_REQUEST['id']; 
+	if(!empty($id)) {
+		$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
+	}
+	echo "<div class=''>\n";
+	echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/core_videos/videos.php\">\n";
+	echo "<table border=0>\n";
+	echo "<input type=\"hidden\" name=\"action\" value=\"submitvidgo\">\n";	
+	echo "<tr><td>Title</td><td><input size=160 name=\"sname\"></td></tr>\n";
+	echo "<tr><td>Link</td><td><input size=160 name=\"link\"></td></tr>\n";
+	echo "<tr><td>URL</td><td><input size=160 name=\"vurl\"></td></tr>\n";
+	echo "<tr><td>Description</td><td><textarea rows=10 cols=80 name=\"description\"></textarea></td></tr>\n";
+	echo "<tr><td>Embed Code</td><td><textarea rows=10 cols=80 name=\"vembed_code\"></textarea></td></tr>\n";
+	echo "<tr><td>Safe For Work</td><td><select name=sfw>";
+	// if(!empty($video->sfw)) echo "<option>$video->sfw";
+	echo "<option>yes<option>no</select></td></tr>\n";
+	$res=lib_mysql_query("select * from `categories` order by name asc");
+	echo "<tr><td>Category</td><td><select name=category>";
+	if(!empty($video->category)) echo "<option>$video->category";
+	while($cat=$res->fetch_object()) {
+		echo "<option>$cat->name";
+	}
+	echo "</select></td></tr>\n";
+	echo "<tr><td>&nbsp; </td><td><input type=\"submit\" value=\"Add Video\"></td></tr>\n";
+	echo "</table>\n";
+	echo "</form>\n";
+	echo "</div>";	
+}
+function videos_action_submitvid_urlform() {
+	
+	global $RFS_SITE_URL;
+	$id=$_REQUEST['id']; 
+	if(!empty($id)) {
+		$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
+	}
+	echo "<div class=''>\n";
+	echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/core_videos/videos.php\">\n";
+	echo "<table border=0>\n";		
+	echo "<input type=\"hidden\" name=\"action\" value=\"submitvid_internet_go\">\n";
+	echo "<tr><td>Enter URL</td><td><input size=160 name=\"url\"></td>\n";
+	echo "<td>Safe For Work</td><td><select name=sfw>";
+	echo "<option>yes<option>no</select></td>\n";
+	$res=lib_mysql_query("select * from `categories` order by name asc");
+	echo "<td>Category</td><td><select name=category>";
+	if(!empty($video->category)) echo "<option>$video->category";
+	while($cat=$res->fetch_object()) echo "<option>$cat->name";
+	echo "</select></td>\n";
+	echo "<td>&nbsp; </td><td><input type=\"submit\" value=\"Add Video\"></td>";
+	echo "</tr>\n";
+	echo "</table>\n";
+	echo "</form>\n";
+	echo "</div>\n";
+}
+
 function videos_get_url_from_code($code) {
 	$youtube="";
 	if(stristr($code,"youtube")) {
