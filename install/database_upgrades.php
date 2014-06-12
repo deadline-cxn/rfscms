@@ -530,6 +530,9 @@ if($a<1268) {
 if($a<1269) {
 	lib_mysql_add("access","action","text","not null");
 }
+if($a<1272) {
+	lib_mysql_add("files","original_image","text","not null");
+}
 
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");

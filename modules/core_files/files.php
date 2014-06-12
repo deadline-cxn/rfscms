@@ -322,11 +322,11 @@ function files_action_addfilelinktodb() {
     echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_ADDON_FOLDER\" method=post>\n";
     echo "<input type=hidden name=action value=addfilelinktodb_go>\n";
     echo "<input type=hidden name=file_add value=\"$file_add\">\n";
-    echo "<tr><td>Name </td><td><input name=name value=\"$filedata->name\"></td></tr>\n";
+    // echo "<tr><td>Name </td><td><input name=name value=\"$filedata->name\"></td></tr>\n";
     echo "<tr><td>File Link  </td><td><input name=file_url value=\"\" size=110></td></tr>\n";
-    echo "<tr><td>Version</td><td><input name=version value=\"\"></td></tr>\n";
-    echo "<tr><td>Size in bytes</td><td><input name=size></td></tr>\n";
-    echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
+    // echo "<tr><td>Version</td><td><input name=version value=\"\"></td></tr>\n";
+    // echo "<tr><td>Size in bytes</td><td><input name=size></td></tr>\n";
+    // echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
     echo "<tr><td align=right>category:         </td><td><select name=category>\n";
     $result = lib_mysql_query("select * from categories order by name asc");
     $numcats = $result->num_rows;
@@ -335,11 +335,11 @@ function files_action_addfilelinktodb() {
         echo "<option>$cat->name";
     }
     echo "</select></td></tr>\n";
-    echo "<tr><td>Description</td><td><textarea name=description rows=7 cols=60>$filedata->description</textarea></td></tr>\n";
-    echo "<tr><td>Homepage</td><td><input name=homepage></td></tr>\n";
-    echo "<tr><td>Platform</td><td><input name=platform value=i686></td></tr>\n";
-    echo "<tr><td>Operating System</td><td><input name=os value=Windows></td></tr>\n";
-    echo "<tr><td>Company</td><td><input name=owner></td></tr>\n";
+    //echo "<tr><td>Description</td><td><textarea name=description rows=7 cols=60>$filedata->description</textarea></td></tr>\n";
+    //echo "<tr><td>Homepage</td><td><input name=homepage></td></tr>\n";
+    //echo "<tr><td>Platform</td><td><input name=platform value=i686></td></tr>\n";
+    //echo "<tr><td>Operating System</td><td><input name=os value=Windows></td></tr>\n";
+    //echo "<tr><td>Company</td><td><input name=owner></td></tr>\n";
     echo "<tr><td>&nbsp;</td><td><input type=submit name=shubmit value=Add!></td><td>&nbsp;</td></tr>\n";
     echo "</form></table>\n";
     include ("footer.php");
@@ -347,15 +347,35 @@ function files_action_addfilelinktodb() {
 }
 function files_action_addfilelinktodb_go() {
     eval(lib_rfs_get_globals());
-    $file_url = addslashes($file_url);
+    $furl = addslashes($file_url);
     $file_add = addslashes($file_add);
     $description = addslashes($description);
     $name = addslashes($name);
     $filetype = lib_file_getfiletype($file_add);
     echo "<p>New file link added: $name</p>";
     $time1 = date("Y-m-d H:i:s");
+	$size=lib_file_size($file_url);
+	
+	// TODO: Add DOM stuff here to extract info from the page
+	$x=explode("/",$file_url);
+	$url=$x[2];
+	$html_raw = file_get_contents($url);
+	$html = new DOMDocument();
+	@$html->loadHTML($html_raw);
+	foreach($html->getElementsByTagName('meta') as $meta) {
+		$ax=strtolower($meta->getAttribute('property'));
+		$bx=$meta->getAttribute('content');
+		switch($ax){
+			case "og:title": 		$name      = str_replace("_"," ",addslashes($bx)); break;
+			case "og:description": 	$description= addslashes($bx); break;
+			case "og:image": 		$oimage     = addslashes($bx); $image=$oimage; break;
+		}
+		if(strtolower($meta->getAttribute('name')) == "description") $description= addslashes($bx); break;				
+	}
+	if(empty($name)) $name=lib_domain_last_url_element($file_url);
+	
     lib_mysql_query("INSERT INTO `files` (`name`) VALUES ('$name');");
-    lib_mysql_query("UPDATE files SET location='$file_url' where name='$name'");
+    lib_mysql_query("UPDATE files SET location='$furl' where name='$name'");
     lib_mysql_query("UPDATE files SET submitter='$data->name' where name='$name'");
     lib_mysql_query("UPDATE files SET category='$category' where name='$name'");
     lib_mysql_query("UPDATE files SET description='$description' where name='$name'");
@@ -453,13 +473,24 @@ function files_action_get_file() {
 			lib_forms_info("This file is located on a different server.","white","green");
 		}
 		
-        $size = lib_file_sizefile($filedata->size);
+		if(empty($filedata->size)) {
+			$filedata->size=lib_file_size($filedata->location);
+			lib_mysql_query("update files set size='$filedata->size' where id='$filedata->id'");
+		}
 		
-		
-		
+        $size=lib_file_sizefile($filedata->size);
+
         echo "<p>";
+		
         if (!empty($filedata->thumb)) {
-            echo lib_images_thumb($filedata->thumb);
+			if(!stristr($filedata->thumb,$RFS_SITE_URL)) {
+				$x=lib_images_cache($filedata->thumb);
+				lib_mysql_query("update files set original_image=$filedata->thumb where id='$filedata->id'");
+				lib_mysql_query("update files set thumb='$x' where id='$filedata->id'");
+				$filedata->thumb=$x;
+			}            
+			
+			echo lib_images_thumb($filedata->thumb,200,200,1);
         }
 		
 		
@@ -538,10 +569,15 @@ function files_action_get_file() {
         echo "<p>(Right click and 'save target as' to save the file to your computer...)</p>\n";
 
         echo "<table border=0><tr>";
-        echo "<td>";
-        lib_buttons_make_button(lib_domain_canonical_url() . "&get_file_extended=yes",
-            "Get Extended File Information");
-        echo "</td>";
+        
+		
+		if(!m_files_is_link($filedata->id)) {
+			echo "<td>";
+			lib_buttons_make_button(lib_domain_canonical_url() . "&get_file_extended=yes","Get Extended File Information");
+			echo "</td>";
+		}
+		
+        
         if (lib_access_check("files", "edit")) {
             echo "<td>";
             lib_buttons_make_button("$RFS_ADDON_FOLDER?action=mdf&id=$filedata->id",
@@ -776,9 +812,11 @@ function files_action_get_file() {
                     break;
             }
 
-            echo "<hr>Looking for file information<br>";
-            
-                lib_file_file_get_readme("$RFS_SITE_PATH/$filedata->location");
+			if(!m_files_is_link($filedata->id)){
+						echo "<hr>Looking for file information<br>";            
+							lib_file_file_get_readme("$RFS_SITE_PATH/$filedata->location");
+							
+			}
             
             
 

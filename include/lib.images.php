@@ -108,9 +108,10 @@ function lib_images_rgb2html($r, $g=-1, $b=-1){
     $color .= (strlen($b) < 2?'0':'').$b;
     return '#'.$color;
 }
-function lib_images_thumb($zimg,$w,$h,$s) { eval(lib_rfs_get_globals());
-$r="<img src='$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s' class='rfs_thumb'>";
-return $r;
+function lib_images_thumb($zimg,$w,$h,$s) {
+	eval(lib_rfs_get_globals());
+	$r="<img src='$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s' class='rfs_thumb'>";
+	return $r;
 }
 function lib_images_thumb_raw($zimg,$w,$h,$s) { eval(lib_rfs_get_globals());
 $r="$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s";
@@ -143,4 +144,28 @@ function lib_images_webpage_to_png($webpage) { eval(lib_rfs_get_globals());
 	return $r;
 }
 
+function lib_images_cache($url) {
+	global $RFS_SITE_PATH;
+	global $RFS_SITE_URL;
+	global $RFS_ADDON_NAME;
+	lib_file_touch_dir("$RFS_SITE_PATH/cache");
+	$t=lib_string_generate_uid(time());
+	
+	
+	if(!empty($RFS_ADDON_NAME)) 
+		$p=$RFS_ADDON_NAME.".".lib_domain_last_url_element($url);
+	else
+		$p=lib_domain_get_current_pagename().".".lib_domain_last_url_element($url);
+	
+	$local_path="$RFS_SITE_PATH/cache/$t.$p";
+	$local_url ="$RFS_SITE_URL/cache/$t.$p";
+	
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$image = curl_exec($ch);
+	curl_close($ch);
+	$x=file_put_contents($local_path, $image);	
+	if($x) return $local_url;
+	return "";
+}
 ?>

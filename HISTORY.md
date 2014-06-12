@@ -4,6 +4,8 @@ History File:
 - Added debug output in lib_mysql_query()
 - Fixed some sql database issues
 - Added USTREAM.tv support for videos url submissions
+- Added file url submission enhancements
+- Added remote image cache function
 
 3.3.3 (1265) June 11, 2014:
 - Fixed up arrangement panel editing

@@ -156,7 +156,7 @@ function videos_get_thumbnail($video) {
 		if($x) {
 			lib_mysql_query("update videos set `image`='$thmurl' where `id`='$video->id'");
 			return $thmurl;
-		}				
+		}
 		return $video->image;
 	}
 	

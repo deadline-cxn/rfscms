@@ -2,6 +2,11 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
+function lib_domain_last_url_element($url) {
+	$t=explode("/",$url);
+	$u=explode("?",$t[sizeof($t)-1]);
+	return $u[0];
+}
 function lib_domain_get_current_pagename() {
     $x=lib_domain_phpself();
     $y=explode("/",$x);

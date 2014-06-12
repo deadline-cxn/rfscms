@@ -774,11 +774,7 @@ function m_files_update_file($fid) {
 }
 function m_files_is_link($fid) {
 	$filedata=m_files_getfiledata($fid);
-	if( (stristr($filedata->location,"http://")) ||
-		(stristr($filedata->location,"https://")) ||
-		(stristr($filedata->location,"ftp://")) ||
-		(stristr($filedata->location,"ftps://")) )
-			return true;
-	return false;	
+	return lib_file_is_link($filedata->location);
 }
+
 ?>

@@ -29,9 +29,29 @@ function lib_file_process_upload($filedata,$chmod,$filepath,$pre,$suf,$table,$ke
 		if(!$error) $error .= "No files have been selected for upload";
 	return false;
 }
-function lib_file_get_size($file) {
-	return lib_file_sizefile(filesize($file));
+function lib_file_is_link($file) {
+	if( (stristr($file,"http://")) ||
+		(stristr($file,"https://")) ||
+		(stristr($file,"ftp://")) ||
+		(stristr($file,"ftps://")) )
+			return true;
+	return false;	
 }
+function lib_file_size($file) {
+	if(lib_file_is_link($file)) return lib_file_get_remote_filesize($file);
+	return filesize($file);
+}
+function lib_file_get_remote_filesize($url) {
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($ch, CURLOPT_HEADER, TRUE);
+	curl_setopt($ch, CURLOPT_NOBODY, TRUE);
+	$data = curl_exec($ch);
+	$size = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+	curl_close($ch);
+	return $size;
+}
+// function lib_file_get_size($file) { return lib_file_sizefile(filesize($file)); }
 function lib_file_sizefile($bytesize) {
     $size = $bytesize." bytes";	
     if($bytesize>1024)       		$size = (round($bytesize/1024,2))."kB"; 				// kilobyte 2^10
@@ -91,8 +111,6 @@ function lib_file_echo_file($file) {
 		$f="Filename: $file\n";
 		$f.=file_get_contents($file);
 		$f=str_replace("<","&lt;",$f);
-        
-        
 		return $f;
 	}
 }
@@ -101,9 +119,7 @@ function lib_file_file_get_readme($file_name) {
 	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
 	system("yes| rm -R $RFS_SITE_PATH/tmp/.*");
 	system("cd $RFS_SITE_PATH/tmp");
-    
-    
-    
+
     $go="yes| 7z e -o/var/www/tmp '$file_name'";
     if(stristr($file_name,".rar")) $go="yes| unrar x '$file_name' /var/www/tmp";
      
@@ -201,6 +217,9 @@ function lib_file_file_get_readme($file_name) {
 		}
 	}
 }
+function lib_file_dir_empty($dir){ 
+     return (($files = @scandir($dir)) && count($files) <= 2);
+} 
 function lib_file_touch_dir($dir) { 
 	eval(lib_rfs_get_globals());
 	if(!file_exists($dir)) {

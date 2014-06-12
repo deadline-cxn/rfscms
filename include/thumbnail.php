@@ -10,9 +10,6 @@ $img=str_replace($RFS_SITE_PATH."/","",$img);
 $imgfile=array_pop(explode("/",$img));
 if(empty($h)) { if(empty($w)) $h=96; else $scale=1; }
 if(empty($w)) $w=96;
-//$cfile="$RFS_SITE_PATH/files/pictures/cache/$imgfile.$w.$h.$scale.png";
-//if(file_exists($cfile)) {     // header('Content-Type: image/png');  
-//  include($cfile);    exit(); }
 if(!stristr($img,$RFS_SITE_PATH)) $img=$RFS_SITE_PATH."/".$img;
 $file=$img;
 $image_info = getimagesize($file);
@@ -29,7 +26,6 @@ $new_image = imagecreatetruecolor($w, $h);
 imagealphablending($new_image, false);
 imagesavealpha($new_image, true);
 imagecopyresampled($new_image, $image, 0, 0, 0, 0, $w, $h, ImageSX($image), ImageSY($image));
-// imagepng($new_image,$cfile);
 header('Content-Type: image/png');
 imagepng($new_image);
 ?>
