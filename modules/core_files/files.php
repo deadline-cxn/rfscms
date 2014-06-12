@@ -582,7 +582,7 @@ function files_action_get_file() {
                     break;
 
                 case "exe":
-                case "msi":
+                
                 case "msu":
                 case "dll":
 
@@ -661,6 +661,9 @@ function files_action_get_file() {
                 case "7z":
                     echo "<p>This is a 7zip file. You will need to get 7zip to unarchive it. <a href=\"http://www.7-zip.org/\" target=_blank>http://www.7-zip.org/</a></p>";
 
+                
+                case "msi":
+                
                 case "iso":
                 case "cab":
                 case "chm":
@@ -774,9 +777,10 @@ function files_action_get_file() {
             }
 
             echo "<hr>Looking for file information<br>";
-            echo "<pre>";
-            lib_file_file_get_readme("$RFS_SITE_PATH/$filedata->location");
-            echo "</pre>";
+            
+                lib_file_file_get_readme("$RFS_SITE_PATH/$filedata->location");
+            
+            
 
             echo "</td></tr></table>";
         }
@@ -963,21 +967,42 @@ function files_action_f_upload_go() {
     lib_rfs_var("fu_category");
     lib_rfs_var("fu_name");
     lib_rfs_var("fu_desc");
-    $newpath = "$RFS_SITE_PATH/$fu_dir";
+    
+    $newpath  = "$RFS_SITE_PATH/$fu_dir";
     $httppath = "$RFS_SITE_URL/$fu_dir";
+    
     if (empty($data->name)) {
+        
         echo "<p> You must be logged in to upload files...</p>\n";
-    } else {
+        
+    }
+    else {
+        
         if (!lib_access_check("files", "upload")) {
             echo "<p>You are not authorized to upload files!</p>\n";
-        } else {
+        }
+        else {
+            
             echo "<p> Uploading files... </p>\n";
             $uploadFile = $newpath . "/" . $_FILES['fu_userfile']['name'];
             $uploadFile = str_replace("//", "/", $uploadFile);
-            if (!stristr($uploadFile, $RFS_SITE_PATH))
-                $uploadFile = $RFS_SITE_PATH . $uploadFile;
-            if (move_uploaded_file($_FILES['fu_userfile']['tmp_name'], $uploadFile)) {
+            
+            
+            if (!stristr($uploadFile, $RFS_SITE_PATH)) $uploadFile = $RFS_SITE_PATH . $uploadFile;
+                
+            echo "$uploadFile...<br>";
+            
+            //echo "<pre>";
+            //var_dump($_FILES);
+            //echo "</pre>";
+            
+            // echo "<br>";
+                
+                
+            if(move_uploaded_file($_FILES['fu_userfile']['tmp_name'], $uploadFile)) {
+                
                 system("chmod 755 $uploadFile");
+                
                 $error = "File is valid, and was successfully uploaded. ";
                 echo "<P>You sent: " . $_FILES['fu_userfile']['name'] . ", a " . $_FILES['fu_userfile']['size'] .
                     " byte file with a mime type of " . $_FILES['fu_userfile']['type'] . "</p>\n";
@@ -992,19 +1017,24 @@ function files_action_f_upload_go() {
                     $fu_name = addslashes($fu_name);
                     $time1 = date("Y-m-d H:i:s");
                     lib_mysql_query("INSERT INTO `files` 	(`name`, 		`submitter`, 		`time`, `worksafe`, 	`hidden`, 		`category`, 	 `filetype`)
-                    VALUES	('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");
-                    $id  =$_GLOBALS['mysqli_id']; 
-                    echo "DATABASE ID[$id]<br>";
-                    echo "<a href=\"$RFS_ADDON_FOLDER?action=get_file&id=$id\">View file information</a><br>";
+                                                      VALUES('$fu_name',	'$data->name', '$time1', '$fu_sfw',	'$fu_hidden','$fu_category', '$filetype');");
+                                        
+                    
+                    $file=lib_mysql_fetch_one_object("select * from `files` where `name`='$fu_name' and `time`='$time1'");
+                    echo "FILE ID: $file->id";
                     $httppath = str_replace("$RFS_SITE_URL/", "", $httppath);
-                    lib_mysql_query("UPDATE files SET location	='$httppath' 		where id='$id'");
+                    lib_mysql_query("UPDATE files SET location	='$httppath' 		where id='$file->id'");
                     $fu_desc = addslashes($fu_desc);
-                    lib_mysql_query("UPDATE files SET description	='$fu_desc'	 	where id='$id'");
+                    lib_mysql_query("UPDATE files SET description	='$fu_desc'	 	where id='$file->id'");
                     $filesizebytes = $_FILES['fu_userfile']['size'];
-                    lib_mysql_query("UPDATE files SET size			='$filesizebytes'	where id='$id'");
+                    lib_mysql_query("UPDATE files SET size			='$filesizebytes'	where id='$file->id'");
                     $extra_sp = $_FILES['fu_userfile']['size'] / 10240;
                     $data->files_uploaded = $data->files_uploaded + 1;
-                    lib_mysql_query("update `users` set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");
+                    lib_mysql_query("update `users` set `files_uploaded`='$data->files_uploaded' where `name`='$data->name'");                    
+                    
+                    echo "<a href=\"$RFS_ADDON_FOLDER?action=get_file&id=$file->id\">View file information</a><br>";
+                    
+
                 }
             } else {
                 $error = "File upload error!";

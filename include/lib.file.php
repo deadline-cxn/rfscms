@@ -88,9 +88,11 @@ function lib_file_multi_rename($folder,$old_pattern,$new_pattern) {
 function lib_file_echo_file($file) { 
 	eval(lib_rfs_get_globals()); 
 	if(file_exists($file)) {
-		echo "Filename: $file\n";
-		$f=file_get_contents($file);
+		$f="Filename: $file\n";
+		$f.=file_get_contents($file);
 		$f=str_replace("<","&lt;",$f);
+        
+        
 		return $f;
 	}
 }
@@ -99,7 +101,14 @@ function lib_file_file_get_readme($file_name) {
 	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
 	system("yes| rm -R $RFS_SITE_PATH/tmp/.*");
 	system("cd $RFS_SITE_PATH/tmp");
-	exec("yes| 7z e -o/var/www/tmp '$file_name'");
+    
+    
+    
+    $go="yes| 7z e -o/var/www/tmp '$file_name'";
+    if(stristr($file_name,".rar")) $go="yes| unrar x '$file_name' /var/www/tmp";
+     
+	exec($go);
+    
 	system("renlow $RFS_SITE_PATH/tmp");
 	$dirfiles=lib_file_get_folder_files("$RFS_SITE_PATH/tmp");
 	while(list ($key, $file) = each ($dirfiles)) {
@@ -117,8 +126,8 @@ function lib_file_file_get_readme($file_name) {
 				(stristr($file,".bmp")) ||
 				(stristr($file,".jpeg")) ||
 				(stristr($file,".gif")) )  { 
-				echo "$file<br>";
-				echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
+				// echo "$file ";
+				echo "<img src=\"$RFS_SITE_URL/tmp/$file\" title=\"$file\">";
 			}
 		}
 	}
@@ -126,31 +135,59 @@ function lib_file_file_get_readme($file_name) {
 	reset($dirfiles);
     while(list ($key, $file) = each ($dirfiles)) {
 		if(substr($file,0,1)!=".") {
-			if(( 	(stristr($file,"read")) ||
-					(stristr($file,".nfo")) ||
+		  
+			if(( 	(stristr($file,"read")) ||            					
+                    (stristr($file,"history")) ||
 					(stristr($file,"version")) ||
+                    (stristr($file,"install")) ||
+                    (stristr($file,"licen")) ||
+                    (stristr($file,"todo")) ||
+                    (stristr($file,"copying")) ||
+                    (stristr($file,"changes")) ||
+                    
+                    
+                    (stristr($file,".asc")) ||
+                    (stristr($file,".dsc")) ||
+                    (stristr($file,".md")) ||
+                    (stristr($file,".sig")) ||
 					(stristr($file,".diz")) ||
 					(stristr($file,".doc")) ||
+                    (stristr($file,"document")) ||
 					(stristr($file,".txt")) ||
+                    (stristr($file,"text")) ||
+                    (stristr($file,".nfo")) ||
+                    (stristr($file,"info")) ||
 					(stristr($file,".msg")) ||					
 					(stristr($file,".cat")) ||
-					
-					(stristr($file,".h")) ||
+                    (stristr($file,".url")) ||
 					(stristr($file,".hpp")) ||
-					(stristr($file,".ttf")) ||
-					(stristr($file,"index"))  
+                    (stristr($file,".cpp")) ||
+                    (stristr($file,".sh")) ||
+                    (stristr($file,".pl")) ||
+                    (stristr($file,".cgi")) ||
+                    (stristr($file,".bat"))// ||
+                    
+                    
+					//(stristr($file,".ttf"))  
 				
 					)  &&
 					
-					(!stristr($file,".com")) &&
+					(!stristr($file,".htm")) &&
+                    (!stristr($file,".html")) &&
 					(!stristr($file,".dll")) &&					
 					(!stristr($file,".exe")) &&
 					(!stristr($file,".chm")) &&
 					(!stristr($file,".class"))
 				) {
+                
+                echo "<hr>";
+                
 				$x=lib_file_echo_file("$RFS_SITE_PATH/tmp/$file");
-				echo $x;
-				echo "<hr>";
+				echo "<pre>";
+                echo $x;
+                echo "</pre>";
+				
+                
 				
 				if(stristr($file,".diz")) {
 					$db_file=str_replace("$RFS_SITE_PATH/","",$file_name);

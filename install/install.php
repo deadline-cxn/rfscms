@@ -15,15 +15,17 @@ function install_log($x) {
 		fclose($fp);
 }
 function install_mysql_open_database($address,$user,$pass,$dbname) {
-	$mysqli=new mysqli($address,$user,$pass,$dbname);
-	if($mysqli->connect_errno) { echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";	}
+	$mysqli=@new mysqli($address,$user,$pass,$dbname);
+	if($mysqli->connect_errno) {
+        echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";
+    }
 	return $mysqli;
 }
 function install_mysql_query($query) {
 	if(stristr($query,"`users`")) $msql=install_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);
 	else                          $msql=install_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
 	install_log($query);
-	return mysqli_query($msql,$query);
+	return @mysqli_query($msql,$query);
 }
 
 $RFS_SITE_PATH = getcwd();
@@ -82,6 +84,7 @@ foreach( $_REQUEST as $k => $v ) { if(stristr($k,"rfs_")) { $GLOBALS["$k"]=$v; }
 
 include_once("$RFS_SITE_PATH/config/config.php");
 $r=install_mysql_query("select * from site_vars where `name`='name'");
+if(!$r) die ("Can't connect to MySQL! Check database configuration settings.");
 $sv=$r->fetch_object();
 if(!empty($sv->name)) {	
 	echo "
