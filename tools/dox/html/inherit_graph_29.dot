@@ -1,7 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="PMA_SVG",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__SVG.html",tooltip="This Class inherits the XMLwriter class and helps in developing structure of SVG Schema Export..."];
-}

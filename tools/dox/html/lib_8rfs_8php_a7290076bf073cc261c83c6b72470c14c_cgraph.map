@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8rfs_8php.html#ae94353446a3d0787948a5f1eb614fbba" title="scg" alt="" coords="204,5,247,35"/>
-<area shape="rect" id="node5" href="$lib_8rfs_8php.html#a3609b7f3d3b5fd21ee37b823c7c32546" title="sc_yes" alt="" coords="193,59,257,88"/>
-<area shape="rect" id="node7" href="$lib_8mysql_8php.html#ac84822f7ca31fb168bb94fa3331a6923" title="sc_getuserdata" alt="" coords="171,112,280,141"/>
-<area shape="rect" id="node13" href="$lib_8mysql_8php.html#afb319d4e22b068ed605d5e7592b65678" title="sc_canonical_url" alt="" coords="167,165,284,195"/>
-<area shape="rect" id="node15" href="$lib_8rfs_8php.html#a0d1d884ddac61fcb47cd073833664bea" title="sc_get_themes" alt="" coords="171,219,280,248"/>
-<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="333,112,461,141"/>
-<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="511,112,641,141"/>
-</map>

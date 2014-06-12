@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node1" href="$classPMA__Export__Relation__Schema.html" title="This class is inherited by all schema classes It contains those methods which are common in them it w..." alt="" coords="7,112,212,141"/>
-<area shape="rect" id="node3" href="$classPMA__Dia__Relation__Schema.html" title="PMA_Dia_Relation_Schema" alt="" coords="267,5,453,35"/>
-<area shape="rect" id="node5" href="$classPMA__Eps__Relation__Schema.html" title="PMA_Eps_Relation_Schema" alt="" coords="265,59,455,88"/>
-<area shape="rect" id="node7" href="$classPMA__Pdf__Relation__Schema.html" title="PMA_Pdf_Relation_Schema" alt="" coords="267,112,453,141"/>
-<area shape="rect" id="node9" href="$classPMA__Svg__Relation__Schema.html" title="PMA_Svg_Relation_Schema" alt="" coords="265,165,455,195"/>
-<area shape="rect" id="node11" href="$classPMA__Visio__Relation__Schema.html" title="PMA_Visio_Relation_Schema" alt="" coords="261,219,459,248"/>
-</map>

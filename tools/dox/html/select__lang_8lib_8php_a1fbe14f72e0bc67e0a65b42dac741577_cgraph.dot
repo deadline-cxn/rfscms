@@ -1,9 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="PMA_langList",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="PMA_langDetails",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$select__lang_8lib_8php.html#acb20188b8223b198efa3824b5c801c09",tooltip="All the supported languages have to be listed in the array below."];
-}

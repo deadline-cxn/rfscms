@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$adm_8php.html#af552c2683dc2fb316e79d13be013fe3f" title="adm_action_f_access_group_edit_go" alt="" coords="244,5,481,35"/>
-<area shape="rect" id="node5" href="$adm_8php.html#a2dcf1c079723791d84e8494261e23818" title="adm_action_f_access_group_add_user" alt="" coords="239,59,487,88"/>
-<area shape="rect" id="node7" href="$adm_8php.html#a74bade2285e1a19314e35379c8bc3bf7" title="adm_action_f_access_group_del_user" alt="" coords="241,112,484,141"/>
-<area shape="rect" id="node9" href="$adm_8php.html#a8ae1234993872b7f9152027cd64947ff" title="adm_action_f_access_group_delete" alt="" coords="248,165,477,195"/>
-<area shape="rect" id="node11" href="$adm_8php.html#a73d8151fe0c4dbfd187bb8fd9f2fb330" title="adm_action_f_access_group_delete_go" alt="" coords="237,219,488,248"/>
-</map>

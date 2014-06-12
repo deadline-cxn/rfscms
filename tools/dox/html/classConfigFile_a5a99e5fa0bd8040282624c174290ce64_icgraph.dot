@@ -1,9 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="ConfigFile\\getValue",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="ConfigFile\\getServerDSN",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classConfigFile.html#aa88d109a438b9d98294a225fb95ab1b3",tooltip="Returns DSN of given server."];
-}

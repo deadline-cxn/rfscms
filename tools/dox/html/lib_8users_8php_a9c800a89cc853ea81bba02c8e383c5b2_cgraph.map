@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8rfs_8php.html#acffda4746c06a226d1b11dca941bcfe1" title="lib_rfs_get_globals" alt="" coords="216,5,347,35"/>
-<area shape="rect" id="node5" href="$lib_8users_8php.html#ab325575e26a72205f4f036d966330e22" title="lib_users_get_data" alt="" coords="216,59,347,88"/>
-<area shape="rect" id="node11" href="$lib_8file_8php.html#a960b31b67a167c60b18a2cf75d408987" title="lib_file_getfiletype" alt="" coords="219,112,344,141"/>
-<area shape="rect" id="node13" href="$lib_8flash_8php.html#aa9c3e91923ffc08ccb07a2c43acbce74" title="lib_flash_embed_code" alt="" coords="207,165,356,195"/>
-<area shape="rect" id="node7" href="$lib_8mysql_8php.html#a6fa7adf3de43024970dae3e43ea978f0" title="lib_mysql_query_user_db" alt="" coords="407,59,575,88"/>
-<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a2eba06a83588d3b2776980e7205c57a9" title="lib_mysql_query_other_db" alt="" coords="624,59,797,88"/>
-</map>

@@ -1,9 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="TCPDF\\GetCharWidth",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="TCPDF\\getRawCharWidth",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTCPDF.html#af484c6dc7debd34e2310f9f391448de7",tooltip="Returns the length of the char in user unit for the current font."];
-}

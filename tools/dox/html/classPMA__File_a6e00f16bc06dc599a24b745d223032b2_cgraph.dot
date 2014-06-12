@@ -1,9 +1,0 @@
-digraph G
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="PMA_File\\cleanUp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="PMA_File\\isTemp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPMA__File.html#ae57f73bca3660dd59b14dac568d0d9e5",tooltip="checks or sets the temp flag for this file file objects with temp flags are deleted with object destr..."];
-}

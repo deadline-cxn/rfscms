@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node1" href="$classTCPDF.html" title="PHP class for generating PDF documents without requiring external extensions." alt="" coords="5,5,72,35"/>
-<area shape="rect" id="node3" href="$classPMA__PDF.html" title="PDF export base class providing basic configuration." alt="" coords="120,5,205,35"/>
-<area shape="rect" id="node5" href="$classPMA__Schema__PDF.html" title="Extends the &quot;TCPDF&quot; class and helps in developing the structure of PDF Schema Export." alt="" coords="255,5,393,35"/>
-</map>

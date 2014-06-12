@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$lib_8exams_8php.html#abc7a2842625f3b9d9c427f8e4cd9a52d" title="exams_get_total_questions" alt="" coords="168,7,349,36"/>
-<area shape="rect" id="node15" href="$lib_8exams_8php.html#a23a9e36c4642c574f1dcc00404ae1926" title="exams_get_score" alt="" coords="397,59,523,88"/>
-<area shape="rect" id="node5" href="$lib_8mysql_8php.html#ad42d2c11477299cecf3dd06b259a316e" title="mfo1" alt="" coords="435,5,485,35"/>
-<area shape="rect" id="node7" href="$lib_8mysql_8php.html#aa22ac855bc784ef271c92223b57e43f0" title="sc_query" alt="" coords="571,32,645,61"/>
-<area shape="rect" id="node9" href="$lib_8mysql_8php.html#a8bcee19e7c23b44723f6d1237f602a86" title="sc_query_user_db" alt="" coords="693,5,821,35"/>
-<area shape="rect" id="node13" href="$lib_8mysql_8php.html#acfac65de798c6bc01ce6374d7cb5f48d" title="odb" alt="" coords="736,59,779,88"/>
-<area shape="rect" id="node11" href="$lib_8mysql_8php.html#a7e9c2de1503a323b1bf24eae109fbd90" title="sc_query_other_db" alt="" coords="871,5,1001,35"/>
-</map>
