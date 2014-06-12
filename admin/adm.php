@@ -272,6 +272,13 @@ wiki
  */
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_POLICY FUNCTIONS
+
+function adm_action_policy_manager() {
+	
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AUTH FUNCTIONS
 /* REPLACE ADM_AUTH WITH ADM_POLICIES 
 
@@ -304,59 +311,66 @@ function rfs_admin_module( $loc ) {
 	$r=lib_mysql_query( "select * from arrangement where location='$location' order by sequence " );
 	if($r) {
 		echo "<center><h2>$location";
-		echo " Panels</h2></center>";
+		echo " Panels</h2>";
         if(!$r->num_rows) echo " ( NO PANELS IN THIS AREA! ) <BR> ";
         else
 		for($i=0; $i<$r->num_rows; $i++) {
 			echo "<div class=news_article>";
 			$ar=$r->fetch_object();
-			echo "<table border=0 cellspacing=0><tr><td>";
-            echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_delete&location=$location&arid=$ar->id'>";
-			echo "<img src='$RFS_SITE_URL/images/icons/circle-delete.png' border='0'>";
+			
+			echo "<h1>";
+			echo ucwords( str_replace("_"," ","$ar->panel") );
+			echo "</h1>";						
+			
+			echo "<table border=0 cellspacing=0><tr>";
+			
+			echo "<td>";
+            echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_delete&location=$location&arid=$ar->id' title='Delete'>";
+			echo "<img src='$RFS_SITE_URL/images/icons/circle-delete.png' border='0' width=24 height=24>";
             echo "</a>";
+			
 			if( $ar->sequence > 1 ) {
-				echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_move_up&arid=$ar->id'>";				
-				echo " <img src=$RFS_SITE_URL/images/icons/arrow-up.png width=32 height=32 border=0> ";
+				echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_move_up&arid=$ar->id' title='Move Up'>";
+				echo " <img src=$RFS_SITE_URL/images/icons/arrow-up.png width=24 height=24 border=0> ";
 				echo "</a>";
 			}
+			
 			if( $ar->sequence < $n ) {
-				echo " <img src=$RFS_SITE_URL/images/icons/arrow-down.png width=32 height=32 border=0> ";
+				echo " <img src=$RFS_SITE_URL/images/icons/arrow-down.png width=24 height=24 border=0> ";
 			}
+			
 			if( $location!="left" ) {
-				echo " <img src=$RFS_SITE_URL/images/icons/arrow-left.png width=32 height=32 border=0> ";
+				echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_move_left&arid=$ar->id' title='Move Left'>";
+				echo " <img src=$RFS_SITE_URL/images/icons/arrow-left.png width=24 height=24 border=0> ";
+				echo "</a>";
 			}
 			if( $location!="right" ) {
-				echo " <img src=$RFS_SITE_URL/images/icons/arrow-right.png width=32 height=32 border=0> ";				
+				echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_move_right&arid=$ar->id' title='Move Right'>";
+				echo " <img src=$RFS_SITE_URL/images/icons/arrow-right.png width=24 height=24 border=0> ";
+				echo "</a>";
 			}
-			echo "	</td><td>";
-			echo ucwords( "Panel: $ar->panel" );
-            
-            
-            echo "</td>";
-            
-            echo "<td>";
-            
-            //echo $ar->type;   
-            if(empty($ar->type)) $ar->type="results";
+
+			echo "</td>";
 			
-            lib_forms_optionize($phpself,"action=f_module_chg_type".$RFS_SITE_DELIMITER."id=$ar->id","panel_types","name","0",$ar->type,"1");
+            echo "<td>";
+			
+			if(empty($ar->type)) $ar->type="results";
+			lib_forms_optionize($phpself,"action=f_module_chg_type".$RFS_SITE_DELIMITER."id=$ar->id","panel_types","name","0",$ar->type,"1");
 			
             // echo "$ar->id $ar->location $ar->panel $ar->num $ar->sequence $ar->type $ar->tableref $ar->access $ar->page";
 			// id name table key other
             
             echo "</td>";
-            
-            
-            if($ar->type=="results") {            
-               
+			
+			
+			
+            if($ar->type=="results") {
                 echo "<td>";
-				// echo "type result";
-				echo "	<form action='$RFS_SITE_URL/admin/adm.php' method='post'>
+				echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>
     			        <input type=hidden name=action value=f_module_chg_num>
                         <input type=hidden name=id value='$ar->id'>
                         <input name=num size=1 value=$ar->num  onblur='this.form.submit()'>
-    				</form> </td>
-                    <td> results</td>";
+    				</form> </td>";                    
             }
 			
 			if($ar->type=="static") {				
@@ -373,6 +387,31 @@ function rfs_admin_module( $loc ) {
 				}
 				else {
 					lib_forms_optionize($phpself,"action=f_module_chg_static".$RFS_SITE_DELIMITER."id=$ar->id","static_html","name","",$ar->page,"1");
+
+					
+				}
+				echo " </td>";
+			}
+			
+			
+			echo "	</td>";
+			
+			echo "</tr></table>";
+			
+			
+			echo "<table border=0 cellspacing=0><tr>";
+            
+
+			
+			if($ar->type=="static") {				
+				echo "<td>";
+				// echo "Type: static ";
+				if(empty($ar->page)) {
+
+				}
+				else {
+					
+					
 					$str=lib_mysql_query("select distinct * from static_html where name='$ar->page'");
 					$st=$str->fetch_object();
 					echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
@@ -380,8 +419,9 @@ function rfs_admin_module( $loc ) {
 					echo "<input type=hidden name=arid value=\"$ar->id\">";
 					echo "<input type=hidden name=staticpage value=\"$ar->page\">";
 					echo "<textarea cols=50 rows=10 name=\"statichtml\">$st->html</textarea><br>";
-					echo "<input type=submit></form>";
-					echo "Preview:<hr>";
+					echo "<input type=submit></form>";					
+					
+					echo "Preview:<br>";
 					$st->html=str_replace("&gt;",">",$st->html);
 					$st->html=str_replace("&lt;","<",$st->html);
 					echo lib_rfs_echo($st->html);
@@ -521,6 +561,8 @@ function adm_action_f_module_chg_num() {
 function adm_action_arrange() {
     eval( lib_rfs_get_globals() );
     $location="";
+	
+	
 	lib_mysql_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`location` text NOT NULL,
@@ -531,15 +573,15 @@ function adm_action_arrange() {
 
 	echo "<div class=forum_box>";
 
-	echo "<table border=0><tr>"; // TOP START
-	echo "<td valign=top>";// class=lefttd>";	
+	echo "<table border=0 width=100%><tr>"; // TOP START
+	echo "<td valign=top>";
 	rfs_admin_module("left");
-	echo "</td><td valign=top>"; // MIDDLE START
+	echo "</td><td valign=top width=80%>"; // MIDDLE START
     rfs_admin_module("middle");
     echo "</td><td valign=top>"; // RIGHT SIDE START
     rfs_admin_module("right");
     echo "</td> </tr> </table>"; // TOP END
-    echo "<table border=0><tr><td>"; // BOTTOM START
+    echo "<table border=0 width=100%><tr><td>"; // BOTTOM START
     rfs_admin_module("bottom");
     echo "</td></tr></table>"; // BOTTOM END
 	echo "</div>";
