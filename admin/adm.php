@@ -517,6 +517,35 @@ function adm_action_f_arrange_move_up() {
 	// print_r($arrange);
 	adm_action_arrange();
 }
+function adm_action_f_arrange_move_left() {
+    eval(lib_rfs_get_globals());	
+	$ar=lib_mysql_fetch_one_object("select * from arrangement where `id`='$arid'");		
+	if($ar->location=="left")  { adm_action_arrange(); exit(); }
+	if($ar->location=="right") $to="middle";
+	if($ar->location=="middle") $to="left";	
+	if(empty($to)) { adm_action_arrange(); exit(); }	
+	echo "FROM: $ar->location TO: $to<br>";	
+	$q="update arrangement set location='$to' where id='$ar->id'";
+	lib_mysql_query($q);
+	adm_action_arrange();
+}
+function adm_action_f_arrange_move_right() {
+    eval(lib_rfs_get_globals());	
+	$ar=lib_mysql_fetch_one_object("select * from arrangement where `id`='$arid'");		
+	if($ar->location=="right")  { adm_action_arrange(); exit(); }
+	if($ar->location=="left") $to="middle";
+	if($ar->location=="middle") $to="right";	
+	if(empty($to)) { adm_action_arrange(); exit(); }	
+	echo "FROM: $ar->location TO: $to<br>";	
+	$q="update arrangement set location='$to' where id='$ar->id'";
+	lib_mysql_query($q);
+	adm_action_arrange();
+}
+
+
+
+
+
 function adm_action_f_arrange_delete_go() {
     eval(lib_rfs_get_globals());
     lib_mysql_query("delete from arrangement where `id`='$id'");
@@ -561,24 +590,16 @@ function adm_action_f_module_chg_num() {
 function adm_action_arrange() {
     eval( lib_rfs_get_globals() );
     $location="";
-	
-	
-	lib_mysql_query(" CREATE TABLE IF NOT EXISTS `arrangement` (
-				`id` int(11) NOT NULL AUTO_INCREMENT,
-				`location` text NOT NULL,
-				`panel` text NOT NULL,
-				`num` int(11) NOT NULL,
-				`sequence` int(11) NOT NULL,
-				PRIMARY KEY (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ; ");
+	lib_mysql_query(" CREATE TABLE IF NOT EXISTS `arrangement` ( `id` int(11) NOT NULL AUTO_INCREMENT, `location` text NOT NULL,`panel` text NOT NULL, `num` int(11) NOT NULL, `sequence` int(11) NOT NULL, PRIMARY KEY (`id`) ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ; ");
 
 	echo "<div class=forum_box>";
 
 	echo "<table border=0 width=100%><tr>"; // TOP START
-	echo "<td valign=top>";
+	echo "<td valign=top width=30%>";
 	rfs_admin_module("left");
-	echo "</td><td valign=top width=80%>"; // MIDDLE START
+	echo "</td><td valign=top width=70%>"; // MIDDLE START
     rfs_admin_module("middle");
-    echo "</td><td valign=top>"; // RIGHT SIDE START
+    echo "</td><td valign=top width=30%>"; // RIGHT SIDE START
     rfs_admin_module("right");
     echo "</td> </tr> </table>"; // TOP END
     echo "<table border=0 width=100%><tr><td>"; // BOTTOM START
@@ -2459,26 +2480,25 @@ width: 95px;
 height: 95px;
 text-align: center;
 '>";
+
+
 								echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$lx\" $target>";
 								$imglnk="<img src='$RFS_SITE_URL/admin/images/";
 								$image="";
+								
 								if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" )) $image="$x.png'";
 								if( file_exists( "$RFS_SITE_PATH/admin/images/$x.gif" )) $image="$x.gif'";
 								if( file_exists( "$RFS_SITE_PATH/admin/images/$x.jpg" )) $image.="$x.jpg'";
-								
+
 								// TODO: If the function is from a module, search the module/images folder
 								
-								if(empty($image)) {
-									$imx=explode("_",$x);
-									$module_name=$imx[0];
-									lib_modules_get_name($module_name);
-									$core=lib_modules_get_property($module_name,"Core");
-									$author=lib_modules_get_property($module_name,"Author");
-									echo "--$module_name ($core $author)--";
-									
-									
-								}								
+								if(empty($image)) {									
+									$y=ucwords(str_replace("_"," ",$x));
+									$imglnk="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/$image&t=$y (no image)&w=64&h=64&y=20\" border='0' ";
+
+								}
 								$imglnk.=$image." width=64 height=64 border='0' align=center>";
+
 								echo $imglnk;
 								echo "</a><br>";
 								echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$lx'>";
@@ -2522,17 +2542,22 @@ text-align: center;
 					
 					echo "<a href=\"";
 					$icon->url=str_replace( ";","%3b",$icon->url );
+					
+					
 					lib_rfs_echo( $icon->url );
 					echo "\" target=\"$icon->target\">";
-					if(!file_exists("$RFS_SITE_PATH/$icon->icon"))
-						$icon->icon="images/icons/exclamation.png";
+					
+					if(!file_exists("$RFS_SITE_PATH/$icon->icon")) $icon->icon="images/icons/exclamation.png";
+					
 					echo "<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/$icon->icon&t=$icon->name&w=64&h=64&y=20\" border='0'></a><br>";
+					
 					echo "<a href=\""; 
 					$icon->url=str_replace( ";","%3b",$icon->url );
 					lib_rfs_echo( $icon->url );
 					echo "\" target=\"$icon->target\" style='color: #cFcF00;'>";
 					echo ucwords(str_replace("_"," ",$icon->name));
 					echo "</a>";
+					
 					if( $_SESSION['admed']=="on" ) {
 							lib_buttons_make_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_entry&id=$icon->id","Edit" );
 							lib_buttons_make_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_del&id=$icon->id","Delete" );

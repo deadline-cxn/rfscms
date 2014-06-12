@@ -7,6 +7,9 @@ if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("include/lib.all.php");
 include("header.php");
 
+
+
+
 function todo_list_action_f_rfs_db_element_del1() { adm_action_f_rfs_db_element_del1(); }
 function todo_list_action_f_rfs_db_element_ed1() { adm_action_f_rfs_db_element_ed1(); }
 
@@ -29,7 +32,8 @@ function todo_list_action_() { eval(lib_rfs_get_globals());
 	}
 }
 
-function todo_list_status_icon() { eval(lib_rfs_get_globals());
+function todo_list_status_icon() { 
+    eval(lib_rfs_get_globals());
 	
 }
 
@@ -92,11 +96,11 @@ function todo_list_action_edit_task() { eval(lib_rfs_get_globals());
 	
 }
 
-function todo_list_action_view_todo_list($list) { eval(lib_rfs_get_globals());
+function todo_list_action_view_todo_list($list) {
+	eval(lib_rfs_get_globals());	
 	if(!empty($list)) $id=$list;
 	$r=lib_mysql_query("select * from todo_list where id=$id");
 	$tdl=$r->fetch_object();
-	
 	echo "<h1>$tdl->name</h1>";
 	echo "$tdl->description<br>";
 	lib_buttons_make_button("$RFS_SITE_URL/modules/core_todo_list/todo_list.php?action=search&tdl=$tdl->id","Search");
@@ -141,20 +145,13 @@ echo "<style>
 	background-color: #FFA;
 	color: #000;
 }
+</style>";
 	
-	</style>";
-	
-$r=lib_mysql_query("
-select * from `todo_list_task` 
-where (`list`='$tdl->id')  ;");
-	  
+	$r=lib_mysql_query("select * from `todo_list_task` where (`list`='$tdl->id')  ;");
 	$n=$r->num_rows;
-
-	if($n>0) {
-		
+	if($n>0) {		
 		echo "<table border=0 cellpadding=5 cellspacing=0>";
-			echo "<tr>";
-			
+			echo "<tr>";			
 			if(empty($tdl->type)) $tdl->type="Task";
 			echo "<th>$tdl->type # </th>";
 			echo "<th> </th>";
@@ -188,8 +185,10 @@ where (`list`='$tdl->id')  ;");
 			echo "<td class=\"todo_$task_status\"><img src=\"$RFS_SITE_URL/modules/core_todo_list/icons/$task->status.png\"></td>";
 			
 			echo "<td class=\"todo_$task_status\">";
-			lib_ajax("Status","todo_list_task","id",$task->id,"status","30",
-					"select,table,todo_list_status,name,nolabel","admin","access","");
+
+lib_ajax("Status","todo_list_task","id",$task->id,"status","30","select,table,todo_list_status,name,nolabel","todo","admin",
+
+"todo_ajax_callback1");
 
 			echo "</td>";
 			

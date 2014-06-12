@@ -25,10 +25,16 @@ function lib_ajax_callback_delete() { eval(lib_rfs_get_globals());
 
 //////////////////////////////////////////////////////////////////////////////
 // default ajax callback function
-function lib_ajax_callback(){ eval(lib_rfs_get_globals());
+function lib_ajax_callback(){
+    
+    eval(lib_rfs_get_globals());
+    
 	if(lib_access_check($rfaapage,$rfaact)) {
 		$rfaajv=addslashes($rfaajv);
 		$q="update `$rfatable` set `$rfafield`='$rfaajv' where `$rfaikey` = '$rfakv'";
+        
+        
+        
 		$r=lib_mysql_query($q);		
 		if($r) echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
 		else   echo "<font style='color:white; background-color:red;'>FAILURE: $q</font>";
@@ -91,7 +97,8 @@ function rfs_ajax($data,$size,$properties,$access,$callback) {
 }
 //////////////////////////////////////////////////////////////////////////////
 // long ajax function
-function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_properties,$rfaapage,$rfaact,$rfacallback ) { eval(lib_rfs_get_globals());
+function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_properties,$rfaapage,$rfaact,$rfacallback ) {
+    eval(lib_rfs_get_globals());
 	if(!lib_access_check($rfaapage,$rfaact)) return;
 	
 	// extract callback functions
@@ -167,6 +174,8 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 			
 			if(empty($tvalue)) $tvalue="Select";
 			if(empty($tdata))  $tdata="Select";
+            
+            
 			
 			echo "<select
 					width=\"$width\"
@@ -176,7 +185,25 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 					name=\"$rfanname"."_name\"
 					
 					onchange=\"
-					$rfajscallback('$rfanname',this.value,'$rfatable','$rfaikey','$rfakv','$rfafield','$rfaapage','$rfaact','$rfacallback'); $hidefunc; this.blur();\"
+                    
+                    var select_id = document.getElementById('$rfanname"."_name');
+                    var x=select_id.options[select_id.selectedIndex].value;
+                    
+                    
+					$rfajscallback( '$rfanname',
+                                    x,
+                                    '$rfatable',
+                                    '$rfaikey',
+                                    '$rfakv',
+                                    '$rfafield',
+                                    '$rfaapage',
+                                    '$rfaact',
+                                    '$rfacallback');
+                    $hidefunc;
+                    this.blur();
+                    
+                    \"
+                    
 					style='float:left; min-width: $width;  '>";
 			
 			echo "<option ";
@@ -219,9 +246,10 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 				else {
 					$tvalue=$d[$rfafield];
 					$tdata=$d[$rfafield];
-				}				
+				}
 				
 				echo "NOVALVAR='NOPE' value='";
+                if(empty($tvalue)) $tvalue=$tdata;
 				echo $tvalue; //$dat[$key];
 				echo "' >";
 				echo $tdata; //$dat[$key];

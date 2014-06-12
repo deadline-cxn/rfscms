@@ -1,7 +1,9 @@
 History File:
 
-3.3.2 (1261) June 11, 2014:
-- Modified arrangement panels
+3.3.3 (1265) June 11, 2014:
+- Fixed up arrangement panel editing
+- Fixed up TODO List bugs
+- Fixed AJAX bug in lib_ajax having to do with SELECT input method
 
 3.3.2 (1254) June 10, 2014:
 - Fixed wiki bug not showing linked pages

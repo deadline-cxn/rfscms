@@ -24,6 +24,10 @@ $RFS_ADDON_GIT_REPOSITORY="";
 $RFS_ADDON_URL=lib_modules_get_base_url_from_file(__FILE__);
 
 lib_menus_register("TODO","$RFS_SITE_URL/modules/core_todo_list/todo_list.php");
+
+
+lib_access_add_method("todo", "admin");
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // PANELS
 function m_panel_todo_list($x) {
@@ -40,7 +44,15 @@ function m_panel_todo_list($x) {
 		echo "<a href=\"$link\">$task->name</a>";
 		echo"</td></tr>";
 	}
-	echo "</table>";
+	echo "</table>";    
+}
+
+function todo_ajax_callback1() {
+    
+    $id=$_REQUEST['rfaikey'];
+    $task=lib_mysql_fetch_one_object("select * from todo_list_task where id=$id");    
+    echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_ADDON_URL?action=view_todo_list&id=$task->list\">";    
+    lib_ajax_callback();
 }
 
 ?>
