@@ -7,8 +7,8 @@ function videos_buttons() {
 	echo "<br>";
 	lib_buttons_make_button("$RFS_SITE_URL/modules/core_videos/videos.php?action=random","Random Video");
 	if(lib_access_check("videos","submit")) { lib_buttons_make_button("$RFS_SITE_URL/modules/core_videos/videos.php?action=submitvid","Submit Video");
-		echo "<br>";	
-		videos_action_submitvid_urlform();	
+		echo "<br>";
+		videos_action_submitvid_urlform();
 		echo "<br>";
 	}
 	echo "<br>";
@@ -28,29 +28,22 @@ function videos_action_modifyvideo() {
 		echo "<table border=0>";
 		echo "<input type=hidden name=action value=modifygo>";
 		echo "<input type=hidden name=id value=\"$video->id\">";
-				
 		echo "<tr><td>Short Name</td><td><input name=sname size=100 value=\"$video->sname\"></td></tr>";
 		echo "<tr><td>Description</td><td><textarea rows=10 cols=80 name=\"description\">$video->description</textarea></td></tr>";
 		echo "<tr><td>URL</td><td><textarea rows=2 cols=100 name=\"vurl\">$video->url</textarea></td></tr>";
 		echo "<tr><td>Image URL</td><td><textarea rows=2 cols=100 name=\"imageurl\">$video->image</textarea></td></tr>";
-		
 		echo "<tr><td>Safe For Work </td><td> <select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
 		echo "<option>yes<option>no</select></td></tr>";
-		
 		echo "<tr><td>Hidden</td><td><select name=hidden>";
 		if(!empty($video->hidden)) echo "<option>$video->hidden";
 		echo "<option>no<option>yes</select></td></tr>";
-				
 		echo "<tr><td>Category:</td><td><select name=category><option>$video->category";
 		$result2=lib_mysql_query("select * from `categories` order by `name` asc");
 		while($cat=$result2->fetch_object()) echo "<option>$cat->name";
 		echo "</select></td></tr>";
-		
 		echo "<tr><td>Embed Code:</td><td><textarea rows=10 cols=100 name=vembed_code>$video->embed_code</textarea></td></tr>";
-		
 		echo "<tr><td>&nbsp;</td><td><input type=submit name=go value=go></td></tr>";
-		
 		echo "</table>";
 		echo "</form>";
 		echo "</p>";
@@ -71,7 +64,7 @@ function videos_action_modifygo() {
 			$sname=addslashes($sname);
 			$vembed_code=addslashes($vembed_code);
 			$description=addslashes($description);
-			lib_mysql_query("update `videos` set `category`='$category' where `id`='$id'");			
+			lib_mysql_query("update `videos` set `category`='$category' where `id`='$id'");
 			lib_mysql_query("update `videos` set `sname`='$sname' where `id`='$id'");
 			lib_mysql_query("update `videos` set `description`='$description' where `id`='$id'");
 			lib_mysql_query("update `videos` set `sfw`='$sfw' where `id`='$id'");
@@ -92,9 +85,7 @@ function videos_action_submitvid_internet_go() {
 	if(stristr($url,"liveleak")) $go="liveleak";
 	if(stristr($url,"vimeo"))    $go="vimeo";
 	$e="videos_action_submitvid_$go"."_go();";
-	eval($e);
-	
-/*
+	eval($e); /*
 <meta property="og:title" content="Name">
 <meta property="og:description" content="stuff">
 <meta property="og:image" content="image url ">
@@ -106,13 +97,18 @@ function videos_action_submitvid_internet_go() {
 <meta property="og:video:height" content="480">
 <meta property="og:site_name" content="Video Website">
 <meta property="og:url" content="video url">
-<meta property="video:duration" content="314">
-*/
+<meta property="video:duration" content="314"> */
 
 }
 
 function videos_action_submitvid_generic_go() {
 	eval(lib_rfs_get_globals());
+
+
+d_echo(__FILE__." ".__LINE__);
+d_echo("videos_action_submitvid_generic_go()");
+d_backtrace();
+
 	if(lib_access_check("videos","submit")) {
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
@@ -120,13 +116,12 @@ function videos_action_submitvid_generic_go() {
 		foreach($html->getElementsByTagName('meta') as $meta) {
 			$ax=strtolower($meta->getAttribute('property'));
 			$bx=$meta->getAttribute('content');
-			switch($ax){ 			
-				case "og:title": 		$sname      = str_replace("_"," ",addslashes($bx)); break;	
+			switch($ax){
+				case "og:title": 		$sname      = str_replace("_"," ",addslashes($bx)); break;
 				case "og:description": 	$description= addslashes($bx); break;
 				case "og:image": 		$oimage     = addslashes($bx); $image=$oimage; break;
 				case "embedurl": 		$embed_code= addslashes($bx); break;
 			}
-			
 			if(strtolower($meta->getAttribute('itemprop'))=="embedurl") $embed_code=$meta->getAttribute('content');
 			if(strtolower($meta->getAttribute('name')) == "twitter:player") 
 				if(empty($embed_code)) $embed_code=$meta->getAttribute('content');
@@ -142,15 +137,9 @@ function videos_action_submitvid_generic_go() {
 		$url	 	 = addslashes($url);
 		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`,   `original_image`, `description`,  `embed_code`,      `url`,       `time`,     `bumptime`, `category`,    `hidden`,  `sfw`)
 						   VALUES ('$cont',      '$sname', '$image', '$oimage',         '$description', '$vembed_code' ,   '$url' ,     '$time',    '$time',    '$category',    '0', 	'$sfw');";
-						   
-		// echo str_replace("<","&lt;",$q);
-		
 		$res=lib_mysql_query($q);
-		
-		
 		$q="select * from videos order by time desc limit 1";
 		$vid=lib_mysql_fetch_one_object($q);
-		//$_GLOBALS['id']=$vid->id;
 		videos_action_view($vid->id);
 	}
 }

@@ -21,15 +21,22 @@ if($_REQUEST['debug_view_error_log']==1) {
 	echo "<pre style='background-color: #000000; color: #00FF00;'> ERROR LOG: ";
 	$cmd="sudo cat $RFS_SITE_ERROR_LOG";
 	echo " $cmd ";
-	echo system( $cmd );    
+	echo system( $cmd );
 	echo "</pre>";
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+function d_backtrace() {
+
+	echo "<div align='left'style='color:red; background-color:black; width: 100%;'>DEBUG:";
+        var_dump(debug_backtrace());
+        echo "</div>";
+
+}
 function d_echo($t){
 	if(!lib_access_check("debug","view")) return;
     if(isset($_SESSION['debug_msgs']))
     if(lib_rfs_bool_true($_SESSION['debug_msgs'])){
-        $t=str_replace("<","&lt;",$t);    
+        $t=str_replace("<","&lt;",$t);
         $tx=explode($GLOBALS['RFS_SITE_DELIMITER'],$t);
         for($ti=0;$ti<count($tx);$ti++){
             echo "<div align='left'style='color:red; background-color:black; width: 100%;'>DEBUG:";

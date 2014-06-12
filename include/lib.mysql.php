@@ -22,7 +22,8 @@ function lib_mysql_query($query) {
 	if(!$x) {
 		if(!stristr($mysqli->error,"duplicate")) {
 			$query=str_replace("<","&lt;",$query);
-			d_echo("<br>MYSQL ERROR:$mysqli->error<br>$query");
+			d_echo("MYSQL ERROR: $mysqli->error");
+			d_echo("MYSQL QUERY: $query");
 		}
 	}
 	if(mysqli_insert_id($mysqli) > 0) {
