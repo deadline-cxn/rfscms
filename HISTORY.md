@@ -1,5 +1,8 @@
 History File:
 
+3.3.2 (1261) June 11, 2014:
+- Modified arrangement panels
+
 3.3.2 (1254) June 10, 2014:
 - Fixed wiki bug not showing linked pages
 - Added $RFS_SITE_WIKI_SHOW_LINKED_PAGES (bool - [on or off])
