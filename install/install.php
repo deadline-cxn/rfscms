@@ -81,32 +81,22 @@ $rfs_db_password="";
 $rfs_db_password_confirm="";
 foreach( $_REQUEST as $k => $v ) { if(stristr($k,"rfs_")) { $GLOBALS["$k"]=$v; } }
 
-
-include_once("$RFS_SITE_PATH/config/config.php");
-$r=install_mysql_query("select * from site_vars where `name`='name'");
-if(!$r) die ("Can't connect to MySQL! Check database configuration settings.");
-$sv=$r->fetch_object();
-if(!empty($sv->name)) {	
-	echo "
-<center> <p></p><p></p>
-<table border=0 width=$table_width><tr><td class=formboxd>
-<center><h1> RFS CMS $RFS_VERSION ( Build: $RFS_BUILD)</h1></center>
-</td></tr></table>
-<table border=0 width=$table_width><tr><td class=formboxd>
-<br>";	
-echo "<div style='
-color: white;
-background-color: red;
-'>";
-
-	echo "Whoops... ($sv->name = $sv->value) is already defined in the database.<br>";
-	echo "If you want to reinstall RFSCMS, you must first either:<br>";
-	echo "1) remove $RFS_SITE_PATH/config/config.php<br>";
-	echo "2) drop table $authdbname and recreate it<br>";
-	echo "</div>";
-	echo "</td></tr></table>";
-	
-	exit();
+if(file_exists("$RFS_SITE_PATH/config/config.php")) {
+	include_once("$RFS_SITE_PATH/config/config.php");
+	$r=install_mysql_query("select * from site_vars where `name`='name'");
+	if(!$r) die ("Can't connect to MySQL! Check database configuration settings.");
+	$sv=$r->fetch_object();
+	if(!empty($sv->name)) {	
+		echo "<center> <p></p><p></p><table border=0 width=$table_width><tr><td class=formboxd><center><h1> RFS CMS $RFS_VERSION ( Build: $RFS_BUILD)</h1></center></td></tr></table><table border=0 width=$table_width><tr><td class=formboxd><br>";	
+		echo "<div style='color: white; background-color: red; '>";
+		echo "Whoops... ($sv->name = $sv->value) is already defined in the database.<br>";
+		echo "If you want to reinstall RFSCMS, you must first either:<br>";
+		echo "1) remove $RFS_SITE_PATH/config/config.php<br>";
+		echo "2) drop table $authdbname and recreate it<br>";
+		echo "</div>";
+		echo "</td></tr></table>";
+		exit();
+		}
 }
 
 
