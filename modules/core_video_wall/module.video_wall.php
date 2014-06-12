@@ -25,4 +25,6 @@ $RFS_ADDON_URL=lib_modules_get_base_url_from_file(__FILE__);
 
 lib_menus_register("Video Wall","$RFS_SITE_URL/modules/core_video_wall/v.php");
 
+
+
 ?>

@@ -102,10 +102,10 @@ if( (empty($_SESSION['darr'])) ||
     echo "<meta name=\"ProgId\" content=\"Notepad\">\n";
     $keywords=$_GET['query']; if(empty($keywords)) $keywords=$_GET['q'];
     if(empty($keywords))
-    $keywords=" SethCoder's Based Video Wall";
+    $keywords=" $RFS_SITE_URL Video Wall";
     echo "<meta name=\"description\" content=\"$keywords\">\n";
     echo "<meta name=\"keywords\" content=\"$keywords\">\n";
-    echo "<title>SethCoder's Based Video Wall</title>\n";
+    echo "<title>$RFS_SITE_URL Video Wall</title>\n";
 
 	echo "<link rel=\"canonical\" href=\"$RFS_SITE_URL/modules/core_video_wall/v.php\" />";
 	
@@ -117,7 +117,7 @@ if( (empty($_SESSION['darr'])) ||
 	
 	echo "<body style=\" margin:0; \">\n";
 
-	// lib_social_google_analytics();
+	lib_social_google_analytics();
 		
 	echo "<center>";
 
@@ -129,26 +129,19 @@ if($action=="fixall") {
 		lib_mysql_query("update videos set sname='$video->sname' where id='$video->id'");
 	}
 }
-if($action=="report"){
-	
-	
-	$dd="<form action=$RFS_SITE_URL/modules/video_wall/v.php method=post>Confirm broken video:
+if($action=="report") {
+	$v=lib_mysql_fetch_one_object("select * from videos where id='$id'");
+	$dd="<form action=\"$RFS_SITE_URL/modules/core_video_wall/v.php\" method=post>
+	Confirm broken video: $v->sname
 	<input type=submit name=report value=Report>
 	<input type=hidden name=action value=report_go>
 	<input type=hidden name=id value=$id>
-	</form>";
-	
-	lib_forms_info($dd,"black","red");
-	
-	
-	
+	</form>";	
+	lib_forms_info($dd,"red","white");
 }
 if($action=="report_go"){
-
-	// echo date_timestamp_get();
-
 	$video=lib_mysql_fetch_one_object("select * from videos where id='$id'");
-	$email="defectiveseth@gmail.com";
+	$email=$RFS_SITE_ADMIN_EMAIL;
 	$message="The video $video->sname (id:$video->id) has been reported as broken";
 	if(!empty($data->name))
 		$message.=" by $data->name";
@@ -157,17 +150,15 @@ if($action=="report_go"){
 	mailgo($email,$message,$subject);
 	$video->sname=str_replace("(BROKEN)","",$video->sname);
 	$video->sname.="(BROKEN)";
-	lib_mysql_query("update videos set sname='$video->sname' where id='$video->id'");
-	lib_forms_info("Thank you for reporting the video $video->sname.","black","red");
+	lib_mysql_query("update videos set sname='$video->sname' where id='$video->id'");	
+	lib_forms_info("Thank you for reporting the video $video->sname.","red","white");
 }
 
 if($act=="chg") {
-	//echo " id:$id";	echo " sname:$sname";	echo " dx:$dx";	echo " dy:$dy";
 	$vs=lib_mysql_fetch_one_object("select * from videos where id='$sname'");
 	$_SESSION['darr'][$dx][$dy]['sname']=$vs->sname;
 	$_SESSION['darr'][$dx][$dy]['embed_code']=$vs->embed_code;
 	$_SESSION['darr'][$dx][$dy]['id']=$vs->id;
-
 	echo "<table border=0 width=100% style=' background-color:black'><tr>
 	<td  style=' color: #000000; background-color:green'>
 	BVW MATRIX MODIFIED $dx, $dy = $vs->sname
@@ -176,8 +167,10 @@ if($act=="chg") {
 }
 
 if($action=="rmconfirmed"){
-	lib_mysql_query("update videos set category='$cat' where id='$id' limit 1");
-		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
+	lib_mysql_query("delete from videos where id='$id' limit 1");
+	
+	// update videos set category='$cat' where id='$id' limit 1");
+	echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
 		REMOVED $id
 		</td></tr></table>";
 }
@@ -185,10 +178,8 @@ if($action=="rmconfirmed"){
 if($action=="edgo") {
 	$v=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	if(  ($data->access==255) ||
-		($data->id==$v->contributor) ) {		
-			
-			
-	for($ci=200;$ci<1299;$ci++){
+		($data->id==$v->contributor) ) {
+	for($ci=1;$ci<999;$ci++){
 			$vembed_code=str_replace("width=\"$ci","width=\"400",$vembed_code);
 			$vembed_code=str_replace("height=\"$ci","height=\"300",$vembed_code);
 			$vembed_code=str_replace("width='$ci","width='400",$vembed_code);
@@ -197,21 +188,16 @@ if($action=="edgo") {
 			$vembed_code=str_replace("height=$ci","height=300",$vembed_code);
 			$vembed_code=str_replace("width:$ci","width:400",$vembed_code);
 			$vembed_code=str_replace("height:$ci","height:300",$vembed_code);
-
-		}			
-			
-			
-				$vembed_code=addslashes($vembed_code);
-				
+		}
+		$vembed_code=addslashes($vembed_code);				
 		lib_mysql_query("update videos set embed_code='$vembed_code' where id='$id'");
 		lib_mysql_query("update videos set sname='$sname' where id='$id'");
 		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
 		Modified</td></tr></table>";
 	}
 	else{
-
 		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
-		You can not into other people's videos. If there is a problem with one, please report it.
+			You can not into other people's videos. If there is a problem with one, please report it.
 		</td></tr></table>";
 
 	}
@@ -234,18 +220,12 @@ if($act=="add") {
 
 		}
 		$embed_code=addslashes($embed_code);
-
 		$cont=$data->id; if(!$cont) $cont=999;
-
-	   lib_mysql_query("insert into videos  (`contributor`, `sname`,`embed_code` , `time`, `category`)
+		lib_mysql_query("insert into videos  (`contributor`, `sname`,`embed_code` , `time`, `category`)
 			     					 VALUES('$cont', '$name','$embed_code', '$time', '$cat')" );
 	}
-
-		echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'>
-		VIDEO ADDED
-		</td></tr></table>";
+	echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'> VIDEO ADDED </td></tr></table>";
 }
-
 
 	$tr_m=$_SESSION['cols'];
 	
@@ -254,7 +234,6 @@ if($act=="add") {
 	echo "<td>";
 	echo "<a href=$RFS_SITE_URL><img src=$RFS_SITE_URL/images/navigation/back.gif></a>";
 	echo "</td><td>";
-	// echo " <a href=$RFS_SITE_URL> SethCoder.com </a> ";
 	echo "</td><td>";
 	echo "VIDEO WALL";
 	echo "</td><td>";
@@ -356,10 +335,8 @@ echo "</td></tr></table>";
 
 			;$dary++){
 				echo "<td>";
-
-
-					$vid=$_SESSION['darr'][$darx][$dary]['embed_code'];
-
+				
+				$vid=$_SESSION['darr'][$darx][$dary]['embed_code'];
 				$vid=str_replace("w=\"400","w=\"$w",$vid);
 				$vid=str_replace("h=\"300","h=\"$h",$vid);
 				$vid=str_replace("width:400","width:$w",   $vid);
@@ -377,8 +354,7 @@ echo "</td></tr></table>";
 								"act=chg".$RFS_SITE_DELIMITER.
 								"dx=$darx".$RFS_SITE_DELIMITER.
 								"dy=$dary".$RFS_SITE_DELIMITER.
-								"include=category:$cat"
-								,
+								"include=category:$cat",
 								"videos",
 								"sname",
 								1,
@@ -395,11 +371,7 @@ echo "</td></tr></table>";
 		}
 	echo "</table>\n";
 	
-	
-	
 	if($_SESSION['edzors']==1){
-		
-
 		
 		echo "<hr>";
 		
@@ -435,35 +407,38 @@ echo "</td></tr></table>";
 			
 			echo "<tr>";
 			
+			$v->sname=str_replace("(BROKEN)","<font style='color:white; background-color:red;'>(BROKEN)</font>",$v->sname);
 			echo "<td><a id='EDIT$v->id'></a> $v->sname </td>";
-			echo "<td>".lib_users_get_data($v->contributor)->name."</td>";			
+			$x=lib_users_get_data($v->contributor)->name; if(empty($x)) $x="anonymous";
+			if($data->name==$x) $x="<font style='background-color:blue; color:white;'>$x</font>";
+			echo "<td>$x</td>";			
 			echo "<td> $v->time </td>";
 			echo "<td> [<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?action=report&id=$v->id>Report broken</a>] ";
 			
-			if( ($data->id == $v->contributor) ||
-					($data->access==255) ) {
+			if( ($data->id == $v->contributor) || (lib_access_check("video_wall","editothers")) )
 				echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?action=ed&id=$v->id#EDIT$v->id>Edit</a>] ";
+			if( ($data->id == $v->contributor) || (lib_access_check("video_wall","deleteothers")) )				
 				echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?action=rm&id=$v->id#EDIT$v->id>Remove</a>] ";
-				
-			}
-			
+					
 			echo "</td>";
 			echo "</tr>";
 			
-			if( ($action=="ed") && ($id==$v->id)) {
-				echo "<tr><td valign=top><form action=$RFS_SITE_URL/modules/core_video_wall/v.php method=post><input name=sname value='$v->sname'></td>";
-				echo "<td><input type=hidden name=action value=edgo><input type=hidden name=id value=$id><textarea cols=50 rows=10 name=vembed_code>$v->embed_code</textarea></td>";
-				echo "<td><input type=submit></form></td><td></td></tr>";
+			if(($action=="ed")  && $v->id==$id) {
+				if( ($data->id == $v->contributor) || (lib_access_check("video_wall","editothers")) ) {
+					echo "<tr><td valign=top><form action=$RFS_SITE_URL/modules/core_video_wall/v.php method=post><input name=sname value='$v->sname'></td>";
+					echo "<td><input type=hidden name=action value=edgo><input type=hidden name=id value=$id><textarea cols=50 rows=10 name=vembed_code>$v->embed_code</textarea></td>";
+					echo "<td><input type=submit></form></td><td></td></tr>";
+				}
 			}
-			if( ($action=="rm") && ($id==$v->id) ) {
-				$v=lib_mysql_fetch_one_object("select * from videos where id='$id'");	
-				echo "<tr><td><font color=red>REMOVE:</font></td>";
-				echo "<td>";
-				echo "<FONT color=red>REMOVE FEED: $v->name Are you sure?</font> ";
-				echo "</td>";
-				echo "<td> [<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?action=rmconfirmed&id=$id>YES</a>] </td><td></td></tr>";
-				
-				
+			if( ($action=="rm") && $v->id==$id) {
+				if( ($data->id == $v->contributor) || (lib_access_check("video_wall","deleteothers")) ) {
+					$v=lib_mysql_fetch_one_object("select * from videos where id='$id'");	
+					echo "<tr><td><font color=red>REMOVE:</font></td>";
+					echo "<td>";
+					echo "<FONT color=red>REMOVE FEED: $v->name Are you sure?</font> ";
+					echo "</td>";
+					echo "<td> [<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?action=rmconfirmed&id=$id>YES</a>] </td><td></td></tr>";
+				}
 			}
 		}
 		

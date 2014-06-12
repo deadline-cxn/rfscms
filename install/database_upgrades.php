@@ -533,6 +533,10 @@ if($a<1269) {
 if($a<1272) {
 	lib_mysql_add("files","original_image","text","not null");
 }
+if($a<1273) {
+	lib_access_add_method("video_wall", "deleteothers");
+	lib_access_add_method("video_wall", "editothers");
+}
 
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");

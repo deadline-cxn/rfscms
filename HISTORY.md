@@ -6,6 +6,7 @@ History File:
 - Added USTREAM.tv support for videos url submissions
 - Added file url submission enhancements
 - Added remote image cache function
+- Fixed Video Wall bugs
 
 3.3.3 (1265) June 11, 2014:
 - Fixed up arrangement panel editing
