@@ -25,9 +25,6 @@ $RFS_ADDON_URL=lib_modules_get_base_url_from_file(__FILE__);
 
 lib_menus_register("TODO","$RFS_SITE_URL/modules/core_todo_list/todo_list.php");
 
-
-lib_access_add_method("todo", "admin");
-
 /////////////////////////////////////////////////////////////////////////////////////////
 // PANELS
 function m_panel_todo_list($x) {

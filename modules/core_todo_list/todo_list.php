@@ -2,17 +2,11 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-
 if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("include/lib.all.php");
 include("header.php");
-
-
-
-
 function todo_list_action_f_rfs_db_element_del1() { adm_action_f_rfs_db_element_del1(); }
 function todo_list_action_f_rfs_db_element_ed1() { adm_action_f_rfs_db_element_ed1(); }
-
 function todo_list_action_() { eval(lib_rfs_get_globals());
 	echo "<h1>TODO List</h1>";
 	echo "<hr>";
@@ -31,27 +25,22 @@ function todo_list_action_() { eval(lib_rfs_get_globals());
 		// todo_list: 			name	description	assigned_to	owner
 	}
 }
-
 function todo_list_status_icon() { 
     eval(lib_rfs_get_globals());
-	
 }
-
-function todo_list_action_open_task_go() { eval(lib_rfs_get_globals());
-echo "INSERTING";
-	lib_mysql_query("insert into `todo_list_task` (`name`,`list`) values ('$name','$list');");
-	$id=$_GLOBALS['mysqli_id'];
-	lib_mysql_update_database("todo_list_task","id","$id","");
-	$id=$list;
-	todo_list_action_view_todo_list($list);
+function todo_list_action_open_task_go() {
+	$name=$_REQUEST['name'];
+	$list=$_REQUEST['list'];
+	lib_mysql_query("insert into `todo_list_task` (`name`,`list`,`status`) values ('$name','$list','$status');");
+	$todo_list=lib_mysql_fetch_one_object("select * from `todo_list_task` order by `id` desc");
+	lib_mysql_update_database("todo_list_task","id","$todo_list->id","");	
+	todo_list_action_view_todo_list($todo_list->id);
 }
-
 function todo_list_action_open_task() { eval(lib_rfs_get_globals());
 	$tdl=lib_mysql_fetch_one_object("select * from todo_list where id='$tdl'");
 	echo "<h1>$tdl->name</h1>";
 	echo "Open task<br>";
-	
-	lib_forms_build(	lib_domain_phpself(),
+	lib_forms_build( lib_domain_phpself(),
 			"action=open_task_go".$RFS_SITE_DELIMITER."list=$tdl->id",
 			"todo_list_task",
 			"",

@@ -32,6 +32,10 @@ if(empty($galleria)) {
 	if(lib_rfs_bool_true($RFS_SITE_GALLERIAS))
 		$galleria="yes";
 }
+function finish_pictures_page() {
+	include("footer.php");
+	exit();
+}
 function pictures_show_buttons() {
 	eval(lib_rfs_get_globals());
 	echo "<table border=0><tr>"; 
@@ -77,8 +81,7 @@ function pictures_action_uploadpic() {
 		"SHOW_FILE_userfile",		
 		"",	"",	"",	"",	"",	"","",
 		"Upload");
-	include("footer.php");
-	exit();
+	finish_pictures_page();
 }
 function pictures_action_uploadpicgo() {
 	eval(lib_rfs_get_globals());
@@ -171,7 +174,7 @@ function pictures_action_addorphans() {
 	else {
 		lib_forms_warn("You are not authorized to scan orphan pictures.");
 	}
-	include("footer.php");
+	finish_pictures_page();
 }
 function pictures_action_sorttemp() {
 	eval(lib_rfs_get_globals());
@@ -259,7 +262,7 @@ function pictures_action_sorttemp() {
 	else {
 		lib_forms_warn("You are not authorized to sort pictures.");
 	}
-	include("footer.php");
+	finish_pictures_page();
 }
 function pictures_action_modifynamego() {
 	eval(lib_rfs_get_globals());
@@ -357,8 +360,7 @@ function pictures_action_modifypicture() {
 		echo "</td></tr></table>";
 		echo "</form>";
 	}
-	include("footer.php");
-	exit();
+	finish_pictures_page();
 }
 function pictures_action_random() {
 	eval(lib_rfs_get_globals());
@@ -475,8 +477,7 @@ function pictures_action_view($id) {
 		echo "<h1>There are no pictures!</h1>";
 	}
 	echo "</center>";
-	include("footer.php");
-	
+	finish_pictures_page();
 }
 function pictures_action_viewcat($cizat) {
 	echo "<h1>Pictures</h1>";
@@ -537,8 +538,7 @@ function pictures_action_viewcat($cizat) {
 				Galleria.run('#galleria'); </script>";
 	}
 	echo "</center>";
-	include("footer.php");
-	exit();
+	finish_pictures_page();
 }
 function pictures_action_viewcats() {
 	eval(lib_rfs_get_globals());
@@ -582,8 +582,7 @@ function pictures_action_viewcats() {
 		}
 		echo "</tr></table>";
 	}
-	include("footer.php");
-	exit();
+	finish_pictures_page();
 }
 function pictures_action_() {
 	eval(lib_rfs_get_globals());
