@@ -81,6 +81,8 @@ function videos_action_modifygo() {
 function videos_action_submitvid_internet_go() {
 	$go="generic";
 	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
 	if(stristr($url,"youtube"))  $go="youtube";
 	if(stristr($url,"liveleak")) $go="liveleak";
 	if(stristr($url,"vimeo"))    $go="vimeo";
@@ -102,12 +104,13 @@ function videos_action_submitvid_internet_go() {
 }
 
 function videos_action_submitvid_generic_go() {
-	eval(lib_rfs_get_globals());
+	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
 
-
-d_echo(__FILE__." ".__LINE__);
-d_echo("videos_action_submitvid_generic_go()");
-d_backtrace();
+	d_echo(__FILE__." ".__LINE__);
+	d_echo("videos_action_submitvid_generic_go()");
+	d_backtrace();
 
 	if(lib_access_check("videos","submit")) {
 		$html_raw = file_get_contents($url);
@@ -145,7 +148,9 @@ d_backtrace();
 }
 
 function videos_action_submitvid_vimeo_go() {
-	eval(lib_rfs_get_globals());	
+	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
 	if(lib_access_check("videos","submit")) {
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
@@ -175,7 +180,9 @@ function videos_action_submitvid_vimeo_go() {
 	}
 }
 function videos_action_submitvid_liveleak_go() {
-	eval(lib_rfs_get_globals());	
+	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
 	if(lib_access_check("videos","submit")) {		
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
@@ -206,6 +213,9 @@ function videos_action_submitvid_liveleak_go() {
 }
 function videos_action_submitvid_youtube_go() {
 	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
+	
 	if(lib_access_check("videos","submit")) {
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
@@ -235,7 +245,7 @@ function videos_action_submitvid_youtube_go() {
 	}
 }
 function videos_action_submitvidgo() {
-	eval(lib_rfs_get_globals());
+	eval(lib_rfs_get_globals());	
 	if(lib_access_check("videos","submit")) {
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s");
