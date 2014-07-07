@@ -13,7 +13,8 @@ function videos_buttons() {
 	}
 	echo "<br>";
 }
-function videos_pagefinish() {	
+function videos_pagefinish() {
+	eval(lib_rfs_get_globals());
 	include("footer.php");
 	exit();
 }
@@ -30,7 +31,6 @@ function videos_action_modifyvideo() {
 		echo "<tr><td>Short Name</td><td><input name=sname size=100 value=\"$video->sname\"></td></tr>";
 		echo "<tr><td>Description</td><td><textarea rows=10 cols=80 name=\"description\">$video->description</textarea></td></tr>";
 		echo "<tr><td>URL</td><td><textarea rows=2 cols=100 name=\"vurl\">$video->url</textarea></td></tr>";
-		echo "<tr><td>Original Image URL</td><td><textarea rows=2 cols=100 name=\"original_imageurl\">$video->original_image</textarea></td></tr>";
 		echo "<tr><td>Image URL</td><td><textarea rows=2 cols=100 name=\"imageurl\">$video->image</textarea></td></tr>";
 		echo "<tr><td>Safe For Work </td><td> <select name=sfw>";
 		if(!empty($video->sfw)) echo "<option>$video->sfw";
@@ -81,11 +81,13 @@ function videos_action_modifygo() {
 function videos_action_submitvid_internet_go() {
 	$go="generic";
 	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
 	if(stristr($url,"youtube"))  $go="youtube";
 	if(stristr($url,"liveleak")) $go="liveleak";
 	if(stristr($url,"vimeo"))    $go="vimeo";
 	$e="videos_action_submitvid_$go"."_go();";
-	eval($e); /*
+	eval($e); /* 
 <meta property="og:title" content="Name">
 <meta property="og:description" content="stuff">
 <meta property="og:image" content="image url ">
@@ -102,7 +104,9 @@ function videos_action_submitvid_internet_go() {
 }
 
 function videos_action_submitvid_generic_go() {
-	eval(lib_rfs_get_globals());
+	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
 
 	d_echo(__FILE__." ".__LINE__);
 	d_echo("videos_action_submitvid_generic_go()");
@@ -144,7 +148,9 @@ function videos_action_submitvid_generic_go() {
 }
 
 function videos_action_submitvid_vimeo_go() {
-	eval(lib_rfs_get_globals());	
+	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
 	if(lib_access_check("videos","submit")) {
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
@@ -174,7 +180,9 @@ function videos_action_submitvid_vimeo_go() {
 	}
 }
 function videos_action_submitvid_liveleak_go() {
-	eval(lib_rfs_get_globals());	
+	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
 	if(lib_access_check("videos","submit")) {		
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
@@ -205,6 +213,9 @@ function videos_action_submitvid_liveleak_go() {
 }
 function videos_action_submitvid_youtube_go() {
 	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
+	
 	if(lib_access_check("videos","submit")) {
 		$html_raw = file_get_contents($url);
 		$html = new DOMDocument();
@@ -234,7 +245,7 @@ function videos_action_submitvid_youtube_go() {
 	}
 }
 function videos_action_submitvidgo() {
-	eval(lib_rfs_get_globals());
+	eval(lib_rfs_get_globals());	
 	if(lib_access_check("videos","submit")) {
 		$cont=$data->id;
 		$time=date("Y-m-d H:i:s");
@@ -328,8 +339,7 @@ function videos_action_view($id) {
 	videos_pagefinish();
 }
 function videos_action_viewcat($cat) {
-	if(empty($cat))
-		$cat=$_REQUEST['cat'];
+	if(empty($cat)) $cat=$_REQUEST['cat'];
 	videos_buttons();
 	$res2=lib_mysql_query("select * from `videos` where `category`='$cat' and `hidden`!='yes' order by `sname` asc");
 	while($vid=$res2->fetch_object()) {
@@ -391,9 +401,7 @@ function videos_action_view_cats() {
 	echo "</tr>";
 	echo "</table>";
 }
-function videos_action_random() { 
-	videos_action_();
-}
+function videos_action_random() { videos_action_(); }
 function videos_action_randoms() {
 	$res=lib_mysql_query("select * from `videos` where `hidden`!='yes'");
 	$num=$res->num_rows;
@@ -403,15 +411,13 @@ function videos_action_randoms() {
 		mysqli_data_seek($res,$vid);
 		$video=$res->fetch_object();
 		$vc=lib_users_get_data($video->contributor);
+		
 		videos_action_view($video->id);
 	}
 }
-function videos_action_() {	
+function videos_action_() {
+	eval(lib_rfs_get_globals());
 	echo "<h1>Videos</h1>";
-	$r=lib_mysql_query("select * from `videos`");
-	while($video=$r->fetch_object()) {
-		videos_get_original_image($video);
-	}
 	videos_action_randoms();
 	videos_pagefinish();
 }
