@@ -538,6 +538,15 @@ if($a<1273) {
 	lib_access_add_method("video_wall", "editothers");
 }
 
+if($a<1274) {
+	lib_access_add_method("todo", "admin");
+	lib_access_add_method("todo", "createlist");
+	lib_access_add_method("todo", "createtask");
+	lib_access_add_method("todo", "editothers");
+	lib_access_add_method("todo", "deleteothers");
+	lib_mysql_add("todo_list","visibility","text","not null");
+}
+
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);

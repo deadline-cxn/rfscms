@@ -131,6 +131,28 @@ function videos_get_url_from_code($code) {
 	return $url;
 }
 
+function videos_get_original_image($video) {
+	if(empty($video)) return;
+	if(empty($video->original_image)) {
+		$image="";
+		$html_raw = file_get_contents($video->url);
+		$html = new DOMDocument();
+		@$html->loadHTML($html_raw);
+		foreach($html->getElementsByTagName('meta') as $meta) {		
+			switch(strtolower($meta->getAttribute('property'))) {
+				case "og:image":
+					$video->original_image=$meta->getAttribute('content');
+					if(!empty($video->original_image)) {
+						$x=addslashes($video->original_image);
+						lib_mysql_query("update `videos` set `original_image` = '$x' where `id`='$video->id'");
+					}
+					break;
+			}
+		}
+	}
+	return;
+}
+
 function videos_get_thumbnail($video) {
 	eval(lib_rfs_get_globals());
 	

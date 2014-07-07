@@ -87,7 +87,7 @@ function videos_action_submitvid_internet_go() {
 	if(stristr($url,"liveleak")) $go="liveleak";
 	if(stristr($url,"vimeo"))    $go="vimeo";
 	$e="videos_action_submitvid_$go"."_go();";
-	eval($e); /*
+	eval($e); /* 
 <meta property="og:title" content="Name">
 <meta property="og:description" content="stuff">
 <meta property="og:image" content="image url ">
