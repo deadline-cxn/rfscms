@@ -180,14 +180,14 @@ if($action=="edgo") {
 	if(  ($data->access==255) ||
 		($data->id==$v->contributor) ) {
 	for($ci=0;$ci<999;$ci++){
-			$vembed_code=str_replace("width=\"$ci","width=\"400",$vembed_code);
-			$vembed_code=str_replace("height=\"$ci","height=\"300",$vembed_code);
-			$vembed_code=str_replace("width='$ci","width='400",$vembed_code);
-			$vembed_code=str_replace("height='$ci","height='300",$vembed_code);
-			$vembed_code=str_replace("width=$ci","width=400",$vembed_code);
-			$vembed_code=str_replace("height=$ci","height=300",$vembed_code);
-			$vembed_code=str_replace("width:$ci","width:400",$vembed_code);
-			$vembed_code=str_replace("height:$ci","height:300",$vembed_code);
+			$vembed_code=str_replace("width=\"$ci\"","width=\"400\"",$vembed_code);
+			$vembed_code=str_replace("height=\"$ci\"","height=\"300\"",$vembed_code);
+			$vembed_code=str_replace("width='$ci'","width='400'",$vembed_code);
+			$vembed_code=str_replace("height='$ci'","height='300'",$vembed_code);
+			$vembed_code=str_replace("width=$ci ","width=400 ",$vembed_code);
+			$vembed_code=str_replace("height=$ci ","height=300 ",$vembed_code);
+			$vembed_code=str_replace("width:$ci ","width:400 ",$vembed_code);
+			$vembed_code=str_replace("height:$ci ","height:300 ",$vembed_code);
 		}
 		$vembed_code=addslashes($vembed_code);				
 		lib_mysql_query("update videos set embed_code='$vembed_code' where id='$id'");
@@ -209,14 +209,14 @@ if($act=="add") {
 
 		$time=date("Y-m-d H:i:s");
 		for($ci=0;$ci<5299;$ci++){
-			$embed_code=str_replace("width=\"$ci","width=\"400",$embed_code);
-			$embed_code=str_replace("height=\"$ci","height=\"300",$embed_code);
-			$embed_code=str_replace("width='$ci","width='400",$embed_code);
-			$embed_code=str_replace("height='$ci","height='300",$embed_code);
-			$embed_code=str_replace("width=$ci","width=400",$embed_code);
-			$embed_code=str_replace("height=$ci","height=300",$embed_code);
-			$embed_code=str_replace("width:$ci","width:400",$embed_code);
-			$embed_code=str_replace("height:$ci","height:300",$embed_code);
+			$embed_code=str_replace("width=\"$ci\"","width=\"400\"",$embed_code);
+			$embed_code=str_replace("height=\"$ci\"","height=\"300\"",$embed_code);
+			$embed_code=str_replace("width='$ci'","width='400'",$embed_code);
+			$embed_code=str_replace("height='$ci'","height='300'",$embed_code);
+			$embed_code=str_replace("width=$ci ","width=400 ",$embed_code);
+			$embed_code=str_replace("height=$ci ","height=300 ",$embed_code);
+			$embed_code=str_replace("width:$ci ","width:400 ",$embed_code);
+			$embed_code=str_replace("height:$ci ","height:300 ",$embed_code);
 
 		}
 		$embed_code=addslashes($embed_code);
@@ -329,24 +329,20 @@ echo "</td></tr></table>";
 
 				;$darx++){
 			echo "<tr>";
-			for($dary=0;$dary<
-
-			$_SESSION['cols']
-
-			;$dary++){
+			for($dary=0;$dary< $_SESSION['cols'] ;$dary++){
 				echo "<td>";
 				
 				$vid=$_SESSION['darr'][$darx][$dary]['embed_code'];
-				$vid=str_replace("w=\"400","w=\"$w",$vid);
-				$vid=str_replace("h=\"300","h=\"$h",$vid);
-				$vid=str_replace("width:400","width:$w",   $vid);
-				$vid=str_replace("height:300","height:$h",   $vid);
-				$vid=str_replace("width='400","width='$w",   $vid);
-				$vid=str_replace("height='300","height='$h", $vid);
-				$vid=str_replace("width=\"400","width=\"$w",   $vid);
-				$vid=str_replace("height=\"300","height=\"$h", $vid);				
-				$vid=str_replace("width=400","width=$w",     $vid);
-				$vid=str_replace("height=300","height=$h",   $vid);
+				$vid=str_replace("w=\"400\"","w=\"$w\"",$vid);
+				$vid=str_replace("h=\"300\"","h=\"$h\"",$vid);
+				$vid=str_replace("width:400 ","width:$w",   $vid);
+				$vid=str_replace("height:300 ","height:$h",   $vid);
+				$vid=str_replace("width='400'","width='$w'",   $vid);
+				$vid=str_replace("height='300'","height='$h'", $vid);
+				$vid=str_replace("width=\"400\"","width=\"$w\"",   $vid);
+				$vid=str_replace("height=\"300\"","height=\"$h\"", $vid);				
+				$vid=str_replace("width=400 ","width=$w ",     $vid);
+				$vid=str_replace("height=300 ","height=$h ",   $vid);
 
 				  if($_SESSION['edzors']==1){					  
 
