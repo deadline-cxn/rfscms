@@ -179,7 +179,7 @@ if($action=="edgo") {
 	$v=lib_mysql_fetch_one_object("select * from videos where id='$id'");
 	if(  ($data->access==255) ||
 		($data->id==$v->contributor) ) {
-	for($ci=1;$ci<999;$ci++){
+	for($ci=0;$ci<999;$ci++){
 			$vembed_code=str_replace("width=\"$ci","width=\"400",$vembed_code);
 			$vembed_code=str_replace("height=\"$ci","height=\"300",$vembed_code);
 			$vembed_code=str_replace("width='$ci","width='400",$vembed_code);
@@ -208,7 +208,7 @@ if($act=="add") {
 	if(!empty($embed_code)) {
 
 		$time=date("Y-m-d H:i:s");
-		for($ci=100;$ci<5299;$ci++){
+		for($ci=0;$ci<5299;$ci++){
 			$embed_code=str_replace("width=\"$ci","width=\"400",$embed_code);
 			$embed_code=str_replace("height=\"$ci","height=\"300",$embed_code);
 			$embed_code=str_replace("width='$ci","width='400",$embed_code);
