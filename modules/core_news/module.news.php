@@ -223,7 +223,7 @@ function rfs_show_news($nid) {
 		
 
     if(!empty($news->wiki)) {
-            $wikipage=lib_mysql_fetch_one_object("select * from wiki where `name`='$news->wiki'");
+            $wikipage=lib_mysql_fetch_one_object("select * from wiki where `name`='$news->wiki' order by revision desc limit 1");
             echo lib_string_convert_smiles(wikiimg(wikitext($wikipage->text)));
     }	else {
         $news->message=str_replace("<a h","<a class=news_a h",$news->message);
