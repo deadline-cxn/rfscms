@@ -51,6 +51,20 @@ function m_panel_wiki($x) {
 	echo "</td></tr></table>";
 	echo "(<a href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?name=contents\" class=a_cat>More...</a>)";
 }
+
+function m_panel_wiki_one_page($x) {
+    eval(lib_rfs_get_globals());
+    $res=lib_mysql_query("select * from wiki where name='$x'");
+	$wikipage=$res->fetch_object();
+	$name=ucwords($name);
+	lib_rfs_echo("<h1>$name</h1>");
+    $res=lib_mysql_query("select * from wiki where name='$name'");
+	$tpage=$res->fetch_object();
+	$wikipage=lib_mysql_fetch_one_object("select * from wiki where name='$tpage->name' order by revision desc limit 1");
+	if( ($action=="viewpagebyid") || ($id) ) { $wikipage=lib_mysql_fetch_one_object("select * from wiki where id='$id'"); }
+    lib_rfs_echo(wikitext(wikiimg(($wikipage->text))));    
+    
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 // FUNCTIONS
 function wiki_img($text) {
