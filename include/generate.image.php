@@ -4,10 +4,12 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 if(array_pop(explode("/",getcwd()))=="include") chdir("..");
 $RFS_GEN_IMAGE=true;
+
 include_once("include/session.php");
+include_once("include/lib.domain.php");
 include_once("include/lib.genm.php");
 include_once("include/lib.mysql.php");
-include_once("include/lib.domain.php");
+
 if($font=="random") {
     $dr=$RFS_SITE_PATH."/files/fonts/";
     $fonts=array(); $d = opendir($dr) or die("Wrong path: $dr");
