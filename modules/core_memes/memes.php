@@ -138,10 +138,12 @@ function memes_action_memegenerate() {
             
         lib_mysql_query($q);
         
-        global $mysql_id;
+        
+        global $mysql_id; 
         global $mid;
         
         $mid=$mysqli_id;
+        echo "MID[$mid] MYSQL_ID[$mysql_id] ";
        }
 	else {
 		$infoout="Updating caption $mid";
