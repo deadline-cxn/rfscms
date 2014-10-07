@@ -4,8 +4,8 @@ $meme_editwidth=256;
 $meme_fullsize=512;
 
 if($_REQUEST['a']=="ms") {
-	$mid=$_REQUEST['mid'];
-	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$mid.png&mid=$mid&owidth=$meme_fullsize\" border=0></a>";
+	$meme_id=$_REQUEST['mid'];
+	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$meme_id.png&mid=$meme_id&owidth=$meme_fullsize\" border=0></a>";
     exit();
 }
 
@@ -66,7 +66,7 @@ function memes_action_new_meme_go() { eval(lib_rfs_get_globals());
 		$basepic=$id;
 		$error.=" $basepic";
 		$action="memegenerate";
-		$mid="";
+		$meme_id="";
 		$private=$hidden;
 		lib_forms_info("Status: [$error]","WHITE","GREEN");	
 		memes_action_memegenerate();
@@ -90,12 +90,12 @@ function memes_action_meme_delete() { eval(lib_rfs_get_globals());
 		$dd="<form action=$RFS_SITE_URL/modules/core_memes/memes.php method=post>Confirm delete meme:
 		<input type=submit name=memedelete value=Delete>
 		<input type=hidden name=action value=meme_delete_go>
-		<input type=hidden name=mid value=$mid>
+		<input type=hidden name=mid value=$meme_id>
 		</form>";	
 		lib_forms_info($dd,"black","red");	
 		$t=$m->name."-".time();// /$t.png
 		echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize' target=_blank>
-		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$mid&owidth=256' border=0></a>";
+		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$meme_id&owidth=256' border=0></a>";
 	}
 	else {
 		echo "<p>You can not delete memes.</p>";
@@ -103,14 +103,14 @@ function memes_action_meme_delete() { eval(lib_rfs_get_globals());
 }
 function memes_action_meme_delete_go() { eval(lib_rfs_get_globals());
 	if(lib_access_check("memes","delete")) {
-		lib_mysql_query("delete from meme where id='$mid' limit 1");
+		lib_mysql_query("delete from meme where id='$meme_id' limit 1");
 	}
 	memes_action_showmemes();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME save
 function memes_action_meme_save() { eval(lib_rfs_get_globals());
-    lib_mysql_query("update meme set status='SAVED' where id='$mid'");
+    lib_mysql_query("update meme set status='SAVED' where id='$meme_id'");
     lib_forms_info("SAVED!","WHITE","GREEN");
 	 memes_action_showmemes();    
 }
@@ -119,7 +119,6 @@ function memes_action_meme_save() { eval(lib_rfs_get_globals());
 function memes_action_memegenerate() {
     eval(lib_rfs_get_globals());
     global $mysql_id; 
-    global $mid;
     global $basepic;
     	
 	$name 		= addslashes($name);
@@ -130,7 +129,7 @@ function memes_action_memegenerate() {
     if($data->id) $poster=$data->id;
     if(empty($private)) $private="no";
 	
-	if($mid==0) {
+	if($meme_id==0) {
         $infoout="Adding new caption";
         if(empty($texttop)) $texttop="_NEW";
 			echo " POSTER [$poster]<br>";
@@ -144,44 +143,44 @@ function memes_action_memegenerate() {
         
         
         
-        $mid=$mysqli_id;
-        echo "MID[$mid] MYSQL_ID[$mysql_id] ";
+        $meme_id=$mysqli_id;
+        echo "MEME_ID[$meme_id] MYSQL_ID[$mysql_id] ";
        }
 	else {
-		$infoout="Updating caption $mid";
+		$infoout="Updating caption $meme_id";
 		if(!empty($_REQUEST['name']))
-		lib_mysql_query("update meme set `name`  			= '$name'   	     where id='$mid'");
+		lib_mysql_query("update meme set `name`  			= '$name'   	     where id='$meme_id'");
 		if(!empty($_REQUEST['poster']))
-		lib_mysql_query("update meme set `poster`   	 	= '$poster'     	 where id='$mid'");
+		lib_mysql_query("update meme set `poster`   	 	= '$poster'     	 where id='$meme_id'");
 		if(!empty($_REQUEST['texttop']))
-		lib_mysql_query("update meme set `texttop`     	= '$texttop'    	 where id='$mid'");
+		lib_mysql_query("update meme set `texttop`     	= '$texttop'    	 where id='$meme_id'");
 		if(!empty($_REQUEST['textbottom']))
-		lib_mysql_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$mid'");
+		lib_mysql_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$meme_id'");
 		if(!empty($_REQUEST['chgfont']))
-		lib_mysql_query("update meme set `font`	       = '$chgfont'       where id='$mid'");
+		lib_mysql_query("update meme set `font`	       = '$chgfont'       where id='$meme_id'");
 		if(!empty($_REQUEST['text_color']))
-		lib_mysql_query("update meme set `text_color`		= '$text_color'    where id='$mid'");
+		lib_mysql_query("update meme set `text_color`		= '$text_color'    where id='$meme_id'");
 		if(!empty($_REQUEST['text_bg_color']))
-		lib_mysql_query("update meme set `text_bg_color`	= '$text_bg_color' where id='$mid'");
+		lib_mysql_query("update meme set `text_bg_color`	= '$text_bg_color' where id='$meme_id'");
 		if(!empty($_REQUEST['text_size']))
-		lib_mysql_query("update meme set `text_size`		= '$text_size'     where id='$mid'");
+		lib_mysql_query("update meme set `text_size`		= '$text_size'     where id='$meme_id'");
 		if(!empty($_REQUEST['private']))
-		lib_mysql_query("update meme set `private`		= '$private'       where id='$mid'");
+		lib_mysql_query("update meme set `private`		= '$private'       where id='$meme_id'");
 		if(!empty($_REQUEST['datborder']))
-		lib_mysql_query("update meme set `datborder`		= '$datborder'   	  where id='$mid'");
+		lib_mysql_query("update meme set `datborder`		= '$datborder'   	  where id='$meme_id'");
 	}	
-    $meme=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
+    $meme=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
     $data=lib_users_get_data($poster);	
     $basepic=$meme->basepic;
-	lib_forms_info($infoout." >> $meme->id ($mid) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
+	lib_forms_info($infoout." >> $meme->id ($meme_id) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
 	memes_action_memeedit();
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME editor
 function memes_action_memeedit() { eval(lib_rfs_get_globals()); 
-	if(empty($mid)) $mid=$id;
-	lib_forms_info("Editing $name caption #$mid","BLACK","#ff9900");
-	$m=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
+	if(empty($meme_id)) $meme_id=$id;
+	lib_forms_info("Editing $name caption #$meme_id","BLACK","#ff9900");
+	$m=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
 	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$m->basepic'");	
     $p=$data->id;
     if(empty($p)) $p=999;
@@ -284,12 +283,12 @@ function memes_action_memeedit() { eval(lib_rfs_get_globals());
 /////////////////////////////////////////////////////////////////////////////////
 // MEME vote up
 function memes_action_muv() { eval(lib_rfs_get_globals()); 
-    $muv="MUV$mid";    
+    $muv="MUV$meme_id";    
     $action="showmemes";
     if(!$_SESSION[$muv]){        
-        $m=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
+        $m=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
         $m->rating+=1;
-        lib_mysql_query("update meme set rating='$m->rating' where id='$mid'");
+        lib_mysql_query("update meme set rating='$m->rating' where id='$meme_id'");
         $_SESSION[$muv]=true;
     } else {
         lib_forms_info("Multiple upvoting is not allowed.","white","red");
@@ -299,12 +298,12 @@ function memes_action_muv() { eval(lib_rfs_get_globals());
 /////////////////////////////////////////////////////////////////////////////////
 // MEME vote down
 function memes_action_mdv() { eval(lib_rfs_get_globals());
-    $mdv="MDV$mid";
+    $mdv="MDV$meme_id";
     $action="showmemes";
 	if(!$_SESSION[$mdv]){
-        $m=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
+        $m=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
         $m->rating-=1;
-        lib_mysql_query("update meme set rating='$m->rating' where id='$mid'");
+        lib_mysql_query("update meme set rating='$m->rating' where id='$meme_id'");
         $_SESSION[$mdv]=true;
     }
     else {
