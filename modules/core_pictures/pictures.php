@@ -409,7 +409,7 @@ function pictures_action_view($id) {
     if($id) {
 		if(lib_rfs_bool_true($RFS_SITE_CAPTIONS)){
 			echo "<td>";
-			lib_buttons_make_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/core_memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
 			echo "</td>";
 		}
 		echo "<td>";
