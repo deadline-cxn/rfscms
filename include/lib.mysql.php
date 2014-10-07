@@ -19,6 +19,7 @@ function lib_mysql_query($query) {
 	else                          $mysqli=lib_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
 	if(mysqli_connect_errno()) { echo "WARNING 38J4"; return; }
 	$x=$mysqli->query($query);
+    
 	if(!$x) {
 		if(!stristr($mysqli->error,"duplicate")) {
 			$query=str_replace("<","&lt;",$query);
@@ -26,9 +27,13 @@ function lib_mysql_query($query) {
 			d_echo("MYSQL QUERY: $query");
 		}
 	}
-	if(mysqli_insert_id($mysqli) > 0) {
-		$_GLOBALS['mysql_id']=mysqli_insert_id($mysqli);
-	}
+    
+    d_echo("New Record has id %d.\n", $mysqli->insert_id);
+    
+	//if(mysqli_insert_id($mysqli) > 0) {
+    $_GLOBALS['mysql_id']=$mysqli->insert_id; // mysqli_insert_id($mysqli);
+	//}
+    
 	return ($x);
 }
 
