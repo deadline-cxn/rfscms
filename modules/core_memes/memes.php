@@ -116,7 +116,8 @@ function memes_action_meme_save() { eval(lib_rfs_get_globals());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME generate
-function memes_action_memegenerate() { eval(lib_rfs_get_globals());
+function memes_action_memegenerate() {
+    eval(lib_rfs_get_globals());
     	
 	$name 		= addslashes($name);
 	$texttop 	= addslashes($_REQUEST['texttop']);
@@ -126,7 +127,7 @@ function memes_action_memegenerate() { eval(lib_rfs_get_globals());
     if($data->id) $poster=$data->id;
     if(empty($private)) $private="no";
 	
-	if($mid==0) {		
+	if($mid==0) {
         $infoout="Adding new caption";
         if(empty($texttop)) $texttop="_NEW";
 			echo " POSTER [$poster]<br>";
@@ -134,8 +135,13 @@ function memes_action_memegenerate() { eval(lib_rfs_get_globals());
 			$q="insert into meme
 				  ( `name`,`poster`, `basepic`,`texttop`,`status`)
 			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
+            
         lib_mysql_query($q);
-        $GLOBALS['mid']=$_GLOBALS['mysqli_id'];
+        
+        global $mysql_id;
+        global $mid;
+        
+        $mid=$mysqli_id;
        }
 	else {
 		$infoout="Updating caption $mid";
