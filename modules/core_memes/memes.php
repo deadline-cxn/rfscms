@@ -140,7 +140,7 @@ function memes_action_memegenerate() {
         
         
         global $mysql_id; 
-        global $mid;
+        // global $mid;
         
         $mid=$mysqli_id;
         echo "MID[$mid] MYSQL_ID[$mysql_id] ";
