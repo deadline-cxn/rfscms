@@ -50,7 +50,7 @@ function lib_modules_register($name,$core,$loc,$version,$sub_version,$release,$d
 function lib_modules_get_url($z) {
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
-    include("$RFS_SITE_PATH/include/lib.domain.php");
+    // include("$RFS_SITE_PATH/include/lib.domain.php");
 	if(!empty($z)) return $RFS_MODULE[$z]["url"];
 	$x=lib_domain_canonical_url();
 	$y=explode("?",$x); $x=$y[0];
