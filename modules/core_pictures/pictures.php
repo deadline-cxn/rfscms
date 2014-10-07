@@ -96,7 +96,8 @@ function pictures_action_uploadpicgo() {
 		if($data->id)$poster=$data->id;
 		$furl=addslashes($furl);
 		lib_mysql_query("INSERT INTO `pictures` (`url`) VALUES('$furl');");
-		$id=$_GLOBALS['mysqli_id'];
+        global $mysql_id;
+		$id=$mysql_id;
 		lib_mysql_query("update `pictures` set `category`='$category'  	where `id`='$id'");
 		lib_mysql_query("update `pictures` set `sname`='$sname'        where `id`='$id'");
 		lib_mysql_query("update `pictures` set `sfw`='$sfw'            where `id`='$id'");
