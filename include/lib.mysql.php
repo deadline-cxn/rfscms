@@ -27,8 +27,8 @@ function lib_mysql_query($query) {
 			// d_echo("MYSQL QUERY: $query");
 		}
 	}
-    
-    // d_echo("New Record has id %d.\n", $mysqli->insert_id);
+    if(stristr($query,"insert"))
+     printf ("New Record has id %d.\n", $mysqli->insert_id );
     
 	//if(mysqli_insert_id($mysqli) > 0) {
     $_GLOBALS['mysql_id']=$mysqli->insert_id; // mysqli_insert_id($mysqli);
