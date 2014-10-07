@@ -118,6 +118,9 @@ function memes_action_meme_save() { eval(lib_rfs_get_globals());
 // MEME generate
 function memes_action_memegenerate() {
     eval(lib_rfs_get_globals());
+    global $mysql_id; 
+    global $mid;
+    global $basepic;
     	
 	$name 		= addslashes($name);
 	$texttop 	= addslashes($_REQUEST['texttop']);
@@ -139,8 +142,7 @@ function memes_action_memegenerate() {
         lib_mysql_query($q);
         
         
-        global $mysql_id; 
-        // global $mid;
+        
         
         $mid=$mysqli_id;
         echo "MID[$mid] MYSQL_ID[$mysql_id] ";
@@ -169,8 +171,7 @@ function memes_action_memegenerate() {
 		lib_mysql_query("update meme set `datborder`		= '$datborder'   	  where id='$mid'");
 	}	
     $meme=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
-    $data=lib_users_get_data($poster);
-	global $basepic;
+    $data=lib_users_get_data($poster);	
     $basepic=$meme->basepic;
 	lib_forms_info($infoout." >> $meme->id ($mid) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
 	memes_action_memeedit();
