@@ -139,11 +139,8 @@ function memes_action_memegenerate() {
 			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
             
         lib_mysql_query($q);
-        
-        
-        
-        
         $meme_id=$mysqli_id;
+        
         echo "MEME_ID[$meme_id] MYSQL_ID[$mysql_id] ";
        }
 	else {
