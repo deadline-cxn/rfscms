@@ -48,7 +48,7 @@ function lib_modules_register($name,$core,$loc,$version,$sub_version,$release,$d
 }
 
 function lib_modules_get_url($z) {
-    include("$RFS_SITE_PATH/include/lib.domain.php");
+    include($GLOBALS_['RFS_SITE_PATH']."/include/lib.domain.php");
     global $RFS_SITE_PATH,$RFS_SITE_URL;
     global $RFS_MODULE;
 	if(!empty($z)) return $RFS_MODULE[$z]["url"];
