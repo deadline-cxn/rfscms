@@ -31,4 +31,5 @@ admin/update/*
 install/.htaccess
 install/.htpasswd
 install/install.log
+html/*
 
