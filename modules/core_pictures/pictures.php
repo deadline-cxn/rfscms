@@ -315,7 +315,10 @@ function pictures_action_modifypicture() {
     if(lib_access_check("pictures","edit")) {
 		$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 		$picture=$res->fetch_object();
-		echo "<center><img src=$RFS_SITE_URL/$picture->url width=$RFS_SITE_IMAGE_EDIT_WIDTH >";
+		echo "<center>";
+        
+        echo lib_images_thumb("$RFS_SITE_URL/$picture->url",$RFS_SITE_IMAGE_EDIT_WIDTH,0,0);
+        
 		echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/core_pictures/pictures.php>";
 		echo "<table border=0>";
 		echo "<input type=hidden name=action value=modifygo>";
