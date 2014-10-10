@@ -14,7 +14,7 @@ function lib_log_kill($what) {
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_log_count($user) {
 	eval(lib_rfs_get_globals()); 
-	$countraw++;
+        //	$countraw++;
 	$refer=getenv("HTTP_REFERER");
 	$countip=getenv("REMOTE_ADDR");
 	$p=lib_domain_canonical_url();
@@ -99,8 +99,8 @@ function lib_log_count($user) {
 		lib_log_kill($what);
 	}
 
-	$countit++;
-	$counttoday++;
+	// $countit++;
+	// $counttoday++;
 
 	if(stristr($refer,"google")) { $google=1; $banned=0; }
 	if(stristr($refer,"aol"))    { $aol=1;    $banned=0; }
@@ -124,10 +124,10 @@ function lib_log_count($user) {
 	$url2=explode("/",$refer);
 	$url=$url2['0']."//".$url2['2']."/";
 	
-	if($google)        $url="http://www.google.com/";
-	if($yahoo)         $url="http://www.yahoo.com/";
-	if($referrerslist) $url="http://www.referrerslist.com/";
-	if($aol)           $url="http://www.aol.com/";
+	if(!empty($google))$url="http://www.google.com/";
+	if(!empty($yahoo)) $url="http://www.yahoo.com/";
+	if(!empty($referrerslist)) $url="http://www.referrerslist.com/";
+	if(!empty($aol))           $url="http://www.aol.com/";
 	
 	$result=lib_mysql_query("select * from `link_bin` where `link` = '$url'");
 	if($result->num_rows) {
@@ -142,10 +142,7 @@ function lib_log_count($user) {
 		lib_mysql_query("insert into `link_bin` (`link`, `sname`, `time`, `bumptime`, `referrals`, `clicks`, `referral`, `hidden`, `category`,`reviewed`)
 										  values('$url','".$url2['2']."','$time','$time','1','0','yes','1','unsorted','no')");
 	}
-	if(date("d")==$countdate) {
-		$counttoday++;
-	}
-	return $countit;
+	// if(date("d")==$countdate) {		$counttoday++; 	} 	return $countit;
 }
 /////////////////////////////////////////////////////////////////////////
 function lib_log_add_entry($logtext) {

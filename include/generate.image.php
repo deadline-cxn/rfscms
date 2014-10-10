@@ -10,6 +10,11 @@ include_once("include/lib.domain.php");
 include_once("include/lib.genm.php");
 include_once("include/lib.mysql.php");
 
+if(!empty($_REQUEST['forcerender'])) $forcerender=$_REQUEST['forcerender']; else $forcerender=0;
+if(!empty($_REQUEST['offx'])) $offx=$_REQUEST['offx']; else $offx=0;
+if(!empty($_REQUEST['offy'])) $offy=$_REQUEST['offy']; else $offy=0;
+
+if(empty($font)) $font="random";
 if($font=="random") {
     $dr=$RFS_SITE_PATH."/files/fonts/";
     $fonts=array(); $d = opendir($dr) or die("Wrong path: $dr");
@@ -29,7 +34,9 @@ if(!file_exists($font)) {
     $font="$RFS_SITE_PATH/include/fonts/OCRA.ttf";
 }
 //////////////////////////////////////////// TEXT ONLY SECTION
+if(empty($action)) $action="";
 if( $action=="showfont") {
+    if(!empty($_REQUEST['owidth']))
 	$owidth=$_REQUEST['owidth'];
 		if(empty($owidth))  { $owidth=128; }
 	if($owidth!=512)    $usesmalltext=1;
@@ -56,16 +63,29 @@ if( $action=="showfont") {
 	$bbox   = imagettfbbox($text_size, 0, $font, $fozont);
 	$w = $bbox[2] - $bbox[6];
 	$h = $bbox[3] - $bbox[7];
+    if(empty($forcewidth)) $forcewidth=0;
     if(!$forcewidth) $owidth=$w+5;
+    if(empty($forceheight)) $forceheight=0;
     if($forceheight) $h=$oheight;
 	else $oheight=$h+15;
 	$image_b=lib_genm_newimg($owidth,$oheight);
 	
 	// DEFINE FONT BORDER COLOR
+    
+    if(empty($bgr)) $bgr=0;
+    if(empty($bgg)) $bgg=0;
+    if(empty($bgb)) $bgb=0;   
+    
     if( ($bgr) || ($bgg) || ($bgb) ){
         $bgc=imagecolorallocate($image_b,$bgr,$bgg,$bgb);
         imagefill($image_b,1,1,$bgc);
     }
+    
+    if(empty($bcr)) $bcr=0;
+    if(empty($bcg)) $bcg=0;
+    if(empty($bcb)) $bcb=0;
+    
+    
 	if($bcr==0) $bcr=1;
 	if($bcg==0) $bcr=1;
 	if($bcb==0) $bcb=1;
@@ -78,7 +98,7 @@ if( $action=="showfont") {
 		 (empty($icb)) ) { $icr=255; $icg=255; $icb=255; }
 	$color = imagecolorallocate($image_b, $icr, $icg, $icb);
 	
-	
+	if(empty($hideborder)) $hideborder=0;
 	if($hideborder!=true)
 	for($x=-1;$x<4;$x++) for($y=-1;$y<4;$y++) {
         $zx = $bbox[0] + ($owidth / 2) - ($bbox[4] / 2) ;
@@ -97,7 +117,9 @@ if( $action=="showfont") {
     $zy+=$offy;
 	imagettftext($image_b, $text_size-1, 0, $zx, $zy,   $color, 		$font, $fizont);
 	@imagepng($image_b,$renderfile);
-	if($SESSION['debug_msgs']){
+    
+    if(!empty($_SESSION['debug_msgs']))
+	{
 	$color = imagecolorallocate($image_b, 0,255,0);
 	imagettftext($image_b, $text_size-1, 0, $zx, $zy,   $color, 		$font,  $fizont);
 	}
@@ -106,8 +128,8 @@ if( $action=="showfont") {
 else
     {
     //////////////////////////////////////////// MERGE PICTURE WITH TEXT
-	$mid=$_REQUEST['mid'];
-	$meme=lib_mysql_fetch_one_object("select * from meme where id='$mid'");
+	$meme_id=$_REQUEST['meme_id'];
+	$meme=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
 	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$meme->basepic'");
 	$ptf=$RFS_SITE_PATH."/".$pic->url;
 	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";	
@@ -116,8 +138,12 @@ else
 	
 	$image_in = lib_genm_imgload($ptf);
 	
-	$owidth	= $_REQUEST['owidth'];
-	$oheight	= $_REQUEST['oheight'];
+    $owidth=0;
+    if(!empty($_REQUEST['owidth']))
+	$owidth	 = $_REQUEST['owidth'];
+    $oheight=0;
+    if(!empty($_REQUEST['oheight']))
+	$oheight = $_REQUEST['oheight'];
 	
 	if($owidth>0) $scaleby="width";	
 	if((empty($owidth))&&($oheight>0)) 		{ $owidth=128; $scaleby="height"; }
@@ -193,6 +219,7 @@ else
     $font_file=$RFS_SITE_PATH."/files/fonts/".$font_file;
 
     if(empty($text_size)) $text_size = $owidth/20;
+    if(empty($usesmalltext)) $usesmalltext=0;
     if(!$usesmalltext)
         if(!empty($meme->text_size))
             $text_size = $meme->text_size;
@@ -200,7 +227,8 @@ else
     $dout=$w."x".$h." ($text_size) ";
 	
 	$fozont=$meme->texttop;
-	//$fozont=preg_replace("/./","M", $fozont);	
+	//$fozont=preg_replace("/./","M", $fozont);
+    if(empty($angle)) $angle=0;	
     $dimensions = imagettfbbox($text_size, $angle, $font_file, $fozont);
     $textWidth = max($dimensions[2], $dimensions[4]);
     for($zz=0;$zz<7;$zz++) $dout.=" $zz:".$dimensions[$zz];
@@ -257,6 +285,7 @@ else
         imagestring($image_b, 2, 3, $h-15, $dout, $red);
 }
 
+if(!empty($meme))
 if($meme->datborder=="true") imagerectangle($image_b, 0, 0, $w-1, $h-1, $black);
 @imagepng($image_b,$renderfile);
 

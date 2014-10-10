@@ -12,15 +12,23 @@ function lib_menus_register($short,$url) {
 function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
     $res=lib_mysql_query("select * from `menu_top` order by `sort_order` asc");
     if($menu_location=="left") echo "<table  border=0 cellspacing=0 cellpadding=0 align=center>\n";
+    
     while($link=$res->fetch_object())    {
+        
 		$link->link=urldecode($link->link);		
         $showlink=0;
-		if($link->access == 0) $showlink=1;		
+        
+        if(empty($link->access_method)) $showlink=1;
+        else
 		$access_check=explode(",",$link->access_method);
-		if(!empty($access_check[1])) {
+        
+        
+        
+        if(!empty($access_check)) {
 			$showlink=0;
 			if(lib_access_check($access_check[0],$access_check[1])) $showlink=1;
 		}
+        else $showlink=1;
 		
 		if(!empty($link->other_requirement)) {
 			$showlink=0;
@@ -47,6 +55,7 @@ function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
                         echo "<td class=rfs_top_menu_table_td >";
                 }
 
+                if(empty($RFS_THEME_NAV_BUTTONS)) $RFS_THEME_NAV_BUTTONS="false";
                 if(lib_rfs_bool_true($RFS_THEME_NAV_BUTTONS)) {
                     lib_buttons_make_button(lib_rfs_get($link->link),$link->name);
                 }
@@ -58,10 +67,12 @@ function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
 						lib_rfs_echo("target=\"$link->target\" ");
 					}					
 					echo ">";
-
+                    if(empty($RFS_THEME_NAV_FONT_COLOR)) $RFS_THEME_NAV_FONT_COLOR="#FFFFFF";
                     $clr = lib_images_html2rgb($RFS_THEME_NAV_FONT_COLOR);
+                    if(empty($RFS_THEME_NAV_FONT_BGCOLOR)) $RFS_THEME_NAV_FONT_BGCOLOR="#000000";
                     $bclr= lib_images_html2rgb($RFS_THEME_NAV_FONT_BGCOLOR);
 
+                    if(empty($RFS_THEME_NAV_IMG)) $RFS_THEME_NAV_IMG=0;
 					if($RFS_THEME_NAV_IMG == 1) {
 						$fntsz=16;
 						if($RFS_THEME_NAV_FONT_SIZE>0)

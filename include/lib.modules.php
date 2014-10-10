@@ -60,6 +60,9 @@ function lib_modules_get_url($z) {
 			$addon=$x[$i+1];
 		}
 	}
+    if(empty($addon)) return;
+    if(empty($RFS_MODULE[$addon])) $RFS_MODULE[$addon]=array();
+    if(empty($RFS_MODULE[$addon]["url"])) $RFS_MODULE[$addon]["url"]=""; 
     $loc=$RFS_MODULE[$addon]["url"];
     return $loc;
 }
@@ -95,6 +98,8 @@ function lib_modules_get_base_url($z) {
 			$addon=$x[$i+1];			
 		}
 	}
+    if(empty($addon)) return;
+    if(empty($RFS_MODULE[$addon]["base_url"])) $RFS_MODULE[$addon]["base_url"]="";
     $loc=$RFS_MODULE[$addon]["base_url"];
     return $loc;
 }

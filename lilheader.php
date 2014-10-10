@@ -12,10 +12,12 @@ if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
 lib_rfs_maintenance();
 lib_debug_header(0);
 // divert ajax requests
-if(stristr($_REQUEST['action'],"lib_ajax_callback")) {
-	include("include/lib.all.php");
-	eval("$action();");
-	exit();
+if(!empty($_REQUEST['action'])) {
+    if(stristr($_REQUEST['action'],"lib_ajax_callback")) {
+    	include("include/lib.all.php");
+    	eval("$action();");
+    	exit();
+    }
 }
 $RFS_LITTLE_HEADER=true;
 lib_log_count($data->name);

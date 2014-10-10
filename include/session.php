@@ -3,6 +3,7 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 include_once("lib.sitevars.php");
+if(empty($RFS_SITE_SESSION_ID)) $RFS_SITE_SESSION_ID="RFS_CMS_";
 session_name(str_replace(" ","_",$RFS_SITE_SESSION_ID));
 session_cache_expire(99999);
 session_start();

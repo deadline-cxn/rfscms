@@ -1,7 +1,7 @@
 <?
 if($_REQUEST['a']=="ms") {
-	$mid=$_REQUEST['mid'];
-	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$mid.png&mid=$mid&owidth=512\" border=0></a>";
+	$meme_id=$_REQUEST['meme_id'];
+	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$meme_id.png&meme_id=$meme_id&owidth=512\" border=0></a>";
     exit();
 }
 if($_REQUEST['action']=="aname") {

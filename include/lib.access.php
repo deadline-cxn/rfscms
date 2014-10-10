@@ -13,8 +13,12 @@ function lib_access_add_method($func_page,$pact) {
 function lib_access_check($func_page,$act){
 	if(empty($func_page)) $func_page=lib_domain_phpself();
 	$ret=false;
-	$d=lib_users_get_data($_SESSION['valid_user']);	
+	$d=lib_users_get_data($_SESSION['valid_user']);
+    
+    if(is_array($d))	
 	$ax=$d->access;
+    
+    if(!empty($ax))    
 	if($ax>1) {
 		$q="select * from `access` where `access`='$ax' and `page`='$func_page' and `paction`='$act'";
 		$r=lib_mysql_query($q);

@@ -547,6 +547,10 @@ if($a<1274) {
 	lib_mysql_add("todo_list","visibility","text","not null");
 }
 
+if($a<1303) {
+    lib_access_add_method("memes", "edit_others");
+}
+
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);

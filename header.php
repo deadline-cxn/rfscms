@@ -22,7 +22,10 @@ if(empty($RFS_SITE_NAME)) {
 lib_rfs_maintenance();
 lib_debug_header(0);
 // Divert ajax requests
-if(stristr($_REQUEST['action'],"ajax")) {
+$action="";
+if(!empty($_REQUEST['action'])) $action = $_REQUEST['action'];
+
+if(stristr($action,"ajax")) {
 	include("include/lib.all.php");
 	eval("$action();");
 	exit();

@@ -82,7 +82,9 @@ function lib_rfs_var($x) {
 
 function lib_rfs_do_action() {
 	/////////////////////////////////////////////// Automatic action function
-	$action=$_REQUEST['action'];
+    if(empty($_REQUEST['action'])) $action="";
+    else $action=$_REQUEST['action'];
+    
 	$px=explode("/",$_SERVER['PHP_SELF']);
 	$_thisfunk=str_replace(" ","_",str_replace(".php","",$px[count($px)-1])."_action_$action");
 	@eval("
@@ -96,9 +98,16 @@ function lib_rfs_maintenance() {
 	global $theme;
 	lib_modules_discover();
 	$data=lib_users_get_data($_SESSION['valid_user']);
-	if($mc_gross>0) $data->donated="yes";
-	if(!empty($_REQUEST['theme'])) $theme=$_REQUEST['theme'];
-	if(empty($theme)) $theme=$_SESSION['theme'];
+    if(!empty($mc_gross))
+	if($mc_gross>0) $data->donated="yes";    
+	if(!empty($_REQUEST['theme'])) {
+	   if(!empty($theme))
+	   $theme=$_REQUEST['theme'];
+    }
+	if(empty($theme)) {
+	   if(!empty($_SESSION['theme']))
+	       $theme = $_SESSION['theme'];
+    }
 	else $_SESSION['theme']=$theme;
 	if(empty($theme))                   $theme=$RFS_SITE_DEFAULT_THEME;
 	if(lib_rfs_bool_true($RFS_SITE_FORCE_THEME))   $theme=$RFS_SITE_FORCED_THEME;

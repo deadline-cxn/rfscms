@@ -3,7 +3,9 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_string_get_twitter_code($t) {
-	$RFSW_LINK_IMAGE=$GLOBALS['RFSW_LINK_IMAGE']; $RFS_SITE_URL=$GLOBALS['RFS_SITE_URL'];
+    if(empty($GLOBALS['RFSW_LINK_IMAGE'])) $RFSW_LINK_IMAGE="";
+    else $RFSW_LINK_IMAGE=$GLOBALS['RFSW_LINK_IMAGE']; 
+    $RFS_SITE_URL=$GLOBALS['RFS_SITE_URL'];
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	return	preg_replace("/\s\@(\w+)/"," <a href=\"http://www.twitter.com/$1\" target=_blank>@$1 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
@@ -11,13 +13,17 @@ function lib_string_get_twitter_code($t) {
 
 }
 function lib_string_get_email_code($t) {
-	$RFSW_LINK_IMAGE=$GLOBALS['RFSW_LINK_IMAGE']; $RFS_SITE_URL=$GLOBALS['RFS_SITE_URL'];
+	if(empty($_GLOBALS['RFSW_LINK_IMAGE'])) $RFSW_LINK_IMAGE="";
+    else $RFSW_LINK_IMAGE=$_GLOBALS['RFSW_LINK_IMAGE'];
+    $RFS_SITE_URL=$GLOBALS['RFS_SITE_URL'];
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	return preg_replace("/([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/"," <a href=\"mailto:$1@$2.$3\">$1@$2.$3 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a>",$t);
 }
 function lib_string_get_url_code($t){
-	$RFSW_LINK_IMAGE=$GLOBALS['RFSW_LINK_IMAGE']; $RFS_SITE_URL=$GLOBALS['RFS_SITE_URL'];
+	if(empty($_GLOBALS['RFSW_LINK_IMAGE'])) $RFSW_LINK_IMAGE="";
+    else $RFSW_LINK_IMAGE=$_GLOBALS['RFSW_LINK_IMAGE'];
+    $RFS_SITE_URL=$GLOBALS['RFS_SITE_URL'];
 	if(empty($RFSW_LINK_IMAGE))
 		$RFSW_LINK_IMAGE=$RFS_SITE_URL."/modules/core_wiki/images/link2.png";
 	 return preg_replace("/\s(http|https|ftp)\:\/\/(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])|([a-zA-Z0-9_\-\.])+\.(com|net|org|edu|int|mil|gov|arpa|biz|aero|name|coop|info|pro|museum|uk|me))((:[a-zA-Z0-9]*)?\/?([a-zA-Z0-9\-\._\?\,\'\/\\\+&amp;%\$#\=~])*)\s/",	" <a href=\"$1://$2\" target=_blank>$1://$2 <img src=\"$RFSW_LINK_IMAGE\" border=\"0\" width=\"11\" height=\"10\" ></a> ",$t);
@@ -35,7 +41,9 @@ function lib_string_convert_smiles($text) {
 		}
 	}
 	$data=$GLOBALS['data'];
-	$text=str_replace("[site_name]" ,$GLOBALS['site_name'],$text);
+    if(empty($GLOBALS['site_name'])) $site_name="";
+    else $site_name=$GLOBALS['site_name'];
+	$text=str_replace("[site_name]" ,$site_name,$text);
 	$text=str_replace("[usr]" ,"Users Online :".lib_users_online($data->name),$text);
 	$text=str_replace("[usrs]","Users Logged In :".lib_users_logged_in(),$text);
 	$text=str_replace("[lib_users_logged_details]",lib_users_logged_details($data->name),$text);

@@ -22,7 +22,9 @@ if(substr(PHP_OS,0,3)=="WIN") {
 }
 $RFS_SITE_SESSION_ID          = "RFS_CMS_";
 if(isset($_SESSION))
+if(!empty($_SESSION['valid_user']))
 $RFS_SITE_SESSION_USER         = $_SESSION['valid_user'];
+    
 $RFS_SITE_ADMIN                = "Administrator";
 if(isset($SERVER))
    $RFS_SITE_ADMIN_EMAIL       = "admin@".$SERVER['DOCUMENT_ROOT'];

@@ -56,7 +56,7 @@ function lib_users_logged_in() {
 }
 function lib_users_logged_details() {
 	$result = lib_mysql_query("SELECT DISTINCT ip,page,name FROM useronline");
-	
+	$nusers=0;
 	$user="";
 	for($i=0; $i<$result->num_rows; $i++) {
 		$usrdata=$result->fetch_object();
@@ -64,6 +64,7 @@ function lib_users_logged_details() {
 		$pg=explode("/",$usrdata->page);
 		$upg=$pg[count($pg)-1];
 		$user.="$usrdata->name ($upg)";
+        
 		if(($nusers>1) && ($i<( $nusers-1)))
 			$user.="<br>";
 	}

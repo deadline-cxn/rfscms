@@ -14,10 +14,11 @@ function lib_debug_on()  {
 		$_SESSION['debug_msgs']=true;
 }
 function lib_debug_off() {
+    if(!empty($_SESSION['debug_msgs']))
 	$_SESSION['debug_msgs']=false;
 }
-if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); }
-if($_REQUEST['debug_view_error_log']==1) {
+if(!empty($_REQUEST['clear_error_log'])) if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); }
+if(!empty($_REQUEST['debug_view_error_log'])) if($_REQUEST['debug_view_error_log']==1) {
 	echo "<pre style='background-color: #000000; color: #00FF00;'> ERROR LOG: ";
 	$cmd="sudo cat $RFS_SITE_ERROR_LOG";
 	echo " $cmd ";
@@ -83,7 +84,8 @@ function lib_debug_header($quiet) { eval(lib_rfs_get_globals());
 	$dout.= "USER ID: ".$data->id.$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.= "DATABASE UPGRADE: ".$GLOBALS['RFS_SITE_DATABASE_UPGRADE'];
 	//$dout.="</pre></p>";
-	if(!$quiet) d_echo($dout);	
+	if(!$quiet) d_echo($dout);
+    if(!empty($_SESSION['debug_msgs']))	
 	if($_SESSION['debug_msgs']=="true") { 	lib_debug_tail_error_log(); }
 	return $dout;
 }
@@ -105,8 +107,12 @@ function lib_debug_footer($quiet) { eval(lib_rfs_get_globals());
 	if(is_string($v)) $dout.="\$GLOBALS['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER']; }
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="SESSION VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
-	foreach( $_SESSION as $k=>$v )
+	
+    foreach( $_SESSION as $k=>$v ) {
+        if(is_array($v)) $v="(Array)";
 		$dout.="\$_SESSION['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+     }
+        
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="COOKIE VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
 	foreach( $_COOKIE as $k=>$v )
@@ -121,9 +127,16 @@ function lib_debug_footer($quiet) { eval(lib_rfs_get_globals());
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
 	$dout.="RFS_SITE VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
 	$res=lib_mysql_query("select * from `site_vars`");
-	while($sv=$res->fetch_object)
-		$dout.="\$RFS_SITE_". ($sv->name)."='$sv->value'<br>".$GLOBALS['RFS_SITE_DELIMITER'];	
+	
+    while($sv=$res->fetch_object()) { 
+        
+        
+                
+		$dout.="\$RFS_SITE_". ($sv->name)."='$sv->value'<br>".$GLOBALS['RFS_SITE_DELIMITER'];
+        
+    }	
 	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+    if(empty($theme)) $theme="";
 	$dout.="[footer.php \$theme=$theme]";
 	//$dout.="</pre></p>";
 	if(!$quiet) d_echo($dout);

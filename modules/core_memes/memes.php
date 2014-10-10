@@ -3,9 +3,10 @@ $meme_thumbwidth=200;
 $meme_editwidth=256;
 $meme_fullsize=512;
 
+if(!empty($_REQUEST['a']))
 if($_REQUEST['a']=="ms") {
-	$meme_id=$_REQUEST['mid'];
-	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$meme_id.png&mid=$meme_id&owidth=$meme_fullsize\" border=0></a>";
+	$meme_id=$_REQUEST['meme_id'];
+	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$meme_id.png&meme_id=$meme_id&owidth=$meme_fullsize\" border=0></a>";
     exit();
 }
 
@@ -90,12 +91,12 @@ function memes_action_meme_delete() { eval(lib_rfs_get_globals());
 		$dd="<form action=$RFS_SITE_URL/modules/core_memes/memes.php method=post>Confirm delete meme:
 		<input type=submit name=memedelete value=Delete>
 		<input type=hidden name=action value=meme_delete_go>
-		<input type=hidden name=mid value=$meme_id>
+		<input type=hidden name=meme_id value=$meme_id>
 		</form>";	
 		lib_forms_info($dd,"black","red");	
 		$t=$m->name."-".time();// /$t.png
-		echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize' target=_blank>
-		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$meme_id&owidth=256' border=0></a>";
+		echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?meme_id=$m->id&owidth=$meme_fullsize' target=_blank>
+		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?meme_id=$meme_id&owidth=256' border=0></a>";
 	}
 	else {
 		echo "<p>You can not delete memes.</p>";
@@ -174,21 +175,30 @@ function memes_action_memegenerate() {
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME editor
-function memes_action_memeedit() { eval(lib_rfs_get_globals()); 
+function memes_action_memeedit() {
+    eval(lib_rfs_get_globals()); 
 	if(empty($meme_id)) $meme_id=$id;
 	lib_forms_info("Editing $name caption #$meme_id","BLACK","#ff9900");
-	$m=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
-	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$m->basepic'");	
+	
+    $m=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
+	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$m->basepic'");
+    
+    echo "$m->id  $pic->id";
+    	
     $p=$data->id;
     if(empty($p)) $p=999;
-	if( ($m->poster==$p) || ($data->access==255) ) {
-		if($m->poster!=$p)
-            lib_forms_info("NOT YOURS ADMIN! / EDIT ANYWAY (LOL)","WHITE","RED");
+    
+	if( ($m->poster==$p) ||
+        lib_access_check( "memes","edit_others") ) {
+            
+        if($m->poster!=$p) lib_forms_info("NOT YOURS ADMIN! / EDIT ANYWAY (LOL)","WHITE","RED");
+            
 		if(empty($name)) $name=$m->name;
 		if(empty($name)) $nout="SHOW_TEXT_10#20#name=$name".$RFS_SITE_DELIMITER;
-		else  { 		
+		else  {
 			$nout="name=$name".$RFS_SITE_DELIMITER;
 		}
+        
 		echo "<table border=0 cellspacing=0 cellpadding=0><tr><td valign=top>";
 		$ofont="fonts/impact.ttf";
 		$ocolor="white";
@@ -198,9 +208,9 @@ function memes_action_memeedit() { eval(lib_rfs_get_globals());
 		if(!empty($m->text_bg_color)) $text_bg_color=$m->text_bg_color;
 		if(empty($private)) $private="no";
 
-		rfs_bqf( "action=memegenerate".$RFS_SITE_DELIMITER.
+		lib_forms_build_quick( "action=memegenerate".$RFS_SITE_DELIMITER.
 				 "id=$pic->id".$RFS_SITE_DELIMITER.
-				 "mid=$m->id".$RFS_SITE_DELIMITER.
+				 "meme_id=$m->id".$RFS_SITE_DELIMITER.
 				 "chgfont=$m->font".$RFS_SITE_DELIMITER.
 				 $nout.
 				 "SHOW_SELECTOR_colors#name#text_color#$ocolor".$RFS_SITE_DELIMITER.
@@ -212,11 +222,13 @@ function memes_action_memeedit() { eval(lib_rfs_get_globals());
 				 "SHOW_TEXT_10#20#textbottom=$m->textbottom",
 				 "Go" );
 		echo "<p>";
+        
 		
-		$t=$m->name."-".time();			
-		echo " <a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize&forcerender=1' target=_blank>
+		$t=$m->name."-".time();
+        			
+		echo " <a href='$RFS_SITE_URL/include/generate.image.php/$t.png?meme_id=$m->id&owidth=$meme_fullsize&forcerender=1' target=_blank>
 				<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?
-				mid=$m->id&
+				meme_id=$m->id&
 				owidth=$meme_editwidth&
 				forcerender=1'
 				border=0>
@@ -235,11 +247,11 @@ function memes_action_memeedit() { eval(lib_rfs_get_globals());
                     */
 
 
-		echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=meme_save&mid=$m->id&showfonts=true'>";
+		echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=meme_save&meme_id=$m->id&showfonts=true'>";
 		lib_images_text("SAVE THIS MEME","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,150,150,0,0,0,0,1,1);
 		echo "</a><BR>";
 
-		echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=memeedit&mid=$m->id&showfonts=true'>";
+		echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=memeedit&meme_id=$m->id&showfonts=true'>";
 		$wf=str_replace("fonts/","",$m->font);
 
 		lib_images_text(	"Change Font ($wf)","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,10,145,148,1,1,0,1,1);
@@ -264,7 +276,7 @@ function memes_action_memeedit() { eval(lib_rfs_get_globals());
 						if($rb>255) $rb=0;
 		
 
-	echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=memegenerate&chgfont=$file&mid=$m->id'>
+	echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=memegenerate&chgfont=$file&meme_id=$m->id'>
 							<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?action=showfont&font=$file&text_size=16&forcerender=1&oheight=120&forceheight=1&icr=$rr&icg=$rg&icb=$rb' border=0></a>";
 				}
 			}

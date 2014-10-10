@@ -138,6 +138,10 @@ fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");
 }
 
 if($action=="step_b") {
+    
+    if(empty($rfs_udb_password)) $rfs_udb_password = "";
+    if(empty($rfs_udb_password_confirm)) $rfs_udb_password_confirm = "";
+        
 
 if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
         ($rfs_udb_password  !=  $rfs_udb_password_confirm) ||
@@ -308,6 +312,15 @@ if($action=="step_a") {
 	if(empty($rfs_admin_name))  $rfs_admin_name="Your Real Name";
 	if(empty($rfs_country))     $rfs_country="Country of your home";
 	if(empty($rfs_admin_email)) $rfs_admin_email="youremail@youremaildomain.what";
+    
+    
+	if(empty($rfs_udb_name))     $rfs_udb_name="rfs_cms";
+	if(empty($rfs_udb_address))  $rfs_udb_address="localhost";
+	if(empty($rfs_udb_user))     $rfs_udb_user="rfs_cms_user";    
+    if(empty($rfs_udb_password)) $rfs_udb_password = "";
+    if(empty($rfs_udb_password_confirm)) $rfs_udb_password_confirm = "";
+    
+    
 
 echo "
 <center> <p></p><p></p><table border=0 width=$table_width><tr><td class=formboxd>
@@ -396,7 +409,7 @@ echo "
  
 <tr>
 <td>User Database Address</td>
-<td><input  size=100 type=\"text\" name=\"$rfs_udb_address\" value=\"\"></td>
+<td><input size=100 type=\"text\" name=\"$rfs_udb_address\" value=\"\"></td>
 </tr>
  
 <tr>
