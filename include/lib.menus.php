@@ -18,11 +18,11 @@ function lib_menus_draw($menu_location) {   eval(lib_rfs_get_globals());
 		$link->link=urldecode($link->link);		
         $showlink=0;
         
-        if(empty($link->access_method)) $showlink=1;
-        else
-		$access_check=explode(",",$link->access_method);
+        if(empty($link->access_method)) $link->access_method="";
         
-        
+        if($link->access_method=="") $showlink=1;
+        else $access_check=explode(",",$link->access_method);
+                
         
         if(!empty($access_check)) {
 			$showlink=0;
