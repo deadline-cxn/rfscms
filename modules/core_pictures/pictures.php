@@ -349,7 +349,7 @@ function pictures_action_modifypicture() {
 		echo "<select name=poster>";
 			$poster=lib_users_get_data($picture->poster);
 		echo "<option>$poster->name";
-		$result2=lib_mysql_query_user_db("select * from `users` order by name asc");
+		$result2=lib_mysql_query_user("select * from `users` order by name asc");
 		while($usr=$result2->fetch_object()) echo "<option value='$usr->id'>$usr->name";
 		echo "</select>\n";
 		echo "</td></tr>\n";
