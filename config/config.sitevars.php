@@ -48,6 +48,12 @@ $RFS_SITE_WIKI_LINK_IMAGE      = "$RFS_SITE_WIKI_IMAGES_PATH/link2.gif";
 $RFS_SITE_NAV_FONT             = "impact.ttf";
 $RFS_SITE_NAV_IMG              = "0";
 /////////////////////////////////////////////////////////////////////////////////////////
+// IMAGE STUFF
+$RFS_SITE_THUMBNAIL_WIDTH      = 200;
+$RFS_SITE_IMAGE_EDIT_WIDTH     = 256;
+$RFS_SITE_IMAGE_MEDIUM_WIDTH   = 512;
+$RFS_SITE_IMAGE_LARGE_WIDTH    = 1280;
+/////////////////////////////////////////////////////////////////////////////////////////
 // THEME STUFF
 $RFS_SITE_DEFAULT_THEME        = "default";
 $RFS_SITE_FORCE_THEME          = true;
