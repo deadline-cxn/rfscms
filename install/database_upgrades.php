@@ -551,6 +551,10 @@ if($a<1303) {
     lib_access_add_method("memes", "edit_others");
 }
 
+if($a<1312) {
+    lib_mysql_add("meme","status", "text", "NOT NULL");
+}
+
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
