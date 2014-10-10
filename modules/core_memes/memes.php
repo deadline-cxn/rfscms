@@ -140,7 +140,7 @@ function memes_action_memegenerate() {
 			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
             
         lib_mysql_query($q);
-        $meme_id=$mysqli_id;
+        $meme_id=$mysql_id;
         
         echo "MEME_ID[$meme_id] MYSQL_ID[$mysql_id] ";
        }
@@ -171,14 +171,16 @@ function memes_action_memegenerate() {
     $data=lib_users_get_data($poster);	
     $basepic=$meme->basepic;
 	lib_forms_info($infoout." >> $meme->id ($meme_id) $meme->name >> $meme->texttop >> $meme->textbottom",	"WHITE","GREEN");
-	memes_action_memeedit();
+	memes_action_memeedit($meme->id);
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME editor
-function memes_action_memeedit() {
+function memes_action_memeedit($meme_id) {
     eval(lib_rfs_get_globals()); 
-	if(empty($meme_id)) $meme_id=$id;
-	lib_forms_info("Editing $name caption #$meme_id","BLACK","#ff9900");
+	
+    if(empty($meme_id)) $meme_id=$id;
+    
+	lib_forms_info("Editing $name caption #$meme_id","WHITE","GREEN");
 	
     $m=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
 	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$m->basepic'");
