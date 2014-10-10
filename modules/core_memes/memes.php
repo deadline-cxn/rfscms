@@ -51,7 +51,8 @@ function memes_action_new_meme_go() { eval(lib_rfs_get_globals());
 		$poster=999;
 		if($data->id)$poster=$data->id;
 		lib_mysql_query("INSERT INTO `pictures` (`name`) VALUES('$name');");
-		$id=$_GLOBALS['mysqli_id'];
+        global $mysql_id;
+		$id=$mysql_id;
 		//$cid=$r->fetch_object(lib_mysql_query("select * from categories where name = '$category'"));
 		lib_mysql_query("update `pictures` set `category`='$category'  where `id`='$id'");
 		lib_mysql_query("update `pictures` set `sname`='$sname'        where `id`='$id'");
@@ -324,8 +325,20 @@ function memes_action_mdv() { eval(lib_rfs_get_globals());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME show memes
-function memes_action_showmemes(){ eval(lib_rfs_get_globals());
+function memes_action_showmemes(){
+    eval(lib_rfs_get_globals());
+
 	echo "<h1>Meme generator</h1>";
+    echo "<hr>";
+    
+    
+    
+    lib_buttons_make_button("$RFS_SITE_URL/modules/core_memes/memes.php?action=new_meme","Create new meme");
+    
+    echo "<hr>";
+    
+    
+    
 	$mcols=5; $mrows=5;
 	$toget=$mcols*$mrows;
 	if(empty($mtop)) $mtop=0;
@@ -359,7 +372,7 @@ function memes_action_showmemes(){ eval(lib_rfs_get_globals());
 		lib_buttons_make_button("$RFS_SITE_URL/modules/core_memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
 	}
 	
-	echo "<hr>";
+	
 	for($i=0;$i<$n;$i++){
 		$m=$r->fetch_object();
 		echo "<div id=$m->id style=\"float: left;\">";
