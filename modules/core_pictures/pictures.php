@@ -121,13 +121,10 @@ function pictures_action_removepicture() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Remove picture: $id</h1>";
 	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
-	$picture=$res->fetch_object();
-	if( ($data->access==255) ||
-		($data->id==$picture->poster) ){	
-			
-			
-		echo lib_images_thumb("$RFS_SITE_URL/$picture->url",200,0,1);
-			
+	$picture=$res->fetch_object();	
+	if(lib_access_check("pictures","delete") ||
+		($data->id==$picture->poster)) {
+		echo lib_images_thumb("$RFS_SITE_URL/$picture->url",200,0,1);			
 		echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_pictures/pictures.php method=post>\n";
 		echo "<table border=0>\n";
 		echo "<input type=hidden name=action value=removego>\n";
@@ -145,9 +142,8 @@ function pictures_action_removego() {
 	eval(lib_rfs_get_globals());
 	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 	$picture=$res->fetch_object();
-	if( ($data->access==255) ||
-		($data->id==$picture->poster) )	 {
-		
+	if(lib_access_check("pictures","delete") ||
+		($data->id==$picture->poster)){
 		lib_mysql_query("delete from `pictures` where `id`='$id'");
 		echo "<p>Removed $picture->id from the database...</p>";
 		if($annihilate=="yes"){
@@ -157,7 +153,9 @@ function pictures_action_removego() {
 			@unlink($ftr);
 			echo "<p> $ftr annihilated!</p>\n";
 		}
-		if($gosorttemp=="yes") $action="sorttemp";
+		
+		if($gosorttemp=="yes") pictures_action_sorttemp();
+		
 	} else {
 		echo "<p>You do not have picture removal privileges.</p>";
 	}
@@ -167,7 +165,7 @@ function pictures_action_addorphans() {
 	echo "<h1>Add orphan pictures</h1>";
     if(lib_access_check("pictures","orphanscan")) {
         lib_mysql_query("delete from pictures where category='$category'");
-        $dir_count = addorphans("files/pictures",$category);
+        $dir_count = pics_addorphans("files/pictures",$category);
         if($dir_count==0) echo "No new pictures added to database.<br>";
 		else echo "$dir_count new picture(s) added to database from $RFS_SITE_URL/files/pictures/...";
 	}
@@ -178,7 +176,9 @@ function pictures_action_addorphans() {
 }
 function pictures_action_sorttemp() {
 	eval(lib_rfs_get_globals());
+	
 	if(lib_access_check("pictures","sort")) {
+		
         if($subact=="place"){
             if(!empty($newcat)) {
                 lib_mysql_query("insert into categories (`name`) VALUES('$newcat'); ");
@@ -191,13 +191,16 @@ function pictures_action_sorttemp() {
 			lib_mysql_query("update `pictures` set `sname`='$sname' where `id`='$id'");
 			lib_mysql_query("update `pictures` set `sfw`='$sfw' where `id`='$id'");
 			lib_mysql_query("update `pictures` set `hidden`='$hidden' where `id`='$id'");
-		}
+		}		
 
 		$res=lib_mysql_query("select * from `pictures` where `category`='unsorted' order by time asc");
 		$numpics=$res->num_rows;
-		if($numpics>0){
+		if($numpics>0) {
             $picture=$res->fetch_object();
-            echo "<p align=center>$picture->url<br>";
+            
+			
+			echo "<p align=center> $numpics left to sort... Current picture: $picture->url<br>";
+			
             echo "<table border=0><tr><td width=610 valign=top>";
             echo "<center><a href='$RFS_SITE_URL/modules/core_pictures/pictures.php?action=removego&gosorttemp=yes&id=$picture->id&annihilate=yes'><img src=$RFS_SITE_URL/images/icons/Delete.png border=0><br>Delete (Warning there is no confirmation)</a><br>";
 			$size = getimagesize($picture->url);
@@ -208,20 +211,27 @@ function pictures_action_sorttemp() {
 			echo " border=0> </center>";
             echo "</td><td>";
 			$w=""; $h="";
+			echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/core_pictures/pictures.php>";
+			echo "<input type=hidden name=action value=sorttemp>";
+			echo "<input type=hidden name=subact value=place>";
+			echo "<input type=hidden name=id value=\"$picture->id\">";
+			echo "Create new category: <input name=newcat>";
+			echo "<input type=submit>";
+			echo "</form>";
 			echo "Select a category:<br>";
             $rc=lib_mysql_query("select * from categories where name != 'unsorted' order by name"); 
             $rn=$rc->num_rows;
 
 			for($ri=0;$ri<$rn;$ri++) {
-				echo "<div style='float: left; padding: 10px; text-align: center; width: 80px; height: 120px;'>";
+				echo "<div style='float: left; padding: 10px; text-align: center; width: 80px; height: 60px;'>";
 				$incat=$rc->fetch_object();
 				$imout=$incat->image;
 				if(!file_exists($RFS_SITE_PATH."/$incat->image"))
-					$imout="images/noimage_file.gif";
+					$imout="images/noimage_file.png";
 				if(!$incat->image)
-					$imout="images/noimage.gif";
+					$imout="images/noimage.png";
 				echo "<a href='$RFS_SITE_URL/modules/core_pictures/pictures.php?action=sorttemp&subact=place&id=$picture->id&category=$incat->name&sname=$picture->sname&sfw=yes'>";
-				echo "<img src='$RFS_SITE_URL/$imout' width=70 height=70><br>$incat->name</a>";
+				echo "<img src='$RFS_SITE_URL/$imout' width=30 height=30><br>$incat->name</a>";
 				echo "</div>";
 			}
             echo "</td></tr></table>";

@@ -62,11 +62,9 @@ function pics_addorphans($folder,$cat) { eval(lib_rfs_get_globals());
             if($file!="."){
                 if($file!="..")
                     if( ($file!="rendered") &&
-                        ($file!="cache") ) {
-                    
+                        ($file!="cache") ) {                    
                     $dircheck= $folder."/".$file;
-                    $dircheck=str_replace("../","",$dircheck);
-					
+                    $dircheck=str_replace("../","",$dircheck);					
                     if(is_dir($dircheck)) {
                         echo "$dircheck is a folder... checking<br>";
                         $dir_count += pics_addorphans("$dircheck",$cat);  
@@ -84,8 +82,7 @@ function pics_addorphans($folder,$cat) { eval(lib_rfs_get_globals());
                         $res=lib_mysql_query("select * from `pictures` where `url`='$url'");
                         if(!$res->num_rows) {
                             $time=date("Y-m-d H:i:s");
-                            lib_mysql_query("insert into `pictures` (`time`,`url`,`category`,`hidden`)
-                                                       VALUES('$time','$url','unsorted','yes')");
+                            lib_mysql_query("insert into `pictures` (`time`,`url`,`category`,`hidden`) VALUES('$time','$url','unsorted','yes')");
                             echo "Added [$url] to database<br>";
                             $dir_count++;
                         }
