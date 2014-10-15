@@ -1,0 +1,769 @@
+body{
+	margin:0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    background-color: #FFccaa;
+}
+
+
+.forum_box {
+	width: 98%;
+	float: left;
+	overflow: hidden;
+	background-color:rgba(0,0,0,0.2);
+	border-radius: 10px;
+	margin: 2px;
+	color: #744;
+}
+
+.forum_user{
+	float: left;
+	min-height: 150px;
+	padding: 5px;
+}
+
+.forum_message{
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	background-color:rgba(0,0,0,0.2);
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	
+}
+
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
+}
+
+hr {
+    border: 1px;
+    border-color: #420;
+    border-style: dashed;
+}
+
+.slogan{
+    font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+    color: #725722;
+
+}
+
+.warning{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: normal;
+  font-style: normal;
+  color: #FFFFFF;
+  background-color: #880000;
+}
+
+.tabletop{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #FFFFFF;
+}
+
+.rfs_top_menu_table{
+  font-family: Lucidia;
+  font-style: normal;
+  background-color: #f1dea1;
+  	width: 100%;
+}
+
+.rfswiki_link{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+color: #C4AC45;
+}
+
+.rfswiki_link:link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #373797; 
+}
+
+.rfswiki_link:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #9595f5;    
+}
+
+.rfs_top_menu_link {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #FFFFFF;
+    fbackground-color: #c1ae91;
+}
+
+.rfs_top_menu_link:link{
+    font-family: Lucidia;
+     font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #FAFAFA;
+    fbackground-color: #c1ae91;
+}
+
+.rfs_top_menu_link:visited{
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #000000;
+    fbackground-color: #d1bea1;
+}
+
+.rfs_top_menu_link:hover {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    background-color: #000000;
+    color: #b7d7ee;
+}
+
+
+.news_box {
+	clear: both;
+	margin: 0px;
+	box-shadow: 5px 5px 10px #630;	
+	border-radius: 15px;
+	
+}
+
+.news_headline_bar {
+	background-color:rgba(180,150,150,0.5);
+	height: 25px;
+	padding: 5px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+.news_headline {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+	color: #DF9F60;
+	float: left;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.news_time {
+	font-style: italic;
+	padding: 5px 25px;
+	vertical-align: text-bottom;
+	float: right;
+}
+
+.news_image {
+	margin: 0px 10px 10px 0px;
+	float: left;
+}
+
+.news_article {
+	border-top: 1px solid #000;
+	clear: both; 
+	padding: 15px;
+	background-color:rgba(0,0,0,0.1);
+}
+
+.news_edit_bar {
+	border-top: 1px solid #000;
+	clear: both;
+	background-color:rgba(180,150,150,0.3);
+	padding: 25px;
+	margin: 0 0 25px 0;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+h1{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+    color:   #420;
+}
+
+h2{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+    color:   #420;
+}
+
+
+h3{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    color:   #420;
+}
+
+td{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #420;
+}
+
+.downloadtd{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #0397FF;
+}
+
+.confirmform{
+	padding: 45px;
+       border-top-left-radius: 2em;
+	border-top-right-radius: 2em;
+	border-bottom-left-radius: 2em;
+	border-bottom-right-radius: 2em;
+    border-color: #000000;
+    border-width: 2px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: normal;
+	font-style: normal;
+	color: #FFFFFF;
+	background-color: #880000;
+}
+
+.contenttd {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #420;
+	
+}
+
+
+.rfs_project_table_0 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+	background-color: #cccccc;
+}
+
+.rfs_project_table_1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+	background-color: #dddddd;
+}
+
+.rfs_project_table_2 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+	background-color: #eeeeee;
+}
+
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #fc6;
+}
+
+
+.file_category {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color:   #000000;
+    background-color:rgba(150,100,0,0.1);
+	height: 36px;
+	padding-left: 10px;
+	font-style: none;
+}
+
+.file_category_link, .file_category_link:link {
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-style: none;
+	color: #000;
+	padding-top:5px;
+	padding-left: 20px;
+}
+
+.file_link, .file_link:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: none;
+	color: #000;
+}
+
+.rfs_file_table_0 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	font-weight: normal;
+    color:   #000;
+	background-color:  #da8;
+	padding-left: 5px;
+}
+
+.rfs_file_table_1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	font-weight: normal;
+    color:   #000;
+	background-color: #c97; 
+	padding-left: 5px;
+}
+
+.rfs_bulletlist{
+    color: #000000;
+    background-color: #dddddd;
+    border: 1px;
+    border-color: #888888;    
+}
+
+.rfs_bulletlist_img_td {
+    color: #444444;
+    background-color: #eeeeee;
+    width: 7px;
+}
+.rfs_bulletlist_txt_td {
+    color: #444444;
+    background-color: #eeeeee;
+}
+
+th {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color:   #000000;
+    background-color: #AAAAAA;
+}
+
+.midtd {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;    
+	padding: 10px;
+}
+
+.toptd{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color:   #FFFFFF;    
+}
+
+.lefttd
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    ffont-weight: bold;
+    color:   #777777;
+	width: 250px;
+}
+.righttd {
+	width: 250px;
+}
+
+a:link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #7777f7; 
+}
+
+a:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #a5a5f5;    
+}
+
+select {
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+    border-width : 1px;
+    fborder-style : dashed;
+    background-color : #dcdcdc;
+}
+
+input, textarea {
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+    border-width : 1px;
+    border-style : dotted;
+    background-color : #dcdcdc;
+}
+
+
+.forum_table_head {
+padding: 5px;
+}
+
+.iframez
+{
+}
+
+.imgg
+{
+}
+
+.redbutton
+{
+}
+
+.menutop
+{
+}
+
+.logged_in_box
+{
+}
+
+.logged_in_td
+{
+}
+
+.reddit_button
+{
+}
+
+.rfs_admin
+{
+}
+
+.inform
+{
+}
+
+.ainform
+{
+}
+
+.questionhr
+{
+}
+
+.formboxd
+{
+}
+
+.a_cat
+{
+}
+
+.td_cat
+{
+}
+
+.rfs_black
+{
+}
+
+.rfs_email
+{
+}
+
+.news_td
+{
+}
+
+.b4button
+{
+}
+
+.rfs_warning
+{
+}
+
+.dm_warning
+{
+}
+
+.xp_form
+{
+}
+
+.xptd_c
+{
+}
+
+.xptd_b
+{
+}
+
+.xp_title
+{
+}
+
+.xp_little_black
+{
+}
+
+.admtdtop
+{
+}
+
+.dmz_item
+{
+}
+
+.green
+{
+}
+
+.nettd
+{
+}
+
+.admmtd
+{
+}
+
+.lilwarn
+{
+}
+
+.tdfilehead
+{
+}
+
+.rfs_top_file_table
+{
+}
+
+.pod
+{
+}
+
+.podhead
+{
+}
+
+.podheadshort
+{
+}
+
+.pmsglink
+{
+}
+
+.rfs_site_urlr
+{
+}
+
+.tt_contenttd
+{
+}
+
+.TEST
+{
+}
+
+.rfs_project_table_header
+{
+}
+
+.atpb
+{
+}
+
+.rfswiki_contenttd
+{
+}
+
+.h1
+{
+}
+
+.nomove
+{
+}
+
+.wikishell
+{
+}
+
+.message_mini_indicator
+{
+}
+
+.private_message_from {
+        font-family: "Times New Roman";
+        font-size: large;
+        color: black;
+        background-color: #666666;
+}
+.private_message_sent {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #888888;
+
+}
+.private_message_subject {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #aaaaaa;
+}
+.private_message_body {
+    font-family: "Times New Roman";
+    font-size: medium;
+    color: black;
+    background-color: white;
+    outline: black dotted thin;
+    height: 300px;
+    vertical-align:text-top;
+    padding: 5px 5px 5px 5px;
+}
+
+.middle_cont
+{
+}
+
+.thirdtd
+{
+}
+
+.page
+{
+}
+
+.copyright
+{
+}
+
+.hidden
+{
+}
+
+.ui-slider-handle
+{
+}
+
+.ui-button-icon-primary
+{
+}
+
+.ui-button-icon-secondary
+{
+}
+
+.ui-progressbar-value
+{
+}
+
+.ui-spinner
+{
+}
+
+.ui-spinner-button
+{
+}
+
+.ui-icon
+{
+}
+
+.ui-selectable-helper
+{
+}
+
+.ui-widget-header
+{
+}
+
+.gallery
+{
+}
+
+.ui-autocomplete-category
+{
+}
+
+.ui-handle-helper-parent
+{
+}
+
+.counts
+{
+}
+
+.failed
+{
+}
+
+.passed
+{
+}
+
+.test-name
+{
+}
+
+.module-name
+{
+}
+
+.test-message
+{
+}
+
+.test-source
+{
+}
+
+.test-expected
+{
+}
+
+.test-actual
+{
+}
+
+.test-diff
+{
+}
+
+.total
+{
+}
+
+.admin_box
+{
+padding: 5px;
+margin: 5px;
+}
+

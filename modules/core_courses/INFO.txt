@@ -1,0 +1,58 @@
+
++ POD
+|--->POD Component 1
+|--->POD Component 2
+|--->POD Component 3
+|--->POD Component 4
+
+
+The POD Component is like an object, but can be anything. Each component will have a Next button, and it will be grayed out until it the objective is completed.
+
+Types of POD Components (so far):
+
+Narrative - This will give the user information. It could be video, text, an image, or combination of all. 
+
+Question - This will give the user a question from one of the exams. It will not be counted as answered for the actual exam. It is going to be set up so that usually you will put a Narrative, then a Question. 
+
+Exam - This is an exam like you have seen, except it will be the full exam, and will be needed to pass in order to get to the next component.
+
+Scenario - This component will comprise of a topology and will present a problem to begin with. The user must fix the problem in order to continue.
+
+Custom Activity - This is a customized code that makes the user interact in some way. For instance, it might be an activity to translate a binary number into decimal, but it is custom, and usually one shot action.
+
+Document - Read a document. Self explanatory. This could be followed up with a question, or custom activity to reinforce the knowledge.
+
+File - Download a file. Self explanatory. Follow up with question or custom activity.
+
+The thing is with this new setup, it will be linear. So the first thing the user sees is POD Component 1.
+They will not see POD Component 2 until they have completed #1.
+
+At the top, there will be a progress bar.
+
+The first POD using this system will be How to use a POD, a tutorial.
+
+==================================================================================================================
+table: course_component_type
+fields: 
+	id
+	name
+	image
+	
+table: course_components
+fields:
+	id
+	name
+	image
+	type	
+
+table: course
+fields:
+	id
+	name
+	description
+	image
+	available
+
+
+
+

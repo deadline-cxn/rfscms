@@ -1,0 +1,831 @@
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    background-color: #a09060;
+    margin: 0px;
+}
+
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #fc6;
+}
+
+
+.file_list { background-color: #742; margin: 16px; padding: 10px; border: 1px solid #000; border-radius: 5px; }
+
+.file_category {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color:   #000000;
+	background-color: #742;
+	padding-left: 10px;
+	font-style: none;	
+}
+
+.file_category_link, .file_category_link:link {
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-style: none;
+	color: #f94;
+	padding-top:5px;
+	padding-left: 20px;
+}
+
+.file_link, .file_link:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+	text-shadow: 0px 0px 0px #000;
+	padding-left: 5px;
+}
+
+.rfs_file_table_0 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; 
+		color: #000000; background-color: #973; }
+
+.rfs_file_table_1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal;
+		color: #000000; background-color: #863; }
+
+.forum_box {
+	width: 98%;
+	float: left;
+	overflow: hidden;
+	background-color:rgba(0,0,0,0.2);
+	border-radius: 10px;
+	margin: 2px;
+}
+
+.forum_user {
+	float: left;
+	min-height: 150px;
+	padding: 5px;
+}
+
+.forum_message {
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	background-color:rgba(0,0,0,0.2);
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+}
+
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #222222;
+	border:solid 1px #222222;
+	border-radius:5px;
+	margin: 15px;
+}
+
+.toptexttd {
+	background-size:505px 87px;
+	background-repeat:no-repeat;
+	height: 87px;	
+	background-image: url("t.top_image.gif");
+}
+
+.slogan {
+    font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+    color: #d4c494;
+	text-shadow: 5px 5px 5px #000;
+}
+
+.warning {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: normal;
+  font-style: normal;
+  color: #FFFFFF;
+  background-color: #880000;
+}
+
+.tabletop {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #C2B777;
+}
+
+.wikishell {
+	margin:0 auto;
+	padding: 10px;
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #544510;
+	color: #C2B777;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.rfswiki_link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #D3C380; 
+    
+}
+
+.rfswiki_link:link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #C3B370;  
+}
+
+.rfswiki_link:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #F5D463;  
+}
+
+.rfs_bulletlist {
+    color: #000000;
+    background-color: #645530;
+    border: 1px;
+    border-color: #b4a570;
+}
+.rfs_bulletlist_img_td
+{
+    color: #443404;
+    background-color: #948550;
+    width: 7px;
+}
+.rfs_bulletlist_txt_td {
+    color: #443404;
+    background-color: #948550;
+}
+
+
+
+.rfs_top_menu_table {
+	background: linear-gradient(#645510,#a09060);
+	width: 100%;
+}
+
+.rfs_top_menu_table_td {
+  font-family: Lucidia;  
+  font-style: normal;
+  background: linear-gradient(#645510,#a09060);
+  
+}
+.rfs_top_menu_table_inner {
+  font-family: Lucidia;  
+  font-style: normal;
+  
+}
+
+.rfs_top_menu_link {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #FFFFFF;
+    padding-right: 20px;
+}
+
+.rfs_top_menu_link:link {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #FAFAFA;
+}
+
+.rfs_top_menu_link:visited {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #000000;
+}
+
+.rfs_top_menu_link:hover {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+	color: #b59443;
+}
+
+
+.news_box {
+	clear: both;
+	margin: 0px;
+	box-shadow: 2px 2px 10px black;
+	border-radius: 15px;
+}
+
+.news_headline_bar {
+	background-color:rgba(200,200,200,0.1);
+	height: 25px;
+	padding: 5px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+.news_headline {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+	color: #7F5F29;
+	float: left;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.news_time {
+	font-style: italic;
+	padding: 5px 25px;
+	vertical-align: text-bottom;
+	float: right;
+}
+
+.news_image {
+	margin: 0px 10px 10px 0px;
+	float: left;
+}
+
+.news_article {
+	border-top: 1px solid #000;
+	clear: both; 
+	padding: 15px;
+	background-color:rgba(100,100,100,0.1);
+}
+
+.news_edit_bar {
+	border-top: 1px solid #000;
+	clear: both;
+	background-color:rgba(0,0,0,0.1);
+	padding: 25px;
+	margin: 0 0 25px 0;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+
+h1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #320;
+}
+
+h1
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #320; 
+}
+
+h3
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+    color: #320; 
+}
+
+
+.rfs_project_table_0
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+	background-color: #645520;
+	
+	
+}
+
+.rfs_project_table_1
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+	background-color: #A49560;
+}
+
+.rfs_project_table_2
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+	background-color: #6c5628;
+}
+
+th
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color:   #332211;
+	background-color: #D4C590;
+}
+
+td
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+}
+
+.downloadtd
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #0397FF;
+	background-color: #008400; 
+}
+
+.confirmform
+{
+	padding: 45px;
+    border-top-left-radius: 2em;
+	border-top-right-radius: 2em;
+	border-bottom-left-radius: 2em;
+	border-bottom-right-radius: 2em;
+    border-color: #000000;
+    border-width: 2px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: normal;
+	font-style: normal;
+	color: #FFFFFF;
+	background-color: #880000;
+}
+
+.contenttd
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #241500;
+	
+}
+
+.midtd
+{
+	padding: 10px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;    
+	background-color: #a09060;
+}
+
+.toptd
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 6px;
+    font-weight: bold;
+    color:   #807040;
+	
+}
+
+
+.logged_in_td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 6px;
+    font-weight: bold;
+    color:   #000000;
+	background-color: #a09060;
+}
+.logged_in_box {
+	font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+    color: #000000;
+	background-color: #a09060;
+}
+
+.righttd {
+width: 1px;
+background-color: #a09060;
+}
+
+
+.lefttd {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold; 
+	color:   #746530;
+	background-color: #a09060;
+	background-size:200px 1233px;
+	background-image: url("t.lefttdimage.gif");
+	overflow:hidden;
+	width: 200px !important;
+	min-width: 200px;
+	max-width: 200px;
+	border-right: 1px solid #750;
+}
+
+a
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #433300;
+}
+
+a:link
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #433300; 
+}
+
+a:hover
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #b59443;
+}
+
+select
+{
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+    border-width : 1px;
+    fborder-style : dashed;
+    background-color : #A49560;
+}
+
+input, textarea
+{
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+    border-width : 1px;
+    border-style : dotted;
+    background-color : #A49560;
+}
+
+hr
+{
+    border-width : 1px;
+    border-style : dotted;
+    background-color : #A49560;
+      
+}.forum_table_head
+{
+padding: 5px;
+}
+
+.iframez
+{
+}
+
+.imgg
+{
+}
+
+.redbutton
+{
+}
+
+.menutop
+{
+}
+
+.reddit_button
+{
+}
+
+.rfs_admin
+{
+}
+
+.inform
+{
+}
+
+.ainform
+{
+}
+
+.questionhr
+{
+}
+
+.formboxd
+{
+}
+
+.a_cat
+{
+}
+
+.td_cat
+{
+}
+
+.rfs_black
+{
+}
+
+.rfs_email
+{
+}
+
+.news_td
+{
+}
+
+.b4button
+{
+}
+
+.rfs_warning
+{
+}
+
+.dm_warning
+{
+}
+
+.xp_form
+{
+}
+
+.xptd_c
+{
+}
+
+.xptd_b
+{
+}
+
+.xp_title
+{
+}
+
+.xp_little_black
+{
+}
+
+.admtdtop
+{
+}
+
+.dmz_item
+{
+}
+
+.green
+{
+}
+
+.nettd
+{
+}
+
+.admmtd
+{
+}
+
+.lilwarn
+{
+}
+
+.tdfilehead
+{
+}
+
+.rfs_top_file_table
+{
+}
+
+.pod
+{
+}
+
+.podhead
+{
+}
+
+.podheadshort
+{
+}
+
+.pmsglink
+{
+}
+
+.rfs_site_urlr
+{
+}
+
+.tt_contenttd
+{
+}
+
+.TEST
+{
+}
+
+.rfs_project_table_header
+{
+}
+
+.atpb
+{
+}
+
+.rfswiki_contenttd
+{
+}
+
+.h1
+{
+}
+
+.nomove
+{
+}
+
+.message_mini_indicator
+{
+}
+
+.private_message_from {
+        font-family: "Times New Roman";
+        font-size: large;
+        color: black;
+        background-color: #666666;
+}
+.private_message_sent {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #888888;
+
+}
+.private_message_subject {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #aaaaaa;
+}
+.private_message_body {
+    font-family: "Times New Roman";
+    font-size: medium;
+    color: black;
+    background-color: white;
+    outline: black dotted thin;
+    height: 300px;
+    vertical-align:text-top;
+    padding: 5px 5px 5px 5px;
+}
+
+.middle_cont
+{
+}
+
+.thirdtd
+{
+}
+
+.page
+{
+}
+
+.copyright
+{
+}
+
+.hidden
+{
+}
+
+.ui-slider-handle
+{
+}
+
+.ui-button-icon-primary
+{
+}
+
+.ui-button-icon-secondary
+{
+}
+
+.ui-progressbar-value
+{
+}
+
+.ui-spinner
+{
+}
+
+.ui-spinner-button
+{
+}
+
+.ui-icon
+{
+}
+
+.ui-selectable-helper
+{
+}
+
+.ui-widget-header
+{
+}
+
+.gallery
+{
+}
+
+.ui-autocomplete-category
+{
+}
+
+.ui-handle-helper-parent
+{
+}
+
+.counts
+{
+}
+
+.failed
+{
+}
+
+.passed
+{
+}
+
+.test-name
+{
+}
+
+.module-name
+{
+}
+
+.test-message
+{
+}
+
+.test-source
+{
+}
+
+.test-expected
+{
+}
+
+.test-actual
+{
+}
+
+.test-diff
+{
+}
+
+.total
+{
+}
+
+.admin_box
+{
+padding: 5px;
+margin: 5px;
+}
+

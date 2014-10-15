@@ -1,0 +1,820 @@
+body{
+	color: #f90;
+	margin: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+	background-image: -webkit-gradient(linear, left top, left bottom,
+														from(#310), to(#960));
+	background-image: -webkit-linear-gradient(top, 			#310, #960);
+	background-image:    -moz-linear-gradient(top, 			#310, #960);
+	background-image:      -o-linear-gradient(top,   		#310, #960);
+	background-image:         linear-gradient(to bottom,	#310, #960);
+	background-repeat:no-repeat;
+	background-position:right top;
+	background-attachment: fixed;
+}
+
+.memebox {
+	text-align: center;
+	margin: 5px;
+	box-shadow: 5px 5px 5px #888888;
+	border-radius: 5px;
+}
+
+.memepic {
+	text-align: center;
+	min-height: 220px;
+	max-height: 220px;
+	overflow-y: auto;
+}
+
+.forum_box {
+	width: 95%;
+	float: left;
+	overflow: hidden;
+	background-color:rgba(255,155,55,0.6);
+	border-radius: 10px;
+	margin: 10px;
+	padding: 15px;
+}
+
+.forum_user{
+	float: left;
+	min-height: 150px;
+	padding: 5px;
+}
+
+.forum_message{
+
+	background-color: #895900;
+    color: #f90;
+    
+    box-shadow: -2px -2px #630;
+    border:solid 1px;
+	border-bottom-color: #960;
+	border-right-color: #960;
+	border-top-color: #520;
+	border-left-color: #520;
+	border-radius: 5px;
+	
+	overflow: hidden;
+	min-height: 160px;	
+	padding: 5px;
+	
+	
+}
+
+.forum_time{
+	overflow: hidden;
+	clear: both;
+	
+}
+
+
+
+.slogan {
+    font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+    color: #f90;
+}
+
+hr{
+    border: 1px;
+    border-color: #ff9900;
+    border-style: dotted;
+	
+}
+
+.warning {
+  font-family: Lucidia;
+  font-size: x-large;
+  font-style: normal;
+  color: #FFFFFF;
+  background-color: #880000;
+}
+
+.tabletop{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #FFFFFF;
+}
+
+.rfs_top_menu_table {
+  font-family: Lucidia; 
+  font-style: normal;
+  background-color: #996600;
+}
+
+.rfs_top_menu_table_td {
+  font-family: Lucidia; 
+  font-style: normal;
+  background-color: #996600;
+}
+
+.rfs_top_menu_table_inner {
+  font-family: Lucidia; 
+  font-style: normal;
+  background-color: #996600;
+}
+
+.rfs_top_menu_link {
+    font-family: System;
+    font-size: 23px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #FFFF00;
+}
+.rfs_top_menu_link:link {
+    font-family: System;
+    font-size: 23px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #FFFF00;
+}
+.rfs_top_menu_link:hover {
+    font-family: System;
+    font-size: 23px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+	color: #000000;
+	background-color: none;
+}
+
+.rfs_thumb {
+	box-shadow: 3px 3px 3px #300;
+	border:solid 1px #553300;
+	border-radius:10px;
+	margin: 0px 0px 0px 0px;
+}
+
+
+.news_box {
+	clear: both;
+	margin: 10px;
+}
+
+.news_headline_bar {
+	background-color:rgba(220,150,0,0.2);
+	height: 25px;
+	padding: 5px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+.news_headline {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+	color: #FFC900;
+	float: left;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.news_time {
+	font-style: italic;
+	padding: 5px 25px;
+	vertical-align: text-bottom;
+	float: left;
+}
+
+.news_image {
+	padding: 15px;
+	float: left;
+}
+
+.news_article {
+	border-top: 1px solid #000;
+	clear: both; 
+	padding: 15px;
+	background-color:rgba(0,0,0,0.2);
+}
+
+.news_edit_bar {
+	border-top: 1px solid #000;
+	clear: both;
+	background-color:rgba(250,150,0,0.2);
+	padding: 25px;
+	margin: 0 0 25px 0;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+
+h1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 20px;;
+    font-weight: bold;
+    font-style: italic;
+    color: #ff9900;	
+	text-shadow: 2px 2px 2px #000;
+}
+h2 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 18px;;
+    font-weight: bold;
+    font-style: italic;	
+    color: #ff9900;
+	text-shadow: 2px 2px 2px #000;
+}
+h3 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;;
+    font-weight: bold;
+    font-style: italic;
+    color: #ff9900;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.font {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    font-style: normal;
+    color: #FFFFFF;
+}
+
+td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: bold;
+}
+
+.downloadtd {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #0397FF;
+	background-color: #008400;
+}
+.confirmform
+{
+	padding: 45px;
+    border-top-left-radius: 2em;
+	border-top-right-radius: 2em;
+	border-bottom-left-radius: 2em;
+	border-bottom-right-radius: 2em;
+    border-color: #000000;
+    border-width: 2px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: normal;
+	font-style: normal;
+	color: #FFFFFF;
+	background-color: #880000;
+}
+
+.contenttd {
+	padding: 5px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    font-weight: bold;
+    color:   #FFFFFF;	
+}
+
+
+
+.midtd{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    font-weight: bold;
+}
+
+.toptd {
+    font-family: Verdana;
+    font-size: 56px;
+    font-style: italic;
+    font-weight: bold;
+    color:   #ff9900;
+}
+
+.righttd {
+	width: 1px;
+}
+
+.lefttd {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: xx-small;
+    font-weight: bold;
+    color:   #ff9900;
+	width: 1px;
+}
+
+th {
+	background-color: #9c5c2c;
+}
+.rfs_project_table_header {
+	background-color: #9c5c2c;
+}
+
+.rfs_project_table_1{
+	background-color: #fc7c40;
+	color: #000000;
+}
+
+.rfs_project_table_2 {
+	background-color: #cc6c3c;
+	color: #000000;
+}
+
+
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	fborder-radius: 3px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #762;
+}
+
+
+
+
+.file_category {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color:   #000000;
+    background-color:rgba(150,60,0,0.1);
+	height: 36px;
+	padding-left: 10px;
+	font-style: none;
+}
+
+.file_category_link, .file_category_link:link {
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-style: none;
+	text-decoration: none;
+	color: #000;
+	padding-top:5px;
+	padding-left: 20px;
+}
+
+.file_link, .file_link:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: none;
+	color: #000;
+}
+
+.rfs_file_table_outer_0 {
+	background-color:rgba(260,160,0,0.1);
+	border-top: 1px dashed #530; 
+}
+
+
+.rfs_file_table_0 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	font-weight: normal;
+    color:   #000;
+	padding-left: 5px;
+}
+
+.rfs_file_table_outer_1 {
+	background-color:rgba(160,70,0,0.1);
+	border-top: 1px dashed #530; 
+}
+
+
+.rfs_file_table_1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+	font-weight: normal;
+    color:   #000;
+	padding-left: 5px;
+}
+
+
+
+
+a {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    ffont-size: xx-small;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #FFFF00;
+}
+
+a:link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    dfont-size: xx-small;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #FFFF00;
+}
+
+a:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    gfont-size: xx-small;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #000000;
+    background-color: #FFFF00;
+    
+}
+
+input[type=text],input[type=password],input[type=textbox],textarea {
+	background-color: #895900;
+    color: #f90;
+    min-height: 22px;
+    box-shadow: 2px 2px #630;
+    border:solid 1px;
+	border-top-color: #960;
+	border-left-color: #960;
+	border-bottom-color: #520;
+	border-right-color: #520;
+    padding-left:10px;
+}
+input[type=button],button,input[type=submit] {
+    height: 22px;
+	background-color: #895900;
+    color: #f90;
+    box-shadow:-1px 2px #99660A inset;
+	border-width : 1px;
+	border-radius: 5px;
+    border-color : #000000;
+}
+
+input[type=button],input[type=password],input[type=text],input[type=textbox], textarea {
+    border-radius:5px;
+    font-family: Sansation,Arial;
+}
+
+
+select {
+    ffont-family: Verdana;
+    ffont-size : x-small;
+    ffont-weight: bold;
+    border-style : solid;
+    border-width : 1px;
+	border-radius: 5px;
+    border-color : #000000;
+	color: #ff9900;
+    background-color : #664400;
+}
+.forum_table_head
+{
+padding: 5px;
+}
+
+.iframez
+{
+}
+
+.imgg
+{
+}
+
+.rfs_project_table_0
+{
+}
+
+.redbutton
+{
+}
+
+.menutop
+{
+}
+
+.logged_in_box
+{
+}
+
+.logged_in_td
+{
+}
+
+.reddit_button
+{
+}
+
+.rfs_admin
+{
+}
+
+.inform
+{
+}
+
+.ainform
+{
+}
+
+.questionhr
+{
+}
+
+.rfswiki_link
+{
+}
+
+.formboxd
+{
+}
+
+.a_cat
+{
+}
+
+.td_cat
+{
+}
+
+.rfs_black
+{
+}
+
+.rfs_email
+{
+}
+
+.news_td
+{
+}
+
+.b4button
+{
+}
+
+.rfs_warning
+{
+}
+
+.dm_warning
+{
+}
+
+.xp_form
+{
+}
+
+.xptd_c
+{
+}
+
+.xptd_b
+{
+}
+
+.xp_title
+{
+}
+
+.xp_little_black
+{
+}
+
+.admtdtop
+{
+}
+
+.dmz_item
+{
+}
+
+.green
+{
+}
+
+.nettd
+{
+}
+
+.admmtd
+{
+}
+
+.lilwarn
+{
+}
+
+.tdfilehead
+{
+}
+
+.rfs_top_file_table
+{
+}
+
+.pod
+{
+}
+
+.podhead
+{
+}
+
+.podheadshort
+{
+}
+
+.pmsglink
+{
+}
+
+.rfs_site_urlr
+{
+}
+
+.tt_contenttd
+{
+}
+
+.TEST
+{
+}
+
+.atpb
+{
+}
+
+.rfswiki_contenttd
+{
+}
+
+.rfs_bulletlist
+{
+}
+
+.rfs_bulletlist_txt_td
+{
+}
+
+.rfs_bulletlist_img_td
+{
+}
+
+.h1
+{
+}
+
+.nomove
+{
+}
+
+.wikishell
+{
+}
+
+.message_mini_indicator
+{
+}
+
+.private_message_from {
+        font-family: "Times New Roman";
+        font-size: large;
+        color: black;
+        background-color: #666666;
+}
+.private_message_sent {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #888888;
+
+}
+.private_message_subject {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #aaaaaa;
+}
+.private_message_body {
+    font-family: "Times New Roman";
+    font-size: medium;
+    color: black;
+    background-color: white;
+    outline: black dotted thin;
+    height: 300px;
+    vertical-align:text-top;
+    padding: 5px 5px 5px 5px;
+}
+
+.middle_cont
+{
+}
+
+.thirdtd
+{
+}
+
+.page
+{
+}
+
+.copyright
+{
+}
+
+.hidden
+{
+}
+
+.ui-slider-handle
+{
+}
+
+.ui-button-icon-primary
+{
+}
+
+.ui-button-icon-secondary
+{
+}
+
+.ui-progressbar-value
+{
+}
+
+.ui-spinner
+{
+}
+
+.ui-spinner-button
+{
+}
+
+.ui-icon
+{
+}
+
+.ui-selectable-helper
+{
+}
+
+.ui-widget-header
+{
+}
+
+.gallery
+{
+}
+
+.ui-autocomplete-category
+{
+}
+
+.ui-handle-helper-parent
+{
+}
+
+.counts
+{
+}
+
+.failed
+{
+}
+
+.passed
+{
+}
+
+.test-name
+{
+}
+
+.module-name
+{
+}
+
+.test-message
+{
+}
+
+.test-source
+{
+}
+
+.test-expected
+{
+}
+
+.test-actual
+{
+}
+
+.test-diff
+{
+}
+
+.total
+{
+}
+
+.admin_box
+{
+padding: 5px;
+margin: 5px;
+}
+

@@ -1,0 +1,76 @@
+
+body
+{
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #FFFFFF;
+    background-color: #556677;
+	
+}
+
+td
+{
+    font-family: Verdana;
+    font-size: 12px; 
+    color: #000000;   
+}
+
+hr
+{
+    border: 1px;
+    border-color: black;
+    border-style: dashed;
+}
+
+.install_top
+{
+    font-family: Verdana;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color:#0000FF;
+}
+
+p
+{
+    color: #223344;
+
+}
+
+a
+{
+    color: #FFFF00;
+}
+a:hover
+{
+    color: #FFFFFF;
+}
+
+
+.formboxd
+{
+    font-family: Verdana;
+    font-size: 12px;
+    
+    border: 2px;
+    border-color: #405060;
+    border-style: solid;
+    
+    background-color: #99AABB;
+    color: #223344;
+}
+
+input, select, textarea
+{
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+    border-width : 2px;
+    background-color : #888888;
+}
+
+

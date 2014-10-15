@@ -1,0 +1,868 @@
+body {
+	margin: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#96a696), to(#353));
+	background-image: -webkit-linear-gradient(top, #96a696, #353);
+	background-image:    -moz-linear-gradient(top, #96a696, #353);
+	background-image:      -o-linear-gradient(top,   #96a696, #353);
+	background-image:         linear-gradient(to bottom, #96a696, #353);
+	background-repeat:no-repeat;
+	background-position:right top;
+	background-attachment: fixed;
+}
+
+pre {
+ font-family: fixedsys, monospace;
+}
+
+h1, h2, h3 {
+	color: #DFFFC9;
+	margin: 0px;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.tags {
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid #000;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #666;
+	background-color: #fc6;
+}
+
+.news_box {
+	clear: both;
+	margin: 0px;
+}
+
+.news_headline_bar {
+	background-color:rgba(0,220,150,0.1);
+	height: 25px;
+	padding: 5px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.news_headline {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+	color: #DFFFC9;
+	float: left;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.news_time {
+	font-style: italic;
+	padding: 5px 25px;
+	vertical-align: text-bottom;
+	float: left;
+}
+
+.news_image {
+	margin: 0px 10px 10px 0px;
+	float: left;
+}
+
+.news_article {
+	border-top: 1px solid #000;
+	clear: both; 
+	padding: 15px;
+	background-color:rgba(0,0,0,0.1);
+}
+
+.news_edit_bar {
+	border-top: 1px solid #000;
+	clear: both;
+	background-color:rgba(0,160,150,0.1);
+	padding: 25px;
+	margin: 0 0 25px 0;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.forum_box {
+	color: #000;
+	width: 95%;
+	float: left;	
+	background-color:rgba(30,50,30,0.3);
+	padding: 0px 10px 10px 10px;
+	border-radius: 10px;
+	margin: 2px;
+	border: 1px solid;
+}
+
+.forum_user {
+	float: left;
+	min-height: 160px;
+	background-color:rgba(3,5,3,0.8);
+	padding: 5px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	color: #96a696;
+}
+
+.forum_message {
+	overflow: hidden;
+	min-height: 180px;	
+	padding: 5px;
+	color: #000; 
+	background-color:rgba(0,0,0,0.2);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border: 1px solid;
+	border-left-color: #000;
+	border-bottom-color: #000;
+	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#96a696), to(#131));
+	background-image: -webkit-linear-gradient(top, #96a696, #131);
+	background-image:    -moz-linear-gradient(top, #96a696, #131);
+	background-image:      -o-linear-gradient(top,   #96a696, #131);
+	background-image:         linear-gradient(to bottom, #96a696, #131);
+	background-repeat:no-repeat;
+	background-position:right top;
+	background-attachment: fixed;
+}
+
+.forum_time {
+	overflow: hidden;
+	clear: both;
+	padding: 15px 25px 15px 250px;
+	
+}
+
+.rfs_thumb {
+	box-shadow: 5px 5px 5px #020;
+	border:solid 1px #222222;
+	border-radius:5px;
+	margin: 5px;
+}
+
+.wikishell {
+	padding: 10px;
+	margin:0 auto;
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #000000;
+	color: #00ff00;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	box-shadow: 5px 5px 5px #020;
+}
+
+.codez {
+	padding: 10px;
+	margin:0 auto;
+	align: center;
+	width: 90%;
+	font-family: monospace;
+	background-color: #ffffdd;
+	color: #000000;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	box-shadow: 5px 5px 5px #020;
+}
+
+hr {
+    border: 1px;
+	border-color: #3D3D3D;
+	border-style: dashed;
+}
+
+.slogan {
+    font-family: Verdana;
+    font-size: 12px;
+    font-style: italic ;
+	color: #DFFFC9;
+	text-shadow: 2px 2px 2px #000;
+}
+
+.confirmform {
+	padding: 45px;
+    border-top-left-radius: 2em;
+	border-top-right-radius: 2em;
+	border-bottom-left-radius: 2em;
+	border-bottom-right-radius: 2em;
+    border-color: #000000;
+    border-width: 2px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: normal;
+	font-style: normal;
+	color: #FFFFFF;
+	background-color: #880000;
+}
+
+.warning {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: normal;
+  font-style: normal;
+  color: #FFFFFF;
+  background-color: #880000;
+  border: 2px dashed #f00;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.tabletop {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #FFFFFF;
+}
+
+.rfs_top_menu_table {
+  font-family: Lucidia;
+  font-style: normal;
+}
+
+.rfs_top_menu_table_td {
+  font-family: Lucidia;
+  font-style: normal;
+}
+
+.rfswiki_link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #c6c656;
+}
+
+.rfswiki_link:link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #c6c656; 
+}
+
+.rfswiki_link:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    color: #FFFF56;
+	background-color:rgba(0,100,0,0.6);
+}
+
+.rfs_top_menu_link {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.rfs_top_menu_link:link {
+    font-family: Lucidia;
+        font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #FAFAFA;
+}
+
+.rfs_top_menu_link:visited {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    color: #000000;
+}
+
+.rfs_top_menu_link:hover {
+    font-family: Lucidia;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+	color: #b7d7ee;
+}
+
+.news_headline {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+	color: #DFFFC9;
+}
+
+.news_headline:link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #777777;
+}
+
+.news_headline:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+    color: #555555;
+}
+
+h1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+    font-style: italic;
+}
+
+td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+	color: #000000;
+}
+
+.downloadtd {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #0397FF;
+}
+
+.contenttd {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+	color: #DFFFC9;
+}
+
+.rfs_project_table_0 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+    background-color: #cccccc;
+}
+
+.rfs_project_table_1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+	background-color: #dddddd;
+}
+
+.rfs_project_table_2 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color:   #000000;
+	background-color: #eeeeee;
+}
+
+.file_list {
+    background-color: #474;
+    margin: 16px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.file_category {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color:   #000000;
+	background-color: #474;
+	padding-left: 10px;
+	font-style: none;	
+}
+
+.file_category_link, .file_category_link:link {
+	vertical-align: top;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-style: none;
+	color: #9f9;
+	padding-top:5px;
+	padding-left: 20px;
+}
+
+.file_link, .file_link:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+	text-shadow: 0px 0px 0px #000;
+	padding-left: 5px;
+}
+
+.rfs_file_table_0 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: normal; 
+	color: #000000;
+    background-color: #696;
+    min-height: 70px;
+ }
+
+.rfs_file_table_1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: normal;
+	color: #000000;
+    background-color: #585;
+    min-height: 70px;
+ }
+
+.rfs_bulletlist {
+    color: #000000;
+    background-color: #dddddd;
+    border: 1px;
+    border-color: #888888;
+}
+
+.rfs_bulletlist_img_td {
+	color: #444444;
+    background-color: #eeeeee;
+    width: 7px;
+}
+
+.rfs_bulletlist_txt_td {
+    color: #444444;
+    background-color: #eeeeee;
+}
+
+th {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color:   #000000;
+	background-color: #AAAAAA;
+}
+
+.dropshadow {
+    box-shadow: 5px 5px 5px #727272;
+    border:solid 1px #727272;
+    border-radius:8px;
+}
+
+.midtd {
+    margin: 5px;
+    padding: 5px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    
+}
+
+.toptd {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color:   #FFFFFF;
+}
+
+.lefttd {
+	margin: 0px;
+	width: 1px;
+}
+
+.righttd {
+	margin: 0px;
+	width: 1px;
+}
+
+a {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+	color: #c6c656;
+	text-shadow: 1px 1px 1px #000;
+}
+
+a:link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+	color: #c6c656;
+}
+
+a:hover {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+	color: #FFFF56;
+	background-color:rgba(0,100,0,0.6);
+}
+
+select {
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+    border-width : 1px;
+    fborder-style : dashed;
+    background-color : #dcdcdc;
+}
+
+input, textarea, button, input[type="submit"]  {
+    font-family: Verdana;
+    font-size : 12px;
+    font-weight: bold;
+    border-width : 1px;
+    border-style : dotted;
+    background-color:rgba(0,220,150,0.1);
+	border-radius: 4px;
+}
+
+button:hover, input[type="submit"]:hover {
+	color: #FF6;
+	background-color: #000;
+	cursor: pointer;	
+}
+.forum_table_head
+{
+padding: 5px;
+}
+
+.iframez
+{
+}
+
+.imgg
+{
+}
+
+.redbutton
+{
+}
+
+.menutop
+{
+}
+
+.logged_in_box
+{
+}
+
+.logged_in_td
+{
+}
+
+.reddit_button
+{
+}
+
+.rfs_admin
+{
+}
+
+.inform
+{
+}
+
+.ainform
+{
+}
+
+.questionhr
+{
+}
+
+.formboxd
+{
+}
+
+.a_cat
+{
+}
+
+.td_cat
+{
+}
+
+.rfs_black
+{
+}
+
+.rfs_email
+{
+}
+
+.news_td
+{
+}
+
+.b4button
+{
+}
+
+.rfs_warning
+{
+}
+
+.dm_warning
+{
+}
+
+.xp_form
+{
+}
+
+.xptd_c
+{
+}
+
+.xptd_b
+{
+}
+
+.xp_title
+{
+}
+
+.xp_little_black
+{
+}
+
+.admtdtop
+{
+}
+
+.dmz_item
+{
+}
+
+.green
+{
+}
+
+.nettd
+{
+}
+
+.admmtd
+{
+}
+
+.lilwarn
+{
+}
+
+.tdfilehead
+{
+}
+
+.rfs_top_file_table
+{
+}
+
+.pod
+{
+}
+
+.podhead
+{
+}
+
+.podheadshort
+{
+}
+
+.pmsglink
+{
+}
+
+.rfs_site_urlr
+{
+}
+
+.tt_contenttd
+{
+}
+
+.TEST
+{
+}
+
+.rfs_project_table_header
+{
+}
+
+.atpb
+{
+}
+
+.rfswiki_contenttd
+{
+}
+
+.h1
+{
+}
+
+.nomove
+{
+}
+
+.message_mini_indicator
+{
+}
+
+.private_message_from {
+        font-family: "Times New Roman";
+        font-size: large;
+        color: black;
+        background-color: #666666;
+}
+.private_message_sent {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #888888;
+
+}
+.private_message_subject {
+        font-family: "Times New Roman";
+        font-size: medium;
+        color: black;
+        background-color: #aaaaaa;
+}
+.private_message_body {
+    font-family: "Times New Roman";
+    font-size: medium;
+    color: black;
+    background-color: white;
+    outline: black dotted thin;
+    height: 300px;
+    vertical-align:text-top;
+    padding: 5px 5px 5px 5px;
+}
+
+.middle_cont
+{
+}
+
+.thirdtd
+{
+}
+
+.page
+{
+}
+
+.copyright
+{
+}
+
+.hidden
+{
+}
+
+.ui-slider-handle
+{
+}
+
+.ui-button-icon-primary
+{
+}
+
+.ui-button-icon-secondary
+{
+}
+
+.ui-progressbar-value
+{
+}
+
+.ui-spinner
+{
+}
+
+.ui-spinner-button
+{
+}
+
+.ui-icon
+{
+}
+
+.ui-selectable-helper
+{
+}
+
+.ui-widget-header
+{
+}
+
+.gallery
+{
+}
+
+.ui-autocomplete-category
+{
+}
+
+.ui-handle-helper-parent
+{
+}
+
+.counts
+{
+}
+
+.failed
+{
+}
+
+.passed
+{
+}
+
+.test-name
+{
+}
+
+.module-name
+{
+}
+
+.test-message
+{
+}
+
+.test-source
+{
+}
+
+.test-expected
+{
+}
+
+.test-actual
+{
+}
+
+.test-diff
+{
+}
+
+.total
+{
+}
+
+.admin_box
+{
+padding: 5px;
+margin: 5px;
+}
+

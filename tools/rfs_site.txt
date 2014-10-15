@@ -1,0 +1,1420 @@
+../admin/adm.php:101:            echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_delete&location=$location&arid=$ar->id'>";
+../admin/adm.php:102:			echo "<img src='$RFS_SITE_URL/images/icons/circle-delete.png' border='0'>";
+../admin/adm.php:106:				echo "<a href='$RFS_SITE_URL/admin/adm.php?action=f_arrange_move_up&arid=$ar->id'>";				
+../admin/adm.php:107:				echo " <img src=$RFS_SITE_URL/images/icons/arrow-up.png width=32 height=32 border=0> ";
+../admin/adm.php:111:				echo " <img src=$RFS_SITE_URL/images/icons/arrow-down.png width=32 height=32 border=0> ";
+../admin/adm.php:115:				echo " <img src=$RFS_SITE_URL/images/icons/arrow-left.png width=32 height=32 border=0> ";
+../admin/adm.php:120:				echo " <img src=$RFS_SITE_URL/images/icons/arrow-right.png width=32 height=32 border=0> ";				
+../admin/adm.php:124:			echo "</td>	<form action='$RFS_SITE_URL/admin/adm.php' method='post'>	<td>
+../admin/adm.php:132:	echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
+../admin/adm.php:187:                    "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:188:                    "action=f_arrange_delete_go".$RFS_SITE_DELIMITER."id=$ar->id" );
+../admin/adm.php:232:	sc_gotopage("$RFS_SITE_URL/modules/nqt/rfsnqt.php");
+../admin/adm.php:257:	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">";
+../admin/adm.php:303:                    "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:304:                    "action=f_access_group_delete_go".$RFS_SITE_DELIMITER.
+../admin/adm.php:318:	echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+../admin/adm.php:331:		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_delete&axnm=$a->name\">delete</a>] ";
+../admin/adm.php:332:		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_edit&axnm=$a->name\">edit</a>]<br>";
+../admin/adm.php:344:					echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_access_group_del_user&axnm=$a->name&user=$usr->name\">remove</a>] ";
+../admin/adm.php:352:		sc_optionizer(	"$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:353:							"action=f_access_group_add_user".$RFS_SITE_DELIMITER.
+../admin/adm.php:354:							"axnm=$a->name".$RFS_SITE_DELIMITER.
+../admin/adm.php:372:function adm_action_phpmyadmin() { eval(scg()); sc_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");}
+../admin/adm.php:386:	sc_bqf( "action=new_page_go".$RFS_SITE_DELIMITER."SHOW_TEXT_name=name.php","Create new page");
+../admin/adm.php:401:	sc_bqf( 	"action=email_go".$RFS_SITE_DELIMITER.
+../admin/adm.php:402:				"SHOW_TEXT_address=address".$RFS_SITE_DELIMITER.
+../admin/adm.php:403:				"SHOW_TEXT_subject=subject".$RFS_SITE_DELIMITER.
+../admin/adm.php:404:				"SHOW_CODEAREA_300#600#message=message".$RFS_SITE_DELIMITER,
+../admin/adm.php:420:	echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_rm_db_query&query=$y\" target=_top>Delete</a>]";	
+../admin/adm.php:421:	echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=db_query&query=$y\" target=_top>$x</a><br>";
+../admin/adm.php:436:			src=\"$RFS_SITE_URL/admin/adm.php?action=sc_ajax_callback_query_list\"
+../admin/adm.php:440:	sc_db_query_form( "$RFS_SITE_URL/admin/adm.php","db_query","$query" );
+../admin/adm.php:461:			src=\"$RFS_SITE_URL/admin/adm.php?action=sc_ajax_callback_query_list\"
+../admin/adm.php:465:	sc_db_query_form( "$RFS_SITE_URL/admin/adm.php","db_query","$query" );
+../admin/adm.php:504:	       "action=eval_form_go".$RFS_SITE_DELIMITER.
+../admin/adm.php:505:	       "id=$id".$RFS_SITE_DELIMITER.
+../admin/adm.php:520:		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+../admin/adm.php:521:		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
+../admin/adm.php:552:		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+../admin/adm.php:553:		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
+../admin/adm.php:563:		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+../admin/adm.php:564:		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
+../admin/adm.php:584:		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+../admin/adm.php:585:		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
+../admin/adm.php:592:		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+../admin/adm.php:593:		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
+../admin/adm.php:603:		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+../admin/adm.php:604:		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
+../admin/adm.php:614:		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+../admin/adm.php:615:		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
+../admin/adm.php:629:		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+../admin/adm.php:630:		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
+../admin/adm.php:639:		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+../admin/adm.php:640:		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
+../admin/adm.php:652:		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+../admin/adm.php:653:		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
+../admin/adm.php:658:		system("$RFS_SITE_SUDO_CMD touch $outfile.out");
+../admin/adm.php:659:		system("$RFS_SITE_SUDO_CMD chmod 777 $outfile.out");
+../admin/adm.php:669:		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
+../admin/adm.php:670:		system("$RFS_SITE_SUDO_CMD mv $outfile.out $outfile");
+../admin/adm.php:675:	$file="$RFS_SITE_PATH/themes/$thm/$dfile";
+../admin/adm.php:679:	system("$RFS_SITE_SUDO_CMD rm $file");
+../admin/adm.php:683:	$file="$RFS_SITE_PATH/themes/$thm/$dfile";
+../admin/adm.php:684:	sc_confirmform(	"Delete $file<br><br><img src=\"$RFS_SITE_URL/themes/$thm/$dfile\" width=500> ",
+../admin/adm.php:685:						"$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:686:						"action=f_theme_edit_delete_go".$RFS_SITE_DELIMITER.
+../admin/adm.php:687:						"dfile=$dfile".$RFS_SITE_DELIMITER.
+../admin/adm.php:697:	$file="$RFS_SITE_PATH/themes/$thm/t.php";
+../admin/adm.php:698:	system("$RFS_SITE_SUDO_CMD mv $file $file.bak.".time());
+../admin/adm.php:699:	system("$RFS_SITE_SUDO_CMD touch $file");
+../admin/adm.php:700:	system("$RFS_SITE_SUDO_CMD chmod 777 $file");
+../admin/adm.php:708:	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
+../admin/adm.php:714:				var url = "'.$RFS_SITE_URL.'/admin/adm.php";
+../admin/adm.php:748:	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.php");
+../admin/adm.php:765:	$file="$RFS_SITE_PATH/themes/$thm/t.css";
+../admin/adm.php:778:	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
+../admin/adm.php:784:				var url = "'.$RFS_SITE_URL.'/admin/adm.php";
+../admin/adm.php:816:	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.css");
+../admin/adm.php:835:	system("mkdir $RFS_SITE_PATH/themes/$new_name");
+../admin/adm.php:836:	system("cp $RFS_SITE_PATH/themes/$thm/* $RFS_SITE_PATH/themes/$new_name");
+../admin/adm.php:843:		if(file_exists("$RFS_SITE_PATH/$sample")) {
+../admin/adm.php:844:			echo sc_picthumb("$RFS_SITE_PATH/$sample",300,0,0);
+../admin/adm.php:846:	sc_bf(	"$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:847:			"action=f_theme_clone_go".$RFS_SITE_DELIMITER.
+../admin/adm.php:848:			"thm=$thm".$RFS_SITE_DELIMITER.
+../admin/adm.php:861:	sc_button("$RFS_SITE_URL/admin/adm.php?action=theme","Themes list");
+../admin/adm.php:863:	$folder="$RFS_SITE_PATH/themes/$thm";
+../admin/adm.php:875:							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_css&thm=$thm&tcss=$entry\">edit this file</a>]<br>";
+../admin/adm.php:877:												"$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:886:							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_php&thm=$thm&tphp=$entry\">edit this file</a>]<br>";
+../admin/adm.php:888:													"$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:914:						$img="$RFS_SITE_URL/themes/$thm/$entry";
+../admin/adm.php:916:						echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_delete&thm=$thm&dfile=$entry\" >
+../admin/adm.php:917:						<img src=\"$RFS_SITE_URL/images/icons/Delete.png\" border=0 width=16></a>";						
+../admin/adm.php:935:	$file="$RFS_SITE_PATH/classes.out.txt";
+../admin/adm.php:947:	sc_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_view_classes","View CSS Classes");
+../admin/adm.php:958:		if(file_exists("$RFS_SITE_PATH/$sample")) {
+../admin/adm.php:960:			echo sc_picthumb("$RFS_SITE_PATH/$sample",100,80,0);
+../admin/adm.php:965:		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm\">edit</a>] ";
+../admin/adm.php:966:		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_clone&thm=$thm\">clone</a>] ";
+../admin/adm.php:967:		echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_delete&thm=$thm\">delete</a>] ";
+../admin/adm.php:993:	echo "[\$RFS_SITE_$x] set to [$val] <br>";
+../admin/adm.php:1006:	sc_confirmform("<p>Delete \$RFS_SITE_$site_var->name ?</p>","$RFS_SITE_URL/admin/adm.php?action=f_delsitevar_go","id=$id");
+../admin/adm.php:1026:		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\" enctype=\"application/x-www-form-URLencoded\">";
+../admin/adm.php:1031:		echo "\$RFS_SITE_$site_var->name <br>$site_var->desc";
+../admin/adm.php:1104:		// sc_button("$RFS_SITE_URL/admin/adm.php?action=f_delsitevar&id=$site_var->id","Delete");
+../admin/adm.php:1106:		rfs_db_element_edit("","$RFS_SITE_URL/admin/adm.php","edit_site_vars","site_vars", $site_var->id);
+../admin/adm.php:1114:	echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\">";
+../admin/adm.php:1117:	echo "\$RFS_SITE_<input name=name size=17 value=\"ADD NEW\"> ";
+../admin/adm.php:1164:	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+../admin/adm.php:1238:			echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+../admin/adm.php:1249:			echo "<form method=\"post\" enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+../admin/adm.php:1282:			echo "<img src=\"$RFS_SITE_URL/$menuitem->icon\" width=64 height=64 border='0'><br>Change</a>";
+../admin/adm.php:1304:	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:1305:            "action=f_admin_menu_edit_mod".$RFS_SITE_DELIMITER."id=$id",
+../admin/adm.php:1310:/* sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:1311:	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.	       "id=$id",
+../admin/adm.php:1315:	       "id".$RFS_SITE_DELIMITER.	       "first_login".$RFS_SITE_DELIMITER.	       "last_activity".$RFS_SITE_DELIMITER.	       "last_login".$RFS_SITE_DELIMITER.	       "logins",
+../admin/adm.php:1353:	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+../admin/adm.php:1405:			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/admin/adm.php>";
+../admin/adm.php:1416:			echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/admin/adm.php>";
+../admin/adm.php:1449:			echo "<img src=\"$RFS_SITE_URL/$menuitem->icon\" width=64 height=64 border='0'><br>Change</a>";
+../admin/adm.php:1495:	echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+../admin/adm.php:1562:		echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+../admin/adm.php:1574:		echo "<form enctype=\"application/x-www-form-URLencode\" method=\"post\" action=\"$RFS_SITE_URL/admin/adm.php\">";
+../admin/adm.php:1686:	<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">
+../admin/adm.php:1692:	<img src=$RFS_SITE_URL/images/icons/exclamation.png width=64 height=64 border='0'>
+../admin/adm.php:1716:		echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\"><tr><td>";
+../admin/adm.php:1723:		echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+../admin/adm.php:1728:		if(!file_exists("$RFS_SITE_PATH/$cat->image")) {
+../admin/adm.php:1733:		<a href='$RFS_SITE_URL/admin/adm.php?action=f_category_change_icon&id=$cat->id'>		
+../admin/adm.php:1734:		<img src='$RFS_SITE_URL/$cat->image' border='0' width=64 height=64> </a>
+../admin/adm.php:1772:	sc_bf( "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:1773:	       "action=f_edit_users_go".$RFS_SITE_DELIMITER.
+../admin/adm.php:1778:	       "id".$RFS_SITE_DELIMITER.
+../admin/adm.php:1779:	       "first_login".$RFS_SITE_DELIMITER.
+../admin/adm.php:1780:	       "last_activity".$RFS_SITE_DELIMITER.
+../admin/adm.php:1781:	       "last_login".$RFS_SITE_DELIMITER.
+../admin/adm.php:1807:                    "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:1808:                    "action=f_del_users_go".$RFS_SITE_DELIMITER."id=$id" );
+../admin/adm.php:1825:	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:1830:            "name".$RFS_SITE_DELIMITER."pass",
+../admin/adm.php:1837:                     "showform".$RFS_SITE_DELIMITER."f_",
+../admin/adm.php:1865:		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+../admin/adm.php:1875:	echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+../admin/adm.php:1929:		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+../admin/adm.php:1943:		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+../admin/adm.php:1960:	echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+../admin/adm.php:1982:	$dr=$RFS_SITE_PATH;
+../admin/adm.php:1984:	if( $RFS_SITE_PATH=="C:\\xampp\\htdocs\\sethcoder" ) {
+../admin/adm.php:2001:	@include( "$RFS_SITE_PATH/log/log.htm" );
+../admin/adm.php:2063:                        "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:2064:                        "action=f_modify_link".$RFS_SITE_DELIMITER."deletelink=delete_go".$RFS_SITE_DELIMITER."linkid=$linkid" );
+../admin/adm.php:2116:		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+../admin/adm.php:2192:	sc_bf(  "$RFS_SITE_URL/admin/adm.php", "action=f_add_link",
+../admin/adm.php:2194:            "sname".$RFS_SITE_DELIMITER."link".$RFS_SITE_DELIMITER."description",
+../admin/adm.php:2313:	if($RFS_SITE_CHECK_UPDATE=="true") {
+../admin/adm.php:2341:	sc_button( "$RFS_SITE_URL/admin/adm.php?debug=on","Debug on <font style='color: green; background-color: dark-green;'> ON </font>" );
+../admin/adm.php:2342:	sc_button( "$RFS_SITE_URL/admin/adm.php?debug=off","Debug <font style='color:red; background-color: dark-green;'> OFF </font>" );
+../admin/adm.php:2345:	sc_button( "$RFS_SITE_URL/admin/adm.php?admed=on&what=1","Adm Edit <font style='color: green; background-color: dark-green;'> ON </font>" );
+../admin/adm.php:2346:	sc_button( "$RFS_SITE_URL/admin/adm.php?admed=off&what=1","Adm Edit <font style='color:red; background-color: dark-green;'> OFF </font>" );
+../admin/adm.php:2349:	sc_button( "$RFS_SITE_URL/admin/adm.php?textbuttons=true","Text Buttons <font style='color: green; background-color: dark-green;'> ON </font>" );
+../admin/adm.php:2350:	sc_button( "$RFS_SITE_URL/admin/adm.php?textbuttons=false","Text Buttons <font style='color:red; background-color: dark-green;'> OFF </font>" );
+../admin/adm.php:2353:	sc_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=hide","Hide banner" );
+../admin/adm.php:2354:	sc_button( "$RFS_SITE_URL/admin/adm.php?admin_show_top=show","Show banner" );
+../admin/adm.php:2383:                                echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
+../admin/adm.php:2384:                                if( file_exists( "$RFS_SITE_PATH/admin/images/$x.png" ) ) {
+../admin/adm.php:2385:										echo "<img src='$RFS_SITE_URL/admin/images/$x.png' width=64 height=64 border='0' align=center>";
+../admin/adm.php:2391:								echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>";
+../admin/adm.php:2425:						if(!file_exists("$RFS_SITE_PATH/$icon->icon"))
+../admin/adm.php:2428:src=\"$RFS_SITE_URL/include/button.php?
+../admin/adm.php:2429:im=$RFS_SITE_PATH/$icon->icon&
+../admin/adm.php:2446:                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_entry&id=$icon->id","Edit" );
+../admin/adm.php:2448:                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_edit_del&id=$icon->id","Delete" );
+../admin/adm.php:2449:                        sc_button( "$RFS_SITE_URL/admin/adm.php?action=f_admin_menu_change_icon&id=$icon->id","Change Icon" );
+../admin/adm.php:2450:                        sc_optionizer( "$RFS_SITE_URL/admin/adm.php",
+../admin/adm.php:2451:                                       "action=f_admin_change_category".$RFS_SITE_DELIMITER.
+../admin/adm.php:2493:									echo "<a href=\"$RFS_SITE_URL/admin/adm.php?action=$x\">";
+../admin/adm.php:2501:									$img="$RFS_SITE_PATH/modules/$mv/images/$fn.png";
+../admin/adm.php:2504:									$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$img&t=$px&w=64&h=64&y=20\" border='0' ></a> ";
+../admin/adm.php:2506:										$png="<img src=\"$RFS_SITE_URL/include/button.php?im=$RFS_SITE_PATH/images/icons/exclamation.png&t=$px&w=64&h=64&y=20\" border='0' alt='$fn - $img' text='$fn - $img'></a> ";
+../admin/adm.php:2514:                            echo "<a style='color: #cFcF00;' href='$RFS_SITE_URL/admin/adm.php?action=$x'>$px</a>";
+../admin/lib.adm.php:7:	if( empty( $theme ) )               $theme=$RFS_SITE_DEFAULT_THEME;
+../admin/lib.adm.php:9:	if( sc_yes( $RFS_SITE_FORCE_THEME ) ) $theme=$RFS_SITE_FORCED_THEME;
+../admin/lib.adm.php:10:	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+../config/config.sitevars.php:19:$RFS_SITE_SESSION_ID        = "RFS_CMS_";
+../config/config.sitevars.php:21:$RFS_SITE_SESSION_USER      = $_SESSION['valid_user'];
+../config/config.sitevars.php:22:$RFS_SITE_ADMIN             = "Administrator";
+../config/config.sitevars.php:24:$RFS_SITE_ADMIN_EMAIL       = "admin@".$SERVER['DOCUMENT_ROOT'];
+../config/config.sitevars.php:25:$RFS_SITE_SLOGAN            = " (SITE VAR: SLOGAN) Powered by <a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">RFSCMS</a>";
+../config/config.sitevars.php:27:$RFS_SITE_URL               = $SERVER['DOCUMENT_ROOT'];
+../config/config.sitevars.php:29:$RFS_SITE_URL				= " ";
+../config/config.sitevars.php:30:$RFS_SITE_PATH              = getcwd();
+../config/config.sitevars.php:31:$RFS_SITE_ERROR_LOG         = "/var/log/apache2/error.log";
+../config/config.sitevars.php:43:$RFS_SITE_WIKI_IMAGES_PATH  = "images/wiki";
+../config/config.sitevars.php:55:$RFS_SITE_NAV_FONT          = "impact.ttf";
+../config/config.sitevars.php:56:$RFS_SITE_NAV_IMG           = "0";
+../config/config.sitevars.php:59:$RFS_SITE_DEFAULT_THEME     = "default";
+../config/config.sitevars.php:60:$RFS_SITE_FORCE_THEME       = true;
+../config/config.sitevars.php:61:$RFS_SITE_FORCED_THEME      = "default";
+../config/config.sitevars.php:62:$RFS_SITE_THEME_CSS_URL     = "";
+../config/config.sitevars.php:63:$RFS_SITE_THEME_DROPDOWN    = false;
+../config/config.sitevars.php:66:$RFS_SITE_ADDTHIS_ACCT		= ""; // www.addthis.com
+../config/config.sitevars.php:69:$RFS_SITE_FACEBOOK_APP_ID   = "";
+../config/config.sitevars.php:70:$RFS_SITE_FACEBOOK_SECRET   = "";
+../config/config.sitevars.php:71:$RFS_SITE_FACEBOOK_SDK      = "$RFS_SITE_PATH/facebook/src/facebook.php";
+../config/config.sitevars.php:74:$RFS_SITE_ALLOW_FREE_DOWNLOADS = "false";
+../config/config.sitevars.php:76:$RFS_SITE_CSS               = "<LINK rel=\"stylesheet\" href=\"\$RFS_SITE_THEME_CSS_URL\" type=\"text/css\">\n";
+../config/config.sitevars.php:77:$RFS_SITE_MENU_TOP_LOCATION = "top";
+../config/config.sitevars.php:78:$RFS_SITE_MENU_LEFT_LOCATION= "left";
+../config/config.sitevars.php:79:$RFS_SITE_FOOTER            = "";
+../config/config.sitevars.php:80:$RFS_SITE_COPYRIGHT         = "<a href=\"http://www.sethcoder.com/modules/wiki/rfswiki.php?name=RFS+Content+Management+System\">Powered by RFS CMS</a>";
+../config/config.sitevars.php:81:$RFS_SITE_SINGLETABLEWIDTH  = 940;
+../config/config.sitevars.php:82:$RFS_SITE_DOUBLETABLEWIDTH  = 435;
+../config/config.sitevars.php:83:$RFS_SITE_MENU_TOP_LOCATION = "top";
+../config/config.sitevars.php:85:$RFS_SITE_JOIN_FORM_CODE		= "
+../config/config.sitevars.php:88:<form method=post action=\"$RFS_SITE_URL/login.php\">
+../config/config.sitevars.php:96:$RFS_SITE_LOGIN_FORM_CODE   = " 
+../config/config.sitevars.php:97:<script src=\"\$RFS_SITE_URL/include/md5.js\"> </script>
+../config/config.sitevars.php:98:<form method=post action=\"\$RFS_SITE_URL/login.php\">
+../config/config.sitevars.php:118:<td> &nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=\$PHP_SELF>Register</a>)
+../config/config.sitevars.php:125:$RFS_SITE_LOGGED_IN_CODE   = "<div class=logged_in_box>\$RFS_SITE_SESSION_USER (<a href=\$RFS_SITE_URL/login.php?action=logout>logout</a>)</div>";
+../config/config.sitevars.php:129:$RFS_SITE_JS_JQUERY         = "<script src=\"\$RFS_SITE_URL/3rdparty/jquery/jquery.js\"></script>";
+../config/config.sitevars.php:130:$RFS_SITE_JS_COLOR          = "<script src=\"\$RFS_SITE_URL/3rdparty/jscolor/jscolor.js\"></script>";
+../config/config.sitevars.php:131:$RFS_SITE_JS_MOOTOOLS       = "<script src=\"\$RFS_SITE_URL/3rdparty/mootools/mootools.js\"></script>";
+../config/config.sitevars.php:132:$RFS_SITE_JS_EDITAREA       = "<script src=\"\$RFS_SITE_URL/3rdparty/editarea/edit_area/edit_area_full.js\"></script>";
+../config/config.sitevars.php:133:$RFS_SITE_JS_MSDROPDOWN 		= "<script src=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/js/msdropdown/jquery.dd.min.js\"></script> <script language=\"javascript\"> $(document).ready(function(e) { try { $(\"body select\").msDropDown(); } catch(e) { alert(e.message);} }); </script> ";
+../config/config.sitevars.php:134:$RFS_SITE_JS_MSDROPDOWN_THEME = "<link rel=\"stylesheet\" type=\"text/css\" href=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/css/msdropdown/dd.css\" />  <link rel=\"stylesheet\" type=\"text/css\" href=\"\$RFS_SITE_URL/3rdparty/ms-dropdown/css/msdropdown/skin2.css\" /> ";
+../config/config.sitevars.php:170:$RFS_SITE_TITLE         ="<TITLE> \$RFS_SITE_NAME $title </TITLE>";
+../config/config.sitevars.php:173:$RFS_SITE_SEO_KEYWORDS = $title."";
+../config/config.sitevars.php:176:$RFS_SITE_DOC_TYPE          = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n";
+../config/config.sitevars.php:177:$RFS_SITE_HTML_OPEN         = "<HTML>\n";
+../config/config.sitevars.php:178:$RFS_SITE_HEAD_OPEN         = "<HEAD>\n
+../config/config.sitevars.php:184:$RFS_SITE_HEAD_CLOSE        = "</HEAD>\n";
+../config/config.sitevars.php:185:$RFS_SITE_BODY_OPEN         = "<BODY>\n";// topmargin=0 leftmargin=0 rightmargin=0 marginheight=0>\n\n";
+../config/config.sitevars.php:186:$RFS_SITE_BODY_CLOSE        = "</BODY>\n";
+../config/config.sitevars.php:187:$RFS_SITE_HTML_CLOSE        = "</HTML>\n";
+../config/config.sitevars.php:188:$RFS_SITE_DELIMITER         = "¥";
+../error.log:884:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_THEME_CSS_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../error.log:885:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../error.log:886:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../error.log:887:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../error.log:888:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../error.log:889:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../error.log:890:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../error.log:891:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../error.log:892:[Fri Feb 21 10:23:15 2014] [error] [client 192.168.1.2] File does not exist: /var/www/admin/$RFS_SITE_URL, referer: http://area56.sethcoder.com/admin/adm.php?action=edit_site_vars
+../footer.php:18:		rfs_echo($RFS_SITE_BODY_CLOSE);
+../footer.php:19:		rfs_echo($RFS_SITE_HTML_CLOSE);
+../footer.php:25:if(file_exists("$RFS_SITE_PATH/themes/$theme/t.footer.php")){
+../footer.php:26:	include("$RFS_SITE_PATH/themes/$theme/t.footer.php");
+../footer.php:32:		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+../footer.php:49:	echo $RFS_SITE_COPYRIGHT;	
+../footer.php:53:	rfs_echo($RFS_SITE_BODY_CLOSE);
+../footer.php:54:	rfs_echo($RFS_SITE_HTML_CLOSE);
+../header.php:18:if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
+../header.php:31:if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
+../header.php:33:if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) include("$RFS_SITE_PATH/themes/$theme/t.header.php");
+../header.php:36:	rfs_echo($RFS_SITE_DOC_TYPE);
+../header.php:37:	rfs_echo($RFS_SITE_HTML_OPEN);
+../header.php:38:	rfs_echo($RFS_SITE_HEAD_OPEN);    
+../header.php:42:	$keywords.=$RFS_SITE_SEO_KEYWORDS;	
+../header.php:45:	rfs_echo($RFS_SITE_TITLE);
+../header.php:46:	if(file_exists("$RFS_SITE_PATH/themes/$theme/t.css"))
+../header.php:47:		echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+../header.php:49:	rfs_echo($RFS_SITE_HEAD_CLOSE);	
+../header.php:50:	rfs_echo($RFS_SITE_BODY_OPEN);	
+../header.php:56:		if ($RFS_SITE_TTF_TOP)  {
+../header.php:57:			$clr 	= sc_html2rgb($RFS_SITE_TTF_TOP_COLOR);
+../header.php:58:           $bclr	= sc_html2rgb($RFS_SITE_TTF_TOP_BGCOLOR);
+../header.php:60:						$RFS_SITE_NAME,
+../header.php:61:						$RFS_SITE_TTF_TOP_FONT,						
+../header.php:62:						$RFS_SITE_TTF_TOP_FONT_SIZE,
+../header.php:64:						$RFS_SITE_TTF_TOP_FONT_X_OFFSET,
+../header.php:65:						$RFS_SITE_TTF_TOP_FONT_Y_OFFSET,
+../header.php:73:			if(file_exists("$RFS_SITE_PATH/$base_srch.jpg")) $timg=$base_srch.".jpg";
+../header.php:74:			if(file_exists("$RFS_SITE_PATH/$base_srch.gif")) $timg=$base_srch.".gif";
+../header.php:75:			if(file_exists("$RFS_SITE_PATH/$base_srch.png")) $timg=$base_srch.".png";
+../header.php:77:				echo "<img src=\"$RFS_SITE_URL/$timg\" align=\"left\" border=\"0\">";
+../header.php:80:				echo "<div class=\"top_site_name\">$RFS_SITE_NAME</div>";
+../header.php:86:		echo "<font class=slogan>$RFS_SITE_SLOGAN</font>";
+../header.php:89:		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.bot_right_corner.gif")) {
+../header.php:90:			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.bot_right_corner.gif\" align=right valign=bottom>";
+../header.php:96:			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+../header.php:102:			rfs_echo($RFS_SITE_LOGGED_IN_CODE);
+../header.php:112:		sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
+../header.php:126:		if(file_exists("$RFS_SITE_PATH/themes/$theme/t.top_left_corner.gif"))    {
+../header.php:127:			echo "<img src=\"$RFS_SITE_URL/themes/$theme/t.top_left_corner.gif\" align=left>";
+../header.php:139:rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
+../header.php:140:rfs_echo($RFS_SITE_JS_JQUERY);
+../header.php:141:rfs_echo($RFS_SITE_JS_COLOR);
+../header.php:142:rfs_echo($RFS_SITE_JS_EDITAREA);
+../header.php:145:rfs_echo($RFS_SITE_JS_MSDROPDOWN);
+../include/lib.images.php:73:$r="<img src='$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s' class='rfs_thumb'>";
+../include/lib.images.php:78:$r="$RFS_SITE_URL/include/thumbnail.php/thumb.$zimg?img=$zimg&w=$w&h=$h&scale=$s";
+../include/lib.images.php:94:$rt="<img src=\"$RFS_SITE_URL/include/generate.image.php/$text.png?action=showfont&font=$font&otext=$text&text_size=$fontsize&owidth=$w&oheight=$h&offx=$ox&offy=$oy&icr=$inicr&icg=$inicg&icb=$inicb&bcr=$inbcr&bcg=$inbcg&bcb=$inbcb&forcerender=$forcerender&forceheight=$forceheight\" border='0' alt='$text' >";
+../include/lib.images.php:99:return "$RFS_SITE_URL/include/generate.image.php/$text.png?action=showfont&font=$font&otext=$text&text_size=16&icr=255&icg=255&icb=255&bcr=0&bcg=0&bcb=0&forcerender=1";
+../include/lib.images.php:103:	echo "<img src=\"$RFS_SITE_URL/include/percentage_bar.php?per=$percent\" alt=\"$percent %\" /> ";
+../include/lib.images.php:108:	system("wkhtmltopdf '$webpage' $RFS_SITE_PATH/tmp/$md5.pdf");
+../include/lib.images.php:109:	system("convert $RFS_SITE_PATH/tmp/$md5.pdf -append $RFS_SITE_PATH/tmp/$md5.png");
+../include/lib.images.php:110:	$r="$RFS_SITE_URL/tmp/$md5.png";
+../include/lib.sitevars.php:14:    $GLOBALS["RFS_SITE_$upsitevar"]=stripslashes($site_var->value);
+../include/lib.sitevars.php:25:if(!isset($RFS_SITE_SUDO_CMD)) $RFS_SITE_SUDO_CMD=" ";
+../include/session.php:6:session_name(str_replace(" ","_",$RFS_SITE_SESSION_ID));
+../include/session.php:13:if(isset($_SESSION["valid_user"])) $RFS_SITE_SESSION_USER = sc_getusername($_SESSION["valid_user"]);
+../include/generate.image.php:12:    $dr=$RFS_SITE_PATH."/files/fonts/";
+../include/generate.image.php:23:    $font=$RFS_SITE_PATH."/files/fonts/".$font;
+../include/generate.image.php:27:    $font="$RFS_SITE_PATH/include/fonts/OCRA.ttf";
+../include/generate.image.php:42:	$renderfile="$RFS_SITE_PATH/files/pictures/rendered/font.$font_name.png";
+../include/generate.image.php:112:	$ptf=$RFS_SITE_PATH."/".$pic->url;
+../include/generate.image.php:113:	$pto        =$RFS_SITE_PATH."/"."files/pictures/rendered/tmp.png";	
+../include/generate.image.php:139:	$renderfile =$RFS_SITE_PATH."/"."files/pictures/rendered/".$py[0].".$owidth.".$meme->id.".png";	
+../include/generate.image.php:193:    $font_file=$RFS_SITE_PATH."/files/fonts/".$font_file;
+../include/generate.image.php:243:                $ad="  Create new captions @ $RFS_SITE_URL/";
+../include/lib.file.php:26:		if(!stristr($uploadFile,$RFS_SITE_PATH)) $uploadFile=$RFS_SITE_PATH.$uploadFile;
+../include/lib.file.php:41:				echo "<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=get_file&id=$id\">View file information</a><br>";
+../include/lib.file.php:42:				$httppath=str_replace("$RFS_SITE_URL/","",$httppath);
+../include/lib.file.php:150:	system("yes| rm -R $RFS_SITE_PATH/tmp/*");	
+../include/lib.file.php:151:	system("yes| rm -R $RFS_SITE_PATH/tmp/.*");
+../include/lib.file.php:153:	system("cd $RFS_SITE_PATH/tmp");
+../include/lib.file.php:157:	system("renlow $RFS_SITE_PATH/tmp");
+../include/lib.file.php:158:	$dirfiles=sc_get_folder_files("$RFS_SITE_PATH/tmp");
+../include/lib.file.php:166:				echo system("icontopbm -x $RFS_SITE_URL/tmp/$file");
+../include/lib.file.php:168:				echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
+../include/lib.file.php:181:					echo "<img src=\"$RFS_SITE_URL/tmp/$file\"><hr>";
+../include/lib.file.php:211:				$x=sc_echo_file("$RFS_SITE_PATH/tmp/$file");
+../include/lib.file.php:216:					$db_file=str_replace("$RFS_SITE_PATH/","",$file_name);
+../include/lib.file.php:230:		system("$RFS_SITE_SUDO_CMD mkdir $dir");
+../include/lib.file.php:231:		system("$RFS_SITE_SUDO_CMD chmod 775 $dir");
+../include/lib.file.php:232:		system("$RFS_SITE_SUDO_CMD chown www-data:www-data $dir");
+../include/thumbnail.php:8:$img=str_replace($RFS_SITE_URL."/","",$img);
+../include/thumbnail.php:9:$img=str_replace($RFS_SITE_PATH."/","",$img);
+../include/thumbnail.php:13://$cfile="$RFS_SITE_PATH/files/pictures/cache/$imgfile.$w.$h.$scale.png";
+../include/thumbnail.php:16:if(!stristr($img,$RFS_SITE_PATH)) $img=$RFS_SITE_PATH."/".$img;
+../include/lib.social_buttons.php:7:		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
+../include/lib.social_buttons.php:17:		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
+../include/lib.social_buttons.php:45:if(empty($RFS_SITE_PAYPAL_BUTTON1)) return;
+../include/lib.social_buttons.php:47:	echo $RFS_SITE_PAYPAL_BUTTON1;
+../include/lib.social_buttons.php:49:	$vr=$RFS_SITE_URL;
+../include/lib.social_buttons.php:50:	echo "<img src='$vr/images/icons/Paypal.png' border='0' height='32' alt='$RFS_SITE_PAYPAL_BUTTON1_MSG'></a>";
+../include/lib.social_buttons.php:56:			<input type=\"hidden\" name=\"hosted_button_id\" value=\"$RFS_SITE_PAYPAL_BUTTON2\">
+../include/lib.social_buttons.php:57:			<input type=\"image\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif\" border=\"0\" name=\"submit\" alt=\"$RFS_SITE_PAYPAL_BUTTON2_MSG\">
+../include/lib.social_buttons.php:63:	if(!sc_yes($RFS_SITE_SHOW_SOCIALS)) return;
+../include/lib.social_buttons.php:64:	if(!empty($RFS_SITE_ADDTHIS_ACCT)) {
+../include/lib.social_buttons.php:86:		src="//s7.addthis.com/js/300/addthis_widget.js#pubid='.$RFS_SITE_ADDTHIS_ACCT.'"></script>
+../include/lib.social_buttons.php:107:	sc_facebook_like_little($RFS_SITE_URL);
+../include/lib.social_buttons.php:109:    sc_stumble_upon($RFS_SITE_URL);
+../include/lib.social_buttons.php:111:	sc_google_plus($RFS_SITE_URL);
+../include/lib.social_buttons.php:116:    global $RFS_SITE_GOOGLE_ADSENSE;
+../include/lib.social_buttons.php:117:	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {
+../include/lib.social_buttons.php:120:				google_ad_client = "'.$RFS_SITE_GOOGLE_ADSENSE.'";
+../include/lib.social_buttons.php:130:	global $RFS_SITE_GOOGLE_ADSENSE;
+../include/lib.social_buttons.php:131:	if(!empty($RFS_SITE_GOOGLE_ADSENSE)) {		
+../include/lib.social_buttons.php:134:				google_ad_client = \"$RFS_SITE_GOOGLE_ADSENSE\";
+../include/lib.social_buttons.php:147:    global $RFS_SITE_GOOGLE_ANALYTICS;
+../include/lib.social_buttons.php:148:	if(!empty($RFS_SITE_GOOGLE_ANALYTICS)) {
+../include/lib.social_buttons.php:151:				_gaq.push(['_setAccount', '$RFS_SITE_GOOGLE_ANALYTICS']);
+../include/lib.social_buttons.php:177:";    $RFS_SITE_ADDTHIS_ACCT		= "ra-50b82f7c63926ef6";
+../include/lib.social_buttons.php:314:	if(!empty($GLOBALS['RFS_SITE_FACEBOOK_APP_ID'])) {
+../include/lib.social_buttons.php:315:		if(!empty($GLOBALS['RFS_SITE_FACEBOOK_SECRET'])) {
+../include/lib.social_buttons.php:317:			$r="<a href=\"$RFS_SITE_URL/facebook/fb.login.php?goback=1";
+../include/lib.social_buttons.php:322:			$r.="<img src=\"$RFS_SITE_URL/facebook/facebook_login.gif\" border=\"0\" alt=\"Connect with facebook\" text=\"Connect with facebook\">";
+../include/lib.social_buttons.php:330:	$RFS_SITE_FACEBOOK_APP_ID=$GLOBALS['RFS_SITE_FACEBOOK_APP_ID'];
+../include/lib.social_buttons.php:331:	if(!empty($RFS_SITE_FACEBOOK_APP_ID)) {
+../include/lib.social_buttons.php:337:						js.src = \"//connect.facebook.net/en_GB/all.js#xfbml=1&appId=$RFS_SITE_FACEBOOK_APP_ID\";
+../include/lib.menus.php:24:			sc_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_top_add_link&lname=$k&lurl=$v","Add to Top Menu");
+../include/lib.menus.php:27:			sc_button("$RFS_SITE_URL/admin/adm.php?action=f_menu_admin_add_link&lname=$k&lurl=$v","Add to Admin Menu");
+../include/lib.menus.php:52:        //if(!stristr($link->link,$RFS_SITE_URL)) $link->link="$RFS_SITE_URL/$link->link";
+../include/lib.menus.php:62:                if(sc_yes($RFS_SITE_NAV_BUTTONS)) {
+../include/lib.menus.php:74:                    $clr = sc_html2rgb($RFS_SITE_NAV_FONT_COLOR);
+../include/lib.menus.php:75:                    $bclr= sc_html2rgb($RFS_SITE_NAV_FONT_BGCOLOR);
+../include/lib.menus.php:77:                    // d_echo("\$RFS_SITE_NAV_IMG = $RFS_SITE_NAV_IMG");
+../include/lib.menus.php:79:						if($RFS_SITE_NAV_IMG == 1) {
+../include/lib.menus.php:81:						if($RFS_SITE_NAV_FONT_SIZE>0) $fntsz=$RFS_SITE_NAV_FONT_SIZE;
+../include/lib.menus.php:83:										$RFS_SITE_NAV_FONT,
+../include/lib.menus.php:86:										0+$RFS_SITE_NAV_FONT_X_OFFSET,
+../include/lib.menus.php:87:										0+$RFS_SITE_NAV_FONT_Y_OFFSET,
+../include/lib.tags.php:8:			var url = "'.$RFS_SITE_URL.'/header.php";
+../include/lib.mysql.php:15:		$npath=str_replace($RFS_SITE_PATH,"",$npath);
+../include/lib.mysql.php:21:		echo "<META HTTP-EQUIV=\"refresh\" content=\"0;URL=$RFS_SITE_URL/$rtnpage?action=$rtnact\">";
+../include/lib.mysql.php:53:	sc_bf(  "$RFS_SITE_URL/admin/adm.php",
+../include/lib.mysql.php:54:            "action=f_rfs_db_element_ed2".$RFS_SITE_DELIMITER.
+../include/lib.mysql.php:55:			"table=$table".$RFS_SITE_DELIMITER.
+../include/lib.mysql.php:56:			"id=$id".$RFS_SITE_DELIMITER.
+../include/lib.mysql.php:57:			"rtnpage=$rtnpage".$RFS_SITE_DELIMITER.
+../include/lib.mysql.php:58:			"rtnact=$rtnact".$RFS_SITE_DELIMITER,
+../include/lib.mysql.php:86:					"$RFS_SITE_URL/admin/adm.php?action=f_rfs_db_element_del2",
+../include/lib.mysql.php:87:					"table=$table".$RFS_SITE_DELIMITER.
+../include/lib.mysql.php:88:					"id=$id".$RFS_SITE_DELIMITER.
+../include/lib.mysql.php:89:					"rtnpage=$rtnpage".$RFS_SITE_DELIMITER.
+../include/lib.mysql.php:109:    if(!stristr($_SESSION['select_image_path'],$RFS_SITE_PATH))
+../include/lib.mysql.php:110:        $_SESSION['select_image_path']=$RFS_SITE_PATH.$_SESSION['select_image_path'];
+../include/lib.mysql.php:151:                   $out.="&table=$table&image_field=$image_field&spath=$RFS_SITE_PATH";
+../include/lib.mysql.php:152:                   echo "<a href='$RFS_SITE_URL/include/lib.mysql.php?$out'>
+../include/lib.mysql.php:153:                   <img src='$RFS_SITE_URL/images/icons/Folder.png' width=32>($file)</a>";
+../include/lib.mysql.php:171:                    $out.="&table=$table&image_field=$image_field&spath=$RFS_SITE_PATH";
+../include/lib.mysql.php:172:                    echo "<a href='$RFS_SITE_URL/include/lib.mysql.php?$out'><img src='$RFS_SITE_URL/include/button.php?im=".$_SESSION['select_image_path']."/$file&t=$file&w=96&h=96&y=90&fcr=1&fcg=255&fcb=1' border=0></a>";
+../include/lib.mysql.php:305:	$ret = "<a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$userdata->name\">\n";
+../include/lib.mysql.php:306:	if(empty($userdata->avatar)) $userdata->avatar="$RFS_SITE_URL/images/icons/noimage.gif";
+../include/lib.mysql.php:434:	$sd=$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.mysql.php:707:    if(stristr($showform, $RFS_SITE_DELIMITER)) {
+../include/lib.mysql.php:708:            $gx=explode($RFS_SITE_DELIMITER,$showform);
+../include/lib.mysql.php:712:    $page=$RFS_SITE_URL.sc_phpself();
+../include/lib.mysql.php:939:					if(file_exists("$RFS_SITE_PATH/$d->image"))
+../include/lib.mysql.php:945:					if(file_exists("$RFS_SITE_PATH/$d->icon"))
+../include/lib.mysql.php:979:			if(stristr($table,"$RFS_SITE_URL/")) 
+../include/lib.mysql.php:980:				$table=str_replace("$RFS_SITE_URL/","",$table);
+../include/lib.mysql.php:1092:// $hidevars    	= list of vars to hide, seperated by $RFS_SITE_DELIMITER
+../include/lib.mysql.php:1102:	$delimiter=$RFS_SITE_DELIMITER;	
+../include/lib.mysql.php:1103:    if(!stristr($page,$RFS_SITE_URL)) $page="$RFS_SITE_URL/$page";
+../include/lib.mysql.php:1310:										echo "<img width=32 height=32 src=\"$$RFS_SITE_URL/$fn\">";
+../include/lib.mysql.php:1380:					$key=join($RFS_SITE_DELIMITER,$keys);
+../include/lib.mysql.php:1392:										"SELECTNAME=$name".$RFS_SITE_DELIMITER,
+../include/lib.mysql.php:1573:					src=\"$RFS_SITE_URL/3rdparty/editarea/edit_area/edit_area_full.js\">
+../include/lib.mysql.php:1861:	$hvars=explode($RFS_SITE_DELIMITER,$hiddenvars);
+../include/lib.mysql.php:1866:	sc_optionize_file("addcss","$RFS_SITE_PATH/tools/classes.out.txt", "CSS Classes");
+../include/lib.mysql.php:1987:	$hvars=explode($RFS_SITE_DELIMITER,$hiddenvars);
+../include/lib.mysql.php:2005:	sc_optionize_file( "addvar", "$RFS_SITE_PATH/tools/rfsvars_out.txt", "Add a system variable");
+../include/lib.mysql.php:2095: return "<img src=$RFS_SITE_URL/images/icons/spinner.gif>";
+../include/lib.mysql.php:2103:			echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+../include/lib.mysql.php:2104:			$oimg=str_replace("$RFS_SITE_URL/","",$rfaajv);
+../include/lib.mysql.php:2114:	echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+../include/lib.mysql.php:2124:		if($r) echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+../include/lib.mysql.php:2140:			var url = "'.$RFS_SITE_URL.'/header.php";
+../include/lib.mysql.php:2274:					if(file_exists("$RFS_SITE_PATH/".$tdat['image']))
+../include/lib.mysql.php:2278:					if(file_exists("$RFS_SITE_PATH/".$tdat['icon']))
+../include/lib.mysql.php:2291:					if(file_exists("$RFS_SITE_PATH/".$dat['image'])) {
+../include/lib.mysql.php:2296:					if(file_exists("$RFS_SITE_PATH/".$dat['icon'])) {
+../include/button.php:22:if(!empty($f)) { $f=$RFS_SITE_PATH."/include/fonts/".$f; }
+../include/button.php:27:if(!stristr($im,$RFS_SITE_PATH)) $im=$RFS_SITE_PATH."/".$im; // $im=str_replace($RFS_SITE_PATH."/","",$im);
+../include/lib.debug.php:18:        $tx=explode($GLOBALS['RFS_SITE_DELIMITER'],$t);
+../include/lib.debug.php:27:function sc_tail_error_log() { global $RFS_SITE_ERROR_LOG;	
+../include/lib.debug.php:28:	if(empty($RFS_SITE_ERROR_LOG)) {
+../include/lib.debug.php:29:        $RFS_SITE_ERROR_LOG="/var/log/apache2/error.log";
+../include/lib.debug.php:30:        if(@file_exists("error_log")) { $RFS_SITE_ERROR_LOG="error_log"; }		
+../include/lib.debug.php:31:        if(@file_exists("/var/www/errors.log")) { $RFS_SITE_ERROR_LOG="/var/www/errors.log"; }
+../include/lib.debug.php:32:        if(@file_exists("/var/www/error.log")) { $RFS_SITE_ERROR_LOG="/var/www/error.log"; }
+../include/lib.debug.php:35:	$cmd="tail $RFS_SITE_ERROR_LOG";
+../include/lib.debug.php:46:	$dout ="\$data->theme=$data->theme".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:47:	$dout.= "\$RFS_SITE_SESSION_ID: ".$RFS_SITE_SESSION_ID.$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:48:	$dout.= "VALID USER: ".$_SESSION["valid_user"].$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:49:	$dout.= "LOGGED IN: ".$_SESSION["logged_in"].$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:50:	$dout.= "THEME: $RFS_SITE_PATH/themes/$theme".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:51:	$dout.= "USER ID: ".$data->id.$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:54:	if($_REQUEST['clear_error_log']=="true") { $dout.=system("rm $RFS_SITE_ERROR_LOG"); } // $fp=fopen("error.log","wt"); fwrite($fp,"error.log\n\r"); fclose($fp); }
+../include/lib.debug.php:61:	$dout="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:62:	$dout.="_REQUEST VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:63:	foreach( $_REQUEST as $k=>$v ) $dout.="\$_REQUEST['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:64:	$dout ="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:65:	$dout.="POST VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:66:	foreach( $_POST as $k=>$v ) $dout.="\$_POST['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:67:	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:68:	$dout.="GET VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:69:	foreach( $_GET as $k=>$v )  $dout.="\$_GET['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:70:	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:71:	$dout.="GLOBAL VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:73:	if(is_string($v)) $dout.="\$GLOBALS['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER']; }
+../include/lib.debug.php:74:	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:75:	$dout.="SESSION VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:77:		$dout.="\$_SESSION['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:78:	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:79:	$dout.="COOKIE VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:81:		$dout.="\$_COOKIE['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:82:	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:83:	foreach( session_get_cookie_params() as $k=>$v )  $dout.=" params['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:84:	$dout.="_ENV VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:85:	foreach( $_ENV as $k=>$v)     $dout.= "\$_ENV['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:86:	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:87:	$dout.="_SERVER VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:88:	foreach( $_SERVER as $k=>$v ) $dout.= "\$_SERVER['$k']='$v'".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:89:	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:90:	$dout.="RFS_SITE VARS:".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:94:		$dout.="\$RFS_SITE_". ($sv->name)."='$sv->value'<br>".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.debug.php:96:	$dout.="======================================================================".$GLOBALS['RFS_SITE_DELIMITER'];
+../include/lib.modules.php:10:	$dr="$RFS_SITE_PATH/modules";
+../include/lib.modules.php:53:	$dr="$RFS_SITE_PATH/modules";
+../include/lib.log.php:60:	$banip="<a href=\"$RFS_SITE_URL/adm.php?action=banip&ip=$countip_ban\">Ban this IP</a>";
+../include/lib.log.php:61:	$banref="<a href=\"$RFS_SITE_URL/adm.php?action=banref&ref=$refer_ban\">Ban this Referral</a>";
+../include/lib.log.php:63:	$bandomain="<a href=\"$RFS_SITE_URL/adm.php?action=bandomain&domain=$domain_ban\">Ban this Domain</a>";
+../include/lib.log.php:64:	$whoisip="<a href=\"$RFS_SITE_URL/adm.php?action=nqt&queryType=arin&target=$countip\">WhoIS IP</a>";
+../include/lib.log.php:65:	$whoisdm="<a href=\"$RFS_SITE_URL/adm.php?action=nqt&queryType=wwwhois&target=$domain_who\">WhoIS Domain</a>";
+../include/lib.log.php:85:		$unbanip="<a href=\"$RFS_SITE_URL/adm.php?action=unbanip&ip=$countip_ban\">UnBan this IP</a>";
+../include/lib.log.php:86:		$unbanref="<a href=\"$RFS_SITE_URL/adm.php?action=unbanref&ref=$refer_ban\">UnBan this Referral</a>";
+../include/lib.log.php:87:		$unbandomain="<a href=\"$RFS_SITE_URL/adm.php?action=unbandomain&domain=$domain_ban\">UnBan this Domain</a>";
+../include/lib.log.php:197:	$logfile="$RFS_SITE_PATH/log/log.htm";
+../include/lib.genm.php:15:		$fp=@fopen("$RFS_SITE_PATH/log/genm.log","at");
+../include/lib.rfs.php:8:if(isset($RFS_SITE_LOCALE))
+../include/lib.rfs.php:9:setlocale(LC_MONETARY, $RFS_SITE_LOCALE);
+../include/lib.rfs.php:106:			sc_info("You have not established a password. [<a href=\"$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form\" style=\"font-size: 1em;\">Change your password</a>]","WHITE","RED");
+../include/lib.rfs.php:109:			sc_info("You have not established an email address. [<a href=\"$RFS_SITE_URL/modules/profile/profile.php\" style=\"font-size: 1em;\">Add your email</a>]","WHITE","RED");
+../include/lib.rfs.php:124:	// sc_multi_rename("$RFS_SITE_PATH/themes/$theme",$theme,"t");
+../include/lib.rfs.php:138:	if(empty($theme))                   $theme=$RFS_SITE_DEFAULT_THEME;
+../include/lib.rfs.php:140:	if(sc_yes($RFS_SITE_FORCE_THEME))   $theme=$RFS_SITE_FORCED_THEME;
+../include/lib.rfs.php:314:echo "<div class=warning><br><img src='$RFS_SITE_URL/images/icons/exclamation2.png' border=0 align=left>$x</div>";
+../include/lib.rfs.php:320:    <img src='$RFS_SITE_URL/images/icons/Warning.png' width=\"12\" border=\"0\">
+../include/lib.rfs.php:327:	echo $_GLOBALS["RFS_SITE_URL"];
+../include/lib.rfs.php:421:		if(sc_yes($GLOBALS["RFS_SITE_THEME_DROPDOWN"])) {
+../include/lib.rfs.php:444:	$dr=$GLOBALS['RFS_SITE_PATH']."/themes/";
+../include/lib.rfs.php:461:    if(file_exists("$RFS_SITE_PATH/themes/$theme/$x"))
+../include/lib.rfs.php:462:        $rx="$RFS_SITE_URL/themes/$theme/$x";
+../include/lib.rfs.php:463:    else $rx="$RFS_SITE_URL/$x";
+../include/lib.rfs.php:486:	$message .= "<p>Automated message from <a href=$RFS_SITE_URL>$RFS_SITE_NAME</a> ~ Do not reply!</p>\n";
+../include/lib.rfs.php:492:    "From: $RFS_SITE_ADMIN_EMAIL\r\n$headers");
+../install/install.data.sql:33:('Admin', 9, '$RFS_SITE_URL/admin/adm.php', 434, 255),
+../install/install.data.sql:34:('News', 10, '$RFS_SITE_URL/', 124, 0),
+../install/install.data.sql:35:('Videos', 11, '$RFS_SITE_URL/modules/videos/videos.php', 195, 0),
+../install/install.data.sql:36:('Forum', 12, '$RFS_SITE_URL/modules/forums/forums.php?forum_list=yes', 199, 0),
+../install/install.data.sql:37:('Files', 13, '$RFS_SITE_URL/modules/core_files/files.php', 179, 0),
+../install/install.data.sql:38:('Pictures', 14, '$RFS_SITE_URL/modules/pictures/pics.php', 189, 0),
+../install/install.data.sql:39:('Profile', 15, '$RFS_SITE_URL/modules/profile/profile.php', 432, 0),
+../install/install.data.sql:40:('Wiki', 16, '$RFS_SITE_URL/modules/wiki/rfswiki.php', 140, 0),
+../install/install.data.sql:41:('Comics', 17, '$RFS_SITE_URL/modules/comics/comics.php', 155, 0),
+../install/install.data.sql:42:('Meme Generator', 18, '$RFS_SITE_URL/modules/pictures/pics.php?action=showmemes', 192, 0),
+../install/install.data.sql:43:('Video Wall', 19, '$RFS_SITE_URL/modules/video_wall/v.php', 196, 0);
+../install/install.php:39:$RFS_SITE_PATH = getcwd();
+../install/install.php:40:$cwdx=explode($RFS_PATH_SEP,$RFS_SITE_PATH);
+../install/install.php:42:$RFS_SITE_PATH=join($RFS_PATH_SEP,$cwdx);
+../install/install.php:44:	$RFS_SITE_PATH.=$RFS_PATH_SEP.$installd;
+../install/install.php:48:$RFS_SITE_URL  = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
+../install/install.php:49:$hostx=explode("/",$RFS_SITE_URL);
+../install/install.php:52:$RFS_SITE_URL=join("/",$hostx);
+../install/install.php:53:if($folder!="install") $RFS_SITE_URL.="/".$folder;
+../install/install.php:76:echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/install/install.css\" type=\"text/css\">\n";
+../install/install.php:78:background-image: url(\"$RFS_SITE_URL/install/install.bkg.jpg\");
+../install/install.php:123: <img src=\"$RFS_SITE_URL/images/icons/email.gif\"></a><br>
+../install/install.php:140:<img src=\"$RFS_SITE_URL/images/icons/paypal.gif\"></a>
+../install/install.php:145:        <a href=$RFS_SITE_URL/install/install.php?action=step_a&submit=Begin>BEGIN!<br>
+../install/install.php:147:		<img src=\"$RFS_SITE_URL/images/icons/next.png\">
+../install/install.php:171:        echo "<div width=100% style='background-color: cyan; color: black;'>Attempting to create $RFS_SITE_PATH/config/config.php</div>";
+../install/install.php:172:        $fp=fopen("$RFS_SITE_PATH/config/config.php","wt");
+../install/install.php:186:        if(file_exists("$RFS_SITE_PATH/config/config.php")) {
+../install/install.php:188:            echo "<div width=100% style='background-color: green; color:white;'>$RFS_SITE_PATH/config/config.php created</div>";
+../install/install.php:203:			$qx=explode(";",file_get_contents("$RFS_SITE_PATH/install/install.sql"));
+../install/install.php:227:			('path', '$RFS_SITE_PATH'),
+../install/install.php:228:			('url',  '$RFS_SITE_URL'),
+../install/install.php:232:			$f="$RFS_SITE_PATH/install/install.data.sql";
+../install/install.php:244:			system("mkdir $RFS_SITE_PATH/log");
+../install/install.php:245:			system("mkdir $RFS_SITE_PATH/files");
+../install/install.php:246:			system("mkdir $RFS_SITE_PATH/files/pictures");
+../install/install.php:247:			system("mkdir $RFS_SITE_PATH/images");
+../install/install.php:248:			system("mkdir $RFS_SITE_PATH/images/avatars");
+../install/install.php:254:					<img src=\"$RFS_SITE_URL/images/icons/thumbup.png\">
+../install/install.php:259:					doesn't click here <a href=$RFS_SITE_URL>$RFS_SITE_URL</a>
+../install/install.php:265:				echo "<META HTTP-EQUIV=\"refresh\" content=\"5;URL=$RFS_SITE_URL\">";
+../install/install.php:269:            echo "<div width=100% style='background-color: red; color:white;'>Can not create $RFS_SITE_PATH/config/config.php make sure $RFS_SITE_PATH/config folder permission is set to 777</div>";
+../install/install.php:278:    echo "<div width=100% style='background-color: green; color:white;'>Detected file path: $RFS_SITE_PATH</div><div width=100% style='background-color: green; color:white;'>Detected domain name: $RFS_SITE_URL</div>";
+../install/install.php:280:	if(empty($rfs_site_path))   $rfs_site_path=$RFS_SITE_PATH;
+../install/install.php:292:	echo "<img src=\"$RFS_SITE_URL/images/icons/infobox.png\" style=\"float: right;\"> ";
+../lilheader.php:10:if(empty($RFS_SITE_NAME)) { include("install/install.php"); exit(); }
+../lilheader.php:21:if( file_exists("$RFS_SITE_PATH/themes/$theme/t.php")) include("$RFS_SITE_PATH/themes/$theme/t.php");
+../lilheader.php:23:if( file_exists("$RFS_SITE_PATH/themes/$theme/t.header.php")) include("$RFS_SITE_PATH/themes/$theme/t.header.php");
+../lilheader.php:26:	rfs_echo($RFS_SITE_DOC_TYPE);
+../lilheader.php:27:	rfs_echo($RFS_SITE_HTML_OPEN);
+../lilheader.php:28:	rfs_echo($RFS_SITE_HEAD_OPEN);    
+../lilheader.php:32:	$keywords.=$RFS_SITE_SEO_KEYWORDS;	
+../lilheader.php:35:	rfs_echo($RFS_SITE_TITLE);
+../lilheader.php:36:	if(file_exists("$RFS_SITE_PATH/themes/$theme/t.css"))
+../lilheader.php:37:		echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+../lilheader.php:39:	rfs_echo($RFS_SITE_HEAD_CLOSE);	
+../lilheader.php:40:	rfs_echo($RFS_SITE_BODY_OPEN);	
+../lilheader.php:49:		echo "$RFS_SITE_NAME :";
+../lilheader.php:51:			sc_menu_draw($RFS_SITE_TOP_MENU_LOCATION);
+../lilheader.php:66:			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+../lilheader.php:72:			rfs_echo($RFS_SITE_LOGGED_IN_CODE);
+../lilheader.php:84://rfs_echo($RFS_SITE_JS_MSDROPDOWN_THEME);
+../lilheader.php:85:rfs_echo($RFS_SITE_JS_JQUERY);
+../lilheader.php:86:rfs_echo($RFS_SITE_JS_COLOR);
+../lilheader.php:87:rfs_echo($RFS_SITE_JS_EDITAREA);
+../lilheader.php:89://if(!stristr(sc_canonical_url(),"/net.php")) rfs_echo($RFS_SITE_JS_MSDROPDOWN);
+../login.php:15:	if(empty($outpage)) $outpage=$RFS_SITE_URL;
+../login.php:53:							$outpage="$RFS_SITE_URL/index.php";
+../login.php:74:            if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
+../login.php:77:				session_name(str_replace(" ","_",$RFS_SITE_SESSION_ID));
+../login.php:84:				//echo "[".$RFS_SITE_SESSION_ID."]<br>";	
+../login.php:105:if(empty($outpage)) $outpage=$RFS_SITE_URL;
+../login.php:167:		$message = "$RFS_SITE_NAME registration.<br>Your information will not be shared or sold.<br>";
+../login.php:170:		$message.="<a href=\"$RFS_SITE_URL/login.php?userid=$userid&password=";
+../login.php:172:        $message.="&action=logingo&sd=3\">$RFS_SITE_URL</a><br><br>\n";
+../login.php:177:		$message = "New user named [$userid] $email has joined $RFS_SITE_NAME<br>\n";
+../login.php:179:		mailgo("$RFS_SITE_ADMIN_EMAIL",$message,"$RFS_SITE_NAME new member: $userid");
+../login.php:199:    rfs_echo($RFS_SITE_JOIN_FORM_CODE);
+../login.php:230:			$subject="$RFS_SITE_NAME password reset.";
+../login.php:234:           Cick <a href=\"$RFS_SITE_URL/login.php?userid=$user->name&password=$user->pass&action=logingo\">here</a> to login!</p><br>\n";
+../login.php:266:            rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+../modules/netman_tools/lib.netman_tools.php:4:sc_menus_register("Netman Tools","$RFS_SITE_URL/modules/netman_tools/netman_tools.php");
+../modules/linkbin/lib.linkbin.php:4:sc_menus_register("Links","$RFS_SITE_URL/modules/linkbin/linkbin.php");
+../modules/linkbin/lib.linkbin.php:17:		echo "<div class=contenttd><a href=\"$RFS_SITE_URL/link_out.php?link=$url\" target=_blank>$link->sname</a></div>";
+../modules/linkbin/lib.linkbin.php:21:		echo "<form action=\"$RFS_SITE_URL/admin/adm.php\" method=post><input type=hidden name=action value=edit_linkbin>";
+../modules/linkbin/linkbin.php:10:    $GLOBALS['RFS_SITE_URL']."/modules/linkbin/linkbin.php\" method=\"post\">\n";
+../modules/linkbin/linkbin.php:176:	echo "<td><a href=\"".$GLOBALS['RFS_SITE_URL']."/link_out.php?link=$link->link\" target=\"_blank\">$link->sname</a></td>\n";
+../modules/pictures/pics.php:4:	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$mid.png&mid=$mid&owidth=512\" border=0></a>";
+../modules/pictures/pics.php:35:	if(sc_yes($RFS_SITE_GALLERIAS))
+../modules/pictures/pics.php:43:		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=addorphans","Add Orphans");
+../modules/pictures/pics.php:48:		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=uploadpic","Upload picture");
+../modules/pictures/pics.php:57:			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&category=unsorted","Sort $numpics Pictures");
+../modules/pictures/pics.php:64:$ourl="$RFS_SITE_URL/modules/pictures/pics.php?action=$action&id=$id";
+../modules/pictures/pics.php:75:	sc_gotopage("$RFS_SITE_URL/modules/memes/memes.php");
+../modules/pictures/pics.php:84:sc_bf(	"$RFS_SITE_URL/modules/pictures/pics.php",
+../modules/pictures/pics.php:85:		"action=uploadpicgo".$RFS_SITE_DELIMITER.
+../modules/pictures/pics.php:86:		"MAX_FILE_SIZE=99999999".$RFS_SITE_DELIMITER.
+../modules/pictures/pics.php:88:		"SHOW_SELECTOR_categories#name#category#Choose a category".$RFS_SITE_DELIMITER.
+../modules/pictures/pics.php:89:		"SHOW_SELECTOR_NOTABLE#IG#hidden#no#yes".$RFS_SITE_DELIMITER.
+../modules/pictures/pics.php:90:		"SHOW_SELECTOR_NOTABLE#IG#sfw#yes#no".$RFS_SITE_DELIMITER.
+../modules/pictures/pics.php:91:		"SHOW_CLEARFOCUSTEXT_sname=name".$RFS_SITE_DELIMITER.
+../modules/pictures/pics.php:92:		"SHOW_TEXTAREA_10#100#desc".$RFS_SITE_DELIMITER.
+../modules/pictures/pics.php:103:	//echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/pictures/pics.php\" method=\"post\">\n";
+../modules/pictures/pics.php:171:		echo sc_picthumb("$RFS_SITE_URL/$picture->url",200,0,1);
+../modules/pictures/pics.php:173:		echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/pictures/pics.php method=post>\n";
+../modules/pictures/pics.php:199:			$ftr=str_replace($RFS_SITE_URL,$RFS_SITE_PATH,$ftr);
+../modules/pictures/pics.php:220:		else echo "$dir_count new picture(s) added to database from $RFS_SITE_URL/files/pictures/...";
+../modules/pictures/pics.php:252:            echo "<center><a href='$RFS_SITE_URL/modules/pictures/pics.php?action=removego&gosorttemp=yes&id=$picture->id&annihilate=yes'><img src=$RFS_SITE_URL/images/icons/Delete.png border=0><br>Delete (Warning there is no confirmation)</a><br>";
+../modules/pictures/pics.php:255:            echo "<img src=\"$RFS_SITE_URL/$picture->url\" ";
+../modules/pictures/pics.php:272:				if(!file_exists($RFS_SITE_PATH."/$incat->image"))
+../modules/pictures/pics.php:276:				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=sorttemp&subact=place&id=$picture->id&categorey=$incat->name&sname=$picture->sname&sfw=yes'>";
+../modules/pictures/pics.php:277:				echo "<img src='$RFS_SITE_URL/$imout' width=70 height=70><br>$incat->name</a>";
+../modules/pictures/pics.php:288:			echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pics.php>";
+../modules/pictures/pics.php:366:		echo "<center><img src=$RFS_SITE_URL/$picture->url height=$editwidth>";
+../modules/pictures/pics.php:368:		echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/pictures/pics.php>";
+../modules/pictures/pics.php:452:					$linknext="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture2->id";
+../modules/pictures/pics.php:454:					$linkprev="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture3->id";
+../modules/pictures/pics.php:470:		if(sc_yes($RFS_SITE_CAPTIONS)){
+../modules/pictures/pics.php:472:		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$picture->id","Caption");
+../modules/pictures/pics.php:477:		sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=random","Random Picture");
+../modules/pictures/pics.php:482:			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=modifypicture&id=$picture->id","Edit");
+../modules/pictures/pics.php:488:			sc_button("$RFS_SITE_URL/modules/pictures/pics.php?action=removepicture&id=$picture->id","Delete");
+../modules/pictures/pics.php:526:		$size = getimagesize("$RFS_SITE_PATH/$picture->url");
+../modules/pictures/pics.php:531:		if(!stristr($picture->url,$RFS_SITE_URL))
+../modules/pictures/pics.php:532:			$picture->url="$RFS_SITE_URL/$picture->url";
+../modules/pictures/pics.php:551:			echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id&viewsfw=yes'><img src=\"$RFS_SITE_URL/files/pictures/NSFW.gif\" border=0></a>";
+../modules/pictures/pics.php:555:		$page="$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id";	
+../modules/pictures/pics.php:584:				echo "<script src=\"$RFS_SITE_URL/3rdparty/galleria/galleria-1.2.9.min.js\"></script>";
+../modules/pictures/pics.php:594:				echo "<img src=\"$RFS_SITE_URL/$ipr->url\"
+../modules/pictures/pics.php:604:    if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
+../modules/pictures/pics.php:607:				echo "<img src=\"$RFS_SITE_URL/$picture->url\"
+../modules/pictures/pics.php:614:				echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
+../modules/pictures/pics.php:615:				$img=$RFS_SITE_URL."/".$picture->url;
+../modules/pictures/pics.php:626:				Galleria.loadTheme('$RFS_SITE_URL/3rdparty/galleria/themes/classic/galleria.classic.js');
+../modules/pictures/pics.php:655:			if(!file_exists("$RFS_SITE_PATH/$cat->image")) $cat->image="images/icons/404.png";
+../modules/pictures/pics.php:657:				<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=viewcat&cat=$cat->id'>
+../modules/pictures/pics.php:658:				<h1><img src='$RFS_SITE_URL/$cat->image' border=0 width=64 height=64>$cat->name ($numpics)</h1>
+../modules/pictures/pics.php:671:						if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";
+../modules/pictures/pics.php:672:						echo "<a href='$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id'>";
+../modules/pictures/pics.php:673:						$img=$RFS_SITE_URL."/".$picture->url;
+../modules/pictures/lib.pictures.php:4:sc_menus_register("Pictures","$RFS_SITE_URL/modules/pictures/pics.php");
+../modules/pictures/lib.pictures.php:22:        if($picture->sfw=="no") $picture->url="$RFS_SITE_URL/files/pictures/NSFW.gif";        
+../modules/pictures/lib.pictures.php:24:        echo "<a href=\"$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id\">".
+../modules/pictures/lib.pictures.php:25:		        sc_picthumb("$RFS_SITE_PATH/$picture->url",50,0,1)."</a>";
+../modules/pictures/lib.pictures.php:27:        echo "<a href=\"$RFS_SITE_URL/modules/pictures/pics.php?action=view&id=$picture->id\">";
+../modules/pictures/lib.pictures.php:33:    echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php?action=random class=a_cat>Random Picture</a>)<br>";
+../modules/pictures/lib.pictures.php:34:    echo "(<a href=$RFS_SITE_URL/modules/pictures/pics.php class=a_cat>More...</a>)";
+../modules/pictures/lib.pictures.php:60:                        // $ofolder=str_replace($GLOBALS['RFS_SITE_PATH'],"",$folder);
+../modules/bullet_log/bullet_log.php:9:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullets","My Bullets");
+../modules/bullet_log/bullet_log.php:10:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=short_list","Brief List");
+../modules/bullet_log/bullet_log.php:11:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=epr_format","Format for EPR");
+../modules/bullet_log/bullet_log.php:13:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=send_report","Send Bullets to Supervisor");
+../modules/bullet_log/bullet_log.php:16:		sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_categories","Edit Categories");
+../modules/bullet_log/bullet_log.php:47:	echo "<form action=\"$RFS_SITE_URL/modules/bullet_log/bullet_log.php\" method=\"POST\">";
+../modules/bullet_log/bullet_log.php:56:	$page ="$RFS_SITE_URL/include/lib.mysql.php?act=select_image_chdir&";
+../modules/bullet_log/bullet_log.php:63:	$page.="spath=$RFS_SITE_PATH";
+../modules/bullet_log/bullet_log.php:74:		if(empty($bcat->image)) $bcat->image="$RFS_SITE_URL/images/icons/noimage.gif";
+../modules/bullet_log/bullet_log.php:77:				<a href=\"$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=change_category_image&bcid=$bcat->id\"><img src=\"$bcat->image\" width=32></a> <BR>";
+../modules/bullet_log/bullet_log.php:110:	$message.= "<hr>Login <a href=\"$RFS_SITE_URL\">$RFS_SITE_URL</a> to view and modify your bullets.<br>";
+../modules/bullet_log/bullet_log.php:130:	echo "<form action=\"$RFS_SITE_URL/modules/bullet_log/bullet_log.php\" method=\"POST\">";
+../modules/bullet_log/bullet_log.php:167:	sc_gotopage("$RFS_SITE_URL/modules/bullet_log/bullet_log.php");
+../modules/bullet_log/bullet_log.php:179:	sc_bf( "$RFS_SITE_URL/modules/bullet_log/bullet_log.php",
+../modules/bullet_log/bullet_log.php:180:	       "action=add_bullet_go".$RFS_SITE_DELIMITER.
+../modules/bullet_log/bullet_log.php:181:			"SHOW_SELECTOR_rfsm_bullet_category#name#category#$ncat".$RFS_SITE_DELIMITER.
+../modules/bullet_log/bullet_log.php:184:	       "id".$RFS_SITE_DELIMITER.
+../modules/bullet_log/bullet_log.php:185:		    "username".$RFS_SITE_DELIMITER.
+../modules/bullet_log/bullet_log.php:186:		    "when".$RFS_SITE_DELIMITER."category",
+../modules/bullet_log/bullet_log.php:206:	sc_gotopage("$RFS_SITE_URL/modules/bullet_log/bullet_log.php");	
+../modules/bullet_log/bullet_log.php:215:						"$RFS_SITE_URL/modules/bullet_log/bullet_log.php",
+../modules/bullet_log/bullet_log.php:216:						"action=f_delete_bullet_go".$RFS_SITE_DELIMITER."bid=$bullet->id" );
+../modules/bullet_log/bullet_log.php:227:	sc_bf( "$RFS_SITE_URL/modules/bullet_log/bullet_log.php",
+../modules/bullet_log/bullet_log.php:228:	       "action=add_bullet".$RFS_SITE_DELIMITER.	       
+../modules/bullet_log/bullet_log.php:243:					sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullet&bid=$bullet->id","Edit");
+../modules/bullet_log/bullet_log.php:245:					sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=delete_bullet&bid=$bullet->id","Delete");
+../modules/bullet_log/bullet_log.php:247:					sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=share_bullet&bid=$bullet->id","Share");
+../modules/bullet_log/lib.bullet_log.php:4:sc_menus_register("My Bullets","$RFS_SITE_URL/modules/bullet_log/bullet_log.php");
+../modules/bullet_log/lib.bullet_log.php:42:						echo "<a href=$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullet&bid=$bullet->id>$bullet->name</a><br>";
+../modules/bullet_log/lib.bullet_log.php:48:		sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullets","My Bullets");
+../modules/bullet_log/lib.bullet_log.php:123:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullets","My Bullets");
+../modules/videos/videos.php:151:	echo "<table border=0><form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/videos/videos.php\">\n";
+../modules/videos/videos.php:195:            $ftr=str_replace($RFS_SITE_URL,$RFS_SITE_PATH,$ftr);
+../modules/videos/videos.php:210:        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/videos/videos.php method=post>\n";
+../modules/videos/videos.php:237:                        $url = "$RFS_SITE_URL/files/videos/$file";
+../modules/videos/videos.php:257:        else              echo "$dir_count new video(s) added to database from $RFS_SITE_URL/files/videos/...";
+../modules/videos/videos.php:366:         echo "<a href=videos.php?action=view&id=$video->id&viewsfw=yes><img src=\"$RFS_SITE_URL/images/icons/NSFW.png\" border=0></a><BR>";
+../modules/videos/videos.php:425:					$video->url="$RFS_SITE_URL/images/icons/NSFW.gif";
+../modules/videos/lib.videos.php:4:sc_menus_register("Videos","$RFS_SITE_URL/modules/videos/videos.php");
+../modules/political_game/political_game.php:6:echo "<img src=\"$RFS_SITE_URL/modules/political_game/pg.png\"><br>";
+../modules/political_game/political_game.php:13:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_bullets","My Bullets");
+../modules/political_game/political_game.php:14:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=short_list","Brief List");
+../modules/political_game/political_game.php:15:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=epr_format","Format for EPR");
+../modules/political_game/political_game.php:16:	sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=send_report","Send Bullets to Supervisor");
+../modules/political_game/political_game.php:18:		sc_button("$RFS_SITE_URL/modules/bullet_log/bullet_log.php?action=edit_categories","Edit Categories");
+../modules/political_game/political_game.php:27:		rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+../modules/political_game/lib.political_game.php:6:sc_menus_register("Political Game","$RFS_SITE_URL/modules/political_game/political_game.php");
+../modules/rfsft/lib.rfsft.php:3:sc_menus_register("Fitness Tracker", "$RFS_SITE_URL/modules/rfsft/rfsft.php");
+../modules/profile/lib.profile.php:4:sc_menus_register("My Profile","$RFS_SITE_URL/modules/profile/profile.php");
+../modules/profile/lib.profile.php:19:        $picf="$RFS_SITE_PATH/$profile->image_url";
+../modules/profile/lib.profile.php:20:        $picf=str_replace($RFS_SITE_URL,"",$picf);
+../modules/profile/lib.profile.php:21:        echo "<a href=\"$RFS_SITE_URL/profile.php?action=view&nid=$profile->id\">".sc_picthumb("$picf",30,0,1	)."</a>\n";
+../modules/profile/lib.profile.php:23:        echo "<a href=\"$RFS_SITE_URL/profile.php?action=view&nid=$profile->id\" class=\"a_cat\">".sc_trunc("$profile->headline",50)."</a>";
+../modules/profile/profile.php:10:        echo sc_warn("You must be <a href=$RFS_SITE_URL/login.php>logged in</a> to change your password!");
+../modules/profile/profile.php:99:	sc_button("$RFS_SITE_URL/modules/news/news.php?action=edityournews","Edit news");
+../modules/profile/profile.php:101:	sc_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Create news");
+../modules/profile/profile.php:103:	sc_button("$RFS_SITE_URL/modules/core_files/files.php?action=upload","Upload file");
+../modules/profile/profile.php:105:	sc_button("$RFS_SITE_URL/admin/adm.php","Admin");
+../modules/profile/profile.php:107:sc_button("$RFS_SITE_URL/modules/profile/profile.php?act=show_password_form","Change password");
+../modules/profile/profile.php:114:  echo "<p>You must <a href=$RFS_SITE_URL/login.php>login</a> first!</p>\n";
+../modules/profile/profile.php:121:    echo "<table border=0><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/profile/profile.php method=post>\n";
+../modules/profile/profile.php:138:echo ucwords("<h1> $nm's $RFS_SITE_NAME profile </h1>");
+../modules/profile/profile.php:140:echo "<form enctype=\"application/x-www-form-URLencoded\" method=\"post\" action=\"$RFS_SITE_URL/modules/profile/profile.php\" >";
+../modules/profile/profile.php:155:echo "<td><img src=$RFS_SITE_URL/images/icons/sym_$data->gender.gif border=0 title=\"$data->gender\" alt=\"$data->gender\"></td>\n";
+../modules/profile/profile.php:258:echo "<tr><td>Personal Webpage:</td><td> <input type=textbox name=webpage  size=30 value=\"$data->webpage\">       </td><td> <a href=$data->webpage target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's website!\" title=\"Visit this person's website!\" height=16> </a></td></tr>\n";
+../modules/profile/profile.php:259:echo "<tr><td>Favorite Webpage:</td><td> <input type=textbox name=website_fav  size=30 value=\"$data->website_fav\">       </td><td> <a href=$data->website_fav target=_blank><img src=$RFS_SITE_URL/images/icons/wp.gif  border=0 alt=\"Visit this person's favorite website!\" title=\"Visit this person's favorite website!\" height=16> </a></td></tr>\n";
+../modules/profile/profile.php:261:echo "<a href=$RFS_SITE_URL/modules/core_files/files.php?action=upload_avatar> \n";// <img src=$RFS_SITE_URL/images/navigation/dotdotdot.gif border=0 title=\"Upload an avatar!\" alt=\"Upload an swf, gif, or jpg avatar!\"></a>\n";
+../modules/profile/profile.php:297:		echo "[<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=upload\">Upload</a>]";
+../modules/profile/profile.php:299:		echo "[<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=addfilelinktodb\">Add Link</a>]\n";
+../modules/profile/profile.php:325:        echo "<td align=center><img src=$RFS_SITE_URL/images/icons/worksafe.gif border=0 align=center alt=\"Safe for work... Productivity Chart!\" title=\"Safe for work... Productivity Chart!\"></td>\n";
+../modules/profile/profile.php:327:        echo "<td align=center><img src=$RFS_SITE_URL/images/icons/pinkslip.gif border=0 align=center alt=\"Not safe for work... Pink Slip!\" title=\"Not safe for work... Pink Slip!\"></td>\n";
+../modules/profile/profile.php:332:    echo "<img src=$RFS_SITE_URL/images/icons/filetypes/$ftype.png border=0 title=\"$filedata->name\" alt=\"$filedata->name\" width=16></a>\n";
+../modules/profile/profile.php:334:    echo "<td><form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/core_files/files.php method=post>\n";
+../modules/profile/profile.php:348:    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/core_files/files.php?action=del&file_mod=yes&id=$filedata->id><img src=$RFS_SITE_URL/images/icons/deletefile_sm.gif alt=\"Delete file!\" title=\"Delete file!\" border=0></a></td>\n";
+../modules/profile/profile.php:349:    echo "<td class=\"sc_black\"><a href=$RFS_SITE_URL/modules/core_files/files.php?action=mdf&file_mod=yes&id=$filedata->id>modify</a></td>\n";
+../modules/profile/showprofile.php:8:echo "<br><h1>$userdata->name's $RFS_SITE_NAME profile</h1>";
+../modules/profile/showprofile.php:11:echo "<td width=10 valign=top><center><a href=\"$RFS_SITE_URL/showprofile.php?user=$userdata->name\">\n";
+../modules/profile/showprofile.php:17:echo "<img src=\"$RFS_SITE_URL/images/icons/sym_".$gen.".gif\" border=0 alt=\"$gen\" ><br>\n";
+../modules/profile/showprofile.php:21:    echo "<a href=\"".sc_getemailcode($userdata->email)."\"><font class=sc_email>$thisemail</font><img src=$RFS_SITE_URL/images/email2.gif border=0 alt=\"E-Mail\" height=16></a><br>\n";
+../modules/profile/showprofile.php:22:    echo "<a href=$userdata->webpage target=_blank><img src=$RFS_SITE_URL/images/wp.gif  border=0 alt=\"Visit this person's website!\" height=16></a><br>\n";
+../modules/profile/showprofile.php:55:echo "Personal Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$userdata->webpage\" target=\"_blank\">$userdata->webpage</a><br>";
+../modules/profile/showprofile.php:56:echo "Favorite Website: <a href=\"$RFS_SITE_URL/link_out.php?link=$userdata->website_fav\" target=\"_blank\">$userdata->website_fav</a><br>";
+../modules/news/lib.news.php:4:sc_menus_register("News","$RFS_SITE_URL/modules/news/news.php");
+../modules/news/lib.news.php:12:sc_touch_dir("$RFS_SITE_PATH/images/news");
+../modules/news/lib.news.php:38:			sc_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit News");
+../modules/news/lib.news.php:44:    sc_gotopage("$RFS_SITE_URL/modules/news/news.php?showform=yes");
+../modules/news/lib.news.php:47:    sc_gotopage("$RFS_SITE_URL/modules/news/news.php?action=edityournews");
+../modules/news/lib.news.php:58:        if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
+../modules/news/lib.news.php:59:            $news->image_url="$RFS_SITE_URL/images/icons/404.png";
+../modules/news/lib.news.php:61:            $news->image_url="$RFS_SITE_URL/images/icons/news.png";
+../modules/news/lib.news.php:62:        if(!stristr($news->image_url,$RFS_SITE_URL))
+../modules/news/lib.news.php:63:            $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
+../modules/news/lib.news.php:66:        $picf="$RFS_SITE_PATH/$news->image_url";
+../modules/news/lib.news.php:67:        $picf=str_replace($RFS_SITE_URL,"",$picf);
+../modules/news/lib.news.php:68:        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">".sc_picthumb("$picf",30,0,1	)."</a>\n";
+../modules/news/lib.news.php:70:        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".sc_trunc("$news->headline",50)."</a>";
+../modules/news/lib.news.php:78:    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/news/news.php class=\"a_cat\" align=right>More...</a>)</p>";
+../modules/news/lib.news.php:91:        if(!file_exists("$RFS_SITE_PATH/$news->image_url"))
+../modules/news/lib.news.php:92:            $news->image_url="$RFS_SITE_URL/images/icons/404.png";
+../modules/news/lib.news.php:94:            $news->image_url="$RFS_SITE_URL/images/icons/news.png";
+../modules/news/lib.news.php:95:        if(!stristr($news->image_url,$RFS_SITE_URL))
+../modules/news/lib.news.php:96:            $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
+../modules/news/lib.news.php:99:        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\"><img src=\"$news->image_url\" border=\"0\" title=\"$altern\" alt=\"$altern\" width=30 height=30></a>\n";
+../modules/news/lib.news.php:102:        echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">".sc_trunc("$news->headline",50)."</a><br>";
+../modules/news/lib.news.php:185:    $out_link=urlencode("$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id");
+../modules/news/lib.news.php:188:		$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
+../modules/news/lib.news.php:189:		$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);		
+../modules/news/lib.news.php:192:			$news->image_link="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id";
+../modules/news/lib.news.php:194:		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
+../modules/news/lib.news.php:196:			$news->image_url="$RFS_SITE_URL/images/icons/404.png";
+../modules/news/lib.news.php:199:		if(!stristr($news->image_url,$RFS_SITE_URL))
+../modules/news/lib.news.php:200:			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");		
+../modules/news/lib.news.php:217:    $ourl="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";
+../modules/news/lib.news.php:220:	$page="$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid";	
+../modules/news/lib.news.php:222:	if($RFS_SITE_FACEBOOK_NEWS_COMMENTS) 
+../modules/news/lib.news.php:232:			echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n";
+../modules/news/lib.news.php:233:			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$nid\" class=news_a>edit (news)</a>] \n";			
+../modules/news/lib.news.php:235:			echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=ed&nid=$nid\" class=news_a>edit</a>] \n";
+../modules/news/lib.news.php:237:        echo "[<a href=\"$RFS_SITE_URL/modules/news/news.php?action=de&nid=$nid\" class=news_a>remove</a>] \n";
+../modules/news/lib.news.php:246:    $uploadFile=$RFS_SITE_PATH."/images/news/$file";
+../modules/news/lib.news.php:251:            $httppath="$RFS_SITE_PATH/images/news/".$_FILES['userfile']['name'];
+../modules/news/lib.news.php:294:    echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
+../modules/news/lib.news.php:297:    echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/news/news.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
+../modules/news/lib.news.php:310:	echo "<a href=$RFS_SITE_URL/modules/news/news.php?action=view&nid=$nid>Preview</a>";
+../modules/news/lib.news.php:312:	$news->image_url=str_replace("$RFS_SITE_PATH/","",$news->image_url);
+../modules/news/lib.news.php:313:	$news->image_url=str_replace("$RFS_SITE_URL/","",$news->image_url);
+../modules/news/lib.news.php:315:    if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
+../modules/news/lib.news.php:317:        $news->image_url="$RFS_SITE_URL/images/icons/404.png";	
+../modules/news/lib.news.php:320:        $news->image_url="$RFS_SITE_URL/images/icons/news.png";		
+../modules/news/lib.news.php:322:    if(!stristr($news->image_url,$RFS_SITE_URL))
+../modules/news/lib.news.php:323:        $news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
+../modules/news/lib.news.php:345:    echo " enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/news/news.php\" method=\"post\">\n";
+../modules/news/lib.news.php:354:    echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/news/news.php\" method=\"post\">\n";
+../modules/news/lib.news.php:364:    echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/news/news.php\" method=\"post\">\n";
+../modules/news/lib.news.php:375:echo "<form enctype=application/x-www-form-URLencoded method=post action=\"$RFS_SITE_URL/modules/news/news.php\">\n";
+../modules/news/lib.news.php:523:		if(!file_exists("$RFS_SITE_PATH/".ltrim($news->image_url,"/"))) {
+../modules/news/lib.news.php:525:			$news->image_url="$RFS_SITE_URL/images/icons/404.png";
+../modules/news/lib.news.php:527:		if(!stristr($news->image_url,$RFS_SITE_URL))
+../modules/news/lib.news.php:528:			$news->image_url=$RFS_SITE_URL."/".ltrim($news->image_url,"/");
+../modules/news/lib.news.php:532:		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\">";
+../modules/news/lib.news.php:540:		echo "<a href=\"$RFS_SITE_URL/modules/news/news.php?action=view&nid=$news->id\" class=\"a_cat\">$news->headline</a><br>";
+../modules/news/news.php:146:	sc_button("$RFS_SITE_URL/modules/news/news.php?showform=yes","Submit new news article");
+../modules/xplorer/lib.xplorer.php:4:sc_menus_register("XPlorer","$RFS_SITE_URL/modules/xplorer/xplorer.php");
+../modules/xplorer/xplorer.cfg.php:9:$xp_url="$RFS_SITE_URL/modules/xplorer";
+../modules/xplorer/xplorer.cfg.php:19:$xp_path=$RFS_SITE_PATH;
+../modules/xplorer/xplorer.cfg.php:24:$xp_local_path = $RFS_SITE_PATH;
+../modules/xplorer/xplorer.cfg.php:25:$xp_local_url  = $RFS_SITE_URL;
+../modules/xplorer/xplorer.cfg.php:33:$xp_edit_file_link_ = "$RFS_SITE_URL/adm.php?action=edit_file&infile=";
+../modules/gns3/gns3.php:317:	sc_button("$RFS_SITE_URL/modules/gns3/gns3.php?action=list_configs","List configs");
+../modules/gns3/gns3.php:320:		sc_button("$RFS_SITE_URL/modules/gns3/gns3.php?action=upload","Upload GNS3 config file");
+../modules/gns3/gns3.php:323:		sc_button("$RFS_SITE_URL/modules/gns3/gns3.php?action=admin","Admin panel");
+../modules/gns3/gns3.php:333:	$x=sc_folder_to_array("$RFS_SITE_PATH/modules/gns3/uploads/");
+../modules/gns3/gns3.php:343:		echo "<a href=\"$RFS_SITE_URL/modules/gns3/gns3.php?action=render&gns3file=$u\">";		
+../modules/gns3/gns3.php:365:								"$RFS_SITE_PATH/modules/gns3/uploads",
+../modules/gns3/gns3.php:385:	       "action=upload_go".$RFS_SITE_DELIMITER.
+../modules/gns3/gns3.php:408:	if(!stristr($RFS_SITE_PATH,$gns3file)) 
+../modules/gns3/gns3.php:409:		$gns3file="$RFS_SITE_PATH/modules/gns3/uploads/$gns3file";
+../modules/gns3/gns3.php:487:src=\"$RFS_SITE_URL/modules/gns3/gns3.php?
+../modules/gns3/gns3.php:553:	$gns3file="$RFS_SITE_PATH/modules/gns3/test2.net";
+../modules/gns3/lib.gns3.php:6:sc_menus_register("GNS3","$RFS_SITE_URL/modules/gns3/gns3.php");
+../modules/gns3/lib.gns3.php:14:sc_touch_dir("$RFS_SITE_PATH/modules/gns3/uploads");
+../modules/video_wall/lib.video_wall.php:4:sc_menus_register("Video Wall","$RFS_SITE_URL/modules/video_wall/v.php");
+../modules/video_wall/v.php:116:	echo "<link rel=\"canonical\" href=\"$RFS_SITE_URL/modules/video_wall/v.php\" />";
+../modules/video_wall/v.php:120:	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+../modules/video_wall/v.php:141:	$dd="<form action=$RFS_SITE_URL/modules/video_wall/v.php method=post>Confirm broken video:
+../modules/video_wall/v.php:262:	echo "<a href=$RFS_SITE_URL><img src=$RFS_SITE_URL/images/navigation/back.gif></a>";
+../modules/video_wall/v.php:264:	// echo " <a href=$RFS_SITE_URL> SethCoder.com </a> ";
+../modules/video_wall/v.php:274:		sc_tweet("$RFS_SITE_URL/modules/video_wall/v.php","Video Wall", "Check out this page, it lets you view a bunch of different live streams at one time. ");
+../modules/video_wall/v.php:277:		sc_facebook_like("$RFS_SITE_URL/modules/video_wall/v.php");	
+../modules/video_wall/v.php:280:		sc_google_plus("$RFS_SITE_URL/modules/video_wall/v.php");
+../modules/video_wall/v.php:288:		echo" [<a href=$RFS_SITE_URL/modules/video_wall/v.php?edzor=0>Stop Customizing</a>]<br>";
+../modules/video_wall/v.php:296:			rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+../modules/video_wall/v.php:302:			echo " (<a href=$RFS_SITE_URL/login.php?action=logout&outpage=modules/video_wall/v.php>logout</a>)<BR>";
+../modules/video_wall/v.php:316:		echo "If there is a glitch<br>in the matrix...<br>[<a href=$RFS_SITE_URL/modules/video_wall/v.php?action=resetmatrix>RESET EVERYTHING</a>]";
+../modules/video_wall/v.php:322:		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?across=1&down=1>1x1</a>]<br>";
+../modules/video_wall/v.php:323:		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?across=2&down=2>2x2</a>]<br>";
+../modules/video_wall/v.php:324:		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?across=3&down=2>3x2</a>]<br>";
+../modules/video_wall/v.php:325:		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?across=4&down=3>4x3</a>]<br>";
+../modules/video_wall/v.php:326:		sc_bqf("SHOW_TEXT_across=".$_SESSION['cols'].$RFS_SITE_DELIMITER.
+../modules/video_wall/v.php:327:				"SHOW_TEXT_down=".$_SESSION['rows'].$RFS_SITE_DELIMITER."act=mtxs","Matrix Size");
+../modules/video_wall/v.php:333:		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?w=300&h=200>Small</a> (300x200)]<br>";
+../modules/video_wall/v.php:334:		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?w=400&h=300>Medium</a> (400x300)]<br>";
+../modules/video_wall/v.php:335:		echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?w=500&h=400>HUGE</a> (500x400)]<br>";
+../modules/video_wall/v.php:337:		sc_bqf("SHOW_TEXT_w=".$_SESSION['wi'].$RFS_SITE_DELIMITER.
+../modules/video_wall/v.php:338:				"SHOW_TEXT_h=".$_SESSION['he'].$RFS_SITE_DELIMITER."act=size","Stream Size");
+../modules/video_wall/v.php:345:		echo " [<a href=$RFS_SITE_URL/modules/video_wall/v.php?edzor=1>Customize</a>]";
+../modules/video_wall/v.php:353:	sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+../modules/video_wall/v.php:390:					sc_optionizer( "$RFS_SITE_URL/modules/video_wall/v.php",
+../modules/video_wall/v.php:391:								"act=chg".$RFS_SITE_DELIMITER.
+../modules/video_wall/v.php:392:								"dx=$darx".$RFS_SITE_DELIMITER.
+../modules/video_wall/v.php:393:								"dy=$dary".$RFS_SITE_DELIMITER.
+../modules/video_wall/v.php:422:    sc_bf(  "$RFS_SITE_URL/modules/video_wall/v.php",
+../modules/video_wall/v.php:423:				"SHOW_TEXT_10#120#name=".$RFS_SITE_DELIMITER.
+../modules/video_wall/v.php:424:				"SHOW_TEXTAREA_20#120#embed_code=".$RFS_SITE_DELIMITER."act=add"
+../modules/video_wall/v.php:451:			echo "<td> [<a href=$RFS_SITE_URL/modules/video_wall/v.php?action=report&id=$v->id>Report broken</a>] ";
+../modules/video_wall/v.php:455:				echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?action=ed&id=$v->id#EDIT$v->id>Edit</a>] ";
+../modules/video_wall/v.php:456:				echo "[<a href=$RFS_SITE_URL/modules/video_wall/v.php?action=rm&id=$v->id#EDIT$v->id>Remove</a>] ";
+../modules/video_wall/v.php:464:				echo "<tr><td valign=top><form action=$RFS_SITE_URL/modules/video_wall/v.php method=post><input name=sname value='$v->sname'></td>";
+../modules/video_wall/v.php:474:				echo "<td> [<a href=$RFS_SITE_URL/modules/video_wall/v.php?action=rmconfirmed&id=$id>YES</a>] </td><td></td></tr>";
+../modules/proxy/lib.proxy.php:3:sc_menus_register("Proxy","$RFS_SITE_URL/modules/proxy/index.php");
+../modules/wiki/rfswiki.php:10:	$RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
+../modules/wiki/rfswiki.php:12:	$RFSW_LINK_IMAGE= $RFS_SITE_URL."/modules/wiki/images/link2.png";
+../modules/wiki/rfswiki.php:13:if(empty($RFS_SITE_PATH)) $RFS_SITE_PATH = getcwd();
+../modules/wiki/rfswiki.php:65:		echo "<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=viewpagebyid&id=$wpage->id\">$wpage->name</a> ";
+../modules/wiki/rfswiki.php:96:	echo  "<form action='$RFS_SITE_URL/modules/wiki/rfswiki.php' method='post'>
+../modules/wiki/rfswiki.php:122:			echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($wpage->name).">$wpage->name</a>]";
+../modules/wiki/rfswiki.php:140:        echo "<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($wpage->name).">$wpage->name</a>";
+../modules/wiki/rfswiki.php:162:        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/wiki/rfswiki.php>";
+../modules/wiki/rfswiki.php:175:            echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/wiki/rfswiki.php>";
+../modules/wiki/rfswiki.php:212:        echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/wiki/rfswiki.php>";
+../modules/wiki/rfswiki.php:238:            echo "<p>[<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$name\">Edit this page</a>]</p>";
+../modules/wiki/rfswiki.php:250:		$page="$RFS_SITE_URL/modules/wiki/rfswiki.php?name=$name";	
+../modules/wiki/rfswiki.php:251:		if($RFS_SITE_FACEBOOK_WIKI_COMMENTS) 
+../modules/wiki/rfswiki.php:264:    echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=home>main page</a>]";
+../modules/wiki/rfswiki.php:265:    echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=contents>view all pages</a>]";
+../modules/wiki/rfswiki.php:269:	echo "[<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=history&name=$name\">view this page's history</a>]";
+../modules/wiki/rfswiki.php:276:                echo "[<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$name&id=$id\">edit this page</a>]";
+../modules/wiki/rfswiki.php:283:            echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$name&id=$id>edit this page</a>]";
+../modules/wiki/rfswiki.php:284:            echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=deletepage&name=$name&id=$id>delete this page</a>]";
+../modules/wiki/rfswiki.php:289:    echo "[<a class=rfswiki_link href=$RFS_SITE_URL/modules/wiki/rfswiki.php?action=createnewpage>create new page</a>]";
+../modules/wiki/lib.wiki.php:4:sc_menus_register("Wiki","$RFS_SITE_URL/modules/wiki/rfswiki.php");
+../modules/wiki/lib.wiki.php:21:sc_touch_dir("$RFS_SITE_PATH/images/wiki");
+../modules/wiki/lib.wiki.php:35:        echo "<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=$opage\">$page->name</a> ";
+../modules/wiki/lib.wiki.php:38:    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/wiki/rfswiki.php?name=contents class=a_cat>More...</a>)</p>";
+../modules/wiki/lib.wiki.php:67:				$img="$RFS_SITE_WIKI_IMAGES_PATH/". urlencode($imgxvars[0]);
+../modules/wiki/lib.wiki.php:74:					$outtext.= sc_picthumb("$RFS_SITE_WIKI_IMAGES_PATH/wiki_warning.png",32,32,1);
+../modules/wiki/lib.wiki.php:78:                    $outtext.=" </td><td class=warning> <form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/wiki/rfswiki.php\" method=\"post\">\n";
+../modules/wiki/lib.wiki.php:91:					$outtext.= sc_picthumb("$RFS_SITE_PATH/$img",$w,$h,1);
+../modules/wiki/lib.wiki.php:94:                    $outtext.="<img src=\"$RFS_SITE_URL/".$img."\" border=0 >";                    
+../modules/wiki/lib.wiki.php:98:				// $outtext.="[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit_image\">Edit Image</a>]";
+../modules/wiki/lib.wiki.php:153:		$RFSW_BULLET_IMAGE	= $RFS_SITE_URL."/modules/wiki/images/bullet.gif";
+../modules/wiki/lib.wiki.php:155:		$RFSW_LINK_IMAGE		= $RFS_SITE_URL."/modules/wiki/images/link2.png";
+../modules/wiki/lib.wiki.php:193:						$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($fnc[0])."\">".$fnc[1]."</a>";
+../modules/wiki/lib.wiki.php:255:							include_once("$RFS_SITE_PATH/3rdparty/geshi/geshi.php");
+../modules/wiki/lib.wiki.php:325:									$outtext.="<a class=rfswiki_link href=$RFS_SITE_URL/link_out.php?link=$outlink target=\"$target\">".$shortname;
+../modules/wiki/lib.wiki.php:330:							$outtext.="<a class=rfswiki_link href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=".urlencode($ila2[0])."\">".$ila2[0]."</a>".nl2br($ila2[1]);
+../modules/forums/lib.forums.php:4:sc_menus_register("Forums","$RFS_SITE_URL/modules/forums/forums.php");
+../modules/forums/lib.forums.php:29:				echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$thread->thread&forum_which=$thread->forum#$lastreply->id\">";
+../modules/forums/lib.forums.php:30:				echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 >";
+../modules/forums/lib.forums.php:37:	echo "<tr><td class=contenttd>(<a href=$RFS_SITE_URL/modules/forums/forums.php class=\"a_cat\" align=right>More...</a>)</td></tr>";
+../modules/forums/lib.forums.php:72:			echo "<img src=$RFS_SITE_URL/images/icons/folder_big.gif style='float: left;'>";
+../modules/forums/lib.forums.php:79:						"$RFS_SITE_URL/admin/adm.php",
+../modules/forums/lib.forums.php:102:					echo "<img src=$RFS_SITE_URL/images/icons/icon_minipost.gif>";//style='float: left;'>";
+../modules/forums/lib.forums.php:106:						"$RFS_SITE_URL/admin/adm.php",
+../modules/forums/lib.forums.php:117:				"$RFS_SITE_URL/admin/adm.php",
+../modules/forums/lib.forums.php:118:				"action=f_add_forum".$RFS_SITE_DELIMITER.
+../modules/forums/lib.forums.php:119:				"parent=$folder->id".$RFS_SITE_DELIMITER.
+../modules/forums/lib.forums.php:132:		"$RFS_SITE_URL/admin/adm.php",
+../modules/forums/lib.forums.php:133:		"action=f_add_forum_folder".$RFS_SITE_DELIMITER.
+../modules/forums/forums.php:10:        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php\">List Forums</a>]";
+../modules/forums/forums.php:11:        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_showposts&forum_which=$forum_which\">List Threads</a>]";
+../modules/forums/forums.php:12:        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=start_thread&forum_which=$forum_which\">Start New Thread</a>]";
+../modules/forums/forums.php:18:        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_off&outpage=$thispage\">Forum Admin Off</a>]";
+../modules/forums/forums.php:20:        echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=forum_admin_on&outpage=$thispage\">Forum Admin On</a>]";
+../modules/forums/forums.php:57:        echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\" method=post>\n";
+../modules/forums/forums.php:140:				echo "<br><a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$pname\">$pname</a><br>";
+../modules/forums/forums.php:153:        echo "posted $time by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$pname\">$pname</a> ";
+../modules/forums/forums.php:159:                echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=delete_post_s&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">delete</a>] ";
+../modules/forums/forums.php:160:                echo "[<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=edit_reply&forum_which=$forum_witch&reply=$whichrep&thread=$thread\">edit</a>]";
+../modules/forums/forums.php:227:				echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\" method=post>\n";
+../modules/forums/forums.php:251:            echo "<p class=sc_site_urlr><a href=$RFS_SITE_URL/login.php>Login</a> to reply to this post!</p>\n";
+../modules/forums/forums.php:272:        echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
+../modules/forums/forums.php:275:        echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/index.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";    
+../modules/forums/forums.php:293:        echo "<table align=center><tr><td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
+../modules/forums/forums.php:296:        echo "<td><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/index.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
+../modules/forums/forums.php:316:        echo "<form enctype=application/x-www-form-URLencoded action=$RFS_SITE_URL/modules/forums/forums.php method=post>\n";
+../modules/forums/forums.php:369:        echo "<p class=sc_site_urlr><a href=$RFS_SITE_URL/login>Login</a> to reply</p>\n";
+../modules/forums/forums.php:514:                            $link="$RFS_SITE_URL/modules/forums/forums.php?forum_which=$der->id&action=forum_showposts";
+../modules/forums/forums.php:545:                            echo "<a href=$RFS_SITE_URL/modules/profile/showprofile.php?user=$foruser->name>$foruser->name</a>]";
+../modules/forums/forums.php:559:                                $link="$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lastpost->id";
+../modules/forums/forums.php:560:                                $link="$RFS_SITE_URL/modules/forums/forums.php?forum_list=no&action=get_thread&thread=$lastpost->thread&forum_which=$lastpost->forum";
+../modules/forums/forums.php:566:                                echo "by <a href=\"$RFS_SITE_URL/modules/profile/showprofile.php?user=$udata->name\">$udata->name</a>";
+../modules/forums/forums.php:567:                                echo "<a href=\"$link\"><img src=\"$RFS_SITE_URL/images/icons/icon_latest_reply.gif\" width=\"18\" height=\"9\" class=\"imgspace\" border=\"0\" alt=\"View latest post\" title=\"View latest post\" /></a>";
+../modules/forums/forums.php:639:            echo "<a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=".$post['thread']."&forum_which=$forum_which\">";
+../modules/forums/forums.php:640:            echo "<img src=\"$RFS_SITE_URL/images/icons/icon_minipost.gif\" border=0 height=12>\n";
+../modules/forums/forums.php:656:				echo "Latest reply: <a href=\"$RFS_SITE_URL/modules/forums/forums.php?action=get_thread&thread=$lreply->thread&forum_which=$forum_which\">".stripslashes($lreply->title)."</a>\n";
+../modules/forums/forums.php:664:                echo "<form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/forums/forums.php\">\n";
+../modules/wab/wab.php:27:$lnk= "$RFS_SITE_URL/modules/wab/wab.php?runapp=1";
+../modules/wab/wab.php:33:        echo "[<a href=$RFS_SITE_URL/modules/wab/wab.php?runapp=1&action=editapp&edapp=$runapp>edit this app</a>] ";
+../modules/wab/wab.php:35:        echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?name=RFS+Website+Application+Builder\">What is this?</a>] ";
+../modules/wab/wab.php:38:                        "action=hide_wab_admin_menu".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:39:                        "runapp=".mfo1("select * from `wab_engine` where `name`='wab_engine' and `parent`=`id`")->id.$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:62:				\$lnk=\"\$RFS_SITE_URL/modules/wab/wab.php?action=edcode\";
+../modules/wab/wab.php:106:            echo "<a href=\"$RFS_SITE_URL/modules/wab/wab.php?runapp=$app->id\">$app->name</a> ";
+../modules/wab/wab.php:111:                        "action=editapp".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:151:            "action=edcodego".$RFS_SITE_DELIMITER."type=function".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:152:            "SHOW_CODEAREA_35#140#code=l".$RFS_SITE_DELIMITER."hidden=1".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:153:            "DBX_35#140#code=codearea".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:154:            "edapp=$edapp".$RFS_SITE_DELIMITER."value=$_function".$RFS_SITE_DELIMITER."parent=$edapp".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:157:					}".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:179:        sc_bf( sc_phpself(), "action=add".$RFS_SITE_DELIMITER."parent=0".$RFS_SITE_DELIMITER."hidden=0", "wab_engine", "", "", "name", "include", "",30,"add");
+../modules/wab/wab.php:189:    echo "<a href=\"$RFS_SITE_URL/modules/wab/wab.php?runapp=$id\">"; 
+../modules/wab/wab.php:190:    echo "<img src=\"$RFS_SITE_URL/images/icons/Play.png\" width=32 height=32>";
+../modules/wab/wab.php:258:                "action=add_database".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:259:				"type=database".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:260:				"name=$name->name".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:293:                "action=add_function".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:294:				"type=function".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:295:				"name=$name->name".$RFS_SITE_DELIMITER.
+../modules/wab/wab.php:296:                "parent=".$GLOBALS['edapp'].$RFS_SITE_DELIMITER."LABEL_value=Function", $db->value, "", "", "value", "include", "", 20, "Add Function");
+../modules/wab/wab.php:326:        $vars=join($RFS_SITE_DELIMITER,$varg);
+../modules/wab/wab.php:329:    if(!empty($vars)) $varz.="$RFS_SITE_DELIMITER".$vars;
+../modules/wab/lib.wab.php:4:sc_menus_register("WAB","$RFS_SITE_URL/modules/wab/wab.php");
+../modules/wab/lib.wab.php:7:    sc_gotopage("$RFS_SITE_URL/modules/wab/wab.php?runapp=1");
+../modules/exams/lib.exams.php:4:sc_menus_register("Exams","$RFS_SITE_URL/modules/exams/exams.php");
+../modules/exams/lib.exams.php:23:    sc_gotopage("$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit");
+../modules/exams/exams.php:203:            echo "[<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit'>Exam Administration</a>]";
+../modules/exams/exams.php:219:			echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam->id'>
+../modules/exams/exams.php:220:			<img src='$RFS_SITE_URL/images/icons/Play.png' width=16 border=0></a>
+../modules/exams/exams.php:225:			echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam->id'>$exam->name</a>";
+../modules/exams/exams.php:279:				<a href='$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam_id&confirmed=true'><img src=$RFS_SITE_URL/images/icons/Play.png border=0>click here</a>. Note: This action can not be reversed.");
+../modules/exams/exams.php:307:			sc_makebutton("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=really_wipe_exam","RESTART")
+../modules/exams/exams.php:309:			sc_makebutton("$RFS_SITE_URL/modules/exams/exams.php?exam_id=$exam->id&action=run_exam","RESUME")."
+../modules/exams/exams.php:422:		$qq.="[<a href=\"$RFS_SITE_URL/modules/exams/exams.php?action=wipe_exam&exam_id=$exam_id\">Take this exam again</a>]";
+../modules/exams/exams.php:427:				$qq.="[<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit'>Exam Administration</a>]";
+../modules/exams/exams.php:446:    $qq.="<form action=\"$RFS_SITE_URL/modules/exams/exams.php\" method=\"post\">\n";
+../modules/exams/exams.php:595:		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=run_exam&exam_id=$exam_id>Run this exam</a>]";
+../modules/exams/exams.php:596:		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit>List all exams</a>]";
+../modules/exams/exams.php:597:		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_edit&exam_id=$exam_id>List all questions</a>]<br>";
+../modules/exams/exams.php:601:		sc_bf( "$RFS_SITE_URL/modules/exams/exams.php",
+../modules/exams/exams.php:602:			   "action=admin_exam_question_edit_2".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:603:			   "SHOW_SELECTOR_exam_question_types#name#type#$qt->type".$RFS_SITE_DELIMITER.	
+../modules/exams/exams.php:608:			   "type".$RFS_SITE_DELIMITER."task",
+../modules/exams/exams.php:651:		sc_optionizer(	"$RFS_SITE_URL/modules/exams/exams.php",
+../modules/exams/exams.php:652:						   "action=admin_exam_edit_add_2".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:653:						   "exam_id=$exam_id".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:669:		sc_bf( "$RFS_SITE_URL/modules/exams/exams.php",
+../modules/exams/exams.php:670:	       "action=admin_exam_edit_add_3".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:671:		   "aeexam_id=$exam_id".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:672:		   "aeexam_sequence=$exam_sequence".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:673:		   "aetype=$eqt->type".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:677:	       "id".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:678:		   "exam_id".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:679:		   "exam_sequence".$RFS_SITE_DELIMITER.
+../modules/exams/exams.php:708:		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=run_exam&exam_id=$exam_id>Run this exam</a>]";
+../modules/exams/exams.php:709:		echo "[<a href=$RFS_SITE_URL/modules/exams/exams.php?action=admin_edit>List all exams</a>]<br>";
+../modules/exams/exams.php:712:		echo " <form action='$RFS_SITE_URL/modules/exams/exams.php' method='post'>	
+../modules/exams/exams.php:722:		echo " <form action='$RFS_SITE_URL/modules/exams/exams.php' method='post'>	
+../modules/exams/exams.php:729:		echo " <form action='$RFS_SITE_URL/modules/exams/exams.php' method='post'>	
+../modules/exams/exams.php:743:		echo "[<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_edit_add&exam_id=$exam_id&exam_sequence=$exam_sequence'><img src='$RFS_SITE_URL/images/icons/plus_2.gif' width=16 border=0>Add Question</a>]<br>";		
+../modules/exams/exams.php:778:				<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_question_edit&exam_id=$exam->id&q=$q->id'>";
+../modules/exams/exams.php:779:                echo "<img src='$RFS_SITE_URL/images/icons/Edit.png' width=16 border=0>";
+../modules/exams/exams.php:786:				<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_question_remove&exam_id=$exam->id&q=$q->id'>";
+../modules/exams/exams.php:787:                echo "<img src='$RFS_SITE_URL/images/icons/Delete.png' width=16 border=0>";
+../modules/exams/exams.php:790:				echo "<td class=sc_project_table_$gt><img src='$RFS_SITE_URL/images/icons/arrow-up.png' border=0 width=16></td>";
+../modules/exams/exams.php:791:				echo "<td class=sc_project_table_$gt><img src='$RFS_SITE_URL/images/icons/arrow-down.png' border=0 width=16></td>";
+../modules/exams/exams.php:860:        sc_bqf("action=admin_new_exam".$RFS_SITE_DELIMITER."SHOW_TEXT_name=new exam","Create new exam");
+../modules/exams/exams.php:893:                echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_edit&exam_id=$exam->id'>";
+../modules/exams/exams.php:894:                echo "<img src='$RFS_SITE_URL/images/icons/Edit.png' width=32 border=0>";
+../modules/exams/exams.php:901:                echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_remove&exam_id=$exam->id'>";
+../modules/exams/exams.php:902:                echo "<img src='$RFS_SITE_URL/images/icons/Delete.png' width=32 border=0>";
+../modules/exams/exams.php:909:                echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_rename&exam_id=$exam->id'>";
+../modules/exams/exams.php:910:                echo "<img src='$RFS_SITE_URL/images/icons/Tag.png' width=32  border=0>";
+../modules/exams/exams.php:919:                echo "<a href='$RFS_SITE_URL/modules/exams/exams.php?action=admin_exam_test&exam_id=$exam->id'>";
+../modules/exams/exams.php:920:                echo "<img src='$RFS_SITE_URL/images/icons/Play.png' width=32  border=0>";
+../modules/exams/exams.php:983:                                "action=admin_exam_change_pod".$RFS_SITE_DELIMITER.
+../modules/nqt/lib.nqt.php:3:sc_menus_register("NQT","$RFS_SITE_URL/modules/nqt/rfsnqt.php");
+../modules/slogans/slogan_admin.php:25:        echo "<tr><td><form action=\"$RFS_SITE_URL/slogan_admin.php\" method\"post\">\n";
+../modules/slogans/slogan_admin.php:30:        echo "<form action=\"$RFS_SITE_URL/slogan_admin.php\" method=\"post\">\n";
+../modules/slogans/slogan_admin.php:38:    echo "<tr><td>&nbsp;</td><td><form action=\"$RFS_SITE_URL/slogan_admin.php\" method\"post\">\n";
+../modules/slogans/lib.slogans.php:4:sc_menus_register("Slogans","$RFS_SITE_URL/modules/slogans/slogan_admin.php");
+../modules/memes/memes.php:8:	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$mid.png&mid=$mid&owidth=$meme_fullsize\" border=0></a>";
+../modules/memes/memes.php:19:	echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/memes/memes.php\" method=\"post\">\n";
+../modules/memes/memes.php:90:		$dd="<form action=$RFS_SITE_URL/modules/memes/memes.php method=post>Confirm delete meme:
+../modules/memes/memes.php:97:		echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize' target=_blank>
+../modules/memes/memes.php:98:		<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$mid&owidth=256' border=0></a>";
+../modules/memes/memes.php:183:		if(empty($name)) $nout="SHOW_TEXT_10#20#name=$name".$RFS_SITE_DELIMITER;
+../modules/memes/memes.php:185:			$nout="name=$name".$RFS_SITE_DELIMITER;
+../modules/memes/memes.php:196:		sc_bqf( "action=memegenerate".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:197:				 "id=$pic->id".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:198:				 "mid=$m->id".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:199:				 "chgfont=$m->font".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:201:				 "SHOW_SELECTOR_colors#name#text_color#$ocolor".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:202:				 "SHOW_SELECTOR_colors#name#text_bg_color#$text_bg_color".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:203:				 "SHOW_TEXT_10#20#datborder=$m->datborder".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:204:				 "SHOW_TEXT_10#20#private=$private".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:205:				 "SHOW_TEXT_10#20#text_size=$m->text_size".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:206:				 "SHOW_TEXT_10#20#texttop=$m->texttop".$RFS_SITE_DELIMITER.
+../modules/memes/memes.php:212:		echo " <a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize&forcerender=1' target=_blank>
+../modules/memes/memes.php:213:				<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?
+../modules/memes/memes.php:233:		echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=meme_save&mid=$m->id&showfonts=true'>";
+../modules/memes/memes.php:237:		echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id&showfonts=true'>";
+../modules/memes/memes.php:247:			$handle=opendir("$RFS_SITE_PATH/files/fonts") or die("Unable to open filepath");
+../modules/memes/memes.php:262:	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&chgfont=$file&mid=$m->id'>
+../modules/memes/memes.php:263:							<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?action=showfont&font=$file&text_size=16&forcerender=1&oheight=120&forceheight=1&icr=$rr&icg=$rg&icb=$rb' border=0></a>";
+../modules/memes/memes.php:330:		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$tmtop&mbot=$mbot&onlyshow=$onlyshow","PREVIOUS PAGE");
+../modules/memes/memes.php:333:		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=","Show All Captions");
+../modules/memes/memes.php:342:		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
+../modules/memes/lib.memes.php:4:sc_menus_register("Memes","$RFS_SITE_URL/modules/memes/memes.php");
+../modules/memes/lib.memes.php:36:	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_fullsize&forcerender=1' target=_blank>
+../modules/memes/lib.memes.php:37:	<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&oheight=$meme_thumbwidth&forcerender=1' border=0></a>"; // owidth=$meme_thumbwidth&
+../modules/memes/lib.memes.php:43:	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
+../modules/memes/lib.memes.php:44:	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
+../modules/memes/lib.memes.php:46:	sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=showmemes&onlyshow=$m->name","$m->name");
+../modules/memes/lib.memes.php:47:	sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memegenerate&basepic=$m->basepic&name=$m->name","New Caption");
+../modules/memes/lib.memes.php:50:		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=memeedit&mid=$m->id","Edit");
+../modules/memes/lib.memes.php:53:		sc_button("$RFS_SITE_URL/modules/memes/memes.php?action=meme_delete&mid=$m->id","Delete");
+../modules/memes/lib.memes.php:66:	echo "<a href='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&oheight=$meme_fullsize&forcerender=1' target=_blank><img src='$RFS_SITE_URL/include/generate.image.php/$t.png?mid=$m->id&owidth=$meme_thumbwidth&forcerender=1' border=0></a>";
+../modules/memes/lib.memes.php:71:	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=muv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbup.png'   border=0 width=24></a>";
+../modules/memes/lib.memes.php:72:	echo "<a href='$RFS_SITE_URL/modules/memes/memes.php?action=mdv&mid=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
+../modules/comics/lib.comics.php:4:sc_menus_register("Comics","$RFS_SITE_URL/modules/comics/comics.php");
+../modules/comics/lib.comics.php:28:sc_comics_mini_preview_link($page->pid,"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id");
+../modules/comics/lib.comics.php:29:echo "<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id\">$comic->title vol. $comic->volume issue $comic->issue</a>";
+../modules/comics/lib.comics.php:34:    echo "(<a href=$RFS_SITE_URL/comics.php class=a_cat>More...</a>)";
+../modules/comics/lib.comics.php:84://echo "<img src='$RFS_SITE_URL/include/generate.image.php/$url.png?mid=$m->id&owidth=$meme_thumbwidth&forcerender=1' border=0>";
+../modules/comics/comics.php:12:        $uploadFile="$RFS_SITE_PATH/images/comics/".$_FILES['userfile']['name'];
+../modules/comics/comics.php:23:                $httppath="$RFS_SITE_URL/images/comics/".$_FILES['userfile']['name'];
+../modules/comics/comics.php:69:        echo "<img src=\"$RFS_SITE_URL/images/comics_page_bkg.gif\" width=$x height=$y>&nbsp;";
+../modules/comics/comics.php:89:        echo "<img src=\"$RFS_SITE_URL/images/comics_page_bkg.gif\" width=$x height=$y>&nbsp;";
+../modules/comics/comics.php:104:        echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/comics/comics.php>";
+../modules/comics/comics.php:124:            echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=editcomic&id=$comic->id>Edit $title vol. $volume issue $issue</a>]";
+../modules/comics/comics.php:151:        echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/comics/comics.php>";
+../modules/comics/comics.php:201:        echo "<table><tr><td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\">\n";
+../modules/comics/comics.php:204:        echo "<td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";
+../modules/comics/comics.php:428:        echo "<form enctype=application/x-www-form-URLencoded method=post action=$RFS_SITE_URL/modules/comics/comics.php>";
+../modules/comics/comics.php:499:            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=addpagego&id=$comic->id&tid=$template->id\">Use $template->name Template</a>]<br>";
+../modules/comics/comics.php:500:            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=previewtemplatefull&tid=$template->id&id=$id\">Full size preview</a>]<br>";
+../modules/comics/comics.php:501:            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=editpagetemplate&tid=$template->id\">Edit template</a>]<br>";
+../modules/comics/comics.php:502:            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=delpagetemplate&tid=$template->id\">Delete template</a>]";
+../modules/comics/comics.php:506:        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=addpagetemplate\">Add new template</a>]<br>";
+../modules/comics/comics.php:545:            if(empty($url)) $url="$RFS_SITE_URL/images/comics_page_bkg.gif";
+../modules/comics/comics.php:551:            echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
+../modules/comics/comics.php:561:            echo "<form enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
+../modules/comics/comics.php:574:            echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/comics/comics.php\" method=\"post\">\n";
+../modules/comics/comics.php:602:        echo "<table><tr><td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\">\n";
+../modules/comics/comics.php:605:        echo "<td class=contenttd><form enctype=application/x-www-form-URLencoded action=\"$RFS_SITE_URL/modules/comics/comics.php\"><input type=\"submit\" name=\"no\" value=\"No\"></form></td></tr></table>\n";       
+../modules/comics/comics.php:673:            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=movepageup&id=$comic->id&page=$page->page\">Move up</a>]<br>";
+../modules/comics/comics.php:674:            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=movepagedown&id=$comic->id&page=$page->page\">Move down</a>]<br>";
+../modules/comics/comics.php:675:            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=defpage&pid=$page->pid\">Define panels</a>]<br>";
+../modules/comics/comics.php:676:            echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=delpage&pid=$page->pid\">Delete this page</a>]";
+../modules/comics/comics.php:680:        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=addpage&id=$comic->id\">Add new page</a>]<br>";
+../modules/comics/comics.php:709:        if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=1>Page 1</a>]";
+../modules/comics/comics.php:710:        if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page-1).">Prev</a>]";
+../modules/comics/comics.php:711:        if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page+1).">Next</a>]";
+../modules/comics/comics.php:712:        if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=$npages>Last Page</a>]";
+../modules/comics/comics.php:720:        if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=1>Page 1</a>]";
+../modules/comics/comics.php:721:        if($page->page > 1)       echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page-1).">Prev</a>]";
+../modules/comics/comics.php:722:        if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=".($page->page+1).">Next</a>]";
+../modules/comics/comics.php:723:        if($page->page < $npages) echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$id&pagenumber=$npages>Last Page</a>]";
+../modules/comics/comics.php:737:    page_full_view($page->pid); // ,"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id");
+../modules/comics/comics.php:738:    echo "<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id\" class=\"a_cat\">$comic->title vol. $comic->volume issue $comic->issue</a>";
+../modules/comics/comics.php:741:    echo "<p align=right><a href=$RFS_SITE_URL/modules/comics/comics.php class=a_cat>more...</a></p>";
+../modules/comics/comics.php:756:    echo "<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=viewcomic&id=$comic->id\">$comic->title vol. $comic->volume issue $comic->issue</a>";
+../modules/comics/comics.php:758:        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=unpublish&id=$comic->id\">Unpublish</a>]";
+../modules/comics/comics.php:764:    echo "[<a href=$RFS_SITE_URL/modules/comics/comics.php?action=newcomic>Add new comic</a>]<br>";
+../modules/comics/comics.php:770:        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=editcomic&id=$comic->id\">Edit $comic->title vol. $comic->volume issue $comic->issue</a>]";
+../modules/comics/comics.php:771:        echo "[<a href=\"$RFS_SITE_URL/modules/comics/comics.php?action=publish&id=$comic->id\">Publish</a>]<br>";
+../modules/messages/lib.messages.php:4:sc_menus_register("Private Messages","$RFS_SITE_URL/modules/messages/messages.php");
+../modules/messages/lib.messages.php:20:    sc_gotopage("$RFS_SITE_URL/modules/messages/messages.php");
+../modules/messages/lib.messages.php:66:       echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
+../modules/messages/lib.messages.php:67:       echo "<img border=0 width=16 height=16 src=$RFS_SITE_URL/modules/messages/mail.png>";
+../modules/messages/lib.messages.php:71:       echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
+../modules/messages/lib.messages.php:85:        echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
+../modules/messages/lib.messages.php:86:        echo "<img border=0 width=16 height=16 src=$RFS_SITE_URL/modules/messages/mail.png>";
+../modules/messages/lib.messages.php:90:        echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
+../modules/messages/lib.messages.php:99:       echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
+../modules/messages/lib.messages.php:100:       echo "<img border=0 width=16 height=16 src=$RFS_SITE_URL/modules/messages/mail.png>";
+../modules/messages/lib.messages.php:104:       echo "<a href=$RFS_SITE_URL/modules/messages/messages.php>";
+../modules/messages/lib.messages.php:132:    echo "<p align=right>(<a href=$RFS_SITE_URL/modules/messages/messages.php class=\"a_cat\" align=right>More...</a>)</p>";
+../modules/messages/lib.messages.php:136:/*   "admin",  $usr->name,  "REQUEST TO ACCESS POD: $pod",        "	<a class=pmsglink href=$RFS_SITE_URL/index.php?action=netman_add_pod&useradd=$usr->id&pod=$pod > 		$usr->name is requesting access to pod: $pod 		</a>"         */
+../modules/messages/messages.php:28:	echo "<form action=$RFS_SITE_URL/modules/messages/messages.php method=post><input type=hidden name=id value=$id>";
+../modules/messages/messages.php:39:	echo "<p><form action=$RFS_SITE_URL/modules/messages/messages.php method=post>";
+../modules/messages/messages.php:49:	echo "<p><form action=$RFS_SITE_URL/modules/messages/messages.php method=post>";
+../modules/messages/messages.php:96:	echo "[<a href=\"$RFS_SITE_URL/modules/messages/messages.php?action=new message&id=$msg->id\">New Message</a>] ";
+../modules/messages/messages.php:99:	echo "[<a href=$RFS_SITE_URL/modules/messages/messages.php?action=delete_single&id=$msg->id>Delete</a>] ";
+../modules/messages/messages.php:102:	echo "[<a href=\"$RFS_SITE_URL/modules/messages/messages.php?action=mark as unread&id=$msg->id\">Mark Unread</a>] ";
+../modules/messages/messages.php:105:	echo "[<a href=\"$RFS_SITE_URL/modules/messages/messages.php?action=reply&id=$msg->id\">Reply</a>] ";
+../modules/messages/messages.php:108:	echo "[<a href=$RFS_SITE_URL/modules/messages/messages.php>Inbox</a>] ";
+../modules/messages/messages.php:246:	echo "<table border=0><tr><td>[<a href=\"$RFS_SITE_URL/modules/messages/messages.php?action=new message\">New Message</a>]</td></tr></table><br>";
+../modules/messages/messages.php:254:        echo "<form action=\"$RFS_SITE_URL/modules/messages/messages.php\" method=\"post\">";
+../modules/messages/messages.php:260:            $lnk="<a href=$RFS_SITE_URL/modules/messages/messages.php?action=read&id=$msg->id>";
+../modules/courses/lib.courses.php:4:sc_menus_register("Courses","$RFS_SITE_URL/modules/courses/courses.php");
+../modules/courses/lib.courses.php:25:    sc_gotopage("$RFS_SITE_URL/modules/courses/courses.php");
+../modules/courses/lib.courses.php:38:		sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=run&id=$course->id","Take This Course");
+../modules/courses/lib.courses.php:40:			sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
+../modules/courses/lib.courses.php:54:		sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_list","Edit Courses");		
+../modules/courses/lib.courses.php:78:			echo "<img src='$RFS_SITE_URL/images/icons/check.png' border=0 width=16>";
+../modules/courses/courses.php:14:		sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types","Edit Component Types");		
+../modules/courses/courses.php:44:			   "action=add_component_type".$RFS_SITE_DELIMITER.	       
+../modules/courses/courses.php:53:			echo "<a href=\"$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types_image&id=$cct->id\" ><img src=\"$RFS_SITE_URL/$cct->image\" border=\"0\" width=\"32\" title=\"Change Image\" alt=\"Change Image\" text=\"Change Image\"></a>";
+../modules/courses/courses.php:67:	sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit&id=$course->id","Edit Course");
+../modules/courses/courses.php:68:	sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_component_types&id=$course->id","Edit Component Types");
+../modules/courses/courses.php:100:			   "action=add_course".$RFS_SITE_DELIMITER.	       
+../modules/courses/courses.php:111:		// if(sc_access_check("course","edit"))			sc_button("$RFS_SITE_URL/modules/courses/courses.php?action=edit_components&id=$course->id","Edit Components");
+../modules/courses/courses.php:122:				var url="'.$RFS_SITE_URL.'/modules/courses/courses.php";				
+../modules/rss/lib.rss.php:4:sc_menus_register("RSS Feeds","$RFS_SITE_URL/modules/rss/rss.php");
+../modules/rss/lib.rss.php:11:    include("$RFS_SITE_PATH/3rdparty/rsslib/rsslib.php");    
+../themes/_templates/element_types.php:8:                    "DOC_TYPE"  => "$RFS_SITE_DOC_TYPE",
+../themes/_templates/element_types.php:9:                    "HTML"      => "$RFS_SITE_HTML_OPEN",
+../themes/_templates/element_types.php:10:                    "TITLE"     => "$RFS_SITE_TITLE",
+../themes/_templates/element_types.php:11:                    "CSS"      => "$RFS_SITE_CSS",
+../themes/_templates/element_types.php:12:                    "HEAD"      => "$RFS_SITE_HEAD",
+../themes/_templates/element_types.php:13:                    "BODY"      => "$RFS_SITE_BODY_OPEN"
+../themes/_templates/element_types.php:17:                    "LOCATION"  => "$RFS_SITE_MENU_TOP_LOCATION"
+../themes/_templates/element_types.php:22:                    "LOCATION"  => "$RFS_SITE_MENU_LEFT_LOCATION"
+../themes/_templates/element_types.php:27:                    "COPYRIGHT" => "$RFS_SITE_COPYRIGHT",
+../themes/_templates/element_types.php:28:                    "BODY"      => "$RFS_SITE_BODY_CLOSE",                    
+../themes/_templates/element_types.php:29:                    "HTML"      => "$RFS_SITE_HTML_CLOSE"
+../themes/coffee/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/coffee/t.php:3:$RFS_SITE_NAV_FONT="Berthside.ttf";
+../themes/coffee/t.php:4:$RFS_SITE_NAV_IMG="1";
+../themes/coffee/t.php:6:$RFS_SITE_NAV_FONT_COLOR="#ffee00";
+../themes/coffee/t.php:7:$RFS_SITE_NAV_FONT_BGCOLOR="#442200";
+../themes/coffee/t.php:8:$RFSW_BULLET_IMAGE=$RFS_SITE_URL."/images/navigation/bullet1.gif";
+../themes/coffee/t.php:9:$RFS_SITE_NAV_FONT_Y_OFFSET="-8";
+../themes/coffee/t.php:10:$RFS_SITE_TTF_TOP="1";
+../themes/coffee/t.php:11:$RFS_SITE_TTF_TOP_COLOR="C48D2A";
+../themes/coffee/t.php:16:$RFS_SITE_TTF_TOP_BGCOLOR="141A1F";
+../themes/coffee/t.php:19:$RFS_SITE_TTF_TOP_FONT="Pecot012.ttf";
+../themes/coffee/t.php:20:$RFS_SITE_TTF_TOP_FONT_SIZE="35";
+../themes/area57/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/area57/t.php:3:$RFS_SITE_NAV_FONT="Crumb.ttf";
+../themes/area57/t.php:4:$RFS_SITE_NAV_IMG=1;
+../themes/area57/t.php:5:$RFS_SITE_NAV_FONT_COLOR="#01ff00";
+../themes/area57/t.php:6:$RFS_SITE_NAV_FONT_BGCOLOR="303328";
+../themes/area57/t.php:8:$RFS_SITE_TTF_TOP="1";
+../themes/area57/t.php:9:$RFS_SITE_TTF_TOP_FONT="Crumb.ttf";
+../themes/area57/t.php:10:$RFS_SITE_TTF_TOP_COLOR="#01FF00";
+../themes/area57/t.php:11:$RFS_SITE_TTF_TOP_BGCOLOR="303327";
+../themes/area57/t.php:13:$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+../themes/area57/t.php:14:$RFS_SITE_NAV_FONT_Y_OFFSET="-4";
+../themes/orange/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/orange/t.php:3:$RFS_SITE_NAV_FONT="MrBubbleFont.ttf";
+../themes/orange/t.php:4:$RFS_SITE_NAV_IMG=1;
+../themes/orange/t.php:5:$RFS_SITE_TTF_TOP_FONT="EarthquakeMF.ttf";
+../themes/orange/t.php:6:$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+../themes/orange/t.php:7:$RFS_SITE_FONT="EarthquakeMF.ttf";
+../themes/orange/t.php:8:$RFS_SITE_NAV_IMG_TOP=1;
+../themes/orange/t.php:9:$RFS_SITE_NAV_FONT_COLOR="#ff9900";
+../themes/orange/t.php:10:$RFS_SITE_NAV_FONT_BGCOLOR="#010100";
+../themes/orange/t.php:11:$RFS_SITE_TTF_TOP="1";
+../themes/orange/t.php:12:$RFS_SITE_TTF_TOP_COLOR="#ff9900";
+../themes/orange/t.php:13:$RFS_SITE_TTF_TOP_BGCOLOR="#010100";
+../themes/orange/t.php:14:$RFS_SITE_NAV_FONT_X_OFFSET="0";
+../themes/orange/t.php:15:$RFS_SITE_NAV_FONT_Y_OFFSET="0";
+../themes/orange/t.php:16:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="0";
+../themes/seth_coder/t.php:2:$RFS_SITE_LOGIN_FORM_CODE   = "<script src=\"\$RFS_SITE_URL/include/md5.js\"> </script><form method=post action=\"\$RFS_SITE_URL/login.php\"><input type=hidden name=outpage value=\"\$thispage\"><input type=hidden name=action value=\"logingo\"><table align=right border=0 cellspacing=0 cellwidth=0 cellpadding=0 valign=middle>\n<tr valign=middle>\n<td align=right class=login><font class=slogan>Login</font></td><td class=login><input type=text name=userid size=10 class=\"b4text\"></td><td></td></tr><tr>\n<td align=right class=login><font class=slogan>Password</font></td><td class=login><input type=password name=password size=10 class=\"b4text\"></td>\n<input type=hidden name=outpage value=$PHP_SELF>\n<input type=hidden name=login value=fo_shnizzle>\n<td valign=middle>\n <input type=\"submit\" name=\"Login\" value=\"Login\">\n</td>\n</form>\n<td>\n</td>\n</tr>\n<tr><td> <!--RTAG_FACEBOOK_LOGIN--> </td><td>&nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=$PHP_SELF>register</a>)</td></tr></table>\n";
+../themes/seth_coder/t.header.php:2:rfs_echo($RFS_SITE_DOC_TYPE);
+../themes/seth_coder/t.header.php:3:rfs_echo($RFS_SITE_HTML_OPEN);
+../themes/seth_coder/t.header.php:4:rfs_echo($RFS_SITE_HEAD_OPEN);
+../themes/seth_coder/t.header.php:5:rfs_echo($RFS_SITE_TITLE);
+../themes/seth_coder/t.header.php:7:$RFS_SITE_THEME_CSS_URL="$RFS_SITE_URL/themes/$theme/t.css";
+../themes/seth_coder/t.header.php:9:rfs_echo($RFS_SITE_CSS);
+../themes/seth_coder/t.header.php:10:rfs_echo($RFS_SITE_HEAD_CLOSE);
+../themes/seth_coder/t.header.php:11:rfs_echo($RFS_SITE_BODY_OPEN);
+../themes/seth_coder/t.header.php:23:                    echo "$RFS_SITE_NAME";
+../themes/seth_coder/t.header.php:24:                    echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
+../themes/seth_coder/t.header.php:55:        sc_menu_draw($RFS_SITE_MENU_TOP_LOCATION);
+../themes/seth_coder/t.header.php:79:				sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+../themes/seth_coder/t.header.php:84:				rfs_echo($RFS_SITE_LOGGED_IN_CODE);				
+../themes/seth_coder/t.header.php:87:			    rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+../themes/seth_coder/t.footer.php:4:		sc_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
+../themes/seth_coder/t.footer.php:18:    echo "<center>$RFS_SITE_COPYRIGHT</center>";
+../themes/blue/t.php:2:$RFS_SITE_SINGLETABLEWIDTH=940;
+../themes/blue/t.php:3:$RFS_SITE_THEME_DROPDOWN=true;
+../themes/blue/t.php:4:$RFS_SITE_NAV_FONT= "impact.ttf";
+../themes/blue/t.php:5:$RFS_SITE_NAV_FONT_COLOR = "#7171ff";
+../themes/blue/t.php:6:$RFS_SITE_NAV_FONT_BGCOLOR = "#010000";
+../themes/blue/t.php:7:$RFS_SITE_TTF_TOP_FONT_SIZE=45;
+../themes/blue/t.php:8:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="0";
+../themes/blue/t.php:9:$RFS_SITE_TTF_TOP_FONT="Crumb.ttf";
+../themes/blue/t.php:10:$RFS_SITE_TTF_TOP="1";
+../themes/blue/t.php:11:$RFS_SITE_TTF_TOP_COLOR="#7171ff";
+../themes/blue/t.php:12:$RFS_SITE_TTF_TOP_BGCOLOR="#010000";
+../themes/hive/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/hive/t.php:3:$RFS_SITE_NAV_FONT="gesture.ttf";
+../themes/hive/t.php:4:$RFS_SITE_NAV_IMG=1;
+../themes/hive/t.php:5:$RFS_SITE_NAV_FONT_COLOR="#ffcc00";
+../themes/hive/t.php:6:$RFS_SITE_NAV_FONT_BGCOLOR="#330000";
+../themes/hive/t.php:7:$RFS_SITE_TTF_TOP="1";
+../themes/hive/t.php:8:$RFS_SITE_TTF_TOP_COLOR="#ffcc00";
+../themes/hive/t.php:9:$RFS_SITE_TTF_TOP_BGCOLOR="#330000";
+../themes/hive/t.php:10:$RFS_SITE_TTF_TOP_FONT="frau-hex.ttf";
+../themes/hive/t.php:11:$RFS_SITE_TTF_TOP_FONT_SIZE="55";
+../themes/hive/t.php:12:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="0";
+../themes/black/t.php:2:$RFS_SITE_NAV_FONT_SIZE="15";
+../themes/black/t.php:4:$RFS_SITE_NAV_IMG="1";
+../themes/black/t.php:6:$RFS_SITE_TTF_TOP_FONT_SIZE="66";
+../themes/black/t.php:7:$RFS_SITE_TTF_TOP="1";
+../themes/black/t.php:8:$RFS_SITE_TTF_TOP_COLOR="C4BDC7";
+../themes/black/t.php:12:$RFS_SITE_TTF_TOP_BGCOLOR="#333333";
+../themes/black/t.php:13:$RFSW_BULLET_IMAGE = "$RFS_SITE_URL/modules/wiki/images/bullet.gif";
+../themes/black/t.php:14:$RFSW_LINK_IMAGE   = "$RFS_SITE_URL/modules/wiki/images/link.png";
+../themes/black/t.php:15:$RFS_SITE_NAV_FONT_Y_OFFSET="-5";
+../themes/black/t.php:16:$RFS_SITE_NAV_FONT_BGCOLOR="101703";
+../themes/black/t.php:17:$RFS_SITE_NAV_FONT="8bitlimr.ttf";
+../themes/black/t.php:20:$RFS_SITE_TTF_TOP_FONT="underscr.ttf";
+../themes/black/t.php:22:$RFS_SITE_NAV_FONT_COLOR="C2BAC2";
+../themes/black/t.php:27:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="-15";
+../themes/green/t.php:2:$RFS_SITE_SINGLETABLEWIDTH=940;
+../themes/green/t.php:3:$RFS_SITE_THEME_DROPDOWN=true;
+../themes/green/t.php:4:$RFS_SITE_NAV_FONT= "impact.ttf";
+../themes/green/t.php:5:$RFS_SITE_NAV_FONT_COLOR = "#00ff00";
+../themes/green/t.php:6:$RFS_SITE_NAV_FONT_BGCOLOR = "#010000";
+../themes/green/t.php:7:$RFS_SITE_TTF_TOP_FONT_SIZE=45;
+../themes/green/t.php:8:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="0";
+../themes/green/t.php:9:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="15";
+../themes/green/t.php:10:$RFS_SITE_TTF_TOP_FONT="Crumb.ttf";
+../themes/green/t.php:11:$RFS_SITE_TTF_TOP_COLOR="#00ff00";
+../themes/green/t.php:12:$RFS_SITE_TTF_TOP_BGCOLOR="#010000";
+../themes/green/t.php:13:$RFS_SITE_JS_MSDROPDOWN_THEME = "<link rel=\"stylesheet\" type=\"text/css\" href=\"\$RFS_SITE_URL/themes/green/dd.css\" />  <link rel=\"stylesheet\" type=\"text/css\" href=\"\$RFS_SITE_URL/themes/green/skin2.css\" /> ";
+../themes/white/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/white/t.php:3:$RFS_SITE_NAV_FONT="DisposableDroidBB_bldital.ttf";
+../themes/white/t.php:4:$RFS_SITE_NAV_FONT_SIZE="25";
+../themes/white/t.php:5:$RFS_SITE_NAV_IMG="1";
+../themes/white/t.php:6:$RFS_SITE_NAV_FONT_COLOR="#FFFFFF";
+../themes/white/t.php:7:$RFS_SITE_NAV_FONT_BGCOLOR="#7a7a7a";
+../themes/white/t.php:8:$RFS_SITE_TTF_TOP_FONT="underscr.ttf";
+../themes/white/t.php:9:$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+../themes/white/t.php:10:$RFS_SITE_TTF_TOP="1";
+../themes/white/t.php:11:$RFS_SITE_TTF_TOP_COLOR="#81aef1";
+../themes/white/t.php:12:$RFS_SITE_TTF_TOP_BGCOLOR="#7a7a7a";
+../themes/white/t.php:13:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="-10";
+../themes/white/t.php:15:$RFSW_BULLET_IMAGE="$RFS_SITE_URL/modules/wiki/images/bullet.gif";
+../themes/white/t.php:16:$RFSW_LINK_IMAGE="$RFS_SITE_URL/modules/wiki/images/link.png";
+../themes/white/t.php:17:$RFS_SITE_NAV_FONT_Y_OFFSET="-8";
+../themes/cream/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/cream/t.php:3:$RFS_SITE_NAV_FONT="MagicLanternNF.ttf";
+../themes/cream/t.php:4:$RFS_SITE_NAV_IMG=1;
+../themes/cream/t.php:5:$RFS_SITE_FONT="MagicLanternNF.ttf";
+../themes/cream/t.php:6:$RFS_SITE_NAV_FONT_COLOR="#FF9F5F";
+../themes/cream/t.php:7:$RFS_SITE_NAV_FONT_BGCOLOR="#5a3a0f";
+../themes/cream/t.php:8:$RFS_SITE_TTF_TOP="1";
+../themes/cream/t.php:9:$RFS_SITE_TTF_TOP_FONT="MagicLanternNF.ttf";
+../themes/cream/t.php:10:$RFS_SITE_TTF_TOP_COLOR="#FF9F5F";
+../themes/cream/t.php:11:$RFS_SITE_TTF_TOP_BGCOLOR="#5A3A0F";
+../themes/cream/t.php:12:$RFS_SITE_TTF_TOP_FONT_SIZE="40";
+../themes/cream/t.php:13:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="0";
+../themes/rfs_wow/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/rfs_wow/t.php:3:$RFS_SITE_NAV_FONT="2002.ttf";
+../themes/rfs_wow/t.php:4:$RFS_SITE_NAV_IMG=1;
+../themes/rfs_wow/t.php:5:$RFS_SITE_TTF_TOP_FONT="2002.ttf";
+../themes/rfs_wow/t.php:6:$RFS_SITE_TTF_TOP_FONT_SIZE="35";
+../themes/rfs_wow/t.php:7:$RFS_SITE_FONT="2002.ttf";
+../themes/rfs_wow/t.php:8:$RFS_SITE_NAV_IMG_TOP=1;
+../themes/rfs_wow/t.php:9:$RFS_SITE_NAV_FONT_COLOR="#FFFF00";
+../themes/rfs_wow/t.php:10:$RFS_SITE_NAV_FONT_BGCOLOR="#010100";
+../themes/rfs_wow/t.php:11:$RFS_SITE_TTF_TOP="1";
+../themes/rfs_wow/t.php:12:$RFS_SITE_TTF_TOP_COLOR="#FFFF00";
+../themes/rfs_wow/t.php:13:$RFS_SITE_TTF_TOP_BGCOLOR="#010100";
+../themes/rfs_wow/t.php:14:$RFS_SITE_NAV_FONT_X_OFFSET="0";
+../themes/rfs_wow/t.php:15:$RFS_SITE_NAV_FONT_Y_OFFSET="-8";
+../themes/rfs_wow/t.php:17:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="30";
+../themes/rfs_wow/t.php:18:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="-7";
+../themes/default/t.php:3:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/default/t.php:4:$RFS_SITE_NAV_FONT_COLOR="#55FF00";
+../themes/default/t.php:5:$RFS_SITE_NAV_FONT_BGCOLOR="#114400";
+../themes/default/t.php:6:$RFS_SITE_TTF_TOP_COLOR="#55aa00";
+../themes/default/t.php:7:$RFS_SITE_TTF_TOP_BGCOLOR="#114400";
+../themes/default/t.php:8:$RFS_SITE_TTF_TOP_FONT_SIZE="35";
+../themes/default/t.php:10:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="0";
+../themes/default/t.php:14:$RFS_SITE_NAV_FONT_SIZE="12";
+../themes/default/t.php:15:$RFS_SITE_TTF_TOP_FONT="BurntMF.ttf";
+../themes/default/t.php:16:$RFS_SITE_TTF_TOP="1";
+../themes/default/t.php:17:$RFS_SITE_NAV_FONT="BurntMF.ttf";
+../themes/default/t.php:18:$RFS_SITE_NAV_FONT_Y_OFFSET="-3";
+../themes/default/t.php:19:$RFS_SITE_NAV_IMG="1";
+../themes/plain2/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/plain2/t.php:3:$RFS_SITE_NAV_FONT="DisposableDroidBB_bldital.ttf";
+../themes/plain2/t.php:4:$RFS_SITE_NAV_FONT_SIZE="25";
+../themes/plain2/t.php:5:$RFS_SITE_NAV_IMG="0";
+../themes/plain2/t.php:6:$RFS_SITE_NAV_FONT_COLOR="#FFFFFF";
+../themes/plain2/t.php:7:$RFS_SITE_NAV_FONT_BGCOLOR="#7a7a7a";
+../themes/plain2/t.php:8:$RFS_SITE_TTF_TOP_FONT="underscr.ttf";
+../themes/plain2/t.php:9:$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+../themes/plain2/t.php:10:$RFS_SITE_TTF_TOP="0";
+../themes/plain2/t.php:11:$RFS_SITE_TTF_TOP_COLOR="#81aef1";
+../themes/plain2/t.php:12:$RFS_SITE_TTF_TOP_BGCOLOR="#7a7a7a";
+../themes/plain2/t.php:13:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="-10";
+../themes/plain2/t.php:15:$RFSW_BULLET_IMAGE="$RFS_SITE_URL/modules/wiki/images/bullet.gif";
+../themes/plain2/t.php:16:$RFSW_LINK_IMAGE="$RFS_SITE_URL/modules/wiki/images/link.png";
+../themes/plain2/t.php:17:$RFS_SITE_NAV_FONT_Y_OFFSET="-8";
+../themes/zen/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/zen/t.php:3:$RFS_SITE_NAV_FONT="DisposableDroidBB_bldital.ttf";
+../themes/zen/t.php:5:$RFS_SITE_NAV_FONT_SIZE="25";
+../themes/zen/t.php:6:$RFS_SITE_NAV_IMG="1";
+../themes/zen/t.php:7:$RFS_SITE_NAV_FONT_COLOR="DFFFC9";
+../themes/zen/t.php:10:$RFS_SITE_NAV_FONT_BGCOLOR="000000";
+../themes/zen/t.php:12:$RFS_SITE_TTF_TOP_FONT="DisposableDroidBB_bldital.ttf";
+../themes/zen/t.php:13:$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+../themes/zen/t.php:14:$RFS_SITE_TTF_TOP="1";
+../themes/zen/t.php:15:$RFS_SITE_TTF_TOP_COLOR="DFFFC9";
+../themes/zen/t.php:18:$RFS_SITE_TTF_TOP_BGCOLOR="030303";
+../themes/zen/t.php:20:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="-10";
+../themes/zen/t.php:22:$RFSW_BULLET_IMAGE="$RFS_SITE_URL/modules/wiki/images/bullet.gif";
+../themes/zen/t.php:23:$RFSW_LINK_IMAGE="$RFS_SITE_URL/modules/wiki/images/link.png";
+../themes/zen/t.php:24:$RFS_SITE_NAV_FONT_Y_OFFSET="-8";
+../themes/php/t.header.php:7:  <? echo "@import url(\"$RFS_SITE_URL/themes/$theme/site.css\");\n"; ?>
+../themes/php/t.header.php:8:  <? echo "@import url(\"$RFS_SITE_URL/themes/$theme/phpnet.css\");\n"; ?>
+../themes/php/t.header.php:14:   <? echo "@import url(\"$RFS_SITE_URL/themes/$theme/print.css\");\n"; ?>
+../themes/php/t.header.php:28: <? echo "<a href=\"$RFS_SITE_URL\" rel=\"home\">"; 
+../themes/php/t.header.php:29: echo "<font style=\" font-size: 32px; \">$RFS_SITE_NAME</font>";
+../themes/php/t.header.php:35: echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
+../themes/php/t.header.php:97:		rfs_echo($RFS_SITE_LOGGED_IN_CODE);
+../themes/php/t.header.php:101:		$RFS_SITE_LOGIN_FORM_CODE   = " 
+../themes/php/t.header.php:103:<script src=\"\$RFS_SITE_URL/include/md5.js\"> </script>
+../themes/php/t.header.php:104:<form method=post action=\"\$RFS_SITE_URL/login.php\">
+../themes/php/t.header.php:124:<td> &nbsp;(<a href=\$RFS_SITE_URL/login.php?action=join&outpage=$PHP_SELF>Register</a>)
+../themes/php/t.header.php:131:		rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
+../themes/php/t.footer.php:18: <? echo "$RFS_SITE_COPYRIGHT";
+../themes/defective/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/defective/t.php:3:$RFS_SITE_NAV_FONT="FORCE3.TTF";
+../themes/defective/t.php:4:$RFS_SITE_NAV_FONT_SIZE=12;
+../themes/defective/t.php:5:$RFS_SITE_NAV_FONT_X_OFFSET=0;
+../themes/defective/t.php:6:$RFS_SITE_NAV_FONT_Y_OFFSET=-8;
+../themes/defective/t.php:7:$RFS_SITE_NAV_IMG=1;
+../themes/defective/t.php:8:$RFS_SITE_NAV_FONT_COLOR="#ff9900";
+../themes/defective/t.php:9:$RFS_SITE_NAV_FONT_BGCOLOR="#550000";
+../themes/defective/t.php:10:$RFS_SITE_TTF_TOP_FONT="AristotlePunk.ttf";
+../themes/defective/t.php:11:$RFS_SITE_TTF_TOP_FONT_SIZE="65";
+../themes/defective/t.php:13:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="25";
+../themes/defective/t.php:17:$RFS_SITE_TTF_TOP=1;
+../themes/defective/t.php:18:$RFS_SITE_TTF_TOP_COLOR="#ff9900";
+../themes/defective/t.php:19:$RFS_SITE_TTF_TOP_BGCOLOR="#331100";
+../themes/defective/t.php:20:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="-25";
+../themes/c64/t.php:3:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/3dnetlabs/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/3dnetlabs/t.php:3:$RFS_SITE_NAV_BUTTONS="0";
+../themes/3dnetlabs/t.php:4:$RFS_SITE_NAV_IMG="1";
+../themes/3dnetlabs/t.php:5:$RFS_SITE_NAV_FONT="DisposableDroidBB_bldital.ttf";
+../themes/3dnetlabs/t.php:6:$RFS_SITE_NAV_FONT_SIZE="25";
+../themes/3dnetlabs/t.php:7:$RFS_SITE_NAV_IMG="1";
+../themes/3dnetlabs/t.php:8:$RFS_SITE_NAV_FONT_COLOR="00FF00";
+../themes/3dnetlabs/t.php:9:$RFS_SITE_NAV_FONT_BGCOLOR="005500";
+../themes/3dnetlabs/t.php:10:$RFS_SITE_NAV_FONT_Y_OFFSET="-8";
+../themes/pink/t.php:2:$RFS_SITE_TTF_TOP="1";
+../themes/pink/t.php:3:$RFS_SITE_TTF_TOP_FONT="BaroqueAntiqueScript.ttf";
+../themes/pink/t.php:4:$RFS_SITE_TTF_TOP_COLOR="#FFcccc";
+../themes/pink/t.php:5:$RFS_SITE_TTF_TOP_BGCOLOR="#DD9999";
+../themes/pink/t.php:6:$RFS_SITE_TTF_TOP_FONT_SIZE="35";
+../themes/pink/t.php:7:$RFS_SITE_TTF_TOP_FONT_X_OFFSET="0";
+../themes/pink/t.php:8:$RFS_SITE_NAV_IMG="1";
+../themes/pink/t.php:9:$RFS_SITE_NAV_FONT="consolaz.ttf";
+../themes/pink/t.php:10:$RFS_SITE_NAV_FONT_COLOR="#ffcccc";
+../themes/pink/t.php:11:$RFS_SITE_NAV_FONT_BGCOLOR="#997777";
+../themes/pink/t.php:12:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="-25";
+../themes/defcon1/t.php:3:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/defcon1/t.php:4:$RFS_SITE_NAV_FONT="ALIENSAT.TTF";
+../themes/defcon1/t.php:5:$RFS_SITE_NAV_IMG=1;
+../themes/defcon1/t.php:6:$RFS_SITE_NAV_FONT_COLOR="#FF0000";
+../themes/defcon1/t.php:7:$RFS_SITE_NAV_FONT_BGCOLOR="#442200";
+../themes/defcon1/t.php:8:$RFS_SITE_TTF_TOP="1";
+../themes/defcon1/t.php:9:$RFS_SITE_TTF_TOP_FONT="ALIENSAT.TTF";
+../themes/defcon1/t.php:10:$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+../themes/defcon1/t.php:11:$RFS_SITE_TTF_TOP_COLOR="#FF0000";
+../themes/defcon1/t.php:12:$RFS_SITE_TTF_TOP_BGCOLOR="#442200";
+../themes/defcon1/t.php:13:$RFS_SITE_NAV_FONT_Y_OFFSET="-8";
+../themes/defcon1/t.php:14:$RFS_SITE_TTF_TOP_FONT_Y_OFFSET="-20";
+../themes/area56/t.php:2:$RFS_SITE_TOP_MENU_LOCATION="top";
+../themes/area56/t.php:3:$RFS_SITE_NAV_FONT="Crumb.ttf";
+../themes/area56/t.php:4:$RFS_SITE_NAV_IMG=1;
+../themes/area56/t.php:5:$RFS_SITE_NAV_FONT_COLOR="#01ff00";
+../themes/area56/t.php:6:$RFS_SITE_NAV_FONT_BGCOLOR="#330000";
+../themes/area56/t.php:7:$RFS_SITE_TTF_TOP="1";
+../themes/area56/t.php:8:$RFS_SITE_TTF_TOP_FONT="Crumb.ttf";
+../themes/area56/t.php:9:$RFS_SITE_TTF_TOP_COLOR="#01FF00";
+../themes/area56/t.php:10:$RFS_SITE_TTF_TOP_BGCOLOR="#330000";
+../themes/area56/t.php:11:$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+../themes/area56/t.php:12:$RFS_SITE_NAV_FONT_Y_OFFSET="-4";
+../themes/fluff/t.php:2:$RFS_SITE_TTF_TOP="1";
+../themes/fluff/t.php:3:$RFS_SITE_TTF_TOP_FONT="Quaint.ttf";
+../themes/fluff/t.php:4:$RFS_SITE_TTF_TOP_COLOR="#998822";
+../themes/fluff/t.php:5:$RFS_SITE_TTF_TOP_BGCOLOR="#775511";
+../themes/fluff/t.php:6:$RFS_SITE_TTF_TOP_FONT_SIZE="45";
+../themes/fluff/t.php:7:$RFS_SITE_NAV_IMG="1";
+../themes/fluff/t.php:8:$RFS_SITE_NAV_FONT="Quaint.ttf";
+../themes/fluff/t.php:9:$RFS_SITE_NAV_FONT_COLOR="#998822";
+../themes/fluff/t.php:10:$RFS_SITE_NAV_FONT_BGCOLOR="#775511";
+../themes/fluff/t.php:11:$RFS_SITE_NAV_FONT_Y_OFFSET="-6";
