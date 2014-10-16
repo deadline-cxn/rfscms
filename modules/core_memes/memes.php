@@ -15,7 +15,8 @@ include("header.php");
 
 /////////////////////////////////////////////////////////////////////////////////
 // New meme
-function memes_action_new_meme() { eval(lib_rfs_get_globals());
+function memes_action_new_meme() {
+	eval(lib_rfs_get_globals());
 	echo "<p>Select a file to use for the caption.</p>\n";
 	echo "<form  enctype=\"multipart/form-data\" action=\"$RFS_SITE_URL/modules/core_memes/memes.php\" method=\"post\">\n";
 	echo "<table border=0>\n";
@@ -33,7 +34,8 @@ function memes_action_new_meme() { eval(lib_rfs_get_globals());
 	echo "</form>\n";
 	include("footer.php");
 }
-function memes_action_new_meme_go() { eval(lib_rfs_get_globals());
+function memes_action_new_meme_go() {
+	eval(lib_rfs_get_globals());
 	echo "Uploading meme picture...\n";
 	$furl="files/pictures/".$_FILES['userfile']['name'];
 	$furl =str_replace("//","/",$furl);
@@ -114,60 +116,33 @@ function memes_action_meme_delete_go() { eval(lib_rfs_get_globals());
 function memes_action_meme_save() { eval(lib_rfs_get_globals());
     lib_mysql_query("update meme set status='SAVED' where id='$meme_id'");
     lib_forms_info("SAVED!","WHITE","GREEN");
-	 memes_action_showmemes();    
+	memes_action_showmemes();    
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME generate
 function memes_action_memegenerate() {
     eval(lib_rfs_get_globals());
-    global $mysql_id; 
+    global $mysql_id;
     global $basepic;
-    	
 	$name 		= addslashes($name);
 	$texttop 	= addslashes($_REQUEST['texttop']);
-	$textbottom = addslashes($_REQUEST['textbottom']);	
-    
+	$textbottom = addslashes($_REQUEST['textbottom']);    
 	$poster=999;
     if($data->id) $poster=$data->id;
-    if(empty($private)) $private="no";
-	
+    if(empty($private))
+		$private="no";	
 	if($meme_id==0) {
         $infoout="Adding new caption";
-        if(empty($texttop)) $texttop="_NEW";
-			echo " POSTER [$poster]<br>";
-			echo "PICTURE [$basepic] <br>";
-			$q="insert into meme
-				  ( `name`,`poster`, `basepic`,`texttop`,`status`)
-			VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
-            
-        lib_mysql_query($q);
-        $meme_id=$mysql_id;
-        
-        echo "MEME_ID[$meme_id] MYSQL_ID[$mysql_id] ";
-       }
+        if(empty($texttop))
+			$texttop="_NEW";
+		echo " POSTER [$poster]<br>";
+		echo "PICTURE [$basepic] <br>";
+		$meme_id=memes_create_meme($name,$poster,$basepic,$texttop);
+	}
 	else {
 		$infoout="Updating caption $meme_id";
-		if(!empty($_REQUEST['name']))
-		lib_mysql_query("update meme set `name`  			= '$name'   	     where id='$meme_id'");
-		if(!empty($_REQUEST['poster']))
-		lib_mysql_query("update meme set `poster`   	 	= '$poster'     	 where id='$meme_id'");
-		if(!empty($_REQUEST['texttop']))
-		lib_mysql_query("update meme set `texttop`     	= '$texttop'    	 where id='$meme_id'");
-		if(!empty($_REQUEST['textbottom']))
-		lib_mysql_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$meme_id'");
-		if(!empty($_REQUEST['chgfont']))
-		lib_mysql_query("update meme set `font`	       = '$chgfont'       where id='$meme_id'");
-		if(!empty($_REQUEST['text_color']))
-		lib_mysql_query("update meme set `text_color`		= '$text_color'    where id='$meme_id'");
-		if(!empty($_REQUEST['text_bg_color']))
-		lib_mysql_query("update meme set `text_bg_color`	= '$text_bg_color' where id='$meme_id'");
-		if(!empty($_REQUEST['text_size']))
-		lib_mysql_query("update meme set `text_size`		= '$text_size'     where id='$meme_id'");
-		if(!empty($_REQUEST['private']))
-		lib_mysql_query("update meme set `private`		= '$private'       where id='$meme_id'");
-		if(!empty($_REQUEST['datborder']))
-		lib_mysql_query("update meme set `datborder`		= '$datborder'   	  where id='$meme_id'");
-	}	
+		memes_update_meme($meme_id,$poster,$name,$basepic,$texttop,$texttop_color,$textbottom,$textbottom_color,$rating,$chgfont,$text_size,$text_color,$text_bg_color,$time,$private,$datborder,$status);
+	}
     $meme=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
     $data=lib_users_get_data($poster);	
     $basepic=$meme->basepic;
@@ -185,9 +160,7 @@ function memes_action_memeedit($meme_id) {
 	
     $m=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
 	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$m->basepic'");
-    
-    echo "$m->id  $pic->id";
-    	
+      	
     $p=$data->id;
     if(empty($p)) $p=999;
     
@@ -294,7 +267,8 @@ function memes_action_memeedit($meme_id) {
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME vote up
-function memes_action_muv() { eval(lib_rfs_get_globals()); 
+function memes_action_muv() {
+	eval(lib_rfs_get_globals()); 
     $muv="MUV$meme_id";    
     $action="showmemes";
     if(!$_SESSION[$muv]){        
@@ -309,7 +283,8 @@ function memes_action_muv() { eval(lib_rfs_get_globals());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME vote down
-function memes_action_mdv() { eval(lib_rfs_get_globals());
+function memes_action_mdv() {
+	eval(lib_rfs_get_globals());
     $mdv="MDV$meme_id";
     $action="showmemes";
 	if(!$_SESSION[$mdv]){
@@ -331,14 +306,10 @@ function memes_action_showmemes(){
 	echo "<h1>Meme generator</h1>";
     echo "<hr>";
     
-    
-    
     lib_buttons_make_button("$RFS_SITE_URL/modules/core_memes/memes.php?action=new_meme","Create new meme");
     
     echo "<hr>";
-    
-    
-    
+	
 	$mcols=5; $mrows=5;
 	$toget=$mcols*$mrows;
 	if(empty($mtop)) $mtop=0;
@@ -385,7 +356,8 @@ function memes_action_showmemes(){
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME default action
-function memes_action_() { eval(lib_rfs_get_globals());
+function memes_action_() {
+	eval(lib_rfs_get_globals());
 	memes_action_showmemes();
 }
 

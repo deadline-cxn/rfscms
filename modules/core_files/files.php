@@ -12,7 +12,7 @@ if (isset($argv[1])) {
     if ($argv[1] == "scrub") {
         m_files_scrubfiledatabase(1);
         exit();
-    }
+    } 
     if ($argv[1] == "orph") {
         m_files_orphan_scan("files", 1);
         exit();
@@ -1258,42 +1258,52 @@ function files_action_()  {
     files_header();
     if ($_SESSION['show_temp']) {
         $action = "listcategory";
-        if (empty($category))
-            $category = "unsorted";
-        $amount = "50";
+        if (empty($category)) $category = "unsorted";
+		$amount = "50";
         $query = " where (`hidden`='yes' or (category='unsorted' or category='')) ";
-        if (!empty($md5))
-            $query .= " and md5 = '$md5' ";
+        if (!empty($md5)) $query .= " and md5 = '$md5' ";
         $query .= " order by location asc ";
         lib_forms_info("SORT MODE", "WHITE", "RED");
+		files_action_listcategory();
     }
+	
     $result = lib_mysql_query("select * from categories  where  (`name` != 'unsorted')  order by name asc");
+	
     while ($cat=$result->fetch_object()) {
+		
         if (!empty($cat->name)) {
+			
             $bg = 0;
             $buffer = rtrim($cat->name);
+			
             if (lib_rfs_bool_true($_SESSION['hidden']))
                 $shide = "";
             else
                 $shide = " and hidden!='yes' ";
+
             $q = "";
             if (!empty($tagsearch))
                 $q .= " (`tags` like '%$tagsearch%' ) and ";
-				$filelist = m_files_getfilelist("where $q category = '$buffer' $shide ", 50);
+			$filelist = m_files_getfilelist("where $q category = '$buffer' $shide ", 50);
+
             if (count($filelist)) {
                 echo "<div class=file_list style='float: left;' >";
                 echo "<div class=file_category style='float:left;' >";
                 $iconp = $RFS_SITE_PATH . "/" . $cat->image;
                 $icon = $RFS_SITE_URL . "/" . $cat->image;
+				
                 if (file_exists($iconp)) {
                     echo "<a href=\"$RFS_ADDON_FOLDER?action=listcategory&category=$buffer\" title=\"List all $buffer files\">";
                     echo "<img src=$icon border=0 width=32 height=32>";
                     echo "</a>";
                 }
+				
                 echo "<a class=file_category_link href=\"$RFS_ADDON_FOLDER?action=listcategory&category=$buffer\" title=\"List all $buffer files\">[";
                 echo ucwords("$buffer");
                 echo "] ";
+				
                 $myr = m_files_getfilelist("where category='$buffer' $shide ", 999999999);
+				
                 echo "(";
                 echo count($myr);
                 echo " files)";
@@ -1306,7 +1316,7 @@ function files_action_()  {
                     $filedata = m_files_getfiledata($filelist[$i2]);
                     $bg = $bg + 1;
                     if ($bg > 1)
-                        $bg = 0;                        
+                        $bg = 0;
                     m_files_show1file($filedata, $bg);
                     $i2 = $i2 + 1;
                     $la = $amount;

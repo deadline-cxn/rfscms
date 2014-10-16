@@ -60,6 +60,7 @@ function pictures_show_buttons() {
 	}
 	echo "</tr></table>"; 
 }
+
 $ourl="$RFS_SITE_URL/modules/core_pictures/pictures.php?action=$action&id=$id";
 
 
@@ -119,6 +120,7 @@ function pictures_action_uploadpicgo() {
 }
 function pictures_action_removepicture() {
 	eval(lib_rfs_get_globals());
+	$next=$_REQUEST['next'];
 	echo "<h1>Remove picture: $id</h1>";
 	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 	$picture=$res->fetch_object();	
@@ -129,6 +131,8 @@ function pictures_action_removepicture() {
 		echo "<table border=0>\n";
 		echo "<input type=hidden name=action value=removego>\n";
 		echo "<input type=hidden name=id value=\"$id\">\n";
+		echo "<input type=hidden name=next value=\"$next\">\n";
+		
 		echo "<tr><td>Are you sure you want to delete [$picture->id]???</td>";
 		echo "<td><input type=submit name=submit value=\"Yes\"></td></tr>\n";
 		echo "<tr><td>Annihilate the file from the server?</td>";
@@ -140,6 +144,7 @@ function pictures_action_removepicture() {
 }
 function pictures_action_removego() {
 	eval(lib_rfs_get_globals());
+	$next=$_REQUEST['next'];
 	$res=lib_mysql_query("select * from `pictures` where `id`='$id'");
 	$picture=$res->fetch_object();
 	if(lib_access_check("pictures","delete") ||
@@ -152,9 +157,18 @@ function pictures_action_removego() {
 			$ftr=str_replace("//","/",$ftr);
 			@unlink($ftr);
 			echo "<p> $ftr annihilated!</p>\n";
-		}
+		}		
+		if($gosorttemp=="yes")
+			pictures_action_sorttemp();
 		
-		if($gosorttemp=="yes") pictures_action_sorttemp();
+		if(!empty($next)) {
+			$id=$next;
+			pictures_action_view($next);
+			exit();
+		}
+			
+		finish_pictures_page();
+		
 		
 	} else {
 		echo "<p>You do not have picture removal privileges.</p>";
@@ -386,10 +400,14 @@ function pictures_action_random() {
         pictures_action_view($pic->id);
     }
 }
-function pictures_action_view($id) {
+function pictures_action_view($in_id) {
 	echo "<h1>Pictures</h1>";
-	pictures_show_buttons();
 	eval(lib_rfs_get_globals());
+	if(!empty($in_id)) $id=$in_id;
+
+	pictures_show_buttons();
+
+	
     $res=lib_mysql_query("select * from `pictures` where `id`='$id' order by time asc");
     $picture=$res->fetch_object();
 	$category=$picture->category;
@@ -434,7 +452,7 @@ function pictures_action_view($id) {
 		}			
 		if(lib_access_check("pictures","delete")) {
 			echo "<td>";
-			lib_buttons_make_button("$RFS_SITE_URL/modules/core_pictures/pictures.php?action=removepicture&id=$picture->id","Delete");
+			lib_buttons_make_button("$RFS_SITE_URL/modules/core_pictures/pictures.php?action=removepicture&id=$picture->id&next=$picture2->id","Delete");
 			echo "</td>";
 		}			
 		echo "<td>";

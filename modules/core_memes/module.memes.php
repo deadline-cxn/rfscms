@@ -41,8 +41,8 @@ function m_panel_memes($x) { eval(lib_rfs_get_globals());
 	echo "<br style='clear: both;'>";
 }
 
-function rfs_show1meme($inmeme_id) { eval(lib_rfs_get_globals());
-
+function rfs_show1meme($inmeme_id) {
+	eval(lib_rfs_get_globals());
 	$m=lib_mysql_fetch_one_object("select * from meme where id='$inmeme_id'");
 	$t=$m->name."-".time();
 	echo "<div id='fl_$inmeme_id' class=\"memebox\"
@@ -70,8 +70,8 @@ function rfs_show1meme($inmeme_id) { eval(lib_rfs_get_globals());
 	}
 	echo "</div>";
 }
-
-function rfs_show1minimeme($inmeme_id) { eval(lib_rfs_get_globals());
+function rfs_show1minimeme($inmeme_id) {
+	eval(lib_rfs_get_globals());
 	$meme_fullsize=512;
 	$meme_thumbwidth=160;
 	$m=lib_mysql_fetch_one_object("select * from meme where id='$inmeme_id' and `status`='SAVED'");
@@ -86,6 +86,31 @@ function rfs_show1minimeme($inmeme_id) { eval(lib_rfs_get_globals());
 	echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=mdv&meme_id=$m->id'><img src='$RFS_SITE_URL/images/icons/thumbdown.png' border=0 width=24></a>";
 	echo "<hr>";
 	echo "</div>";
+}
+
+function memes_create_meme($name,$poster,$basepic,$texttop) {
+	global $mysql_id;
+	$q="insert into meme ( `name`,`poster`, `basepic`,`texttop`,`status`) VALUES('$name','$poster', '$basepic',  '$texttop', 'EDIT');";
+    lib_mysql_query($q);
+	return $mysql_id;
+}
+function memes_update_meme($meme_id,$poster,$name,$basepic,$texttop,$texttop_color,$textbottom,$textbottom_color,$rating,$font,$text_size,$text_color,$text_bg_color,$time,$private,$datborder,$status) {
+	if(!empty($poster)) 	lib_mysql_query("update meme set `poster`   	= '$poster'     	 where id='$meme_id'");
+	if(!empty($name))		lib_mysql_query("update meme set `name`  		= '$name'   	     where id='$meme_id'");	
+							lib_mysql_query("update meme set `texttop`     	= '$texttop'    	 where id='$meme_id'");
+	if(!empty($texttop_color))	lib_mysql_query("update meme set `texttop_color`		= '$texttop_color'    where id='$meme_id'");
+							lib_mysql_query("update meme set `textbottom`  	= '$textbottom' 	 where id='$meme_id'");
+	if(!empty($textbottom_color)) lib_mysql_query("update meme set `textbottom_color` = '$textbottom_color'    where id='$meme_id'");
+	if(!empty($rating))		lib_mysql_query("update meme set `rating`	    = '$rating'       where id='$meme_id'");
+	if(!empty($font))		lib_mysql_query("update meme set `font`	     	= '$font'       where id='$meme_id'");
+	if(!empty($text_size))	lib_mysql_query("update meme set `text_size`		= '$text_size'     where id='$meme_id'");
+	if(!empty($text_color))	lib_mysql_query("update meme set `text_color`		= '$text_color'    where id='$meme_id'");	
+	if(!empty($text_bg_color)) lib_mysql_query("update meme set `text_bg_color`	= '$text_bg_color' where id='$meme_id'");
+	if(!empty($time))       lib_mysql_query("update meme set `time`	= '$time' where id='$meme_id'");
+	if(!empty($private))	lib_mysql_query("update meme set `private`		= '$private'       where id='$meme_id'");
+	if(!empty($datborder))	lib_mysql_query("update meme set `datborder`		= '$datborder'   	  where id='$meme_id'");
+	if(!empty($status))		lib_mysql_query("update meme set `status`		= '$status'   	  where id='$meme_id'");
+	
 }
 
 ?>
