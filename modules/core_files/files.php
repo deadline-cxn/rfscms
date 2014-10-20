@@ -1255,18 +1255,22 @@ function files_action_listcategory() {
 function files_action_()  {
     eval(lib_rfs_get_globals());
 	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
-    files_header();
+    
     if ($_SESSION['show_temp']) {
+		/*
         $action = "listcategory";
         if (empty($category)) $category = "unsorted";
 		$amount = "50";
         $query = " where (`hidden`='yes' or (category='unsorted' or category='')) ";
         if (!empty($md5)) $query .= " and md5 = '$md5' ";
         $query .= " order by location asc ";
-        lib_forms_info("SORT MODE", "WHITE", "RED");
+        // lib_forms_info("SORT MODE", "WHITE", "RED");
+		 */
 		files_action_listcategory();
+		exit();
     }
 	
+	files_header();
     $result = lib_mysql_query("select * from categories  where  (`name` != 'unsorted')  order by name asc");
 	
     while ($cat=$result->fetch_object()) {
