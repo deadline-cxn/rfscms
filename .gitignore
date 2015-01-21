@@ -6,6 +6,7 @@ files_h
 files_b
 trip*
 _404.php
+*.log
 error.log
 error_log
 tripwords2.txt
