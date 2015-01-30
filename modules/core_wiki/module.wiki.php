@@ -101,7 +101,7 @@ function wikiimg($text) {
 					$outtext.= lib_images_thumb("$RFS_SITE_WIKI_IMAGES_PATH/wiki_warning.png",32,32,1);
 					$outtext.="</td><td class=warning> Image not found";
 					//////////////////////////////////////////////////////////////////////////////
-					if($GLOBALS['rfsw_admin_mode']=="true") {
+					if(lib_access_check("wiki","uploadfile")) {
                     $outtext.=" </td><td class=warning> <form enctype=\"multipart/form-data\" action=\"$addon_folder\" method=\"post\">\n";
                     $outtext.="<input type=hidden name=give_file value=yes>\n";
                     $outtext.="<input type=hidden name=name value=\"$name\">\n";
@@ -121,7 +121,7 @@ function wikiimg($text) {
                     $outtext.="<img src=\"$RFS_SITE_URL/".$img."\" border=0 >";                    
                 }
 
-				if($GLOBALS['rfsw_admin_mode']=="true") {
+				if(lib_access_check("wiki","uploadfile")) {
 				// $outtext.="[<a href=\"$RFS_SITE_URL/modules/wiki/wiki.php?action=edit_image\">Edit Image</a>]";
 			}
 

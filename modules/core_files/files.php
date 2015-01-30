@@ -438,7 +438,7 @@ function files_action_addfiletodb_go() {
 }
 function files_action_get_file() {
     eval(lib_rfs_get_globals());
-	echo "<div class=forum_box>";
+	echo "<div class='file_box'>";
 	
 	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
     if ((lib_rfs_bool_true($RFS_SITE_ALLOW_FREE_DOWNLOADS)) ||
@@ -454,7 +454,7 @@ function files_action_get_file() {
 			if(!file_exists($filedata->location)) {
 				lib_forms_info("File has been moved or deleted.","white","red");
 				
-				echo "<div class='forum_box'>";
+				echo "<div class='file_box'>";
 				echo "<input type=text value=\"Locate file\"><br>";
 				echo "[Locate File]<br>";
 				echo "Reupload file <input type=file><br>";
@@ -504,10 +504,10 @@ function files_action_get_file() {
 		
 		
         echo "</p>\n";
-        echo "<div style='clear:both;'>";
+        echo "<div >"; // style='clear:both;'
         lib_tags_show_tags("files", $filedata->id);
         echo "</div>";
-        echo "<div style='clear:both;'>";
+        echo "<div >";//style='clear:both;'
 
         if (empty($get_file_extended)) {
             echo "<table border=0>";
@@ -759,7 +759,7 @@ function files_action_get_file() {
                 case "lua":
                 case "js":
                 case "php":
-                    echo "<table border=0 width=75% cellpadding=6><tr><td class=rfs_file_table_1>";
+                    echo "<table border=0 width=75% cellpadding=6><tr><td >";
 
                     show_source($filedata->location);
                     echo "</td></tr></table>";
@@ -856,8 +856,11 @@ function files_action_ren() {
     eval(lib_rfs_get_globals());
     if (lib_access_check("files", "edit")) {
         if (!empty($data->name)) {
-            if (!empty($name))
+            if (!empty($name)) {
+				$filedata= m_files_getfiledata($id);
+				
                 lib_mysql_query("UPDATE files SET name='$name' where id = '$id'");
+			}
         }
     } else {
         echo "You can't edit files.<br>";
@@ -962,6 +965,9 @@ function files_action_mdf() {
         lib_ajax("Hidden,80", "files", "id", "$id", "hidden", 10, "", "files", "edit", "");
         lib_ajax("Worksafe,80", "files", "id", "$id", "worksafe", 10, "", "files", "edit", "");
         lib_ajax("Rating,80", "files", "id", "$id", "rating", 10, "", "files", "edit", "");
+		
+		
+		
     } else {
         echo "You don't have access to edit files.<br>";
     }
@@ -1220,7 +1226,7 @@ function files_action_listcategory() {
             "NEXT PAGE");
     if (count($filelist)) {
         echo "<div class=file_list style='float: left;' >";
-        echo "<div class=file_category style='float:left;' >";
+        // echo "<div class=file_category style='float:left;' >";
         echo "<h1>" . ucwords($buffer) . "</h1>";
         $i = 0;
         $bg = 0;
@@ -1240,10 +1246,10 @@ function files_action_listcategory() {
                 }
             }
         }
-        echo "</div>";
+        // echo "</div>";
         echo "</div>";
     }
-    echo "<div style='clear: both;'></div>";
+    // echo "<div ></div>"; // style='clear: both;'
     if ($prevtop > 0)
         lib_buttons_make_button("$RFS_ADDON_FOLDER?action=listcategory&amount=$amount&top=$prevtop&category=$category&criteria=$criteria&tagsearch=$tagsearch", "PREV PAGE");
     if ($x == $amount)
@@ -1291,14 +1297,14 @@ function files_action_()  {
 			$filelist = m_files_getfilelist("where $q category = '$buffer' $shide ", 50);
 
             if (count($filelist)) {
-                echo "<div class=file_list style='float: left;' >";
-                echo "<div class=file_category style='float:left;' >";
+                echo "<div class=file_list >";
+                echo "<div class=file_category >";
                 $iconp = $RFS_SITE_PATH . "/" . $cat->image;
                 $icon = $RFS_SITE_URL . "/" . $cat->image;
 				
                 if (file_exists($iconp)) {
                     echo "<a href=\"$RFS_ADDON_FOLDER?action=listcategory&category=$buffer\" title=\"List all $buffer files\">";
-                    echo "<img src=$icon border=0 width=32 height=32>";
+                    echo "<img src=\"$icon\" border=0 class=file_category_icon>";
                     echo "</a>";
                 }
 				
@@ -1313,7 +1319,7 @@ function files_action_()  {
                 echo " files)";
                 echo "</a>";
                 echo "</div>";
-                echo "<div style='clear:both;'></div>";
+                // echo "<div style='clear:both;'></div>";
                 $i2 = 0;
                 echo "<table border=0>";
                 while ($i2 < count($filelist)) {

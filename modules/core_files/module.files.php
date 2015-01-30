@@ -192,11 +192,12 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	// rfs_update_file($filedata->id);
 	$filedata=lib_mysql_fetch_one_object("select * from files where id='$filedata->id'");
 	
-	echo "<div style='clear: both;' id=\"$filedata->id\" >";
-	
+	echo "<div id=\"$filedata->id\" class=\"rfs_file_table_$bg\">";	
+	// style='clear: both;' 
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left;' class='rfs_file_table_outer_$bg'>"; 
+	// echo "<div style='display: block; float:left;' class='rfs_file_table_outer_$bg'>"; 
+	echo "<div class='rfs_file_table_outer_$bg'>"; 
 	
 	///////////////////////////////////
 
@@ -213,10 +214,10 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	$dout=str_replace("\"","'",$dout);
 	
 	///////////////////////////////////
-	
-	echo "<div style='display: block; float:left; width: 18px; max-width: 18px; min-width: 18px;' class='rfs_file_table_$bg'>"; 
+	// style='display: block; float:left; '
+	echo "<div class='rfs_file_table_inner_$bg' style='width: 32px; max-width: 32px; min-width: 32px;'>"; 
 		echo "<a href=\"$addon_folder?action=get_file&id=$filedata->id\">";
-		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" width=16>"; 
+		echo "<img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" class=\"rfs_file_icon\">"; 
 		echo "</a>";
 	echo "</div>";
 	
@@ -224,44 +225,44 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	
 	if($fedit || $_SESSION['deletemode']) $nwidth=550; else $nwidth=250;
 
-	echo "<div style='display: block; 
-						float:left; 
-						width:$nwidth"."px; 
-						max-width:$nwidth"."px; 
-						min-width:$nwidth"."px;' 
-				class='rfs_file_table_$bg'>";
+	// style='display: block;  float:left; width:$nwidth"."px; max-width:$nwidth"."px; min-width:$nwidth"."px;' 
+	echo "<div class='rfs_file_table_inner_$bg' style='width:25%;'>";
 
 	if($fedit || $_SESSION['deletemode']) {
 		if(lib_access_check("files","delete")) {
 			echo "$filedata->location <br>";			
 			lib_ajax("Delete", "files",   "id", "$filedata->id",     "id",       20,"button,nolabel", "files","delete","lib_ajax_callback_delete_file");
-		}			
-
-		echo "<div style='display: block; float:left; width: 250px; max-width: 250px; min-width:250px;' class='rfs_file_table_$bg'>";
+		}
+		// style='display: block; float:left; width: 250px; max-width: 250px; min-width:250px;'
+		echo "<div class='rfs_file_table_inner_$bg'>";
 			echo"$filedata->md5 ";
 			if(!empty($filedata->md5)) {
 				$fdr=lib_mysql_query("select * from files where md5='$filedata->md5'");
 				if($fdr->num_rows>1) {
 					echo "<br>Matching MD5:<br>";
 					for($jjq=0;$jjq<$fdr->num_rows;$jjq++) {
+						
 						$dfile=$fdr->fetch_object();
+						
 						if($dfile->id!=$filedata->id) {
-							echo "<div style='display: block; float:left; padding:5px; margin:5px; background-color: #500; color: #f00;
-							border: 1px dashed #f00; border-radius: 10px;
-							' id='dfd_$dfile->id'> ";
-								echo "<a href=\"$addon_folder?action=get_file&id=$dfile->id\"
-									title=\"matching file $dfile->location\">";
-								$ftype=lib_file_getfiletype($dfile->name);
-								if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
-									if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") )
-										echo rfs_picthumb("$RFS_SITE_URL/$dfile->location",60,0,1);
+						
+							echo "<div id=\"dfd_$dfile->id\"> "; // style='display: block; float:left; padding:5px; margin:5px; background-color: #500; color: #f00; border: 1px dashed #f00; border-radius: 10px; 							'
+						
+							echo "<a href=\"$addon_folder?action=get_file&id=$dfile->id\" title=\"matching file $dfile->location\">";
+							$ftype=lib_file_getfiletype($dfile->name);
+							echo "5";
+							if( ($ftype=="jpg") || ($ftype=="png") || ($ftype=="gif") || ($ftype=="bmp") || ($ftype=="svg") || ($ftype=="jpeg") )
+								if( ($filedata->worksafe!="no") || ($_SESSION['worksafemode']=="off") ) {
+									echo lib_images_thumb("$RFS_SITE_URL/$dfile->location",60,0,1);
+								}
 								echo "<br>$dfile->name";
-								echo "</a><BR>
-								$dfile->location<br>";
-								echo "<div style='clear:both;'>";
-									lib_tags_show_tags("files",$dfile->id);
+								echo "</a><br>$dfile->location<br>";
+						
+								echo "<div class=\"rfs_file_table_inner_$bg\">"; //style='clear:both;'
+								lib_tags_show_tags("files",$dfile->id);
+						
 								echo "</div>";
-								echo "<div style='clear:both;'>";
+								echo "<div >"; //style='clear:both;'
 									if(lib_access_check("files","delete")) {
 										lib_ajax("Delete", "files",   "id", "$dfile->id", "id", 20,"button,nolabel", "files","delete","lib_ajax_callback_delete_file,lib_ajax_javascript_dupefile_delete");
 									}
@@ -307,7 +308,7 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			($filetype=="avi") ||
 			($filetype=="flv")  ) {		
 				if($fworksafe) {
-					echo "<br><div style='display: block; float: left;' name=\"play$filedata->id\" id=\"play$filedata->id\"></div><a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a><a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>";
+					echo "<br><div name=\"play$filedata->id\" id=\"play$filedata->id\"></div><a href=\"#\" onclick='playvid(\"play$filedata->id\",\"$RFS_SITE_URL/$filedata->location\");' >Play</a><a href=\"#\" onclick='stopvid(\"play$filedata->id\");' > Stop </a><br>"; // style='display: block; float: left;' 
 		}
 	}
 		
@@ -315,7 +316,7 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 		if($fedit) {
 			
 			if(lib_access_check("files","edit")) {
-				echo "<div style='float: left;'>";
+				echo "<div >"; // style='float: left;'
 				
 				lib_ajax("Category","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
 				lib_ajax("New Category","files","id","$filedata->id","category",36,"","files","edit","lib_ajax_callback_files_new_category");
@@ -327,7 +328,7 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 			}
 		}
 		
-		// echo "<div style='display: block; float:left;' class='rfs_file_table_$bg' id=\"tags_$filedata->id\"> &nbsp; </div>"; 
+		// echo "<div style='display: block; float:left;' class='rfs_file_table_inner_$bg' id=\"tags_$filedata->id\"> &nbsp; </div>"; 
 		
 		if($_SESSION['tagmode'])
 				lib_tags_add_link("files",$filedata->id);
@@ -336,13 +337,17 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	echo "</div>";
 	
 	///////////////////////////////////
+	// style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' 	
+	echo "<div class='rfs_file_table_inner_$bg' style='width: 90px;'>";
+		$size=(lib_file_sizefile($filedata->size));
+		echo "$size ";
+		if($fedit)
+			echo "<br> Submitted by:<br>$filedata->submitter ";
+	echo "</div>";
+	///////////////////////////////////
 	
-	echo "<div style='display: block;
-						float:left;
-						width:340px;
-						max-width:340px;
-						min-width:340px;'
-				class='rfs_file_table_$bg'>";
+	echo "<div class='rfs_file_table_inner_$bg' style='width:50%;'>"; 
+	//  style='display: block; float:left; width:340px; max-width:340px; min-width:340px;'
 	
 	if( ($filetype=="ttf") || 
 		($filetype=="otf") ||
@@ -372,29 +377,20 @@ function m_files_show1file($filedata,$bg) { eval(lib_rfs_get_globals());
 	echo "</div>";
 	
 	///////////////////////////////////
-		
-	echo "<div style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' class='rfs_file_table_$bg'>";
-		$size=(lib_file_sizefile($filedata->size));
-		echo "$size ";
-		if($fedit)
-			echo "<br> Submitted by:<br>$filedata->submitter ";
-	echo "</div>";
 	
-	///////////////////////////////////
-	
-	echo "<div style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' class='rfs_file_table_$bg'>";
+	echo "<div class='rfs_file_table_inner_$bg'>"; // style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' 
 		echo"$filedata->version &nbsp;";
 	echo "</div>";
 	
 	///////////////////////////////////
 		
-	echo "<div style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' class='rfs_file_table_$bg'>";
+	echo "<div class='rfs_file_table_inner_$bg'>"; // style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' 
 		echo"$filedata->platform &nbsp;";
 	echo "</div>";
 	
 	///////////////////////////////////
 	
-	echo "<div style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' class='rfs_file_table_$bg'>"; 
+	echo "<div class='rfs_file_table_inner_$bg'>";  // style='display: block; float:left; width: 90px; max-width: 90px; min-width: 90px;' 
 		echo"$filedata->os &nbsp;";
 	echo "</div>";
 	
@@ -636,7 +632,7 @@ function m_files_show_scanned_duplicates($RFS_CMD_LINE) {
 	echo "<form enctype=application/x-www-form-URLencoded action=\"$addon_folder\" method=post>\n";
 	echo "<input type=hidden name=action value=f_dup_rem_checked>";
 	$r=lib_mysql_query("select * from file_duplicates $limit");
-	echo "<div style=\"padding: 15px;\">";
+	echo "<div >"; // style=\"padding: 15px;\"
 	echo "<table border=0>";
 	echo "<tr><th>";
 	echo "<input type=checkbox name=whatly_diddly_do onclick=\"	\" >";	

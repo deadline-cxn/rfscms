@@ -1,31 +1,35 @@
 body{
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: medium;
+    font-size: small;
     font-style: normal;
 	color: #FFF;
 	background-image: url('/themes/default/t.background.jpg');
 	background-repeat:no-repeat;
 	background-attachment:fixed;
 	margin:0px;
+
 }
 
 
 .tags {
 	padding: 2px;
 	margin: 2px;
-	border: 1px solid #000;
-	fborder-radius: 3px;
+	border: 1px solid #2f2;
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
-	color: #666;
-	background-color: #762;
+	color: #232;
+	background-color: #4a4;
+	#float: left;
+	display: inline-table;
+	
 }
 
 
 
 .news_box {
 	clear: both;
-	margin: 0px;
+	margin: 5px;
+	padding: 5px;
 }
 
 .news_headline_bar {
@@ -43,6 +47,7 @@ body{
     font-style: italic;
     color: #070;
 	float: left;
+	padding: 5px;
 }
 
 .news_time {
@@ -55,13 +60,16 @@ body{
 .news_image {
 	
 	float: left;
+	padding: 5px 20px 15px 10px;
+	
 }
 
 .news_article {
 	border-top: 1px solid #000;
 	clear: both; 
-	padding: 15px;
+	padding: 25px;
 	background-color:rgba(0,0,0,0.1);
+	margin 0 0 25px 0;
 }
 
 .news_edit_bar {
@@ -90,14 +98,15 @@ body{
 
 
 .rfs_thumb {
-	box-shadow: 3px 3px 3px #222222;
-	border:solid 1px #222222;
+	background-color: #282;
+	box-shadow: 3px 3px 3px #228822;
+	border:solid 1px #228822;
 	border-radius:5px;
 }
 
 .slogan {
     font-family: Verdana;
-    font-size: medium;
+    font-size: small;
     font-style: italic ;
     color: #00FF00;
 }
@@ -174,14 +183,14 @@ h3 {
 
 .font {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: medium;
+    font-size: small;
     font-style: normal;
     color: #FFFFFF;
 }
 
 td {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: medium;
+    font-size: small;
     font-weight: bold;
     color:  #009900;
 }
@@ -202,7 +211,7 @@ td {
     border-color: #000000;
     border-width: 2px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: medium;
+	font-size: small;
 	font-style: normal;
 	color: #FFFFFF;
 	background-color: #880000;
@@ -210,7 +219,7 @@ td {
 
 .contenttd {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: medium;
+    font-size: small;
     font-weight: bold;
 	padding: 5px;
 	color:   #FFFFFF;	
@@ -238,12 +247,14 @@ td {
     font-weight: bold;
     color:   #00FF00; 
 	background-color:rgba(0,0,0,0.2);
-	min-width: 250px;
+	width: 200px;
+	min-width: 200px;
+	max-width: 200px;
 }
 
 .midtd{
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: medium;
+	font-size: small;
 	font-weight: bold;
 	border: 1px solid #000;
 	background-color:rgba(0,0,0,0.7);
@@ -253,7 +264,9 @@ td {
 
 .righttd {
 	background-color:rgba(0,5,0,0.8);
-	min-width: 250px;
+	width: 200px;
+	min-width: 200px;
+	max-width: 200px;
 }
 
 th {
@@ -332,27 +345,58 @@ th {
 }
 
 
+.file_box{
 
-.file_list { }
+	padding: 20px;
+}
+
+.file_list { 
+
+	width: 100%;
+	
+}
+
+.file_category_icon {
+	width: 64px;
+	height: 64px;
+	border: 0;
+	position: relative;
+	float: left;
+	padding: 10px;
+	display: inline;
+}
 
 .file_category {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    color:   #0f0;
-    background-color:rgba(0,160,0,0.1);
-	height: 36px;
+    color:  #0f0;
+    background-color:rgba(50,250,50,0.4);
+	width: 99%;
+	padding-top: 20px;
 	padding-left: 10px;
 	font-style: none;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	margin-top: 20px;
+	position: relative;
+	float: left;
+	display: inline-flex;
+	flex-direction: row;
+	#align-items: center;
+	#margin: 0 2px 5px;
+	#word-break: break-word;
+	
 }
 
 .file_category_link, .file_category_link:link {
 	vertical-align: top;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 20px;
+	font-size: 25px;
 	font-style: none;
 	text-decoration: none;
 	color: #0f0;
 	padding-top:5px;
 	padding-left: 20px;
+	
 }
 
 .file_link, .file_link:link {
@@ -362,22 +406,49 @@ th {
 	color: #0f0;
 }
 
+.rfs_file_icon {
+	width: 32px;
+	height: 32px;
+	padding: 5px; 
+	float: left;
+}
+
 .rfs_file_table_outer_0 {
 	background-color:rgba(0,260,0,0.1);
 	border-top: 1px dashed #070; 
+	padding: 40px;
 }
 .rfs_file_table_0 {
-	background-color: #407c40;
-	color: #000000;
+	color: #00FF00;
+	width: 100%;
+	clear: both;	
+}
+.rfs_file_table_inner_0 {
+	position: relative;
+	float: left;
+	#display: inline-flex;
+	#flex-direction: column;
+	padding: 10px;
+	
 }
 
 .rfs_file_table_outer_1 {
 	background-color:rgba(0,160,0,0.1);
 	border-top: 1px dashed #070; 
+	padding: 40px;
 }
 .rfs_file_table_1 {	
-	background-color: #3c6c3c;
- 	color: #000000;
+ 	color: #00FF00;
+	width: 100%;
+	clear: both;
+}
+.rfs_file_table_inner_1 {
+	position: relative;
+	float: left;
+	#display: inline-flex;
+	#flex-direction: column;
+	padding: 10px;
+	
 }
 
 
@@ -638,20 +709,20 @@ input, select, textarea {
 }
 .private_message_sent {
         font-family: "Times New Roman";
-        font-size: medium;
+        font-size: small;
         color: black;
         background-color: #888888;
 
 }
 .private_message_subject {
         font-family: "Times New Roman";
-        font-size: medium;
+        font-size: small;
         color: black;
         background-color: #aaaaaa;
 }
 .private_message_body {
     font-family: "Times New Roman";
-    font-size: medium;
+    font-size: small;
     color: black;
     background-color: white;
     outline: black dotted thin;

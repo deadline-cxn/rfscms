@@ -243,7 +243,7 @@ function rfs_show_news($nid) {
 
 		echo "<div>";
 		if(!empty($news->wiki)) {
-			echo "[<a href=\"$RFS_SITE_URL/modules/wiki/rfswiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n";
+			echo "[<a href=\"$RFS_SITE_URL/modules/core_wiki/wiki.php?action=edit&name=$news->wiki\" class=news_a>edit (wiki page)</a>] \n";
 			echo "[<a href=\"$RFS_ADDON_URL?action=editnews&nid=$nid\" class=news_a>edit (news)</a>] \n";			
 		} else {
 			echo "[<a href=\"$RFS_ADDON_URL?action=editnews&nid=$nid\" class=news_a>edit</a>] \n";

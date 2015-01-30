@@ -299,7 +299,11 @@ function lib_mysql_dump_table($table,$showform,$key,$search,$ignore,$short){
 			$ign[0]=$ignore;
 		}
 	}
-	
+	else { 
+		$ignore="id";
+		$ign=array();
+		$ign[0]=$ignore;
+	}
 	
 	$fields="*";
 	if(stristr($table,",")) { 

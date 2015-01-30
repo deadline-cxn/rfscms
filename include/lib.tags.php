@@ -103,7 +103,6 @@ function lib_tags_add_link($table,$id) {
 				"files",
 				"edit",
 				"lib_ajax_callback_tags_new_tag,rfs_ajax_func_tags");
-	
 }
 
 function lib_tags_add_tag($tag) {
@@ -123,7 +122,7 @@ function lib_tags_show_tags($table,$id) {
 				$tag->hidden!="yes" ) {
 			
 				$tv=ltrim($tv," "); $tv=rtrim($tv," ");
-				echo "<div style='float:left;' class='tags'>";
+				echo "<div class='tags'>"; // style='float:left;'
 				if(stristr(lib_domain_canonical_url(),"?"))
 					echo"<a href=\"".lib_domain_canonical_url()."&tagsearch=$tv\" class=\"tag_link\">$tv</a>";
 				else
