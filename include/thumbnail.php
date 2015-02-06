@@ -7,7 +7,7 @@ if(@array_pop(explode("/",getcwd()))=="include") chdir("..");
 include_once("include/lib.genm.php");
 $img=str_replace($RFS_SITE_URL."/","",$img);
 $img=str_replace($RFS_SITE_PATH."/","",$img);
-$imgfile=array_pop(explode("/",$img));
+$imgfile=@array_pop(explode("/",$img));
 if(empty($h)) { if(empty($w)) $h=96; else $scale=1; }
 if(empty($w)) $w=96;
 if(!stristr($img,$RFS_SITE_PATH)) $img=$RFS_SITE_PATH."/".$img;
