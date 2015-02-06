@@ -3,7 +3,7 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 $RFS_GEN_IMAGE=true;
-if(array_pop(explode("/",getcwd()))=="include") chdir("..");
+if(@array_pop(explode("/",getcwd()))=="include") chdir("..");
 include_once("include/lib.genm.php");
 $img=str_replace($RFS_SITE_URL."/","",$img);
 $img=str_replace($RFS_SITE_PATH."/","",$img);
