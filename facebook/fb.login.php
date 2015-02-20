@@ -1,5 +1,5 @@
 <?
-if(  (array_pop(explode("/",getcwd()))) == "facebook" ) chdir("../");
+if((@array_pop(explode("/",getcwd()))) == "facebook" ) chdir("../");
 include_once("include/lib.all.php");
 require_once("facebook/src/facebook.php");
 $goback=$_GET['goback'];
