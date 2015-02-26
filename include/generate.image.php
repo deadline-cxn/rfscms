@@ -27,12 +27,12 @@ if($font=="random") {
     $font=$fonts[$x];
 }
 if(!empty($font)){
-    $font=$RFS_SITE_PATH."/files/fonts/".$font;
-    $font=str_replace("fonts/fonts/","fonts/",$font);
+    $ofont=$RFS_SITE_PATH."/files/fonts/".$font;
+    $ofont=str_replace("fonts/fonts/","fonts/",$ofont);
 }
-if(!file_exists($font)) {
-    $font="$RFS_SITE_PATH/include/fonts/OCRA.ttf";
-}
+if(!file_exists($ofont)) $ofont="$RFS_SITE_PATH/include/fonts/$font";
+if(!file_exists($ofont)) $ofont="$RFS_SITE_PATH/include/fonts/OCRA.ttf";
+$font=$ofont;
 //////////////////////////////////////////// TEXT ONLY SECTION
 if(empty($action)) $action="";
 if( $action=="showfont") {
@@ -216,7 +216,9 @@ else
         
     if(empty($font_file)) $font_file = "impact.ttf";
 
-    $font_file=$RFS_SITE_PATH."/files/fonts/".$font_file;
+    $ofont_file=$RFS_SITE_PATH."/files/fonts/".$font_file;
+	if(!file_exists($ofont_file)) $ofont_file=$RFS_SITE_PATH."/include/fonts/".$font_file;
+	$font_file=$ofont_file;
 
     if(empty($text_size)) $text_size = $owidth/20;
     if(empty($usesmalltext)) $usesmalltext=0;
