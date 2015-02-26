@@ -21,6 +21,7 @@ log/*
 not_included/*
 config/config.php
 files
+files2
 develop/*
 images/avatars/*
 images/news/*
