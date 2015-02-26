@@ -17,7 +17,11 @@ if(!empty($_REQUEST['offy'])) $offy=$_REQUEST['offy']; else $offy=0;
 if(empty($font)) $font="random";
 if($font=="random") {
     $dr=$RFS_SITE_PATH."/files/fonts/";
-    $fonts=array(); $d = opendir($dr) or die("Wrong path: $dr");
+    $fonts=array();
+	$d = opendir($dr);
+	if(!$d) $d=opendir($RFS_SITE_PATH."/include/fonts/");
+    // 	or 
+	if(!$d) die("Wrong path: $dr");
     while(false!==($entry = readdir($d))){
             if(strstr($entry,".ttf"))
             array_push($fonts,$entry);
