@@ -18,8 +18,8 @@ if(empty($font)) $font="random";
 if($font=="random") {
     $dr=$RFS_SITE_PATH."/files/fonts/";
     $fonts=array();
-	$d = opendir($dr);
-	if(!$d) $d=opendir($RFS_SITE_PATH."/include/fonts/");
+	$d = @opendir($dr);
+	if(!$d) $d=@opendir($RFS_SITE_PATH."/include/fonts/");
     // 	or 
 	if(!$d) die("Wrong path: $dr");
     while(false!==($entry = readdir($d))){
