@@ -13,6 +13,7 @@ include_once("include/lib.mysql.php");
 if(!empty($_REQUEST['forcerender'])) $forcerender=$_REQUEST['forcerender']; else $forcerender=0;
 if(!empty($_REQUEST['offx'])) $offx=$_REQUEST['offx']; else $offx=0;
 if(!empty($_REQUEST['offy'])) $offy=$_REQUEST['offy']; else $offy=0;
+if(!empty($_REQUEST['text_size'])) $text_size=$_REQUEST['text_size'];
 
 if(empty($font)) $font="random";
 if($font=="random") {
