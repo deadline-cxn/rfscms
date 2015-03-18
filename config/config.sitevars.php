@@ -34,7 +34,9 @@ if(isset($SERVER))
 else
    $RFS_SITE_URL               = " ";
 $RFS_SITE_PATH                 = getcwd();
-$RFS_SITE_ERROR_LOG            = "/var/log/apache2/error.log";
+$RFS_SITE_LOG_PATH             = "$RFS_SITE_PATH/logs";
+$RFS_SITE_ACCESS_LOG           = "$RFS_SITE_LOG_PATH/access.log";
+$RFS_SITE_ERROR_LOG            = "$RFS_SITE_LOG_PATH/error.log";
 /////////////////////////////////////////////////////////////////////////////////////////
 // WIKI STUFF
 $RFS_SITE_WIKI_IMAGES_PATH     = "images/wiki";

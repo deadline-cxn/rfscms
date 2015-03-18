@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * ycTIN - TTF class
  * Get the information tables from TrueType font file

@@ -19,21 +19,11 @@ if($action=="logout") {
 ///////// LOGIN GO
 if($action=="logingo") {
 	include_once("include/lib.all.php");
-//	include_once("include/lib.modules.php");
-//	include_once("include/lib.sitevars.php");
-//	include_once("include/lib.log.php");
-//	include_once("include/lib.forms.php");
-//	include_once("include/lib.rfs.php");
-//	include_once("include/lib.domain.php");
-	
     if(!empty($_GET['userid'])) $userid=$_GET['userid'];
     if(!empty($_POST['userid'])) $userid=$_POST['userid'];
-
     if(!empty($_GET['password']))  $password=$_GET['password'];
     if(!empty($_POST['password'])) $password=$_POST['password'];
-
     $password = urldecode($password);
-
     $r=lib_mysql_query("select * from users");
     for($i=0;$i<$r->num_rows;$i++) {
         $u=$r->fetch_object();
@@ -56,22 +46,17 @@ if($action=="logingo") {
             }
         }
     }
-	
-
     $result = lib_mysql_query("select * from `users` where name = '$userid' and pass = '".md5($password)."'");
-    
     if($result->num_rows>0){
             $data=lib_users_get_data($userid);
             lib_users_set_var($userid,"last_login",$data->last_activity);
             lib_users_set_var($userid,"last_activity",date("Y-m-d H:i:s"));				
             lib_log_add_entry("[LOGIN]: $data->name ($data->email)");
             if(empty($outpage)) $outpage="$RFS_SITE_URL/index.php";
-			
 				session_destroy();				
 				session_name(str_replace(" ","_",$RFS_SITE_SESSION_ID));
 				session_cache_expire(99999);
 				session_start();
-				
 				$_SESSION["valid_user"] = $userid;
 				$_SESSION["logged_in"]  = "true";
 				echo "Valid login... Please wait, redirecting...";			
@@ -85,13 +70,9 @@ if($action=="logingo") {
         }    
 	$action="forgot";
 }
-
 include("header.php");
-
 if(empty($outpage)) $outpage=$RFS_SITE_URL;
 if(empty($action)) $action=$_REQUEST['action'];
-
-
 /////////////////////////////////////////////////////////////////////
 ///////// LOGIN (JOIN)
 if($action=="join_go") {

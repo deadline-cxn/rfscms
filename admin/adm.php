@@ -72,8 +72,6 @@ function adm_action_update() {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM BAN MANAGEMENT
-
-
 /////////////////// BAN BY IP
 function adm_action_f_banip() {
 	eval(lib_rfs_get_globals());
@@ -98,7 +96,6 @@ function adm_action_f_unbanref() {
 	echo "<h1>UnBan Referrer</h1>";
 	finishadminpage();
 }
-
 /////////////////// BAN BY DOMAIN
 function adm_action_f_bandomain() {
 	eval(lib_rfs_get_globals());
@@ -185,7 +182,6 @@ function adm_action_f_add_ban_manual() {
 					60,
 					"Add New BAN" );	
 }
-
 function adm_action_ban_management(){
 	eval( lib_rfs_get_globals() );
 	echo "<h1>Ban Management</h1><hr>";
@@ -273,15 +269,11 @@ wiki
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_POLICY FUNCTIONS
-
 function adm_action_policy_manager() {
 	
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// ADM_AUTH FUNCTIONS
-/* REPLACE ADM_AUTH WITH ADM_POLICIES 
-
+// ADM_AUTH FUNCTIONS  ( REPLACE ADM_AUTH WITH ADM_POLICIES )
 function adm_action_auth_config() {
     eval(lib_rfs_get_globals());
 	echo "<h1>Authentication Configuration</h1>";
@@ -302,7 +294,6 @@ function adm_action_auth_config() {
 	lib_ajax(	"OpenID ID,180",	"rfsauth", "name", "OPENID", "value", 		60, "", 		"admin", "access", "");						
 	echo "</div>";
 }
- */
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_ARRANGE FUNCTIONS
 function rfs_admin_module( $loc ) {
@@ -459,7 +450,6 @@ function rfs_admin_module( $loc ) {
 	echo "</select>";
 	echo "</form>";
 }
-
 function adm_action_f_module_edit_static_go() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Edit static page $staticpage</h1>";
@@ -541,11 +531,6 @@ function adm_action_f_arrange_move_right() {
 	lib_mysql_query($q);
 	adm_action_arrange();
 }
-
-
-
-
-
 function adm_action_f_arrange_delete_go() {
     eval(lib_rfs_get_globals());
     lib_mysql_query("delete from arrangement where `id`='$id'");
@@ -749,29 +734,32 @@ function adm_action_access_groups() {
 // ADM_PHPMYADMIN
 function adm_action_phpmyadmin_out() { 
     eval(lib_rfs_get_globals());
-    lib_domain_gotopage("$RFS_SITE_URL/3rdparty/phpmyadmin/");
+    lib_domain_gotopage("$RFS_SITE_URL/phpmyadmin/");
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_FORM BUILDER FUNCTIONS
-/*function adm_action_form_builder() { eval(lib_rfs_get_globals());
+function adm_action_form_builder() {
+    eval(lib_rfs_get_globals());
 	echo"<p>Form Builder</p>";
 	include( "footer.php" );
 	exit();
-}*/
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_NEW PAGE FUNCTIONS
-/*function adm_action_new_page() { eval(lib_rfs_get_globals());
+function adm_action_new_page() {
+    eval(lib_rfs_get_globals());
 	echo"<p>Create a new page.</p>";
 	lib_forms_build_quick( "action=new_page_go".$RFS_SITE_DELIMITER."SHOW_TEXT_name=name.php","Create new page");
 	include( "footer.php" );
 	exit();
 }
-function adm_action_new_page_go() { eval(lib_rfs_get_globals());
+function adm_action_new_page_go() {
+    eval(lib_rfs_get_globals());
 	if(!file_exists($_GLOBALS['name'])){
 	copy("_template.php",$_GLOBALS['name']);
 	}
 	echo "<p> New file ".$_GLOBALS['name']." created. </p>";
-}*/
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_EMAIL
 function adm_action_email() {
@@ -1370,10 +1358,8 @@ function adm_action_theme() {
 	$thms=lib_themes_get_array();
 	while(list($key,$thm)=each($thms)) {
 		echo " <div  style=\"float: left; height: 150px; margin: 20px; padding: 10px;\">";
-
 		echo ucwords("<h3> $thm </h3>");		
 		$sample="themes/$thm/t.sample.png";
-		
 		if( (!file_exists("$RFS_SITE_PATH/$sample")) || 
 			 $force_images=="1"	) {
 			$cmd="$RFS_SITE_PATH/tools/bin/wkhtmltoimage --crop-h 800 --crop-w 1200 $RFS_SITE_URL?theme=$thm $RFS_SITE_PATH/$sample";
@@ -1479,18 +1465,18 @@ function adm_action_edit_site_vars() {
 			echo "</select>";
 			break;
 		case "file":		
-			echo "<input name=val size=40 value=\"$site_var->value\" onblur=\"form.submit();\">";
+			echo "<input name=val size=100 value=\"$site_var->value\" onblur=\"form.submit();\">";
 			if(!file_exists($site_var->value)) {
 				echo "<font style='color:white; background-color:red;'><br>FILE DOES NOT EXIST";
 			}
 			break;
 			
 		case "textarea":
-			echo "<textarea name=val cols=40 rows=10 onblur=\"form.submit();\">$site_var->value</textarea>";		
+			echo "<textarea name=val cols=100 rows=10 onblur=\"form.submit();\">$site_var->value</textarea>";		
 			break;
 		default:
 			
-			echo "<input name=val size=40 value=\"$site_var->value\" onblur=\"form.submit();\">";
+			echo "<input name=val size=100 value=\"$site_var->value\" onblur=\"form.submit();\">";
 			break;
 		}
 		echo "</td>";
@@ -1566,6 +1552,17 @@ function adm_action_edit_site_vars() {
 	
 	include("footer.php");
 	exit();
+}
+function adm_action_f_addsitevar_from_global() {
+    eval(lib_rfs_get_globals());
+    $val=$GLOBALS[$name];
+    $name=str_replace("RFS_SITE_","",$name);
+    $name=strtolower($name);
+    echo "ADD $name to list...<BR>";        
+    $q="insert into `site_vars` (`name`,`value`,`desc`,`type`)
+                         VALUES ('$name','$val','','text'); ";
+    lib_mysql_query($q);
+    adm_action_edit_site_vars();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_MENU ADMIN
@@ -1782,7 +1779,8 @@ function adm_action_f_menu_topedit_del_go() {
 	adm_action_menu_topedit();
 	exit();
 }
-function adm_action_f_menu_topedit_del() { eval( lib_rfs_get_globals() );
+function adm_action_f_menu_topedit_del() {
+    eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from menu_top where `id`='$id'" );
 	$menuitem=$res->fetch_object();
 	echo "<h3>Edit Top Menu :: Delete $menuitem->name</h3>";
@@ -1990,7 +1988,8 @@ function adm_action_f_edit_users_go() {
 	lib_mysql_update_database( "users","id",$id,1 );
 	adm_action_user_edit();
 }
-function adm_action_f_edit_users() { eval( lib_rfs_get_globals() );
+function adm_action_f_edit_users() {
+    eval( lib_rfs_get_globals() );
 	$res=lib_mysql_query( "select * from `users` where `id`='$id'" );
 	$user=$res->fetch_object();
 	echo "<h3>Editing User [$user->name]</h3>";
@@ -2040,45 +2039,6 @@ function adm_action_user_edit() {
 	include("footer.php");
 	exit();
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-// ADM_RSS EDITOR
-/*function adm_action_f_rss_edit_go_edit() {
-	eval( lib_rfs_get_globals() );
-	if( $update=="update" ) lib_mysql_query( "UPDATE rss_feeds SET `feed`='$edfeed' where `id`='$oid'" );
-	if( $delete=="delete" ) lib_mysql_query( "DELETE FROM rss_feeds WHERE id = '$oid' " );
-	adm_action_rss_edit();
-}
-function adm_action_f_rss_edit_go_add() {
-	eval( lib_rfs_get_globals() );
-	lib_mysql_query( "insert into rss_feeds values('$edfeed',0);" );
-	adm_action_rss_edit();
-}
-function adm_action_rss_edit() {
-	eval( lib_rfs_get_globals() );
-	$result=lib_mysql_query( "select * from rss_feeds" );
-	$num_feeds=$result->num_rows;
-	echo "<h3>Editing RSS Feeds </h3>";
-
-	for( $i=0; $i<$num_feeds; $i++ ) {
-		echo "<table border=0 cellspacing=0 cellpadding=0>\n";
-		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
-		echo "<input type=hidden name=action value=rsseditgoedit>\n";
-		$feed=$result->fetch_object();
-		echo "<tr><td>Feed URL</td> <td><input type=textbox name=edfeed value=\"$feed->feed\" size=100></td>\n";
-		echo "<td><input type=submit value=delete name=delete></td>\n";
-		echo "<td><input type=submit value=update name=update> <input type=hidden value=$feed->id name=oid></td>\n";
-		echo "</tr>\n";
-		echo "</form></table>\n";
-	}
-	echo "<table border=0 cellspacing=0 cellpadding=0>\n";
-	echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
-	echo "<input type=hidden name=action value=rsseditgoadd>\n";
-	echo "<tr><td>New Feed</td><td><input type=textbox name=edfeed value=\"\" size=100></td>\n";
-	echo "<td><input type=submit value=add name=add></td>\n";
-	echo "</form></table>\n";
-	include("footer.php");
-	exit();
-}*/
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_SMILEY EDITOR
 function adm_action_edit_smilies() {
@@ -2176,7 +2136,7 @@ function adm_action_f_delete_log_go() {
 	eval(lib_rfs_get_globals());
 	$rm="rm";
 	if($RFS_SITE_OS=="WIN") $rm="del";
-	system("$rm $RFS_SITE_PATH/log/$wlog");
+	system("$rm $RFS_SITE_LOG_PATH/$wlog");
 	adm_action_f_view_old_logs();
 }
 function adm_action_f_delete_log() {
@@ -2202,10 +2162,10 @@ function adm_action_f_log_rotate() {
 		$mv="rename";
 		$cp="copy";
 	}
-	echo "$mv $RFS_SITE_PATH/log/log.htm $RFS_SITE_PATH/log/log_$t.htm";
-	system( "$mv $RFS_SITE_PATH/log/log.htm $RFS_SITE_PATH/log/log_$t.htm" );
-	echo "$cp $RFS_SITE_PATH/log/blanklog.htm $RFS_SITE_PATH/log/log.htm";
-	system( "$cp $RFS_SITE_PATH/log/blanklog.htm $RFS_SITE_PATH/log/log.htm" );
+	echo "$mv $RFS_SITE_LOG_PATH/log.htm $RFS_SITE_LOG_PATH/log_$t.htm";
+	system( "$mv $RFS_SITE_LOG_PATH/log.htm $RFS_SITE_LOG_PATH/log_$t.htm" );
+	echo "$cp $RFS_SITE_LOG_PATH/blanklog.htm $RFS_SITE_LOG_PATH/log.htm";
+	system( "$cp $RFS_SITE_LOG_PATH/blanklog.htm $RFS_SITE_LOG_PATH/log.htm" );
 	lib_log_add_entry( "Log restarted" );
 	adm_action_log_view();
 }
@@ -2217,7 +2177,7 @@ function adm_action_f_view_old_logs_go() {
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=log_view","View Current Log");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_view_old_logs","View Old Logs");
 	echo "<hr>";
-	$x=file_get_contents("$RFS_SITE_PATH/log/$wlog");
+	$x=file_get_contents("$RFS_SITE_LOG_PATH/$wlog");
 	$x=str_replace("¥","<br>",$x);
 	$x=str_replace("<t","&lt;t",$x);
 	$x=str_replace("<for","&lt;for",$x);
@@ -2239,7 +2199,7 @@ function adm_action_f_view_old_logs() {
 	echo "<h3>View Old Logs</h3>";
 	echo "<hr>";
 	eval(lib_rfs_get_globals());
-	$logs=lib_file_folder_to_array("$RFS_SITE_PATH/log");
+	$logs=lib_file_folder_to_array("$RFS_SITE_LOG_PATH");
 	echo "<table border=0>";
 	foreach($logs as $a => $b) {
 		echo "<tr>";
@@ -2250,7 +2210,7 @@ function adm_action_f_view_old_logs() {
 		lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_view_old_logs_go&wlog=$b","$b");
 		echo "</td>";
 		echo "<td>";		
-		echo lib_file_get_size("$RFS_SITE_PATH/log/$b");
+		echo lib_file_get_size("$RFS_SITE_LOG_PATH/$b");
 		echo "</td>";
 		echo "</tr>";
 	}
@@ -2267,7 +2227,7 @@ function adm_action_log_view() {
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_log_rotate","Rotate Log");
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_view_old_logs","View Old Logs");
 	echo "<hr>";	
-	@include( "$RFS_SITE_PATH/log/log.htm" );
+	@include( "$RFS_SITE_LOG_PATH/log.htm" );
 	echo "</div>";
 	include("footer.php");
 	exit();
@@ -2302,7 +2262,12 @@ function adm_action_counters() {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ADM_AWARD EDIT
-// function adm_action_awards_edit() { 	echo "<h3>Award Editor</h3>\n"; 	rfs_awards_list(); 	include("footer.php");	exit();}
+function adm_action_awards_edit() {
+    echo "<h3>Award Editor</h3>\n";
+    rfs_awards_list();
+    include("footer.php");
+    exit();
+}
 function adm_action_f_add_award_go() {
 	eval( lib_rfs_get_globals() );
 	echo "<h3>Add award!</h3>\n";
@@ -2563,7 +2528,6 @@ text-align: center;
 		}
 	}
 }
-
 function finishadminpage() {
 	eval( lib_rfs_get_globals() );
 	if(!lib_access_check("debug","view")) return;
@@ -2582,5 +2546,4 @@ function finishadminpage() {
 	include( "footer.php" );
 	exit();
 }
-
 ?>

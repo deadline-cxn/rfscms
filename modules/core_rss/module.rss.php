@@ -39,4 +39,44 @@ function m_panel_rss() { eval(lib_rfs_get_globals());
     }    
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ADM_RSS EDITOR
+/*function adm_action_f_rss_edit_go_edit() {
+	eval( lib_rfs_get_globals() );
+	if( $update=="update" ) lib_mysql_query( "UPDATE rss_feeds SET `feed`='$edfeed' where `id`='$oid'" );
+	if( $delete=="delete" ) lib_mysql_query( "DELETE FROM rss_feeds WHERE id = '$oid' " );
+	adm_action_rss_edit();
+}
+function adm_action_f_rss_edit_go_add() {
+	eval( lib_rfs_get_globals() );
+	lib_mysql_query( "insert into rss_feeds values('$edfeed',0);" );
+	adm_action_rss_edit();
+}
+function adm_action_rss_edit() {
+	eval( lib_rfs_get_globals() );
+	$result=lib_mysql_query( "select * from rss_feeds" );
+	$num_feeds=$result->num_rows;
+	echo "<h3>Editing RSS Feeds </h3>";
+
+	for( $i=0; $i<$num_feeds; $i++ ) {
+		echo "<table border=0 cellspacing=0 cellpadding=0>\n";
+		echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+		echo "<input type=hidden name=action value=rsseditgoedit>\n";
+		$feed=$result->fetch_object();
+		echo "<tr><td>Feed URL</td> <td><input type=textbox name=edfeed value=\"$feed->feed\" size=100></td>\n";
+		echo "<td><input type=submit value=delete name=delete></td>\n";
+		echo "<td><input type=submit value=update name=update> <input type=hidden value=$feed->id name=oid></td>\n";
+		echo "</tr>\n";
+		echo "</form></table>\n";
+	}
+	echo "<table border=0 cellspacing=0 cellpadding=0>\n";
+	echo "<form enctype=\"application/x-www-form-URLencoded\" action=\"$RFS_SITE_URL/admin/adm.php\" method=\"post\">\n";
+	echo "<input type=hidden name=action value=rsseditgoadd>\n";
+	echo "<tr><td>New Feed</td><td><input type=textbox name=edfeed value=\"\" size=100></td>\n";
+	echo "<td><input type=submit value=add name=add></td>\n";
+	echo "</form></table>\n";
+	include("footer.php");
+	exit();
+}*/
+
 ?>

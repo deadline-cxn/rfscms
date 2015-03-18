@@ -20,6 +20,7 @@ cache
 .Trash-1000
 .out
 log/*
+logs/*
 not_included/*
 config/config.php
 files

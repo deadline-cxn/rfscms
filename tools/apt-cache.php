@@ -5,6 +5,4 @@ echo "<form>Enter search<input name=srch value='$srch'><input type=submit ></for
 echo "<pre>";
 system("apt-cache search $srch");
 echo "</pre>";
-
 ?>
-

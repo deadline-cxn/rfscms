@@ -555,6 +555,10 @@ if($a<1312) {
     lib_mysql_add("meme","status", "text", "NOT NULL");
 }
 
+if($a<1345) {
+    system("mv $RFS_SITE_PATH/log $RFS_SITE_PATH/logs");
+}
+
 if($a < $b) {
 	lib_forms_inform("Database upgraded from $a to $b<br>");
 	$RFS_SITE_DATABASE_UPGRADE=intval($RFS_BUILD);
