@@ -985,7 +985,6 @@ function adm_action_f_theme_edit_css() {
 			fputs($fo,$ln);		
 		}
 		// fputs($fo,"$addvar=\"$varvalue\";\n");
-		
 		fclose($fo);
 		fclose($fp);
 		system("$RFS_SITE_SUDO_CMD mv $outfile $outfile.bak.".time());
@@ -1006,9 +1005,9 @@ function adm_action_f_theme_edit_php() {
 		while($ln=fgets($fp,256)) {
 			$ln=trim($ln);
 			$chk=explode("=",$ln);
-			$chk[0]=trim($chk[0]," ");			
+			$chk[0]=trim($chk[0]," ");
 			if($chk[0]==$update) {
-				$ln="$update=\"$newvalue\";\n";				
+				$ln="$update=\"$newvalue\";\n";
 			}
 			fputs($fo,"$ln\n");
 		}
@@ -1044,7 +1043,7 @@ function adm_action_f_theme_edit_php() {
 		$fo=fopen("$outfile.out",wt);
 		$fp=fopen($outfile,"rt");
 		while($ln=fgets($fp,256)) {
-			if(substr($ln,0,2)!="?>") fputs($fo,$ln);		
+			if(substr($ln,0,2)!="?>") fputs($fo,$ln);
 		}
 		fputs($fo,"$addvar=\"$varvalue\";\n");
 		fputs($fo,"?>");
@@ -1070,7 +1069,6 @@ function adm_action_f_theme_edit_delete() {
 						"action=f_theme_edit_delete_go".$RFS_SITE_DELIMITER.
 						"dfile=$dfile".$RFS_SITE_DELIMITER.
 						"thm=$thm"
-						
 						);
 }
 function adm_action_f_ajx_theme_edit_save_t_php() {
@@ -1089,7 +1087,7 @@ function adm_action_f_ajx_theme_edit_save_t_php() {
 		lib_forms_info("FILE SAVED","WHITE","GREEN");
 }
 function adm_action_f_theme_edit_t_php() {
-    eval(lib_rfs_get_globals()); 
+    eval(lib_rfs_get_globals());
 	echo "<h3> Editing theme [$thm] </h3>";	
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
 	echo '<div id="file_status"></div>
@@ -1157,7 +1155,6 @@ function adm_action_f_theme_edit_t_css() {
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=f_theme_edit&thm=$thm","Cancel");
 
 	echo '	<div id="file_status"></div> <script>
-											
 		function save_t_css(ta,taval) {
 				var http=new XMLHttpRequest();
 				var url = "'.$RFS_SITE_URL.'/admin/adm.php";
@@ -1190,7 +1187,6 @@ function adm_action_f_theme_edit_t_css() {
 		,plugins: "charmap" 
 		,charmap_default: "arrows" });
 		</script> ';
-		
 	echo "<textarea id=\"codecode_t_css\" style=\"height: 700px; width: 100% ;\" name=\"codecode_t_css\">";
 	$fc=file_get_contents("$RFS_SITE_PATH/themes/$thm/t.css");
 	$fc=stripslashes(str_replace("<","&lt;",$fc))."</textarea>";
@@ -1213,7 +1209,7 @@ function adm_action_f_theme_clone_go() {
 	$new_name=str_replace("/","_",$new_name);	
 	echo "Cloning $thm to $new_name<br>";
 	system("mkdir $RFS_SITE_PATH/themes/$new_name");
-	system("cp $RFS_SITE_PATH/themes/$thm/* $RFS_SITE_PATH/themes/$new_name");
+	system("cp $RFS_SITE_PATH/themes/$thm/\* $RFS_SITE_PATH/themes/$new_name");
 	adm_action_theme();
 }
 function adm_action_f_theme_clone() {
@@ -1240,7 +1236,7 @@ function adm_action_f_theme_edit() {
     eval(lib_rfs_get_globals());
 	echo "<h1>Editing theme [$thm]</h1>";
 	lib_buttons_make_button("$RFS_SITE_URL/admin/adm.php?action=theme","Themes list");
-	echo "<hr>";	
+	echo "<hr>";
 	$folder="$RFS_SITE_PATH/themes/$thm";
 	echo "Elements of $folder <br>";
 	$d = opendir($folder);
@@ -1255,9 +1251,9 @@ function adm_action_f_theme_edit() {
 							echo "<h1>$entry</h1>";
 							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_css&thm=$thm&tcss=$entry\">edit this file</a>]<br>";
 							lib_forms_css_file(	"$folder/$entry",
-												"$RFS_SITE_URL/admin/adm.php",
-												"f_theme_edit_css",
-												"thm=$thm");
+										"$RFS_SITE_URL/admin/adm.php",
+										"f_theme_edit_css",
+										"thm=$thm");
 						}
 						break;
 					case "php":
@@ -1266,28 +1262,26 @@ function adm_action_f_theme_edit() {
 							echo "<h1>$entry</h1>";
 							echo "[<a href=\"$RFS_SITE_URL/admin/adm.php?action=f_theme_edit_t_php&thm=$thm&tphp=$entry\">edit this file</a>]<br>";
 							lib_forms_php_file(		"$folder/$entry",
-													"$RFS_SITE_URL/admin/adm.php",
-													"f_theme_edit_php",
-													"thm=$thm"
-													);
+											"$RFS_SITE_URL/admin/adm.php",
+											"f_theme_edit_php",
+											"thm=$thm");
 						}
 						else {
 						}
 						break;
-					default: 
+					default:
 						break;
-					
 				}
 			}
 		}
-	}	
-	closedir($d);	
+	}
+	closedir($d);
 	$d = opendir($folder);
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
 			if($entry[0]=="t") {
-				$ft=lib_file_getfiletype($entry);				
-				switch($ft) {					
+				$ft=lib_file_getfiletype($entry);
+				switch($ft) {
 					case "gif":
 					case "jpg":
 					case "png":
@@ -1298,13 +1292,12 @@ function adm_action_f_theme_edit() {
 						echo "$img:<br>";
 						echo "<img src=\"$img\"><br>";
 						break;
-					default: 
+					default:
 						break;
-					
 				}
 			}
 		}
-	}	
+	}
 	closedir($d);
 	include( "footer.php" );
 	exit();

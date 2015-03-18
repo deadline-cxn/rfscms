@@ -10,6 +10,17 @@ grep -Rn \
 --exclude-dir=log \
 --exclude-dir=tools \
 --exclude-dir=modules/netman \
-'$RFS' ../*
+'$RFS' ../* \
+| awk -F '$' '{print $2}' | awk -F '=' '{print $1}' | sed 's/RFS_//g' \
+| awk -F '(' '{print  $1}' | awk -F ')' '{print $1}' | awk -F ',' '{print $1}' \
+| awk -F '/' '{print $1}' | awk -F '<' '{print $1}' | awk -F '"' '{print $1}' \
+| awk -F '-' '{print $1}' | awk -F '[' '{print $1}' | awk -F ']' '{print $1}' \
+| awk -F '\' '{print $1}' | awk -F "'" '{print $1}' | awk -F '!' '{print $1}' \
+| awk -F '>' '{print $1}' | awk -F ' ' '{print $1}' | awk -F ';' '{print $1}' \
+| awk -F '.' '{print $1}' | awk -F '?' '{print $1}' | awk -F ':' '{print $1}' \
+| grep '_' \
+| sed 's/^/$RFS_/' \
+| sort | uniq
+
 
 

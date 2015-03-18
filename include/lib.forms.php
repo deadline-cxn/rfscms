@@ -997,19 +997,19 @@ function lib_forms_css_file($css_file,$returnpage,$returnaction,$hiddenvars) { e
 		$hvar[$tt[0]]=$tt[1];
 	}
 	lib_forms_optionize_file("addcss","$RFS_SITE_PATH/tools/classes.out.txt", "CSS Classes");
-	
+
 	$f=file_get_contents($css_file);
-	$cssx=explode("}",$f);	
+	$cssx=explode("}",$f);
 	for($i=0;$i<count($cssx)-1;$i++) {
 		$cssx2=explode("{",$cssx[$i]);
 		echo "\n\n<hr>\n\n";
 
 		$buttout="$returnpage?action=$returnaction".
 			"&delact=delbase".
-			"&delete=".urlencode($base).			
+			"&delete=".urlencode($base).
 			"&cssvalue=".urlencode($cssvalue).
 			"&outfile=".urlencode($css_file);
-			
+
 			foreach ($hvar as $vn => $vv){
 				$buttout.="&$vn=$vv";
 			}
@@ -1017,16 +1017,10 @@ function lib_forms_css_file($css_file,$returnpage,$returnaction,$hiddenvars) { e
 			lib_buttons_make_button($buttout,"Delete");
 
 		echo "$cssx2[0] { <br>";
-		
-echo "
-
-
-
-<table border=0>
-";	
+echo "<table border=0>";
 		$cssx3=explode(";",$cssx2[1]);
 		for($j=0;$j<count($cssx3)-1;$j++) {
-			$cssx4=explode(":",$cssx3[$j]);			
+			$cssx4=explode(":",$cssx3[$j]);
 echo "
 
 
@@ -1044,22 +1038,17 @@ echo "
 			"&sub=".urlencode($sub).
 			"&cssvalue=".urlencode($cssvalue).
 			"&outfile=".urlencode($css_file);
-			
+
 			foreach ($hvar as $vn => $vv){
 				if($vn!="update")
 				$buttout.="&$vn=$vv";
 			}
-			
-$piece = trim($cssx4[0]);			
-			
+$piece = trim($cssx4[0]);
+
 echo "
-[<a href=\"$buttout\">delete</a>]
-			
+[<a href=\"$buttout\">Delete</a>]
 </td>
-			
-			
-<!-- **** PIECE [ $piece ]  START **** -->			
-			
+<!-- **** PIECE [ $piece ]  START **** -->
 <td width=200>";
 echo "$piece:";
 echo "</td>
@@ -1070,11 +1059,7 @@ echo "</td>
 
 <td>";
 echo "<a name=\"$base$sub\"></a> \n ";
-			
-			$cssvalue=str_replace("\"","'",$cssvalue);
-			
-			
-	
+		$cssvalue=str_replace("\"","'",$cssvalue);
 echo "
 <input type=\"hidden\" name=\"thm\" value=\"$thm\">
 <input type=\"hidden\" name=\"outfile\" value=\"$css_file\">
@@ -1087,12 +1072,11 @@ echo "
 <!-- **** PIECE [ $piece ]  VALUE [$cssvalue] **** -->
 
 <input name=\"newvalue\" value=\"$cssvalue\" ";
-			
 			if( 	(substr(trim($cssx4[1]),0,1)=="#") || 
 					(    stristr($cssx4[0],"color")) )
-				echo " type=\"color\" onchange=\"this.form.submit();";
-			else 
-				echo "onblur=\"this.form.submit();";
+				echo " type=\"color\" onchange=\"this.form.submit();\" ";
+			else
+				echo "onblur=\"this.form.submit();\" ";
 echo " size=60 \">
 
 </td>
@@ -1110,43 +1094,49 @@ echo " size=60 \">
 </table>
 }";
 		echo "
-		
 
 
 ";
 	}
 }
 function lib_forms_php_file($php_file,$returnpage,$returnaction,$hiddenvars) { eval(lib_rfs_get_globals());
+
 	$hvar=array();
 	$hvars=explode($RFS_SITE_DELIMITER,$hiddenvars);
 	for($i=0;$i<count($hvars);$i++) {
 		$tt=explode("=",$hvars[$i]);
 		$hvar[$tt[0]]=$tt[1];
 	}
-	echo "<form action=$returnpage method=\"post\">";
-	echo "<table border=0>";
-	echo "<tr>";
-	echo "<td></td>";
-	echo "<input type=hidden name=action value=\"$returnaction\">";
-	echo "<input type=hidden name=add value=\"var\">";
-	echo "<input type=hidden name=outfile value=\"$php_file\">";
+
+	echo "\n\n\n";
+	echo "<table border=0>\n";
+	echo "<tr>\n";
+	echo "<td>\n";
+	echo "<form action=$returnpage method=\"post\">\n";
+	echo "</td>\n";
+        echo "<td>\n";
+ 	echo "<input type=hidden name=action value=\"$returnaction\">\n";
+	echo "<input type=hidden name=add value=\"var\">\n";
+	echo "<input type=hidden name=outfile value=\"$php_file\">\n";
 	foreach ($hvar as $vn => $vv) {
-		echo "<input type=hidden name=\"$vn\" value=\"$vv\">";
+		echo "<input type=hidden name=\"$vn\" value=\"$vv\">\n";
 	}
-	
-	echo "<td width=200>";
+	echo "</td>\n";
+	echo "<td width=200>\n";
 	/////////////////////////////////////////////////////////////////////////////////////////
 	lib_forms_optionize_file( "addvar", "$RFS_SITE_PATH/tools/rfsvars_out.txt", "Add a system variable");
-	echo "</td><td>";
-	echo "<input name=varvalue size=60 value=\"\">";
-	
-	echo "<input type=submit value=\"Add\">";
-	echo "</tr>";
-	echo "</form>";
-	
-	
+	echo "<input name=varvalue size=60 value=\"\">\n";
+	echo "<input type=submit value=\"Add\">\n";
+	echo "</form>\n";
+	echo "</td>\n";
+	echo "</tr>\n";
+	echo "</table>\n";
+
+	echo "\n<hr>\n\n";
+
+	echo "<table border=0>\n";
+
 	$fp=fopen($php_file,"r");
-	
 	while( $ln=fgets($fp)) {
 		if 	((substr($ln,0,2)=="<?") ||
 			 (substr($ln,0,2)=="?>") ||
@@ -1156,18 +1146,19 @@ function lib_forms_php_file($php_file,$returnpage,$returnaction,$hiddenvars) { e
 		} else {
 			$varx=explode("=",$ln);
 			$varx[0]=trim($varx[0]," ");
-			
-			echo "<tr>";			
-			echo "<form method=post action=\"$returnpage\">";
-			echo "<td>";
-			echo "[<a href=\"$returnpage?action=$returnaction&delete=$varx[0]&outfile=$php_file";	
+			echo "    <tr>\n";
+			echo "        <td>\n";
+			echo "            <form method=post action=\"$returnpage\">\n";
+
+			echo "            [<a href=\"$returnpage?action=$returnaction&delete=$varx[0]&outfile=$php_file";
 			foreach ($hvar as $vn => $vv){
 				echo "&$vn=$vv";
 			}
-			echo "\">delete</a>] ";
-			echo "</td>";			
-			echo "<td>";
-			echo $varx[0];
+			echo "\">delete</a>] <br>\n";
+			echo "        </td>\n";
+			echo "        <td>\n";
+			echo "            ".$varx[0]."\n";
+
 			$varx[1]=trim($varx[1]," ");
 			$varx[1]=trim($varx[1],"\n");
 			$varx[1]=trim($varx[1],"\r");
@@ -1176,9 +1167,11 @@ function lib_forms_php_file($php_file,$returnpage,$returnaction,$hiddenvars) { e
 			$varx[1]=str_replace("\'","\\'",$varx[1]);
 			$varx[1]=str_replace("<","&lt;",$varx[1]);
 			$varx[1]=str_replace(">","&gt;",$varx[1]);
-			echo "</td><td>";
 
-/*lib_ajax_file( "Name,80",
+			echo "        </td>\n";
+			echo "        <td>\n";
+
+			/*lib_ajax_file( "Name,80",
 				"files",
 				"id",
 				"$id",
@@ -1194,38 +1187,28 @@ function lib_forms_php_file($php_file,$returnpage,$returnaction,$hiddenvars) { e
 				//echo "</textarea>";
 			}
 			else {
-				
-
-			echo "<input type=\"hidden\" name=\"thm\" value=\"$thm\">";
-			echo "<input type=\"hidden\" name=\"outfile\" value=\"$php_file\">";
-			echo "<input type=\"hidden\" name=\"action\" value=\"$returnaction\">";
-			echo "<input type=\"hidden\" name=\"update\" value=\"$varx[0]\">";	
-			echo "<input type=\"hidden\" name=\"phpvalue\" value=\"$varx[1]\">";
-			echo "<input name=\"newvalue\" value=\"$varx[1]\" ";
-				if( 	(substr(trim($varx[1]),0,1)=="#") || 
+				echo "            <input type=\"hidden\" name=\"thm\" value=\"$thm\">\n";
+				echo "            <input type=\"hidden\" name=\"outfile\" value=\"$php_file\">\n";
+				echo "            <input type=\"hidden\" name=\"action\" value=\"$returnaction\">\n";
+				echo "            <input type=\"hidden\" name=\"update\" value=\"$varx[0]\">\n";
+				echo "            <input type=\"hidden\" name=\"phpvalue\" value=\"$varx[1]\">\n";
+				echo "            <input name=\"newvalue\" value=\"$varx[1]\" ";
+				if( 	(substr(trim($varx[1]),0,1)=="#") ||
 					(    stristr($varx[0],"color")) )
-				echo " type=\"color\" onchange=\"this.form.submit();";
-			else 
-				echo "onblur=\"this.form.submit();";
-					
-					
-			echo " size=60 >";
-
-			
-				
-				
-			// echo "<input size=60 value='".$varx[1]."' ";			
-	// 				if(substr($varx[1],0,1)=="#") echo "class='color' ";
-	//			echo ">";
-			
+					echo " type=\"color\" onchange=\"this.form.submit();\" ";
+				else
+					echo "onblur=\"this.form.submit();\" ";
+				echo " size=60 >\n";
+				// echo "<input size=60 value='".$varx[1]."' ";
+				// 				if(substr($varx[1],0,1)=="#") echo "class='color' ";
+				//			echo ">";
 			}
-			echo "</td>";
-			echo "</form>";		
-			echo "</tr>";
+			echo "            </form><br>\n";
+			echo "        </td>\n";
+			echo "    </tr>\n";
 		}
-		
 	}
-	echo "</table>";
+	echo "</table>\n\n\n\n";
 	fclose($fp);
 }
 function lib_forms_codearea($id,$rows,$cols,$name,$indata){ eval(lib_rfs_get_globals());
