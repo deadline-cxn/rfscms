@@ -1,4 +1,4 @@
-<?
+<?php
 $title="User Profile";
 chdir("../../");
 $RFS_LITTLE_HEADER=true;

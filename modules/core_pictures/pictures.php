@@ -1,4 +1,4 @@
-<?
+<?php
 if($_REQUEST['a']=="ms") {
 	$meme_id=$_REQUEST['meme_id'];
 	echo "<img src=\"$RFS_SITE_URL/include/generate.image.php/?download_it_$meme_id.png&meme_id=$meme_id&owidth=512\" border=0></a>";

@@ -1,4 +1,4 @@
-<?
+<?php
 
 ?>
 Terms of service:

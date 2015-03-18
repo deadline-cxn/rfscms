@@ -1,4 +1,4 @@
-<?
+<?php
 
 include("backup-html.php");
 include("backup-mysql.php");

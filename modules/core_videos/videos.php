@@ -1,4 +1,4 @@
-<?
+<?php
 chdir("../../");
 $RFS_LITTLE_HEADER=true;
 include("header.php");

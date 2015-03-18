@@ -1,4 +1,4 @@
-<?
+<?php
 
 function to($width,$ot)
 {

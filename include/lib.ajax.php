@@ -1,4 +1,4 @@
-<?
+<?php
 /////////////////////////////////////////////////////////////////////////////////////////
 function lib_ajax_spinner() { eval(lib_rfs_get_globals()); 
  return "<img src=$RFS_SITE_URL/images/icons/spinner.gif>";

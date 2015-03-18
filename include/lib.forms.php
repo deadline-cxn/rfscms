@@ -1,4 +1,4 @@
-<?
+<?php
 $gcdx=explode("/",getcwd());
 if(array_pop($gcdx)=="include")	chdir("..");
 include_once("include/lib.div.php");

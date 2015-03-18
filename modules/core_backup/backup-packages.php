@@ -1,4 +1,4 @@
-<?
+<?php
 
 $fpkg    = "/backup/".$dt.".packages.sh";
 $fetcapt = "/backup/".$dt.".packages.etc.7z";

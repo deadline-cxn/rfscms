@@ -1,4 +1,4 @@
-<?
+<?php
 if(stristr(getcwd(),"modules")) { chdir("../../"); }
 include_once("header.php");
 $newslogn   = addslashes($_REQUEST['newslogn']);

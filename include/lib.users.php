@@ -1,4 +1,4 @@
-<?
+<?php
 function lib_users_age($birthDay) { // date in yyyy-mm-dd format
 	$birthday = explode("-", $birthDay); 
 	$age = (date("md", date("U", mktime(0, 0, 0, $birthday[1], $birthday[2], $birthday[0]))) > date("md") ? ((date("Y") - $birthday[0]) - 1) : (date("Y") - $birthday[0]));

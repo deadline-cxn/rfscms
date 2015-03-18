@@ -1,20 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
- <? 
+ <?php
  lib_rfs_echo($RFS_SITE_TITLE);
  ?>
  
  <style type="text/css" media="all">
  
-  <? echo "@import url(\"$RFS_SITE_URL/themes/$theme/site.css\");\n"; ?>
-  <? echo "@import url(\"$RFS_SITE_URL/themes/$theme/phpnet.css\");\n"; ?>
+  <?php echo "@import url(\"$RFS_SITE_URL/themes/$theme/site.css\");\n"; ?>
+  <?php echo "@import url(\"$RFS_SITE_URL/themes/$theme/phpnet.css\");\n"; ?>
     
  </style>
  <!--[if IE]><![if gte IE 6]><![endif]-->
   <style type="text/css" media="print">
    
-   <? echo "@import url(\"$RFS_SITE_URL/themes/$theme/print.css\");\n"; ?>
+   <?php echo "@import url(\"$RFS_SITE_URL/themes/$theme/print.css\");\n"; ?>
    
  </style>
 <!--[if IE]><![endif]><![endif]-->
@@ -26,7 +26,7 @@
 
 
 <div id="headnav">
- <?
+ <?php
  
  echo "<a href=\"$RFS_SITE_URL\" rel=\"home\">"; 
  
@@ -50,12 +50,12 @@
  ?>
  </a>
  
- <?
+ <?php
  echo "<font class=slogan><BR>$RFS_SITE_SLOGAN</font>";
  ?>
  
  <div id="headmenu">
- <?
+ <?php
 $res=lib_mysql_query("select * from `menu_top` order by `sort_order` asc");
 for($i=0;$i<$res->num_rows;$i++) {
 	$link=$res->fetch_object();
@@ -80,7 +80,7 @@ for($i=0;$i<$res->num_rows;$i++) {
  </div>
 </div>
 <div id="headsearch">
-<? 
+<?php
  lib_forms_theme_select();
 	if($_SESSION['logged_in']) {
 		lib_rfs_echo($RFS_SITE_LOGGED_IN_CODE);

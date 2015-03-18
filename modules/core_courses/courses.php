@@ -1,4 +1,4 @@
-<?
+<?php
 $title="Course";
 chdir("../../");
 include("header.php");

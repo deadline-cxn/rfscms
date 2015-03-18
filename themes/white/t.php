@@ -1,4 +1,4 @@
-<?
+<?php
 $RFS_THEME_TOP_MENU_LOCATION="top";
 $RFS_THEME_NAV_FONT="DisposableDroidBB_bldital.ttf";
 $RFS_THEME_NAV_FONT_SIZE="25";

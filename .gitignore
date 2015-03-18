@@ -41,6 +41,7 @@ html/*
 webalizer/*
 rfscms.project
 rfscms.workspace
+rfscms.phprj
 .codelite/*
 newznab/*
 misc/*

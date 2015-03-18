@@ -1,4 +1,4 @@
-<?$what=$_REQUEST['what'];
+<?php$what=$_REQUEST['what'];
 $what=str_replace("http://www.defectiveminds.com","",$what);
 $m=$_REQUEST['m'];
 $s=$_REQUEST['s'];

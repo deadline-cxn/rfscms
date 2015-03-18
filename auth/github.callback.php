@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 
 1. Redirect users to request GitHub access

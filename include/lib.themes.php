@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("themes/_templates/theme_templates.php");
 function lib_themes_get_array() {
 	$dr=$GLOBALS['RFS_SITE_PATH']."/themes/";

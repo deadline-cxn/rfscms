@@ -1,4 +1,4 @@
-<?
+<?php
 $hi=$_REQUEST['hi'];
 $amount=$_REQUEST['amount'];
 if($hi=="one") {

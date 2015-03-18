@@ -1,4 +1,4 @@
-<?
+<?php
 $RFS_THEME_TTF_TOP="1";
 $RFS_THEME_TTF_TOP_FONT="Quaint.ttf";
 $RFS_THEME_TTF_TOP_COLOR="#998822";

@@ -1,4 +1,4 @@
-<? $RFS_VERSION="v3.3.5 beta";
+<?php $RFS_VERSION="v3.3.5 beta";
 $RFS_BUILD="001";
 $file=@fopen("build.dat","r");
 if($file) { $RFS_BUILD=fgets($file,256); fclose($file); }

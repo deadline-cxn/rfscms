@@ -1,4 +1,4 @@
-<?
+<?php
 $dirfiles = array();
 $dir=getcwd();
 

@@ -1,4 +1,4 @@
-<?
+<?php
 chdir("../../");
 include("header.php");
 $user=$_REQUEST['user'];

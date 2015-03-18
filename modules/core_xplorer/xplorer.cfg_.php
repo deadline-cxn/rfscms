@@ -1,4 +1,4 @@
-<?
+<?php
 
 $xp_admin_password = "admin";
 

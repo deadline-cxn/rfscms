@@ -1,4 +1,4 @@
-<?
+<?php
 @session_name(str_replace(" ","_","R_F_S_INSTALLER"));
 @session_cache_expire(99999);
 @session_start();
@@ -165,7 +165,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 				
         $fp=fopen("$RFS_SITE_PATH/config/config.php","wt");
 		if($fp) {
-			fwrite($fp, "<?\n");
+			fwrite($fp, "<?php\n");
 			fwrite($fp, "////////////////////////////////////////////////////////////\n");
 			fwrite($fp, "// RFSCMS https://www.rfscms.org/ \n");
 			fwrite($fp, "\$GLOBALS['authdbname']    = \"$rfs_db_name\"; \n");

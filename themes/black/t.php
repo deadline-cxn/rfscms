@@ -1,4 +1,4 @@
-<?
+<?php
 $RFS_THEME_NAV_FONT_SIZE="15";
 
 $RFS_THEME_NAV_IMG="1";

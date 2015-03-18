@@ -1,4 +1,4 @@
-<?
+<?php
 chdir("../../");
 include("header.php");
 function linkbin_finish() { include("footer.php"); }

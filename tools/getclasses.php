@@ -1,4 +1,4 @@
-<? 
+<?php
 $f=file_get_contents("classes.txt");
 $ex=explode(" ",$f);
 $out=array();

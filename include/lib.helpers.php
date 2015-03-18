@@ -1,4 +1,4 @@
-<?
+<?php
 function mailgo($email,$message,$subject) {
 	eval(lib_rfs_get_globals());
 	$email=str_replace("'at'","@",$email);

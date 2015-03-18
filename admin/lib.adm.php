@@ -1,4 +1,4 @@
-<?
+<?php
  
 function lib_ajax_callback_query_list() { eval( lib_rfs_get_globals()) ;
 	if(array_pop(explode("/",getcwd()))=="admin") chdir("..");

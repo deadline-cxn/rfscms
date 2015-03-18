@@ -1,4 +1,4 @@
-<?
+<?php
 $meme_thumbwidth=200;
 $meme_editwidth=256;
 $meme_fullsize=512;

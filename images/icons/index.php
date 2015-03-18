@@ -1,4 +1,4 @@
-<?
+<?php
 
 function show_images($dir){
     

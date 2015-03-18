@@ -1,4 +1,4 @@
-<?
+<?php
 $title="FORUMS";
 chdir("../../");
 $RFS_LITTLE_HEADER=true;

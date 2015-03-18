@@ -1,4 +1,4 @@
-<?
+<?php
 include("rfs/header.php");
 
 function linkbin_showaddform()

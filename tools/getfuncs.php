@@ -1,4 +1,4 @@
-<?
+<?php
 if(isset($argv[1])) $fn=$argv[1];
 else $fn="functions.txt";
 $f=file_get_contents($fn);

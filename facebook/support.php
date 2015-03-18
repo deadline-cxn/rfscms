@@ -1,4 +1,4 @@
-<?
+<?php
 
 ?>
 Support page.

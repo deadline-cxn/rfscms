@@ -1,4 +1,4 @@
-<?
+<?php
 function adm_action_f_paypal_config_go() {
 	eval(lib_rfs_get_globals());
 	echo "<h1>Paypal Configuration Update</h1>";

@@ -1,4 +1,4 @@
-<?
+<?php
 
 function lib_ajax_javascript_tags() { 
 	eval(lib_rfs_get_globals());

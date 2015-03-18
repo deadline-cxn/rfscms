@@ -1,4 +1,4 @@
-<?
+<?php
 	if(!lib_rfs_bool_true($data->donated)) {
 		echo "<center>";
 		lib_social_google_adsense($RFS_SITE_GOOGLE_ADSENSE);

@@ -1,4 +1,4 @@
-<?
+<?php
 $dt=date("Y.m.d.Hi");
 
 include("backup-html.php");

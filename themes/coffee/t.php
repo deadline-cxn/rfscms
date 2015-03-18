@@ -1,4 +1,4 @@
-<?
+<?php
 $RFS_THEME_TOP_MENU_LOCATION="top";
 $RFS_THEME_NAV_FONT="Berthside.ttf";
 $RFS_THEME_NAV_IMG="0";

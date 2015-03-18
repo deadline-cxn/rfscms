@@ -4,7 +4,7 @@
 
 <div id="footnav">
 	&nbsp; 
-	<? echo "$RFS_SITE_COPYRIGHT";	// seperate links with  | 
+	<?php echo "$RFS_SITE_COPYRIGHT";	// seperate links with  | 
 	?>
 </div>
 

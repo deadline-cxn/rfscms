@@ -1,4 +1,4 @@
-<?
+<?php
 $slogan="Exposing the web that you don't want to accept...";
 $result=dm_query("select * from slogans");
 $numslogans=$result->num_rows;
