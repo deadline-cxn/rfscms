@@ -2,8 +2,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
-$RFS_GEN_IMAGE=true;
-if(array_pop(explode("/",getcwd()))=="include") chdir("..");
+$RFS_GEN_IMAGE=true; 
+if(@array_pop(explode("/",getcwd()))=="include") chdir("..");
 include_once("include/lib.genm.php");
 if(empty($im)) $im="images/icons/Info.png"; // $im  = image to write text onto
 if(empty($w)) $w=64;  // $w   = width
