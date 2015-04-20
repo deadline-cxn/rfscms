@@ -73,4 +73,3 @@ function lib_flash_embed_code($swf,$width,$height){
     $d.= "</embed></object>";
     return $d;
 }
-?>

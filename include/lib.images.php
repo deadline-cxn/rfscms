@@ -168,4 +168,3 @@ function lib_images_cache($url) {
 	if($x) return $local_url;
 	return "";
 }
-?>

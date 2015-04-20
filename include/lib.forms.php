@@ -1384,4 +1384,3 @@ function lib_forms_theme_select() { eval(lib_rfs_get_globals());
 			echo "</select>";
 		}
 }
-?>

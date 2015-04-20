@@ -26,7 +26,3 @@
 
 
 
-
-
-// this file can not have trailing spaces
-?>

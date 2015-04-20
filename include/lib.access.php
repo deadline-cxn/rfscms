@@ -56,4 +56,4 @@ rfs_ajax("users,id,$data->id,webpage","","nohide","admin,access","");
 	exit();
 }
  */
-?>
+ 

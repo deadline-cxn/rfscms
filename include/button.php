@@ -42,4 +42,4 @@ for($lx=0;$lx<3;$lx++) for($ly=0;$ly<3;$ly++) lib_genm_print($image_b, $fs, $bgc
 lib_genm_print($image_b, $fs, $fgc , $f, $t, $x+1, $y+1, $w);
 header('Content-Type: image/png');
 imagepng($image_b);
-?>
+ 

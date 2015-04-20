@@ -37,6 +37,4 @@ function lib_sitevars_assign($name,$value,$type,$desc) {
 }
 // foreach($GLOBALS as $key => $value) {//$value=tostring($value); if(is_string($value)){//if(stristr($key,"RFS_")) // echo "[$key] => [".str_replace("<","&lt;",$value)."]<br>";}}
 if(!isset($RFS_SITE_SUDO_CMD)) $RFS_SITE_SUDO_CMD=" ";
-/////////////////////////////////////////////////////////////////////////////////////////
-// This file can not have any trailing spaces
-?>
+

@@ -368,12 +368,8 @@ function lib_mysql_dump_table($table,$showform,$key,$search,$ignore,$short){
                 }
                 next($row);
             }
-
-            
             lib_buttons_make_button("$page?action=".$showform_action."edit_$table&$key=$key_val","Edit");
             lib_buttons_make_button("$page?action=".$showform_action."del_$table&$key=$key_val","Delete");
-            
-
             echo"</td>";
         }
         reset($row);
@@ -407,6 +403,3 @@ function lib_mysql_dump_table($table,$showform,$key,$search,$ignore,$short){
 
 function lib_mysql_is_csv_data($a,$b,$c,$d) {
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-// This file can not have any trailing spaces
-?>

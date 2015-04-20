@@ -642,4 +642,5 @@ function lib_social_follow_horizontal() {
 
 	*/
 }
-?>
+
+

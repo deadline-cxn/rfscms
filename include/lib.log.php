@@ -147,7 +147,7 @@ function lib_log_count($user) {
 /////////////////////////////////////////////////////////////////////////
 function lib_log_add_entry($logtext) {
 	eval(lib_rfs_get_globals());
-	$logfile="$RFS_SITE_PATH/log/log.htm";
+	$logfile="$RFS_SITE_LOG_PATH/log.htm";
 	$fp2=fopen($logfile,"a");
 	if(empty($fp2)) $fp2=fopen($logfile,"w");
 	if($fp2) {
@@ -155,5 +155,4 @@ function lib_log_add_entry($logtext) {
 		fputs($fp2,$logtext);
 		fclose($fp2);
 	}
-}
-?>
+} 

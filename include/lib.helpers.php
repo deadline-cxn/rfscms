@@ -77,6 +77,3 @@ if (document.getElementById &&!document.all) {
 </script>";
 }
 
-
-
-?>

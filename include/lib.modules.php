@@ -4,10 +4,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 
 function lib_modules_register($name,$core,$loc,$version,$sub_version,$release,$description,$requirements,$cost,$license,$dependencies,$author,$author_email,$author_website,$images,$file_url,$git_repository) {
-    
 	global $RFS_SITE_PATH,$RFS_SITE_URL;
 	global $RFS_MODULE;
-	
     $RFS_MODULE[$name]=array();
     $RFS_MODULE[$name]["core"]=$core;
     $url=str_replace("$RFS_SITE_PATH","$RFS_SITE_URL",$loc);
@@ -22,8 +20,6 @@ function lib_modules_register($name,$core,$loc,$version,$sub_version,$release,$d
 	$RFS_MODULE[$name]["author"]=$author;
 	$RFS_MODULE[$name]["author_email"]=$sub_version;
 	$RFS_MODULE[$name]["author_website"]=$sub_version;
-	
-
 	// Store the main database at rfscms.org only
 	if($RFS_SITE_URL=="https://rfscms.org") {
 		// TODO: CHECK VERSION
@@ -107,7 +103,6 @@ function lib_modules_get_base_url($z) {
 function lib_modules_discover() {
     eval(lib_rfs_get_globals());
 	$dr="$RFS_SITE_PATH/modules";
-	
 	$modules=array();
     $d=opendir($dr) or die("MODULE PATH ERROR");	
 	while(false!==($entry = readdir($d))) {
@@ -119,10 +114,7 @@ function lib_modules_discover() {
                 $entry2=str_replace("core_","",$entry);
                 $module="$dr/$entry/module.$entry2.php";
                 $loc="$dr/$entry/$entry2.php";
-               
 				include($module);
-				
-				
 				global $RFS_ADDON_NAME;
 				global $RFS_ADDON_VERSION;
 				global $RFS_ADDON_SUB_VERSION;
@@ -138,7 +130,6 @@ function lib_modules_discover() {
 				global $RFS_ADDON_IMAGES;
 				global $RFS_ADDON_FILE_URL;
 				global $RFS_ADDON_GIT_REPOSITORY;
-				
 				if(!empty($RFS_ADDON_NAME)) {
 					lib_modules_register(
 						$RFS_ADDON_NAME,$core,$loc,$RFS_ADDON_VERSION,$RFS_ADDON_SUB_VERSION,$RFS_ADDON_RELEASE,
@@ -146,13 +137,13 @@ function lib_modules_discover() {
 						$RFS_ADDON_DEPENDENCIES,$RFS_ADDON_AUTHOR,$RFS_ADDON_AUTHOR_EMAIL,$RFS_ADDON_AUTHOR_WEBSITE,
 						$RFS_ADDON_IMAGES,$RFS_ADDON_FILE_URL,$RFS_ADDON_GIT_REPOSITORY );
 						// echo "what lib_modules_register(stuff) -> $RFS_ADDON_NAME<br> ";
-					 }
 				}
-            }
-        }
-		closedir($d);
+			}
+		}
     }
-	
+	closedir($d);
+}
+
 	
 
 function lib_modules_draw($location) {
@@ -170,6 +161,3 @@ function lib_modules_draw($location) {
 	}
 }
 
-
-
-?>

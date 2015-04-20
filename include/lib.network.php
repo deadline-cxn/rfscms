@@ -69,4 +69,3 @@ function rfs_valid_ip($ip_addr){
     return false; //if format of ip address doesn't matches
 }
 
-?>

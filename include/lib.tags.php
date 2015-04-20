@@ -133,5 +133,3 @@ function lib_tags_show_tags($table,$id) {
 	}
 }
 
-
-?>

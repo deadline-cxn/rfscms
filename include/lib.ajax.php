@@ -313,4 +313,3 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 					onkeyup=\"if((event.keyCode==13)) {this.blur();}\"style='float:left;'>";
 	echo "</div><div style='clear:both;'></div>";
 }
-?>

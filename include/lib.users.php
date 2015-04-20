@@ -154,4 +154,3 @@ function lib_users_add_downloads($user,$points){
     lib_mysql_query("UPDATE `users` SET files_downloaded=$downloads where name = '$user'");
   }
 }
-?>

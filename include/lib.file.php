@@ -231,4 +231,3 @@ function lib_file_touch_dir($dir) {
 function lib_file_delete($file) {
 	unlink($file);
 }
-?>

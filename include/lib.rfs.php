@@ -197,6 +197,4 @@ function lib_rfs_get($t) {
 	}
 	return $t;
 }
-/////////////////////////////////////////////////////////////////////////
-// this file can not have trailing spaces
-?>
+

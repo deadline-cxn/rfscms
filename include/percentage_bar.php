@@ -154,4 +154,3 @@ iptcparse — Parse a binary IPTC block into single tags.
 jpeg2wbmp — Convert JPEG image file to WBMP image file
 png2wbmp — Convert PNG image file to WBMP image file
 */
-?>

@@ -124,4 +124,3 @@ function lib_string_generate_uid($y) {
 	return $x;
 }
 
-?>

@@ -306,4 +306,4 @@ if(!empty($renderfile)){
 header('Content-Type: image/png');
 imagepng($image_b);
 exit();
-?>
+

@@ -158,6 +158,5 @@ function lib_genm_imageline( $img,$x,$y,$x2,$y2,$color,$thickness) {
 	imagesetthickness($img,$thickness);
 	imageline($img,$x,$y,$x2,$y2,$color);
 }
-									
 
-?>
+

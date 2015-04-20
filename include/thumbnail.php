@@ -28,4 +28,4 @@ imagesavealpha($new_image, true);
 imagecopyresampled($new_image, $image, 0, 0, 0, 0, $w, $h, ImageSX($image), ImageSY($image));
 header('Content-Type: image/png');
 imagepng($new_image);
-?>
+

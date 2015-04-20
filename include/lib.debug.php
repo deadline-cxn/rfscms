@@ -142,6 +142,3 @@ function lib_debug_footer($quiet) { eval(lib_rfs_get_globals());
 	if(!$quiet) d_echo($dout);
 	return $dout;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
-// This file can not have any trailing spaces
-?>

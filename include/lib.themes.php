@@ -23,4 +23,4 @@ function lib_themes_get_image($x) {
     else $rx="$RFS_SITE_URL/$x";
     return $rx;
 }
-?>
+
