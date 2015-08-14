@@ -86,6 +86,7 @@ function videos_action_submitvid_internet_go() {
 	if(stristr($url,"youtube"))  $go="youtube";
 	if(stristr($url,"liveleak")) $go="liveleak";
 	if(stristr($url,"vimeo"))    $go="vimeo";
+	if(stristr($url,"dailymotion"))    $go="dailymotion";
 	$e="videos_action_submitvid_$go"."_go();";
 	eval($e); /* 
 <meta property="og:title" content="Name">
@@ -107,23 +108,87 @@ function videos_action_submitvid_generic_go() {
 	$url=$_REQUEST['url'];
 	$category=$_REQUEST['category'];
 	$sfw=$_REQUEST['sfw'];
-
+	
 	d_echo(__FILE__." ".__LINE__);
 	d_echo("videos_action_submitvid_generic_go()");
-	d_backtrace();
-
+	
 	if(lib_access_check("videos","submit")) {
-		$html_raw = file_get_contents($url);
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)');
+		$html_raw=curl_exec($ch);
+		curl_close($ch);
+		
+		d_echo($html_raw);
+		
 		$html = new DOMDocument();
 		@$html->loadHTML($html_raw);
 		foreach($html->getElementsByTagName('meta') as $meta) {
+			
+			$ax=strtolower($meta->getAttribute('property'));
+			$bx=$meta->getAttribute('content');
+			switch($ax){
+				case "og:title": 		$sname      = str_replace("_"," ",addslashes($bx)); break;
+				case "og:description": 	$description= addslashes($bx); break;
+				case "og:image": 		$oimage     = addslashes($bx); $image=$oimage;
+					echo $image."<BR>";
+				break;
+				case "og:video":
+				case "embedurl": 		$embed_code= addslashes($bx); break;
+			}
+			if(strtolower($meta->getAttribute('itemprop'))=="embedurl") $embed_code=$meta->getAttribute('content');
+			if(strtolower($meta->getAttribute('name')) == "twitter:player") 
+				if(empty($embed_code)) $embed_code=$meta->getAttribute('content');
+		}
+		$vembed_code="<iframe src=\"$embed_code\" width=\"850\" height=\"480\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>";
+		if(stristr($url,"twitch.tv")) {
+			$ex=explode("/",$url);
+			$twitchchan=$ex[count($ex)-1];
+			$vembed_code="<object type=\"application/x-shockwave-flash\" height=\"850\" width=\"480\" id=\"live_embed_player_flash\" data=\"http://www.twitch.tv/widgets/live_embed_player.swf?channel=$twitchchan\" bgcolor=\"#000000\"><param name=\"allowFullScreen\" value=\"true\" /> <param name=\"allowScriptAccess\" value=\"always\" />	<param name=\"allowNetworking\" value=\"all\" /><param name=\"movie\" value=\"http://www.twitch.tv/widgets/live_embed_player.swf\" /><param name=\"flashvars\" value=\"hostname=www.twitch.tv&channel=$twitchchan&auto_play=true&start_volume=25\" /></object>";
+		}
+		$cont		 = $data->id;
+		$time		 = date("Y-m-d H:i:s");
+		$url	 	 = addslashes($url);
+		$q=" INSERT INTO `videos` (`contributor`, `sname`, `image`,   `original_image`, `description`,  `embed_code`,      `url`,       `time`,     `bumptime`, `category`,    `hidden`,  `sfw`)
+						   VALUES ('$cont',      '$sname', '$image', '$oimage',         '$description', '$vembed_code' ,   '$url' ,     '$time',    '$time',    '$category',    '0', 	'$sfw');";
+		$res=lib_mysql_query($q);
+		$q="select * from videos order by time desc limit 1";
+		$vid=lib_mysql_fetch_one_object($q);
+		videos_action_view($vid->id);
+	}
+}
+
+
+function videos_action_submitvid_dailymotion_go() {
+	$url=$_REQUEST['url'];
+	$category=$_REQUEST['category'];
+	$sfw=$_REQUEST['sfw'];
+	
+	d_echo(__FILE__." ".__LINE__);
+	d_echo("videos_action_submitvid_generic_go()");
+	
+	if(lib_access_check("videos","submit")) {
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)');
+		$html_raw=curl_exec($ch);
+		curl_close($ch);
+		
+		d_echo($html_raw);
+		
+		$html = new DOMDocument();
+		@$html->loadHTML($html_raw);
+		foreach($html->getElementsByTagName('meta') as $meta) {
+			
 			$ax=strtolower($meta->getAttribute('property'));
 			$bx=$meta->getAttribute('content');
 			switch($ax){
 				case "og:title": 		$sname      = str_replace("_"," ",addslashes($bx)); break;
 				case "og:description": 	$description= addslashes($bx); break;
 				case "og:image": 		$oimage     = addslashes($bx); $image=$oimage; break;
-				case "embedurl": 		$embed_code= addslashes($bx); break;
+				case "og:video": 		$embed_code= addslashes($bx); break;
 			}
 			if(strtolower($meta->getAttribute('itemprop'))=="embedurl") $embed_code=$meta->getAttribute('content');
 			if(strtolower($meta->getAttribute('name')) == "twitter:player") 
@@ -244,6 +309,7 @@ function videos_action_submitvid_youtube_go() {
 		videos_action_view($vid->id);
 	}
 }
+
 function videos_action_submitvidgo() {
 	eval(lib_rfs_get_globals());	
 	if(lib_access_check("videos","submit")) {

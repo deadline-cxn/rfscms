@@ -182,15 +182,14 @@ function videos_get_thumbnail($video) {
 		return $video->image;
 	}
 	
-	
 	if( (stristr($video->embed_code,"youtube")) || 
 		(stristr($video->embed_code,"youtu.be")) ) {
 			$ytx=explode("\"",$video->embed_code);
 			for($yti=0;$yti<count($ytx);$yti++) {
-				if(stristr($ytx[$yti],"youtube")) {
-					$ytx2=explode("/",$ytx[$yti]);
+				if(stristr($ytx[$yti],"youtube")) { 
+					$ytx2=explode("/",$ytx[$yti]); 
 					$ytthumb=$ytx2[count($ytx2)-1];
-			}
+			} 
 		}
 		if($ytthumb) {
 			$yttlocal="$RFS_SITE_PATH/modules/core_videos/cache/$ytthumb.jpg";

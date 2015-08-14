@@ -29,7 +29,7 @@ lib_menus_register("Links","$RFS_SITE_URL/modules/core_linkbin/linkbin.php");
 function m_panel_link_friends($x) {
 	eval(lib_rfs_get_globals());
 	$result=lib_mysql_query("select * from link_bin where friend='yes' order by time limit $x");
-	echo "<h2>Link Friends</h2>";
+	echo "<h2>Links</h2>";
 	if($result) 
 	while($link=$result->fetch_object()) {
 		$url=$link->link;
@@ -99,7 +99,19 @@ function adm_action_edit_linkbin() {
 	echo "<h3>Link Bin Editor</h3>\n";
 	echo "<h2>Add Link</h2>\n";
 	lib_forms_build( "$RFS_SITE_URL/admin/adm.php", "action=f_add_link", "link_bin", "", "id", "sname".$RFS_SITE_DELIMITER."link", "include", "", 20, "Add" );
-	$result=lib_mysql_query( "select * from link_bin order by time desc" );
+	$where="";
+	if(isset($filter)) {
+		$where=" where $filter = 'yes' ";
+	}
+	$result=lib_mysql_query( "select * from link_bin $where order by time desc" );
+	
+	echo "Filter:	
+	<a href=\"?filter=friend&action=edit_linkbin\">Friends</a>
+	<a href=\"?filter=hidden&action=edit_linkbin\">Hidden</a>
+	<a href=\"?filter=referral&action=edit_linkbin\">Referral</a>
+	
+	<br>";
+	
 	echo "<table width=100% border=0 cellspacing=0 cellpadding=4 align=center>\n";
 	$gt=2;
 	while($link=$result->fetch_object()) {
@@ -125,7 +137,7 @@ function adm_action_edit_linkbin() {
 		echo "<select name=category>\n";
 		echo "<option>$link->category\n";
 		$result2=lib_mysql_query("select * from `categories` order by name asc");
-		while($cat=$result->fetch_object()) echo "<option>$cat->name\n";
+		while($cat=$result2->fetch_object()) echo "<option>$cat->name\n";
 		echo "</select>\n";
 		echo "</td>\n";
 		echo "<td class=rfs_project_table_$gt>Description</td>";
