@@ -33,7 +33,6 @@ function save_vw(){
 		for($darx=0;$darx<10;$darx++){
 			for($dary=0;$dary<10;$dary++){			
 				$vw.="$darx,$dary,".$_SESSION['darr'][$darx][$dary]['id']."|";
-				
 			}
 		}
 		lib_mysql_query("update `users` set videowall = '$vw' where id='$data->id'");
@@ -82,44 +81,44 @@ if( (empty($_SESSION['darr'])) ||
 
 ////////////////////////////////////////////////////////////////////////
 
-	if(empty($_SESSION['rows']))  $_SESSION['rows']=2;
-	if(empty($_SESSION['cols']))  $_SESSION['cols']=3;
+if(empty($_SESSION['rows']))  $_SESSION['rows']=2;
+if(empty($_SESSION['cols']))  $_SESSION['cols']=3;
 
-	if(empty($_SESSION['wi'])) { $_SESSION['wi']=400; }
-	if(empty($_SESSION['he'])) { $_SESSION['he']=300; }
+if(empty($_SESSION['wi'])) { $_SESSION['wi']=400; }
+if(empty($_SESSION['he'])) { $_SESSION['he']=300; }
 
-	$w=$_SESSION['wi'];
-	$h=$_SESSION['he'];
+$w=$_SESSION['wi'];
+$h=$_SESSION['he'];
 
-	if($_SESSION['edzors']==1) $edit=true;
+if($_SESSION['edzors']==1) $edit=true;
 
-	echo "<html><head>";
+echo "<html><head>";
+
+echo "<META NAME=\"ROBOTS\" CONTENT=\"INDEX,FOLLOW\">\n";
+echo "<meta http-equiv=\"Content-Language\" content=\"en-us\">\n";
+echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1252\">\n";
+echo "<meta name=\"GENERATOR\" content=\"Notepad\">\n";
+echo "<meta name=\"ProgId\" content=\"Notepad\">\n";
+$keywords=$_GET['query']; if(empty($keywords)) $keywords=$_GET['q'];
+if(empty($keywords))
+$keywords=" $RFS_SITE_URL Video Wall";
+echo "<meta name=\"description\" content=\"$keywords\">\n";
+echo "<meta name=\"keywords\" content=\"$keywords\">\n";
+echo "<title>$RFS_SITE_URL Video Wall</title>\n";
+
+echo "<link rel=\"canonical\" href=\"$RFS_SITE_URL/modules/core_video_wall/v.php\" />";
+
+$theme=$data->theme;
+if(empty($theme)) $theme="white";
+echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
+			
+echo "</head>\n";
+
+echo "<body style=\" margin:0; \">\n";
+
+lib_social_google_analytics();
 	
-	echo "<META NAME=\"ROBOTS\" CONTENT=\"INDEX,FOLLOW\">\n";
-    echo "<meta http-equiv=\"Content-Language\" content=\"en-us\">\n";
-    echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1252\">\n";
-    echo "<meta name=\"GENERATOR\" content=\"Notepad\">\n";
-    echo "<meta name=\"ProgId\" content=\"Notepad\">\n";
-    $keywords=$_GET['query']; if(empty($keywords)) $keywords=$_GET['q'];
-    if(empty($keywords))
-    $keywords=" $RFS_SITE_URL Video Wall";
-    echo "<meta name=\"description\" content=\"$keywords\">\n";
-    echo "<meta name=\"keywords\" content=\"$keywords\">\n";
-    echo "<title>$RFS_SITE_URL Video Wall</title>\n";
-
-	echo "<link rel=\"canonical\" href=\"$RFS_SITE_URL/modules/core_video_wall/v.php\" />";
-	
-	$theme=$data->theme;
-	if(empty($theme)) $theme="white";
-	echo "<link rel=\"stylesheet\" href=\"$RFS_SITE_URL/themes/$theme/t.css\" type=\"text/css\">\n";
-				
-    echo "</head>\n";
-	
-	echo "<body style=\" margin:0; \">\n";
-
-	lib_social_google_analytics();
-		
-	echo "<center>";
+echo "<center>";
 
 if($action=="fixall") {
 	$r=lib_mysql_query("select * from videos where category='$cat'");
@@ -227,177 +226,188 @@ if($act=="add") {
 	echo "<table border=0 width=100% style=' background-color:#000000'><tr><td  style=' color: #000000; background-color:#ff0000'> VIDEO ADDED </td></tr></table>";
 }
 
-	$tr_m=$_SESSION['cols'];
-	
-	echo "<table border=0 cellspacing=0 cellpadding=3 width=100%><tr>";
-	
-	echo "<td>";
-	echo "<a href=$RFS_SITE_URL><img src=$RFS_SITE_URL/images/navigation/back.gif></a>";
-	echo "</td><td>";
-	echo "</td><td>";
-	echo "VIDEO WALL";
-	echo "</td><td>";
-	echo "$count hits";
-	echo "</td><td>";
-	echo "</td><td>";
-		//lib_social_twitter_follow();
-	echo "</td><td>";
-	echo "</td><td>";
-		//lib_social_tweet("$RFS_SITE_URL/modules/core_video_wall/v.php","Video Wall", "Check out this page, it lets you view a bunch of different live streams at one time. ");
-	echo "</td><td>";
-	echo "</td><td>";	
-		//lib_social_facebook_like("$RFS_SITE_URL/modules/core_video_wall/v.php");	
-	echo "</td><td>";
-	echo "</td><td>";
-		//lib_social_google_plus("$RFS_SITE_URL/modules/core_video_wall/v.php");
-	echo "</td><td>";
-	if(empty($data->donated))
-		//lib_social_paypal_small();
-	echo "</td><td>";
+$tr_m=$_SESSION['cols'];
 
-	if($edit==true){
-				
-		echo" [<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?edzor=0>Stop Customizing</a>]<br>";
-		echo "</td>";
-		echo "</tr></table>";
-		echo "<br>";
-	   
-	   ECHO "<table border=0 cellspacing=0 cellpadding=0><tr><td>";
-		if($_SESSION["logged_in"]!="true")    {
-			echo "Register to save your custom settings, or to edit embedded code.";
-			lib_rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
-		}
-		else    {
+echo "<table border=0 cellspacing=0 cellpadding=3 width=100%><tr>";
+
+echo "<td>";
+echo "<a href=$RFS_SITE_URL><img src=$RFS_SITE_URL/images/navigation/back.gif></a>";
+echo "</td><td>";
+echo "</td><td>";
+echo "VIDEO WALL";
+echo "</td><td>";
+echo "$count hits";
+echo "</td><td>";
+echo "</td><td>";
+	//lib_social_twitter_follow();
+echo "</td><td>";
+echo "</td><td>";
+	//lib_social_tweet("$RFS_SITE_URL/modules/core_video_wall/v.php","Video Wall", "Check out this page, it lets you view a bunch of different live streams at one time. ");
+echo "</td><td>";
+echo "</td><td>";	
+	//lib_social_facebook_like("$RFS_SITE_URL/modules/core_video_wall/v.php");	
+echo "</td><td>";
+echo "</td><td>";
+	//lib_social_google_plus("$RFS_SITE_URL/modules/core_video_wall/v.php");
+echo "</td><td>";
+if(empty($data->donated))
+	//lib_social_paypal_small();
+echo "</td><td>";
+
+if($edit==true){
 			
-			echo "</td><td class=contenttd>&nbsp;</td><td class=contenttd>";
-			echo $_SESSION["valid_user"];
-			echo " (<a href=$RFS_SITE_URL/login.php?action=logout&outpage=modules/core_video_wall/v.php>logout</a>)<BR>";
-		}
-		echo "</td></tr></table>";
-							
-		echo "<table border=0 cellspacing=0><tr><td valign=top>";
-
-		echo "If there is a glitch<br>in the matrix...<br>[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?action=resetmatrix>RESET EVERYTHING</a>]";
-		echo "</td><td>";
-
-		echo "Matrix Size:<br>";
-		echo "Presets<br>";
-		echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=1&down=1>1x1</a>]<br>";
-		echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=2&down=2>2x2</a>]<br>";
-		echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=3&down=2>3x2</a>]<br>";
-		echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=4&down=3>4x3</a>]<br>";
-		lib_forms_build_quick("SHOW_TEXT_across=".$_SESSION['cols'].$RFS_SITE_DELIMITER.
-				"SHOW_TEXT_down=".$_SESSION['rows'].$RFS_SITE_DELIMITER."act=mtxs","Matrix Size");
-		
-		echo "</td><td>";
-
-		echo "Stream size:<br><br>";
-		echo "Presets<br>";
-		echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?w=300&h=200>Small</a> (300x200)]<br>";
-		echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?w=400&h=300>Medium</a> (400x300)]<br>";
-		echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?w=500&h=400>HUGE</a> (500x400)]<br>";
-
-		lib_forms_build_quick("SHOW_TEXT_w=".$_SESSION['wi'].$RFS_SITE_DELIMITER.
-				"SHOW_TEXT_h=".$_SESSION['he'].$RFS_SITE_DELIMITER."act=size","Stream Size");
-
-		echo "</td></tr></table>";
-		echo "<hr>";
-
-	}	else {
-		
-		echo " [<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?edzor=1>Customize</a>]";
-		echo "</td>";
-		echo "</tr></table>";
+	echo" [<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?edzor=0>Stop Customizing</a>]<br>";
+	echo "</td>";
+	echo "</tr></table>";
+	echo "<br>";
+   
+   ECHO "<table border=0 cellspacing=0 cellpadding=0><tr><td>";
+	if($_SESSION["logged_in"]!="true")    {
+		echo "Register to save your custom settings, or to edit embedded code.";
+		lib_rfs_echo($RFS_SITE_LOGIN_FORM_CODE);
 	}
+	else    {
+		
+		echo "</td><td class=contenttd>&nbsp;</td><td class=contenttd>";
+		echo $_SESSION["valid_user"];
+		echo " (<a href=$RFS_SITE_URL/login.php?action=logout&outpage=modules/core_video_wall/v.php>logout</a>)<BR>";
+	}
+	echo "</td></tr></table>";
+						
+	echo "<table border=0 cellspacing=0><tr><td valign=top>";
+
+	echo "If there is a glitch<br>in the matrix...<br>[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?action=resetmatrix>RESET EVERYTHING</a>]";
+	echo "</td><td>";
+
+	echo "Matrix Size:<br>";
+	echo "Presets<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=1&down=1>1x1</a>]<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=2&down=2>2x2</a>]<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=3&down=2>3x2</a>]<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=4&down=3>4x3</a>]<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?across=5&down=4>5x4</a>]<br>";
+	lib_forms_build_quick("SHOW_TEXT_across=".$_SESSION['cols'].$RFS_SITE_DELIMITER.
+			"SHOW_TEXT_down=".$_SESSION['rows'].$RFS_SITE_DELIMITER."act=mtxs","Matrix Size");
+	
+	echo "</td><td>";
+
+	echo "Stream size:<br><br>";
+	echo "Presets<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?w=300&h=200>Small</a> (300x200)]<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?w=400&h=300>Medium</a> (400x300)]<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?w=500&h=400>HUGE</a> (500x400)]<br>";
+	echo "[<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?w=800&h=600>MEGA</a> (800x600)]<br>";
+
+	lib_forms_build_quick("SHOW_TEXT_w=".$_SESSION['wi'].$RFS_SITE_DELIMITER.
+			"SHOW_TEXT_h=".$_SESSION['he'].$RFS_SITE_DELIMITER."act=size","Stream Size");
+
+	echo "</td></tr></table>";
+	echo "<hr>";
+
+	}
+	else {
+	
+	echo " [<a href=$RFS_SITE_URL/modules/core_video_wall/v.php?edzor=1>Customize</a>]";
+	echo "</td>";
+	echo "</tr></table>";
+}
 
 
 echo "<table border=0 width=100% ><tr><td align=center>";
 if(empty($data->donated))
 	lib_social_google_adsense($RFS_SITE_GOOGLE_ADSENSE);
 	
-
 echo "</td></tr></table>";
 
+echo "<table border=0 cellspacing=0 cellpadding=0>\n";
+//if($aaa=="test"){
+for($darx=0;$darx<$_SESSION['rows'];$darx++){
+	echo "<tr>";
+	for($dary=0;$dary< $_SESSION['cols'] ;$dary++){
+		echo "<td>";
+		
+		$embed_code=$_SESSION['darr'][$darx][$dary]['embed_code'];		
+		for($ci=0;$ci<5299;$ci++){
+			$embed_code=str_replace("width=\"$ci\"","width=\"$w\"",$embed_code);
+			$embed_code=str_replace("height=\"$ci\"","height=\"$h\"",$embed_code);
+			$embed_code=str_replace("width='$ci'","width='$w'",$embed_code);
+			$embed_code=str_replace("height='$ci'","height='$h'",$embed_code);
+			$embed_code=str_replace("width=$ci ","width=$w ",$embed_code);
+			$embed_code=str_replace("height=$ci ","height=$h ",$embed_code);
+			$embed_code=str_replace("width:$ci ","width:$w ",$embed_code);
+			$embed_code=str_replace("height:$ci ","height:$h ",$embed_code);
 
-	echo "<table border=0 cellspacing=0 cellpadding=0>\n";
 
-	//if($aaa=="test"){
-
-		for($darx=0;$darx<
-
-			$_SESSION['rows']
-
-				;$darx++){
-			echo "<tr>";
-			for($dary=0;$dary< $_SESSION['cols'] ;$dary++){
-				echo "<td>";
-				
-				$vid=$_SESSION['darr'][$darx][$dary]['embed_code'];
-				$vid=str_replace("w=\"400\"","w=\"$w\"",$vid);
-				$vid=str_replace("h=\"300\"","h=\"$h\"",$vid);
-				$vid=str_replace("width:400 ","width:$w",   $vid);
-				$vid=str_replace("height:300 ","height:$h",   $vid);
-				$vid=str_replace("width='400'","width='$w'",   $vid);
-				$vid=str_replace("height='300'","height='$h'", $vid);
-				$vid=str_replace("width=\"400\"","width=\"$w\"",   $vid);
-				$vid=str_replace("height=\"300\"","height=\"$h\"", $vid);				
-				$vid=str_replace("width=400 ","width=$w ",     $vid);
-				$vid=str_replace("height=300 ","height=$h ",   $vid);
-
-				  if($_SESSION['edzors']==1){					  
-
-					lib_forms_optionize( "$RFS_SITE_URL/modules/core_video_wall/v.php",
-								"act=chg".$RFS_SITE_DELIMITER.
-								"dx=$darx".$RFS_SITE_DELIMITER.
-								"dy=$dary".$RFS_SITE_DELIMITER.
-								"include=category:$cat",
-								"videos",
-								"sname",
-								1,
-								$_SESSION['darr'][$darx][$dary]['sname'],
-								1
-								);
-			    }
-				
-			    else echo $vid;
-
-				echo "</td>";
-			}
-			echo "</tr>";
 		}
-	echo "</table>\n";
+		
+		/*
+		$vid=str_replace("w=\"400\"","w=\"$w\"",$vid);
+		$vid=str_replace("h=\"300\"","h=\"$h\"",$vid);
+		$vid=str_replace("width:400 ","width:$w",   $vid);
+		$vid=str_replace("height:300 ","height:$h",   $vid);
+		$vid=str_replace("width='400'","width='$w'",   $vid);
+		$vid=str_replace("height='300'","height='$h'", $vid);
+		$vid=str_replace("width=\"400\"","width=\"$w\"",   $vid);
+		$vid=str_replace("height=\"300\"","height=\"$h\"", $vid);				
+		$vid=str_replace("width=400 ","width=$w ",     $vid);
+		$vid=str_replace("height=300 ","height=$h ",   $vid);
+		 */
+
+		  if($_SESSION['edzors']==1){					  
+
+			lib_forms_optionize( "$RFS_SITE_URL/modules/core_video_wall/v.php",
+						"act=chg".$RFS_SITE_DELIMITER.
+						"dx=$darx".$RFS_SITE_DELIMITER.
+						"dy=$dary".$RFS_SITE_DELIMITER.
+						"include=category:$cat",
+						"videos",
+						"sname",
+						1,
+						$_SESSION['darr'][$darx][$dary]['sname'],
+						1
+						);
+		}
+		
+		else
+			echo $embed_code;
+
+		echo "</td>";
+	}
+	echo "</tr>";
+}
+echo "</table>\n";
+
+if($_SESSION['edzors']==1){
 	
-	if($_SESSION['edzors']==1){
-		
-		echo "<hr>";
-		
-		echo "Submit a new live feed for the wall... enter embed code below<BR> ";
+	echo "<hr>";
+	
+	echo "Submit a new live feed for the wall... enter embed code below<BR> ";
 
-    lib_forms_build(  "$RFS_SITE_URL/modules/core_video_wall/v.php",
-				"SHOW_TEXT_10#120#name=".$RFS_SITE_DELIMITER.
-				"SHOW_TEXTAREA_20#120#embed_code=".$RFS_SITE_DELIMITER."act=add"
-                , "", "", "", "", "", "", 20, "Add new stream");
+lib_forms_build(  "$RFS_SITE_URL/modules/core_video_wall/v.php",
+			"SHOW_TEXT_10#120#name=".$RFS_SITE_DELIMITER.
+			"SHOW_TEXTAREA_20#120#embed_code=".$RFS_SITE_DELIMITER."act=add"
+			, "", "", "", "", "", "", 20, "Add new stream");
 
-				
-		echo "<hr>";
-				
-		echo "All videos contributed...<br>";
-		echo "(Note: Videos must be placed in the '$cat' category to be listed here)<br>";
-		
-		$q="select * from videos where category='$cat' order by sname asc";		
-		$r=lib_mysql_query($q);
-		
-		echo "<table border=0 cellspacing=0 cellpadding=3>";
-		
-		echo "<tr>";
-		echo "<td>Name</td>";
-		echo "<td>Contributor</td>";
-		echo "<td>Date Added</td>";
-		echo "<td></td>";
-		echo "</tr>";
-		
-		
-		
+			
+	echo "<hr>";
+			
+	echo "All videos contributed...<br>";
+	echo "(Note: Videos must be placed in the '$cat' category to be listed here)<br>";
+	
+	$q="select * from videos where category='$cat' order by sname asc";		
+	$r=lib_mysql_query($q);
+	
+	echo "<table border=0 cellspacing=0 cellpadding=3>";
+	
+	echo "<tr>";
+	echo "<td>Name</td>";
+	echo "<td>Contributor</td>";
+	echo "<td>Date Added</td>";
+	echo "<td></td>";
+	echo "</tr>";
+	
+	
+	
 		
 		while($v=$r->fetch_object()){
 			

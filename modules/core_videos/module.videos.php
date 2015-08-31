@@ -211,4 +211,18 @@ function videos_get_thumbnail($video) {
 	return $ytturl;
 }
 
+function videos_convert_embed_size($embed_code,$w,$h) {
+	for($ci=0;$ci<5299;$ci++){
+		$embed_code=str_replace("width=\"$ci\"","width=\"$w\"",$embed_code);
+		$embed_code=str_replace("height=\"$ci\"","height=\"$h\"",$embed_code);
+		$embed_code=str_replace("width='$ci'","width='$w'",$embed_code);
+		$embed_code=str_replace("height='$ci'","height='$h'",$embed_code);
+		$embed_code=str_replace("width=$ci ","width=$w ",$embed_code);
+		$embed_code=str_replace("height=$ci ","height=$h ",$embed_code);
+		$embed_code=str_replace("width:$ci ","width:$w ",$embed_code);
+		$embed_code=str_replace("height:$ci ","height:$h ",$embed_code);
+	}
+	return $embed_code;
+}
+
 ?>

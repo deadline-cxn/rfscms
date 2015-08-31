@@ -133,6 +133,7 @@ function lib_rfs_flush_buffers(){
 } 
 
 function lib_rfs_bool_true($x) {
+	if(is_bool($x)===true) return $x;
 	$x=strtolower($x);
 	if( (stristr($x,"true")) ||
 		(stristr($x,"yes")) ||

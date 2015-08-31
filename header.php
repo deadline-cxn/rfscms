@@ -58,7 +58,7 @@ else {
 		
 		echo "<table border=0 width=100% cellspacing=0 cellpadding=0 class=\"toptexttd\">";
 		echo "<tr><td class=toptd align=left >";
-		if ($RFS_THEME_TTF_TOP)  {
+		if (lib_rfs_bool_true($RFS_THEME_TTF_TOP))  {
 			$clr 	= lib_images_html2rgb($RFS_THEME_TTF_TOP_COLOR);
            $bclr	= lib_images_html2rgb($RFS_THEME_TTF_TOP_BGCOLOR);
 			echo lib_images_text(
@@ -72,7 +72,7 @@ else {
 						$bclr[0], $bclr[1], $bclr[2],
 						1,0 );
 		}
-		else {
+		else if(lib_rfs_bool_true($RFS_THEME_TOP_LOGO)) {
 			$base_srch="themes/$theme/t.top_image";
 			$timg=0;
 			if(file_exists("$RFS_SITE_PATH/$base_srch.jpg")) $timg=$base_srch.".jpg";
