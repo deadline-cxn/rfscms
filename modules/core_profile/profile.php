@@ -220,7 +220,7 @@ function profile_show_form() {
 		
 	echo "<hr>";
 	
-
+/*
 	// lib_ajax($label,$table,$key,$kv,$field,$width,$type)
 	// lib_ajax("Avatar","users", "name", "$data->name","avatar", 60, "","admin","access","lib_ajax_callback_image");
 	
@@ -230,8 +230,9 @@ function profile_show_form() {
 	lib_ajax("Alias"	    ,"users","name","$data->name","alias",80,"","admin","access","");	
 	lib_ajax("Shown Name"	,"users","name","$data->name","name_shown",80,"","admin","access","");
 	lib_ajax("Email"		,"users","name","$data->name","email",80,"","admin","access","");
-
-	echo "<hr>";
+	 * echo "<hr>";
+*/
+	
 	echo "<form
 	enctype=\"multipart/form-data\"
 	method=\"post\" action=\"$RFS_SITE_URL/modules/core_profile/profile.php\" >"; // enctype=\"application/x-www-form-URLencoded\"

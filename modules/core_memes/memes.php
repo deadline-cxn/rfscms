@@ -24,12 +24,13 @@ function memes_action_new_meme() {
 	echo "<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"93000000\">";
 	echo "<tr><td align=right>Select file:      </td><td ><input name=\"userfile\" type=\"file\" size=80> </td></tr>\n";
 	echo "<tr><td align=right>Safe for work:    </td><td><select name=sfw><option>yes<option>no</select></td></tr>\n";
-	echo "<tr><td align=right>Hide from public: </td><td><select name=hidden><option>no<option>yes</select></td></tr>";
+	// echo "<tr><td align=right>Hide from public: </td><td><select name=hidden><option>no<option>yes</select></td></tr>";
+	echo "<input type=hidden name=hidden value=no>";
 	echo "<input type=hidden name=category value=Meme>";
 	echo "<input type=hidden name=hidden value=no>";
 	echo "<tr><td align=right>Short name :</td><td><input type=textbox name=sname value=\"$name\"></td></tr>\n";
 	echo "<tr><td align=right valign=top>Description:</td><td><textarea name=\"desc\" rows=\"7\" cols=\"40\"></textarea></td></tr>\n";
-	echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" value=\"Upload!\"></td></tr>\n";
+	echo "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"submit\" ></td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 	include("footer.php");
@@ -88,10 +89,14 @@ function memes_action_new_meme_go() {
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME delete confirm
-function memes_action_meme_delete() { eval(lib_rfs_get_globals());
+function memes_action_meme_delete() {
+	// eval(lib_rfs_get_globals());
+	global $RFS_SITE_URL, $meme_id;
+	
 	$donotshowcats=true;
 	if(lib_access_check("memes","delete")){
-		$dd="<form action=$RFS_SITE_URL/modules/core_memes/memes.php method=post>Confirm delete meme:
+		$dd="<form action=$RFS_SITE_URL/modules/core_memes/memes.php method=post>
+		<p class=\"warning\">Confirm delete meme:</p>
 		<input type=submit name=memedelete value=Delete>
 		<input type=hidden name=action value=meme_delete_go>
 		<input type=hidden name=meme_id value=$meme_id>
@@ -105,7 +110,9 @@ function memes_action_meme_delete() { eval(lib_rfs_get_globals());
 		echo "<p>You can not delete memes.</p>";
 	}
 }
-function memes_action_meme_delete_go() { eval(lib_rfs_get_globals());
+function memes_action_meme_delete_go() {
+	//eval(lib_rfs_get_globals());
+	global $meme_id;
 	if(lib_access_check("memes","delete")) {
 		lib_mysql_query("delete from meme where id='$meme_id' limit 1");
 	}
@@ -113,7 +120,9 @@ function memes_action_meme_delete_go() { eval(lib_rfs_get_globals());
 }
 /////////////////////////////////////////////////////////////////////////////////
 // MEME save
-function memes_action_meme_save() { eval(lib_rfs_get_globals());
+function memes_action_meme_save() {
+	//eval(lib_rfs_get_globals());
+	global $meme_id;
     lib_mysql_query("update meme set status='SAVED' where id='$meme_id'");
     lib_forms_info("SAVED!","WHITE","GREEN");
 	memes_action_showmemes();    
@@ -124,25 +133,32 @@ function memes_action_memegenerate() {
     eval(lib_rfs_get_globals());
     global $mysql_id;
     global $basepic;
-	$name 		= addslashes($name);
-	$texttop 	= addslashes($_REQUEST['texttop']);
-	$textbottom = addslashes($_REQUEST['textbottom']);    
+	$name = addslashes($name);
+	if(empty($name)) $name=addslashes($sname);
 	$poster=999;
     if($data->id) $poster=$data->id;
-    if(empty($private))
-		$private="no";	
+    if(empty($private)) $private="no";
+	
 	if($meme_id==0) {
         $infoout="Adding new caption";
-        if(empty($texttop))
-			$texttop="_NEW";
+        // if(empty($texttop)) $texttop="";
 		echo " POSTER [$poster]<br>";
 		echo "PICTURE [$basepic] <br>";
 		$meme_id=memes_create_meme($name,$poster,$basepic,$texttop);
 	}
 	else {
 		$infoout="Updating caption $meme_id";
+		$meme=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
+		
+		if(isset($_REQUEST['texttop'])) $texttop = addslashes($_REQUEST['texttop']);
+		else $texttop = $meme->texttop;		
+		
+	    if(isset($_REQUEST['textbottom'])) $textbottom = addslashes($_REQUEST['textbottom']);
+		else $textbottom = $meme->textbottom;
+
 		memes_update_meme($meme_id,$poster,$name,$basepic,$texttop,$texttop_color,$textbottom,$textbottom_color,$rating,$chgfont,$text_size,$text_color,$text_bg_color,$time,$private,$datborder,$status);
 	}
+	
     $meme=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
     $data=lib_users_get_data($poster);	
     $basepic=$meme->basepic;
@@ -153,28 +169,22 @@ function memes_action_memegenerate() {
 // MEME editor
 function memes_action_memeedit($meme_id) {
     eval(lib_rfs_get_globals()); 
-	
-    if(empty($meme_id)) $meme_id=$id;
-    
-	lib_forms_info("Editing $name caption #$meme_id","WHITE","GREEN");
-	
+    if(empty($meme_id)) $meme_id=$id;    
+	lib_forms_info("Editing $name caption #$meme_id","WHITE","GREEN");	
     $m=lib_mysql_fetch_one_object("select * from meme where id='$meme_id'");
 	$pic=lib_mysql_fetch_one_object("select * from pictures where id='$m->basepic'");
-      	
     $p=$data->id;
     if(empty($p)) $p=999;
-    
 	if( ($m->poster==$p) ||
         lib_access_check( "memes","edit_others") ) {
-            
         if($m->poster!=$p) lib_forms_info("NOT YOURS ADMIN! / EDIT ANYWAY (LOL)","WHITE","RED");
-            
 		if(empty($name)) $name=$m->name;
-		if(empty($name)) $nout="SHOW_TEXT_10#20#name=$name".$RFS_SITE_DELIMITER;
+		if(empty($name)) {
+			$nout="SHOW_TEXT_10#20#name=$name".$RFS_SITE_DELIMITER;
+		}
 		else  {
 			$nout="name=$name".$RFS_SITE_DELIMITER;
 		}
-        
 		echo "<table border=0 cellspacing=0 cellpadding=0><tr><td valign=top>";
 		$ofont="fonts/impact.ttf";
 		$ocolor="white";
@@ -183,23 +193,20 @@ function memes_action_memeedit($meme_id) {
 		if(!empty($m->text_color)) $ocolor=$m->text_color;
 		if(!empty($m->text_bg_color)) $text_bg_color=$m->text_bg_color;
 		if(empty($private)) $private="no";
-
-		lib_forms_build_quick( "action=memegenerate".$RFS_SITE_DELIMITER.
+	lib_forms_build_quick( "action=memegenerate".$RFS_SITE_DELIMITER.
 				 "id=$pic->id".$RFS_SITE_DELIMITER.
 				 "meme_id=$m->id".$RFS_SITE_DELIMITER.
 				 "chgfont=$m->font".$RFS_SITE_DELIMITER.
 				 $nout.
 				 "SHOW_SELECTOR_colors#name#text_color#$ocolor".$RFS_SITE_DELIMITER.
 				 "SHOW_SELECTOR_colors#name#text_bg_color#$text_bg_color".$RFS_SITE_DELIMITER.
-				 "SHOW_TEXT_10#20#datborder=$m->datborder".$RFS_SITE_DELIMITER.
-				 "SHOW_TEXT_10#20#private=$private".$RFS_SITE_DELIMITER.
+				 #"SHOW_TEXT_10#20#datborder=$m->datborder".$RFS_SITE_DELIMITER.
+				 #"SHOW_TEXT_10#20#private=$private".$RFS_SITE_DELIMITER.
 				 "SHOW_TEXT_10#20#text_size=$m->text_size".$RFS_SITE_DELIMITER.
 				 "SHOW_TEXT_10#20#texttop=$m->texttop".$RFS_SITE_DELIMITER.
 				 "SHOW_TEXT_10#20#textbottom=$m->textbottom",
 				 "Go" );
 		echo "<p>";
-        
-		
 		$t=$m->name."-".time();
         			
 		echo " <a href='$RFS_SITE_URL/include/generate.image.php/$t.png?meme_id=$m->id&owidth=$meme_fullsize&forcerender=1' target=_blank>
@@ -224,18 +231,17 @@ function memes_action_memeedit($meme_id) {
 
 
 		echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=meme_save&meme_id=$m->id&showfonts=true'>";
-		lib_images_text("SAVE THIS MEME","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,150,150,0,0,0,0,1,1);
+		lib_images_text("DONE EDITING","Crumb.ttf",28,812,74,0,0,250,250,0,250,0,0,1,1);
+//( $text, $font,$fontsize, $w,$h,$ox,$oy, $inicr,$inicg,$inicb, $inbcr,$inbcg,$inbcb, $forcerender, $forceheight)		
 		echo "</a><BR>";
 
-		echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=memeedit&meme_id=$m->id&showfonts=true'>";
-		$wf=str_replace("fonts/","",$m->font);
-
-		lib_images_text(	"Change Font ($wf)","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,10,145,148,1,1,0,1,1);
-		echo "</a><BR>";
-
+		// echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=memeedit&meme_id=$m->id&showfonts=true'>";
+		// $wf=str_replace("fonts/","",$m->font);
+		//lib_images_text(	"Change Font ($wf)","HoW%20tO%20dO%20SoMeThInG.ttf",28,812,74,0,0,10,145,148,1,1,0,1,1);
+		//echo "</a><BR>";
 
         $rr=100;
-		if($showfonts) {
+		//if($showfonts) {
 			$dir_count=0; $dirfiles = array();
 			$handle=opendir("$RFS_SITE_PATH/files/fonts") or die("Unable to open filepath");
 			while (false!==($file = readdir($handle))) array_push($dirfiles,$file);
@@ -252,11 +258,11 @@ function memes_action_memeedit($meme_id) {
 						if($rb>255) $rb=0;
 		
 
-	echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=memegenerate&chgfont=$file&meme_id=$m->id'>
-							<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?action=showfont&font=$file&text_size=16&forcerender=1&oheight=120&forceheight=1&icr=$rr&icg=$rg&icb=$rb' border=0></a>";
+	                  echo "<a href='$RFS_SITE_URL/modules/core_memes/memes.php?action=memegenerate&chgfont=$file&meme_id=$m->id'>
+							<img src='$RFS_SITE_URL/include/generate.image.php/$t.png?action=showfont&font=$file&text_size=16&forcerender=0&oheight=120&forceheight=1&icr=$rr&icg=$rg&icb=$rb' border=0></a>";
 				}
 			}
-		}
+		//}
 		echo "</tr></table>";
 	}
 	else{
@@ -302,29 +308,21 @@ function memes_action_mdv() {
 // MEME show memes
 function memes_action_showmemes(){
     eval(lib_rfs_get_globals());
-
-	echo "<h1>Meme generator</h1>";
-    echo "<hr>";
-    
+	echo "<h1>Memes</h1>";
     lib_buttons_make_button("$RFS_SITE_URL/modules/core_memes/memes.php?action=new_meme","Create new meme");
-    
     echo "<hr>";
-	
 	$mcols=5; $mrows=5;
 	$toget=$mcols*$mrows;
 	if(empty($mtop)) $mtop=0;
 	if(empty($mbot)) $mbot=$toget;
-	
     lib_mysql_query("delete FROM meme WHERE TIMESTAMPDIFF(MINUTE,`time`,NOW()) > 5 and status = 'EDIT'");    
 	$donotshowcats=true;
-	
-	$q="select * from meme  ";
-	$q.=" where ";
+	$q="SELECT * FROM `meme` WHERE ";
 	if(!empty($onlyshow))
-		$q.=" `name`='$onlyshow' and";
-	$q.=" `private`<>'yes' and `status` = 'SAVED'";
-	$q.=" order by rating desc ";
-	$ql=" limit $mtop,$mbot ";
+		$q.=" `name` = '$onlyshow' AND ";
+	$q.=" `private` <> 'yes' AND `status` = 'SAVED'";
+	$q.=" ORDER BY `rating` DESC ";
+	$ql=" LIMIT $mtop,$mbot ";
 	$r=lib_mysql_query($q.$ql);
 	$n=$r->num_rows;
 	if( $mtop > 0 ) {
@@ -342,11 +340,9 @@ function memes_action_showmemes(){
 		$mtop+=$mbot;
 		lib_buttons_make_button("$RFS_SITE_URL/modules/core_memes/memes.php?action=showmemes&mtop=$mtop&mbot=$mbot&onlyshow=$onlyshow","NEXT PAGE");
 	}
-	
-	
 	for($i=0;$i<$n;$i++){
 		$m=$r->fetch_object();
-		echo "<div id=$m->id style=\"float: left;\">";
+		echo "<div id=$m->id class=\"meme_box\" style=\"float: left; padding: 20px;\">";
 		rfs_show1meme($m->id);
 		echo "</div>";
 	}
@@ -361,4 +357,3 @@ function memes_action_() {
 	memes_action_showmemes();
 }
 
-?>

@@ -331,7 +331,7 @@ function lib_forms_build_quick($hiddenvars,$submit){
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// $hiddenvars = list of 
 	// takes 2 vars and will build a form using lib_forms_build
-	eval(lib_rfs_get_globals()); 
+	// eval(lib_rfs_get_globals()); 
 
 	lib_forms_build(lib_domain_phpself(),$hiddenvars,"","","","","","",20,$submit);
 }
@@ -369,7 +369,8 @@ function lib_forms_build($page,$hiddenvars,$table,$query,$hidevars,$specifiedvar
 	// $width      	= default width of the form
 	// $submit     	= the submit button text
 	//
-	eval(lib_rfs_get_globals());
+	// eval(lib_rfs_get_globals());
+	global $RFS_SITE_URL,$RFS_SITE_DELIMITER;
 	$gt=1;
 	$delimiter=$RFS_SITE_DELIMITER;	
     if(!stristr($page,$RFS_SITE_URL)) $page="$RFS_SITE_URL/$page";
