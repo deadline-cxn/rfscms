@@ -32,7 +32,6 @@ images/news/*
 images/wiki/*
 tmp/*
 wtf/*
-!modules/core*
 modules/core_videos/cache/*.jpg
 admin/update/*
 install/.htaccess
