@@ -8,6 +8,7 @@ files_h
 files_b
 trip*
 _404.php
+404_.php
 *.log
 error.log
 error_log
