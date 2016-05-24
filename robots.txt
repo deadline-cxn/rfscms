@@ -26,6 +26,7 @@ Disallow: /config/      # config
 Disallow: /*login.php   # login
 Disallow: /facebook/    # facebook
 Disallow: /*theme=      # theme changes
+Disallow: /tools/
 
 #####################################################################################
 # Sitemap: 
