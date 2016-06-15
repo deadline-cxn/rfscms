@@ -11,14 +11,14 @@
 #include <dirent.h>
 using namespace std;
 // define your database config in this file
-#include "db_config.h"
+//#include "db_config.h"
 // example:
-/*
+
 #define DB_HOST "localhost"
-#define DB_USER "root"
-#define DB_PASS "password"
-#define DB_DB   "database_name"
-*/
+#define DB_USER "bit4ge"
+#define DB_PASS "!QAZ2wsx"
+#define DB_DB   "bit4ge"
+
 #define RFSCMS_FORPH_VER "1.0.1"
 
 MYSQL *con;
@@ -30,7 +30,9 @@ void add_file(char* file, char* filename) {
 	char q[1024]; memset(q,0,1024);
 	char fout[1024]; memset(fout,0,1024);
 	char fnout[1024]; memset(fnout,0,1024);
+	char category[1024]; memset(category,0,1024);
 	long fsize;
+	
 	fsize=filesize(filename);
 	mysql_real_escape_string(con, fout,file, strlen(file));
 	mysql_real_escape_string(con, fnout, filename, strlen(filename));
@@ -39,9 +41,9 @@ void add_file(char* file, char* filename) {
 // version, homepage, owner, platform, os, rating, worksafe,
 // md5, tags, ignore
 	sprintf(q,"insert into `files` (`name`, `location`, `submitter`, `category`,`size`,`worksafe`,`hidden`,`time`) \
-				 values('%s','%s', 'forph', 'unsorted','%lu','no','yes',NOW());",
+				             values('%s',         '%s', 'forph',     'unsorted', '%lu',      'no',   'yes', NOW());",
 					fout,fnout,fsize);
-	if(mysql_query(con,q)) printf("ERROR: %s [%lu]\n",fnout,fsize);
+	if(mysql_query(con,q)) printf("ERROR: ===========================================\n%s\n==================================\n %s [%lu]\n",q,fnout,fsize);
 	else    	       printf("ADDED: %s [%lu]\n",fnout,fsize);
 }
 bool file_in_db(char *filename) {

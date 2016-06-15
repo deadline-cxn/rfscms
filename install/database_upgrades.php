@@ -240,7 +240,7 @@ if($a<984) {
 	lib_log_add_entry($logtext);
 }
 if($a<986) {
-	mysql_query("ALTER TABLE `files` CHANGE `lastupdate` `lastupdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;");
+	lib_mysql_query("ALTER TABLE `files` CHANGE `lastupdate` `lastupdate` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;");
 	$logtext="Added interim database changes 986";
 	lib_log_add_entry($logtext);
 }
