@@ -122,7 +122,7 @@ function lib_tags_show_tags($table,$id) {
 				$tag->hidden!="yes" ) {
 			
 				$tv=ltrim($tv," "); $tv=rtrim($tv," ");
-				echo "<div class='tags'>"; // style='float:left;'
+				echo "<div class='tags' style='float:left;'>";
 				if(stristr(lib_domain_canonical_url(),"?"))
 					echo"<a href=\"".lib_domain_canonical_url()."&tagsearch=$tv\" class=\"tag_link\">$tv</a>";
 				else

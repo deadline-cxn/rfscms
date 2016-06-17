@@ -209,20 +209,26 @@ function m_files_show1file($filedata,$bg,$tableMode=false) {
 	
 	
 	if($fedit) {		
-		echo "<td style='max-width: 500px;' class='rfs_file_table_inner_$bg'>";
+		// echo "<td class='rfs_file_table_inner_$bg'>";
 		if(lib_access_check("files","edit")) {
+            echo "<td class='rfs_file_table_inner_$bg'>";
+			lib_ajax("Cat","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
+            echo "</td>";
+            echo "<td class='rfs_file_table_inner_$bg'>";
+			lib_ajax("New Cat","files","id","$filedata->id","category",36,"","files","edit","lib_ajax_callback_files_new_category");
+            echo "</td>";
 
-			lib_ajax("Category,200","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
-			lib_ajax("New Category,200","files","id","$filedata->id","category",36,"","files","edit","lib_ajax_callback_files_new_category");
-			lib_ajax("Tags,200",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","lib_ajax_callback_files_add_tag");				
-			lib_ajax("Move to Pictures,200", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","lib_ajax_callback_files_move_to_pictures");
-			lib_ajax("Ignore,200", "files",   "id", "$filedata->id", "id", 20, "button,nolabel", "files","delete","lib_ajax_callback_file_ignore");
+            //echo "</td><td width=15% class='rfs_file_table_inner_$bg'>";
+			// lib_ajax("Move to Pictures,200", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","lib_ajax_callback_files_move_to_pictures");
+			// lib_ajax("Ignore,200", "files",   "id", "$filedata->id", "id", 20, "button,nolabel", "files","delete","lib_ajax_callback_file_ignore");
+            //echo "</td><td width=15% class='rfs_file_table_inner_$bg'>";
+            echo "</td>";
 		}
-		echo "</td>";
+		
 	}
 	else {
 		if(lib_access_check("files","edit")) {
-			echo "<td class='rfs_file_table_inner_$bg' style='width:5%;'>&nbsp; <a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=mdf&id=$filedata->id\">Edit</a></td>";
+			echo "<td class='rfs_file_table_inner_$bg' style='width:5%;'>&nbsp; [<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=mdf&id=$filedata->id\">Edit</a>]</td>";
 		}
 		
 	}
@@ -249,10 +255,10 @@ function m_files_show1file($filedata,$bg,$tableMode=false) {
 	echo "<td class='rfs_file_table_inner_$bg' style='width:5%;'>";
 	echo " $filedata->submitter ";
 	echo "</td>";
-	
+
 	/////////////////////////////////////////////////////
 	// DISPLAY FILETYPE ICON
-	
+
 	echo "<td class='rfs_file_table_inner_$bg rfs_file_icon' width='5%' >";
 	echo " <a href=\"$addon_folder?action=get_file&id=$filedata->id\">";
 	echo " <img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" class=\"rfs_file_icon\">"; 
@@ -262,17 +268,38 @@ function m_files_show1file($filedata,$bg,$tableMode=false) {
 	/////////////////////////////////////////////////////
 	// DISPLAY SHORT NAME
 	
-	echo "<td class='rfs_file_table_inner_$bg' width='20%' >";
+	
 	if((lib_access_check("files","edit")) && $fedit) {
-		echo "</td><td class='rfs_file_table_inner_$bg'>";
-		lib_ajax(""	,"files","id","$filedata->id","name",36,"nohide","files","edit","lib_ajax_callback_rename_file");
+        echo "<td class='rfs_file_table_inner_$bg' >";
+		lib_ajax("Name"	,"files","id","$filedata->id","name",36,"nohide","files","edit","lib_ajax_callback_rename_file");
+        echo "</td>";//<td class='rfs_file_table_inner_$bg'>";
 		// echo "</td>";<a href=\"$RFS_SITE_URL/$filedata->location\" target=\"_blank\">$filedata->name</a><td>";
 	}
-	$shortname=lib_string_truncate($filedata->name,24);
-	if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
-	echo "<a class=\"file_link\" href=\"$addon_folder?action=get_file&id=$filedata->id\">$shortname</a> ";
-	echo "</td>";
+    else {
+        echo "<td class='rfs_file_table_inner_$bg' style='width: 200px;'>";
+        $shortname=lib_string_truncate($filedata->name,24);
+        if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
+        echo "<a class=\"file_link\" href=\"$addon_folder?action=get_file&id=$filedata->id\">$shortname</a> ";
+        echo "</td>";
+    }
 	
+    
+    /////////////////////////////////////////////////////
+	// DISPLAY TAG MODE CONTROLS
+    if( (lib_access_check("files","edit") && $fedit) ) {
+        echo "<td class='rfs_file_table_inner_$bg'>";
+            lib_ajax("Tag",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","lib_ajax_callback_files_add_tag");
+        echo "</td>";
+    }
+    else {
+        echo "<td class='rfs_file_table_inner_$bg' width=50%>";
+        if($_SESSION['tagmode'])
+            lib_tags_add_link("files",$filedata->id);
+        lib_tags_show_tags("files",$filedata->id);
+        echo "</td>";
+    }
+
+
 	/////////////////////////////////////////////////////
 	// DISPLAY DESCRIPTION
 	
@@ -327,16 +354,7 @@ function m_files_show1file($filedata,$bg,$tableMode=false) {
 	}
 	echo "</td>";
 	
-	/////////////////////////////////////////////////////
-	// DISPLAY TAG MODE CONTROLS
-	echo "<td class='rfs_file_table_inner_$bg'>";
-	if($_SESSION['tagmode'])
-			lib_tags_add_link("files",$filedata->id);
-	lib_tags_show_tags("files",$filedata->id);
-	echo "</td>";
-	
 
-	
 	echo "</tr>";
 
 /*
