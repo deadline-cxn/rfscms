@@ -10,14 +10,14 @@
 #include <mysql.h>
 #include <dirent.h>
 using namespace std;
-// define your database config in this file
-//#include "db_config.h"
-// example:
 
-#define DB_HOST "localhost"
-#define DB_USER "bit4ge"
-#define DB_PASS "!QAZ2wsx"
-#define DB_DB   "bit4ge"
+// define your database config in this file
+#include "db_config.h"
+// example:
+// #define DB_HOST "localhost"
+// #define DB_USER "rfs_cms_user"
+// #define DB_PASS "password"
+// #define DB_DB   "rfs_cms_db"
 
 #define RFSCMS_FORPH_VER "1.2.0"
 
