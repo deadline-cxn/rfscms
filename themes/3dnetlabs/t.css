@@ -10,6 +10,22 @@ html, body
 }
 
 
+.rfs_file_table_delete_mode {
+	width:  24px;
+	height: 24px;
+}
+
+.rfs_file_icon {
+	width: 24px;
+	height: 24px;
+}
+.file_category_icon {
+	width:  32px;
+	height: 32px;
+}
+
+
+
 .tags {
 	padding: 2px;
 	margin: 2px;

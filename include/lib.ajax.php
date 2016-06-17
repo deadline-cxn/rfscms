@@ -97,7 +97,7 @@ function rfs_ajax($data,$size,$properties,$access,$callback) {
 }
 //////////////////////////////////////////////////////////////////////////////
 // long ajax function
-function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_properties,$rfaapage,$rfaact,$rfacallback ) {
+function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_properties,$rfaapage,$rfaact,$rfacallback) {
     eval(lib_rfs_get_globals());
 	if(!lib_access_check($rfaapage,$rfaact)) return;
 	
@@ -140,7 +140,7 @@ function lib_ajax($rfalabel,$rfatable,$rfaikey,$rfakv,$rfafield,$size,$rfa_prope
 		}
 		else {
 			echo "<div id='$rfanname"."_div' style='float:left;'>&nbsp;</div>\n";	
-			echo "<div id='$rfanname"."_label' style='float:left; $minwidth; margin-top: 5px; margin-right: 10px;'>$rfalabel</div>\n";
+			echo "<div id='$rfanname"."_label' style='float:left; $minwidth; margin-top: 5px; margin-right: 10px; text-align: right;'>$rfalabel</div>\n";
 		}
 	
 	}

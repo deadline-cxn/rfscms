@@ -4,6 +4,28 @@ body{
 color: #000000;
 }
 
+.rfs_file_table_inner_0 {
+	background-color: #888;
+}
+.rfs_file_table_inner_1 {
+	background-color: #ddd;
+}
+
+.rfs_file_table_delete_mode {
+	width:  24px;
+	height: 24px;
+}
+
+.rfs_file_icon {
+	width: 24px;
+	height: 24px;
+}
+.file_category_icon {
+	width:  32px;
+	height: 32px;
+}
+
+
 .tags {
 	padding: 2px;
 	margin: 2px;
@@ -333,10 +355,11 @@ hr{
 	color: #000;
 	padding-top:5px;
 	padding-left: 20px;
+	background-color: none; //#FFF
 }
 .file_category_link:hover {
 	color: #ff0;
-	gbackground-color: #000;
+	background-color: none; //#FFF;
 }
 
 .file_category {

@@ -226,7 +226,8 @@ function files_admin_header() {
 
 function files_header() {
 	$RFS_ADDON_FOLDER=lib_modules_get_url("files");
-    echo "<script> function playvid(x,y) { document.getElementById(x).innerHTML=\"<iframe src='\"+y+\"' width=400 height=300> </iframe>\"; } function stopvid(x)  { document.getElementById(x).innerHTML=\" \"; } </script>";
+    
+    //echo "<script> function playvid(x,y) { document.getElementById(x).innerHTML=\"<iframe src='\"+y+\"' width=400 height=300> </iframe>\"; } function stopvid(x)  { document.getElementById(x).innerHTML=\" \"; } </script>";
     echo "<h1>Files</h1>";
     lib_div("files.php");
     echo "<table border=0><tr>";
@@ -1230,6 +1231,7 @@ function files_action_listcategory() {
         echo "<h1>" . ucwords($buffer) . "</h1>";
         $i = 0;
         $bg = 0;
+		echo "<table border=0 cellspacing=0 width=100%>";
         while ($i < count($filelist)) {
             $filedata = m_files_getfiledata($filelist[$i]);
             if (!empty($filedata->name)) {
@@ -1246,6 +1248,7 @@ function files_action_listcategory() {
                 }
             }
         }
+		echo "</table>";
         // echo "</div>";
         echo "</div>";
     }
@@ -1312,22 +1315,28 @@ function files_action_()  {
                 echo ucwords("$buffer");
                 echo "] ";
 				
-                $myr = m_files_getfilelist("where category='$buffer' $shide ", 999999999);
+                //$myr = //m_files_getfilelist("where category='$buffer' $shide ", 9999999);
+				// $q="select id from `files` where category='$buffer' $shide ";
+				$q="select count(*) from `files` where category='$buffer' $shide ";
+				
+				$r=lib_mysql_query($q);
+				$myr=$r->fetch_array();
 				
                 echo "(";
-                echo count($myr);
+                echo $myr[0];
                 echo " files)";
                 echo "</a>";
                 echo "</div>";
                 // echo "<div style='clear:both;'></div>";
                 $i2 = 0;
-                echo "<table border=0>";
+				
+                echo "<table border=0 cellspacing=0 width=100%>";
                 while ($i2 < count($filelist)) {
                     $filedata = m_files_getfiledata($filelist[$i2]);
                     $bg = $bg + 1;
                     if ($bg > 1)
                         $bg = 0;
-                    m_files_show1file($filedata, $bg);
+                    m_files_show1file($filedata, $bg, true);
                     $i2 = $i2 + 1;
                     $la = $amount;
                     if (empty($la))

@@ -19,7 +19,7 @@ using namespace std;
 #define DB_PASS "!QAZ2wsx"
 #define DB_DB   "bit4ge"
 
-#define RFSCMS_FORPH_VER "1.0.1"
+#define RFSCMS_FORPH_VER "1.2.0"
 
 MYSQL *con;
 vector<string> files;
@@ -41,7 +41,7 @@ void add_file(char* file, char* filename) {
 // version, homepage, owner, platform, os, rating, worksafe,
 // md5, tags, ignore
 	sprintf(q,"insert into `files` (`name`, `location`, `submitter`, `category`,`size`,`worksafe`,`hidden`,`time`) \
-				             values('%s',         '%s', 'forph',     'unsorted', '%lu',      'no',   'yes', NOW());",
+				             values('%s',         '%s', 'forph',     'unsorted', '%lu',      'no',   'yes', CURRENT_TIME);",
 					fout,fnout,fsize);
 	if(mysql_query(con,q)) printf("ERROR: ===========================================\n%s\n==================================\n %s [%lu]\n",q,fnout,fsize);
 	else    	       printf("ADDED: %s [%lu]\n",fnout,fsize);
