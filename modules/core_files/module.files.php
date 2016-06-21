@@ -209,26 +209,21 @@ function m_files_show1file($filedata,$bg,$tableMode=false) {
 	
 	
 	if($fedit) {		
-		// echo "<td class='rfs_file_table_inner_$bg'>";
+		echo "<td style='max-width: 500px;' class='rfs_file_table_inner_$bg'>";
 		if(lib_access_check("files","edit")) {
-            echo "<td class='rfs_file_table_inner_$bg'>";
-			lib_ajax("Cat","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
-            echo "</td>";
-            echo "<td class='rfs_file_table_inner_$bg'>";
-			lib_ajax("New Cat","files","id","$filedata->id","category",36,"","files","edit","lib_ajax_callback_files_new_category");
-            echo "</td>";
-
-            //echo "</td><td width=15% class='rfs_file_table_inner_$bg'>";
-			// lib_ajax("Move to Pictures,200", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","lib_ajax_callback_files_move_to_pictures");
-			// lib_ajax("Ignore,200", "files",   "id", "$filedata->id", "id", 20, "button,nolabel", "files","delete","lib_ajax_callback_file_ignore");
-            //echo "</td><td width=15% class='rfs_file_table_inner_$bg'>";
-            echo "</td>";
+			lib_ajax("Category","files","id","$filedata->id","category",70,"select,table,categories,name,hide","files","edit","");
+			/*
+			lib_ajax("New Category,200","files","id","$filedata->id","category",36,"","files","edit","lib_ajax_callback_files_new_category");
+			lib_ajax("Tags,200",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","lib_ajax_callback_files_add_tag");				
+			lib_ajax("Move to Pictures,200", "files",   "id", "$filedata->id",     "id", 20,"button", "files","edit","lib_ajax_callback_files_move_to_pictures");
+			lib_ajax("Ignore,200", "files",   "id", "$filedata->id", "id", 20, "button,nolabel", "files","delete","lib_ajax_callback_file_ignore");
+			 */
 		}
-		
+		echo "</td>";
 	}
 	else {
 		if(lib_access_check("files","edit")) {
-			echo "<td class='rfs_file_table_inner_$bg' style='width:5%;'>&nbsp; [<a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=mdf&id=$filedata->id\">Edit</a>]</td>";
+			echo "<td class='rfs_file_table_inner_$bg' style='max-width:30px; min-width: 30px;'>&nbsp; <a href=\"$RFS_SITE_URL/modules/core_files/files.php?action=mdf&id=$filedata->id\">Edit</a></td>";
 		}
 		
 	}
@@ -245,21 +240,16 @@ function m_files_show1file($filedata,$bg,$tableMode=false) {
 	
 	/////////////////////////////////////////////////////
 	// DISPLAY FILE SIZE
-	echo "<td class='rfs_file_table_inner_$bg' style='width:5%;'>";
+	echo "<td class='rfs_file_table_inner_$bg' style='width: 65px; max-width:60px; min-width: 10px;'>";
 	$size=(lib_file_sizefile($filedata->size));
 	echo " $size ";
 	echo "</td>";
 	
-	/////////////////////////////////////////////////////
-	// DISPLAY SUBMITTER
-	echo "<td class='rfs_file_table_inner_$bg' style='width:5%;'>";
-	echo " $filedata->submitter ";
-	echo "</td>";
-
+	
 	/////////////////////////////////////////////////////
 	// DISPLAY FILETYPE ICON
-
-	echo "<td class='rfs_file_table_inner_$bg rfs_file_icon' width='5%' >";
+	
+	echo "<td class='rfs_file_table_inner_$bg rfs_file_icon' style='width: 32px;' >";//max-width:32px; min-width: 32px;' >";
 	echo " <a href=\"$addon_folder?action=get_file&id=$filedata->id\">";
 	echo " <img src=$RFS_SITE_URL/$fti border=0 alt=\"$filedata->name\" class=\"rfs_file_icon\">"; 
 	echo " </a>";
@@ -268,60 +258,91 @@ function m_files_show1file($filedata,$bg,$tableMode=false) {
 	/////////////////////////////////////////////////////
 	// DISPLAY SHORT NAME
 	
-	
+	echo "<td class='rfs_file_table_inner_$bg' style='width: 200px;' >"; //  max-width:200px; min-width: 200px;
 	if((lib_access_check("files","edit")) && $fedit) {
-        echo "<td class='rfs_file_table_inner_$bg' >";
-		lib_ajax("Name"	,"files","id","$filedata->id","name",36,"nohide","files","edit","lib_ajax_callback_rename_file");
-        echo "</td>";//<td class='rfs_file_table_inner_$bg'>";
+		echo "</td><td class='rfs_file_table_inner_$bg'>";
+		lib_ajax(""	,"files","id","$filedata->id","name",36,"nohide","files","edit","lib_ajax_callback_rename_file");
 		// echo "</td>";<a href=\"$RFS_SITE_URL/$filedata->location\" target=\"_blank\">$filedata->name</a><td>";
 	}
-    else {
-        echo "<td class='rfs_file_table_inner_$bg' style='width: 200px;'>";
-        $shortname=lib_string_truncate($filedata->name,24);
-        if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
-        echo "<a class=\"file_link\" href=\"$addon_folder?action=get_file&id=$filedata->id\">$shortname</a> ";
-        echo "</td>";
-    }
-	
-    
-    /////////////////////////////////////////////////////
-	// DISPLAY TAG MODE CONTROLS
-    if( (lib_access_check("files","edit") && $fedit) ) {
-        echo "<td class='rfs_file_table_inner_$bg'>";
-            lib_ajax("Tag",    "files","id","$filedata->id","tags",    36,"nohide","files","edit","lib_ajax_callback_files_add_tag");
-        echo "</td>";
-    }
-    else {
-        echo "<td class='rfs_file_table_inner_$bg' width=50%>";
-        if($_SESSION['tagmode'])
-            lib_tags_add_link("files",$filedata->id);
-        lib_tags_show_tags("files",$filedata->id);
-        echo "</td>";
-    }
-
-
-	/////////////////////////////////////////////////////
-	// DISPLAY DESCRIPTION
-	
-	echo "<td class='rfs_file_table_inner_$bg' width='50%' >";
-	//$shortname=lib_string_truncate($filedata->name,24);
-	//if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
-	echo "$filedata->description ";
+	else {
+		$shortname=lib_string_truncate($filedata->name,32);	
+		if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
+		echo "<a class=\"file_link\" href=\"$addon_folder?action=get_file&id=$filedata->id\">$shortname</a> ";
+	}
 	echo "</td>";
 	
 	/////////////////////////////////////////////////////
+	// DISPLAY DESCRIPTION
+	
+	echo "<td class='rfs_file_table_inner_$bg' style='width: 320px; min-width: 320px;' >";
+	
+	$shortdesc=lib_string_truncate($filedata->description,256);
+	if(empty($shortdesc)) $shortdesc=" &nbsp; ";
+	echo "$shortdesc ";
+	echo "</td>";	
+	
+	
+	/////////////////////////////////////////////////////
+	// DISPLAY SUBMITTER
+	echo "<td class='rfs_file_table_inner_$bg' style='max-width:80px; min-width:80px;'>";
+	echo " $filedata->submitter ";
+	echo "</td>";
+	
+	/////////////////////////////////////////////////////
+	// DISPLAY DOWNLOADS
+	
+	echo "<td class='rfs_file_table_inner_$bg' style='max-width:20px; min-width: 20px;' >"; 
+	echo $filedata->downloads;
+	echo "</td>";
+	
+	/////////////////////////////////////////////////////
+	// DISPLAY VERSION
+	
+	echo "<td class='rfs_file_table_inner_$bg' style='max-width:20px; min-width: 20px;' >"; 
+	echo $filedata->version;
+	echo "</td>";
+	
+	/////////////////////////////////////////////////////
+	// DISPLAY OS
+	
+	echo "<td class='rfs_file_table_inner_$bg' style='max-width:20px; min-width: 20px;' >"; 
+	echo $filedata->OS;
+	echo "</td>";
+	
+	/////////////////////////////////////////////////////
+	// DISPLAY HIDDEN
+	
+	echo "<td class='rfs_file_table_inner_$bg' style='max-width:20px; min-width: 20px;' >"; 
+	echo $filedata->hidden;
+	echo "</td>";
+	
+	/////////////////////////////////////////////////////
+	// DISPLAY WORKSAFE
+	
+	echo "<td class='rfs_file_table_inner_$bg' style='max-width:20px; min-width: 20px;' >"; 
+	echo $filedata->worksafe;
+	echo "</td>";
+	
+
+	/////////////////////////////////////////////////////
 	// DISPLAY HOMEPAGE
 	
-	echo "<td class='rfs_file_table_inner_$bg' width='50%' >";
+	// echo "<td class='rfs_file_table_inner_$bg' style='min-width: 64px;' >";
 	//$shortname=lib_string_truncate($filedata->name,24);
 	//if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
-	echo "$filedata->homepage ";
+	// echo "$filedata->homepage ";
+	// echo "</td>";
+	
+	echo "<td class='rfs_file_table_inner_$bg' >";
+	if(isset($filedata->homepage))
+		if(!empty($filedata->homepage))
+			echo "<a href=\"$filedata->homepage\" target=_blank>Homepage</a>";	
 	echo "</td>";
 	
 	/////////////////////////////////////////////////////
 	// DISPLAY MD5
 	
-	echo "<td class='rfs_file_table_inner_$bg' width='50%' >";
+	echo "<td class='rfs_file_table_inner_$bg' style='max-width:250px; min-width: 250px;' >";
 	//$shortname=lib_string_truncate($filedata->name,24);
 	//if(substr($shortname, strlen($shortname)-3)=="...") $shortname.=$filetype;
 	echo "$filedata->md5 ";
@@ -354,7 +375,16 @@ function m_files_show1file($filedata,$bg,$tableMode=false) {
 	}
 	echo "</td>";
 	
+	/////////////////////////////////////////////////////
+	// DISPLAY TAG MODE CONTROLS
+	echo "<td class='rfs_file_table_inner_$bg'>";
+	if($_SESSION['tagmode'])
+			lib_tags_add_link("files",$filedata->id);
+	lib_tags_show_tags("files",$filedata->id);
+	echo "</td>";
+	
 
+	
 	echo "</tr>";
 
 /*
@@ -474,12 +504,49 @@ function m_files_getfilelist($filesearch,$limit){
     return $filelist;
 }
 
+function m_files_diz_scan_one($filedata,$which) {
+	@unlink("/tmp/$which");
+	$filedata->location=addslashes($filedata->location);
+	$cmd="7z e \"$filedata->location\" -o/tmp/ $which"; // echo "$cmd \n";
+	exec($cmd,$x);
+	$fd=@file_get_contents("/tmp/$which");
+	$fd=lib_string_truncate($fd,8188);
+	if(!empty($fd)) {
+		echo "FOUND FILE DESCRIPTION FOR $filedata->name:\n";
+		echo $fd;
+		$fd=addslashes($fd);
+		$query="update `files` set description='$fd' where `id` = '$filedata->id' limit 1;";
+		lib_mysql_query($query);
+		@unlink("/tmp/file_id.diz");
+		return true;
+	}
+	return false;
+}
+
+function m_files_diz_scan($RFS_CMD_LINE) {
+	$filelist=m_files_getfilelist(" ",0);
+	for($i=0;$i<count($filelist);$i++) {
+		$filedata=m_files_getfiledata($filelist[$i]);
+		$x=false;
+		$x         = m_files_diz_scan_one($filedata,"file_id.diz");
+		if(!$x) $x = m_files_diz_scan_one($filedata,"FILE_ID.DIZ");
+		if(!$x) $x = m_files_diz_scan_one($filedata,"readme.txt");
+		if(!$x) $x = m_files_diz_scan_one($filedata,"README.TXT");
+		if(!$x) $x = m_files_diz_scan_one($filedata,"readme.doc");
+		if(!$x) $x = m_files_diz_scan_one($filedata,"README.DOC");
+		if(!$x) $x = m_files_diz_scan_one($filedata,"readme.md");
+		if(!$x) $x = m_files_diz_scan_one($filedata,"README.md");
+		if(!$x) $x = m_files_diz_scan_one($filedata,"README.MD");
+	}
+	exit();
+}
+
 function m_files_md5_scan($RFS_CMD_LINE) {
 	$filelist=m_files_getfilelist(" ",0);
 	for($i=0;$i<count($filelist);$i++) {
 		$filedata=m_files_getfiledata($filelist[$i]);
 		$fl=stripslashes($filedata->location);
-		$tmd5=@md5_file ($fl);
+		$tmd5=@md5_file($fl);
 		if($tmd5) {
 			if($tmd5!=$filedata->md5) {
 				if(!empty($filedata->md5))
