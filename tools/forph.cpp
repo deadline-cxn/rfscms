@@ -11,37 +11,51 @@
 #include <dirent.h>
 using namespace std;
 // define your database config in this file
-#include "db_config.h"
+// #include "db_config.h"
 // example:
-/*
-#define DB_HOST "localhost"
+
+#define DB_HOST "127.0.0.1"
 #define DB_USER "root"
-#define DB_PASS "password"
-#define DB_DB   "database_name"
-*/
-#define RFSCMS_FORPH_VER "1.0.1"
+#define DB_PASS "!QAZ2wsx"
+#define DB_DB   "sethcoder.com"
+
+#define RFSCMS_FORPH_VER "1.0.2"
 
 MYSQL *con;
 vector<string> files;
-void finish_with_error(MYSQL *con) { fprintf(stderr, "%s\n", mysql_error(con)); mysql_close(con); exit(1); }
+
+void finish_with_error(MYSQL *con) {
+	fprintf(stderr, "%s\n", mysql_error(con));
+	mysql_close(con);
+	exit(1);
+}
 bool isdir(char *dir) { struct stat st; if(stat(dir,&st)==-1) return false; if(st.st_mode&S_IFDIR) return true; return false; }
 long  filesize(char *file) { struct stat st; stat(file, &st); long size = st.st_size; return size; }
 void add_file(char* file, char* filename) {
 	char q[1024]; memset(q,0,1024);
 	char fout[1024]; memset(fout,0,1024);
 	char fnout[1024]; memset(fnout,0,1024);
+	// char mysql_error[1024]; memset(mysql_error,0,1024);
+	int ms_error=0;
+ 
 	long fsize;
+
 	fsize=filesize(filename);
 	mysql_real_escape_string(con, fout,file, strlen(file));
 	mysql_real_escape_string(con, fnout, filename, strlen(filename));
-// name, location, submitter, category, hidden, downloads,
-// description, filetype, size, id, time, lastupdate, thumb,
-// version, homepage, owner, platform, os, rating, worksafe,
-// md5, tags, ignore
-	sprintf(q,"insert into `files` (`name`, `location`, `submitter`, `category`,`size`,`worksafe`,`hidden`,`time`) \
-				 values('%s','%s', 'forph', 'unsorted','%lu','no','yes',NOW());",
-					fout,fnout,fsize);
-	if(mysql_query(con,q)) printf("ERROR: %s [%lu]\n",fnout,fsize);
+	// name, location, submitter, category, hidden, downloads,
+	// description, filetype, size, id, time, lastupdate, thumb,
+	// version, homepage, owner, platform, os, rating, worksafe,
+	// md5, tags, ignore
+	sprintf(q,"insert into `files` (`name`, `location`, `submitter`, `category`, `size`,`worksafe`,`hidden`,`time`,`lastupdate`) \
+                             values('%s'  , '%s',       'forph',     'unsorted', '%lu' ,'no'      ,'yes'   ,NOW() ,NOW());", fout,fnout,fsize);
+//	strcpy(q,"select * from files;");
+
+	ms_error=mysql_query(con,q);
+
+	if (ms_error) { 
+        fprintf(stderr, "%s\n", mysql_error(con));
+    } //printf("ERROR: [%d] [%s] %s [%lu]\n",mysql_error,fout,fnout,fsize);
 	else    	       printf("ADDED: %s [%lu]\n",fnout,fsize);
 }
 bool file_in_db(char *filename) {
@@ -59,35 +73,47 @@ bool file_in_db(char *filename) {
 }
 void scan_dir(char *dir) {
 //	printf("Scanning [%s]\n",dir);
-	char nfn[1024];
-	DIR *dpdf;
-        struct dirent *epdf;
-        dpdf = opendir(dir);
-        if (dpdf != NULL) {
-        while (epdf = readdir(dpdf)) {
-            if( (strcmp(epdf->d_name,"." )) &&
-	        (strcmp(epdf->d_name,"..")) &&
-		(strcasecmp(epdf->d_name,"desktop.ini")) &&
-                (strcasecmp(epdf->d_name,"thumbs.db")) &&
-		(strcasecmp(epdf->d_name,"folder.jpg")) ) {
-		sprintf(nfn,"%s/%s",dir,(char *)epdf->d_name);
-		if(!isdir(nfn)) {
-  		  if(!file_in_db(nfn)) add_file(epdf->d_name, nfn);
-		}
-	        else {
-  		 if(epdf->d_name[0]!='.') scan_dir(nfn);
-                }
+    if(!strcmp(dir,"files/files_b/black_hole")) return;
+    
+    printf("Scanning %s\n",dir);
+    
+    char nfn[1024];
+    DIR *dpdf;
+    struct dirent *epdf;
+    dpdf = opendir(dir);
+    if (dpdf != NULL) {
+    while (epdf = readdir(dpdf)) {
+        if( (strcmp(epdf->d_name,"." )) &&
+        (strcmp(epdf->d_name,"..")) &&
+    (strcasecmp(epdf->d_name,"desktop.ini")) &&
+            (strcasecmp(epdf->d_name,"thumbs.db")) &&
+    (strcasecmp(epdf->d_name,"folder.jpg")) ) {
+    sprintf(nfn,"%s/%s",dir,(char *)epdf->d_name);
+    if(!isdir(nfn)) {
+      if(!file_in_db(nfn)) add_file(epdf->d_name, nfn);
+    }
+        else {
+     if(epdf->d_name[0]!='.') scan_dir(nfn);
             }
-          }
-    	}
-    	closedir(dpdf);
+        }
+      }
+    }
+    closedir(dpdf);
 }
 
 int main() {
 	int xx=chdir("..");
-	con = mysql_init(NULL); if(con==NULL) { fprintf(stderr, "%s\n", mysql_error(con)); exit(1); }
+	con = mysql_init(NULL);
+	if(con==NULL) {
+		fprintf(stderr, "%s\n", mysql_error(con));
+		exit(1);
+	}
+
 	printf("RFSCMS Find ORPhan files (%s)\n(MySQL: %s)\n",RFSCMS_FORPH_VER, mysql_get_client_info());
-	if(mysql_real_connect(con, DB_HOST, DB_USER, DB_PASS, DB_DB, 0, NULL, 0) == NULL) { finish_with_error(con); }
+
+	if(mysql_real_connect(con, DB_HOST, DB_USER, DB_PASS, DB_DB, 0, NULL, 0) == NULL) {
+		finish_with_error(con);
+	}
 	char dir[1024];
 	strcpy(dir,"files");
 	scan_dir(dir);
