@@ -15,15 +15,14 @@ function install_log($x) {
 		fclose($fp);
 }
 function install_mysql_open_database($address,$user,$pass,$dbname) {
-	$mysqli=@new mysqli($address,$user,$pass,$dbname);
+	$mysqli=new mysqli($address,$user,$pass,$dbname);
 	if($mysqli->connect_errno) {
         echo "MySQL failed to connect (".$mysqli->connect_errno.") ".$mysqli->connect_error."<br>";
     }
 	return $mysqli;
 }
 function install_mysql_query($query) {
-	if(stristr($query,"`users`")) $msql=install_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);
-	else                          $msql=install_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
+	$msql=install_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
 	install_log($query);
 	return mysqli_query($msql,$query);
 }
@@ -51,9 +50,10 @@ $RFS_BUILD=file_get_contents("../build.dat");
 $rver=file_get_contents("https://raw.github.com/sethcoder/rfscms/master/include/version.php");
 $rbld=file_get_contents("https://raw.github.com/sethcoder/rfscms/master/build.dat");
 $rverx=explode("\"",$rver);
+if(empty($rverx[1])) $rverx[1]=0;
+if(empty($rbld)) $rbld=0;
 
-if( ($RFS_VERSION!=$rverx[1]) ||
-	 (intval($RFS_BUILD)!=intval($rbld))) {
+if((intval($RFS_BUILD)<intval($rbld))) {
 echo "
 <div width=100% style='font-size: 23px; background-color: red; color:white;'> 
 ATTENTION: NEW VERSION AVAILABLE: \n".$rverx[1]." BUILD $rbld. Get it at 
@@ -139,24 +139,18 @@ fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");
 
 if($action=="step_b") {
     
-    if(empty($rfs_udb_password)) $rfs_udb_password = "";
-    if(empty($rfs_udb_password_confirm)) $rfs_udb_password_confirm = "";
+    #$if(empty($rfs_udb_password)) $rfs_udb_password = "";
+    #if(empty($rfs_udb_password_confirm)) $rfs_udb_password_confirm = "";
         
 
 if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
-        ($rfs_udb_password  !=  $rfs_udb_password_confirm) ||
         ($rfs_password      !=  $rfs_password_c)                        ) {
 			
         echo "<div width=100% style='background-color: red; color:white;'>CAN NOT PROCEED: THE PASSWORDS DID NOT MATCH!</div>";
         $action="step_a";
 	}
 	else {
-		
-        if(empty($rfs_udb_name))     $rfs_udb_name=$rfs_db_name;
-        if(empty($rfs_udb_address))  $rfs_udb_address=$rfs_db_address;
-        if(empty($rfs_udb_user))     $rfs_udb_user=$rfs_db_user;
-        if(empty($rfs_udb_password)) $rfs_udb_password=$rfs_db_password;
-
+	
 		echo "<div width=100% style='background-color: cyan; color: black;'>Attempting to create $RFS_SITE_PATH/config/config.php</div>";
 		
 		// attempt to chmod install and config folder
@@ -172,10 +166,6 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			fwrite($fp, "\$GLOBALS['authdbaddress'] = \"$rfs_db_address\"; \n");
 			fwrite($fp, "\$GLOBALS['authdbuser']    = \"$rfs_db_user\"; \n");
 			fwrite($fp, "\$GLOBALS['authdbpass']    = \"$rfs_db_password\"; \n");
-			fwrite($fp, "\$GLOBALS['userdbname']    = \"$rfs_udb_name\"; \n");
-			fwrite($fp, "\$GLOBALS['userdbaddress'] = \"$rfs_udb_address\"; \n");
-			fwrite($fp, "\$GLOBALS['userdbuser']    = \"$rfs_udb_user\"; \n");
-			fwrite($fp, "\$GLOBALS['userdbpass']    = \"$rfs_udb_password\"; \n ?>");
 			fclose($fp);			
 		} else {
 			echo "<div width=100% style='background-color: red; color:white;'>ERROR creating $RFS_SITE_PATH/config/config.php!!</div>";
@@ -191,10 +181,6 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
             $GLOBALS["authdbaddress"] = $rfs_db_address;
             $GLOBALS["authdbuser"]    = $rfs_db_user;
             $GLOBALS["authdbpass"]    = $rfs_db_password;
-            $GLOBALS["userdbname"]    = $rfs_udb_name;
-            $GLOBALS["userdbaddress"] = $rfs_udb_address;
-            $GLOBALS["userdbuser"]    = $rfs_udb_user;
-            $GLOBALS["userdbpass"]    = $rfs_udb_password;
 
 			echo $GLOBALS["authdbname"]." DB IN USE <BR>";
 			
@@ -224,7 +210,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			$n=0;
 			if($r) $n=$r->num_rows;
 			if(!$n) {
-				echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_udb_name, $rfs_udb_address, $rfs_udb_user, $rfs_udb_password </div>";
+				echo "<div width=100% style='background-color: red; color:white;'>Database error! database: $rfs_db_name, $rfs_db_address, $rfs_db_user, $rfs_db_password </div>";
 				$action="step_a";
 			} else {
 				echo "<div width=100% style='background-color: green; color:white;'>Database activated... Adding RFSCMS data.</div>";
@@ -258,21 +244,7 @@ if(     ($rfs_db_password   !=  $rfs_db_password_confirm) ||
 			install_log(system("mkdir $RFS_SITE_PATH/images"));
 			install_log(system("mkdir $RFS_SITE_PATH/images/avatars"));
 			
-			///////////////////////////////////////////////////////////////////////////////
-			// Password Protect install folder
 
-/*
-$htaccess="
-AuthType Basic
-AuthName \"RFSCMS INSTALL FOLDER\"
-AuthUserFile $RFS_SITE_PATH/install/.htpasswd
-Require valid-user
-";
-file_put_contents("$RFS_SITE_PATH/install/.htaccess");
-
-$htpasswd = $rfs_admin.":".crypt($rfs_password, base64_encode($rfs_password))."\n";
-file_put_contents("$RFS_SITE_PATH/install/.htpasswd");
-	*/		
 
 echo "
 <center>
@@ -312,14 +284,6 @@ if($action=="step_a") {
 	if(empty($rfs_admin_name))  $rfs_admin_name="Your Real Name";
 	if(empty($rfs_country))     $rfs_country="Country of your home";
 	if(empty($rfs_admin_email)) $rfs_admin_email="youremail@youremaildomain.what";
-    
-    
-	if(empty($rfs_udb_name))     $rfs_udb_name="rfs_cms";
-	if(empty($rfs_udb_address))  $rfs_udb_address="localhost";
-	if(empty($rfs_udb_user))     $rfs_udb_user="rfs_cms_user";    
-    if(empty($rfs_udb_password)) $rfs_udb_password = "";
-    if(empty($rfs_udb_password_confirm)) $rfs_udb_password_confirm = "";
-    
     
 
 echo "
@@ -403,32 +367,6 @@ echo "
 </tr>
 
 <tr>
-<td>User Database Name (leave blank if it is the same database as above)</td>
-<td><input size=100 type=\"text\" name=\"$rfs_udb_name\" value=\"\"></td>
-</tr>
- 
-<tr>
-<td>User Database Address</td>
-<td><input size=100 type=\"text\" name=\"$rfs_udb_address\" value=\"\"></td>
-</tr>
- 
-<tr>
-<td>User Database User</td>
-<td><input  size=100 type=\"text\" name=\"$rfs_udb_user\" value=\"\"></td>
-</tr>
- 
-<tr>
-<td>User Database Password</td>
-<td><input size=100 type=\"password\" name=\"$rfs_udb_password\" value=\"\"></td>
-</tr>
- 
-<tr>
-<td>(Confirm Password)</td>
-<td><input size=100 type=\"password\" name=\"$rfs_udb_password_confirm\" value=\"\"></td>
-</tr>
- 
-
-<tr>
 <td></td>
 <td><input type=submit name=submit value=\"Proceed\">
 </form>
@@ -447,5 +385,3 @@ echo "
 
 ";
 }
-
-?>

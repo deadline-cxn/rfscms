@@ -10,9 +10,11 @@
 #include <mysql.h>
 #include <dirent.h>
 using namespace std;
+
 // define your database config in this file
 // #include "db_config.h"
 // example:
+<<<<<<< HEAD
 
 #define DB_HOST "127.0.0.1"
 #define DB_USER "root"
@@ -20,6 +22,14 @@ using namespace std;
 #define DB_DB   "sethcoder.com"
 
 #define RFSCMS_FORPH_VER "1.0.2"
+=======
+// #define DB_HOST "localhost"
+// #define DB_USER "rfs_cms_user"
+// #define DB_PASS "password"
+// #define DB_DB   "rfs_cms_db"
+
+#define RFSCMS_FORPH_VER "1.2.0"
+>>>>>>> 8c19cfef5d6d5f8254da19a7f52c1c267da6ec39
 
 MYSQL *con;
 vector<string> files;
@@ -35,6 +45,7 @@ void add_file(char* file, char* filename) {
 	char q[1024]; memset(q,0,1024);
 	char fout[1024]; memset(fout,0,1024);
 	char fnout[1024]; memset(fnout,0,1024);
+<<<<<<< HEAD
 	// char mysql_error[1024]; memset(mysql_error,0,1024);
 	int ms_error=0;
  
@@ -56,6 +67,22 @@ void add_file(char* file, char* filename) {
 	if (ms_error) { 
         fprintf(stderr, "%s\n", mysql_error(con));
     } //printf("ERROR: [%d] [%s] %s [%lu]\n",mysql_error,fout,fnout,fsize);
+=======
+	char category[1024]; memset(category,0,1024);
+	long fsize;
+	
+	fsize=filesize(filename);
+	mysql_real_escape_string(con, fout,file, strlen(file));
+	mysql_real_escape_string(con, fnout, filename, strlen(filename));
+// name, location, submitter, category, hidden, downloads,
+// description, filetype, size, id, time, lastupdate, thumb,
+// version, homepage, owner, platform, os, rating, worksafe,
+// md5, tags, ignore
+	sprintf(q,"insert into `files` (`name`, `location`, `submitter`, `category`,`size`,`worksafe`,`hidden`,`time`) \
+				             values('%s',         '%s', 'forph',     'unsorted', '%lu',      'no',   'yes', CURRENT_TIME);",
+					fout,fnout,fsize);
+	if(mysql_query(con,q)) printf("ERROR: ===========================================\n%s\n==================================\n %s [%lu]\n",q,fnout,fsize);
+>>>>>>> 8c19cfef5d6d5f8254da19a7f52c1c267da6ec39
 	else    	       printf("ADDED: %s [%lu]\n",fnout,fsize);
 }
 bool file_in_db(char *filename) {

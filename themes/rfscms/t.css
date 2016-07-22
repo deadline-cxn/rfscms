@@ -16,6 +16,28 @@
 }
 
 
+.rfs_file_table_inner_0 {
+	background-color: #888;
+}
+.rfs_file_table_inner_1 {
+	background-color: #ddd;
+}
+
+.rfs_file_table_delete_mode {
+	width:  24px;
+	height: 24px;
+}
+
+.rfs_file_icon {
+	width: 24px;
+	height: 24px;
+}
+.file_category_icon {
+	width:  32px;
+	height: 32px;
+}
+
+
 body{
 background-color: #bF7F3F;
 padding: 0px;

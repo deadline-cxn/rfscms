@@ -15,8 +15,9 @@ function lib_mysql_open_database($address,$user,$pass,$dbname) {
 	return $mysqli;
 }
 function lib_mysql_query($query) {
-	if(stristr($query,"`users`")) $mysqli=lib_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);
-	else                          $mysqli=lib_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
+	//if(stristr($query,"`users`")) $mysqli=lib_mysql_open_database($GLOBALS['userdbaddress'],$GLOBALS['userdbuser'],$GLOBALS['userdbpass'],$GLOBALS['userdbname']);
+	//else 
+	$mysqli=lib_mysql_open_database($GLOBALS['authdbaddress'],$GLOBALS['authdbuser'],$GLOBALS['authdbpass'],$GLOBALS['authdbname']);
 	if(mysqli_connect_errno()) { echo "WARNING 38J4"; return; }
 	$x=$mysqli->query($query);
     
@@ -70,7 +71,7 @@ function lib_mysql_data_add($table,$field,$value,$id) {
 	$r=lib_mysql_fetch_one_object("select * from `$table` where `$field`='$value' $chkid");	
 	if($r->id) return $r->id;
 	lib_mysql_query("insert into `$table` (`$field`) VALUES ('$value'); ");
-	$i=$_GLOBALS['mysqli_id'];
+	$i=$GLOBALS['mysqli_id'];
 	return $i;
 }
 function lib_mysql_hidden_var($name,$value) { echo lib_mysql_hidden_var_r($name,$value); }
