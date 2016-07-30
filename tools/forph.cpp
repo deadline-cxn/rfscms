@@ -1,14 +1,5 @@
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <time.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <vector>
-#include <string>
-#include <mysql.h>
-#include <dirent.h>
+#include <sys/types.h> include <sys/stat.h> include <unistd.h> include <time.h> include <stdlib.h> include <stdio.h> include <string.h> include 
+#<vector> include <string> include <mysql.h> include <dirent.h>
 using namespace std;
 
 // define your database config in this file
