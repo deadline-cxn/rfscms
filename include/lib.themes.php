@@ -1,9 +1,9 @@
 <?php
 include_once("themes/_templates/theme_templates.php");
 function lib_themes_get_array() {
-	$dr=$GLOBALS['RFS_SITE_PATH']."/themes/";
+	$dir=$GLOBALS['RFS_SITE_PATH']."/themes/";
 	$themes=array();
-	$d = opendir($dr) or die("Wrong path: $dr");
+	$d = opendir($dir) or die("Wrong path: $dir");
 	while(false!==($entry = readdir($d))) {
 		if(($entry != '.') && ($entry != '..') && (!is_dir($dir.$entry)) ) {
 			if($entry!="_templates")

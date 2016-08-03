@@ -169,7 +169,8 @@ function rfs_get_top_news_id(){
    return $news->id;
 }
 function rfs_show_top_news() {
-    $news=lib_mysql_fetch_one_object("select * from news where topstory='yes' and published='yes'");    
+    $news=lib_mysql_fetch_one_object("select * from news where topstory='yes' and published='yes'");
+	if(isset($news))
     rfs_show_news($news->id);
 }
 function rfs_show_news($nid) {
@@ -359,4 +360,3 @@ function shownews() {
     
     echo "</table>";
 }
-?>

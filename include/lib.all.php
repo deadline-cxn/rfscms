@@ -3,6 +3,7 @@
 // RFSCMS http://www.sethcoder.com/
 /////////////////////////////////////////////////////////////////////////////////////////
 $this_dir=getcwd();
+require_once("default.config.php");
 require_once("session.php");
 require_once("lib.div.php");
 require_once("lib.log.php");

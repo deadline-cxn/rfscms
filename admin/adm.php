@@ -401,17 +401,18 @@ function rfs_admin_module( $loc ) {
 
 				}
 				else {
-					
-					
-					$str=lib_mysql_query("select distinct * from static_html where name='$ar->page'");
+                    
+                    $q="select distinct * from static_html where name='$ar->page'";
+                    echo "$q <BR>";
+                    
+					$str=lib_mysql_query($q);
 					$st=$str->fetch_object();
 					echo "<form action='$RFS_SITE_URL/admin/adm.php' method='post'>";
 					echo "<input type=hidden name=action value=f_module_edit_static_go>";
 					echo "<input type=hidden name=arid value=\"$ar->id\">";
 					echo "<input type=hidden name=staticpage value=\"$ar->page\">";
 					echo "<textarea cols=50 rows=10 name=\"statichtml\">$st->html</textarea><br>";
-					echo "<input type=submit></form>";					
-					
+					echo "<input type=submit></form>";
 					echo "Preview:<br>";
 					$st->html=str_replace("&gt;",">",$st->html);
 					$st->html=str_replace("&lt;","<",$st->html);
@@ -457,8 +458,12 @@ function adm_action_f_module_edit_static_go() {
 	echo lib_rfs_echo(nl2br($statichtml));
 	echo "<br><textarea>$statichtml</textarea>";
 	$statichtml=addslashes($statichtml);
-	lib_mysql_query("update `static_html` set `html`='$statichtml' where name='$staticpage'");
-	lib_mysql_query("update arrangement set `page`='$staticpage' where id='$arid'");
+    $q="update `static_html` set `html`='$statichtml' where name='$staticpage'";
+    //echo $q."<br>";
+	lib_mysql_query($q);
+    $q="update arrangement set `page`='$staticpage' where id='$arid'";
+    //echo $q."<br>";
+	lib_mysql_query($q);
 	adm_action_arrange();
 }
 function adm_action_f_module_add_static_go() {
@@ -468,8 +473,12 @@ function adm_action_f_module_add_static_go() {
 	echo lib_rfs_echo(nl2br($statichtml));
 	echo "<br><textarea>$statichtml</textarea>";
 	$statichtml=addslashes($statichtml);
-	lib_mysql_query("insert into `static_html` (`name`,`html`) values('$staticpage','$statichtml')");
-	lib_mysql_query("update arrangement set `page`='$staticpage' where id='$arid'");
+    $q="insert into `static_html` (`name`,`html`) values('$staticpage','$statichtml')";
+    //echo $q."<br>";
+	lib_mysql_query($q);
+    $q="update arrangement set `page`='$staticpage' where id='$arid'";
+    //echo $q."<br>";
+	lib_mysql_query($q);
 	adm_action_arrange();
 }
 function adm_action_f_module_add_static() {
@@ -547,18 +556,19 @@ function adm_action_f_arrange_delete() {
 }
 function adm_action_f_module_add() {
     eval( lib_rfs_get_globals() );
-	echo ".. $module... $location";
+	//echo ".. $module... $location";
 	
 	$num=5;
-	if(stristr($module,"static_html"))  { $type="static"; $num=""; }
+	if(stristr($module,"static_html"))  { $type="static"; $num=0; }
 	
-	$r=lib_mysql_query("select max(sequence) as seq from arrangement where location = '$location'");
+	$r=lib_mysql_query("select max(sequence) as seq from `arrangement` where `location` = '$location'");
 	$ars=$r->fetch_object();
 	$nseq=$ars->seq+1;
-	echo "$ars->seq $nseq  <br>";
-	
-	lib_mysql_query( "insert into arrangement  (`panel`,`location`,`num`,`type`,`sequence`)
-	                                   values('$module','$location','$num', '$type','$nseq');" );
+	// echo "$ars->seq $nseq  <br>";
+	$q="insert into `arrangement`  (`panel`  ,`location` ,`num` ,`type`  ,`sequence`)
+                             values('$module','$location','$num', '$type','$nseq');";
+    // echo $q."<BR>";
+	lib_mysql_query($q);
 	adm_action_arrange();
 }
 function adm_action_f_module_chg_type() {
@@ -850,12 +860,13 @@ function adm_action_database_backup() {
 	echo "<div class=forum_box>";
 	echo "<h1>Database Backup</h1><hr>";
 	$sn=str_replace("http://","",$RFS_SITE_URL);
+    $sn=str_replace("http:","",$sn);
+    $sn=str_replace("https://","",$sn);
 	$sn=str_replace("/","",$sn);
-	
-	echo (lib_mysql_backup_database($RFS_SITE_PATH."/files/.backups/$sn"));
-		
+
+	echo (lib_mysql_backup_database($RFS_SITE_PATH."/files/.backups/sql/$sn"));
 	echo (lib_mysql_backup_table("addon_database",$RFS_SITE_PATH."/files/addon_database.sql"));
-	
+
 	echo "</div>";
 	finishadminpage();
 }

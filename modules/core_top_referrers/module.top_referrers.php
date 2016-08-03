@@ -32,7 +32,7 @@ function m_panel_top_referrers($x) {
 	while($link=$result->fetch_object()){
 		$url=$link->link;
 		$url=str_replace(":","_rfs_colon_",$url);
-       echo "<a class=\"a_cat\" href=\"$site_url/link_out.php?link=$url\" \n";
+       echo "<a class=\"a_cat\" href=\"$RFS_SITE_URL/link_out.php?link=$url\" \n";
        echo " target=\"_blank\" title=\"$link->sname (in[$link->referrals] out[$link->clicks])\"\n";
 		echo ">".lib_string_truncate($link->sname,24)."</a> ";        
 		echo " <font class=rfs_black>[$link->referrals] <br>";

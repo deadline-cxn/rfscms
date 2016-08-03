@@ -74,8 +74,8 @@ function news_action_createnewsgo() {
 	eval(lib_rfs_get_globals());
 	if(lib_access_check("news","submit")) {
 		$time=date("Y-m-d H:i:s");
-		$result=lib_mysql_query("INSERT INTO `news` (`headline`, `submitter`,`time`, `published`)
-									  VALUES ('$headline','$data->id','$time','no');");
+		$query="INSERT INTO `news` (`name`, `headline`, `submitter`,`time`, `published`, `lastupdate`) VALUES ('name','$headline','$data->id','$time','no','$time');";
+		$result=lib_mysql_query($query);
 		echo "<p>News headline entered into database... The story is unpublished.</p>";
 		$result=lib_mysql_query("select * from news where `headline`='$headline' and `submitter`='$data->id'");
 		$news=$result->fetch_object();
@@ -116,6 +116,8 @@ function news_action_editnewsgo($nid) {
 
 	echo "<p>News article [$nid] has been updated...</p>\n";
 	$loggit="*****> ".$GLOBALS['data']->name." updated news article $nid...";
+	
+	rfs_show_news($nid);
 	
 }
 

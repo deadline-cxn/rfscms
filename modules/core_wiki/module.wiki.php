@@ -219,8 +219,9 @@ function wikitext($text) {
                    
                     $fnc_=explode(",",substr($ila2[0],1));
                     $fnc=$fnc_[0];
-                    $ar1=$fnc_[1];
-                    $ar2=$fnc_[2];
+					$ar1=$ar2="";
+                    if(isset($fnc_[1])) $ar1=$fnc_[1];
+                    if(isset($fnc_[2])) $ar2=$fnc_[2];
                                   
                     d_echo($fnc." ".$ar1." ".$ar2);
                     

@@ -24,17 +24,19 @@ if($font=="random") {
     // 	or 
 	if(!$d) die("Wrong path: $dr");
     while(false!==($entry = readdir($d))){
-            if(strstr($entry,".ttf"))
-            array_push($fonts,$entry);
-        }
+		if(strstr($entry,".ttf"))
+		array_push($fonts,$entry);
+	}
     closedir($d);
     $x=rand(1,count($fonts));
+	if(!isset($fonts[$x])) $x--;
     $font=$fonts[$x];
 }
 if(!empty($font)){
     $ofont=$RFS_SITE_PATH."/files/fonts/".$font;
     $ofont=str_replace("fonts/fonts/","fonts/",$ofont);
 }
+if(!isset($ofont)) $ofont=$ofont=$RFS_SITE_PATH."/files/fonts/DisposableDroidBB_bldital.ttf";
 if(!file_exists($ofont)) $ofont="$RFS_SITE_PATH/include/fonts/$font";
 if(!file_exists($ofont)) $ofont="$RFS_SITE_PATH/include/fonts/OCRA.ttf";
 $font=$ofont;
@@ -274,6 +276,7 @@ else
     if(empty($data->donated)) {
             $renderfile=$renderfile.".nd";
                 //for($jj=16;$jj>0;$jj--){$jwat = imagecolorallocate($image_b, $jj*16,$jj*16,$jj*16);                    imagefilledrectangle($image_b,0,$h-$jj,$w,$h,$jwat);}
+            if(isset($_SESSION['debug_msgs']))
             if($_SESSION['debug_msgs']!=true) {
                 $ad="  Create new captions @ $RFS_SITE_URL/";
                 imagestring($image_b, 2, 2, $h-16, $ad, $black);
@@ -287,8 +290,8 @@ else
     }
 	
 	
-	
-    if($_SESSION['debug_msgs']==true)
+	if(isset($_SESSION['debug_msgs']))
+      if($_SESSION['debug_msgs']==true)
         imagestring($image_b, 2, 3, $h-15, $dout, $red);
 }
 

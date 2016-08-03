@@ -99,10 +99,15 @@ function lib_mysql_backup_table($table,$filename) {
 	echo "Backing up $table to $filename<br>";
 	return system("mysqldump -u$authdbuser -p$authdbpass $authdbname $table > $filename");
 }
-function lib_mysql_backup_database($filename) { eval(lib_rfs_get_globals());
-	$tm=time();
+function lib_mysql_backup_database($filename) {
+    eval(lib_rfs_get_globals());
+    $tm=time();
+    $x=explode("/",$filename);
+    $fn=array_pop($x);
+    $filename=join($x,"/")."/".$tm.".".$fn;    
+	
 	$a="mysqldump -u$authdbuser -p$authdbpass --databases $authdbname > ";
-	$r1="$filename.$tm.sql";
+	$r1="$filename.sql";
 	system($a.$r1);
 	if( ( $userdbname == $authdbname ) && ( $userdbaddress == $authdbaddress) ){
 			$r2="(user database is the same)";

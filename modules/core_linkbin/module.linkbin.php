@@ -51,8 +51,8 @@ function adm_action_f_add_link() {
 	$link=$_REQUEST['link'];
 	$time=date( "Y-m-d H:i:s" );
 	if( $data->id==0 ) $data->id=999;
-	lib_mysql_query( "insert into `link_bin` (`link`,`sname`,`time`,`bumptime`,`poster`,`description`)
-	          values('$link','$sname','$time','$time',   '$id','$description')" );
+	$query="insert into `link_bin` (`link`,`sname`,`time`,`bumptime`,`poster`,`description`) values('$link','$sname','$time','$time',   '$id','$description')";
+	lib_mysql_query($query);
 	echo "<p>Link [$link][$sname] added to linkbin...</p>\n";
 	lib_log_add_entry( "*****> $data->name added a link to the linkbin [$link]" );
 	adm_action_edit_linkbin();
